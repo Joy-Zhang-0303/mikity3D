@@ -1,0 +1,28 @@
+#!/usr/bin/perl
+
+open(DATA,"$ARGV[0]") || die "Cannot open file:$!";
+@lines = <DATA>;
+close(DATA);
+
+$movex = $ARGV[1];
+$movey = $ARGV[2];
+$movez = $ARGV[3];
+
+foreach(@lines){
+
+  if(/^#/){
+    print $_;
+    next;
+  }
+  
+  if($k =($tmp,$x,$y,$z)= split(/\s/)){
+    if($k == 5){
+      $x += $movex;
+      $y += $movey;
+      $z += $movez;
+    print "\t$x\t$y\t$z\n";
+    }else {
+      print $_;
+    }
+  }  
+}

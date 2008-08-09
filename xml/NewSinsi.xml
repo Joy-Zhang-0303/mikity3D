@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mikity>
+    <model>
+        <group name="dodai">
+            <box xsize="0.54" ysize="0.05" zsize="0.07"
+                color="lightGray" transparent="false">
+                <location x="0.0" y="-0.05" z="0.0"/>
+            </box>
+            <box xsize="0.02" ysize="0.27" zsize="0.02"
+                color="lightGray" transparent="false">
+                <location x="0.05" y="-0.21" z="0.0"/>
+            </box>
+            <box xsize="0.02" ysize="0.27" zsize="0.02"
+                color="lightGray" transparent="false">
+                <location x="-0.05" y="-0.21" z="0.0"/>
+            </box>
+            <box xsize="0.3" ysize="0.0050" zsize="0.1"
+                color="lightGray" transparent="false">
+                <location x="0.0" y="-0.3475" z="0.0"/>
+            </box>
+            <group name="daisya">
+                <box xsize="0.07" ysize="0.05" zsize="0.0050"
+                    color="yellow" transparent="false">
+                    <location x="0.0" y="0.0" z="0.02"/>
+                </box>
+                <location x="0.0" y="0.2" z="0.0"/>
+                <linkdata target="a" column="2"/>
+                <group name="sinsi">
+                    <cylinder r="0.01" height="0.018" div="10"
+                        color="red" transparent="false">
+                        <rotation xrotate="90.0" yrotate="0.0" zrotate="0.0"/>
+                        <location x="0.0" y="0.0" z="0.0325"/>
+                    </cylinder>
+                    <cylinder r="0.0025" height="0.3" div="10"
+                        color="black" transparent="false">
+                        <location x="0.0" y="0.15" z="0.037"/>
+                    </cylinder>
+                    <linkdata target="theta" const="180.0" column="3"/>
+                </group>
+            </group>
+        </group>
+    </model>
+    <config>
+        <data>config/data</data>
+        <background color="white"/>
+        <light x="0.2" y="-0.8" z="-0.8"/>
+        <view xrotate="-0.2" yrotate="0.0" zrotate="0.0" x="0.0" y="0.3" z="1.0"/>
+        <modelUnit angle="degree" length="m"/>
+        <dataUnit angle="degree" length="mm"/>
+    </config>
+</mikity>
