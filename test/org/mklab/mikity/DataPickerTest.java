@@ -5,11 +5,12 @@
  */
 package org.mklab.mikity;
 
+import junit.framework.TestCase;
+
 import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.picker.DataPicker;
 import org.mklab.nfc.Matrix;
-
-import junit.framework.TestCase;
+import org.mklab.nfc.matx.MatxMatrix;
 
 
 /**
@@ -20,15 +21,19 @@ public class DataPickerTest extends TestCase {
 
   Matrix data;
 
-  public void setUp() throws Exception {
-    data = Matrix.readMatFile("config/data");
+  /**
+   * @see junit.framework.TestCase#setUp()
+   */
+  @Override
+  protected void setUp() throws Exception {
+    this.data = MatxMatrix.readMatFormat("config/data"); //$NON-NLS-1$
   }
 
   /**
    * 
    */
   public void testSetup() {
-    DataPicker picker = new ClosenessDataPicker(data);
+    DataPicker picker = new ClosenessDataPicker(this.data);
     picker.addMoveTypeDH(DHParameter.D, 2);
     DHParameter param = picker.getDHParameter(13.59);
     assertTrue(-4.09900000 == param.getD());

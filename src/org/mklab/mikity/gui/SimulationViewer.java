@@ -33,6 +33,7 @@ import org.mklab.mikity.task.AnimationTask;
 import org.mklab.mikity.util.MsgUtil;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.nfc.Matrix;
+import org.mklab.nfc.matx.MatxMatrix;
 
 
 /*
@@ -43,6 +44,7 @@ import org.mklab.nfc.Matrix;
 
 /**
  * シミュレーションの描画を行うクラス
+ * 
  * @author miki
  * @version $Revision: 1.21 $.2004/12/02
  */
@@ -50,40 +52,40 @@ import org.mklab.nfc.Matrix;
 public class SimulationViewer extends ApplicationWindow {
 
   /** アニメーション用タスク */
-  private AnimationTask task;
-  private SliderPositionMoveTask stask;
+  AnimationTask task;
+  SliderPositionMoveTask stask;
 
   /**
    * 
    */
   public static boolean playable = true;
 
-  private double endTime;
+  double endTime;
 
   private Jamast root;
 
-  private double speed = 1.0;
+  double speed = 1.0;
 
-  private Timer timer = new Timer();
+  Timer timer = new Timer();
 
-  private Slider timeSlider;
+  Slider timeSlider;
 
   /** 等間隔の時間を保存しとく配列 */
-  private double[] timeTable;
+  double[] timeTable;
 
-  private Matrix data;
+  Matrix data;
 
-  private Text filePathText;
+  Text filePathText;
 
-  private MovableGroupManager manager;
+  MovableGroupManager manager;
 
-  private Label startTimeLabel;
-  private Label currentTimeLabel;
-  private Label endTimeLabel;
+  Label startTimeLabel;
+  Label currentTimeLabel;
+  Label endTimeLabel;
 
   private boolean usedDHParam = false;
   private boolean usedLink = false;
-  
+
   /**
    * コンストラクター
    * 
@@ -92,7 +94,7 @@ public class SimulationViewer extends ApplicationWindow {
    */
   public SimulationViewer(final Shell parentShell, final Jamast root) {
     super(parentShell);
-    manager = new MovableGroupManager(root);
+    this.manager = new MovableGroupManager(root);
     this.root = root;
     setShellStyle(SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
   }
@@ -102,6 +104,7 @@ public class SimulationViewer extends ApplicationWindow {
    * 
    * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
    */
+  @Override
   protected void configureShell(final Shell shell) {
     super.configureShell(shell);
     shell.setSize(647, 500);
@@ -113,6 +116,7 @@ public class SimulationViewer extends ApplicationWindow {
    * 
    * @see org.eclipse.jface.window.Window#createContents(org.eclipse.swt.widgets.Composite)
    */
+  @Override
   protected Control createContents(final Composite parent) {
     SashForm sash = new SashForm(parent, SWT.NONE);
     sash.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -121,10 +125,10 @@ public class SimulationViewer extends ApplicationWindow {
     createViewer(sash);
     createController(sash);
 
-    sash.setWeights(new int[] {70, 30}); //70%:30%に分割点を設定
+    sash.setWeights(new int[] {70, 30}); // 70%:30%に分割点を設定
 
-    if(root.loadConfig(0).loadData()!=null){
-      setTimeData(new File(root.loadConfig(0).loadData()));
+    if (this.root.loadConfig(0).loadData() != null) {
+      setTimeData(new File(this.root.loadConfig(0).loadData()));
     }
     return parent;
   }
@@ -134,16 +138,17 @@ public class SimulationViewer extends ApplicationWindow {
    * 
    * @see org.eclipse.jface.window.Window#handleShellCloseEvent()
    */
+  @Override
   protected void handleShellCloseEvent() {
 
-    if (task != null) {
-      task.cancel();
+    if (this.task != null) {
+      this.task.cancel();
     }
-    if (stask != null) {
-      stask.cancel();
+    if (this.stask != null) {
+      this.stask.cancel();
     }
-    if (timer != null) {
-      timer.cancel();
+    if (this.timer != null) {
+      this.timer.cancel();
     }
 
     super.handleShellCloseEvent();
@@ -151,7 +156,8 @@ public class SimulationViewer extends ApplicationWindow {
 
   /**
    * This method initializes viewer 実際にシミュレーションを見る画面
-   * @param comp 
+   * 
+   * @param comp
    */
   private void createViewer(final Composite comp) {
     final GridData gridData = new GridData(GridData.FILL_BOTH);
@@ -159,16 +165,17 @@ public class SimulationViewer extends ApplicationWindow {
     final Composite viewer = new Composite(comp, SWT.EMBEDDED);
     viewer.setLayoutData(gridData);
 
-    //AWTのフレームを作る。
+    // AWTのフレームを作る。
     final Frame awtFrame = SWT_AWT.new_Frame(viewer);
-    final ModelCanvas sinsiCanvas = new ModelCanvas(root);
+    final ModelCanvas sinsiCanvas = new ModelCanvas(this.root);
     awtFrame.add(sinsiCanvas);
     sinsiCanvas.load();
   }
 
   /**
    * This method initializes controllerComp コントローラCompositの中身
-   * @param parent 
+   * 
+   * @param parent
    */
   private void createController(final Composite parent) {
     final Composite controllerComp = new Composite(parent, SWT.NONE);
@@ -192,14 +199,14 @@ public class SimulationViewer extends ApplicationWindow {
     final Button fastButton = new Button(playerComp, SWT.NONE);
     fastButton.setImage(ResourceManager.getImage(ResourceManager.FAST));
 
-    //timeLabel.setText("" + task.getCurrentTime());
+    // timeLabel.setText("" + task.getCurrentTime());
 
     Composite speedComp = new Composite(otherController, SWT.NONE);
     GridLayout speedLayout = new GridLayout();
     speedLayout.numColumns = 2;
     speedComp.setLayout(speedLayout);
     final ParameterInputBox playSpeed = new ParameterInputBox(speedComp, SWT.NONE, "再生速度", "1.0");
-    //time = new ParameterInputBox(speedComp, SWT.NONE, "時間","0.0");
+    // time = new ParameterInputBox(speedComp, SWT.NONE, "時間","0.0");
 
     createTimeBar(otherController);
 
@@ -208,14 +215,15 @@ public class SimulationViewer extends ApplicationWindow {
 
     fastButton.addSelectionListener(new SelectionAdapter() {
 
+      @Override
       public void widgetSelected(SelectionEvent arg0) {
-        speed += 0.1;
-        if (task != null) {
-          task.setSpeed(speed);
+        SimulationViewer.this.speed += 0.1;
+        if (SimulationViewer.this.task != null) {
+          SimulationViewer.this.task.setSpeed(SimulationViewer.this.speed);
         }
-        //double型をString型に変更
-        String stValue = String.valueOf(speed);
-        //小数点第二以下を表示しないようにする
+        // double型をString型に変更
+        String stValue = String.valueOf(SimulationViewer.this.speed);
+        // 小数点第二以下を表示しないようにする
         stValue = stValue.substring(0, stValue.indexOf(".") + 2);
         playSpeed.setText(stValue);
       }
@@ -223,48 +231,51 @@ public class SimulationViewer extends ApplicationWindow {
 
     slowButton.addSelectionListener(new SelectionAdapter() {
 
+      @Override
       public void widgetSelected(SelectionEvent arg0) {
-        speed -= 0.1;
-        if (task != null) {
-          task.setSpeed(speed);
+        SimulationViewer.this.speed -= 0.1;
+        if (SimulationViewer.this.task != null) {
+          SimulationViewer.this.task.setSpeed(SimulationViewer.this.speed);
         }
-        String stValue = String.valueOf(speed);
+        String stValue = String.valueOf(SimulationViewer.this.speed);
         stValue = stValue.substring(0, stValue.indexOf(".") + 2);
         playSpeed.setText(stValue);
       }
     });
 
-    //再生ボタンによるイベント
+    // 再生ボタンによるイベント
     playbackButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (playable == false) {
-          timer.cancel();
+          SimulationViewer.this.timer.cancel();
         }
-        if (data == null || timeTable == null) {
+        if (SimulationViewer.this.data == null || SimulationViewer.this.timeTable == null) {
           MsgUtil.showMsg(getShell(), "再生ボタンが押されましたが、データは無いので終了します");
           System.out.println("再生ボタンが押されましたが、データは無いので終了します");
           return;
         }
         playable = false;
-        
-        endTime = manager.getEndTime();
-        task = new AnimationTask(endTime, manager);
-        task.setSpeed(playSpeed.getDoubleValue());//スピードの設定
-        task.setCurrentTime(timeTable[timeSlider.getSelection()]);
-        stask = new SliderPositionMoveTask(task, timeSlider);
-        timer = new Timer();
-        timer.schedule(task, 0, 10);
-        timer.schedule(stask, 0, 10);
+
+        SimulationViewer.this.endTime = SimulationViewer.this.manager.getEndTime();
+        SimulationViewer.this.task = new AnimationTask(SimulationViewer.this.endTime, SimulationViewer.this.manager);
+        SimulationViewer.this.task.setSpeed(playSpeed.getDoubleValue());// スピードの設定
+        SimulationViewer.this.task.setCurrentTime(SimulationViewer.this.timeTable[SimulationViewer.this.timeSlider.getSelection()]);
+        SimulationViewer.this.stask = new SliderPositionMoveTask(SimulationViewer.this.task, SimulationViewer.this.timeSlider);
+        SimulationViewer.this.timer = new Timer();
+        SimulationViewer.this.timer.schedule(SimulationViewer.this.task, 0, 10);
+        SimulationViewer.this.timer.schedule(SimulationViewer.this.stask, 0, 10);
       }
     });
 
-    //停止ボタンによるイベント
+    // 停止ボタンによるイベント
     stopButton.addSelectionListener(new SelectionAdapter() {
 
+      @Override
       public void widgetSelected(SelectionEvent arg0) {
-        //スレッドを停止させる。復元不能
-        timer.cancel();
+        // スレッドを停止させる。復元不能
+        SimulationViewer.this.timer.cancel();
         playable = true;
       }
     });
@@ -272,6 +283,7 @@ public class SimulationViewer extends ApplicationWindow {
 
   /**
    * 実行時間バーを生成する。
+   * 
    * @param parent
    */
   private void createTimeBar(final Composite parent) {
@@ -279,32 +291,33 @@ public class SimulationViewer extends ApplicationWindow {
     composite.setLayout(new GridLayout(3, true));
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 
-    startTimeLabel = new Label(composite, SWT.NONE | SWT.LEFT);
-    currentTimeLabel = new Label(composite, SWT.NONE | SWT.CENTER);
-    currentTimeLabel.setText("0.0");
-    currentTimeLabel.setLayoutData(gridData);
-    endTimeLabel = new Label(composite, SWT.NONE | SWT.RIGHT);
+    this.startTimeLabel = new Label(composite, SWT.NONE | SWT.LEFT);
+    this.currentTimeLabel = new Label(composite, SWT.NONE | SWT.CENTER);
+    this.currentTimeLabel.setText("0.0");
+    this.currentTimeLabel.setLayoutData(gridData);
+    this.endTimeLabel = new Label(composite, SWT.NONE | SWT.RIGHT);
 
-    timeSlider = new Slider(composite, SWT.NONE);
+    this.timeSlider = new Slider(composite, SWT.NONE);
     gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 3;
-    timeSlider.setLayoutData(gridData);
-    timeSlider.setMinimum(0);
-    timeSlider.setMaximum(0);
-    //dataCount スライダーの最大値
+    this.timeSlider.setLayoutData(gridData);
+    this.timeSlider.setMinimum(0);
+    this.timeSlider.setMaximum(0);
+    // dataCount スライダーの最大値
 
-    timeSlider.addSelectionListener(new SelectionAdapter() {
+    this.timeSlider.addSelectionListener(new SelectionAdapter() {
 
+      @Override
       public void widgetSelected(SelectionEvent arg0) {
-        double t = timeTable[timeSlider.getSelection()];
-        manager.processStimulus(t);
-        if (task != null) {
-          task.setCurrentTime(t);
+        double t = SimulationViewer.this.timeTable[SimulationViewer.this.timeSlider.getSelection()];
+        SimulationViewer.this.manager.processStimulus(t);
+        if (SimulationViewer.this.task != null) {
+          SimulationViewer.this.task.setCurrentTime(t);
           String st = String.valueOf(t);
           if (st.length() > 5) {
             st = st.substring(0, 4);
           }
-          currentTimeLabel.setText(st);
+          SimulationViewer.this.currentTimeLabel.setText(st);
         }
       }
     });
@@ -312,7 +325,8 @@ public class SimulationViewer extends ApplicationWindow {
 
   /**
    * ファイルを選択するボタン
-   * @param composite 
+   * 
+   * @param composite
    */
   private void createFileChooseComp(final Composite composite) {
     Composite comp = new Composite(composite, SWT.NONE);
@@ -324,29 +338,30 @@ public class SimulationViewer extends ApplicationWindow {
     final Label label = new Label(comp, SWT.NONE);
     label.setText("ファイル");
 
-    filePathText = new Text(comp, SWT.BORDER);
-    filePathText.setText("");
-    filePathText.addTraverseListener(new TraverseListener() {
+    this.filePathText = new Text(comp, SWT.BORDER);
+    this.filePathText.setText("");
+    this.filePathText.addTraverseListener(new TraverseListener() {
 
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          setTimeData(new File(filePathText.getText()));
+          setTimeData(new File(SimulationViewer.this.filePathText.getText()));
         }
       }
     });
 
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 4;
-    filePathText.setLayoutData(gridData);
+    this.filePathText.setLayoutData(gridData);
 
     final Button refButton = new Button(comp, SWT.BORDER);
     refButton.setText("参照");
 
     refButton.addSelectionListener(new SelectionAdapter() {
 
+      @Override
       public void widgetSelected(SelectionEvent arg0) {
         FileDialog dialog = new FileDialog(composite.getShell());
-        //ファイルを選択させる
+        // ファイルを選択させる
         String ret = dialog.open();
         if (ret != null) {
           setTimeData(new File(ret));
@@ -355,55 +370,56 @@ public class SimulationViewer extends ApplicationWindow {
     });
   }
 
-  private void checkLinkParameterType(org.mklab.mikity.xml.model.Group group){
-	  org.mklab.mikity.xml.model.Group[] subGroup = group.loadGroup();
-	  if(subGroup.length != 0){
-		  for(int i=0; i<subGroup.length; i++){
-			  org.mklab.mikity.xml.model.Linkdata[] link = subGroup[i].loadLinkdata();
-			  for(int j=0; j<link.length; j++){
-				  if(link[j].hasDH()){
-					  usedDHParam=true;
-					  manager.setDH(usedDHParam);
-				  }else if(link[j].hasLink()){
-					  usedLink=true;
-					  manager.setLink(usedLink);
-				  }else{
-					  usedDHParam=false;
-					  usedLink=false;
-				  }
-			  }
-			  checkLinkParameterType(subGroup[i]);
-		  }
-	  }
+  private void checkLinkParameterType(org.mklab.mikity.xml.model.Group group) {
+    org.mklab.mikity.xml.model.Group[] subGroup = group.loadGroup();
+    if (subGroup.length != 0) {
+      for (int i = 0; i < subGroup.length; i++) {
+        org.mklab.mikity.xml.model.Linkdata[] link = subGroup[i].loadLinkdata();
+        for (int j = 0; j < link.length; j++) {
+          if (link[j].hasDH()) {
+            this.usedDHParam = true;
+            this.manager.setDH(this.usedDHParam);
+          } else if (link[j].hasLink()) {
+            this.usedLink = true;
+            this.manager.setLink(this.usedLink);
+          } else {
+            this.usedDHParam = false;
+            this.usedLink = false;
+          }
+        }
+        checkLinkParameterType(subGroup[i]);
+      }
+    }
   }
-  
+
   /**
    * 実行時間バーを設定する。
+   * 
    * @param file
    */
   public void setTimeData(final File file) {
     try {
-      data = Matrix.readMatFile(new FileInputStream(file));
+      this.data = MatxMatrix.readMatFormat(new FileInputStream(file));
 
-      timeSlider.setEnabled(true);
-      manager.setData(data);
+      this.timeSlider.setEnabled(true);
+      this.manager.setData(this.data);
 
-      org.mklab.mikity.xml.model.Group group = root.loadModel(0).loadGroup(0);
+      org.mklab.mikity.xml.model.Group group = this.root.loadModel(0).loadGroup(0);
       checkLinkParameterType(group);
-      
-      final int dataCount = manager.getDataCount();
 
-      timeTable = new double[dataCount];
+      final int dataCount = this.manager.getDataCount();
 
-      endTime = manager.getEndTime();
-      startTimeLabel.setText("" + manager.getStartTime());
-      endTimeLabel.setText("" + endTime);
-      for (int i = 0; i < timeTable.length; i++) {
-        timeTable[i] = endTime * ((double)i / timeTable.length);
+      this.timeTable = new double[dataCount];
+
+      this.endTime = this.manager.getEndTime();
+      this.startTimeLabel.setText("" + this.manager.getStartTime());
+      this.endTimeLabel.setText("" + this.endTime);
+      for (int i = 0; i < this.timeTable.length; i++) {
+        this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
       }
-      timeSlider.setMaximum(dataCount);
+      this.timeSlider.setMaximum(dataCount);
 
-      filePathText.setText(file.getPath());
+      this.filePathText.setText(file.getPath());
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } catch (IOException e) {
@@ -413,8 +429,8 @@ public class SimulationViewer extends ApplicationWindow {
 
   private class SliderPositionMoveTask extends TimerTask {
 
-    private AnimationTask task;
-    private Slider slider;
+    AnimationTask task;
+    Slider slider;
 
     /**
      * コンストラクター
@@ -430,11 +446,12 @@ public class SimulationViewer extends ApplicationWindow {
     /**
      * @see java.util.TimerTask#run()
      */
+    @Override
     public void run() {
-      if(getShell() == null){
+      if (getShell() == null) {
         return;
       }
-        
+
       Display display = getShell().getDisplay();
       if (display.isDisposed()) {
         return;
@@ -442,21 +459,21 @@ public class SimulationViewer extends ApplicationWindow {
       display.syncExec(new Runnable() {
 
         public void run() {
-          double ct = task.getCurrentTime();
+          double ct = SliderPositionMoveTask.this.task.getCurrentTime();
           String st = String.valueOf(ct);
           if (st.length() > 5) {
             st = st.substring(0, 4);
           }
-          if (currentTimeLabel.isDisposed()) {
+          if (SimulationViewer.this.currentTimeLabel.isDisposed()) {
             return;
           }
-          currentTimeLabel.setText(st);
-          for (int i = 0; i < timeTable.length; i++) {
-            if (timeTable[i] > ct) {
-              if (slider.isDisposed()) {
+          SimulationViewer.this.currentTimeLabel.setText(st);
+          for (int i = 0; i < SimulationViewer.this.timeTable.length; i++) {
+            if (SimulationViewer.this.timeTable[i] > ct) {
+              if (SliderPositionMoveTask.this.slider.isDisposed()) {
                 return;
               }
-              slider.setSelection(i);
+              SliderPositionMoveTask.this.slider.setSelection(i);
               return;
             }
           }

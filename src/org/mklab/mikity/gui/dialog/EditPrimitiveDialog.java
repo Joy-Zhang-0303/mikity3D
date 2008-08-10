@@ -29,29 +29,30 @@ import org.mklab.mikity.xml.model.XMLSphere;
 
 /**
  * プリミティブの編集を行うクラス
+ * 
  * @author miki
  * @version $Revision: 1.5 $.2005/02/09
  */
 public class EditPrimitiveDialog {
 
   private Shell parentShell;
-  private Shell sShell;
+  Shell sShell;
   private Object prim;
   private String groupName;
   private String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"};
   private ColorComboBox colorCombo;
   private Group afterGroup;
   private Label primLabel;
-  private ParameterInputBox param1,param2,param3;
-  private Label uLabel1,uLabel2,uLabel3;
-  private ParameterInputBox rotX,rotY,rotZ;
-  private ParameterInputBox locX,locY,locZ;
+  private ParameterInputBox param1, param2, param3;
+  private Label uLabel1, uLabel2, uLabel3;
+  private ParameterInputBox rotX, rotY, rotZ;
+  private ParameterInputBox locX, locY, locZ;
   private ParameterInputBox color;
 
-  private ParameterInputBox newParam1,newParam2,newParam3;
-  private ParameterInputBox newRotX,newRotY,newRotZ;
-  private ParameterInputBox newLocX,newLocY,newLocZ;
-  
+  private ParameterInputBox newParam1, newParam2, newParam3;
+  private ParameterInputBox newRotX, newRotY, newRotZ;
+  private ParameterInputBox newLocX, newLocY, newLocZ;
+
   private boolean rotB = true;
   private boolean locB = true;
   private boolean rotA = true;
@@ -59,7 +60,8 @@ public class EditPrimitiveDialog {
 
   /**
    * コンストラクター
-   * @param parentShell 
+   * 
+   * @param parentShell
    * 
    * @param prim
    * @param group
@@ -67,7 +69,7 @@ public class EditPrimitiveDialog {
   public EditPrimitiveDialog(Shell parentShell, Object prim, org.mklab.mikity.xml.model.Group group) {
     this.parentShell = parentShell;
     this.prim = prim;
-    groupName = group.loadName();
+    this.groupName = group.loadName();
     createSShell();
     detectPrim();
   }
@@ -75,15 +77,17 @@ public class EditPrimitiveDialog {
   /**
    * コンストラクター
    */
-  public EditPrimitiveDialog() {}
+  public EditPrimitiveDialog() {
+    // nothing to do
+  }
 
   /**
    * シェルを開く
    */
   public void open() {
-    sShell.open();
-    Display display = sShell.getDisplay();
-    while (!sShell.isDisposed()) {
+    this.sShell.open();
+    Display display = this.sShell.getDisplay();
+    while (!this.sShell.isDisposed()) {
       if (!display.readAndDispatch()) {
         display.sleep();
       }
@@ -91,123 +95,124 @@ public class EditPrimitiveDialog {
   }
 
   /**
-   *  シェルを作成
+   * シェルを作成
    */
   private void createSShell() {
-    sShell = new Shell(parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     GridLayout layout = new GridLayout();
     layout.numColumns = 2;
-    sShell.setSize(new org.eclipse.swt.graphics.Point(350, 400));
-    sShell.setText("Primitiveの編集");
-    sShell.setLayout(layout);
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 400));
+    this.sShell.setText("Primitiveの編集");
+    this.sShell.setLayout(layout);
 
-    Label groupLabel = new Label(sShell, SWT.LEFT);
-    groupLabel.setText("所属グループ  :  " + groupName);
-    setGridLayout(groupLabel,2);
-    
-    primLabel = new Label(sShell, SWT.NONE);
-    setGridLayout(primLabel,2);
-    
-    Group beforeGroup = new Group(sShell, SWT.NONE);
+    Label groupLabel = new Label(this.sShell, SWT.LEFT);
+    groupLabel.setText("所属グループ  :  " + this.groupName);
+    setGridLayout(groupLabel, 2);
+
+    this.primLabel = new Label(this.sShell, SWT.NONE);
+    setGridLayout(this.primLabel, 2);
+
+    Group beforeGroup = new Group(this.sShell, SWT.NONE);
     beforeGroup.setText("変更前");
     setGridLayout(beforeGroup, 1);
     GridLayout beforeLayout = new GridLayout(2, true);
     beforeGroup.setLayout(beforeLayout);
 
-    param1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", "");
-    param2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", "");
-    param3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", "");
+    this.param1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", "");
+    this.param2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", "");
+    this.param3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", "");
     Label label = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    
-    setGridLayout(label,2);
-    
-    rotX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸周り回転", "0.0");
-    rotY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸周り回転", "0.0");
-    rotZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸周り回転", "0.0");
+
+    setGridLayout(label, 2);
+
+    this.rotX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸周り回転", "0.0");
+    this.rotY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸周り回転", "0.0");
+    this.rotZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸周り回転", "0.0");
     Label label2 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    
-    setGridLayout(label2,2);
-    locX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸並進", "0.0");
-    locY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸並進", "0.0");
-    locZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸並進", "0.0");
+
+    setGridLayout(label2, 2);
+    this.locX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸並進", "0.0");
+    this.locY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸並進", "0.0");
+    this.locZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸並進", "0.0");
     Label label3 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    
-    setGridLayout(label3,2);
 
-    color = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "color", "");
+    setGridLayout(label3, 2);
 
-    afterGroup = new Group(sShell, SWT.NONE);
-    afterGroup.setText("変更後");
-    setGridLayout(afterGroup,1);
-    
-    GridLayout afterLayout = new GridLayout(3,false);
-    afterGroup.setLayout(afterLayout);
-    newParam1 = new ParameterInputBox(afterGroup, SWT.NONE, "→", "");
-    uLabel1 = new Label(afterGroup, SWT.NONE);
-    uLabel1.setText(UnitLabel.getUnit("modelLength"));
-    setGridLayout(uLabel1,1);
-    
-    newParam2 = new ParameterInputBox(afterGroup, SWT.NONE, "→", "");
-    uLabel2 = new Label(afterGroup, SWT.NONE);
-    uLabel2.setText(UnitLabel.getUnit("modelLength"));
-    setGridLayout(uLabel2,1);
-    
-    newParam3 = new ParameterInputBox(afterGroup, SWT.NONE, "→", "");
-    uLabel3 = new Label(afterGroup, SWT.NONE);
-    uLabel3.setText(UnitLabel.getUnit("modelLength"));
-    setGridLayout(uLabel3,1);
-    
-    newRotX = new ParameterInputBox(afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(afterGroup, "modelAngle");
-    newRotY = new ParameterInputBox(afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(afterGroup, "modelAngle");
-    newRotZ = new ParameterInputBox(afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(afterGroup, "modelAngle");
-    Label label5 = new Label(afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label5,3);
-        
-    newLocX = new ParameterInputBox(afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(afterGroup, "modelLength");
-    newLocY = new ParameterInputBox(afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(afterGroup, "modelLength");
-    newLocZ = new ParameterInputBox(afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(afterGroup, "modelLength");
-    Label label6 = new Label(afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label6,3);
-    
-    Label colorLabel = new Label(afterGroup, SWT.RIGHT);
+    this.color = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "color", "");
+
+    this.afterGroup = new Group(this.sShell, SWT.NONE);
+    this.afterGroup.setText("変更後");
+    setGridLayout(this.afterGroup, 1);
+
+    GridLayout afterLayout = new GridLayout(3, false);
+    this.afterGroup.setLayout(afterLayout);
+    this.newParam1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "");
+    this.uLabel1 = new Label(this.afterGroup, SWT.NONE);
+    this.uLabel1.setText(UnitLabel.getUnit("modelLength"));
+    setGridLayout(this.uLabel1, 1);
+
+    this.newParam2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "");
+    this.uLabel2 = new Label(this.afterGroup, SWT.NONE);
+    this.uLabel2.setText(UnitLabel.getUnit("modelLength"));
+    setGridLayout(this.uLabel2, 1);
+
+    this.newParam3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "");
+    this.uLabel3 = new Label(this.afterGroup, SWT.NONE);
+    this.uLabel3.setText(UnitLabel.getUnit("modelLength"));
+    setGridLayout(this.uLabel3, 1);
+
+    this.newRotX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
+    new UnitLabel(this.afterGroup, "modelAngle");
+    this.newRotY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
+    new UnitLabel(this.afterGroup, "modelAngle");
+    this.newRotZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
+    new UnitLabel(this.afterGroup, "modelAngle");
+    Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(label5, 3);
+
+    this.newLocX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
+    new UnitLabel(this.afterGroup, "modelLength");
+    this.newLocY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
+    new UnitLabel(this.afterGroup, "modelLength");
+    this.newLocZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
+    new UnitLabel(this.afterGroup, "modelLength");
+    Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(label6, 3);
+
+    Label colorLabel = new Label(this.afterGroup, SWT.RIGHT);
     colorLabel.setText("→");
-    setGridLayout(colorLabel,1);
-    
-    colorCombo = new ColorComboBox(afterGroup,COLORS);
-    colorCombo.createColorCombo();
-    Label spaceLabel = new Label(afterGroup, SWT.NONE);
+    setGridLayout(colorLabel, 1);
+
+    this.colorCombo = new ColorComboBox(this.afterGroup, this.COLORS);
+    this.colorCombo.createColorCombo();
+    Label spaceLabel = new Label(this.afterGroup, SWT.NONE);
     spaceLabel.setText(" ");
-    setGridLayout(spaceLabel,1);
-    
-    //UnitLabel test = new UnitLabel(afterGroup, "modelAngle");
-    
+    setGridLayout(spaceLabel, 1);
+
+    // UnitLabel test = new UnitLabel(afterGroup, "modelAngle");
+
     createButtonComp();
   }
 
   /**
    * レイアウトマネージャGridLayoutを設定
+   * 
    * @param control
    * @param hSpan
    */
-  private void setGridLayout(Control control,int hSpan){
+  private void setGridLayout(Control control, int hSpan) {
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = hSpan;
     control.setLayoutData(gridData);
   }
-  
+
   /**
-   *  変更を決定するButtonを作成
+   * 変更を決定するButtonを作成
    */
   private void createButtonComp() {
-    final Composite comp = new Composite(sShell, SWT.NONE);
-    setGridLayout(comp,2);
-    
+    final Composite comp = new Composite(this.sShell, SWT.NONE);
+    setGridLayout(comp, 2);
+
     GridLayout compLayout = new GridLayout(2, true);
     comp.setLayout(compLayout);
 
@@ -217,19 +222,20 @@ public class EditPrimitiveDialog {
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        //数字以外が入っていないかを判断
+        // 数字以外が入っていないかを判断
         if (Check()) {
-          MessageBox mesBox = new MessageBox(sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+          MessageBox mesBox = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           mesBox.setMessage("変更します");
           mesBox.setText("確認");
           int result = mesBox.open();
           if (result == SWT.YES) {
             setParam();
-            sShell.close();
+            EditPrimitiveDialog.this.sShell.close();
           }
         } else {
-          MessageBox mgb = new MessageBox(sShell, SWT.ICON_WARNING);
+          MessageBox mgb = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.ICON_WARNING);
           mgb.setMessage("パラメータ数字以外が入っています。\n 入力しなおして下さい。");
           mgb.setText("Warning!!");
           mgb.open();
@@ -243,14 +249,15 @@ public class EditPrimitiveDialog {
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        MessageBox mesBox = new MessageBox(sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        MessageBox mesBox = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         mesBox.setMessage("変更を中止して終了します");
         mesBox.setText("確認");
         int result = mesBox.open();
         if (result == SWT.YES) {
-          sShell.close();
+          EditPrimitiveDialog.this.sShell.close();
         }
       }
     });
@@ -258,175 +265,176 @@ public class EditPrimitiveDialog {
 
   /**
    * 数字以外が入力されていたらfalseを返す
+   * 
    * @return boolean
    */
-  private boolean Check() {
-    if (newParam1.checkParam() == false) {
+  boolean Check() {
+    if (this.newParam1.checkParam() == false) {
       return false;
     }
-    if (newParam2.checkParam() == false) {
+    if (this.newParam2.checkParam() == false) {
       return false;
     }
-    if (param3.isVisible() && newParam3.isVisible() && newParam3.checkParam() == false) {
+    if (this.param3.isVisible() && this.newParam3.isVisible() && this.newParam3.checkParam() == false) {
       return false;
     }
-    if (newRotX.checkParam() == false) {
+    if (this.newRotX.checkParam() == false) {
       return false;
     }
-    if (newRotY.checkParam() == false) {
+    if (this.newRotY.checkParam() == false) {
       return false;
     }
-    if (newRotZ.checkParam() == false) {
+    if (this.newRotZ.checkParam() == false) {
       return false;
     }
-    if (newLocX.checkParam() == false) {
+    if (this.newLocX.checkParam() == false) {
       return false;
     }
-    if (newLocY.checkParam() == false) {
+    if (this.newLocY.checkParam() == false) {
       return false;
     }
-    if (newLocZ.checkParam() == false) {
+    if (this.newLocZ.checkParam() == false) {
       return false;
     }
     return true;
   }
 
-  
   /**
    * パラメータを変更する
    */
-  private void setParam() {
+  void setParam() {
     Rotation rot = new Rotation();
     Location loc = new Location();
-    
-    if (newRotX.getFloatValue() == 0 && newRotY.getFloatValue() == 0 && newRotZ.getFloatValue() == 0) {
-      rotA = false;
+
+    if (this.newRotX.getFloatValue() == 0 && this.newRotY.getFloatValue() == 0 && this.newRotZ.getFloatValue() == 0) {
+      this.rotA = false;
     }
-    if(newLocX.getFloatValue() == 0 && newLocY.getFloatValue() == 0 && newLocZ.getFloatValue() == 0){
-      locA = false;
+    if (this.newLocX.getFloatValue() == 0 && this.newLocY.getFloatValue() == 0 && this.newLocZ.getFloatValue() == 0) {
+      this.locA = false;
     }
-    
-    if (prim instanceof XMLBox) {
-      XMLBox box = (XMLBox)prim;
-      box.setXsize(newParam1.getFloatValue());
-      box.setYsize(newParam2.getFloatValue());
-      box.setZsize(newParam3.getFloatValue());
-      if(rotB == false){
-        if(rotA == true){
+
+    if (this.prim instanceof XMLBox) {
+      XMLBox box = (XMLBox)this.prim;
+      box.setXsize(this.newParam1.getFloatValue());
+      box.setYsize(this.newParam2.getFloatValue());
+      box.setZsize(this.newParam3.getFloatValue());
+      if (this.rotB == false) {
+        if (this.rotA == true) {
           box.setRotation(setRot(rot));
         }
-      }else{
+      } else {
         setRot(box.loadRotation());
       }
-      if(locB == false){
-        if(locA == true){
+      if (this.locB == false) {
+        if (this.locA == true) {
           box.setLocation(setLoc(loc));
         }
-      }else{
+      } else {
         setLoc(box.loadLocation());
       }
-      box.setColor(colorCombo.getColorComboBox().getText());
-    } else if (prim instanceof XMLCylinder) {
-      XMLCylinder cyl = (XMLCylinder)prim;
-      cyl.setR(newParam1.getFloatValue());
-      cyl.setHeight(newParam2.getFloatValue());
-      cyl.setDiv(setDiv(newParam3));
-      
-      if(rotB == false){
-        if(rotA == true){
+      box.setColor(this.colorCombo.getColorComboBox().getText());
+    } else if (this.prim instanceof XMLCylinder) {
+      XMLCylinder cyl = (XMLCylinder)this.prim;
+      cyl.setR(this.newParam1.getFloatValue());
+      cyl.setHeight(this.newParam2.getFloatValue());
+      cyl.setDiv(setDiv(this.newParam3));
+
+      if (this.rotB == false) {
+        if (this.rotA == true) {
           cyl.setRotation(setRot(rot));
         }
-      }else{
+      } else {
         setRot(cyl.loadRotation());
       }
-      if(locB == false){
-        if(locA == true){
+      if (this.locB == false) {
+        if (this.locA == true) {
           cyl.setLocation(setLoc(loc));
         }
-      }else{
+      } else {
         setLoc(cyl.loadLocation());
       }
-      cyl.setColor(colorCombo.getColorComboBox().getText());
-    } else if (prim instanceof XMLSphere) {
-      XMLSphere sph = (XMLSphere)prim;
-      sph.setR(newParam1.getFloatValue());
-      sph.setDiv(setDiv(newParam2));
-      if(rotB == false){
-        if(rotA == true){
+      cyl.setColor(this.colorCombo.getColorComboBox().getText());
+    } else if (this.prim instanceof XMLSphere) {
+      XMLSphere sph = (XMLSphere)this.prim;
+      sph.setR(this.newParam1.getFloatValue());
+      sph.setDiv(setDiv(this.newParam2));
+      if (this.rotB == false) {
+        if (this.rotA == true) {
           sph.setRotation(setRot(rot));
         }
-      }else{
+      } else {
         setRot(sph.loadRotation());
       }
-      if(locB == false){
-        if(locA == true){
+      if (this.locB == false) {
+        if (this.locA == true) {
           sph.setLocation(setLoc(loc));
         }
-      }else{
+      } else {
         setLoc(sph.loadLocation());
       }
-      sph.setColor(colorCombo.getColorComboBox().getText());
-    } else if (prim instanceof XMLCone) {
-      XMLCone cone = (XMLCone)prim;
-      cone.setR(newParam1.getFloatValue());
-      cone.setHeight(newParam2.getFloatValue());
-      cone.setDiv(setDiv(newParam3));
-      if(rotB == false){
-        if(rotA == true){
+      sph.setColor(this.colorCombo.getColorComboBox().getText());
+    } else if (this.prim instanceof XMLCone) {
+      XMLCone cone = (XMLCone)this.prim;
+      cone.setR(this.newParam1.getFloatValue());
+      cone.setHeight(this.newParam2.getFloatValue());
+      cone.setDiv(setDiv(this.newParam3));
+      if (this.rotB == false) {
+        if (this.rotA == true) {
           cone.setRotation(setRot(rot));
         }
-      }else{
+      } else {
         setRot(cone.loadRotation());
       }
-      if(locB == false){
-        if(locA == true){
+      if (this.locB == false) {
+        if (this.locA == true) {
           cone.setLocation(setLoc(loc));
         }
-      }else{
+      } else {
         setLoc(cone.loadLocation());
       }
-      cone.setColor(colorCombo.getColorComboBox().getText());
+      cone.setColor(this.colorCombo.getColorComboBox().getText());
     }
 
   }
 
   /**
-   * Rotationを設定
-   * 受け取ったRotationを変更に応じて設定
+   * Rotationを設定 受け取ったRotationを変更に応じて設定
+   * 
    * @param rot
    * @return rot
    */
   private Rotation setRot(Rotation rot) {
-    rot.setXrotate(newRotX.getFloatValue());
-    rot.setYrotate(newRotY.getFloatValue());
-    rot.setZrotate(newRotZ.getFloatValue());
+    rot.setXrotate(this.newRotX.getFloatValue());
+    rot.setYrotate(this.newRotY.getFloatValue());
+    rot.setZrotate(this.newRotZ.getFloatValue());
     return rot;
-    
+
   }
-  
+
   /**
-   * Locationを設定
-   * 受け取ったLocationを変更に応じて設定
+   * Locationを設定 受け取ったLocationを変更に応じて設定
+   * 
    * @param loc
    * @return loc
    */
   private Location setLoc(Location loc) {
-    loc.setX(newLocX.getFloatValue());
-    loc.setY(newLocY.getFloatValue());
-    loc.setZ(newLocZ.getFloatValue());
+    loc.setX(this.newLocX.getFloatValue());
+    loc.setY(this.newLocY.getFloatValue());
+    loc.setZ(this.newLocZ.getFloatValue());
     return loc;
-    
+
   }
 
   /**
    * 分割数が3より小さいときに変わりに30にする
+   * 
    * @param param
    * @return div
    */
   private int setDiv(ParameterInputBox param) {
     int div = (int)param.getDoubleValue();
     if (div < 3) {
-      //3以下なので、30を返します
+      // 3以下なので、30を返します
       div = 30;
     }
     return div;
@@ -436,104 +444,104 @@ public class EditPrimitiveDialog {
    * primitiveの型を判断し、値を入れる
    */
   private void detectPrim() {
-    if (prim instanceof XMLBox) {
-      XMLBox box = (XMLBox)prim;
-      param1.setText("" + box.loadXsize());
-      param2.setText("" + box.loadYsize());
-      param3.setText("" + box.loadZsize());
-      newParam1.setText("" + box.loadXsize());
-      newParam2.setText("" + box.loadYsize());
-      newParam3.setText("" + box.loadZsize());
+    if (this.prim instanceof XMLBox) {
+      XMLBox box = (XMLBox)this.prim;
+      this.param1.setText("" + box.loadXsize());
+      this.param2.setText("" + box.loadYsize());
+      this.param3.setText("" + box.loadZsize());
+      this.newParam1.setText("" + box.loadXsize());
+      this.newParam2.setText("" + box.loadYsize());
+      this.newParam3.setText("" + box.loadZsize());
       Rotation rot = box.loadRotation();
       Location loc = box.loadLocation();
-      if(rot == null){
-        //変換前にRotationが存在しなかったことを示す
-        rotB = false;
-      }else{
+      if (rot == null) {
+        // 変換前にRotationが存在しなかったことを示す
+        this.rotB = false;
+      } else {
         getRot(rot);
       }
-      if(loc == null){
-        //変換前にLocationが存在しなかったことを示す
-        locB = false;
-      }else{
+      if (loc == null) {
+        // 変換前にLocationが存在しなかったことを示す
+        this.locB = false;
+      } else {
         getLoc(loc);
       }
       boxLabel();
-      primLabel.setText("対象となるプリミティブ  :  box");
-      color.setText(box.loadColor());
-      colorCombo.getColorComboBox().setText(box.loadColor());
-    } else if (prim instanceof XMLCylinder) {
-      XMLCylinder cyl = (XMLCylinder)prim;
-      param1.setText("" + cyl.loadR());
-      param2.setText("" + cyl.loadHeight());
-      param3.setText("" + cyl.loadDiv());
-      newParam1.setText("" + cyl.loadR());
-      newParam2.setText("" + cyl.loadHeight());
-      newParam3.setText("" + cyl.loadDiv());
+      this.primLabel.setText("対象となるプリミティブ  :  box");
+      this.color.setText(box.loadColor());
+      this.colorCombo.getColorComboBox().setText(box.loadColor());
+    } else if (this.prim instanceof XMLCylinder) {
+      XMLCylinder cyl = (XMLCylinder)this.prim;
+      this.param1.setText("" + cyl.loadR());
+      this.param2.setText("" + cyl.loadHeight());
+      this.param3.setText("" + cyl.loadDiv());
+      this.newParam1.setText("" + cyl.loadR());
+      this.newParam2.setText("" + cyl.loadHeight());
+      this.newParam3.setText("" + cyl.loadDiv());
       Rotation rot = cyl.loadRotation();
       Location loc = cyl.loadLocation();
-      if(rot == null){
-        rotB = false;
-      }else{
+      if (rot == null) {
+        this.rotB = false;
+      } else {
         getRot(rot);
       }
-      if(loc == null){
-        locB = false;
-      }else{
+      if (loc == null) {
+        this.locB = false;
+      } else {
         getLoc(loc);
       }
       cylLabel();
-      primLabel.setText("対象となるプリミティブ  :  cylinder");
-      color.setText(cyl.loadColor());
-      colorCombo.getColorComboBox().setText(cyl.loadColor());
-    } else if (prim instanceof XMLSphere) {
-      XMLSphere sph = (XMLSphere)prim;
-      param1.setText("" + sph.loadR());
-      param2.setText("" + sph.loadDiv());
-      newParam1.setText("" + sph.loadR());
-      newParam2.setText("" + sph.loadDiv());
+      this.primLabel.setText("対象となるプリミティブ  :  cylinder");
+      this.color.setText(cyl.loadColor());
+      this.colorCombo.getColorComboBox().setText(cyl.loadColor());
+    } else if (this.prim instanceof XMLSphere) {
+      XMLSphere sph = (XMLSphere)this.prim;
+      this.param1.setText("" + sph.loadR());
+      this.param2.setText("" + sph.loadDiv());
+      this.newParam1.setText("" + sph.loadR());
+      this.newParam2.setText("" + sph.loadDiv());
       Rotation rot = sph.loadRotation();
       Location loc = sph.loadLocation();
-      if(rot == null){
-        rotB = false;
-      }else{
+      if (rot == null) {
+        this.rotB = false;
+      } else {
         getRot(rot);
       }
-      if(loc == null){
-        locB = false;
-      }else{
+      if (loc == null) {
+        this.locB = false;
+      } else {
         getLoc(loc);
       }
       sphLabel();
-      primLabel.setText("対象となるプリミティブ  :  sphere");
-      color.setText(sph.loadColor());
-      colorCombo.getColorComboBox().setText(sph.loadColor());
-    } else if (prim instanceof XMLCone) {
-      XMLCone cone = (XMLCone)prim;
-      param1.setText("" + cone.loadR());
-      param2.setText("" + cone.loadHeight());
-      param3.setText("" + cone.loadDiv());
-      newParam1.setText("" + cone.loadR());
-      newParam2.setText("" + cone.loadHeight());
+      this.primLabel.setText("対象となるプリミティブ  :  sphere");
+      this.color.setText(sph.loadColor());
+      this.colorCombo.getColorComboBox().setText(sph.loadColor());
+    } else if (this.prim instanceof XMLCone) {
+      XMLCone cone = (XMLCone)this.prim;
+      this.param1.setText("" + cone.loadR());
+      this.param2.setText("" + cone.loadHeight());
+      this.param3.setText("" + cone.loadDiv());
+      this.newParam1.setText("" + cone.loadR());
+      this.newParam2.setText("" + cone.loadHeight());
       newParam3.setText("" + cone.loadDiv());
       Rotation rot = cone.loadRotation();
       Location loc = cone.loadLocation();
-      if(rot == null){
+      if (rot == null) {
         rotB = false;
-      }else{
+      } else {
         getRot(rot);
       }
-      if(loc == null){
+      if (loc == null) {
         locB = false;
-      }else{
+      } else {
         getLoc(loc);
       }
       coneLabel();
       primLabel.setText("対象となるプリミティブ  :  cone");
       color.setText(cone.loadColor());
       colorCombo.getColorComboBox().setText(cone.loadColor());
-    }else if (prim instanceof XMLConnector) {
-    	
+    } else if (prim instanceof XMLConnector) {
+
     }
   }
 
@@ -614,33 +622,34 @@ public class EditPrimitiveDialog {
 
   /**
    * 平行移動、回転移動の値を読み取る 空の場合はゼロを入れる
+   * 
    * @param rot
    */
   private void getRot(Rotation rot) {
-    if (rot.hasXrotate() || rot.loadXrotate() !=0.0f) {
+    if (rot.hasXrotate() || rot.loadXrotate() != 0.0f) {
       rotX.setText("" + rot.loadXrotate());
       newRotX.setText("" + rot.loadXrotate());
     }
-    if (rot.hasYrotate() || rot.loadYrotate() !=0.0f) {
+    if (rot.hasYrotate() || rot.loadYrotate() != 0.0f) {
       rotY.setText("" + rot.loadYrotate());
       newRotY.setText("" + rot.loadYrotate());
     }
-    if (rot.hasZrotate() || rot.loadXrotate() !=0.0f) {
+    if (rot.hasZrotate() || rot.loadXrotate() != 0.0f) {
       rotZ.setText("" + rot.loadZrotate());
       newRotZ.setText("" + rot.loadZrotate());
     }
   }
 
   private void getLoc(Location loc) {
-    if (loc.hasX() || loc.loadX() !=0.0f) {
+    if (loc.hasX() || loc.loadX() != 0.0f) {
       locX.setText("" + loc.loadX());
       newLocX.setText("" + loc.loadX());
     }
-    if (loc.hasY() || loc.loadY() !=0.0f) {
+    if (loc.hasY() || loc.loadY() != 0.0f) {
       locY.setText("" + loc.loadY());
       newLocY.setText("" + loc.loadY());
     }
-    if (loc.hasZ() || loc.loadZ() !=0.0f) {
+    if (loc.hasZ() || loc.loadZ() != 0.0f) {
       locZ.setText("" + loc.loadZ());
       newLocZ.setText("" + loc.loadZ());
     }

@@ -16,154 +16,154 @@ import javax.media.j3d.View;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.universe.ViewingPlatform;
 
+
 /**
  * @author SHOGO
  * @version $Revision: 1.7 $.2005/11/22
  */
-public class MyUniverse
-{
-    /**
+public class MyUniverse {
+
+  /**
      * 
      */
-    //主要オブジェクト変数
-    public static Applet applet=null;
-    /**
+  // 主要オブジェクト変数
+  public static Applet applet = null;
+  /**
      * 
      */
-    public static SimpleUniverse universe=null;
-    /**
+  public static SimpleUniverse universe = null;
+  /**
      * 
      */
-    public static Canvas3D canvas=null;
+  public static Canvas3D canvas = null;
 
-    //環境パラメータ変数
-    /**
+  // 環境パラメータ変数
+  /**
      * 
      */
-    public static float fieldOfView=(float)Math.toRadians(45.);
-    /**
+  public static float fieldOfView = (float)Math.toRadians(45.);
+  /**
      * 
      */
-    public static float frontDistance=0.5f;
-    /**
+  public static float frontDistance = 0.5f;
+  /**
      * 
      */
-    public static float backDistance=100.0f; 
-    /**
+  public static float backDistance = 100.0f;
+  /**
      * 
      */
-    public static float boundsRadius=100.0f;
-    /**
+  public static float boundsRadius = 100.0f;
+  /**
      * 
      */
-    public static float creaseAngle=(float)Math.toRadians(44.);
-    /**
+  public static float creaseAngle = (float)Math.toRadians(44.);
+  /**
      * 
      */
-    public static int   division=30;
+  public static int division = 30;
 
-    /**
+  /**
      * 
      */
-    //ウィンドウ用変数
-    public static Vector canvasWindow=new Vector();
+  // ウィンドウ用変数
+  public static Vector canvasWindow = new Vector();
 
-    /**
-     * コンストラクター
-     * @param app
-     */
-    public MyUniverse(Applet app)
-    {
-        //アプレットの設定
-        applet=app;
+  /**
+   * コンストラクター
+   * 
+   * @param app
+   */
+  public MyUniverse(Applet app) {
+    // アプレットの設定
+    applet = app;
 
-        //画面オブジェクトの生成
-        canvas=new Canvas3D(SimpleUniverse.getPreferredConfiguration());
-        canvas.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    // 画面オブジェクトの生成
+    canvas = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
+    canvas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        //画面レイアウトの設定
-        applet.setLayout(new BorderLayout());
-        applet.add(canvas,BorderLayout.CENTER);
+    // 画面レイアウトの設定
+    applet.setLayout(new BorderLayout());
+    applet.add(canvas, BorderLayout.CENTER);
 
-        //シンプルユニバースの生成
-        universe=new SimpleUniverse(canvas);
-        //視点位置の設定
-        ViewingPlatform vp=universe.getViewingPlatform();
-        vp.setNominalViewingTransform();
-    }
+    // シンプルユニバースの生成
+    universe = new SimpleUniverse(canvas);
+    // 視点位置の設定
+    ViewingPlatform vp = universe.getViewingPlatform();
+    vp.setNominalViewingTransform();
+  }
 
-    /**
-     * コンストラクター
-     * @param frame
-     */
-    /*
-     * frameに画像を張る！12/2追加
-     * @author miki
-     * @version $Revision: 1.7 $.2004/12/22
-     */
-    public MyUniverse(Frame frame)
-    {
-                
-        //画面オブジェクトの生成
-        canvas=new Canvas3D(SimpleUniverse.getPreferredConfiguration());
-        canvas.setCursor(new Cursor(Cursor.HAND_CURSOR));
+  /**
+   * コンストラクター
+   * 
+   * @param frame
+   */
+  /*
+   * frameに画像を張る！12/2追加
+   * 
+   * @author miki
+   * 
+   * @version $Revision: 1.7 $.2004/12/22
+   */
+  public MyUniverse(Frame frame) {
 
-        //画面レイアウトの設定
-        frame.setLayout(new BorderLayout());
-        frame.add(canvas,BorderLayout.CENTER);
+    // 画面オブジェクトの生成
+    canvas = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
+    canvas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        //シンプルユニバースの生成
-        universe=new SimpleUniverse(canvas);
+    // 画面レイアウトの設定
+    frame.setLayout(new BorderLayout());
+    frame.add(canvas, BorderLayout.CENTER);
 
-        //視点位置の設定
-        ViewingPlatform vp=universe.getViewingPlatform();
-        vp.setNominalViewingTransform();
-    }
+    // シンプルユニバースの生成
+    universe = new SimpleUniverse(canvas);
 
-    /**
-     * @param viewAngle
-     * @param frontDis
-     * @param backDis
-     * @param boundsRad
-     * @param creaseAng
-     * @param div
-     */
-    public void setEnvParameter(float viewAngle,float frontDis,
-                  float backDis,float boundsRad,float creaseAng,int div)
-    {
-        //環境パラメータの設定
-        fieldOfView=viewAngle;
-        frontDistance=frontDis;
-        backDistance=backDis;
-        boundsRadius=boundsRad;
-        creaseAngle=creaseAng;
-        division=div;
+    // 視点位置の設定
+    ViewingPlatform vp = universe.getViewingPlatform();
+    vp.setNominalViewingTransform();
+  }
 
-        //Viewオブジェクトの取得
-        View view=universe.getViewer().getView();
+  /**
+   * @param viewAngle
+   * @param frontDis
+   * @param backDis
+   * @param boundsRad
+   * @param creaseAng
+   * @param div
+   */
+  public void setEnvParameter(float viewAngle, float frontDis, float backDis, float boundsRad, float creaseAng, int div) {
+    // 環境パラメータの設定
+    fieldOfView = viewAngle;
+    frontDistance = frontDis;
+    backDistance = backDis;
+    boundsRadius = boundsRad;
+    creaseAngle = creaseAng;
+    division = div;
 
-        //視野角の設定
-        view.setWindowEyepointPolicy(View.RELATIVE_TO_FIELD_OF_VIEW);
-        view.setFieldOfView(fieldOfView);
+    // Viewオブジェクトの取得
+    View view = universe.getViewer().getView();
 
-        //前方クリッピング距離の設定
-        view.setFrontClipPolicy(View.VIRTUAL_EYE);
-        view.setFrontClipDistance(frontDistance);
+    // 視野角の設定
+    view.setWindowEyepointPolicy(View.RELATIVE_TO_FIELD_OF_VIEW);
+    view.setFieldOfView(fieldOfView);
 
-        //後方クリッピング距離の設定
-        view.setBackClipPolicy(View.VIRTUAL_EYE);
-        view.setBackClipDistance(backDistance);
-    }
+    // 前方クリッピング距離の設定
+    view.setFrontClipPolicy(View.VIRTUAL_EYE);
+    view.setFrontClipDistance(frontDistance);
 
-    /**
-     * @param bg
-     */
-    public void addBranchGraph(BranchGroup bg)
-    {
-        //Compiled-Retainモード実行
-        bg.compile();
+    // 後方クリッピング距離の設定
+    view.setBackClipPolicy(View.VIRTUAL_EYE);
+    view.setBackClipDistance(backDistance);
+  }
 
-        //ブランチグループのロケールへの接続
-        universe.addBranchGraph(bg);
-    }
+  /**
+   * @param bg
+   */
+  public void addBranchGraph(BranchGroup bg) {
+    // Compiled-Retainモード実行
+    bg.compile();
+
+    // ブランチグループのロケールへの接続
+    universe.addBranchGraph(bg);
+  }
 }

@@ -24,13 +24,13 @@ public class ResourceManager {
   private static Map<String, Image> imageMap = new HashMap<String, Image>();
 
   /** 再生画像ファイル定数 */
-  public static final String PLAYBACK = "playback.gif";
+  public static final String PLAYBACK = "playback.gif"; //$NON-NLS-1$
   /** 停止画像ファイル定数 */
-  public static final String STOP = "stop.gif";
+  public static final String STOP = "stop.gif"; //$NON-NLS-1$
   /** 速度増画像ファイル定数 */
-  public static final String FAST = "fast.gif";
+  public static final String FAST = "fast.gif"; //$NON-NLS-1$
   /** 速度減画像ファイル定数 */
-  public static final String SLOW = "slow.gif";
+  public static final String SLOW = "slow.gif"; //$NON-NLS-1$
 
   /**
    * リソース名で指定された画像を返します。 このリソースはクラスパス直下のresourceディレクトリ内を検索します。
@@ -43,10 +43,10 @@ public class ResourceManager {
    */
   public static Image getImage(String key) {
     if (imageMap.containsKey(key)) {
-      return (Image)imageMap.get(key);
+      return imageMap.get(key);
     }
     try {
-      Image img = new Image(null, ResourceManager.class.getResourceAsStream("/resource/" + key));
+      Image img = new Image(null, ResourceManager.class.getResourceAsStream("/resource/" + key)); //$NON-NLS-1$
       imageMap.put(key, img);
       return img;
     } catch (SWTException e) {
@@ -59,8 +59,8 @@ public class ResourceManager {
    * リソースを全て破棄する
    */
   public static void dispose() {
-    for (Iterator iter = imageMap.keySet().iterator(); iter.hasNext();) {
-      Image key = (Image)imageMap.get(iter.next());
+    for (Iterator<String> iter = imageMap.keySet().iterator(); iter.hasNext();) {
+      Image key = imageMap.get(iter.next());
       if (!key.isDisposed()) {
         key.dispose();
       }

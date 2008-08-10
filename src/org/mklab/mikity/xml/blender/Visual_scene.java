@@ -11,81 +11,89 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.mklab.mikity.xml.model.Group;
 
+
 /**
  * Blenderから出力したCOLLADAデータを読み込むためのクラス(Visual_scene要素)
+ * 
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/11/30
  */
 public class Visual_scene {
-	@XmlElement
-	private ArrayList<Node> node;
-	
-	/**
-	 * ノードの名前リスト
-	 */
-	private ArrayList<String> nameList;
-	/**
-	 * 変換行列リスト
-	 */
-	private ArrayList<Matrix4f> matrixList;
-	
-	private Group rootGroup;
 
-	/**
-	 * コンストラクタ
-	 */
-	public Visual_scene(){
-		node = new ArrayList<Node>();
-		nameList = new ArrayList<String>();
-		matrixList = new ArrayList<Matrix4f>();
-		rootGroup = new Group();
-	}
-	
-	/**
-	 * 各ノードの名前が追加されているリストを返す
-	 * @return　nameList 各ノードの名前が追加されているリスト
-	 */
-	public ArrayList<String> getNodeNameList(){
-		for(int i=0; i<node.size(); i++){
-				nameList.add(node.get(i).loadGeometryURL());
-		}
-		return nameList;
-	}
-	
-	/**
-	 * 変換行列が追加されているリストを返す
-	 * @return　matrixList　変換行列が追加されているリスト
-	 */
-	public ArrayList<Matrix4f> getMatrixList(){
-		for(int i=0; i<node.size(); i++){
-			matrixList.add(node.get(i).loadMatrix());
-		}
-		return matrixList;
-	}
+  @XmlElement
+  private ArrayList<Node> node;
 
-	/**
-	 * 各ノードごとに変換行列を生成する
-	 */
-	public void createMatrix() {
-		for(int i=0; i<node.size(); i++){
-			node.get(i).createMatrix();
-		}
-	}
-	
-	private void createScene(){
-		for(int i=0; i<node.size(); i++){
-			node.get(i).createGroup();
-			node.get(i).createScene();
-		}
-		for(int i=0; i<node.size(); i++){
-			if(node.get(i) != null && node.get(i).getGroup().loadName() != null){
-				rootGroup.addGroup(node.get(i).getGroup());
-			}
-		}
-	}
-	
-	public Group getScene(){
-		createScene();
-		return rootGroup;
-	}
+  /**
+   * ノードの名前リスト
+   */
+  private ArrayList<String> nameList;
+  /**
+   * 変換行列リスト
+   */
+  private ArrayList<Matrix4f> matrixList;
+
+  private Group rootGroup;
+
+  /**
+   * コンストラクタ
+   */
+  public Visual_scene() {
+    this.node = new ArrayList<Node>();
+    this.nameList = new ArrayList<String>();
+    this.matrixList = new ArrayList<Matrix4f>();
+    this.rootGroup = new Group();
+  }
+
+  /**
+   * 各ノードの名前が追加されているリストを返す
+   * 
+   * @return　nameList 各ノードの名前が追加されているリスト
+   */
+  public ArrayList<String> getNodeNameList() {
+    for (int i = 0; i < this.node.size(); i++) {
+      this.nameList.add(this.node.get(i).loadGeometryURL());
+    }
+    return this.nameList;
+  }
+
+  /**
+   * 変換行列が追加されているリストを返す
+   * 
+   * @return　matrixList　変換行列が追加されているリスト
+   */
+  public ArrayList<Matrix4f> getMatrixList() {
+    for (int i = 0; i < this.node.size(); i++) {
+      this.matrixList.add(this.node.get(i).loadMatrix());
+    }
+    return this.matrixList;
+  }
+
+  /**
+   * 各ノードごとに変換行列を生成する
+   */
+  public void createMatrix() {
+    for (int i = 0; i < this.node.size(); i++) {
+      this.node.get(i).createMatrix();
+    }
+  }
+
+  private void createScene() {
+    for (int i = 0; i < this.node.size(); i++) {
+      this.node.get(i).createGroup();
+      this.node.get(i).createScene();
+    }
+    for (int i = 0; i < this.node.size(); i++) {
+      if (this.node.get(i) != null && this.node.get(i).getGroup().loadName() != null) {
+        this.rootGroup.addGroup(this.node.get(i).getGroup());
+      }
+    }
+  }
+
+  /**
+   * @return
+   */
+  public Group getScene() {
+    createScene();
+    return this.rootGroup;
+  }
 }

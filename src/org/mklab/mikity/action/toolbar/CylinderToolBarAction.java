@@ -7,52 +7,59 @@ import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLCylinder;
 
+
 /**
  * マウス操作による円柱プリミティブ作成のためのツールバーを作成する。
+ * 
  * @author SHOGO
  * @version $Revision: 1.2 $.2005/11/21
  */
-public class CylinderToolBarAction extends Action{
-  /** 
-   *プログラム実行画面クラスMainWindowのフィールド 
+public class CylinderToolBarAction extends Action {
+
+  /**
+   *プログラム実行画面クラスMainWindowのフィールド
    */
   private MainWindow window;
-  
-  //private CollisionCanceller dc;
-  
+
+  // private CollisionCanceller dc;
+
   /**
    * コンストラクター
-   * @param window 
+   * 
+   * @param window
+   * @param dc 
    */
-  public CylinderToolBarAction(final MainWindow window,CollisionCanceller dc){
+  public CylinderToolBarAction(final MainWindow window, CollisionCanceller dc) {
     super();
     this.window = window;
-    //this.dc =dc;
+    // this.dc =dc;
     setText("Cylinder");
   }
-  
+
   /**
    * 追加した円柱の情報をキャンバスとツリーに追加させる。
    */
-  private void updateCylinder(){ 
-    window.fillTree();
-    window.createViewer();
+  private void updateCylinder() {
+    this.window.fillTree();
+    this.window.createViewer();
   }
-  
+
   /**
    * ツールバークリック時に実行する。
+   * 
    * @see org.eclipse.jface.action.IAction#run()
    */
-  public void run(){
+  @Override
+  public void run() {
     Jamast root = MainWindow.getRoot();
     Group group = root.loadModel(0).loadGroup(0);
-    
+
     XMLCylinder cyl = new XMLCylinder();
     cyl.setR(0.10f);
     cyl.setHeight(0.10f);
     cyl.setDiv(20);
     cyl.setColor("blue");
-    //dc.checkCollision(cyl,cyl.loadLocation(),group);
+    // dc.checkCollision(cyl,cyl.loadLocation(),group);
     group.addXMLCylinder(cyl);
     updateCylinder();
   }

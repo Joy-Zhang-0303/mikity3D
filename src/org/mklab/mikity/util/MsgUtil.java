@@ -12,15 +12,17 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * @author Yusuke Tsutsui
  * 
- * メッセージ表示に関するクラス
- *  
+ *         メッセージ表示に関するクラス
+ * 
  */
 public final class MsgUtil {
 
   /**
    * コンストラクター
    */
-  private MsgUtil() {}
+  private MsgUtil() {
+    // nothing to do
+  }
 
   /**
    * メッセージ表示
@@ -34,7 +36,7 @@ public final class MsgUtil {
     MessageBox mesBox = new MessageBox(shell);
     if (msg != null) {
       mesBox.setMessage(msg);
-      mesBox.setText("JAMAST");
+      mesBox.setText("JAMAST"); //$NON-NLS-1$
       mesBox.open();
     }
   }
@@ -51,7 +53,7 @@ public final class MsgUtil {
   public static int showYesNoMsg(final Shell shell, final String msg) {
     MessageBox mesBox = new MessageBox(shell, SWT.YES | SWT.NO);
     mesBox.setMessage(msg);
-    mesBox.setText("JAMAST");
+    mesBox.setText("JAMAST"); //$NON-NLS-1$
     return mesBox.open();
   }
 
@@ -67,7 +69,7 @@ public final class MsgUtil {
   public static int showYesNoCancelMsg(final Shell shell, final String msg) {
     MessageBox mesBox = new MessageBox(shell, SWT.YES | SWT.NO | SWT.CANCEL);
     mesBox.setMessage(msg);
-    mesBox.setText("JAMAST");
+    mesBox.setText("JAMAST"); //$NON-NLS-1$
     return mesBox.open();
   }
 }

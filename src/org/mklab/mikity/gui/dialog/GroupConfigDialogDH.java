@@ -20,30 +20,32 @@ import org.mklab.mikity.xml.model.Linkdata;
 
 /**
  * グループの設定を行うクラス(DHパラメータ使用)
+ * 
  * @author miki
  * @version $Revision: 1.1 $.2005/02/03
  */
 public class GroupConfigDialogDH {
 
-  private Shell sShell = null;
+  Shell sShell = null;
   private Shell parentShell = null;
-  private org.mklab.mikity.xml.model.Group group;
+  org.mklab.mikity.xml.model.Group group;
 
-  private ParameterInputBox groupName;
-  private ParameterInputBox a;
-  private ParameterInputBox alpha;
-  private ParameterInputBox d;
-  private ParameterInputBox theta;
-  private ParameterInputBox columnA;
-  private ParameterInputBox columnAlpha;
-  private ParameterInputBox columnD;
-  private ParameterInputBox columnTheta;
+  ParameterInputBox groupName;
+  ParameterInputBox a;
+  ParameterInputBox alpha;
+  ParameterInputBox d;
+  ParameterInputBox theta;
+  ParameterInputBox columnA;
+  ParameterInputBox columnAlpha;
+  ParameterInputBox columnD;
+  ParameterInputBox columnTheta;
 
   private boolean editable;
   private Label statusLabel;
 
   /**
    * コンストラクター
+   * 
    * @param parentShell
    * @param group
    * @param editable
@@ -59,77 +61,81 @@ public class GroupConfigDialogDH {
    * sShellの作成、変更を保存、キャンセルする
    */
   private void createSShell() {
-    //  SWT.APPLICATION_MODAL→このシェルを閉じないと、親シェルを編集できなくする
-    sShell = new Shell(parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    // SWT.APPLICATION_MODAL→このシェルを閉じないと、親シェルを編集できなくする
+    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     GridLayout layout = new GridLayout();
     layout.numColumns = 2;
-    sShell.setSize(new org.eclipse.swt.graphics.Point(320, 250));
-    sShell.setText("Groupパラメータの編集");
-    sShell.setLayout(layout);
-    //groupName = new ParameterInputBox(sShell, SWT.NONE, "Group名", group.getName());
-    groupName = new ParameterInputBox(sShell, SWT.NONE, "Group名", "root");
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(320, 250));
+    this.sShell.setText("Groupパラメータの編集");
+    this.sShell.setLayout(layout);
+    // groupName = new ParameterInputBox(sShell, SWT.NONE, "Group名",
+    // group.getName());
+    this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, "Group名", "root");
 
-    System.out.println("group : " + group);
-    if(group.loadName() != null){
-      groupName.setText(group.loadName());
+    System.out.println("group : " + this.group);
+    if (this.group.loadName() != null) {
+      this.groupName.setText(this.group.loadName());
     }
     createGroup();
 
-    Button okButton = new Button(sShell, SWT.NONE);
+    Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText("変更を保存");
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         if (Check()) {
-          MessageBox mesBox = new MessageBox(sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+          MessageBox mesBox = new MessageBox(GroupConfigDialogDH.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           mesBox.setMessage("変更します");
           mesBox.setText("確認");
           int result = mesBox.open();
           if (result == SWT.YES) {
-            group.setName(groupName.getText());
-            group.clearLinkdata();
-            addLinkData(a, columnA);
-            addLinkData(d, columnD);
-            addLinkData(theta, columnTheta);
-            addLinkData(alpha, columnAlpha);
-            sShell.close();
+            GroupConfigDialogDH.this.group.setName(GroupConfigDialogDH.this.groupName.getText());
+            GroupConfigDialogDH.this.group.clearLinkdata();
+            addLinkData(GroupConfigDialogDH.this.a, GroupConfigDialogDH.this.columnA);
+            addLinkData(GroupConfigDialogDH.this.d, GroupConfigDialogDH.this.columnD);
+            addLinkData(GroupConfigDialogDH.this.theta, GroupConfigDialogDH.this.columnTheta);
+            addLinkData(GroupConfigDialogDH.this.alpha, GroupConfigDialogDH.this.columnAlpha);
+            GroupConfigDialogDH.this.sShell.close();
           }
         } else {
-          MessageBox mgb = new MessageBox(sShell, SWT.ICON_WARNING);
+          MessageBox mgb = new MessageBox(GroupConfigDialogDH.this.sShell, SWT.ICON_WARNING);
           mgb.setMessage("パラメータ数字以外が入っています。\n 入力しなおして下さい。");
           mgb.setText("Warning!!");
         }
       }
     });
 
-    Button cancelButton = new Button(sShell, SWT.NONE);
+    Button cancelButton = new Button(this.sShell, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText("キャンセル");
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        //キャンセルが選択されたら、変更しないでシェルを閉じる
-        sShell.close();
+        // キャンセルが選択されたら、変更しないでシェルを閉じる
+        GroupConfigDialogDH.this.sShell.close();
       }
     });
 
     createStatusBar();
-    
-    if (editable == false) {
+
+    if (this.editable == false) {
       setStatus("このグループはルートなので値を指定できません");
     }
   }
 
   /**
    * グループのLinkdataを追加する
-   * @param dh 
-   * @param col 
+   * 
+   * @param dh
+   * @param col
    */
-  private void addLinkData(final ParameterInputBox dh, final ParameterInputBox col) {
+  void addLinkData(final ParameterInputBox dh, final ParameterInputBox col) {
     if (dh.getFloatValue() != 0.0 || col.getIntValue() != 0) {
       Linkdata linkdata = new Linkdata();
       linkdata.setTarget(dh.getLabelText());
@@ -139,7 +145,7 @@ public class GroupConfigDialogDH {
       if (col.getIntValue() != 0) {
         linkdata.setColumn(col.getIntValue());
       }
-      group.addLinkdata(linkdata);
+      this.group.addLinkdata(linkdata);
     }
   }
 
@@ -148,13 +154,13 @@ public class GroupConfigDialogDH {
    */
   private void createGroup() {
     int style;
-    if (editable == true) {
+    if (this.editable == true) {
       style = SWT.NONE;
     } else {
       style = SWT.READ_ONLY;
     }
 
-    Group paramGroup = new Group(sShell, SWT.NONE);
+    Group paramGroup = new Group(this.sShell, SWT.NONE);
     GridLayout layout = new GridLayout();
     GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.horizontalSpan = 2;
@@ -180,18 +186,18 @@ public class GroupConfigDialogDH {
     Label label3 = new Label(paramGroup, SWT.RIGHT);
     label3.setText("読み取る列");
     label3.setLayoutData(gridData3);
-    
-    a = new ParameterInputBox(paramGroup, style, "a", "0");
-    columnA = new ParameterInputBox(paramGroup, style, 0);
 
-    alpha = new ParameterInputBox(paramGroup, style, "alpha", "0");
-    columnAlpha = new ParameterInputBox(paramGroup, style, 0);
+    this.a = new ParameterInputBox(paramGroup, style, "a", "0");
+    this.columnA = new ParameterInputBox(paramGroup, style, 0);
 
-    d = new ParameterInputBox(paramGroup, style, "d", "0");
-    columnD = new ParameterInputBox(paramGroup, style, 0);
+    this.alpha = new ParameterInputBox(paramGroup, style, "alpha", "0");
+    this.columnAlpha = new ParameterInputBox(paramGroup, style, 0);
 
-    theta = new ParameterInputBox(paramGroup, style, "theta", "0");
-    columnTheta = new ParameterInputBox(paramGroup, style, 0);
+    this.d = new ParameterInputBox(paramGroup, style, "d", "0");
+    this.columnD = new ParameterInputBox(paramGroup, style, 0);
+
+    this.theta = new ParameterInputBox(paramGroup, style, "theta", "0");
+    this.columnTheta = new ParameterInputBox(paramGroup, style, 0);
 
     setParam();
   }
@@ -200,48 +206,49 @@ public class GroupConfigDialogDH {
    * ステータスバーを作る
    */
   private void createStatusBar() {
-    statusLabel = new Label(sShell, SWT.BORDER);
+    this.statusLabel = new Label(this.sShell, SWT.BORDER);
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
-    statusLabel.setLayoutData(gridData);
+    this.statusLabel.setLayoutData(gridData);
     setStatus("");
   }
 
   /**
    * ステータスを設定する
+   * 
    * @param msg
    */
   public void setStatus(String msg) {
-    statusLabel.setText("ステータス: " + msg);
+    this.statusLabel.setText("ステータス: " + msg);
   }
 
   /**
    * Linkdata の column を表示させる
    */
   private void setParam() {
-    Linkdata[] linkdata = group.loadLinkdata();
+    Linkdata[] linkdata = this.group.loadLinkdata();
 
     for (int i = 0; i < linkdata.length; i++) {
       String target = linkdata[i].loadTarget();
-      //if(linkdata[i].hasColumn()){
-      //  column = "" + linkdata[i].getColumn();
-      //} else{
-      //  column = "0";
-      //} 
+      // if(linkdata[i].hasColumn()){
+      // column = "" + linkdata[i].getColumn();
+      // } else{
+      // column = "0";
+      // }
       String column = linkdata[i].hasColumn() ? "" + linkdata[i].loadColumn() : "0";
       String constant = linkdata[i].hasConst() ? "" + linkdata[i].loadConst() : "0";
       if (target.equals("a")) {
-        columnA.setText(column);
-        a.setText(constant);
+        this.columnA.setText(column);
+        this.a.setText(constant);
       } else if (target.equals("alpha")) {
-        columnAlpha.setText(column);
-        alpha.setText(constant);
+        this.columnAlpha.setText(column);
+        this.alpha.setText(constant);
       } else if (target.equals("d")) {
-        columnD.setText(column);
-        d.setText(constant);
+        this.columnD.setText(column);
+        this.d.setText(constant);
       } else if (target.equals("theta")) {
-        columnTheta.setText(column);
-        theta.setText(constant);
+        this.columnTheta.setText(column);
+        this.theta.setText(constant);
       }
     }
   }
@@ -251,29 +258,29 @@ public class GroupConfigDialogDH {
    * 
    * @return boolean
    */
-  private boolean Check() {
-    if (a.checkParam() == false) {
+  boolean Check() {
+    if (this.a.checkParam() == false) {
       return false;
     }
-    if (alpha.checkParam() == false) {
+    if (this.alpha.checkParam() == false) {
       return false;
     }
-    if (d.checkParam() == false) {
+    if (this.d.checkParam() == false) {
       return false;
     }
-    if (theta.checkParam() == false) {
+    if (this.theta.checkParam() == false) {
       return false;
     }
-    if (columnA.checkParam() == false) {
+    if (this.columnA.checkParam() == false) {
       return false;
     }
-    if (columnAlpha.checkParam() == false) {
+    if (this.columnAlpha.checkParam() == false) {
       return false;
     }
-    if (columnD.checkParam() == false) {
+    if (this.columnD.checkParam() == false) {
       return false;
     }
-    if (columnTheta.checkParam() == false) {
+    if (this.columnTheta.checkParam() == false) {
       return false;
     }
     return true;
@@ -283,9 +290,9 @@ public class GroupConfigDialogDH {
    * シェルを開く 開いている間、親シェルの処理を止める
    */
   public void open() {
-    sShell.open();
-    Display display = sShell.getDisplay();
-    while (!sShell.isDisposed()) {
+    this.sShell.open();
+    Display display = this.sShell.getDisplay();
+    while (!this.sShell.isDisposed()) {
       if (!display.readAndDispatch()) {
         display.sleep();
       }

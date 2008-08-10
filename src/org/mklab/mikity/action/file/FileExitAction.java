@@ -20,10 +20,11 @@ import org.mklab.mikity.util.MsgUtil;
 public class FileExitAction extends Action {
 
   private MainWindow window;
-  
+
   /**
    * コンストラクター
-   * @param window 
+   * 
+   * @param window
    * 
    */
   public FileExitAction(final MainWindow window) {
@@ -31,19 +32,20 @@ public class FileExitAction extends Action {
     setText("終了(&Q)");
     setToolTipText("アプリケーションを終了します。");
   }
-  
+
   /**
    * @see org.eclipse.jface.action.IAction#run()
    */
+  @Override
   public void run() {
-    if(window.isDirty()){
-      int ans = MsgUtil.showYesNoCancelMsg(window.getShell(),"ファイルが変更されています。保存しますか？");
+    if (this.window.isDirty()) {
+      int ans = MsgUtil.showYesNoCancelMsg(this.window.getShell(), "ファイルが変更されています。保存しますか？");
       switch (ans) {
         case SWT.YES:
-          FileDialog dialog = new FileDialog(window.getShell());
+          FileDialog dialog = new FileDialog(this.window.getShell());
           String path = dialog.getFileName();
-          window.setFile(path);
-          window.save();          
+          this.window.setFile(path);
+          this.window.save();
           break;
         case SWT.NO:
           break;
@@ -53,6 +55,6 @@ public class FileExitAction extends Action {
           throw new IllegalArgumentException();
       }
     }
-    window.close();
+    this.window.close();
   }
 }

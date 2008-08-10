@@ -12,6 +12,7 @@ import org.mklab.mikity.gui.MainWindow;
 
 /**
  * モデリングデータを読み込むアクションです。
+ * 
  * @author miki
  * @version $Revision: 1.4 $.2005/02/14
  */
@@ -34,14 +35,15 @@ public class FileOpenAction extends Action {
   /**
    * @see org.eclipse.jface.action.IAction#run()
    */
+  @Override
   public void run() {
-    FileDialog dialog = new FileDialog(window.getShell());
-    //ファイルを選択させる
+    FileDialog dialog = new FileDialog(this.window.getShell());
+    // ファイルを選択させる
     String fileName = dialog.open();
     if (fileName == null) {
       return;
     }
-    window.setFile(fileName);
-    window.load();
+    this.window.setFile(fileName);
+    this.window.load();
   }
 }

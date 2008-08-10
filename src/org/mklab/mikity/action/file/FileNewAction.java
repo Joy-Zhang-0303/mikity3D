@@ -20,6 +20,7 @@ import org.mklab.mikity.xml.Model;
 
 /**
  * モデリングデータを新規作成するアクションです。
+ * 
  * @author miki
  * @version $Revision: 1.6 $.2005/02/10
  */
@@ -29,6 +30,7 @@ public class FileNewAction extends Action {
 
   /**
    * コンストラクター
+   * 
    * @param window
    */
   public FileNewAction(final MainWindow window) {
@@ -41,9 +43,10 @@ public class FileNewAction extends Action {
   /**
    * @see org.eclipse.jface.action.IAction#run()
    */
+  @Override
   public void run() {
-    //ファイル名を決定
-    FileDialog dialog = new FileDialog(window.getShell());
+    // ファイル名を決定
+    FileDialog dialog = new FileDialog(this.window.getShell());
     dialog.setText("新規ファイルを作成");
     String fileName = dialog.open();
     if (fileName == null) {
@@ -51,21 +54,21 @@ public class FileNewAction extends Action {
     }
     File file = new File(fileName);
     try {
-      //新しいファイルを作成、うまく作成できれば
+      // 新しいファイルを作成、うまく作成できれば
       if (file.createNewFile()) {
-        window.setFile(fileName);
-        window.load();
+        this.window.setFile(fileName);
+        this.window.load();
       } else {
-        //新規作成したいが、もともとその名前のファイルが存在するとき
-        MessageBox msg = new MessageBox(window.getShell(), SWT.YES | SWT.NO);
+        // 新規作成したいが、もともとその名前のファイルが存在するとき
+        MessageBox msg = new MessageBox(this.window.getShell(), SWT.YES | SWT.NO);
         msg.setText("上書き確認");
         msg.setMessage("ファイルが存在します。ファイルを上書きしても良いですか？");
         int ret = msg.open();
         if (ret == SWT.YES) {
-          //createNewModelFile(file);
-          //Jamast root = createEmptyModel();
-          window.setFile(fileName);
-          window.load();
+          // createNewModelFile(file);
+          // Jamast root = createEmptyModel();
+          this.window.setFile(fileName);
+          this.window.load();
         } else if (ret == SWT.NO) {
           return;
         }
@@ -75,11 +78,11 @@ public class FileNewAction extends Action {
       e1.printStackTrace();
     }
   }
-  
+
   /**
    * @return root
    */
-  public static Jamast createEmptyModel(){
+  public static Jamast createEmptyModel() {
     Jamast root = new Jamast();
     Model tmpModel;
     root.addConfig(new Config());

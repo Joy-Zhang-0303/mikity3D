@@ -30,13 +30,14 @@ import org.mklab.mikity.xml.model.XMLSphere;
 
 /**
  * プリミティブの追加を行うクラス
+ * 
  * @author miki
  * @version $Revision: 1.3 $.2005/02/09
  */
 public class AddPrimitiveDialog {
 
   private Shell parentShell;
-  private Shell sShell;
+  Shell sShell;
 
   private ParameterInputBox param1;
   private ParameterInputBox param2;
@@ -55,70 +56,72 @@ public class AddPrimitiveDialog {
   private Group group;
   private String angleUnit;
   private String lengthUnit;
-  
 
-  private int selectedIndex = boxFlag;
+  int selectedIndex = boxFlag;
   private static final int boxFlag = 0;
   private static final int cylFlag = 1;
   private static final int sphFlag = 2;
   private static final int coneFlag = 3;
-  
-  //private CollisionCanceller dc;
+
+  // private CollisionCanceller dc;
 
   /**
    * コンストラクター
    * 
-   * @param parentShell 親シェル
-   * @param group グループ
+   * @param parentShell
+   *        親シェル
+   * @param group
+   *        グループ
+   * @param dc 
    */
   public AddPrimitiveDialog(Shell parentShell, Group group, CollisionCanceller dc) {
     this.parentShell = parentShell;
     this.group = group;
-    angleUnit = UnitLabel.getUnit("modelAngle");
-    lengthUnit = UnitLabel.getUnit("modelLength");
+    this.angleUnit = UnitLabel.getUnit("modelAngle");
+    this.lengthUnit = UnitLabel.getUnit("modelLength");
     createSShell();
-    
-    //this.dc = dc;
+
+    // this.dc = dc;
   }
 
   /**
    * シェルの作成
    */
   private void createSShell() {
-    sShell = new Shell(parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     GridLayout layout = new GridLayout();
     layout.numColumns = 3;
-    sShell.setSize(new org.eclipse.swt.graphics.Point(280, 400));
-    sShell.setText("Primitiveの追加");
-    sShell.setLayout(layout);
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(280, 400));
+    this.sShell.setText("Primitiveの追加");
+    this.sShell.setLayout(layout);
 
-    Label groupLabel = new Label(sShell, SWT.LEFT);
-    groupLabel.setText("追加するグループ  :  " + group.loadName());
+    Label groupLabel = new Label(this.sShell, SWT.LEFT);
+    groupLabel.setText("追加するグループ  :  " + this.group.loadName());
     GridData gLabelData = new GridData(GridData.FILL_HORIZONTAL);
     gLabelData.horizontalSpan = 3;
     groupLabel.setLayoutData(gLabelData);
 
-    Label primLabel = new Label(sShell, SWT.RIGHT);
+    Label primLabel = new Label(this.sShell, SWT.RIGHT);
     primLabel.setText("primitive");
     GridData labelData = new GridData(GridData.FILL_HORIZONTAL);
     labelData.widthHint = 80;
     primLabel.setLayoutData(labelData);
     createPrimCombo();
 
-    param1 = new ParameterInputBox(sShell, SWT.NONE, "幅", "0.2");
-    unitLabel1 = new Label(sShell, SWT.NONE);
-    unitLabel1.setText(lengthUnit);
-    
-    param2 = new ParameterInputBox(sShell, SWT.NONE, "高さ", "0.2");
-    unitLabel2 = new Label(sShell, SWT.NONE);
-    unitLabel2.setText(lengthUnit);
-    
-    param3 = new ParameterInputBox(sShell, SWT.NONE, "奥行き", "0.2");
-    unitLabel3 = new Label(sShell, SWT.NONE);
-    unitLabel3.setText(lengthUnit);
+    this.param1 = new ParameterInputBox(this.sShell, SWT.NONE, "幅", "0.2");
+    this.unitLabel1 = new Label(this.sShell, SWT.NONE);
+    this.unitLabel1.setText(this.lengthUnit);
+
+    this.param2 = new ParameterInputBox(this.sShell, SWT.NONE, "高さ", "0.2");
+    this.unitLabel2 = new Label(this.sShell, SWT.NONE);
+    this.unitLabel2.setText(this.lengthUnit);
+
+    this.param3 = new ParameterInputBox(this.sShell, SWT.NONE, "奥行き", "0.2");
+    this.unitLabel3 = new Label(this.sShell, SWT.NONE);
+    this.unitLabel3.setText(this.lengthUnit);
 
     GridData rotData = new GridData(GridData.FILL_HORIZONTAL);
-    org.eclipse.swt.widgets.Group rotateGroup = new org.eclipse.swt.widgets.Group(sShell, SWT.NONE);
+    org.eclipse.swt.widgets.Group rotateGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
     rotateGroup.setText("回転移動");
     layout = new GridLayout();
     layout.numColumns = 3;
@@ -127,18 +130,18 @@ public class AddPrimitiveDialog {
     rotData.horizontalSpan = 3;
     rotateGroup.setLayoutData(rotData);
 
-    rotX = new ParameterInputBox(rotateGroup, SWT.NONE, "X軸周り", "0.0");
+    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, "X軸周り", "0.0");
     Label unitLabelRX = new Label(rotateGroup, SWT.NONE);
-    unitLabelRX.setText(angleUnit + " ");
-    rotY = new ParameterInputBox(rotateGroup, SWT.NONE, "Y軸周り", "0.0");
+    unitLabelRX.setText(this.angleUnit + " ");
+    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, "Y軸周り", "0.0");
     Label unitLabelRY = new Label(rotateGroup, SWT.NONE);
-    unitLabelRY.setText(angleUnit + " ");
-    rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, "Z軸周り", "0.0");
+    unitLabelRY.setText(this.angleUnit + " ");
+    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, "Z軸周り", "0.0");
     Label unitLabelRZ = new Label(rotateGroup, SWT.NONE);
-    unitLabelRZ.setText(angleUnit + " ");
-    
+    unitLabelRZ.setText(this.angleUnit + " ");
+
     GridData locData = new GridData(GridData.FILL_HORIZONTAL);
-    org.eclipse.swt.widgets.Group locationGroup = new org.eclipse.swt.widgets.Group(sShell, SWT.NONE);
+    org.eclipse.swt.widgets.Group locationGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
     locationGroup.setText("平行移動");
     layout = new GridLayout();
     layout.numColumns = 3;
@@ -147,59 +150,61 @@ public class AddPrimitiveDialog {
     locData.horizontalSpan = 3;
     locationGroup.setLayoutData(locData);
 
-    locX = new ParameterInputBox(locationGroup, SWT.NONE, "X軸方向", "0");
+    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, "X軸方向", "0");
     Label unitLabelLX = new Label(locationGroup, SWT.NONE);
-    unitLabelLX.setText(lengthUnit + " ");
-    locY = new ParameterInputBox(locationGroup, SWT.NONE, "Y軸方向", "0");
+    unitLabelLX.setText(this.lengthUnit + " ");
+    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, "Y軸方向", "0");
     Label unitLabelLY = new Label(locationGroup, SWT.NONE);
-    unitLabelLY.setText(lengthUnit + " ");
-    locZ = new ParameterInputBox(locationGroup, SWT.NONE, "Z軸方向", "0");
+    unitLabelLY.setText(this.lengthUnit + " ");
+    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, "Z軸方向", "0");
     Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
-    unitLabelLZ.setText(lengthUnit + " ");
+    unitLabelLZ.setText(this.lengthUnit + " ");
 
     GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
-    Label colorLabel = new Label(sShell, SWT.RIGHT);
+    Label colorLabel = new Label(this.sShell, SWT.RIGHT);
     colorLabel.setText("color");
     colorLabel.setLayoutData(labelData2);
     createColorCombo();
-    
-    Label spaceLabel = new Label(sShell, SWT.NONE);
+
+    Label spaceLabel = new Label(this.sShell, SWT.NONE);
     spaceLabel.setText(" ");
-    
-    Button okButton = new Button(sShell, SWT.NONE);
+
+    Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText("プリミティブを追加");
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         if (Check()) {
-        	//dc.checkDuplication(,.getLocation,group);
+          // dc.checkDuplication(,.getLocation,group);
           addPrim();
-          sShell.close();
+          AddPrimitiveDialog.this.sShell.close();
         } else {
-          MessageBox mgb = new MessageBox(sShell, SWT.ICON_WARNING);
+          MessageBox mgb = new MessageBox(AddPrimitiveDialog.this.sShell, SWT.ICON_WARNING);
           mgb.setMessage("パラメータ数字以外が入っています。\n 入力しなおして下さい。");
           mgb.setText("Warning!!");
         }
       }
     });
 
-    Button cancelButton = new Button(sShell, SWT.NONE);
+    Button cancelButton = new Button(this.sShell, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText(" キャンセル ");
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        MessageBox mesBox = new MessageBox(sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        MessageBox mesBox = new MessageBox(AddPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         mesBox.setMessage("変更を中止して終了します");
         mesBox.setText("確認");
         int result = mesBox.open();
         if (result == SWT.YES) {
-          sShell.close();
+          AddPrimitiveDialog.this.sShell.close();
         }
       }
     });
@@ -210,32 +215,32 @@ public class AddPrimitiveDialog {
    * 
    * @return boolean
    */
-  private boolean Check() {
-    if (param1.checkParam() == false) {
+  boolean Check() {
+    if (this.param1.checkParam() == false) {
       return false;
     }
-    if (param2.checkParam() == false) {
+    if (this.param2.checkParam() == false) {
       return false;
     }
-    if (param3.checkParam() == false) {
+    if (this.param3.checkParam() == false) {
       return false;
     }
-    if (rotX.checkParam() == false) {
+    if (this.rotX.checkParam() == false) {
       return false;
     }
-    if (rotY.checkParam() == false) {
+    if (this.rotY.checkParam() == false) {
       return false;
     }
-    if (rotZ.checkParam() == false) {
+    if (this.rotZ.checkParam() == false) {
       return false;
     }
-    if (locX.checkParam() == false) {
+    if (this.locX.checkParam() == false) {
       return false;
     }
-    if (locY.checkParam() == false) {
+    if (this.locY.checkParam() == false) {
       return false;
     }
-    if (locZ.checkParam() == false) {
+    if (this.locZ.checkParam() == false) {
       return false;
     }
     return true;
@@ -244,77 +249,77 @@ public class AddPrimitiveDialog {
   /**
    * プリミティブを追加する
    */
-  private void addPrim() {
+  void addPrim() {
     Rotation rot = new Rotation();
     Location loc = new Location();
 
-    switch (selectedIndex) {
+    switch (this.selectedIndex) {
       case boxFlag:
         XMLBox box = new XMLBox();
-        box.setXsize(param1.getFloatValue());
-        box.setYsize(param2.getFloatValue());
-        box.setZsize(param3.getFloatValue());
+        box.setXsize(this.param1.getFloatValue());
+        box.setYsize(this.param2.getFloatValue());
+        box.setZsize(this.param3.getFloatValue());
         if (getRot(rot) != null) {
           box.setRotation(getRot(rot));
         }
         if (getLoc(loc) != null) {
           box.setLocation(getLoc(loc));
         }
-        box.setColor(colorCombo.getText());
-        //dc.checkCollision(box,box.loadLocation(),group);
+        box.setColor(this.colorCombo.getText());
+        // dc.checkCollision(box,box.loadLocation(),group);
         box.setLocation(loc);
-		group.addXMLBox(box);
-       
+        this.group.addXMLBox(box);
+
         break;
       case cylFlag:
         XMLCylinder cyl = new XMLCylinder();
-        cyl.setR(param1.getFloatValue());
-        cyl.setHeight(param2.getFloatValue());
-        cyl.setDiv(setDiv(param3));
+        cyl.setR(this.param1.getFloatValue());
+        cyl.setHeight(this.param2.getFloatValue());
+        cyl.setDiv(setDiv(this.param3));
         if (getRot(rot) != null) {
           cyl.setRotation(getRot(rot));
         }
         if (getLoc(loc) != null) {
           cyl.setLocation(getLoc(loc));
         }
-        cyl.setColor(colorCombo.getText());
-      //dc.checkCollision(cyl,cyl.loadLocation(),group);
+        cyl.setColor(this.colorCombo.getText());
+        // dc.checkCollision(cyl,cyl.loadLocation(),group);
         cyl.setLocation(loc);
-		group.addXMLCylinder(cyl);
-        
+        this.group.addXMLCylinder(cyl);
+
         break;
       case sphFlag:
         XMLSphere sph = new XMLSphere();
-        sph.setR(param1.getFloatValue());
-        sph.setDiv(setDiv(param2));
+        sph.setR(this.param1.getFloatValue());
+        sph.setDiv(setDiv(this.param2));
         if (getRot(rot) != null) {
           sph.setRotation(getRot(rot));
         }
         if (getLoc(loc) != null) {
           sph.setLocation(getLoc(loc));
         }
-        sph.setColor(colorCombo.getText());
-     //dc.checkCollision(sph,sph.loadLocation(),group);
+        sph.setColor(this.colorCombo.getText());
+        // dc.checkCollision(sph,sph.loadLocation(),group);
         sph.setLocation(loc);
-		group.addXMLSphere(sph);
-       
+        this.group.addXMLSphere(sph);
+
         break;
       case coneFlag:
         XMLCone cone = new XMLCone();
-        cone.setR(param1.getFloatValue());
-        cone.setHeight(param2.getFloatValue());
-        cone.setDiv(setDiv(param3));
+        cone.setR(this.param1.getFloatValue());
+        cone.setHeight(this.param2.getFloatValue());
+        cone.setDiv(setDiv(this.param3));
         if (getRot(rot) != null) {
           cone.setRotation(getRot(rot));
         }
         if (getLoc(loc) != null) {
           cone.setLocation(getLoc(loc));
         }
-        cone.setColor(colorCombo.getText());
-      //dc.checkCollision(cone,cone.loadLocation(),group);
+        cone.setColor(this.colorCombo.getText());
+        // dc.checkCollision(cone,cone.loadLocation(),group);
         cone.setLocation(loc);
-		group.addXMLCone(cone);
-        
+        this.group.addXMLCone(cone);
+
         break;
     }
 
@@ -322,44 +327,47 @@ public class AddPrimitiveDialog {
 
   /**
    * Rotationの値を設定 param Rotation return Rotation
+   * 
    * @param rot
    * @return rot
    */
   private Rotation getRot(Rotation rot) {
-    if (rotX.getFloatValue() == 0 && rotY.getFloatValue() == 0 && rotZ.getFloatValue() == 0) {
+    if (this.rotX.getFloatValue() == 0 && this.rotY.getFloatValue() == 0 && this.rotZ.getFloatValue() == 0) {
       return null;
     }
-    rot.setXrotate(rotX.getFloatValue());
-    rot.setYrotate(rotY.getFloatValue());
-    rot.setZrotate(rotZ.getFloatValue());
+    rot.setXrotate(this.rotX.getFloatValue());
+    rot.setYrotate(this.rotY.getFloatValue());
+    rot.setZrotate(this.rotZ.getFloatValue());
     return rot;
 
   }
 
   /**
    * Locationの値を設定 param Location return Location
+   * 
    * @param loc
    * @return loc
    */
   private Location getLoc(Location loc) {
-    if (locX.getFloatValue() == 0 && locY.getFloatValue() == 0 && locZ.getFloatValue() == 0) {
+    if (this.locX.getFloatValue() == 0 && this.locY.getFloatValue() == 0 && this.locZ.getFloatValue() == 0) {
       return null;
     }
-    loc.setX(locX.getFloatValue());
-    loc.setY(locY.getFloatValue());
-    loc.setZ(locZ.getFloatValue());
+    loc.setX(this.locX.getFloatValue());
+    loc.setY(this.locY.getFloatValue());
+    loc.setZ(this.locZ.getFloatValue());
     return loc;
   }
 
   /**
    * 分割数が3より小さいときに変わりに30にする
+   * 
    * @param param
    * @return div
    */
   private int setDiv(ParameterInputBox param) {
     int div = (int)param.getDoubleValue();
     if (div < 3) {
-      //3以下なので、30を返します
+      // 3以下なので、30を返します
       div = 30;
     }
     return div;
@@ -369,9 +377,9 @@ public class AddPrimitiveDialog {
    * shellを開く
    */
   public void open() {
-    sShell.open();
-    Display display = sShell.getDisplay();
-    while (!sShell.isDisposed()) {
+    this.sShell.open();
+    Display display = this.sShell.getDisplay();
+    while (!this.sShell.isDisposed()) {
       if (!display.readAndDispatch()) {
         display.sleep();
       }
@@ -383,17 +391,18 @@ public class AddPrimitiveDialog {
     /**
      * 選択されたプリミティブによってLabel,TextBoxを変更するための flagとなるselectedIndex
      */
+    @Override
     public void widgetSelected(SelectionEvent e) {
       Combo combo = (Combo)e.widget;
-      selectedIndex = combo.getSelectionIndex();
+      AddPrimitiveDialog.this.selectedIndex = combo.getSelectionIndex();
 
-      if (selectedIndex == boxFlag) {
+      if (AddPrimitiveDialog.this.selectedIndex == boxFlag) {
         boxLabel();
-      } else if (selectedIndex == cylFlag) {
+      } else if (AddPrimitiveDialog.this.selectedIndex == cylFlag) {
         cylLabel();
-      } else if (selectedIndex == sphFlag) {
+      } else if (AddPrimitiveDialog.this.selectedIndex == sphFlag) {
         sphLabel();
-      } else if (selectedIndex == coneFlag) {
+      } else if (AddPrimitiveDialog.this.selectedIndex == coneFlag) {
         coneLabel();
       }
     }
@@ -402,62 +411,62 @@ public class AddPrimitiveDialog {
   /**
    * 選ばれているprimitiveがBoxのとき
    */
-  private void boxLabel() {
-    param1.setLabelText("幅");
-    param2.setLabelText("高さ");
-    unitLabel2.setText(lengthUnit + " ");
-    param3.setLabelText("奥行き");
-    unitLabel2.setText(lengthUnit + " ");    
-    param3.setVisible(true);
+  void boxLabel() {
+    this.param1.setLabelText("幅");
+    this.param2.setLabelText("高さ");
+    this.unitLabel2.setText(this.lengthUnit + " ");
+    this.param3.setLabelText("奥行き");
+    this.unitLabel2.setText(this.lengthUnit + " ");
+    this.param3.setVisible(true);
   }
 
   /**
    * Cylinderのとき
    */
-  private void cylLabel() {
-    param1.setLabelText("半径");
-    param2.setLabelText("高さ");
-    unitLabel2.setText(lengthUnit + " ");
-    param3.setLabelText("分割数");
-    unitLabel3.setText(" ");
-    param3.setVisible(true);
-    if (param3.getIntValue() < 3) {
-      param3.setText("30");
+  void cylLabel() {
+    this.param1.setLabelText("半径");
+    this.param2.setLabelText("高さ");
+    this.unitLabel2.setText(this.lengthUnit + " ");
+    this.param3.setLabelText("分割数");
+    this.unitLabel3.setText(" ");
+    this.param3.setVisible(true);
+    if (this.param3.getIntValue() < 3) {
+      this.param3.setText("30");
     } else {
-      param3.setText("" + param3.getIntValue());
+      this.param3.setText("" + this.param3.getIntValue());
     }
   }
 
   /**
    * Sphereのとき
    */
-  private void sphLabel() {
-    param1.setLabelText("半径");
-    param2.setLabelText("分割数");
-    unitLabel2.setText(" ");
-    param3.setVisible(false);
-    unitLabel3.setText(" ");
-    if (param2.getIntValue() < 3) {
-      param2.setText("30");
+  void sphLabel() {
+    this.param1.setLabelText("半径");
+    this.param2.setLabelText("分割数");
+    this.unitLabel2.setText(" ");
+    this.param3.setVisible(false);
+    this.unitLabel3.setText(" ");
+    if (this.param2.getIntValue() < 3) {
+      this.param2.setText("30");
     } else {
-      param2.setText("" + param2.getIntValue());
+      this.param2.setText("" + this.param2.getIntValue());
     }
   }
 
   /**
    * Coneのとき
    */
-  private void coneLabel() {
-    param1.setLabelText("半径");
-    param2.setLabelText("高さ");
-    unitLabel2.setText(lengthUnit + " ");
-    param3.setLabelText("分割数");
-    unitLabel3.setText(" ");
-    param3.setVisible(true);
-    if (param3.getIntValue() < 3) {
-      param3.setText("30");
+  void coneLabel() {
+    this.param1.setLabelText("半径");
+    this.param2.setLabelText("高さ");
+    this.unitLabel2.setText(this.lengthUnit + " ");
+    this.param3.setLabelText("分割数");
+    this.unitLabel3.setText(" ");
+    this.param3.setVisible(true);
+    if (this.param3.getIntValue() < 3) {
+      this.param3.setText("30");
     } else {
-      param3.setText("" + param3.getIntValue());
+      this.param3.setText("" + this.param3.getIntValue());
     }
   }
 
@@ -465,27 +474,27 @@ public class AddPrimitiveDialog {
    * コンボボックス primCombo プリミティブを選択
    */
   private void createPrimCombo() {
-    primCombo = new Combo(sShell, SWT.READ_ONLY);
+    this.primCombo = new Combo(this.sShell, SWT.READ_ONLY);
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
-    primCombo.setLayoutData(gridData);
+    this.primCombo.setLayoutData(gridData);
     String[] PRIMITIVES = {"Box", "Cylinder", "Sphere", "Cone"};
-    primCombo.setItems(PRIMITIVES);
-    //デフォルトはBox
-    primCombo.setText("Box");
-    primCombo.addSelectionListener(new PComboCheck());
+    this.primCombo.setItems(PRIMITIVES);
+    // デフォルトはBox
+    this.primCombo.setText("Box");
+    this.primCombo.addSelectionListener(new PComboCheck());
   }
 
   /**
    * コンボボックス colorCombo プリミティブの色を選択
    */
   private void createColorCombo() {
-    colorCombo = new Combo(sShell, SWT.READ_ONLY);
+    this.colorCombo = new Combo(this.sShell, SWT.READ_ONLY);
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
-    colorCombo.setLayoutData(gridData);
+    this.colorCombo.setLayoutData(gridData);
     String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"};
-    colorCombo.setItems(COLORS);
-    colorCombo.setText("red");
+    this.colorCombo.setItems(COLORS);
+    this.colorCombo.setText("red");
   }
 }

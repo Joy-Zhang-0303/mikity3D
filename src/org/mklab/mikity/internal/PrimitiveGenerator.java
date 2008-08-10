@@ -25,6 +25,7 @@ import com.sun.j3d.utils.geometry.Primitive;
 
 /**
  * プリミティブの生成装置となるクラス
+ * 
  * @author miki
  * @version $Revision: 1.3 $.2004/11/24
  */
@@ -32,6 +33,7 @@ public class PrimitiveGenerator {
 
   /**
    * プリミティブを取得する。
+   * 
    * @return null
    */
   public Primitive getPrimitive() {
@@ -40,6 +42,7 @@ public class PrimitiveGenerator {
 
   /**
    * オブジェクトを取得する。
+   * 
    * @param filename
    * @return tg
    */

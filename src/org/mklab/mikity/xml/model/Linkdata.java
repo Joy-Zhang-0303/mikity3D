@@ -13,6 +13,7 @@ package org.mklab.mikity.xml.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
+
 /**
  * Class Linkdata.
  * 
@@ -20,213 +21,201 @@ import javax.xml.bind.annotation.XmlAttribute;
  */
 public class Linkdata implements java.io.Serializable {
 
+  // --------------------------/
+  // - Class/Member Variables -/
+  // --------------------------/
 
-	//--------------------------/
-	//- Class/Member Variables -/
-	//--------------------------/
-
-	/**
+  /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Field _target
-	 */
-	@XmlAttribute
-	private java.lang.String _target;
+  /**
+   * Field _target
+   */
+  @XmlAttribute
+  private java.lang.String _target;
 
-	/**
-	 * Field _const
-	 */
-	@XmlAttribute
-	private double _const;
+  /**
+   * Field _const
+   */
+  @XmlAttribute
+  private double _const;
 
-	/**
-	 * keeps track of state for field: _const
-	 */
-	private boolean _has_const;
+  /**
+   * keeps track of state for field: _const
+   */
+  private boolean _has_const;
 
-	/**
-	 * Field _column
-	 */
-	@XmlAttribute
-	private int _column;
+  /**
+   * Field _column
+   */
+  @XmlAttribute
+  private int _column;
 
-	/**
-	 * keeps track of state for field: _column
-	 */
-	private boolean _has_column;
+  /**
+   * keeps track of state for field: _column
+   */
+  private boolean _has_column;
 
-	private boolean _has_dh;
+  private boolean _has_dh;
 
-	private boolean _has_link;
+  private boolean _has_link;
 
+  // ----------------/
+  // - Constructors -/
+  // ----------------/
 
-	//----------------/
-	//- Constructors -/
-	//----------------/
+  /**
+   * コンストラクター
+   */
+  public Linkdata() {
+    super();
+  } // -- org.mklab.mikity.xml.Linkdata()
 
-	/**
-	 * コンストラクター
-	 */
-	public Linkdata() {
-		super();
-	} //-- org.mklab.mikity.xml.Linkdata()
+  // -----------/
+  // - Methods -/
+  // -----------/
 
+  /**
+   * Method deleteColumn
+   */
+  public void deleteColumn() {
+    this._has_column = false;
+  } // -- void deleteColumn()
 
-	//-----------/
-	//- Methods -/
-	//-----------/
+  /**
+   * Method deleteConst
+   */
+  public void deleteConst() {
+    this._has_const = false;
+  } // -- void deleteConst()
 
-	/**
-	 * Method deleteColumn
-	 */
-	public void deleteColumn()
-	{
-		this._has_column= false;
-	} //-- void deleteColumn() 
+  /**
+   * Note: hashCode() has not been overriden
+   * 
+   * @param obj
+   */
+  @Override
+  public boolean equals(java.lang.Object obj) {
+    if (this == obj) return true;
 
-	/**
-	 * Method deleteConst
-	 */
-	public void deleteConst()
-	{
-		this._has_const= false;
-	} //-- void deleteConst() 
+    if (obj instanceof Linkdata) {
 
-	/**
-	 * Note: hashCode() has not been overriden
-	 * 
-	 * @param obj
-	 */
-	public boolean equals(java.lang.Object obj)
-	{
-		if ( this == obj )
-			return true;
+      Linkdata temp = (Linkdata)obj;
+      if (this._target != null) {
+        if (temp._target == null) return false;
+        else if (!(this._target.equals(temp._target))) return false;
+      } else if (temp._target != null) return false;
+      if (this._const != temp._const) return false;
+      if (this._has_const != temp._has_const) return false;
+      if (this._column != temp._column) return false;
+      if (this._has_column != temp._has_column) return false;
+      return true;
+    }
+    return false;
+  } // -- boolean equals(java.lang.Object)
 
-		if (obj instanceof Linkdata) {
+  /**
+   * Returns the value of field 'column'.
+   * 
+   * @return the value of field 'column'.
+   */
+  public int loadColumn() {
+    return this._column;
+  } // -- int getColumn()
 
-			Linkdata temp = (Linkdata)obj;
-			if (this._target != null) {
-				if (temp._target == null) return false;
-				else if (!(this._target.equals(temp._target))) 
-					return false;
-			}
-			else if (temp._target != null)
-				return false;
-			if (this._const != temp._const)
-				return false;
-			if (this._has_const != temp._has_const)
-				return false;
-			if (this._column != temp._column)
-				return false;
-			if (this._has_column != temp._has_column)
-				return false;
-			return true;
-		}
-		return false;
-	} //-- boolean equals(java.lang.Object) 
+  /**
+   * Returns the value of field 'const'.
+   * 
+   * @return the value of field 'const'.
+   */
+  public double loadConst() {
+    return this._const;
+  } // -- double getConst()
 
-	/**
-	 * Returns the value of field 'column'.
-	 * 
-	 * @return the value of field 'column'.
-	 */
-	 public int loadColumn()
-	{
-		return this._column;
-	} //-- int getColumn() 
+  /**
+   * Returns the value of field 'target'.
+   * 
+   * @return the value of field 'target'.
+   */
+  public java.lang.String loadTarget() {
+    return this._target;
+  } // -- java.lang.String getTarget()
 
-	 /**
-	  * Returns the value of field 'const'.
-	  * 
-	  * @return the value of field 'const'.
-	  */
-	 public double loadConst()
-	 {
-		 return this._const;
-	 } //-- double getConst() 
+  /**
+   * Method hasColumn
+   * 
+   * @return has_colimn
+   */
+  public boolean hasColumn() {
+    if (this._column != 0) {
+      this._has_column = true;
+    }
+    return this._has_column;
+  } // -- boolean hasColumn()
 
-	 /**
-	  * Returns the value of field 'target'.
-	  * 
-	  * @return the value of field 'target'.
-	  */
-	 public java.lang.String loadTarget()
-	 {
-		 return this._target;
-	 } //-- java.lang.String getTarget() 
+  /**
+   * Method hasConst
+   * 
+   * @return has_const
+   */
+  public boolean hasConst() {
+    if (this._const != 0.0) {
+      this._has_const = true;
+    }
+    return this._has_const;
+  } // -- boolean hasConst()
 
-	 /**
-	  * Method hasColumn
-	  * @return has_colimn
-	  */
-	 public boolean hasColumn()
-	 {
-		 if(_column != 0){
-			 _has_column = true;
-		 }
-		 return this._has_column;
-	 } //-- boolean hasColumn() 
+  /**
+   * Sets the value of field 'column'.
+   * 
+   * @param column
+   *        the value of field 'column'.
+   */
+  public void setColumn(int column) {
+    this._column = column;
+    this._has_column = true;
+  } // -- void setColumn(int)
 
-	 /**
-	  * Method hasConst
-	  * @return has_const
-	  */
-	 public boolean hasConst()
-	 {
-		 if(_const != 0.0){
-			 _has_const = true;
-		 }
-		 return this._has_const;
-	 } //-- boolean hasConst() 
+  /**
+   * Sets the value of field 'const'.
+   * 
+   * @param _const
+   */
+  public void setConst(double _const) {
+    this._const = _const;
+    this._has_const = true;
+  } // -- void setConst(double)
 
+  /**
+   * Sets the value of field 'target'.
+   * 
+   * @param target
+   *        the value of field 'target'.
+   */
+  public void setTarget(java.lang.String target) {
+    this._target = target;
+  } // -- void setTarget(java.lang.String)
 
-	 /**
-	  * Sets the value of field 'column'.
-	  * 
-	  * @param column the value of field 'column'.
-	  */
-	 public void setColumn(int column)
-	 {
-		 this._column = column;
-		 this._has_column = true;
-	 } //-- void setColumn(int) 
+  /**
+   * @return
+   */
+  public boolean hasDH() {
+    if (this._target.equals("a") || this._target.equals("alpha") || this._target.equals("d") || this._target.equals("theta")) {
+      this._has_dh = true;
+    }
+    return this._has_dh;
+  }
 
-	 /**
-	  * Sets the value of field 'const'.
-	  * 
-	  * @param _const
-	  */
-	 public void setConst(double _const)
-	 {
-		 this._const = _const;
-		 this._has_const = true;
-	 } //-- void setConst(double) 
-
-	 /**
-	  * Sets the value of field 'target'.
-	  * 
-	  * @param target the value of field 'target'.
-	  */
-	 public void setTarget(java.lang.String target)
-	 {
-		 this._target = target;
-	 } //-- void setTarget(java.lang.String) 
-
-	 public boolean hasDH(){
-		 if(_target.equals("a") || _target.equals("alpha") || _target.equals("d") || _target.equals("theta")){
-			 this._has_dh = true;
-		 }
-		 return _has_dh;
-	 }
-
-	 public boolean hasLink(){
-		 if(_target.equals("locationX") || _target.equals("locationY") || _target.equals("locationZ") 
-				 || _target.equals("rotationX")|| _target.equals("rotationY") || _target.equals("rotationZ")){
-			 this._has_link = true;
-		 }
-		 return _has_link;
-	 }
+  /**
+   * @return
+   */
+  public boolean hasLink() {
+    if (this._target.equals("locationX") || this._target.equals("locationY") || this._target.equals("locationZ") || this._target.equals("rotationX") || this._target.equals("rotationY")
+        || this._target.equals("rotationZ")) {
+      this._has_link = true;
+    }
+    return this._has_link;
+  }
 }

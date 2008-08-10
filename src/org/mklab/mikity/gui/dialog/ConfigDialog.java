@@ -27,12 +27,13 @@ import org.mklab.mikity.xml.config.View;
 
 /**
  * <ConfigDialog>の設定を行うクラス
+ * 
  * @author miki
  * @version $Revision: 1.1 $.2005/02/01
  */
 public class ConfigDialog {
 
-  private Shell sShell = null;
+  Shell sShell = null;
   private Shell parentShell = null;
   private Group editGroup;
   private Combo colorCombo;
@@ -58,8 +59,10 @@ public class ConfigDialog {
   /**
    * コンストラクター
    * 
-   * @param parentShell 親シェル
-   * @param config 設定
+   * @param parentShell
+   *        親シェル
+   * @param config
+   *        設定
    */
   public ConfigDialog(Shell parentShell, Config config) {
     this.parentShell = parentShell;
@@ -71,13 +74,13 @@ public class ConfigDialog {
    * Shellの作成
    */
   private void createSShell() {
-    sShell = new Shell(parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    sShell.setText("ConfigDialog");
-    sShell.setSize(new org.eclipse.swt.graphics.Point(400, 450));
+    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.sShell.setText("ConfigDialog");
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 450));
 
     GridLayout layout = new GridLayout();
     layout.numColumns = 1;
-    sShell.setLayout(layout);
+    this.sShell.setLayout(layout);
 
     createEditGroup();
     createMainButtonComp();
@@ -87,16 +90,16 @@ public class ConfigDialog {
    * <config>の中身を編集できるグループを作成する
    */
   private void createEditGroup() {
-    editGroup = new Group(sShell, SWT.NONE);
+    this.editGroup = new Group(this.sShell, SWT.NONE);
     GridLayout layout = new GridLayout();
     layout.numColumns = 2;
-    editGroup.setLayout(layout);
+    this.editGroup.setLayout(layout);
     GridData data = new GridData(GridData.FILL_BOTH);
-    editGroup.setLayoutData(data);
-    editGroup.setText("Configの編集");
+    this.editGroup.setLayoutData(data);
+    this.editGroup.setText("Configの編集");
 
-    //取り扱うデータの単位の設定を行うグループ
-    Group unitGroup = new Group(editGroup, SWT.NONE);
+    // 取り扱うデータの単位の設定を行うグループ
+    Group unitGroup = new Group(this.editGroup, SWT.NONE);
     GridLayout unitLayout = new GridLayout();
     unitLayout.numColumns = 4;
     unitGroup.setText("単位設定");
@@ -105,7 +108,7 @@ public class ConfigDialog {
     unitGroup.setLayoutData(unitData);
     unitGroup.setLayout(unitLayout);
 
-    //モデルの単位
+    // モデルの単位
     Label modelUnitLabel = new Label(unitGroup, SWT.NONE);
     GridData modelData = new GridData(GridData.FILL_HORIZONTAL);
     modelData.horizontalSpan = 4;
@@ -120,7 +123,7 @@ public class ConfigDialog {
     modelLengthLabel.setText(" 長さの単位");
     createModelLengthUnitCombo(unitGroup);
 
-    //時系列データの単位
+    // 時系列データの単位
     Label dataUnitLabel = new Label(unitGroup, SWT.NONE);
     GridData dataData = new GridData(GridData.FILL_HORIZONTAL);
     dataData.horizontalSpan = 4;
@@ -135,8 +138,8 @@ public class ConfigDialog {
     dataLengthLabel.setText(" 長さの単位");
     createDataLengthUnitCombo(unitGroup);
 
-    //光源の位置の指定
-    Group lightPointGroup = new Group(editGroup, SWT.NONE);
+    // 光源の位置の指定
+    Group lightPointGroup = new Group(this.editGroup, SWT.NONE);
     lightPointGroup.setText("光源の位置の指定");
 
     GridData lightData = new GridData(GridData.FILL_HORIZONTAL);
@@ -151,9 +154,9 @@ public class ConfigDialog {
     xData.horizontalSpan = 7;
     lKakko.setLayoutData(xData);
 
-    lightX = new ParameterInputBox(lightPointGroup, SWT.NONE, "  (", "0.2");
-    lightY = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8");
-    lightZ = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8");
+    this.lightX = new ParameterInputBox(lightPointGroup, SWT.NONE, "  (", "0.2");
+    this.lightY = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8");
+    this.lightZ = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8");
 
     Label kakko = new Label(lightPointGroup, SWT.NONE);
     GridData labelData = new GridData();
@@ -161,8 +164,8 @@ public class ConfigDialog {
     kakko.setLayoutData(labelData);
     kakko.setText(")");
 
-    //視点の位置の指定
-    Group viewPointGroup = new Group(editGroup, SWT.NONE);
+    // 視点の位置の指定
+    Group viewPointGroup = new Group(this.editGroup, SWT.NONE);
     viewPointGroup.setText("視点の位置の指定");
 
     GridData viewData = new GridData(GridData.FILL_HORIZONTAL);
@@ -177,9 +180,9 @@ public class ConfigDialog {
     vRollData.horizontalSpan = 7;
     vRollLabel.setLayoutData(vRollData);
 
-    viewXrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "-0.2");
-    viewYrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0");
-    viewZrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0");
+    this.viewXrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "-0.2");
+    this.viewYrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0");
+    this.viewZrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0");
 
     Label vKakko2 = new Label(viewPointGroup, SWT.NONE);
     GridData vKakkoData2 = new GridData();
@@ -192,17 +195,17 @@ public class ConfigDialog {
     vData.horizontalSpan = 7;
     vLabel.setLayoutData(vData);
 
-    viewX = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "0.0");
-    viewY = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.3");
-    viewZ = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "1.0");
+    this.viewX = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "0.0");
+    this.viewY = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.3");
+    this.viewZ = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "1.0");
 
     Label vKakko = new Label(viewPointGroup, SWT.NONE);
     GridData vKakkoData = new GridData();
     vKakko.setLayoutData(vKakkoData);
     vKakko.setText(")");
 
-    //背景色の選択
-    Label setColorLabel = new Label(editGroup, SWT.NONE);
+    // 背景色の選択
+    Label setColorLabel = new Label(this.editGroup, SWT.NONE);
     setColorLabel.setText("・背景色を選択");
     createColorCombo();
 
@@ -214,49 +217,49 @@ public class ConfigDialog {
    * XMLファイルから値を読み込む
    */
   private void getParameter() {
-    if (config.loadLight() != null) {
-      Light light = config.loadLight();
-      lightX.setText("" + light.loadX());
-      lightY.setText("" + light.loadY());
-      lightZ.setText("" + light.loadZ());
+    if (this.config.loadLight() != null) {
+      Light light = this.config.loadLight();
+      this.lightX.setText("" + light.loadX());
+      this.lightY.setText("" + light.loadY());
+      this.lightZ.setText("" + light.loadZ());
     }
-    if (config.loadView() != null) {
-      View view = config.loadView();
-      viewX.setText("" + view.loadX());
-      viewY.setText("" + view.loadY());
-      viewZ.setText("" + view.loadZ());
-      viewXrotate.setText("" + view.loadXrotate());
-      viewYrotate.setText("" + view.loadYrotate());
-      viewZrotate.setText("" + view.loadZrotate());
+    if (this.config.loadView() != null) {
+      View view = this.config.loadView();
+      this.viewX.setText("" + view.loadX());
+      this.viewY.setText("" + view.loadY());
+      this.viewZ.setText("" + view.loadZ());
+      this.viewXrotate.setText("" + view.loadXrotate());
+      this.viewYrotate.setText("" + view.loadYrotate());
+      this.viewZrotate.setText("" + view.loadZrotate());
     }
-    if (config.loadModelUnit() != null) {
-      if (config.loadModelUnit().loadAngle() != null) {
-        modelAngleUnitCombo.setText(config.loadModelUnit().loadAngle());
+    if (this.config.loadModelUnit() != null) {
+      if (this.config.loadModelUnit().loadAngle() != null) {
+        this.modelAngleUnitCombo.setText(this.config.loadModelUnit().loadAngle());
       }
-      if (config.loadModelUnit().loadLength() != null) {
-        modelLengthUnitCombo.setText(config.loadModelUnit().loadLength());
-      }
-    }
-    if (config.loadDataUnit() != null) {
-      if (config.loadDataUnit().loadAngle() != null) {
-        dataAngleUnitCombo.setText(config.loadDataUnit().loadAngle());
-      }
-      if (config.loadDataUnit().loadLength() != null) {
-        dataLengthUnitCombo.setText(config.loadDataUnit().loadLength());
+      if (this.config.loadModelUnit().loadLength() != null) {
+        this.modelLengthUnitCombo.setText(this.config.loadModelUnit().loadLength());
       }
     }
-    if (config.loadBackground() == null) {
-      colorCombo.setText("white");
+    if (this.config.loadDataUnit() != null) {
+      if (this.config.loadDataUnit().loadAngle() != null) {
+        this.dataAngleUnitCombo.setText(this.config.loadDataUnit().loadAngle());
+      }
+      if (this.config.loadDataUnit().loadLength() != null) {
+        this.dataLengthUnitCombo.setText(this.config.loadDataUnit().loadLength());
+      }
+    }
+    if (this.config.loadBackground() == null) {
+      this.colorCombo.setText("white");
     } else {
-      colorCombo.setText(config.loadBackground().loadColor());
+      this.colorCombo.setText(this.config.loadBackground().loadColor());
     }
   }
 
   /**
    * 視点座標に数字以外の文字が入っていたときに出すメッセージボックスの作成
    */
-  private void createMesBox() {
-    MessageBox mesBox = new MessageBox(sShell, SWT.ICON_WARNING);
+  void createMesBox() {
+    MessageBox mesBox = new MessageBox(this.sShell, SWT.ICON_WARNING);
     mesBox.setMessage("数字以外が入力されてます。入力しなおしてください。");
     mesBox.setText("WARNING!!");
     mesBox.open();
@@ -266,7 +269,7 @@ public class ConfigDialog {
    * メインボタンのあるコンポジットを作成する
    */
   private void createMainButtonComp() {
-    Composite comp = new Composite(sShell, SWT.NONE);
+    Composite comp = new Composite(this.sShell, SWT.NONE);
     GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     comp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -282,25 +285,28 @@ public class ConfigDialog {
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        sShell.close();
+        ConfigDialog.this.sShell.close();
       }
     });
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        //MainWindow.setBGColor(colorCombo.getText());
+        // MainWindow.setBGColor(colorCombo.getText());
 
-        //もし適当な値ならば採用
+        // もし適当な値ならば採用
         if (check()) {
-          //Vector3f viewVector = new
-          // Vector3f(lightX.getFloatValue(),lightY.getFloatValue(),lightZ.getFloatValue());
+          // Vector3f viewVector = new
+          // Vector3f(lightX.getFloatValue(),lightY.getFloatValue(),lightZ.
+          // getFloatValue());
           // MainWindow.setLightVector(new Vector3f(lightX.getFloatValue(),
           // lightY.getFloatValue(), lightZ.getFloatValue()));
           setParameter();
-          sShell.close();
+          ConfigDialog.this.sShell.close();
         } else {
           createMesBox();
         }
@@ -312,53 +318,53 @@ public class ConfigDialog {
   /**
    * 入力したパラメータの値をXMLファイルに書き込む
    */
-  private void setParameter() {
+  void setParameter() {
     Light light = new Light();
-    light.setX(lightX.getFloatValue());
-    light.setY(lightY.getFloatValue());
-    light.setZ(lightZ.getFloatValue());
-    config.setLight(light);
+    light.setX(this.lightX.getFloatValue());
+    light.setY(this.lightY.getFloatValue());
+    light.setZ(this.lightZ.getFloatValue());
+    this.config.setLight(light);
     View view = new View();
-    view.setX(viewX.getFloatValue());
-    view.setY(viewY.getFloatValue());
-    view.setZ(viewZ.getFloatValue());
-    view.setXrotate(viewXrotate.getDoubleValue());
-    view.setYrotate(viewYrotate.getDoubleValue());
-    view.setZrotate(viewZrotate.getDoubleValue());
-    config.setView(view);
+    view.setX(this.viewX.getFloatValue());
+    view.setY(this.viewY.getFloatValue());
+    view.setZ(this.viewZ.getFloatValue());
+    view.setXrotate(this.viewXrotate.getDoubleValue());
+    view.setYrotate(this.viewYrotate.getDoubleValue());
+    view.setZrotate(this.viewZrotate.getDoubleValue());
+    this.config.setView(view);
 
-    if (config.loadBackground() == null) {
-      if (colorCombo.getText() != "white") {
+    if (this.config.loadBackground() == null) {
+      if (this.colorCombo.getText() != "white") {
         Background background = new Background();
-        background.setColor(colorCombo.getText());
-        config.setBackground(background);
+        background.setColor(this.colorCombo.getText());
+        this.config.setBackground(background);
       }
     } else {
-      config.loadBackground().setColor(colorCombo.getText());
+      this.config.loadBackground().setColor(this.colorCombo.getText());
     }
 
-    if (config.loadModelUnit() == null) {
-      if (modelAngleUnitCombo.getText() != "radian") {
+    if (this.config.loadModelUnit() == null) {
+      if (this.modelAngleUnitCombo.getText() != "radian") {
         ModelUnit modelUnit = new ModelUnit();
-        modelUnit.setAngle(modelAngleUnitCombo.getText());
-        modelUnit.setLength(modelLengthUnitCombo.getText());
-        config.setModelUnit(modelUnit);
+        modelUnit.setAngle(this.modelAngleUnitCombo.getText());
+        modelUnit.setLength(this.modelLengthUnitCombo.getText());
+        this.config.setModelUnit(modelUnit);
       }
     } else {
-      config.loadModelUnit().setAngle(modelAngleUnitCombo.getText());
-      config.loadModelUnit().setLength(modelLengthUnitCombo.getText());
+      this.config.loadModelUnit().setAngle(this.modelAngleUnitCombo.getText());
+      this.config.loadModelUnit().setLength(this.modelLengthUnitCombo.getText());
     }
 
-    if (config.loadDataUnit() == null) {
-      if (dataAngleUnitCombo.getText() != "radian") {
+    if (this.config.loadDataUnit() == null) {
+      if (this.dataAngleUnitCombo.getText() != "radian") {
         DataUnit dataUnit = new DataUnit();
-        dataUnit.setAngle(dataAngleUnitCombo.getText());
-        dataUnit.setLength(dataLengthUnitCombo.getText());
-        config.setDataUnit(dataUnit);
+        dataUnit.setAngle(this.dataAngleUnitCombo.getText());
+        dataUnit.setLength(this.dataLengthUnitCombo.getText());
+        this.config.setDataUnit(dataUnit);
       }
     } else {
-      config.loadDataUnit().setAngle(dataAngleUnitCombo.getText());
-      config.loadDataUnit().setLength(dataLengthUnitCombo.getText());
+      this.config.loadDataUnit().setAngle(this.dataAngleUnitCombo.getText());
+      this.config.loadDataUnit().setLength(this.dataLengthUnitCombo.getText());
     }
 
   }
@@ -368,32 +374,32 @@ public class ConfigDialog {
    * 
    * @return boolean
    */
-  private boolean check() {
-    if (lightX.checkParam() == false) {
+  boolean check() {
+    if (this.lightX.checkParam() == false) {
       return false;
     }
-    if (lightY.checkParam() == false) {
+    if (this.lightY.checkParam() == false) {
       return false;
     }
-    if (lightZ.checkParam() == false) {
+    if (this.lightZ.checkParam() == false) {
       return false;
     }
-    if (viewX.checkParam() == false) {
+    if (this.viewX.checkParam() == false) {
       return false;
     }
-    if (viewY.checkParam() == false) {
+    if (this.viewY.checkParam() == false) {
       return false;
     }
-    if (viewZ.checkParam() == false) {
+    if (this.viewZ.checkParam() == false) {
       return false;
     }
-    if (viewXrotate.checkParam() == false) {
+    if (this.viewXrotate.checkParam() == false) {
       return false;
     }
-    if (viewYrotate.checkParam() == false) {
+    if (this.viewYrotate.checkParam() == false) {
       return false;
     }
-    if (viewZrotate.checkParam() == false) {
+    if (this.viewZrotate.checkParam() == false) {
       return false;
     }
     return true;
@@ -403,9 +409,9 @@ public class ConfigDialog {
    * Shellを開く
    */
   public void open() {
-    sShell.open();
-    Display display = sShell.getDisplay();
-    while (!sShell.isDisposed()) {
+    this.sShell.open();
+    Display display = this.sShell.getDisplay();
+    while (!this.sShell.isDisposed()) {
       if (!display.readAndDispatch()) {
         display.sleep();
       }
@@ -416,71 +422,75 @@ public class ConfigDialog {
    * 背景の色を指定するコンボボックスの作成
    */
   private void createColorCombo() {
-    colorCombo = new Combo(editGroup, SWT.READ_ONLY);
+    this.colorCombo = new Combo(this.editGroup, SWT.READ_ONLY);
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-    colorCombo.setLayoutData(gridData);
+    this.colorCombo.setLayoutData(gridData);
     String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"};
-    colorCombo.setItems(COLORS);
+    this.colorCombo.setItems(COLORS);
   }
 
   /**
    * モデルの長さの単位を指定するコンボボックスの作成
+   * 
    * @param group
    */
   private void createModelLengthUnitCombo(Group group) {
-    modelLengthUnitCombo = new Combo(group, SWT.READ_ONLY);
+    this.modelLengthUnitCombo = new Combo(group, SWT.READ_ONLY);
     GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
-    modelLengthUnitCombo.setLayoutData(lengthData);
+    this.modelLengthUnitCombo.setLayoutData(lengthData);
     String[] LENGTH = {"m"};
-    //現時点では変更不能。増やしたい。
-    //String[] LENGTH = {"m", "cm", "mm"};
-    modelLengthUnitCombo.setItems(LENGTH);
-    modelLengthUnitCombo.setText("m");
+    // 現時点では変更不能。増やしたい。
+    // String[] LENGTH = {"m", "cm", "mm"};
+    this.modelLengthUnitCombo.setItems(LENGTH);
+    this.modelLengthUnitCombo.setText("m");
   }
 
   /**
    * データの長さの単位を指定するコンボボックスの作成
+   * 
    * @param group
    */
   private void createDataLengthUnitCombo(Group group) {
-    dataLengthUnitCombo = new Combo(group, SWT.READ_ONLY);
+    this.dataLengthUnitCombo = new Combo(group, SWT.READ_ONLY);
     GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
-    dataLengthUnitCombo.setLayoutData(lengthData);
+    this.dataLengthUnitCombo.setLayoutData(lengthData);
     String[] LENGTH = {"m"};
-    //現時点では変更不能。増やしたい。
-    //String[] LENGTH = {"m", "cm", "mm"};
-    dataLengthUnitCombo.setItems(LENGTH);
-    dataLengthUnitCombo.setText("m");
+    // 現時点では変更不能。増やしたい。
+    // String[] LENGTH = {"m", "cm", "mm"};
+    this.dataLengthUnitCombo.setItems(LENGTH);
+    this.dataLengthUnitCombo.setText("m");
   }
 
   /**
    * モデルの角度の単位を指定するコンボボックスの作成
+   * 
    * @param group
    */
   private void createModelAngleUnitCombo(Group group) {
-    modelAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
+    this.modelAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
     GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
-    modelAngleUnitCombo.setLayoutData(angleData);
+    this.modelAngleUnitCombo.setLayoutData(angleData);
     String[] ANGLES = {"radian"};
-    //現時点では変更不能
-    //String[] ANGLES = {"degree", "radian"};
-    modelAngleUnitCombo.setItems(ANGLES);
-    modelAngleUnitCombo.setText("radian");
+    // 現時点では変更不能
+    // String[] ANGLES = {"degree", "radian"};
+    this.modelAngleUnitCombo.setItems(ANGLES);
+    this.modelAngleUnitCombo.setText("radian");
   }
 
   /**
    * データの角度の単位を指定するコンボボックスの作成
+   * 
    * @param group
    */
   private void createDataAngleUnitCombo(Group group) {
-    dataAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
+    this.dataAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
     GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
-    dataAngleUnitCombo.setLayoutData(angleData);
+    this.dataAngleUnitCombo.setLayoutData(angleData);
     String[] ANGLES = {"radian"};
-    //現時点では変更不能
-    //String[] ANGLES = {"degree", "radian"};
-    dataAngleUnitCombo.setItems(ANGLES);
-    dataAngleUnitCombo.setText("radian");
+    // 現時点では変更不能
+    // String[] ANGLES = {"degree", "radian"};
+    this.dataAngleUnitCombo.setItems(ANGLES);
+    this.dataAngleUnitCombo.setText("radian");
   }
 
 }

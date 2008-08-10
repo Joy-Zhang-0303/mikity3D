@@ -12,32 +12,28 @@ import org.mklab.mikity.xml.model.Group;
 
 /**
  * コネクタを含んだグループを作成するクラス
+ * 
  * @author SHOGO
  * @version $Revision: 1.3 $.2006/01/31
  */
 public class ConnectorGroup {
-	/**
-	 * コネクタを含んだグループ
-	 */
-	private Group group;
 
-	/**
-	 * コンストラクター
-	 */
-	public ConnectorGroup(){
+  /**
+   * コネクタを含んだグループ
+   */
+  private Group group;
 
-	}
-
-	/**
-	 * コネクタを含んだグループを返す。
-	 * @return コネクタを含んだグループ。
-	 */
-	public Group createConnectorGroup(){
-		Jamast root = MainWindow.getRoot();
-		group = root.loadModel(0).loadGroup(0);    
-		Group newgroup = new Group();
-		newgroup.setName("Connector");
-		group.addGroup(newgroup);
-		return  newgroup;
-	}
+  /**
+   * コネクタを含んだグループを返す。
+   * 
+   * @return コネクタを含んだグループ。
+   */
+  public Group createConnectorGroup() {
+    Jamast root = MainWindow.getRoot();
+    this.group = root.loadModel(0).loadGroup(0);
+    Group newgroup = new Group();
+    newgroup.setName("Connector");
+    this.group.addGroup(newgroup);
+    return newgroup;
+  }
 }

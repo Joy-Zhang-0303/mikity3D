@@ -16,21 +16,23 @@ import org.mklab.mikity.gui.MainWindow;
 public class ModelEditorOpenAction extends Action {
 
   MainWindow window;
-  
+
   /**
    * コンストラクター
+   * 
    * @param window
    */
-  public ModelEditorOpenAction(final MainWindow window){
+  public ModelEditorOpenAction(final MainWindow window) {
     this.window = window;
   }
-  
+
   /**
    * @see org.eclipse.jface.action.IAction#run()
    */
+  @Override
   public void run() {
-//    Modeler modeler = new Modeler(window.getShell(),window.getRoot());
-//    modeler.open();
-//    window.setDirty(true);
+  // Modeler modeler = new Modeler(window.getShell(),window.getRoot());
+  // modeler.open();
+  // window.setDirty(true);
   }
 }

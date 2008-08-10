@@ -13,6 +13,7 @@ package org.mklab.mikity.xml.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
+
 /**
  * Class Location.
  * 
@@ -20,219 +21,208 @@ import javax.xml.bind.annotation.XmlAttribute;
  */
 public class Location implements java.io.Serializable {
 
+  // --------------------------/
+  // - Class/Member Variables -/
+  // --------------------------/
 
-	//--------------------------/
-	//- Class/Member Variables -/
-	//--------------------------/
-
-	/**
+  /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Field _x
-	 */
-	@XmlAttribute
-	private float _x;
+  /**
+   * Field _x
+   */
+  @XmlAttribute
+  private float _x;
 
-	/**
-	 * keeps track of state for field: _x
-	 */
-	private boolean _has_x;
+  /**
+   * keeps track of state for field: _x
+   */
+  private boolean _has_x;
 
-	/**
-	 * Field _y
-	 */
-	@XmlAttribute
-	private float _y;
+  /**
+   * Field _y
+   */
+  @XmlAttribute
+  private float _y;
 
-	/**
-	 * keeps track of state for field: _y
-	 */
-	private boolean _has_y;
+  /**
+   * keeps track of state for field: _y
+   */
+  private boolean _has_y;
 
-	/**
-	 * Field _z
-	 */
-	@XmlAttribute
-	private float _z;
+  /**
+   * Field _z
+   */
+  @XmlAttribute
+  private float _z;
 
-	/**
-	 * keeps track of state for field: _z
-	 */ 
-	private boolean _has_z;
+  /**
+   * keeps track of state for field: _z
+   */
+  private boolean _has_z;
+
+  // ----------------/
+  // - Constructors -/
+  // ----------------/
+
+  /**
+   * コンストラクター
+   */
+  public Location() {
+    super();
+  } // -- org.mklab.mikity.xml.Location()
 
 
-	//----------------/
-	//- Constructors -/
-	//----------------/
+  /**
+   * 新しく生成された<code>Location</code>オブジェクトを初期化します。
+   * @param x
+   * @param y
+   * @param z
+   */
+  public Location(float x, float y, float z) {
+    super();
+    this._has_x = true;
+    this._has_y = true;
+    this._has_z = true;
+    this._x = x;
+    this._y = y;
+    this._z = z;
+  } // -- org.mklab.mikity.xml.Location()
 
-	/**
-	 * コンストラクター
-	 */
-	public Location() {
-		super();
-	} //-- org.mklab.mikity.xml.Location()
+  // -----------/
+  // - Methods -/
+  // -----------/
 
-	/**
-	 * コンストラクター
-	 */
-	public Location(float x, float y, float z) {
-		super();
-		_has_x= true;
-		_has_y= true;
-		_has_z= true;
-		_x=x;
-		_y=y;
-		_z=z;
-	} //-- org.mklab.mikity.xml.Location()
+  /**
+   * Method deleteX
+   */
+  public void deleteX() {
+    this._has_x = false;
+  } // -- void deleteX()
 
-	//-----------/
-	//- Methods -/
-	//-----------/
+  /**
+   * Method deleteY
+   */
+  public void deleteY() {
+    this._has_y = false;
+  } // -- void deleteY()
 
-	/**
-	 * Method deleteX
-	 */
-	public void deleteX()
-	{
-		this._has_x= false;
-	} //-- void deleteX() 
+  /**
+   * Method deleteZ
+   */
+  public void deleteZ() {
+    this._has_z = false;
+  } // -- void deleteZ()
 
-	/**
-	 * Method deleteY
-	 */
-	public void deleteY()
-	{
-		this._has_y= false;
-	} //-- void deleteY() 
+  /**
+   * Note: hashCode() has not been overriden
+   * 
+   * @param obj
+   */
+  @Override
+  public boolean equals(java.lang.Object obj) {
+    if (this == obj) return true;
 
-	/**
-	 * Method deleteZ
-	 */
-	public void deleteZ()
-	{
-		this._has_z= false;
-	} //-- void deleteZ() 
+    if (obj instanceof Location) {
 
-	/**
-	 * Note: hashCode() has not been overriden
-	 * 
-	 * @param obj
-	 */
-	public boolean equals(java.lang.Object obj)
-	{
-		if ( this == obj )
-			return true;
+      Location temp = (Location)obj;
+      if (this._x != temp._x) return false;
+      if (this._has_x != temp._has_x) return false;
+      if (this._y != temp._y) return false;
+      if (this._has_y != temp._has_y) return false;
+      if (this._z != temp._z) return false;
+      if (this._has_z != temp._has_z) return false;
+      return true;
+    }
+    return false;
+  } // -- boolean equals(java.lang.Object)
 
-		if (obj instanceof Location) {
+  /**
+   * Returns the value of field 'x'.
+   * 
+   * @return the value of field 'x'.
+   */
+  public float loadX() {
+    return this._x;
+  } // -- float getX()
 
-			Location temp = (Location)obj;
-			if (this._x != temp._x)
-				return false;
-			if (this._has_x != temp._has_x)
-				return false;
-			if (this._y != temp._y)
-				return false;
-			if (this._has_y != temp._has_y)
-				return false;
-			if (this._z != temp._z)
-				return false;
-			if (this._has_z != temp._has_z)
-				return false;
-			return true;
-		}
-		return false;
-	} //-- boolean equals(java.lang.Object) 
+  /**
+   * Returns the value of field 'y'.
+   * 
+   * @return the value of field 'y'.
+   */
+  public float loadY() {
+    return this._y;
+  } // -- float getY()
 
-	/**
-	 * Returns the value of field 'x'.
-	 * 
-	 * @return the value of field 'x'.
-	 */
-	 public float loadX()
-	{
-		return this._x;
-	} //-- float getX() 
+  /**
+   * Returns the value of field 'z'.
+   * 
+   * @return the value of field 'z'.
+   */
+  public float loadZ() {
+    return this._z;
+  } // -- float getZ()
 
-	 /**
-	  * Returns the value of field 'y'.
-	  * 
-	  * @return the value of field 'y'.
-	  */
-	 public float loadY()
-	 {
-		 return this._y;
-	 } //-- float getY() 
+  /**
+   * Method hasX
+   * 
+   * @return has_x
+   */
+  public boolean hasX() {
+    return this._has_x;
+  } // -- boolean hasX()
 
-	 /**
-	  * Returns the value of field 'z'.
-	  * 
-	  * @return the value of field 'z'.
-	  */
-	 public float loadZ()
-	 {
-		 return this._z;
-	 } //-- float getZ() 
+  /**
+   * Method hasY
+   * 
+   * @return has_y
+   */
+  public boolean hasY() {
+    return this._has_y;
+  } // -- boolean hasY()
 
-	 /**
-	  * Method hasX
-	  * @return has_x
-	  */
-	 public boolean hasX()
-	 {
-		 return this._has_x;
-	 } //-- boolean hasX() 
+  /**
+   * Method hasZ
+   * 
+   * @return has_z
+   */
+  public boolean hasZ() {
+    return this._has_z;
+  } // -- boolean hasZ()
 
-	 /**
-	  * Method hasY
-	  * @return has_y
-	  */
-	 public boolean hasY()
-	 {
-		 return this._has_y;
-	 } //-- boolean hasY() 
+  /**
+   * Sets the value of field 'x'.
+   * 
+   * @param x
+   *        the value of field 'x'.
+   */
+  public void setX(float x) {
+    this._x = x;
+    this._has_x = true;
+  } // -- void setX(float)
 
-	 /**
-	  * Method hasZ
-	  * @return has_z
-	  */
-	 public boolean hasZ()
-	 {
-		 return this._has_z;
-	 } //-- boolean hasZ() 
+  /**
+   * Sets the value of field 'y'.
+   * 
+   * @param y
+   *        the value of field 'y'.
+   */
+  public void setY(float y) {
+    this._y = y;
+    this._has_y = true;
+  } // -- void setY(float)
 
-	 /**
-	  * Sets the value of field 'x'.
-	  * 
-	  * @param x the value of field 'x'.
-	  */
-	 public void setX(float x)
-	 {
-		 this._x = x;
-		 this._has_x = true;
-	 } //-- void setX(float) 
-
-	 /**
-	  * Sets the value of field 'y'.
-	  * 
-	  * @param y the value of field 'y'.
-	  */
-	 public void setY(float y)
-	 {
-		 this._y = y;
-		 this._has_y = true;
-	 } //-- void setY(float) 
-
-	 /**
-	  * Sets the value of field 'z'.
-	  * 
-	  * @param z the value of field 'z'.
-	  */
-	 public void setZ(float z)
-	 {
-		 this._z = z;
-		 this._has_z = true;
-	 } //-- void setZ(float) 
+  /**
+   * Sets the value of field 'z'.
+   * 
+   * @param z
+   *        the value of field 'z'.
+   */
+  public void setZ(float z) {
+    this._z = z;
+    this._has_z = true;
+  } // -- void setZ(float)
 }

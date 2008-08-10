@@ -13,15 +13,17 @@ import org.mklab.mikity.gui.SimulationViewer;
 
 /**
  * アニメーション実行画面を展開するクラス。
+ * 
  * @author Yusuke Tsutsui
  * @version $Revision: 1.5 $.2005/02/18
  */
 public class AnimationWindowOpenAction extends Action {
 
   private MainWindow window;
-  
+
   /**
    * コンストラクター
+   * 
    * @param window
    */
   public AnimationWindowOpenAction(MainWindow window) {
@@ -29,16 +31,18 @@ public class AnimationWindowOpenAction extends Action {
     setToolTipText("現在のモデルのアニメーションを見るためにウインドウを開きます。");
     this.window = window;
   }
-  
+
   /**
    * アニメーション画面を展開する
+   * 
    * @see org.eclipse.jface.action.IAction#run()
    */
+  @Override
   public void run() {
-    SimulationViewer viewer = new SimulationViewer(window.getShell(),MainWindow.getRoot());
+    SimulationViewer viewer = new SimulationViewer(this.window.getShell(), MainWindow.getRoot());
     SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(MainWindow.getRoot().loadModel(0).loadGroup(0), false);
     viewer.open();
-    window.setDirty(true);
+    this.window.setDirty(true);
   }
 }

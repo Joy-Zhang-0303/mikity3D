@@ -14,8 +14,7 @@ import org.eclipse.swt.widgets.Label;
 
 /**
  * @author miki
- * @version $Revision: 1.5 $.2005/02/14
- * ここで単位の表示を行う予定
+ * @version $Revision: 1.5 $.2005/02/14 ここで単位の表示を行う予定
  */
 public class UnitLabel extends Composite {
 
@@ -28,6 +27,7 @@ public class UnitLabel extends Composite {
 
   /**
    * コンストラクター
+   * 
    * @param c
    * @param target
    */
@@ -45,20 +45,18 @@ public class UnitLabel extends Composite {
 
   /**
    * 単位を取得する。
+   * 
    * @param target
    * @return Angle or Length
    */
   public static String getUnit(String target) {
-    if (target.startsWith("modelAngle")){
+    if (target.startsWith("modelAngle")) {
       return modelAngle;
-    }
-    else if (target.startsWith("modelL")) {
+    } else if (target.startsWith("modelL")) {
       return modelLength;
-    }
-    else if (target.startsWith("dataAngle")) {
+    } else if (target.startsWith("dataAngle")) {
       return dataAngle;
-    }
-    else if (target.startsWith("dataLength")) {
+    } else if (target.startsWith("dataLength")) {
       return dataLength;
     } else {
       return " ";
@@ -67,6 +65,7 @@ public class UnitLabel extends Composite {
 
   /**
    * モデルの角度を設定する。
+   * 
    * @param angle
    */
   public static void setModelAngle(String angle) {
@@ -79,6 +78,7 @@ public class UnitLabel extends Composite {
 
   /**
    * モデルの長さを設定する。
+   * 
    * @param length
    */
   public static void setModelLength(String length) {
@@ -93,6 +93,7 @@ public class UnitLabel extends Composite {
 
   /**
    * データの角度を設定する
+   * 
    * @param angle
    */
   public static void setDataAngle(String angle) {
@@ -105,6 +106,7 @@ public class UnitLabel extends Composite {
 
   /**
    * データの長さを設定する。
+   * 
    * @param length
    */
   public static void setDataLength(String length) {
@@ -119,10 +121,11 @@ public class UnitLabel extends Composite {
 
   /**
    * ラベルを設定する。
+   * 
    * @param target
    */
   public void setLabel(String target) {
-    label.setText(getUnit(target));
+    this.label.setText(getUnit(target));
   }
 
 }

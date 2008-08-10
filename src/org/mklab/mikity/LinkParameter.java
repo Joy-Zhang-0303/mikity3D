@@ -4,140 +4,167 @@
  *
  */
 package org.mklab.mikity;
+
 /**
  * リンクパラメータに関するクラス
+ * 
  * @author SHOGO
  * @version $Revision: 1.2 $. 2008/02/29
  */
 public class LinkParameter {
 
-	public static final int LOCX = 1;
-	public static final int LOCY = 2;
-	public static final int LOCZ = 3;
-	public static final int ROTX = 4;
-	public static final int ROTY = 5;
-	public static final int ROTZ = 6;
-	
-	private double locX,locY,locZ,rotX,rotY,rotZ;
-	
-	/**
-	 * コンストラクタ
-	 */
-	public LinkParameter(){
-		this(0, 0, 0, 0, 0, 0);
-	}
-	
-	/**
-	 * コンストラクタ
-	 * @param locX　X座標並進
-	 * @param locY　Y座標並進
-	 * @param locZ　Z座標並進
-	 * @param rotX　X座標回転
-	 * @param rotY　Y座標回転
-	 * @param rotZ　Z座標回転
-	 */
-	public LinkParameter(double locX, double locY, double locZ, double rotX, double rotY, double rotZ){
-		this.locX=locX;
-		this.locY=locY;
-		this.locZ=locZ;
-		this.rotX=rotX;
-		this.rotY=rotY;
-		this.locZ=rotZ;
-	}
+  /** */
+  public static final int LOCX = 1;
+  /** */
+  public static final int LOCY = 2;
+  /** */
+  public static final int LOCZ = 3;
+  /** */
+  public static final int ROTX = 4;
+  /** */
+  public static final int ROTY = 5;
+  /** */
+  public static final int ROTZ = 6;
 
-	/**
-	 * X座標並進の値を取得する。
-	 * @return　locX　
-	 */
-	public double getLocX() {
-		return locX;
-	}
+  private double locX, locY, locZ, rotX, rotY, rotZ;
 
-	/**
-	 * X座標並進の値を設定する。
-	 * @param locX
-	 */
-	public void setLocX(double locX) {
-		this.locX = locX;
-	}
+  /**
+   * コンストラクタ
+   */
+  public LinkParameter() {
+    this(0, 0, 0, 0, 0, 0);
+  }
 
-	/**
-	 * Y座標並進の値を取得する。
-	 * @return　locY　
-	 */
-	public double getLocY() {
-		return locY;
-	}
+  /**
+   * コンストラクタ
+   * 
+   * @param locX
+   *        X座標並進
+   * @param locY
+   *        Y座標並進
+   * @param locZ
+   *        Z座標並進
+   * @param rotX
+   *        X座標回転
+   * @param rotY
+   *        Y座標回転
+   * @param rotZ
+   *        Z座標回転
+   */
+  public LinkParameter(double locX, double locY, double locZ, double rotX, double rotY, double rotZ) {
+    this.locX = locX;
+    this.locY = locY;
+    this.locZ = locZ;
+    this.rotX = rotX;
+    this.rotY = rotY;
+    this.locZ = rotZ;
+  }
 
-	/**
-	 * Y座標並進の値を設定する。
-	 * @param locY
-	 */
-	public void setLocY(double locY) {
-		this.locY = locY;
-	}
+  /**
+   * X座標並進の値を取得する。
+   * 
+   * @return
+   */
+  public double getLocX() {
+    return this.locX;
+  }
 
-	/**
-	 * Z座標並進の値を取得する。
-	 * @return　locZ　
-	 */
-	public double getLocZ() {
-		return locZ;
-	}
+  /**
+   * X座標並進の値を設定する。
+   * 
+   * @param locX
+   */
+  public void setLocX(double locX) {
+    this.locX = locX;
+  }
 
-	/**
-	 * Z座標並進の値を設定する。
-	 * @param locZ
-	 */
-	public void setLocZ(double locZ) {
-		this.locZ = locZ;
-	}
+  /**
+   * Y座標並進の値を取得する。
+   * 
+   * @return
+   */
+  public double getLocY() {
+    return this.locY;
+  }
 
-	/**
-	 * X座標回転の値を取得する。
-	 * @return　rotX　
-	 */
-	public double getRotX() {
-		return rotX;
-	}
+  /**
+   * Y座標並進の値を設定する。
+   * 
+   * @param locY
+   */
+  public void setLocY(double locY) {
+    this.locY = locY;
+  }
 
-	/**
-	 * X座標回転の値を設定する。
-	 * @param rotX
-	 */
-	public void setRotX(double rotX) {
-		this.rotX = rotX;
-	}
+  /**
+   * Z座標並進の値を取得する。
+   * 
+   * @return
+   */
+  public double getLocZ() {
+    return this.locZ;
+  }
 
-	/**
-	 * Y座標回転の値を取得する。
-	 * @return　rotY　
-	 */
-	public double getRotY() {
-		return rotY;
-	}
+  /**
+   * Z座標並進の値を設定する。
+   * 
+   * @param locZ
+   */
+  public void setLocZ(double locZ) {
+    this.locZ = locZ;
+  }
 
-	/**
-	 * Y座標回転の値を設定する。
-	 * @param rotY
-	 */
-	public void setRotY(double rotY) {
-		this.rotY = rotY;
-	}
+  /**
+   * X座標回転の値を取得する。
+   * 
+   * @return
+   */
+  public double getRotX() {
+    return this.rotX;
+  }
 
-	/**
-	 * Z座標回転の値を取得する。
-	 * @return　rotZ　
-	 */
-	public double getRotZ() {
-		return rotZ;
-	}
+  /**
+   * X座標回転の値を設定する。
+   * 
+   * @param rotX
+   */
+  public void setRotX(double rotX) {
+    this.rotX = rotX;
+  }
 
-	/**
-	 * Z座標回転の値を設定する。
-	 * @param rotZ
-	 */
-	public void setRotZ(double rotZ) {
-		this.rotZ = rotZ;
-	}
+  /**
+   * Y座標回転の値を取得する。
+   * 
+   * @return
+   */
+  public double getRotY() {
+    return this.rotY;
+  }
+
+  /**
+   * Y座標回転の値を設定する。
+   * 
+   * @param rotY
+   */
+  public void setRotY(double rotY) {
+    this.rotY = rotY;
+  }
+
+  /**
+   * Z座標回転の値を取得する。
+   * 
+   * @return
+   */
+  public double getRotZ() {
+    return this.rotZ;
+  }
+
+  /**
+   * Z座標回転の値を設定する。
+   * 
+   * @param rotZ
+   */
+  public void setRotZ(double rotZ) {
+    this.rotZ = rotZ;
+  }
 }

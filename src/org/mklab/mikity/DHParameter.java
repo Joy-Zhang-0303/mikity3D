@@ -7,6 +7,7 @@ package org.mklab.mikity;
 
 /**
  * DHパラメータに関するクラス
+ * 
  * @author miki
  * @version $Revision: 1.4 $.2005/01/17
  */
@@ -40,6 +41,7 @@ public class DHParameter {
 
   /**
    * コンストラクター
+   * 
    * @param a
    * @param alpha
    * @param d
@@ -54,14 +56,16 @@ public class DHParameter {
 
   /**
    * パラメータaの値を取得する。
+   * 
    * @return a
    */
   public double getA() {
-    return a;
+    return this.a;
   }
 
   /**
    * パラメータaの値を設定する。
+   * 
    * @param a
    */
   public void setA(double a) {
@@ -70,14 +74,16 @@ public class DHParameter {
 
   /**
    * パラメータalphaの値を取得する。
+   * 
    * @return alpha
    */
   public double getAlpha() {
-    return alpha;
+    return this.alpha;
   }
 
   /**
    * パラメータalphaの値を設定する。
+   * 
    * @param alpha
    */
   public void setAlpha(double alpha) {
@@ -86,14 +92,16 @@ public class DHParameter {
 
   /**
    * パラメータdの値を取得する。
+   * 
    * @return d
    */
   public double getD() {
-    return d;
+    return this.d;
   }
 
   /**
    * パラメータdの値を設定する。
+   * 
    * @param d
    */
   public void setD(double d) {
@@ -102,14 +110,16 @@ public class DHParameter {
 
   /**
    * パラメータthetaの値を取得する。
+   * 
    * @return theta
    */
   public double getTheta() {
-    return theta;
+    return this.theta;
   }
 
   /**
    * パラメータthetaの値を設定する。
+   * 
    * @param theta
    */
   public void setTheta(double theta) {

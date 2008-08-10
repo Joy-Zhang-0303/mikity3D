@@ -9,42 +9,49 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import org.mklab.mikity.xml.model.Group;
 
+
 /**
  * Blenderから出力したCOLLADAデータを読み込むためのクラス(Geometry要素)
+ * 
  * @author SHOGO
  * @version $Revision: 1.6 $. 2007/11/30
  */
 public class Geometry {
-	@XmlAttribute
-	private String name;
-	@XmlElement
-	private Mesh mesh;
-	
-	/**
-	 * コンストラクタ
-	 */
-	public Geometry(){
-		mesh = new Mesh();
-	}
-	
-	/**
-	 * Blenderデータから作成したポリゴンをまとめたグループ
-	 * @return　group　Blenderデータからのポリゴンをまとめたグループ
-	 */
-	public Group getBlenderPolygonGroup(){
-		Group group = mesh.getBlenderPolygonGroup();
-		if(name.indexOf("-G") != -1){
-		name = name.substring(0, name.indexOf("-G"));
-		}
-		group.setName(name);
-		return group;
-	}
 
-	public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes) {
-		if(name.indexOf("-G") != -1){
-			name = name.substring(0, name.indexOf("-G"));
-		}
-		mesh.setLibraryVisualScenes(library_visual_scenes, name);
-	}
+  @XmlAttribute
+  private String name;
+  @XmlElement
+  private Mesh mesh;
+
+  /**
+   * コンストラクタ
+   */
+  public Geometry() {
+    this.mesh = new Mesh();
+  }
+
+  /**
+   * Blenderデータから作成したポリゴンをまとめたグループ
+   * 
+   * @return　group　Blenderデータからのポリゴンをまとめたグループ
+   */
+  public Group getBlenderPolygonGroup() {
+    Group group = this.mesh.getBlenderPolygonGroup();
+    if (this.name.indexOf("-G") != -1) {
+      this.name = this.name.substring(0, this.name.indexOf("-G"));
+    }
+    group.setName(this.name);
+    return group;
+  }
+
+  /**
+   * @param library_visual_scenes
+   */
+  public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes) {
+    if (this.name.indexOf("-G") != -1) {
+      this.name = this.name.substring(0, this.name.indexOf("-G"));
+    }
+    this.mesh.setLibraryVisualScenes(library_visual_scenes, this.name);
+  }
 
 }

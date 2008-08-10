@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Text;
 
 /**
  * 数値の入力を行うボックスに関するクラス
+ * 
  * @author miki
  * @version $Revision: 1.11 $.2004/12/15
  */
@@ -34,8 +35,8 @@ public class ParameterInputBox extends Composite {
    * @param composite
    * @param style
    *        keyをラベルに、valueをテキストボックスに
-   * @param key 
-   * @param value 
+   * @param key
+   * @param value
    */
   public ParameterInputBox(Composite composite, int style, String key, String value) {
     super(composite, style);
@@ -44,21 +45,21 @@ public class ParameterInputBox extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     this.setLayout(layout);
-    label = new Label(this, SWT.NONE);
-    label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    label.setAlignment(SWT.RIGHT);
-    label.setText(key);
-    text = new Text(this, SWT.BORDER | SWT.RIGHT | style);
-    text.setText(value);
-    text.addModifyListener(new ModifyListener() {
+    this.label = new Label(this, SWT.NONE);
+    this.label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    this.label.setAlignment(SWT.RIGHT);
+    this.label.setText(key);
+    this.text = new Text(this, SWT.BORDER | SWT.RIGHT | style);
+    this.text.setText(value);
+    this.text.addModifyListener(new ModifyListener() {
 
       public void modifyText(ModifyEvent arg0) {
-        changed = true;
+        ParameterInputBox.this.changed = true;
       }
     });
     GridData data = new GridData();
     data.widthHint = 65;
-    text.setLayoutData(data);
+    this.text.setLayoutData(data);
     data = new GridData(GridData.FILL_HORIZONTAL);
     data.horizontalSpan = 2;
     this.setLayoutData(data);
@@ -79,16 +80,17 @@ public class ParameterInputBox extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     this.setLayout(layout);
-    label1 = new Label(this, SWT.NONE);
-    label1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    label1.setAlignment(SWT.RIGHT);
-    label1.setText(lab);
+    this.label1 = new Label(this, SWT.NONE);
+    this.label1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    this.label1.setAlignment(SWT.RIGHT);
+    this.label1.setText(lab);
     Button button = new Button(this, SWT.NONE);
     button.setText(but);
   }
 
   /**
    * コンストラクター
+   * 
    * @param c
    * @param style
    * @param value
@@ -99,39 +101,43 @@ public class ParameterInputBox extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     this.setLayout(layout);
-    text = new Text(this, SWT.BORDER | SWT.RIGHT | style);
+    this.text = new Text(this, SWT.BORDER | SWT.RIGHT | style);
     GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 65;
-    text.setLayoutData(data);
-    text.setText("" + value);
+    this.text.setLayoutData(data);
+    this.text.setText("" + value); //$NON-NLS-1$
   }
 
   /**
    * テキストボックスの文字をfloat型で返す
+   * 
    * @return Float.parseFloat(text.getText())
    */
   public float getFloatValue() {
-    return Float.parseFloat(text.getText());
+    return Float.parseFloat(this.text.getText());
   }
 
   /**
    * テキストボックスの中の数字をセット
-   * @param value 
+   * 
+   * @param value
    */
   public void setDoubleValue(double value) {
-    text.setText("" + value);
+    this.text.setText("" + value); //$NON-NLS-1$
   }
 
   /**
    * テキストボックスの文字をdouble型で返す
+   * 
    * @return Double.parseDouble(text.getText())
    */
   public double getDoubleValue() {
-    return Double.parseDouble(text.getText());
+    return Double.parseDouble(this.text.getText());
   }
 
   /**
    * テキストボックスの文字をInt型で返す
+   * 
    * @return (int)getDoubleValue()
    */
   public int getIntValue() {
@@ -140,47 +146,51 @@ public class ParameterInputBox extends Composite {
 
   /**
    * テキストボックスの文字をセット
-   * @param string 
+   * 
+   * @param string
    */
   public void setText(String string) {
-    if(string == null){
-      text.setText("0.0です");
+    if (string == null) {
+      this.text.setText("0.0です");
     }
-    text.setText(string);
+    this.text.setText(string);
   }
 
   /**
    * テキストボックスの文字を返す
+   * 
    * @return text.getText()
    */
   public String getText() {
-    return text.getText();
+    return this.text.getText();
   }
-  
+
   /**
    * ラベルの文字をセットする
-   * @param string 
+   * 
+   * @param string
    */
   public void setLabelText(String string) {
-    label.setText(string);
+    this.label.setText(string);
   }
 
   /**
    * ラベルの文字を返す
+   * 
    * @return label.getText()
    */
   public String getLabelText() {
-    return label.getText();
+    return this.label.getText();
   }
 
   /**
-   * テキストボックスに入っている値が
-   * 数字ではないときにfalseを返す
+   * テキストボックスに入っている値が 数字ではないときにfalseを返す
+   * 
    * @return boolean
    */
   public boolean checkParam() {
     try {
-      Double.parseDouble(text.getText());
+      Double.parseDouble(this.text.getText());
     } catch (NumberFormatException e) {
       return false;
     }

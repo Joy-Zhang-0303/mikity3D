@@ -10,15 +10,17 @@ import org.mklab.mikity.gui.MainWindow;
 
 /**
  * モデリングデータを保存するアクションです。
+ * 
  * @author Yusuke Tsutsui
  */
 public class FileSaveAction extends Action {
 
   private MainWindow window;
-  
+
   /**
    * コンストラクター
-   * @param window 
+   * 
+   * @param window
    * 
    */
   public FileSaveAction(final MainWindow window) {
@@ -26,15 +28,15 @@ public class FileSaveAction extends Action {
     this.window = window;
   }
 
-  
   /**
    * @see org.eclipse.jface.action.IAction#run()
    */
+  @Override
   public void run() {
     try {
-      window.save();
+      this.window.save();
     } catch (IllegalArgumentException e) {
-      new FileSaveAsAction(window).run();
+      new FileSaveAsAction(this.window).run();
     }
   }
 }

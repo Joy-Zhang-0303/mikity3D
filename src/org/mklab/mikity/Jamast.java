@@ -11,6 +11,7 @@ import org.mklab.mikity.gui.MainWindow;
 
 /**
  * JAMAST(JAva3D Modeling And Simulation Tool)のメインクラス
+ * 
  * @author Miki Koga(miki@mk.ces.kyutech.ac.jp)
  * @version $Revision: 1.2 $.2005/02/09
  */

@@ -12,6 +12,7 @@ import org.mklab.mikity.gui.dialog.ConfigDialog;
 
 /**
  * 各種設定画面を展開するクラス
+ * 
  * @author Yusuke Tsutsui
  * @version $Revision: 1.4 $.2005/02/18
  */
@@ -21,6 +22,7 @@ public class ConfigDialogOpenAction extends Action {
 
   /**
    * コンストラクター
+   * 
    * @param window
    */
   public ConfigDialogOpenAction(final MainWindow window) {
@@ -31,11 +33,13 @@ public class ConfigDialogOpenAction extends Action {
 
   /**
    * 各種設定画面を展開する
+   * 
    * @see org.eclipse.jface.action.IAction#run()
    */
+  @Override
   public void run() {
-    ConfigDialog dialog = new ConfigDialog(window.getShell(), MainWindow.getRoot().loadConfig(0));
+    ConfigDialog dialog = new ConfigDialog(this.window.getShell(), MainWindow.getRoot().loadConfig(0));
     dialog.open();
-    window.setDirty(true);
+    this.window.setDirty(true);
   }
 }

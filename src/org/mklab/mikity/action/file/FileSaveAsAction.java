@@ -17,7 +17,7 @@ import org.mklab.mikity.util.MsgUtil;
  * モデリングデータを別名保存するクラスです。
  * 
  * @author Yusuke Tsutsui
- *  
+ * 
  */
 public class FileSaveAsAction extends Action {
 
@@ -25,8 +25,9 @@ public class FileSaveAsAction extends Action {
 
   /**
    * コンストラクター
-   * @param window 
-   *  
+   * 
+   * @param window
+   * 
    */
   public FileSaveAsAction(final MainWindow window) {
     this.window = window;
@@ -36,25 +37,26 @@ public class FileSaveAsAction extends Action {
   /**
    * @see org.eclipse.jface.action.IAction#run()
    */
+  @Override
   public void run() {
-    FileDialog dialog = new FileDialog(window.getShell() ,SWT.SAVE);
+    FileDialog dialog = new FileDialog(this.window.getShell(), SWT.SAVE);
     dialog.setText("ファイルを保存");
-    dialog.setFilterExtensions(new String[]{"*.xml","*.*"});
-    
+    dialog.setFilterExtensions(new String[] {"*.xml", "*.*"});
+
     String filePath = dialog.open();
-    if(filePath == null){
-      //キャンセル
+    if (filePath == null) {
+      // キャンセル
       return;
     }
     File file = new File(filePath);
-    if(file.exists()){
-      int yesno = MsgUtil.showYesNoMsg(window.getShell(),"ファイルが存在します。上書きしますか？");
-      if(yesno != SWT.YES){
+    if (file.exists()) {
+      int yesno = MsgUtil.showYesNoMsg(this.window.getShell(), "ファイルが存在します。上書きしますか？");
+      if (yesno != SWT.YES) {
         return;
       }
     }
-    window.setFile(filePath);
-    System.out.println("filepath:"+filePath);
-    window.save();
+    this.window.setFile(filePath);
+    System.out.println("filepath:" + filePath);
+    this.window.save();
   }
 }
