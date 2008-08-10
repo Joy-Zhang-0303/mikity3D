@@ -58,9 +58,9 @@ public class PrimitiveGenerator {
 
       String line = br.readLine();
       while (line != null) {
-        if (line.startsWith("face")) {
+        if (line.startsWith("face")) { //$NON-NLS-1$
           faceFlag = true;
-        } else if (line.startsWith("endf")) {
+        } else if (line.startsWith("endf")) { //$NON-NLS-1$
           faceFlag = false;
           Point3d[] p = new Point3d[pointList.size()];
           pointList.toArray(p);
@@ -69,8 +69,8 @@ public class PrimitiveGenerator {
           MyTriPolygons polygon = new MyTriPolygons(p, matP, null, MyTriPolygons.RENDERING_ALL);
           tg.addChild(polygon);
           pointList.clear();
-        } else if (faceFlag && !line.startsWith("#")) {
-          String[] xyz = line.split("\\s");
+        } else if (faceFlag && !line.startsWith("#")) { //$NON-NLS-1$
+          String[] xyz = line.split("\\s"); //$NON-NLS-1$
           double x = Double.parseDouble(xyz[1]);
           double y = Double.parseDouble(xyz[2]);
           double z = Double.parseDouble(xyz[3]);

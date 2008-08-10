@@ -146,8 +146,8 @@ public class Node {
   private void setURL() {
     this.url = this.instance_geometry.loadURL();
     if (this.url != null) {
-      if (this.url.indexOf("-G") != -1) {
-        this.url = this.url.substring(1, this.url.indexOf("-G"));
+      if (this.url.indexOf("-G") != -1) { //$NON-NLS-1$
+        this.url = this.url.substring(1, this.url.indexOf("-G")); //$NON-NLS-1$
       } else {
         this.url = this.url.substring(1);
       }
@@ -174,17 +174,17 @@ public class Node {
    */
   public void createGroup() {
     if (this.type != null) {
-      if (this.type.equals("JOINT")) {
+      if (this.type.equals("JOINT")) { //$NON-NLS-1$
         this.g.setName(this.name);
         Linkdata[] linkdata = new Linkdata[3];
         linkdata[0] = new Linkdata();
-        linkdata[0].setTarget("locationX");
+        linkdata[0].setTarget("locationX"); //$NON-NLS-1$
         linkdata[0].setConst(this.matrix4f.m03);
         linkdata[1] = new Linkdata();
-        linkdata[1].setTarget("locationY");
+        linkdata[1].setTarget("locationY"); //$NON-NLS-1$
         linkdata[1].setConst(this.matrix4f.m13);
         linkdata[2] = new Linkdata();
-        linkdata[2].setTarget("locationZ");
+        linkdata[2].setTarget("locationZ"); //$NON-NLS-1$
         linkdata[2].setConst(this.matrix4f.m23);
         this.g.setLinkdata(linkdata);
       }

@@ -43,7 +43,7 @@ public class ColladaFileTransformer {
   public ColladaFileTransformer(File file) {
     this.fileBefore = file;
     this.note = new ArrayList<String>();
-    this.fileAfter = new File("registry.xml");
+    this.fileAfter = new File("registry.xml"); //$NON-NLS-1$
   }
 
   /**
@@ -54,10 +54,10 @@ public class ColladaFileTransformer {
       BufferedReader br = new BufferedReader(new FileReader(this.fileBefore));
       String line;
       while ((line = br.readLine()) != null) {
-        if (line.indexOf("<COLLADA") != -1) {
-          this.note.add("<collada>");
-        } else if (line.indexOf("</COLLADA") != -1) {
-          this.note.add("</collada>");
+        if (line.indexOf("<COLLADA") != -1) { //$NON-NLS-1$
+          this.note.add("<collada>"); //$NON-NLS-1$
+        } else if (line.indexOf("</COLLADA") != -1) { //$NON-NLS-1$
+          this.note.add("</collada>"); //$NON-NLS-1$
         } else {
           this.note.add(line);
         }
@@ -74,7 +74,7 @@ public class ColladaFileTransformer {
     try {
       FileWriter fw = new FileWriter(this.fileAfter);
       for (int i = 0; i < this.note.size(); i++) {
-        fw.write(this.note.get(i) + "\n");
+        fw.write(this.note.get(i) + "\n"); //$NON-NLS-1$
       }
       fw.close();
     } catch (Exception e) {}

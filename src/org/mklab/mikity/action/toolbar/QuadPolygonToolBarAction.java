@@ -36,7 +36,7 @@ public class QuadPolygonToolBarAction extends Action {
   public QuadPolygonToolBarAction(final MainWindow window) {
     super();
     this.window = window;
-    setText("Quad");
+    setText("Quad"); //$NON-NLS-1$
   }
 
   /**
@@ -66,7 +66,7 @@ public class QuadPolygonToolBarAction extends Action {
     Location[] locs = {loc1, loc2, loc3, loc4};
 
     quad.setPointLocations(locs);
-    quad.setColor("blue");
+    quad.setColor("blue"); //$NON-NLS-1$
     group.addXMLQuadPolygon(quad);
 
     updateQuad();

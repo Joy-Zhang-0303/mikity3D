@@ -33,7 +33,7 @@ public class ConeToolBarAction extends Action {
     super();
     this.window = window;
     // this.dc = dc;
-    setText("Cone");
+    setText("Cone"); //$NON-NLS-1$
   }
 
   /**
@@ -59,7 +59,7 @@ public class ConeToolBarAction extends Action {
     cone.setR(0.10f);
     cone.setHeight(0.10f);
     cone.setDiv(20);
-    cone.setColor("green");
+    cone.setColor("green"); //$NON-NLS-1$
     // dc.checkCollision(cone,cone.loadLocation(),group);
     group.addXMLCone(cone);
     updateCone();

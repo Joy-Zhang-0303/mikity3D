@@ -46,7 +46,7 @@ public class XMLTrianglePolygon {
     for (int i = 0; i < this._point.length; i++) {
       this._point[i] = new Location();
     }
-    this._color = "orange";
+    this._color = "orange"; //$NON-NLS-1$
     this._matrix = new Matrix4f(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
     setNormalVector();
   }

@@ -43,7 +43,7 @@ public class JAXBMarshaller {
    * コンストラクタ
    */
   public JAXBMarshaller() {
-
+    // nothing to do
   }
 
   /**
@@ -148,9 +148,9 @@ public class JAXBMarshaller {
       for (int i = 0; i < 10; i++) {
         note.add(br.readLine());
       }
-      if (note.get(0).indexOf("jamast") != -1) {
+      if (note.get(0).indexOf("jamast") != -1) { //$NON-NLS-1$
         loadJamastScene(file);
-      } else if (note.get(1).indexOf("collada") != -1) {
+      } else if (note.get(1).indexOf("collada") != -1) { //$NON-NLS-1$
         loadBlenderScene(file);
       }
     } catch (IOException e) {

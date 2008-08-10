@@ -34,7 +34,7 @@ public class BoxToolBarAction extends Action {
     super();
     this.window = window;
     // this.dc = dc;
-    setText("Box");
+    setText("Box"); //$NON-NLS-1$
   }
 
   /**
@@ -59,7 +59,7 @@ public class BoxToolBarAction extends Action {
     box.setXsize(0.10f);
     box.setYsize(0.10f);
     box.setZsize(0.10f);
-    box.setColor("red");
+    box.setColor("red"); //$NON-NLS-1$
     // dc.checkCollision(box,box.loadLocation(),group);
     group.addXMLBox(box);
     updateBox();

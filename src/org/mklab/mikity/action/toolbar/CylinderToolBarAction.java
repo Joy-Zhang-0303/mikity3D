@@ -33,7 +33,7 @@ public class CylinderToolBarAction extends Action {
     super();
     this.window = window;
     // this.dc =dc;
-    setText("Cylinder");
+    setText("Cylinder"); //$NON-NLS-1$
   }
 
   /**
@@ -58,7 +58,7 @@ public class CylinderToolBarAction extends Action {
     cyl.setR(0.10f);
     cyl.setHeight(0.10f);
     cyl.setDiv(20);
-    cyl.setColor("blue");
+    cyl.setColor("blue"); //$NON-NLS-1$
     // dc.checkCollision(cyl,cyl.loadLocation(),group);
     group.addXMLCylinder(cyl);
     updateCylinder();

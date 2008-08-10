@@ -34,8 +34,8 @@ public class XMLConnector extends XMLCylinder {
   public XMLConnector() {
     super();
     setDiv(20);
-    this._color = "black";
-    this._flag = "-";
+    this._color = "black"; //$NON-NLS-1$
+    this._flag = "-"; //$NON-NLS-1$
     this._location = new Location();
     this._rotation = new Rotation();
   }
@@ -103,12 +103,12 @@ public class XMLConnector extends XMLCylinder {
    */
   public void setFlag(String flag) {
     this._flag = flag;
-    if (flag == "-") {
-      this._color = "";
-    } else if (flag == "N") {
-      this._color = "magenta";
-    } else if (flag == "S") {
-      this._color = "cyan";
+    if (flag == "-") { //$NON-NLS-1$
+      this._color = ""; //$NON-NLS-1$
+    } else if (flag == "N") { //$NON-NLS-1$
+      this._color = "magenta"; //$NON-NLS-1$
+    } else if (flag == "S") { //$NON-NLS-1$
+      this._color = "cyan"; //$NON-NLS-1$
     }
   }
 

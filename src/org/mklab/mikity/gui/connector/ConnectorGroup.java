@@ -32,7 +32,7 @@ public class ConnectorGroup {
     Jamast root = MainWindow.getRoot();
     this.group = root.loadModel(0).loadGroup(0);
     Group newgroup = new Group();
-    newgroup.setName("Connector");
+    newgroup.setName("Connector"); //$NON-NLS-1$
     this.group.addGroup(newgroup);
     return newgroup;
   }

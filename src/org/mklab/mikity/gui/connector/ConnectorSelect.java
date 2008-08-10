@@ -77,9 +77,9 @@ public class ConnectorSelect {
       if (this._hasN == true) {
         if (this._hasS == false) {
           String flag = this.connector.loadFlag();
-          if (flag == "-") {
+          if (flag == "-") { //$NON-NLS-1$
             selectConnectorS(this.connector, root, xmlTree, targetGroup);
-          } else if (flag == "N") {
+          } else if (flag == "N") { //$NON-NLS-1$
             MessageBox mesBox = new MessageBox(this.composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
             mesBox.setMessage("そのコネクタはコネクタNに指定されています");
             mesBox.setText("確認");
@@ -116,7 +116,7 @@ public class ConnectorSelect {
    */
   private void selectConnectorN(XMLConnector connector, Group root, Tree xmlTree, Group targetGroup) {
     this._hasN = true;
-    connector.setFlag("N");
+    connector.setFlag("N"); //$NON-NLS-1$
     this.connectorN = connector;
 
     PrimitiveConnector pConnector = new PrimitiveConnector();
@@ -143,7 +143,7 @@ public class ConnectorSelect {
    */
   private void selectConnectorS(XMLConnector connector, Group root, Tree xmlTree, Group targetGroup) {
     this._hasS = true;
-    connector.setFlag("S");
+    connector.setFlag("S"); //$NON-NLS-1$
     this.connectorS = connector;
 
     PrimitiveConnector pConnector = new PrimitiveConnector();
@@ -200,13 +200,13 @@ public class ConnectorSelect {
    * @return
    */
   public String getTreeConnectorFlag() {
-    String flag = "-";
+    String flag = "-"; //$NON-NLS-1$
     //
     // ツリー全体からコネクタのフラグの状態を検索する記述
     if (this._hasN == false) {
-      flag = "N";
+      flag = "N"; //$NON-NLS-1$
     } else if (this._hasN == true && this._hasS == false) {
-      flag = "S";
+      flag = "S"; //$NON-NLS-1$
     }
     return flag;
   }

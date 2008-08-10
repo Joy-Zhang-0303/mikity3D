@@ -18,10 +18,10 @@ import org.eclipse.swt.widgets.Label;
  */
 public class UnitLabel extends Composite {
 
-  private static String modelAngle = "[rad]";
-  private static String modelLength = "[m]";
-  private static String dataAngle = "[rad]";
-  private static String dataLength = "[m]";
+  private static String modelAngle = "[rad]"; //$NON-NLS-1$
+  private static String modelLength = "[m]"; //$NON-NLS-1$
+  private static String dataAngle = "[rad]"; //$NON-NLS-1$
+  private static String dataLength = "[m]"; //$NON-NLS-1$
 
   private Label label;
 
@@ -50,16 +50,16 @@ public class UnitLabel extends Composite {
    * @return Angle or Length
    */
   public static String getUnit(String target) {
-    if (target.startsWith("modelAngle")) {
+    if (target.startsWith("modelAngle")) { //$NON-NLS-1$
       return modelAngle;
-    } else if (target.startsWith("modelL")) {
+    } else if (target.startsWith("modelL")) { //$NON-NLS-1$
       return modelLength;
-    } else if (target.startsWith("dataAngle")) {
+    } else if (target.startsWith("dataAngle")) { //$NON-NLS-1$
       return dataAngle;
-    } else if (target.startsWith("dataLength")) {
+    } else if (target.startsWith("dataLength")) { //$NON-NLS-1$
       return dataLength;
     } else {
-      return " ";
+      return " "; //$NON-NLS-1$
     }
   }
 
@@ -69,10 +69,10 @@ public class UnitLabel extends Composite {
    * @param angle
    */
   public static void setModelAngle(String angle) {
-    if (angle.startsWith("radian")) {
-      modelAngle = "[rad]";
+    if (angle.startsWith("radian")) { //$NON-NLS-1$
+      modelAngle = "[rad]"; //$NON-NLS-1$
     } else {
-      modelAngle = "[deg]";
+      modelAngle = "[deg]"; //$NON-NLS-1$
     }
   }
 
@@ -82,12 +82,12 @@ public class UnitLabel extends Composite {
    * @param length
    */
   public static void setModelLength(String length) {
-    if (length.startsWith("cm")) {
-      modelLength = "[cm]";
-    } else if (length.startsWith("mm")) {
-      modelLength = "[mm]";
+    if (length.startsWith("cm")) { //$NON-NLS-1$
+      modelLength = "[cm]"; //$NON-NLS-1$
+    } else if (length.startsWith("mm")) { //$NON-NLS-1$
+      modelLength = "[mm]"; //$NON-NLS-1$
     } else {
-      modelLength = "[m]";
+      modelLength = "[m]"; //$NON-NLS-1$
     }
   }
 
@@ -97,10 +97,10 @@ public class UnitLabel extends Composite {
    * @param angle
    */
   public static void setDataAngle(String angle) {
-    if (angle.startsWith("radian")) {
-      dataAngle = "[rad]";
+    if (angle.startsWith("radian")) { //$NON-NLS-1$
+      dataAngle = "[rad]"; //$NON-NLS-1$
     } else {
-      dataAngle = "[deg]";
+      dataAngle = "[deg]"; //$NON-NLS-1$
     }
   }
 
@@ -110,12 +110,12 @@ public class UnitLabel extends Composite {
    * @param length
    */
   public static void setDataLength(String length) {
-    if (length.startsWith("cm")) {
-      dataLength = "[cm]";
-    } else if (length.startsWith("mm")) {
-      dataLength = "[mm]";
+    if (length.startsWith("cm")) { //$NON-NLS-1$
+      dataLength = "[cm]"; //$NON-NLS-1$
+    } else if (length.startsWith("mm")) { //$NON-NLS-1$
+      dataLength = "[mm]"; //$NON-NLS-1$
     } else {
-      dataLength = "[m]";
+      dataLength = "[m]"; //$NON-NLS-1$
     }
   }
 

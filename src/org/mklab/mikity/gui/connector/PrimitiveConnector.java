@@ -157,7 +157,7 @@ public class PrimitiveConnector {
     Jamast root = MainWindow.getRoot();
     Group groupN = root.loadModel(0).loadGroup(0);
     Group newgroup = new Group();
-    newgroup.setName("ConnectorN");
+    newgroup.setName("ConnectorN"); //$NON-NLS-1$
     groupN.addGroup(newgroup);
     return newgroup;
   }
@@ -171,7 +171,7 @@ public class PrimitiveConnector {
     Jamast root = MainWindow.getRoot();
     Group groupS = root.loadModel(0).loadGroup(0);
     Group newgroup = new Group();
-    newgroup.setName("ConnectorS");
+    newgroup.setName("ConnectorS"); //$NON-NLS-1$
     groupS.addGroup(newgroup);
     return newgroup;
   }

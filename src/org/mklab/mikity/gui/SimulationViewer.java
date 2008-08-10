@@ -108,7 +108,7 @@ public class SimulationViewer extends ApplicationWindow {
   protected void configureShell(final Shell shell) {
     super.configureShell(shell);
     shell.setSize(647, 500);
-    shell.setText("SimulationViewer");
+    shell.setText("SimulationViewer"); //$NON-NLS-1$
   }
 
   /**
@@ -205,7 +205,7 @@ public class SimulationViewer extends ApplicationWindow {
     GridLayout speedLayout = new GridLayout();
     speedLayout.numColumns = 2;
     speedComp.setLayout(speedLayout);
-    final ParameterInputBox playSpeed = new ParameterInputBox(speedComp, SWT.NONE, "再生速度", "1.0");
+    final ParameterInputBox playSpeed = new ParameterInputBox(speedComp, SWT.NONE, "再生速度", "1.0"); //$NON-NLS-2$
     // time = new ParameterInputBox(speedComp, SWT.NONE, "時間","0.0");
 
     createTimeBar(otherController);
@@ -224,7 +224,7 @@ public class SimulationViewer extends ApplicationWindow {
         // double型をString型に変更
         String stValue = String.valueOf(SimulationViewer.this.speed);
         // 小数点第二以下を表示しないようにする
-        stValue = stValue.substring(0, stValue.indexOf(".") + 2);
+        stValue = stValue.substring(0, stValue.indexOf(".") + 2); //$NON-NLS-1$
         playSpeed.setText(stValue);
       }
     });
@@ -238,7 +238,7 @@ public class SimulationViewer extends ApplicationWindow {
           SimulationViewer.this.task.setSpeed(SimulationViewer.this.speed);
         }
         String stValue = String.valueOf(SimulationViewer.this.speed);
-        stValue = stValue.substring(0, stValue.indexOf(".") + 2);
+        stValue = stValue.substring(0, stValue.indexOf(".") + 2); //$NON-NLS-1$
         playSpeed.setText(stValue);
       }
     });
@@ -293,7 +293,7 @@ public class SimulationViewer extends ApplicationWindow {
 
     this.startTimeLabel = new Label(composite, SWT.NONE | SWT.LEFT);
     this.currentTimeLabel = new Label(composite, SWT.NONE | SWT.CENTER);
-    this.currentTimeLabel.setText("0.0");
+    this.currentTimeLabel.setText("0.0"); //$NON-NLS-1$
     this.currentTimeLabel.setLayoutData(gridData);
     this.endTimeLabel = new Label(composite, SWT.NONE | SWT.RIGHT);
 
@@ -339,7 +339,7 @@ public class SimulationViewer extends ApplicationWindow {
     label.setText("ファイル");
 
     this.filePathText = new Text(comp, SWT.BORDER);
-    this.filePathText.setText("");
+    this.filePathText.setText(""); //$NON-NLS-1$
     this.filePathText.addTraverseListener(new TraverseListener() {
 
       public void keyTraversed(TraverseEvent e) {
@@ -412,8 +412,8 @@ public class SimulationViewer extends ApplicationWindow {
       this.timeTable = new double[dataCount];
 
       this.endTime = this.manager.getEndTime();
-      this.startTimeLabel.setText("" + this.manager.getStartTime());
-      this.endTimeLabel.setText("" + this.endTime);
+      this.startTimeLabel.setText("" + this.manager.getStartTime()); //$NON-NLS-1$
+      this.endTimeLabel.setText("" + this.endTime); //$NON-NLS-1$
       for (int i = 0; i < this.timeTable.length; i++) {
         this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
       }

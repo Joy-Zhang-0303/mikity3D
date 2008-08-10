@@ -661,44 +661,44 @@ public class SceneGraphTree {
       TreeItem child = null;
       if (item == null) {
         child = new TreeItem(this.xmlTree, SWT.NONE);
-        child.setText("rootGroup : " + group[i].loadName());
+        child.setText("rootGroup : " + group[i].loadName()); //$NON-NLS-1$
       } else {
         child = new TreeItem(item, SWT.NONE);
-        child.setText("Group : " + group[i].loadName());
+        child.setText("Group : " + group[i].loadName()); //$NON-NLS-1$
       }
       child.setData(group[i]);
 
       XMLBox[] box = group[i].loadXMLBox();
       for (int j = 0; j < box.length; j++) {
         TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("box ( " + box[j].loadXsize() + ", " + box[j].loadYsize() + ", " + box[j].loadZsize() + ", " + box[j].loadColor() + " )");
+        boxChild.setText("box ( " + box[j].loadXsize() + ", " + box[j].loadYsize() + ", " + box[j].loadZsize() + ", " + box[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(box[j]);
       }
 
       XMLCylinder[] cyl = group[i].loadXMLCylinder();
       for (int j = 0; j < cyl.length; j++) {
         TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cylinder ( " + cyl[j].loadR() + ", " + cyl[j].loadHeight() + ", " + cyl[j].loadDiv() + ", " + cyl[j].loadColor() + " )");
+        boxChild.setText("Cylinder ( " + cyl[j].loadR() + ", " + cyl[j].loadHeight() + ", " + cyl[j].loadDiv() + ", " + cyl[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cyl[j]);
       }
 
       XMLSphere[] sph = group[i].loadXMLSphere();
       for (int j = 0; j < sph.length; j++) {
         TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Sphere ( " + sph[j].loadR() + ", " + sph[j].loadDiv() + ", " + sph[j].loadColor() + " )");
+        boxChild.setText("Sphere ( " + sph[j].loadR() + ", " + sph[j].loadDiv() + ", " + sph[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         boxChild.setData(sph[j]);
       }
 
       XMLCone[] cone = group[i].loadXMLCone();
       for (int j = 0; j < cone.length; j++) {
         TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cone ( " + cone[j].loadR() + ", " + cone[j].loadHeight() + ", " + cone[j].loadDiv() + ", " + cone[j].loadColor() + " )");
+        boxChild.setText("Cone ( " + cone[j].loadR() + ", " + cone[j].loadHeight() + ", " + cone[j].loadDiv() + ", " + cone[j].loadColor() + " )");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cone[j]);
       }
       XMLConnector[] connector = group[i].loadXMLConnector();
       for (int j = 0; j < connector.length; j++) {
         TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Connector ( No." + connector[j].loadNum() + ", " + connector[j].loadFlag() + " )");
+        boxChild.setText("Connector ( No." + connector[j].loadNum() + ", " + connector[j].loadFlag() + " )");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
         boxChild.setData(connector[j]);
 
         // if(connector[j].getFlag()=="N"){
@@ -711,14 +711,14 @@ public class SceneGraphTree {
       XMLTrianglePolygon[] triangle = group[i].loadXMLTrianglePolygon();
       for (int j = 0; j < triangle.length; j++) {
         TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Triangle ( " + triangle[j].loadColor() + " )");
+        boxChild.setText("Triangle ( " + triangle[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$
         boxChild.setData(triangle[j]);
       }
 
       XMLQuadPolygon[] quad = group[i].loadXMLQuadPolygon();
       for (int j = 0; j < quad.length; j++) {
         TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Quad ( " + quad[j].loadColor() + " )");
+        boxChild.setText("Quad ( " + quad[j].loadColor() + " )");  //$NON-NLS-1$//$NON-NLS-2$
         boxChild.setData(quad[j]);
       }
 

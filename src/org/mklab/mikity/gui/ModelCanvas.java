@@ -230,7 +230,7 @@ public class ModelCanvas extends Canvas3D {
     Config config = root.loadConfig(0);
     // 背景色をセット
     if (config.loadBackground() == null) {
-      this.backgroundColor = ColorConstant.getColor("white");
+      this.backgroundColor = ColorConstant.getColor("white"); //$NON-NLS-1$
     } else {
       this.backgroundColor = ColorConstant.getColor(config.loadBackground().loadColor());
     }

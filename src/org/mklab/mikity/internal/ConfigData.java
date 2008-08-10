@@ -108,48 +108,48 @@ public class ConfigData {
     String[] values;
     while (line != null) {
       // #で始らなかったら
-      if (!line.startsWith("#")) {
-        values = line.split("\\s");
+      if (!line.startsWith("#")) { //$NON-NLS-1$
+        values = line.split("\\s"); //$NON-NLS-1$
 
-        if (line.startsWith("xsize")) {
+        if (line.startsWith("xsize")) { //$NON-NLS-1$
           // String型で取り出したvalues[1]をint型に変える
           this.xsize = Integer.parseInt(values[1]);
-        } else if (line.startsWith("ysize")) {
+        } else if (line.startsWith("ysize")) { //$NON-NLS-1$
           this.ysize = Integer.parseInt(values[1]);
           System.out.println(this.ysize);
-        } else if (line.startsWith("xoffset")) {
+        } else if (line.startsWith("xoffset")) { //$NON-NLS-1$
           this.xoffset = Double.parseDouble(values[1]);
-        } else if (line.startsWith("yoffset")) {
+        } else if (line.startsWith("yoffset")) { //$NON-NLS-1$
           this.yoffset = Double.parseDouble(values[1]);
-        } else if (line.startsWith("zoffset")) {
+        } else if (line.startsWith("zoffset")) { //$NON-NLS-1$
           this.zoffset = Double.parseDouble(values[1]);
-        } else if (line.startsWith("xcenter")) {
+        } else if (line.startsWith("xcenter")) { //$NON-NLS-1$
           this.xcenter = Double.parseDouble(values[1]);
-        } else if (line.startsWith("ycenter")) {
+        } else if (line.startsWith("ycenter")) { //$NON-NLS-1$
           this.ycenter = Double.parseDouble(values[1]);
-        } else if (line.startsWith("zcenter")) {
+        } else if (line.startsWith("zcenter")) { //$NON-NLS-1$
           this.zcenter = Double.parseDouble(values[1]);
-        } else if (line.startsWith("bgcolor")) {
+        } else if (line.startsWith("bgcolor")) { //$NON-NLS-1$
           // String型のままでよい。
           this.bgcolor = values[1];
-        } else if (line.startsWith("xeye")) {
+        } else if (line.startsWith("xeye")) { //$NON-NLS-1$
           this.xeye = Double.parseDouble(values[1]);
-        } else if (line.startsWith("yeye")) {
+        } else if (line.startsWith("yeye")) { //$NON-NLS-1$
           this.yeye = Double.parseDouble(values[1]);
-        } else if (line.startsWith("zeye")) {
+        } else if (line.startsWith("zeye")) { //$NON-NLS-1$
           this.zeye = Double.parseDouble(values[1]);
-        } else if (line.startsWith("xroll")) {
+        } else if (line.startsWith("xroll")) { //$NON-NLS-1$
           this.xroll = Double.parseDouble(values[1]);
-        } else if (line.startsWith("yroll")) {
+        } else if (line.startsWith("yroll")) { //$NON-NLS-1$
           this.yroll = Double.parseDouble(values[1]);
-        } else if (line.startsWith("zroll")) {
+        } else if (line.startsWith("zroll")) { //$NON-NLS-1$
           this.zroll = Double.parseDouble(values[1]);
-        } else if (line.startsWith("data")) {
+        } else if (line.startsWith("data")) { //$NON-NLS-1$
           // TODO 配列に読込めるようにする
           this.data[0] = values[1];
-        } else if (line.startsWith("parent")) {
+        } else if (line.startsWith("parent")) { //$NON-NLS-1$
           this.parent = Integer.parseInt(values[1]);
-        } else if (line.startsWith("link")) {
+        } else if (line.startsWith("link")) { //$NON-NLS-1$
           // TODO 配列に読込めるようにする
           this.link[0] = values[1];
         }

@@ -35,7 +35,7 @@ public class TrianglePolygonToolBarAction extends Action {
   public TrianglePolygonToolBarAction(final MainWindow window) {
     super();
     this.window = window;
-    setText("Triagle");
+    setText("Triagle"); //$NON-NLS-1$
   }
 
   /**
@@ -63,7 +63,7 @@ public class TrianglePolygonToolBarAction extends Action {
 
     Location[] locs = {loc1, loc2, loc3};
     triangle.setPointLocations(locs);
-    triangle.setColor("red");
+    triangle.setColor("red"); //$NON-NLS-1$
     group.addXMLTrianglePolygon(triangle);
 
     updateTriagle();

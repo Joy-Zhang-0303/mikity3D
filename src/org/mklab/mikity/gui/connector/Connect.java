@@ -311,9 +311,9 @@ public class Connect {
    * @return　Nならi=0,Sならi=1
    */
   private int checkNS(String ns) {
-    if (ns == "N") {
+    if (ns == "N") { //$NON-NLS-1$
       return 0;
-    } else if (ns == "S") {
+    } else if (ns == "S") { //$NON-NLS-1$
       return 1;
     } else {
       return 2;

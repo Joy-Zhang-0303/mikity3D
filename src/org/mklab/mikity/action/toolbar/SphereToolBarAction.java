@@ -31,7 +31,7 @@ public class SphereToolBarAction extends Action {
     super();
     this.window = window;
     // this.dc = dc;
-    setText("Sphere");
+    setText("Sphere"); //$NON-NLS-1$
   }
 
   /**
@@ -56,7 +56,7 @@ public class SphereToolBarAction extends Action {
     XMLSphere sph = new XMLSphere();
     sph.setR(0.10f);
     sph.setDiv(20);
-    sph.setColor("yellow");
+    sph.setColor("yellow"); //$NON-NLS-1$
     // dc.checkCollision(sph,sph.loadLocation(),group);
     group.addXMLSphere(sph);
     updateSphere();
