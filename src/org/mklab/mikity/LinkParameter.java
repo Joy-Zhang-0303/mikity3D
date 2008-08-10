@@ -63,7 +63,7 @@ public class LinkParameter {
   /**
    * X座標並進の値を取得する。
    * 
-   * @return
+   * @return X座標並進の値
    */
   public double getLocX() {
     return this.locX;
@@ -81,7 +81,7 @@ public class LinkParameter {
   /**
    * Y座標並進の値を取得する。
    * 
-   * @return
+   * @return Y座標並進の値
    */
   public double getLocY() {
     return this.locY;
@@ -99,7 +99,7 @@ public class LinkParameter {
   /**
    * Z座標並進の値を取得する。
    * 
-   * @return
+   * @return Z座標並進の値
    */
   public double getLocZ() {
     return this.locZ;
@@ -117,7 +117,7 @@ public class LinkParameter {
   /**
    * X座標回転の値を取得する。
    * 
-   * @return
+   * @return X座標回転の値
    */
   public double getRotX() {
     return this.rotX;
@@ -135,7 +135,7 @@ public class LinkParameter {
   /**
    * Y座標回転の値を取得する。
    * 
-   * @return
+   * @return Y座標回転の値
    */
   public double getRotY() {
     return this.rotY;
@@ -153,7 +153,7 @@ public class LinkParameter {
   /**
    * Z座標回転の値を取得する。
    * 
-   * @return
+   * @return Z座標回転の値
    */
   public double getRotZ() {
     return this.rotZ;

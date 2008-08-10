@@ -7,7 +7,6 @@ import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Frame;
-import java.util.Vector;
 
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Canvas3D;
@@ -24,23 +23,23 @@ import com.sun.j3d.utils.universe.ViewingPlatform;
 public class MyUniverse {
 
   /**
-     * 
-     */
+   * 
+   */
   // 主要オブジェクト変数
   public static Applet applet = null;
   /**
-     * 
-     */
+   * 
+   */
   public static SimpleUniverse universe = null;
   /**
-     * 
-     */
+   * 
+   */
   public static Canvas3D canvas = null;
-
+  
   // 環境パラメータ変数
   /**
-     * 
-     */
+   * 
+   */
   public static float fieldOfView = (float)Math.toRadians(45.);
   /**
      * 
@@ -59,16 +58,15 @@ public class MyUniverse {
      */
   public static float creaseAngle = (float)Math.toRadians(44.);
   /**
-     * 
-     */
+   * 
+   */
   public static int division = 30;
 
   /**
-     * 
-     */
+   * 
+   */
   // ウィンドウ用変数
-  public static Vector canvasWindow = new Vector();
-
+  // public static Vector canvasWindow = new Vector();
   /**
    * コンストラクター
    * 
