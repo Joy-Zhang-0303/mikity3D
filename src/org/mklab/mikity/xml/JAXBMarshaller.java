@@ -43,7 +43,7 @@ public class JAXBMarshaller {
    * コンストラクタ
    */
   public JAXBMarshaller() {
-    // nothing to do
+  // nothing to do
   }
 
   /**

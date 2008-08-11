@@ -28,7 +28,7 @@ public class PrimitiveRange {
    * コンストラクタ
    */
   public PrimitiveRange() {
-    // nothing to do
+  // nothing to do
   }
 
   /**

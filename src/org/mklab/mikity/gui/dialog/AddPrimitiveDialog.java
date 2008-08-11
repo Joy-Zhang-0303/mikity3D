@@ -72,7 +72,7 @@ public class AddPrimitiveDialog {
    *        親シェル
    * @param group
    *        グループ
-   * @param dc 
+   * @param dc
    */
   public AddPrimitiveDialog(Shell parentShell, Group group, CollisionCanceller dc) {
     this.parentShell = parentShell;

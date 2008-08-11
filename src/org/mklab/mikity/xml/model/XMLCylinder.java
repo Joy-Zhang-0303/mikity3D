@@ -312,7 +312,8 @@ public class XMLCylinder implements Serializable {
       (this.propertyChangeListeners.elementAt(i)).propertyChange(event);
     }
   } // -- void notifyPropertyChangeListeners(java.lang.String, java.lang.Object,
-    // java.lang.Object)
+
+  // java.lang.Object)
 
   /**
    * Method removePropertyChangeListenerRemoves the given PropertyChangeListener
@@ -325,7 +326,8 @@ public class XMLCylinder implements Serializable {
   public boolean removePropertyChangeListener(PropertyChangeListener pcl) {
     return this.propertyChangeListeners.removeElement(pcl);
   } // -- boolean
-    // removePropertyChangeListener(java.beans.PropertyChangeListener)
+
+  // removePropertyChangeListener(java.beans.PropertyChangeListener)
 
   /**
    * Sets the value of field 'color'.

@@ -30,7 +30,7 @@ public class AddPrimitiveAction extends Action {
    * コンストラクター
    * 
    * @param window
-   * @param dc 
+   * @param dc
    * 
    */
   public AddPrimitiveAction(final MainWindow window, CollisionCanceller dc) {

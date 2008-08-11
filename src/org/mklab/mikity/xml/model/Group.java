@@ -288,7 +288,8 @@ public class Group implements java.io.Serializable {
   public void addXMLTrianglePolygon(org.mklab.mikity.xml.model.XMLTrianglePolygon vXMLTrianglePolygon) throws java.lang.IndexOutOfBoundsException {
     this._XMLTrianglePolygonList.add(vXMLTrianglePolygon);
   } // -- void addXMLTrianglePolygon(int,
-    // org.mklab.mikity.xml.XMLTrianglePolygon)
+
+  // org.mklab.mikity.xml.XMLTrianglePolygon)
 
   /**
    * Method addXMLTrianglePolygon
@@ -300,7 +301,8 @@ public class Group implements java.io.Serializable {
   public void addXMLTrianglePolygon(int index, org.mklab.mikity.xml.model.XMLTrianglePolygon vXMLTrianglePolygon) throws java.lang.IndexOutOfBoundsException {
     this._XMLTrianglePolygonList.add(index, vXMLTrianglePolygon);
   } // -- void addXMLTrianglePolygon(int,
-    // org.mklab.mikity.xml.XMLTrianglePolygon)
+
+  // org.mklab.mikity.xml.XMLTrianglePolygon)
 
   /**
    * Method addXMLQuadPolygon
@@ -1538,7 +1540,8 @@ public class Group implements java.io.Serializable {
     }
     this._XMLTrianglePolygonList.set(index, vXMLTrianglePolygon);
   } // -- void setXMLTrianglePolygon(int,
-    // org.mklab.mikity.xml.XMLTrianglePolygon)
+
+  // org.mklab.mikity.xml.XMLTrianglePolygon)
 
   /**
    * Method setXMLTrianglePolygon

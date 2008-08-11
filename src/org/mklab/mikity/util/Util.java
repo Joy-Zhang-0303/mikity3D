@@ -23,7 +23,7 @@ public class Util {
    * コンストラクター
    */
   private Util() {
-    // nothing to do
+  // nothing to do
   }
 
   /**

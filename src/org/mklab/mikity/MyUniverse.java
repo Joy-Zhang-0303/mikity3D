@@ -35,7 +35,7 @@ public class MyUniverse {
    * 
    */
   public static Canvas3D canvas = null;
-  
+
   // 環境パラメータ変数
   /**
    * 

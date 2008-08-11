@@ -27,7 +27,6 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
    */
   // Matrix4d initialMatrix = new Matrix4d();
   // private DHParameter dhParameter;
-
   /**
    * コンストラクター
    */

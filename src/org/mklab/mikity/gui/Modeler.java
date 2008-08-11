@@ -60,7 +60,7 @@ public class Modeler extends Composite {
    * @param parent
    * @param style
    * @param root
-   * @param dc 
+   * @param dc
    */
   public Modeler(Composite parent, int style, final Jamast root, CollisionCanceller dc) {
     super(parent, style);
@@ -274,7 +274,7 @@ public class Modeler extends Composite {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        // nothing to do
+      // nothing to do
       }
     });
 

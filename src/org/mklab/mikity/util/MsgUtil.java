@@ -21,7 +21,7 @@ public final class MsgUtil {
    * コンストラクター
    */
   private MsgUtil() {
-    // nothing to do
+  // nothing to do
   }
 
   /**

@@ -64,21 +64,21 @@ public class DragAndDropEnabler {
      * @see org.eclipse.swt.dnd.DropTargetListener#dragEnter(org.eclipse.swt.dnd.DropTargetEvent)
      */
     public void dragEnter(DropTargetEvent e) {
-      // nothing to do
+    // nothing to do
     }
 
     /**
      * @see org.eclipse.swt.dnd.DropTargetListener#dragLeave(org.eclipse.swt.dnd.DropTargetEvent)
      */
     public void dragLeave(DropTargetEvent e) {
-      // nothing to do
+    // nothing to do
     }
 
     /**
      * @see org.eclipse.swt.dnd.DropTargetListener#dragOperationChanged(org.eclipse.swt.dnd.DropTargetEvent)
      */
     public void dragOperationChanged(DropTargetEvent e) {
-      // nothing to do
+    // nothing to do
     }
 
     /**
@@ -161,7 +161,7 @@ public class DragAndDropEnabler {
      * @see org.eclipse.swt.dnd.DropTargetListener#dropAccept(org.eclipse.swt.dnd.DropTargetEvent)
      */
     public void dropAccept(DropTargetEvent e) {
-      // nothing to do
+    // nothing to do
     }
 
   }
@@ -184,14 +184,14 @@ public class DragAndDropEnabler {
      * @see org.eclipse.swt.dnd.DragSourceListener#dragSetData(org.eclipse.swt.dnd.DragSourceEvent)
      */
     public void dragSetData(DragSourceEvent e) {
-      // nothing to do
+    // nothing to do
     }
 
     /**
      * @see org.eclipse.swt.dnd.DragSourceListener#dragFinished(org.eclipse.swt.dnd.DragSourceEvent)
      */
     public void dragFinished(DragSourceEvent e) {
-      // nothing to do
+    // nothing to do
     }
 
   }

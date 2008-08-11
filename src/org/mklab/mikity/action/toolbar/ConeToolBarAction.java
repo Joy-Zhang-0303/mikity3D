@@ -27,7 +27,7 @@ public class ConeToolBarAction extends Action {
    * コンストラクター
    * 
    * @param window
-   * @param dc 
+   * @param dc
    */
   public ConeToolBarAction(final MainWindow window, CollisionCanceller dc) {
     super();

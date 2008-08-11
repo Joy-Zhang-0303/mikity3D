@@ -74,9 +74,9 @@ public class Location implements java.io.Serializable {
     super();
   } // -- org.mklab.mikity.xml.Location()
 
-
   /**
    * 新しく生成された<code>Location</code>オブジェクトを初期化します。
+   * 
    * @param x
    * @param y
    * @param z

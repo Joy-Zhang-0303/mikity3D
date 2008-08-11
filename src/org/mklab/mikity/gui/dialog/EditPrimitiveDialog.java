@@ -78,7 +78,7 @@ public class EditPrimitiveDialog {
    * コンストラクター
    */
   public EditPrimitiveDialog() {
-    // nothing to do
+  // nothing to do
   }
 
   /**

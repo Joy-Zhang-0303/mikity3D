@@ -76,6 +76,7 @@ public class Rotation implements java.io.Serializable {
 
   /**
    * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
+   * 
    * @param x
    * @param y
    * @param z

@@ -73,7 +73,7 @@ public class SceneGraphTree {
    * コンストラクター
    */
   public SceneGraphTree() {
-    // nothing to do
+  // nothing to do
   }
 
   /**
@@ -82,7 +82,7 @@ public class SceneGraphTree {
    * @param composite
    * @param modeler
    * @param model
-   * @param dc 
+   * @param dc
    */
   public SceneGraphTree(final Composite composite, final Modeler modeler, final Model model, CollisionCanceller dc) {
     this.model = model;
@@ -692,13 +692,13 @@ public class SceneGraphTree {
       XMLCone[] cone = group[i].loadXMLCone();
       for (int j = 0; j < cone.length; j++) {
         TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cone ( " + cone[j].loadR() + ", " + cone[j].loadHeight() + ", " + cone[j].loadDiv() + ", " + cone[j].loadColor() + " )");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setText("Cone ( " + cone[j].loadR() + ", " + cone[j].loadHeight() + ", " + cone[j].loadDiv() + ", " + cone[j].loadColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cone[j]);
       }
       XMLConnector[] connector = group[i].loadXMLConnector();
       for (int j = 0; j < connector.length; j++) {
         TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Connector ( No." + connector[j].loadNum() + ", " + connector[j].loadFlag() + " )");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+        boxChild.setText("Connector ( No." + connector[j].loadNum() + ", " + connector[j].loadFlag() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
         boxChild.setData(connector[j]);
 
         // if(connector[j].getFlag()=="N"){
@@ -718,7 +718,7 @@ public class SceneGraphTree {
       XMLQuadPolygon[] quad = group[i].loadXMLQuadPolygon();
       for (int j = 0; j < quad.length; j++) {
         TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Quad ( " + quad[j].loadColor() + " )");  //$NON-NLS-1$//$NON-NLS-2$
+        boxChild.setText("Quad ( " + quad[j].loadColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$
         boxChild.setData(quad[j]);
       }
 

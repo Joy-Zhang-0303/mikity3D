@@ -28,7 +28,7 @@ public class BoxToolBarAction extends Action {
    * コンストラクター
    * 
    * @param window
-   * @param dc 
+   * @param dc
    */
   public BoxToolBarAction(final MainWindow window, CollisionCanceller dc) {
     super();
