@@ -77,7 +77,9 @@ public class ColladaFileTransformer {
         fw.write(this.note.get(i) + "\n"); //$NON-NLS-1$
       }
       fw.close();
-    } catch (Exception e) {}
+    } catch (Exception e) {
+      //
+    }
   }
 
   /**

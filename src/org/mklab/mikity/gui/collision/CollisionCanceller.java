@@ -127,7 +127,7 @@ public class CollisionCanceller {
    * @param group
    *        　グループ
    */
-  private void checkCollisionFlag(Object prim, float range, Location primLoc, float listRange, Location listLoc, Group group) {
+  private void checkCollisionFlag(Object prim, float argRange, Location primLoc, float listRange, Location listLoc, Group group) {
     if (this.collideFlag == true) {
       MessageBox msg = new MessageBox(this.comp.getShell(), SWT.ICON_INFORMATION);
       msg.setText("重複防止");
@@ -151,21 +151,21 @@ public class CollisionCanceller {
    * @return loc 位置座標
    */
   private Location getLoc(Object prim) {
-    Location loc = new Location();
+    Location localLocation = new Location();
     if (prim instanceof XMLBox) {
       XMLBox box = (XMLBox)prim;
-      loc = box.loadLocation();
+      localLocation = box.loadLocation();
     } else if (prim instanceof XMLCone) {
       XMLCone cone = (XMLCone)prim;
-      loc = cone.loadLocation();
+      localLocation = cone.loadLocation();
     } else if (prim instanceof XMLCylinder) {
       XMLCylinder cylinder = (XMLCylinder)prim;
-      loc = cylinder.loadLocation();
+      localLocation = cylinder.loadLocation();
     } else if (prim instanceof XMLSphere) {
       XMLSphere sphere = (XMLSphere)prim;
-      loc = sphere.loadLocation();
+      localLocation = sphere.loadLocation();
     }
-    return loc;
+    return localLocation;
   }
 
   /**
@@ -183,29 +183,29 @@ public class CollisionCanceller {
   /**
    * プリミティブの位置座標がNULLだった場合、座標(0.0,0.0,0.0)の情報を持つ位置座標を返す。
    * 
-   * @param loc
+   * @param argLocation
    *        　プリミティブの位置座標
    * @return loc　更新したプリミティブの位置座標
    */
-  private Location checkLoc(Location loc) {
-    if (loc == null) {
-      loc = new Location();
-      loc.setX(0.0f);
-      loc.setY(0.0f);
-      loc.setZ(0.0f);
+  private Location checkLoc(Location argLocation) {
+    if (argLocation == null) {
+      argLocation = new Location();
+      argLocation.setX(0.0f);
+      argLocation.setY(0.0f);
+      argLocation.setZ(0.0f);
     }
-    return loc;
+    return argLocation;
   }
 
   /**
    * プリミティブの位置座標をリストに追加する。
    * 
-   * @param loc
+   * @param argLocation
    *        　プリミティブの位置座標
    */
-  private void addLocationList(Location loc) {
+  private void addLocationList(Location argLocation) {
     Location primLoc = new Location();
-    primLoc = loc;
+    primLoc = argLocation;
     this.locList.add(checkLoc(primLoc));
   }
 

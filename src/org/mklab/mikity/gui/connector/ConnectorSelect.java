@@ -114,14 +114,14 @@ public class ConnectorSelect {
    * @param targetGroup
    *        　現在右クリックしているコネクタを所有するグループ
    */
-  private void selectConnectorN(XMLConnector connector, Group root, Tree xmlTree, Group targetGroup) {
+  private void selectConnectorN(XMLConnector argConnector, Group root, Tree xmlTree, Group targetGroup) {
     this._hasN = true;
-    connector.setFlag("N"); //$NON-NLS-1$
-    this.connectorN = connector;
+    argConnector.setFlag("N"); //$NON-NLS-1$
+    this.connectorN = argConnector;
 
     PrimitiveConnector pConnector = new PrimitiveConnector();
     Group groupN = pConnector.createConnectorNGroup();
-    groupN.addXMLConnector(connector);
+    groupN.addXMLConnector(argConnector);
     this.targetGroupN = groupN;
     root.removeGroup(targetGroup);
     xmlTree.getSelection()[0].dispose();
@@ -132,7 +132,7 @@ public class ConnectorSelect {
   /**
    * 現在クリックしているコネクタをコネクタSに設定する
    * 
-   * @param cylinder
+   * @param argConnector
    *        　コネクタ
    * @param root
    *        　ルート
@@ -141,14 +141,14 @@ public class ConnectorSelect {
    * @param targetGroup
    *        　現在右クリックしているコネクタを所有するグループ
    */
-  private void selectConnectorS(XMLConnector connector, Group root, Tree xmlTree, Group targetGroup) {
+  private void selectConnectorS(XMLConnector argConnector, Group root, Tree xmlTree, Group targetGroup) {
     this._hasS = true;
-    connector.setFlag("S"); //$NON-NLS-1$
-    this.connectorS = connector;
+    argConnector.setFlag("S"); //$NON-NLS-1$
+    this.connectorS = argConnector;
 
     PrimitiveConnector pConnector = new PrimitiveConnector();
     Group groupS = pConnector.createConnectorSGroup();
-    groupS.addXMLConnector(connector);
+    groupS.addXMLConnector(argConnector);
     this.targetGroupS = groupS;
     root.removeGroup(targetGroup);
     xmlTree.getSelection()[0].dispose();
@@ -197,7 +197,7 @@ public class ConnectorSelect {
   }
 
   /**
-   * @return
+   * @return tree connector flag
    */
   public String getTreeConnectorFlag() {
     String flag = "-"; //$NON-NLS-1$

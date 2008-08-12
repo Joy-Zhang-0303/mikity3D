@@ -429,7 +429,7 @@ public class SimulationViewer extends ApplicationWindow {
 
   private class SliderPositionMoveTask extends TimerTask {
 
-    AnimationTask task;
+    AnimationTask localTask;
     Slider slider;
 
     /**
@@ -439,7 +439,7 @@ public class SimulationViewer extends ApplicationWindow {
      * @param slider
      */
     public SliderPositionMoveTask(AnimationTask task, Slider slider) {
-      this.task = task;
+      this.localTask = task;
       this.slider = slider;
     }
 
@@ -459,7 +459,7 @@ public class SimulationViewer extends ApplicationWindow {
       display.syncExec(new Runnable() {
 
         public void run() {
-          double ct = SliderPositionMoveTask.this.task.getCurrentTime();
+          double ct = SliderPositionMoveTask.this.localTask.getCurrentTime();
           String st = String.valueOf(ct);
           if (st.length() > 5) {
             st = st.substring(0, 4);

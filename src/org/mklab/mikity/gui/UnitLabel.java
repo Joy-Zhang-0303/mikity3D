@@ -37,10 +37,10 @@ public class UnitLabel extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     this.setLayout(layout);
-    Label label = new Label(this, SWT.NONE);
-    label.setText(getUnit(target));
+    Label localLabel = new Label(this, SWT.NONE);
+    localLabel.setText(getUnit(target));
     GridData data = new GridData();
-    label.setLayoutData(data);
+    localLabel.setLayoutData(data);
   }
 
   /**

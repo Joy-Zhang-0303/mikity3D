@@ -224,10 +224,10 @@ public class ModelCanvas extends Canvas3D {
   /**
    * XMLデータからConfigデータを読み込む
    * 
-   * @param root
+   * @param argRoot
    */
-  private void getParameter(Jamast root) {
-    Config config = root.loadConfig(0);
+  private void getParameter(Jamast argRoot) {
+    Config config = argRoot.loadConfig(0);
     // 背景色をセット
     if (config.loadBackground() == null) {
       this.backgroundColor = ColorConstant.getColor("white"); //$NON-NLS-1$

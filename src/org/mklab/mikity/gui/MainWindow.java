@@ -120,17 +120,17 @@ public class MainWindow extends ApplicationWindow {
 
   @Override
   protected Control createContents(Composite composite) {
-    Composite comp = new Composite(composite, SWT.NONE);
-    comp.setLayout(new GridLayout());
-    comp.setLayoutData(new GridData(GridData.FILL_BOTH));
+    Composite localComposite = new Composite(composite, SWT.NONE);
+    localComposite.setLayout(new GridLayout());
+    localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-    this.comp = comp;
+    this.comp = localComposite;
 
-    this.modeler = new Modeler(comp, SWT.NONE, root, this.dc);
+    this.modeler = new Modeler(localComposite, SWT.NONE, root, this.dc);
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     // createFileChooseComp(comp);
     // createMainButtonComp(comp);
-    return comp;
+    return localComposite;
   }
 
   /**
@@ -139,16 +139,16 @@ public class MainWindow extends ApplicationWindow {
    * @param composite
    */
   public void createFileChooseComp(final Composite composite) {
-    Composite comp = new Composite(composite, SWT.NONE);
+    Composite localComposite = new Composite(composite, SWT.NONE);
     GridLayout layout = new GridLayout();
     layout.numColumns = 6;
-    comp.setLayout(layout);
-    comp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    localComposite.setLayout(layout);
+    localComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-    final Label label = new Label(comp, SWT.NONE);
+    final Label label = new Label(localComposite, SWT.NONE);
     label.setText("ファイル");
 
-    this.filePathText = new Text(comp, SWT.BORDER);
+    this.filePathText = new Text(localComposite, SWT.BORDER);
     this.filePathText.setText("");
     this.filePathText.addTraverseListener(new TraverseListener() {
 
@@ -163,7 +163,7 @@ public class MainWindow extends ApplicationWindow {
     gridData.horizontalSpan = 4;
     this.filePathText.setLayoutData(gridData);
 
-    final Button refButton = new Button(comp, SWT.BORDER);
+    final Button refButton = new Button(localComposite, SWT.BORDER);
     refButton.setText("参照");
     refButton.addSelectionListener(new SelectionAdapter() {
 
@@ -191,28 +191,28 @@ public class MainWindow extends ApplicationWindow {
    * @param composite
    */
   public void createMainButtonComp(final Composite composite) {
-    Composite comp = new Composite(composite, SWT.NONE);
+    Composite localComposite = new Composite(composite, SWT.NONE);
     GridLayout layout = new GridLayout();
     layout.numColumns = 6;
-    comp.setLayout(layout);
-    comp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    localComposite.setLayout(layout);
+    localComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-    this.newModelButton = new Button(comp, SWT.NONE);
+    this.newModelButton = new Button(localComposite, SWT.NONE);
     this.newModelButton.setText("モデルの新規作成");
 
-    this.modelerButton = new Button(comp, SWT.NONE);
+    this.modelerButton = new Button(localComposite, SWT.NONE);
     this.modelerButton.setText("モデルの編集");
 
-    this.configButton = new Button(comp, SWT.NONE);
+    this.configButton = new Button(localComposite, SWT.NONE);
     this.configButton.setText("設定");
 
-    this.simButton = new Button(comp, SWT.NONE);
+    this.simButton = new Button(localComposite, SWT.NONE);
     this.simButton.setText("シミュレーションを見る");
 
-    this.saveAsButton = new Button(comp, SWT.NONE);
+    this.saveAsButton = new Button(localComposite, SWT.NONE);
     this.saveAsButton.setText("ファイルの別名保存");
 
-    this.saveButton = new Button(comp, SWT.NONE);
+    this.saveButton = new Button(localComposite, SWT.NONE);
     this.saveButton.setText("ファイルを保存して終了");
 
     // 編集できないようにする
@@ -301,15 +301,15 @@ public class MainWindow extends ApplicationWindow {
   protected MenuManager createMenuManager() {
     MenuManager manager = new MenuManager();
 
-    MenuManager file = new MenuManager("ファイル(&F)");
-    file.add(this.FILE_NEW_ACTION);
-    file.add(this.FILE_OPEN_ACTION);
-    file.add(this.FILE_SAVE_ACTION);
-    file.add(this.FILE_SAVE_AS_ACTION);
-    file.add(this.FILE_IMPORT_ACTION);
-    file.add(new Separator());
-    file.add(this.FILE_EXIT_ACTION);
-    manager.add(file);
+    MenuManager localFile = new MenuManager("ファイル(&F)");
+    localFile.add(this.FILE_NEW_ACTION);
+    localFile.add(this.FILE_OPEN_ACTION);
+    localFile.add(this.FILE_SAVE_ACTION);
+    localFile.add(this.FILE_SAVE_AS_ACTION);
+    localFile.add(this.FILE_IMPORT_ACTION);
+    localFile.add(new Separator());
+    localFile.add(this.FILE_EXIT_ACTION);
+    manager.add(localFile);
 
     MenuManager edit = new MenuManager("編集(&E)");
     edit.add(this.CONFIGDIALOG_OPEN_ACTION);

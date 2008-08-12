@@ -246,8 +246,8 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        AddPrimitiveDialog addPrim = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.dc);
-        addPrim.open();
+        AddPrimitiveDialog localAddPrim = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.dc);
+        localAddPrim.open();
         setTree();
       }
     });
@@ -256,8 +256,8 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        AddTrianglePolygonDialog addTriPoly = new AddTrianglePolygonDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
-        addTriPoly.open();
+        AddTrianglePolygonDialog localAddTriPoly = new AddTrianglePolygonDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
+        localAddTriPoly.open();
         setTree();
       }
     });
@@ -266,8 +266,8 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        AddQuadPolygonDialog addQuadPoly = new AddQuadPolygonDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
-        addQuadPoly.open();
+        AddQuadPolygonDialog localAddQuadPoly = new AddQuadPolygonDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
+        localAddQuadPoly.open();
         setTree();
       }
     });
@@ -276,8 +276,8 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        AddGroupDialog addGroup = new AddGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
-        addGroup.open();
+        AddGroupDialog localAddGroup = new AddGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
+        localAddGroup.open();
         setTree();
       }
     });
@@ -803,7 +803,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * @return
+   * @return XML tree
    */
   public Tree getXMLTree() {
     return this.xmlTree;

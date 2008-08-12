@@ -183,7 +183,9 @@ public class MovableGroupManager {
             setType = 5;
           } else if (target.equals("rotationZ")) { //$NON-NLS-1$
             setType = 6;
-          } else {}
+          } else {
+            //
+          }
           picker.addMoveType(setType, col);
         }
         if (linkdata[i].hasConst()) {
@@ -203,7 +205,9 @@ public class MovableGroupManager {
             setType = 5;
           } else if (target.equals("rotationZ")) { //$NON-NLS-1$
             setType = 6;
-          } else {}
+          } else {
+            //
+          }
           picker.setConstantValue(setType, constantValue);
         }
       }

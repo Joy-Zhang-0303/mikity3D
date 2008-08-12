@@ -29,50 +29,50 @@ public class BlenderSceneGraphCreater {
 
   /**
    * @param g
-   * @param scene
+   * @param argScene
    */
-  public void checkGroupName(Group g, Group scene) {
+  public void checkGroupName(Group g, Group argScene) {
     ArrayList<Group> group = g.loadGroupAsReference();
     for (int i = 0; i < group.size(); i++) {
-      if (group.get(i).loadName().equals(scene.loadName())) {
+      if (group.get(i).loadName().equals(argScene.loadName())) {
         ArrayList<XMLTrianglePolygon> triangleList = g.loadGroup()[i].loadXMLTrianglePolygonAsReference();
         ArrayList<XMLQuadPolygon> quadList = g.loadGroup()[i].loadXMLQuadPolygonAsReference();
-        addTrianglePolygonList(scene, triangleList);
-        addQuadPolygonList(scene, quadList);
+        addTrianglePolygonList(argScene, triangleList);
+        addQuadPolygonList(argScene, quadList);
       }
     }
 
-    ArrayList<Group> child = scene.loadGroupAsReference();
+    ArrayList<Group> child = argScene.loadGroupAsReference();
     if (child != null) {
       for (int i = 0; i < child.size(); i++) {
         checkGroupName(g, child.get(i));
       }
     }
-    this.scene = scene;
+    this.scene = argScene;
   }
 
   /**
-   * @param scene
+   * @param argScene
    * @param triangleList
    */
-  private void addTrianglePolygonList(Group scene, ArrayList<XMLTrianglePolygon> triangleList) {
+  private void addTrianglePolygonList(Group argScene, ArrayList<XMLTrianglePolygon> triangleList) {
     for (int k = 0; k < triangleList.size(); k++) {
-      scene.addXMLTrianglePolygon(triangleList.get(k));
+      argScene.addXMLTrianglePolygon(triangleList.get(k));
     }
   }
 
   /**
-   * @param scene
+   * @param argScene
    * @param quadList
    */
-  private void addQuadPolygonList(Group scene, ArrayList<XMLQuadPolygon> quadList) {
+  private void addQuadPolygonList(Group argScene, ArrayList<XMLQuadPolygon> quadList) {
     for (int k = 0; k < quadList.size(); k++) {
-      scene.addXMLQuadPolygon(quadList.get(k));
+      argScene.addXMLQuadPolygon(quadList.get(k));
     }
   }
 
   /**
-   * @return
+   * @return scene
    */
   public Group getScene() {
     return this.scene;

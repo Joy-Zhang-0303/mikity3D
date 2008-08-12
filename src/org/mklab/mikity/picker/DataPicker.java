@@ -55,8 +55,9 @@ public abstract class DataPicker {
    */
   public final void addMoveTypeDH(int moveType, int row) {
     if (this.data.getRowSize() < row) {
-
+      // 
     }
+    
     switch (moveType) {
       case DHParameter.A:
         for (int i = 0; i < this.params.length; i++) {
@@ -97,8 +98,9 @@ public abstract class DataPicker {
    */
   public final void addMoveType(int moveType, int row) {
     if (this.data.getRowSize() < row) {
-
+      //
     }
+    
     switch (moveType) {
       case LinkParameter.LOCX:
         for (int i = 0; i < this.link.length; i++) {
