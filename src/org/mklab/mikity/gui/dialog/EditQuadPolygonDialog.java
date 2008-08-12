@@ -32,9 +32,9 @@ import org.mklab.mikity.xml.model.XMLQuadPolygon;
 public class EditQuadPolygonDialog {
 
   private Shell parentShell;
-  private Shell sShell;
+  Shell sShell;
   private XMLQuadPolygon quad;
-  private String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"};
+  private String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
 
   private String groupName;
   private Group afterGroup;
@@ -114,39 +114,39 @@ public class EditQuadPolygonDialog {
     GridLayout beforeLayout = new GridLayout(2, true);
     beforeGroup.setLayout(beforeLayout);
 
-    this.paramX_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点1 X座標", "0.0");
-    this.paramY_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点1 Y座標", "0.0");
-    this.paramZ_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点1 Z座標", "0.0");
+    this.paramX_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点1 X座標", "0.0"); //$NON-NLS-2$
+    this.paramY_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点1 Y座標", "0.0"); //$NON-NLS-2$
+    this.paramZ_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点1 Z座標", "0.0"); //$NON-NLS-2$
     Label label1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label1, 2);
 
-    this.paramX_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点2 X座標", "0.0");
-    this.paramY_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点2 Y座標", "0.0");
-    this.paramZ_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点2 Z座標", "0.0");
+    this.paramX_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点2 X座標", "0.0"); //$NON-NLS-2$
+    this.paramY_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点2 Y座標", "0.0"); //$NON-NLS-2$
+    this.paramZ_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点2 Z座標", "0.0"); //$NON-NLS-2$
     Label label2 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label2, 2);
-    this.paramX_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点3 X座標", "0.0");
-    this.paramY_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点3 Y座標", "0.0");
-    this.paramZ_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点3 Z座標", "0.0");
+    this.paramX_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点3 X座標", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.paramY_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点3 Y座標", "0.0"); //$NON-NLS-2$
+    this.paramZ_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点3 Z座標", "0.0"); //$NON-NLS-2$
     Label label3 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label3, 2);
 
-    this.paramX_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点4 X座標", "0.0");
-    this.paramY_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点4 Y座標", "0.0");
-    this.paramZ_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点4 Z座標", "0.0");
-    this.color = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "color", "");
+    this.paramX_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点4 X座標", "0.0"); //$NON-NLS-2$
+    this.paramY_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点4 Y座標", "0.0"); //$NON-NLS-2$
+    this.paramZ_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点4 Z座標", "0.0"); //$NON-NLS-2$
+    this.color = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "color", ""); //$NON-NLS-1$ //$NON-NLS-2$
     Label label4 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label4, 2);
 
-    this.paramR_X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸回転", "0.0");
-    this.paramR_Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸回転", "0.0");
-    this.paramR_Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸回転", "0.0");
+    this.paramR_X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸回転", "0.0"); //$NON-NLS-2$
+    this.paramR_Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸回転", "0.0"); //$NON-NLS-2$
+    this.paramR_Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸回転", "0.0"); //$NON-NLS-2$
     Label labelR1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelR1, 2);
 
-    this.paramL_X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸並進", "0.0");
-    this.paramL_Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸並進", "0.0");
-    this.paramL_Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸並進", "0.0");
+    this.paramL_X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸並進", "0.0"); //$NON-NLS-2$
+    this.paramL_Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸並進", "0.0"); //$NON-NLS-2$
+    this.paramL_Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸並進", "0.0"); //$NON-NLS-2$
     Label labelL1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelL1, 2);
 
@@ -156,42 +156,42 @@ public class EditQuadPolygonDialog {
     GridLayout afterLayout = new GridLayout(3, false);
     this.afterGroup.setLayout(afterLayout);
 
-    this.newParamX_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
-    this.newParamY_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
-    this.newParamZ_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
+    this.newParamX_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newParamY_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newParamZ_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
 
-    this.newParamX_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
-    this.newParamY_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
-    this.newParamZ_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
+    this.newParamX_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newParamY_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newParamZ_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label6, 3);
 
-    this.newParamX_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
-    this.newParamY_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
-    this.newParamZ_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
+    this.newParamX_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newParamY_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newParamZ_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     Label label7 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label7, 3);
 
-    this.newParamX_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
-    this.newParamY_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
-    this.newParamZ_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
+    this.newParamX_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newParamY_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newParamZ_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     Label colorLabel4 = new Label(this.afterGroup, SWT.RIGHT);
     colorLabel4.setText("→");
@@ -201,24 +201,24 @@ public class EditQuadPolygonDialog {
     Label label8 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label8, 3);
 
-    this.newParamR_X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelAngle");
-    this.newParamR_Y = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelAngle");
-    this.newParamR_Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelAngle");
+    this.newParamR_X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
+    this.newParamR_Y = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
+    this.newParamR_Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
 
-    Label labelR2 = new Label(afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    Label labelR2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelR2, 3);
 
-    newParamL_X = new ParameterInputBox(afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(afterGroup, "modelLength");
-    newParamL_Y = new ParameterInputBox(afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(afterGroup, "modelLength");
-    newParamL_Z = new ParameterInputBox(afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(afterGroup, "modelLength");
+    this.newParamL_X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newParamL_Y = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newParamL_Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
-    Label labelL2 = new Label(afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    Label labelL2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelL2, 3);
 
     // UnitLabel test = new UnitLabel(afterGroup, "modelAngle");
@@ -242,7 +242,7 @@ public class EditQuadPolygonDialog {
    * 変更を決定するButtonを作成
    */
   private void createButtonComp() {
-    final Composite comp = new Composite(sShell, SWT.NONE);
+    final Composite comp = new Composite(this.sShell, SWT.NONE);
     setGridLayout(comp, 2);
 
     GridLayout compLayout = new GridLayout(2, true);
@@ -254,19 +254,20 @@ public class EditQuadPolygonDialog {
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         // 数字以外が入っていないかを判断
         if (Check()) {
-          MessageBox mesBox = new MessageBox(sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+          MessageBox mesBox = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           mesBox.setMessage("変更します");
           mesBox.setText("確認");
           int result = mesBox.open();
           if (result == SWT.YES) {
             setParam();
-            sShell.close();
+            EditQuadPolygonDialog.this.sShell.close();
           }
         } else {
-          MessageBox mgb = new MessageBox(sShell, SWT.ICON_WARNING);
+          MessageBox mgb = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.ICON_WARNING);
           mgb.setMessage("パラメータ数字以外が入っています。\n 入力しなおして下さい。");
           mgb.setText("Warning!!");
           mgb.open();
@@ -280,14 +281,15 @@ public class EditQuadPolygonDialog {
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        MessageBox mesBox = new MessageBox(sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        MessageBox mesBox = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         mesBox.setMessage("変更を中止して終了します");
         mesBox.setText("確認");
         int result = mesBox.open();
         if (result == SWT.YES) {
-          sShell.close();
+          EditQuadPolygonDialog.this.sShell.close();
         }
       }
     });
@@ -298,59 +300,59 @@ public class EditQuadPolygonDialog {
    * 
    * @return boolean
    */
-  private boolean Check() {
-    if (newParamX_1.checkParam() == false) {
+  boolean Check() {
+    if (this.newParamX_1.checkParam() == false) {
       return false;
     }
-    if (newParamY_1.checkParam() == false) {
+    if (this.newParamY_1.checkParam() == false) {
       return false;
     }
-    if (newParamZ_1.checkParam() == false) {
+    if (this.newParamZ_1.checkParam() == false) {
       return false;
     }
-    if (newParamX_2.checkParam() == false) {
+    if (this.newParamX_2.checkParam() == false) {
       return false;
     }
-    if (newParamY_2.checkParam() == false) {
+    if (this.newParamY_2.checkParam() == false) {
       return false;
     }
-    if (newParamZ_2.checkParam() == false) {
+    if (this.newParamZ_2.checkParam() == false) {
       return false;
     }
-    if (newParamX_3.checkParam() == false) {
+    if (this.newParamX_3.checkParam() == false) {
       return false;
     }
-    if (newParamY_3.checkParam() == false) {
+    if (this.newParamY_3.checkParam() == false) {
       return false;
     }
-    if (newParamZ_3.checkParam() == false) {
+    if (this.newParamZ_3.checkParam() == false) {
       return false;
     }
-    if (newParamX_4.checkParam() == false) {
+    if (this.newParamX_4.checkParam() == false) {
       return false;
     }
-    if (newParamY_4.checkParam() == false) {
+    if (this.newParamY_4.checkParam() == false) {
       return false;
     }
-    if (newParamZ_4.checkParam() == false) {
+    if (this.newParamZ_4.checkParam() == false) {
       return false;
     }
-    if (newParamR_X.checkParam() == false) {
+    if (this.newParamR_X.checkParam() == false) {
       return false;
     }
-    if (newParamR_Y.checkParam() == false) {
+    if (this.newParamR_Y.checkParam() == false) {
       return false;
     }
-    if (newParamR_Z.checkParam() == false) {
+    if (this.newParamR_Z.checkParam() == false) {
       return false;
     }
-    if (newParamL_X.checkParam() == false) {
+    if (this.newParamL_X.checkParam() == false) {
       return false;
     }
-    if (newParamL_Y.checkParam() == false) {
+    if (this.newParamL_Y.checkParam() == false) {
       return false;
     }
-    if (newParamL_Z.checkParam() == false) {
+    if (this.newParamL_Z.checkParam() == false) {
       return false;
     }
     return true;
@@ -359,86 +361,86 @@ public class EditQuadPolygonDialog {
   /**
    * パラメータを変更する
    */
-  private void setParam() {
+  void setParam() {
     Location[] newLoc = new Location[4];
 
-    newLoc[0] = new Location(newParamX_1.getFloatValue(), newParamY_1.getFloatValue(), newParamZ_1.getFloatValue());
-    newLoc[1] = new Location(newParamX_2.getFloatValue(), newParamY_2.getFloatValue(), newParamZ_2.getFloatValue());
-    newLoc[2] = new Location(newParamX_3.getFloatValue(), newParamY_3.getFloatValue(), newParamZ_3.getFloatValue());
-    newLoc[3] = new Location(newParamX_4.getFloatValue(), newParamY_4.getFloatValue(), newParamZ_4.getFloatValue());
+    newLoc[0] = new Location(this.newParamX_1.getFloatValue(), this.newParamY_1.getFloatValue(), this.newParamZ_1.getFloatValue());
+    newLoc[1] = new Location(this.newParamX_2.getFloatValue(), this.newParamY_2.getFloatValue(), this.newParamZ_2.getFloatValue());
+    newLoc[2] = new Location(this.newParamX_3.getFloatValue(), this.newParamY_3.getFloatValue(), this.newParamZ_3.getFloatValue());
+    newLoc[3] = new Location(this.newParamX_4.getFloatValue(), this.newParamY_4.getFloatValue(), this.newParamZ_4.getFloatValue());
 
-    String newColor = colorCombo.getColorComboBox().getText();
+    String newColor = this.colorCombo.getColorComboBox().getText();
 
-    quad.setPointLocations(newLoc);
-    quad.setColor(newColor);
-    quad.setRotation(new Rotation(newParamR_X.getFloatValue(), newParamR_Y.getFloatValue(), newParamR_Z.getFloatValue()));
-    quad.setLocation(new Location(newParamL_X.getFloatValue(), newParamL_Y.getFloatValue(), newParamL_Z.getFloatValue()));
+    this.quad.setPointLocations(newLoc);
+    this.quad.setColor(newColor);
+    this.quad.setRotation(new Rotation(this.newParamR_X.getFloatValue(), this.newParamR_Y.getFloatValue(), this.newParamR_Z.getFloatValue()));
+    this.quad.setLocation(new Location(this.newParamL_X.getFloatValue(), this.newParamL_Y.getFloatValue(), this.newParamL_Z.getFloatValue()));
   }
 
   /**
    * 各頂点の座標値を色を入れる　変更後の欄にはデフォルトで変更前の値を入力
    */
   private void detectPrim() {
-    paramX_1.setText("" + quad.loadPointLocationX(0));
-    paramY_1.setText("" + quad.loadPointLocationY(0));
-    paramZ_1.setText("" + quad.loadPointLocationZ(0));
-    newParamX_1.setText("" + quad.loadPointLocationX(0));
-    newParamY_1.setText("" + quad.loadPointLocationY(0));
-    newParamZ_1.setText("" + quad.loadPointLocationZ(0));
+    this.paramX_1.setText("" + this.quad.loadPointLocationX(0)); //$NON-NLS-1$
+    this.paramY_1.setText("" + this.quad.loadPointLocationY(0)); //$NON-NLS-1$
+    this.paramZ_1.setText("" + this.quad.loadPointLocationZ(0)); //$NON-NLS-1$
+    this.newParamX_1.setText("" + this.quad.loadPointLocationX(0)); //$NON-NLS-1$
+    this.newParamY_1.setText("" + this.quad.loadPointLocationY(0)); //$NON-NLS-1$
+    this.newParamZ_1.setText("" + this.quad.loadPointLocationZ(0)); //$NON-NLS-1$
 
-    paramX_2.setText("" + quad.loadPointLocationX(1));
-    paramY_2.setText("" + quad.loadPointLocationY(1));
-    paramZ_2.setText("" + quad.loadPointLocationZ(1));
-    newParamX_2.setText("" + quad.loadPointLocationX(1));
-    newParamY_2.setText("" + quad.loadPointLocationY(1));
-    newParamZ_2.setText("" + quad.loadPointLocationZ(1));
+    this.paramX_2.setText("" + this.quad.loadPointLocationX(1)); //$NON-NLS-1$
+    this.paramY_2.setText("" + this.quad.loadPointLocationY(1)); //$NON-NLS-1$
+    this.paramZ_2.setText("" + this.quad.loadPointLocationZ(1)); //$NON-NLS-1$
+    this.newParamX_2.setText("" + this.quad.loadPointLocationX(1)); //$NON-NLS-1$
+    this.newParamY_2.setText("" + this.quad.loadPointLocationY(1)); //$NON-NLS-1$
+    this.newParamZ_2.setText("" + this.quad.loadPointLocationZ(1)); //$NON-NLS-1$
 
-    paramX_3.setText("" + quad.loadPointLocationX(2));
-    paramY_3.setText("" + quad.loadPointLocationY(2));
-    paramZ_3.setText("" + quad.loadPointLocationZ(2));
-    newParamX_3.setText("" + quad.loadPointLocationX(2));
-    newParamY_3.setText("" + quad.loadPointLocationY(2));
-    newParamZ_3.setText("" + quad.loadPointLocationZ(2));
+    this.paramX_3.setText("" + this.quad.loadPointLocationX(2)); //$NON-NLS-1$
+    this.paramY_3.setText("" + this.quad.loadPointLocationY(2)); //$NON-NLS-1$
+    this.paramZ_3.setText("" + this.quad.loadPointLocationZ(2)); //$NON-NLS-1$
+    this.newParamX_3.setText("" + this.quad.loadPointLocationX(2)); //$NON-NLS-1$
+    this.newParamY_3.setText("" + this.quad.loadPointLocationY(2)); //$NON-NLS-1$
+    this.newParamZ_3.setText("" + this.quad.loadPointLocationZ(2)); //$NON-NLS-1$
 
-    paramX_4.setText("" + quad.loadPointLocationX(3));
-    paramY_4.setText("" + quad.loadPointLocationY(3));
-    paramZ_4.setText("" + quad.loadPointLocationZ(3));
-    newParamX_4.setText("" + quad.loadPointLocationX(3));
-    newParamY_4.setText("" + quad.loadPointLocationY(3));
-    newParamZ_4.setText("" + quad.loadPointLocationZ(3));
-    color.setText(quad.loadColor());
-    colorCombo.getColorComboBox().setText(quad.loadColor());
+    this.paramX_4.setText("" + this.quad.loadPointLocationX(3)); //$NON-NLS-1$
+    this.paramY_4.setText("" + this.quad.loadPointLocationY(3)); //$NON-NLS-1$
+    this.paramZ_4.setText("" + this.quad.loadPointLocationZ(3)); //$NON-NLS-1$
+    this.newParamX_4.setText("" + this.quad.loadPointLocationX(3)); //$NON-NLS-1$
+    this.newParamY_4.setText("" + this.quad.loadPointLocationY(3)); //$NON-NLS-1$
+    this.newParamZ_4.setText("" + this.quad.loadPointLocationZ(3)); //$NON-NLS-1$
+    this.color.setText(this.quad.loadColor());
+    this.colorCombo.getColorComboBox().setText(this.quad.loadColor());
 
-    if (quad.loadRotation() != null) {
-      paramR_X.setText("" + quad.loadRotation().loadXrotate());
-      paramR_Y.setText("" + quad.loadRotation().loadYrotate());
-      paramR_Z.setText("" + quad.loadRotation().loadZrotate());
-      newParamR_X.setText("" + quad.loadRotation().loadXrotate());
-      newParamR_Y.setText("" + quad.loadRotation().loadYrotate());
-      newParamR_Z.setText("" + quad.loadRotation().loadZrotate());
+    if (this.quad.loadRotation() != null) {
+      this.paramR_X.setText("" + this.quad.loadRotation().loadXrotate()); //$NON-NLS-1$
+      this.paramR_Y.setText("" + this.quad.loadRotation().loadYrotate()); //$NON-NLS-1$
+      this.paramR_Z.setText("" + this.quad.loadRotation().loadZrotate()); //$NON-NLS-1$
+      this.newParamR_X.setText("" + this.quad.loadRotation().loadXrotate()); //$NON-NLS-1$
+      this.newParamR_Y.setText("" + this.quad.loadRotation().loadYrotate()); //$NON-NLS-1$
+      this.newParamR_Z.setText("" + this.quad.loadRotation().loadZrotate()); //$NON-NLS-1$
     } else {
-      paramR_X.setText("" + 0.0);
-      paramR_Y.setText("" + 0.0);
-      paramR_Z.setText("" + 0.0);
-      newParamR_X.setText("" + 0.0);
-      newParamR_Y.setText("" + 0.0);
-      newParamR_Z.setText("" + 0.0);
+      this.paramR_X.setText("" + 0.0); //$NON-NLS-1$
+      this.paramR_Y.setText("" + 0.0); //$NON-NLS-1$
+      this.paramR_Z.setText("" + 0.0); //$NON-NLS-1$
+      this.newParamR_X.setText("" + 0.0); //$NON-NLS-1$
+      this.newParamR_Y.setText("" + 0.0); //$NON-NLS-1$
+      this.newParamR_Z.setText("" + 0.0); //$NON-NLS-1$
     }
 
-    if (quad.loadLocation() != null) {
-      paramL_X.setText("" + quad.loadLocation().loadX());
-      paramL_Y.setText("" + quad.loadLocation().loadY());
-      paramL_Z.setText("" + quad.loadLocation().loadZ());
-      newParamL_X.setText("" + quad.loadLocation().loadX());
-      newParamL_Y.setText("" + quad.loadLocation().loadY());
-      newParamL_Z.setText("" + quad.loadLocation().loadZ());
+    if (this.quad.loadLocation() != null) {
+      this.paramL_X.setText("" + this.quad.loadLocation().loadX()); //$NON-NLS-1$
+      this.paramL_Y.setText("" + this.quad.loadLocation().loadY()); //$NON-NLS-1$
+      this.paramL_Z.setText("" + this.quad.loadLocation().loadZ()); //$NON-NLS-1$
+      this.newParamL_X.setText("" + this.quad.loadLocation().loadX()); //$NON-NLS-1$
+      this.newParamL_Y.setText("" + this.quad.loadLocation().loadY()); //$NON-NLS-1$
+      this.newParamL_Z.setText("" + this.quad.loadLocation().loadZ()); //$NON-NLS-1$
     } else {
-      paramL_X.setText("" + 0.0);
-      paramL_Y.setText("" + 0.0);
-      paramL_Z.setText("" + 0.0);
-      newParamL_X.setText("" + 0.0);
-      newParamL_Y.setText("" + 0.0);
-      newParamL_Z.setText("" + 0.0);
+      this.paramL_X.setText("" + 0.0); //$NON-NLS-1$
+      this.paramL_Y.setText("" + 0.0); //$NON-NLS-1$
+      this.paramL_Z.setText("" + 0.0); //$NON-NLS-1$
+      this.newParamL_X.setText("" + 0.0); //$NON-NLS-1$
+      this.newParamL_Y.setText("" + 0.0); //$NON-NLS-1$
+      this.newParamL_Z.setText("" + 0.0); //$NON-NLS-1$
     }
 
   }

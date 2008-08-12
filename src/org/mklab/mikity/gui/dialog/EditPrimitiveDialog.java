@@ -39,7 +39,7 @@ public class EditPrimitiveDialog {
   Shell sShell;
   private Object prim;
   private String groupName;
-  private String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"};
+  private String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
   private ColorComboBox colorCombo;
   private Group afterGroup;
   private Label primLabel;
@@ -118,27 +118,27 @@ public class EditPrimitiveDialog {
     GridLayout beforeLayout = new GridLayout(2, true);
     beforeGroup.setLayout(beforeLayout);
 
-    this.param1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", "");
-    this.param2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", "");
-    this.param3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", "");
+    this.param1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
+    this.param2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
+    this.param3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
     Label label = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
 
     setGridLayout(label, 2);
 
-    this.rotX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸周り回転", "0.0");
-    this.rotY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸周り回転", "0.0");
-    this.rotZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸周り回転", "0.0");
+    this.rotX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸周り回転", "0.0"); //$NON-NLS-2$
+    this.rotY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸周り回転", "0.0"); //$NON-NLS-2$
+    this.rotZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸周り回転", "0.0"); //$NON-NLS-2$
     Label label2 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
 
     setGridLayout(label2, 2);
-    this.locX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸並進", "0.0");
-    this.locY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸並進", "0.0");
-    this.locZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸並進", "0.0");
+    this.locX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸並進", "0.0"); //$NON-NLS-2$
+    this.locY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸並進", "0.0"); //$NON-NLS-2$
+    this.locZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸並進", "0.0"); //$NON-NLS-2$
     Label label3 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
 
     setGridLayout(label3, 2);
 
-    this.color = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "color", "");
+    this.color = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "color", ""); //$NON-NLS-1$ //$NON-NLS-2$
 
     this.afterGroup = new Group(this.sShell, SWT.NONE);
     this.afterGroup.setText("変更後");
@@ -146,36 +146,36 @@ public class EditPrimitiveDialog {
 
     GridLayout afterLayout = new GridLayout(3, false);
     this.afterGroup.setLayout(afterLayout);
-    this.newParam1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "");
+    this.newParam1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", ""); //$NON-NLS-2$
     this.uLabel1 = new Label(this.afterGroup, SWT.NONE);
-    this.uLabel1.setText(UnitLabel.getUnit("modelLength"));
+    this.uLabel1.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.uLabel1, 1);
 
-    this.newParam2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "");
+    this.newParam2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", ""); //$NON-NLS-2$
     this.uLabel2 = new Label(this.afterGroup, SWT.NONE);
-    this.uLabel2.setText(UnitLabel.getUnit("modelLength"));
+    this.uLabel2.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.uLabel2, 1);
 
-    this.newParam3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "");
+    this.newParam3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", ""); //$NON-NLS-2$
     this.uLabel3 = new Label(this.afterGroup, SWT.NONE);
-    this.uLabel3.setText(UnitLabel.getUnit("modelLength"));
+    this.uLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.uLabel3, 1);
 
-    this.newRotX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelAngle");
-    this.newRotY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelAngle");
-    this.newRotZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelAngle");
+    this.newRotX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
+    this.newRotY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
+    this.newRotZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
     Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
 
-    this.newLocX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
-    this.newLocY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
-    this.newLocZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");
-    new UnitLabel(this.afterGroup, "modelLength");
+    this.newLocX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newLocY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    this.newLocZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
     Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label6, 3);
 
@@ -186,7 +186,7 @@ public class EditPrimitiveDialog {
     this.colorCombo = new ColorComboBox(this.afterGroup, this.COLORS);
     this.colorCombo.createColorCombo();
     Label spaceLabel = new Label(this.afterGroup, SWT.NONE);
-    spaceLabel.setText(" ");
+    spaceLabel.setText(" "); //$NON-NLS-1$
     setGridLayout(spaceLabel, 1);
 
     // UnitLabel test = new UnitLabel(afterGroup, "modelAngle");
@@ -446,12 +446,12 @@ public class EditPrimitiveDialog {
   private void detectPrim() {
     if (this.prim instanceof XMLBox) {
       XMLBox box = (XMLBox)this.prim;
-      this.param1.setText("" + box.loadXsize());
-      this.param2.setText("" + box.loadYsize());
-      this.param3.setText("" + box.loadZsize());
-      this.newParam1.setText("" + box.loadXsize());
-      this.newParam2.setText("" + box.loadYsize());
-      this.newParam3.setText("" + box.loadZsize());
+      this.param1.setText("" + box.loadXsize()); //$NON-NLS-1$
+      this.param2.setText("" + box.loadYsize()); //$NON-NLS-1$
+      this.param3.setText("" + box.loadZsize()); //$NON-NLS-1$
+      this.newParam1.setText("" + box.loadXsize()); //$NON-NLS-1$
+      this.newParam2.setText("" + box.loadYsize()); //$NON-NLS-1$
+      this.newParam3.setText("" + box.loadZsize()); //$NON-NLS-1$
       Rotation rot = box.loadRotation();
       Location loc = box.loadLocation();
       if (rot == null) {
@@ -472,12 +472,12 @@ public class EditPrimitiveDialog {
       this.colorCombo.getColorComboBox().setText(box.loadColor());
     } else if (this.prim instanceof XMLCylinder) {
       XMLCylinder cyl = (XMLCylinder)this.prim;
-      this.param1.setText("" + cyl.loadR());
-      this.param2.setText("" + cyl.loadHeight());
-      this.param3.setText("" + cyl.loadDiv());
-      this.newParam1.setText("" + cyl.loadR());
-      this.newParam2.setText("" + cyl.loadHeight());
-      this.newParam3.setText("" + cyl.loadDiv());
+      this.param1.setText("" + cyl.loadR()); //$NON-NLS-1$
+      this.param2.setText("" + cyl.loadHeight()); //$NON-NLS-1$
+      this.param3.setText("" + cyl.loadDiv()); //$NON-NLS-1$
+      this.newParam1.setText("" + cyl.loadR()); //$NON-NLS-1$
+      this.newParam2.setText("" + cyl.loadHeight()); //$NON-NLS-1$
+      this.newParam3.setText("" + cyl.loadDiv()); //$NON-NLS-1$
       Rotation rot = cyl.loadRotation();
       Location loc = cyl.loadLocation();
       if (rot == null) {
@@ -496,10 +496,10 @@ public class EditPrimitiveDialog {
       this.colorCombo.getColorComboBox().setText(cyl.loadColor());
     } else if (this.prim instanceof XMLSphere) {
       XMLSphere sph = (XMLSphere)this.prim;
-      this.param1.setText("" + sph.loadR());
-      this.param2.setText("" + sph.loadDiv());
-      this.newParam1.setText("" + sph.loadR());
-      this.newParam2.setText("" + sph.loadDiv());
+      this.param1.setText("" + sph.loadR()); //$NON-NLS-1$
+      this.param2.setText("" + sph.loadDiv()); //$NON-NLS-1$
+      this.newParam1.setText("" + sph.loadR()); //$NON-NLS-1$
+      this.newParam2.setText("" + sph.loadDiv()); //$NON-NLS-1$
       Rotation rot = sph.loadRotation();
       Location loc = sph.loadLocation();
       if (rot == null) {
@@ -518,29 +518,29 @@ public class EditPrimitiveDialog {
       this.colorCombo.getColorComboBox().setText(sph.loadColor());
     } else if (this.prim instanceof XMLCone) {
       XMLCone cone = (XMLCone)this.prim;
-      this.param1.setText("" + cone.loadR());
-      this.param2.setText("" + cone.loadHeight());
-      this.param3.setText("" + cone.loadDiv());
-      this.newParam1.setText("" + cone.loadR());
-      this.newParam2.setText("" + cone.loadHeight());
-      newParam3.setText("" + cone.loadDiv());
+      this.param1.setText("" + cone.loadR()); //$NON-NLS-1$
+      this.param2.setText("" + cone.loadHeight()); //$NON-NLS-1$
+      this.param3.setText("" + cone.loadDiv()); //$NON-NLS-1$
+      this.newParam1.setText("" + cone.loadR()); //$NON-NLS-1$
+      this.newParam2.setText("" + cone.loadHeight()); //$NON-NLS-1$
+      this.newParam3.setText("" + cone.loadDiv()); //$NON-NLS-1$
       Rotation rot = cone.loadRotation();
       Location loc = cone.loadLocation();
       if (rot == null) {
-        rotB = false;
+        this.rotB = false;
       } else {
         getRot(rot);
       }
       if (loc == null) {
-        locB = false;
+        this.locB = false;
       } else {
         getLoc(loc);
       }
       coneLabel();
-      primLabel.setText("対象となるプリミティブ  :  cone");
-      color.setText(cone.loadColor());
-      colorCombo.getColorComboBox().setText(cone.loadColor());
-    } else if (prim instanceof XMLConnector) {
+      this.primLabel.setText("対象となるプリミティブ  :  cone");
+      this.color.setText(cone.loadColor());
+      this.colorCombo.getColorComboBox().setText(cone.loadColor());
+    } else if (this.prim instanceof XMLConnector) {
 
     }
   }
@@ -549,75 +549,75 @@ public class EditPrimitiveDialog {
    * primitiveがBoxのとき
    */
   public void boxLabel() {
-    param1.setLabelText("幅");
-    param2.setLabelText("高さ");
-    param3.setLabelText("奥行き");
-    param3.setVisible(true);
-    newParam3.setVisible(true);
-    uLabel2.setVisible(true);
-    uLabel3.setVisible(true);
+    this.param1.setLabelText("幅");
+    this.param2.setLabelText("高さ");
+    this.param3.setLabelText("奥行き");
+    this.param3.setVisible(true);
+    this.newParam3.setVisible(true);
+    this.uLabel2.setVisible(true);
+    this.uLabel3.setVisible(true);
   }
 
   /**
    * primitiveがCylinderのとき
    */
   public void cylLabel() {
-    param1.setLabelText("半径");
-    param2.setLabelText("高さ");
-    param3.setLabelText("分割数");
-    param3.setVisible(true);
+    this.param1.setLabelText("半径");
+    this.param2.setLabelText("高さ");
+    this.param3.setLabelText("分割数");
+    this.param3.setVisible(true);
     int div = 0;
-    if (param3.getIntValue() < 3) {
+    if (this.param3.getIntValue() < 3) {
       div = 30;
     } else {
-      div = param3.getIntValue();
+      div = this.param3.getIntValue();
     }
-    param3.setText("" + div);
-    newParam3.setVisible(true);
-    newParam3.setText("" + div);
-    uLabel2.setVisible(true);
-    uLabel3.setVisible(false);
+    this.param3.setText("" + div); //$NON-NLS-1$
+    this.newParam3.setVisible(true);
+    this.newParam3.setText("" + div); //$NON-NLS-1$
+    this.uLabel2.setVisible(true);
+    this.uLabel3.setVisible(false);
   }
 
   /**
    * primitiveがSphereのとき
    */
   public void sphLabel() {
-    param1.setLabelText("半径");
-    param2.setLabelText("分割数");
-    param3.setVisible(false);
+    this.param1.setLabelText("半径");
+    this.param2.setLabelText("分割数");
+    this.param3.setVisible(false);
     int div = 0;
-    if (param2.getIntValue() < 3) {
+    if (this.param2.getIntValue() < 3) {
       div = 30;
     } else {
-      div = param2.getIntValue();
+      div = this.param2.getIntValue();
     }
-    param2.setText("" + div);
-    newParam2.setText("" + div);
-    newParam3.setVisible(false);
-    uLabel2.setVisible(false);
-    uLabel3.setVisible(false);
+    this.param2.setText("" + div); //$NON-NLS-1$
+    this.newParam2.setText("" + div); //$NON-NLS-1$
+    this.newParam3.setVisible(false);
+    this.uLabel2.setVisible(false);
+    this.uLabel3.setVisible(false);
   }
 
   /**
    * primitiveがConeのとき
    */
   public void coneLabel() {
-    param1.setLabelText("半径");
-    param2.setLabelText("高さ");
-    param3.setLabelText("分割数");
-    param3.setVisible(true);
+    this.param1.setLabelText("半径");
+    this.param2.setLabelText("高さ");
+    this.param3.setLabelText("分割数");
+    this.param3.setVisible(true);
     int div = 0;
-    if (param3.getIntValue() < 3) {
+    if (this.param3.getIntValue() < 3) {
       div = 30;
     } else {
-      div = param3.getIntValue();
+      div = this.param3.getIntValue();
     }
-    param3.setText("" + div);
-    newParam3.setVisible(true);
-    newParam3.setText("" + div);
-    uLabel2.setVisible(true);
-    uLabel3.setVisible(false);
+    this.param3.setText("" + div); //$NON-NLS-1$
+    this.newParam3.setVisible(true);
+    this.newParam3.setText("" + div); //$NON-NLS-1$
+    this.uLabel2.setVisible(true);
+    this.uLabel3.setVisible(false);
   }
 
   /**
@@ -627,31 +627,31 @@ public class EditPrimitiveDialog {
    */
   private void getRot(Rotation rot) {
     if (rot.hasXrotate() || rot.loadXrotate() != 0.0f) {
-      rotX.setText("" + rot.loadXrotate());
-      newRotX.setText("" + rot.loadXrotate());
+      this.rotX.setText("" + rot.loadXrotate()); //$NON-NLS-1$
+      this.newRotX.setText("" + rot.loadXrotate()); //$NON-NLS-1$
     }
     if (rot.hasYrotate() || rot.loadYrotate() != 0.0f) {
-      rotY.setText("" + rot.loadYrotate());
-      newRotY.setText("" + rot.loadYrotate());
+      this.rotY.setText("" + rot.loadYrotate()); //$NON-NLS-1$
+      this.newRotY.setText("" + rot.loadYrotate()); //$NON-NLS-1$
     }
     if (rot.hasZrotate() || rot.loadXrotate() != 0.0f) {
-      rotZ.setText("" + rot.loadZrotate());
-      newRotZ.setText("" + rot.loadZrotate());
+      this.rotZ.setText("" + rot.loadZrotate()); //$NON-NLS-1$
+      this.newRotZ.setText("" + rot.loadZrotate()); //$NON-NLS-1$
     }
   }
 
   private void getLoc(Location loc) {
     if (loc.hasX() || loc.loadX() != 0.0f) {
-      locX.setText("" + loc.loadX());
-      newLocX.setText("" + loc.loadX());
+      this.locX.setText("" + loc.loadX()); //$NON-NLS-1$
+      this.newLocX.setText("" + loc.loadX()); //$NON-NLS-1$
     }
     if (loc.hasY() || loc.loadY() != 0.0f) {
-      locY.setText("" + loc.loadY());
-      newLocY.setText("" + loc.loadY());
+      this.locY.setText("" + loc.loadY()); //$NON-NLS-1$
+      this.newLocY.setText("" + loc.loadY()); //$NON-NLS-1$
     }
     if (loc.hasZ() || loc.loadZ() != 0.0f) {
-      locZ.setText("" + loc.loadZ());
-      newLocZ.setText("" + loc.loadZ());
+      this.locZ.setText("" + loc.loadZ()); //$NON-NLS-1$
+      this.newLocZ.setText("" + loc.loadZ()); //$NON-NLS-1$
     }
   }
 }

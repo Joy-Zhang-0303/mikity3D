@@ -193,22 +193,22 @@ public class GroupConfigDialogLink {
     label3.setText("読み取る列");
     label3.setLayoutData(gridData3);
 
-    this.locX = new ParameterInputBox(paramGroup, style, "locationX", "0");
+    this.locX = new ParameterInputBox(paramGroup, style, "locationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnLocX = new ParameterInputBox(paramGroup, style, 0);
 
-    this.locY = new ParameterInputBox(paramGroup, style, "locationY", "0");
+    this.locY = new ParameterInputBox(paramGroup, style, "locationY", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnLocY = new ParameterInputBox(paramGroup, style, 0);
 
-    this.locZ = new ParameterInputBox(paramGroup, style, "locationZ", "0");
+    this.locZ = new ParameterInputBox(paramGroup, style, "locationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnLocZ = new ParameterInputBox(paramGroup, style, 0);
 
-    this.rotX = new ParameterInputBox(paramGroup, style, "rotationX", "0");
+    this.rotX = new ParameterInputBox(paramGroup, style, "rotationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnRotX = new ParameterInputBox(paramGroup, style, 0);
 
-    this.rotY = new ParameterInputBox(paramGroup, style, "rotationY", "0");
+    this.rotY = new ParameterInputBox(paramGroup, style, "rotationY", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnRotY = new ParameterInputBox(paramGroup, style, 0);
 
-    this.rotZ = new ParameterInputBox(paramGroup, style, "rotationZ", "0");
+    this.rotZ = new ParameterInputBox(paramGroup, style, "rotationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnRotZ = new ParameterInputBox(paramGroup, style, 0);
 
     setParam();
@@ -222,7 +222,7 @@ public class GroupConfigDialogLink {
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
     this.statusLabel.setLayoutData(gridData);
-    setStatus("");
+    setStatus(""); //$NON-NLS-1$
   }
 
   /**
@@ -247,24 +247,24 @@ public class GroupConfigDialogLink {
       // } else{
       // column = "0";
       // }
-      String column = linkdata[i].hasColumn() ? "" + linkdata[i].loadColumn() : "0";
-      String constant = linkdata[i].hasConst() ? "" + linkdata[i].loadConst() : "0";
-      if (target.equals("locationX")) {
+      String column = linkdata[i].hasColumn() ? "" + linkdata[i].loadColumn() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      String constant = linkdata[i].hasConst() ? "" + linkdata[i].loadConst() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      if (target.equals("locationX")) { //$NON-NLS-1$
         this.columnLocX.setText(column);
         this.locX.setText(constant);
-      } else if (target.equals("locationY")) {
+      } else if (target.equals("locationY")) { //$NON-NLS-1$
         this.columnLocY.setText(column);
         this.locY.setText(constant);
-      } else if (target.equals("locationZ")) {
+      } else if (target.equals("locationZ")) { //$NON-NLS-1$
         this.columnLocZ.setText(column);
         this.locZ.setText(constant);
-      } else if (target.equals("rotationX")) {
+      } else if (target.equals("rotationX")) { //$NON-NLS-1$
         this.columnRotX.setText(column);
         this.rotX.setText(constant);
-      } else if (target.equals("rotationY")) {
+      } else if (target.equals("rotationY")) { //$NON-NLS-1$
         this.columnRotY.setText(column);
         this.rotY.setText(constant);
-      } else if (target.equals("rotationZ")) {
+      } else if (target.equals("rotationZ")) { //$NON-NLS-1$
         this.columnRotZ.setText(column);
         this.rotZ.setText(constant);
       }

@@ -75,7 +75,7 @@ public class ConfigDialog {
    */
   private void createSShell() {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.sShell.setText("ConfigDialog");
+    this.sShell.setText("ConfigDialog"); //$NON-NLS-1$
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 450));
 
     GridLayout layout = new GridLayout();
@@ -154,15 +154,15 @@ public class ConfigDialog {
     xData.horizontalSpan = 7;
     lKakko.setLayoutData(xData);
 
-    this.lightX = new ParameterInputBox(lightPointGroup, SWT.NONE, "  (", "0.2");
-    this.lightY = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8");
-    this.lightZ = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8");
+    this.lightX = new ParameterInputBox(lightPointGroup, SWT.NONE, "  (", "0.2"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightY = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightZ = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8"); //$NON-NLS-1$ //$NON-NLS-2$
 
     Label kakko = new Label(lightPointGroup, SWT.NONE);
     GridData labelData = new GridData();
     labelData.widthHint = 10;
     kakko.setLayoutData(labelData);
-    kakko.setText(")");
+    kakko.setText(")"); //$NON-NLS-1$
 
     // 視点の位置の指定
     Group viewPointGroup = new Group(this.editGroup, SWT.NONE);
@@ -180,14 +180,14 @@ public class ConfigDialog {
     vRollData.horizontalSpan = 7;
     vRollLabel.setLayoutData(vRollData);
 
-    this.viewXrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "-0.2");
-    this.viewYrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0");
-    this.viewZrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0");
+    this.viewXrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "-0.2");  //$NON-NLS-1$//$NON-NLS-2$
+    this.viewYrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.viewZrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     Label vKakko2 = new Label(viewPointGroup, SWT.NONE);
     GridData vKakkoData2 = new GridData();
     vKakko2.setLayoutData(vKakkoData2);
-    vKakko2.setText(")");
+    vKakko2.setText(")"); //$NON-NLS-1$
 
     Label vLabel = new Label(viewPointGroup, SWT.NONE);
     vLabel.setText("・平行移動：(x,y,z)で指定してください。");
@@ -195,14 +195,14 @@ public class ConfigDialog {
     vData.horizontalSpan = 7;
     vLabel.setLayoutData(vData);
 
-    this.viewX = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "0.0");
-    this.viewY = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.3");
-    this.viewZ = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "1.0");
+    this.viewX = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.viewY = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.3"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.viewZ = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     Label vKakko = new Label(viewPointGroup, SWT.NONE);
     GridData vKakkoData = new GridData();
     vKakko.setLayoutData(vKakkoData);
-    vKakko.setText(")");
+    vKakko.setText(")"); //$NON-NLS-1$
 
     // 背景色の選択
     Label setColorLabel = new Label(this.editGroup, SWT.NONE);
@@ -219,18 +219,18 @@ public class ConfigDialog {
   private void getParameter() {
     if (this.config.loadLight() != null) {
       Light light = this.config.loadLight();
-      this.lightX.setText("" + light.loadX());
-      this.lightY.setText("" + light.loadY());
-      this.lightZ.setText("" + light.loadZ());
+      this.lightX.setText("" + light.loadX()); //$NON-NLS-1$
+      this.lightY.setText("" + light.loadY()); //$NON-NLS-1$
+      this.lightZ.setText("" + light.loadZ()); //$NON-NLS-1$
     }
     if (this.config.loadView() != null) {
       View view = this.config.loadView();
-      this.viewX.setText("" + view.loadX());
-      this.viewY.setText("" + view.loadY());
-      this.viewZ.setText("" + view.loadZ());
-      this.viewXrotate.setText("" + view.loadXrotate());
-      this.viewYrotate.setText("" + view.loadYrotate());
-      this.viewZrotate.setText("" + view.loadZrotate());
+      this.viewX.setText("" + view.loadX()); //$NON-NLS-1$
+      this.viewY.setText("" + view.loadY()); //$NON-NLS-1$
+      this.viewZ.setText("" + view.loadZ()); //$NON-NLS-1$
+      this.viewXrotate.setText("" + view.loadXrotate()); //$NON-NLS-1$
+      this.viewYrotate.setText("" + view.loadYrotate()); //$NON-NLS-1$
+      this.viewZrotate.setText("" + view.loadZrotate()); //$NON-NLS-1$
     }
     if (this.config.loadModelUnit() != null) {
       if (this.config.loadModelUnit().loadAngle() != null) {
@@ -249,7 +249,7 @@ public class ConfigDialog {
       }
     }
     if (this.config.loadBackground() == null) {
-      this.colorCombo.setText("white");
+      this.colorCombo.setText("white"); //$NON-NLS-1$
     } else {
       this.colorCombo.setText(this.config.loadBackground().loadColor());
     }
@@ -334,7 +334,7 @@ public class ConfigDialog {
     this.config.setView(view);
 
     if (this.config.loadBackground() == null) {
-      if (this.colorCombo.getText() != "white") {
+      if (this.colorCombo.getText() != "white") { //$NON-NLS-1$
         Background background = new Background();
         background.setColor(this.colorCombo.getText());
         this.config.setBackground(background);
@@ -344,7 +344,7 @@ public class ConfigDialog {
     }
 
     if (this.config.loadModelUnit() == null) {
-      if (this.modelAngleUnitCombo.getText() != "radian") {
+      if (this.modelAngleUnitCombo.getText() != "radian") { //$NON-NLS-1$
         ModelUnit modelUnit = new ModelUnit();
         modelUnit.setAngle(this.modelAngleUnitCombo.getText());
         modelUnit.setLength(this.modelLengthUnitCombo.getText());
@@ -356,7 +356,7 @@ public class ConfigDialog {
     }
 
     if (this.config.loadDataUnit() == null) {
-      if (this.dataAngleUnitCombo.getText() != "radian") {
+      if (this.dataAngleUnitCombo.getText() != "radian") { //$NON-NLS-1$
         DataUnit dataUnit = new DataUnit();
         dataUnit.setAngle(this.dataAngleUnitCombo.getText());
         dataUnit.setLength(this.dataLengthUnitCombo.getText());
@@ -425,7 +425,7 @@ public class ConfigDialog {
     this.colorCombo = new Combo(this.editGroup, SWT.READ_ONLY);
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     this.colorCombo.setLayoutData(gridData);
-    String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"};
+    String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
     this.colorCombo.setItems(COLORS);
   }
 
@@ -438,11 +438,11 @@ public class ConfigDialog {
     this.modelLengthUnitCombo = new Combo(group, SWT.READ_ONLY);
     GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
     this.modelLengthUnitCombo.setLayoutData(lengthData);
-    String[] LENGTH = {"m"};
+    String[] LENGTH = {"m"}; //$NON-NLS-1$
     // 現時点では変更不能。増やしたい。
     // String[] LENGTH = {"m", "cm", "mm"};
     this.modelLengthUnitCombo.setItems(LENGTH);
-    this.modelLengthUnitCombo.setText("m");
+    this.modelLengthUnitCombo.setText("m"); //$NON-NLS-1$
   }
 
   /**
@@ -454,11 +454,11 @@ public class ConfigDialog {
     this.dataLengthUnitCombo = new Combo(group, SWT.READ_ONLY);
     GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
     this.dataLengthUnitCombo.setLayoutData(lengthData);
-    String[] LENGTH = {"m"};
+    String[] LENGTH = {"m"}; //$NON-NLS-1$
     // 現時点では変更不能。増やしたい。
     // String[] LENGTH = {"m", "cm", "mm"};
     this.dataLengthUnitCombo.setItems(LENGTH);
-    this.dataLengthUnitCombo.setText("m");
+    this.dataLengthUnitCombo.setText("m"); //$NON-NLS-1$
   }
 
   /**
@@ -470,11 +470,11 @@ public class ConfigDialog {
     this.modelAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
     GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
     this.modelAngleUnitCombo.setLayoutData(angleData);
-    String[] ANGLES = {"radian"};
+    String[] ANGLES = {"radian"}; //$NON-NLS-1$
     // 現時点では変更不能
     // String[] ANGLES = {"degree", "radian"};
     this.modelAngleUnitCombo.setItems(ANGLES);
-    this.modelAngleUnitCombo.setText("radian");
+    this.modelAngleUnitCombo.setText("radian"); //$NON-NLS-1$
   }
 
   /**
@@ -486,11 +486,11 @@ public class ConfigDialog {
     this.dataAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
     GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
     this.dataAngleUnitCombo.setLayoutData(angleData);
-    String[] ANGLES = {"radian"};
+    String[] ANGLES = {"radian"}; //$NON-NLS-1$
     // 現時点では変更不能
     // String[] ANGLES = {"degree", "radian"};
     this.dataAngleUnitCombo.setItems(ANGLES);
-    this.dataAngleUnitCombo.setText("radian");
+    this.dataAngleUnitCombo.setText("radian"); //$NON-NLS-1$
   }
 
 }

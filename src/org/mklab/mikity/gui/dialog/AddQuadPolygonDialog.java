@@ -69,8 +69,8 @@ public class AddQuadPolygonDialog {
   public AddQuadPolygonDialog(Shell parentShell, Group group) {
     this.parentShell = parentShell;
     this.group = group;
-    this.angleUnit = UnitLabel.getUnit("modelAngle");
-    this.lengthUnit = UnitLabel.getUnit("modelLength");
+    this.angleUnit = UnitLabel.getUnit("modelAngle"); //$NON-NLS-1$
+    this.lengthUnit = UnitLabel.getUnit("modelLength"); //$NON-NLS-1$
     createSShell();
   }
 
@@ -101,25 +101,25 @@ public class AddQuadPolygonDialog {
     vertexData.horizontalSpan = 3;
     vertexGroup.setLayoutData(vertexData);
 
-    this.paramX_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点1 X座標", "0.3");
-    this.paramY_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点1 Y座標", "0.3");
-    this.paramZ_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点1 Z座標", "0.0");
+    this.paramX_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点1 X座標", "0.3"); //$NON-NLS-2$
+    this.paramY_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点1 Y座標", "0.3"); //$NON-NLS-2$
+    this.paramZ_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点1 Z座標", "0.0"); //$NON-NLS-2$
     Label label1 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label1, 2);
 
-    this.paramX_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点2 X座標", "-0.3");
-    this.paramY_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点2 Y座標", "0.3");
-    this.paramZ_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点2 Z座標", "0.0");
+    this.paramX_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点2 X座標", "-0.3"); //$NON-NLS-2$
+    this.paramY_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点2 Y座標", "0.3"); //$NON-NLS-2$
+    this.paramZ_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点2 Z座標", "0.0"); //$NON-NLS-2$
     Label label2 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label2, 2);
-    this.paramX_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点3 X座標", "-0.3");
-    this.paramY_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点3 Y座標", "-0.3");
-    this.paramZ_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点3 Z座標", "0.0");
+    this.paramX_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点3 X座標", "-0.3"); //$NON-NLS-2$
+    this.paramY_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点3 Y座標", "-0.3"); //$NON-NLS-2$
+    this.paramZ_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点3 Z座標", "0.0"); //$NON-NLS-2$
     Label label3 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label3, 2);
-    this.paramX_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点4 X座標", "0.3");
-    this.paramY_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点4 Y座標", "-0.3");
-    this.paramZ_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点4 Z座標", "0.0");
+    this.paramX_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点4 X座標", "0.3"); //$NON-NLS-2$
+    this.paramY_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点4 Y座標", "-0.3"); //$NON-NLS-2$
+    this.paramZ_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, "頂点4 Z座標", "0.0"); //$NON-NLS-2$
 
     GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
     Label colorLabel = new Label(this.sShell, SWT.RIGHT);
@@ -137,15 +137,15 @@ public class AddQuadPolygonDialog {
     rotData.horizontalSpan = 3;
     rotateGroup.setLayoutData(rotData);
 
-    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, "X軸周り", "0.0");
+    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, "X軸周り", "0.0"); //$NON-NLS-2$
     Label unitLabelRX = new Label(rotateGroup, SWT.NONE);
-    unitLabelRX.setText(this.angleUnit + " ");
-    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, "Y軸周り", "0.0");
+    unitLabelRX.setText(this.angleUnit + " "); //$NON-NLS-1$
+    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, "Y軸周り", "0.0"); //$NON-NLS-2$
     Label unitLabelRY = new Label(rotateGroup, SWT.NONE);
-    unitLabelRY.setText(this.angleUnit + " ");
-    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, "Z軸周り", "0.0");
+    unitLabelRY.setText(this.angleUnit + " "); //$NON-NLS-1$
+    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, "Z軸周り", "0.0"); //$NON-NLS-2$
     Label unitLabelRZ = new Label(rotateGroup, SWT.NONE);
-    unitLabelRZ.setText(this.angleUnit + " ");
+    unitLabelRZ.setText(this.angleUnit + " "); //$NON-NLS-1$
 
     GridData locData = new GridData(GridData.FILL_HORIZONTAL);
     org.eclipse.swt.widgets.Group locationGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
@@ -157,15 +157,15 @@ public class AddQuadPolygonDialog {
     locData.horizontalSpan = 3;
     locationGroup.setLayoutData(locData);
 
-    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, "X軸方向", "0");
+    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, "X軸方向", "0"); //$NON-NLS-2$
     Label unitLabelLX = new Label(locationGroup, SWT.NONE);
-    unitLabelLX.setText(this.lengthUnit + " ");
-    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, "Y軸方向", "0");
+    unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
+    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, "Y軸方向", "0"); //$NON-NLS-2$
     Label unitLabelLY = new Label(locationGroup, SWT.NONE);
-    unitLabelLY.setText(this.lengthUnit + " ");
-    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, "Z軸方向", "0");
+    unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
+    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, "Z軸方向", "0"); //$NON-NLS-2$
     Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
-    unitLabelLZ.setText(this.lengthUnit + " ");
+    unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
 
     createButtonComp();
   }
@@ -357,9 +357,9 @@ public class AddQuadPolygonDialog {
     this.colorCombo = new Combo(this.sShell, SWT.READ_ONLY);
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     this.colorCombo.setLayoutData(gridData);
-    String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"};
+    String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
     this.colorCombo.setItems(COLORS);
-    this.colorCombo.setText("blue");
+    this.colorCombo.setText("blue"); //$NON-NLS-1$
   }
 
   /**

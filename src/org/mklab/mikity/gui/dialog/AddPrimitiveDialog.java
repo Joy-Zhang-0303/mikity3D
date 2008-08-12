@@ -77,8 +77,8 @@ public class AddPrimitiveDialog {
   public AddPrimitiveDialog(Shell parentShell, Group group, CollisionCanceller dc) {
     this.parentShell = parentShell;
     this.group = group;
-    this.angleUnit = UnitLabel.getUnit("modelAngle");
-    this.lengthUnit = UnitLabel.getUnit("modelLength");
+    this.angleUnit = UnitLabel.getUnit("modelAngle"); //$NON-NLS-1$
+    this.lengthUnit = UnitLabel.getUnit("modelLength"); //$NON-NLS-1$
     createSShell();
 
     // this.dc = dc;
@@ -102,21 +102,21 @@ public class AddPrimitiveDialog {
     groupLabel.setLayoutData(gLabelData);
 
     Label primLabel = new Label(this.sShell, SWT.RIGHT);
-    primLabel.setText("primitive");
+    primLabel.setText("primitive"); //$NON-NLS-1$
     GridData labelData = new GridData(GridData.FILL_HORIZONTAL);
     labelData.widthHint = 80;
     primLabel.setLayoutData(labelData);
     createPrimCombo();
 
-    this.param1 = new ParameterInputBox(this.sShell, SWT.NONE, "幅", "0.2");
+    this.param1 = new ParameterInputBox(this.sShell, SWT.NONE, "幅", "0.2"); //$NON-NLS-2$
     this.unitLabel1 = new Label(this.sShell, SWT.NONE);
     this.unitLabel1.setText(this.lengthUnit);
 
-    this.param2 = new ParameterInputBox(this.sShell, SWT.NONE, "高さ", "0.2");
+    this.param2 = new ParameterInputBox(this.sShell, SWT.NONE, "高さ", "0.2"); //$NON-NLS-2$
     this.unitLabel2 = new Label(this.sShell, SWT.NONE);
     this.unitLabel2.setText(this.lengthUnit);
 
-    this.param3 = new ParameterInputBox(this.sShell, SWT.NONE, "奥行き", "0.2");
+    this.param3 = new ParameterInputBox(this.sShell, SWT.NONE, "奥行き", "0.2"); //$NON-NLS-2$
     this.unitLabel3 = new Label(this.sShell, SWT.NONE);
     this.unitLabel3.setText(this.lengthUnit);
 
@@ -130,13 +130,13 @@ public class AddPrimitiveDialog {
     rotData.horizontalSpan = 3;
     rotateGroup.setLayoutData(rotData);
 
-    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, "X軸周り", "0.0");
+    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, "X軸周り", "0.0"); //$NON-NLS-2$
     Label unitLabelRX = new Label(rotateGroup, SWT.NONE);
     unitLabelRX.setText(this.angleUnit + " ");
-    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, "Y軸周り", "0.0");
+    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, "Y軸周り", "0.0"); //$NON-NLS-2$
     Label unitLabelRY = new Label(rotateGroup, SWT.NONE);
     unitLabelRY.setText(this.angleUnit + " ");
-    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, "Z軸周り", "0.0");
+    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, "Z軸周り", "0.0"); //$NON-NLS-2$
     Label unitLabelRZ = new Label(rotateGroup, SWT.NONE);
     unitLabelRZ.setText(this.angleUnit + " ");
 
@@ -150,24 +150,24 @@ public class AddPrimitiveDialog {
     locData.horizontalSpan = 3;
     locationGroup.setLayoutData(locData);
 
-    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, "X軸方向", "0");
+    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, "X軸方向", "0"); //$NON-NLS-2$
     Label unitLabelLX = new Label(locationGroup, SWT.NONE);
-    unitLabelLX.setText(this.lengthUnit + " ");
-    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, "Y軸方向", "0");
+    unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
+    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, "Y軸方向", "0"); //$NON-NLS-2$
     Label unitLabelLY = new Label(locationGroup, SWT.NONE);
-    unitLabelLY.setText(this.lengthUnit + " ");
-    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, "Z軸方向", "0");
+    unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
+    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, "Z軸方向", "0"); //$NON-NLS-2$
     Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
-    unitLabelLZ.setText(this.lengthUnit + " ");
+    unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
 
     GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
     Label colorLabel = new Label(this.sShell, SWT.RIGHT);
-    colorLabel.setText("color");
+    colorLabel.setText("color"); //$NON-NLS-1$
     colorLabel.setLayoutData(labelData2);
     createColorCombo();
 
     Label spaceLabel = new Label(this.sShell, SWT.NONE);
-    spaceLabel.setText(" ");
+    spaceLabel.setText(" "); //$NON-NLS-1$
 
     Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -414,9 +414,9 @@ public class AddPrimitiveDialog {
   void boxLabel() {
     this.param1.setLabelText("幅");
     this.param2.setLabelText("高さ");
-    this.unitLabel2.setText(this.lengthUnit + " ");
+    this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
     this.param3.setLabelText("奥行き");
-    this.unitLabel2.setText(this.lengthUnit + " ");
+    this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
     this.param3.setVisible(true);
   }
 
@@ -426,14 +426,14 @@ public class AddPrimitiveDialog {
   void cylLabel() {
     this.param1.setLabelText("半径");
     this.param2.setLabelText("高さ");
-    this.unitLabel2.setText(this.lengthUnit + " ");
+    this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
     this.param3.setLabelText("分割数");
-    this.unitLabel3.setText(" ");
+    this.unitLabel3.setText(" "); //$NON-NLS-1$
     this.param3.setVisible(true);
     if (this.param3.getIntValue() < 3) {
-      this.param3.setText("30");
+      this.param3.setText("30"); //$NON-NLS-1$
     } else {
-      this.param3.setText("" + this.param3.getIntValue());
+      this.param3.setText("" + this.param3.getIntValue()); //$NON-NLS-1$
     }
   }
 
@@ -443,13 +443,13 @@ public class AddPrimitiveDialog {
   void sphLabel() {
     this.param1.setLabelText("半径");
     this.param2.setLabelText("分割数");
-    this.unitLabel2.setText(" ");
+    this.unitLabel2.setText(" "); //$NON-NLS-1$
     this.param3.setVisible(false);
-    this.unitLabel3.setText(" ");
+    this.unitLabel3.setText(" "); //$NON-NLS-1$
     if (this.param2.getIntValue() < 3) {
       this.param2.setText("30");
     } else {
-      this.param2.setText("" + this.param2.getIntValue());
+      this.param2.setText("" + this.param2.getIntValue()); //$NON-NLS-1$
     }
   }
 
@@ -459,14 +459,14 @@ public class AddPrimitiveDialog {
   void coneLabel() {
     this.param1.setLabelText("半径");
     this.param2.setLabelText("高さ");
-    this.unitLabel2.setText(this.lengthUnit + " ");
+    this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
     this.param3.setLabelText("分割数");
-    this.unitLabel3.setText(" ");
+    this.unitLabel3.setText(" "); //$NON-NLS-1$
     this.param3.setVisible(true);
     if (this.param3.getIntValue() < 3) {
-      this.param3.setText("30");
+      this.param3.setText("30"); //$NON-NLS-1$
     } else {
-      this.param3.setText("" + this.param3.getIntValue());
+      this.param3.setText("" + this.param3.getIntValue()); //$NON-NLS-1$
     }
   }
 
@@ -478,10 +478,10 @@ public class AddPrimitiveDialog {
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
     this.primCombo.setLayoutData(gridData);
-    String[] PRIMITIVES = {"Box", "Cylinder", "Sphere", "Cone"};
+    String[] PRIMITIVES = {"Box", "Cylinder", "Sphere", "Cone"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     this.primCombo.setItems(PRIMITIVES);
     // デフォルトはBox
-    this.primCombo.setText("Box");
+    this.primCombo.setText("Box"); //$NON-NLS-1$
     this.primCombo.addSelectionListener(new PComboCheck());
   }
 
@@ -493,8 +493,8 @@ public class AddPrimitiveDialog {
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
     this.colorCombo.setLayoutData(gridData);
-    String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"};
+    String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
     this.colorCombo.setItems(COLORS);
-    this.colorCombo.setText("red");
+    this.colorCombo.setText("red"); //$NON-NLS-1$
   }
 }

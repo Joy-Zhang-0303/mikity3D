@@ -70,9 +70,9 @@ public class GroupConfigDialogDH {
     this.sShell.setLayout(layout);
     // groupName = new ParameterInputBox(sShell, SWT.NONE, "Group名",
     // group.getName());
-    this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, "Group名", "root");
+    this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, "Group名", "root"); //$NON-NLS-2$
 
-    System.out.println("group : " + this.group);
+    System.out.println("group : " + this.group); //$NON-NLS-1$
     if (this.group.loadName() != null) {
       this.groupName.setText(this.group.loadName());
     }
@@ -187,16 +187,16 @@ public class GroupConfigDialogDH {
     label3.setText("読み取る列");
     label3.setLayoutData(gridData3);
 
-    this.a = new ParameterInputBox(paramGroup, style, "a", "0");
+    this.a = new ParameterInputBox(paramGroup, style, "a", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnA = new ParameterInputBox(paramGroup, style, 0);
 
-    this.alpha = new ParameterInputBox(paramGroup, style, "alpha", "0");
+    this.alpha = new ParameterInputBox(paramGroup, style, "alpha", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnAlpha = new ParameterInputBox(paramGroup, style, 0);
 
-    this.d = new ParameterInputBox(paramGroup, style, "d", "0");
+    this.d = new ParameterInputBox(paramGroup, style, "d", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnD = new ParameterInputBox(paramGroup, style, 0);
 
-    this.theta = new ParameterInputBox(paramGroup, style, "theta", "0");
+    this.theta = new ParameterInputBox(paramGroup, style, "theta", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnTheta = new ParameterInputBox(paramGroup, style, 0);
 
     setParam();
@@ -210,7 +210,7 @@ public class GroupConfigDialogDH {
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
     this.statusLabel.setLayoutData(gridData);
-    setStatus("");
+    setStatus(""); //$NON-NLS-1$
   }
 
   /**
@@ -235,18 +235,18 @@ public class GroupConfigDialogDH {
       // } else{
       // column = "0";
       // }
-      String column = linkdata[i].hasColumn() ? "" + linkdata[i].loadColumn() : "0";
-      String constant = linkdata[i].hasConst() ? "" + linkdata[i].loadConst() : "0";
-      if (target.equals("a")) {
+      String column = linkdata[i].hasColumn() ? "" + linkdata[i].loadColumn() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      String constant = linkdata[i].hasConst() ? "" + linkdata[i].loadConst() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      if (target.equals("a")) { //$NON-NLS-1$
         this.columnA.setText(column);
         this.a.setText(constant);
-      } else if (target.equals("alpha")) {
+      } else if (target.equals("alpha")) { //$NON-NLS-1$
         this.columnAlpha.setText(column);
         this.alpha.setText(constant);
-      } else if (target.equals("d")) {
+      } else if (target.equals("d")) { //$NON-NLS-1$
         this.columnD.setText(column);
         this.d.setText(constant);
-      } else if (target.equals("theta")) {
+      } else if (target.equals("theta")) { //$NON-NLS-1$
         this.columnTheta.setText(column);
         this.theta.setText(constant);
       }
