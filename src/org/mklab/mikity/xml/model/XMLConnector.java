@@ -82,14 +82,14 @@ public class XMLConnector extends XMLCylinder {
   }
 
   /**
-   * @return
+   * @return length to center
    */
   public float loadLengthToCenter() {
     return this._toCenter;
   }
 
   /**
-   * @return
+   * @return number
    */
   public int loadNum() {
     return this._num;

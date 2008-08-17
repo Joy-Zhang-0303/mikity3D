@@ -150,7 +150,7 @@ public class XMLQuadPolygon {
 
   /**
    * @param pointNum
-   * @return
+   * @return x location
    */
   public float loadPointLocationX(int pointNum) {
     return this._point[pointNum].loadX();
@@ -158,7 +158,7 @@ public class XMLQuadPolygon {
 
   /**
    * @param pointNum
-   * @return
+   * @return y location
    */
   public float loadPointLocationY(int pointNum) {
     return this._point[pointNum].loadY();
@@ -166,35 +166,35 @@ public class XMLQuadPolygon {
 
   /**
    * @param pointNum
-   * @return
+   * @return z location
    */
   public float loadPointLocationZ(int pointNum) {
     return this._point[pointNum].loadZ();
   }
 
   /**
-   * @return
+   * @return color
    */
   public String loadColor() {
     return this._color;
   }
 
   /**
-   * @return
+   * @return location
    */
   public Location loadLocation() {
     return this._location;
   }
 
   /**
-   * @return
+   * @return rotation
    */
   public Rotation loadRotation() {
     return this._rotation;
   }
 
   /**
-   * @return
+   * @return normal vector
    */
   public Vector3f[] loadNormalVector() {
     setNormalVector();
@@ -202,7 +202,7 @@ public class XMLQuadPolygon {
   }
 
   /**
-   * @return
+   * @return matrix
    */
   public Matrix4f loadMatrix() {
     return this._matrix;

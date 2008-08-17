@@ -40,7 +40,7 @@ public class ModelCanvas extends Canvas3D {
   /**
    * マウス操作の状態の表す数値
    */
-  public int mouseOperationType = 0;
+  int mouseOperationType = 0;
 
   /** 読み込んだファイルのルート */
   private Jamast root;

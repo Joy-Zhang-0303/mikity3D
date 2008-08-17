@@ -128,7 +128,7 @@ public class JAXBMarshaller {
   }
 
   /**
-   * @return
+   * @return belender group
    */
   public Group getBlenderGroup() {
     return this.collada.getBlenderPolygonGroup();
@@ -161,7 +161,7 @@ public class JAXBMarshaller {
   /**
    * 現在のモデリングデータのルートを返す
    * 
-   * @return
+   * @return 現在のモデリングデータのルート
    */
   public Jamast getRoot() {
     return this.root;
@@ -175,7 +175,7 @@ public class JAXBMarshaller {
   }
 
   /**
-   * @return
+   * @return file
    */
   public File getLoadFile() {
     return this.f;

@@ -75,7 +75,7 @@ public class Node {
   }
 
   /**
-   * @return
+   * @return geometry URL
    */
   public String loadGeometryURL() {
     return this.url;
@@ -137,7 +137,7 @@ public class Node {
   }
 
   /**
-   * @return
+   * @return type
    */
   public String loadType() {
     return this.type;
@@ -192,7 +192,7 @@ public class Node {
   }
 
   /**
-   * @return
+   * @return group
    */
   public Group getGroup() {
     return this.g;

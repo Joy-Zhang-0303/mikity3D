@@ -25,7 +25,7 @@ public class Connect {
   /**
    * 接続に使用するプリミティブ
    */
-  public Object prim[] = new Object[2];
+  private Object prim[] = new Object[2];
 
   /**
    * 各コネクタの位置座標

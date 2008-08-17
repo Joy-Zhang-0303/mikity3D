@@ -39,13 +39,13 @@ public class CollisionCanceller {
    * これまで追加したプリミティブの存在範囲
    */
   private ArrayList<PrimitiveRange> rangeList;
-  private float rangeArray[];
+  //private float rangeArray[];
 
   /**
    * これまで追加したプリミティブの位置座標
    */
   private ArrayList<Location> locList;
-  private Location locArray[];
+  //private Location locArray[];
 
   /**
    * 2つのプリミティブの位置座標間の距離

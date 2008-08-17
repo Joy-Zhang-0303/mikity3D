@@ -199,7 +199,7 @@ public class Linkdata implements java.io.Serializable {
   } // -- void setTarget(java.lang.String)
 
   /**
-   * @return
+   * @return DHを持つならばtrue
    */
   public boolean hasDH() {
     if (this._target.equals("a") || this._target.equals("alpha") || this._target.equals("d") || this._target.equals("theta")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
@@ -209,7 +209,7 @@ public class Linkdata implements java.io.Serializable {
   }
 
   /**
-   * @return
+   * @return linkをもつならばtrue
    */
   public boolean hasLink() {
     if (this._target.equals("locationX") || this._target.equals("locationY") || this._target.equals("locationZ") || this._target.equals("rotationX") || this._target.equals("rotationY") //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$

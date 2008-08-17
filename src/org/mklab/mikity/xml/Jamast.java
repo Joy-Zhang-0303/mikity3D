@@ -389,7 +389,7 @@ public class Jamast implements java.io.Serializable {
   } // -- void setModelAsReference(java.util.ArrayList)
 
   /**
-   * @return
+   * @return XML dta
    */
   public Jamast loadJamastXMLData() {
     return this;

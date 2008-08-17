@@ -44,13 +44,13 @@ public class Modeler extends Composite {
   private Frame awtFrame;
   private Group treeViewerGroup;
   /** */
-  public String modelAngleUnit;
+  private String modelAngleUnit;
   /** */
-  public String modelLengthUnit;
+  private String modelLengthUnit;
   /** */
-  public String dataAngleUnit;
+  private String dataAngleUnit;
   /** */
-  public String dataLengthUnit;
+  private String dataLengthUnit;
 
   CollisionCanceller dc;
 

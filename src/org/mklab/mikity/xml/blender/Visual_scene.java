@@ -90,7 +90,7 @@ public class Visual_scene {
   }
 
   /**
-   * @return
+   * @return scene
    */
   public Group getScene() {
     createScene();

@@ -41,7 +41,7 @@ public class FileSaveAsAction extends Action {
   public void run() {
     FileDialog dialog = new FileDialog(this.window.getShell(), SWT.SAVE);
     dialog.setText("ファイルを保存");
-    dialog.setFilterExtensions(new String[] {"*.xml", "*.*"});
+    dialog.setFilterExtensions(new String[] {"*.xml", "*.*"});  //$NON-NLS-1$//$NON-NLS-2$
 
     String filePath = dialog.open();
     if (filePath == null) {
@@ -56,7 +56,7 @@ public class FileSaveAsAction extends Action {
       }
     }
     this.window.setFile(filePath);
-    System.out.println("filepath:" + filePath);
+    System.out.println("filepath:" + filePath); //$NON-NLS-1$
     this.window.save();
   }
 }

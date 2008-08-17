@@ -38,9 +38,9 @@ public class ConnectorSelect {
   private XMLConnector connector;
 
   /** コネクタN,Sを所有するグループ */
-  public Group targetGroupN;
+  private Group targetGroupN;
   /** */
-  public Group targetGroupS;
+  private Group targetGroupS;
 
   /**
    * コンストラクタ

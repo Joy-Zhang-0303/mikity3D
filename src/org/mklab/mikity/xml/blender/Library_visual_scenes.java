@@ -57,7 +57,7 @@ public class Library_visual_scenes {
   }
 
   /**
-   * @return
+   * @return scene
    */
   public Group getScene() {
     return this.visual_scene.getScene();

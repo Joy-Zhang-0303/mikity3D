@@ -541,7 +541,7 @@ public class EditPrimitiveDialog {
       this.color.setText(cone.loadColor());
       this.colorCombo.getColorComboBox().setText(cone.loadColor());
     } else if (this.prim instanceof XMLConnector) {
-
+      //
     }
   }
 
