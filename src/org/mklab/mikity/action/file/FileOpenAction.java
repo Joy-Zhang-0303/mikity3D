@@ -28,8 +28,8 @@ public class FileOpenAction extends Action {
   public FileOpenAction(final MainWindow window) {
     super();
     this.window = window;
-    setText("ファイルを開く(&O)");
-    setToolTipText("ファイルを開きます");
+    setText(Messages.getString("FileOpenAction.0")); //$NON-NLS-1$
+    setToolTipText(Messages.getString("FileOpenAction.1")); //$NON-NLS-1$
   }
 
   /**
