@@ -10,6 +10,7 @@ import org.mklab.mikity.LinkParameter;
 import org.mklab.mikity.MyTransformGroup;
 import org.mklab.mikity.gui.ModelCanvas;
 import org.mklab.nfc.DoubleMatrix;
+import org.mklab.nfc.IntegerMatrix;
 import org.mklab.nfc.Matrix;
 
 
@@ -252,7 +253,8 @@ public abstract class DataPicker {
    */
   public int getColumn(double time) {
     // 時系列データからそれに最も近い時間のある行を返す。
-    return ((DoubleMatrix)this.data.getRowVector(1).subtractElementWise(time)).absElementWise().minimum().getColumn();
+    DoubleMatrix error = ((DoubleMatrix)this.data.getRowVector(1).subtractElementWise(time)).absElementWise();
+    return ((IntegerMatrix)error.minimumRowWise()[1]).getElement(1);
   }
 
   /**
