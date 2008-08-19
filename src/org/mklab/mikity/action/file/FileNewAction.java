@@ -36,8 +36,8 @@ public class FileNewAction extends Action {
   public FileNewAction(final MainWindow window) {
     super();
     this.window = window;
-    setText("新規作成");
-    setToolTipText("新しいモデルを作成します。");
+    setText(Messages.getString("FileNewAction.0")); //$NON-NLS-1$
+    setToolTipText(Messages.getString("FileNewAction.1")); //$NON-NLS-1$
   }
 
   /**
@@ -47,7 +47,7 @@ public class FileNewAction extends Action {
   public void run() {
     // ファイル名を決定
     FileDialog dialog = new FileDialog(this.window.getShell());
-    dialog.setText("新規ファイルを作成");
+    dialog.setText(Messages.getString("FileNewAction.2")); //$NON-NLS-1$
     String fileName = dialog.open();
     if (fileName == null) {
       return;
@@ -61,8 +61,8 @@ public class FileNewAction extends Action {
       } else {
         // 新規作成したいが、もともとその名前のファイルが存在するとき
         MessageBox msg = new MessageBox(this.window.getShell(), SWT.YES | SWT.NO);
-        msg.setText("上書き確認");
-        msg.setMessage("ファイルが存在します。ファイルを上書きしても良いですか？");
+        msg.setText(Messages.getString("FileNewAction.3")); //$NON-NLS-1$
+        msg.setMessage(Messages.getString("FileNewAction.4")); //$NON-NLS-1$
         int ret = msg.open();
         if (ret == SWT.YES) {
           // createNewModelFile(file);
@@ -88,7 +88,7 @@ public class FileNewAction extends Action {
     root.addConfig(new Config());
     root.addModel(tmpModel = new Model());
     org.mklab.mikity.xml.model.Group rootGroup = new org.mklab.mikity.xml.model.Group();
-    rootGroup.setName("Group0");
+    rootGroup.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
     tmpModel.addGroup(rootGroup);
     return root;
   }

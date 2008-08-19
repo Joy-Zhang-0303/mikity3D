@@ -24,7 +24,7 @@ public class FileSaveAction extends Action {
    * 
    */
   public FileSaveAction(final MainWindow window) {
-    setText("ファイルを保存(&S)");
+    setText(Messages.getString("FileSaveAction.0")); //$NON-NLS-1$
     this.window = window;
   }
 

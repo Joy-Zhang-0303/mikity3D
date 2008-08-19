@@ -27,8 +27,8 @@ public class ConfigDialogOpenAction extends Action {
    */
   public ConfigDialogOpenAction(final MainWindow window) {
     this.window = window;
-    setText("設定(&O)");
-    setToolTipText("各種設定画面を開きます。");
+    setText(Messages.getString("ConfigDialogOpenAction.0")); //$NON-NLS-1$
+    setToolTipText(Messages.getString("ConfigDialogOpenAction.1")); //$NON-NLS-1$
   }
 
   /**

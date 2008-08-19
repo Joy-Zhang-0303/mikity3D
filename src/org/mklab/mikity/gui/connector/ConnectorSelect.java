@@ -81,14 +81,14 @@ public class ConnectorSelect {
             selectConnectorS(this.connector, root, xmlTree, targetGroup);
           } else if (flag == "N") { //$NON-NLS-1$
             MessageBox mesBox = new MessageBox(this.composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
-            mesBox.setMessage("そのコネクタはコネクタNに指定されています");
-            mesBox.setText("確認");
+            mesBox.setMessage(Messages.getString("ConnectorSelect.0")); //$NON-NLS-1$
+            mesBox.setText(Messages.getString("ConnectorSelect.1")); //$NON-NLS-1$
             mesBox.open();
           }
         } else {
           MessageBox mesBox = new MessageBox(this.composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
-          mesBox.setMessage("コネクタは既に決定済みです");
-          mesBox.setText("確認");
+          mesBox.setMessage(Messages.getString("ConnectorSelect.2")); //$NON-NLS-1$
+          mesBox.setText(Messages.getString("ConnectorSelect.3")); //$NON-NLS-1$
           mesBox.open();
         }
       } else {
@@ -96,8 +96,8 @@ public class ConnectorSelect {
       }
     } else {
       MessageBox mesBox = new MessageBox(this.composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
-      mesBox.setMessage("これはコネクタではありません");
-      mesBox.setText("確認");
+      mesBox.setMessage(Messages.getString("ConnectorSelect.4")); //$NON-NLS-1$
+      mesBox.setText(Messages.getString("ConnectorSelect.5")); //$NON-NLS-1$
       mesBox.open();
     }
   }

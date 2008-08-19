@@ -54,12 +54,12 @@ public class AddGroupDialog extends ApplicationWindow {
     GridLayout layout = new GridLayout(2, false);
     comp.setLayout(layout);
 
-    new ParameterInputBox(comp, SWT.READ_ONLY, "追加されるグループ名", this.group.loadName());
-    final ParameterInputBox groupParam = new ParameterInputBox(comp, SWT.NONE, "追加するグループ名", "group");
+    new ParameterInputBox(comp, SWT.READ_ONLY, Messages.getString("AddGroupDialog.0"), this.group.loadName()); //$NON-NLS-1$
+    final ParameterInputBox groupParam = new ParameterInputBox(comp, SWT.NONE, Messages.getString("AddGroupDialog.1"), Messages.getString("AddGroupDialog.2")); //$NON-NLS-1$ //$NON-NLS-2$
 
     Button okButton = new Button(comp, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    okButton.setText("追加する");
+    okButton.setText(Messages.getString("AddGroupDialog.3")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -74,7 +74,7 @@ public class AddGroupDialog extends ApplicationWindow {
 
     Button cancelButton = new Button(comp, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    cancelButton.setText("キャンセル");
+    cancelButton.setText(Messages.getString("AddGroupDialog.4")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -94,6 +94,6 @@ public class AddGroupDialog extends ApplicationWindow {
   @Override
   protected void configureShell(Shell shell) {
     super.configureShell(shell);
-    shell.setText("グループの追加");
+    shell.setText(Messages.getString("AddGroupDialog.5")); //$NON-NLS-1$
   }
 }

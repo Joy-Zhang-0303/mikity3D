@@ -20,8 +20,8 @@ public class EditPrimitiveAction extends Action {
    * コンストラクター
    */
   public EditPrimitiveAction() {
-    setText("プリミティブの編集");
-    setToolTipText("選択したプリミティブのパラメータを編集します。");
+    setText(Messages.getString("EditPrimitiveAction.0")); //$NON-NLS-1$
+    setToolTipText(Messages.getString("EditPrimitiveAction.1")); //$NON-NLS-1$
   }
 
   /**
@@ -31,7 +31,7 @@ public class EditPrimitiveAction extends Action {
    */
   @Override
   public void run() {
-    System.out.println("プリミティブの編集(`・ω・´) ");
+    System.out.println(Messages.getString("EditPrimitiveAction.2")); //$NON-NLS-1$
   }
 
 }

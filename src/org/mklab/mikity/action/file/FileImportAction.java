@@ -28,7 +28,7 @@ public class FileImportAction extends Action {
   public FileImportAction(final MainWindow window) {
     super();
     this.window = window;
-    setText("インポート(&I)");
+    setText(Messages.getString("FileImportAction.0")); //$NON-NLS-1$
   }
 
   /**

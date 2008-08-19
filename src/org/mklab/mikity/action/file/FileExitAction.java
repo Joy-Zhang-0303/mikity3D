@@ -29,8 +29,8 @@ public class FileExitAction extends Action {
    */
   public FileExitAction(final MainWindow window) {
     this.window = window;
-    setText("終了(&Q)");
-    setToolTipText("アプリケーションを終了します。");
+    setText(Messages.getString("FileExitAction.0")); //$NON-NLS-1$
+    setToolTipText(Messages.getString("FileExitAction.1")); //$NON-NLS-1$
   }
 
   /**
@@ -39,7 +39,7 @@ public class FileExitAction extends Action {
   @Override
   public void run() {
     if (this.window.isDirty()) {
-      int ans = MsgUtil.showYesNoCancelMsg(this.window.getShell(), "ファイルが変更されています。保存しますか？");
+      int ans = MsgUtil.showYesNoCancelMsg(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
       switch (ans) {
         case SWT.YES:
           FileDialog dialog = new FileDialog(this.window.getShell());

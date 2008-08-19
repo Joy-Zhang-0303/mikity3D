@@ -31,7 +31,7 @@ public class FileSaveAsAction extends Action {
    */
   public FileSaveAsAction(final MainWindow window) {
     this.window = window;
-    setText("別名保存(&A)");
+    setText(Messages.getString("FileSaveAsAction.0")); //$NON-NLS-1$
   }
 
   /**
@@ -40,7 +40,7 @@ public class FileSaveAsAction extends Action {
   @Override
   public void run() {
     FileDialog dialog = new FileDialog(this.window.getShell(), SWT.SAVE);
-    dialog.setText("ファイルを保存");
+    dialog.setText(Messages.getString("FileSaveAsAction.1")); //$NON-NLS-1$
     dialog.setFilterExtensions(new String[] {"*.xml", "*.*"});  //$NON-NLS-1$//$NON-NLS-2$
 
     String filePath = dialog.open();
@@ -50,7 +50,7 @@ public class FileSaveAsAction extends Action {
     }
     File file = new File(filePath);
     if (file.exists()) {
-      int yesno = MsgUtil.showYesNoMsg(this.window.getShell(), "ファイルが存在します。上書きしますか？");
+      int yesno = MsgUtil.showYesNoMsg(this.window.getShell(), Messages.getString("FileSaveAsAction.2")); //$NON-NLS-1$
       if (yesno != SWT.YES) {
         return;
       }

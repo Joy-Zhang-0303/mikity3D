@@ -130,8 +130,8 @@ public class CollisionCanceller {
   private void checkCollisionFlag(Object prim, float argRange, Location primLoc, float listRange, Location listLoc, Group group) {
     if (this.collideFlag == true) {
       MessageBox msg = new MessageBox(this.comp.getShell(), SWT.ICON_INFORMATION);
-      msg.setText("重複防止");
-      msg.setMessage("プリミティブ同士が重複する恐れがあるので、プリミティブの追加をキャンセルします。");
+      msg.setText(Messages.getString("CollisionCanceller.0")); //$NON-NLS-1$
+      msg.setMessage(Messages.getString("CollisionCanceller.1")); //$NON-NLS-1$
       msg.open();
       // al.adjustLoc(range,primLoc,listRange,listLoc,range);
       // checkDuplication(prim,al.getNewLocation(),group);

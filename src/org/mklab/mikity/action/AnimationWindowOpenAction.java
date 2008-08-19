@@ -27,8 +27,8 @@ public class AnimationWindowOpenAction extends Action {
    * @param window
    */
   public AnimationWindowOpenAction(MainWindow window) {
-    setText("アニメーションウインドウを開く(&A)");
-    setToolTipText("現在のモデルのアニメーションを見るためにウインドウを開きます。");
+    setText(Messages.getString("AnimationWindowOpenAction.0")); //$NON-NLS-1$
+    setToolTipText(Messages.getString("AnimationWindowOpenAction.1")); //$NON-NLS-1$
     this.window = window;
   }
 

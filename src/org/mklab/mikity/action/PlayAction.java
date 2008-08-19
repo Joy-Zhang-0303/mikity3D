@@ -20,8 +20,8 @@ public class PlayAction extends Action {
    * コンストラクター
    */
   public PlayAction() {
-    setText("再生");
-    setToolTipText("シミュレーションを再生します。");
+    setText(Messages.getString("PlayAction.0")); //$NON-NLS-1$
+    setToolTipText(Messages.getString("PlayAction.1")); //$NON-NLS-1$
   }
 
   /**
@@ -32,6 +32,6 @@ public class PlayAction extends Action {
   @Override
   public void run() {
     // TODO Auto-generated method stub
-    System.out.println("シミュレーションを再生(`・ω・´) ");
+    System.out.println(Messages.getString("PlayAction.2")); //$NON-NLS-1$
   }
 }

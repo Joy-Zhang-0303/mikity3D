@@ -92,11 +92,11 @@ public class AddPrimitiveDialog {
     GridLayout layout = new GridLayout();
     layout.numColumns = 3;
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(280, 400));
-    this.sShell.setText("Primitiveの追加");
+    this.sShell.setText(Messages.getString("AddPrimitiveDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
 
     Label groupLabel = new Label(this.sShell, SWT.LEFT);
-    groupLabel.setText("追加するグループ  :  " + this.group.loadName());
+    groupLabel.setText(Messages.getString("AddPrimitiveDialog.1") + this.group.loadName()); //$NON-NLS-1$
     GridData gLabelData = new GridData(GridData.FILL_HORIZONTAL);
     gLabelData.horizontalSpan = 3;
     groupLabel.setLayoutData(gLabelData);
@@ -108,21 +108,21 @@ public class AddPrimitiveDialog {
     primLabel.setLayoutData(labelData);
     createPrimCombo();
 
-    this.param1 = new ParameterInputBox(this.sShell, SWT.NONE, "幅", "0.2"); //$NON-NLS-2$
+    this.param1 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.2"), "0.2");  //$NON-NLS-1$//$NON-NLS-2$
     this.unitLabel1 = new Label(this.sShell, SWT.NONE);
     this.unitLabel1.setText(this.lengthUnit);
 
-    this.param2 = new ParameterInputBox(this.sShell, SWT.NONE, "高さ", "0.2"); //$NON-NLS-2$
+    this.param2 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.3"), "0.2");  //$NON-NLS-1$//$NON-NLS-2$
     this.unitLabel2 = new Label(this.sShell, SWT.NONE);
     this.unitLabel2.setText(this.lengthUnit);
 
-    this.param3 = new ParameterInputBox(this.sShell, SWT.NONE, "奥行き", "0.2"); //$NON-NLS-2$
+    this.param3 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.4"), "0.2");  //$NON-NLS-1$//$NON-NLS-2$
     this.unitLabel3 = new Label(this.sShell, SWT.NONE);
     this.unitLabel3.setText(this.lengthUnit);
 
     GridData rotData = new GridData(GridData.FILL_HORIZONTAL);
     org.eclipse.swt.widgets.Group rotateGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
-    rotateGroup.setText("回転移動");
+    rotateGroup.setText(Messages.getString("AddPrimitiveDialog.5")); //$NON-NLS-1$
     layout = new GridLayout();
     layout.numColumns = 3;
     rotateGroup.setLayout(layout);
@@ -130,19 +130,19 @@ public class AddPrimitiveDialog {
     rotData.horizontalSpan = 3;
     rotateGroup.setLayoutData(rotData);
 
-    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, "X軸周り", "0.0"); //$NON-NLS-2$
+    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelRX = new Label(rotateGroup, SWT.NONE);
-    unitLabelRX.setText(this.angleUnit + " ");
-    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, "Y軸周り", "0.0"); //$NON-NLS-2$
+    unitLabelRX.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.7")); //$NON-NLS-1$
+    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelRY = new Label(rotateGroup, SWT.NONE);
-    unitLabelRY.setText(this.angleUnit + " ");
-    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, "Z軸周り", "0.0"); //$NON-NLS-2$
+    unitLabelRY.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.9")); //$NON-NLS-1$
+    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.10"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelRZ = new Label(rotateGroup, SWT.NONE);
-    unitLabelRZ.setText(this.angleUnit + " ");
+    unitLabelRZ.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.11")); //$NON-NLS-1$
 
     GridData locData = new GridData(GridData.FILL_HORIZONTAL);
     org.eclipse.swt.widgets.Group locationGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
-    locationGroup.setText("平行移動");
+    locationGroup.setText(Messages.getString("AddPrimitiveDialog.12")); //$NON-NLS-1$
     layout = new GridLayout();
     layout.numColumns = 3;
     locationGroup.setLayout(layout);
@@ -150,13 +150,13 @@ public class AddPrimitiveDialog {
     locData.horizontalSpan = 3;
     locationGroup.setLayoutData(locData);
 
-    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, "X軸方向", "0"); //$NON-NLS-2$
+    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.13"), "0");  //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelLX = new Label(locationGroup, SWT.NONE);
     unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, "Y軸方向", "0"); //$NON-NLS-2$
+    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.14"), "0");  //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelLY = new Label(locationGroup, SWT.NONE);
     unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, "Z軸方向", "0"); //$NON-NLS-2$
+    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.15"), "0");  //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
     unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
 
@@ -171,7 +171,7 @@ public class AddPrimitiveDialog {
 
     Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    okButton.setText("プリミティブを追加");
+    okButton.setText(Messages.getString("AddPrimitiveDialog.16")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -184,15 +184,15 @@ public class AddPrimitiveDialog {
           AddPrimitiveDialog.this.sShell.close();
         } else {
           MessageBox mgb = new MessageBox(AddPrimitiveDialog.this.sShell, SWT.ICON_WARNING);
-          mgb.setMessage("パラメータ数字以外が入っています。\n 入力しなおして下さい。");
-          mgb.setText("Warning!!");
+          mgb.setMessage(Messages.getString("AddPrimitiveDialog.17")); //$NON-NLS-1$
+          mgb.setText(Messages.getString("AddPrimitiveDialog.18")); //$NON-NLS-1$
         }
       }
     });
 
     Button cancelButton = new Button(this.sShell, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    cancelButton.setText(" キャンセル ");
+    cancelButton.setText(Messages.getString("AddPrimitiveDialog.19")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -200,8 +200,8 @@ public class AddPrimitiveDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         MessageBox mesBox = new MessageBox(AddPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-        mesBox.setMessage("変更を中止して終了します");
-        mesBox.setText("確認");
+        mesBox.setMessage(Messages.getString("AddPrimitiveDialog.20")); //$NON-NLS-1$
+        mesBox.setText(Messages.getString("AddPrimitiveDialog.21")); //$NON-NLS-1$
         int result = mesBox.open();
         if (result == SWT.YES) {
           AddPrimitiveDialog.this.sShell.close();
@@ -412,10 +412,10 @@ public class AddPrimitiveDialog {
    * 選ばれているprimitiveがBoxのとき
    */
   void boxLabel() {
-    this.param1.setLabelText("幅");
-    this.param2.setLabelText("高さ");
+    this.param1.setLabelText(Messages.getString("AddPrimitiveDialog.22")); //$NON-NLS-1$
+    this.param2.setLabelText(Messages.getString("AddPrimitiveDialog.23")); //$NON-NLS-1$
     this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.param3.setLabelText("奥行き");
+    this.param3.setLabelText(Messages.getString("AddPrimitiveDialog.24")); //$NON-NLS-1$
     this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
     this.param3.setVisible(true);
   }
@@ -424,10 +424,10 @@ public class AddPrimitiveDialog {
    * Cylinderのとき
    */
   void cylLabel() {
-    this.param1.setLabelText("半径");
-    this.param2.setLabelText("高さ");
+    this.param1.setLabelText(Messages.getString("AddPrimitiveDialog.25")); //$NON-NLS-1$
+    this.param2.setLabelText(Messages.getString("AddPrimitiveDialog.26")); //$NON-NLS-1$
     this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.param3.setLabelText("分割数");
+    this.param3.setLabelText(Messages.getString("AddPrimitiveDialog.27")); //$NON-NLS-1$
     this.unitLabel3.setText(" "); //$NON-NLS-1$
     this.param3.setVisible(true);
     if (this.param3.getIntValue() < 3) {
@@ -441,13 +441,13 @@ public class AddPrimitiveDialog {
    * Sphereのとき
    */
   void sphLabel() {
-    this.param1.setLabelText("半径");
-    this.param2.setLabelText("分割数");
+    this.param1.setLabelText(Messages.getString("AddPrimitiveDialog.28")); //$NON-NLS-1$
+    this.param2.setLabelText(Messages.getString("AddPrimitiveDialog.29")); //$NON-NLS-1$
     this.unitLabel2.setText(" "); //$NON-NLS-1$
     this.param3.setVisible(false);
     this.unitLabel3.setText(" "); //$NON-NLS-1$
     if (this.param2.getIntValue() < 3) {
-      this.param2.setText("30");
+      this.param2.setText(Messages.getString("AddPrimitiveDialog.30")); //$NON-NLS-1$
     } else {
       this.param2.setText("" + this.param2.getIntValue()); //$NON-NLS-1$
     }
@@ -457,10 +457,10 @@ public class AddPrimitiveDialog {
    * Coneのとき
    */
   void coneLabel() {
-    this.param1.setLabelText("半径");
-    this.param2.setLabelText("高さ");
+    this.param1.setLabelText(Messages.getString("AddPrimitiveDialog.31")); //$NON-NLS-1$
+    this.param2.setLabelText(Messages.getString("AddPrimitiveDialog.32")); //$NON-NLS-1$
     this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.param3.setLabelText("分割数");
+    this.param3.setLabelText(Messages.getString("AddPrimitiveDialog.33")); //$NON-NLS-1$
     this.unitLabel3.setText(" "); //$NON-NLS-1$
     this.param3.setVisible(true);
     if (this.param3.getIntValue() < 3) {

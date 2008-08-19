@@ -37,8 +37,8 @@ public class AddPrimitiveAction extends Action {
     super();
     this.window = window;
     this.dc = dc;
-    setText("プリミティブの追加");
-    setToolTipText("選択したグループにプリミティブを追加します。");
+    setText(Messages.getString("AddPrimitiveAction.0")); //$NON-NLS-1$
+    setToolTipText(Messages.getString("AddPrimitiveAction.1")); //$NON-NLS-1$
   }
 
   /**
@@ -48,7 +48,7 @@ public class AddPrimitiveAction extends Action {
    */
   @Override
   public void run() {
-    System.out.println("プリミティブを追加(´∩ω∩｀) ");
+    System.out.println(Messages.getString("AddPrimitiveAction.2")); //$NON-NLS-1$
     Jamast root = MainWindow.getRoot();
     this.dialog = new AddPrimitiveDialog(this.window.getShell(), root.loadModel(0).loadGroup(0), this.dc);
   }
