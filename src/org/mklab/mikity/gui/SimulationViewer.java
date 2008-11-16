@@ -85,6 +85,7 @@ public class SimulationViewer extends ApplicationWindow {
 
   private boolean usedDHParam = false;
   private boolean usedLink = false;
+  private ParameterInputBox playSpeed;
 
   /**
    * コンストラクター
@@ -96,7 +97,7 @@ public class SimulationViewer extends ApplicationWindow {
     super(parentShell);
     this.manager = new MovableGroupManager(root);
     this.root = root;
-    setShellStyle(SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+//    setShellStyle(SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
   }
 
   /**
@@ -205,8 +206,7 @@ public class SimulationViewer extends ApplicationWindow {
     GridLayout speedLayout = new GridLayout();
     speedLayout.numColumns = 2;
     speedComp.setLayout(speedLayout);
-    final ParameterInputBox playSpeed = new ParameterInputBox(speedComp, SWT.NONE, "再生速度", "1.0"); //$NON-NLS-2$
-    // time = new ParameterInputBox(speedComp, SWT.NONE, "時間","0.0");
+    this.playSpeed = new ParameterInputBox(speedComp, SWT.NONE, "再生速度", "1.0");
 
     createTimeBar(otherController);
 
@@ -225,7 +225,7 @@ public class SimulationViewer extends ApplicationWindow {
         String stValue = String.valueOf(SimulationViewer.this.speed);
         // 小数点第二以下を表示しないようにする
         stValue = stValue.substring(0, stValue.indexOf(".") + 2); //$NON-NLS-1$
-        playSpeed.setText(stValue);
+        SimulationViewer.this.playSpeed.setText(stValue);
       }
     });
 
@@ -239,7 +239,7 @@ public class SimulationViewer extends ApplicationWindow {
         }
         String stValue = String.valueOf(SimulationViewer.this.speed);
         stValue = stValue.substring(0, stValue.indexOf(".") + 2); //$NON-NLS-1$
-        playSpeed.setText(stValue);
+        SimulationViewer.this.playSpeed.setText(stValue);
       }
     });
 
@@ -248,24 +248,7 @@ public class SimulationViewer extends ApplicationWindow {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (playable == false) {
-          SimulationViewer.this.timer.cancel();
-        }
-        if (SimulationViewer.this.data == null || SimulationViewer.this.timeTable == null) {
-          MsgUtil.showMsg(getShell(), "再生ボタンが押されましたが、データは無いので終了します");
-          System.out.println("再生ボタンが押されましたが、データは無いので終了します");
-          return;
-        }
-        playable = false;
-
-        SimulationViewer.this.endTime = SimulationViewer.this.manager.getEndTime();
-        SimulationViewer.this.task = new AnimationTask(SimulationViewer.this.endTime, SimulationViewer.this.manager);
-        SimulationViewer.this.task.setSpeed(playSpeed.getDoubleValue());// スピードの設定
-        SimulationViewer.this.task.setCurrentTime(SimulationViewer.this.timeTable[SimulationViewer.this.timeSlider.getSelection()]);
-        SimulationViewer.this.stask = new SliderPositionMoveTask(SimulationViewer.this.task, SimulationViewer.this.timeSlider);
-        SimulationViewer.this.timer = new Timer();
-        SimulationViewer.this.timer.schedule(SimulationViewer.this.task, 0, 10);
-        SimulationViewer.this.timer.schedule(SimulationViewer.this.stask, 0, 10);
+        runAnimation();
       }
     });
 
@@ -425,6 +408,59 @@ public class SimulationViewer extends ApplicationWindow {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  /**
+   * 実行時間バーを設定する。
+   * 
+   * @param data
+   */
+  public void setTimeData(final Matrix data) {
+    this.data = data;
+
+    this.timeSlider.setEnabled(true);
+    this.manager.setData(this.data);
+
+    org.mklab.mikity.xml.model.Group group = this.root.loadModel(0).loadGroup(0);
+    checkLinkParameterType(group);
+
+    final int dataCount = this.manager.getDataCount();
+
+    this.timeTable = new double[dataCount];
+
+    this.endTime = this.manager.getEndTime();
+    this.startTimeLabel.setText("" + this.manager.getStartTime()); //$NON-NLS-1$
+    this.endTimeLabel.setText("" + this.endTime); //$NON-NLS-1$
+    for (int i = 0; i < this.timeTable.length; i++) {
+      this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
+    }
+    this.timeSlider.setMaximum(dataCount);
+
+    this.filePathText.setText("data"); //$NON-NLS-1$
+  }
+
+  /**
+   * アニメーションを開始します。
+   */
+  public void runAnimation() {
+    if (playable == false) {
+      SimulationViewer.this.timer.cancel();
+    }
+    if (SimulationViewer.this.data == null || SimulationViewer.this.timeTable == null) {
+      MsgUtil.showMsg(getShell(), "再生ボタンが押されましたが、データは無いので終了します");
+      System.out.println("再生ボタンが押されましたが、データは無いので終了します");
+      return;
+    }
+    playable = false;
+
+    SimulationViewer.this.endTime = SimulationViewer.this.manager.getEndTime();
+    SimulationViewer.this.task = new AnimationTask(SimulationViewer.this.endTime, SimulationViewer.this.manager);
+    SimulationViewer.this.task.setSpeed(this.playSpeed.getDoubleValue());// スピードの設定
+    SimulationViewer.this.task.setCurrentTime(SimulationViewer.this.timeTable[SimulationViewer.this.timeSlider.getSelection()]);
+    SimulationViewer.this.stask = new SliderPositionMoveTask(SimulationViewer.this.task, SimulationViewer.this.timeSlider);
+    SimulationViewer.this.timer = new Timer();
+    SimulationViewer.this.timer.schedule(SimulationViewer.this.task, 0, 10);
+    SimulationViewer.this.timer.schedule(SimulationViewer.this.stask, 0, 10);
   }
 
   private class SliderPositionMoveTask extends TimerTask {

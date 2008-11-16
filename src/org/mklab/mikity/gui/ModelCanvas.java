@@ -228,6 +228,9 @@ public class ModelCanvas extends Canvas3D {
    */
   private void getParameter(Jamast argRoot) {
     Config config = argRoot.loadConfig(0);
+    if(config == null){
+      return;
+    }
     // 背景色をセット
     if (config.loadBackground() == null) {
       this.backgroundColor = ColorConstant.getColor("white"); //$NON-NLS-1$

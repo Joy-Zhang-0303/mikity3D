@@ -104,6 +104,27 @@ public class JAXBMarshaller {
       e.printStackTrace();
     }
   }
+  
+  /**
+   * 指定したJAMASTファイルを読み込む
+   * 
+   * @param file
+   *        　読込JAMASTファイル
+   * @return root
+   * @throws IllegalArgumentException
+   */
+  public Jamast createJamast(File file) throws IllegalArgumentException {
+    try {
+      JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
+      Unmarshaller unmarshaller = context.createUnmarshaller();
+      return (Jamast)unmarshaller.unmarshal(new FileReader(file));
+    } catch (JAXBException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
 
   /**
    * 指定したBlenderファイルを読み込む
