@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
@@ -121,6 +122,25 @@ public class JAXBMarshaller {
     } catch (JAXBException e) {
       e.printStackTrace();
     } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+  
+  /**
+   * 指定したJAMASTファイルを読み込む
+   * 
+   * @param file
+   *        　読込JAMASTファイル
+   * @return root
+   * @throws IllegalArgumentException
+   */
+  public Jamast createJamast(URL file) throws IllegalArgumentException {
+    try {
+      JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
+      Unmarshaller unmarshaller = context.createUnmarshaller();
+      return (Jamast)unmarshaller.unmarshal(file);
+    } catch (JAXBException e) {
       e.printStackTrace();
     }
     return null;
