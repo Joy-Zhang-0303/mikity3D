@@ -7,6 +7,7 @@ package org.mklab.mikity.xml;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -113,18 +114,13 @@ public class JAXBMarshaller {
    *        　読込JAMASTファイル
    * @return root
    * @throws IllegalArgumentException
+   * @throws JAXBException 
+   * @throws FileNotFoundException 
    */
-  public Jamast createJamast(File file) throws IllegalArgumentException {
-    try {
-      JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
-      Unmarshaller unmarshaller = context.createUnmarshaller();
-      return (Jamast)unmarshaller.unmarshal(new FileReader(file));
-    } catch (JAXBException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return null;
+  public Jamast createJamast(File file) throws IllegalArgumentException, JAXBException, FileNotFoundException {
+    JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
+    Unmarshaller unmarshaller = context.createUnmarshaller();
+    return (Jamast)unmarshaller.unmarshal(new FileReader(file));
   }
   
   /**
