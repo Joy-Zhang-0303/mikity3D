@@ -80,9 +80,9 @@ public class PrimitiveGenerator {
       }
 
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
 
     return tg;

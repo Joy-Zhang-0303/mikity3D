@@ -50,9 +50,8 @@ public class ResourceManager {
       imageMap.put(key, img);
       return img;
     } catch (SWTException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
-    return null;
   }
 
   /**

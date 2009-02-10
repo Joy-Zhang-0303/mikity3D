@@ -75,7 +75,7 @@ public class FileNewAction extends Action {
         return;
       }
     } catch (IOException e1) {
-      e1.printStackTrace();
+      throw new RuntimeException(e1);
     }
   }
 

@@ -404,9 +404,9 @@ public class SimulationViewer extends ApplicationWindow {
 
       this.filePathText.setText(file.getPath());
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
   }
 

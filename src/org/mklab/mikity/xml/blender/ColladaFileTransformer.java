@@ -63,7 +63,7 @@ public class ColladaFileTransformer {
         }
       }
     } catch (IOException e) {
-      System.out.println(e);
+      throw new RuntimeException(e);
     }
   }
 
@@ -78,7 +78,7 @@ public class ColladaFileTransformer {
       }
       fw.close();
     } catch (Exception e) {
-      //
+      throw new RuntimeException(e);
     }
   }
 

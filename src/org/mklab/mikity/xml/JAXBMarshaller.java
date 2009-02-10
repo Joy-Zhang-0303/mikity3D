@@ -71,9 +71,9 @@ public class JAXBMarshaller {
       Marshaller marshaller = context.createMarshaller();
       marshaller.marshal(this.root, new FileWriter(file));
     } catch (JAXBException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
   }
 
@@ -101,9 +101,9 @@ public class JAXBMarshaller {
       Unmarshaller unmarshaller = context.createUnmarshaller();
       this.root = (Jamast)unmarshaller.unmarshal(new FileReader(file));
     } catch (JAXBException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
   }
   
@@ -137,9 +137,8 @@ public class JAXBMarshaller {
       Unmarshaller unmarshaller = context.createUnmarshaller();
       return (Jamast)unmarshaller.unmarshal(file);
     } catch (JAXBException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
-    return null;
   }
 
   /**
@@ -158,9 +157,9 @@ public class JAXBMarshaller {
       Unmarshaller unmarshaller = context.createUnmarshaller();
       this.collada = (Collada)unmarshaller.unmarshal(new FileReader(blender));
     } catch (JAXBException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
   }
 
@@ -185,13 +184,13 @@ public class JAXBMarshaller {
       for (int i = 0; i < 10; i++) {
         note.add(br.readLine());
       }
-      if (note.get(0).indexOf("jamast") != -1) { //$NON-NLS-1$
+      if (note.get(1).indexOf("jamast") != -1) { //$NON-NLS-1$
         loadJamastScene(file);
       } else if (note.get(1).indexOf("collada") != -1) { //$NON-NLS-1$
         loadBlenderScene(file);
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
   }
 
