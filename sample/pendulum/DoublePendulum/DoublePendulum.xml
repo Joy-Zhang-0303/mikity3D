@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jamast>
+	<_modelList>
+		<_groupList name="Group0">
+			<_location z="0.0" y="0.0" x="0.0"/>
+			<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+			<_groupList name="belt">
+				<_XMLQuadPolygonList color="lightGray">
+					<_point z="-0.05" y="0.05" x="0.75"/>
+					<_point z="-0.05" y="-0.05" x="0.75"/>
+					<_point z="-0.05" y="-0.05" x="-0.75"/>
+					<_point z="-0.05" y="0.05" x="-0.75"/>
+					<_location z="0.0" y="0.0" x="0.0"/>
+					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+				</_XMLQuadPolygonList>
+				<_XMLQuadPolygonList color="lightGray">
+					<_point z="0.05" y="0.05" x="0.75"/>
+					<_point z="0.05" y="0.05" x="-0.75"/>
+					<_point z="0.05" y="-0.05" x="-0.75"/>
+					<_point z="0.05" y="-0.05" x="0.75"/>
+					<_location z="0.0" y="0.0" x="0.0"/>
+					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+				</_XMLQuadPolygonList>
+				<_XMLQuadPolygonList color="lightGray">
+					<_point z="-0.05" y="0.05" x="0.75"/>
+					<_point z="0.05" y="0.05" x="0.75"/>
+					<_point z="0.05" y="-0.05" x="0.75"/>
+					<_point z="-0.05" y="-0.05" x="0.75"/>
+					<_location z="0.0" y="0.0" x="0.0"/>
+					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+				</_XMLQuadPolygonList>
+				<_XMLQuadPolygonList color="lightGray">
+					<_point z="-0.05" y="-0.05" x="0.75"/>
+					<_point z="0.05" y="-0.05" x="0.75"/>
+					<_point z="0.05" y="-0.05" x="-0.75"/>
+					<_point z="-0.05" y="-0.05" x="-0.75"/>
+					<_location z="0.0" y="0.0" x="0.0"/>
+					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+				</_XMLQuadPolygonList>
+				<_XMLQuadPolygonList color="lightGray">
+					<_point z="-0.05" y="-0.05" x="-0.75"/>
+					<_point z="0.05" y="-0.05" x="-0.75"/>
+					<_point z="0.05" y="0.05" x="-0.75"/>
+					<_point z="-0.05" y="0.05" x="-0.75"/>
+					<_location z="0.0" y="0.0" x="0.0"/>
+					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+				</_XMLQuadPolygonList>
+				<_XMLQuadPolygonList color="lightGray">
+					<_point z="0.05" y="0.05" x="0.75"/>
+					<_point z="-0.05" y="0.05" x="0.75"/>
+					<_point z="-0.05" y="0.05" x="-0.75"/>
+					<_point z="0.05" y="0.05" x="-0.75"/>
+					<_location z="0.0" y="0.0" x="0.0"/>
+					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+				</_XMLQuadPolygonList>
+				<_location z="0.0" y="0.0" x="0.0"/>
+				<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+				<_linkdataList column="0" const="0.0" target="locationX"/>
+				<_linkdataList column="0" const="-0.15000000596046448"
+					target="locationY"/>
+				<_linkdataList column="0" const="0.0" target="locationZ"/>
+				<_groupList name="daisha">
+					<_XMLQuadPolygonList color="yellow">
+						<_point z="-0.025" y="0.1" x="0.125"/>
+						<_point z="-0.025" y="-0.1" x="0.125"/>
+						<_point z="-0.025" y="-0.1" x="-0.125"/>
+						<_point z="-0.025" y="0.1" x="-0.125"/>
+						<_location z="0.0" y="0.0" x="0.0"/>
+						<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+					</_XMLQuadPolygonList>
+					<_XMLQuadPolygonList color="yellow">
+						<_point z="0.025" y="0.1" x="0.125"/>
+						<_point z="0.025" y="0.1" x="-0.125"/>
+						<_point z="0.025" y="-0.1" x="-0.125"/>
+						<_point z="0.025" y="-0.1" x="0.125"/>
+						<_location z="0.0" y="0.0" x="0.0"/>
+						<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+					</_XMLQuadPolygonList>
+					<_XMLQuadPolygonList color="yellow">
+						<_point z="-0.025" y="0.1" x="0.125"/>
+						<_point z="0.025" y="0.1" x="0.125"/>
+						<_point z="0.025" y="-0.1" x="0.125"/>
+						<_point z="-0.025" y="-0.1" x="0.125"/>
+						<_location z="0.0" y="0.0" x="0.0"/>
+						<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+					</_XMLQuadPolygonList>
+					<_XMLQuadPolygonList color="yellow">
+						<_point z="-0.025" y="-0.1" x="0.125"/>
+						<_point z="0.025" y="-0.1" x="0.125"/>
+						<_point z="0.025" y="-0.1" x="-0.125"/>
+						<_point z="-0.025" y="-0.1" x="-0.125"/>
+						<_location z="0.0" y="0.0" x="0.0"/>
+						<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+					</_XMLQuadPolygonList>
+					<_XMLQuadPolygonList color="yellow">
+						<_point z="-0.025" y="-0.1" x="-0.125"/>
+						<_point z="0.025" y="-0.1" x="-0.125"/>
+						<_point z="0.025" y="0.1" x="-0.125"/>
+						<_point z="-0.025" y="0.1" x="-0.125"/>
+						<_location z="0.0" y="0.0" x="0.0"/>
+						<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+					</_XMLQuadPolygonList>
+					<_XMLQuadPolygonList color="yellow">
+						<_point z="0.025" y="0.1" x="0.125"/>
+						<_point z="-0.025" y="0.1" x="0.125"/>
+						<_point z="-0.025" y="0.1" x="-0.125"/>
+						<_point z="0.025" y="0.1" x="-0.125"/>
+						<_location z="0.0" y="0.0" x="0.0"/>
+						<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+					</_XMLQuadPolygonList>
+					<_location z="0.0" y="0.0" x="0.0"/>
+					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+					<_linkdataList column="0" const="0.0" target="locationX"/>
+					<_linkdataList column="0" const="0.15000000596046448"
+						target="locationY"/>
+					<_linkdataList column="0" const="0.0" target="locationZ"/>
+					<_groupList name="sinsi1">
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.01" y="0.0" x="0.0"/>
+							<_point z="-0.01" y="0.00707" x="0.00707"/>
+							<_point z="-0.01" y="0.00156" x="0.00988"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.01" y="0.0" x="0.0"/>
+							<_point z="0.01" y="0.00156" x="0.00988"/>
+							<_point z="0.01" y="0.00707" x="0.00707"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.01" y="0.0" x="0.0"/>
+							<_point z="-0.01" y="0.00156" x="0.00988"/>
+							<_point z="-0.01" y="-0.00454" x="0.00891"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.01" y="0.0" x="0.0"/>
+							<_point z="0.01" y="-0.00454" x="0.00891"/>
+							<_point z="0.01" y="0.00156" x="0.00988"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.01" y="0.0" x="0.0"/>
+							<_point z="-0.01" y="-0.00454" x="0.00891"/>
+							<_point z="-0.01" y="-0.00891" x="0.00454"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.01" y="0.0" x="0.0"/>
+							<_point z="0.01" y="-0.00891" x="0.00454"/>
+							<_point z="0.01" y="-0.00454" x="0.00891"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.01" y="0.0" x="0.0"/>
+							<_point z="-0.01" y="-0.00891" x="0.00454"/>
+							<_point z="-0.01" y="-0.00988" x="-0.00156"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.01" y="0.0" x="0.0"/>
+							<_point z="0.01" y="-0.00988" x="-0.00156"/>
+							<_point z="0.01" y="-0.00891" x="0.00454"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.01" y="0.0" x="0.0"/>
+							<_point z="-0.01" y="-0.00988" x="-0.00156"/>
+							<_point z="-0.01" y="-0.00707" x="-0.00707"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.01" y="0.0" x="0.0"/>
+							<_point z="0.01" y="-0.00707" x="-0.00707"/>
+							<_point z="0.01" y="-0.00988" x="-0.00156"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.01" y="0.0" x="0.0"/>
+							<_point z="-0.01" y="-0.00707" x="-0.00707"/>
+							<_point z="-0.01" y="-0.00156" x="-0.00988"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.01" y="0.0" x="0.0"/>
+							<_point z="0.01" y="-0.00156" x="-0.00988"/>
+							<_point z="0.01" y="-0.00707" x="-0.00707"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.01" y="0.0" x="0.0"/>
+							<_point z="-0.01" y="-0.00156" x="-0.00988"/>
+							<_point z="-0.01" y="0.00454" x="-0.00891"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.01" y="0.0" x="0.0"/>
+							<_point z="0.01" y="0.00454" x="-0.00891"/>
+							<_point z="0.01" y="-0.00156" x="-0.00988"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.01" y="0.0" x="0.0"/>
+							<_point z="-0.01" y="0.00454" x="-0.00891"/>
+							<_point z="-0.01" y="0.00891" x="-0.00454"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.01" y="0.0" x="0.0"/>
+							<_point z="0.01" y="0.00891" x="-0.00454"/>
+							<_point z="0.01" y="0.00454" x="-0.00891"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.01" y="0.0" x="0.0"/>
+							<_point z="-0.01" y="0.00891" x="-0.00454"/>
+							<_point z="-0.01" y="0.00988" x="0.00156"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.01" y="0.0" x="0.0"/>
+							<_point z="0.01" y="0.00988" x="0.00156"/>
+							<_point z="0.01" y="0.00891" x="-0.00454"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.01" y="0.00988" x="0.00156"/>
+							<_point z="-0.01" y="0.00707" x="0.00707"/>
+							<_point z="-0.01" y="0.0" x="0.0"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.01" y="0.0" x="0.0"/>
+							<_point z="0.01" y="0.00707" x="0.00707"/>
+							<_point z="0.01" y="0.00988" x="0.00156"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.0" y="0.0" x="-0.0"/>
+							<_point z="-0.00707" y="0.0" x="0.00707"/>
+							<_point z="-0.00156" y="0.0" x="0.00988"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.0" y="0.379" x="-0.0"/>
+							<_point z="-0.00156" y="0.379" x="0.00988"/>
+							<_point z="-0.00707" y="0.379" x="0.00707"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.0" y="0.0" x="-0.0"/>
+							<_point z="-0.00156" y="0.0" x="0.00988"/>
+							<_point z="0.00454" y="0.0" x="0.00891"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.0" y="0.379" x="-0.0"/>
+							<_point z="0.00454" y="0.379" x="0.00891"/>
+							<_point z="-0.00156" y="0.379" x="0.00988"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.0" y="0.0" x="-0.0"/>
+							<_point z="0.00454" y="0.0" x="0.00891"/>
+							<_point z="0.00891" y="0.0" x="0.00454"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.0" y="0.379" x="-0.0"/>
+							<_point z="0.00891" y="0.379" x="0.00454"/>
+							<_point z="0.00454" y="0.379" x="0.00891"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.0" y="0.0" x="-0.0"/>
+							<_point z="0.00891" y="0.0" x="0.00454"/>
+							<_point z="0.00988" y="0.0" x="-0.00156"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.0" y="0.379" x="-0.0"/>
+							<_point z="0.00988" y="0.379" x="-0.00156"/>
+							<_point z="0.00891" y="0.379" x="0.00454"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.0" y="0.0" x="-0.0"/>
+							<_point z="0.00988" y="0.0" x="-0.00156"/>
+							<_point z="0.00707" y="0.0" x="-0.00707"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.0" y="0.379" x="-0.0"/>
+							<_point z="0.00707" y="0.379" x="-0.00707"/>
+							<_point z="0.00988" y="0.379" x="-0.00156"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.0" y="0.0" x="-0.0"/>
+							<_point z="0.00707" y="0.0" x="-0.00707"/>
+							<_point z="0.00156" y="0.0" x="-0.00988"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.0" y="0.379" x="-0.0"/>
+							<_point z="0.00156" y="0.379" x="-0.00988"/>
+							<_point z="0.00707" y="0.379" x="-0.00707"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.0" y="0.0" x="-0.0"/>
+							<_point z="0.00156" y="0.0" x="-0.00988"/>
+							<_point z="-0.00454" y="0.0" x="-0.00891"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.0" y="0.379" x="-0.0"/>
+							<_point z="-0.00454" y="0.379" x="-0.00891"/>
+							<_point z="0.00156" y="0.379" x="-0.00988"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.0" y="0.0" x="-0.0"/>
+							<_point z="-0.00454" y="0.0" x="-0.00891"/>
+							<_point z="-0.00891" y="0.0" x="-0.00454"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.0" y="0.379" x="-0.0"/>
+							<_point z="-0.00891" y="0.379" x="-0.00454"/>
+							<_point z="-0.00454" y="0.379" x="-0.00891"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.0" y="0.0" x="-0.0"/>
+							<_point z="-0.00891" y="0.0" x="-0.00454"/>
+							<_point z="-0.00988" y="0.0" x="0.00156"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.0" y="0.379" x="-0.0"/>
+							<_point z="-0.00988" y="0.379" x="0.00156"/>
+							<_point z="-0.00891" y="0.379" x="-0.00454"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="-0.0" y="0.0" x="-0.0"/>
+							<_point z="-0.00988" y="0.0" x="0.00156"/>
+							<_point z="-0.00707" y="0.0" x="0.00707"/>
+						</_XMLTrianglePolygonList>
+						<_XMLTrianglePolygonList color="red">
+							<_point z="0.0" y="0.379" x="-0.0"/>
+							<_point z="-0.00707" y="0.379" x="0.00707"/>
+							<_point z="-0.00988" y="0.379" x="0.00156"/>
+						</_XMLTrianglePolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.01" y="0.00707" x="0.00707"/>
+							<_point z="0.01" y="0.00707" x="0.00707"/>
+							<_point z="0.01" y="0.00156" x="0.00988"/>
+							<_point z="-0.01" y="0.00156" x="0.00988"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.01" y="0.00156" x="0.00988"/>
+							<_point z="0.01" y="0.00156" x="0.00988"/>
+							<_point z="0.01" y="-0.00454" x="0.00891"/>
+							<_point z="-0.01" y="-0.00454" x="0.00891"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.01" y="-0.00454" x="0.00891"/>
+							<_point z="0.01" y="-0.00454" x="0.00891"/>
+							<_point z="0.01" y="-0.00891" x="0.00454"/>
+							<_point z="-0.01" y="-0.00891" x="0.00454"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.01" y="-0.00891" x="0.00454"/>
+							<_point z="0.01" y="-0.00891" x="0.00454"/>
+							<_point z="0.01" y="-0.00988" x="-0.00156"/>
+							<_point z="-0.01" y="-0.00988" x="-0.00156"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.01" y="-0.00988" x="-0.00156"/>
+							<_point z="0.01" y="-0.00988" x="-0.00156"/>
+							<_point z="0.01" y="-0.00707" x="-0.00707"/>
+							<_point z="-0.01" y="-0.00707" x="-0.00707"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.01" y="-0.00707" x="-0.00707"/>
+							<_point z="0.01" y="-0.00707" x="-0.00707"/>
+							<_point z="0.01" y="-0.00156" x="-0.00988"/>
+							<_point z="-0.01" y="-0.00156" x="-0.00988"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.01" y="-0.00156" x="-0.00988"/>
+							<_point z="0.01" y="-0.00156" x="-0.00988"/>
+							<_point z="0.01" y="0.00454" x="-0.00891"/>
+							<_point z="-0.01" y="0.00454" x="-0.00891"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.01" y="0.00454" x="-0.00891"/>
+							<_point z="0.01" y="0.00454" x="-0.00891"/>
+							<_point z="0.01" y="0.00891" x="-0.00454"/>
+							<_point z="-0.01" y="0.00891" x="-0.00454"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.01" y="0.00891" x="-0.00454"/>
+							<_point z="0.01" y="0.00891" x="-0.00454"/>
+							<_point z="0.01" y="0.00988" x="0.00156"/>
+							<_point z="-0.01" y="0.00988" x="0.00156"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="0.01" y="0.00707" x="0.00707"/>
+							<_point z="-0.01" y="0.00707" x="0.00707"/>
+							<_point z="-0.01" y="0.00988" x="0.00156"/>
+							<_point z="0.01" y="0.00988" x="0.00156"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.00707" y="0.0" x="0.00707"/>
+							<_point z="-0.00707" y="0.379" x="0.00707"/>
+							<_point z="-0.00156" y="0.379" x="0.00988"/>
+							<_point z="-0.00156" y="0.0" x="0.00988"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.00156" y="0.0" x="0.00988"/>
+							<_point z="-0.00156" y="0.379" x="0.00988"/>
+							<_point z="0.00454" y="0.379" x="0.00891"/>
+							<_point z="0.00454" y="0.0" x="0.00891"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="0.00454" y="0.0" x="0.00891"/>
+							<_point z="0.00454" y="0.379" x="0.00891"/>
+							<_point z="0.00891" y="0.379" x="0.00454"/>
+							<_point z="0.00891" y="0.0" x="0.00454"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="0.00891" y="0.0" x="0.00454"/>
+							<_point z="0.00891" y="0.379" x="0.00454"/>
+							<_point z="0.00988" y="0.379" x="-0.00156"/>
+							<_point z="0.00988" y="0.0" x="-0.00156"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="0.00988" y="0.0" x="-0.00156"/>
+							<_point z="0.00988" y="0.379" x="-0.00156"/>
+							<_point z="0.00707" y="0.379" x="-0.00707"/>
+							<_point z="0.00707" y="0.0" x="-0.00707"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="0.00707" y="0.0" x="-0.00707"/>
+							<_point z="0.00707" y="0.379" x="-0.00707"/>
+							<_point z="0.00156" y="0.379" x="-0.00988"/>
+							<_point z="0.00156" y="0.0" x="-0.00988"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="0.00156" y="0.0" x="-0.00988"/>
+							<_point z="0.00156" y="0.379" x="-0.00988"/>
+							<_point z="-0.00454" y="0.379" x="-0.00891"/>
+							<_point z="-0.00454" y="0.0" x="-0.00891"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.00454" y="0.0" x="-0.00891"/>
+							<_point z="-0.00454" y="0.379" x="-0.00891"/>
+							<_point z="-0.00891" y="0.379" x="-0.00454"/>
+							<_point z="-0.00891" y="0.0" x="-0.00454"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.00891" y="0.0" x="-0.00454"/>
+							<_point z="-0.00891" y="0.379" x="-0.00454"/>
+							<_point z="-0.00988" y="0.379" x="0.00156"/>
+							<_point z="-0.00988" y="0.0" x="0.00156"/>
+						</_XMLQuadPolygonList>
+						<_XMLQuadPolygonList color="orange">
+							<_point z="-0.00988" y="0.0" x="0.00156"/>
+							<_point z="-0.00988" y="0.379" x="0.00156"/>
+							<_point z="-0.00707" y="0.379" x="0.00707"/>
+							<_point z="-0.00707" y="0.0" x="0.00707"/>
+						</_XMLQuadPolygonList>
+						<_location z="0.0" y="0.0" x="0.0"/>
+						<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+						<_linkdataList column="0" const="0.0" target="locationX"/>
+						<_linkdataList column="0" const="0.0" target="locationY"/>
+						<_linkdataList column="0" const="0.03500000014901161"
+							target="locationZ"/>
+						<_groupList name="sinsi2">
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.01" y="0.0" x="0.0"/>
+								<_point z="-0.01" y="0.00707" x="0.00707"/>
+								<_point z="-0.01" y="0.00156" x="0.00988"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.01" y="0.0" x="0.0"/>
+								<_point z="0.01" y="0.00156" x="0.00988"/>
+								<_point z="0.01" y="0.00707" x="0.00707"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.01" y="0.0" x="0.0"/>
+								<_point z="-0.01" y="0.00156" x="0.00988"/>
+								<_point z="-0.01" y="-0.00454" x="0.00891"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.01" y="0.0" x="0.0"/>
+								<_point z="0.01" y="-0.00454" x="0.00891"/>
+								<_point z="0.01" y="0.00156" x="0.00988"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.01" y="0.0" x="0.0"/>
+								<_point z="-0.01" y="-0.00454" x="0.00891"/>
+								<_point z="-0.01" y="-0.00891" x="0.00454"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.01" y="0.0" x="0.0"/>
+								<_point z="0.01" y="-0.00891" x="0.00454"/>
+								<_point z="0.01" y="-0.00454" x="0.00891"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.01" y="0.0" x="0.0"/>
+								<_point z="-0.01" y="-0.00891" x="0.00454"/>
+								<_point z="-0.01" y="-0.00988" x="-0.00156"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.01" y="0.0" x="0.0"/>
+								<_point z="0.01" y="-0.00988" x="-0.00156"/>
+								<_point z="0.01" y="-0.00891" x="0.00454"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.01" y="0.0" x="0.0"/>
+								<_point z="-0.01" y="-0.00988" x="-0.00156"/>
+								<_point z="-0.01" y="-0.00707" x="-0.00707"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.01" y="0.0" x="0.0"/>
+								<_point z="0.01" y="-0.00707" x="-0.00707"/>
+								<_point z="0.01" y="-0.00988" x="-0.00156"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.01" y="0.0" x="0.0"/>
+								<_point z="-0.01" y="-0.00707" x="-0.00707"/>
+								<_point z="-0.01" y="-0.00156" x="-0.00988"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.01" y="0.0" x="0.0"/>
+								<_point z="0.01" y="-0.00156" x="-0.00988"/>
+								<_point z="0.01" y="-0.00707" x="-0.00707"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.01" y="0.0" x="0.0"/>
+								<_point z="-0.01" y="-0.00156" x="-0.00988"/>
+								<_point z="-0.01" y="0.00454" x="-0.00891"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.01" y="0.0" x="0.0"/>
+								<_point z="0.01" y="0.00454" x="-0.00891"/>
+								<_point z="0.01" y="-0.00156" x="-0.00988"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.01" y="0.0" x="0.0"/>
+								<_point z="-0.01" y="0.00454" x="-0.00891"/>
+								<_point z="-0.01" y="0.00891" x="-0.00454"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.01" y="0.0" x="0.0"/>
+								<_point z="0.01" y="0.00891" x="-0.00454"/>
+								<_point z="0.01" y="0.00454" x="-0.00891"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.01" y="0.0" x="0.0"/>
+								<_point z="-0.01" y="0.00891" x="-0.00454"/>
+								<_point z="-0.01" y="0.00988" x="0.00156"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.01" y="0.0" x="0.0"/>
+								<_point z="0.01" y="0.00988" x="0.00156"/>
+								<_point z="0.01" y="0.00891" x="-0.00454"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.01" y="0.00988" x="0.00156"/>
+								<_point z="-0.01" y="0.00707" x="0.00707"/>
+								<_point z="-0.01" y="0.0" x="0.0"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.01" y="0.0" x="0.0"/>
+								<_point z="0.01" y="0.00707" x="0.00707"/>
+								<_point z="0.01" y="0.00988" x="0.00156"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.0" y="0.354" x="-0.0"/>
+								<_point z="0.00707" y="0.354" x="0.00707"/>
+								<_point z="0.00156" y="0.354" x="0.00988"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.0" y="-0.0" x="-0.0"/>
+								<_point z="0.00156" y="-0.0" x="0.00988"/>
+								<_point z="0.00707" y="-0.0" x="0.00707"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.0" y="0.354" x="-0.0"/>
+								<_point z="0.00156" y="0.354" x="0.00988"/>
+								<_point z="-0.00454" y="0.354" x="0.00891"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.0" y="-0.0" x="-0.0"/>
+								<_point z="-0.00454" y="-0.0" x="0.00891"/>
+								<_point z="0.00156" y="-0.0" x="0.00988"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.0" y="0.354" x="-0.0"/>
+								<_point z="-0.00454" y="0.354" x="0.00891"/>
+								<_point z="-0.00891" y="0.354" x="0.00454"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.0" y="-0.0" x="-0.0"/>
+								<_point z="-0.00891" y="-0.0" x="0.00454"/>
+								<_point z="-0.00454" y="-0.0" x="0.00891"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.0" y="0.354" x="-0.0"/>
+								<_point z="-0.00891" y="0.354" x="0.00454"/>
+								<_point z="-0.00988" y="0.354" x="-0.00156"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.0" y="-0.0" x="-0.0"/>
+								<_point z="-0.00988" y="-0.0" x="-0.00156"/>
+								<_point z="-0.00891" y="-0.0" x="0.00454"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.0" y="0.354" x="-0.0"/>
+								<_point z="-0.00988" y="0.354" x="-0.00156"/>
+								<_point z="-0.00707" y="0.354" x="-0.00707"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.0" y="-0.0" x="-0.0"/>
+								<_point z="-0.00707" y="-0.0" x="-0.00707"/>
+								<_point z="-0.00988" y="-0.0" x="-0.00156"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.0" y="0.354" x="-0.0"/>
+								<_point z="-0.00707" y="0.354" x="-0.00707"/>
+								<_point z="-0.00156" y="0.354" x="-0.00988"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.0" y="-0.0" x="-0.0"/>
+								<_point z="-0.00156" y="-0.0" x="-0.00988"/>
+								<_point z="-0.00707" y="-0.0" x="-0.00707"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.0" y="0.354" x="-0.0"/>
+								<_point z="-0.00156" y="0.354" x="-0.00988"/>
+								<_point z="0.00454" y="0.354" x="-0.00891"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.0" y="-0.0" x="-0.0"/>
+								<_point z="0.00454" y="-0.0" x="-0.00891"/>
+								<_point z="-0.00156" y="-0.0" x="-0.00988"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.0" y="0.354" x="-0.0"/>
+								<_point z="0.00454" y="0.354" x="-0.00891"/>
+								<_point z="0.00891" y="0.354" x="-0.00454"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.0" y="-0.0" x="-0.0"/>
+								<_point z="0.00891" y="-0.0" x="-0.00454"/>
+								<_point z="0.00454" y="-0.0" x="-0.00891"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.0" y="0.354" x="-0.0"/>
+								<_point z="0.00891" y="0.354" x="-0.00454"/>
+								<_point z="0.00988" y="0.354" x="0.00156"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.0" y="-0.0" x="-0.0"/>
+								<_point z="0.00988" y="-0.0" x="0.00156"/>
+								<_point z="0.00891" y="-0.0" x="-0.00454"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="-0.0" y="0.354" x="-0.0"/>
+								<_point z="0.00988" y="0.354" x="0.00156"/>
+								<_point z="0.00707" y="0.354" x="0.00707"/>
+							</_XMLTrianglePolygonList>
+							<_XMLTrianglePolygonList color="red">
+								<_point z="0.0" y="-0.0" x="-0.0"/>
+								<_point z="0.00707" y="-0.0" x="0.00707"/>
+								<_point z="0.00988" y="-0.0" x="0.00156"/>
+							</_XMLTrianglePolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.01" y="0.00707" x="0.00707"/>
+								<_point z="0.01" y="0.00707" x="0.00707"/>
+								<_point z="0.01" y="0.00156" x="0.00988"/>
+								<_point z="-0.01" y="0.00156" x="0.00988"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.01" y="0.00156" x="0.00988"/>
+								<_point z="0.01" y="0.00156" x="0.00988"/>
+								<_point z="0.01" y="-0.00454" x="0.00891"/>
+								<_point z="-0.01" y="-0.00454" x="0.00891"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.01" y="-0.00454" x="0.00891"/>
+								<_point z="0.01" y="-0.00454" x="0.00891"/>
+								<_point z="0.01" y="-0.00891" x="0.00454"/>
+								<_point z="-0.01" y="-0.00891" x="0.00454"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.01" y="-0.00891" x="0.00454"/>
+								<_point z="0.01" y="-0.00891" x="0.00454"/>
+								<_point z="0.01" y="-0.00988" x="-0.00156"/>
+								<_point z="-0.01" y="-0.00988" x="-0.00156"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.01" y="-0.00988" x="-0.00156"/>
+								<_point z="0.01" y="-0.00988" x="-0.00156"/>
+								<_point z="0.01" y="-0.00707" x="-0.00707"/>
+								<_point z="-0.01" y="-0.00707" x="-0.00707"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.01" y="-0.00707" x="-0.00707"/>
+								<_point z="0.01" y="-0.00707" x="-0.00707"/>
+								<_point z="0.01" y="-0.00156" x="-0.00988"/>
+								<_point z="-0.01" y="-0.00156" x="-0.00988"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.01" y="-0.00156" x="-0.00988"/>
+								<_point z="0.01" y="-0.00156" x="-0.00988"/>
+								<_point z="0.01" y="0.00454" x="-0.00891"/>
+								<_point z="-0.01" y="0.00454" x="-0.00891"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.01" y="0.00454" x="-0.00891"/>
+								<_point z="0.01" y="0.00454" x="-0.00891"/>
+								<_point z="0.01" y="0.00891" x="-0.00454"/>
+								<_point z="-0.01" y="0.00891" x="-0.00454"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.01" y="0.00891" x="-0.00454"/>
+								<_point z="0.01" y="0.00891" x="-0.00454"/>
+								<_point z="0.01" y="0.00988" x="0.00156"/>
+								<_point z="-0.01" y="0.00988" x="0.00156"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="0.01" y="0.00707" x="0.00707"/>
+								<_point z="-0.01" y="0.00707" x="0.00707"/>
+								<_point z="-0.01" y="0.00988" x="0.00156"/>
+								<_point z="0.01" y="0.00988" x="0.00156"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="0.00707" y="0.354" x="0.00707"/>
+								<_point z="0.00707" y="-0.0" x="0.00707"/>
+								<_point z="0.00156" y="-0.0" x="0.00988"/>
+								<_point z="0.00156" y="0.354" x="0.00988"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="0.00156" y="0.354" x="0.00988"/>
+								<_point z="0.00156" y="-0.0" x="0.00988"/>
+								<_point z="-0.00454" y="-0.0" x="0.00891"/>
+								<_point z="-0.00454" y="0.354" x="0.00891"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.00454" y="0.354" x="0.00891"/>
+								<_point z="-0.00454" y="-0.0" x="0.00891"/>
+								<_point z="-0.00891" y="-0.0" x="0.00454"/>
+								<_point z="-0.00891" y="0.354" x="0.00454"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.00891" y="0.354" x="0.00454"/>
+								<_point z="-0.00891" y="-0.0" x="0.00454"/>
+								<_point z="-0.00988" y="-0.0" x="-0.00156"/>
+								<_point z="-0.00988" y="0.354" x="-0.00156"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.00988" y="0.354" x="-0.00156"/>
+								<_point z="-0.00988" y="-0.0" x="-0.00156"/>
+								<_point z="-0.00707" y="-0.0" x="-0.00707"/>
+								<_point z="-0.00707" y="0.354" x="-0.00707"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.00707" y="0.354" x="-0.00707"/>
+								<_point z="-0.00707" y="-0.0" x="-0.00707"/>
+								<_point z="-0.00156" y="-0.0" x="-0.00988"/>
+								<_point z="-0.00156" y="0.354" x="-0.00988"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="-0.00156" y="0.354" x="-0.00988"/>
+								<_point z="-0.00156" y="-0.0" x="-0.00988"/>
+								<_point z="0.00454" y="-0.0" x="-0.00891"/>
+								<_point z="0.00454" y="0.354" x="-0.00891"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="0.00454" y="0.354" x="-0.00891"/>
+								<_point z="0.00454" y="-0.0" x="-0.00891"/>
+								<_point z="0.00891" y="-0.0" x="-0.00454"/>
+								<_point z="0.00891" y="0.354" x="-0.00454"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="0.00891" y="0.354" x="-0.00454"/>
+								<_point z="0.00891" y="-0.0" x="-0.00454"/>
+								<_point z="0.00988" y="-0.0" x="0.00156"/>
+								<_point z="0.00988" y="0.354" x="0.00156"/>
+							</_XMLQuadPolygonList>
+							<_XMLQuadPolygonList color="orange">
+								<_point z="0.00988" y="0.354" x="0.00156"/>
+								<_point z="0.00988" y="-0.0" x="0.00156"/>
+								<_point z="0.00707" y="-0.0" x="0.00707"/>
+								<_point z="0.00707" y="0.354" x="0.00707"/>
+							</_XMLQuadPolygonList>
+							<_location z="0.0" y="0.0" x="0.0"/>
+							<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/>
+							<_linkdataList column="0" const="0.0"
+								target="locationX"/>
+							<_linkdataList column="0" const="0.3889999985694885"
+								target="locationY"/>
+							<_linkdataList column="0" const="0.0"
+								target="locationZ"/>
+						</_groupList>
+					</_groupList>
+				</_groupList>
+			</_groupList>
+		</_groupList>
+	</_modelList>
+	<_configList/>
+</jamast>
