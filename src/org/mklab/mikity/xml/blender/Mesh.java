@@ -27,7 +27,7 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 public class Mesh {
 
   @XmlElement
-  private List<Source> source;
+  private ArrayList<Source> source;
   @XmlElement
   private Polygons polygons;
   @XmlElement

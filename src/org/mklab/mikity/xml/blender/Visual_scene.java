@@ -23,7 +23,7 @@ import org.mklab.mikity.xml.model.Group;
 public class Visual_scene {
 
   @XmlElement
-  private List<Node> node;
+  private ArrayList<Node> node;
 
   /**
    * ノードの名前リスト
