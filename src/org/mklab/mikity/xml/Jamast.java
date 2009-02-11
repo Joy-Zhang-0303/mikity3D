@@ -119,23 +119,23 @@ public class Jamast implements java.io.Serializable {
     this._modelList.clear();
   } // -- void clearModel()
 
-  /**
-   * Method enumerateConfig
-   * 
-   * @return org.exolab.castor.util.IteratorEnumeration(_configList.iterator())
-   */
-  public java.util.Enumeration<?> enumerateConfig() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._configList.iterator());
-  } // -- java.util.Enumeration enumerateConfig()
-
-  /**
-   * Method enumerateModel
-   * 
-   * @return org.exolab.castor.util.IteratorEnumeration(_modelList.iterator())
-   */
-  public java.util.Enumeration<?> enumerateModel() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._modelList.iterator());
-  } // -- java.util.Enumeration enumerateModel()
+//  /**
+//   * Method enumerateConfig
+//   * 
+//   * @return org.exolab.castor.util.IteratorEnumeration(_configList.iterator())
+//   */
+//  public java.util.Enumeration<?> enumerateConfig() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._configList.iterator());
+//  } // -- java.util.Enumeration enumerateConfig()
+//
+//  /**
+//   * Method enumerateModel
+//   * 
+//   * @return org.exolab.castor.util.IteratorEnumeration(_modelList.iterator())
+//   */
+//  public java.util.Enumeration<?> enumerateModel() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._modelList.iterator());
+//  } // -- java.util.Enumeration enumerateModel()
 
   /**
    * Note: hashCode() has not been overriden

@@ -83,14 +83,14 @@ public class Model implements java.io.Serializable {
     this._groupList.clear();
   } // -- void clearGroup()
 
-  /**
-   * Method enumerateGroup
-   * 
-   * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
-   */
-  public java.util.Enumeration enumerateGroup() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
-  } // -- java.util.Enumeration enumerateGroup()
+//  /**
+//   * Method enumerateGroup
+//   * 
+//   * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
+//   */
+//  public java.util.Enumeration enumerateGroup() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
+//  } // -- java.util.Enumeration enumerateGroup()
 
   /**
    * Note: hashCode() has not been overriden

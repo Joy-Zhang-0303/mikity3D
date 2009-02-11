@@ -388,96 +388,96 @@ public class Group implements java.io.Serializable {
     this._XMLQuadPolygonList.clear();
   } // -- void clearXMLQuadPolygon()
 
-  /**
-   * Method enumerateGroup
-   * 
-   * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
-   */
-  public java.util.Enumeration<?> enumerateGroup() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
-  } // -- java.util.Enumeration enumerateGroup()
+//  /**
+//   * Method enumerateGroup
+//   * 
+//   * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
+//   */
+//  public java.util.Enumeration<?> enumerateGroup() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
+//  } // -- java.util.Enumeration enumerateGroup()
+//
+//  /**
+//   * Method enumerateLinkdata
+//   * 
+//   * @return 
+//   *         org.exolab.castor.util.IteratorEnumeration(_linkdataList.iterator())
+//   */
+//  public java.util.Enumeration<?> enumerateLinkdata() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._linkdataList.iterator());
+//  } // -- java.util.Enumeration enumerateLinkdata()
+//
+//  /**
+//   * Method enumerateXMLBox
+//   * 
+//   * @return org.exolab.castor.util.IteratorEnumeration(_XMLBoxList.iterator())
+//   */
+//  public java.util.Enumeration<?> enumerateXMLBox() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLBoxList.iterator());
+//  } // -- java.util.Enumeration enumerateXMLBox()
 
-  /**
-   * Method enumerateLinkdata
-   * 
-   * @return 
-   *         org.exolab.castor.util.IteratorEnumeration(_linkdataList.iterator())
-   */
-  public java.util.Enumeration<?> enumerateLinkdata() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._linkdataList.iterator());
-  } // -- java.util.Enumeration enumerateLinkdata()
+//  /**
+//   * Method enumerateXMLCone
+//   * 
+//   * @return org.exolab.castor.util.IteratorEnumeration(_XMLConeList.iterator())
+//   */
+//  public java.util.Enumeration<?> enumerateXMLCone() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLConeList.iterator());
+//  } // -- java.util.Enumeration enumerateXMLCone()
+//
+//  /**
+//   * Method enumerateXMLCylinder
+//   * 
+//   * @return 
+//   *         org.exolab.castor.util.IteratorEnumeration(_XMLCylinderList.iterator
+//   *         ())
+//   */
+//  public java.util.Enumeration<?> enumerateXMLCylinder() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLCylinderList.iterator());
+//  } // -- java.util.Enumeration enumerateXMLCylinder()
+//
+//  /**
+//   * Method enumerateXMLSphere
+//   * 
+//   * @return 
+//   *         org.exolab.castor.util.IteratorEnumeration(_XMLSphereList.iterator()
+//   *         )
+//   */
+//  public java.util.Enumeration<?> enumerateXMLSphere() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLSphereList.iterator());
+//  } // -- java.util.Enumeration enumerateXMLSphere()
 
-  /**
-   * Method enumerateXMLBox
-   * 
-   * @return org.exolab.castor.util.IteratorEnumeration(_XMLBoxList.iterator())
-   */
-  public java.util.Enumeration<?> enumerateXMLBox() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._XMLBoxList.iterator());
-  } // -- java.util.Enumeration enumerateXMLBox()
-
-  /**
-   * Method enumerateXMLCone
-   * 
-   * @return org.exolab.castor.util.IteratorEnumeration(_XMLConeList.iterator())
-   */
-  public java.util.Enumeration<?> enumerateXMLCone() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._XMLConeList.iterator());
-  } // -- java.util.Enumeration enumerateXMLCone()
-
-  /**
-   * Method enumerateXMLCylinder
-   * 
-   * @return 
-   *         org.exolab.castor.util.IteratorEnumeration(_XMLCylinderList.iterator
-   *         ())
-   */
-  public java.util.Enumeration<?> enumerateXMLCylinder() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._XMLCylinderList.iterator());
-  } // -- java.util.Enumeration enumerateXMLCylinder()
-
-  /**
-   * Method enumerateXMLSphere
-   * 
-   * @return 
-   *         org.exolab.castor.util.IteratorEnumeration(_XMLSphereList.iterator()
-   *         )
-   */
-  public java.util.Enumeration<?> enumerateXMLSphere() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._XMLSphereList.iterator());
-  } // -- java.util.Enumeration enumerateXMLSphere()
-
-  /**
-   * Method enumerateXMLConnector
-   * 
-   * @return 
-   *         org.exolab.castor.util.IteratorEnumeration(_XMLConnectorList.iterator
-   *         ())
-   */
-  public java.util.Enumeration<?> enumerateXMLConnector() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._XMLConnectorList.iterator());
-  } // -- java.util.Enumeration enumerateXMLConnector()
-
-  /**
-   * Method enumerateXMLTrianglePolygon
-   * 
-   * @return org.exolab.castor.util.IteratorEnumeration(_XMLTrianglePolygonList.
-   *         iterator())
-   */
-  public java.util.Enumeration<?> enumerateXMLTrianglePolygon() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._XMLTrianglePolygonList.iterator());
-  } // -- java.util.Enumeration enumerateXMLTrianglePolygon()
-
-  /**
-   * Method enumerateXMLQuadPolygon
-   * 
-   * @return 
-   *         org.exolab.castor.util.IteratorEnumeration(_XMLQuadPolygonList.iterator
-   *         ())
-   */
-  public java.util.Enumeration<?> enumerateXMLQuadPolygon() {
-    return new org.exolab.castor.util.IteratorEnumeration(this._XMLQuadPolygonList.iterator());
-  } // -- java.util.Enumeration enumerateXMLQuadPolygon()
+//  /**
+//   * Method enumerateXMLConnector
+//   * 
+//   * @return 
+//   *         org.exolab.castor.util.IteratorEnumeration(_XMLConnectorList.iterator
+//   *         ())
+//   */
+//  public java.util.Enumeration<?> enumerateXMLConnector() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLConnectorList.iterator());
+//  } // -- java.util.Enumeration enumerateXMLConnector()
+//
+//  /**
+//   * Method enumerateXMLTrianglePolygon
+//   * 
+//   * @return org.exolab.castor.util.IteratorEnumeration(_XMLTrianglePolygonList.
+//   *         iterator())
+//   */
+//  public java.util.Enumeration<?> enumerateXMLTrianglePolygon() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLTrianglePolygonList.iterator());
+//  } // -- java.util.Enumeration enumerateXMLTrianglePolygon()
+//
+//  /**
+//   * Method enumerateXMLQuadPolygon
+//   * 
+//   * @return 
+//   *         org.exolab.castor.util.IteratorEnumeration(_XMLQuadPolygonList.iterator
+//   *         ())
+//   */
+//  public java.util.Enumeration<?> enumerateXMLQuadPolygon() {
+//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLQuadPolygonList.iterator());
+//  } // -- java.util.Enumeration enumerateXMLQuadPolygon()
 
   /**
    * Note: hashCode() has not been overriden
