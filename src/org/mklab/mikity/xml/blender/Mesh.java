@@ -6,6 +6,7 @@
 package org.mklab.mikity.xml.blender;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.vecmath.Matrix4f;
 import javax.xml.bind.annotation.XmlElement;
@@ -26,7 +27,7 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 public class Mesh {
 
   @XmlElement
-  private ArrayList<Source> source;
+  private List<Source> source;
   @XmlElement
   private Polygons polygons;
   @XmlElement
@@ -64,9 +65,9 @@ public class Mesh {
    * 頂点座標を頂点の組み合わせからポリゴンを作成する。 作成したポリゴンはグループに追加する。
    */
   private void createBlenderPolygon() {
-    ArrayList<Location> vertexLocation = this.source.get(0).getVertexLocation();
-    ArrayList<Location> normalLocation = this.source.get(1).getNormalLocation();
-    ArrayList<int[]> indexNumber = this.polygons.getIndexNumber();
+    final List<Location> vertexLocation = this.source.get(0).getVertexLocation();
+    final List<Location> normalLocation = this.source.get(1).getNormalLocation();
+    List<int[]> indexNumber = this.polygons.getIndexNumber();
 
     this.matrix.setM03(0.0f);
     this.matrix.setM13(0.0f);
@@ -105,8 +106,8 @@ public class Mesh {
    * @param name
    */
   public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes, String name) {
-    ArrayList<String> nameList = library_visual_scenes.getNodeNameList();
-    ArrayList<Matrix4f> matrixList = library_visual_scenes.getMatrixList();
+    final List<String> nameList = library_visual_scenes.getNodeNameList();
+    final List<Matrix4f> matrixList = library_visual_scenes.getMatrixList();
     for (int i = 0; i < nameList.size(); i++) {
       if (nameList.get(i) != null && nameList.get(i).equals(name)) {
         this.matrix = matrixList.get(i);

@@ -393,7 +393,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
    */
-  public java.util.Enumeration enumerateGroup() {
+  public java.util.Enumeration<?> enumerateGroup() {
     return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
   } // -- java.util.Enumeration enumerateGroup()
 
@@ -403,7 +403,7 @@ public class Group implements java.io.Serializable {
    * @return 
    *         org.exolab.castor.util.IteratorEnumeration(_linkdataList.iterator())
    */
-  public java.util.Enumeration enumerateLinkdata() {
+  public java.util.Enumeration<?> enumerateLinkdata() {
     return new org.exolab.castor.util.IteratorEnumeration(this._linkdataList.iterator());
   } // -- java.util.Enumeration enumerateLinkdata()
 
@@ -412,7 +412,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return org.exolab.castor.util.IteratorEnumeration(_XMLBoxList.iterator())
    */
-  public java.util.Enumeration enumerateXMLBox() {
+  public java.util.Enumeration<?> enumerateXMLBox() {
     return new org.exolab.castor.util.IteratorEnumeration(this._XMLBoxList.iterator());
   } // -- java.util.Enumeration enumerateXMLBox()
 
@@ -421,7 +421,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return org.exolab.castor.util.IteratorEnumeration(_XMLConeList.iterator())
    */
-  public java.util.Enumeration enumerateXMLCone() {
+  public java.util.Enumeration<?> enumerateXMLCone() {
     return new org.exolab.castor.util.IteratorEnumeration(this._XMLConeList.iterator());
   } // -- java.util.Enumeration enumerateXMLCone()
 
@@ -432,7 +432,7 @@ public class Group implements java.io.Serializable {
    *         org.exolab.castor.util.IteratorEnumeration(_XMLCylinderList.iterator
    *         ())
    */
-  public java.util.Enumeration enumerateXMLCylinder() {
+  public java.util.Enumeration<?> enumerateXMLCylinder() {
     return new org.exolab.castor.util.IteratorEnumeration(this._XMLCylinderList.iterator());
   } // -- java.util.Enumeration enumerateXMLCylinder()
 
@@ -443,7 +443,7 @@ public class Group implements java.io.Serializable {
    *         org.exolab.castor.util.IteratorEnumeration(_XMLSphereList.iterator()
    *         )
    */
-  public java.util.Enumeration enumerateXMLSphere() {
+  public java.util.Enumeration<?> enumerateXMLSphere() {
     return new org.exolab.castor.util.IteratorEnumeration(this._XMLSphereList.iterator());
   } // -- java.util.Enumeration enumerateXMLSphere()
 
@@ -454,7 +454,7 @@ public class Group implements java.io.Serializable {
    *         org.exolab.castor.util.IteratorEnumeration(_XMLConnectorList.iterator
    *         ())
    */
-  public java.util.Enumeration enumerateXMLConnector() {
+  public java.util.Enumeration<?> enumerateXMLConnector() {
     return new org.exolab.castor.util.IteratorEnumeration(this._XMLConnectorList.iterator());
   } // -- java.util.Enumeration enumerateXMLConnector()
 
@@ -464,7 +464,7 @@ public class Group implements java.io.Serializable {
    * @return org.exolab.castor.util.IteratorEnumeration(_XMLTrianglePolygonList.
    *         iterator())
    */
-  public java.util.Enumeration enumerateXMLTrianglePolygon() {
+  public java.util.Enumeration<?> enumerateXMLTrianglePolygon() {
     return new org.exolab.castor.util.IteratorEnumeration(this._XMLTrianglePolygonList.iterator());
   } // -- java.util.Enumeration enumerateXMLTrianglePolygon()
 
@@ -475,7 +475,7 @@ public class Group implements java.io.Serializable {
    *         org.exolab.castor.util.IteratorEnumeration(_XMLQuadPolygonList.iterator
    *         ())
    */
-  public java.util.Enumeration enumerateXMLQuadPolygon() {
+  public java.util.Enumeration<?> enumerateXMLQuadPolygon() {
     return new org.exolab.castor.util.IteratorEnumeration(this._XMLQuadPolygonList.iterator());
   } // -- java.util.Enumeration enumerateXMLQuadPolygon()
 

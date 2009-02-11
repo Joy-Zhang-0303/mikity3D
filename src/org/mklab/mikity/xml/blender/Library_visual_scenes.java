@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.xml.blender;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.vecmath.Matrix4f;
 import javax.xml.bind.annotation.XmlElement;
@@ -36,7 +36,7 @@ public class Library_visual_scenes {
    * 
    * @return　visual_scene.getNodeNameList()　各ノードの名前が追加されているリスト
    */
-  public ArrayList<String> getNodeNameList() {
+  public List<String> getNodeNameList() {
     return this.visual_scene.getNodeNameList();
   }
 
@@ -45,7 +45,7 @@ public class Library_visual_scenes {
    * 
    * @return　visual_scene.getMatrixList()　変換行列が追加されているリスト
    */
-  public ArrayList<Matrix4f> getMatrixList() {
+  public List<Matrix4f> getMatrixList() {
     return this.visual_scene.getMatrixList();
   }
 

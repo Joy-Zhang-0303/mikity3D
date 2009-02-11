@@ -6,6 +6,8 @@
 package org.mklab.mikity.xml.blender;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlElement;
 
 
@@ -23,15 +25,15 @@ public class Triangle {
   /**
    * 文字列の空白の位置を記したリスト
    */
-  private ArrayList<Integer> space = new ArrayList<Integer>();
+  private List<Integer> space = new ArrayList<Integer>();
   /**
    * 使用する頂点の番号を記したリスト
    */
-  private ArrayList<Integer> num = new ArrayList<Integer>();
+  private List<Integer> num = new ArrayList<Integer>();
   /**
    * 使用する頂点の組み合わせをまとめた配列リスト
    */
-  private ArrayList<int[]> index = new ArrayList<int[]>();
+  private List<int[]> index = new ArrayList<int[]>();
 
   /**
    * コンストラクタ
@@ -84,7 +86,7 @@ public class Triangle {
    * 
    * @return　index　使用する頂点の組み合わせをまとめた配列リスト
    */
-  public ArrayList<int[]> getTriangleIndex() {
+  public List<int[]> getTriangleIndex() {
     createTriangleIndex();
     return this.index;
   }

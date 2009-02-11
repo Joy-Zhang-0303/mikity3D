@@ -5,9 +5,8 @@ import java.util.ResourceBundle;
 
 
 /**
- * 
- * @author ｋａｗａｍｕｒａ
- *
+ * @author koga
+ * @version $Revision$, 2009/02/11
  */
 public class Messages {
 
@@ -15,7 +14,13 @@ public class Messages {
 
   private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
-  private Messages() {}
+  /**
+   * 新しく生成された<code>Messages</code>オブジェクトを初期化します。
+   * 
+   */
+  private Messages() {
+  //
+  }
 
   /**
    * @param key

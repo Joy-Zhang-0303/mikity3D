@@ -12,7 +12,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -85,7 +84,7 @@ public class JAXBMarshaller {
    * @throws IllegalArgumentException
    */
   public void unmarshal(File file) throws IllegalArgumentException {
-    checkFileType(file);
+    loadScene(file);
   }
 
   /**
@@ -171,27 +170,34 @@ public class JAXBMarshaller {
   }
 
   /**
-   * 読み込むファイルの種類を判別する
+   * 種類を判別し、ファイルを読み込む。
    * 
    * @param file
    *        読込ファイル
    */
-  private void checkFileType(File file) {
+  private void loadScene(File file) {
     try {
-      FileReader fileIn = new FileReader(file);
-      ArrayList<String> note = new ArrayList<String>();
-      BufferedReader br = new BufferedReader(fileIn);
-      for (int i = 0; i < 10; i++) {
-        note.add(br.readLine());
+      final BufferedReader reader = new BufferedReader(new FileReader(file));
+      final StringBuffer data = new StringBuffer();
+      
+      String line;
+      while ((line = reader.readLine()) != null) {
+        data.append(line);
       }
-      if (note.get(1).indexOf("jamast") != -1) { //$NON-NLS-1$
+
+      if (data.indexOf("<jamast") != -1) { //$NON-NLS-1$
         loadJamastScene(file);
-      } else if (note.get(1).indexOf("collada") != -1) { //$NON-NLS-1$
+        return;
+      } 
+      if (data.indexOf("<collada") != -1 || data.indexOf("<COLLADA") != -1) { //$NON-NLS-1$ //$NON-NLS-2$
         loadBlenderScene(file);
+        return;
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+    
+    throw new IllegalArgumentException("Neither jamast nor collada data"); //$NON-NLS-1$
   }
 
   /**

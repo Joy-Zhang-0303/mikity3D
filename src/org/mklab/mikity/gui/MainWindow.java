@@ -448,6 +448,7 @@ public class MainWindow extends ApplicationWindow {
 
     JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(this.file);
+    
     if (marshaller.getRoot() != null) {
       Group importGroup = marshaller.getRoot().loadModel(0).loadGroup(0);
 

@@ -382,12 +382,15 @@ public class Connect {
    * @return プリミティブの位置座標
    */
   private Location checkLoc(Location loc) {
-    if (loc == null) {
-      loc.setX(0.0f);
-      loc.setY(0.0f);
-      loc.setZ(0.0f);
+    if (loc != null) {
+      return loc;
     }
-    return loc;
+    
+    Location loc2 = new Location();
+    loc2.setX(0.0f);
+    loc2.setY(0.0f);
+    loc2.setZ(0.0f);
+    return loc2;
   }
 
   /**
@@ -398,12 +401,14 @@ public class Connect {
    * @return プリミティブの回転角度
    */
   private Rotation checkRot(Rotation rot) {
-    if (rot == null) {
-      rot = new Rotation();
-      rot.setXrotate(0.0f);
-      rot.setYrotate(0.0f);
-      rot.setZrotate(0.0f);
+    if (rot != null) {
+      return rot;
     }
-    return rot;
+      
+    Rotation rot2 = new Rotation();
+    rot2.setXrotate(0.0f);
+    rot2.setYrotate(0.0f);
+    rot2.setZrotate(0.0f);
+    return rot2;
   }
 }
