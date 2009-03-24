@@ -85,7 +85,7 @@ public class SimulationViewer extends ApplicationWindow {
 
   private boolean usedDHParam = false;
   private boolean usedLink = false;
-  private ParameterInputBox playSpeed;
+  ParameterInputBox playSpeed;
 
   /**
    * コンストラクター
