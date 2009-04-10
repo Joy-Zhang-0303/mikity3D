@@ -41,10 +41,8 @@ public class PrimitiveQueue {
   /**
    * プリミティブの位置座標,存在範囲をキューに追加する。
    * 
-   * @param loc
-   *        　プリミティブの位置座標
-   * @param range
-   *        プリミティブの存在範囲
+   * @param loc 　プリミティブの位置座標
+   * @param range プリミティブの存在範囲
    */
   public void enqueue(Location loc, float range) {
     while (this.locArray[this.count] != null && this.count < this.locArray.length + 1) {

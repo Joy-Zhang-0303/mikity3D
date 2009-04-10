@@ -37,16 +37,11 @@ public class AdjustLocation {
   /**
    * 二つのプリミティブが重ならないように位置座標を調整する
    * 
-   * @param range
-   *        　範囲
-   * @param primLoc
-   *        　プリミティブの座標
-   * @param listRange
-   *        　リスト内の範囲
-   * @param listLoc
-   *        　リスト内の座標
-   * @param distance
-   *        　二つのプリミティブの距離
+   * @param range 　範囲
+   * @param primLoc 　プリミティブの座標
+   * @param listRange 　リスト内の範囲
+   * @param listLoc 　リスト内の座標
+   * @param distance 　二つのプリミティブの距離
    */
   public void adjustLoc(float range, Location primLoc, float listRange, Location listLoc, float distance) {
     calculateLoc(range, primLoc, listRange, listLoc, distance);
@@ -67,16 +62,11 @@ public class AdjustLocation {
   /**
    * 二つのプリミティブが重ならないように位置座標を計算する
    * 
-   * @param range
-   *        　範囲
-   * @param primLoc
-   *        　プリミティブの座標
-   * @param listRange
-   *        　リスト内の範囲
-   * @param listLoc
-   *        　リスト内の座標
-   * @param distance
-   *        　二つのプリミティブの距離
+   * @param range 　範囲
+   * @param primLoc 　プリミティブの座標
+   * @param listRange 　リスト内の範囲
+   * @param listLoc 　リスト内の座標
+   * @param distance 　二つのプリミティブの距離
    */
   private void calculateLoc(float range, Location primLoc, float listRange, Location listLoc, float distance) {
 

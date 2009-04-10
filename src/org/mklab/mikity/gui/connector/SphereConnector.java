@@ -35,12 +35,9 @@ public class SphereConnector {
   /**
    * 球体プリミティブにコネクタを追加する。
    * 
-   * @param r
-   *        球体の半径
-   * @param loc
-   *        球体の座標
-   * @param rot
-   *        球体の回転
+   * @param r 球体の半径
+   * @param loc 球体の座標
+   * @param rot 球体の回転
    */
   public void createSphereConnector(float r, Location loc, Rotation rot) {
     for (int i = 0; i < this.cnct.length; i++) {

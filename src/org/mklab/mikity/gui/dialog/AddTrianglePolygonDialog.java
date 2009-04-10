@@ -58,10 +58,8 @@ public class AddTrianglePolygonDialog {
   /**
    * コンストラクター
    * 
-   * @param parentShell
-   *        親シェル
-   * @param group
-   *        グループ
+   * @param parentShell 親シェル
+   * @param group グループ
    */
   public AddTrianglePolygonDialog(Shell parentShell, Group group) {
     this.parentShell = parentShell;

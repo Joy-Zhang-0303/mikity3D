@@ -197,8 +197,7 @@ public class ModelCanvas extends Canvas3D {
   }
 
   /**
-   * @param groups
-   *        いったんトップグループの全てを消してから書き込む
+   * @param groups いったんトップグループの全てを消してから書き込む
    */
   public void setChild(Group[] groups) {
     this.topGroup.removeAllChildren();
@@ -228,7 +227,7 @@ public class ModelCanvas extends Canvas3D {
    */
   private void getParameter(Jamast argRoot) {
     Config config = argRoot.loadConfig(0);
-    if(config == null){
+    if (config == null) {
       return;
     }
     // 背景色をセット

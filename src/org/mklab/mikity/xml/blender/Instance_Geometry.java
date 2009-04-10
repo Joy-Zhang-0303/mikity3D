@@ -21,7 +21,7 @@ public class Instance_Geometry {
    * 新しく生成された<code>Instance_Geometry</code>オブジェクトを初期化します。
    */
   public Instance_Geometry() {
-    //
+  //
   }
 
   /**

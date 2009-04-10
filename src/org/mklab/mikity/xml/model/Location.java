@@ -196,8 +196,7 @@ public class Location implements java.io.Serializable {
   /**
    * Sets the value of field 'x'.
    * 
-   * @param x
-   *        the value of field 'x'.
+   * @param x the value of field 'x'.
    */
   public void setX(float x) {
     this._x = x;
@@ -207,8 +206,7 @@ public class Location implements java.io.Serializable {
   /**
    * Sets the value of field 'y'.
    * 
-   * @param y
-   *        the value of field 'y'.
+   * @param y the value of field 'y'.
    */
   public void setY(float y) {
     this._y = y;
@@ -218,8 +216,7 @@ public class Location implements java.io.Serializable {
   /**
    * Sets the value of field 'z'.
    * 
-   * @param z
-   *        the value of field 'z'.
+   * @param z the value of field 'z'.
    */
   public void setZ(float z) {
     this._z = z;

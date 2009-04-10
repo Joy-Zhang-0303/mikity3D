@@ -44,8 +44,7 @@ import org.mklab.mikity.gui.connector.ConnectorSelect;
 
 
 /**
- * Displays a single-selection tree, a multi-selection tree, and a checkbox tree
- * ツリーの読み込み、書き込みを行う
+ * Displays a single-selection tree, a multi-selection tree, and a checkbox tree ツリーの読み込み、書き込みを行う
  */
 public class SceneGraphTree {
 
@@ -812,8 +811,7 @@ public class SceneGraphTree {
   /**
    * 現在ツリーのリンク関係にDHパラメータが使われているか調べる
    * 
-   * @param g
-   *        グループリスト
+   * @param g グループリスト
    */
   void checkUsedLinkType(Group[] g) {
     if (g.length != 0 || this.usedDHParam == false || this.usedLink == false) {

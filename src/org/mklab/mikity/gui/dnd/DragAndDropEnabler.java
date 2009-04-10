@@ -45,8 +45,7 @@ public class DragAndDropEnabler {
   /**
    * コンストラクター ドラッグ元として {@link Tree}を設定する
    * 
-   * @param tree
-   *        ライブラリツリー
+   * @param tree ライブラリツリー
    */
   public DragAndDropEnabler(final Tree tree) {
     this.tree = tree;

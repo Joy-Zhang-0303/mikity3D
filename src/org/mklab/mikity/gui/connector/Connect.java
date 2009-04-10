@@ -119,8 +119,7 @@ public class Connect {
   /**
    * 接続基点となるコネクタN,Sの位置&回転に関する情報を取得する。
    * 
-   * @param connector
-   *        　コネクタ
+   * @param connector 　コネクタ
    */
   public void connectorNS(XMLConnector connector) {
     int i = checkNS(connector.loadFlag());
@@ -150,10 +149,8 @@ public class Connect {
   /**
    * 選択したコネクタN,Sが所属しているプリミティブの位置情報&回転情報を取得する。
    * 
-   * @param prim
-   *        　プリミティブ
-   * @param ns
-   *        　選択したコネクタがNあるいはS
+   * @param prim 　プリミティブ
+   * @param ns 　選択したコネクタがNあるいはS
    */
   public void setPrimitiveNS(Object prim, String ns) {
     int i = checkNS(ns);
@@ -178,8 +175,7 @@ public class Connect {
   /**
    * 選択したコネクタのプリミティブを返す
    * 
-   * @param ns
-   *        　コネクタの属性
+   * @param ns 　コネクタの属性
    * @return　prim　選択したコネクタのプリミティブ
    */
   public Object getPrimitiveNS(String ns) {
@@ -190,10 +186,8 @@ public class Connect {
   /**
    * 直方体の位置情報&回転情報を取得する。
    * 
-   * @param box
-   *        　直方体
-   * @param i
-   *        　選択したコネクタがN(i=0)あるいはS(i=1)
+   * @param box 　直方体
+   * @param i 　選択したコネクタがN(i=0)あるいはS(i=1)
    */
   private void boxNS(XMLBox box, int i) {
     if (box.loadLocation() == null) {
@@ -219,10 +213,8 @@ public class Connect {
   /**
    * 円錐の位置情報&回転情報を取得する。
    * 
-   * @param cone
-   *        　円錐
-   * @param i
-   *        　選択したコネクタがN(i=0)あるいはS(i=1)
+   * @param cone 　円錐
+   * @param i 　選択したコネクタがN(i=0)あるいはS(i=1)
    */
   private void coneNS(XMLCone cone, int i) {
     if (cone.loadLocation() == null) {
@@ -248,10 +240,8 @@ public class Connect {
   /**
    * 円柱の位置情報&回転情報を取得する。
    * 
-   * @param cylinder
-   *        　円柱
-   * @param i
-   *        　選択したコネクタがN(i=0)あるいはS(i=1)
+   * @param cylinder 　円柱
+   * @param i 　選択したコネクタがN(i=0)あるいはS(i=1)
    */
   private void cylinderNS(XMLCylinder cylinder, int i) {
     if (cylinder.loadLocation() == null) {
@@ -277,10 +267,8 @@ public class Connect {
   /**
    * 球体の位置情報&回転情報を取得する。
    * 
-   * @param sphere
-   *        　球体
-   * @param i
-   *        　選択したコネクタがN(i=0)あるいはS(i=1)
+   * @param sphere 　球体
+   * @param i 　選択したコネクタがN(i=0)あるいはS(i=1)
    */
   private void sphereNS(XMLSphere sphere, int i) {
     if (sphere.loadLocation() == null) {
@@ -306,8 +294,7 @@ public class Connect {
   /**
    * コネクタの属性を判別する
    * 
-   * @param ns
-   *        　コネクタの属性
+   * @param ns 　コネクタの属性
    * @return　Nならi=0,Sならi=1
    */
   private int checkNS(String ns) {
@@ -377,15 +364,14 @@ public class Connect {
   /**
    * プリミティブの位置座標におけるパラメータが変化していないとき、各座標に0.0の値を代入する。
    * 
-   * @param loc
-   *        　プリミティブの位置座標
+   * @param loc 　プリミティブの位置座標
    * @return プリミティブの位置座標
    */
   private Location checkLoc(Location loc) {
     if (loc != null) {
       return loc;
     }
-    
+
     Location loc2 = new Location();
     loc2.setX(0.0f);
     loc2.setY(0.0f);
@@ -396,15 +382,14 @@ public class Connect {
   /**
    * プリミティブの各軸の回転角度におけるパラメータが変化していないとき、各軸の回転角度に0.0の値を代入する。
    * 
-   * @param rot
-   *        　プリミティブの回転角度
+   * @param rot 　プリミティブの回転角度
    * @return プリミティブの回転角度
    */
   private Rotation checkRot(Rotation rot) {
     if (rot != null) {
       return rot;
     }
-      
+
     Rotation rot2 = new Rotation();
     rot2.setXrotate(0.0f);
     rot2.setYrotate(0.0f);

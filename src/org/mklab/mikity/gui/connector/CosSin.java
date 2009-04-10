@@ -44,12 +44,9 @@ public class CosSin {
   /**
    * コンストラクタ
    * 
-   * @param rotX
-   *        　X軸回転
-   * @param rotY
-   *        　Y軸回転
-   * @param rotZ
-   *        　Z軸回転
+   * @param rotX 　X軸回転
+   * @param rotY 　Y軸回転
+   * @param rotZ 　Z軸回転
    */
   public CosSin(float rotX, float rotY, float rotZ) {
     setCosX(rotX);
@@ -63,8 +60,7 @@ public class CosSin {
   /**
    * コサインXを導出する
    * 
-   * @param rotX
-   *        　X軸回転
+   * @param rotX 　X軸回転
    */
   private void setCosX(float rotX) {
     this.cosx = (float)Math.cos(Math.PI * rotX / 180.0);
@@ -73,8 +69,7 @@ public class CosSin {
   /**
    * コサインYを導出する
    * 
-   * @param rotY
-   *        　Y軸回転
+   * @param rotY 　Y軸回転
    */
   private void setCosY(float rotY) {
     this.cosy = (float)Math.cos(Math.PI * rotY / 180.0);
@@ -83,8 +78,7 @@ public class CosSin {
   /**
    * コサインZを導出する
    * 
-   * @param rotZ
-   *        　Z軸回転
+   * @param rotZ 　Z軸回転
    */
   private void setCosZ(float rotZ) {
     this.cosz = (float)Math.cos(Math.PI * rotZ / 180.0);
@@ -93,8 +87,7 @@ public class CosSin {
   /**
    * サインXを導出する
    * 
-   * @param rotX
-   *        　X軸回転
+   * @param rotX 　X軸回転
    */
   private void setSinX(float rotX) {
     this.sinx = (float)Math.sin(Math.PI * rotX / 180.0);
@@ -103,8 +96,7 @@ public class CosSin {
   /**
    * サインYを導出する
    * 
-   * @param rotY
-   *        　Y軸回転
+   * @param rotY 　Y軸回転
    */
   private void setSinY(float rotY) {
     this.siny = (float)Math.sin(Math.PI * rotY / 180.0);
@@ -113,8 +105,7 @@ public class CosSin {
   /**
    * サインZを導出する
    * 
-   * @param rotZ
-   *        　Z軸回転
+   * @param rotZ 　Z軸回転
    */
   private void setSinZ(float rotZ) {
     this.sinz = (float)Math.sin(Math.PI * rotZ / 180.0);

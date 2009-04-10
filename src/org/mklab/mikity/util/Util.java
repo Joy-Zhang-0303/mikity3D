@@ -29,8 +29,7 @@ public class Util {
   /**
    * DHパラメータを取得する。
    * 
-   * @param linkdata
-   *        　リンクデータ
+   * @param linkdata 　リンクデータ
    * @return parameter　DHパラメータ
    */
   public static DHParameter getDHParameter(final Linkdata[] linkdata) {
@@ -67,8 +66,7 @@ public class Util {
   /**
    * リンクパラメータを取得する。
    * 
-   * @param linkdata
-   *        　リンクデータ
+   * @param linkdata 　リンクデータ
    * @return parameter　リンクパラメータ
    */
   public static LinkParameter getLinkParameter(final Linkdata[] linkdata) {
@@ -113,8 +111,7 @@ public class Util {
   /**
    * パラメータを取得する。
    * 
-   * @param linkdata
-   *        　リンクデータ
+   * @param linkdata 　リンクデータ
    * @param key
    * @return null
    */

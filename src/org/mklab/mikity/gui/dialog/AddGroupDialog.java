@@ -30,10 +30,8 @@ public class AddGroupDialog extends ApplicationWindow {
   /**
    * コンストラクター
    * 
-   * @param parentShell
-   *        親シェル
-   * @param group
-   *        グループ
+   * @param parentShell 親シェル
+   * @param group グループ
    */
   public AddGroupDialog(Shell parentShell, Group group) {
     super(parentShell);

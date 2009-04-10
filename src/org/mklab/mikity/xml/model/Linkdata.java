@@ -170,8 +170,7 @@ public class Linkdata implements java.io.Serializable {
   /**
    * Sets the value of field 'column'.
    * 
-   * @param column
-   *        the value of field 'column'.
+   * @param column the value of field 'column'.
    */
   public void setColumn(int column) {
     this._column = column;
@@ -191,8 +190,7 @@ public class Linkdata implements java.io.Serializable {
   /**
    * Sets the value of field 'target'.
    * 
-   * @param target
-   *        the value of field 'target'.
+   * @param target the value of field 'target'.
    */
   public void setTarget(java.lang.String target) {
     this._target = target;

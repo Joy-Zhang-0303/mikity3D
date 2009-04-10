@@ -183,8 +183,7 @@ public class ColorConstant {
   /**
    * 名前で指定した色を返す
    * 
-   * @param colorName
-   *        色の名前
+   * @param colorName 色の名前
    * @return 名前で指定された色
    */
   public static Color3f getColor(String colorName) {

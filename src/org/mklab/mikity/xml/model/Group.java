@@ -388,96 +388,96 @@ public class Group implements java.io.Serializable {
     this._XMLQuadPolygonList.clear();
   } // -- void clearXMLQuadPolygon()
 
-//  /**
-//   * Method enumerateGroup
-//   * 
-//   * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
-//   */
-//  public java.util.Enumeration<?> enumerateGroup() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
-//  } // -- java.util.Enumeration enumerateGroup()
-//
-//  /**
-//   * Method enumerateLinkdata
-//   * 
-//   * @return 
-//   *         org.exolab.castor.util.IteratorEnumeration(_linkdataList.iterator())
-//   */
-//  public java.util.Enumeration<?> enumerateLinkdata() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._linkdataList.iterator());
-//  } // -- java.util.Enumeration enumerateLinkdata()
-//
-//  /**
-//   * Method enumerateXMLBox
-//   * 
-//   * @return org.exolab.castor.util.IteratorEnumeration(_XMLBoxList.iterator())
-//   */
-//  public java.util.Enumeration<?> enumerateXMLBox() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLBoxList.iterator());
-//  } // -- java.util.Enumeration enumerateXMLBox()
+  //  /**
+  //   * Method enumerateGroup
+  //   * 
+  //   * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
+  //   */
+  //  public java.util.Enumeration<?> enumerateGroup() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
+  //  } // -- java.util.Enumeration enumerateGroup()
+  //
+  //  /**
+  //   * Method enumerateLinkdata
+  //   * 
+  //   * @return 
+  //   *         org.exolab.castor.util.IteratorEnumeration(_linkdataList.iterator())
+  //   */
+  //  public java.util.Enumeration<?> enumerateLinkdata() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._linkdataList.iterator());
+  //  } // -- java.util.Enumeration enumerateLinkdata()
+  //
+  //  /**
+  //   * Method enumerateXMLBox
+  //   * 
+  //   * @return org.exolab.castor.util.IteratorEnumeration(_XMLBoxList.iterator())
+  //   */
+  //  public java.util.Enumeration<?> enumerateXMLBox() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLBoxList.iterator());
+  //  } // -- java.util.Enumeration enumerateXMLBox()
 
-//  /**
-//   * Method enumerateXMLCone
-//   * 
-//   * @return org.exolab.castor.util.IteratorEnumeration(_XMLConeList.iterator())
-//   */
-//  public java.util.Enumeration<?> enumerateXMLCone() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLConeList.iterator());
-//  } // -- java.util.Enumeration enumerateXMLCone()
-//
-//  /**
-//   * Method enumerateXMLCylinder
-//   * 
-//   * @return 
-//   *         org.exolab.castor.util.IteratorEnumeration(_XMLCylinderList.iterator
-//   *         ())
-//   */
-//  public java.util.Enumeration<?> enumerateXMLCylinder() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLCylinderList.iterator());
-//  } // -- java.util.Enumeration enumerateXMLCylinder()
-//
-//  /**
-//   * Method enumerateXMLSphere
-//   * 
-//   * @return 
-//   *         org.exolab.castor.util.IteratorEnumeration(_XMLSphereList.iterator()
-//   *         )
-//   */
-//  public java.util.Enumeration<?> enumerateXMLSphere() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLSphereList.iterator());
-//  } // -- java.util.Enumeration enumerateXMLSphere()
+  //  /**
+  //   * Method enumerateXMLCone
+  //   * 
+  //   * @return org.exolab.castor.util.IteratorEnumeration(_XMLConeList.iterator())
+  //   */
+  //  public java.util.Enumeration<?> enumerateXMLCone() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLConeList.iterator());
+  //  } // -- java.util.Enumeration enumerateXMLCone()
+  //
+  //  /**
+  //   * Method enumerateXMLCylinder
+  //   * 
+  //   * @return 
+  //   *         org.exolab.castor.util.IteratorEnumeration(_XMLCylinderList.iterator
+  //   *         ())
+  //   */
+  //  public java.util.Enumeration<?> enumerateXMLCylinder() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLCylinderList.iterator());
+  //  } // -- java.util.Enumeration enumerateXMLCylinder()
+  //
+  //  /**
+  //   * Method enumerateXMLSphere
+  //   * 
+  //   * @return 
+  //   *         org.exolab.castor.util.IteratorEnumeration(_XMLSphereList.iterator()
+  //   *         )
+  //   */
+  //  public java.util.Enumeration<?> enumerateXMLSphere() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLSphereList.iterator());
+  //  } // -- java.util.Enumeration enumerateXMLSphere()
 
-//  /**
-//   * Method enumerateXMLConnector
-//   * 
-//   * @return 
-//   *         org.exolab.castor.util.IteratorEnumeration(_XMLConnectorList.iterator
-//   *         ())
-//   */
-//  public java.util.Enumeration<?> enumerateXMLConnector() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLConnectorList.iterator());
-//  } // -- java.util.Enumeration enumerateXMLConnector()
-//
-//  /**
-//   * Method enumerateXMLTrianglePolygon
-//   * 
-//   * @return org.exolab.castor.util.IteratorEnumeration(_XMLTrianglePolygonList.
-//   *         iterator())
-//   */
-//  public java.util.Enumeration<?> enumerateXMLTrianglePolygon() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLTrianglePolygonList.iterator());
-//  } // -- java.util.Enumeration enumerateXMLTrianglePolygon()
-//
-//  /**
-//   * Method enumerateXMLQuadPolygon
-//   * 
-//   * @return 
-//   *         org.exolab.castor.util.IteratorEnumeration(_XMLQuadPolygonList.iterator
-//   *         ())
-//   */
-//  public java.util.Enumeration<?> enumerateXMLQuadPolygon() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._XMLQuadPolygonList.iterator());
-//  } // -- java.util.Enumeration enumerateXMLQuadPolygon()
+  //  /**
+  //   * Method enumerateXMLConnector
+  //   * 
+  //   * @return 
+  //   *         org.exolab.castor.util.IteratorEnumeration(_XMLConnectorList.iterator
+  //   *         ())
+  //   */
+  //  public java.util.Enumeration<?> enumerateXMLConnector() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLConnectorList.iterator());
+  //  } // -- java.util.Enumeration enumerateXMLConnector()
+  //
+  //  /**
+  //   * Method enumerateXMLTrianglePolygon
+  //   * 
+  //   * @return org.exolab.castor.util.IteratorEnumeration(_XMLTrianglePolygonList.
+  //   *         iterator())
+  //   */
+  //  public java.util.Enumeration<?> enumerateXMLTrianglePolygon() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLTrianglePolygonList.iterator());
+  //  } // -- java.util.Enumeration enumerateXMLTrianglePolygon()
+  //
+  //  /**
+  //   * Method enumerateXMLQuadPolygon
+  //   * 
+  //   * @return 
+  //   *         org.exolab.castor.util.IteratorEnumeration(_XMLQuadPolygonList.iterator
+  //   *         ())
+  //   */
+  //  public java.util.Enumeration<?> enumerateXMLQuadPolygon() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLQuadPolygonList.iterator());
+  //  } // -- java.util.Enumeration enumerateXMLQuadPolygon()
 
   /**
    * Note: hashCode() has not been overriden
@@ -578,8 +578,7 @@ public class Group implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.Group[] getGroup()
 
   /**
-   * Method getGroupAsReferenceReturns a reference to 'group'. No type checking
-   * is performed on any modications to the Collection.
+   * Method getGroupAsReferenceReturns a reference to 'group'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -627,8 +626,7 @@ public class Group implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.Linkdata[] getLinkdata()
 
   /**
-   * Method getLinkdataAsReferenceReturns a reference to 'linkdata'. No type
-   * checking is performed on any modications to the Collection.
+   * Method getLinkdataAsReferenceReturns a reference to 'linkdata'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -703,8 +701,7 @@ public class Group implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.XMLBox[] getXMLBox()
 
   /**
-   * Method getXMLBoxAsReferenceReturns a reference to 'XMLBox'. No type
-   * checking is performed on any modications to the Collection.
+   * Method getXMLBoxAsReferenceReturns a reference to 'XMLBox'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -752,8 +749,7 @@ public class Group implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.XMLCone[] getXMLCone()
 
   /**
-   * Method getXMLConeAsReferenceReturns a reference to 'XMLCone'. No type
-   * checking is performed on any modications to the Collection.
+   * Method getXMLConeAsReferenceReturns a reference to 'XMLCone'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -801,8 +797,7 @@ public class Group implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.XMLCylinder[] getXMLCylinder()
 
   /**
-   * Method getXMLCylinderAsReferenceReturns a reference to 'XMLCylinder'. No
-   * type checking is performed on any modications to the Collection.
+   * Method getXMLCylinderAsReferenceReturns a reference to 'XMLCylinder'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -850,8 +845,7 @@ public class Group implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.XMLSphere[] getXMLSphere()
 
   /**
-   * Method getXMLSphereAsReferenceReturns a reference to 'XMLSphere'. No type
-   * checking is performed on any modications to the Collection.
+   * Method getXMLSphereAsReferenceReturns a reference to 'XMLSphere'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -899,8 +893,7 @@ public class Group implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.XMLConnector[] getXMLCone()
 
   /**
-   * Method getXMLConnectorAsReferenceReturns a reference to 'XMLCone'. No type
-   * checking is performed on any modications to the Collection.
+   * Method getXMLConnectorAsReferenceReturns a reference to 'XMLCone'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -948,9 +941,7 @@ public class Group implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.XMLTrianglePolygon[] getXMLTrianglePolygon()
 
   /**
-   * Method getXMLTrianglePolygonAsReferenceReturns a reference to
-   * 'XMLTrianglePolygon'. No type checking is performed on any modications to
-   * the Collection.
+   * Method getXMLTrianglePolygonAsReferenceReturns a reference to 'XMLTrianglePolygon'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -998,8 +989,7 @@ public class Group implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.XMLQuadPolygon[] getXMLQuadPolygon()
 
   /**
-   * Method getXMLQuadPolygonAsReferenceReturns a reference to 'XMLQuadPolygon'.
-   * No type checking is performed on any modications to the Collection.
+   * Method getXMLQuadPolygonAsReferenceReturns a reference to 'XMLQuadPolygon'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -1146,8 +1136,7 @@ public class Group implements java.io.Serializable {
   /**
    * Method setGroupSets the value of 'group' by copying the given ArrayList.
    * 
-   * @param groupCollection
-   *        the Vector to copy.
+   * @param groupCollection the Vector to copy.
    */
   public void setGroup(java.util.ArrayList<Group> groupCollection) {
     // -- copy collection
@@ -1158,11 +1147,9 @@ public class Group implements java.io.Serializable {
   } // -- void setGroup(java.util.ArrayList)
 
   /**
-   * Method setGroupAsReferenceSets the value of 'group' by setting it to the
-   * given ArrayList. No type checking is performed.
+   * Method setGroupAsReferenceSets the value of 'group' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param groupCollection
-   *        the ArrayList to copy.
+   * @param groupCollection the ArrayList to copy.
    */
   public void setGroupAsReference(java.util.ArrayList<Group> groupCollection) {
     this._groupList = groupCollection;
@@ -1197,11 +1184,9 @@ public class Group implements java.io.Serializable {
   } // -- void setLinkdata(org.mklab.mikity.xml.Linkdata)
 
   /**
-   * Method setLinkdataSets the value of 'linkdata' by copying the given
-   * ArrayList.
+   * Method setLinkdataSets the value of 'linkdata' by copying the given ArrayList.
    * 
-   * @param linkdataCollection
-   *        the Vector to copy.
+   * @param linkdataCollection the Vector to copy.
    */
   // public void setLinkdata(java.util.ArrayList linkdataCollection)
   // {
@@ -1212,11 +1197,9 @@ public class Group implements java.io.Serializable {
   // }
   // } //-- void setLinkdata(java.util.ArrayList)
   /**
-   * Method setLinkdataAsReferenceSets the value of 'linkdata' by setting it to
-   * the given ArrayList. No type checking is performed.
+   * Method setLinkdataAsReferenceSets the value of 'linkdata' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param linkdataCollection
-   *        the ArrayList to copy.
+   * @param linkdataCollection the ArrayList to copy.
    */
   public void setLinkdataAsReference(java.util.ArrayList<Linkdata> linkdataCollection) {
     this._linkdataList = linkdataCollection;
@@ -1225,8 +1208,7 @@ public class Group implements java.io.Serializable {
   /**
    * Sets the value of field 'location'.
    * 
-   * @param location
-   *        the value of field 'location'.
+   * @param location the value of field 'location'.
    */
   public void setLocation(org.mklab.mikity.xml.model.Location location) {
     this._location = location;
@@ -1235,8 +1217,7 @@ public class Group implements java.io.Serializable {
   /**
    * Sets the value of field 'name'.
    * 
-   * @param name
-   *        the value of field 'name'.
+   * @param name the value of field 'name'.
    */
   public void setName(java.lang.String name) {
     this._name = name;
@@ -1245,8 +1226,7 @@ public class Group implements java.io.Serializable {
   /**
    * Sets the value of field 'rotation'.
    * 
-   * @param rotation
-   *        the value of field 'rotation'.
+   * @param rotation the value of field 'rotation'.
    */
   public void setRotation(org.mklab.mikity.xml.model.Rotation rotation) {
     this._rotation = rotation;
@@ -1283,8 +1263,7 @@ public class Group implements java.io.Serializable {
   /**
    * Method setXMLBoxSets the value of 'XMLBox' by copying the given ArrayList.
    * 
-   * @param XMLBoxCollection
-   *        the Vector to copy.
+   * @param XMLBoxCollection the Vector to copy.
    */
   // public void setXMLBox(java.util.ArrayList XMLBoxCollection)
   // {
@@ -1296,11 +1275,9 @@ public class Group implements java.io.Serializable {
   // }
   // } //-- void setXMLBox(java.util.ArrayList)
   /**
-   * Method setXMLBoxAsReferenceSets the value of 'XMLBox' by setting it to the
-   * given ArrayList. No type checking is performed.
+   * Method setXMLBoxAsReferenceSets the value of 'XMLBox' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param XMLBoxCollection
-   *        the ArrayList to copy.
+   * @param XMLBoxCollection the ArrayList to copy.
    */
   public void setXMLBoxAsReference(java.util.ArrayList<XMLBox> XMLBoxCollection) {
     this._XMLBoxList = XMLBoxCollection;
@@ -1335,11 +1312,9 @@ public class Group implements java.io.Serializable {
   } // -- void setXMLCone(org.mklab.mikity.xml.XMLCone)
 
   /**
-   * Method setXMLConeSets the value of 'XMLCone' by copying the given
-   * ArrayList.
+   * Method setXMLConeSets the value of 'XMLCone' by copying the given ArrayList.
    * 
-   * @param XMLConeCollection
-   *        the Vector to copy.
+   * @param XMLConeCollection the Vector to copy.
    */
   // public void setXMLCone(java.util.ArrayList XMLConeCollection)
   // {
@@ -1351,11 +1326,9 @@ public class Group implements java.io.Serializable {
   // }
   // } //-- void setXMLCone(java.util.ArrayList)
   /**
-   * Method setXMLConeAsReferenceSets the value of 'XMLCone' by setting it to
-   * the given ArrayList. No type checking is performed.
+   * Method setXMLConeAsReferenceSets the value of 'XMLCone' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param XMLConeCollection
-   *        the ArrayList to copy.
+   * @param XMLConeCollection the ArrayList to copy.
    */
   public void setXMLConeAsReference(java.util.ArrayList<XMLCone> XMLConeCollection) {
     this._XMLConeList = XMLConeCollection;
@@ -1390,11 +1363,9 @@ public class Group implements java.io.Serializable {
   } // -- void setXMLCylinder(org.mklab.mikity.xml.XMLCylinder)
 
   /**
-   * Method setXMLCylinderSets the value of 'XMLCylinder' by copying the given
-   * ArrayList.
+   * Method setXMLCylinderSets the value of 'XMLCylinder' by copying the given ArrayList.
    * 
-   * @param XMLCylinderCollection
-   *        the Vector to copy.
+   * @param XMLCylinderCollection the Vector to copy.
    */
   // public void setXMLCylinder(java.util.ArrayList XMLCylinderCollection)
   // {
@@ -1406,11 +1377,9 @@ public class Group implements java.io.Serializable {
   // }
   // } //-- void setXMLCylinder(java.util.ArrayList)
   /**
-   * Method setXMLCylinderAsReferenceSets the value of 'XMLCylinder' by setting
-   * it to the given ArrayList. No type checking is performed.
+   * Method setXMLCylinderAsReferenceSets the value of 'XMLCylinder' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param XMLCylinderCollection
-   *        the ArrayList to copy.
+   * @param XMLCylinderCollection the ArrayList to copy.
    */
   public void setXMLCylinderAsReference(java.util.ArrayList<XMLCylinder> XMLCylinderCollection) {
     this._XMLCylinderList = XMLCylinderCollection;
@@ -1445,11 +1414,9 @@ public class Group implements java.io.Serializable {
   } // -- void setXMLSphere(org.mklab.mikity.xml.XMLSphere)
 
   /**
-   * Method setXMLSphereSets the value of 'XMLSphere' by copying the given
-   * ArrayList.
+   * Method setXMLSphereSets the value of 'XMLSphere' by copying the given ArrayList.
    * 
-   * @param XMLSphereCollection
-   *        the Vector to copy.
+   * @param XMLSphereCollection the Vector to copy.
    */
   // public void setXMLSphere(java.util.ArrayList XMLSphereCollection)
   // {
@@ -1461,11 +1428,9 @@ public class Group implements java.io.Serializable {
   // }
   // } //-- void setXMLSphere(java.util.ArrayList)
   /**
-   * Method setXMLSphereAsReferenceSets the value of 'XMLSphere' by setting it
-   * to the given ArrayList. No type checking is performed.
+   * Method setXMLSphereAsReferenceSets the value of 'XMLSphere' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param XMLSphereCollection
-   *        the ArrayList to copy.
+   * @param XMLSphereCollection the ArrayList to copy.
    */
   public void setXMLSphereAsReference(java.util.ArrayList<XMLSphere> XMLSphereCollection) {
     this._XMLSphereList = XMLSphereCollection;
@@ -1516,11 +1481,9 @@ public class Group implements java.io.Serializable {
   // } //-- void setXMLConnector(java.util.ArrayList)
 
   /**
-   * Method setXMLConnectorAsReferenceSets the value of 'XMLConnector' by
-   * setting it to the given ArrayList. No type checking is performed.
+   * Method setXMLConnectorAsReferenceSets the value of 'XMLConnector' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param XMLConnectorCollection
-   *        the ArrayList to copy.
+   * @param XMLConnectorCollection the ArrayList to copy.
    */
   public void setXMLConnectorAsReference(java.util.ArrayList<XMLConnector> XMLConnectorCollection) {
     this._XMLConnectorList = XMLConnectorCollection;
@@ -1575,12 +1538,9 @@ public class Group implements java.io.Serializable {
   // } //-- void setXMLTrianglePolygon(java.util.ArrayList)
 
   /**
-   * Method setXMLTrianglePolygonAsReferenceSets the value of
-   * 'XMLTrianglePolygon' by setting it to the given ArrayList. No type checking
-   * is performed.
+   * Method setXMLTrianglePolygonAsReferenceSets the value of 'XMLTrianglePolygon' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param XMLTrianglePolygonCollection
-   *        the ArrayList to copy.
+   * @param XMLTrianglePolygonCollection the ArrayList to copy.
    */
   public void setXMLTrianglePolygonAsReference(java.util.ArrayList<XMLTrianglePolygon> XMLTrianglePolygonCollection) {
     this._XMLTrianglePolygonList = XMLTrianglePolygonCollection;
@@ -1632,11 +1592,9 @@ public class Group implements java.io.Serializable {
   // } //-- void setXMLQuadPolygon(java.util.ArrayList)
 
   /**
-   * Method setXMLQuadPolygonAsReference the value of 'XMLQuadPolygon' by
-   * setting it to the given ArrayList. No type checking is performed.
+   * Method setXMLQuadPolygonAsReference the value of 'XMLQuadPolygon' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param XMLQuadPolygonCollection
-   *        the ArrayList to copy.
+   * @param XMLQuadPolygonCollection the ArrayList to copy.
    */
   public void setXMLQuadPolygonAsReference(java.util.ArrayList<XMLQuadPolygon> XMLQuadPolygonCollection) {
     this._XMLQuadPolygonList = XMLQuadPolygonCollection;

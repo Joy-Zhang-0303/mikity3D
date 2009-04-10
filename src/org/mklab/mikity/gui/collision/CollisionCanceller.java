@@ -82,12 +82,9 @@ public class CollisionCanceller {
   /**
    * 二つのプリミティブが重複するか判別する
    * 
-   * @param prim
-   *        　追加するプリミティブ
-   * @param primLoc
-   *        　追加するプリミティブの座標
-   * @param group
-   *        　グループ
+   * @param prim 　追加するプリミティブ
+   * @param primLoc 　追加するプリミティブの座標
+   * @param group 　グループ
    */
   public void checkCollision(Object prim, Location primLoc, Group group) {
     this.collideFlag = false;
@@ -120,12 +117,9 @@ public class CollisionCanceller {
   /**
    * 重複フラグを確認する。 重複すると判断された場合、位置調整処理に移行。 それ以外は各リストに追加およびモデルの描画。
    * 
-   * @param prim
-   *        　追加するプリミティブ
-   * @param primLoc
-   *        　追加するプリミティブの座標
-   * @param group
-   *        　グループ
+   * @param prim 　追加するプリミティブ
+   * @param primLoc 　追加するプリミティブの座標
+   * @param group 　グループ
    */
   private void checkCollisionFlag(Object prim, float argRange, Location primLoc, float listRange, Location listLoc, Group group) {
     if (this.collideFlag == true) {
@@ -146,8 +140,7 @@ public class CollisionCanceller {
   /**
    * プリミティブの位置座標を返す。
    * 
-   * @param prim
-   *        プリミティブ
+   * @param prim プリミティブ
    * @return loc 位置座標
    */
   private Location getLoc(Object prim) {
@@ -171,10 +164,8 @@ public class CollisionCanceller {
   /**
    * 二つのプリミティブの位置座標間の距離を算出する。
    * 
-   * @param loc1
-   *        　プリミティブの位置座標1
-   * @param loc2
-   *        　プリミティブの位置座標2
+   * @param loc1 　プリミティブの位置座標1
+   * @param loc2 　プリミティブの位置座標2
    */
   private void calculateDistance(Location loc1, Location loc2) {
     this.distance = (float)Math.sqrt(Math.pow((loc2.loadX() - loc1.loadX()), 2) + Math.pow(loc2.loadY() - loc1.loadY(), 2) + Math.pow(loc2.loadZ() - loc1.loadZ(), 2));
@@ -183,8 +174,7 @@ public class CollisionCanceller {
   /**
    * プリミティブの位置座標がNULLだった場合、座標(0.0,0.0,0.0)の情報を持つ位置座標を返す。
    * 
-   * @param argLocation
-   *        　プリミティブの位置座標
+   * @param argLocation 　プリミティブの位置座標
    * @return loc　更新したプリミティブの位置座標
    */
   private Location checkLoc(Location argLocation) {
@@ -200,8 +190,7 @@ public class CollisionCanceller {
   /**
    * プリミティブの位置座標をリストに追加する。
    * 
-   * @param argLocation
-   *        　プリミティブの位置座標
+   * @param argLocation 　プリミティブの位置座標
    */
   private void addLocationList(Location argLocation) {
     Location primLoc = new Location();
@@ -212,8 +201,7 @@ public class CollisionCanceller {
   /**
    * プリミティブの存在範囲をリストに追加する。
    * 
-   * @param prim
-   *        　プリミティブ
+   * @param prim 　プリミティブ
    */
   private void addRangeList(Object prim) {
     this.pr.setRange(prim);
@@ -223,10 +211,8 @@ public class CollisionCanceller {
   /**
    * ツリーにプリミティブを追加する。
    * 
-   * @param prim
-   *        　プリミティブ
-   * @param group
-   *        　プリミティブの所属するクラス
+   * @param prim 　プリミティブ
+   * @param group 　プリミティブの所属するクラス
    */
   private void addPrimitive(Object prim, Location primLoc, Group group) {
     if (prim instanceof XMLBox) {

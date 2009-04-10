@@ -68,10 +68,8 @@ public class AddPrimitiveDialog {
   /**
    * コンストラクター
    * 
-   * @param parentShell
-   *        親シェル
-   * @param group
-   *        グループ
+   * @param parentShell 親シェル
+   * @param group グループ
    * @param dc
    */
   public AddPrimitiveDialog(Shell parentShell, Group group, CollisionCanceller dc) {
@@ -108,15 +106,15 @@ public class AddPrimitiveDialog {
     primLabel.setLayoutData(labelData);
     createPrimCombo();
 
-    this.param1 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.2"), "0.2");  //$NON-NLS-1$//$NON-NLS-2$
+    this.param1 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.2"), "0.2"); //$NON-NLS-1$//$NON-NLS-2$
     this.unitLabel1 = new Label(this.sShell, SWT.NONE);
     this.unitLabel1.setText(this.lengthUnit);
 
-    this.param2 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.3"), "0.2");  //$NON-NLS-1$//$NON-NLS-2$
+    this.param2 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.3"), "0.2"); //$NON-NLS-1$//$NON-NLS-2$
     this.unitLabel2 = new Label(this.sShell, SWT.NONE);
     this.unitLabel2.setText(this.lengthUnit);
 
-    this.param3 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.4"), "0.2");  //$NON-NLS-1$//$NON-NLS-2$
+    this.param3 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.4"), "0.2"); //$NON-NLS-1$//$NON-NLS-2$
     this.unitLabel3 = new Label(this.sShell, SWT.NONE);
     this.unitLabel3.setText(this.lengthUnit);
 
@@ -130,13 +128,13 @@ public class AddPrimitiveDialog {
     rotData.horizontalSpan = 3;
     rotateGroup.setLayoutData(rotData);
 
-    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.6"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelRX = new Label(rotateGroup, SWT.NONE);
     unitLabelRX.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.7")); //$NON-NLS-1$
-    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.8"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelRY = new Label(rotateGroup, SWT.NONE);
     unitLabelRY.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.9")); //$NON-NLS-1$
-    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.10"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.10"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelRZ = new Label(rotateGroup, SWT.NONE);
     unitLabelRZ.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.11")); //$NON-NLS-1$
 
@@ -150,13 +148,13 @@ public class AddPrimitiveDialog {
     locData.horizontalSpan = 3;
     locationGroup.setLayoutData(locData);
 
-    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.13"), "0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.13"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelLX = new Label(locationGroup, SWT.NONE);
     unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.14"), "0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.14"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelLY = new Label(locationGroup, SWT.NONE);
     unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.15"), "0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.15"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
     unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
 

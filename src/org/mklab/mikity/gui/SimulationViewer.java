@@ -97,7 +97,7 @@ public class SimulationViewer extends ApplicationWindow {
     super(parentShell);
     this.manager = new MovableGroupManager(root);
     this.root = root;
-//    setShellStyle(SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    //    setShellStyle(SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
   }
 
   /**

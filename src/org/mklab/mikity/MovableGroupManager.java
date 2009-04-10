@@ -69,8 +69,7 @@ public class MovableGroupManager {
   /**
    * 時間ごとのリンクデータを読み取り、アニメーションを実行(DHパラメータ用)
    * 
-   * @param time
-   *        時間
+   * @param time 時間
    */
   public void processStimulusDH(double time) {
     // リストの中に入っているIMovableGroup全てに対して同じ処理を行う
@@ -85,8 +84,7 @@ public class MovableGroupManager {
   /**
    * 時間ごとのリンクデータを読み取り、アニメーションを実行
    * 
-   * @param time
-   *        時間
+   * @param time 時間
    */
   public void processStimulus(double time) {
     // リストの中に入っているIMovableGroup全てに対して同じ処理を行う
@@ -101,8 +99,7 @@ public class MovableGroupManager {
   /**
    * グループを追加する。
    * 
-   * @param group
-   *        追加するグループ
+   * @param group 追加するグループ
    */
   private void addGroup(final Group[] group) {
     for (int i = 0; i < group.length; i++) {
@@ -116,10 +113,8 @@ public class MovableGroupManager {
   /**
    * 移動可能なグループリストの設定
    * 
-   * @param linkdata
-   *        リンクデータ
-   * @param tg
-   *        TransformGroup
+   * @param linkdata リンクデータ
+   * @param tg TransformGroup
    */
   private void setMovableLinkData(Linkdata[] linkdata, MyTransformGroup tg) {
     if (linkdata.length == 0) {
@@ -245,8 +240,7 @@ public class MovableGroupManager {
   /**
    * 行列データの設定
    * 
-   * @param data
-   *        行列データ
+   * @param data 行列データ
    */
   public void setData(final Matrix data) {
     this.data = data;
@@ -265,8 +259,7 @@ public class MovableGroupManager {
   /**
    * DHパラメータの使用の有無を設定
    * 
-   * @param used
-   *        DHパラメータ使用の有無
+   * @param used DHパラメータ使用の有無
    */
   public void setDH(boolean used) {
     this.usedDHParam = used;
@@ -284,8 +277,7 @@ public class MovableGroupManager {
   /**
    * リンクパラメータの使用の有無を設定
    * 
-   * @param used
-   *        リンクパラメータ使用の有無
+   * @param used リンクパラメータ使用の有無
    */
   public void setLink(boolean used) {
     this.usedLink = used;

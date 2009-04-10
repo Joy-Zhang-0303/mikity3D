@@ -58,7 +58,7 @@ public abstract class DataPicker {
     if (this.data.getRowSize() < row) {
       // 
     }
-    
+
     switch (moveType) {
       case DHParameter.A:
         for (int i = 0; i < this.params.length; i++) {
@@ -101,7 +101,7 @@ public abstract class DataPicker {
     if (this.data.getRowSize() < row) {
       //
     }
-    
+
     switch (moveType) {
       case LinkParameter.LOCX:
         for (int i = 0; i < this.link.length; i++) {
@@ -152,8 +152,7 @@ public abstract class DataPicker {
 
   /**
    * @param setType
-   * @param constantValue
-   *        initialTranformに固定値をセットする
+   * @param constantValue initialTranformに固定値をセットする
    */
   public void setConstantValueDH(int setType, double constantValue) {
     switch (setType) {
@@ -194,8 +193,7 @@ public abstract class DataPicker {
 
   /**
    * @param setType
-   * @param constantValue
-   *        initialTranformに固定値をセットする
+   * @param constantValue initialTranformに固定値をセットする
    */
   public void setConstantValue(int setType, double constantValue) {
     switch (setType) {
@@ -247,8 +245,7 @@ public abstract class DataPicker {
   }
 
   /**
-   * @param time
-   *        時間を与えると、それに最も近い時間のある行rowを返す
+   * @param time 時間を与えると、それに最も近い時間のある行rowを返す
    * @return getValue(row, getColumn(time))
    */
   public int getColumn(double time) {
@@ -258,10 +255,8 @@ public abstract class DataPicker {
   }
 
   /**
-   * @param row
-   *        データの行数（何番目のデータか）
-   * @param time
-   *        時刻
+   * @param row データの行数（何番目のデータか）
+   * @param time 時刻
    * @return 時刻timeのときのrow行目のデータ
    */
   public double getValue(int row, double time) {

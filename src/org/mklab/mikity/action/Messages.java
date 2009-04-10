@@ -15,7 +15,7 @@ public class Messages {
   private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
   private Messages() {
-    //
+  //
   }
 
   /**

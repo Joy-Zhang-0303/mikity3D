@@ -179,8 +179,7 @@ public class Config implements java.io.Serializable {
   /**
    * Sets the value of field 'background'.
    * 
-   * @param background
-   *        the value of field 'background'.
+   * @param background the value of field 'background'.
    */
   public void setBackground(org.mklab.mikity.xml.config.Background background) {
     this._background = background;
@@ -189,8 +188,7 @@ public class Config implements java.io.Serializable {
   /**
    * Sets the value of field 'data'.
    * 
-   * @param data
-   *        the value of field 'data'.
+   * @param data the value of field 'data'.
    */
   public void setData(java.lang.String data) {
     this._data = data;
@@ -199,8 +197,7 @@ public class Config implements java.io.Serializable {
   /**
    * Sets the value of field 'dataUnit'.
    * 
-   * @param dataUnit
-   *        the value of field 'dataUnit'.
+   * @param dataUnit the value of field 'dataUnit'.
    */
   public void setDataUnit(org.mklab.mikity.xml.config.DataUnit dataUnit) {
     this._dataUnit = dataUnit;
@@ -209,8 +206,7 @@ public class Config implements java.io.Serializable {
   /**
    * Sets the value of field 'light'.
    * 
-   * @param light
-   *        the value of field 'light'.
+   * @param light the value of field 'light'.
    */
   public void setLight(org.mklab.mikity.xml.config.Light light) {
     this._light = light;
@@ -219,8 +215,7 @@ public class Config implements java.io.Serializable {
   /**
    * Sets the value of field 'modelUnit'.
    * 
-   * @param modelUnit
-   *        the value of field 'modelUnit'.
+   * @param modelUnit the value of field 'modelUnit'.
    */
   public void setModelUnit(org.mklab.mikity.xml.config.ModelUnit modelUnit) {
     this._modelUnit = modelUnit;
@@ -229,8 +224,7 @@ public class Config implements java.io.Serializable {
   /**
    * Sets the value of field 'view'.
    * 
-   * @param view
-   *        the value of field 'view'.
+   * @param view the value of field 'view'.
    */
   public void setView(org.mklab.mikity.xml.config.View view) {
     this._view = view;

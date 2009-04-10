@@ -119,23 +119,23 @@ public class Jamast implements java.io.Serializable {
     this._modelList.clear();
   } // -- void clearModel()
 
-//  /**
-//   * Method enumerateConfig
-//   * 
-//   * @return org.exolab.castor.util.IteratorEnumeration(_configList.iterator())
-//   */
-//  public java.util.Enumeration<?> enumerateConfig() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._configList.iterator());
-//  } // -- java.util.Enumeration enumerateConfig()
-//
-//  /**
-//   * Method enumerateModel
-//   * 
-//   * @return org.exolab.castor.util.IteratorEnumeration(_modelList.iterator())
-//   */
-//  public java.util.Enumeration<?> enumerateModel() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._modelList.iterator());
-//  } // -- java.util.Enumeration enumerateModel()
+  //  /**
+  //   * Method enumerateConfig
+  //   * 
+  //   * @return org.exolab.castor.util.IteratorEnumeration(_configList.iterator())
+  //   */
+  //  public java.util.Enumeration<?> enumerateConfig() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._configList.iterator());
+  //  } // -- java.util.Enumeration enumerateConfig()
+  //
+  //  /**
+  //   * Method enumerateModel
+  //   * 
+  //   * @return org.exolab.castor.util.IteratorEnumeration(_modelList.iterator())
+  //   */
+  //  public java.util.Enumeration<?> enumerateModel() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._modelList.iterator());
+  //  } // -- java.util.Enumeration enumerateModel()
 
   /**
    * Note: hashCode() has not been overriden
@@ -193,8 +193,7 @@ public class Jamast implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.Config[] getConfig()
 
   /**
-   * Method getConfigAsReferenceReturns a reference to 'config'. No type
-   * checking is performed on any modications to the Collection.
+   * Method getConfigAsReferenceReturns a reference to 'config'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -242,8 +241,7 @@ public class Jamast implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.Model[] getModel()
 
   /**
-   * Method getModelAsReferenceReturns a reference to 'model'. No type checking
-   * is performed on any modications to the Collection.
+   * Method getModelAsReferenceReturns a reference to 'model'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -313,8 +311,7 @@ public class Jamast implements java.io.Serializable {
   /**
    * Method setConfigSets the value of 'config' by copying the given ArrayList.
    * 
-   * @param configCollection
-   *        the Vector to copy.
+   * @param configCollection the Vector to copy.
    */
   // public void setConfig(java.util.ArrayList configCollection)
   // {
@@ -325,11 +322,9 @@ public class Jamast implements java.io.Serializable {
   // }
   // } //-- void setConfig(java.util.ArrayList)
   /**
-   * Method setConfigAsReferenceSets the value of 'config' by setting it to the
-   * given ArrayList. No type checking is performed.
+   * Method setConfigAsReferenceSets the value of 'config' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param configCollection
-   *        the ArrayList to copy.
+   * @param configCollection the ArrayList to copy.
    */
   public void setConfigAsReference(java.util.ArrayList<Config> configCollection) {
     this._configList = configCollection;
@@ -366,8 +361,7 @@ public class Jamast implements java.io.Serializable {
   /**
    * Method setModelSets the value of 'model' by copying the given ArrayList.
    * 
-   * @param modelCollection
-   *        the Vector to copy.
+   * @param modelCollection the Vector to copy.
    */
   // public void setModel(java.util.ArrayList modelCollection)
   // {
@@ -378,11 +372,9 @@ public class Jamast implements java.io.Serializable {
   // }
   // } //-- void setModel(java.util.ArrayList)
   /**
-   * Method setModelAsReferenceSets the value of 'model' by setting it to the
-   * given ArrayList. No type checking is performed.
+   * Method setModelAsReferenceSets the value of 'model' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param modelCollection
-   *        the ArrayList to copy.
+   * @param modelCollection the ArrayList to copy.
    */
   public void setModelAsReference(java.util.ArrayList<Model> modelCollection) {
     this._modelList = modelCollection;

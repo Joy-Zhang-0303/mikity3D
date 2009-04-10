@@ -34,8 +34,7 @@ public class PrimitiveRange {
   /**
    * プリミティブが存在する範囲を設定する
    * 
-   * @param prim
-   *        プリミティブ
+   * @param prim プリミティブ
    */
   public void setRange(Object prim) {
     if (prim instanceof XMLBox) {
@@ -65,12 +64,9 @@ public class PrimitiveRange {
   /**
    * プリミティブが直方体の場合の存在範囲を計算する。
    * 
-   * @param x
-   *        　直方体の幅
-   * @param y
-   *        　直方体の高さ
-   * @param z
-   *        　直方体の奥行き
+   * @param x 　直方体の幅
+   * @param y 　直方体の高さ
+   * @param z 　直方体の奥行き
    * @return rg　存在範囲
    */
   private float calculateRange(float x, float y, float z) {
@@ -81,10 +77,8 @@ public class PrimitiveRange {
   /**
    * プリミティブが円柱や円錐の場合の存在範囲を計算する。
    * 
-   * @param r
-   *        　円柱・円錐の半径
-   * @param h
-   *        　円柱・円錐の高さ
+   * @param r 　円柱・円錐の半径
+   * @param h 　円柱・円錐の高さ
    * @return rg 存在範囲
    */
   private float calculateRange(float r, float h) {

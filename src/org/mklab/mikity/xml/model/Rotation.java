@@ -193,8 +193,7 @@ public class Rotation implements java.io.Serializable {
   /**
    * Sets the value of field 'xrotate'.
    * 
-   * @param xrotate
-   *        the value of field 'xrotate'.
+   * @param xrotate the value of field 'xrotate'.
    */
   public void setXrotate(float xrotate) {
     this._xrotate = xrotate;
@@ -204,8 +203,7 @@ public class Rotation implements java.io.Serializable {
   /**
    * Sets the value of field 'yrotate'.
    * 
-   * @param yrotate
-   *        the value of field 'yrotate'.
+   * @param yrotate the value of field 'yrotate'.
    */
   public void setYrotate(float yrotate) {
     this._yrotate = yrotate;
@@ -215,8 +213,7 @@ public class Rotation implements java.io.Serializable {
   /**
    * Sets the value of field 'zrotate'.
    * 
-   * @param zrotate
-   *        the value of field 'zrotate'.
+   * @param zrotate the value of field 'zrotate'.
    */
   public void setZrotate(float zrotate) {
     this._zrotate = zrotate;

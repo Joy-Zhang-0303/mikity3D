@@ -45,8 +45,6 @@ public class DataPickerTest extends TestCase {
 
     picker.addMoveTypeDH(DHParameter.ALPHA, 3);
     assertTrue(-3.29870000E-02 == param.getAlpha());
-    
-    
 
   }
 }

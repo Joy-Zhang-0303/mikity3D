@@ -37,8 +37,7 @@ public class ColladaFileTransformer {
   /**
    * コンストラクタ
    * 
-   * @param file
-   *        読み込みファイル
+   * @param file 読み込みファイル
    */
   public ColladaFileTransformer(File file) {
     this.fileBefore = file;

@@ -103,8 +103,7 @@ public class DataUnit implements java.io.Serializable {
   /**
    * Sets the value of field 'angle'.
    * 
-   * @param angle
-   *        the value of field 'angle'.
+   * @param angle the value of field 'angle'.
    */
   public void setAngle(java.lang.String angle) {
     this._angle = angle;
@@ -113,8 +112,7 @@ public class DataUnit implements java.io.Serializable {
   /**
    * Sets the value of field 'length'.
    * 
-   * @param length
-   *        the value of field 'length'.
+   * @param length the value of field 'length'.
    */
   public void setLength(java.lang.String length) {
     this._length = length;

@@ -212,8 +212,7 @@ public class XMLTrianglePolygon {
   /**
    * Sets the value of field 'transparent'.
    * 
-   * @param transparent
-   *        the value of field 'transparent'.
+   * @param transparent the value of field 'transparent'.
    */
   public void setTransparent(boolean transparent) {
     this._transparent = transparent;

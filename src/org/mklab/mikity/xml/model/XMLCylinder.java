@@ -119,11 +119,9 @@ public class XMLCylinder implements Serializable {
   // -----------/
 
   /**
-   * Method addPropertyChangeListenerRegisters a PropertyChangeListener with
-   * this class.
+   * Method addPropertyChangeListenerRegisters a PropertyChangeListener with this class.
    * 
-   * @param pcl
-   *        The PropertyChangeListener to register.
+   * @param pcl The PropertyChangeListener to register.
    */
   public void addPropertyChangeListener(PropertyChangeListener pcl) {
     this.propertyChangeListeners.addElement(pcl);
@@ -294,15 +292,11 @@ public class XMLCylinder implements Serializable {
   } // -- boolean hasTransparent()
 
   /**
-   * Method notifyPropertyChangeListenersNotifies all registered
-   * PropertyChangeListeners when a bound property's value changes.
+   * Method notifyPropertyChangeListenersNotifies all registered PropertyChangeListeners when a bound property's value changes.
    * 
-   * @param fieldName
-   *        the name of the property that has changed.
-   * @param newValue
-   *        the new value of the property.
-   * @param oldValue
-   *        the old value of the property.
+   * @param fieldName the name of the property that has changed.
+   * @param newValue the new value of the property.
+   * @param oldValue the old value of the property.
    */
   protected void notifyPropertyChangeListeners(String fieldName, Object oldValue, Object newValue) {
     if (this.propertyChangeListeners == null) return;
@@ -316,11 +310,9 @@ public class XMLCylinder implements Serializable {
   // java.lang.Object)
 
   /**
-   * Method removePropertyChangeListenerRemoves the given PropertyChangeListener
-   * from this classes list of ProperyChangeListeners.
+   * Method removePropertyChangeListenerRemoves the given PropertyChangeListener from this classes list of ProperyChangeListeners.
    * 
-   * @param pcl
-   *        The PropertyChangeListener to remove.
+   * @param pcl The PropertyChangeListener to remove.
    * @return true if the given PropertyChangeListener was removed.
    */
   public boolean removePropertyChangeListener(PropertyChangeListener pcl) {
@@ -332,8 +324,7 @@ public class XMLCylinder implements Serializable {
   /**
    * Sets the value of field 'color'.
    * 
-   * @param color
-   *        the value of field 'color'.
+   * @param color the value of field 'color'.
    */
   public void setColor(String color) {
     this._color = color;
@@ -342,8 +333,7 @@ public class XMLCylinder implements Serializable {
   /**
    * Sets the value of field 'div'.
    * 
-   * @param div
-   *        the value of field 'div'.
+   * @param div the value of field 'div'.
    */
   public void setDiv(int div) {
     this._div = div;
@@ -353,8 +343,7 @@ public class XMLCylinder implements Serializable {
   /**
    * Sets the value of field 'height'.
    * 
-   * @param height
-   *        the value of field 'height'.
+   * @param height the value of field 'height'.
    */
   public void setHeight(float height) {
     this._height = height;
@@ -364,8 +353,7 @@ public class XMLCylinder implements Serializable {
   /**
    * Sets the value of field 'location'.
    * 
-   * @param location
-   *        the value of field 'location'.
+   * @param location the value of field 'location'.
    */
   public void setLocation(Location location) {
     this._location = location;
@@ -374,8 +362,7 @@ public class XMLCylinder implements Serializable {
   /**
    * Sets the value of field 'r'.
    * 
-   * @param r
-   *        the value of field 'r'.
+   * @param r the value of field 'r'.
    */
   public void setR(float r) {
     this._r = r;
@@ -385,8 +372,7 @@ public class XMLCylinder implements Serializable {
   /**
    * Sets the value of field 'rotation'.
    * 
-   * @param rotation
-   *        the value of field 'rotation'.
+   * @param rotation the value of field 'rotation'.
    */
   public void setRotation(Rotation rotation) {
     this._rotation = rotation;
@@ -395,8 +381,7 @@ public class XMLCylinder implements Serializable {
   /**
    * Sets the value of field 'transparent'.
    * 
-   * @param transparent
-   *        the value of field 'transparent'.
+   * @param transparent the value of field 'transparent'.
    */
   public void setTransparent(boolean transparent) {
     this._transparent = transparent;

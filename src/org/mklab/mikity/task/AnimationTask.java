@@ -27,8 +27,7 @@ public class AnimationTask extends TimerTask {
    * コンストラクター
    * 
    * @param endTime
-   * @param manager
-   *        グループマネージャー
+   * @param manager グループマネージャー
    */
   public AnimationTask(double endTime, MovableGroupManager manager) {
     this.endTime = endTime;

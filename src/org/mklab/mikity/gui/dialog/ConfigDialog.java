@@ -59,10 +59,8 @@ public class ConfigDialog {
   /**
    * コンストラクター
    * 
-   * @param parentShell
-   *        親シェル
-   * @param config
-   *        設定
+   * @param parentShell 親シェル
+   * @param config 設定
    */
   public ConfigDialog(Shell parentShell, Config config) {
     this.parentShell = parentShell;
@@ -180,7 +178,7 @@ public class ConfigDialog {
     vRollData.horizontalSpan = 7;
     vRollLabel.setLayoutData(vRollData);
 
-    this.viewXrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "-0.2");  //$NON-NLS-1$//$NON-NLS-2$
+    this.viewXrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "-0.2"); //$NON-NLS-1$//$NON-NLS-2$
     this.viewYrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.viewZrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
 

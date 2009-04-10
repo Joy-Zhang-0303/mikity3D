@@ -59,8 +59,7 @@ public class PrimitiveConnector {
   /**
    * プリミティブごとのの各パラメータを取得し、キャンバス上のプリミティブごとに適したコネクタを追加する。 コネクタを追加されるプリミティブ
    * 
-   * @param prim
-   *        プリミティブ
+   * @param prim プリミティブ
    */
   public void createPrimitiveConnector(Object prim) {
     if (prim instanceof XMLBox) {
@@ -121,8 +120,7 @@ public class PrimitiveConnector {
   /**
    * プリミティブの位置座標におけるパラメータが変化していないとき、各座標に0.0の値を代入する。
    * 
-   * @param loc
-   *        　プリミティブの位置座標
+   * @param loc 　プリミティブの位置座標
    */
   private void checkLoc(Location loc) {
     if (loc == null) {
@@ -136,8 +134,7 @@ public class PrimitiveConnector {
   /**
    * プリミティブの各軸の回転角度におけるパラメータが変化していないとき、各軸の回転角度に0.0の値を代入する。
    * 
-   * @param rot
-   *        　プリミティブの回転角度
+   * @param rot 　プリミティブの回転角度
    */
   private void checkRot(Rotation rot) {
     if (rot == null) {

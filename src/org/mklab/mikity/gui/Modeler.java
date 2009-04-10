@@ -484,8 +484,7 @@ public class Modeler extends Composite {
   /**
    * マウス操作の状態を指定する。
    * 
-   * @param i
-   *        マウス操作の状態の表す数値
+   * @param i マウス操作の状態の表す数値
    */
   public void setMouseOperation(int i) {
     this.canvas.mouseOperationType = i;

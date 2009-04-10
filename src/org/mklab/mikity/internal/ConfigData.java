@@ -169,8 +169,7 @@ public class ConfigData {
   }
 
   /**
-   * @param agentfile
-   *        agentfile を設定。
+   * @param agentfile agentfile を設定。
    */
   public void setAgentfile(String[] agentfile) {
     this.agentfile = agentfile;
@@ -186,8 +185,7 @@ public class ConfigData {
   }
 
   /**
-   * @param bgcolor
-   *        bgcolor を設定。
+   * @param bgcolor bgcolor を設定。
    */
   public void setBgcolor(String bgcolor) {
     this.bgcolor = bgcolor;
@@ -203,8 +201,7 @@ public class ConfigData {
   }
 
   /**
-   * @param data
-   *        data を設定。
+   * @param data data を設定。
    */
   public void setData(String[] data) {
     this.data = data;
@@ -220,8 +217,7 @@ public class ConfigData {
   }
 
   /**
-   * @param link
-   *        link を設定。
+   * @param link link を設定。
    */
   public void setLink(String[] link) {
     this.link = link;
@@ -237,8 +233,7 @@ public class ConfigData {
   }
 
   /**
-   * @param parent
-   *        parent を設定。
+   * @param parent parent を設定。
    */
   public void setParent(int parent) {
     this.parent = parent;
@@ -254,8 +249,7 @@ public class ConfigData {
   }
 
   /**
-   * @param xcenter
-   *        xcenter を設定。
+   * @param xcenter xcenter を設定。
    */
   public void setXcenter(double xcenter) {
     this.xcenter = xcenter;
@@ -271,8 +265,7 @@ public class ConfigData {
   }
 
   /**
-   * @param xeye
-   *        xeye を設定。
+   * @param xeye xeye を設定。
    */
   public void setXeye(double xeye) {
     this.xeye = xeye;
@@ -288,8 +281,7 @@ public class ConfigData {
   }
 
   /**
-   * @param xoffset
-   *        xoffset を設定。
+   * @param xoffset xoffset を設定。
    */
   public void setXoffset(double xoffset) {
     this.xoffset = xoffset;
@@ -305,8 +297,7 @@ public class ConfigData {
   }
 
   /**
-   * @param xroll
-   *        xroll を設定。
+   * @param xroll xroll を設定。
    */
   public void setXroll(double xroll) {
     this.xroll = xroll;
@@ -322,8 +313,7 @@ public class ConfigData {
   }
 
   /**
-   * @param xsize
-   *        xsize を設定。
+   * @param xsize xsize を設定。
    */
   public void setXsize(int xsize) {
     this.xsize = xsize;
@@ -339,8 +329,7 @@ public class ConfigData {
   }
 
   /**
-   * @param ycenter
-   *        ycenter を設定。
+   * @param ycenter ycenter を設定。
    */
   public void setYcenter(double ycenter) {
     this.ycenter = ycenter;
@@ -356,8 +345,7 @@ public class ConfigData {
   }
 
   /**
-   * @param yeye
-   *        yeye を設定。
+   * @param yeye yeye を設定。
    */
   public void setYeye(double yeye) {
     this.yeye = yeye;
@@ -373,8 +361,7 @@ public class ConfigData {
   }
 
   /**
-   * @param yoffset
-   *        yoffset を設定。
+   * @param yoffset yoffset を設定。
    */
   public void setYoffset(double yoffset) {
     this.yoffset = yoffset;
@@ -390,8 +377,7 @@ public class ConfigData {
   }
 
   /**
-   * @param yroll
-   *        yroll を設定。
+   * @param yroll yroll を設定。
    */
   public void setYroll(double yroll) {
     this.yroll = yroll;
@@ -407,8 +393,7 @@ public class ConfigData {
   }
 
   /**
-   * @param ysize
-   *        ysize を設定。
+   * @param ysize ysize を設定。
    */
   public void setYsize(int ysize) {
     this.ysize = ysize;
@@ -424,8 +409,7 @@ public class ConfigData {
   }
 
   /**
-   * @param zcenter
-   *        zcenter を設定。
+   * @param zcenter zcenter を設定。
    */
   public void setZcenter(double zcenter) {
     this.zcenter = zcenter;
@@ -441,8 +425,7 @@ public class ConfigData {
   }
 
   /**
-   * @param zeye
-   *        zeye を設定。
+   * @param zeye zeye を設定。
    */
   public void setZeye(double zeye) {
     this.zeye = zeye;
@@ -458,8 +441,7 @@ public class ConfigData {
   }
 
   /**
-   * @param zoffset
-   *        zoffset を設定。
+   * @param zoffset zoffset を設定。
    */
   public void setZoffset(double zoffset) {
     this.zoffset = zoffset;
@@ -475,8 +457,7 @@ public class ConfigData {
   }
 
   /**
-   * @param zroll
-   *        zroll を設定。
+   * @param zroll zroll を設定。
    */
   public void setZroll(double zroll) {
     this.zroll = zroll;

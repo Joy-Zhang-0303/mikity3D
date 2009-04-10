@@ -45,8 +45,7 @@ public class ConnectNewRotation {
   /**
    * 基準プリミティブの回転を取得する
    * 
-   * @param primNRot
-   *        　基準プリミティブの回転
+   * @param primNRot 　基準プリミティブの回転
    */
   public void setPrimitiveNRotation(Rotation primNRot) {
     this.x = primNRot.loadXrotate();
@@ -57,10 +56,8 @@ public class ConnectNewRotation {
   /**
    * プリミティブの移動後の回転を番号の組み合わせから更新する
    * 
-   * @param n
-   *        　コネクタNの番号
-   * @param s
-   *        　コネクタSの番号
+   * @param n 　コネクタNの番号
+   * @param s 　コネクタSの番号
    */
   public void setNewRot(int n, int s) {
     if (s == 1) {

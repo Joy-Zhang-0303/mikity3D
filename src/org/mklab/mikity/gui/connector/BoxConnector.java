@@ -37,16 +37,11 @@ public class BoxConnector {
   /**
    * 直方体プリミティブにコネクタを追加する。
    * 
-   * @param xSize
-   *        直方体の幅
-   * @param ySize
-   *        直方体の高さ
-   * @param zSize
-   *        直方体の奥行き
-   * @param loc
-   *        直方体の座標
-   * @param rot
-   *        直方体の回転
+   * @param xSize 直方体の幅
+   * @param ySize 直方体の高さ
+   * @param zSize 直方体の奥行き
+   * @param loc 直方体の座標
+   * @param rot 直方体の回転
    */
   public void createBoxConnector(float xSize, float ySize, float zSize, Location loc, Rotation rot) {
     for (int i = 0; i < this.cnct.length; i++) {

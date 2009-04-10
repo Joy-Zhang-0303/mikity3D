@@ -43,8 +43,7 @@ public class XMLConnector extends XMLCylinder {
   /**
    * プリミティブの大きさのパラメータががコネクタに比べて小さくないか確認する。 小さいと判断した場合、コネクタのパラメータを変更する。
    * 
-   * @param param
-   *        　プリミティブのパラメータ
+   * @param param 　プリミティブのパラメータ
    */
   public void checkParameter(float param) {
     if (param >= 0.05f) {
@@ -59,8 +58,7 @@ public class XMLConnector extends XMLCylinder {
   /**
    * プリミティブの半径の大きさのパラメータががコネクタに比べて小さくないか確認する。 小さいと判断した場合、コネクタのパラメータを変更する。
    * 
-   * @param param
-   *        　プリミティブの半径のパラメータ
+   * @param param 　プリミティブの半径のパラメータ
    */
   public void checkParameterR(float param) {
     if (param >= 0.025f) {
@@ -98,8 +96,7 @@ public class XMLConnector extends XMLCylinder {
   /**
    * CylinderをコネクタNに指定する。あるいはその逆に指定する。
    * 
-   * @param flag
-   *        このCylinderがコネクタNに指定されていることに関する真偽
+   * @param flag このCylinderがコネクタNに指定されていることに関する真偽
    */
   public void setFlag(String flag) {
     this._flag = flag;
@@ -129,12 +126,9 @@ public class XMLConnector extends XMLCylinder {
   /**
    * プリミティブの位置からデフォルトのコネクタの位置の基点を設定する。
    * 
-   * @param x
-   *        プリミティブのx座標
-   * @param y
-   *        プリミティブのy座標
-   * @param z
-   *        プリミティブのz座標
+   * @param x プリミティブのx座標
+   * @param y プリミティブのy座標
+   * @param z プリミティブのz座標
    */
   public void setConnectorLocation(float x, float y, float z) {
     this._location.setX(x);

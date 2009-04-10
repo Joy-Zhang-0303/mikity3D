@@ -16,8 +16,7 @@ public interface IMovableGroup {
   /**
    * DHパラメーターを設定するとそのグループを動かすメソッド。
    * 
-   * @param param
-   *        グループのDHパラメーター
+   * @param param グループのDHパラメーター
    */
   public void setDHParameter(DHParameter param);
 

@@ -33,8 +33,7 @@ public class ParameterInputBox extends Composite {
    * ラベルとテキストを作る コンストラクター
    * 
    * @param composite
-   * @param style
-   *        keyをラベルに、valueをテキストボックスに
+   * @param style keyをラベルに、valueをテキストボックスに
    * @param key
    * @param value
    */
@@ -70,8 +69,7 @@ public class ParameterInputBox extends Composite {
    * 
    * @param c
    * @param lab
-   * @param but
-   *        labをラベルに、butをボタンのテキストに
+   * @param but labをラベルに、butをボタンのテキストに
    */
   public ParameterInputBox(Composite c, String lab, String but) {
     super(c, SWT.NONE);

@@ -53,18 +53,12 @@ public class TurnLocation {
   /**
    * コンストラクタ
    * 
-   * @param xSize
-   *        　幅
-   * @param ySize
-   *        　高さ
-   * @param zSize
-   *        　奥行き
-   * @param xRot
-   *        　X軸回転
-   * @param yRot
-   *        　Y軸回転
-   * @param zRot
-   *        　Z軸回転
+   * @param xSize 　幅
+   * @param ySize 　高さ
+   * @param zSize 　奥行き
+   * @param xRot 　X軸回転
+   * @param yRot 　Y軸回転
+   * @param zRot 　Z軸回転
    */
   public TurnLocation(float xSize, float ySize, float zSize, float xRot, float yRot, float zRot) {
     this.cMatrix[0][0] = xSize;
@@ -190,12 +184,9 @@ public class TurnLocation {
   /**
    * コネクタの位置1の設定
    * 
-   * @param x1
-   *        　X座標
-   * @param y1
-   *        　Y座標
-   * @param z1
-   *        　Z座標
+   * @param x1 　X座標
+   * @param y1 　Y座標
+   * @param z1 　Z座標
    */
   private void setNewLocation1(float x1, float y1, float z1) {
     this.newLoc1.setX(x1);
@@ -206,12 +197,9 @@ public class TurnLocation {
   /**
    * コネクタの位置2の設定
    * 
-   * @param x2
-   *        　X座標
-   * @param y2
-   *        　Y座標
-   * @param z2
-   *        　Z座標
+   * @param x2 　X座標
+   * @param y2 　Y座標
+   * @param z2 　Z座標
    */
   private void setNewLocation2(float x2, float y2, float z2) {
     this.newLoc2.setX(x2);
@@ -222,12 +210,9 @@ public class TurnLocation {
   /**
    * コネクタの位置3の設定
    * 
-   * @param x3
-   *        　X座標
-   * @param y3
-   *        　Y座標
-   * @param z3
-   *        　Z座標
+   * @param x3 　X座標
+   * @param y3 　Y座標
+   * @param z3 　Z座標
    */
   private void setNewLocation3(float x3, float y3, float z3) {
     this.newLoc3.setX(x3);

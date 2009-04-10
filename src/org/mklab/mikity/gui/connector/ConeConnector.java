@@ -37,14 +37,10 @@ public class ConeConnector {
   /**
    * 円錐プリミティブにコネクタを追加する。
    * 
-   * @param r
-   *        円錐の半径
-   * @param h
-   *        円錐の高さ
-   * @param loc
-   *        円錐の座標
-   * @param rot
-   *        円錐の回転
+   * @param r 円錐の半径
+   * @param h 円錐の高さ
+   * @param loc 円錐の座標
+   * @param rot 円錐の回転
    */
   public void createConeConnector(float r, float h, Location loc, Rotation rot) {
     for (int i = 0; i < this.cnct.length; i++) {

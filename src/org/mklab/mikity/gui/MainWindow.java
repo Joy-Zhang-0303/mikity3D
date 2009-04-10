@@ -448,7 +448,7 @@ public class MainWindow extends ApplicationWindow {
 
     JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(this.file);
-    
+
     if (marshaller.getRoot() != null) {
       Group importGroup = marshaller.getRoot().loadModel(0).loadGroup(0);
 
@@ -558,8 +558,7 @@ public class MainWindow extends ApplicationWindow {
   /**
    * マウス操作の状態を指定する。
    * 
-   * @param i
-   *        マウス操作の状態の表す数値
+   * @param i マウス操作の状態の表す数値
    */
   public void setMouseOperation(int i) {
     this.modeler.setMouseOperation(i);

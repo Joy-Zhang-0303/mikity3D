@@ -174,8 +174,7 @@ public class PrimitiveFactory {
   /**
    * 与えられたboxインスタンスのプリミティブを作成する。
    * 
-   * @param box
-   *        ボックス
+   * @param box ボックス
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
   public static MyTransformGroup create(XMLBox box) {
@@ -205,8 +204,7 @@ public class PrimitiveFactory {
   /**
    * 与えられたcylinderインスタンスのプリミティブを作成する。
    * 
-   * @param cylinder
-   *        シリンダー
+   * @param cylinder シリンダー
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
   public static MyTransformGroup create(XMLCylinder cylinder) {
@@ -237,8 +235,7 @@ public class PrimitiveFactory {
   /**
    * 与えられたsphereインスタンスのプリミティブを作成する。
    * 
-   * @param sphere
-   *        スフィア
+   * @param sphere スフィア
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
   public static MyTransformGroup create(XMLSphere sphere) {
@@ -267,8 +264,7 @@ public class PrimitiveFactory {
   /**
    * 与えられたconeインスタンスのプリミティブを作成する。
    * 
-   * @param cone
-   *        コーン
+   * @param cone コーン
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
   public static MyTransformGroup create(XMLCone cone) {
@@ -297,8 +293,7 @@ public class PrimitiveFactory {
   /**
    * 与えられたconnectorインスタンスのプリミティブを作成する。
    * 
-   * @param connector
-   *        コネクタ
+   * @param connector コネクタ
    * @return tg 与えられたファイルで出来るプリミティブ (XMLConnector クラス名 org.mklab.mikity.xml 変数名)
    */
   public static MyTransformGroup create(XMLConnector connector) {
@@ -325,10 +320,8 @@ public class PrimitiveFactory {
   /**
    * 与えられたTrianglePolygonインスタンスのプリミティブを作成する。
    * 
-   * @param triangle
-   *        三角形ポリゴン
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLTrianglePolygon クラス名
-   *         org.mklab.mikity.xml 変数名)
+   * @param triangle 三角形ポリゴン
+   * @return tg 与えられたファイルで出来るプリミティブ (XMLTrianglePolygon クラス名 org.mklab.mikity.xml 変数名)
    */
   public static MyTransformGroup create(XMLTrianglePolygon triangle) {
     Point3f[] vertices = new Point3f[3];
@@ -377,10 +370,8 @@ public class PrimitiveFactory {
   /**
    * 与えられたQuadPolygonインスタンスのプリミティブを作成する。
    * 
-   * @param quad
-   *        四角形ポリゴン
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLQuadPolygon クラス名 org.mklab.mikity.xml
-   *         変数名)
+   * @param quad 四角形ポリゴン
+   * @return tg 与えられたファイルで出来るプリミティブ (XMLQuadPolygon クラス名 org.mklab.mikity.xml 変数名)
    */
   public static MyTransformGroup create(XMLQuadPolygon quad) {
     Point3f[] vertices = new Point3f[4];
@@ -483,8 +474,7 @@ public class PrimitiveFactory {
   /**
    * 色を設定したMaterialを取得する
    * 
-   * @param colorName
-   *        色名
+   * @param colorName 色名
    * @return Material 色を設定したMaterial
    */
   private static Material getMaterial(String colorName) {

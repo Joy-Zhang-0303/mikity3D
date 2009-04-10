@@ -80,75 +80,74 @@ public class Background implements java.io.Serializable {
     return this._color;
   } // -- java.lang.String getColor()
 
-//  /**
-//   * Method isValid
-//   * 
-//   * @return boolean
-//   */
-//  public boolean isValid() {
-//    try {
-//      validate();
-//    } catch (org.exolab.castor.xml.ValidationException vex) {
-//      return false;
-//    }
-//    return true;
-//  } // -- boolean isValid()
-//
-//  /**
-//   * Method marshal
-//   * 
-//   * @param out
-//   * @throws org.exolab.castor.xml.MarshalException
-//   * @throws org.exolab.castor.xml.ValidationException
-//   */
-//  public void marshal(java.io.Writer out) throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
-//
-//    Marshaller.marshal(this, out);
-//  } // -- void marshal(java.io.Writer)
+  //  /**
+  //   * Method isValid
+  //   * 
+  //   * @return boolean
+  //   */
+  //  public boolean isValid() {
+  //    try {
+  //      validate();
+  //    } catch (org.exolab.castor.xml.ValidationException vex) {
+  //      return false;
+  //    }
+  //    return true;
+  //  } // -- boolean isValid()
+  //
+  //  /**
+  //   * Method marshal
+  //   * 
+  //   * @param out
+  //   * @throws org.exolab.castor.xml.MarshalException
+  //   * @throws org.exolab.castor.xml.ValidationException
+  //   */
+  //  public void marshal(java.io.Writer out) throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
+  //
+  //    Marshaller.marshal(this, out);
+  //  } // -- void marshal(java.io.Writer)
 
-//  /**
-//   * Method marshal
-//   * 
-//   * @param handler
-//   * @throws java.io.IOException
-//   * @throws org.exolab.castor.xml.MarshalException
-//   * @throws org.exolab.castor.xml.ValidationException
-//   */
-//  public void marshal(org.xml.sax.ContentHandler handler) throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
-//
-//    Marshaller.marshal(this, handler);
-//  } // -- void marshal(org.xml.sax.ContentHandler)
+  //  /**
+  //   * Method marshal
+  //   * 
+  //   * @param handler
+  //   * @throws java.io.IOException
+  //   * @throws org.exolab.castor.xml.MarshalException
+  //   * @throws org.exolab.castor.xml.ValidationException
+  //   */
+  //  public void marshal(org.xml.sax.ContentHandler handler) throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
+  //
+  //    Marshaller.marshal(this, handler);
+  //  } // -- void marshal(org.xml.sax.ContentHandler)
 
   /**
    * Sets the value of field 'color'.
    * 
-   * @param color
-   *        the value of field 'color'.
+   * @param color the value of field 'color'.
    */
   public void setColor(java.lang.String color) {
     this._color = color;
   } // -- void setColor(java.lang.String)
 
-//  /**
-//   * Method unmarshal
-//   * 
-//   * @param reader
-//   * @return unmarshaller
-//   * @throws org.exolab.castor.xml.MarshalException
-//   * @throws org.exolab.castor.xml.ValidationException
-//   */
-//  public static java.lang.Object unmarshal(java.io.Reader reader) throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
-//    return Unmarshaller.unmarshal(org.mklab.mikity.xml.config.Background.class, reader);
-//  } // -- java.lang.Object unmarshal(java.io.Reader)
-//
-//  /**
-//   * Method validate
-//   * 
-//   * @throws org.exolab.castor.xml.ValidationException
-//   */
-//  public void validate() throws org.exolab.castor.xml.ValidationException {
-//    org.exolab.castor.xml.Validator validator = new org.exolab.castor.xml.Validator();
-//    validator.validate(this);
-//  } // -- void validate()
+  //  /**
+  //   * Method unmarshal
+  //   * 
+  //   * @param reader
+  //   * @return unmarshaller
+  //   * @throws org.exolab.castor.xml.MarshalException
+  //   * @throws org.exolab.castor.xml.ValidationException
+  //   */
+  //  public static java.lang.Object unmarshal(java.io.Reader reader) throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
+  //    return Unmarshaller.unmarshal(org.mklab.mikity.xml.config.Background.class, reader);
+  //  } // -- java.lang.Object unmarshal(java.io.Reader)
+  //
+  //  /**
+  //   * Method validate
+  //   * 
+  //   * @throws org.exolab.castor.xml.ValidationException
+  //   */
+  //  public void validate() throws org.exolab.castor.xml.ValidationException {
+  //    org.exolab.castor.xml.Validator validator = new org.exolab.castor.xml.Validator();
+  //    validator.validate(this);
+  //  } // -- void validate()
 
 }

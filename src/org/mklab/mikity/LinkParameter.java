@@ -38,18 +38,12 @@ public class LinkParameter {
   /**
    * コンストラクタ
    * 
-   * @param locX
-   *        X座標並進
-   * @param locY
-   *        Y座標並進
-   * @param locZ
-   *        Z座標並進
-   * @param rotX
-   *        X座標回転
-   * @param rotY
-   *        Y座標回転
-   * @param rotZ
-   *        Z座標回転
+   * @param locX X座標並進
+   * @param locY Y座標並進
+   * @param locZ Z座標並進
+   * @param rotX X座標回転
+   * @param rotY Y座標回転
+   * @param rotZ Z座標回転
    */
   public LinkParameter(double locX, double locY, double locZ, double rotX, double rotY, double rotZ) {
     this.locX = locX;

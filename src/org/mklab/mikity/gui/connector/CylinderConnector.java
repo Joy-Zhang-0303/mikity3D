@@ -37,14 +37,10 @@ public class CylinderConnector {
   /**
    * 円柱プリミティブにコネクタを追加する。
    * 
-   * @param r
-   *        円柱の半径
-   * @param h
-   *        円柱の高さ
-   * @param loc
-   *        円柱の座標
-   * @param rot
-   *        円柱の回転
+   * @param r 円柱の半径
+   * @param h 円柱の高さ
+   * @param loc 円柱の座標
+   * @param rot 円柱の回転
    */
   public void createCylinderConnector(float r, float h, Location loc, Rotation rot) {
     for (int i = 0; i < this.cnct.length; i++) {

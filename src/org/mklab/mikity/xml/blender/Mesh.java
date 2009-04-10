@@ -18,8 +18,7 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(Mesh要素)
- * モデルの頂点座標やどの頂点を使用してポリゴンを作成しているかを取得する。
+ * Blenderから出力したCOLLADAデータを読み込むためのクラス(Mesh要素) モデルの頂点座標やどの頂点を使用してポリゴンを作成しているかを取得する。
  * 
  * @author SHOGO
  * @version $Revision: 1.7 $. 2007/11/30

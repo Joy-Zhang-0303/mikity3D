@@ -35,10 +35,8 @@ public class ColorComboBox {
   /**
    * コンストラクタ
    * 
-   * @param afterGroup
-   *        　変化後のプリミティブ
-   * @param COLORS
-   *        　色リスト
+   * @param afterGroup 　変化後のプリミティブ
+   * @param COLORS 　色リスト
    */
   public ColorComboBox(Group afterGroup, String[] COLORS) {
     this.afterGroup = afterGroup;

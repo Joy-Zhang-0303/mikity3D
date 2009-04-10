@@ -27,10 +27,8 @@ public final class MsgUtil {
   /**
    * メッセージ表示
    * 
-   * @param shell
-   *        シェル
-   * @param msg
-   *        メッセージ
+   * @param shell シェル
+   * @param msg メッセージ
    */
   public static void showMsg(final Shell shell, final String msg) {
     MessageBox mesBox = new MessageBox(shell);
@@ -44,10 +42,8 @@ public final class MsgUtil {
   /**
    * メッセージ表示(YES/NO)
    * 
-   * @param shell
-   *        シェル
-   * @param msg
-   *        メッセージ
+   * @param shell シェル
+   * @param msg メッセージ
    * @return SWT.YES,SWT.NO, SWT.CANCEL
    */
   public static int showYesNoMsg(final Shell shell, final String msg) {
@@ -60,10 +56,8 @@ public final class MsgUtil {
   /**
    * メッセージ表示(YES/NO/CANCEL)
    * 
-   * @param shell
-   *        シェル
-   * @param msg
-   *        メッセージ
+   * @param shell シェル
+   * @param msg メッセージ
    * @return SWT.YES,SWT.NO, SWT.CANCEL
    */
   public static int showYesNoCancelMsg(final Shell shell, final String msg) {

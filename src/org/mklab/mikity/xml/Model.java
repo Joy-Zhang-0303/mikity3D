@@ -83,14 +83,14 @@ public class Model implements java.io.Serializable {
     this._groupList.clear();
   } // -- void clearGroup()
 
-//  /**
-//   * Method enumerateGroup
-//   * 
-//   * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
-//   */
-//  public java.util.Enumeration enumerateGroup() {
-//    return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
-//  } // -- java.util.Enumeration enumerateGroup()
+  //  /**
+  //   * Method enumerateGroup
+  //   * 
+  //   * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
+  //   */
+  //  public java.util.Enumeration enumerateGroup() {
+  //    return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
+  //  } // -- java.util.Enumeration enumerateGroup()
 
   /**
    * Note: hashCode() has not been overriden
@@ -144,8 +144,7 @@ public class Model implements java.io.Serializable {
   } // -- org.mklab.mikity.xml.Group[] getGroup()
 
   /**
-   * Method getGroupAsReferenceReturns a reference to 'group'. No type checking
-   * is performed on any modications to the Collection.
+   * Method getGroupAsReferenceReturns a reference to 'group'. No type checking is performed on any modications to the Collection.
    * 
    * @return returns a reference to the Collection.
    */
@@ -204,8 +203,7 @@ public class Model implements java.io.Serializable {
   /**
    * Method setGroupSets the value of 'group' by copying the given ArrayList.
    * 
-   * @param groupCollection
-   *        the Vector to copy.
+   * @param groupCollection the Vector to copy.
    */
   public void setGroup(java.util.ArrayList<Group> groupCollection) {
     // -- copy collection
@@ -216,11 +214,9 @@ public class Model implements java.io.Serializable {
   } // -- void setGroup(java.util.ArrayList)
 
   /**
-   * Method setGroupAsReferenceSets the value of 'group' by setting it to the
-   * given ArrayList. No type checking is performed.
+   * Method setGroupAsReferenceSets the value of 'group' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param groupCollection
-   *        the ArrayList to copy.
+   * @param groupCollection the ArrayList to copy.
    */
   public void setGroupAsReference(java.util.ArrayList<Group> groupCollection) {
     this._groupList = groupCollection;
