@@ -25,10 +25,9 @@ public class BoxToolBarAction extends Action {
   private Jamast root;
 
   /**
-   * コンストラクター
-   * 
-   * @param window
-   * @param dc
+   * 新しく生成された<code>BoxToolBarAction</code>オブジェクトを初期化します。
+   * @param window ウィンドウ
+   * @param dc 
    */
   public BoxToolBarAction(final MainWindow window, CollisionCanceller dc) {
     super();

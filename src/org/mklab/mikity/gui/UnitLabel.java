@@ -28,11 +28,11 @@ public class UnitLabel extends Composite {
   /**
    * コンストラクター
    * 
-   * @param c
-   * @param target
+   * @param composite コンポジット
+   * @param target 対象
    */
-  public UnitLabel(Composite c, String target) {
-    super(c, SWT.NONE);
+  public UnitLabel(Composite composite, String target) {
+    super(composite, SWT.NONE);
     GridLayout layout = new GridLayout();
     layout.marginHeight = 0;
     layout.marginWidth = 0;
@@ -46,7 +46,7 @@ public class UnitLabel extends Composite {
   /**
    * 単位を取得する。
    * 
-   * @param target
+   * @param target 対象
    * @return Angle or Length
    */
   public static String getUnit(String target) {
@@ -66,7 +66,7 @@ public class UnitLabel extends Composite {
   /**
    * モデルの角度を設定する。
    * 
-   * @param angle
+   * @param angle モデルの角度
    */
   public static void setModelAngle(String angle) {
     if (angle.startsWith("radian")) { //$NON-NLS-1$
@@ -79,7 +79,7 @@ public class UnitLabel extends Composite {
   /**
    * モデルの長さを設定する。
    * 
-   * @param length
+   * @param length モデルの長さ
    */
   public static void setModelLength(String length) {
     if (length.startsWith("cm")) { //$NON-NLS-1$
@@ -94,7 +94,7 @@ public class UnitLabel extends Composite {
   /**
    * データの角度を設定する
    * 
-   * @param angle
+   * @param angle データの角度
    */
   public static void setDataAngle(String angle) {
     if (angle.startsWith("radian")) { //$NON-NLS-1$
@@ -107,7 +107,7 @@ public class UnitLabel extends Composite {
   /**
    * データの長さを設定する。
    * 
-   * @param length
+   * @param length データの長さ
    */
   public static void setDataLength(String length) {
     if (length.startsWith("cm")) { //$NON-NLS-1$
@@ -122,10 +122,10 @@ public class UnitLabel extends Composite {
   /**
    * ラベルを設定する。
    * 
-   * @param target
+   * @param label ラベル
    */
-  public void setLabel(String target) {
-    this.label.setText(getUnit(target));
+  public void setLabel(String label) {
+    this.label.setText(getUnit(label));
   }
 
 }

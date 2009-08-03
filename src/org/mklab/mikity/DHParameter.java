@@ -57,7 +57,7 @@ public class DHParameter {
   /**
    * パラメータaの値を取得する。
    * 
-   * @return a
+   * @return a パラメータaの値
    */
   public double getA() {
     return this.a;
@@ -66,7 +66,7 @@ public class DHParameter {
   /**
    * パラメータaの値を設定する。
    * 
-   * @param a
+   * @param a パラメータaの値
    */
   public void setA(double a) {
     this.a = a;
@@ -75,7 +75,7 @@ public class DHParameter {
   /**
    * パラメータalphaの値を取得する。
    * 
-   * @return alpha
+   * @return パラメータalphaの値
    */
   public double getAlpha() {
     return this.alpha;
@@ -84,7 +84,7 @@ public class DHParameter {
   /**
    * パラメータalphaの値を設定する。
    * 
-   * @param alpha
+   * @param alpha パラメータalpha
    */
   public void setAlpha(double alpha) {
     this.alpha = alpha;
@@ -93,7 +93,7 @@ public class DHParameter {
   /**
    * パラメータdの値を取得する。
    * 
-   * @return d
+   * @return パラメータdの値
    */
   public double getD() {
     return this.d;
@@ -102,7 +102,7 @@ public class DHParameter {
   /**
    * パラメータdの値を設定する。
    * 
-   * @param d
+   * @param d パラメータdの値
    */
   public void setD(double d) {
     this.d = d;
@@ -111,7 +111,7 @@ public class DHParameter {
   /**
    * パラメータthetaの値を取得する。
    * 
-   * @return theta
+   * @return パラメータthetaの値
    */
   public double getTheta() {
     return this.theta;
@@ -120,7 +120,7 @@ public class DHParameter {
   /**
    * パラメータthetaの値を設定する。
    * 
-   * @param theta
+   * @param theta パラメータthetaの値
    */
   public void setTheta(double theta) {
     this.theta = theta;

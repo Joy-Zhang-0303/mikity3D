@@ -20,7 +20,7 @@ public class FileSaveAction extends Action {
   /**
    * コンストラクター
    * 
-   * @param window
+   * @param window ウィンドウ
    * 
    */
   public FileSaveAction(final MainWindow window) {

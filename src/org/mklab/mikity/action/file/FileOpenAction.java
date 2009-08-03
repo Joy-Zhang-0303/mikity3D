@@ -23,7 +23,7 @@ public class FileOpenAction extends Action {
   /**
    * コンストラクター
    * 
-   * @param window
+   * @param window ウィンドウ
    */
   public FileOpenAction(final MainWindow window) {
     super();

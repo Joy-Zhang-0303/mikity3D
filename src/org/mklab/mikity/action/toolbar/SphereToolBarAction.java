@@ -24,7 +24,7 @@ public class SphereToolBarAction extends Action {
   /**
    * コンストラクター
    * 
-   * @param window
+   * @param window ウィンドウ
    * @param dc
    */
   public SphereToolBarAction(final MainWindow window, CollisionCanceller dc) {

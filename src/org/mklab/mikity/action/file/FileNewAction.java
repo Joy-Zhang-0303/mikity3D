@@ -31,7 +31,7 @@ public class FileNewAction extends Action {
   /**
    * コンストラクター
    * 
-   * @param window
+   * @param window ウィンドウ
    */
   public FileNewAction(final MainWindow window) {
     super();

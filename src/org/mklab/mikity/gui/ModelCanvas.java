@@ -29,7 +29,7 @@ import com.sun.j3d.utils.universe.SimpleUniverse;
 /**
  * キャンバスに関するクラス
  * 
- * @author Miki Koga+ Shogo Morimune
+ * @author Miki Koga
  * @version $Revision: 1.6 $.2004/12/16
  */
 public class ModelCanvas extends Canvas3D {

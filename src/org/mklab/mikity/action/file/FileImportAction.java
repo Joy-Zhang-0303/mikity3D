@@ -23,7 +23,7 @@ public class FileImportAction extends Action {
   /**
    * 新しく生成された<code>FileImportAction</code>オブジェクトを初期化します。
    * 
-   * @param window
+   * @param window ウィンドウ
    */
   public FileImportAction(final MainWindow window) {
     super();

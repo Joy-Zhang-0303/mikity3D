@@ -12,19 +12,19 @@ import org.mklab.mikity.gui.SimulationViewer;
 
 
 /**
- * アニメーション実行画面を展開するクラス。
+ * アニメーション実行画面を展開するクラスです。
  * 
  * @author Yusuke Tsutsui
  * @version $Revision: 1.5 $.2005/02/18
  */
 public class AnimationWindowOpenAction extends Action {
 
+  /** ウィンドウ */
   private MainWindow window;
 
   /**
-   * コンストラクター
-   * 
-   * @param window
+   * 新しく生成された<code>AnimationWindowOpenAction</code>オブジェクトを初期化します。
+   * @param window ウィンドウ
    */
   public AnimationWindowOpenAction(MainWindow window) {
     setText(Messages.getString("AnimationWindowOpenAction.0")); //$NON-NLS-1$

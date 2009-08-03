@@ -54,7 +54,7 @@ import org.mklab.mikity.xml.model.Group;
 /**
  * 実行画面に関するクラス
  * 
- * @author miki+shogo
+ * @author miki
  * @version $Revision: 1.21 $.2004/12/01
  */
 public class MainWindow extends ApplicationWindow {
@@ -149,7 +149,7 @@ public class MainWindow extends ApplicationWindow {
     label.setText("ファイル");
 
     this.filePathText = new Text(localComposite, SWT.BORDER);
-    this.filePathText.setText("");
+    this.filePathText.setText(""); //$NON-NLS-1$
     this.filePathText.addTraverseListener(new TraverseListener() {
 
       public void keyTraversed(TraverseEvent e) {
@@ -182,7 +182,7 @@ public class MainWindow extends ApplicationWindow {
   @Override
   protected void configureShell(Shell shell) {
     super.configureShell(shell);
-    shell.setText("Modeler");
+    shell.setText("Modeler"); //$NON-NLS-1$
   }
 
   /**

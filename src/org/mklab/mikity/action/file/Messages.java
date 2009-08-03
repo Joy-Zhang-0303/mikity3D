@@ -23,7 +23,7 @@ public class Messages {
   }
 
   /**
-   * @param key
+   * @param key キー
    * @return key メッセージ
    */
   public static String getString(String key) {

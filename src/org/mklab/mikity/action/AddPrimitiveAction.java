@@ -20,23 +20,23 @@ import org.mklab.mikity.xml.Jamast;
  */
 public class AddPrimitiveAction extends Action {
 
+  /** ウィンド */
   private MainWindow window;
 
+  /** ダイアログ */
   AddPrimitiveDialog dialog;
 
-  private CollisionCanceller dc;
+  private CollisionCanceller canceller;
 
   /**
-   * コンストラクター
-   * 
-   * @param window
-   * @param dc
-   * 
+   * 新しく生成された<code>AddPrimitiveAction</code>オブジェクトを初期化します。
+   * @param window ウィンドウ
+   * @param canceller 重複防止
    */
-  public AddPrimitiveAction(final MainWindow window, CollisionCanceller dc) {
+  public AddPrimitiveAction(final MainWindow window, CollisionCanceller canceller) {
     super();
     this.window = window;
-    this.dc = dc;
+    this.canceller = canceller;
     setText(Messages.getString("AddPrimitiveAction.0")); //$NON-NLS-1$
     setToolTipText(Messages.getString("AddPrimitiveAction.1")); //$NON-NLS-1$
   }
@@ -50,6 +50,6 @@ public class AddPrimitiveAction extends Action {
   public void run() {
     System.out.println(Messages.getString("AddPrimitiveAction.2")); //$NON-NLS-1$
     Jamast root = MainWindow.getRoot();
-    this.dialog = new AddPrimitiveDialog(this.window.getShell(), root.loadModel(0).loadGroup(0), this.dc);
+    this.dialog = new AddPrimitiveDialog(this.window.getShell(), root.loadModel(0).loadGroup(0), this.canceller);
   }
 }

@@ -19,7 +19,8 @@ public class Messages {
   }
 
   /**
-   * @param key
+   * キーに対応する文字列を返します。
+   * @param key キー
    * @return キーに対応する文字列
    */
   public static String getString(String key) {

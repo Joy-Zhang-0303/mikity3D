@@ -21,9 +21,8 @@ public class ConfigDialogOpenAction extends Action {
   private MainWindow window;
 
   /**
-   * コンストラクター
-   * 
-   * @param window
+   * 新しく生成された<code>ConfigDialogOpenAction</code>オブジェクトを初期化します。
+   * @param window ウィンドウ
    */
   public ConfigDialogOpenAction(final MainWindow window) {
     this.window = window;

@@ -24,7 +24,7 @@ public class FileExitAction extends Action {
   /**
    * コンストラクター
    * 
-   * @param window
+   * @param window ウィンドウ
    * 
    */
   public FileExitAction(final MainWindow window) {

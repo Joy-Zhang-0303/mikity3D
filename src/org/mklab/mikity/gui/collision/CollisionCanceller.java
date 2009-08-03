@@ -19,42 +19,30 @@ import org.mklab.mikity.xml.model.XMLSphere;
 
 
 /**
- * プリミティブの重複を防止するクラス
+ * プリミティブの重複を防止するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.3 $. 2006/07/18
  */
 public class CollisionCanceller {
 
-  /**
-   * 新しく追加するプリミティブの存在範囲
-   */
+  /** 新しく追加するプリミティブの存在範囲  */
   private float range;
-  /**
-   * 新しく追加するプリミティブの位置座標
-   */
+  /** 新しく追加するプリミティブの位置座標  */
   private Location loc;
 
-  /**
-   * これまで追加したプリミティブの存在範囲
-   */
+  /** これまで追加したプリミティブの存在範囲  */
   private ArrayList<PrimitiveRange> rangeList;
   //private float rangeArray[];
 
-  /**
-   * これまで追加したプリミティブの位置座標
-   */
+  /** これまで追加したプリミティブの位置座標  */
   private ArrayList<Location> locList;
   //private Location locArray[];
 
-  /**
-   * 2つのプリミティブの位置座標間の距離
-   */
+  /** 2つのプリミティブの位置座標間の距離   */
   private float distance;
 
-  /**
-   * プリミティブが重複しているかどうかを表すフラグ
-   */
+  /** プリミティブが重複しているかどうかを表すフラグ  */
   private boolean collideFlag = false;
 
   private Composite comp;
@@ -117,9 +105,9 @@ public class CollisionCanceller {
   /**
    * 重複フラグを確認する。 重複すると判断された場合、位置調整処理に移行。 それ以外は各リストに追加およびモデルの描画。
    * 
-   * @param prim 　追加するプリミティブ
-   * @param primLoc 　追加するプリミティブの座標
-   * @param group 　グループ
+   * @param prim 追加するプリミティブ
+   * @param primLoc 追加するプリミティブの座標
+   * @param group グループ
    */
   private void checkCollisionFlag(Object prim, float argRange, Location primLoc, float listRange, Location listLoc, Group group) {
     if (this.collideFlag == true) {
@@ -141,7 +129,7 @@ public class CollisionCanceller {
    * プリミティブの位置座標を返す。
    * 
    * @param prim プリミティブ
-   * @return loc 位置座標
+   * @return 位置座標
    */
   private Location getLoc(Object prim) {
     Location localLocation = new Location();
@@ -175,7 +163,7 @@ public class CollisionCanceller {
    * プリミティブの位置座標がNULLだった場合、座標(0.0,0.0,0.0)の情報を持つ位置座標を返す。
    * 
    * @param argLocation 　プリミティブの位置座標
-   * @return loc　更新したプリミティブの位置座標
+   * @return 更新したプリミティブの位置座標
    */
   private Location checkLoc(Location argLocation) {
     if (argLocation == null) {

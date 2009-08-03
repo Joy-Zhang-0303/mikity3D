@@ -30,7 +30,7 @@ public class TrianglePolygonToolBarAction extends Action {
   /**
    * コンストラクター
    * 
-   * @param window
+   * @param window ウィンドウ
    */
   public TrianglePolygonToolBarAction(final MainWindow window) {
     super();

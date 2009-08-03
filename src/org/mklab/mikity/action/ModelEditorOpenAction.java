@@ -18,9 +18,8 @@ public class ModelEditorOpenAction extends Action {
   MainWindow window;
 
   /**
-   * コンストラクター
-   * 
-   * @param window
+   * 新しく生成された<code>ModelEditorOpenAction</code>オブジェクトを初期化します。
+   * @param window ウィンドウ
    */
   public ModelEditorOpenAction(final MainWindow window) {
     this.window = window;
