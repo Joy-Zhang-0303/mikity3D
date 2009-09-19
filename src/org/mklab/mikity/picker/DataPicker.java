@@ -9,9 +9,9 @@ import org.mklab.mikity.DHParameter;
 import org.mklab.mikity.LinkParameter;
 import org.mklab.mikity.MyTransformGroup;
 import org.mklab.mikity.gui.ModelCanvas;
-import org.mklab.nfc.DoubleMatrix;
-import org.mklab.nfc.IntegerMatrix;
-import org.mklab.nfc.Matrix;
+import org.mklab.nfc.matrix.DoubleMatrix;
+import org.mklab.nfc.matrix.IntegerMatrix;
+import org.mklab.nfc.matrix.Matrix;
 
 
 /**

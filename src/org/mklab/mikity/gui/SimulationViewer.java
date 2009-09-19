@@ -32,7 +32,7 @@ import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
 import org.mklab.mikity.util.MsgUtil;
 import org.mklab.mikity.xml.Jamast;
-import org.mklab.nfc.Matrix;
+import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
 

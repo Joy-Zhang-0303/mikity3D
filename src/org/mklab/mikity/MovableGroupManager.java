@@ -16,7 +16,7 @@ import org.mklab.mikity.picker.DataPicker;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Linkdata;
-import org.mklab.nfc.Matrix;
+import org.mklab.nfc.matrix.Matrix;
 
 
 /**

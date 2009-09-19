@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 
 import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.picker.DataPicker;
-import org.mklab.nfc.Matrix;
+import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
 
