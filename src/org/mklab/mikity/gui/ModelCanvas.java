@@ -1,11 +1,14 @@
 package org.mklab.mikity.gui;
 
 //import javax.media.j3d.Bounds;
+import javax.media.j3d.Background;
+import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Canvas3D;
 import javax.media.j3d.TransformGroup;
 import javax.vecmath.AxisAngle4f;
 import javax.vecmath.Color3f;
+import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
 //import org.mklab.mikity.picker.DataPicker;
@@ -19,8 +22,9 @@ import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.Config;
 import org.mklab.mikity.xml.Jamast;
 
-import saiga.MyMouse;
-import saiga.MyPlaneBackground;
+import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
+import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
+import com.sun.j3d.utils.behaviors.mouse.MouseZoom;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
 
@@ -74,7 +78,7 @@ public class ModelCanvas extends Canvas3D {
    * 
    * コンストラクター universe --> BranchGroup --> TransformGroup --> topGroup
    * 
-   * @param root
+   * @param root 
    */
   public ModelCanvas(Jamast root) {
     super(SimpleUniverse.getPreferredConfiguration());
@@ -93,7 +97,7 @@ public class ModelCanvas extends Canvas3D {
     MyDirectionalLight light = new MyDirectionalLight(new Color3f(1.0f, 1.0f, 1.0f), this.lightLocation);
 
     // 背景色の設定
-    MyPlaneBackground background = new MyPlaneBackground(this.backgroundColor);
+    BranchGroup background = createBackground(this.backgroundColor);
 
     this.bg.addChild(light);
     this.bg.addChild(background);
@@ -101,7 +105,7 @@ public class ModelCanvas extends Canvas3D {
     // 基準座標系の設定
     MyTransformGroup tg = new MyTransformGroup();
 
-    new MyMouse(tg);
+    initializeMouse(tg);
 
     // TransformGroupに子の書き込み、読み込み、追加を許可
     tg.setCapability(javax.media.j3d.Group.ALLOW_CHILDREN_WRITE);
@@ -172,6 +176,53 @@ public class ModelCanvas extends Canvas3D {
     // }
     this.universe.addBranchGraph(this.bg);
 
+  }
+  
+  /**
+   * 背景ノードを作成します。
+   * 
+   * @param color 背景色
+   * @return 背景ノード
+   */
+  private BranchGroup createBackground(final Color3f color){
+    final BranchGroup group = new BranchGroup();
+    final double radius = Double.POSITIVE_INFINITY;
+    
+    Background background = new Background(color);
+
+    BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), radius);
+    background.setApplicationBounds(bounds);
+
+    group.addChild(background);
+    return group;
+  }
+  
+  /**
+   * 指定されたノードにマウスを作成し追加します。
+   * 
+   * @param tg 追加対象ノード
+   */
+  private void initializeMouse(final MyTransformGroup tg){
+    final float radius = 100f;
+    
+    tg.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+    tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+
+    BoundingSphere bounds=new BoundingSphere(new Point3d(0.0,0.0,0.0),radius);
+
+    MouseZoom zoom=new MouseZoom(tg);
+    zoom.setSchedulingBounds(bounds);                 
+    tg.addChild(zoom);
+    
+
+    MouseRotate rotate=new MouseRotate(tg);
+    rotate.setSchedulingBounds(bounds);               
+    tg.addChild(rotate);
+    
+
+    MouseTranslate translate=new MouseTranslate(tg);
+    translate.setSchedulingBounds(bounds);
+    tg.addChild(translate); 
   }
 
   /**
