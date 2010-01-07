@@ -40,6 +40,10 @@ public class Geometry {
     if (this.name.indexOf("-G") != -1) { //$NON-NLS-1$
       this.name = this.name.substring(0, this.name.indexOf("-G")); //$NON-NLS-1$
     }
+    
+    if (this.name.indexOf("_001") != -1) { //$NON-NLS-1$
+      this.name = this.name.substring(0, this.name.indexOf("_001")); //$NON-NLS-1$
+    }
     group.setName(this.name);
     return group;
   }
@@ -50,6 +54,10 @@ public class Geometry {
   public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes) {
     if (this.name.indexOf("-G") != -1) { //$NON-NLS-1$
       this.name = this.name.substring(0, this.name.indexOf("-G")); //$NON-NLS-1$
+    }
+    
+    if (this.name.indexOf("_001") != -1) { //$NON-NLS-1$
+      this.name = this.name.substring(0, this.name.indexOf("_001")); //$NON-NLS-1$
     }
     this.mesh.setLibraryVisualScenes(library_visual_scenes, this.name);
   }
