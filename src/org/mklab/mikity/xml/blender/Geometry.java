@@ -56,8 +56,8 @@ public class Geometry {
       this.name = this.name.substring(0, this.name.indexOf("-G")); //$NON-NLS-1$
     }
     
-    if (this.name.indexOf("_001") != -1) { //$NON-NLS-1$
-      this.name = this.name.substring(0, this.name.indexOf("_001")); //$NON-NLS-1$
+    if (this.name.indexOf("_00") != -1) { //$NON-NLS-1$
+      this.name = this.name.substring(0, this.name.indexOf("_00")); //$NON-NLS-1$
     }
     this.mesh.setLibraryVisualScenes(library_visual_scenes, this.name);
   }
