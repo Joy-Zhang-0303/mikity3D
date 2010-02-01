@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.task;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TimerTask;
 
 import org.mklab.mikity.MovableGroupManager;
@@ -22,16 +24,40 @@ public class AnimationTask extends TimerTask {
   private long startTime = System.currentTimeMillis();
   private double endTime = 0.0;
   private MovableGroupManager manager;
+  private List<AnimationTaskListener> listenerList = new ArrayList<AnimationTaskListener>();
+  private final double initialTime;
+  /**
+   * コンストラクター
+   * 
+   * @param initialTime アニメーションのスタート時間
+   * @param endTime 終了時刻
+   * @param manager グループマネージャー
+   */
+  public AnimationTask(double initialTime, double endTime, MovableGroupManager manager) {
+    this.endTime = endTime;
+    this.currentTime = initialTime;
+    this.manager = manager;
+    
+    this.initialTime = initialTime;
+  }
 
   /**
    * コンストラクター
    * 
-   * @param endTime
+   * @param endTime 終了時刻
    * @param manager グループマネージャー
    */
   public AnimationTask(double endTime, MovableGroupManager manager) {
-    this.endTime = endTime;
-    this.manager = manager;
+    this(0, endTime, manager);
+  }
+
+  /**
+   * {@link AnimationTaskListener}を登録します。
+   * 
+   * @param l リスナ
+   */
+  public void addAnimationTaskListener(AnimationTaskListener l) {
+    this.listenerList.add(l);
   }
 
   /**
@@ -57,6 +83,9 @@ public class AnimationTask extends TimerTask {
    */
   @Override
   public void run() {
+    if (this.currentTime == this.initialTime) {
+      fireAnimationStarted();
+    }
 
     // さらに今の時間からstartTimeを引いた差分をdiffTimeに入れる
     double diffTime = (scheduledExecutionTime() - this.startTime) / 1000.0;
@@ -77,8 +106,8 @@ public class AnimationTask extends TimerTask {
     if (this.currentTime > this.endTime) {
       SimulationViewer.playable = true;
       cancel();
+      fireAnimationDone();
     }
-
   }
 
   /**
@@ -95,5 +124,23 @@ public class AnimationTask extends TimerTask {
    */
   public void setCurrentTime(double t) {
     this.currentTime = t;
+  }
+
+  /**
+   * アニメーションの完了を通知します。
+   */
+  private void fireAnimationDone() {
+    for (AnimationTaskListener l : this.listenerList) {
+      l.taskDone();
+    }
+  }
+
+  /**
+   * アニメーションの開始を通知します。
+   */
+  private void fireAnimationStarted() {
+    for (AnimationTaskListener l : this.listenerList) {
+      l.taskStarted();
+    }
   }
 }
