@@ -251,7 +251,7 @@ public abstract class DataPicker {
   public int getColumn(double time) {
     // 時系列データからそれに最も近い時間のある行を返す。
     DoubleMatrix error = ((DoubleMatrix)this.data.getRowVector(1).subtractElementWise(time)).absElementWise();
-    return ((IntMatrix)error.minimumRowWise().getIndices()).getElement(1);
+    return ((IntMatrix)error.minimumRowWise().getIndices()).getIntElement(1);
   }
 
   /**
