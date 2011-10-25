@@ -31,6 +31,8 @@ public class Mesh {
   private Polygons polygons;
   @XmlElement
   private Triangle triangles;
+  @XmlElement
+  private Polylist polylist;
 
   /**
    * ポリゴンをまとめるためのグループ
@@ -46,6 +48,7 @@ public class Mesh {
     this.source = new ArrayList<Source>();
     this.polygons = new Polygons();
     this.triangles = new Triangle();
+    this.polylist = new Polylist();
     this.blenderGroup = new Group();
     this.matrix = new Matrix4f(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
@@ -67,7 +70,7 @@ public class Mesh {
     final List<Location> vertexLocation = this.source.get(0).getVertexLocation();
     final List<Location> normalLocation = this.source.get(1).getNormalLocation();
     List<int[]> indexNumber = this.polygons.getIndexNumber();
-
+    
     this.matrix.setM03(0.0f);
     this.matrix.setM13(0.0f);
     this.matrix.setM23(0.0f);
@@ -86,6 +89,25 @@ public class Mesh {
         quad.setMatrix(this.matrix);
         quad.setNormalVector(normalLocation.get(n));
         this.blenderGroup.addXMLQuadPolygon(quad);
+      }
+    }
+    if(this.polylist.loadP() != null){
+      indexNumber = this.polylist.getPolylistIndex();
+      for(int n = 0;n<indexNumber.size();n++){
+        if(indexNumber.get(n).length == 3){
+          XMLTrianglePolygon triangle = new XMLTrianglePolygon();
+          triangle.setPointLocations(vertexLocation.get(indexNumber.get(n)[0]), vertexLocation.get(indexNumber.get(n)[1]), vertexLocation.get(indexNumber.get(n)[2]));
+          triangle.setMatrix(this.matrix);
+          triangle.setNormalVector(normalLocation.get(n));
+          this.blenderGroup.addXMLTrianglePolygon(triangle);
+        } else if (indexNumber.get(n).length == 4) {
+          XMLQuadPolygon quad = new XMLQuadPolygon();
+          quad.setPointLocations(vertexLocation.get(indexNumber.get(n)[0]), vertexLocation.get(indexNumber.get(n)[1]), vertexLocation.get(indexNumber.get(n)[2]), vertexLocation
+            .get(indexNumber.get(n)[3]));
+          quad.setMatrix(this.matrix);
+          quad.setNormalVector(normalLocation.get(n));
+          this.blenderGroup.addXMLQuadPolygon(quad);
+        }
       }
     }
     if (this.triangles.loadP() != null) {

@@ -49,19 +49,9 @@ public class Triangle {
    */
   @SuppressWarnings("boxing")
   private void createTriangleIndex() {
-    for (int j = 0; j < this.p.length(); j++) {
-      if (this.p.charAt(j) == ' ') {
-        this.space.add(j);
-      }
-    }
+    getSpaceindexFromPToSpace(); //pからthis.spaceにスペースの位置を記録
     for (int i = 0; i < this.space.size() + 1; i += 2) {
-      if (i == 0) {
-        this.num.add(Integer.parseInt(this.p.substring(0, this.space.get(0))));
-      } else if (i == this.space.size()) {
-        this.num.add(Integer.parseInt(this.p.substring(this.space.get(this.space.size() - 1) + 1)));
-      } else {
-        this.num.add(Integer.parseInt(this.p.substring(this.space.get(i - 1) + 1, this.space.get(i))));
-      }
+      getNumberFromPToNum(i);
     }
     for (int i = 0; i < this.num.size(); i += 3) {
       int[] n = new int[3];
@@ -69,6 +59,24 @@ public class Triangle {
       n[1] = this.num.get(i + 1);
       n[2] = this.num.get(i + 2);
       this.index.add(n);
+    }
+  }
+
+  private void getNumberFromPToNum(int i) {
+    if (i == 0) {
+      this.num.add(Integer.parseInt(this.p.substring(0, this.space.get(0))));
+    } else if (i == this.space.size()) {
+      this.num.add(Integer.parseInt(this.p.substring(this.space.get(this.space.size() - 1) + 1)));
+    } else {
+      this.num.add(Integer.parseInt(this.p.substring(this.space.get(i - 1) + 1, this.space.get(i))));
+    }
+  }
+
+  private void getSpaceindexFromPToSpace() {
+    for (int j = 0; j < this.p.length(); j++) {
+      if (this.p.charAt(j) == ' ') {
+        this.space.add(j);
+      }
     }
   }
 

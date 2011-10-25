@@ -20,6 +20,8 @@ public class Geometry {
 
   @XmlAttribute
   private String name;
+  @XmlAttribute
+  private String id;
   @XmlElement
   private Mesh mesh;
 
@@ -52,6 +54,9 @@ public class Geometry {
    * @param library_visual_scenes
    */
   public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes) {
+    if(this.name == null){
+      this.name = this.id;
+    }
     if (this.name.indexOf("-G") != -1) { //$NON-NLS-1$
       this.name = this.name.substring(0, this.name.indexOf("-G")); //$NON-NLS-1$
     }
