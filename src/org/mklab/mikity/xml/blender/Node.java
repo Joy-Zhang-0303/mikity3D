@@ -51,7 +51,7 @@ public class Node {
   /**
    * タブ・改行が含まれる位置を記録するリスト
    */
-  private ArrayList<Integer> tab;
+//  private ArrayList<Integer> tab;
   /**
    * 列ベクトルリスト
    */
@@ -78,27 +78,27 @@ public class Node {
   /**
    * 移動用行列
    */
-  private double translater[][] = {{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0}};
+  private double translater[][] = {{1.0,0.0,0.0,0.0},{0.0,1.0,0.0,0.0},{0.0,0.0,1.0,0.0},{0.0,0.0,0.0,1.0}};
 
   /**
    * x回転行列
    */
-  private double rotateX[][] = {{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0}};
+  private double rotateX[][] = {{1.0,0.0,0.0,0.0},{0.0,1.0,0.0,0.0},{0.0,0.0,1.0,0.0},{0.0,0.0,0.0,1.0}};
   /**
    * x回転行列
    */
-  private double rotateY[][] = {{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0}};
+  private double rotateY[][] = {{1.0,0.0,0.0,0.0},{0.0,1.0,0.0,0.0},{0.0,0.0,1.0,0.0},{0.0,0.0,0.0,1.0}};
   /**
    * x回転行列
    */
-  private double rotateZ[][] = {{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0}};
+  private double rotateZ[][] = {{1.0,0.0,0.0,0.0},{0.0,1.0,0.0,0.0},{0.0,0.0,1.0,0.0},{0.0,0.0,0.0,1.0}};
 
   /**
    * 変換行列記録用
    */
-  private double matrixXY[][] = {{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0}};
-  private double matrixXYZ[][] = {{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0}};
-  private double matrixAll[][] = {{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0}};
+  private double matrixXY[][] = {{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0}};
+  private double matrixXYZ[][] = {{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0}};
+  private double matrixAll[][] = {{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0}};
 
   
   /**
@@ -107,7 +107,7 @@ public class Node {
   public Node() {
     this.instance_geometry = new Instance_Geometry();
     this.node = new ArrayList<Node>();
-    this.tab = new ArrayList<Integer>();
+//    this.tab = new ArrayList<Integer>();
     this.vector = new ArrayList<String>();
     this.matrix4f = new Matrix4f();
     this.matrix_node = new ArrayList<Matrix4f>();
@@ -144,23 +144,24 @@ public class Node {
    */
   @SuppressWarnings("boxing")
   public void createMatrix() {
-    if(this.matrix != null){
+    if(this.translate == null){
       if (this.name.indexOf("-N") != -1) { //$NON-NLS-1$
         this.name = this.name.substring(0, this.name.indexOf("-N")); //$NON-NLS-1$
       }
       if (this.name.indexOf("-J") != -1) { //$NON-NLS-1$
         this.name = this.name.substring(0, this.name.indexOf("-J")); //$NON-NLS-1$
       }
+      ArrayList<Integer> tab = new ArrayList<Integer>();
       for (int i = 0; i < this.matrix.length(); i++) {
         if (this.matrix.indexOf("\n\t\t\t\t", i) == i) { //$NON-NLS-1$
-          this.tab.add(i);
+          tab.add(i);
         }
       }
-      for (int i = 0; i < this.tab.size() - 1; i++) {
-        if (i == this.tab.size() - 2) {
-          this.vector.add(this.matrix.substring(this.tab.get(i) + 6, this.tab.get(this.tab.size() - 1) - 1));
+      for (int i = 0; i < tab.size() - 1; i++) {
+        if (i == tab.size() - 2) {
+          this.vector.add(this.matrix.substring(tab.get(i) + 6, tab.get(tab.size() - 1) - 1));
         } else {
-          this.vector.add(this.matrix.substring(this.tab.get(i) + 6, this.tab.get(i + 1) - 1));
+          this.vector.add(this.matrix.substring(tab.get(i) + 6, tab.get(i + 1) - 1));
         }
       }
       for (int i = 0; i < this.vector.size(); i++) {
@@ -184,47 +185,6 @@ public class Node {
         }
       }
       setURL();
-      /*
-      if (this.name.indexOf("-N") != -1) { //$NON-NLS-1$
-        this.name = this.name.substring(0, this.name.indexOf("-N")); //$NON-NLS-1$
-      }
-      if (this.name.indexOf("-J") != -1) { //$NON-NLS-1$
-        this.name = this.name.substring(0, this.name.indexOf("-J")); //$NON-NLS-1$
-      }
-      for (int i = 0; i < this.matrix.length(); i++) {
-        if (this.matrix.indexOf("\n\t\t\t\t", i) == i) { //$NON-NLS-1$
-          this.tab.add(i);
-        }
-      }
-      for (int i = 0; i < this.tab.size() - 1; i++) {
-        if (i == this.tab.size() - 2) {
-          this.vector.add(this.matrix.substring(this.tab.get(i) + 6, this.tab.get(this.tab.size() - 1) - 1));
-        } else {
-          this.vector.add(this.matrix.substring(this.tab.get(i) + 6, this.tab.get(i + 1) - 1));
-        }
-      }
-      for (int i = 0; i < this.vector.size(); i++) {
-        ArrayList<Integer> space = new ArrayList<Integer>();
-        for (int j = 0; j < this.vector.get(i).length(); j++) {
-          if (this.vector.get(i).indexOf(" ", j) == j) { //$NON-NLS-1$
-            space.add(j);
-          }
-        }
-        float[] elements = new float[4];
-        elements[0] = Float.parseFloat(this.vector.get(i).substring(0, space.get(0)));
-        elements[1] = Float.parseFloat(this.vector.get(i).substring(space.get(0) + 1, space.get(1)));
-        elements[2] = Float.parseFloat(this.vector.get(i).substring(space.get(1) + 1, space.get(2)));
-        elements[3] = Float.parseFloat(this.vector.get(i).substring(space.get(2) + 1));
-        this.matrix4f.setRow(i, elements);
-      }
-      if (this.node.size() != 0) {
-        for (int i = 0; i < this.node.size(); i++) {
-          this.node.get(i).createMatrix();
-          this.matrix_node.add(this.node.get(i).loadMatrix());
-        }
-      }
-      setURL();*/
-      
       //ここからver1．4.1用
     }else /*if(this.version == "1.4.1")*/{ 
       if(this.name == null){
@@ -233,25 +193,11 @@ public class Node {
       /**
        * translate
        */
-      ArrayList<Integer> translateSpace = new ArrayList<Integer>();
-      for (int i = 0; i < this.translate.length(); i++) {
-        if (this.translate.charAt(i) == ' ') {
-          translateSpace.add(new Integer(i));
-        }
-      }
-      ArrayList<Float> num = new ArrayList<Float>();
-      for (int i = 0; i < translateSpace.size() + 1; i++) {
-        if (i == 0) {
-          num.add(Float.parseFloat(this.translate.substring(0, translateSpace.get(0))));
-        } else if (i == translateSpace.size()) {
-          num.add(Float.parseFloat(this.translate.substring(translateSpace.get(translateSpace.size() - 1) + 1)));
-        } else {
-          num.add(Float.parseFloat(this.translate.substring(translateSpace.get(i - 1) + 1, translateSpace.get(i))));
-        }
-      }
-      float[] n = new float[num.size()];
-      for (int l = 0; l < num.size(); l++) {
-        n[l] = num.get(l);
+      //ArrayList<Integer> translateSpace = new ArrayList<Integer>();
+      String[] trans =  this.translate.split(" "); //$NON-NLS-1$
+      float[] n = new float[trans.length];
+      for(int l = 0; l < trans.length; l++){
+        n[l] = Float.parseFloat(trans[l]);
       }
       //this.translateNumber.add(n);
       for (int i = 0; i < 4;i++){
@@ -259,7 +205,7 @@ public class Node {
           if(i == j){
             this.translater[i][j] = (float)1.0;
           }else if(i != 3 && j == 3){
-            this.translater[i][j] = num.get(i);
+            this.translater[i][j] = n[i];//num.get(i);
           }else{
             this.translater[i][j] = (float)0.0;
           }
@@ -292,20 +238,7 @@ public class Node {
             this.rotateNum[i][j] = Float.parseFloat(this.rotate.get(i).substring(spaceNum[j - 1] + 1, spaceNum[j]));
           }
         }
-        //this.rotateNumber.add(rotateNum);
-          /*if (j == 0) {
-            this.rotateNum.add(Float.parseFloat(this.rotate.get(i).substring(0, spaceNum[0])));
-          } else if (j == spaceNum.length) {
-            this.rotateNum.add(Float.parseFloat(this.rotate.get(i).substring(spaceNum[spaceNum.length - 1] + 1)));
-          } else {
-            this.rotateNum.add(Float.parseFloat(this.rotate.get(i).substring(spaceNum[j - 1] + 1, spaceNum[j])));
-          }
-        }*/
       }
-      /*float[] m = new float[4];
-      for (int l = 0; l < 4; l++) {
-        m[l] = this.rotateNum.get(l);
-      }*/
       //this.rotateNumber.add(rotateNum);
       //rotateの変換行列の作成
       for(int i = 0; i < 3; i++){
@@ -313,13 +246,17 @@ public class Node {
       }
       //変換行列の作成
       makeMatrix4f();
-    }
-    if (this.node.size() != 0) {
-      for (int i = 0; i < this.node.size(); i++) {
-        this.node.get(i).createMatrix();
-        this.matrix_node.add(this.node.get(i).loadMatrix());
+      
+      
+      if (this.node.size() != 0) {
+        for (int i = 0; i < this.node.size(); i++) {
+          this.node.get(i).createMatrix();
+          this.matrix_node.add(this.node.get(i).loadMatrix());
+        }
       }
+      setURL();
     }
+
   }
 
   private void makeMatrix4f() {
@@ -327,27 +264,21 @@ public class Node {
     for(int i = 0; i < 4; i++){
       for(int j = 0; j < 4; j++){
         for (int k = 0; k < 4; k++){
-          if (i == 0 && j == 0){
           this.matrixXY[i][j] += this.rotateX[i][k] * this.rotateY[k][j];
-          }
         }
       }
     }
     for(int i = 0; i < 4; i++){
       for(int j = 0; j < 4; j++){
         for (int k = 0; k < 4; k++){
-          if (i == 0 && j == 0){
-          this.matrixXYZ[i][j] += this.matrixXY[i][k] * this.rotateY[k][j];
-          }
+          this.matrixXYZ[i][j] += this.matrixXY[i][k] * this.rotateZ[k][j];
         }
       }
     }
     for(int i = 0; i < 4; i++){
       for(int j = 0; j < 4; j++){
         for (int k = 0; k < 4; k++){
-          if (i == 0 && j == 0){
           this.matrixAll[i][j] += this.matrixXYZ[i][k] * this.translater[k][j];
-          }
         }
       }
     }
@@ -369,7 +300,7 @@ public class Node {
   private  void setRotateMatrix(float[][] rotate,int k) {
     if(k == 0){
       for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 0; j++){
+        for(int j = 0; j < 4; j++){
           if(i == j && i < 2){
             this.rotateZ[i][j] = Math.cos(rotate[k][3]);
           }else if(i == 0 && j == 1){
@@ -385,7 +316,7 @@ public class Node {
       }
     }else if(k == 1){
      for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 0; j++){
+        for(int j = 0; j < 4; j++){
           if(i == j && i == 0){
             this.rotateY[i][j] = Math.cos(rotate[k][3]);
           }else if(i == j && i == 2){
@@ -394,7 +325,7 @@ public class Node {
             this.rotateY[i][j] = -1.0 * Math.sin(rotate[k][3]);
           }else if(i == 1 && j == 0){
             this.rotateY[i][j] = Math.sin(rotate[k][3]);
-          }else if(i == j && i > 1){
+          }else if(i == j && ((i == 1) || i == 3)){
             this.rotateY[i][j] = 1.0;
           }else{
             this.rotateY[i][j] = 0.0;
@@ -403,14 +334,14 @@ public class Node {
       }
     }else if(k == 2){
       for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 0; j++){
+        for(int j = 0; j < 4; j++){
           if(i == j && i > 0 && i < 3){
             this.rotateX[i][j] = Math.cos(rotate[k][3]);
           }else if(i == 1 && j == 2){
             this.rotateX[i][j] = -1.0 *Math.sin(rotate[k][3]);
           }else if(i == 2 && j == 1){
             this.rotateX[i][j] = Math.sin(rotate[k][3]);
-          }else if(i == j && i > 1){
+          }else if(i == j && (i > 1 || i == 0)){
             this.rotateX[i][j] = 1.0;
           }else{
             this.rotateX[i][j] = (float)0.0;
@@ -433,7 +364,9 @@ public class Node {
     if (this.url != null) {
       if (this.url.indexOf("-G") != -1) { //$NON-NLS-1$
         this.url = this.url.substring(1, this.url.indexOf("-G")); //$NON-NLS-1$
-      } else {
+      } else if (this.url.indexOf("-m") != -1){ //$NON-NLS-1$
+        this.url = this.url.substring(1, this.url.indexOf("-m")); //$NON-NLS-1$
+      }else{
         this.url = this.url.substring(1);
       }
     }
