@@ -71,10 +71,11 @@ public class Mesh {
     final List<Location> normalLocation = this.source.get(1).getNormalLocation();
     List<int[]> indexNumber = this.polygons.getIndexNumber();
     
+    if(this.polylist.loadP() == null){
     this.matrix.setM03(0.0f);
     this.matrix.setM13(0.0f);
     this.matrix.setM23(0.0f);
-
+    }
     for (int n = 0; n < indexNumber.size(); n++) {
       if (indexNumber.get(n).length == 3) {
         XMLTrianglePolygon triangle = new XMLTrianglePolygon();

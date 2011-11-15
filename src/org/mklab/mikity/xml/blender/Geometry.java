@@ -60,6 +60,9 @@ public class Geometry {
     if (this.name.indexOf("-G") != -1) { //$NON-NLS-1$
       this.name = this.name.substring(0, this.name.indexOf("-G")); //$NON-NLS-1$
     }
+    if (this.name.indexOf("-m") != -1){ //$NON-NLS-1$
+      this.name = this.name.substring(0, this.name.indexOf("-m")); //$NON-NLS-1$
+    }
     
     if (this.name.indexOf("_00") != -1) { //$NON-NLS-1$
       this.name = this.name.substring(0, this.name.indexOf("_00")); //$NON-NLS-1$
