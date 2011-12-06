@@ -1,4 +1,4 @@
-package org.mklab.mikity;
+package org.mklab.mikity.view;
 
 //**********************************************************************
 //             MyTriPolygonsクラス（暫定版）                           *
@@ -115,7 +115,7 @@ public class MyTriPolygons extends MyTransformGroup {
   }
 
   /**
-   * @see org.mklab.mikity.MyTransformGroup#mulScale(javax.vecmath.Vector3f)
+   * @see org.mklab.mikity.view.MyTransformGroup#mulScale(javax.vecmath.Vector3f)
    */
   @Override
   public void mulScale(Vector3f scale) {
@@ -124,7 +124,7 @@ public class MyTriPolygons extends MyTransformGroup {
   }
 
   /**
-   * @see org.mklab.mikity.MyTransformGroup#mulRotation(javax.vecmath.AxisAngle4f)
+   * @see org.mklab.mikity.view.MyTransformGroup#mulRotation(javax.vecmath.AxisAngle4f)
    */
   @Override
   public void mulRotation(AxisAngle4f angle) {
@@ -133,7 +133,7 @@ public class MyTriPolygons extends MyTransformGroup {
   }
 
   /**
-   * @see org.mklab.mikity.MyTransformGroup#mulTranslation(javax.vecmath.Vector3f)
+   * @see org.mklab.mikity.view.MyTransformGroup#mulTranslation(javax.vecmath.Vector3f)
    */
   @Override
   public void mulTranslation(Vector3f translation) {

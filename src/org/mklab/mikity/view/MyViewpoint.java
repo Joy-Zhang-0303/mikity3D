@@ -1,4 +1,4 @@
-package org.mklab.mikity;
+package org.mklab.mikity.view;
 
 //**********************************************************************
 //MyViewpointクラス                                       *

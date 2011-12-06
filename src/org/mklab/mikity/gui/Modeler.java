@@ -23,6 +23,7 @@ import org.mklab.mikity.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogLink;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogDH;
 import org.mklab.mikity.util.MsgUtil;
+import org.mklab.mikity.view.ModelCanvas;
 import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.config.ModelUnit;

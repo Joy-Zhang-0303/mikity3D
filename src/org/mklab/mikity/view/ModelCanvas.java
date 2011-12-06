@@ -1,4 +1,4 @@
-package org.mklab.mikity.gui;
+package org.mklab.mikity.view;
 
 //import javax.media.j3d.Bounds;
 import javax.media.j3d.Background;
@@ -12,10 +12,6 @@ import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
 //import org.mklab.mikity.picker.DataPicker;
-import org.mklab.mikity.MyDirectionalLight;
-import org.mklab.mikity.MyTransformGroup;
-import org.mklab.mikity.MyViewpoint;
-import org.mklab.mikity.PrimitiveFactory;
 import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.xml.config.Light;
 import org.mklab.mikity.xml.model.Group;
@@ -44,7 +40,7 @@ public class ModelCanvas extends Canvas3D {
   /**
    * マウス操作の状態の表す数値
    */
-  int mouseOperationType = 0;
+  public int mouseOperationType = 0;
 
   /** 読み込んだファイルのルート */
   private Jamast root;

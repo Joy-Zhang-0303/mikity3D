@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.picker.DataPicker;
 import org.mklab.nfc.matrix.Matrix;

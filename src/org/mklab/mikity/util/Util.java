@@ -5,9 +5,9 @@
  */
 package org.mklab.mikity.util;
 
-import org.mklab.mikity.DHParameter;
-import org.mklab.mikity.LinkParameter;
-import org.mklab.mikity.gui.ModelCanvas;
+import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.LinkParameter;
+import org.mklab.mikity.view.ModelCanvas;
 import org.mklab.mikity.xml.model.Linkdata;
 
 

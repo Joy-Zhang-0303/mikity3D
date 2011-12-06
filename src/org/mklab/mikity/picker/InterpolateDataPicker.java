@@ -5,8 +5,8 @@
  */
 package org.mklab.mikity.picker;
 
-import org.mklab.mikity.DHParameter;
-import org.mklab.mikity.LinkParameter;
+import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.LinkParameter;
 import org.mklab.nfc.matrix.Matrix;
 
 

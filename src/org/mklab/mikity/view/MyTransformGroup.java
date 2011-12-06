@@ -1,4 +1,4 @@
-package org.mklab.mikity;
+package org.mklab.mikity.view;
 
 //**********************************************************************
 //             MyTransformGroupクラス（暫定版） *
@@ -12,6 +12,10 @@ import javax.vecmath.AxisAngle4f;
 import javax.vecmath.Matrix3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
+
+import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.IMovableGroup;
+import org.mklab.mikity.model.LinkParameter;
 
 
 /**
@@ -138,7 +142,7 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
   /**
    * リンクパラメータを設定する。
    * 
-   * @see org.mklab.mikity.IMovableGroup#setLinkParameter(org.mklab.mikity.LinkParameter)
+   * @see org.mklab.mikity.model.IMovableGroup#setLinkParameter(org.mklab.mikity.model.LinkParameter)
    */
   public void setLinkParameter(final LinkParameter link) {
     double locX = link.getLocX();
@@ -181,7 +185,7 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
   /**
    * DHパラメータを設定する。
    * 
-   * @see org.mklab.mikity.IMovableGroup#setDHParameter(org.mklab.mikity.DHParameter)
+   * @see org.mklab.mikity.model.IMovableGroup#setDHParameter(org.mklab.mikity.model.DHParameter)
    */
   public void setDHParameter(final DHParameter param) {
     /*

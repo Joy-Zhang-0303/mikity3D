@@ -3,12 +3,14 @@
  * Copyright (C) 2005 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity;
+package org.mklab.mikity.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.mklab.mikity.view.MyTransformGroup;
 
 
 /**

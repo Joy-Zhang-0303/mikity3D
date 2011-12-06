@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
 
-import org.mklab.mikity.MovableGroupManager;
 import org.mklab.mikity.gui.SimulationViewer;
+import org.mklab.mikity.model.MovableGroupManager;
 
 
 /**
