@@ -65,7 +65,7 @@ public class GroupConfigDialogDH {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     GridLayout layout = new GridLayout();
     layout.numColumns = 2;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(320, 250));
+    //this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 350));
     this.sShell.setText("Groupパラメータの編集");
     this.sShell.setLayout(layout);
     // groupName = new ParameterInputBox(sShell, SWT.NONE, "Group名",

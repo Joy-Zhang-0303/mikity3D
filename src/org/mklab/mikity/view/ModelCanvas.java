@@ -126,50 +126,7 @@ public class ModelCanvas extends Canvas3D {
 
     tg.addChild(this.topGroup);
 
-    // if(mouseOperationType == 1){
-    // bg = new BranchGroup();
-    //      
-    // BoundingSphere bound_sph = new BoundingSphere( new Point3d(), 100.0 );
-    //      
-    // PickRotateBehavior rotator = new PickRotateBehavior(bg, canvas,
-    // bound_sph);
-    // rotator.setMode(PickTool.GEOMETRY);
-    // bg.addChild(rotator);
-    //      
-    // PickTranslateBehavior translator = new PickTranslateBehavior(bg, canvas,
-    // bound_sph);
-    // translator.setMode(PickTool.GEOMETRY);
-    // bg.addChild(translator);
-    //      
-    // PickZoomBehavior zoomer = new PickZoomBehavior(bg, canvas, bound_sph);
-    // zoomer.setMode(PickTool.GEOMETRY);
-    // bg.addChild(zoomer);
-    //      
-    // SimplePicking simplepicking = new
-    // SimplePicking(bg,canvas,bound_sph,PickTool
-    // .GEOMETRY_INTERSECT_INFO,PickResult.PRIMITIVE );
-    // simplepicking.setupCallback( new SimplePickingCallback() {
-    // public void picked(int type, Node node) {
-    // if (node != null) {
-    // String data = (String)node.getUserData();
-    // System.out.println(data);
-    // } else {
-    // System.out.println("Error: node is null.");
-    // }
-    // }
-    // });
-    // bg.addChild(simplepicking);
-    //      
-    // 
-    // bg.addChild(tg);
-    //      
-    // TransformGroup gtrans = new TransformGroup();
-    // gtrans.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
-    // gtrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-    // gtrans.setCapability(TransformGroup.ENABLE_PICK_REPORTING);
-    // tg.addChild(gtrans);
-    // universe.addBranchGraph(bg);
-    // }
+
     this.universe.addBranchGraph(this.bg);
 
   }
@@ -295,42 +252,5 @@ public class ModelCanvas extends Canvas3D {
       new MyViewpoint(new AxisAngle4f(1.0f, 0.0f, 0.0f, -0.2f), new Vector3f(0.0f, 0.3f, 1.0f), this.universe);
     }
 
-    // 単位を読み込む
-    // int dScale = 1;
-    // boolean dRadian = true;
-    // if(config.loadModelUnit() != null){
-    // if(config.loadModelUnit().loadLength() != null){
-    // if(config.loadModelUnit().loadLength().startsWith("cm")){
-    // scale = 100;
-    // }else if(config.loadModelUnit().loadLength().startsWith("mm")){
-    // scale = 1000;
-    // }
-    // }
-    // if(config.loadModelUnit().loadAngle() != null){
-    // if(config.loadModelUnit().loadAngle().startsWith("degree")){
-    // radian = false;
-    // }
-    // }
-    // }
-    //    
-    // PrimitiveFactory.setScale(scale, radian);
-    //    
-    // if(config.loadDataUnit() != null){
-    // if(config.loadDataUnit().loadLength() != null){
-    // if(config.loadDataUnit().loadLength().startsWith("cm")){
-    // dScale = 100;
-    // }else if(config.loadDataUnit().loadLength().startsWith("mm")){
-    // dScale = 1000;
-    // }
-    // }
-    // if(config.loadDataUnit().loadAngle() != null){
-    // if(config.loadDataUnit().loadAngle().startsWith("degree")){
-    // dRadian = false;
-    // }
-    // }
-    // }
-    //        
-    // org.mklab.mikity.picker.DataPicker.setScale(dScale, dRadian, scale,
-    // radian);
   }
 }

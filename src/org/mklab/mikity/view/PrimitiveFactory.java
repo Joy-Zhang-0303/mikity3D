@@ -72,32 +72,15 @@ public class PrimitiveFactory {
     scale = ModelCanvas.scale;
     radian = ModelCanvas.radian;
     MyTransformGroup tg = new MyTransformGroup();
-    // //Modeler作成の補助となる座標系の線分を描画
-    // int flag1 = Primitive.GENERATE_NORMALS;
-    // Material matR = new Material();
-    // matR.setDiffuseColor(new Color3f(1.0f,0.0f,0.0f));
-    // Appearance appR = new Appearance();
-    // appR.setMaterial(matR);
-    // Primitive primR = new Box(9999f, 0.002f, 0.002f,flag1,appR);
-    // tg.addChild(primR);
-    //		    
-    // int flag2 = Primitive.GENERATE_NORMALS;
-    // Material matG = new Material();
-    // matG.setDiffuseColor(new Color3f(0.0f,1.0f,0.0f));
-    // Appearance appG = new Appearance();
-    // appG.setMaterial(matG);
-    // Primitive primG = new Box(0.002f, 9999f,0.002f,flag2,appG);
-    // tg.addChild(primG);
-    //		    
-    // int flag3 = Primitive.GENERATE_NORMALS;
-    // Material matB = new Material();
-    // matB.setDiffuseColor(new Color3f(0.0f,0.0f,1.0f));
-    // Appearance appB = new Appearance();
-    // appB.setMaterial(matB);
-    // Primitive primB = new Box(0.002f,0.002f, 9999f,flag3,appB);
-    // tg.addChild(primB);
+
     Linkdata[] linkdata = group.loadLinkdata();
 
+    myTransformGroupCreater(group, tg, linkdata);
+
+    return tg;
+  }
+
+  private static void myTransformGroupCreater(Group group, MyTransformGroup tg, Linkdata[] linkdata) {
     XMLBox[] xmlBox = group.loadXMLBox();
     for (int i = 0; i < xmlBox.length; i++) {
       tg.addChild(create(xmlBox[i]));
@@ -115,17 +98,7 @@ public class PrimitiveFactory {
 
     XMLCone[] xmlCone = group.loadXMLCone();
     for (int i = 0; i < xmlCone.length; i++) {
-      // for(int j=0; j<linkdata.length; j++){
-      // if(linkdata[j].hasLink() &&
-      // linkdata[j].loadTarget().equals("locationY")){
-      // float newLocY = (float)linkdata[j].loadConst();
-      // float locX = xmlCone[i].loadLocation().loadX();
-      // float locY = xmlCone[i].loadLocation().loadY()-newLocY;
-      // float locZ = xmlCone[i].loadLocation().loadZ();
-      // Location newLoc = new Location(locX,locY,locZ);
-      // xmlCone[i].setLocation(newLoc);
-      // }
-      // }
+
       tg.addChild(create(xmlCone[i]));
     }
 
@@ -169,8 +142,6 @@ public class PrimitiveFactory {
 
     // //MyTransformGroup と Groupの関連付けを行う
     MovableGroupManager.assignGroup(group, tg);
-
-    return tg;
   }
 
   /**

@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="lib/org.eclipse.osgi_3.4.2.R34x_v20080826-1230.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/j3d-1_5_2"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jogl-1_1_1-windows-amd64"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
