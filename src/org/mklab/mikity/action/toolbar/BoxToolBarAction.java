@@ -6,6 +6,7 @@ import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLBox;
+import org.mklab.mikity.view.MyBox;
 
 
 /**
@@ -54,6 +55,7 @@ public class BoxToolBarAction extends Action {
     this.root = MainWindow.getRoot();
     Group group = this.root.loadModel(0).loadGroup(0);
 
+    //MyBox box = new MyBox();
     XMLBox box = new XMLBox();
     box.setXsize(0.10f);
     box.setYsize(0.10f);

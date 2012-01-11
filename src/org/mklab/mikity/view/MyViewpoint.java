@@ -74,8 +74,8 @@ public class MyViewpoint {
   /**
    * 視点の設定を行う。
    * 
-   * @param angle
-   * @param position
+   * @param angle 視点
+   * @param position 位置
    */
   public void setViewpoint(AxisAngle4f angle, Vector3f position) {
     // 視点位置＆方向を設定

@@ -70,7 +70,7 @@ public class MyUniverse {
   /**
    * コンストラクター
    * 
-   * @param app
+   * @param app アプレット
    */
   public MyUniverse(Applet app) {
     // アプレットの設定
@@ -94,7 +94,7 @@ public class MyUniverse {
   /**
    * コンストラクター
    * 
-   * @param frame
+   * @param frame フレーム
    */
   /*
    * frameに画像を張る！12/2追加
@@ -122,14 +122,14 @@ public class MyUniverse {
   }
 
   /**
-   * @param viewAngle
-   * @param frontDis
-   * @param backDis
-   * @param boundsRad
-   * @param creaseAng
-   * @param div
+   * @param viewAngle 視点
+   * @param frontDis 前面の距離
+   * @param backDis 構面の距離
+   * @param boundsRad 境界の半径
+   * @param creaseAng しわの角度
+   * @param div 部門
    */
-  public void setEnvParameter(float viewAngle, float frontDis, float backDis, float boundsRad, float creaseAng, int div) {
+  public static void setEnvParameter(float viewAngle, float frontDis, float backDis, float boundsRad, float creaseAng, int div) {
     // 環境パラメータの設定
     fieldOfView = viewAngle;
     frontDistance = frontDis;
@@ -155,9 +155,9 @@ public class MyUniverse {
   }
 
   /**
-   * @param bg
+   * @param bg ブランチグループ
    */
-  public void addBranchGraph(BranchGroup bg) {
+  public static void addBranchGraph(BranchGroup bg) {
     // Compiled-Retainモード実行
     bg.compile();
 
