@@ -1,6 +1,7 @@
 package org.mklab.mikity.gui;
 
 import java.io.File;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -18,9 +19,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text; //import org.mklab.mikity.action.AddPrimitiveAction;
+import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.action.AnimationWindowOpenAction;
-import org.mklab.mikity.action.ConfigDialogOpenAction; //import org.mklab.mikity.action.EditPrimitiveAction;
+import org.mklab.mikity.action.ConfigDialogOpenAction;
 import org.mklab.mikity.action.ModelEditorOpenAction;
 import org.mklab.mikity.action.file.FileExitAction;
 import org.mklab.mikity.action.file.FileImportAction;
@@ -31,16 +32,15 @@ import org.mklab.mikity.action.file.FileSaveAsAction;
 import org.mklab.mikity.action.toolbar.BoxToolBarAction;
 import org.mklab.mikity.action.toolbar.ConeToolBarAction;
 import org.mklab.mikity.action.toolbar.CylinderToolBarAction;
-import org.mklab.mikity.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.action.toolbar.QuadPolygonToolBarAction;
-import org.mklab.mikity.action.toolbar.TrianglePolygonToolBarAction; //import org.mklab.mikity.action.mouse.ChangeConnectModeAction;
-//import org.mklab.mikity.action.mouse.ChangePickingModeAction;
-//import org.mklab.mikity.action.mouse.ChangeViewPointModeAction;
+import org.mklab.mikity.action.toolbar.SphereToolBarAction;
+import org.mklab.mikity.action.toolbar.TrianglePolygonToolBarAction;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
-import org.mklab.mikity.xml.config.DataUnit;
+import org.mklab.mikity.java3d.Java3dModeler;
 import org.mklab.mikity.xml.Config;
 import org.mklab.mikity.xml.JAXBMarshaller;
 import org.mklab.mikity.xml.Jamast;
+import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.config.ModelUnit;
 import org.mklab.mikity.xml.model.Group;
 
@@ -126,7 +126,9 @@ public class MainWindow extends ApplicationWindow {
 
     this.comp = localComposite;
 
-    this.modeler = new Modeler(localComposite, SWT.NONE, root, this.dc);
+    // Java3d or JOGL
+    this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.dc);
+    //this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.dc);
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     // createFileChooseComp(comp);
     // createMainButtonComp(comp);

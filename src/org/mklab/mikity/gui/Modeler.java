@@ -8,7 +8,6 @@ package org.mklab.mikity.gui;
 import java.awt.Frame;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -22,7 +21,6 @@ import org.mklab.mikity.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogDH;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogLink;
-import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.util.MsgUtil;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.config.DataUnit;
@@ -35,17 +33,13 @@ import org.mklab.mikity.xml.config.ModelUnit;
  * @author miki
  * @version $Revision: 1.22 $.2004/12/03
  */
-public class Modeler extends Composite {
+public abstract class Modeler extends Composite {
 
-  SceneGraphTree tree;
+  protected SceneGraphTree tree;
 
-  private Jamast root;
-  // private File tempFile;
+  protected Jamast root;
   
-  // JOGL
-  private Java3dModelCanvas canvas;
-  //private Component canvas;
-  private Frame awtFrame;
+  protected Frame awtFrame;
   private Group treeViewerGroup;
   /** */
   private String modelAngleUnit;
@@ -93,13 +87,7 @@ public class Modeler extends Composite {
     Composite viewerComp = new Composite(composite, SWT.EMBEDDED);
     viewerComp.setLayout(new GridLayout());
     viewerComp.setLayoutData(gridData);
-
-    // 何もないキャンバスを作る
-    this.awtFrame = SWT_AWT.new_Frame(viewerComp);
-    // JOGL
-    this.canvas = new Java3dModelCanvas(this.root);
-    //this.canvas = new JoglModelCanvas();
-    this.awtFrame.add(this.canvas);
+    createModelCanvas(viewerComp);
   }
 
   /**
@@ -312,17 +300,6 @@ public class Modeler extends Composite {
   }
 
   /**
-   * GroupをsinsiCanvasに読み込ませ、Frameにaddする
-   * 
-   * @version $Revision: 1.22 $.2005/01/25
-   */
-  public void createViewer() {
-    org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
-    // JGOL
-    this.canvas.setChild(group); 
-  }
-
-  /**
    * @param root
    */
   public void setModel(Jamast root) {
@@ -367,5 +344,16 @@ public class Modeler extends Composite {
   public void fillTree() {
     this.tree.fillTree();
   }
+  
+  /**
+   * GroupをsinsiCanvasに読み込ませ、Frameにaddする
+   * 
+   * @version $Revision: 1.22 $.2005/01/25
+   */
+  public abstract void createViewer();
 
+  /**
+   * @param viewerComp
+   */
+  public abstract void createModelCanvas(Composite viewerComp);
 }

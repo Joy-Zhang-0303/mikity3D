@@ -97,9 +97,9 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
     gl.glRotatef(this.rotx, 1.0f, 0.0f, 0.0f);
     gl.glRotatef(this.roty, 0.0f, 1.0f, 0.0f);
     
-    this.glut.glutSolidSphere(1.0, 50, 50);
+    //this.glut.glutSolidSphere(1.0, 50, 50);
 
-    //this.glut.glutSolidDodecahedron();
+    this.glut.glutSolidDodecahedron();
     gl.glFlush();
   }
 
