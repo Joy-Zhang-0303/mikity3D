@@ -555,24 +555,7 @@ public class MainWindow extends ApplicationWindow {
     this.modeler.createViewer();
   }
 
-  // JOGL
-//  /**
-//   * マウス操作の状態を指定する。
-//   * 
-//   * @param i マウス操作の状態の表す数値
-//   */
-//  public void setMouseOperation(int i) {
-//    this.modeler.setMouseOperation(i);
-//  }
-//
-//  /**
-//   * マウス操作の状態の表す数値を返す
-//   * 
-//   * @return マウス操作の状態の表す数値
-//   */
-//  public int getMouseOperation() {
-//    return this.modeler.getMouseOperation();
-//  }
+
 
   /**
    * 読み込みファイルの取得

@@ -71,8 +71,8 @@ public class PrimitiveFactory {
    * @return tg トランスフォームグループ
    */
   public static MyTransformGroup createGroup(Group group) {
-    scale = ModelCanvas.scale;
-    radian = ModelCanvas.radian;
+    scale = Java3dModelCanvas.scale;
+    radian = Java3dModelCanvas.radian;
     MyTransformGroup tg = new MyTransformGroup();
 
     Linkdata[] linkdata = group.loadLinkdata();

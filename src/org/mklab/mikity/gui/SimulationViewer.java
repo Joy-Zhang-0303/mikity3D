@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
-import org.mklab.mikity.java3d.ModelCanvas;
+import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
@@ -169,7 +169,7 @@ public class SimulationViewer extends ApplicationWindow {
 
     // AWTのフレームを作る。
     final Frame awtFrame = SWT_AWT.new_Frame(viewer);
-    final ModelCanvas sinsiCanvas = new ModelCanvas(this.root);
+    final Java3dModelCanvas sinsiCanvas = new Java3dModelCanvas(this.root);
     awtFrame.add(sinsiCanvas);
     sinsiCanvas.load();
   }

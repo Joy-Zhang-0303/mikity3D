@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.picker;
 
-import org.mklab.mikity.java3d.ModelCanvas;
+import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.java3d.MyTransformGroup;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.LinkParameter;
@@ -164,7 +164,7 @@ public abstract class DataPicker {
       case DHParameter.ALPHA:
         for (int i = 0; i < this.params.length; i++) {
           // どうにかする。
-          if (ModelCanvas.radian) {
+          if (Java3dModelCanvas.radian) {
             this.params[i].setAlpha(constantValue + this.params[i].getAlpha());
           } else {
             this.params[i].setAlpha(Math.toRadians(constantValue) + this.params[i].getAlpha());
@@ -179,7 +179,7 @@ public abstract class DataPicker {
         break;
       case DHParameter.THETA:
         for (int i = 0; i < this.params.length; i++) {
-          if (ModelCanvas.radian) {
+          if (Java3dModelCanvas.radian) {
             this.params[i].setTheta(constantValue + this.params[i].getTheta());
           } else {
             this.params[i].setTheta(Math.toRadians(constantValue) + this.params[i].getTheta());
@@ -214,7 +214,7 @@ public abstract class DataPicker {
         break;
       case LinkParameter.ROTX:
         for (int i = 0; i < this.link.length; i++) {
-          if (ModelCanvas.radian) {
+          if (Java3dModelCanvas.radian) {
             this.link[i].setRotX(constantValue + this.link[i].getRotX());
           } else {
             this.link[i].setRotX(Math.toRadians(constantValue) + this.link[i].getRotX());
@@ -223,7 +223,7 @@ public abstract class DataPicker {
         break;
       case LinkParameter.ROTY:
         for (int i = 0; i < this.link.length; i++) {
-          if (ModelCanvas.radian) {
+          if (Java3dModelCanvas.radian) {
             this.link[i].setRotY(constantValue + this.link[i].getRotY());
           } else {
             this.link[i].setRotY(Math.toRadians(constantValue) + this.link[i].getRotY());
@@ -232,7 +232,7 @@ public abstract class DataPicker {
         break;
       case LinkParameter.ROTZ:
         for (int i = 0; i < this.link.length; i++) {
-          if (ModelCanvas.radian) {
+          if (Java3dModelCanvas.radian) {
             this.link[i].setRotZ(constantValue + this.link[i].getRotZ());
           } else {
             this.link[i].setRotZ(Math.toRadians(constantValue) + this.link[i].getRotZ());

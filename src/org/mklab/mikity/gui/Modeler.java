@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.gui;
 
-import java.awt.Component;
 import java.awt.Frame;
 
 import org.eclipse.swt.SWT;
@@ -23,7 +22,7 @@ import org.mklab.mikity.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogDH;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogLink;
-import org.mklab.mikity.jogl.SampleModelCanvas;
+import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.util.MsgUtil;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.config.DataUnit;
@@ -44,8 +43,8 @@ public class Modeler extends Composite {
   // private File tempFile;
   
   // JOGL
-  //private ModelCanvas canvas;
-  private Component canvas;
+  private Java3dModelCanvas canvas;
+  //private Component canvas;
   private Frame awtFrame;
   private Group treeViewerGroup;
   /** */
@@ -79,86 +78,10 @@ public class Modeler extends Composite {
     sash.setLayout(new GridLayout());
 
     createViewerComp(sash);
-    // createParmComp(sash);
     createTreeComp(sash);
 
-    // ******コンポジットを作成してみる*******************
-    // createEditComp(sash);
-    // createEditGroupComp(sash);
   }
 
-  // public Modeler(Shell parentShell, Mikity root) {
-  // this.parentShell = parentShell;
-  // this.root = root;
-  //
-  // /*
-  // * そのまま閉じると、変更した点が更新されてしまうので、 最初の状態をtempFileに保存しておく
-  // */
-  // try {
-  // tempFile = File.createTempFile("model", ".xml");
-  // root.getModel(0).marshal(new OutputStreamWriter(new
-  // FileOutputStream(tempFile), "UTF-8"));
-  // } catch (IOException e) {
-  // //
-  // e.printStackTrace();
-  // } catch (MarshalException e) {
-  // //
-  // e.printStackTrace();
-  // } catch (ValidationException e) {
-  // //
-  // e.printStackTrace();
-  // }
-  //
-  // createSShell();
-  // }
-  //
-  // /**
-  // * MainWindowのシェルを親シェルとする
-  // *
-  // * @param shell
-  // */
-  // public Modeler(Shell parentShell) {
-  // this.parentShell = parentShell;
-  // createSShell();
-  // }
-  //
-  // public void open() {
-  // sShell.open();
-  // }
-
-  // /**
-  // * シェルを作成する
-  // */
-  // private void createShell() {
-  // //SWT.APPLICATION_MODAL→このシェルを閉じないと、親シェルを編集できなくする
-  // sShell = new Shell(parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL |
-  // SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-  // GridLayout layout = new GridLayout();
-  // layout.numColumns = 1;
-  //
-  // sShell.addDisposeListener(new DisposeListener() {
-  //
-  // //ウインドウを閉じたときにTempFileを消すようにする。
-  // public void widgetDisposed(DisposeEvent arg0) {
-  // if (tempFile.exists()) {
-  // tempFile.delete();
-  // }
-  // }
-  // });
-
-  // // SashForm 画面を垂直に広げることができる
-  // SashForm sash = new SashForm(this, SWT.NONE);
-  // sash.setLayoutData(new GridData(GridData.FILL_BOTH));
-  // sash.setLayout(new GridLayout());
-  //
-  // createViewerComp(sash);
-  // createParmComp(sash);
-  // createTreeComp(sash);
-
-  // sShell.setSize(new org.eclipse.swt.graphics.Point(820, 510));
-  // sShell.setText("Modeler");
-  // sShell.setLayout(layout);
-  // }
 
   /**
    * 3Dグラフィックスを表示するcompositeの作成
@@ -174,8 +97,8 @@ public class Modeler extends Composite {
     // 何もないキャンバスを作る
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);
     // JOGL
-    //this.canvas = new ModelCanvas(this.root);
-    this.canvas = new SampleModelCanvas();
+    this.canvas = new Java3dModelCanvas(this.root);
+    //this.canvas = new JoglModelCanvas();
     this.awtFrame.add(this.canvas);
   }
 
@@ -205,11 +128,8 @@ public class Modeler extends Composite {
    * @param composite
    */
   public void createEditComp(Composite composite) {
-    // GridLayout layout = new GridLayout();
-    // layout.numColumns = 3;
     GridData gridData = new GridData(GridData.FILL_BOTH);
     Composite editComp = new Composite(composite, SWT.EMBEDDED);
-    // editComp.setLayout(new GridLayout());
     editComp.setLayoutData(gridData);
   }
 
@@ -219,8 +139,6 @@ public class Modeler extends Composite {
    * @param composite
    */
   public void createEditGroupComp(Composite composite) {
-    // GridLayout layout = new GridLayout();
-    // layout.numColumns = 4;
     GridData gridData = new GridData(GridData.FILL_BOTH);
     Composite editGroupComp = new Composite(composite, SWT.EMBEDDED);
     editGroupComp.setLayout(new GridLayout());
@@ -391,45 +309,6 @@ public class Modeler extends Composite {
 
       }
     });
-
-    // //編集後、保存して終了
-    // closeButton.addSelectionListener(new
-    // org.eclipse.swt.events.SelectionAdapter() {
-    //
-    // public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-    // tree.setAllTransparent(root.getModel(0).getGroup(0), false);
-    // getShell().close();
-    // }
-    // });
-    //
-    // //編集したが、変更を保存せず、キャンセルして終了
-    // cancelButton.addSelectionListener(new
-    // org.eclipse.swt.events.SelectionAdapter() {
-    //
-    // public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-    //
-    // //***********2/2 作ってみたけど、変更されてしまう*****************
-    // try {
-    // Model tmpModel = (Model)Model.unmarshal(new InputStreamReader(new
-    // FileInputStream(tempFile), "UTF-8"));
-    // root.setModel(0, tmpModel);
-    // } catch (MarshalException e1) {
-    // //
-    // e1.printStackTrace();
-    // } catch (ValidationException e1) {
-    // //
-    // e1.printStackTrace();
-    // } catch (UnsupportedEncodingException e1) {
-    // //
-    // e1.printStackTrace();
-    // } catch (FileNotFoundException e1) {
-    // //
-    // e1.printStackTrace();
-    // }
-    // getShell().close();
-    // }
-    //
-    // });
   }
 
   /**
@@ -440,7 +319,7 @@ public class Modeler extends Composite {
   public void createViewer() {
     org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
     // JGOL
-    //this.canvas.setChild(group); 
+    this.canvas.setChild(group); 
   }
 
   /**
@@ -489,22 +368,4 @@ public class Modeler extends Composite {
     this.tree.fillTree();
   }
 
-  // JOGL
-//  /**
-//   * マウス操作の状態を指定する。
-//   * 
-//   * @param i マウス操作の状態の表す数値
-//   */
-//  public void setMouseOperation(int i) {
-//    this.canvas.mouseOperationType = i;
-//  }
-//
-//  /**
-//   * マウス操作の状態の表す数値を返す
-//   * 
-//   * @return マウス操作の状態の表す数値
-//   */
-//  public int getMouseOperation() {
-//    return this.canvas.mouseOperationType;
-//  }
 }

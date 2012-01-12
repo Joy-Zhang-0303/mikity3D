@@ -19,7 +19,7 @@ import com.sun.opengl.util.GLUT;
  * @author iwamoto
  * @version $Revision$, 2012/01/11
  */
-public class SampleModelCanvas extends GLJPanel implements GLEventListener, MouseListener, MouseMotionListener {
+public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseListener, MouseMotionListener {
   private GLU glu;
   private GLUT glut;
 
@@ -36,9 +36,9 @@ public class SampleModelCanvas extends GLJPanel implements GLEventListener, Mous
 
   
   /**
-   * Initialize the generated object of {@link SampleModelCanvas}.
+   * Initialize the generated object of {@link JoglModelCanvas}.
    */
-  public SampleModelCanvas() {
+  public JoglModelCanvas() {
     super(new GLCapabilities());
     addGLEventListener(this);
     addMouseListener(this);

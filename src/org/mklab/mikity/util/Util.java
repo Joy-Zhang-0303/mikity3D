@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.util;
 
-import org.mklab.mikity.java3d.ModelCanvas;
+import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.LinkParameter;
 import org.mklab.mikity.xml.model.Linkdata;
@@ -33,8 +33,8 @@ public class Util {
    * @return parameter　DHパラメータ
    */
   public static DHParameter getDHParameter(final Linkdata[] linkdata) {
-    int scale = ModelCanvas.scale;
-    boolean radian = ModelCanvas.radian;
+    int scale = Java3dModelCanvas.scale;
+    boolean radian = Java3dModelCanvas.radian;
     DHParameter parameter = new DHParameter(); // 初期値全てゼロのDHParameter
     // linkdataが無い場合はlinkdata.lengthが0になる
     for (int i = 0; i < linkdata.length; i++) {
@@ -70,8 +70,8 @@ public class Util {
    * @return parameter　リンクパラメータ
    */
   public static LinkParameter getLinkParameter(final Linkdata[] linkdata) {
-    int scale = ModelCanvas.scale;
-    boolean radian = ModelCanvas.radian;
+    int scale = Java3dModelCanvas.scale;
+    boolean radian = Java3dModelCanvas.radian;
     LinkParameter link = new LinkParameter();
     // linkdataが無い場合はlinkdata.lengthが0になる
     for (int i = 0; i < linkdata.length; i++) {

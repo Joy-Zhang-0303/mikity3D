@@ -32,7 +32,7 @@ import com.sun.j3d.utils.universe.SimpleUniverse;
  * @author Miki Koga
  * @version $Revision: 1.6 $.2004/12/16
  */
-public class ModelCanvas extends Canvas3D {
+public class Java3dModelCanvas extends Canvas3D {
 
   /** */
   private static final long serialVersionUID = 1L;
@@ -76,7 +76,7 @@ public class ModelCanvas extends Canvas3D {
    * 
    * @param root 
    */
-  public ModelCanvas(Jamast root) {
+  public Java3dModelCanvas(Jamast root) {
     super(SimpleUniverse.getPreferredConfiguration());
     this.root = root;
 
