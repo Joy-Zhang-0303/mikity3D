@@ -1,4 +1,4 @@
-package org.mklab.mikity.view;
+package org.mklab.mikity.java3d;
 
 //import javax.media.j3d.Bounds;
 import javax.media.j3d.Background;

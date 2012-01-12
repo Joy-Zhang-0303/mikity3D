@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mklab.mikity.view.MyTransformGroup;
+import org.mklab.mikity.java3d.MyTransformGroup;
 
 
 /**

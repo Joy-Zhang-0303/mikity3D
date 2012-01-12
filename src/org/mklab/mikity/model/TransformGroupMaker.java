@@ -1,5 +1,7 @@
 package org.mklab.mikity.model;
 
+import org.mklab.mikity.java3d.MyTransformGroup;
+import org.mklab.mikity.java3d.PrimitiveFactory;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Linkdata;
@@ -10,8 +12,6 @@ import org.mklab.mikity.xml.model.XMLCylinder;
 import org.mklab.mikity.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.xml.model.XMLSphere;
 import org.mklab.mikity.xml.model.XMLTrianglePolygon;
-import org.mklab.mikity.view.MyTransformGroup;
-import org.mklab.mikity.view.PrimitiveFactory;
 
 
 /**

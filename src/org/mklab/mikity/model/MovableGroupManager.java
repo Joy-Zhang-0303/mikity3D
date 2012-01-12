@@ -11,9 +11,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.mklab.mikity.java3d.MyTransformGroup;
 import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.picker.DataPicker;
-import org.mklab.mikity.view.MyTransformGroup;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Linkdata;

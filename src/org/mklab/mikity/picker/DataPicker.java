@@ -5,10 +5,10 @@
  */
 package org.mklab.mikity.picker;
 
+import org.mklab.mikity.java3d.ModelCanvas;
+import org.mklab.mikity.java3d.MyTransformGroup;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.LinkParameter;
-import org.mklab.mikity.view.ModelCanvas;
-import org.mklab.mikity.view.MyTransformGroup;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.IntMatrix;
 import org.mklab.nfc.matrix.Matrix;

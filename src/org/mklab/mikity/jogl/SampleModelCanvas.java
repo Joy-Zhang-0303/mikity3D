@@ -54,7 +54,7 @@ public class SampleModelCanvas extends GLJPanel implements GLEventListener, Mous
     this.glu = new GLU();
     this.glut = new GLUT();
     //
-    gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
     float light_position0[] = {1, 0f, 1.0f, 1.0f, 0.0f};
     float light_position1[] = {-1.0f, 1.0f, 1.0f, 0.0f};
@@ -96,8 +96,10 @@ public class SampleModelCanvas extends GLJPanel implements GLEventListener, Mous
 
     gl.glRotatef(this.rotx, 1.0f, 0.0f, 0.0f);
     gl.glRotatef(this.roty, 0.0f, 1.0f, 0.0f);
+    
+    this.glut.glutSolidSphere(1.0, 50, 50);
 
-    this.glut.glutSolidDodecahedron();
+    //this.glut.glutSolidDodecahedron();
     gl.glFlush();
   }
 

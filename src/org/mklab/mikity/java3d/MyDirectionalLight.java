@@ -1,4 +1,4 @@
-package org.mklab.mikity.view;
+package org.mklab.mikity.java3d;
 
 //**********************************************************************
 //            MyDirectionalLightクラス（暫定版） *
