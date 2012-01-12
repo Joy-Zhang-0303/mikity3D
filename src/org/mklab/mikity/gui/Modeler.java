@@ -5,7 +5,8 @@
  */
 package org.mklab.mikity.gui;
 
-import java.awt.Frame; //import java.io.File;
+import java.awt.Component;
+import java.awt.Frame;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
@@ -14,18 +15,18 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group; //import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.MessageBox;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.EditPrimitiveDialog;
-import org.mklab.mikity.gui.dialog.GroupConfigDialogLink;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogDH;
+import org.mklab.mikity.gui.dialog.GroupConfigDialogLink;
+import org.mklab.mikity.jogl.SampleModelCanvas;
 import org.mklab.mikity.util.MsgUtil;
-import org.mklab.mikity.view.ModelCanvas;
-import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.Jamast;
+import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.config.ModelUnit;
 
 
@@ -41,7 +42,10 @@ public class Modeler extends Composite {
 
   private Jamast root;
   // private File tempFile;
-  private ModelCanvas canvas;
+  
+  // JOGL
+  //private ModelCanvas canvas;
+  private Component canvas;
   private Frame awtFrame;
   private Group treeViewerGroup;
   /** */
@@ -169,7 +173,9 @@ public class Modeler extends Composite {
 
     // 何もないキャンバスを作る
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);
-    this.canvas = new ModelCanvas(this.root);
+    // JOGL
+    //this.canvas = new ModelCanvas(this.root);
+    this.canvas = new SampleModelCanvas();
     this.awtFrame.add(this.canvas);
   }
 
@@ -433,7 +439,8 @@ public class Modeler extends Composite {
    */
   public void createViewer() {
     org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
-    this.canvas.setChild(group);
+    // JGOL
+    //this.canvas.setChild(group); 
   }
 
   /**
@@ -482,21 +489,22 @@ public class Modeler extends Composite {
     this.tree.fillTree();
   }
 
-  /**
-   * マウス操作の状態を指定する。
-   * 
-   * @param i マウス操作の状態の表す数値
-   */
-  public void setMouseOperation(int i) {
-    this.canvas.mouseOperationType = i;
-  }
-
-  /**
-   * マウス操作の状態の表す数値を返す
-   * 
-   * @return マウス操作の状態の表す数値
-   */
-  public int getMouseOperation() {
-    return this.canvas.mouseOperationType;
-  }
+  // JOGL
+//  /**
+//   * マウス操作の状態を指定する。
+//   * 
+//   * @param i マウス操作の状態の表す数値
+//   */
+//  public void setMouseOperation(int i) {
+//    this.canvas.mouseOperationType = i;
+//  }
+//
+//  /**
+//   * マウス操作の状態の表す数値を返す
+//   * 
+//   * @return マウス操作の状態の表す数値
+//   */
+//  public int getMouseOperation() {
+//    return this.canvas.mouseOperationType;
+//  }
 }
