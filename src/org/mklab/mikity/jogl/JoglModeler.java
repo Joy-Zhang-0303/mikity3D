@@ -1,7 +1,5 @@
 package org.mklab.mikity.jogl;
 
-import java.awt.Component;
-
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
 import org.mklab.mikity.gui.Modeler;
@@ -14,8 +12,15 @@ import org.mklab.mikity.xml.Jamast;
  * @version $Revision$, 2012/01/12
  */
 public class JoglModeler extends Modeler {
-  private Component canvas;
+  private JoglModelCanvas canvas;
 
+  /**
+   * Initialize the generated object of {@link JoglModeler}.
+   * @param parent
+   * @param style
+   * @param root
+   * @param dc
+   */
   public JoglModeler(Composite parent, int style, Jamast root, CollisionCanceller dc) {
     super(parent, style, root, dc);
   }
@@ -27,6 +32,9 @@ public class JoglModeler extends Modeler {
    */
   public void createViewer() {
     org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
+    this.canvas.setObject(new SampleJoglObject());
+    this.canvas.setObject(new TeapotJoglObject());
+    //this.canvas.setObject(new TriJoglObject());
   }
 
   public void createModelCanvas(Composite viewerComp) {

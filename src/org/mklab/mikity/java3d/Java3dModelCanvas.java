@@ -1,6 +1,5 @@
 package org.mklab.mikity.java3d;
 
-//import javax.media.j3d.Bounds;
 import javax.media.j3d.Background;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
@@ -11,20 +10,16 @@ import javax.vecmath.Color3f;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
-//import org.mklab.mikity.picker.DataPicker;
 import org.mklab.mikity.util.ColorConstant;
-import org.mklab.mikity.xml.config.Light;
-import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.Config;
 import org.mklab.mikity.xml.Jamast;
+import org.mklab.mikity.xml.config.Light;
+import org.mklab.mikity.xml.model.Group;
 
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
 import com.sun.j3d.utils.behaviors.mouse.MouseZoom;
 import com.sun.j3d.utils.universe.SimpleUniverse;
-
-
-//import com.sun.j3d.utils.universe.ViewingPlatform;
 
 /**
  * キャンバスに関するクラス
@@ -33,15 +28,10 @@ import com.sun.j3d.utils.universe.SimpleUniverse;
  * @version $Revision: 1.6 $.2004/12/16
  */
 public class Java3dModelCanvas extends Canvas3D {
-
   /** */
   private static final long serialVersionUID = 1L;
-
-  /**
-   * マウス操作の状態の表す数値
-   */
+  /** マウス操作の状態の表す数値  */
   public int mouseOperationType = 0;
-
   /** 読み込んだファイルのルート */
   private Jamast root;
 
@@ -56,24 +46,13 @@ public class Java3dModelCanvas extends Canvas3D {
   private Color3f backgroundColor;
   private Vector3f lightLocation = new Vector3f(0.2f, -0.8f, -0.8f);
 
-  // private Canvas3D canvas;
-
-  // private Bounds bounds;
-
-  /**
-   * 
-   */
+  /** */
   public static int scale = 1;
-
-  /**
-   * 
-   */
+  /** */
   public static boolean radian = false;
 
   /**
-   * 
    * コンストラクター universe --> BranchGroup --> TransformGroup --> topGroup
-   * 
    * @param root 
    */
   public Java3dModelCanvas(Jamast root) {
@@ -126,9 +105,7 @@ public class Java3dModelCanvas extends Canvas3D {
 
     tg.addChild(this.topGroup);
 
-
     this.universe.addBranchGraph(this.bg);
-
   }
   
   /**
@@ -166,39 +143,34 @@ public class Java3dModelCanvas extends Canvas3D {
     MouseZoom zoom=new MouseZoom(tg);
     zoom.setSchedulingBounds(bounds);                 
     tg.addChild(zoom);
-    
 
     MouseRotate rotate=new MouseRotate(tg);
     rotate.setSchedulingBounds(bounds);               
     tg.addChild(rotate);
-    
 
     MouseTranslate translate=new MouseTranslate(tg);
     translate.setSchedulingBounds(bounds);
     tg.addChild(translate); 
   }
 
-  /**
-   * 画面から全ての物体を削除(光源設定などはそのまま)
-   */
-  public void clear() {
-    // if (topGroup != null) {
-    // topGroup.detach();
-    // }
-    this.topGroup.removeAllChildren();
-  }
+//  /**
+//   * 画面から全ての物体を削除(光源設定などはそのまま)
+//   */
+//  public void clear() {
+//    this.topGroup.removeAllChildren();
+//  }
 
-  /**
-   * 子を追加する
-   * 
-   * @param node
-   */
-  public void addChild(MyTransformGroup node) {
-    BranchGroup tmp = new BranchGroup();
-    tmp.setCapability(BranchGroup.ALLOW_DETACH);
-    tmp.addChild(node);
-    this.topGroup.addChild(tmp);
-  }
+//  /**
+//   * 子を追加する
+//   * 
+//   * @param node
+//   */
+//  public void addChild(MyTransformGroup node) {
+//    BranchGroup tmp = new BranchGroup();
+//    tmp.setCapability(BranchGroup.ALLOW_DETACH);
+//    tmp.addChild(node);
+//    this.topGroup.addChild(tmp);
+//  }
 
   /**
    * @param groups いったんトップグループの全てを消してから書き込む
@@ -209,6 +181,7 @@ public class Java3dModelCanvas extends Canvas3D {
     branch.setCapability(BranchGroup.ALLOW_DETACH);
     TransformGroup trans = new TransformGroup();
     trans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+    
     for (int i = 0; i < groups.length; i++) {
       branch.addChild(trans);
       trans.addChild(PrimitiveFactory.createGroup(groups[i]));
@@ -234,17 +207,20 @@ public class Java3dModelCanvas extends Canvas3D {
     if (config == null) {
       return;
     }
+    
     // 背景色をセット
     if (config.loadBackground() == null) {
       this.backgroundColor = ColorConstant.getColor("white"); //$NON-NLS-1$
     } else {
       this.backgroundColor = ColorConstant.getColor(config.loadBackground().loadColor());
     }
+    
     // 光源の位置をセット
     if (config.loadLight() != null) {
       Light light = config.loadLight();
       this.lightLocation = new Vector3f(light.loadX(), light.loadY(), light.loadZ());
     }
+    
     // 視点の位置、向きをセット
     if (config.loadView() != null) {
       new MyViewpoint(this.universe, config.loadView(), this.mouseOperationType);

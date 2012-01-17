@@ -6,7 +6,6 @@
 package org.mklab.mikity.xml.blender;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.vecmath.Matrix4f;
 import javax.xml.bind.annotation.XmlAttribute;

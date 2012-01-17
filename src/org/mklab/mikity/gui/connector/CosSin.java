@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.gui.connector;
 
-import java.lang.Math;
 
 
 /**

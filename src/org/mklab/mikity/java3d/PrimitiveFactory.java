@@ -19,12 +19,8 @@ import javax.vecmath.Matrix4f;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
-import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.LinkParameter;
-import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.model.TransformGroupMaker;
 import org.mklab.mikity.util.ColorConstant;
-import org.mklab.mikity.util.Util;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Linkdata;
 import org.mklab.mikity.xml.model.Location;

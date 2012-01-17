@@ -113,7 +113,7 @@ public abstract class Modeler extends Composite {
   /**
    * 編集機能を持ったコンポジットを作成してみる。
    * 
-   * @param composite
+   * @param composite コンポジット
    */
   public void createEditComp(Composite composite) {
     GridData gridData = new GridData(GridData.FILL_BOTH);
@@ -124,7 +124,7 @@ public abstract class Modeler extends Composite {
   /**
    * 編集機能を持ったコンポジットを作成してみる。
    * 
-   * @param composite
+   * @param composite コンポジット
    */
   public void createEditGroupComp(Composite composite) {
     GridData gridData = new GridData(GridData.FILL_BOTH);

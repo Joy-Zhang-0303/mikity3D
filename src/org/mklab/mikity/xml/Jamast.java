@@ -11,7 +11,8 @@ package org.mklab.mikity.xml;
 //- Imported classes and packages -/
 //---------------------------------/
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**

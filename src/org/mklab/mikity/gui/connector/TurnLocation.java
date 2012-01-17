@@ -6,7 +6,6 @@
 package org.mklab.mikity.gui.connector;
 
 import org.mklab.mikity.xml.model.Location;
-import org.mklab.mikity.gui.connector.CosSin;
 
 
 /**

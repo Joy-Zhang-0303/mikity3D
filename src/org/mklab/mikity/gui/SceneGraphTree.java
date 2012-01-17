@@ -16,6 +16,10 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.mklab.mikity.gui.collision.CollisionCanceller;
+import org.mklab.mikity.gui.connector.Connect;
+import org.mklab.mikity.gui.connector.ConnectorSelect;
+import org.mklab.mikity.gui.connector.PrimitiveConnector;
 import org.mklab.mikity.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.AddQuadPolygonDialog;
@@ -23,8 +27,8 @@ import org.mklab.mikity.gui.dialog.AddTrianglePolygonDialog;
 import org.mklab.mikity.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.EditQuadPolygonDialog;
 import org.mklab.mikity.gui.dialog.EditTrianglePolygonDialog;
-import org.mklab.mikity.gui.dialog.GroupConfigDialogLink;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogDH;
+import org.mklab.mikity.gui.dialog.GroupConfigDialogLink;
 import org.mklab.mikity.gui.dnd.DragAndDropEnabler;
 import org.mklab.mikity.xml.Model;
 import org.mklab.mikity.xml.model.Group;
@@ -36,11 +40,6 @@ import org.mklab.mikity.xml.model.XMLCylinder;
 import org.mklab.mikity.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.xml.model.XMLSphere;
 import org.mklab.mikity.xml.model.XMLTrianglePolygon;
-
-import org.mklab.mikity.gui.collision.CollisionCanceller;
-import org.mklab.mikity.gui.connector.Connect;
-import org.mklab.mikity.gui.connector.PrimitiveConnector;
-import org.mklab.mikity.gui.connector.ConnectorSelect;
 
 
 /**
@@ -700,11 +699,6 @@ public class SceneGraphTree {
         boxChild.setText("Connector ( No." + connector[j].loadNum() + ", " + connector[j].loadFlag() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
         boxChild.setData(connector[j]);
 
-        // if(connector[j].getFlag()=="N"){
-        // cs.setConnectorN(connector[j]);
-        // }else if(connector[j].getFlag()=="S"){
-        // cs.setConnectorS(connector[j]);
-        // }
       }
 
       XMLTrianglePolygon[] triangle = group[i].loadXMLTrianglePolygon();

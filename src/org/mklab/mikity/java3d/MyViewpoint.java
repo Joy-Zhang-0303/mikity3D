@@ -3,12 +3,14 @@ package org.mklab.mikity.java3d;
 //**********************************************************************
 //MyViewpointクラス                                       *
 //**********************************************************************
-import javax.media.j3d.*;
-import javax.vecmath.*;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.AxisAngle4f;
+import javax.vecmath.Vector3f;
 
 import org.mklab.mikity.xml.config.View;
 
-import com.sun.j3d.utils.universe.*;
+import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.universe.ViewingPlatform;
 
 

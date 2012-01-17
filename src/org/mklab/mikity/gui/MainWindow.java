@@ -37,6 +37,7 @@ import org.mklab.mikity.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.action.toolbar.TrianglePolygonToolBarAction;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.java3d.Java3dModeler;
+import org.mklab.mikity.jogl.JoglModeler;
 import org.mklab.mikity.xml.Config;
 import org.mklab.mikity.xml.JAXBMarshaller;
 import org.mklab.mikity.xml.Jamast;
@@ -127,11 +128,9 @@ public class MainWindow extends ApplicationWindow {
     this.comp = localComposite;
 
     // Java3d or JOGL
-    this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.dc);
-    //this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.dc);
+    //this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.dc);
+    this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.dc);
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
-    // createFileChooseComp(comp);
-    // createMainButtonComp(comp);
     return localComposite;
   }
 
@@ -270,23 +269,10 @@ public class MainWindow extends ApplicationWindow {
 
   }
 
-  // /**
-  // * ファイルを指定しないとボタンを押せなくする
-  // *
-  // * @param editable
-  // */
-  // public void setEditable(final boolean editable) {
-  // modelerButton.setEnabled(editable);
-  // configButton.setEnabled(editable);
-  // simButton.setEnabled(editable);
-  // saveButton.setEnabled(editable);
-  // saveAsButton.setEnabled(editable);
-  // }
-
   /**
    * ファイルの設定を行う
    * 
-   * @param filePath
+   * @param filePath ファイルパス
    */
   public void setFile(String filePath) {
     File tmp = new File(filePath);
@@ -316,17 +302,6 @@ public class MainWindow extends ApplicationWindow {
     MenuManager edit = new MenuManager("編集(&E)");
     edit.add(this.CONFIGDIALOG_OPEN_ACTION);
     manager.add(edit);
-
-    // MenuManager mouse = new MenuManager("マウス(&M)");
-    // mouse.add(VIEW_CHANGE_ACTION);
-    // mouse.add(PICKING_ACTION);
-    // mouse.add(CONNECT_ACTION);
-    // manager.add(mouse);
-
-    // MenuManager primitive = new MenuManager("プリミティブ");
-    // primitive.add(new AddPrimitiveAction());
-    // primitive.add(new EditPrimitiveAction());
-    // manager.add(primitive);
 
     MenuManager play = new MenuManager("再生(&P)");
     play.add(this.ANIMATION_WINDOW_OPEN_ACTION);
