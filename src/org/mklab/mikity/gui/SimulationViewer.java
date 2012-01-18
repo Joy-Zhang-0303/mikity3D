@@ -54,38 +54,48 @@ public class SimulationViewer extends ApplicationWindow {
 
   /** アニメーション用タスク */
   AnimationTask task;
+  /** */
   SliderPositionMoveTask stask;
 
-  /**
-   * 
-   */
+  /** */
   public static boolean playable = true;
 
+  /** */
   double endTime;
 
   private Jamast root;
 
+  /** */
   double speed = 1.0;
 
+  /** */
   Timer timer = new Timer();
 
+  /** */
   Slider timeSlider;
 
   /** 等間隔の時間を保存しとく配列 */
   double[] timeTable;
 
+  /** */
   Matrix data;
 
+  /** */
   Text filePathText;
 
+  /** */
   MovableGroupManager manager;
 
+  /** */
   Label startTimeLabel;
+  /** */
   Label currentTimeLabel;
+  /** */
   Label endTimeLabel;
 
   private boolean usedDHParam = false;
   private boolean usedLink = false;
+  /** */
   ParameterInputBox playSpeed;
 
   /**
@@ -326,6 +336,7 @@ public class SimulationViewer extends ApplicationWindow {
     this.filePathText.setText(""); //$NON-NLS-1$
     this.filePathText.addTraverseListener(new TraverseListener() {
 
+      @Override
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
           setTimeData(new File(SimulationViewer.this.filePathText.getText()));
@@ -379,7 +390,7 @@ public class SimulationViewer extends ApplicationWindow {
   /**
    * 実行時間バーを設定する。
    * 
-   * @param file
+   * @param file ファイル
    */
   public void setTimeData(final File file) {
     try {
@@ -414,7 +425,7 @@ public class SimulationViewer extends ApplicationWindow {
   /**
    * 実行時間バーを設定する。
    * 
-   * @param data
+   * @param data データ
    */
   public void setTimeData(final Matrix data) {
     this.data = data;
@@ -472,8 +483,8 @@ public class SimulationViewer extends ApplicationWindow {
     /**
      * コンストラクター
      * 
-     * @param task
-     * @param slider
+     * @param task タスク
+     * @param slider スライダー
      */
     public SliderPositionMoveTask(AnimationTask task, Slider slider) {
       this.localTask = task;

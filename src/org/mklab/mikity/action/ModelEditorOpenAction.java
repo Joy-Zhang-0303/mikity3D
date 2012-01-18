@@ -15,6 +15,7 @@ import org.mklab.mikity.gui.MainWindow;
  */
 public class ModelEditorOpenAction extends Action {
 
+  /** */
   MainWindow window;
 
   /**

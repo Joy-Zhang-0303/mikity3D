@@ -43,7 +43,7 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
   /**
    * モデルの拡大縮小の乗算を行う。
    * 
-   * @param scale
+   * @param scale 大きさ
    */
   public void mulScale(Vector3f scale) {
     // スケールのdouble型化
@@ -70,7 +70,7 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
   /**
    * モデルの回転移動の乗算を行う。
    * 
-   * @param angle
+   * @param angle 角度
    */
   public void mulRotation(AxisAngle4f angle) {
     // 座標系の変換行列の取得
@@ -91,7 +91,7 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
   /**
    * モデルの回転移動の乗算を行う。
    * 
-   * @param matrix
+   * @param matrix 変換行列
    */
   public void mulRotation(Matrix3f matrix) {
     // 座標系の変換行列の取得
@@ -112,7 +112,7 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
   /**
    * モデルの平行移動の乗算を行う。
    * 
-   * @param translation
+   * @param translation 移動
    */
   public void mulTranslation(Vector3f translation) {
     // 座標系の変換行列の取得
@@ -144,6 +144,7 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
    * 
    * @see org.mklab.mikity.model.IMovableGroup#setLinkParameter(org.mklab.mikity.model.LinkParameter)
    */
+  @Override
   public void setLinkParameter(final LinkParameter link) {
     double locX = link.getLocX();
     double locY = link.getLocY();
@@ -187,6 +188,7 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
    * 
    * @see org.mklab.mikity.model.IMovableGroup#setDHParameter(org.mklab.mikity.model.DHParameter)
    */
+  @Override
   public void setDHParameter(final DHParameter param) {
     /*
      * DHParameterとは。 座標系Σ(i-1)からΣiへの変換は

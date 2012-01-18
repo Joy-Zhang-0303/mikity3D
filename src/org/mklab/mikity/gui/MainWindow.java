@@ -60,14 +60,23 @@ import org.mklab.mikity.xml.model.Group;
  */
 public class MainWindow extends ApplicationWindow {
 
+  /** */
   Action FILE_NEW_ACTION = new FileNewAction(this);
+  /** */
   Action FILE_OPEN_ACTION = new FileOpenAction(this);
+  /** */
   Action ANIMATION_WINDOW_OPEN_ACTION = new AnimationWindowOpenAction(this);
+  /** */
   Action FILE_SAVE_ACTION = new FileSaveAction(this);
+  /** */
   Action FILE_SAVE_AS_ACTION = new FileSaveAsAction(this);
+  /** */
   Action FILE_IMPORT_ACTION = new FileImportAction(this);
+  /** */
   Action MODELER_OPEN_ACTION = new ModelEditorOpenAction(this);
+  /** */
   Action CONFIGDIALOG_OPEN_ACTION = new ConfigDialogOpenAction(this);
+  /** */
   Action FILE_EXIT_ACTION = new FileExitAction(this);
   // private Action ADD_PRIM_ACTION = new AddPrimitiveAction(this);
 
@@ -110,7 +119,7 @@ public class MainWindow extends ApplicationWindow {
   /**
    * コンストラクター
    * 
-   * @param shell
+   * @param shell シェル
    */
   public MainWindow(final Shell shell) {
     super(shell);
@@ -119,6 +128,9 @@ public class MainWindow extends ApplicationWindow {
     addStatusLine();
   }
 
+  /**
+   * @see org.eclipse.jface.window.Window#createContents(org.eclipse.swt.widgets.Composite)
+   */
   @Override
   protected Control createContents(Composite composite) {
     Composite localComposite = new Composite(composite, SWT.NONE);
@@ -137,7 +149,7 @@ public class MainWindow extends ApplicationWindow {
   /**
    * ファイルを選択するボタン
    * 
-   * @param composite
+   * @param composite コンポジット
    */
   public void createFileChooseComp(final Composite composite) {
     Composite localComposite = new Composite(composite, SWT.NONE);
@@ -189,7 +201,7 @@ public class MainWindow extends ApplicationWindow {
   /**
    * ボタンを作成、配置
    * 
-   * @param composite
+   * @param composite コンポジット
    */
   public void createMainButtonComp(final Composite composite) {
     Composite localComposite = new Composite(composite, SWT.NONE);
@@ -373,7 +385,7 @@ public class MainWindow extends ApplicationWindow {
   /**
    * ファイルを保存する
    * 
-   * @throws IllegalArgumentException
+   * @throws IllegalArgumentException 例外
    */
   public void save() {
     if (this.file == null) {

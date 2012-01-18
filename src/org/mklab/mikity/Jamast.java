@@ -18,7 +18,7 @@ import org.mklab.mikity.gui.MainWindow;
 public class Jamast {
 
   /**
-   * @param args
+   * @param args 文字列
    */
   public static void main(String[] args) {
     MainWindow main = new MainWindow();

@@ -35,10 +35,13 @@ import org.mklab.mikity.xml.config.ModelUnit;
  */
 public abstract class Modeler extends Composite {
 
+  /** */
   protected SceneGraphTree tree;
 
+  /** */
   protected Jamast root;
   
+  /** */
   protected Frame awtFrame;
   private Group treeViewerGroup;
   /** */
@@ -50,6 +53,7 @@ public abstract class Modeler extends Composite {
   /** */
   private String dataLengthUnit;
 
+  /** */
   CollisionCanceller dc;
 
   /**
@@ -136,7 +140,7 @@ public abstract class Modeler extends Composite {
   /**
    * 状態の表示、編集を行うアプリケーションを表示するcompositeの作成
    * 
-   * @param comp
+   * @param comp コンポジット
    */
   public void createParmComp(Composite comp) {
     Composite composite = new Composite(comp, SWT.NONE);
@@ -300,7 +304,7 @@ public abstract class Modeler extends Composite {
   }
 
   /**
-   * @param root
+   * @param root ツリーのルート
    */
   public void setModel(Jamast root) {
     this.root = root;
@@ -353,7 +357,7 @@ public abstract class Modeler extends Composite {
   public abstract void createViewer();
 
   /**
-   * @param viewerComp
+   * @param viewerComp ビュワーコンポジット
    */
   public abstract void createModelCanvas(Composite viewerComp);
 }

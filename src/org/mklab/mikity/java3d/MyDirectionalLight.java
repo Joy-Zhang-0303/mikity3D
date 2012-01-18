@@ -24,8 +24,8 @@ public class MyDirectionalLight extends BranchGroup {
   /**
    * コンストラクター
    * 
-   * @param color
-   * @param direction
+   * @param color 色
+   * @param direction ベクトル
    */
   public MyDirectionalLight(Color3f color, Vector3f direction) {
     // 光源オブジェクトの生成

@@ -27,6 +27,7 @@ public class ParameterInputBox extends Composite {
   private Label label;
   private Label label1;
   private Text text;
+  /** */
   boolean changed = false;
 
   /**
@@ -52,6 +53,7 @@ public class ParameterInputBox extends Composite {
     this.text.setText(value);
     this.text.addModifyListener(new ModifyListener() {
 
+      @Override
       public void modifyText(ModifyEvent arg0) {
         ParameterInputBox.this.changed = true;
       }

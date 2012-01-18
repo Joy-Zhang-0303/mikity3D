@@ -47,24 +47,39 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  */
 public class SceneGraphTree {
 
+  /** */
   Tree xmlTree;
+  /** */
   Model model;
+  /** */
   Composite comp;
+  /** */
   TreeItem selectItem = null;
+  /** */
   Object targetObj = null;
+  /** */
   Group targetGroup = null;
+  /** */
   Group targetParentGroup = null;
+  /** */
   Group root = null;
+  /** */
   boolean editable = true;
 
+  /** */
   Modeler modeler;
 
+  /** */
   ConnectorSelect cs;
+  /** */
   Connect connect;
 
+  /** */
   CollisionCanceller dc;
 
+  /** */
   boolean usedDHParam = false;
+  /** */
   boolean usedLink = false;
 
   /**
@@ -614,8 +629,8 @@ public class SceneGraphTree {
   /**
    * グループgからPrimitive primを消す。
    * 
-   * @param g
-   * @param prim
+   * @param g グループ
+   * @param prim プリミティブ
    * 
    * @return ノードを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
    */
@@ -788,7 +803,7 @@ public class SceneGraphTree {
   /**
    * モデルを設定する。
    * 
-   * @param model
+   * @param model モデル
    */
   public void setModel(Model model) {
     this.model = model;

@@ -12,31 +12,38 @@ import org.mklab.mikity.xml.Jamast;
  * @version $Revision$, 2012/01/12
  */
 public class JoglModeler extends Modeler {
+
   private JoglModelCanvas canvas;
 
   /**
    * Initialize the generated object of {@link JoglModeler}.
-   * @param parent
-   * @param style
-   * @param root
-   * @param dc
+   * 
+   * @param parent ツリーの親
+   * @param style スタイル
+   * @param root ツリーのルート
+   * @param dc 重複防止
    */
   public JoglModeler(Composite parent, int style, Jamast root, CollisionCanceller dc) {
     super(parent, style, root, dc);
   }
-  
+
   /**
    * GroupをsinsiCanvasに読み込ませ、Frameにaddする
    * 
    * @version $Revision: 1.22 $.2005/01/25
    */
+  @Override
   public void createViewer() {
-    org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
+    //org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
     this.canvas.setObject(new SampleJoglObject());
-    this.canvas.setObject(new TeapotJoglObject());
+    //this.canvas.setObject(new TeapotJoglObject());
     //this.canvas.setObject(new TriJoglObject());
   }
 
+  /**
+   * @see org.mklab.mikity.gui.Modeler#createModelCanvas(org.eclipse.swt.widgets.Composite)
+   */
+  @Override
   public void createModelCanvas(Composite viewerComp) {
     // 何もないキャンバスを作る
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);

@@ -40,10 +40,10 @@ public class MyTriPolygons extends MyTransformGroup {
   /**
    * コンストラクター
    * 
-   * @param vertex
-   * @param material
-   * @param transAttr
-   * @param mode
+   * @param vertex 頂点
+   * @param material 素材
+   * @param transAttr 透明の属性
+   * @param mode モード
    */
   public MyTriPolygons(Point3d[] vertex, Material material, TransparencyAttributes transAttr, int mode) {
     // 形状の枠組み生成

@@ -27,9 +27,9 @@ public class MyViewpoint {
   /**
    * コンストラクター
    * 
-   * @param angle4f
-   * @param vector3f
-   * @param universe2
+   * @param angle4f アングル
+   * @param vector3f ベクトル
+   * @param universe2 空間
    */
   public MyViewpoint(AxisAngle4f angle4f, Vector3f vector3f, SimpleUniverse universe2) {
 
@@ -44,9 +44,9 @@ public class MyViewpoint {
    * 
    * コンストラクター
    * 
-   * @param uni
-   * @param view
-   * @param mouseOperationType
+   * @param uni 空間
+   * @param view 視点
+   * @param mouseOperationType マウスの操作タイプ
    */
   public MyViewpoint(SimpleUniverse uni, View view, int mouseOperationType) {
     ViewingPlatform vp = uni.getViewingPlatform();

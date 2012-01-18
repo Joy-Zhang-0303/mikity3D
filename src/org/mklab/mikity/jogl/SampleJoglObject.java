@@ -10,9 +10,16 @@ import javax.media.opengl.GL;
  */
 public class SampleJoglObject implements JoglObject {
 
+  
+  // 立方体の反射率です 
+  private float[] cubeSpecular = { 0.5f, 0.5f, 0.5f, 1.0f }; 
+  private float[] cubeDiffuse = { 0.5f, 0.5f, 0.5f, 1.0f }; 
+  private float[] cubeAmbient = { 0.2f, 0.2f, 0.2f, 1.0f }; 
+  private float cubeShiness = 5.0f; // ハイライトの強さです
   /**
    * @see org.mklab.mikity.jogl.JoglObject#display(javax.media.opengl.GL)
    */
+  @Override
   public void display(GL gl) {
     float[][] vertices=new float[][]{{1,1,1},{-1,1,1},{-1,-1,1},{1,-1,1},
         {1,1,-1},{-1,1,-1},{-1,-1,-1},{1,-1,-1}}; 
@@ -37,7 +44,13 @@ public class SampleJoglObject implements JoglObject {
     gl.glPushMatrix();
     gl.glTranslatef(0.0f, -1.0f, 0.0f);
 
-
+    // 物体の材質の、光源に対する反射率を決めます
+    gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, this.cubeSpecular, 0); //ポリゴンの前面にどのくらいの反射か 
+    gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, this.cubeDiffuse, 0); //ポリゴンの前面にどのくらいの拡散か 
+    gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT, this.cubeAmbient, 0); //ポリゴンの前面にどのくらいの環境光か
+    gl.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, this.cubeShiness); //ポリゴンの前面にどのくらいのハイライトか
+    
+    
     gl.glBegin(GL.GL_QUADS); // 四角形を描画することを宣言します
     
     gl.glColor4fv(red,0); // 頂点の色を決定します 
