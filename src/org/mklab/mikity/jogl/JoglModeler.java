@@ -35,8 +35,19 @@ public class JoglModeler extends Modeler {
   @Override
   public void createViewer() {
     //org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
-    this.canvas.setObject(new SampleJoglObject());
-    //this.canvas.setObject(new TeapotJoglObject());
+    //this.canvas.setObject(new SampleJoglObject(), new TeapotJoglObject());
+    //this.canvas.setObject(new TeapotJoglObject(), new ColorfulCubeJoglObject());
+    this.canvas.addCoordinate(new TeapotJoglCoordinate());
+    this.canvas.addObject(new TeapotJoglObject());
+    
+    this.canvas.addCoordinate(new CubeJoglCoordinate());
+    this.canvas.addObject(new CubeJoglObject());
+    
+    this.canvas.addCoordinate(new TeapotJoglCoordinate2());
+    this.canvas.addObject(new TeapotJoglObject());
+    
+//    this.canvas.setObject(new TeapotJoglObject(), new CubeJoglObject());
+//    this.canvas.setCoordinate(new CubeJoglCoordinate());
     //this.canvas.setObject(new TriJoglObject());
   }
 

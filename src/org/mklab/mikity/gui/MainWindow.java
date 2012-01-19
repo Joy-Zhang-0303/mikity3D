@@ -97,6 +97,7 @@ public class MainWindow extends ApplicationWindow {
   private File file;
   private File loadFile;
   private static Jamast root = FileNewAction.createEmptyModel();
+  /** */
   Text filePathText;
   private Button newModelButton;
   private Button modelerButton;
@@ -165,6 +166,7 @@ public class MainWindow extends ApplicationWindow {
     this.filePathText.setText(""); //$NON-NLS-1$
     this.filePathText.addTraverseListener(new TraverseListener() {
 
+      @Override
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
           setFile(MainWindow.this.filePathText.getText());

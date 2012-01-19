@@ -15,19 +15,15 @@ public class TriJoglObject implements JoglObject {
   @Override
   public void display(GL gl) {
 
-    
-    gl.glClear(GL.GL_COLOR_BUFFER_BIT); // 画面をクリアします
-
-    
     gl.glBegin(GL.GL_TRIANGLES); // 三角形を描画することを宣言します 
     gl.glColor4f(1.0f, 0.0f, 0.0f, 1.0f); // 頂点の色を決定します 
     gl.glVertex3f(-1.0f, 1.0f, 0); // 頂点を指定します
-    gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f); 
+    gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
     gl.glVertex3f(-1.0f, -1.0f, 0);
-    gl.glColor4f(0.0f, 1.0f, 0.0f, 1.0f); 
+    gl.glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
     gl.glVertex3f(1.0f, -1.0f, 0);
     gl.glEnd(); // 描画処理が終了しました 
-    
+    //gl.glTranslatef(2.0f, 0.0f, 0.0f);
   }
 
 }

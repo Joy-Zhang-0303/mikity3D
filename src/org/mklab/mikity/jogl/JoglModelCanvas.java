@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -13,8 +15,6 @@ import javax.media.opengl.GLJPanel;
 import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
-import com.sun.opengl.util.GLUT;
-
 
 /**
  * @author iwamoto
@@ -23,11 +23,12 @@ import com.sun.opengl.util.GLUT;
 public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseListener, MouseMotionListener {
 
   private GLU glu;
-  private GLUT glut;
+  //private GLUT glut;
 
-  private JoglObject object;
+  private List<JoglObject> objects = new ArrayList<JoglObject>();
+  private List<JoglCoordinate> coodinates = new ArrayList<JoglCoordinate>();
 
-  private double[] eye = {0.0, 0.0, 30.0};
+  private double[] eye = {0.0, 0.0, 50.0};
 
   private float rotx = 0.0f, roty = 0.0f;
   private float s_rotx, s_roty;
@@ -36,8 +37,6 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
   private float s_scale;
   private float translatex = 0.0f, translatey = 0.0f;
   private float s_translatex, s_translatey;
-
-  //  private float light_ambient[] = {0.2f, 0.2f, 0.2f, 1.0f}, light_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f}, light_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
 
   //光源の設定です 
   private float[] lightPosition0 = {-5.0f, 5.0f, 5.0f, 0.0f}; // 平行光源1です 
@@ -63,9 +62,9 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
   public void init(GLAutoDrawable drawable) {
     GL gl = drawable.getGL();
     this.glu = new GLU();
-    this.glut = new GLUT();
+    //this.glut = new GLUT();
     //
-    gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+    gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
     gl.glEnable(GL.GL_LIGHTING); //光源を有効にします 
     gl.glEnable(GL.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします 
@@ -81,16 +80,7 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
-    //float light_position0[] = {1, 0f, 1.0f, 1.0f, 0.0f};
-    //float light_position1[] = {-1.0f, 1.0f, 1.0f, 0.0f};
 
-    //gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, light_position0, 0);
-    //gl.glLightfv(GL.GL_LIGHT1, GL.GL_POSITION, light_position1, 0);
-
-    //gl.glEnable(GL.GL_LIGHTING);
-    //gl.glEnable(GL.GL_LIGHT0);
-    //gl.glEnable(GL.GL_LIGHT1);
-    //gl.glEnable(GL.GL_DEPTH_TEST);
   }
 
   /**
@@ -99,50 +89,71 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
   @Override
   public void display(GLAutoDrawable drawable) {
     GL gl = drawable.getGL();
-    //
+
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+
     gl.glEnable(GL.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     gl.glEnable(GL.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
     gl.glLoadIdentity();
 
     this.glu.gluLookAt(this.eye[0], this.eye[1], this.eye[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
-    //    gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.light_ambient, 0);
-    //    gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.light_diffuse, 0);
-    //    gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.light_specular, 0);
-    //
-    //    gl.glLightfv(GL.GL_LIGHT1, GL.GL_AMBIENT, this.light_ambient, 0);
-    //    gl.glLightfv(GL.GL_LIGHT1, GL.GL_DIFFUSE, this.light_diffuse, 0);
-    //    gl.glLightfv(GL.GL_LIGHT1, GL.GL_SPECULAR, this.light_specular, 0);
-
     gl.glTranslatef(this.translatey, -this.translatex, 0.0f);
-    gl.glTranslatef(0.0f, 0.0f, -this.s_scale);
-    gl.glPushMatrix();
+    gl.glTranslatef(0.0f, 0.0f, -this.scale);
     gl.glRotatef(this.rotx, 1.0f, 0.0f, 0.0f);
-    gl.glPushMatrix();
     gl.glRotatef(this.roty, 0.0f, 1.0f, 0.0f);
 
     displayObjects(gl);
-
-    gl.glPopMatrix();
-    gl.glPopMatrix();
-
   }
 
   /**
    * オブジェクトを表示します。
+   * 
+   * @param gl GL
    */
   private void displayObjects(GL gl) {
-    this.object.display(gl);
+    for (int i = 0; i < this.objects.size(); i++) {
+      JoglCoordinate coordinate = this.coodinates.get(i);
+      JoglObject object = this.objects.get(i);
+      coordinate.setCoordinate(gl);
+      object.display(gl);
+    }
+  }
+
+  //  /**
+  //   * 座標系を設定します。
+  //   * 
+  //   * @param coordinate 座標系
+  //   */
+  //  public void setCoordinate(JoglCoordinate coordinate) {
+  //    this.coordinate2 = coordinate;
+  //  }
+
+  //  /**
+  //   * JOGLオブジェクトを設定します。
+  //   * 
+  //   * @param object JOGLオブジェクト
+  //   */
+  //  public void setObject(JoglObject object) {
+  //    this.object1 = object;
+  //  }
+
+  /**
+   * オブジェクトを追加します。
+   * 
+   * @param object オブジェクト
+   */
+  public void addObject(JoglObject object) {
+    this.objects.add(object);
   }
 
   /**
-   * JOGLオブジェクトを設定します。
+   * 座標系を追加します。
    * 
-   * @param object JGOLオブジェクト
+   * @param coordinate 座標系
    */
-  public void setObject(JoglObject object) {
-    this.object = object;
+  public void addCoordinate(JoglCoordinate coordinate) {
+    this.coodinates.add(coordinate);
   }
 
   /**
@@ -217,6 +228,7 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
   /**
    * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
    */
+  @SuppressWarnings("static-access")
   @Override
   public void mouseDragged(MouseEvent e) {
 
@@ -228,18 +240,19 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
     }
     if (SwingUtilities.isMiddleMouseButton(e)) {
       this.end_point = getMousePosition(true);
-      float z = (float)Math.sqrt((this.end_point.y - this.start_point.y) * (this.end_point.y - this.start_point.y));
+      int z = Math.abs(this.end_point.y - this.start_point.y);
       if (this.end_point.y > this.start_point.y) {
-        this.scale = this.s_scale - z / 10;
+        this.scale = this.s_scale - z / 5.0f;
       } else {
-        this.scale = this.s_scale + z / 10;
+        this.scale = this.s_scale + z / 5.0f;
       }
       this.display();
+
     }
     if (SwingUtilities.isRightMouseButton(e) == true) {
       this.end_point = getMousePosition(true);
-      this.translatex = this.s_translatex + (this.end_point.y - this.start_point.y) / 50;
-      this.translatey = this.s_translatey + (this.end_point.x - this.start_point.x) / 50;
+      this.translatex = this.s_translatex + (this.end_point.y - this.start_point.y) / 50.0f;
+      this.translatey = this.s_translatey + (this.end_point.x - this.start_point.x) / 50.0f;
       this.display();
     }
   }
