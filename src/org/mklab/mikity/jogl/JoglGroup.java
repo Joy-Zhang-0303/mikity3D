@@ -7,11 +7,11 @@ import javax.media.opengl.GL;
 
 
 /**
- * 
+ * {@link JoglObject}のグループを表すクラスです。
  * @author iwamoto
  * @version $Revision$, 2012/01/20
  */
-public class JoglGroup {
+public class JoglGroup implements JoglObject {
   
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
@@ -20,8 +20,6 @@ public class JoglGroup {
   
   /**
    * Initialize the generated object of {@link JoglGroup}.
-   * @param object
-   * @param coodinate
    */
   public JoglGroup(){
     this.objects = new ArrayList<JoglObject>();
@@ -49,27 +47,10 @@ public class JoglGroup {
   }
 
   /**
-   * オブジェクトのリストを返します
-   * @return オブジェクトのリスト
+   * @see org.mklab.mikity.jogl.JoglObject#display(javax.media.opengl.GL)
    */
-  public List<JoglObject> getObjects() {
-    return this.objects;
-  }
-  
-  /**
-   * 座標系のリストを返します。
-   * @return 座標系のリスト
-   */
-  public List<JoglCoordinate> getCoordinates() {
-    return this.coodinates;
-  }
-  
-  /**
-   * オブジェクトを表示します。
-   * 
-   * @param gl GL
-   */
-  public void displayObjects(GL gl) {
+  @Override
+  public void display(GL gl) {
     for (int i = 0; i < this.objects.size(); i++) {
       JoglCoordinate coordinate = this.coodinates.get(i);
       JoglObject object = this.objects.get(i);

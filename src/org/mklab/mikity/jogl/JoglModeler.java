@@ -47,6 +47,42 @@ public class JoglModeler extends Modeler {
   public JoglGroup[] createModel() {
     List<JoglGroup> groups = new ArrayList<JoglGroup>();
 
+    JoglGroup group = new JoglGroup();
+
+    group.addCoordinate(new TeapotJoglCoordinate1());
+    JoglObject object1 = createTeapotCubeTeapot();
+    group.addObject(object1);
+    
+    group.addCoordinate(new TeapotJoglCoordinate3());
+    JoglObject object2 = createTeapotCubeTeapot();
+    group.addObject(object2);
+
+    group.addCoordinate(new TeapotJoglCoordinate3());
+    JoglObject object3 = createTeapotCubeTeapot();
+    group.addObject(object3);
+    
+    group.addCoordinate(new TeapotJoglCoordinate3());
+    JoglObject object4 = createTeapotCubeTeapot();
+    group.addObject(object4);
+    
+    group.addCoordinate(new TeapotJoglCoordinate3());
+    JoglObject object5 = createTeapotCubeTeapot();
+    group.addObject(object5);
+    
+    group.addCoordinate(new TeapotJoglCoordinate3());
+    JoglObject object6 = createTeapotCubeTeapot();
+    group.addObject(object6);
+    
+    groups.add(group);
+    
+    return groups.toArray(new JoglGroup[groups.size()]);
+  }
+
+  /**
+   * TeapotとCubeとTeapotが連結したオブジェクトを生成します。
+   * @return TeapotとCubeとTeapotが連結したオブジェクト
+   */
+  public JoglGroup createTeapotCubeTeapot() {
     JoglGroup group1 = new JoglGroup();
     group1.addCoordinate(new TeapotJoglCoordinate1());
     group1.addObject(new TeapotJoglObject());
@@ -56,10 +92,7 @@ public class JoglModeler extends Modeler {
     
     group1.addCoordinate(new TeapotJoglCoordinate2());
     group1.addObject(new TeapotJoglObject());
-    
-    groups.add(group1);
-    
-    return groups.toArray(new JoglGroup[groups.size()]);
+    return group1;
   }
 
   /**

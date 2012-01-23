@@ -100,7 +100,7 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
     gl.glRotatef(this.roty, 0.0f, 1.0f, 0.0f);
 
     for (JoglGroup group : this.groups) {
-      group.displayObjects(gl);
+      group.display(gl);
     }
   }
 

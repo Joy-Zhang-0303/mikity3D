@@ -19,7 +19,7 @@ public class CubeJoglObject implements JoglObject {
 
     GLUT glut = new GLUT();
 
-    gl.glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
+    gl.glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
     glut.glutSolidCube(1.0f);
   }
 }
