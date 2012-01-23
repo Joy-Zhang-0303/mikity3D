@@ -21,9 +21,7 @@ import javax.swing.SwingUtilities;
  * @version $Revision$, 2012/01/11
  */
 public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseListener, MouseMotionListener {
-
   private GLU glu;
-  //private GLUT glut;
 
   private List<JoglObject> objects = new ArrayList<JoglObject>();
   private List<JoglCoordinate> coodinates = new ArrayList<JoglCoordinate>();
@@ -62,8 +60,7 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
   public void init(GLAutoDrawable drawable) {
     GL gl = drawable.getGL();
     this.glu = new GLU();
-    //this.glut = new GLUT();
-    //
+
     gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
     gl.glEnable(GL.GL_LIGHTING); //光源を有効にします 
@@ -119,24 +116,6 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
       object.display(gl);
     }
   }
-
-  //  /**
-  //   * 座標系を設定します。
-  //   * 
-  //   * @param coordinate 座標系
-  //   */
-  //  public void setCoordinate(JoglCoordinate coordinate) {
-  //    this.coordinate2 = coordinate;
-  //  }
-
-  //  /**
-  //   * JOGLオブジェクトを設定します。
-  //   * 
-  //   * @param object JOGLオブジェクト
-  //   */
-  //  public void setObject(JoglObject object) {
-  //    this.object1 = object;
-  //  }
 
   /**
    * オブジェクトを追加します。
