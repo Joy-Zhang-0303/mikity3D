@@ -8,7 +8,7 @@ import javax.media.opengl.GL;
  * @author iwamoto
  * @version $Revision$, 2012/01/19
  */
-public class TeapotJoglCoordinate implements JoglCoordinate {
+public class TeapotJoglCoordinate1 implements JoglCoordinate {
 
   /**
    * @see org.mklab.mikity.jogl.JoglCoordinate#setCoordinate(javax.media.opengl.GL)

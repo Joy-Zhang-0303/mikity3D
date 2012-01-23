@@ -145,6 +145,7 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
    */
   public void addObject(JoglObject object) {
     this.objects.add(object);
+
   }
 
   /**

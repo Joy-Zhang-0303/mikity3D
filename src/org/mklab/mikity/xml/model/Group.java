@@ -140,7 +140,7 @@ public class Group implements java.io.Serializable {
    */
   public void addGroup(org.mklab.mikity.xml.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
     this._groupList.add(vGroup);
-  } // -- void addGroup(org.mklab.mikity.xml.Group)
+  } 
 
   /**
    * Method addGroup
@@ -151,7 +151,7 @@ public class Group implements java.io.Serializable {
    */
   public void addGroup(int index, org.mklab.mikity.xml.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
     this._groupList.add(index, vGroup);
-  } // -- void addGroup(int, org.mklab.mikity.xml.Group)
+  } 
 
   /**
    * Method addLinkdata
@@ -161,7 +161,7 @@ public class Group implements java.io.Serializable {
    */
   public void addLinkdata(org.mklab.mikity.xml.model.Linkdata vLinkdata) throws java.lang.IndexOutOfBoundsException {
     this._linkdataList.add(vLinkdata);
-  } // -- void addLinkdata(org.mklab.mikity.xml.Linkdata)
+  } 
 
   /**
    * Method addLinkdata
@@ -172,7 +172,7 @@ public class Group implements java.io.Serializable {
    */
   public void addLinkdata(int index, org.mklab.mikity.xml.model.Linkdata vLinkdata) throws java.lang.IndexOutOfBoundsException {
     this._linkdataList.add(index, vLinkdata);
-  } // -- void addLinkdata(int, org.mklab.mikity.xml.Linkdata)
+  } 
 
   /**
    * Method addXMLBox
@@ -182,7 +182,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLBox(org.mklab.mikity.xml.model.XMLBox vXMLBox) throws java.lang.IndexOutOfBoundsException {
     this._XMLBoxList.add(vXMLBox);
-  } // -- void addXMLBox(org.mklab.mikity.xml.XMLBox)
+  } 
 
   /**
    * Method addXMLBox
@@ -193,7 +193,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLBox(int index, org.mklab.mikity.xml.model.XMLBox vXMLBox) throws java.lang.IndexOutOfBoundsException {
     this._XMLBoxList.add(index, vXMLBox);
-  } // -- void addXMLBox(int, org.mklab.mikity.xml.XMLBox)
+  } 
 
   /**
    * Method addXMLCone
@@ -203,7 +203,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLCone(org.mklab.mikity.xml.model.XMLCone vXMLCone) throws java.lang.IndexOutOfBoundsException {
     this._XMLConeList.add(vXMLCone);
-  } // -- void addXMLCone(org.mklab.mikity.xml.XMLCone)
+  } 
 
   /**
    * Method addXMLCone
@@ -214,8 +214,8 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLCone(int index, org.mklab.mikity.xml.model.XMLCone vXMLCone) throws java.lang.IndexOutOfBoundsException {
     this._XMLConeList.add(index, vXMLCone);
-  } // -- void addXMLCone(int, org.mklab.mikity.xml.XMLCone)
-
+  } 
+  
   /**
    * Method addXMLCylinder
    * 
@@ -224,7 +224,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLCylinder(org.mklab.mikity.xml.model.XMLCylinder vXMLCylinder) throws java.lang.IndexOutOfBoundsException {
     this._XMLCylinderList.add(vXMLCylinder);
-  } // -- void addXMLCylinder(org.mklab.mikity.xml.XMLCylinder)
+  } 
 
   /**
    * Method addXMLCylinder
@@ -235,7 +235,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLCylinder(int index, org.mklab.mikity.xml.model.XMLCylinder vXMLCylinder) throws java.lang.IndexOutOfBoundsException {
     this._XMLCylinderList.add(index, vXMLCylinder);
-  } // -- void addXMLCylinder(int, org.mklab.mikity.xml.XMLCylinder)
+  } 
 
   /**
    * Method addXMLSphere
@@ -245,7 +245,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLSphere(org.mklab.mikity.xml.model.XMLSphere vXMLSphere) throws java.lang.IndexOutOfBoundsException {
     this._XMLSphereList.add(vXMLSphere);
-  } // -- void addXMLSphere(org.mklab.mikity.xml.XMLSphere)
+  } 
 
   /**
    * Method addXMLSphere
@@ -256,7 +256,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLSphere(int index, org.mklab.mikity.xml.model.XMLSphere vXMLSphere) throws java.lang.IndexOutOfBoundsException {
     this._XMLSphereList.add(index, vXMLSphere);
-  } // -- void addXMLSphere(int, org.mklab.mikity.xml.XMLSphere)
+  } 
 
   /**
    * Method addXMLConnector
@@ -266,7 +266,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLConnector(org.mklab.mikity.xml.model.XMLConnector vXMLConnector) throws java.lang.IndexOutOfBoundsException {
     this._XMLConnectorList.add(vXMLConnector);
-  } // -- void addXMLConnector(org.mklab.mikity.xml.model.XMLConnector)
+  } 
 
   /**
    * Method addXMLConnector
@@ -277,7 +277,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLConnector(int index, org.mklab.mikity.xml.model.XMLConnector vXMLConnector) throws java.lang.IndexOutOfBoundsException {
     this._XMLConnectorList.add(index, vXMLConnector);
-  } // -- void addXMLConnector(int, org.mklab.mikity.xml.XMLConnector)
+  } 
 
   /**
    * Method addXMLTrianglePolygon
@@ -287,10 +287,8 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLTrianglePolygon(org.mklab.mikity.xml.model.XMLTrianglePolygon vXMLTrianglePolygon) throws java.lang.IndexOutOfBoundsException {
     this._XMLTrianglePolygonList.add(vXMLTrianglePolygon);
-  } // -- void addXMLTrianglePolygon(int,
-
-  // org.mklab.mikity.xml.XMLTrianglePolygon)
-
+  } 
+  
   /**
    * Method addXMLTrianglePolygon
    * 
@@ -300,9 +298,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLTrianglePolygon(int index, org.mklab.mikity.xml.model.XMLTrianglePolygon vXMLTrianglePolygon) throws java.lang.IndexOutOfBoundsException {
     this._XMLTrianglePolygonList.add(index, vXMLTrianglePolygon);
-  } // -- void addXMLTrianglePolygon(int,
-
-  // org.mklab.mikity.xml.XMLTrianglePolygon)
+  } 
 
   /**
    * Method addXMLQuadPolygon
@@ -312,7 +308,7 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLQuadPolygon(org.mklab.mikity.xml.model.XMLQuadPolygon vXMLQuadPolygon) throws java.lang.IndexOutOfBoundsException {
     this._XMLQuadPolygonList.add(vXMLQuadPolygon);
-  } // -- void addXMLQuadPolygon(int, org.mklab.mikity.xml.XMLQuadPolygon)
+  } 
 
   /**
    * Method addXMLQuadPolygon
@@ -323,161 +319,70 @@ public class Group implements java.io.Serializable {
    */
   public void addXMLQuadPolygon(int index, org.mklab.mikity.xml.model.XMLQuadPolygon vXMLQuadPolygon) throws java.lang.IndexOutOfBoundsException {
     this._XMLQuadPolygonList.add(index, vXMLQuadPolygon);
-  } // -- void addXMLQuadPolygon(int, org.mklab.mikity.xml.XMLQuadPolygon)
+  } 
 
   /**
    * Method clearGroup
    */
   public void clearGroup() {
     this._groupList.clear();
-  } // -- void clearGroup()
+  } 
 
   /**
    * Method clearLinkdata
    */
   public void clearLinkdata() {
     this._linkdataList.clear();
-  } // -- void clearLinkdata()
+  } 
 
   /**
    * Method clearXMLBox
    */
   public void clearXMLBox() {
     this._XMLBoxList.clear();
-  } // -- void clearXMLBox()
+  } 
 
   /**
    * Method clearXMLCone
    */
   public void clearXMLCone() {
     this._XMLConeList.clear();
-  } // -- void clearXMLCone()
+  } 
 
   /**
    * Method clearXMLCylinder
    */
   public void clearXMLCylinder() {
     this._XMLCylinderList.clear();
-  } // -- void clearXMLCylinder()
+  } 
 
   /**
    * Method clearXMLSphere
    */
   public void clearXMLSphere() {
     this._XMLSphereList.clear();
-  } // -- void clearXMLSphere()
+  } 
 
   /**
    * Method clearXMLConnector
    */
   public void clearXMLConnector() {
     this._XMLConnectorList.clear();
-  } // -- void clearXMLConnector()
+  } 
 
   /**
    * Method clearXMLTrianglePolygon
    */
   public void clearXMLTrianglePolygon() {
     this._XMLTrianglePolygonList.clear();
-  } // -- void clearXMLTrianglePolygon()
+  } 
 
   /**
    * Method clearXMLQuadPolygon
    */
   public void clearXMLQuadPolygon() {
     this._XMLQuadPolygonList.clear();
-  } // -- void clearXMLQuadPolygon()
-
-  //  /**
-  //   * Method enumerateGroup
-  //   * 
-  //   * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
-  //   */
-  //  public java.util.Enumeration<?> enumerateGroup() {
-  //    return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
-  //  } // -- java.util.Enumeration enumerateGroup()
-  //
-  //  /**
-  //   * Method enumerateLinkdata
-  //   * 
-  //   * @return 
-  //   *         org.exolab.castor.util.IteratorEnumeration(_linkdataList.iterator())
-  //   */
-  //  public java.util.Enumeration<?> enumerateLinkdata() {
-  //    return new org.exolab.castor.util.IteratorEnumeration(this._linkdataList.iterator());
-  //  } // -- java.util.Enumeration enumerateLinkdata()
-  //
-  //  /**
-  //   * Method enumerateXMLBox
-  //   * 
-  //   * @return org.exolab.castor.util.IteratorEnumeration(_XMLBoxList.iterator())
-  //   */
-  //  public java.util.Enumeration<?> enumerateXMLBox() {
-  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLBoxList.iterator());
-  //  } // -- java.util.Enumeration enumerateXMLBox()
-
-  //  /**
-  //   * Method enumerateXMLCone
-  //   * 
-  //   * @return org.exolab.castor.util.IteratorEnumeration(_XMLConeList.iterator())
-  //   */
-  //  public java.util.Enumeration<?> enumerateXMLCone() {
-  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLConeList.iterator());
-  //  } // -- java.util.Enumeration enumerateXMLCone()
-  //
-  //  /**
-  //   * Method enumerateXMLCylinder
-  //   * 
-  //   * @return 
-  //   *         org.exolab.castor.util.IteratorEnumeration(_XMLCylinderList.iterator
-  //   *         ())
-  //   */
-  //  public java.util.Enumeration<?> enumerateXMLCylinder() {
-  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLCylinderList.iterator());
-  //  } // -- java.util.Enumeration enumerateXMLCylinder()
-  //
-  //  /**
-  //   * Method enumerateXMLSphere
-  //   * 
-  //   * @return 
-  //   *         org.exolab.castor.util.IteratorEnumeration(_XMLSphereList.iterator()
-  //   *         )
-  //   */
-  //  public java.util.Enumeration<?> enumerateXMLSphere() {
-  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLSphereList.iterator());
-  //  } // -- java.util.Enumeration enumerateXMLSphere()
-
-  //  /**
-  //   * Method enumerateXMLConnector
-  //   * 
-  //   * @return 
-  //   *         org.exolab.castor.util.IteratorEnumeration(_XMLConnectorList.iterator
-  //   *         ())
-  //   */
-  //  public java.util.Enumeration<?> enumerateXMLConnector() {
-  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLConnectorList.iterator());
-  //  } // -- java.util.Enumeration enumerateXMLConnector()
-  //
-  //  /**
-  //   * Method enumerateXMLTrianglePolygon
-  //   * 
-  //   * @return org.exolab.castor.util.IteratorEnumeration(_XMLTrianglePolygonList.
-  //   *         iterator())
-  //   */
-  //  public java.util.Enumeration<?> enumerateXMLTrianglePolygon() {
-  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLTrianglePolygonList.iterator());
-  //  } // -- java.util.Enumeration enumerateXMLTrianglePolygon()
-  //
-  //  /**
-  //   * Method enumerateXMLQuadPolygon
-  //   * 
-  //   * @return 
-  //   *         org.exolab.castor.util.IteratorEnumeration(_XMLQuadPolygonList.iterator
-  //   *         ())
-  //   */
-  //  public java.util.Enumeration<?> enumerateXMLQuadPolygon() {
-  //    return new org.exolab.castor.util.IteratorEnumeration(this._XMLQuadPolygonList.iterator());
-  //  } // -- java.util.Enumeration enumerateXMLQuadPolygon()
+  } 
 
   /**
    * Note: hashCode() has not been overriden
@@ -545,7 +450,7 @@ public class Group implements java.io.Serializable {
       return true;
     }
     return false;
-  } // -- boolean equals(java.lang.Object)
+  } 
 
   /**
    * Method getGroup
@@ -561,7 +466,7 @@ public class Group implements java.io.Serializable {
     }
 
     return this._groupList.get(index);
-  } // -- org.mklab.mikity.xml.Group getGroup(int)
+  } 
 
   /**
    * Method getGroup
@@ -575,7 +480,7 @@ public class Group implements java.io.Serializable {
       mArray[index] = this._groupList.get(index);
     }
     return mArray;
-  } // -- org.mklab.mikity.xml.Group[] getGroup()
+  } 
 
   /**
    * Method getGroupAsReferenceReturns a reference to 'group'. No type checking is performed on any modications to the Collection.
@@ -584,7 +489,7 @@ public class Group implements java.io.Serializable {
    */
   public java.util.ArrayList<Group> loadGroupAsReference() {
     return this._groupList;
-  } // -- java.util.ArrayList getGroupAsReference()
+  } 
 
   /**
    * Method getGroupCount
@@ -593,7 +498,7 @@ public class Group implements java.io.Serializable {
    */
   public int loadGroupCount() {
     return this._groupList.size();
-  } // -- int getGroupCount()
+  } 
 
   /**
    * Method getLinkdata
@@ -609,7 +514,7 @@ public class Group implements java.io.Serializable {
     }
 
     return this._linkdataList.get(index);
-  } // -- org.mklab.mikity.xml.Linkdata getLinkdata(int)
+  } 
 
   /**
    * Method getLinkdata
@@ -623,7 +528,7 @@ public class Group implements java.io.Serializable {
       mArray[index] = this._linkdataList.get(index);
     }
     return mArray;
-  } // -- org.mklab.mikity.xml.Linkdata[] getLinkdata()
+  } 
 
   /**
    * Method getLinkdataAsReferenceReturns a reference to 'linkdata'. No type checking is performed on any modications to the Collection.
@@ -632,7 +537,7 @@ public class Group implements java.io.Serializable {
    */
   public java.util.ArrayList<Linkdata> loadLinkdataAsReference() {
     return this._linkdataList;
-  } // -- java.util.ArrayList getLinkdataAsReference()
+  } 
 
   /**
    * Method getLinkdataCount
@@ -641,7 +546,7 @@ public class Group implements java.io.Serializable {
    */
   public int loadLinkdataCount() {
     return this._linkdataList.size();
-  } // -- int getLinkdataCount()
+  } 
 
   /**
    * Returns the value of field 'location'.
@@ -650,7 +555,7 @@ public class Group implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.model.Location loadLocation() {
     return this._location;
-  } // -- org.mklab.mikity.xml.Location getLocation()
+  } 
 
   /**
    * Returns the value of field 'name'.
@@ -659,7 +564,7 @@ public class Group implements java.io.Serializable {
    */
   public java.lang.String loadName() {
     return this._name;
-  } // -- java.lang.String getName()
+  } 
 
   /**
    * Returns the value of field 'rotation'.
@@ -668,7 +573,7 @@ public class Group implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.model.Rotation loadRotation() {
     return this._rotation;
-  } // -- org.mklab.mikity.xml.Rotation getRotation()
+  } 
 
   /**
    * Method getXMLBox
@@ -684,7 +589,7 @@ public class Group implements java.io.Serializable {
     }
 
     return this._XMLBoxList.get(index);
-  } // -- org.mklab.mikity.xml.XMLBox getXMLBox(int)
+  } 
 
   /**
    * Method getXMLBox
@@ -698,7 +603,7 @@ public class Group implements java.io.Serializable {
       mArray[index] = this._XMLBoxList.get(index);
     }
     return mArray;
-  } // -- org.mklab.mikity.xml.XMLBox[] getXMLBox()
+  } 
 
   /**
    * Method getXMLBoxAsReferenceReturns a reference to 'XMLBox'. No type checking is performed on any modications to the Collection.
@@ -707,7 +612,7 @@ public class Group implements java.io.Serializable {
    */
   public java.util.ArrayList<XMLBox> loadXMLBoxAsReference() {
     return this._XMLBoxList;
-  } // -- java.util.ArrayList getXMLBoxAsReference()
+  } 
 
   /**
    * Method getXMLBoxCount
@@ -716,7 +621,7 @@ public class Group implements java.io.Serializable {
    */
   public int loadXMLBoxCount() {
     return this._XMLBoxList.size();
-  } // -- int getXMLBoxCount()
+  } 
 
   /**
    * Method getXMLCone
@@ -732,7 +637,7 @@ public class Group implements java.io.Serializable {
     }
 
     return this._XMLConeList.get(index);
-  } // -- org.mklab.mikity.xml.XMLCone getXMLCone(int)
+  } 
 
   /**
    * Method getXMLCone
@@ -746,7 +651,7 @@ public class Group implements java.io.Serializable {
       mArray[index] = this._XMLConeList.get(index);
     }
     return mArray;
-  } // -- org.mklab.mikity.xml.XMLCone[] getXMLCone()
+  } 
 
   /**
    * Method getXMLConeAsReferenceReturns a reference to 'XMLCone'. No type checking is performed on any modications to the Collection.
@@ -755,7 +660,7 @@ public class Group implements java.io.Serializable {
    */
   public java.util.ArrayList<XMLCone> loadXMLConeAsReference() {
     return this._XMLConeList;
-  } // -- java.util.ArrayList getXMLConeAsReference()
+  } 
 
   /**
    * Method getXMLConeCount
@@ -764,7 +669,7 @@ public class Group implements java.io.Serializable {
    */
   public int loadXMLConeCount() {
     return this._XMLConeList.size();
-  } // -- int getXMLConeCount()
+  } 
 
   /**
    * Method getXMLCylinder
@@ -780,7 +685,7 @@ public class Group implements java.io.Serializable {
     }
 
     return this._XMLCylinderList.get(index);
-  } // -- org.mklab.mikity.xml.XMLCylinder getXMLCylinder(int)
+  } 
 
   /**
    * Method getXMLCylinder
@@ -794,7 +699,7 @@ public class Group implements java.io.Serializable {
       mArray[index] = this._XMLCylinderList.get(index);
     }
     return mArray;
-  } // -- org.mklab.mikity.xml.XMLCylinder[] getXMLCylinder()
+  } 
 
   /**
    * Method getXMLCylinderAsReferenceReturns a reference to 'XMLCylinder'. No type checking is performed on any modications to the Collection.
@@ -803,7 +708,7 @@ public class Group implements java.io.Serializable {
    */
   public java.util.ArrayList<XMLCylinder> loadXMLCylinderAsReference() {
     return this._XMLCylinderList;
-  } // -- java.util.ArrayList getXMLCylinderAsReference()
+  } 
 
   /**
    * Method getXMLCylinderCount
@@ -812,7 +717,7 @@ public class Group implements java.io.Serializable {
    */
   public int loadXMLCylinderCount() {
     return this._XMLCylinderList.size();
-  } // -- int getXMLCylinderCount()
+  } 
 
   /**
    * Method getXMLSphere
@@ -828,7 +733,7 @@ public class Group implements java.io.Serializable {
     }
 
     return this._XMLSphereList.get(index);
-  } // -- org.mklab.mikity.xml.XMLSphere getXMLSphere(int)
+  } 
 
   /**
    * Method getXMLSphere
@@ -842,7 +747,7 @@ public class Group implements java.io.Serializable {
       mArray[index] = this._XMLSphereList.get(index);
     }
     return mArray;
-  } // -- org.mklab.mikity.xml.XMLSphere[] getXMLSphere()
+  } 
 
   /**
    * Method getXMLSphereAsReferenceReturns a reference to 'XMLSphere'. No type checking is performed on any modications to the Collection.
@@ -851,7 +756,7 @@ public class Group implements java.io.Serializable {
    */
   public java.util.ArrayList<XMLSphere> loadXMLSphereAsReference() {
     return this._XMLSphereList;
-  } // -- java.util.ArrayList getXMLSphereAsReference()
+  } 
 
   /**
    * Method getXMLSphereCount
@@ -860,7 +765,7 @@ public class Group implements java.io.Serializable {
    */
   public int loadXMLSphereCount() {
     return this._XMLSphereList.size();
-  } // -- int getXMLSphereCount()
+  } 
 
   /**
    * Method getXMLConnector
@@ -876,7 +781,7 @@ public class Group implements java.io.Serializable {
     }
 
     return this._XMLConnectorList.get(index);
-  } // -- org.mklab.mikity.xml.XMLConnector getXMLCone(int)
+  } 
 
   /**
    * Method getXMLConnector
@@ -890,7 +795,7 @@ public class Group implements java.io.Serializable {
       mArray[index] = this._XMLConnectorList.get(index);
     }
     return mArray;
-  } // -- org.mklab.mikity.xml.XMLConnector[] getXMLCone()
+  } 
 
   /**
    * Method getXMLConnectorAsReferenceReturns a reference to 'XMLCone'. No type checking is performed on any modications to the Collection.
@@ -899,7 +804,7 @@ public class Group implements java.io.Serializable {
    */
   public java.util.ArrayList<XMLConnector> loadXMLConnectorAsReference() {
     return this._XMLConnectorList;
-  } // -- java.util.ArrayList getXMLConnectorAsReference()
+  } 
 
   /**
    * Method getXMLConnectorCount
@@ -908,7 +813,7 @@ public class Group implements java.io.Serializable {
    */
   public int loadXMLConnectorCount() {
     return this._XMLConnectorList.size();
-  } // -- int getXMLConnectorCount()
+  } 
 
   /**
    * Method getXMLTrianglePolygon
@@ -924,7 +829,7 @@ public class Group implements java.io.Serializable {
     }
 
     return this._XMLTrianglePolygonList.get(index);
-  } // -- org.mklab.mikity.xml.XMLTrianglePolygon getXMLTrianglePolygon(int)
+  } 
 
   /**
    * Method getXMLTrianglePolygon
@@ -938,7 +843,7 @@ public class Group implements java.io.Serializable {
       mArray[index] = this._XMLTrianglePolygonList.get(index);
     }
     return mArray;
-  } // -- org.mklab.mikity.xml.XMLTrianglePolygon[] getXMLTrianglePolygon()
+  } 
 
   /**
    * Method getXMLTrianglePolygonAsReferenceReturns a reference to 'XMLTrianglePolygon'. No type checking is performed on any modications to the Collection.
@@ -947,7 +852,7 @@ public class Group implements java.io.Serializable {
    */
   public java.util.ArrayList<XMLTrianglePolygon> loadXMLTrianglePolygonAsReference() {
     return this._XMLTrianglePolygonList;
-  } // -- java.util.ArrayList getXMLTrianglePolygonAsReference()
+  } 
 
   /**
    * Method getXMLTrianglePolygonCount
@@ -956,7 +861,7 @@ public class Group implements java.io.Serializable {
    */
   public int loadXMLTrianglePolygonCount() {
     return this._XMLTrianglePolygonList.size();
-  } // -- int getXMLQuadPolygonCount()
+  } 
 
   /**
    * Method getXMLQuadPolygon
@@ -972,7 +877,7 @@ public class Group implements java.io.Serializable {
     }
 
     return this._XMLQuadPolygonList.get(index);
-  } // -- org.mklab.mikity.xml.XMLQuadPolygon getXMLQuadPolygon(int)
+  } 
 
   /**
    * Method getXMLQuadPolygon
@@ -986,7 +891,7 @@ public class Group implements java.io.Serializable {
       mArray[index] = this._XMLQuadPolygonList.get(index);
     }
     return mArray;
-  } // -- org.mklab.mikity.xml.XMLQuadPolygon[] getXMLQuadPolygon()
+  } 
 
   /**
    * Method getXMLQuadPolygonAsReferenceReturns a reference to 'XMLQuadPolygon'. No type checking is performed on any modications to the Collection.
@@ -995,7 +900,7 @@ public class Group implements java.io.Serializable {
    */
   public java.util.ArrayList<XMLQuadPolygon> loadXMLQuadPolygonAsReference() {
     return this._XMLQuadPolygonList;
-  } // -- java.util.ArrayList getXMLQuadPolygonAsReference()
+  } 
 
   /**
    * Method getXMLQuadPolygonCount
@@ -1004,7 +909,7 @@ public class Group implements java.io.Serializable {
    */
   public int loadXMLQuadPolygonCount() {
     return this._XMLQuadPolygonList.size();
-  } // -- int getXMLQuadPolygonCount()
+  } 
 
   /**
    * Method removeGroup
@@ -1015,7 +920,7 @@ public class Group implements java.io.Serializable {
   public boolean removeGroup(org.mklab.mikity.xml.model.Group vGroup) {
     boolean removed = this._groupList.remove(vGroup);
     return removed;
-  } // -- boolean removeGroup(org.mklab.mikity.xml.Group)
+  } 
 
   /**
    * Method removeLinkdata
@@ -1026,7 +931,7 @@ public class Group implements java.io.Serializable {
   public boolean removeLinkdata(org.mklab.mikity.xml.model.Linkdata vLinkdata) {
     boolean removed = this._linkdataList.remove(vLinkdata);
     return removed;
-  } // -- boolean removeLinkdata(org.mklab.mikity.xml.Linkdata)
+  } 
 
   /**
    * Method removeXMLBox
@@ -1037,7 +942,7 @@ public class Group implements java.io.Serializable {
   public boolean removeXMLBox(org.mklab.mikity.xml.model.XMLBox vXMLBox) {
     boolean removed = this._XMLBoxList.remove(vXMLBox);
     return removed;
-  } // -- boolean removeXMLBox(org.mklab.mikity.xml.XMLBox)
+  } 
 
   /**
    * Method removeXMLCone
@@ -1048,7 +953,7 @@ public class Group implements java.io.Serializable {
   public boolean removeXMLCone(org.mklab.mikity.xml.model.XMLCone vXMLCone) {
     boolean removed = this._XMLConeList.remove(vXMLCone);
     return removed;
-  } // -- boolean removeXMLCone(org.mklab.mikity.xml.XMLCone)
+  } 
 
   /**
    * Method removeXMLCylinder
@@ -1059,7 +964,7 @@ public class Group implements java.io.Serializable {
   public boolean removeXMLCylinder(org.mklab.mikity.xml.model.XMLCylinder vXMLCylinder) {
     boolean removed = this._XMLCylinderList.remove(vXMLCylinder);
     return removed;
-  } // -- boolean removeXMLCylinder(org.mklab.mikity.xml.XMLCylinder)
+  } 
 
   /**
    * Method removeXMLSphere
@@ -1070,7 +975,7 @@ public class Group implements java.io.Serializable {
   public boolean removeXMLSphere(org.mklab.mikity.xml.model.XMLSphere vXMLSphere) {
     boolean removed = this._XMLSphereList.remove(vXMLSphere);
     return removed;
-  } // -- boolean removeXMLSphere(org.mklab.mikity.xml.XMLSphere)
+  } 
 
   /**
    * Method removeXMLConnector
@@ -1081,7 +986,7 @@ public class Group implements java.io.Serializable {
   public boolean removeXMLConnector(org.mklab.mikity.xml.model.XMLConnector vXMLConnector) {
     boolean removed = this._XMLConnectorList.remove(vXMLConnector);
     return removed;
-  } // -- boolean removeXMLCone(org.mklab.mikity.xml.XMLConnector)
+  } 
 
   /**
    * Method removeXMLTrianglePolygon
@@ -1092,7 +997,7 @@ public class Group implements java.io.Serializable {
   public boolean removeXMLTrianglePolygon(org.mklab.mikity.xml.model.XMLTrianglePolygon vXMLTrianglePolygon) {
     boolean removed = this._XMLTrianglePolygonList.remove(vXMLTrianglePolygon);
     return removed;
-  } // -- boolean removeXMLCone(org.mklab.mikity.xml.XMLTrianglePolygon)
+  } 
 
   /**
    * Method removeXMLQuadPolygon
@@ -1103,7 +1008,7 @@ public class Group implements java.io.Serializable {
   public boolean removeXMLQuadPolygon(org.mklab.mikity.xml.model.XMLQuadPolygon vXMLQuadPolygon) {
     boolean removed = this._XMLQuadPolygonList.remove(vXMLQuadPolygon);
     return removed;
-  } // -- boolean removeXMLCone(org.mklab.mikity.xml.XMLQuadPolygon)
+  } 
 
   /**
    * Method setGroup
@@ -1118,7 +1023,7 @@ public class Group implements java.io.Serializable {
       throw new IndexOutOfBoundsException();
     }
     this._groupList.set(index, vGroup);
-  } // -- void setGroup(int, org.mklab.mikity.xml.Group)
+  } 
 
   /**
    * Method setGroup
@@ -1131,7 +1036,7 @@ public class Group implements java.io.Serializable {
     for (int i = 0; i < groupArray.length; i++) {
       this._groupList.add(groupArray[i]);
     }
-  } // -- void setGroup(org.mklab.mikity.xml.Group)
+  } 
 
   /**
    * Method setGroupSets the value of 'group' by copying the given ArrayList.
@@ -1144,7 +1049,7 @@ public class Group implements java.io.Serializable {
     for (int i = 0; i < groupCollection.size(); i++) {
       this._groupList.add(groupCollection.get(i));
     }
-  } // -- void setGroup(java.util.ArrayList)
+  } 
 
   /**
    * Method setGroupAsReferenceSets the value of 'group' by setting it to the given ArrayList. No type checking is performed.
@@ -1153,7 +1058,7 @@ public class Group implements java.io.Serializable {
    */
   public void setGroupAsReference(java.util.ArrayList<Group> groupCollection) {
     this._groupList = groupCollection;
-  } // -- void setGroupAsReference(java.util.ArrayList)
+  } 
 
   /**
    * Method setLinkdata
@@ -1168,7 +1073,7 @@ public class Group implements java.io.Serializable {
       throw new IndexOutOfBoundsException();
     }
     this._linkdataList.set(index, vLinkdata);
-  } // -- void setLinkdata(int, org.mklab.mikity.xml.Linkdata)
+  } 
 
   /**
    * Method setLinkdata
@@ -1181,7 +1086,7 @@ public class Group implements java.io.Serializable {
     for (int i = 0; i < linkdataArray.length; i++) {
       this._linkdataList.add(linkdataArray[i]);
     }
-  } // -- void setLinkdata(org.mklab.mikity.xml.Linkdata)
+  } 
 
   /**
    * Method setLinkdataSets the value of 'linkdata' by copying the given ArrayList.
@@ -1203,7 +1108,7 @@ public class Group implements java.io.Serializable {
    */
   public void setLinkdataAsReference(java.util.ArrayList<Linkdata> linkdataCollection) {
     this._linkdataList = linkdataCollection;
-  } // -- void setLinkdataAsReference(java.util.ArrayList)
+  } 
 
   /**
    * Sets the value of field 'location'.
@@ -1212,7 +1117,7 @@ public class Group implements java.io.Serializable {
    */
   public void setLocation(org.mklab.mikity.xml.model.Location location) {
     this._location = location;
-  } // -- void setLocation(org.mklab.mikity.xml.Location)
+  } 
 
   /**
    * Sets the value of field 'name'.
@@ -1221,7 +1126,7 @@ public class Group implements java.io.Serializable {
    */
   public void setName(java.lang.String name) {
     this._name = name;
-  } // -- void setName(java.lang.String)
+  } 
 
   /**
    * Sets the value of field 'rotation'.
@@ -1230,7 +1135,7 @@ public class Group implements java.io.Serializable {
    */
   public void setRotation(org.mklab.mikity.xml.model.Rotation rotation) {
     this._rotation = rotation;
-  } // -- void setRotation(org.mklab.mikity.xml.Rotation)
+  } 
 
   /**
    * Method setXMLBox
@@ -1245,7 +1150,7 @@ public class Group implements java.io.Serializable {
       throw new IndexOutOfBoundsException();
     }
     this._XMLBoxList.set(index, vXMLBox);
-  } // -- void setXMLBox(int, org.mklab.mikity.xml.XMLBox)
+  } 
 
   /**
    * Method setXMLBox
@@ -1258,7 +1163,7 @@ public class Group implements java.io.Serializable {
     for (int i = 0; i < XMLBoxArray.length; i++) {
       this._XMLBoxList.add(XMLBoxArray[i]);
     }
-  } // -- void setXMLBox(org.mklab.mikity.xml.XMLBox)
+  } 
 
   /**
    * Method setXMLBoxSets the value of 'XMLBox' by copying the given ArrayList.
@@ -1281,7 +1186,7 @@ public class Group implements java.io.Serializable {
    */
   public void setXMLBoxAsReference(java.util.ArrayList<XMLBox> XMLBoxCollection) {
     this._XMLBoxList = XMLBoxCollection;
-  } // -- void setXMLBoxAsReference(java.util.ArrayList)
+  } 
 
   /**
    * Method setXMLCone
@@ -1296,7 +1201,7 @@ public class Group implements java.io.Serializable {
       throw new IndexOutOfBoundsException();
     }
     this._XMLConeList.set(index, vXMLCone);
-  } // -- void setXMLCone(int, org.mklab.mikity.xml.XMLCone)
+  } 
 
   /**
    * Method setXMLCone
@@ -1309,7 +1214,7 @@ public class Group implements java.io.Serializable {
     for (int i = 0; i < XMLConeArray.length; i++) {
       this._XMLConeList.add(XMLConeArray[i]);
     }
-  } // -- void setXMLCone(org.mklab.mikity.xml.XMLCone)
+  } 
 
   /**
    * Method setXMLConeSets the value of 'XMLCone' by copying the given ArrayList.
@@ -1332,7 +1237,7 @@ public class Group implements java.io.Serializable {
    */
   public void setXMLConeAsReference(java.util.ArrayList<XMLCone> XMLConeCollection) {
     this._XMLConeList = XMLConeCollection;
-  } // -- void setXMLConeAsReference(java.util.ArrayList)
+  } 
 
   /**
    * Method setXMLCylinder
@@ -1347,7 +1252,7 @@ public class Group implements java.io.Serializable {
       throw new IndexOutOfBoundsException();
     }
     this._XMLCylinderList.set(index, vXMLCylinder);
-  } // -- void setXMLCylinder(int, org.mklab.mikity.xml.XMLCylinder)
+  } 
 
   /**
    * Method setXMLCylinder
@@ -1360,7 +1265,7 @@ public class Group implements java.io.Serializable {
     for (int i = 0; i < XMLCylinderArray.length; i++) {
       this._XMLCylinderList.add(XMLCylinderArray[i]);
     }
-  } // -- void setXMLCylinder(org.mklab.mikity.xml.XMLCylinder)
+  } 
 
   /**
    * Method setXMLCylinderSets the value of 'XMLCylinder' by copying the given ArrayList.
@@ -1383,7 +1288,7 @@ public class Group implements java.io.Serializable {
    */
   public void setXMLCylinderAsReference(java.util.ArrayList<XMLCylinder> XMLCylinderCollection) {
     this._XMLCylinderList = XMLCylinderCollection;
-  } // -- void setXMLCylinderAsReference(java.util.ArrayList)
+  } 
 
   /**
    * Method setXMLSphere
@@ -1398,7 +1303,7 @@ public class Group implements java.io.Serializable {
       throw new IndexOutOfBoundsException();
     }
     this._XMLSphereList.set(index, vXMLSphere);
-  } // -- void setXMLSphere(int, org.mklab.mikity.xml.XMLSphere)
+  } 
 
   /**
    * Method setXMLSphere
@@ -1411,7 +1316,7 @@ public class Group implements java.io.Serializable {
     for (int i = 0; i < XMLSphereArray.length; i++) {
       this._XMLSphereList.add(XMLSphereArray[i]);
     }
-  } // -- void setXMLSphere(org.mklab.mikity.xml.XMLSphere)
+  } 
 
   /**
    * Method setXMLSphereSets the value of 'XMLSphere' by copying the given ArrayList.
@@ -1434,7 +1339,7 @@ public class Group implements java.io.Serializable {
    */
   public void setXMLSphereAsReference(java.util.ArrayList<XMLSphere> XMLSphereCollection) {
     this._XMLSphereList = XMLSphereCollection;
-  } // -- void setXMLSphereAsReference(java.util.ArrayList)
+  } 
 
   /**
    * Method setXMLConnector
@@ -1449,7 +1354,7 @@ public class Group implements java.io.Serializable {
       throw new IndexOutOfBoundsException();
     }
     this._XMLConnectorList.set(index, vXMLConnector);
-  } // -- void setXMLConnector(int, org.mklab.mikity.xml.XMLConnector)
+  } 
 
   /**
    * Method setXMLConnector
@@ -1462,7 +1367,7 @@ public class Group implements java.io.Serializable {
     for (int i = 0; i < XMLConnectorArray.length; i++) {
       this._XMLConnectorList.add(XMLConnectorArray[i]);
     }
-  } // -- void setXMLConnector(org.mklab.mikity.xml.XMLConnector)
+  } 
 
   // /**
   // * Method setXMLConnectorSets the value of 'XMLConnector' by copying the
@@ -1487,7 +1392,7 @@ public class Group implements java.io.Serializable {
    */
   public void setXMLConnectorAsReference(java.util.ArrayList<XMLConnector> XMLConnectorCollection) {
     this._XMLConnectorList = XMLConnectorCollection;
-  } // -- void setXMLConnectorAsReference(java.util.ArrayList)
+  } 
 
   /**
    * Method setXMLTrianglePolygon
@@ -1502,9 +1407,7 @@ public class Group implements java.io.Serializable {
       throw new IndexOutOfBoundsException();
     }
     this._XMLTrianglePolygonList.set(index, vXMLTrianglePolygon);
-  } // -- void setXMLTrianglePolygon(int,
-
-  // org.mklab.mikity.xml.XMLTrianglePolygon)
+  } 
 
   /**
    * Method setXMLTrianglePolygon
@@ -1517,7 +1420,7 @@ public class Group implements java.io.Serializable {
     for (int i = 0; i < XMLTrianglePolygonArray.length; i++) {
       this._XMLTrianglePolygonList.add(XMLTrianglePolygonArray[i]);
     }
-  } // -- void setXMLTrianglePolygon(org.mklab.mikity.xml.XMLTrianglePolygon)
+  } 
 
   // /**
   // * Method setXMLTrianglePolygonSets the value of 'XMLTrianglePolygon' by
@@ -1544,7 +1447,7 @@ public class Group implements java.io.Serializable {
    */
   public void setXMLTrianglePolygonAsReference(java.util.ArrayList<XMLTrianglePolygon> XMLTrianglePolygonCollection) {
     this._XMLTrianglePolygonList = XMLTrianglePolygonCollection;
-  } // -- void setXMLTrianglePolygonAsReference(java.util.ArrayList)
+  } 
 
   /**
    * Method setXMLQuadPolygon
@@ -1559,7 +1462,7 @@ public class Group implements java.io.Serializable {
       throw new IndexOutOfBoundsException();
     }
     this._XMLQuadPolygonList.set(index, vXMLQuadPolygon);
-  } // -- void setXMLQuadPolygon(int, org.mklab.mikity.xml.XMLQuadPolygon)
+  } 
 
   /**
    * Method setXMLQuadPolygon
@@ -1572,7 +1475,7 @@ public class Group implements java.io.Serializable {
     for (int i = 0; i < XMLQuadPolygonArray.length; i++) {
       this._XMLQuadPolygonList.add(XMLQuadPolygonArray[i]);
     }
-  } // -- void setXMLQuadPolygon(org.mklab.mikity.xml.XMLQuadPolygonArray)
+  } 
 
   // /**
   // * Method setXMLQuadPolygonAsReference the value of 'XMLQuadPolygon' by
@@ -1598,5 +1501,5 @@ public class Group implements java.io.Serializable {
    */
   public void setXMLQuadPolygonAsReference(java.util.ArrayList<XMLQuadPolygon> XMLQuadPolygonCollection) {
     this._XMLQuadPolygonList = XMLQuadPolygonCollection;
-  } // -- void setXMLQuadPolygonAsReference(java.util.ArrayList)
+  } 
 }
