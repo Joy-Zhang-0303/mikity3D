@@ -1,5 +1,8 @@
 package org.mklab.mikity.jogl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
 import org.mklab.mikity.gui.Modeler;
@@ -12,10 +15,7 @@ import org.mklab.mikity.xml.Jamast;
  * @version $Revision$, 2012/01/12
  */
 public class JoglModeler extends Modeler {
-
   private JoglModelCanvas canvas;
-  private JoglGroup group;
-
   
   /**
    * Initialize the generated object of {@link JoglModeler}.
@@ -28,7 +28,7 @@ public class JoglModeler extends Modeler {
   public JoglModeler(Composite parent, int style, Jamast root, CollisionCanceller dc) {
     super(parent, style, root, dc);
   }
-
+  
   /**
    * GroupをsinsiCanvasに読み込ませ、Frameにaddする
    * 
@@ -36,16 +36,30 @@ public class JoglModeler extends Modeler {
    */
   @Override
   public void createViewer() {
-    //org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
+    JoglGroup[] groups = createModel();
+    this.canvas.setChild(groups);
+  }
+  
+  /**
+   * オブジェクトのグループを生成します。
+   * @return オブジェクトのグループ
+   */
+  public JoglGroup[] createModel() {
+    List<JoglGroup> groups = new ArrayList<JoglGroup>();
+
+    JoglGroup group1 = new JoglGroup();
+    group1.addCoordinate(new TeapotJoglCoordinate1());
+    group1.addObject(new TeapotJoglObject());
     
-    this.canvas.addCoordinate(new TeapotJoglCoordinate1());
-    this.canvas.addObject(new TeapotJoglObject());
+    group1.addCoordinate(new CubeJoglCoordinate());
+    group1.addObject(new CubeJoglObject());
     
-    this.canvas.addCoordinate(new CubeJoglCoordinate());
-    this.canvas.addObject(new CubeJoglObject());
+    group1.addCoordinate(new TeapotJoglCoordinate2());
+    group1.addObject(new TeapotJoglObject());
     
-    this.canvas.addCoordinate(new TeapotJoglCoordinate2());
-    this.canvas.addObject(new TeapotJoglObject());
+    groups.add(group1);
+    
+    return groups.toArray(new JoglGroup[groups.size()]);
   }
 
   /**

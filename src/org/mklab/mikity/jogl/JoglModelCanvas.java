@@ -4,8 +4,6 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -22,9 +20,10 @@ import javax.swing.SwingUtilities;
  */
 public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseListener, MouseMotionListener {
   private GLU glu;
+  
+  /** オブジェクトのグループ */
+  private JoglGroup[] groups;
 
-  private List<JoglObject> objects = new ArrayList<JoglObject>();
-  private List<JoglCoordinate> coodinates = new ArrayList<JoglCoordinate>();
 
   private double[] eye = {0.0, 0.0, 50.0};
 
@@ -100,40 +99,17 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
     gl.glRotatef(this.rotx, 1.0f, 0.0f, 0.0f);
     gl.glRotatef(this.roty, 0.0f, 1.0f, 0.0f);
 
-    displayObjects(gl);
-  }
-
-  /**
-   * オブジェクトを表示します。
-   * 
-   * @param gl GL
-   */
-  private void displayObjects(GL gl) {
-    for (int i = 0; i < this.objects.size(); i++) {
-      JoglCoordinate coordinate = this.coodinates.get(i);
-      JoglObject object = this.objects.get(i);
-      coordinate.setCoordinate(gl);
-      object.display(gl);
+    for (JoglGroup group : this.groups) {
+      group.displayObjects(gl);
     }
   }
 
   /**
-   * オブジェクトを追加します。
-   * 
-   * @param object オブジェクト
+   * オブジェクトのグループを設定します。
+   * @param groups オブジェクトのグループ
    */
-  public void addObject(JoglObject object) {
-    this.objects.add(object);
-
-  }
-
-  /**
-   * 座標系を追加します。
-   * 
-   * @param coordinate 座標系
-   */
-  public void addCoordinate(JoglCoordinate coordinate) {
-    this.coodinates.add(coordinate);
+  public void setChild(JoglGroup[] groups) {
+    this.groups = groups;
   }
 
   /**
