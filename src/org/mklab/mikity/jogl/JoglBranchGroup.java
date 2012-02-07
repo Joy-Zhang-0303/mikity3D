@@ -13,9 +13,10 @@ import javax.media.opengl.GL;
  * @version $Revision$, 2012/01/20
  */
 public class JoglBranchGroup implements JoglObject {
+
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
-  /** 座標系  */
+  /** 座標系 */
   private List<JoglTransformGroup> transfromGroups;
 
   /**
@@ -25,7 +26,7 @@ public class JoglBranchGroup implements JoglObject {
     this.objects = new ArrayList<JoglObject>();
     this.transfromGroups = new ArrayList<JoglTransformGroup>();
   }
-  
+
   /**
    * オブジェクトを追加します
    * 
@@ -34,7 +35,7 @@ public class JoglBranchGroup implements JoglObject {
   public void addChild(JoglObject object) {
     this.objects.add(object);
   }
-  
+
   /**
    * 座標系を追加します
    * 
@@ -43,7 +44,7 @@ public class JoglBranchGroup implements JoglObject {
   public void addChild(JoglTransformGroup tg) {
     this.transfromGroups.add(tg);
   }
-  
+
   /**
    * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
    */

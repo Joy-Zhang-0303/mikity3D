@@ -21,6 +21,7 @@ import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
 import com.sun.j3d.utils.behaviors.mouse.MouseZoom;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
+
 /**
  * キャンバスに関するクラス
  * 
@@ -28,9 +29,10 @@ import com.sun.j3d.utils.universe.SimpleUniverse;
  * @version $Revision: 1.6 $.2004/12/16
  */
 public class Java3dModelCanvas extends Canvas3D {
+
   /** */
   private static final long serialVersionUID = 1L;
-  /** マウス操作の状態の表す数値  */
+  /** マウス操作の状態の表す数値 */
   public int mouseOperationType = 0;
   /** 読み込んだファイルのルート */
   private Jamast root;
@@ -50,6 +52,7 @@ public class Java3dModelCanvas extends Canvas3D {
 
   /**
    * コンストラクター universe --> BranchGroup --> TransformGroup --> topGroup
+   * 
    * @param root ルート
    */
   public Java3dModelCanvas(Jamast root) {
@@ -104,17 +107,17 @@ public class Java3dModelCanvas extends Canvas3D {
 
     this.universe.addBranchGraph(bg);
   }
-  
+
   /**
    * 背景ノードを作成します。
    * 
    * @param color 背景色
    * @return 背景ノード
    */
-  private BranchGroup createBackground(final Color3f color){
+  private BranchGroup createBackground(final Color3f color) {
     final BranchGroup group = new BranchGroup();
     final double radius = Double.POSITIVE_INFINITY;
-    
+
     Background background = new Background(color);
 
     BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), radius);
@@ -123,31 +126,31 @@ public class Java3dModelCanvas extends Canvas3D {
     group.addChild(background);
     return group;
   }
-  
+
   /**
    * 指定されたノードにマウスを作成し追加します。
    * 
    * @param tg 追加対象ノード
    */
-  private void initializeMouse(final MyTransformGroup tg){
+  private void initializeMouse(final MyTransformGroup tg) {
     final float radius = 100f;
-    
+
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 
-    BoundingSphere bounds=new BoundingSphere(new Point3d(0.0,0.0,0.0),radius);
+    BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), radius);
 
     MouseZoom zoom = new MouseZoom(tg);
-    zoom.setSchedulingBounds(bounds);                 
+    zoom.setSchedulingBounds(bounds);
     tg.addChild(zoom);
 
-    MouseRotate rotate=new MouseRotate(tg);
-    rotate.setSchedulingBounds(bounds);               
+    MouseRotate rotate = new MouseRotate(tg);
+    rotate.setSchedulingBounds(bounds);
     tg.addChild(rotate);
 
-    MouseTranslate translate=new MouseTranslate(tg);
+    MouseTranslate translate = new MouseTranslate(tg);
     translate.setSchedulingBounds(bounds);
-    tg.addChild(translate); 
+    tg.addChild(translate);
   }
 
   /**
@@ -155,19 +158,19 @@ public class Java3dModelCanvas extends Canvas3D {
    */
   public void setChild(Group[] groups) {
     this.topGroup.removeAllChildren();
-    
+
     BranchGroup bg = new BranchGroup();
     bg.setCapability(BranchGroup.ALLOW_DETACH);
-    
+
     TransformGroup tg = new TransformGroup();
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-    
+
     for (int i = 0; i < groups.length; i++) {
       bg.addChild(tg);
       MyTransformGroup child = PrimitiveFactory.create(groups[i]);
       tg.addChild(child);
     }
-    
+
     this.topGroup.addChild(bg);
   }
 
@@ -189,20 +192,20 @@ public class Java3dModelCanvas extends Canvas3D {
     if (config == null) {
       return;
     }
-    
+
     // 背景色をセット
     if (config.loadBackground() == null) {
       this.backgroundColor = ColorConstant.getColor("white"); //$NON-NLS-1$
     } else {
       this.backgroundColor = ColorConstant.getColor(config.loadBackground().loadColor());
     }
-    
+
     // 光源の位置をセット
     if (config.loadLight() != null) {
       Light light = config.loadLight();
       this.lightLocation = new Vector3f(light.loadX(), light.loadY(), light.loadZ());
     }
-    
+
     // 視点の位置、向きをセット
     if (config.loadView() != null) {
       new MyViewpoint(this.universe, config.loadView(), this.mouseOperationType);
