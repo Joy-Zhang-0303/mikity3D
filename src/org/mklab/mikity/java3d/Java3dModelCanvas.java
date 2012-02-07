@@ -35,13 +35,13 @@ public class Java3dModelCanvas extends Canvas3D {
   /** 読み込んだファイルのルート */
   private Jamast root;
 
-  private TransformGroup transform;
+  //private TransformGroup transform;
   /** トップブランチグループ */
   private BranchGroup topGroup;
   /** ユニバース */
   private SimpleUniverse universe;
   /** ブランチ */
-  private BranchGroup bg;
+  //private BranchGroup bg;
 
   private Color3f backgroundColor;
   private Vector3f lightLocation = new Vector3f(0.2f, -0.8f, -0.8f);
@@ -53,7 +53,7 @@ public class Java3dModelCanvas extends Canvas3D {
 
   /**
    * コンストラクター universe --> BranchGroup --> TransformGroup --> topGroup
-   * @param root 
+   * @param root ルート
    */
   public Java3dModelCanvas(Jamast root) {
     super(SimpleUniverse.getPreferredConfiguration());
@@ -63,8 +63,8 @@ public class Java3dModelCanvas extends Canvas3D {
     this.universe = new SimpleUniverse(this);
 
     // ブランチグループを設定
-    this.bg = new BranchGroup();
-    this.bg.setCapability(BranchGroup.ALLOW_DETACH);
+    BranchGroup bg = new BranchGroup();
+    bg.setCapability(BranchGroup.ALLOW_DETACH);
 
     getParameter(root);
 
@@ -74,8 +74,8 @@ public class Java3dModelCanvas extends Canvas3D {
     // 背景色の設定
     BranchGroup background = createBackground(this.backgroundColor);
 
-    this.bg.addChild(light);
-    this.bg.addChild(background);
+    bg.addChild(light);
+    bg.addChild(background);
 
     // 基準座標系の設定
     MyTransformGroup tg = new MyTransformGroup();
@@ -88,11 +88,11 @@ public class Java3dModelCanvas extends Canvas3D {
     tg.setCapability(javax.media.j3d.Group.ALLOW_CHILDREN_EXTEND);
 
     // BranchGroupにTransformGroupをAddする
-    this.bg.addChild(tg);
+    bg.addChild(tg);
 
-    this.transform = new TransformGroup();
-    this.transform.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-    this.bg.addChild(this.transform);
+    TransformGroup transform = new TransformGroup();
+    transform.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+    bg.addChild(transform);
 
     // BranchGroupにグループの追加の許可
     this.topGroup = new BranchGroup();
@@ -105,7 +105,7 @@ public class Java3dModelCanvas extends Canvas3D {
 
     tg.addChild(this.topGroup);
 
-    this.universe.addBranchGraph(this.bg);
+    this.universe.addBranchGraph(bg);
   }
   
   /**
@@ -152,25 +152,6 @@ public class Java3dModelCanvas extends Canvas3D {
     translate.setSchedulingBounds(bounds);
     tg.addChild(translate); 
   }
-
-//  /**
-//   * 画面から全ての物体を削除(光源設定などはそのまま)
-//   */
-//  public void clear() {
-//    this.topGroup.removeAllChildren();
-//  }
-
-//  /**
-//   * 子を追加する
-//   * 
-//   * @param node
-//   */
-//  public void addChild(MyTransformGroup node) {
-//    BranchGroup tmp = new BranchGroup();
-//    tmp.setCapability(BranchGroup.ALLOW_DETACH);
-//    tmp.addChild(node);
-//    this.topGroup.addChild(tmp);
-//  }
 
   /**
    * @param groups いったんトップグループの全てを消してから書き込む

@@ -22,4 +22,10 @@ public class CubeJoglObject implements JoglObject {
     gl.glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
     glut.glutSolidCube(1.0f);
   }
+
+  @Override
+  public void addChild(JoglCoordinate coordinate) {
+    // TODO Auto-generated method stub
+    
+  }
 }

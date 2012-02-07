@@ -54,7 +54,7 @@ public class CollisionCanceller {
   /**
    * コンストラクタ
    * 
-   * @param comp
+   * @param comp コンポジット
    */
   public CollisionCanceller(Composite comp) {
     this.locList = new ArrayList<Location>();
@@ -223,7 +223,7 @@ public class CollisionCanceller {
   }
 
   /**
-   * @param comp
+   * @param comp コンポジット
    */
   public void setComposite(Composite comp) {
     this.comp = comp;

@@ -40,7 +40,6 @@ import com.sun.j3d.utils.geometry.Primitive;
 import com.sun.j3d.utils.geometry.Sphere;
 
 
-
 /**
  * プリミティブおよびポリゴンの生成を行うクラス
  * 
@@ -73,15 +72,10 @@ public class PrimitiveFactory {
 
     Linkdata[] linkdata = group.loadLinkdata();
 
-    myTransformGroupCreater(group, tg, linkdata);
+    TransformGroupMaker.createTransformGroup(group, tg, linkdata);
 
     return tg;
   }
-
-  private static void myTransformGroupCreater(Group group, MyTransformGroup tg, Linkdata[] linkdata) {
-    TransformGroupMaker.TransformGroupCreater(group, tg, linkdata);
-  }
-
 
   /**
    * 与えられたboxインスタンスのプリミティブを作成する。

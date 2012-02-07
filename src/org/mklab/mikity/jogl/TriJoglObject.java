@@ -26,4 +26,10 @@ public class TriJoglObject implements JoglObject {
     //gl.glTranslatef(2.0f, 0.0f, 0.0f);
   }
 
+  @Override
+  public void addChild(JoglCoordinate coordinate) {
+    // TODO Auto-generated method stub
+    
+  }
+
 }

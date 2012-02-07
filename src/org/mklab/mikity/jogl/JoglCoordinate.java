@@ -10,8 +10,13 @@ import javax.media.opengl.GL;
  */
 public interface JoglCoordinate {
   /**
-   * 座標家尾を設定します。
+   * 座標系を設定します。
    * @param gl GL
    */
-  void setCoordinate(GL gl);
+  void Transform(GL gl);
+  
+  /**
+   * @param object オブジェクト
+   */
+  void addChild(JoglObject object);
 }

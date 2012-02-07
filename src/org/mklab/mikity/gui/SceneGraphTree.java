@@ -86,16 +86,16 @@ public class SceneGraphTree {
    * コンストラクター
    */
   public SceneGraphTree() {
-  // nothing to do
+    // nothing to do
   }
 
   /**
    * コンストラクター
    * 
-   * @param composite
-   * @param modeler
-   * @param model
-   * @param dc
+   * @param composite コンポジット
+   * @param modeler モデラー
+   * @param model モデル
+   * @param dc 重複防止(コリジョンキャンセラー)
    */
   public SceneGraphTree(final Composite composite, final Modeler modeler, final Model model, CollisionCanceller dc) {
     this.model = model;
@@ -531,8 +531,8 @@ public class SceneGraphTree {
   /**
    * 全透過性を設定する。
    * 
-   * @param group
-   * @param transparent
+   * @param group グループ
+   * @param transparent トランスピアレント
    */
   public void setAllTransparent(final Group group, boolean transparent) {
     XMLBox[] xmlBox = group.loadXMLBox();
@@ -839,30 +839,4 @@ public class SceneGraphTree {
       }
     }
   }
-  // /**
-  // * @return Group
-  // */
-  // public Group getSelectionGroup() {
-  // //何も選んでない状態ならは、nullを返す
-  // if (xmlTree.getSelectionCount() == 0) {
-  // return null;
-  // }
-  //
-  // selectItem = xmlTree.getSelection()[0];
-  //
-  // Object itemData = selectItem.getData();
-  // if (itemData instanceof Group) {
-  // return (Group)itemData;
-  // } else {
-  // selectItem = selectItem.getParentItem();
-  // if (selectItem == null) {
-  // return null;
-  // }
-  // itemData = selectItem.getData();
-  // if (itemData instanceof Group) {
-  // return (Group)itemData;
-  // }
-  // }
-  // return null;
-  // }
 }

@@ -77,9 +77,9 @@ public class Rotation implements java.io.Serializable {
   /**
    * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
    * 
-   * @param x
-   * @param y
-   * @param z
+   * @param x x座標
+   * @param y y座標
+   * @param z z座標
    */
   public Rotation(float x, float y, float z) {
     super();
@@ -116,7 +116,7 @@ public class Rotation implements java.io.Serializable {
   /**
    * Note: hashCode() has not been overriden
    * 
-   * @param obj
+   * @param obj オブジェクト
    */
   @Override
   public boolean equals(java.lang.Object obj) {

@@ -138,4 +138,10 @@ public class SampleJoglObject implements JoglObject {
     gl.glPopMatrix();
   }
 
+  @Override
+  public void addChild(JoglCoordinate coordinate) {
+    // TODO Auto-generated method stub
+    
+  }
+
 }

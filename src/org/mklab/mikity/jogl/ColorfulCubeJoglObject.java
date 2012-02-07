@@ -78,4 +78,10 @@ public class ColorfulCubeJoglObject implements JoglObject {
 
   }
 
+  @Override
+  public void addChild(JoglCoordinate coordinate) {
+    // TODO Auto-generated method stub
+    
+  }
+
 }

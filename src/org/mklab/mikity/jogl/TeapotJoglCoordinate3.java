@@ -11,11 +11,17 @@ import javax.media.opengl.GL;
 public class TeapotJoglCoordinate3 implements JoglCoordinate {
 
   /**
-   * @see org.mklab.mikity.jogl.JoglCoordinate#setCoordinate(javax.media.opengl.GL)
+   * @see org.mklab.mikity.jogl.JoglCoordinate#Transform(javax.media.opengl.GL)
    */
   @Override
-  public void setCoordinate(GL gl) {
+  public void Transform(GL gl) {
     gl.glRotatef(60f, 0.0f, 0.0f, 1.0f);
+  }
+
+  @Override
+  public void addChild(JoglObject object) {
+    // TODO Auto-generated method stub
+    
   }
 
 }

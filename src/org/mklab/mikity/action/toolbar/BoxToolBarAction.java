@@ -3,6 +3,7 @@ package org.mklab.mikity.action.toolbar;
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.gui.MainWindow;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
+import org.mklab.mikity.jogl.JoglBox;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLBox;
@@ -54,7 +55,7 @@ public class BoxToolBarAction extends Action {
     this.root = MainWindow.getRoot();
     Group group = this.root.loadModel(0).loadGroup(0);
 
-    //MyBox box = new MyBox();
+    //JoglBox box = new JoglBox();
     XMLBox box = new XMLBox();
     box.setXsize(0.10f);
     box.setYsize(0.10f);

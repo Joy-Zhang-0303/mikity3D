@@ -59,10 +59,10 @@ public abstract class Modeler extends Composite {
   /**
    * コンストラクター
    * 
-   * @param parent
-   * @param style
-   * @param root
-   * @param dc
+   * @param parent 親
+   * @param style スタイル
+   * @param root ルート
+   * @param dc コリジョンキャンセラー
    */
   public Modeler(Composite parent, int style, final Jamast root, CollisionCanceller dc) {
     super(parent, style);

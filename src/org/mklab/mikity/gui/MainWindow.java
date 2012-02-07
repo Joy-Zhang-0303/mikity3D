@@ -78,7 +78,6 @@ public class MainWindow extends ApplicationWindow {
   Action CONFIGDIALOG_OPEN_ACTION = new ConfigDialogOpenAction(this);
   /** */
   Action FILE_EXIT_ACTION = new FileExitAction(this);
-  // private Action ADD_PRIM_ACTION = new AddPrimitiveAction(this);
 
   private Composite comp;
   private CollisionCanceller dc = new CollisionCanceller(this.comp);
@@ -141,8 +140,8 @@ public class MainWindow extends ApplicationWindow {
     this.comp = localComposite;
 
     // Java3d or JOGL
-    //this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.dc);
-    this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.dc);
+    this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.dc);
+  //  this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.dc);
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     return localComposite;
   }
@@ -545,8 +544,6 @@ public class MainWindow extends ApplicationWindow {
   public void createViewer() {
     this.modeler.createViewer();
   }
-
-
 
   /**
    * 読み込みファイルの取得

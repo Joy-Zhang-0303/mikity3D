@@ -26,4 +26,13 @@ public class TeapotJoglObject implements JoglObject {
     //    glut.glutSolidCube(1.0f);
   }
 
+  /**
+   * @see org.mklab.mikity.jogl.JoglObject#addChild(org.mklab.mikity.jogl.JoglCoordinate)
+   */
+  @Override
+  public void addChild(JoglCoordinate coordinate) {
+    // TODO Auto-generated method stub
+    
+  }
+
 }

@@ -21,11 +21,11 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 public class TransformGroupMaker{
   
   /**
-   * @param group
-   * @param tg
-   * @param linkdata
+   * @param group グループ
+   * @param tg トランスフォームグループ
+   * @param linkdata リンクデータ
    */
-  public static void TransformGroupCreater(Group group, MyTransformGroup tg, Linkdata[] linkdata) {
+  public static void createTransformGroup(Group group, MyTransformGroup tg, Linkdata[] linkdata) {
     XMLBox[] xmlBox = group.loadXMLBox();
     for (int i = 0; i < xmlBox.length; i++) {
       tg.addChild(PrimitiveFactory.create(xmlBox[i]));
@@ -43,7 +43,6 @@ public class TransformGroupMaker{
 
     XMLCone[] xmlCone = group.loadXMLCone();
     for (int i = 0; i < xmlCone.length; i++) {
-
       tg.addChild(PrimitiveFactory.create(xmlCone[i]));
     }
 

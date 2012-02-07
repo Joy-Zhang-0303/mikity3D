@@ -13,7 +13,6 @@ import org.mklab.mikity.xml.Jamast;
  */
 public class Java3dModeler extends Modeler {
   private Java3dModelCanvas canvas;
-  
   /**
    * Initialize the generated object of {@link Java3dModeler}.
    * @param parent 親

@@ -72,14 +72,14 @@ public class Location implements java.io.Serializable {
    */
   public Location() {
     super();
-  } // -- org.mklab.mikity.xml.Location()
+  }
 
   /**
    * 新しく生成された<code>Location</code>オブジェクトを初期化します。
    * 
-   * @param x
-   * @param y
-   * @param z
+   * @param x x座標
+   * @param y y座標
+   * @param z z座標
    */
   public Location(float x, float y, float z) {
     super();
@@ -100,7 +100,7 @@ public class Location implements java.io.Serializable {
    */
   public void deleteX() {
     this._has_x = false;
-  } // -- void deleteX()
+  } 
 
   /**
    * Method deleteY
@@ -119,7 +119,7 @@ public class Location implements java.io.Serializable {
   /**
    * Note: hashCode() has not been overriden
    * 
-   * @param obj
+   * @param obj オブジェクト
    */
   @Override
   public boolean equals(java.lang.Object obj) {

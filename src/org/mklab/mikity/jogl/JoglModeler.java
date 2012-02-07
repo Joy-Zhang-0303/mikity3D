@@ -1,8 +1,5 @@
 package org.mklab.mikity.jogl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
 import org.mklab.mikity.gui.Modeler;
@@ -36,65 +33,13 @@ public class JoglModeler extends Modeler {
    */
   @Override
   public void createViewer() {
-    JoglGroup[] groups = createModel();
+//    org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
+//    this.canvas.setChild(group);
+//    JoglGroup[] groups = createModel();
+    JoglGroup[] groups = new JoglModelCreater().setModels();
     this.canvas.setChild(groups);
   }
   
-  /**
-   * オブジェクトのグループを生成します。
-   * @return オブジェクトのグループ
-   */
-  public JoglGroup[] createModel() {
-    List<JoglGroup> groups = new ArrayList<JoglGroup>();
-
-    JoglGroup group = new JoglGroup();
-
-    group.addCoordinate(new TeapotJoglCoordinate1());
-    JoglObject object1 = createTeapotCubeTeapot();
-    group.addObject(object1);
-    
-    group.addCoordinate(new TeapotJoglCoordinate3());
-    JoglObject object2 = createTeapotCubeTeapot();
-    group.addObject(object2);
-
-    group.addCoordinate(new TeapotJoglCoordinate3());
-    JoglObject object3 = createTeapotCubeTeapot();
-    group.addObject(object3);
-    
-    group.addCoordinate(new TeapotJoglCoordinate3());
-    JoglObject object4 = createTeapotCubeTeapot();
-    group.addObject(object4);
-    
-    group.addCoordinate(new TeapotJoglCoordinate3());
-    JoglObject object5 = createTeapotCubeTeapot();
-    group.addObject(object5);
-    
-    group.addCoordinate(new TeapotJoglCoordinate3());
-    JoglObject object6 = createTeapotCubeTeapot();
-    group.addObject(object6);
-    
-    groups.add(group);
-    
-    return groups.toArray(new JoglGroup[groups.size()]);
-  }
-
-  /**
-   * TeapotとCubeとTeapotが連結したオブジェクトを生成します。
-   * @return TeapotとCubeとTeapotが連結したオブジェクト
-   */
-  public JoglGroup createTeapotCubeTeapot() {
-    JoglGroup group1 = new JoglGroup();
-    group1.addCoordinate(new TeapotJoglCoordinate1());
-    group1.addObject(new TeapotJoglObject());
-    
-    group1.addCoordinate(new CubeJoglCoordinate());
-    group1.addObject(new CubeJoglObject());
-    
-    group1.addCoordinate(new TeapotJoglCoordinate2());
-    group1.addObject(new TeapotJoglObject());
-    return group1;
-  }
-
   /**
    * @see org.mklab.mikity.gui.Modeler#createModelCanvas(org.eclipse.swt.widgets.Composite)
    */
@@ -103,7 +48,7 @@ public class JoglModeler extends Modeler {
     // 何もないキャンバスを作る
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);
     this.canvas = new JoglModelCanvas();
-    this.awtFrame.add(this.canvas);
+    this.awtFrame.add(this.canvas); 
   }
 
 }

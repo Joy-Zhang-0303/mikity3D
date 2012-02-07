@@ -13,17 +13,20 @@ import javax.media.opengl.GLJPanel;
 import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
+import org.mklab.mikity.java3d.PrimitiveFactory;
+import org.mklab.mikity.xml.model.Group;
+
 
 /**
  * @author iwamoto
  * @version $Revision$, 2012/01/11
  */
 public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseListener, MouseMotionListener {
+
   private GLU glu;
-  
+
   /** オブジェクトのグループ */
   private JoglGroup[] groups;
-
 
   private double[] eye = {0.0, 0.0, 50.0};
 
@@ -106,6 +109,7 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
 
   /**
    * オブジェクトのグループを設定します。
+   * 
    * @param groups オブジェクトのグループ
    */
   public void setChild(JoglGroup[] groups) {

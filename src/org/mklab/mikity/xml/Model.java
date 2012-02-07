@@ -49,7 +49,7 @@ public class Model implements java.io.Serializable {
   public Model() {
     super();
     this._groupList = new ArrayList<Group>();
-  } // -- org.mklab.mikity.xml.Model()
+  }
 
   // -----------/
   // - Methods -/
@@ -58,44 +58,35 @@ public class Model implements java.io.Serializable {
   /**
    * Method addGroup
    * 
-   * @param vGroup
-   * @throws java.lang.IndexOutOfBoundsException
+   * @param vGroup グループ
+   * @throws java.lang.IndexOutOfBoundsException 例外
    */
   public void addGroup(org.mklab.mikity.xml.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
     this._groupList.add(vGroup);
-  } // -- void addGroup(org.mklab.mikity.xml.Group)
+  }
 
   /**
    * Method addGroup
    * 
-   * @param index
-   * @param vGroup
-   * @throws java.lang.IndexOutOfBoundsException
+   * @param index インデックス
+   * @param vGroup グループ
+   * @throws java.lang.IndexOutOfBoundsException 例外
    */
   public void addGroup(int index, org.mklab.mikity.xml.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
     this._groupList.add(index, vGroup);
-  } // -- void addGroup(int, org.mklab.mikity.xml.Group)
+  }
 
   /**
    * Method clearGroup
    */
   public void clearGroup() {
     this._groupList.clear();
-  } // -- void clearGroup()
-
-  //  /**
-  //   * Method enumerateGroup
-  //   * 
-  //   * @return org.exolab.castor.util.IteratorEnumeration(_groupList.iterator())
-  //   */
-  //  public java.util.Enumeration enumerateGroup() {
-  //    return new org.exolab.castor.util.IteratorEnumeration(this._groupList.iterator());
-  //  } // -- java.util.Enumeration enumerateGroup()
+  }
 
   /**
    * Note: hashCode() has not been overriden
    * 
-   * @param obj
+   * @param obj オブジェクト
    */
   @Override
   public boolean equals(java.lang.Object obj) {
@@ -111,14 +102,14 @@ public class Model implements java.io.Serializable {
       return true;
     }
     return false;
-  } // -- boolean equals(java.lang.Object)
+  } 
 
   /**
    * Method getGroup
    * 
-   * @param index
+   * @param index グループのインデックス
    * @return (org.mklab.mikity.xml.Group) _groupList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException
+   * @throws java.lang.IndexOutOfBoundsException 例外
    */
   public org.mklab.mikity.xml.model.Group loadGroup(int index) throws java.lang.IndexOutOfBoundsException {
     // -- check bounds for index
@@ -127,7 +118,7 @@ public class Model implements java.io.Serializable {
     }
 
     return this._groupList.get(index);
-  } // -- org.mklab.mikity.xml.Group getGroup(int)
+  } 
 
   /**
    * Method getGroup
@@ -141,7 +132,7 @@ public class Model implements java.io.Serializable {
       mArray[index] = this._groupList.get(index);
     }
     return mArray;
-  } // -- org.mklab.mikity.xml.Group[] getGroup()
+  } 
 
   /**
    * Method getGroupAsReferenceReturns a reference to 'group'. No type checking is performed on any modications to the Collection.
@@ -150,7 +141,7 @@ public class Model implements java.io.Serializable {
    */
   public java.util.ArrayList<Group> loadGroupAsReference() {
     return this._groupList;
-  } // -- java.util.ArrayList getGroupAsReference()
+  } 
 
   /**
    * Method getGroupCount
@@ -159,25 +150,25 @@ public class Model implements java.io.Serializable {
    */
   public int loadGroupCount() {
     return this._groupList.size();
-  } // -- int getGroupCount()
+  } 
 
   /**
    * Method removeGroup
    * 
-   * @param vGroup
+   * @param vGroup グループ
    * @return removed
    */
   public boolean removeGroup(org.mklab.mikity.xml.model.Group vGroup) {
     boolean removed = this._groupList.remove(vGroup);
     return removed;
-  } // -- boolean removeGroup(org.mklab.mikity.xml.Group)
+  }
 
   /**
    * Method setGroup
    * 
-   * @param index
-   * @param vGroup
-   * @throws java.lang.IndexOutOfBoundsException
+   * @param index インデックス
+   * @param vGroup グループ
+   * @throws java.lang.IndexOutOfBoundsException 例外
    */
   public void setGroup(int index, org.mklab.mikity.xml.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
     // -- check bounds for index
@@ -185,12 +176,12 @@ public class Model implements java.io.Serializable {
       throw new IndexOutOfBoundsException();
     }
     this._groupList.set(index, vGroup);
-  } // -- void setGroup(int, org.mklab.mikity.xml.Group)
+  } 
 
   /**
    * Method setGroup
    * 
-   * @param groupArray
+   * @param groupArray グループの文字列
    */
   public void setGroup(org.mklab.mikity.xml.model.Group[] groupArray) {
     // -- copy array
@@ -198,7 +189,7 @@ public class Model implements java.io.Serializable {
     for (int i = 0; i < groupArray.length; i++) {
       this._groupList.add(groupArray[i]);
     }
-  } // -- void setGroup(org.mklab.mikity.xml.Group)
+  } 
 
   /**
    * Method setGroupSets the value of 'group' by copying the given ArrayList.
@@ -211,7 +202,7 @@ public class Model implements java.io.Serializable {
     for (int i = 0; i < groupCollection.size(); i++) {
       this._groupList.add(groupCollection.get(i));
     }
-  } // -- void setGroup(java.util.ArrayList)
+  } 
 
   /**
    * Method setGroupAsReferenceSets the value of 'group' by setting it to the given ArrayList. No type checking is performed.
@@ -220,6 +211,6 @@ public class Model implements java.io.Serializable {
    */
   public void setGroupAsReference(java.util.ArrayList<Group> groupCollection) {
     this._groupList = groupCollection;
-  } // -- void setGroupAsReference(java.util.ArrayList)
+  } 
 
 }

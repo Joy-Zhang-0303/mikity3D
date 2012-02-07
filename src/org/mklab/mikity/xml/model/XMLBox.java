@@ -111,7 +111,7 @@ public class XMLBox implements java.io.Serializable {
   public XMLBox() {
     super();
     this.propertyChangeListeners = new Vector<PropertyChangeListener>();
-  } // -- org.mklab.mikity.xml.XMLBox()
+  } 
 
   // -----------/
   // - Methods -/
@@ -124,40 +124,40 @@ public class XMLBox implements java.io.Serializable {
    */
   public void addPropertyChangeListener(java.beans.PropertyChangeListener pcl) {
     this.propertyChangeListeners.addElement(pcl);
-  } // -- void addPropertyChangeListener(java.beans.PropertyChangeListener)
+  } 
 
   /**
    * Method deleteTransparent
    */
   public void deleteTransparent() {
     this._has_transparent = false;
-  } // -- void deleteTransparent()
+  }
 
   /**
    * Method deleteXsize
    */
   public void deleteXsize() {
     this._has_xsize = false;
-  } // -- void deleteXsize()
+  }
 
   /**
    * Method deleteYsize
    */
   public void deleteYsize() {
     this._has_ysize = false;
-  } // -- void deleteYsize()
+  }
 
   /**
    * Method deleteZsize
    */
   public void deleteZsize() {
     this._has_zsize = false;
-  } // -- void deleteZsize()
+  }
 
   /**
    * Note: hashCode() has not been overriden
    * 
-   * @param obj
+   * @param obj オブジェクト
    */
   @Override
   public boolean equals(java.lang.Object obj) {
@@ -189,7 +189,7 @@ public class XMLBox implements java.io.Serializable {
       return true;
     }
     return false;
-  } // -- boolean equals(java.lang.Object)
+  }
 
   /**
    * Returns the value of field 'color'.
@@ -198,7 +198,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public java.lang.String loadColor() {
     return this._color;
-  } // -- java.lang.String getColor()
+  }
 
   /**
    * Returns the value of field 'location'.
@@ -207,7 +207,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.model.Location loadLocation() {
     return this._location;
-  } // -- org.mklab.mikity.xml.Location getLocation()
+  }
 
   /**
    * Returns the value of field 'rotation'.
@@ -216,7 +216,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.model.Rotation loadRotation() {
     return this._rotation;
-  } // -- org.mklab.mikity.xml.Rotation getRotation()
+  }
 
   /**
    * Returns the value of field 'transparent'.
@@ -225,7 +225,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public boolean loadTransparent() {
     return this._transparent;
-  } // -- boolean getTransparent()
+  }
 
   /**
    * Returns the value of field 'xsize'.
@@ -234,7 +234,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public float loadXsize() {
     return this._xsize;
-  } // -- float getXsize()
+  }
 
   /**
    * Returns the value of field 'ysize'.
@@ -243,7 +243,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public float loadYsize() {
     return this._ysize;
-  } // -- float getYsize()
+  }
 
   /**
    * Returns the value of field 'zsize'.
@@ -252,7 +252,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public float loadZsize() {
     return this._zsize;
-  } // -- float getZsize()
+  }
 
   /**
    * Method hasTransparent
@@ -261,7 +261,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public boolean hasTransparent() {
     return this._has_transparent;
-  } // -- boolean hasTransparent()
+  }
 
   /**
    * Method hasXsize
@@ -270,7 +270,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public boolean hasXsize() {
     return this._has_xsize;
-  } // -- boolean hasXsize()
+  }
 
   /**
    * Method hasYsize
@@ -279,7 +279,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public boolean hasYsize() {
     return this._has_ysize;
-  } // -- boolean hasYsize()
+  }
 
   /**
    * Method hasZsize
@@ -288,7 +288,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public boolean hasZsize() {
     return this._has_zsize;
-  } // -- boolean hasZsize()
+  }
 
   /**
    * Method notifyPropertyChangeListenersNotifies all registered PropertyChangeListeners when a bound property's value changes.
@@ -304,9 +304,7 @@ public class XMLBox implements java.io.Serializable {
     for (int i = 0; i < this.propertyChangeListeners.size(); i++) {
       (this.propertyChangeListeners.elementAt(i)).propertyChange(event);
     }
-  } // -- void notifyPropertyChangeListeners(java.lang.String, java.lang.Object,
-
-  // java.lang.Object)
+  }
 
   /**
    * Method removePropertyChangeListenerRemoves the given PropertyChangeListener from this classes list of ProperyChangeListeners.
@@ -316,9 +314,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public boolean removePropertyChangeListener(java.beans.PropertyChangeListener pcl) {
     return this.propertyChangeListeners.removeElement(pcl);
-  } // -- boolean
-
-  // removePropertyChangeListener(java.beans.PropertyChangeListener)
+  }
 
   /**
    * Sets the value of field 'color'.
@@ -327,7 +323,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public void setColor(java.lang.String color) {
     this._color = color;
-  } // -- void setColor(java.lang.String)
+  }
 
   /**
    * Sets the value of field 'location'.
@@ -336,7 +332,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public void setLocation(org.mklab.mikity.xml.model.Location location) {
     this._location = location;
-  } // -- void setLocation(org.mklab.mikity.xml.Location)
+  }
 
   /**
    * Sets the value of field 'rotation'.
@@ -345,7 +341,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public void setRotation(org.mklab.mikity.xml.model.Rotation rotation) {
     this._rotation = rotation;
-  } // -- void setRotation(org.mklab.mikity.xml.Rotation)
+  }
 
   /**
    * Sets the value of field 'transparent'.
@@ -355,7 +351,7 @@ public class XMLBox implements java.io.Serializable {
   public void setTransparent(boolean transparent) {
     this._transparent = transparent;
     this._has_transparent = true;
-  } // -- void setTransparent(boolean)
+  }
 
   /**
    * Sets the value of field 'xsize'.
@@ -365,7 +361,7 @@ public class XMLBox implements java.io.Serializable {
   public void setXsize(float xsize) {
     this._xsize = xsize;
     this._has_xsize = true;
-  } // -- void setXsize(float)
+  }
 
   /**
    * Sets the value of field 'ysize'.
@@ -375,7 +371,7 @@ public class XMLBox implements java.io.Serializable {
   public void setYsize(float ysize) {
     this._ysize = ysize;
     this._has_ysize = true;
-  } // -- void setYsize(float)
+  }
 
   /**
    * Sets the value of field 'zsize'.
@@ -385,6 +381,6 @@ public class XMLBox implements java.io.Serializable {
   public void setZsize(float zsize) {
     this._zsize = zsize;
     this._has_zsize = true;
-  } // -- void setZsize(float)
+  }
 
 }
