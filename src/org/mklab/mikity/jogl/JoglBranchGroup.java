@@ -15,28 +15,15 @@ import javax.media.opengl.GL;
 public class JoglBranchGroup implements JoglObject {
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
-  /** 座標系のリスト */
-  private List<JoglCoordinate> coodinates;
   /** 座標系  */
-  private JoglCoordinate child;
+  private List<JoglTransformGroup> transfromGroups;
 
   /**
    * Initialize the generated object of {@link JoglBranchGroup}.
    */
   public JoglBranchGroup() {
     this.objects = new ArrayList<JoglObject>();
-    this.coodinates = new ArrayList<JoglCoordinate>();
-  }
-
-  /**
-   * オブジェクトと座標系を合わせて追加します
-   * 
-   * @param object オブジェクト
-   * @param corrdinate 座標系
-   */
-  public void addModels(JoglCoordinate corrdinate, JoglObject object) {
-    this.coodinates.add(corrdinate);
-    this.objects.add(object);
+    this.transfromGroups = new ArrayList<JoglTransformGroup>();
   }
   
   /**
@@ -44,17 +31,17 @@ public class JoglBranchGroup implements JoglObject {
    * 
    * @param object オブジェクト
    */
-  public void addObject(JoglObject object) {
+  public void addChild(JoglObject object) {
     this.objects.add(object);
   }
   
   /**
    * 座標系を追加します
    * 
-   * @param child 座標系
+   * @param tg 座標系
    */
-  public void setChild(JoglCoordinate child) {
-    this.child = child;
+  public void addChild(JoglTransformGroup tg) {
+    this.transfromGroups.add(tg);
   }
   
   /**
@@ -66,8 +53,10 @@ public class JoglBranchGroup implements JoglObject {
       JoglObject object = this.objects.get(i);
       object.apply(gl);
     }
-    if (this.child != null) {
-      this.child.apply(gl);
+    for (int i = 0; i < this.transfromGroups.size(); i++) {
+      JoglTransformGroup tg = this.transfromGroups.get(i);
+      tg.apply(gl);
     }
+
   }
 }

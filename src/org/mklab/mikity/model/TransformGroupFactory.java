@@ -18,14 +18,15 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  * @author iwamoto
  * @version $Revision$, 2011/12/22
  */
-public class TransformGroupMaker{
+public class TransformGroupFactory {
   
   /**
    * @param group グループ
-   * @param tg トランスフォームグループ
-   * @param linkdata リンクデータ
+   * @return トランスフォームグループ
    */
-  public static void createTransformGroup(Group group, MyTransformGroup tg, Linkdata[] linkdata) {
+  public static MyTransformGroup create(Group group) {
+    MyTransformGroup tg = new MyTransformGroup();
+    
     XMLBox[] xmlBox = group.loadXMLBox();
     for (int i = 0; i < xmlBox.length; i++) {
       tg.addChild(PrimitiveFactory.create(xmlBox[i]));
@@ -63,22 +64,22 @@ public class TransformGroupMaker{
 
     Group[] groups = group.loadGroup();
     for (int i = 0; i < groups.length; i++) {
-      tg.addChild(PrimitiveFactory.createGroup(groups[i]));
+      tg.addChild(PrimitiveFactory.create(groups[i]));
     }
 
     /*
      * DHParameterの設定
      */
-    // Linkdata[] linkdata = group.loadLinkdata();
-    for (int i = 0; i < linkdata.length; i++) {
-      if (linkdata[i].hasDH()) {
+    Linkdata[] linkData = group.loadLinkdata();
+    for (int i = 0; i < linkData.length; i++) {
+      if (linkData[i].hasDH()) {
         // 初期値のDHパラメータを作成
-        DHParameter parameter = Util.getDHParameter(linkdata);
+        DHParameter parameter = Util.getDHParameter(linkData);
         tg.setDHParameter(parameter);
         break;
-      } else if (linkdata[i].hasLink()) {
+      } else if (linkData[i].hasLink()) {
         // DHパラメータを使わないVer
-        LinkParameter link = Util.getLinkParameter(linkdata);
+        LinkParameter link = Util.getLinkParameter(linkData);
         tg.setLinkParameter(link);
         break;
       }
@@ -86,6 +87,8 @@ public class TransformGroupMaker{
 
     // //MyTransformGroup と Groupの関連付けを行う
     MovableGroupManager.assignGroup(group, tg);
+    
+    return tg;
   }
   
 }

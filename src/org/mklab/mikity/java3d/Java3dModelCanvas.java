@@ -158,12 +158,14 @@ public class Java3dModelCanvas extends Canvas3D {
     
     BranchGroup bg = new BranchGroup();
     bg.setCapability(BranchGroup.ALLOW_DETACH);
+    
     TransformGroup tg = new TransformGroup();
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
     
     for (int i = 0; i < groups.length; i++) {
       bg.addChild(tg);
-      tg.addChild(PrimitiveFactory.createGroup(groups[i]));
+      MyTransformGroup child = PrimitiveFactory.create(groups[i]);
+      tg.addChild(child);
     }
     
     this.topGroup.addChild(bg);

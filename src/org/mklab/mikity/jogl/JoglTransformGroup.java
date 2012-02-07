@@ -13,15 +13,18 @@ import javax.media.opengl.GL;
  */
 public class JoglTransformGroup implements JoglCoordinate {
   /** オブジェクトのリスト */
-  private JoglObject child;
+  private List<JoglObject> objects;
+  /** トランスフォームグループのリスト */
+  private List<JoglTransformGroup> transformGroups;
   /** 座標系のリスト */
-  private List<JoglCoordinate> coodinates;
+  private JoglCoordinate coordinate;
   
   /**
    * Initialize the generated object of {@link JoglTransformGroup}.
    */
   public JoglTransformGroup() {
-    this.coodinates = new ArrayList<JoglCoordinate>();
+    this.objects = new ArrayList<JoglObject>();
+    this.transformGroups = new ArrayList<JoglTransformGroup>();
   }
   
   /**
@@ -29,8 +32,17 @@ public class JoglTransformGroup implements JoglCoordinate {
    * 
    * @param child オブジェクト
    */
-  public void setChild(JoglObject child) {
-    this.child = child;
+  public void addChild(JoglObject child) {
+    this.objects.add(child);
+  }
+  
+  /**
+   * トランスフォームグループを追加します
+   * 
+   * @param group トランスフォームグループ
+   */
+  public void addChild(JoglTransformGroup group) {
+    this.transformGroups.add(group);
   }
   
   /**
@@ -38,8 +50,8 @@ public class JoglTransformGroup implements JoglCoordinate {
    * 
    * @param corrdinate 座標系
    */
-  public void addCoordinate(JoglCoordinate corrdinate) {
-    this.coodinates.add(corrdinate);
+  public void setCoordinate(JoglCoordinate corrdinate) {
+    this.coordinate = corrdinate;
   }
 
   /**
@@ -47,12 +59,18 @@ public class JoglTransformGroup implements JoglCoordinate {
    */
   @Override
   public void apply(GL gl) {
-    for (int i = 0; i < this.coodinates.size(); i++) {
-      JoglCoordinate coordinate = this.coodinates.get(i);
-      coordinate.apply(gl);
+    if (this.coordinate != null) {
+      this.coordinate.apply(gl);
     }
-    if (this.child != null) {
-      this.child.apply(gl);
+    
+    for (int i = 0; i < this.objects.size(); i++) {
+      JoglObject object = this.objects.get(i);
+      object.apply(gl);
+    }
+    
+    for (int i = 0; i < this.transformGroups.size(); i++) {
+      JoglTransformGroup tg = this.transformGroups.get(i);
+      tg.apply(gl);
     }
   }
 }

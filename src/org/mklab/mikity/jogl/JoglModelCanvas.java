@@ -211,8 +211,8 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
     }
     if (SwingUtilities.isRightMouseButton(e) == true) {
       this.end_point = getMousePosition(true);
-      this.translatex = this.s_translatex + (this.end_point.y - this.start_point.y) / 50.0f;
-      this.translatey = this.s_translatey + (this.end_point.x - this.start_point.x) / 50.0f;
+      this.translatex = this.s_translatex + (this.end_point.y - this.start_point.y) / 20.0f;
+      this.translatey = this.s_translatey + (this.end_point.x - this.start_point.x) / 20.0f;
       this.display();
     }
   }

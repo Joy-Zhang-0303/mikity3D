@@ -19,10 +19,9 @@ import javax.vecmath.Matrix4f;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
-import org.mklab.mikity.model.TransformGroupMaker;
+import org.mklab.mikity.model.TransformGroupFactory;
 import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.Linkdata;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.Rotation;
 import org.mklab.mikity.xml.model.XMLBox;
@@ -65,16 +64,11 @@ public class PrimitiveFactory {
    * @param group グループ
    * @return tg トランスフォームグループ
    */
-  public static MyTransformGroup createGroup(Group group) {
+  public static MyTransformGroup create(Group group) {
     scale = Java3dModelCanvas.scale;
     radian = Java3dModelCanvas.radian;
-    MyTransformGroup tg = new MyTransformGroup();
 
-    Linkdata[] linkdata = group.loadLinkdata();
-
-    TransformGroupMaker.createTransformGroup(group, tg, linkdata);
-
-    return tg;
+    return TransformGroupFactory.create(group);
   }
 
   /**
