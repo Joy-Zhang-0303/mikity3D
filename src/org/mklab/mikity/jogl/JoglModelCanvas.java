@@ -26,7 +26,7 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
   private GLU glu;
 
   /** オブジェクトのグループ */
-  private JoglGroup[] groups;
+  private JoglBranchGroup[] groups;
 
   private double[] eye = {0.0, 0.0, 50.0};
 
@@ -102,8 +102,8 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
     gl.glRotatef(this.rotx, 1.0f, 0.0f, 0.0f);
     gl.glRotatef(this.roty, 0.0f, 1.0f, 0.0f);
 
-    for (JoglGroup group : this.groups) {
-      group.display(gl);
+    for (JoglBranchGroup group : this.groups) {
+      group.apply(gl);
     }
   }
 
@@ -112,7 +112,7 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
    * 
    * @param groups オブジェクトのグループ
    */
-  public void setChild(JoglGroup[] groups) {
+  public void setChild(JoglBranchGroup[] groups) {
     this.groups = groups;
   }
 

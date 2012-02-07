@@ -10,10 +10,10 @@ import javax.media.opengl.GL;
 public class TriJoglObject implements JoglObject {
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#display(javax.media.opengl.GL)
+   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
    */
   @Override
-  public void display(GL gl) {
+  public void apply(GL gl) {
 
     gl.glBegin(GL.GL_TRIANGLES); // 三角形を描画することを宣言します 
     gl.glColor4f(1.0f, 0.0f, 0.0f, 1.0f); // 頂点の色を決定します 
@@ -24,12 +24,6 @@ public class TriJoglObject implements JoglObject {
     gl.glVertex3f(1.0f, -1.0f, 0);
     gl.glEnd(); // 描画処理が終了しました 
     //gl.glTranslatef(2.0f, 0.0f, 0.0f);
-  }
-
-  @Override
-  public void addChild(JoglCoordinate coordinate) {
-    // TODO Auto-generated method stub
-    
   }
 
 }

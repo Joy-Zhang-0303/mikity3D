@@ -12,17 +12,11 @@ import javax.media.opengl.GL;
 public class TeapotJoglCoordinate1 implements JoglCoordinate {
 
   /**
-   * @see org.mklab.mikity.jogl.JoglCoordinate#Transform(javax.media.opengl.GL)
+   * @see org.mklab.mikity.jogl.JoglCoordinate#apply(javax.media.opengl.GL)
    */
   @Override
-  public void Transform(GL gl) {
+  public void apply(GL gl) {
     // nothing to do
-  }
-
-  @Override
-  public void addChild(JoglObject object) {
-    // TODO Auto-generated method stub
-    
   }
 
 

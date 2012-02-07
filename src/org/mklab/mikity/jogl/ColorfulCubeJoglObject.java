@@ -16,10 +16,10 @@ public class ColorfulCubeJoglObject implements JoglObject {
   private float cubeShiness = 5.0f; // ハイライトの強さです
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#display(javax.media.opengl.GL)
+   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
    */
   @Override
-  public void display(GL gl) {
+  public void apply(GL gl) {
 
     float[][] vertices = new float[][] { {1, 1, 1}, {-1, 1, 1}, {-1, -1, 1}, {1, -1, 1}, {1, 1, -1}, {-1, 1, -1}, {-1, -1, -1}, {1, -1, -1}};
 
@@ -76,12 +76,6 @@ public class ColorfulCubeJoglObject implements JoglObject {
 
     gl.glEnd(); // 描画処理が終了しました
 
-  }
-
-  @Override
-  public void addChild(JoglCoordinate coordinate) {
-    // TODO Auto-generated method stub
-    
   }
 
 }

@@ -12,10 +12,10 @@ import com.sun.opengl.util.GLUT;
 public class TeapotJoglObject implements JoglObject {
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#display(javax.media.opengl.GL)
+   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
    */
   @Override
-  public void display(GL gl) {
+  public void apply(GL gl) {
     GLUT glut = new GLUT();
     float[] red = new float[] {1.0f, 0.0f, 0.0f, 1.0f};
 
@@ -24,15 +24,6 @@ public class TeapotJoglObject implements JoglObject {
     glut.glutSolidTeapot(1.0f);
     //    gl.glTranslatef(0.0f, -0.875f, 0.0f);
     //    glut.glutSolidCube(1.0f);
-  }
-
-  /**
-   * @see org.mklab.mikity.jogl.JoglObject#addChild(org.mklab.mikity.jogl.JoglCoordinate)
-   */
-  @Override
-  public void addChild(JoglCoordinate coordinate) {
-    // TODO Auto-generated method stub
-    
   }
 
 }

@@ -36,7 +36,7 @@ public class JoglModeler extends Modeler {
 //    org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
 //    this.canvas.setChild(group);
 //    JoglGroup[] groups = createModel();
-    JoglGroup[] groups = new JoglModelCreater().setModels();
+    JoglBranchGroup[] groups = new JoglModelCreater().setModels();
     this.canvas.setChild(groups);
   }
   

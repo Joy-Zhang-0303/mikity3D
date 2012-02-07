@@ -12,10 +12,10 @@ import com.sun.opengl.util.GLUT;
 public class CubeJoglObject implements JoglObject {
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#display(javax.media.opengl.GL)
+   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
    */
   @Override
-  public void display(GL gl) {
+  public void apply(GL gl) {
 
     GLUT glut = new GLUT();
 
@@ -23,9 +23,5 @@ public class CubeJoglObject implements JoglObject {
     glut.glutSolidCube(1.0f);
   }
 
-  @Override
-  public void addChild(JoglCoordinate coordinate) {
-    // TODO Auto-generated method stub
-    
-  }
+
 }

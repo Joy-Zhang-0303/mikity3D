@@ -35,13 +35,10 @@ public class Java3dModelCanvas extends Canvas3D {
   /** 読み込んだファイルのルート */
   private Jamast root;
 
-  //private TransformGroup transform;
   /** トップブランチグループ */
   private BranchGroup topGroup;
   /** ユニバース */
   private SimpleUniverse universe;
-  /** ブランチ */
-  //private BranchGroup bg;
 
   private Color3f backgroundColor;
   private Vector3f lightLocation = new Vector3f(0.2f, -0.8f, -0.8f);
@@ -140,7 +137,7 @@ public class Java3dModelCanvas extends Canvas3D {
 
     BoundingSphere bounds=new BoundingSphere(new Point3d(0.0,0.0,0.0),radius);
 
-    MouseZoom zoom=new MouseZoom(tg);
+    MouseZoom zoom = new MouseZoom(tg);
     zoom.setSchedulingBounds(bounds);                 
     tg.addChild(zoom);
 
@@ -158,16 +155,18 @@ public class Java3dModelCanvas extends Canvas3D {
    */
   public void setChild(Group[] groups) {
     this.topGroup.removeAllChildren();
-    BranchGroup branch = new BranchGroup();
-    branch.setCapability(BranchGroup.ALLOW_DETACH);
-    TransformGroup trans = new TransformGroup();
-    trans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+    
+    BranchGroup bg = new BranchGroup();
+    bg.setCapability(BranchGroup.ALLOW_DETACH);
+    TransformGroup tg = new TransformGroup();
+    tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
     
     for (int i = 0; i < groups.length; i++) {
-      branch.addChild(trans);
-      trans.addChild(PrimitiveFactory.createGroup(groups[i]));
+      bg.addChild(tg);
+      tg.addChild(PrimitiveFactory.createGroup(groups[i]));
     }
-    this.topGroup.addChild(branch);
+    
+    this.topGroup.addChild(bg);
   }
 
   /**

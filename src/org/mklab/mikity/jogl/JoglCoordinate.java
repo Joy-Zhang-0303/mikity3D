@@ -13,10 +13,5 @@ public interface JoglCoordinate {
    * 座標系を設定します。
    * @param gl GL
    */
-  void Transform(GL gl);
-  
-  /**
-   * @param object オブジェクト
-   */
-  void addChild(JoglObject object);
+  void apply(GL gl);
 }

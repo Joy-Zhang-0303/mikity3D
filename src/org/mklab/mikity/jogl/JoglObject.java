@@ -16,11 +16,6 @@ public interface JoglObject {
    * 
    * @param gl GL
    */
-  void display(GL gl);
-  
-  /**
-   * @param coordinate 座標系
-   */
-  void addChild(JoglCoordinate coordinate);
+  void apply(GL gl);
 
 }
