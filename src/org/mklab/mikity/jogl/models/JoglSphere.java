@@ -37,6 +37,7 @@ public class JoglSphere implements JoglObject {
     glut.glutSolidSphere(this._r, this._div, this._div);
 
     gl.glPopMatrix();
+    gl.glPopMatrix();
 
   }
 

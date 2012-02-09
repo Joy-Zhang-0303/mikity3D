@@ -1,10 +1,16 @@
 package org.mklab.mikity.jogl;
 
+import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.LinkParameter;
+import org.mklab.mikity.util.Util;
 import org.mklab.mikity.xml.model.Group;
+import org.mklab.mikity.xml.model.Linkdata;
 import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLCone;
 import org.mklab.mikity.xml.model.XMLCylinder;
+import org.mklab.mikity.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.xml.model.XMLSphere;
+import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 
 /**
@@ -46,15 +52,15 @@ public class JoglTransformGroupFactory {
 //      tg.addChild(JoglPrimitiveFactory.create(xmlConnector[i]));
 //    }
 //
-//    XMLTrianglePolygon[] xmlTriangle = group.loadXMLTrianglePolygon();
-//    for (int i = 0; i < xmlTriangle.length; i++) {
-//      tg.addChild(JoglPrimitiveFactory.create(xmlTriangle[i]));
-//    }
-//
-//    XMLQuadPolygon[] xmlQuad = group.loadXMLQuadPolygon();
-//    for (int i = 0; i < xmlQuad.length; i++) {
-//      tg.addChild(JoglPrimitiveFactory.create(xmlQuad[i]));
-//    }
+    XMLTrianglePolygon[] xmlTriangle = group.loadXMLTrianglePolygon();
+    for (int i = 0; i < xmlTriangle.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(xmlTriangle[i]));
+    }
+
+    XMLQuadPolygon[] xmlQuad = group.loadXMLQuadPolygon();
+    for (int i = 0; i < xmlQuad.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(xmlQuad[i]));
+    }
 
     Group[] groups = group.loadGroup();
     for (int i = 0; i < groups.length; i++) {
