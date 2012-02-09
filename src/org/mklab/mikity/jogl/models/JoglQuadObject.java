@@ -31,6 +31,7 @@ public class JoglQuadObject implements JoglObject {
       gl.glVertex3f(x, y, z);
     }
     gl.glEnd();
+    gl.glPopMatrix();
   }
   
   /**

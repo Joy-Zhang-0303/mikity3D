@@ -1,8 +1,9 @@
-package org.mklab.mikity.jogl;
+package org.mklab.mikity.jogl.models;
 
 import javax.media.opengl.GL;
 import javax.xml.bind.annotation.XmlElement;
 
+import org.mklab.mikity.jogl.JoglObject;
 import org.mklab.mikity.xml.model.Location;
 
 
@@ -36,6 +37,7 @@ public class JoglTriangleObject implements JoglObject {
       gl.glVertex3f(x, y, z);
     }
     gl.glEnd();
+    gl.glPopMatrix();
   }
 
   /**

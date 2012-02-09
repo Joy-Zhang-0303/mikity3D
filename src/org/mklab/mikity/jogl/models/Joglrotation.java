@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @author iwamoto
  * @version $Revision$, 2012/02/08
  */
-public class JoglRotation implements JoglCoordinate {
+public class Joglrotation implements JoglCoordinate {
 
   /**
    * Field _xrotate

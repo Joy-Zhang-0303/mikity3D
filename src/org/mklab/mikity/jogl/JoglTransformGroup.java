@@ -77,4 +77,6 @@ public class JoglTransformGroup implements JoglCoordinate {
       tg.apply(gl);
     }
   }
+  
+  
 }
