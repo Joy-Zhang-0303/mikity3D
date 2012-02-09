@@ -36,7 +36,7 @@ public class JoglRotation implements JoglCoordinate {
 
     gl.glPushMatrix();
     if(this._xrotate != 0.0f){
-      gl.glRotatef(-this._xrotate, 1.0f, 0.0f, 0.0f);
+      gl.glRotatef(this._xrotate, 1.0f, 0.0f, 0.0f);
     }
     if(this._yrotate != 0.0f){
       gl.glRotatef(this._yrotate, 0.0f, 1.0f, 0.0f);
