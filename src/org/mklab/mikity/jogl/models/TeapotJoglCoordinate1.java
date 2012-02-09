@@ -1,4 +1,4 @@
-package org.mklab.mikity.jogl;
+package org.mklab.mikity.jogl.models;
 
 import javax.media.opengl.GL;
 
@@ -12,7 +12,7 @@ import javax.media.opengl.GL;
 public class TeapotJoglCoordinate1 implements JoglCoordinate {
 
   /**
-   * @see org.mklab.mikity.jogl.JoglCoordinate#apply(javax.media.opengl.GL)
+   * @see org.mklab.mikity.jogl.models.JoglCoordinate#apply(javax.media.opengl.GL)
    */
   @Override
   public void apply(GL gl) {

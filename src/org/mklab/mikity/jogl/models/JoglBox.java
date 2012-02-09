@@ -1,8 +1,9 @@
-package org.mklab.mikity.jogl;
+package org.mklab.mikity.jogl.models;
 
 import javax.media.opengl.GL;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
+
+import org.mklab.mikity.jogl.JoglObject;
 
 
 /**
@@ -34,18 +35,6 @@ public class JoglBox implements JoglObject {
    */
   @XmlAttribute
   private float _zsize;
-
-  /**
-   * Field _rotation
-   */
-  @XmlElement
-  private org.mklab.mikity.xml.model.Rotation _rotation;
-
-  /**
-   * Field _location
-   */
-  @XmlElement
-  private org.mklab.mikity.xml.model.Location _location;
 
   /**
    * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
@@ -94,35 +83,19 @@ public class JoglBox implements JoglObject {
     gl.glVertex3fv(vertice[2], 0);
 
     gl.glEnd(); // 描画処理が終了しました
+    gl.glPopMatrix();
   }
 
   /**
-   * @param x
-   * @param y
-   * @param z
+   * 大きさの設定
+   * @param x xの長さ
+   * @param y yの長さ
+   * @param z zの長さ
    */
   public void setSize(float x, float y, float z) {
     this._xsize = x;
     this._ysize = y;
     this._zsize = z;
-  }
-
-  /**
-   * Returns the value of field 'location'.
-   * 
-   * @return the value of field 'location'.
-   */
-  public org.mklab.mikity.xml.model.Location loadLocation() {
-    return this._location;
-  }
-
-  /**
-   * Returns the value of field 'rotation'.
-   * 
-   * @return the value of field 'rotation'.
-   */
-  public org.mklab.mikity.xml.model.Rotation loadRotation() {
-    return this._rotation;
   }
 
 }

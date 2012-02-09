@@ -3,6 +3,12 @@ package org.mklab.mikity.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mklab.mikity.jogl.models.CubeJoglCoordinate;
+import org.mklab.mikity.jogl.models.CubeJoglObject;
+import org.mklab.mikity.jogl.models.TeapotJoglCoordinate1;
+import org.mklab.mikity.jogl.models.TeapotJoglCoordinate2;
+import org.mklab.mikity.jogl.models.TeapotJoglCoordinate3;
+import org.mklab.mikity.jogl.models.TeapotJoglObject;
 import org.mklab.mikity.xml.model.Group;
 
 

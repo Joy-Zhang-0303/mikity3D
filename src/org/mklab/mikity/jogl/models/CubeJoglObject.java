@@ -1,6 +1,8 @@
-package org.mklab.mikity.jogl;
+package org.mklab.mikity.jogl.models;
 
 import javax.media.opengl.GL;
+
+import org.mklab.mikity.jogl.JoglObject;
 
 import com.sun.opengl.util.GLUT;
 

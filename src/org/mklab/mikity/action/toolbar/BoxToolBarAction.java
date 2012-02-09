@@ -3,7 +3,7 @@ package org.mklab.mikity.action.toolbar;
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.gui.MainWindow;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
-import org.mklab.mikity.jogl.JoglBox;
+import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLBox;

@@ -1,4 +1,4 @@
-package org.mklab.mikity.jogl;
+package org.mklab.mikity.jogl.models;
 
 import javax.media.opengl.GL;
 

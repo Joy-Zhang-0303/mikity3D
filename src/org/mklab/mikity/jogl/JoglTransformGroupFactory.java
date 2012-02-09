@@ -2,6 +2,9 @@ package org.mklab.mikity.jogl;
 
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLBox;
+import org.mklab.mikity.xml.model.XMLCone;
+import org.mklab.mikity.xml.model.XMLCylinder;
+import org.mklab.mikity.xml.model.XMLSphere;
 
 
 /**
@@ -23,20 +26,20 @@ public class JoglTransformGroupFactory {
       tg.addChild(JoglPrimitiveFactory.create(xmlBox[i]));
     }
 
-//    XMLCylinder[] xmlCylinder = group.loadXMLCylinder();
-//    for (int i = 0; i < xmlCylinder.length; i++) {
-//      tg.addChild(JoglPrimitiveFactory.create(xmlCylinder[i]));
-//    }
-//
-//    XMLSphere[] xmlSphere = group.loadXMLSphere();
-//    for (int i = 0; i < xmlSphere.length; i++) {
-//      tg.addChild(JoglPrimitiveFactory.create(xmlSphere[i]));
-//    }
-//
-//    XMLCone[] xmlCone = group.loadXMLCone();
-//    for (int i = 0; i < xmlCone.length; i++) {
-//      tg.addChild(JoglPrimitiveFactory.create(xmlCone[i]));
-//    }
+    XMLCylinder[] xmlCylinder = group.loadXMLCylinder();
+    for (int i = 0; i < xmlCylinder.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(xmlCylinder[i]));
+    }
+
+    XMLSphere[] xmlSphere = group.loadXMLSphere();
+    for (int i = 0; i < xmlSphere.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(xmlSphere[i]));
+    }
+
+    XMLCone[] xmlCone = group.loadXMLCone();
+    for (int i = 0; i < xmlCone.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(xmlCone[i]));
+    }
 //
 //    XMLConnector[] xmlConnector = group.loadXMLConnector();
 //    for (int i = 0; i < xmlConnector.length; i++) {

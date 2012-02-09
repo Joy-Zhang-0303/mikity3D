@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
+import org.mklab.mikity.jogl.models.JoglCoordinate;
+
 
 /**
  * JOGLの座標系のグループを表すクラスです。
@@ -57,7 +59,7 @@ public class JoglTransformGroup implements JoglCoordinate {
   }
 
   /**
-   * @see org.mklab.mikity.jogl.JoglCoordinate#apply(javax.media.opengl.GL)
+   * @see org.mklab.mikity.jogl.models.JoglCoordinate#apply(javax.media.opengl.GL)
    */
   @Override
   public void apply(GL gl) {

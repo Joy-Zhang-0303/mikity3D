@@ -388,4 +388,5 @@ public class XMLCylinder implements Serializable {
     this._has_transparent = true;
   } // -- void setTransparent(boolean)
 
+  
 }
