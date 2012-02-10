@@ -1,5 +1,8 @@
 package org.mklab.mikity.jogl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.LinkParameter;
 import org.mklab.mikity.model.MovableGroupManager;
@@ -20,14 +23,18 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  */
 public class JoglTransformGroupFactory {
 
-  
+  /** */
+  static List<LinkParameter> links;
+
   /**
    * @param group グループ
    * @return トランスフォームグループ
    */
   public static JoglTransformGroup create(Group group) {
     JoglTransformGroup tg = new JoglTransformGroup();
-   
+    if (links == null) {
+      links = new ArrayList<LinkParameter>();
+    }
     DHParameter parameter = new DHParameter();
     LinkParameter link = new LinkParameter();
     /*
@@ -38,16 +45,17 @@ public class JoglTransformGroupFactory {
       if (linkData[i].hasDH()) {
         // 初期値のDHパラメータを作成
         parameter = Util.getDHParameter(linkData);
-//        tg.setDHParameter(parameter);
+        //        tg.setDHParameter(parameter);
         break;
       } else if (linkData[i].hasLink()) {
         // DHパラメータを使わないVer
         link = Util.getLinkParameter(linkData);
-//        tg.setLinkParameter(link);
+        //        tg.setLinkParameter(link);
+        links.add(link);
         break;
       }
     }
-    
+
     XMLBox[] xmlBox = group.loadXMLBox();
     for (int i = 0; i < xmlBox.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(xmlBox[i]));
@@ -68,19 +76,19 @@ public class JoglTransformGroupFactory {
       tg.addChild(JoglPrimitiveFactory.create(xmlCone[i]));
     }
 
-//    XMLConnector[] xmlConnector = group.loadXMLConnector();
-//    for (int i = 0; i < xmlConnector.length; i++) {
-//      tg.addChild(JoglPrimitiveFactory.create(xmlConnector[i]));
-//    }
+    //    XMLConnector[] xmlConnector = group.loadXMLConnector();
+    //    for (int i = 0; i < xmlConnector.length; i++) {
+    //      tg.addChild(JoglPrimitiveFactory.create(xmlConnector[i]));
+    //    }
 
     XMLTrianglePolygon[] xmlTriangle = group.loadXMLTrianglePolygon();
     for (int i = 0; i < xmlTriangle.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(xmlTriangle[i],parameter,link));
+      tg.addChild(JoglPrimitiveFactory.create(xmlTriangle[i], parameter, links));
     }
 
     XMLQuadPolygon[] xmlQuad = group.loadXMLQuadPolygon();
     for (int i = 0; i < xmlQuad.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(xmlQuad[i],parameter,link));
+      tg.addChild(JoglPrimitiveFactory.create(xmlQuad[i], parameter, links));
     }
 
     Group[] groups = group.loadGroup();
@@ -88,9 +96,9 @@ public class JoglTransformGroupFactory {
       tg.addChild(JoglPrimitiveFactory.create(groups[i]));
     }
 
-//    // //MyTransformGroup と Groupの関連付けを行う
-//    MovableGroupManager.assignGroup(group, tg);
-    
+    //    // //MyTransformGroup と Groupの関連付けを行う
+    //    MovableGroupManager.assignGroup(group, tg);
+
     return tg;
   }
 

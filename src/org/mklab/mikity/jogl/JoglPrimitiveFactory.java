@@ -1,5 +1,7 @@
 package org.mklab.mikity.jogl;
 
+import java.util.List;
+
 import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
 import org.mklab.mikity.jogl.models.JoglCylinder;
@@ -215,14 +217,14 @@ public class JoglPrimitiveFactory {
 
   /**
    * @param triangle 三角形のポリゴン
-   * @param link
+   * @param links
    * @param parameter
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static JoglTransformGroup create(XMLTrianglePolygon triangle, DHParameter parameter, LinkParameter link) {
+  public static JoglTransformGroup create(XMLTrianglePolygon triangle, DHParameter parameter, List<LinkParameter> links) {
     JoglTransformGroup tg = new JoglTransformGroup();
 
-    if (parameter == null && link == null) {
+    if (parameter == null && links == null) {
       if (triangle.loadLocation() != null && triangle.loadRotation() != null) {
         float xloc = triangle.loadLocation().loadX();
         float yloc = triangle.loadLocation().loadY();
@@ -257,8 +259,8 @@ public class JoglPrimitiveFactory {
 
     else if (parameter == null) {
 
-    } else if (link != null) {
-      setLinkParameter(link, tg);
+    } else if (links != null) {
+      setLinkParameter(links, tg);
 
       if (triangle.loadLocation() != null && triangle.loadRotation() != null) {
         float xloc = triangle.loadLocation().loadX();
@@ -312,10 +314,10 @@ public class JoglPrimitiveFactory {
    * @param link
    * @return　tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static JoglTransformGroup create(XMLQuadPolygon quad, DHParameter parameter, LinkParameter link) {
+  public static JoglTransformGroup create(XMLQuadPolygon quad, DHParameter parameter, List<LinkParameter> links) {
     JoglTransformGroup tg = new JoglTransformGroup();
 
-    if (parameter == null && link == null && quad.loadMatrix().getM03() == 0.0f && quad.loadMatrix().getM13() == 0.0f && quad.loadMatrix().getM23() == 0.0f) {
+    if (parameter == null && links == null && quad.loadMatrix().getM03() == 0.0f && quad.loadMatrix().getM13() == 0.0f && quad.loadMatrix().getM23() == 0.0f) {
       if (quad.loadLocation() != null && quad.loadRotation() != null) {
         float xloc = quad.loadLocation().loadX();
         float yloc = quad.loadLocation().loadY();
@@ -349,8 +351,8 @@ public class JoglPrimitiveFactory {
       tg.setCoordinate(loc);
     } else if (parameter == null) {
 
-    } else if (link != null) {
-      setLinkParameter(link, tg);
+    } else if (links != null) {
+      setLinkParameter(links, tg);
 
     }
 
@@ -373,17 +375,22 @@ public class JoglPrimitiveFactory {
   }
 
   /**
-   * @param link
+   * @param links
    * @param tg
    */
-  public static void setLinkParameter(LinkParameter link, JoglTransformGroup tg) {
-    float locX = (float)link.getLocX();
-    float locY = (float)link.getLocY();
-    float locZ = (float)link.getLocZ();
-    float rotX = (float)link.getRotX();
-    float rotY = (float)link.getRotY();
-    float rotZ = (float)link.getRotZ();
+  public static void setLinkParameter(List<LinkParameter> links, JoglTransformGroup tg) {
+    float locX = 0, locY = 0, locZ = 0, rotX = 0, rotY = 0, rotZ = 0;
 
+    for (int i = 0; i < links.size(); i++) {
+      locX = locX + (float)links.get(i).getLocX();
+      locY = locY + (float)links.get(i).getLocY();
+      locZ = locZ + (float)links.get(i).getLocZ();
+      rotX = rotX + (float)links.get(i).getRotX();
+      rotY = rotY + (float)links.get(i).getRotY();
+      rotZ = rotZ + (float)links.get(i).getRotZ();
+    }
+
+    System.out.println(locY);
     if (rotX == 0.0f && rotY == 0.0f && rotZ == 0.0f) {
       JoglLocation loc = new JoglLocation();
       loc.setLocation(locX, locY, locZ);
