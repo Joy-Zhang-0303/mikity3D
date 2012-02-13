@@ -78,5 +78,4 @@ public class JoglTransformGroup implements JoglCoordinate {
     }
   }
   
-  
 }

@@ -1,9 +1,8 @@
-package org.mklab.mikity.jogl;
+package org.mklab.mikity.jogl.models;
 
 import javax.media.opengl.GL;
 import javax.xml.bind.annotation.XmlAttribute;
 
-import org.mklab.mikity.jogl.models.JoglCoordinate;
 
 
 /**

@@ -14,6 +14,7 @@ import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
 import org.mklab.mikity.java3d.PrimitiveFactory;
+import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 
 
@@ -28,6 +29,8 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
   /** オブジェクトのグループ */
   private JoglBranchGroup[] groups;
 
+  private Jamast root;
+  
   private double[] eye = {0.0, 0.0, 50.0};
 
   private float rotx = 0.0f, roty = 0.0f;
@@ -107,6 +110,10 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
     }
   }
 
+//  public void load(){
+//    JoglModelCreater.setModels(this.root.loadModel(0).loadGroup());
+//  }
+  
   /**
    * オブジェクトのグループを設定します。
    * 

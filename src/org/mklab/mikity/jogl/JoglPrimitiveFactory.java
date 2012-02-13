@@ -5,10 +5,11 @@ import java.util.List;
 import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
 import org.mklab.mikity.jogl.models.JoglCylinder;
+import org.mklab.mikity.jogl.models.JoglLocRot;
 import org.mklab.mikity.jogl.models.JoglLocation;
 import org.mklab.mikity.jogl.models.JoglQuadObject;
 import org.mklab.mikity.jogl.models.JoglTriangleObject;
-import org.mklab.mikity.jogl.models.Joglrotation;
+import org.mklab.mikity.jogl.models.JoglRotation;
 import org.mklab.mikity.jogl.models.JoglSphere;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.LinkParameter;
@@ -76,7 +77,7 @@ public class JoglPrimitiveFactory {
       float xrot = box.loadRotation().loadXrotate();
       float yrot = box.loadRotation().loadYrotate();
       float zrot = box.loadRotation().loadZrotate();
-      Joglrotation rot = new Joglrotation();
+      JoglRotation rot = new JoglRotation();
       rot.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(rot);
     }
@@ -114,7 +115,7 @@ public class JoglPrimitiveFactory {
       float xrot = cylinder.loadRotation().loadXrotate();
       float yrot = cylinder.loadRotation().loadYrotate();
       float zrot = cylinder.loadRotation().loadZrotate();
-      Joglrotation rot = new Joglrotation();
+      JoglRotation rot = new JoglRotation();
       rot.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(rot);
     }
@@ -157,7 +158,7 @@ public class JoglPrimitiveFactory {
       float xrot = sphere.loadRotation().loadXrotate();
       float yrot = sphere.loadRotation().loadYrotate();
       float zrot = sphere.loadRotation().loadZrotate();
-      Joglrotation rot = new Joglrotation();
+      JoglRotation rot = new JoglRotation();
       rot.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(rot);
     }
@@ -200,7 +201,7 @@ public class JoglPrimitiveFactory {
       float xrot = cone.loadRotation().loadXrotate();
       float yrot = cone.loadRotation().loadYrotate();
       float zrot = cone.loadRotation().loadZrotate();
-      Joglrotation rot = new Joglrotation();
+      JoglRotation rot = new JoglRotation();
       rot.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(rot);
     }
@@ -247,7 +248,7 @@ public class JoglPrimitiveFactory {
         float xrot = triangle.loadRotation().loadXrotate();
         float yrot = triangle.loadRotation().loadYrotate();
         float zrot = triangle.loadRotation().loadZrotate();
-        Joglrotation rot = new Joglrotation();
+        JoglRotation rot = new JoglRotation();
         rot.setRotation(xrot, yrot, zrot);
         tg.setCoordinate(rot);
       }
@@ -284,7 +285,7 @@ public class JoglPrimitiveFactory {
         float xrot = triangle.loadRotation().loadXrotate();
         float yrot = triangle.loadRotation().loadYrotate();
         float zrot = triangle.loadRotation().loadZrotate();
-        Joglrotation rot = new Joglrotation();
+        JoglRotation rot = new JoglRotation();
         rot.setRotation(xrot, yrot, zrot);
         tg.setCoordinate(rot);
       }
@@ -340,7 +341,7 @@ public class JoglPrimitiveFactory {
         float xrot = quad.loadRotation().loadXrotate();
         float yrot = quad.loadRotation().loadYrotate();
         float zrot = quad.loadRotation().loadZrotate();
-        Joglrotation rot = new Joglrotation();
+        JoglRotation rot = new JoglRotation();
         rot.setRotation(xrot, yrot, zrot);
         tg.setCoordinate(rot);
       }
@@ -390,7 +391,6 @@ public class JoglPrimitiveFactory {
       rotZ = rotZ + (float)links.get(i).getRotZ();
     }
 
-    System.out.println(locY);
     if (rotX == 0.0f && rotY == 0.0f && rotZ == 0.0f) {
       JoglLocation loc = new JoglLocation();
       loc.setLocation(locX, locY, locZ);
