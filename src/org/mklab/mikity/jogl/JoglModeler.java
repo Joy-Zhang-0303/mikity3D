@@ -48,7 +48,7 @@ public class JoglModeler extends Modeler {
   public void createModelCanvas(Composite viewerComp) {
     // 何もないキャンバスを作る
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);
-    this.canvas = new JoglModelCanvas();
+    this.canvas = new JoglModelCanvas(this.root);
     this.awtFrame.add(this.canvas); 
   }
 

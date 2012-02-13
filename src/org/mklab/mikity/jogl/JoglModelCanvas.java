@@ -59,6 +59,17 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
   }
 
   /**
+   * Initialize the generated object of {@link JoglModelCanvas}.
+   * @param root
+   */
+  public JoglModelCanvas(Jamast root){
+    super(new GLCapabilities());
+    addGLEventListener(this);
+    addMouseListener(this);
+    addMouseMotionListener(this);
+    this.root = root;
+  }
+  /**
    * @see javax.media.opengl.GLEventListener#init(javax.media.opengl.GLAutoDrawable)
    */
   @Override
@@ -104,15 +115,21 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
     gl.glTranslatef(0.0f, 0.0f, -this.scale);
     gl.glRotatef(this.rotx, 1.0f, 0.0f, 0.0f);
     gl.glRotatef(this.roty, 0.0f, 1.0f, 0.0f);
-
+    
     for (JoglBranchGroup group : this.groups) {
       group.apply(gl);
     }
   }
 
-//  public void load(){
-//    JoglModelCreater.setModels(this.root.loadModel(0).loadGroup());
-//  }
+  /**
+   * 
+   */
+  public void load(){
+    Group[] group = this.root.loadModel(0).loadGroup();
+    JoglBranchGroup[] branchgroup = new JoglModelCreater().setModels(group);
+    setChild(branchgroup);
+//    JoglModelCreater.setModels(group);
+  }
   
   /**
    * オブジェクトのグループを設定します。

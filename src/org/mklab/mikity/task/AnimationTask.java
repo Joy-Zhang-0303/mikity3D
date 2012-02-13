@@ -26,6 +26,7 @@ public class AnimationTask extends TimerTask {
   private MovableGroupManager manager;
   private List<AnimationTaskListener> listenerList = new ArrayList<AnimationTaskListener>();
   private final double initialTime;
+
   /**
    * コンストラクター
    * 
@@ -37,7 +38,7 @@ public class AnimationTask extends TimerTask {
     this.endTime = endTime;
     this.currentTime = initialTime;
     this.manager = manager;
-    
+
     this.initialTime = initialTime;
   }
 
@@ -100,6 +101,9 @@ public class AnimationTask extends TimerTask {
     } else if (this.manager.getLink()) {
       this.manager.processStimulus(this.currentTime);
     }
+    //    else if(this.manager.getDH()&&this.manager.getLink()){
+    //      this.manager.processStimulus(this.currentTime);
+    //    }
 
     // SimulationViewer.setCurrentTime(currentTime);
 
