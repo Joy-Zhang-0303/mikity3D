@@ -183,8 +183,8 @@ public class SimulationViewer extends ApplicationWindow {
     final Frame awtFrame = SWT_AWT.new_Frame(viewer);
     
     //Jogl　or Java3D
-    final Java3dModelCanvas sinsiCanvas = new Java3dModelCanvas(this.root);
-//    final JoglModelCanvas sinsiCanvas = new JoglModelCanvas(this.root);
+    //final Java3dModelCanvas sinsiCanvas = new Java3dModelCanvas(this.root);
+    final JoglModelCanvas sinsiCanvas = new JoglModelCanvas(this.root);
     awtFrame.add(sinsiCanvas);
     sinsiCanvas.load();
   }

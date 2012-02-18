@@ -21,7 +21,7 @@ public class JoglModelCreater {
    * 
    * @return オブジェクトのグループ
    */
-  public JoglBranchGroup[] setModels(Group[] group) {
+  public JoglBranchGroup[] create(Group[] group) {
     JoglBranchGroup bg = new JoglBranchGroup();
 
     JoglTransformGroup tg = new JoglTransformGroup();

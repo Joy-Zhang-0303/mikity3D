@@ -126,18 +126,17 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
    */
   public void load(){
     Group[] group = this.root.loadModel(0).loadGroup();
-    JoglBranchGroup[] branchgroup = new JoglModelCreater().setModels(group);
-    setChild(branchgroup);
-//    JoglModelCreater.setModels(group);
+    setChild(group);
   }
   
   /**
    * オブジェクトのグループを設定します。
    * 
-   * @param groups オブジェクトのグループ
+   * @param group オブジェクトのグループ
    */
-  public void setChild(JoglBranchGroup[] groups) {
-    this.groups = groups;
+  public void setChild(Group[] group) {
+    JoglBranchGroup[] branchGroup = new JoglModelCreater().create(group);
+    this.groups = branchGroup;
   }
 
   /**

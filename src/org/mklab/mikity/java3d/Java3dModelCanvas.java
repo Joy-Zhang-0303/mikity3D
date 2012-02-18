@@ -154,6 +154,15 @@ public class Java3dModelCanvas extends Canvas3D {
   }
 
   /**
+   * fileからXMLを読み込む
+   */
+  public void load() {
+    getParameter(this.root);
+    Group[] group = this.root.loadModel(0).loadGroup();
+    setChild(group);
+  }
+
+  /**
    * @param groups いったんトップグループの全てを消してから書き込む
    */
   public void setChild(Group[] groups) {
@@ -173,15 +182,7 @@ public class Java3dModelCanvas extends Canvas3D {
 
     this.topGroup.addChild(bg);
   }
-
-  /**
-   * fileからXMLを読み込む
-   */
-  public void load() {
-    getParameter(this.root);
-    setChild(this.root.loadModel(0).loadGroup());
-  }
-
+  
   /**
    * XMLデータからConfigデータを読み込む
    * 

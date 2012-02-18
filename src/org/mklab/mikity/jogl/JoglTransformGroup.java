@@ -6,6 +6,9 @@ import java.util.List;
 import javax.media.opengl.GL;
 
 import org.mklab.mikity.jogl.models.JoglCoordinate;
+import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.IMovableGroup;
+import org.mklab.mikity.model.LinkParameter;
 
 
 /**
@@ -14,7 +17,7 @@ import org.mklab.mikity.jogl.models.JoglCoordinate;
  * @author iwamoto
  * @version $Revision$, 2012/02/07
  */
-public class JoglTransformGroup implements JoglCoordinate {
+public class JoglTransformGroup implements JoglCoordinate, IMovableGroup {
 
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
@@ -76,6 +79,18 @@ public class JoglTransformGroup implements JoglCoordinate {
       JoglTransformGroup tg = this.transformGroups.get(i);
       tg.apply(gl);
     }
+  }
+
+  @Override
+  public void setDHParameter(DHParameter param) {
+    // TODO 自動生成されたメソッド・スタブ
+    
+  }
+
+  @Override
+  public void setLinkParameter(LinkParameter link) {
+    // TODO 自動生成されたメソッド・スタブ
+    
   }
   
 }
