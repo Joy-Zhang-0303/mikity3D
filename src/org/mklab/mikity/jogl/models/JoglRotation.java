@@ -33,7 +33,6 @@ public class JoglRotation implements JoglCoordinate {
    */
   @Override
   public void apply(GL gl) {
-
     gl.glPushMatrix();
     if(this._xrotate != 0.0f){
       gl.glRotatef(this._xrotate, 1.0f, 0.0f, 0.0f);
@@ -52,11 +51,9 @@ public class JoglRotation implements JoglCoordinate {
    * @param z z軸に対しての回転
    */
   public void setRotation(float x,float y,float z){
-    
     this._xrotate = x;
     this._yrotate = y;
     this._zrotate = z;
-    
   }
 
 }

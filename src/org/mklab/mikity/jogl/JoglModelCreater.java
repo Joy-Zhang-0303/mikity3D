@@ -26,11 +26,12 @@ public class JoglModelCreater {
 
     JoglTransformGroup tg = new JoglTransformGroup();
     for (int i = 0; i < group.length; i++) {
-      bg.addChild(tg);
       JoglTransformGroup child = JoglPrimitiveFactory.create(group[i]);
       tg.addChild(child);
     }
 
+    bg.addChild(tg); ///////
+    
     List<JoglBranchGroup> groups = new ArrayList<JoglBranchGroup>();
     groups.add(bg);
 

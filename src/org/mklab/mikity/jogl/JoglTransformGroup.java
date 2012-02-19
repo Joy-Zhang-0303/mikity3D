@@ -6,6 +6,8 @@ import java.util.List;
 import javax.media.opengl.GL;
 
 import org.mklab.mikity.jogl.models.JoglCoordinate;
+import org.mklab.mikity.jogl.models.JoglLocation;
+import org.mklab.mikity.jogl.models.JoglRotation;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.IMovableGroup;
 import org.mklab.mikity.model.LinkParameter;
@@ -69,7 +71,7 @@ public class JoglTransformGroup implements JoglCoordinate, IMovableGroup {
     if (this.coordinate != null) {
       this.coordinate.apply(gl);
     }
-
+    
     for (int i = 0; i < this.objects.size(); i++) {
       JoglObject object = this.objects.get(i);
       object.apply(gl);
@@ -84,13 +86,31 @@ public class JoglTransformGroup implements JoglCoordinate, IMovableGroup {
   @Override
   public void setDHParameter(DHParameter param) {
     // TODO 自動生成されたメソッド・スタブ
-    
   }
 
   @Override
   public void setLinkParameter(LinkParameter link) {
-    // TODO 自動生成されたメソッド・スタブ
+    double locX = link.getLocX();
+    double locY = link.getLocY();
+    double locZ = link.getLocZ();
+    double rotX = link.getRotX();
+    double rotY = link.getRotY();
+    double rotZ = link.getRotZ();
     
+    //System.out.println("lx, ly, lz(set)(this)=" + locX + "," + locY + "," + locZ + ":" + this);
+    //System.out.println("rx, ry, rz(set)(this)=" + rotX + "," + rotY + "," + rotZ + ":" + this);
+    
+    if (locX != 0 || locY != 0 || locZ != 0) {
+      JoglLocation loc = new JoglLocation();
+      loc.setLocation((float)locX, (float)locY, (float)locZ);
+      this.coordinate = loc;
+    }
+    
+    if (rotX != 0 || rotY != 0 || rotZ != 0) {
+      JoglRotation rot = new JoglRotation();
+      rot.setRotation((float)rotX, (float)rotY, (float)rotZ);
+      this.coordinate = rot;
+    } 
   }
   
 }
