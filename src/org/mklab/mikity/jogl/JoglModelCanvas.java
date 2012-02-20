@@ -31,7 +31,7 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
 
   private Jamast root;
   
-  private double[] eye = {0.0, 0.0, 50.0};
+  private double[] eye = {0.0,0.0, 50.0};
 
   private float rotx = 0.0f, roty = 0.0f;
   private float s_rotx, s_roty;
@@ -42,11 +42,11 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
   private float s_translatex, s_translatey;
 
   //光源の設定です 
-  private float[] lightPosition0 = {-5.0f, 5.0f, 5.0f, 0.0f}; // 平行光源1です 
-  private float[] lightPosition1 = {5.0f, 5.0f, 5.0f, 0.0f}; // 平行光源2です 
-  private float[] lightSpecular = {0.7f, 0.7f, 0.7f, 1.0f}; // 反射光の強さです 
-  private float[] lightDiffuse = {0.5f, 0.5f, 0.5f, 1.0f}; // 拡散光の強さです 
-  private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
+  private float[] lightPosition0 = {2.0f, -8.0f, -8.0f, 1.0f}; // 平行光源1です 
+//  private float[] lightPosition1 = {5.0f, 5.0f, 5.0f, 0.0f}; // 平行光源2です 
+  private float[] lightSpecular = {1.0f, 1.0f, 1.0f, 0.0f}; // 反射光の強さです 
+  private float[] lightDiffuse = {0.6f, 0.6f, 0.6f, 0.0f}; // 拡散光の強さです 
+  private float[] lightAmbient = {0.4f, 0.4f, 0.4f, 0.0f}; // 環境光の強さです 
 
   /**
    * Initialize the generated object of {@link JoglModelCanvas}.
@@ -89,10 +89,10 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, this.lightPosition1, 0); // 平行光源を設定します 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
+//    gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, this.lightPosition1, 0); // 平行光源を設定します 
+//    gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
+//    gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
+//    gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
 
   }
 

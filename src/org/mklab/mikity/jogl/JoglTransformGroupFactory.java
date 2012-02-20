@@ -25,6 +25,9 @@ public class JoglTransformGroupFactory {
 
   /** */
   static List<LinkParameter> links;
+  
+  /** */
+  static List<DHParameter> parameters;
 
   /**
    * @param group グループ
@@ -34,6 +37,9 @@ public class JoglTransformGroupFactory {
     JoglTransformGroup tg = new JoglTransformGroup();
     if (links == null) {
       links = new ArrayList<LinkParameter>();
+    }
+    if(parameters == null){
+      parameters = new ArrayList<DHParameter>();
     }
     DHParameter parameter = new DHParameter();
     LinkParameter link = new LinkParameter();
@@ -46,6 +52,7 @@ public class JoglTransformGroupFactory {
         // 初期値のDHパラメータを作成
         parameter = Util.getDHParameter(linkData);
         //        tg.setDHParameter(parameter);
+        parameters.add(parameter);
         break;
       } else if (linkData[i].hasLink()) {
         // DHパラメータを使わないVer
@@ -83,12 +90,12 @@ public class JoglTransformGroupFactory {
 
     XMLTrianglePolygon[] xmlTriangle = group.loadXMLTrianglePolygon();
     for (int i = 0; i < xmlTriangle.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(xmlTriangle[i], parameter, links));
+      tg.addChild(JoglPrimitiveFactory.create(xmlTriangle[i], parameters, links));
     }
 
     XMLQuadPolygon[] xmlQuad = group.loadXMLQuadPolygon();
     for (int i = 0; i < xmlQuad.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(xmlQuad[i], parameter, links));
+      tg.addChild(JoglPrimitiveFactory.create(xmlQuad[i], parameters, links));
     }
 
     Group[] groups = group.loadGroup();

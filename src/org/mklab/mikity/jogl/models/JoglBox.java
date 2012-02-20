@@ -36,6 +36,36 @@ public class JoglBox implements JoglObject {
   @XmlAttribute
   private float _zsize;
 
+  @XmlAttribute
+  private String _color;
+
+  /** */
+  float[] white = new float[] {1.0f, 1.0f, 1.0f, 1.0f};
+  /** */
+  float[] lightGray = new float[] {0.75f, 0.75f, 0.75f, 1.0f};
+  /** */
+  float[] gray = new float[] {0.5f, 0.5f, 0.5f, 1.0f};
+  /** */
+  float[] darkGray = new float[] {0.25f, 0.25f, 0.25f, 1.0f};
+  /** */
+  float[] black = new float[] {0.0f, 0.0f, 0.0f, 1.0f};
+  /** */
+  float[] red = new float[] {1.0f, 0.0f, 0.0f, 1.0f};
+  /** */
+  float[] pink = new float[] {1.0f, 0.69f, 0.69f, 1.0f};
+  /** */
+  float[] orange = new float[] {1.0f, 0.78f, 0.0f, 1.0f};
+  /** */
+  float[] yellow = new float[] {1.0f, 1.0f, 0.0f, 1.0f};
+  /** */
+  float[] green = new float[] {0.0f, 1.0f, 0.0f, 1.0f};
+  /** */
+  float[] magenta = new float[] {1.0f, 0.0f, 1.0f, 1.0f};
+  /** */
+  float[] cyan = new float[] {0.0f, 1.0f, 1.0f, 1.0f};
+  /** */
+  float[] blue = new float[] {0.0f, 0.0f, 1.0f, 1.0f};
+
   /**
    * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
    */
@@ -46,9 +76,43 @@ public class JoglBox implements JoglObject {
         {-this._xsize / 2, -this._ysize / 2, this._zsize / 2}, {this._xsize / 2, -this._ysize / 2, this._zsize / 2}, {this._xsize / 2, this._ysize / 2, -this._zsize / 2},
         {-this._xsize / 2, this._ysize / 2, -this._zsize / 2}, {-this._xsize / 2, -this._ysize / 2, -this._zsize / 2}, {this._xsize / 2, -this._ysize / 2, -this._zsize / 2}};
 
-    float[] red = new float[] {1.0f, 0.0f, 0.0f, 1.0f};
+    //    float[] red = new float[] {1.0f, 0.0f, 0.0f, 1.0f};
 
-    gl.glColor4fv(red, 0);
+    if (this._color != null) {
+      if (this._color == "white") {
+        gl.glColor4fv(this.white, 0);
+      } else if (this._color == "lightGray") {
+        gl.glColor4fv(this.lightGray, 0);
+      } else if (this._color == "gray") {
+        gl.glColor4fv(this.gray, 0);
+      } else if (this._color == "darkGray") {
+        gl.glColor4fv(this.darkGray, 0);
+      } else if (this._color == "black") {
+        gl.glColor4fv(this.black, 0);
+      } else if (this._color == "red") {
+        gl.glColor4fv(this.red, 0);
+      } else if (this._color == "pink") {
+        gl.glColor4fv(this.pink, 0);
+      } else if (this._color == "orange") {
+        gl.glColor4fv(this.orange, 0);
+      } else if (this._color == "yellow") {
+        gl.glColor4fv(this.yellow, 0);
+      } else if (this._color == "green") {
+        gl.glColor4fv(this.green, 0);
+      } else if (this._color == "magenta") {
+        gl.glColor4fv(this.magenta, 0);
+      } else if (this._color == "cyan") {
+        gl.glColor4fv(this.cyan, 0);
+      } else if (this._color == "blue") {
+        gl.glColor4fv(this.blue, 0);
+      }
+    }
+
+    if (this._color != "red") {
+      gl.glColor4fv(this.lightGray, 0);
+    } else {
+      gl.glColor4fv(this.red, 0);
+    }
     gl.glBegin(GL.GL_QUADS); // 四角形を描画することを宣言します 
     gl.glVertex3fv(vertice[0], 0);
     gl.glVertex3fv(vertice[1], 0);
@@ -86,6 +150,7 @@ public class JoglBox implements JoglObject {
 
   /**
    * 大きさの設定
+   * 
    * @param x xの長さ
    * @param y yの長さ
    * @param z zの長さ
@@ -94,6 +159,13 @@ public class JoglBox implements JoglObject {
     this._xsize = x;
     this._ysize = y;
     this._zsize = z;
+  }
+
+  /**
+   * @param color
+   */
+  public void setColor(String color) {
+    this._color = color;
   }
 
 }

@@ -101,9 +101,6 @@ public class AnimationTask extends TimerTask {
     } else if (this.manager.getLink()) {
       this.manager.processStimulus(this.currentTime);
     }
-    //    else if(this.manager.getDH()&&this.manager.getLink()){
-    //      this.manager.processStimulus(this.currentTime);
-    //    }
 
     // SimulationViewer.setCurrentTime(currentTime);
 

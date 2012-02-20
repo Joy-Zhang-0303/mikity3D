@@ -78,7 +78,9 @@ public class MovableGroupManager {
       IMovableGroup mg = iter.next();
       DataPicker picker = this.pickMap.get(mg);
 
-      mg.setDHParameter(picker.getDHParameter(time));
+      if (picker.getDHParameter(time) != null) {
+        mg.setDHParameter(picker.getDHParameter(time));
+      }
     }
   }
 

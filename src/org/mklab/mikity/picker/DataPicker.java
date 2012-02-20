@@ -21,14 +21,18 @@ import org.mklab.nfc.matrix.Matrix;
 public abstract class DataPicker {
 
   private DoubleMatrix data;
+  /** */
   protected DHParameter[] params;
+  /** */
   protected LinkParameter[] link;
+  /** */
   protected MyTransformGroup trans;
 
   private static int dataScale = 1;
   private static int modelScale = 1;
 
   private static boolean dataIsRadian = true;
+  /** */
   static boolean modelIsRadian = true;
 
   /**
