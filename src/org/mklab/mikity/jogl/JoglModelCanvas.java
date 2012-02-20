@@ -13,7 +13,7 @@ import javax.media.opengl.GLJPanel;
 import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
-import org.mklab.mikity.java3d.PrimitiveFactory;
+import org.mklab.mikity.gui.ModelCanvas;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 
@@ -22,7 +22,7 @@ import org.mklab.mikity.xml.model.Group;
  * @author iwamoto
  * @version $Revision$, 2012/01/11
  */
-public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseListener, MouseMotionListener {
+public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventListener, MouseListener, MouseMotionListener {
 
   private GLU glu;
 
@@ -126,18 +126,17 @@ public class JoglModelCanvas extends GLJPanel implements GLEventListener, MouseL
    */
   public void load(){
     Group[] group = this.root.loadModel(0).loadGroup();
-    JoglBranchGroup[] branchgroup = new JoglModelCreater().setModels(group);
-    setChild(branchgroup);
-//    JoglModelCreater.setModels(group);
+    setChild(group);
   }
   
   /**
    * オブジェクトのグループを設定します。
    * 
-   * @param groups オブジェクトのグループ
+   * @param group オブジェクトのグループ
    */
-  public void setChild(JoglBranchGroup[] groups) {
-    this.groups = groups;
+  public void setChild(Group[] group) {
+    JoglBranchGroup[] branchGroup = new JoglModelCreater().create(group);
+    this.groups = branchGroup;
   }
 
   /**

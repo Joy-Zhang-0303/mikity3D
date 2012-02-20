@@ -1,8 +1,6 @@
 package org.mklab.mikity.gui;
 
 import java.awt.Frame;
-
-import org.mklab.mikity.jogl.JoglModelCanvas;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,6 +28,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.java3d.Java3dModelCanvas;
+import org.mklab.mikity.jogl.JoglModelCanvas;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
@@ -99,6 +98,9 @@ public class SimulationViewer extends ApplicationWindow {
   private boolean usedLink = false;
   /** */
   ParameterInputBox playSpeed;
+
+  //private Java3dModelCanvas modelCanvas;
+  private JoglModelCanvas modelCanvas;
 
   /**
    * コンストラクター
@@ -182,11 +184,10 @@ public class SimulationViewer extends ApplicationWindow {
     // AWTのフレームを作る。
     final Frame awtFrame = SWT_AWT.new_Frame(viewer);
     
-    //Jogl　or Java3D
-    final Java3dModelCanvas sinsiCanvas = new Java3dModelCanvas(this.root);
-//    final JoglModelCanvas sinsiCanvas = new JoglModelCanvas(this.root);
-    awtFrame.add(sinsiCanvas);
-    sinsiCanvas.load();
+    //this.modelCanvas = new Java3dModelCanvas(this.root);
+    this.modelCanvas = new JoglModelCanvas(this.root);
+    awtFrame.add(this.modelCanvas);
+    this.modelCanvas.load();
   }
 
   /**
@@ -461,23 +462,25 @@ public class SimulationViewer extends ApplicationWindow {
    */
   public void runAnimation() {
     if (playable == false) {
-      SimulationViewer.this.timer.cancel();
+      this.timer.cancel();
     }
-    if (SimulationViewer.this.data == null || SimulationViewer.this.timeTable == null) {
+    if (this.data == null || this.timeTable == null) {
       MsgUtil.showMsg(getShell(), "再生ボタンが押されましたが、データは無いので終了します");
       System.out.println("再生ボタンが押されましたが、データは無いので終了します");
       return;
     }
     playable = false;
 
-    SimulationViewer.this.endTime = SimulationViewer.this.manager.getEndTime();
-    SimulationViewer.this.task = new AnimationTask(SimulationViewer.this.endTime, SimulationViewer.this.manager);
-    SimulationViewer.this.task.setSpeed(this.playSpeed.getDoubleValue());// スピードの設定
-    SimulationViewer.this.task.setCurrentTime(SimulationViewer.this.timeTable[SimulationViewer.this.timeSlider.getSelection()]);
-    SimulationViewer.this.stask = new SliderPositionMoveTask(SimulationViewer.this.task, SimulationViewer.this.timeSlider);
-    SimulationViewer.this.timer = new Timer();
-    SimulationViewer.this.timer.schedule(SimulationViewer.this.task, 0, 10);
-    SimulationViewer.this.timer.schedule(SimulationViewer.this.stask, 0, 10);
+    this.endTime = this.manager.getEndTime();
+    this.task = new AnimationTask(0, this.endTime, this.manager, this.modelCanvas);
+    this.task.setSpeed(this.playSpeed.getDoubleValue());// スピードの設定
+    this.task.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
+    
+    this.stask = new SliderPositionMoveTask(this.task, this.timeSlider);
+    
+    this.timer = new Timer();
+    this.timer.schedule(this.task, 0, 10);
+    this.timer.schedule(this.stask, 0, 10);
   }
 
   private class SliderPositionMoveTask extends TimerTask {

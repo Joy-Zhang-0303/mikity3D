@@ -104,7 +104,7 @@ public class JoglTransformGroupFactory {
     }
 
     //    // //MyTransformGroup と Groupの関連付けを行う
-    //    MovableGroupManager.assignGroup(group, tg);
+    MovableGroupManager.assignGroup(group, tg);
 
     return tg;
   }

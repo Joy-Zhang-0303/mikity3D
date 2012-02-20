@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mklab.mikity.java3d.MyTransformGroup;
+import org.mklab.mikity.jogl.JoglTransformGroup;
 import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.picker.DataPicker;
 import org.mklab.mikity.xml.Jamast;
@@ -31,7 +32,7 @@ public class MovableGroupManager {
   /** 動かせるグループのリスト */
   private List<IMovableGroup> movableList = new ArrayList<IMovableGroup>();
   private Map<IMovableGroup, DataPicker> pickMap = new HashMap<IMovableGroup, DataPicker>();
-  private static Map<Group, MyTransformGroup> groupMap = new HashMap<Group, MyTransformGroup>();
+  private static Map<Group, IMovableGroup> groupMap = new HashMap<Group, IMovableGroup>();
   private int dataCount;
   private double startTime;
   private double endTime;
@@ -107,7 +108,7 @@ public class MovableGroupManager {
   private void addGroup(final Group[] group) {
     for (int i = 0; i < group.length; i++) {
       Group g = group[i];
-      MyTransformGroup tg = groupMap.get(g);
+      IMovableGroup tg = groupMap.get(g);
       setMovableLinkData(g.loadLinkdata(), tg);
       addGroup(g.loadGroup());
     }
@@ -119,7 +120,7 @@ public class MovableGroupManager {
    * @param linkdata リンクデータ
    * @param tg TransformGroup
    */
-  private void setMovableLinkData(Linkdata[] linkdata, MyTransformGroup tg) {
+  private void setMovableLinkData(Linkdata[] linkdata, IMovableGroup tg) {
     if (linkdata.length == 0) {
       return;
     }
@@ -259,6 +260,14 @@ public class MovableGroupManager {
     groupMap.put(group, tg);
   }
 
+  /**
+   * @param group
+   * @param tg
+   */
+  public static void assignGroup(final Group group, final JoglTransformGroup tg) {
+    groupMap.put(group, tg);
+  }
+  
   /**
    * DHパラメータの使用の有無を設定
    * 

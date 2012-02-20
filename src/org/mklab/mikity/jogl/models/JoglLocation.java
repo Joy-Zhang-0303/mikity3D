@@ -33,10 +33,8 @@ public class JoglLocation implements JoglCoordinate {
    */
   @Override
   public void apply(GL gl) {
-
     gl.glPushMatrix();
     gl.glTranslatef(this._x, this._y, this._z);
-
   }
 
   /**
@@ -47,10 +45,8 @@ public class JoglLocation implements JoglCoordinate {
    * @param z z座標
    */
   public void setLocation(float x, float y, float z) {
-
     this._x = x;
     this._y = y;
     this._z = z;
-
   }
 }

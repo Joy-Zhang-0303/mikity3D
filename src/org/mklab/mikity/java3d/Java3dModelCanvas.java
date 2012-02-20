@@ -10,6 +10,7 @@ import javax.vecmath.Color3f;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
+import org.mklab.mikity.gui.ModelCanvas;
 import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.xml.Config;
 import org.mklab.mikity.xml.Jamast;
@@ -28,7 +29,7 @@ import com.sun.j3d.utils.universe.SimpleUniverse;
  * @author Miki Koga
  * @version $Revision: 1.6 $.2004/12/16
  */
-public class Java3dModelCanvas extends Canvas3D {
+public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
 
   /** */
   private static final long serialVersionUID = 1L;
@@ -154,6 +155,15 @@ public class Java3dModelCanvas extends Canvas3D {
   }
 
   /**
+   * fileからXMLを読み込む
+   */
+  public void load() {
+    getParameter(this.root);
+    Group[] group = this.root.loadModel(0).loadGroup();
+    setChild(group);
+  }
+
+  /**
    * @param groups いったんトップグループの全てを消してから書き込む
    */
   public void setChild(Group[] groups) {
@@ -173,15 +183,7 @@ public class Java3dModelCanvas extends Canvas3D {
 
     this.topGroup.addChild(bg);
   }
-
-  /**
-   * fileからXMLを読み込む
-   */
-  public void load() {
-    getParameter(this.root);
-    setChild(this.root.loadModel(0).loadGroup());
-  }
-
+  
   /**
    * XMLデータからConfigデータを読み込む
    * 

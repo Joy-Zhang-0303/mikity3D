@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
 
+import org.mklab.mikity.gui.ModelCanvas;
 import org.mklab.mikity.gui.SimulationViewer;
+import org.mklab.mikity.jogl.JoglModelCanvas;
 import org.mklab.mikity.model.MovableGroupManager;
 
 
@@ -18,7 +20,6 @@ import org.mklab.mikity.model.MovableGroupManager;
  * @version $Revision: 1.6 $.2005/01/24 アニメーションを実行する
  */
 public class AnimationTask extends TimerTask {
-
   private double currentTime = 0.0;
   private double speed = 1.0;
   private long startTime = System.currentTimeMillis();
@@ -26,31 +27,34 @@ public class AnimationTask extends TimerTask {
   private MovableGroupManager manager;
   private List<AnimationTaskListener> listenerList = new ArrayList<AnimationTaskListener>();
   private final double initialTime;
-
+  
+  private ModelCanvas canvas;
+  
   /**
    * コンストラクター
    * 
    * @param initialTime アニメーションのスタート時間
    * @param endTime 終了時刻
    * @param manager グループマネージャー
+   * @param canvas モデルキャンバス
    */
-  public AnimationTask(double initialTime, double endTime, MovableGroupManager manager) {
+  public AnimationTask(double initialTime, double endTime, MovableGroupManager manager, ModelCanvas canvas) {
     this.endTime = endTime;
     this.currentTime = initialTime;
     this.manager = manager;
-
     this.initialTime = initialTime;
+    this.canvas = canvas;
   }
 
-  /**
-   * コンストラクター
-   * 
-   * @param endTime 終了時刻
-   * @param manager グループマネージャー
-   */
-  public AnimationTask(double endTime, MovableGroupManager manager) {
-    this(0, endTime, manager);
-  }
+//  /**
+//   * コンストラクター
+//   * 
+//   * @param endTime 終了時刻
+//   * @param manager グループマネージャー
+//   */
+//  public AnimationTask(double endTime, MovableGroupManager manager) {
+//    this(0, endTime, manager);
+//  }
 
   /**
    * {@link AnimationTaskListener}を登録します。
@@ -101,6 +105,15 @@ public class AnimationTask extends TimerTask {
     } else if (this.manager.getLink()) {
       this.manager.processStimulus(this.currentTime);
     }
+
+    
+    if (this.canvas instanceof JoglModelCanvas) {
+      ((JoglModelCanvas)this.canvas).display();
+    }
+    
+    //    else if(this.manager.getDH()&&this.manager.getLink()){
+    //      this.manager.processStimulus(this.currentTime);
+    //    }
 
     // SimulationViewer.setCurrentTime(currentTime);
 

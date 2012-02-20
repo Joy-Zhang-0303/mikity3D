@@ -152,6 +152,9 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
     double rotX = link.getRotX();
     double rotY = link.getRotY();
     double rotZ = link.getRotZ();
+    
+    //System.out.println("lx, ly, lz=" + locX + "," + locY + "," + locZ);
+    //System.out.println("rx, ry, rz=" + rotX + "," + rotY + "," + rotZ);
 
     // Matrix4d k = (Matrix4d)initialMatrix.clone();
     Transform3D initialTransform = new Transform3D();

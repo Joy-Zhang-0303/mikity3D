@@ -21,16 +21,17 @@ public class JoglModelCreater {
    * 
    * @return オブジェクトのグループ
    */
-  public JoglBranchGroup[] setModels(Group[] group) {
+  public JoglBranchGroup[] create(Group[] group) {
     JoglBranchGroup bg = new JoglBranchGroup();
 
     JoglTransformGroup tg = new JoglTransformGroup();
     for (int i = 0; i < group.length; i++) {
-      bg.addChild(tg);
       JoglTransformGroup child = JoglPrimitiveFactory.create(group[i]);
       tg.addChild(child);
     }
 
+    bg.addChild(tg); ///////
+    
     List<JoglBranchGroup> groups = new ArrayList<JoglBranchGroup>();
     groups.add(bg);
 
