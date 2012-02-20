@@ -55,5 +55,17 @@ public class JoglRotation implements JoglCoordinate {
     this._yrotate = y;
     this._zrotate = z;
   }
+  
+  /**
+   * 回転します。
+   * @param x
+   * @param y
+   * @param z
+   */
+  public void rotate(float x, float y, float z) {
+    this._xrotate += x;
+    this._yrotate += y;
+    this._zrotate += z;
+  }
 
 }

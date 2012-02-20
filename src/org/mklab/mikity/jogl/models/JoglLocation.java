@@ -49,4 +49,16 @@ public class JoglLocation implements JoglCoordinate {
     this._y = y;
     this._z = z;
   }
+  
+  /**
+   * 平行移動します。
+   * @param x
+   * @param y
+   * @param z
+   */
+  public void translate(float x, float y, float z) {
+    this._x += x;
+    this._y += y;
+    this._z += z;
+  }
 }
