@@ -81,9 +81,11 @@ public class JoglQuadObject implements JoglObject {
         gl.glColor4fv(this.blue, 0);
       }
     }
-//    float[] blue = new float[] {0.0f, 0.0f, 1.0f, 1.0f};
-//
-//    gl.glColor4fv(blue, 0);
+    if (this._color != "blue") {
+      gl.glColor4fv(this.orange, 0);
+    } else {
+      gl.glColor4fv(this.blue, 0);
+    }
     gl.glBegin(GL.GL_QUADS);
     for (int i = 0; i < 4; i++) {
       x = this._point[i][0];

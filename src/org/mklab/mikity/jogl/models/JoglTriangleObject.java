@@ -87,9 +87,11 @@ public class JoglTriangleObject implements JoglObject {
       }
     }
 
-    //    float[] red = new float[] {1.0f, 0.0f, 0.0f, 1.0f};
-
-    //    gl.glColor4fv(red, 0);
+    if (this._color != "red") {
+      gl.glColor4fv(this.orange, 0);
+    } else {
+      gl.glColor4fv(this.red, 0);
+    }
     gl.glBegin(GL.GL_TRIANGLES);
     for (int i = 0; i < 3; i++) {
       x = this._point[i][0];

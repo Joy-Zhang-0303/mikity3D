@@ -47,9 +47,9 @@ public class JoglPrimitiveFactory {
    */
   public static JoglTransformGroup create(XMLBox box) {
 
-    float xsize = box.loadXsize() * 10f;
-    float ysize = box.loadYsize() * 10f;
-    float zsize = box.loadZsize() * 10f;
+    float xsize = box.loadXsize();
+    float ysize = box.loadYsize();
+    float zsize = box.loadZsize();
     String color = box.loadColor();
     JoglBox child = new JoglBox();
     child.setColor(color);
@@ -102,9 +102,9 @@ public class JoglPrimitiveFactory {
       tg.setCoordinate(loc);
 
     } else if (box.loadLocation() != null && box.loadRotation() == null) {
-      float xloc = box.loadLocation().loadX() * 10f;
-      float yloc = box.loadLocation().loadY() * 10f;
-      float zloc = box.loadLocation().loadZ() * 10f;
+      float xloc = box.loadLocation().loadX();
+      float yloc = box.loadLocation().loadY();
+      float zloc = box.loadLocation().loadZ();
       JoglLocation loc = new JoglLocation();
       loc.setLocation(xloc, yloc, zloc);
       tg.setCoordinate(loc);
@@ -164,9 +164,9 @@ public class JoglPrimitiveFactory {
 //    }
     
     if (cylinder.loadLocation() != null && cylinder.loadRotation() != null) {
-      float xloc = cylinder.loadLocation().loadX() * 10f;
-      float yloc = cylinder.loadLocation().loadY() * 10f;
-      float zloc = cylinder.loadLocation().loadZ() * 10f;
+      float xloc = cylinder.loadLocation().loadX();
+      float yloc = cylinder.loadLocation().loadY();
+      float zloc = cylinder.loadLocation().loadZ();
       float xrot = cylinder.loadRotation().loadXrotate();
       float yrot = cylinder.loadRotation().loadYrotate();
       float zrot = cylinder.loadRotation().loadZrotate();
@@ -175,9 +175,9 @@ public class JoglPrimitiveFactory {
       tg.setCoordinate(loc);
 
     } else if (cylinder.loadLocation() != null && cylinder.loadRotation() == null) {
-      float xloc = cylinder.loadLocation().loadX() * 10f;
-      float yloc = cylinder.loadLocation().loadY() * 10f;
-      float zloc = cylinder.loadLocation().loadZ() * 10f;
+      float xloc = cylinder.loadLocation().loadX();
+      float yloc = cylinder.loadLocation().loadY();
+      float zloc = cylinder.loadLocation().loadZ();
       JoglLocation loc = new JoglLocation();
       loc.setLocation(xloc, yloc, zloc);
       tg.setCoordinate(loc);
@@ -191,8 +191,8 @@ public class JoglPrimitiveFactory {
     }
 
     int div = cylinder.loadDiv();
-    float r = cylinder.loadR() * 10.0f;
-    float hight = cylinder.loadHeight() * 10.0f;
+    float r = cylinder.loadR();
+    float hight = cylinder.loadHeight();
     JoglCylinder child = new JoglCylinder();
     String color = cylinder.loadColor();
     child.setColor(color);
@@ -242,9 +242,9 @@ public class JoglPrimitiveFactory {
 //      setLinkParameter(links, tg);
 //    }
     if (sphere.loadLocation() != null && sphere.loadRotation() != null) {
-      float xloc = sphere.loadLocation().loadX() * 10f;
-      float yloc = sphere.loadLocation().loadY() * 10f;
-      float zloc = sphere.loadLocation().loadZ() * 10f;
+      float xloc = sphere.loadLocation().loadX();
+      float yloc = sphere.loadLocation().loadY();
+      float zloc = sphere.loadLocation().loadZ();
       float xrot = sphere.loadRotation().loadXrotate();
       float yrot = sphere.loadRotation().loadYrotate();
       float zrot = sphere.loadRotation().loadZrotate();
@@ -253,9 +253,9 @@ public class JoglPrimitiveFactory {
       tg.setCoordinate(loc);
 
     } else if (sphere.loadLocation() != null && sphere.loadRotation() == null) {
-      float xloc = sphere.loadLocation().loadX() * 10f;
-      float yloc = sphere.loadLocation().loadY() * 10f;
-      float zloc = sphere.loadLocation().loadZ() * 10f;
+      float xloc = sphere.loadLocation().loadX();
+      float yloc = sphere.loadLocation().loadY();
+      float zloc = sphere.loadLocation().loadZ();
       JoglLocation loc = new JoglLocation();
       loc.setLocation(xloc, yloc, zloc);
       tg.setCoordinate(loc);
@@ -269,7 +269,7 @@ public class JoglPrimitiveFactory {
     }
 
     int div = sphere.loadDiv();
-    float r = sphere.loadR() * 10.0f;
+    float r = sphere.loadR();
     JoglSphere child = new JoglSphere();
     child.setSize(div, r);
     tg.addChild(child);
@@ -286,9 +286,9 @@ public class JoglPrimitiveFactory {
 
 
     if (cone.loadLocation() != null && cone.loadRotation() != null) {
-      float xloc = cone.loadLocation().loadX() * 10f;
-      float yloc = cone.loadLocation().loadY() * 10f;
-      float zloc = cone.loadLocation().loadZ() * 10f;
+      float xloc = cone.loadLocation().loadX();
+      float yloc = cone.loadLocation().loadY();
+      float zloc = cone.loadLocation().loadZ();
       float xrot = cone.loadRotation().loadXrotate();
       float yrot = cone.loadRotation().loadYrotate();
       float zrot = cone.loadRotation().loadZrotate();
@@ -297,9 +297,9 @@ public class JoglPrimitiveFactory {
       tg.setCoordinate(loc);
 
     } else if (cone.loadLocation() != null && cone.loadRotation() == null) {
-      float xloc = cone.loadLocation().loadX() * 10f;
-      float yloc = cone.loadLocation().loadY() * 10f;
-      float zloc = cone.loadLocation().loadZ() * 10f;
+      float xloc = cone.loadLocation().loadX();
+      float yloc = cone.loadLocation().loadY();
+      float zloc = cone.loadLocation().loadZ();
       JoglLocation loc = new JoglLocation();
       loc.setLocation(xloc, yloc, zloc);
       tg.setCoordinate(loc);
@@ -313,8 +313,8 @@ public class JoglPrimitiveFactory {
     }
 
     int div = cone.loadDiv();
-    float r = cone.loadR() * 10.0f;
-    float hight = cone.loadHeight() * 10.0f;
+    float r = cone.loadR();
+    float hight = cone.loadHeight();
     String color = cone.loadColor();
     JoglCone child = new JoglCone();
     child.setColor(color);
