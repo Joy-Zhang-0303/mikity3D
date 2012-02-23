@@ -99,8 +99,8 @@ public class SimulationViewer extends ApplicationWindow {
   /** */
   ParameterInputBox playSpeed;
 
-  //private Java3dModelCanvas modelCanvas;
-  private JoglModelCanvas modelCanvas;
+  private Java3dModelCanvas modelCanvas;
+//  private JoglModelCanvas modelCanvas;
 
   /**
    * コンストラクター
@@ -184,8 +184,8 @@ public class SimulationViewer extends ApplicationWindow {
     // AWTのフレームを作る。
     final Frame awtFrame = SWT_AWT.new_Frame(viewer);
     
-    //this.modelCanvas = new Java3dModelCanvas(this.root);
-    this.modelCanvas = new JoglModelCanvas(this.root);
+    this.modelCanvas = new Java3dModelCanvas(this.root);
+//    this.modelCanvas = new JoglModelCanvas(this.root);
     awtFrame.add(this.modelCanvas);
     this.modelCanvas.load();
   }
