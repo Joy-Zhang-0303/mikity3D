@@ -110,14 +110,14 @@ public class XMLConnector extends XMLCylinder {
   }
 
   /**
-   * @param toCenter
+   * @param toCenter tocenter
    */
   public void setLengthToCenter(float toCenter) {
     this._toCenter = toCenter;
   }
 
   /**
-   * @param n
+   * @param n 番号
    */
   public void setNum(int n) {
     this._num = n;
@@ -140,9 +140,9 @@ public class XMLConnector extends XMLCylinder {
   /**
    * コネクタの回転を設定する。
    * 
-   * @param rotX
-   * @param rotY
-   * @param rotZ
+   * @param rotX X回転
+   * @param rotY Y回転
+   * @param rotZ Z回転
    */
   public void setConnectorRotation(float rotX, float rotY, float rotZ) {
     this._rotation.setXrotate(rotX);

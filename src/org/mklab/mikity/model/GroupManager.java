@@ -27,8 +27,8 @@ public class GroupManager {
   /**
    * 指定した名前のグループの追加を行う。
    * 
-   * @param name
-   * @param tg
+   * @param name 名前
+   * @param tg トランスフォームグループ
    */
   public static void addGroup(String name, MyTransformGroup tg) {
     groupList.add(tg);

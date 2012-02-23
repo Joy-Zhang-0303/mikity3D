@@ -60,7 +60,7 @@ public class JAXBMarshaller {
    * 現在のモデリングデータを指定したファイルに保存する
    * 
    * @param file 　保存ファイル
-   * @throws IllegalArgumentException
+   * @throws IllegalArgumentException 例外
    */
   public void marshal(File file) throws IllegalArgumentException {
     try {
@@ -78,7 +78,7 @@ public class JAXBMarshaller {
    * 指定したファイルを読み込む
    * 
    * @param file 　読込ファイル
-   * @throws IllegalArgumentException
+   * @throws IllegalArgumentException 例外
    */
   public void unmarshal(File file) throws IllegalArgumentException {
     loadScene(file);
@@ -107,9 +107,9 @@ public class JAXBMarshaller {
    * 
    * @param file 　読込JAMASTファイル
    * @return root
-   * @throws IllegalArgumentException
-   * @throws JAXBException
-   * @throws FileNotFoundException
+   * @throws IllegalArgumentException 例外
+   * @throws JAXBException 例外
+   * @throws FileNotFoundException 例外
    */
   public Jamast createJamast(File file) throws IllegalArgumentException, JAXBException, FileNotFoundException {
     JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
@@ -122,7 +122,7 @@ public class JAXBMarshaller {
    * 
    * @param file 　読込JAMASTファイル
    * @return root
-   * @throws IllegalArgumentException
+   * @throws IllegalArgumentException 例外
    */
   public Jamast createJamast(URL file) throws IllegalArgumentException {
     try {

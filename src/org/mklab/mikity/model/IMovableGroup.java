@@ -21,7 +21,7 @@ public interface IMovableGroup {
   public void setDHParameter(DHParameter param);
 
   /**
-   * @param link
+   * @param link link
    */
   public void setLinkParameter(final LinkParameter link);
 

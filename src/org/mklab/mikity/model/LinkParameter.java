@@ -120,7 +120,7 @@ public class LinkParameter {
   /**
    * X座標回転の値を設定する。
    * 
-   * @param rotX Xじくに
+   * @param rotX X座標回転の値
    */
   public void setRotX(double rotX) {
     this.rotX = rotX;
@@ -138,7 +138,7 @@ public class LinkParameter {
   /**
    * Y座標回転の値を設定する。
    * 
-   * @param rotY
+   * @param rotY Y座標回転の値
    */
   public void setRotY(double rotY) {
     this.rotY = rotY;
@@ -156,7 +156,7 @@ public class LinkParameter {
   /**
    * Z座標回転の値を設定する。
    * 
-   * @param rotZ
+   * @param rotZ Z座標回転の値
    */
   public void setRotZ(double rotZ) {
     this.rotZ = rotZ;

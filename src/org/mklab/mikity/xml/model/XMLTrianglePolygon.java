@@ -54,10 +54,10 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param pointNum
-   * @param x
-   * @param y
-   * @param z
+   * @param pointNum 座標番号
+   * @param x X座標
+   * @param y Y座標
+   * @param z Z座標
    */
   public void setPointLocation(int pointNum, float x, float y, float z) {
     this._point[pointNum].setX(x);
@@ -67,9 +67,9 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param loc1
-   * @param loc2
-   * @param loc3
+   * @param loc1 座標1
+   * @param loc2 座標2
+   * @param loc3 座標3
    */
   public void setPointLocations(Location loc1, Location loc2, Location loc3) {
     this._point[0] = loc1;
@@ -79,7 +79,7 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param point
+   * @param point 座標
    */
   public void setPointLocations(Location[] point) {
     this._point = point;
@@ -87,28 +87,28 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param c
+   * @param c 色
    */
   public void setColor(String c) {
     this._color = c;
   }
 
   /**
-   * @param loc
+   * @param loc 位置
    */
   public void setLocation(Location loc) {
     this._location = loc;
   }
 
   /**
-   * @param rot
+   * @param rot 回転
    */
   public void setRotation(Rotation rot) {
     this._rotation = rot;
   }
 
   /**
-   * @param loc
+   * @param loc 位置
    */
   public void setNormalVector(Location loc) {
     this._normal[0] = new Vector3f(loc.loadX(), loc.loadY(), loc.loadZ());
@@ -117,7 +117,7 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param nor
+   * @param nor 法線ベクトル
    */
   public void setNormalVector(Vector3f[] nor) {
     this._normal = nor;
@@ -138,14 +138,14 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param matrix
+   * @param matrix 行列
    */
   public void setMatrix(Matrix4f matrix) {
     this._matrix = matrix;
   }
 
   /**
-   * @param pointNum
+   * @param pointNum 座標番号
    * @return x location
    */
   public float loadPointLocationX(int pointNum) {
@@ -153,7 +153,7 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param pointNum
+   * @param pointNum 座標番号
    * @return y location
    */
   public float loadPointLocationY(int pointNum) {
@@ -161,7 +161,7 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param pointNum
+   * @param pointNum 座標番号
    * @return z location
    */
   public float loadPointLocationZ(int pointNum) {

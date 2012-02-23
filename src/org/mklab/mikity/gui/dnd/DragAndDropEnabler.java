@@ -40,6 +40,7 @@ public class DragAndDropEnabler {
   /** 操作 */
   private static final int OPERATION = DND.DROP_MOVE | DND.DROP_COPY | DND.DROP_LINK;
 
+  /** */
   TreeItem dragItem;
 
   /**
@@ -57,11 +58,16 @@ public class DragAndDropEnabler {
     dt.addDropListener(new MyDropTargetListener());
   }
 
+  /**
+   * @author iwamoto
+   * @version $Revision$, 2012/02/23
+   */
   class MyDropTargetListener implements DropTargetListener {
 
     /**
      * @see org.eclipse.swt.dnd.DropTargetListener#dragEnter(org.eclipse.swt.dnd.DropTargetEvent)
      */
+    @Override
     public void dragEnter(DropTargetEvent e) {
     // nothing to do
     }
@@ -69,6 +75,7 @@ public class DragAndDropEnabler {
     /**
      * @see org.eclipse.swt.dnd.DropTargetListener#dragLeave(org.eclipse.swt.dnd.DropTargetEvent)
      */
+    @Override
     public void dragLeave(DropTargetEvent e) {
     // nothing to do
     }
@@ -76,6 +83,7 @@ public class DragAndDropEnabler {
     /**
      * @see org.eclipse.swt.dnd.DropTargetListener#dragOperationChanged(org.eclipse.swt.dnd.DropTargetEvent)
      */
+    @Override
     public void dragOperationChanged(DropTargetEvent e) {
     // nothing to do
     }
@@ -83,6 +91,7 @@ public class DragAndDropEnabler {
     /**
      * @see org.eclipse.swt.dnd.DropTargetListener#dragOver(org.eclipse.swt.dnd.DropTargetEvent)
      */
+    @Override
     public void dragOver(DropTargetEvent e) {
 
       TreeItem item = DragAndDropEnabler.this.tree.getItem(DragAndDropEnabler.this.tree.toControl(e.x, e.y));
@@ -96,6 +105,7 @@ public class DragAndDropEnabler {
     /**
      * @see org.eclipse.swt.dnd.DropTargetListener#drop(org.eclipse.swt.dnd.DropTargetEvent)
      */
+    @Override
     public void drop(DropTargetEvent e) {
       // 今マウスがある場所のアイテムを取得
       TreeItem item = DragAndDropEnabler.this.tree.getItem(DragAndDropEnabler.this.tree.toControl(e.x, e.y));
@@ -159,17 +169,23 @@ public class DragAndDropEnabler {
     /**
      * @see org.eclipse.swt.dnd.DropTargetListener#dropAccept(org.eclipse.swt.dnd.DropTargetEvent)
      */
+    @Override
     public void dropAccept(DropTargetEvent e) {
     // nothing to do
     }
 
   }
 
+  /**
+   * @author iwamoto
+   * @version $Revision$, 2012/02/23
+   */
   class MyDragSourceListener implements DragSourceListener {
 
     /**
      * @see org.eclipse.swt.dnd.DragSourceListener#dragStart(org.eclipse.swt.dnd.DragSourceEvent)
      */
+    @Override
     public void dragStart(DragSourceEvent e) {
       // 選択要素が1つでないときは、終了
       if (DragAndDropEnabler.this.tree.getSelectionCount() != 1 || DragAndDropEnabler.this.tree.getSelection()[0].getParentItem() == null) {
@@ -182,6 +198,7 @@ public class DragAndDropEnabler {
     /**
      * @see org.eclipse.swt.dnd.DragSourceListener#dragSetData(org.eclipse.swt.dnd.DragSourceEvent)
      */
+    @Override
     public void dragSetData(DragSourceEvent e) {
     // nothing to do
     }
@@ -189,6 +206,7 @@ public class DragAndDropEnabler {
     /**
      * @see org.eclipse.swt.dnd.DragSourceListener#dragFinished(org.eclipse.swt.dnd.DragSourceEvent)
      */
+    @Override
     public void dragFinished(DragSourceEvent e) {
     // nothing to do
     }

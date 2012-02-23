@@ -98,8 +98,8 @@ public class ConfigData {
   /**
    * コンストラクター
    * 
-   * @param filename
-   * @throws IOException
+   * @param filename ファイルネーム
+   * @throws IOException 例外
    */
   public ConfigData(String filename) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader(filename));
