@@ -31,7 +31,7 @@ public class DataPickerTest {
    */
   @Before
   public void setUp() throws IOException {
-    this.data = MatxMatrix.readMatFormat("config/data2"); //$NON-NLS-1$
+    this.data = MatxMatrix.readMatFormat("config/data2.mat"); //$NON-NLS-1$
   }
 
   /**
