@@ -38,7 +38,7 @@ public abstract class DataPicker {
   /**
    * コンストラクター
    * 
-   * @param data
+   * @param data データ
    */
   public DataPicker(Matrix data) {
     this.data = (DoubleMatrix)data;

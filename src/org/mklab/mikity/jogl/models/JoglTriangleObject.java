@@ -87,11 +87,6 @@ public class JoglTriangleObject implements JoglObject {
       }
     }
 
-    if (this._color != "red") {
-      gl.glColor4fv(this.orange, 0);
-    } else {
-      gl.glColor4fv(this.red, 0);
-    }
     gl.glBegin(GL.GL_TRIANGLES);
     for (int i = 0; i < 3; i++) {
       x = this._point[i][0];
@@ -104,7 +99,7 @@ public class JoglTriangleObject implements JoglObject {
   }
 
   /**
-   * @param point
+   * @param point 座標
    */
   public void setSize(float[][] point) {
 
@@ -113,7 +108,7 @@ public class JoglTriangleObject implements JoglObject {
   }
 
   /**
-   * @param color
+   * @param color 色
    */
   public void setColor(String color) {
     this._color = color;

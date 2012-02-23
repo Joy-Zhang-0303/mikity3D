@@ -81,11 +81,7 @@ public class JoglQuadObject implements JoglObject {
         gl.glColor4fv(this.blue, 0);
       }
     }
-    if (this._color != "blue") {
-      gl.glColor4fv(this.orange, 0);
-    } else {
-      gl.glColor4fv(this.blue, 0);
-    }
+
     gl.glBegin(GL.GL_QUADS);
     for (int i = 0; i < 4; i++) {
       x = this._point[i][0];
@@ -98,7 +94,7 @@ public class JoglQuadObject implements JoglObject {
   }
 
   /**
-   * @param point
+   * @param point 座標
    */
   public void setSize(float[][] point) {
 
@@ -107,7 +103,7 @@ public class JoglQuadObject implements JoglObject {
   }
 
   /**
-   * @param color
+   * @param color 色
    */
   public void setColor(String color) {
     this._color = color;

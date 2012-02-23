@@ -162,7 +162,7 @@ public class JoglBox implements JoglObject {
   }
 
   /**
-   * @param color
+   * @param color 色
    */
   public void setColor(String color) {
     this._color = color;

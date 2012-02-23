@@ -60,7 +60,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
 
   /**
    * Initialize the generated object of {@link JoglModelCanvas}.
-   * @param root
+   * @param root ルート
    */
   public JoglModelCanvas(Jamast root){
     super(new GLCapabilities());
@@ -125,6 +125,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   /**
    * 
    */
+  @Override
   public void load(){
     Group[] group = this.root.loadModel(0).loadGroup();
     setChild(group);
@@ -135,6 +136,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    * 
    * @param group オブジェクトのグループ
    */
+  @Override
   public void setChild(Group[] group) {
     JoglBranchGroup[] branchGroup = new JoglModelCreater().create(group);
     this.groups = branchGroup;
