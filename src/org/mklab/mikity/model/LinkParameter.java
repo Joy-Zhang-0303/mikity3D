@@ -66,7 +66,7 @@ public class LinkParameter {
   /**
    * X座標並進の値を設定する。
    * 
-   * @param locX
+   * @param locX X座標
    */
   public void setLocX(double locX) {
     this.locX = locX;
@@ -84,7 +84,7 @@ public class LinkParameter {
   /**
    * Y座標並進の値を設定する。
    * 
-   * @param locY
+   * @param locY Y座標
    */
   public void setLocY(double locY) {
     this.locY = locY;
@@ -102,7 +102,7 @@ public class LinkParameter {
   /**
    * Z座標並進の値を設定する。
    * 
-   * @param locZ
+   * @param locZ Z座標
    */
   public void setLocZ(double locZ) {
     this.locZ = locZ;
@@ -120,7 +120,7 @@ public class LinkParameter {
   /**
    * X座標回転の値を設定する。
    * 
-   * @param rotX
+   * @param rotX Xじくに
    */
   public void setRotX(double rotX) {
     this.rotX = rotX;
