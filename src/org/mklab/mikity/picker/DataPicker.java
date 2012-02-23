@@ -21,20 +21,24 @@ import org.mklab.nfc.matrix.Matrix;
 public abstract class DataPicker {
 
   private DoubleMatrix data;
+  /** */
   protected DHParameter[] params;
+  /** */
   protected LinkParameter[] link;
+  /** */
   protected MyTransformGroup trans;
 
   private static int dataScale = 1;
   private static int modelScale = 1;
 
   private static boolean dataIsRadian = true;
+  /** */
   static boolean modelIsRadian = true;
 
   /**
    * コンストラクター
    * 
-   * @param data
+   * @param data データ
    */
   public DataPicker(Matrix data) {
     this.data = (DoubleMatrix)data;
@@ -192,7 +196,7 @@ public abstract class DataPicker {
   }
 
   /**
-   * @param setType
+   * @param setType セットタイプ
    * @param constantValue initialTranformに固定値をセットする
    */
   public void setConstantValue(int setType, double constantValue) {
@@ -250,8 +254,8 @@ public abstract class DataPicker {
    */
   public int getColumn(double time) {
     // 時系列データからそれに最も近い時間のある行を返す。
-    DoubleMatrix error = ((DoubleMatrix)this.data.getRowVector(1).subtractElementWise(time)).absElementWise();
-    return ((IntMatrix)error.minimumRowWise().getIndices()).getIntElement(1);
+    DoubleMatrix error = this.data.getRowVector(1).subtractElementWise(time).absElementWise();
+    return error.minimumRowWise().getIndices().getIntElement(1);
   }
 
   /**

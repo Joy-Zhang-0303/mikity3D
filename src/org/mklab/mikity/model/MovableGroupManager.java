@@ -47,7 +47,7 @@ public class MovableGroupManager {
   /**
    * コンストラクター
    * 
-   * @param root
+   * @param root ルート
    */
   public MovableGroupManager(Jamast root) {
     this.root = root;
@@ -79,7 +79,9 @@ public class MovableGroupManager {
       IMovableGroup mg = iter.next();
       DataPicker picker = this.pickMap.get(mg);
 
-      mg.setDHParameter(picker.getDHParameter(time));
+      if (picker.getDHParameter(time) != null) {
+        mg.setDHParameter(picker.getDHParameter(time));
+      }
     }
   }
 
@@ -251,16 +253,16 @@ public class MovableGroupManager {
   }
 
   /**
-   * @param group
-   * @param tg
+   * @param group グループ
+   * @param tg トランスフォームグループ
    */
   public static void assignGroup(final Group group, final MyTransformGroup tg) {
     groupMap.put(group, tg);
   }
 
   /**
-   * @param group
-   * @param tg
+   * @param group グループ
+   * @param tg トランスフォームグループ
    */
   public static void assignGroup(final Group group, final JoglTransformGroup tg) {
     groupMap.put(group, tg);

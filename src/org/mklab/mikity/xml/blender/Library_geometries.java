@@ -55,7 +55,7 @@ public class Library_geometries {
   }
 
   /**
-   * @param library_visual_scenes
+   * @param library_visual_scenes ノード関連
    */
   public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes) {
     this.scene = library_visual_scenes.getScene();

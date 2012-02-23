@@ -21,7 +21,7 @@ public class ClosenessDataPicker extends DataPicker {
   /**
    * コンストラクター
    * 
-   * @param data
+   * @param data data
    */
   public ClosenessDataPicker(Matrix data) {
     super(data);

@@ -112,7 +112,7 @@ public class Util {
    * パラメータを取得する。
    * 
    * @param linkdata 　リンクデータ
-   * @param key
+   * @param key key
    * @return null
    */
   public static Linkdata getParameter(final Linkdata[] linkdata, final String key) {

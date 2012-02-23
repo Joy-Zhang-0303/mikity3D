@@ -180,7 +180,7 @@ public class Linkdata implements java.io.Serializable {
   /**
    * Sets the value of field 'const'.
    * 
-   * @param _const
+   * @param _const コンスト
    */
   public void setConst(double _const) {
     this._const = _const;

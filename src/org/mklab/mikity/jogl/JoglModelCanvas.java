@@ -31,7 +31,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
 
   private Jamast root;
   
-  private double[] eye = {0.0, 0.0, 50.0};
+  private double[] eye = {0.0,0.0, 5.0};
 
   private float rotx = 0.0f, roty = 0.0f;
   private float s_rotx, s_roty;
@@ -42,10 +42,10 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   private float s_translatex, s_translatey;
 
   //光源の設定です 
-  private float[] lightPosition0 = {-5.0f, 5.0f, 5.0f, 0.0f}; // 平行光源1です 
-  private float[] lightPosition1 = {5.0f, 5.0f, 5.0f, 0.0f}; // 平行光源2です 
-  private float[] lightSpecular = {0.7f, 0.7f, 0.7f, 1.0f}; // 反射光の強さです 
-  private float[] lightDiffuse = {0.5f, 0.5f, 0.5f, 1.0f}; // 拡散光の強さです 
+  private float[] lightPosition0 = {0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源1です 
+  private float[] lightPosition1 = {-0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源2です 
+  private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f}; // 反射光の強さです 
+  private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f}; // 拡散光の強さです 
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
 
   /**
@@ -60,7 +60,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
 
   /**
    * Initialize the generated object of {@link JoglModelCanvas}.
-   * @param root
+   * @param root ルート
    */
   public JoglModelCanvas(Jamast root){
     super(new GLCapabilities());
@@ -83,7 +83,8 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
     gl.glEnable(GL.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします 
     gl.glEnable(GL.GL_LIGHT0); //0番のライトを有効にします
     gl.glEnable(GL.GL_LIGHT1);
-
+    gl.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, 90.0f);
+    
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, this.lightPosition0, 0); // 平行光源を設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
@@ -124,6 +125,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   /**
    * 
    */
+  @Override
   public void load(){
     Group[] group = this.root.loadModel(0).loadGroup();
     setChild(group);
@@ -134,6 +136,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    * 
    * @param group オブジェクトのグループ
    */
+  @Override
   public void setChild(Group[] group) {
     JoglBranchGroup[] branchGroup = new JoglModelCreater().create(group);
     this.groups = branchGroup;
@@ -225,17 +228,17 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
       this.end_point = getMousePosition(true);
       int z = Math.abs(this.end_point.y - this.start_point.y);
       if (this.end_point.y > this.start_point.y) {
-        this.scale = this.s_scale - z / 5.0f;
+        this.scale = this.s_scale - z / 25.0f;
       } else {
-        this.scale = this.s_scale + z / 5.0f;
+        this.scale = this.s_scale + z / 25.0f;
       }
       this.display();
 
     }
     if (SwingUtilities.isRightMouseButton(e) == true) {
       this.end_point = getMousePosition(true);
-      this.translatex = this.s_translatex + (this.end_point.y - this.start_point.y) / 20.0f;
-      this.translatey = this.s_translatey + (this.end_point.x - this.start_point.x) / 20.0f;
+      this.translatex = this.s_translatex + (this.end_point.y - this.start_point.y) / 100.0f;
+      this.translatey = this.s_translatey + (this.end_point.x - this.start_point.x) / 100.0f;
       this.display();
     }
   }

@@ -28,8 +28,8 @@ public class BlenderSceneGraphCreater {
   }
 
   /**
-   * @param g
-   * @param argScene
+   * @param g グループ
+   * @param argScene シーン
    */
   public void checkGroupName(Group g, Group argScene) {
     ArrayList<Group> group = g.loadGroupAsReference();

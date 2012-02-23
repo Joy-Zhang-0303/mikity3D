@@ -52,7 +52,7 @@ public class Geometry {
   }
 
   /**
-   * @param library_visual_scenes
+   * @param library_visual_scenes ノード
    */
   public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes) {
     if(this.name == null){

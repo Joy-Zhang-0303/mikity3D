@@ -77,7 +77,7 @@ public class AnimationTask extends TimerTask {
   /**
    * アニメーションを行う速度を設定します。 速度が1.0のときに実時間で再生します。
    * 
-   * @param speed
+   * @param speed スピード
    */
   public void setSpeed(double speed) {
     this.speed = speed;
@@ -105,6 +105,7 @@ public class AnimationTask extends TimerTask {
     } else if (this.manager.getLink()) {
       this.manager.processStimulus(this.currentTime);
     }
+
     
     if (this.canvas instanceof JoglModelCanvas) {
       ((JoglModelCanvas)this.canvas).display();
@@ -133,7 +134,7 @@ public class AnimationTask extends TimerTask {
   /**
    * アニメーションの現在の時刻を設定します。
    * 
-   * @param t
+   * @param t 時間
    */
   public void setCurrentTime(double t) {
     this.currentTime = t;

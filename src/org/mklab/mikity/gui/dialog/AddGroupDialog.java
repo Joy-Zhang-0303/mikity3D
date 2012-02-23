@@ -25,6 +25,7 @@ import org.mklab.mikity.xml.model.Group;
  */
 public class AddGroupDialog extends ApplicationWindow {
 
+  /** */
   Group group;
 
   /**

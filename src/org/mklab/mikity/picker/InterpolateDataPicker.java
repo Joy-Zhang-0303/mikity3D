@@ -19,7 +19,7 @@ public class InterpolateDataPicker extends DataPicker {
   /**
    * コンストラクター　行列を読み込む
    * 
-   * @param data
+   * @param data data
    */
   public InterpolateDataPicker(Matrix data) {
     super(data);

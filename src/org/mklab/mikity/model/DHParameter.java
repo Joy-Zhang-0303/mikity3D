@@ -30,8 +30,14 @@ public class DHParameter {
    */
   public static final int THETA = 4;
 
-  double a, d, alpha, theta;
-
+  /** */
+  double a;
+  /** */
+  double d;
+  /** */
+  double alpha;
+  /** */
+  double theta;
   /**
    * コンストラクター
    */
@@ -42,10 +48,10 @@ public class DHParameter {
   /**
    * コンストラクター
    * 
-   * @param a
-   * @param alpha
-   * @param d
-   * @param theta
+   * @param a 位置
+   * @param alpha α
+   * @param d D
+   * @param theta 角度
    */
   public DHParameter(final double a, final double alpha, final double d, final double theta) {
     this.a = a;

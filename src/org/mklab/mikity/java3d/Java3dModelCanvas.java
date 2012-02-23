@@ -157,6 +157,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   /**
    * fileからXMLを読み込む
    */
+  @Override
   public void load() {
     getParameter(this.root);
     Group[] group = this.root.loadModel(0).loadGroup();
@@ -166,6 +167,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   /**
    * @param groups いったんトップグループの全てを消してから書き込む
    */
+  @Override
   public void setChild(Group[] groups) {
     this.topGroup.removeAllChildren();
 

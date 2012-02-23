@@ -124,8 +124,8 @@ public class Mesh {
   }
 
   /**
-   * @param library_visual_scenes
-   * @param name
+   * @param library_visual_scenes ノード関連
+   * @param name 名前
    */
   public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes, String name) {
     final List<String> nameList = library_visual_scenes.getNodeNameList();

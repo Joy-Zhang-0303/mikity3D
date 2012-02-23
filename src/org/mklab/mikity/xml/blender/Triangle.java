@@ -62,6 +62,7 @@ public class Triangle {
     }
   }
 
+  @SuppressWarnings("boxing")
   private void getNumberFromPToNum(int i) {
     if (i == 0) {
       this.num.add(Integer.parseInt(this.p.substring(0, this.space.get(0))));
@@ -72,6 +73,7 @@ public class Triangle {
     }
   }
 
+  @SuppressWarnings("boxing")
   private void getSpaceindexFromPToSpace() {
     for (int j = 0; j < this.p.length(); j++) {
       if (this.p.charAt(j) == ' ') {

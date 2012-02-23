@@ -83,11 +83,17 @@ public class JoglTransformGroup implements JoglCoordinate, IMovableGroup {
     }
   }
 
+  /**
+   * @see org.mklab.mikity.model.IMovableGroup#setDHParameter(org.mklab.mikity.model.DHParameter)
+   */
   @Override
   public void setDHParameter(DHParameter param) {
     // TODO 自動生成されたメソッド・スタブ
   }
 
+  /**
+   * @see org.mklab.mikity.model.IMovableGroup#setLinkParameter(org.mklab.mikity.model.LinkParameter)
+   */
   @Override
   public void setLinkParameter(LinkParameter link) {
     double locX = link.getLocX();

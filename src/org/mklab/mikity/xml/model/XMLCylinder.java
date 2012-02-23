@@ -158,7 +158,7 @@ public class XMLCylinder implements Serializable {
   /**
    * Note: hashCode() has not been overriden
    * 
-   * @param obj
+   * @param obj オブジェクト
    */
   @Override
   public boolean equals(java.lang.Object obj) {
