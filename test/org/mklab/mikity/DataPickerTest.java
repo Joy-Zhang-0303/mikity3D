@@ -7,6 +7,8 @@ package org.mklab.mikity;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mklab.mikity.model.DHParameter;
@@ -25,10 +27,10 @@ public class DataPickerTest {
   Matrix data;
 
   /**
-   * @throws Exception
+   * @throws IOException ファイルが読み込めない場合
    */
   @Before
-  public void setUp() throws Exception {
+  public void setUp() throws IOException {
     this.data = MatxMatrix.readMatFormat("config/data2"); //$NON-NLS-1$
   }
 
