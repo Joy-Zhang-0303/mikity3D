@@ -42,15 +42,15 @@ public class DataPickerTest {
     DataPicker picker = new ClosenessDataPicker(this.data);
     picker.addMoveTypeDH(DHParameter.D, 2);
     DHParameter param = picker.getDHParameter(13.59);
-    assertTrue(-4.09900000 == param.getD());
+    assertTrue(8.921 == param.getD());
 
     param = picker.getDHParameter(2.86033300E+00);
-    assertTrue(-6.00000000E-02 == param.getD());
+    assertTrue(8.921 == param.getD());
 
     assertTrue(0.0 == param.getAlpha());
 
     picker.addMoveTypeDH(DHParameter.ALPHA, 3);
-    assertTrue(-3.29870000E-02 == param.getAlpha());
+    assertTrue(-0.010995 == param.getAlpha());
 
   }
 }
