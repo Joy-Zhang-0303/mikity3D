@@ -67,37 +67,33 @@ public class JoglCylinder implements JoglObject {
   public void apply(GL gl) {
 
     if (this._color != null) {
-      if (this._color == "white") {
+      if (this._color.equals("white")) {
         gl.glColor4fv(this.white, 0);
-      } else if (this._color == "lightGray") {
+      } else if (this._color.equals("lightGray")) {
         gl.glColor4fv(this.lightGray, 0);
-      } else if (this._color == "gray") {
+      } else if (this._color.equals("gray")) {
         gl.glColor4fv(this.gray, 0);
-      } else if (this._color == "darkGray") {
+      } else if (this._color.equals("darkGray")) {
         gl.glColor4fv(this.darkGray, 0);
-      } else if (this._color == "black") {
+      } else if (this._color.equals("black")) {
         gl.glColor4fv(this.black, 0);
-      } else if (this._color == "red") {
+      } else if (this._color.equals("red")) {
         gl.glColor4fv(this.red, 0);
-      } else if (this._color == "pink") {
+      } else if (this._color.equals("pink")) {
         gl.glColor4fv(this.pink, 0);
-      } else if (this._color == "orange") {
+      } else if (this._color.equals("orange")) {
         gl.glColor4fv(this.orange, 0);
-      } else if (this._color == "yellow") {
+      } else if (this._color.equals("yellow")) {
         gl.glColor4fv(this.yellow, 0);
-      } else if (this._color == "green") {
+      } else if (this._color.equals("green")) {
         gl.glColor4fv(this.green, 0);
-      } else if (this._color == "magenta") {
+      } else if (this._color.equals("magenta")) {
         gl.glColor4fv(this.magenta, 0);
-      } else if (this._color == "cyan") {
+      } else if (this._color.equals("cyan")) {
         gl.glColor4fv(this.cyan, 0);
-      } else if (this._color == "blue") {
+      } else if (this._color.equals("blue")) {
         gl.glColor4fv(this.blue, 0);
-      } else if (this._color != "blue") {
-        gl.glColor4fv(this.lightGray, 0);
       }
-    } else {
-      gl.glColor4fv(this.blue, 0);
     }
 
     int i;

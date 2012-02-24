@@ -271,6 +271,8 @@ public class JoglPrimitiveFactory {
     int div = sphere.loadDiv();
     float r = sphere.loadR();
     JoglSphere child = new JoglSphere();
+    String color = sphere.loadColor();
+    child.setColor(color);
     child.setSize(div, r);
     tg.addChild(child);
 
