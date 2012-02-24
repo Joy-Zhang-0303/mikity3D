@@ -26,18 +26,28 @@ import org.mklab.mikity.xml.model.Linkdata;
  */
 public class GroupConfigDialogDH {
 
+  /** */
   Shell sShell = null;
   private Shell parentShell = null;
   org.mklab.mikity.xml.model.Group group;
 
+  /** */
   ParameterInputBox groupName;
+  /** */
   ParameterInputBox a;
+  /** */
   ParameterInputBox alpha;
+  /** */
   ParameterInputBox d;
+  /** */
   ParameterInputBox theta;
+  /** */
   ParameterInputBox columnA;
+  /** */
   ParameterInputBox columnAlpha;
+  /** */
   ParameterInputBox columnD;
+  /** */
   ParameterInputBox columnTheta;
 
   private boolean editable;
@@ -65,7 +75,7 @@ public class GroupConfigDialogDH {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     GridLayout layout = new GridLayout();
     layout.numColumns = 2;
-    //this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 350));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 350));
     this.sShell.setText("Groupパラメータの編集");
     this.sShell.setLayout(layout);
     // groupName = new ParameterInputBox(sShell, SWT.NONE, "Group名",

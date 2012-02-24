@@ -36,6 +36,7 @@ import org.mklab.mikity.xml.model.XMLSphere;
 public class EditPrimitiveDialog {
 
   private Shell parentShell;
+  /** */
   Shell sShell;
   private Object prim;
   private String groupName;
@@ -101,7 +102,7 @@ public class EditPrimitiveDialog {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     GridLayout layout = new GridLayout();
     layout.numColumns = 2;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 400));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 500));
     this.sShell.setText("Primitiveの編集");
     this.sShell.setLayout(layout);
 
