@@ -71,7 +71,7 @@ public class JoglTransformGroup implements JoglCoordinate, IMovableGroup {
     if (this.coordinate != null) {
       this.coordinate.apply(gl);
     }
-    
+
     for (int i = 0; i < this.objects.size(); i++) {
       JoglObject object = this.objects.get(i);
       object.apply(gl);
@@ -102,21 +102,28 @@ public class JoglTransformGroup implements JoglCoordinate, IMovableGroup {
     double rotX = link.getRotX();
     double rotY = link.getRotY();
     double rotZ = link.getRotZ();
-    
+
     //System.out.println("lx, ly, lz(set)(this)=" + locX + "," + locY + "," + locZ + ":" + this);
     //System.out.println("rx, ry, rz(set)(this)=" + rotX + "," + rotY + "," + rotZ + ":" + this);
-    
+
     if (locX != 0 || locY != 0 || locZ != 0) {
-      JoglLocation loc = new JoglLocation();
-      loc.setLocation((float)locX, (float)locY, (float)locZ);
-      this.coordinate = loc;
+      if (this.coordinate != null) {
+        if (this.coordinate instanceof JoglLocation) {
+          ((JoglLocation)this.coordinate).translate((float)locX, (float)locY, (float)locZ);
+        }
+      }
+    }
+
+    if (rotX != 0 || rotY != 0 || rotZ != 0) {
+      if (this.coordinate != null) {
+        if (this.coordinate instanceof JoglRotation) {
+          ((JoglRotation)this.coordinate).rotate((float)rotX, (float)rotY, (float)rotZ);
+        }
+      }
     }
     
-    if (rotX != 0 || rotY != 0 || rotZ != 0) {
-      JoglRotation rot = new JoglRotation();
-      rot.setRotation((float)rotX, (float)rotY, (float)rotZ);
-      this.coordinate = rot;
-    } 
+    for (JoglTransformGroup group : this.transformGroups) {
+      group.setLinkParameter(link);
+    }
   }
-  
 }
