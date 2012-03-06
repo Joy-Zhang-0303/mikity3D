@@ -100,8 +100,8 @@ public class SimulationViewer extends ApplicationWindow {
   ParameterInputBox playSpeed;
 
   // TODO Java3d or JOGL
-  //private Java3dModelCanvas modelCanvas;
-  private JoglModelCanvas modelCanvas;
+  private Java3dModelCanvas modelCanvas;
+  //private JoglModelCanvas modelCanvas;
 
   /**
    * コンストラクター
@@ -186,8 +186,9 @@ public class SimulationViewer extends ApplicationWindow {
     final Frame awtFrame = SWT_AWT.new_Frame(viewer);
     
     // TODO Java3d or JOGL
-    //this.modelCanvas = new Java3dModelCanvas(this.root);
-    this.modelCanvas = new JoglModelCanvas(this.root);
+    this.modelCanvas = new Java3dModelCanvas(this.root);
+    //this.modelCanvas = new JoglModelCanvas(this.root);
+    
     awtFrame.add(this.modelCanvas);
     this.modelCanvas.load();
   }
