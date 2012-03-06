@@ -139,9 +139,11 @@ public class MainWindow extends ApplicationWindow {
 
     this.comp = localComposite;
 
+    // TODO
     // Java3d or JOGL
-//    this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.dc);
-    this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.dc);
+    this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.dc);
+    //this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.dc);
+    
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     return localComposite;
   }
