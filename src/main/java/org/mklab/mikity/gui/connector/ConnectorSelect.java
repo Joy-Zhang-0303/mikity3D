@@ -45,9 +45,9 @@ public class ConnectorSelect {
   /**
    * コンストラクタ
    * 
-   * @param composite
-   * @param tree
-   * @param modeler
+   * @param composite コンポジット
+   * @param tree キー
+   * @param modeler モデラー
    */
   public ConnectorSelect(Composite composite, SceneGraphTree tree, Modeler modeler) {
     this.composite = composite;

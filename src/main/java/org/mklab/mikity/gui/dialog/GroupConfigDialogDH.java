@@ -56,9 +56,9 @@ public class GroupConfigDialogDH {
   /**
    * コンストラクター
    * 
-   * @param parentShell
-   * @param group
-   * @param editable
+   * @param parentShell 親のシェル
+   * @param group グループ
+   * @param editable 編集可能性
    */
   public GroupConfigDialogDH(Shell parentShell, org.mklab.mikity.xml.model.Group group, boolean editable) {
     this.parentShell = parentShell;
@@ -226,10 +226,10 @@ public class GroupConfigDialogDH {
   /**
    * ステータスを設定する
    * 
-   * @param msg
+   * @param message メッセージ
    */
-  public void setStatus(String msg) {
-    this.statusLabel.setText("ステータス: " + msg);
+  public void setStatus(String message) {
+    this.statusLabel.setText("ステータス: " + message);
   }
 
   /**

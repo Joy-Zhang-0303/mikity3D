@@ -56,9 +56,9 @@ public class EditTrianglePolygonDialog {
   /**
    * コンストラクター
    * 
-   * @param parentShell
-   * @param triangle
-   * @param group
+   * @param parentShell 親のシェル
+   * @param triangle ポリゴン
+   * @param group グループ
    */
   public EditTrianglePolygonDialog(Shell parentShell, XMLTrianglePolygon triangle, org.mklab.mikity.xml.model.Group group) {
     this.parentShell = parentShell;

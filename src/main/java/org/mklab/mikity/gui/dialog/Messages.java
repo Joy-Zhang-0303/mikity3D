@@ -19,7 +19,7 @@ public class Messages {
   }
 
   /**
-   * @param key
+   * @param key キー
    * @return キーに対応する文字列
    */
   public static String getString(String key) {

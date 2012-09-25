@@ -27,7 +27,7 @@ public class AdjustLocation {
   /**
    * コンストラクタ
    * 
-   * @param cc
+   * @param cc キャンセラー
    */
   public AdjustLocation(CollisionCanceller cc) {
     this.cc = cc;

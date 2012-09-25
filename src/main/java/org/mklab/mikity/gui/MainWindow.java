@@ -520,7 +520,7 @@ public class MainWindow extends ApplicationWindow {
   }
 
   /**
-   * @param dirty
+   * @param dirty 変更されている場合true
    */
   public void setDirty(final boolean dirty) {
     this.isDirty = true;

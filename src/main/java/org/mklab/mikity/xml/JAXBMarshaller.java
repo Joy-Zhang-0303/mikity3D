@@ -7,7 +7,6 @@ package org.mklab.mikity.xml;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -66,7 +65,9 @@ public class JAXBMarshaller {
     try {
       JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
       Marshaller marshaller = context.createMarshaller();
-      marshaller.marshal(this.root, new FileWriter(file));
+      FileWriter write = new FileWriter(file);
+      marshaller.marshal(this.root, write);
+      write.close();
     } catch (JAXBException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
@@ -94,7 +95,9 @@ public class JAXBMarshaller {
     try {
       JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
       Unmarshaller unmarshaller = context.createUnmarshaller();
-      this.root = (Jamast)unmarshaller.unmarshal(new FileReader(file));
+      FileReader reader = new FileReader(file);
+      this.root = (Jamast)unmarshaller.unmarshal(reader);
+      reader.close();
     } catch (JAXBException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
@@ -109,12 +112,15 @@ public class JAXBMarshaller {
    * @return root
    * @throws IllegalArgumentException 例外
    * @throws JAXBException 例外
-   * @throws FileNotFoundException 例外
+   * @throws IOException ファイルの読み込みに失敗した場合
    */
-  public Jamast createJamast(File file) throws IllegalArgumentException, JAXBException, FileNotFoundException {
+  public Jamast createJamast(File file) throws IllegalArgumentException, JAXBException, IOException {
     JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
     Unmarshaller unmarshaller = context.createUnmarshaller();
-    return (Jamast)unmarshaller.unmarshal(new FileReader(file));
+    FileReader reader = new FileReader(file);
+    Jamast jamast = (Jamast)unmarshaller.unmarshal(reader);
+    reader.close();
+    return jamast;
   }
 
   /**
@@ -147,7 +153,9 @@ public class JAXBMarshaller {
       File blender = cft.getTransformedFile();
       JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.blender.Collada.class);
       Unmarshaller unmarshaller = context.createUnmarshaller();
-      this.collada = (Collada)unmarshaller.unmarshal(new FileReader(blender));
+      FileReader reader = new FileReader(blender);
+      this.collada = (Collada)unmarshaller.unmarshal(reader);
+      reader.close();
     } catch (JAXBException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
@@ -176,6 +184,7 @@ public class JAXBMarshaller {
       while ((line = reader.readLine()) != null) {
         data.append(line);
       }
+      reader.close();
 
       if (data.indexOf("<jamast") != -1) { //$NON-NLS-1$
         loadJamastScene(file);

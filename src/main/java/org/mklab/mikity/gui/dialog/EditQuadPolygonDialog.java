@@ -58,9 +58,9 @@ public class EditQuadPolygonDialog {
   /**
    * コンストラクター
    * 
-   * @param parentShell
-   * @param quad
-   * @param group
+   * @param parentShell 親のシェル
+   * @param quad ポリゴン
+   * @param group グループ
    */
   public EditQuadPolygonDialog(Shell parentShell, XMLQuadPolygon quad, org.mklab.mikity.xml.model.Group group) {
     this.parentShell = parentShell;
