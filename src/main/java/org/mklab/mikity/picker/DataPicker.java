@@ -54,8 +54,8 @@ public abstract class DataPicker {
   }
 
   /**
-   * @param moveType
-   * @param row
+   * @param moveType タイプ
+   * @param row 行
    */
   public final void addMoveTypeDH(int moveType, int row) {
     if (this.data.getRowSize() < row) {
@@ -97,8 +97,8 @@ public abstract class DataPicker {
   }
 
   /**
-   * @param moveType
-   * @param row
+   * @param moveType タイプ
+   * @param row 行
    */
   public final void addMoveType(int moveType, int row) {
     if (this.data.getRowSize() < row) {
@@ -154,8 +154,9 @@ public abstract class DataPicker {
   }
 
   /**
-   * @param setType
-   * @param constantValue initialTranformに固定値をセットする
+   * initialTranformに固定値をセットする
+   * @param setType タイプ
+   * @param constantValue 値
    */
   public void setConstantValueDH(int setType, double constantValue) {
     switch (setType) {
@@ -267,8 +268,8 @@ public abstract class DataPicker {
   }
 
   /**
-   * @param row
-   * @param col
+   * @param row 行
+   * @param col 列
    * @return data.getElement(row, col)
    */
   public double getValue(int row, int col) {
@@ -299,22 +300,22 @@ public abstract class DataPicker {
   }
 
   /**
-   * @param time
+   * @param time 時間
    * @return unknown
    */
   public abstract DHParameter getDHParameter(double time);
 
   /**
-   * @param time
+   * @param time 時間
    * @return unknown
    */
   public abstract LinkParameter getLinkParameter(double time);
 
   /**
-   * @param dScale
-   * @param dRadian
-   * @param mRadian
-   * @param mScale
+   * @param dScale スケール
+   * @param dRadian 角度
+   * @param mRadian 角度
+   * @param mScale スケール
    */
   public static void setScale(int dScale, boolean dRadian, int mScale, boolean mRadian) {
     // dataScale = dScale;

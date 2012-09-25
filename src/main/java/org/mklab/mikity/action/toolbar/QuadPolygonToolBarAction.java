@@ -31,7 +31,7 @@ public class QuadPolygonToolBarAction extends Action {
   /**
    * コンストラクター
    * 
-   * @param window
+   * @param window ウィンドウ
    */
   public QuadPolygonToolBarAction(final MainWindow window) {
     super();

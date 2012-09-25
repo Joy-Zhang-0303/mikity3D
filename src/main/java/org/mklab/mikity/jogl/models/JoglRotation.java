@@ -46,9 +46,9 @@ public class JoglRotation implements JoglCoordinate {
   }
   
   /**
-   * @param x x軸に対しての回転
-   * @param y y軸に対しての回転
-   * @param z z軸に対しての回転
+   * @param x x軸に関する回転角
+   * @param y y軸に関する回転角
+   * @param z z軸に関する回転角
    */
   public void setRotation(float x,float y,float z){
     this._xrotate = x;
@@ -58,9 +58,9 @@ public class JoglRotation implements JoglCoordinate {
   
   /**
    * 回転します。
-   * @param x
-   * @param y
-   * @param z
+   * @param x x軸に関する回転角
+   * @param y y軸に関する回転角
+   * @param z z軸に関する回転角
    */
   public void rotate(float x, float y, float z) {
     this._xrotate += x;

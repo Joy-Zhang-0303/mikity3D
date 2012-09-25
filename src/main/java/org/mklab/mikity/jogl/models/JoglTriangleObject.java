@@ -56,31 +56,31 @@ public class JoglTriangleObject implements JoglObject {
     float x, y, z;
 
     if (this._color != null) {
-      if (this._color == "white") {
+      if (this._color == "white") { //$NON-NLS-1$
         gl.glColor4fv(this.white, 0);
-      } else if (this._color == "lightGray") {
+      } else if (this._color == "lightGray") { //$NON-NLS-1$
         gl.glColor4fv(this.lightGray, 0);
-      } else if (this._color == "gray") {
+      } else if (this._color == "gray") { //$NON-NLS-1$
         gl.glColor4fv(this.gray, 0);
-      } else if (this._color == "darkGray") {
+      } else if (this._color == "darkGray") { //$NON-NLS-1$
         gl.glColor4fv(this.darkGray, 0);
-      } else if (this._color == "black") {
+      } else if (this._color == "black") { //$NON-NLS-1$
         gl.glColor4fv(this.black, 0);
-      } else if (this._color == "red") {
+      } else if (this._color == "red") { //$NON-NLS-1$
         gl.glColor4fv(this.red, 0);
-      } else if (this._color == "pink") {
+      } else if (this._color == "pink") { //$NON-NLS-1$
         gl.glColor4fv(this.pink, 0);
-      } else if (this._color == "orange") {
+      } else if (this._color == "orange") { //$NON-NLS-1$
         gl.glColor4fv(this.orange, 0);
-      } else if (this._color == "yellow") {
+      } else if (this._color == "yellow") { //$NON-NLS-1$
         gl.glColor4fv(this.yellow, 0);
-      } else if (this._color == "green") {
+      } else if (this._color == "green") { //$NON-NLS-1$
         gl.glColor4fv(this.green, 0);
-      } else if (this._color == "magenta") {
+      } else if (this._color == "magenta") { //$NON-NLS-1$
         gl.glColor4fv(this.magenta, 0);
-      } else if (this._color == "cyan") {
+      } else if (this._color == "cyan") { //$NON-NLS-1$
         gl.glColor4fv(this.cyan, 0);
-      } else if (this._color == "blue") {
+      } else if (this._color == "blue") { //$NON-NLS-1$
         gl.glColor4fv(this.blue, 0);
       }
     }

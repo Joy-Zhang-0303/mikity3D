@@ -160,7 +160,7 @@ public class MovableGroupManager {
           } else if (target.equals("theta")) { //$NON-NLS-1$
             setType = DHParameter.THETA;
           } else {
-            System.out.println("a,alpha,d,thetaのいづれかを入れてください。");
+            System.err.println("a,alpha,d,thetaのいづれかを入れてください。");
           }
           picker.setConstantValueDH(setType, constantValue);
         }

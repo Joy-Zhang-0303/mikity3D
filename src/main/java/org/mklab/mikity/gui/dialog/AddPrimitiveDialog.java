@@ -70,7 +70,7 @@ public class AddPrimitiveDialog {
    * 
    * @param parentShell 親シェル
    * @param group グループ
-   * @param dc
+   * @param dc キャンセラー
    */
   public AddPrimitiveDialog(Shell parentShell, Group group, CollisionCanceller dc) {
     this.parentShell = parentShell;
@@ -173,6 +173,9 @@ public class AddPrimitiveDialog {
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
@@ -319,6 +322,8 @@ public class AddPrimitiveDialog {
         this.group.addXMLCone(cone);
 
         break;
+      default:
+        throw new IllegalArgumentException();
     }
 
   }

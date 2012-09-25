@@ -64,31 +64,31 @@ public class JoglSphere implements JoglObject {
     GLUT glut = new GLUT();
 
     if (this._color != null) {
-      if (this._color.equals("white")) {
+      if (this._color.equals("white")) { //$NON-NLS-1$
         gl.glColor4fv(this.white, 0);
-      } else if (this._color.equals("lightGray")) {
+      } else if (this._color.equals("lightGray")) { //$NON-NLS-1$
         gl.glColor4fv(this.lightGray, 0);
-      } else if (this._color.equals("gray")) {
+      } else if (this._color.equals("gray")) { //$NON-NLS-1$
         gl.glColor4fv(this.gray, 0);
-      } else if (this._color.equals("darkGray")) {
+      } else if (this._color.equals("darkGray")) { //$NON-NLS-1$
         gl.glColor4fv(this.darkGray, 0);
-      } else if (this._color.equals("black")) {
+      } else if (this._color.equals("black")) { //$NON-NLS-1$
         gl.glColor4fv(this.black, 0);
-      } else if (this._color.equals("red")) {
+      } else if (this._color.equals("red")) { //$NON-NLS-1$
         gl.glColor4fv(this.red, 0);
-      } else if (this._color.equals("pink")) {
+      } else if (this._color.equals("pink")) { //$NON-NLS-1$
         gl.glColor4fv(this.pink, 0);
-      } else if (this._color.equals("orange")) {
+      } else if (this._color.equals("orange")) { //$NON-NLS-1$
         gl.glColor4fv(this.orange, 0);
-      } else if (this._color.equals("yellow")) {
+      } else if (this._color.equals("yellow")) { //$NON-NLS-1$
         gl.glColor4fv(this.yellow, 0);
-      } else if (this._color.equals("green")) {
+      } else if (this._color.equals("green")) { //$NON-NLS-1$
         gl.glColor4fv(this.green, 0);
-      } else if (this._color.equals("magenta")) {
+      } else if (this._color.equals("magenta")) { //$NON-NLS-1$
         gl.glColor4fv(this.magenta, 0);
-      } else if (this._color.equals("cyan")) {
+      } else if (this._color.equals("cyan")) { //$NON-NLS-1$
         gl.glColor4fv(this.cyan, 0);
-      } else if (this._color.equals("blue")) {
+      } else if (this._color.equals("blue")) { //$NON-NLS-1$
         gl.glColor4fv(this.blue, 0);
       }
     }

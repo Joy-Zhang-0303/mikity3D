@@ -24,6 +24,9 @@ import org.mklab.mikity.xml.model.Group;
  */
 public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventListener, MouseListener, MouseMotionListener {
 
+  /** */
+  private static final long serialVersionUID = 5653656698891675370L;
+
   private GLU glu;
 
   /** オブジェクトのグループ */
@@ -143,11 +146,11 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   }
 
   /**
-   * @see javax.media.opengl.GLEventListener#displayChanged(javax.media.opengl.GLAutoDrawable, boolean, boolean)
+   * {@inheritDoc}
    */
   @Override
   public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
-
+    // nothing to do
   }
 
   /**
@@ -191,30 +194,37 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
    */
   @Override
-  public void mouseClicked(MouseEvent e) {}
+  public void mouseClicked(MouseEvent e) {
+    // nothing to do
+  }
 
   /**
    * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
    */
   @Override
-  public void mouseEntered(MouseEvent e) {}
+  public void mouseEntered(MouseEvent e) {
+    // nothing to do
+  }
 
   /**
    * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
    */
   @Override
-  public void mouseExited(MouseEvent e) {}
+  public void mouseExited(MouseEvent e) {
+    // nothing to do
+  }
 
   /**
    * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
    */
   @Override
-  public void mouseReleased(MouseEvent e) {}
+  public void mouseReleased(MouseEvent e) {
+    // nothing to do
+  }
 
   /**
    * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
    */
-  @SuppressWarnings("static-access")
   @Override
   public void mouseDragged(MouseEvent e) {
 
@@ -247,6 +257,8 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
    */
   @Override
-  public void mouseMoved(MouseEvent e) {}
+  public void mouseMoved(MouseEvent e) {
+    // nothing to do
+  }
 
 }

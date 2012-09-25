@@ -52,9 +52,9 @@ public class JoglLocation implements JoglCoordinate {
   
   /**
    * 平行移動します。
-   * @param x
-   * @param y
-   * @param z
+   * @param x x座用
+   * @param y y座標
+   * @param z z座標
    */
   public void translate(float x, float y, float z) {
     this._x += x;

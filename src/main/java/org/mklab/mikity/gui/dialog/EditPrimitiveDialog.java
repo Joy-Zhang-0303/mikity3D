@@ -38,7 +38,7 @@ public class EditPrimitiveDialog {
   private Shell parentShell;
   /** */
   Shell sShell;
-  private Object prim;
+  private Object primitive;
   private String groupName;
   private String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
   private ColorComboBox colorCombo;
@@ -62,14 +62,13 @@ public class EditPrimitiveDialog {
   /**
    * コンストラクター
    * 
-   * @param parentShell
-   * 
-   * @param prim
-   * @param group
+   * @param parent 親のシェル
+   * @param primitive プリミティブ
+   * @param group グループ
    */
-  public EditPrimitiveDialog(Shell parentShell, Object prim, org.mklab.mikity.xml.model.Group group) {
-    this.parentShell = parentShell;
-    this.prim = prim;
+  public EditPrimitiveDialog(Shell parent, Object primitive, org.mklab.mikity.xml.model.Group group) {
+    this.parentShell = parent;
+    this.primitive = primitive;
     this.groupName = group.loadName();
     createSShell();
     detectPrim();
@@ -314,8 +313,8 @@ public class EditPrimitiveDialog {
       this.locA = false;
     }
 
-    if (this.prim instanceof XMLBox) {
-      XMLBox box = (XMLBox)this.prim;
+    if (this.primitive instanceof XMLBox) {
+      XMLBox box = (XMLBox)this.primitive;
       box.setXsize(this.newParam1.getFloatValue());
       box.setYsize(this.newParam2.getFloatValue());
       box.setZsize(this.newParam3.getFloatValue());
@@ -334,8 +333,8 @@ public class EditPrimitiveDialog {
         setLoc(box.loadLocation());
       }
       box.setColor(this.colorCombo.getColorComboBox().getText());
-    } else if (this.prim instanceof XMLCylinder) {
-      XMLCylinder cyl = (XMLCylinder)this.prim;
+    } else if (this.primitive instanceof XMLCylinder) {
+      XMLCylinder cyl = (XMLCylinder)this.primitive;
       cyl.setR(this.newParam1.getFloatValue());
       cyl.setHeight(this.newParam2.getFloatValue());
       cyl.setDiv(setDiv(this.newParam3));
@@ -355,8 +354,8 @@ public class EditPrimitiveDialog {
         setLoc(cyl.loadLocation());
       }
       cyl.setColor(this.colorCombo.getColorComboBox().getText());
-    } else if (this.prim instanceof XMLSphere) {
-      XMLSphere sph = (XMLSphere)this.prim;
+    } else if (this.primitive instanceof XMLSphere) {
+      XMLSphere sph = (XMLSphere)this.primitive;
       sph.setR(this.newParam1.getFloatValue());
       sph.setDiv(setDiv(this.newParam2));
       if (this.rotB == false) {
@@ -374,8 +373,8 @@ public class EditPrimitiveDialog {
         setLoc(sph.loadLocation());
       }
       sph.setColor(this.colorCombo.getColorComboBox().getText());
-    } else if (this.prim instanceof XMLCone) {
-      XMLCone cone = (XMLCone)this.prim;
+    } else if (this.primitive instanceof XMLCone) {
+      XMLCone cone = (XMLCone)this.primitive;
       cone.setR(this.newParam1.getFloatValue());
       cone.setHeight(this.newParam2.getFloatValue());
       cone.setDiv(setDiv(this.newParam3));
@@ -445,8 +444,8 @@ public class EditPrimitiveDialog {
    * primitiveの型を判断し、値を入れる
    */
   private void detectPrim() {
-    if (this.prim instanceof XMLBox) {
-      XMLBox box = (XMLBox)this.prim;
+    if (this.primitive instanceof XMLBox) {
+      XMLBox box = (XMLBox)this.primitive;
       this.param1.setText("" + box.loadXsize()); //$NON-NLS-1$
       this.param2.setText("" + box.loadYsize()); //$NON-NLS-1$
       this.param3.setText("" + box.loadZsize()); //$NON-NLS-1$
@@ -471,8 +470,8 @@ public class EditPrimitiveDialog {
       this.primLabel.setText("対象となるプリミティブ  :  box");
       this.color.setText(box.loadColor());
       this.colorCombo.getColorComboBox().setText(box.loadColor());
-    } else if (this.prim instanceof XMLCylinder) {
-      XMLCylinder cyl = (XMLCylinder)this.prim;
+    } else if (this.primitive instanceof XMLCylinder) {
+      XMLCylinder cyl = (XMLCylinder)this.primitive;
       this.param1.setText("" + cyl.loadR()); //$NON-NLS-1$
       this.param2.setText("" + cyl.loadHeight()); //$NON-NLS-1$
       this.param3.setText("" + cyl.loadDiv()); //$NON-NLS-1$
@@ -495,8 +494,8 @@ public class EditPrimitiveDialog {
       this.primLabel.setText("対象となるプリミティブ  :  cylinder");
       this.color.setText(cyl.loadColor());
       this.colorCombo.getColorComboBox().setText(cyl.loadColor());
-    } else if (this.prim instanceof XMLSphere) {
-      XMLSphere sph = (XMLSphere)this.prim;
+    } else if (this.primitive instanceof XMLSphere) {
+      XMLSphere sph = (XMLSphere)this.primitive;
       this.param1.setText("" + sph.loadR()); //$NON-NLS-1$
       this.param2.setText("" + sph.loadDiv()); //$NON-NLS-1$
       this.newParam1.setText("" + sph.loadR()); //$NON-NLS-1$
@@ -517,8 +516,8 @@ public class EditPrimitiveDialog {
       this.primLabel.setText("対象となるプリミティブ  :  sphere");
       this.color.setText(sph.loadColor());
       this.colorCombo.getColorComboBox().setText(sph.loadColor());
-    } else if (this.prim instanceof XMLCone) {
-      XMLCone cone = (XMLCone)this.prim;
+    } else if (this.primitive instanceof XMLCone) {
+      XMLCone cone = (XMLCone)this.primitive;
       this.param1.setText("" + cone.loadR()); //$NON-NLS-1$
       this.param2.setText("" + cone.loadHeight()); //$NON-NLS-1$
       this.param3.setText("" + cone.loadDiv()); //$NON-NLS-1$
@@ -541,7 +540,7 @@ public class EditPrimitiveDialog {
       this.primLabel.setText("対象となるプリミティブ  :  cone");
       this.color.setText(cone.loadColor());
       this.colorCombo.getColorComboBox().setText(cone.loadColor());
-    } else if (this.prim instanceof XMLConnector) {
+    } else if (this.primitive instanceof XMLConnector) {
       //
     }
   }

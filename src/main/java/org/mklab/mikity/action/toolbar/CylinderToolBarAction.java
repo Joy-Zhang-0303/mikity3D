@@ -26,8 +26,8 @@ public class CylinderToolBarAction extends Action {
   /**
    * コンストラクター
    * 
-   * @param window
-   * @param dc
+   * @param window ウィンドウ
+   * @param dc キャンセラー
    */
   public CylinderToolBarAction(final MainWindow window, CollisionCanceller dc) {
     super();

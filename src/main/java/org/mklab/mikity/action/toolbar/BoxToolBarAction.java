@@ -27,7 +27,7 @@ public class BoxToolBarAction extends Action {
   /**
    * 新しく生成された<code>BoxToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
-   * @param dc 
+   * @param dc キャンセラー
    */
   public BoxToolBarAction(final MainWindow window, CollisionCanceller dc) {
     super();

@@ -33,10 +33,10 @@ public class ParameterInputBox extends Composite {
   /**
    * ラベルとテキストを作る コンストラクター
    * 
-   * @param composite
-   * @param style keyをラベルに、valueをテキストボックスに
-   * @param key
-   * @param value
+   * @param composite コンポジット
+   * @param style スタイル
+   * @param key キー
+   * @param value 値
    */
   public ParameterInputBox(Composite composite, int style, String key, String value) {
     super(composite, style);
@@ -53,6 +53,9 @@ public class ParameterInputBox extends Composite {
     this.text.setText(value);
     this.text.addModifyListener(new ModifyListener() {
 
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void modifyText(ModifyEvent arg0) {
         ParameterInputBox.this.changed = true;
@@ -69,9 +72,9 @@ public class ParameterInputBox extends Composite {
   /**
    * ラベルとボタンを作る コンストラクター
    * 
-   * @param c
-   * @param lab
-   * @param but labをラベルに、butをボタンのテキストに
+   * @param c コンポジット
+   * @param lab ラベル
+   * @param but ボタンのラベル
    */
   public ParameterInputBox(Composite c, String lab, String but) {
     super(c, SWT.NONE);
@@ -91,9 +94,9 @@ public class ParameterInputBox extends Composite {
   /**
    * コンストラクター
    * 
-   * @param c
-   * @param style
-   * @param value
+   * @param c コンポジット
+   * @param style スタイル
+   * @param value 値 
    */
   public ParameterInputBox(Composite c, int style, int value) {
     super(c, SWT.RIGHT);
@@ -120,7 +123,7 @@ public class ParameterInputBox extends Composite {
   /**
    * テキストボックスの中の数字をセット
    * 
-   * @param value
+   * @param value 値
    */
   public void setDoubleValue(double value) {
     this.text.setText("" + value); //$NON-NLS-1$
@@ -147,7 +150,7 @@ public class ParameterInputBox extends Composite {
   /**
    * テキストボックスの文字をセット
    * 
-   * @param string
+   * @param string 文字列
    */
   public void setText(String string) {
     if (string == null) {
@@ -168,8 +171,8 @@ public class ParameterInputBox extends Composite {
   /**
    * ラベルの文字をセットする
    * 
-   * @param string
-   */
+   * @param string 文字列
+１１   */
   public void setLabelText(String string) {
     this.label.setText(string);
   }

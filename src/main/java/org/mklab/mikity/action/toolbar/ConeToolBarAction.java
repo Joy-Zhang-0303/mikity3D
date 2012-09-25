@@ -26,7 +26,7 @@ public class ConeToolBarAction extends Action {
   /**
    * 新しく生成された<code>ConeToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
-   * @param dc
+   * @param dc キャンセラー
    */
   public ConeToolBarAction(final MainWindow window, CollisionCanceller dc) {
     super();
