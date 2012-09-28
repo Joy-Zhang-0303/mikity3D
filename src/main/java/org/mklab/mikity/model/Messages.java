@@ -9,6 +9,10 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 
+/**
+ * @author koga
+ * @version $Revision$, 2012/09/28
+ */
 public class Messages {
 
   private static final String BUNDLE_NAME = "org.mklab.mikity.model.messages"; //$NON-NLS-1$
@@ -17,6 +21,11 @@ public class Messages {
 
   private Messages() {}
 
+  /**
+   * キーに対応する文字列を返します。
+   * @param key キー
+   * @return キーに対応する文字列
+   */
   public static String getString(String key) {
     try {
       return RESOURCE_BUNDLE.getString(key);
