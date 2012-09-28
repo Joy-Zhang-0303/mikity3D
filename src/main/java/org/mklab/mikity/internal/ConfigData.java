@@ -157,6 +157,8 @@ public class ConfigData {
       line = br.readLine();
 
     }
+    
+    br.close();
   }
 
   /**

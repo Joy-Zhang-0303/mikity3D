@@ -61,6 +61,7 @@ public class ColladaFileTransformer {
           this.note.add(line);
         }
       }
+      br.close();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
