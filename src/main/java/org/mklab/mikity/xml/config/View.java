@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: View.java,v 1.1 2007/08/03 03:30:27 morimune Exp $
- */
-
 package org.mklab.mikity.xml.config;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import javax.xml.bind.annotation.XmlAttribute;
 
@@ -20,14 +9,6 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
 public class View implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
 
   /**
@@ -96,91 +77,76 @@ public class View implements java.io.Serializable {
    */
   private boolean _has_z;
 
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
-
-  /**
-   * コンストラクター
-   */
-  public View() {
-    super();
-  } // -- org.mklab.mikity.xml.View()
-
-  // -----------/
-  // - Methods -/
-  // -----------/
-
   /**
    * Method deleteX
    */
   public void deleteX() {
     this._has_x = false;
-  } // -- void deleteX()
+  }
 
   /**
    * Method deleteXrotate
    */
   public void deleteXrotate() {
     this._has_xrotate = false;
-  } // -- void deleteXrotate()
+  }
 
   /**
    * Method deleteY
    */
   public void deleteY() {
     this._has_y = false;
-  } // -- void deleteY()
+  }
 
   /**
    * Method deleteYrotate
    */
   public void deleteYrotate() {
     this._has_yrotate = false;
-  } // -- void deleteYrotate()
+  }
 
   /**
    * Method deleteZ
    */
   public void deleteZ() {
     this._has_z = false;
-  } // -- void deleteZ()
+  }
 
   /**
    * Method deleteZrotate
    */
   public void deleteZrotate() {
     this._has_zrotate = false;
-  } // -- void deleteZrotate()
+  }
 
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
-   */
-  @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
-
-    if (obj instanceof View) {
-
-      View temp = (View)obj;
-      if (this._xrotate != temp._xrotate) return false;
-      if (this._has_xrotate != temp._has_xrotate) return false;
-      if (this._yrotate != temp._yrotate) return false;
-      if (this._has_yrotate != temp._has_yrotate) return false;
-      if (this._zrotate != temp._zrotate) return false;
-      if (this._has_zrotate != temp._has_zrotate) return false;
-      if (this._x != temp._x) return false;
-      if (this._has_x != temp._has_x) return false;
-      if (this._y != temp._y) return false;
-      if (this._has_y != temp._has_y) return false;
-      if (this._z != temp._z) return false;
-      if (this._has_z != temp._has_z) return false;
-      return true;
-    }
-    return false;
-  } // -- boolean equals(java.lang.Object)
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof View) {
+//
+//      View temp = (View)obj;
+//      if (this._xrotate != temp._xrotate) return false;
+//      if (this._has_xrotate != temp._has_xrotate) return false;
+//      if (this._yrotate != temp._yrotate) return false;
+//      if (this._has_yrotate != temp._has_yrotate) return false;
+//      if (this._zrotate != temp._zrotate) return false;
+//      if (this._has_zrotate != temp._has_zrotate) return false;
+//      if (this._x != temp._x) return false;
+//      if (this._has_x != temp._has_x) return false;
+//      if (this._y != temp._y) return false;
+//      if (this._has_y != temp._has_y) return false;
+//      if (this._z != temp._z) return false;
+//      if (this._has_z != temp._has_z) return false;
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
    * Returns the value of field 'x'.
@@ -189,7 +155,87 @@ public class View implements java.io.Serializable {
    */
   public float loadX() {
     return this._x;
-  } // -- float getX()
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + (this._has_x ? 1231 : 1237);
+    result = prime * result + (this._has_xrotate ? 1231 : 1237);
+    result = prime * result + (this._has_y ? 1231 : 1237);
+    result = prime * result + (this._has_yrotate ? 1231 : 1237);
+    result = prime * result + (this._has_z ? 1231 : 1237);
+    result = prime * result + (this._has_zrotate ? 1231 : 1237);
+    result = prime * result + Float.floatToIntBits(this._x);
+    long temp;
+    temp = Double.doubleToLongBits(this._xrotate);
+    result = prime * result + (int)(temp ^ (temp >>> 32));
+    result = prime * result + Float.floatToIntBits(this._y);
+    temp = Double.doubleToLongBits(this._yrotate);
+    result = prime * result + (int)(temp ^ (temp >>> 32));
+    result = prime * result + Float.floatToIntBits(this._z);
+    temp = Double.doubleToLongBits(this._zrotate);
+    result = prime * result + (int)(temp ^ (temp >>> 32));
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    View other = (View)obj;
+    if (this._has_x != other._has_x) {
+      return false;
+    }
+    if (this._has_xrotate != other._has_xrotate) {
+      return false;
+    }
+    if (this._has_y != other._has_y) {
+      return false;
+    }
+    if (this._has_yrotate != other._has_yrotate) {
+      return false;
+    }
+    if (this._has_z != other._has_z) {
+      return false;
+    }
+    if (this._has_zrotate != other._has_zrotate) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._x) != Float.floatToIntBits(other._x)) {
+      return false;
+    }
+    if (Double.doubleToLongBits(this._xrotate) != Double.doubleToLongBits(other._xrotate)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._y) != Float.floatToIntBits(other._y)) {
+      return false;
+    }
+    if (Double.doubleToLongBits(this._yrotate) != Double.doubleToLongBits(other._yrotate)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._z) != Float.floatToIntBits(other._z)) {
+      return false;
+    }
+    if (Double.doubleToLongBits(this._zrotate) != Double.doubleToLongBits(other._zrotate)) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Returns the value of field 'xrotate'.
@@ -198,7 +244,7 @@ public class View implements java.io.Serializable {
    */
   public double loadXrotate() {
     return this._xrotate;
-  } // -- double getXrotate()
+  }
 
   /**
    * Returns the value of field 'y'.
@@ -207,7 +253,7 @@ public class View implements java.io.Serializable {
    */
   public float loadY() {
     return this._y;
-  } // -- float getY()
+  }
 
   /**
    * Returns the value of field 'yrotate'.
@@ -216,7 +262,7 @@ public class View implements java.io.Serializable {
    */
   public double loadYrotate() {
     return this._yrotate;
-  } // -- double getYrotate()
+  }
 
   /**
    * Returns the value of field 'z'.
@@ -225,7 +271,7 @@ public class View implements java.io.Serializable {
    */
   public float loadZ() {
     return this._z;
-  } // -- float getZ()
+  }
 
   /**
    * Returns the value of field 'zrotate'.
@@ -234,7 +280,7 @@ public class View implements java.io.Serializable {
    */
   public double loadZrotate() {
     return this._zrotate;
-  } // -- double getZrotate()
+  }
 
   /**
    * Method hasX
@@ -243,7 +289,7 @@ public class View implements java.io.Serializable {
    */
   public boolean hasX() {
     return this._has_x;
-  } // -- boolean hasX()
+  }
 
   /**
    * Method hasXrotate
@@ -252,7 +298,7 @@ public class View implements java.io.Serializable {
    */
   public boolean hasXrotate() {
     return this._has_xrotate;
-  } // -- boolean hasXrotate()
+  }
 
   /**
    * Method hasY
@@ -261,7 +307,7 @@ public class View implements java.io.Serializable {
    */
   public boolean hasY() {
     return this._has_y;
-  } // -- boolean hasY()
+  }
 
   /**
    * Method hasYrotate
@@ -270,7 +316,7 @@ public class View implements java.io.Serializable {
    */
   public boolean hasYrotate() {
     return this._has_yrotate;
-  } // -- boolean hasYrotate()
+  }
 
   /**
    * Method hasZ
@@ -279,7 +325,7 @@ public class View implements java.io.Serializable {
    */
   public boolean hasZ() {
     return this._has_z;
-  } // -- boolean hasZ()
+  }
 
   /**
    * Method hasZrotate
@@ -288,7 +334,7 @@ public class View implements java.io.Serializable {
    */
   public boolean hasZrotate() {
     return this._has_zrotate;
-  } // -- boolean hasZrotate()
+  }
 
   /**
    * Sets the value of field 'x'.
@@ -298,7 +344,7 @@ public class View implements java.io.Serializable {
   public void setX(float x) {
     this._x = x;
     this._has_x = true;
-  } // -- void setX(float)
+  }
 
   /**
    * Sets the value of field 'xrotate'.
@@ -308,7 +354,7 @@ public class View implements java.io.Serializable {
   public void setXrotate(double xrotate) {
     this._xrotate = xrotate;
     this._has_xrotate = true;
-  } // -- void setXrotate(double)
+  }
 
   /**
    * Sets the value of field 'y'.
@@ -318,7 +364,7 @@ public class View implements java.io.Serializable {
   public void setY(float y) {
     this._y = y;
     this._has_y = true;
-  } // -- void setY(float)
+  }
 
   /**
    * Sets the value of field 'yrotate'.
@@ -328,7 +374,7 @@ public class View implements java.io.Serializable {
   public void setYrotate(double yrotate) {
     this._yrotate = yrotate;
     this._has_yrotate = true;
-  } // -- void setYrotate(double)
+  }
 
   /**
    * Sets the value of field 'z'.
@@ -338,7 +384,7 @@ public class View implements java.io.Serializable {
   public void setZ(float z) {
     this._z = z;
     this._has_z = true;
-  } // -- void setZ(float)
+  }
 
   /**
    * Sets the value of field 'zrotate'.
@@ -348,5 +394,5 @@ public class View implements java.io.Serializable {
   public void setZrotate(double zrotate) {
     this._zrotate = zrotate;
     this._has_zrotate = true;
-  } // -- void setZrotate(double)
+  }
 }

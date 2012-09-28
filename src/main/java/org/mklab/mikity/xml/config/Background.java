@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: Background.java,v 1.1 2007/08/03 03:30:27 morimune Exp $
- */
-
 package org.mklab.mikity.xml.config;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import javax.xml.bind.annotation.XmlAttribute;
 
@@ -20,56 +9,69 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
 public class Background implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
   /**
    * Field _color
    */
   @XmlAttribute
   private java.lang.String _color;
-
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
+  
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof Background) {
+//
+//      Background temp = (Background)obj;
+//      if (this._color != null) {
+//        if (temp._color == null) return false;
+//        else if (!(this._color.equals(temp._color))) return false;
+//      } else if (temp._color != null) return false;
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
-   * コンストラクター
-   */
-  public Background() {
-    super();
-  } // -- org.mklab.mikity.xml.Background()
-
-  // -----------/
-  // - Methods -/
-  // -----------/
-
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
+   * {@inheritDoc}
    */
   @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this._color == null) ? 0 : this._color.hashCode());
+    return result;
+  }
 
-    if (obj instanceof Background) {
-
-      Background temp = (Background)obj;
-      if (this._color != null) {
-        if (temp._color == null) return false;
-        else if (!(this._color.equals(temp._color))) return false;
-      } else if (temp._color != null) return false;
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
       return true;
     }
-    return false;
-  } // -- boolean equals(java.lang.Object)
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    Background other = (Background)obj;
+    if (this._color == null) {
+      if (other._color != null) {
+        return false;
+      }
+    } else if (!this._color.equals(other._color)) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Returns the value of field 'color'.
@@ -78,46 +80,7 @@ public class Background implements java.io.Serializable {
    */
   public java.lang.String loadColor() {
     return this._color;
-  } // -- java.lang.String getColor()
-
-  //  /**
-  //   * Method isValid
-  //   * 
-  //   * @return boolean
-  //   */
-  //  public boolean isValid() {
-  //    try {
-  //      validate();
-  //    } catch (org.exolab.castor.xml.ValidationException vex) {
-  //      return false;
-  //    }
-  //    return true;
-  //  } // -- boolean isValid()
-  //
-  //  /**
-  //   * Method marshal
-  //   * 
-  //   * @param out
-  //   * @throws org.exolab.castor.xml.MarshalException
-  //   * @throws org.exolab.castor.xml.ValidationException
-  //   */
-  //  public void marshal(java.io.Writer out) throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
-  //
-  //    Marshaller.marshal(this, out);
-  //  } // -- void marshal(java.io.Writer)
-
-  //  /**
-  //   * Method marshal
-  //   * 
-  //   * @param handler
-  //   * @throws java.io.IOException
-  //   * @throws org.exolab.castor.xml.MarshalException
-  //   * @throws org.exolab.castor.xml.ValidationException
-  //   */
-  //  public void marshal(org.xml.sax.ContentHandler handler) throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
-  //
-  //    Marshaller.marshal(this, handler);
-  //  } // -- void marshal(org.xml.sax.ContentHandler)
+  }
 
   /**
    * Sets the value of field 'color'.
@@ -126,28 +89,5 @@ public class Background implements java.io.Serializable {
    */
   public void setColor(java.lang.String color) {
     this._color = color;
-  } // -- void setColor(java.lang.String)
-
-  //  /**
-  //   * Method unmarshal
-  //   * 
-  //   * @param reader
-  //   * @return unmarshaller
-  //   * @throws org.exolab.castor.xml.MarshalException
-  //   * @throws org.exolab.castor.xml.ValidationException
-  //   */
-  //  public static java.lang.Object unmarshal(java.io.Reader reader) throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
-  //    return Unmarshaller.unmarshal(org.mklab.mikity.xml.config.Background.class, reader);
-  //  } // -- java.lang.Object unmarshal(java.io.Reader)
-  //
-  //  /**
-  //   * Method validate
-  //   * 
-  //   * @throws org.exolab.castor.xml.ValidationException
-  //   */
-  //  public void validate() throws org.exolab.castor.xml.ValidationException {
-  //    org.exolab.castor.xml.Validator validator = new org.exolab.castor.xml.Validator();
-  //    validator.validate(this);
-  //  } // -- void validate()
-
+  }
 }

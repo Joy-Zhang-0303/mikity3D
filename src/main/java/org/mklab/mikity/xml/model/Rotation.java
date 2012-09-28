@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: Rotation.java,v 1.1 2007/08/03 03:30:27 morimune Exp $
- */
-
 package org.mklab.mikity.xml.model;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import javax.xml.bind.annotation.XmlAttribute;
 
@@ -20,14 +9,6 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
 public class Rotation implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-	 * 
-	 */
   private static final long serialVersionUID = 1L;
 
   /**
@@ -62,17 +43,13 @@ public class Rotation implements java.io.Serializable {
    * keeps track of state for field: _zrotate
    */
   private boolean _has_zrotate;
-
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
-
+   
   /**
-   * コンストラクター
+   * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
    */
   public Rotation() {
     super();
-  } // -- org.mklab.mikity.xml.Rotation()
+  }
 
   /**
    * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
@@ -86,55 +63,51 @@ public class Rotation implements java.io.Serializable {
     this._xrotate = x;
     this._yrotate = y;
     this._zrotate = z;
-  } // -- org.mklab.mikity.xml.Rotation()
-
-  // -----------/
-  // - Methods -/
-  // -----------/
+  }
 
   /**
    * Method deleteXrotate
    */
   public void deleteXrotate() {
     this._has_xrotate = false;
-  } // -- void deleteXrotate()
+  }
 
   /**
    * Method deleteYrotate
    */
   public void deleteYrotate() {
     this._has_yrotate = false;
-  } // -- void deleteYrotate()
+  }
 
   /**
    * Method deleteZrotate
    */
   public void deleteZrotate() {
     this._has_zrotate = false;
-  } // -- void deleteZrotate()
+  }
 
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
-   */
-  @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
-
-    if (obj instanceof Rotation) {
-
-      Rotation temp = (Rotation)obj;
-      if (this._xrotate != temp._xrotate) return false;
-      if (this._has_xrotate != temp._has_xrotate) return false;
-      if (this._yrotate != temp._yrotate) return false;
-      if (this._has_yrotate != temp._has_yrotate) return false;
-      if (this._zrotate != temp._zrotate) return false;
-      if (this._has_zrotate != temp._has_zrotate) return false;
-      return true;
-    }
-    return false;
-  } // -- boolean equals(java.lang.Object)
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof Rotation) {
+//
+//      Rotation temp = (Rotation)obj;
+//      if (this._xrotate != temp._xrotate) return false;
+//      if (this._has_xrotate != temp._has_xrotate) return false;
+//      if (this._yrotate != temp._yrotate) return false;
+//      if (this._has_yrotate != temp._has_yrotate) return false;
+//      if (this._zrotate != temp._zrotate) return false;
+//      if (this._has_zrotate != temp._has_zrotate) return false;
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
    * Returns the value of field 'xrotate'.
@@ -143,7 +116,59 @@ public class Rotation implements java.io.Serializable {
    */
   public float loadXrotate() {
     return this._xrotate;
-  } // -- float getXrotate()
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + (this._has_xrotate ? 1231 : 1237);
+    result = prime * result + (this._has_yrotate ? 1231 : 1237);
+    result = prime * result + (this._has_zrotate ? 1231 : 1237);
+    result = prime * result + Float.floatToIntBits(this._xrotate);
+    result = prime * result + Float.floatToIntBits(this._yrotate);
+    result = prime * result + Float.floatToIntBits(this._zrotate);
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    Rotation other = (Rotation)obj;
+    if (this._has_xrotate != other._has_xrotate) {
+      return false;
+    }
+    if (this._has_yrotate != other._has_yrotate) {
+      return false;
+    }
+    if (this._has_zrotate != other._has_zrotate) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._xrotate) != Float.floatToIntBits(other._xrotate)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._yrotate) != Float.floatToIntBits(other._yrotate)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._zrotate) != Float.floatToIntBits(other._zrotate)) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Returns the value of field 'yrotate'.
@@ -152,7 +177,7 @@ public class Rotation implements java.io.Serializable {
    */
   public float loadYrotate() {
     return this._yrotate;
-  } // -- float getYrotate()
+  }
 
   /**
    * Returns the value of field 'zrotate'.
@@ -161,7 +186,7 @@ public class Rotation implements java.io.Serializable {
    */
   public float loadZrotate() {
     return this._zrotate;
-  } // -- float getZrotate()
+  }
 
   /**
    * Method hasXrotate
@@ -170,7 +195,7 @@ public class Rotation implements java.io.Serializable {
    */
   public boolean hasXrotate() {
     return this._has_xrotate;
-  } // -- boolean hasXrotate()
+  }
 
   /**
    * Method hasYrotate
@@ -179,7 +204,7 @@ public class Rotation implements java.io.Serializable {
    */
   public boolean hasYrotate() {
     return this._has_yrotate;
-  } // -- boolean hasYrotate()
+  }
 
   /**
    * Method hasZrotate
@@ -188,7 +213,7 @@ public class Rotation implements java.io.Serializable {
    */
   public boolean hasZrotate() {
     return this._has_zrotate;
-  } // -- boolean hasZrotate()
+  }
 
   /**
    * Sets the value of field 'xrotate'.
@@ -198,7 +223,7 @@ public class Rotation implements java.io.Serializable {
   public void setXrotate(float xrotate) {
     this._xrotate = xrotate;
     this._has_xrotate = true;
-  } // -- void setXrotate(float)
+  }
 
   /**
    * Sets the value of field 'yrotate'.
@@ -208,7 +233,7 @@ public class Rotation implements java.io.Serializable {
   public void setYrotate(float yrotate) {
     this._yrotate = yrotate;
     this._has_yrotate = true;
-  } // -- void setYrotate(float)
+  }
 
   /**
    * Sets the value of field 'zrotate'.
@@ -218,5 +243,5 @@ public class Rotation implements java.io.Serializable {
   public void setZrotate(float zrotate) {
     this._zrotate = zrotate;
     this._has_zrotate = true;
-  } // -- void setZrotate(float)
+  }
 }

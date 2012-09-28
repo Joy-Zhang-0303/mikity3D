@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: Light.java,v 1.1 2007/08/03 03:30:27 morimune Exp $
- */
-
 package org.mklab.mikity.xml.config;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import javax.xml.bind.annotation.XmlAttribute;
 
@@ -20,14 +9,6 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
 public class Light implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
 
   /**
@@ -63,64 +44,49 @@ public class Light implements java.io.Serializable {
    */
   private boolean _has_z;
 
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
-
-  /**
-   * コンストラクター
-   */
-  public Light() {
-    super();
-  } // -- org.mklab.mikity.xml.Light()
-
-  // -----------/
-  // - Methods -/
-  // -----------/
-
   /**
    * Method deleteX
    */
   public void deleteX() {
     this._has_x = false;
-  } // -- void deleteX()
+  }
 
   /**
    * Method deleteY
    */
   public void deleteY() {
     this._has_y = false;
-  } // -- void deleteY()
+  }
 
   /**
    * Method deleteZ
    */
   public void deleteZ() {
     this._has_z = false;
-  } // -- void deleteZ()
+  }
 
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
-   */
-  @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
-
-    if (obj instanceof Light) {
-
-      Light temp = (Light)obj;
-      if (this._x != temp._x) return false;
-      if (this._has_x != temp._has_x) return false;
-      if (this._y != temp._y) return false;
-      if (this._has_y != temp._has_y) return false;
-      if (this._z != temp._z) return false;
-      if (this._has_z != temp._has_z) return false;
-      return true;
-    }
-    return false;
-  } // -- boolean equals(java.lang.Object)
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof Light) {
+//
+//      Light temp = (Light)obj;
+//      if (this._x != temp._x) return false;
+//      if (this._has_x != temp._has_x) return false;
+//      if (this._y != temp._y) return false;
+//      if (this._has_y != temp._has_y) return false;
+//      if (this._z != temp._z) return false;
+//      if (this._has_z != temp._has_z) return false;
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
    * Returns the value of field 'x'.
@@ -129,7 +95,59 @@ public class Light implements java.io.Serializable {
    */
   public float loadX() {
     return this._x;
-  } // -- float getX()
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + (this._has_x ? 1231 : 1237);
+    result = prime * result + (this._has_y ? 1231 : 1237);
+    result = prime * result + (this._has_z ? 1231 : 1237);
+    result = prime * result + Float.floatToIntBits(this._x);
+    result = prime * result + Float.floatToIntBits(this._y);
+    result = prime * result + Float.floatToIntBits(this._z);
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    Light other = (Light)obj;
+    if (this._has_x != other._has_x) {
+      return false;
+    }
+    if (this._has_y != other._has_y) {
+      return false;
+    }
+    if (this._has_z != other._has_z) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._x) != Float.floatToIntBits(other._x)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._y) != Float.floatToIntBits(other._y)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._z) != Float.floatToIntBits(other._z)) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Returns the value of field 'y'.
@@ -138,7 +156,7 @@ public class Light implements java.io.Serializable {
    */
   public float loadY() {
     return this._y;
-  } // -- float getY()
+  }
 
   /**
    * Returns the value of field 'z'.
@@ -147,7 +165,7 @@ public class Light implements java.io.Serializable {
    */
   public float loadZ() {
     return this._z;
-  } // -- float getZ()
+  }
 
   /**
    * Method hasX
@@ -156,7 +174,7 @@ public class Light implements java.io.Serializable {
    */
   public boolean hasX() {
     return this._has_x;
-  } // -- boolean hasX()
+  }
 
   /**
    * Method hasY
@@ -165,7 +183,7 @@ public class Light implements java.io.Serializable {
    */
   public boolean hasY() {
     return this._has_y;
-  } // -- boolean hasY()
+  }
 
   /**
    * Method hasZ
@@ -174,7 +192,7 @@ public class Light implements java.io.Serializable {
    */
   public boolean hasZ() {
     return this._has_z;
-  } // -- boolean hasZ()
+  }
 
   /**
    * Sets the value of field 'x'.
@@ -184,7 +202,7 @@ public class Light implements java.io.Serializable {
   public void setX(float x) {
     this._x = x;
     this._has_x = true;
-  } // -- void setX(float)
+  }
 
   /**
    * Sets the value of field 'y'.
@@ -194,7 +212,7 @@ public class Light implements java.io.Serializable {
   public void setY(float y) {
     this._y = y;
     this._has_y = true;
-  } // -- void setY(float)
+  }
 
   /**
    * Sets the value of field 'z'.
@@ -204,6 +222,5 @@ public class Light implements java.io.Serializable {
   public void setZ(float z) {
     this._z = z;
     this._has_z = true;
-  } // -- void setZ(float)
-
+  }
 }

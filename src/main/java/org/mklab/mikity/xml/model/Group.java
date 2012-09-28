@@ -23,14 +23,6 @@ import javax.xml.bind.annotation.XmlElement;
  * @version $Revision: 1.4 $ $Date: 2007/12/13 10:01:55 $
  */
 public class Group implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-	 * 
-	 */
   private static final long serialVersionUID = 1L;
 
   /**
@@ -105,10 +97,6 @@ public class Group implements java.io.Serializable {
   @XmlElement
   private java.util.ArrayList<Group> _groupList;
 
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
-
   /**
    * コンストラクター
    */
@@ -127,10 +115,6 @@ public class Group implements java.io.Serializable {
     this._location = new Location();
     this._rotation = new Rotation();
   } 
-
-  // -----------/
-  // - Methods -/
-  // -----------/
 
   /**
    * Method addGroup

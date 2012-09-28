@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: DataUnit.java,v 1.1 2007/08/03 03:30:28 morimune Exp $
- */
-
 package org.mklab.mikity.xml.config;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import javax.xml.bind.annotation.XmlAttribute;
 
@@ -20,14 +9,6 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:28 $
  */
 public class DataUnit implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
 
   /**
@@ -42,45 +23,30 @@ public class DataUnit implements java.io.Serializable {
   @XmlAttribute
   private java.lang.String _length;
 
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
-
-  /**
-   * コンストラクター
-   */
-  public DataUnit() {
-    super();
-  } // -- org.mklab.mikity.xml.DataUnit()
-
-  // -----------/
-  // - Methods -/
-  // -----------/
-
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
-   */
-  @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
-
-    if (obj instanceof DataUnit) {
-
-      DataUnit temp = (DataUnit)obj;
-      if (this._angle != null) {
-        if (temp._angle == null) return false;
-        else if (!(this._angle.equals(temp._angle))) return false;
-      } else if (temp._angle != null) return false;
-      if (this._length != null) {
-        if (temp._length == null) return false;
-        else if (!(this._length.equals(temp._length))) return false;
-      } else if (temp._length != null) return false;
-      return true;
-    }
-    return false;
-  } // -- boolean equals(java.lang.Object)
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof DataUnit) {
+//
+//      DataUnit temp = (DataUnit)obj;
+//      if (this._angle != null) {
+//        if (temp._angle == null) return false;
+//        else if (!(this._angle.equals(temp._angle))) return false;
+//      } else if (temp._angle != null) return false;
+//      if (this._length != null) {
+//        if (temp._length == null) return false;
+//        else if (!(this._length.equals(temp._length))) return false;
+//      } else if (temp._length != null) return false;
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
    * Returns the value of field 'angle'.
@@ -89,7 +55,51 @@ public class DataUnit implements java.io.Serializable {
    */
   public java.lang.String loadAngle() {
     return this._angle;
-  } // -- java.lang.String getAngle()
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this._angle == null) ? 0 : this._angle.hashCode());
+    result = prime * result + ((this._length == null) ? 0 : this._length.hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    DataUnit other = (DataUnit)obj;
+    if (this._angle == null) {
+      if (other._angle != null) {
+        return false;
+      }
+    } else if (!this._angle.equals(other._angle)) {
+      return false;
+    }
+    if (this._length == null) {
+      if (other._length != null) {
+        return false;
+      }
+    } else if (!this._length.equals(other._length)) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Returns the value of field 'length'.
@@ -98,7 +108,7 @@ public class DataUnit implements java.io.Serializable {
    */
   public java.lang.String loadLength() {
     return this._length;
-  } // -- java.lang.String getLength()
+  }
 
   /**
    * Sets the value of field 'angle'.
@@ -107,7 +117,7 @@ public class DataUnit implements java.io.Serializable {
    */
   public void setAngle(java.lang.String angle) {
     this._angle = angle;
-  } // -- void setAngle(java.lang.String)
+  }
 
   /**
    * Sets the value of field 'length'.
@@ -116,6 +126,5 @@ public class DataUnit implements java.io.Serializable {
    */
   public void setLength(java.lang.String length) {
     this._length = length;
-  } // -- void setLength(java.lang.String)
-
+  }
 }

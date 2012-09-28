@@ -80,6 +80,8 @@ public class ConnectNewRotation {
         case 6:
           setRotN5();
           break;
+        default:
+          throw new IllegalArgumentException();
       }
     } else if (s == 2) {
       switch (n) {
@@ -101,6 +103,8 @@ public class ConnectNewRotation {
         case 6:
           setRotN6();
           break;
+        default:
+          throw new IllegalArgumentException();
       }
     } else if (s == 3) {
       switch (n) {
@@ -122,6 +126,8 @@ public class ConnectNewRotation {
         case 6:
           setRotN3();
           break;
+        default:
+          throw new IllegalArgumentException();
       }
     } else if (s == 4) {
       switch (n) {
@@ -143,6 +149,8 @@ public class ConnectNewRotation {
         case 6:
           setRotN4();
           break;
+        default:
+          throw new IllegalArgumentException();
       }
     } else if (s == 5) {
       switch (n) {
@@ -164,6 +172,8 @@ public class ConnectNewRotation {
         case 6:
           setRotN1();
           break;
+        default:
+          throw new IllegalArgumentException();
       }
     } else if (s == 6) {
       switch (n) {
@@ -185,6 +195,8 @@ public class ConnectNewRotation {
         case 6:
           setRotN2();
           break;
+        default:
+          throw new IllegalArgumentException();
       }
     } else {
       // TODO
