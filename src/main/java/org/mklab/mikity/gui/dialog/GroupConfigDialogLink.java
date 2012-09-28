@@ -70,13 +70,13 @@ public class GroupConfigDialogLink {
     GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 375));
-    this.sShell.setText("Groupパラメータの編集");
+    this.sShell.setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
     // groupName = new ParameterInputBox(sShell, SWT.NONE, "Group名",
     // group.getName());
-    this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, "Group名", "root");
+    this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    System.out.println("group : " + this.group);
+    System.out.println("group : " + this.group); //$NON-NLS-1$
     if (this.group.loadName() != null) {
       this.groupName.setText(this.group.loadName());
     }
@@ -84,7 +84,7 @@ public class GroupConfigDialogLink {
 
     Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    okButton.setText("変更を保存");
+    okButton.setText(Messages.getString("GroupConfigDialogLink.4")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -93,8 +93,8 @@ public class GroupConfigDialogLink {
 
         if (Check()) {
           MessageBox mesBox = new MessageBox(GroupConfigDialogLink.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          mesBox.setMessage("変更します");
-          mesBox.setText("確認");
+          mesBox.setMessage(Messages.getString("GroupConfigDialogLink.5")); //$NON-NLS-1$
+          mesBox.setText(Messages.getString("GroupConfigDialogLink.6")); //$NON-NLS-1$
           int result = mesBox.open();
           if (result == SWT.YES) {
             GroupConfigDialogLink.this.group.setName(GroupConfigDialogLink.this.groupName.getText());
@@ -109,15 +109,15 @@ public class GroupConfigDialogLink {
           }
         } else {
           MessageBox mgb = new MessageBox(GroupConfigDialogLink.this.sShell, SWT.ICON_WARNING);
-          mgb.setMessage("パラメータ数字以外が入っています。\n 入力しなおして下さい。");
-          mgb.setText("Warning!!");
+          mgb.setMessage(Messages.getString("GroupConfigDialogLink.7")); //$NON-NLS-1$
+          mgb.setText(Messages.getString("GroupConfigDialogLink.8")); //$NON-NLS-1$
         }
       }
     });
 
     Button cancelButton = new Button(this.sShell, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    cancelButton.setText("キャンセル");
+    cancelButton.setText(Messages.getString("GroupConfigDialogLink.9")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -131,7 +131,7 @@ public class GroupConfigDialogLink {
     createStatusBar();
 
     if (this.editable == false) {
-      setStatus("このグループはルートなので値を指定できません");
+      setStatus(Messages.getString("GroupConfigDialogLink.10")); //$NON-NLS-1$
     }
   }
 
@@ -171,26 +171,26 @@ public class GroupConfigDialogLink {
     GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.horizontalSpan = 2;
     layout.numColumns = 3;
-    paramGroup.setText("リンク間パラメータ");
+    paramGroup.setText(Messages.getString("GroupConfigDialogLink.11")); //$NON-NLS-1$
     paramGroup.setLayout(layout);
     paramGroup.setLayoutData(data);
 
     GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 40;
     Label label1 = new Label(paramGroup, SWT.RIGHT);
-    label1.setText("パラメータ");
+    label1.setText(Messages.getString("GroupConfigDialogLink.12")); //$NON-NLS-1$
     label1.setLayoutData(gridData1);
 
     GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
     gridData2.widthHint = 65;
     Label label2 = new Label(paramGroup, SWT.RIGHT);
-    label2.setText("初期値");
+    label2.setText(Messages.getString("GroupConfigDialogLink.13")); //$NON-NLS-1$
     label2.setLayoutData(gridData2);
 
     GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
     gridData3.widthHint = 65;
     Label label3 = new Label(paramGroup, SWT.RIGHT);
-    label3.setText("読み取る列");
+    label3.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
     label3.setLayoutData(gridData3);
 
     this.locX = new ParameterInputBox(paramGroup, style, "locationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -231,7 +231,7 @@ public class GroupConfigDialogLink {
    * @param message メッセージ
    */
   public void setStatus(String message) {
-    this.statusLabel.setText("ステータス: " + message);
+    this.statusLabel.setText(Messages.getString("GroupConfigDialogLink.15") + message); //$NON-NLS-1$
   }
 
   /**

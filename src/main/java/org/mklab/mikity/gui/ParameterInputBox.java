@@ -154,7 +154,7 @@ public class ParameterInputBox extends Composite {
    */
   public void setText(String string) {
     if (string == null) {
-      this.text.setText("0.0です");
+      this.text.setText(Messages.getString("ParameterInputBox.0")); //$NON-NLS-1$
     }
     this.text.setText(string);
   }

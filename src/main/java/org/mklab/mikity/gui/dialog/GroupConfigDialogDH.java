@@ -76,11 +76,11 @@ public class GroupConfigDialogDH {
     GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 350));
-    this.sShell.setText("Groupパラメータの編集");
+    this.sShell.setText(Messages.getString("GroupConfigDialogDH.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
     // groupName = new ParameterInputBox(sShell, SWT.NONE, "Group名",
     // group.getName());
-    this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, "Group名", "root"); //$NON-NLS-2$
+    this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("GroupConfigDialogDH.1"), "root");  //$NON-NLS-1$//$NON-NLS-2$
 
     System.out.println("group : " + this.group); //$NON-NLS-1$
     if (this.group.loadName() != null) {
@@ -90,7 +90,7 @@ public class GroupConfigDialogDH {
 
     Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    okButton.setText("変更を保存");
+    okButton.setText(Messages.getString("GroupConfigDialogDH.2")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -99,8 +99,8 @@ public class GroupConfigDialogDH {
 
         if (Check()) {
           MessageBox mesBox = new MessageBox(GroupConfigDialogDH.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          mesBox.setMessage("変更します");
-          mesBox.setText("確認");
+          mesBox.setMessage(Messages.getString("GroupConfigDialogDH.3")); //$NON-NLS-1$
+          mesBox.setText(Messages.getString("GroupConfigDialogDH.4")); //$NON-NLS-1$
           int result = mesBox.open();
           if (result == SWT.YES) {
             GroupConfigDialogDH.this.group.setName(GroupConfigDialogDH.this.groupName.getText());
@@ -113,15 +113,15 @@ public class GroupConfigDialogDH {
           }
         } else {
           MessageBox mgb = new MessageBox(GroupConfigDialogDH.this.sShell, SWT.ICON_WARNING);
-          mgb.setMessage("パラメータ数字以外が入っています。\n 入力しなおして下さい。");
-          mgb.setText("Warning!!");
+          mgb.setMessage(Messages.getString("GroupConfigDialogDH.5")); //$NON-NLS-1$
+          mgb.setText(Messages.getString("GroupConfigDialogDH.6")); //$NON-NLS-1$
         }
       }
     });
 
     Button cancelButton = new Button(this.sShell, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    cancelButton.setText("キャンセル");
+    cancelButton.setText(Messages.getString("GroupConfigDialogDH.7")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -135,7 +135,7 @@ public class GroupConfigDialogDH {
     createStatusBar();
 
     if (this.editable == false) {
-      setStatus("このグループはルートなので値を指定できません");
+      setStatus(Messages.getString("GroupConfigDialogDH.8")); //$NON-NLS-1$
     }
   }
 
@@ -175,26 +175,26 @@ public class GroupConfigDialogDH {
     GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.horizontalSpan = 2;
     layout.numColumns = 3;
-    paramGroup.setText("DHParameter");
+    paramGroup.setText("DHParameter"); //$NON-NLS-1$
     paramGroup.setLayout(layout);
     paramGroup.setLayoutData(data);
 
     GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 40;
     Label label1 = new Label(paramGroup, SWT.RIGHT);
-    label1.setText("パラメータ");
+    label1.setText(Messages.getString("GroupConfigDialogDH.10")); //$NON-NLS-1$
     label1.setLayoutData(gridData1);
 
     GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
     gridData2.widthHint = 65;
     Label label2 = new Label(paramGroup, SWT.RIGHT);
-    label2.setText("初期値");
+    label2.setText(Messages.getString("GroupConfigDialogDH.11")); //$NON-NLS-1$
     label2.setLayoutData(gridData2);
 
     GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
     gridData3.widthHint = 65;
     Label label3 = new Label(paramGroup, SWT.RIGHT);
-    label3.setText("読み取る列");
+    label3.setText(Messages.getString("GroupConfigDialogDH.12")); //$NON-NLS-1$
     label3.setLayoutData(gridData3);
 
     this.a = new ParameterInputBox(paramGroup, style, "a", "0"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -229,7 +229,7 @@ public class GroupConfigDialogDH {
    * @param message メッセージ
    */
   public void setStatus(String message) {
-    this.statusLabel.setText("ステータス: " + message);
+    this.statusLabel.setText(Messages.getString("GroupConfigDialogDH.13") + message); //$NON-NLS-1$
   }
 
   /**

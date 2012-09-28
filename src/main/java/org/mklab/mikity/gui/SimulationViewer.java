@@ -28,7 +28,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.java3d.Java3dModelCanvas;
-import org.mklab.mikity.jogl.JoglModelCanvas;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
@@ -226,7 +225,7 @@ public class SimulationViewer extends ApplicationWindow {
     GridLayout speedLayout = new GridLayout();
     speedLayout.numColumns = 2;
     speedComp.setLayout(speedLayout);
-    this.playSpeed = new ParameterInputBox(speedComp, SWT.NONE, "再生速度", "1.0");
+    this.playSpeed = new ParameterInputBox(speedComp, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     createTimeBar(otherController);
 
@@ -339,7 +338,7 @@ public class SimulationViewer extends ApplicationWindow {
     comp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
     final Label label = new Label(comp, SWT.NONE);
-    label.setText("ファイル");
+    label.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
 
     this.filePathText = new Text(comp, SWT.BORDER);
     this.filePathText.setText(""); //$NON-NLS-1$
@@ -358,7 +357,7 @@ public class SimulationViewer extends ApplicationWindow {
     this.filePathText.setLayoutData(gridData);
 
     final Button refButton = new Button(comp, SWT.BORDER);
-    refButton.setText("参照");
+    refButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
 
     refButton.addSelectionListener(new SelectionAdapter() {
 
@@ -403,7 +402,9 @@ public class SimulationViewer extends ApplicationWindow {
    */
   public void setTimeData(final File file) {
     try {
-      this.data = MatxMatrix.readMatFormat(new FileInputStream(file));
+      FileInputStream input = new FileInputStream(file);
+      this.data = MatxMatrix.readMatFormat(input);
+      input.close();
 
       this.timeSlider.setEnabled(true);
       this.manager.setData(this.data);
@@ -468,8 +469,8 @@ public class SimulationViewer extends ApplicationWindow {
       this.timer.cancel();
     }
     if (this.data == null || this.timeTable == null) {
-      MsgUtil.showMsg(getShell(), "再生ボタンが押されましたが、データは無いので終了します");
-      System.out.println("再生ボタンが押されましたが、データは無いので終了します");
+      MsgUtil.showMsg(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
+      System.out.println(Messages.getString("SimulationViewer.5")); //$NON-NLS-1$
       return;
     }
     playable = false;

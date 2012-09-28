@@ -94,13 +94,13 @@ public class ConfigDialog {
     this.editGroup.setLayout(layout);
     GridData data = new GridData(GridData.FILL_BOTH);
     this.editGroup.setLayoutData(data);
-    this.editGroup.setText("Configの編集");
+    this.editGroup.setText(Messages.getString("ConfigDialog.0")); //$NON-NLS-1$
 
     // 取り扱うデータの単位の設定を行うグループ
     Group unitGroup = new Group(this.editGroup, SWT.NONE);
     GridLayout unitLayout = new GridLayout();
     unitLayout.numColumns = 4;
-    unitGroup.setText("単位設定");
+    unitGroup.setText(Messages.getString("ConfigDialog.1")); //$NON-NLS-1$
     GridData unitData = new GridData(GridData.FILL_HORIZONTAL);
     unitData.horizontalSpan = 2;
     unitGroup.setLayoutData(unitData);
@@ -110,35 +110,35 @@ public class ConfigDialog {
     Label modelUnitLabel = new Label(unitGroup, SWT.NONE);
     GridData modelData = new GridData(GridData.FILL_HORIZONTAL);
     modelData.horizontalSpan = 4;
-    modelUnitLabel.setText("・モデルの単位");
+    modelUnitLabel.setText(Messages.getString("ConfigDialog.2")); //$NON-NLS-1$
     modelUnitLabel.setLayoutData(modelData);
 
     Label modelAngleLabel = new Label(unitGroup, SWT.NONE);
-    modelAngleLabel.setText(" 角度の単位");
+    modelAngleLabel.setText(Messages.getString("ConfigDialog.3")); //$NON-NLS-1$
     createModelAngleUnitCombo(unitGroup);
 
     Label modelLengthLabel = new Label(unitGroup, SWT.NONE);
-    modelLengthLabel.setText(" 長さの単位");
+    modelLengthLabel.setText(Messages.getString("ConfigDialog.4")); //$NON-NLS-1$
     createModelLengthUnitCombo(unitGroup);
 
     // 時系列データの単位
     Label dataUnitLabel = new Label(unitGroup, SWT.NONE);
     GridData dataData = new GridData(GridData.FILL_HORIZONTAL);
     dataData.horizontalSpan = 4;
-    dataUnitLabel.setText("・時系列データの単位");
+    dataUnitLabel.setText(Messages.getString("ConfigDialog.5")); //$NON-NLS-1$
     dataUnitLabel.setLayoutData(dataData);
 
     Label dataAngleLabel = new Label(unitGroup, SWT.NONE);
-    dataAngleLabel.setText(" 角度の単位");
+    dataAngleLabel.setText(Messages.getString("ConfigDialog.6")); //$NON-NLS-1$
     createDataAngleUnitCombo(unitGroup);
 
     Label dataLengthLabel = new Label(unitGroup, SWT.NONE);
-    dataLengthLabel.setText(" 長さの単位");
+    dataLengthLabel.setText(Messages.getString("ConfigDialog.7")); //$NON-NLS-1$
     createDataLengthUnitCombo(unitGroup);
 
     // 光源の位置の指定
     Group lightPointGroup = new Group(this.editGroup, SWT.NONE);
-    lightPointGroup.setText("光源の位置の指定");
+    lightPointGroup.setText(Messages.getString("ConfigDialog.8")); //$NON-NLS-1$
 
     GridData lightData = new GridData(GridData.FILL_HORIZONTAL);
     lightData.horizontalSpan = 2;
@@ -147,7 +147,7 @@ public class ConfigDialog {
     lightPointGroup.setLayoutData(lightData);
 
     Label lKakko = new Label(lightPointGroup, SWT.NONE);
-    lKakko.setText("・平行移動：(x,y,z)で指定してください。");
+    lKakko.setText(Messages.getString("ConfigDialog.9")); //$NON-NLS-1$
     GridData xData = new GridData(GridData.FILL_HORIZONTAL);
     xData.horizontalSpan = 7;
     lKakko.setLayoutData(xData);
@@ -164,7 +164,7 @@ public class ConfigDialog {
 
     // 視点の位置の指定
     Group viewPointGroup = new Group(this.editGroup, SWT.NONE);
-    viewPointGroup.setText("視点の位置の指定");
+    viewPointGroup.setText(Messages.getString("ConfigDialog.10")); //$NON-NLS-1$
 
     GridData viewData = new GridData(GridData.FILL_HORIZONTAL);
     viewData.horizontalSpan = 2;
@@ -173,7 +173,7 @@ public class ConfigDialog {
     viewPointGroup.setLayoutData(viewData);
 
     Label vRollLabel = new Label(viewPointGroup, SWT.NONE);
-    vRollLabel.setText("・視点の向き ：(x,y,z)で回転角度を指定してください。[°]");
+    vRollLabel.setText(Messages.getString("ConfigDialog.11")); //$NON-NLS-1$
     GridData vRollData = new GridData(GridData.FILL_HORIZONTAL);
     vRollData.horizontalSpan = 7;
     vRollLabel.setLayoutData(vRollData);
@@ -188,7 +188,7 @@ public class ConfigDialog {
     vKakko2.setText(")"); //$NON-NLS-1$
 
     Label vLabel = new Label(viewPointGroup, SWT.NONE);
-    vLabel.setText("・平行移動：(x,y,z)で指定してください。");
+    vLabel.setText(Messages.getString("ConfigDialog.12")); //$NON-NLS-1$
     GridData vData = new GridData(GridData.FILL_HORIZONTAL);
     vData.horizontalSpan = 7;
     vLabel.setLayoutData(vData);
@@ -204,7 +204,7 @@ public class ConfigDialog {
 
     // 背景色の選択
     Label setColorLabel = new Label(this.editGroup, SWT.NONE);
-    setColorLabel.setText("・背景色を選択");
+    setColorLabel.setText(Messages.getString("ConfigDialog.13")); //$NON-NLS-1$
     createColorCombo();
 
     getParameter();
@@ -258,8 +258,8 @@ public class ConfigDialog {
    */
   void createMesBox() {
     MessageBox mesBox = new MessageBox(this.sShell, SWT.ICON_WARNING);
-    mesBox.setMessage("数字以外が入力されてます。入力しなおしてください。");
-    mesBox.setText("WARNING!!");
+    mesBox.setMessage(Messages.getString("ConfigDialog.14")); //$NON-NLS-1$
+    mesBox.setText(Messages.getString("ConfigDialog.15")); //$NON-NLS-1$
     mesBox.open();
   }
 
@@ -275,11 +275,11 @@ public class ConfigDialog {
 
     Button okButton = new Button(comp, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    okButton.setText("変更して終了");
+    okButton.setText(Messages.getString("ConfigDialog.16")); //$NON-NLS-1$
 
     Button cancelButton = new Button(comp, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    cancelButton.setText("キャンセル");
+    cancelButton.setText(Messages.getString("ConfigDialog.17")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 

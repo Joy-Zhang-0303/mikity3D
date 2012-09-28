@@ -156,7 +156,7 @@ public class DragAndDropEnabler {
         sourceGroup.removeGroup((Group)obj);
         group.addGroup((Group)obj);
       } else {
-        throw new RuntimeException("何変なデータ入れてんのよ！");
+        throw new RuntimeException(Messages.getString("DragAndDropEnabler.0")); //$NON-NLS-1$
       }
       TreeItem newItem = new TreeItem(targetItem, SWT.NONE);
       newItem.setText(DragAndDropEnabler.this.dragItem.getText());

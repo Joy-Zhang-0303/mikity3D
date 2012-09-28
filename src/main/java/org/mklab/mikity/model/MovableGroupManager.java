@@ -142,7 +142,7 @@ public class MovableGroupManager {
           } else if (target.equals("theta")) { //$NON-NLS-1$
             setType = DHParameter.THETA;
           } else {
-            System.out.println("a,alpha,d,thetaのいづれかを入れてください。");
+            System.out.println(Messages.getString("MovableGroupManager.0")); //$NON-NLS-1$
           }
           picker.addMoveTypeDH(setType, col);
         }
@@ -160,7 +160,7 @@ public class MovableGroupManager {
           } else if (target.equals("theta")) { //$NON-NLS-1$
             setType = DHParameter.THETA;
           } else {
-            System.err.println("a,alpha,d,thetaのいづれかを入れてください。");
+            System.err.println(Messages.getString("MovableGroupManager.1")); //$NON-NLS-1$
           }
           picker.setConstantValueDH(setType, constantValue);
         }

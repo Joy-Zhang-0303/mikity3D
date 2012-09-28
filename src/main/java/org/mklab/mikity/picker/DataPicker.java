@@ -92,7 +92,7 @@ public abstract class DataPicker {
         }
         break;
       default:
-        throw new AssertionError("a, alpha, d, theta以外の値を入れるなごら。");
+        throw new AssertionError(Messages.getString("DataPicker.0")); //$NON-NLS-1$
     }
   }
 
@@ -149,7 +149,7 @@ public abstract class DataPicker {
         }
         break;
       default:
-        throw new AssertionError("locX, locY, locZ, rotX, rotY, rotZ以外の値を入れるなごら。");
+        throw new AssertionError(Messages.getString("DataPicker.1")); //$NON-NLS-1$
     }
   }
 
@@ -191,7 +191,7 @@ public abstract class DataPicker {
         }
         break;
       default:
-        throw new AssertionError("a, alpha, d, theta以外の値を入れるなごら。");
+        throw new AssertionError(Messages.getString("DataPicker.2")); //$NON-NLS-1$
     }
   }
 
@@ -244,7 +244,7 @@ public abstract class DataPicker {
         }
         break;
       default:
-        throw new AssertionError("locX, locY, locZ, rotX, rotY, rotZ以外の値を入れるなごら。");
+        throw new AssertionError(Messages.getString("DataPicker.3")); //$NON-NLS-1$
     }
   }
 

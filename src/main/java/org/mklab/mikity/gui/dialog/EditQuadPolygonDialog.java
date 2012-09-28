@@ -98,124 +98,124 @@ public class EditQuadPolygonDialog {
     GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 720));
-    this.sShell.setText("四角形ポリゴンの編集");
+    this.sShell.setText(Messages.getString("EditQuadPolygonDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
 
     Label groupLabel = new Label(this.sShell, SWT.LEFT);
-    groupLabel.setText("所属グループ  :  " + this.groupName);
+    groupLabel.setText(Messages.getString("EditQuadPolygonDialog.1") + this.groupName); //$NON-NLS-1$
     setGridLayout(groupLabel, 2);
 
     this.primLabel = new Label(this.sShell, SWT.NONE);
     setGridLayout(this.primLabel, 2);
 
     Group beforeGroup = new Group(this.sShell, SWT.NONE);
-    beforeGroup.setText("変更前");
+    beforeGroup.setText(Messages.getString("EditQuadPolygonDialog.2")); //$NON-NLS-1$
     setGridLayout(beforeGroup, 1);
     GridLayout beforeLayout = new GridLayout(2, true);
     beforeGroup.setLayout(beforeLayout);
 
-    this.paramX_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点1 X座標", "0.0"); //$NON-NLS-2$
-    this.paramY_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点1 Y座標", "0.0"); //$NON-NLS-2$
-    this.paramZ_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点1 Z座標", "0.0"); //$NON-NLS-2$
+    this.paramX_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramY_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramZ_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     Label label1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label1, 2);
 
-    this.paramX_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点2 X座標", "0.0"); //$NON-NLS-2$
-    this.paramY_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点2 Y座標", "0.0"); //$NON-NLS-2$
-    this.paramZ_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点2 Z座標", "0.0"); //$NON-NLS-2$
+    this.paramX_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramY_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.7"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramZ_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     Label label2 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label2, 2);
     this.paramX_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点3 X座標", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.paramY_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点3 Y座標", "0.0"); //$NON-NLS-2$
-    this.paramZ_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点3 Z座標", "0.0"); //$NON-NLS-2$
+    this.paramY_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.9"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramZ_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.10"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     Label label3 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label3, 2);
 
-    this.paramX_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点4 X座標", "0.0"); //$NON-NLS-2$
-    this.paramY_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点4 Y座標", "0.0"); //$NON-NLS-2$
-    this.paramZ_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "頂点4 Z座標", "0.0"); //$NON-NLS-2$
+    this.paramX_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramY_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.12"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramZ_4 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.13"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.color = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "color", ""); //$NON-NLS-1$ //$NON-NLS-2$
     Label label4 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label4, 2);
 
-    this.paramR_X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸回転", "0.0"); //$NON-NLS-2$
-    this.paramR_Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸回転", "0.0"); //$NON-NLS-2$
-    this.paramR_Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸回転", "0.0"); //$NON-NLS-2$
+    this.paramR_X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramR_Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramR_Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.16"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     Label labelR1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelR1, 2);
 
-    this.paramL_X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "X軸並進", "0.0"); //$NON-NLS-2$
-    this.paramL_Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Y軸並進", "0.0"); //$NON-NLS-2$
-    this.paramL_Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "Z軸並進", "0.0"); //$NON-NLS-2$
+    this.paramL_X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramL_Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.18"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.paramL_Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditQuadPolygonDialog.19"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     Label labelL1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelL1, 2);
 
     this.afterGroup = new Group(this.sShell, SWT.NONE);
-    this.afterGroup.setText("変更後");
+    this.afterGroup.setText(Messages.getString("EditQuadPolygonDialog.20")); //$NON-NLS-1$
     setGridLayout(this.afterGroup, 1);
     GridLayout afterLayout = new GridLayout(3, false);
     this.afterGroup.setLayout(afterLayout);
 
-    this.newParamX_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamX_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newParamY_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamY_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newParamZ_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamZ_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
 
-    this.newParamX_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamX_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newParamY_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamY_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newParamZ_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamZ_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label6, 3);
 
-    this.newParamX_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamX_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newParamY_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamY_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newParamZ_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamZ_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     Label label7 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label7, 3);
 
-    this.newParamX_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamX_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newParamY_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamY_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newParamZ_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamZ_4 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     Label colorLabel4 = new Label(this.afterGroup, SWT.RIGHT);
-    colorLabel4.setText("→");
+    colorLabel4.setText("→"); //$NON-NLS-1$
     setGridLayout(colorLabel4, 1);
     this.colorCombo = new ColorComboBox(this.afterGroup, this.COLORS);
     this.colorCombo.createColorCombo();
     Label label8 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label8, 3);
 
-    this.newParamR_X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamR_X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.newParamR_Y = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamR_Y = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.newParamR_Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamR_Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
 
     Label labelR2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelR2, 3);
 
-    this.newParamL_X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamL_X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newParamL_Y = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamL_Y = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newParamL_Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-2$
+    this.newParamL_Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     Label labelL2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
@@ -250,7 +250,7 @@ public class EditQuadPolygonDialog {
 
     Button okButton = new Button(comp, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    okButton.setText("変更");
+    okButton.setText(Messages.getString("EditQuadPolygonDialog.40")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -259,8 +259,8 @@ public class EditQuadPolygonDialog {
         // 数字以外が入っていないかを判断
         if (Check()) {
           MessageBox mesBox = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          mesBox.setMessage("変更します");
-          mesBox.setText("確認");
+          mesBox.setMessage(Messages.getString("EditQuadPolygonDialog.41")); //$NON-NLS-1$
+          mesBox.setText(Messages.getString("EditQuadPolygonDialog.42")); //$NON-NLS-1$
           int result = mesBox.open();
           if (result == SWT.YES) {
             setParam();
@@ -268,8 +268,8 @@ public class EditQuadPolygonDialog {
           }
         } else {
           MessageBox mgb = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.ICON_WARNING);
-          mgb.setMessage("パラメータ数字以外が入っています。\n 入力しなおして下さい。");
-          mgb.setText("Warning!!");
+          mgb.setMessage(Messages.getString("EditQuadPolygonDialog.43")); //$NON-NLS-1$
+          mgb.setText(Messages.getString("EditQuadPolygonDialog.44")); //$NON-NLS-1$
           mgb.open();
         }
       }
@@ -277,7 +277,7 @@ public class EditQuadPolygonDialog {
 
     Button cancelButton = new Button(comp, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    cancelButton.setText("キャンセル");
+    cancelButton.setText(Messages.getString("EditQuadPolygonDialog.45")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -285,8 +285,8 @@ public class EditQuadPolygonDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         MessageBox mesBox = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-        mesBox.setMessage("変更を中止して終了します");
-        mesBox.setText("確認");
+        mesBox.setMessage(Messages.getString("EditQuadPolygonDialog.46")); //$NON-NLS-1$
+        mesBox.setText(Messages.getString("EditQuadPolygonDialog.47")); //$NON-NLS-1$
         int result = mesBox.open();
         if (result == SWT.YES) {
           EditQuadPolygonDialog.this.sShell.close();

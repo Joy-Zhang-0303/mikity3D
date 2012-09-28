@@ -108,7 +108,7 @@ public abstract class Modeler extends Composite {
     GridData data = new GridData(GridData.FILL_BOTH);
     data.widthHint = 10;
     this.treeViewerGroup.setLayoutData(data);
-    this.treeViewerGroup.setText("XMLデータ");
+    this.treeViewerGroup.setText(Messages.getString("Modeler.0")); //$NON-NLS-1$
 
     this.tree = new SceneGraphTree(this.treeViewerGroup, this, this.root.loadModel(0), this.dc);
     createViewer();
@@ -152,7 +152,7 @@ public abstract class Modeler extends Composite {
     // Groupを追加するボタン
     Button addGroupButton = new Button(composite, SWT.NONE);
     addGroupButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    addGroupButton.setText("Groupを追加");
+    addGroupButton.setText(Messages.getString("Modeler.1")); //$NON-NLS-1$
 
     // //いつか実装できたらすてきだね
     // //undoボタン
@@ -162,30 +162,30 @@ public abstract class Modeler extends Composite {
 
     Button xzButton = new Button(composite, SWT.NONE);
     xzButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    xzButton.setText("xz平面を描画");
+    xzButton.setText(Messages.getString("Modeler.2")); //$NON-NLS-1$
 
     // DHパラメータを設定する
     Button dhButton = new Button(composite, SWT.NONE);
     dhButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    dhButton.setText("DHパラメータの設定");
+    dhButton.setText(Messages.getString("Modeler.3")); //$NON-NLS-1$
 
     Button primAddButton = new Button(composite, SWT.NONE);
     primAddButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    primAddButton.setText("プリミティブの追加");
+    primAddButton.setText(Messages.getString("Modeler.4")); //$NON-NLS-1$
 
     Button primEditButton = new Button(composite, SWT.NONE);
     primEditButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    primEditButton.setText("プリミティブの編集");
+    primEditButton.setText(Messages.getString("Modeler.5")); //$NON-NLS-1$
 
     // 保存して終了ボタン
     Button closeButton = new Button(composite, SWT.NONE);
     closeButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    closeButton.setText(" 保存して終了 ");
+    closeButton.setText(Messages.getString("Modeler.6")); //$NON-NLS-1$
 
     // キャンセルボタン
     Button cancelButton = new Button(composite, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    cancelButton.setText("キャンセル");
+    cancelButton.setText(Messages.getString("Modeler.7")); //$NON-NLS-1$
 
     xzButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
@@ -201,7 +201,7 @@ public abstract class Modeler extends Composite {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         org.mklab.mikity.xml.model.Group group = Modeler.this.tree.getSelectionGroup();
         if (group == null) {
-          MsgUtil.showMsg(getShell(), "追加したいグループを選択してください。");
+          MsgUtil.showMsg(getShell(), Messages.getString("Modeler.8")); //$NON-NLS-1$
           return;
         }
 
@@ -220,14 +220,14 @@ public abstract class Modeler extends Composite {
 
         org.mklab.mikity.xml.model.Group group = Modeler.this.tree.getSelectionGroup();
         if (group == null) {
-          MsgUtil.showMsg(getShell(), "グループを選択してください。");
+          MsgUtil.showMsg(getShell(), Messages.getString("Modeler.9")); //$NON-NLS-1$
           return;
         }
         org.mklab.mikity.xml.model.Linkdata[] linkdata = group.loadLinkdata();
         if (linkdata.length == 0) {
           MessageBox mesBox = new MessageBox(getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          mesBox.setMessage("DHパラメータを使用しますか？");
-          mesBox.setText("確認");
+          mesBox.setMessage(Messages.getString("Modeler.10")); //$NON-NLS-1$
+          mesBox.setText(Messages.getString("Modeler.11")); //$NON-NLS-1$
           int result = mesBox.open();
           if (result == SWT.YES) {
             GroupConfigDialogDH groupConf = new GroupConfigDialogDH(getShell(), group, Modeler.this.tree.getGroupEditable());
@@ -263,8 +263,8 @@ public abstract class Modeler extends Composite {
         org.mklab.mikity.xml.model.Group group = Modeler.this.tree.getSelectionGroup();
         if (group == null) {
           MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
-          box.setText("グループが選択されていません");
-          box.setMessage("グループを選択してください。");
+          box.setText(Messages.getString("Modeler.12")); //$NON-NLS-1$
+          box.setMessage(Messages.getString("Modeler.13")); //$NON-NLS-1$
           box.open();
           return;
         }
@@ -287,8 +287,8 @@ public abstract class Modeler extends Composite {
 
         if (prim == null) {
           MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
-          box.setText("プリミティブが選択されていません");
-          box.setMessage("プリミティブを選択してください。");
+          box.setText(Messages.getString("Modeler.14")); //$NON-NLS-1$
+          box.setMessage(Messages.getString("Modeler.15")); //$NON-NLS-1$
           box.open();
           return;
         }

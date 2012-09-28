@@ -160,7 +160,7 @@ public class MainWindow extends ApplicationWindow {
     localComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
     final Label label = new Label(localComposite, SWT.NONE);
-    label.setText("ファイル");
+    label.setText(Messages.getString("MainWindow.0")); //$NON-NLS-1$
 
     this.filePathText = new Text(localComposite, SWT.BORDER);
     this.filePathText.setText(""); //$NON-NLS-1$
@@ -179,7 +179,7 @@ public class MainWindow extends ApplicationWindow {
     this.filePathText.setLayoutData(gridData);
 
     final Button refButton = new Button(localComposite, SWT.BORDER);
-    refButton.setText("参照");
+    refButton.setText(Messages.getString("MainWindow.1")); //$NON-NLS-1$
     refButton.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -213,22 +213,22 @@ public class MainWindow extends ApplicationWindow {
     localComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
     this.newModelButton = new Button(localComposite, SWT.NONE);
-    this.newModelButton.setText("モデルの新規作成");
+    this.newModelButton.setText(Messages.getString("MainWindow.2")); //$NON-NLS-1$
 
     this.modelerButton = new Button(localComposite, SWT.NONE);
-    this.modelerButton.setText("モデルの編集");
+    this.modelerButton.setText(Messages.getString("MainWindow.3")); //$NON-NLS-1$
 
     this.configButton = new Button(localComposite, SWT.NONE);
-    this.configButton.setText("設定");
+    this.configButton.setText(Messages.getString("MainWindow.4")); //$NON-NLS-1$
 
     this.simButton = new Button(localComposite, SWT.NONE);
-    this.simButton.setText("シミュレーションを見る");
+    this.simButton.setText(Messages.getString("MainWindow.5")); //$NON-NLS-1$
 
     this.saveAsButton = new Button(localComposite, SWT.NONE);
-    this.saveAsButton.setText("ファイルの別名保存");
+    this.saveAsButton.setText(Messages.getString("MainWindow.6")); //$NON-NLS-1$
 
     this.saveButton = new Button(localComposite, SWT.NONE);
-    this.saveButton.setText("ファイルを保存して終了");
+    this.saveButton.setText(Messages.getString("MainWindow.7")); //$NON-NLS-1$
 
     // 編集できないようにする
     // setEditable(false);
@@ -303,7 +303,7 @@ public class MainWindow extends ApplicationWindow {
   protected MenuManager createMenuManager() {
     MenuManager manager = new MenuManager();
 
-    MenuManager localFile = new MenuManager("ファイル(&F)");
+    MenuManager localFile = new MenuManager(Messages.getString("MainWindow.8")); //$NON-NLS-1$
     localFile.add(this.FILE_NEW_ACTION);
     localFile.add(this.FILE_OPEN_ACTION);
     localFile.add(this.FILE_SAVE_ACTION);
@@ -313,11 +313,11 @@ public class MainWindow extends ApplicationWindow {
     localFile.add(this.FILE_EXIT_ACTION);
     manager.add(localFile);
 
-    MenuManager edit = new MenuManager("編集(&E)");
+    MenuManager edit = new MenuManager(Messages.getString("MainWindow.9")); //$NON-NLS-1$
     edit.add(this.CONFIGDIALOG_OPEN_ACTION);
     manager.add(edit);
 
-    MenuManager play = new MenuManager("再生(&P)");
+    MenuManager play = new MenuManager(Messages.getString("MainWindow.10")); //$NON-NLS-1$
     play.add(this.ANIMATION_WINDOW_OPEN_ACTION);
     manager.add(play);
 
@@ -391,7 +391,7 @@ public class MainWindow extends ApplicationWindow {
    */
   public void save() {
     if (this.file == null) {
-      throw new IllegalArgumentException("ファイルが不正");
+      throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
     root.loadJamastXMLData();
     JAXBMarshaller marshaller = new JAXBMarshaller(root);
@@ -405,7 +405,7 @@ public class MainWindow extends ApplicationWindow {
    */
   public void load() {
     if (this.file == null) {
-      throw new IllegalArgumentException("ファイルが不正");
+      throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(this.file);
@@ -423,7 +423,7 @@ public class MainWindow extends ApplicationWindow {
     SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(getRoot().loadModel(0).loadGroup(0), false);
     setUnit();
-    setStatus("読み込み完了");
+    setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     this.modeler.setModel(root);
     // setEditable(false);
     this.isDirty = false;
@@ -434,7 +434,7 @@ public class MainWindow extends ApplicationWindow {
    */
   public void importFile() {
     if (this.file == null) {
-      throw new IllegalArgumentException("ファイルが不正");
+      throw new IllegalArgumentException(Messages.getString("MainWindow.14")); //$NON-NLS-1$
     }
 
     JAXBMarshaller marshaller = new JAXBMarshaller();
@@ -506,7 +506,7 @@ public class MainWindow extends ApplicationWindow {
     SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(getRoot().loadModel(0).loadGroup(0), false);
     setUnit();
-    setStatus("読み込み完了");
+    setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     this.modeler.setModel(root);
     // setEditable(false);
     this.isDirty = false;

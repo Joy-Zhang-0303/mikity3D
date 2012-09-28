@@ -137,7 +137,7 @@ public class SceneGraphTree {
         if (doubleClickObj == null) {
           return;
         } else if (doubleClickObj instanceof Group) {
-          if (SceneGraphTree.this.xmlTree.getSelection()[0].getText().startsWith("root")) {
+          if (SceneGraphTree.this.xmlTree.getSelection()[0].getText().startsWith("root")) { //$NON-NLS-1$
             // 選択されたものがrootであるとき
             SceneGraphTree.this.editable = false;
           }
@@ -151,8 +151,8 @@ public class SceneGraphTree {
             groupConf.open();
           } else {
             MessageBox mesBox = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-            mesBox.setMessage("DHパラメータを使用しますか？");
-            mesBox.setText("確認");
+            mesBox.setMessage(Messages.getString("SceneGraphTree.1")); //$NON-NLS-1$
+            mesBox.setText(Messages.getString("SceneGraphTree.2")); //$NON-NLS-1$
             int result = mesBox.open();
             if (result == SWT.YES) {
               GroupConfigDialogDH groupConf = new GroupConfigDialogDH(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
@@ -217,43 +217,43 @@ public class SceneGraphTree {
     this.xmlTree.setMenu(popup);
 
     MenuItem addModel = new MenuItem(popup, SWT.CASCADE);
-    addModel.setText("3Dモデルを追加(&M)");
+    addModel.setText(Messages.getString("SceneGraphTree.3")); //$NON-NLS-1$
 
     Menu modelingSub = new Menu(popup);
     addModel.setMenu(modelingSub);
 
     MenuItem addPrim = new MenuItem(modelingSub, SWT.POP_UP);
-    addPrim.setText("プリミティブを追加(&P)");
+    addPrim.setText(Messages.getString("SceneGraphTree.4")); //$NON-NLS-1$
 
     MenuItem addTriPoly = new MenuItem(modelingSub, SWT.POP_UP);
-    addTriPoly.setText("三角形ポリゴンを追加(&T)");
+    addTriPoly.setText(Messages.getString("SceneGraphTree.5")); //$NON-NLS-1$
 
     MenuItem addQuadPoly = new MenuItem(modelingSub, SWT.POP_UP);
-    addQuadPoly.setText("四角形ポリゴンを追加(&Q)");
+    addQuadPoly.setText(Messages.getString("SceneGraphTree.6")); //$NON-NLS-1$
 
     MenuItem addGroup = new MenuItem(popup, SWT.POP_UP);
-    addGroup.setText("グループを追加(&G)");
+    addGroup.setText(Messages.getString("SceneGraphTree.7")); //$NON-NLS-1$
 
     MenuItem connector = new MenuItem(popup, SWT.CASCADE);
-    connector.setText("コネクタ(&C)");
+    connector.setText(Messages.getString("SceneGraphTree.8")); //$NON-NLS-1$
 
     Menu connectorSub = new Menu(popup);
     connector.setMenu(connectorSub);
 
     MenuItem connectorAuto = new MenuItem(connectorSub, SWT.POP_UP);
-    connectorAuto.setText("一括表示(&D)");
+    connectorAuto.setText(Messages.getString("SceneGraphTree.9")); //$NON-NLS-1$
 
     MenuItem connectorSelect = new MenuItem(connectorSub, SWT.POP_UP);
-    connectorSelect.setText("選択(&S)");
+    connectorSelect.setText(Messages.getString("SceneGraphTree.10")); //$NON-NLS-1$
 
     MenuItem connectAction = new MenuItem(connectorSub, SWT.POP_UP);
-    connectAction.setText("接続(&C)");
+    connectAction.setText(Messages.getString("SceneGraphTree.11")); //$NON-NLS-1$
 
     MenuItem edit = new MenuItem(popup, SWT.POP_UP);
-    edit.setText("編集(&E)");
+    edit.setText(Messages.getString("SceneGraphTree.12")); //$NON-NLS-1$
 
     MenuItem delete = new MenuItem(popup, SWT.POP_UP);
-    delete.setText("削除(&D)");
+    delete.setText(Messages.getString("SceneGraphTree.13")); //$NON-NLS-1$
 
     addPrim.addSelectionListener(new SelectionAdapter() {
 
@@ -311,8 +311,8 @@ public class SceneGraphTree {
             groupConf.open();
           } else {
             MessageBox mesBox = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-            mesBox.setMessage("DHパラメータを使用しますか？");
-            mesBox.setText("確認");
+            mesBox.setMessage(Messages.getString("SceneGraphTree.14")); //$NON-NLS-1$
+            mesBox.setText(Messages.getString("SceneGraphTree.15")); //$NON-NLS-1$
             int result = mesBox.open();
             if (result == SWT.YES) {
               GroupConfigDialogDH groupConf = new GroupConfigDialogDH(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
@@ -347,8 +347,8 @@ public class SceneGraphTree {
         if (SceneGraphTree.this.targetObj instanceof Group) {
           if (SceneGraphTree.this.targetParentGroup == null) {
             MessageBox msg = new MessageBox(composite.getShell(), SWT.ICON_INFORMATION);
-            msg.setText("削除できません");
-            msg.setMessage("選択されているグループはルートグループです　\n 削除できません");
+            msg.setText(Messages.getString("SceneGraphTree.16")); //$NON-NLS-1$
+            msg.setMessage(Messages.getString("SceneGraphTree.17")); //$NON-NLS-1$
             msg.open();
           } else {
             removeObj(SceneGraphTree.this.targetParentGroup, SceneGraphTree.this.targetGroup);
@@ -357,8 +357,8 @@ public class SceneGraphTree {
           }
         } else if (SceneGraphTree.this.targetObj instanceof XMLTrianglePolygon || SceneGraphTree.this.targetObj instanceof XMLQuadPolygon) {
           MessageBox mesBox = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          mesBox.setMessage("ポリゴンを削除します");
-          mesBox.setText("確認");
+          mesBox.setMessage(Messages.getString("SceneGraphTree.18")); //$NON-NLS-1$
+          mesBox.setText(Messages.getString("SceneGraphTree.19")); //$NON-NLS-1$
           int result = mesBox.open();
           if (result == SWT.YES) {
             removeObj(SceneGraphTree.this.targetGroup, SceneGraphTree.this.targetObj);
@@ -368,8 +368,8 @@ public class SceneGraphTree {
         } else {
 
           MessageBox mesBox = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          mesBox.setMessage("プリミティブを削除します");
-          mesBox.setText("確認");
+          mesBox.setMessage(Messages.getString("SceneGraphTree.20")); //$NON-NLS-1$
+          mesBox.setText(Messages.getString("SceneGraphTree.21")); //$NON-NLS-1$
           int result = mesBox.open();
           if (result == SWT.YES) {
             removeObj(SceneGraphTree.this.targetGroup, SceneGraphTree.this.targetObj);
@@ -386,13 +386,13 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         if (SceneGraphTree.this.targetObj instanceof Group) {
           MessageBox mesBox = new MessageBox(composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
-          mesBox.setMessage("グループにはコネクタを追加できません");
-          mesBox.setText("確認");
+          mesBox.setMessage(Messages.getString("SceneGraphTree.22")); //$NON-NLS-1$
+          mesBox.setText(Messages.getString("SceneGraphTree.23")); //$NON-NLS-1$
           mesBox.open();
         } else if (SceneGraphTree.this.targetObj instanceof XMLConnector) {
           MessageBox mesBox = new MessageBox(composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
-          mesBox.setMessage("コネクタにはコネクタを追加できません");
-          mesBox.setText("確認");
+          mesBox.setMessage(Messages.getString("SceneGraphTree.24")); //$NON-NLS-1$
+          mesBox.setText(Messages.getString("SceneGraphTree.25")); //$NON-NLS-1$
           mesBox.open();
         } else {
           SceneGraphTree.this.root = SceneGraphTree.this.targetGroup;
@@ -425,8 +425,8 @@ public class SceneGraphTree {
         SceneGraphTree.this.connect.setNewRot();
         // 接続実行。
         MessageBox mesBox = new MessageBox(composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
-        mesBox.setMessage("コネクタでプリミティブ同士を接続しました。");
-        mesBox.setText("接続");
+        mesBox.setMessage(Messages.getString("SceneGraphTree.26")); //$NON-NLS-1$
+        mesBox.setText(Messages.getString("SceneGraphTree.27")); //$NON-NLS-1$
         mesBox.open();
         // 接続
         SceneGraphTree.this.connect.connect();
@@ -453,7 +453,7 @@ public class SceneGraphTree {
       this.targetGroup = (Group)this.targetObj;
       // targetObj = null;
       setTarget(this.targetGroup);
-      if (this.xmlTree.getSelection()[0].getText().startsWith("root")) {
+      if (this.xmlTree.getSelection()[0].getText().startsWith("root")) { //$NON-NLS-1$
         // 選択されたものがrootであるとき
         this.editable = false;
         this.targetParentGroup = null;
@@ -651,8 +651,8 @@ public class SceneGraphTree {
       g.removeXMLQuadPolygon((XMLQuadPolygon)prim);
     } else if (prim instanceof Group) {
       MessageBox box = new MessageBox(this.comp.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
-      box.setMessage("グループ全体を削除します");
-      box.setText("確認");
+      box.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
+      box.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
       int result = box.open();
       if (result == SWT.NO) {
         return false;
