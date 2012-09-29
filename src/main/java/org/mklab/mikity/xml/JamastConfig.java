@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: Config.java,v 1.9 2007/08/03 03:30:27 morimune Exp $
- */
-
 package org.mklab.mikity.xml;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import javax.xml.bind.annotation.XmlElement;
 
@@ -20,14 +9,6 @@ import javax.xml.bind.annotation.XmlElement;
  * @version $Revision: 1.9 $ $Date: 2007/08/03 03:30:27 $
  */
 public class JamastConfig implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
 
   /**
@@ -66,61 +47,46 @@ public class JamastConfig implements java.io.Serializable {
   @XmlElement
   private org.mklab.mikity.xml.config.DataUnit _dataUnit;
 
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
-
-  /**
-   * コンストラクター
-   */
-  public JamastConfig() {
-    super();
-  } // -- org.mklab.mikity.xml.Config()
-
-  // -----------/
-  // - Methods -/
-  // -----------/
-
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
-   */
-  @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
-
-    if (obj instanceof JamastConfig) {
-
-      JamastConfig temp = (JamastConfig)obj;
-      if (this._data != null) {
-        if (temp._data == null) return false;
-        else if (!(this._data.equals(temp._data))) return false;
-      } else if (temp._data != null) return false;
-      if (this._background != null) {
-        if (temp._background == null) return false;
-        else if (!(this._background.equals(temp._background))) return false;
-      } else if (temp._background != null) return false;
-      if (this._light != null) {
-        if (temp._light == null) return false;
-        else if (!(this._light.equals(temp._light))) return false;
-      } else if (temp._light != null) return false;
-      if (this._view != null) {
-        if (temp._view == null) return false;
-        else if (!(this._view.equals(temp._view))) return false;
-      } else if (temp._view != null) return false;
-      if (this._modelUnit != null) {
-        if (temp._modelUnit == null) return false;
-        else if (!(this._modelUnit.equals(temp._modelUnit))) return false;
-      } else if (temp._modelUnit != null) return false;
-      if (this._dataUnit != null) {
-        if (temp._dataUnit == null) return false;
-        else if (!(this._dataUnit.equals(temp._dataUnit))) return false;
-      } else if (temp._dataUnit != null) return false;
-      return true;
-    }
-    return false;
-  } // -- boolean equals(java.lang.Object)
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof JamastConfig) {
+//
+//      JamastConfig temp = (JamastConfig)obj;
+//      if (this._data != null) {
+//        if (temp._data == null) return false;
+//        else if (!(this._data.equals(temp._data))) return false;
+//      } else if (temp._data != null) return false;
+//      if (this._background != null) {
+//        if (temp._background == null) return false;
+//        else if (!(this._background.equals(temp._background))) return false;
+//      } else if (temp._background != null) return false;
+//      if (this._light != null) {
+//        if (temp._light == null) return false;
+//        else if (!(this._light.equals(temp._light))) return false;
+//      } else if (temp._light != null) return false;
+//      if (this._view != null) {
+//        if (temp._view == null) return false;
+//        else if (!(this._view.equals(temp._view))) return false;
+//      } else if (temp._view != null) return false;
+//      if (this._modelUnit != null) {
+//        if (temp._modelUnit == null) return false;
+//        else if (!(this._modelUnit.equals(temp._modelUnit))) return false;
+//      } else if (temp._modelUnit != null) return false;
+//      if (this._dataUnit != null) {
+//        if (temp._dataUnit == null) return false;
+//        else if (!(this._dataUnit.equals(temp._dataUnit))) return false;
+//      } else if (temp._dataUnit != null) return false;
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
    * Returns the value of field 'background'.
@@ -129,7 +95,83 @@ public class JamastConfig implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.config.Background loadBackground() {
     return this._background;
-  } // -- org.mklab.mikity.xml.Background getBackground()
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this._background == null) ? 0 : this._background.hashCode());
+    result = prime * result + ((this._data == null) ? 0 : this._data.hashCode());
+    result = prime * result + ((this._dataUnit == null) ? 0 : this._dataUnit.hashCode());
+    result = prime * result + ((this._light == null) ? 0 : this._light.hashCode());
+    result = prime * result + ((this._modelUnit == null) ? 0 : this._modelUnit.hashCode());
+    result = prime * result + ((this._view == null) ? 0 : this._view.hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    JamastConfig other = (JamastConfig)obj;
+    if (this._background == null) {
+      if (other._background != null) {
+        return false;
+      }
+    } else if (!this._background.equals(other._background)) {
+      return false;
+    }
+    if (this._data == null) {
+      if (other._data != null) {
+        return false;
+      }
+    } else if (!this._data.equals(other._data)) {
+      return false;
+    }
+    if (this._dataUnit == null) {
+      if (other._dataUnit != null) {
+        return false;
+      }
+    } else if (!this._dataUnit.equals(other._dataUnit)) {
+      return false;
+    }
+    if (this._light == null) {
+      if (other._light != null) {
+        return false;
+      }
+    } else if (!this._light.equals(other._light)) {
+      return false;
+    }
+    if (this._modelUnit == null) {
+      if (other._modelUnit != null) {
+        return false;
+      }
+    } else if (!this._modelUnit.equals(other._modelUnit)) {
+      return false;
+    }
+    if (this._view == null) {
+      if (other._view != null) {
+        return false;
+      }
+    } else if (!this._view.equals(other._view)) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Returns the value of field 'data'.
@@ -138,7 +180,7 @@ public class JamastConfig implements java.io.Serializable {
    */
   public java.lang.String loadData() {
     return this._data;
-  } // -- java.lang.String getData()
+  }
 
   /**
    * Returns the value of field 'dataUnit'.
@@ -147,7 +189,7 @@ public class JamastConfig implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.config.DataUnit loadDataUnit() {
     return this._dataUnit;
-  } // -- org.mklab.mikity.xml.DataUnit getDataUnit()
+  }
 
   /**
    * Returns the value of field 'light'.
@@ -156,7 +198,7 @@ public class JamastConfig implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.config.Light loadLight() {
     return this._light;
-  } // -- org.mklab.mikity.xml.Light getLight()
+  }
 
   /**
    * Returns the value of field 'modelUnit'.
@@ -165,7 +207,7 @@ public class JamastConfig implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.config.ModelUnit loadModelUnit() {
     return this._modelUnit;
-  } // -- org.mklab.mikity.xml.ModelUnit getModelUnit()
+  }
 
   /**
    * Returns the value of field 'view'.
@@ -174,7 +216,7 @@ public class JamastConfig implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.config.View loadView() {
     return this._view;
-  } // -- org.mklab.mikity.xml.View getView()
+  }
 
   /**
    * Sets the value of field 'background'.
@@ -183,7 +225,7 @@ public class JamastConfig implements java.io.Serializable {
    */
   public void setBackground(org.mklab.mikity.xml.config.Background background) {
     this._background = background;
-  } // -- void setBackground(org.mklab.mikity.xml.Background)
+  }
 
   /**
    * Sets the value of field 'data'.
@@ -192,7 +234,7 @@ public class JamastConfig implements java.io.Serializable {
    */
   public void setData(java.lang.String data) {
     this._data = data;
-  } // -- void setData(java.lang.String)
+  }
 
   /**
    * Sets the value of field 'dataUnit'.
@@ -201,7 +243,7 @@ public class JamastConfig implements java.io.Serializable {
    */
   public void setDataUnit(org.mklab.mikity.xml.config.DataUnit dataUnit) {
     this._dataUnit = dataUnit;
-  } // -- void setDataUnit(org.mklab.mikity.xml.DataUnit)
+  }
 
   /**
    * Sets the value of field 'light'.
@@ -210,7 +252,7 @@ public class JamastConfig implements java.io.Serializable {
    */
   public void setLight(org.mklab.mikity.xml.config.Light light) {
     this._light = light;
-  } // -- void setLight(org.mklab.mikity.xml.Light)
+  }
 
   /**
    * Sets the value of field 'modelUnit'.
@@ -219,7 +261,7 @@ public class JamastConfig implements java.io.Serializable {
    */
   public void setModelUnit(org.mklab.mikity.xml.config.ModelUnit modelUnit) {
     this._modelUnit = modelUnit;
-  } // -- void setModelUnit(org.mklab.mikity.xml.ModelUnit)
+  }
 
   /**
    * Sets the value of field 'view'.
@@ -228,6 +270,5 @@ public class JamastConfig implements java.io.Serializable {
    */
   public void setView(org.mklab.mikity.xml.config.View view) {
     this._view = view;
-  } // -- void setView(org.mklab.mikity.xml.View)
-
+  }
 }

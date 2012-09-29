@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: Jamast.java,v 1.2 2007/08/03 03:30:27 morimune Exp $
- */
-
 package org.mklab.mikity.xml;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,14 +11,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Jamast implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
 
   /**
@@ -44,12 +25,6 @@ public class Jamast implements java.io.Serializable {
   @XmlElement
   private java.util.ArrayList<JamastConfig> _configList;
 
-  // @XmlElement
-  // private org.mklab.mikity.xml.blender.Scene scene;
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
-
   /**
    * コンストラクター
    */
@@ -57,12 +32,7 @@ public class Jamast implements java.io.Serializable {
     super();
     this._modelList = new java.util.ArrayList<JamastModel>();
     this._configList = new java.util.ArrayList<JamastConfig>();
-    // scene = new org.mklab.mikity.xml.blender.Scene();
   }
-
-  // -----------/
-  // - Methods -/
-  // -----------/
 
   /**
    * Method addConfig
@@ -120,30 +90,30 @@ public class Jamast implements java.io.Serializable {
     this._modelList.clear();
   }
 
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
-   */
-  @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
-
-    if (obj instanceof Jamast) {
-
-      Jamast temp = (Jamast)obj;
-      if (this._modelList != null) {
-        if (temp._modelList == null) return false;
-        else if (!(this._modelList.equals(temp._modelList))) return false;
-      } else if (temp._modelList != null) return false;
-      if (this._configList != null) {
-        if (temp._configList == null) return false;
-        else if (!(this._configList.equals(temp._configList))) return false;
-      } else if (temp._configList != null) return false;
-      return true;
-    }
-    return false;
-  }
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof Jamast) {
+//
+//      Jamast temp = (Jamast)obj;
+//      if (this._modelList != null) {
+//        if (temp._modelList == null) return false;
+//        else if (!(this._modelList.equals(temp._modelList))) return false;
+//      } else if (temp._modelList != null) return false;
+//      if (this._configList != null) {
+//        if (temp._configList == null) return false;
+//        else if (!(this._configList.equals(temp._configList))) return false;
+//      } else if (temp._configList != null) return false;
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
    * Method getConfig
@@ -159,6 +129,51 @@ public class Jamast implements java.io.Serializable {
     }
 
     return this._configList.get(index);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("unqualified-field-access")
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((_configList == null) ? 0 : _configList.hashCode());
+    result = prime * result + ((_modelList == null) ? 0 : _modelList.hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    Jamast other = (Jamast)obj;
+    if (this._configList == null) {
+      if (other._configList != null) {
+        return false;
+      }
+    } else if (!this._configList.equals(other._configList)) {
+      return false;
+    }
+    if (this._modelList == null) {
+      if (other._modelList != null) {
+        return false;
+      }
+    } else if (!this._modelList.equals(other._modelList)) {
+      return false;
+    }
+    return true;
   }
 
   /**

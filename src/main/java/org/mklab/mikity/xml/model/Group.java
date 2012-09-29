@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: Group.java,v 1.4 2007/12/13 10:01:55 morimune Exp $
- */
-
 package org.mklab.mikity.xml.model;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import java.util.ArrayList;
 
@@ -368,73 +357,73 @@ public class Group implements java.io.Serializable {
     this._XMLQuadPolygonList.clear();
   } 
 
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
-   */
-  @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
-
-    if (obj instanceof Group) {
-
-      Group temp = (Group)obj;
-      if (this._name != null) {
-        if (temp._name == null) return false;
-        else if (!(this._name.equals(temp._name))) return false;
-      } else if (temp._name != null) return false;
-      if (this._XMLBoxList != null) {
-        if (temp._XMLBoxList == null) return false;
-        else if (!(this._XMLBoxList.equals(temp._XMLBoxList))) return false;
-      } else if (temp._XMLBoxList != null) return false;
-      if (this._XMLCylinderList != null) {
-        if (temp._XMLCylinderList == null) return false;
-        else if (!(this._XMLCylinderList.equals(temp._XMLCylinderList))) return false;
-      } else if (temp._XMLCylinderList != null) return false;
-      if (this._XMLSphereList != null) {
-        if (temp._XMLSphereList == null) return false;
-        else if (!(this._XMLSphereList.equals(temp._XMLSphereList))) return false;
-      } else if (temp._XMLSphereList != null) return false;
-      if (this._XMLConeList != null) {
-        if (temp._XMLConeList == null) return false;
-        else if (!(this._XMLConeList.equals(temp._XMLConeList))) return false;
-      } else if (temp._XMLConeList != null) return false;
-      if (this._XMLConnectorList != null) {
-        if (temp._XMLConnectorList == null) return false;
-        else if (!(this._XMLConnectorList.equals(temp._XMLConnectorList))) return false;
-      } else if (temp._XMLConnectorList != null) return false;
-
-      if (this._XMLTrianglePolygonList != null) {
-        if (temp._XMLTrianglePolygonList == null) return false;
-        else if (!(this._XMLTrianglePolygonList.equals(temp._XMLTrianglePolygonList))) return false;
-      } else if (temp._XMLTrianglePolygonList != null) return false;
-
-      if (this._XMLQuadPolygonList != null) {
-        if (temp._XMLQuadPolygonList == null) return false;
-        else if (!(this._XMLQuadPolygonList.equals(temp._XMLQuadPolygonList))) return false;
-      } else if (temp._XMLQuadPolygonList != null) return false;
-
-      if (this._location != null) {
-        if (temp._location == null) return false;
-        else if (!(this._location.equals(temp._location))) return false;
-      } else if (temp._location != null) return false;
-      if (this._rotation != null) {
-        if (temp._rotation == null) return false;
-        else if (!(this._rotation.equals(temp._rotation))) return false;
-      } else if (temp._rotation != null) return false;
-      if (this._linkdataList != null) {
-        if (temp._linkdataList == null) return false;
-        else if (!(this._linkdataList.equals(temp._linkdataList))) return false;
-      } else if (temp._linkdataList != null) return false;
-      if (this._groupList != null) {
-        if (temp._groupList == null) return false;
-        else if (!(this._groupList.equals(temp._groupList))) return false;
-      } else if (temp._groupList != null) return false;
-      return true;
-    }
-    return false;
-  } 
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof Group) {
+//
+//      Group temp = (Group)obj;
+//      if (this._name != null) {
+//        if (temp._name == null) return false;
+//        else if (!(this._name.equals(temp._name))) return false;
+//      } else if (temp._name != null) return false;
+//      if (this._XMLBoxList != null) {
+//        if (temp._XMLBoxList == null) return false;
+//        else if (!(this._XMLBoxList.equals(temp._XMLBoxList))) return false;
+//      } else if (temp._XMLBoxList != null) return false;
+//      if (this._XMLCylinderList != null) {
+//        if (temp._XMLCylinderList == null) return false;
+//        else if (!(this._XMLCylinderList.equals(temp._XMLCylinderList))) return false;
+//      } else if (temp._XMLCylinderList != null) return false;
+//      if (this._XMLSphereList != null) {
+//        if (temp._XMLSphereList == null) return false;
+//        else if (!(this._XMLSphereList.equals(temp._XMLSphereList))) return false;
+//      } else if (temp._XMLSphereList != null) return false;
+//      if (this._XMLConeList != null) {
+//        if (temp._XMLConeList == null) return false;
+//        else if (!(this._XMLConeList.equals(temp._XMLConeList))) return false;
+//      } else if (temp._XMLConeList != null) return false;
+//      if (this._XMLConnectorList != null) {
+//        if (temp._XMLConnectorList == null) return false;
+//        else if (!(this._XMLConnectorList.equals(temp._XMLConnectorList))) return false;
+//      } else if (temp._XMLConnectorList != null) return false;
+//
+//      if (this._XMLTrianglePolygonList != null) {
+//        if (temp._XMLTrianglePolygonList == null) return false;
+//        else if (!(this._XMLTrianglePolygonList.equals(temp._XMLTrianglePolygonList))) return false;
+//      } else if (temp._XMLTrianglePolygonList != null) return false;
+//
+//      if (this._XMLQuadPolygonList != null) {
+//        if (temp._XMLQuadPolygonList == null) return false;
+//        else if (!(this._XMLQuadPolygonList.equals(temp._XMLQuadPolygonList))) return false;
+//      } else if (temp._XMLQuadPolygonList != null) return false;
+//
+//      if (this._location != null) {
+//        if (temp._location == null) return false;
+//        else if (!(this._location.equals(temp._location))) return false;
+//      } else if (temp._location != null) return false;
+//      if (this._rotation != null) {
+//        if (temp._rotation == null) return false;
+//        else if (!(this._rotation.equals(temp._rotation))) return false;
+//      } else if (temp._rotation != null) return false;
+//      if (this._linkdataList != null) {
+//        if (temp._linkdataList == null) return false;
+//        else if (!(this._linkdataList.equals(temp._linkdataList))) return false;
+//      } else if (temp._linkdataList != null) return false;
+//      if (this._groupList != null) {
+//        if (temp._groupList == null) return false;
+//        else if (!(this._groupList.equals(temp._groupList))) return false;
+//      } else if (temp._groupList != null) return false;
+//      return true;
+//    }
+//    return false;
+//  } 
 
   /**
    * Method getGroup
@@ -451,6 +440,130 @@ public class Group implements java.io.Serializable {
 
     return this._groupList.get(index);
   } 
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this._XMLBoxList == null) ? 0 : this._XMLBoxList.hashCode());
+    result = prime * result + ((this._XMLConeList == null) ? 0 : this._XMLConeList.hashCode());
+    result = prime * result + ((this._XMLConnectorList == null) ? 0 : this._XMLConnectorList.hashCode());
+    result = prime * result + ((this._XMLCylinderList == null) ? 0 : this._XMLCylinderList.hashCode());
+    result = prime * result + ((this._XMLQuadPolygonList == null) ? 0 : this._XMLQuadPolygonList.hashCode());
+    result = prime * result + ((this._XMLSphereList == null) ? 0 : this._XMLSphereList.hashCode());
+    result = prime * result + ((this._XMLTrianglePolygonList == null) ? 0 : this._XMLTrianglePolygonList.hashCode());
+    result = prime * result + ((this._groupList == null) ? 0 : this._groupList.hashCode());
+    result = prime * result + ((this._linkdataList == null) ? 0 : this._linkdataList.hashCode());
+    result = prime * result + ((this._location == null) ? 0 : this._location.hashCode());
+    result = prime * result + ((this._name == null) ? 0 : this._name.hashCode());
+    result = prime * result + ((this._rotation == null) ? 0 : this._rotation.hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    Group other = (Group)obj;
+    if (this._XMLBoxList == null) {
+      if (other._XMLBoxList != null) {
+        return false;
+      }
+    } else if (!this._XMLBoxList.equals(other._XMLBoxList)) {
+      return false;
+    }
+    if (this._XMLConeList == null) {
+      if (other._XMLConeList != null) {
+        return false;
+      }
+    } else if (!this._XMLConeList.equals(other._XMLConeList)) {
+      return false;
+    }
+    if (this._XMLConnectorList == null) {
+      if (other._XMLConnectorList != null) {
+        return false;
+      }
+    } else if (!this._XMLConnectorList.equals(other._XMLConnectorList)) {
+      return false;
+    }
+    if (this._XMLCylinderList == null) {
+      if (other._XMLCylinderList != null) {
+        return false;
+      }
+    } else if (!this._XMLCylinderList.equals(other._XMLCylinderList)) {
+      return false;
+    }
+    if (this._XMLQuadPolygonList == null) {
+      if (other._XMLQuadPolygonList != null) {
+        return false;
+      }
+    } else if (!this._XMLQuadPolygonList.equals(other._XMLQuadPolygonList)) {
+      return false;
+    }
+    if (this._XMLSphereList == null) {
+      if (other._XMLSphereList != null) {
+        return false;
+      }
+    } else if (!this._XMLSphereList.equals(other._XMLSphereList)) {
+      return false;
+    }
+    if (this._XMLTrianglePolygonList == null) {
+      if (other._XMLTrianglePolygonList != null) {
+        return false;
+      }
+    } else if (!this._XMLTrianglePolygonList.equals(other._XMLTrianglePolygonList)) {
+      return false;
+    }
+    if (this._groupList == null) {
+      if (other._groupList != null) {
+        return false;
+      }
+    } else if (!this._groupList.equals(other._groupList)) {
+      return false;
+    }
+    if (this._linkdataList == null) {
+      if (other._linkdataList != null) {
+        return false;
+      }
+    } else if (!this._linkdataList.equals(other._linkdataList)) {
+      return false;
+    }
+    if (this._location == null) {
+      if (other._location != null) {
+        return false;
+      }
+    } else if (!this._location.equals(other._location)) {
+      return false;
+    }
+    if (this._name == null) {
+      if (other._name != null) {
+        return false;
+      }
+    } else if (!this._name.equals(other._name)) {
+      return false;
+    }
+    if (this._rotation == null) {
+      if (other._rotation != null) {
+        return false;
+      }
+    } else if (!this._rotation.equals(other._rotation)) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Method getGroup

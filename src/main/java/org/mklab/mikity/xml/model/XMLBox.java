@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: XMLBox.java,v 1.2 2007/11/20 02:51:56 morimune Exp $
- */
-
 package org.mklab.mikity.xml.model;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import java.beans.PropertyChangeListener;
 import java.util.Vector;
@@ -24,14 +13,6 @@ import javax.xml.bind.annotation.XmlElement;
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
 public class XMLBox implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
 
   /**
@@ -101,10 +82,6 @@ public class XMLBox implements java.io.Serializable {
    */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
 
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
-
   /**
    * コンストラクター
    */
@@ -112,10 +89,6 @@ public class XMLBox implements java.io.Serializable {
     super();
     this.propertyChangeListeners = new Vector<PropertyChangeListener>();
   } 
-
-  // -----------/
-  // - Methods -/
-  // -----------/
 
   /**
    * Method addPropertyChangeListenerRegisters a PropertyChangeListener with this class.
@@ -154,42 +127,42 @@ public class XMLBox implements java.io.Serializable {
     this._has_zsize = false;
   }
 
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
-   */
-  @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
-
-    if (obj instanceof XMLBox) {
-
-      XMLBox temp = (XMLBox)obj;
-      if (this._xsize != temp._xsize) return false;
-      if (this._has_xsize != temp._has_xsize) return false;
-      if (this._ysize != temp._ysize) return false;
-      if (this._has_ysize != temp._has_ysize) return false;
-      if (this._zsize != temp._zsize) return false;
-      if (this._has_zsize != temp._has_zsize) return false;
-      if (this._color != null) {
-        if (temp._color == null) return false;
-        else if (!(this._color.equals(temp._color))) return false;
-      } else if (temp._color != null) return false;
-      if (this._transparent != temp._transparent) return false;
-      if (this._has_transparent != temp._has_transparent) return false;
-      if (this._rotation != null) {
-        if (temp._rotation == null) return false;
-        else if (!(this._rotation.equals(temp._rotation))) return false;
-      } else if (temp._rotation != null) return false;
-      if (this._location != null) {
-        if (temp._location == null) return false;
-        else if (!(this._location.equals(temp._location))) return false;
-      } else if (temp._location != null) return false;
-      return true;
-    }
-    return false;
-  }
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof XMLBox) {
+//
+//      XMLBox temp = (XMLBox)obj;
+//      if (this._xsize != temp._xsize) return false;
+//      if (this._has_xsize != temp._has_xsize) return false;
+//      if (this._ysize != temp._ysize) return false;
+//      if (this._has_ysize != temp._has_ysize) return false;
+//      if (this._zsize != temp._zsize) return false;
+//      if (this._has_zsize != temp._has_zsize) return false;
+//      if (this._color != null) {
+//        if (temp._color == null) return false;
+//        else if (!(this._color.equals(temp._color))) return false;
+//      } else if (temp._color != null) return false;
+//      if (this._transparent != temp._transparent) return false;
+//      if (this._has_transparent != temp._has_transparent) return false;
+//      if (this._rotation != null) {
+//        if (temp._rotation == null) return false;
+//        else if (!(this._rotation.equals(temp._rotation))) return false;
+//      } else if (temp._rotation != null) return false;
+//      if (this._location != null) {
+//        if (temp._location == null) return false;
+//        else if (!(this._location.equals(temp._location))) return false;
+//      } else if (temp._location != null) return false;
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
    * Returns the value of field 'color'.
@@ -198,6 +171,98 @@ public class XMLBox implements java.io.Serializable {
    */
   public java.lang.String loadColor() {
     return this._color;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this._color == null) ? 0 : this._color.hashCode());
+    result = prime * result + (this._has_transparent ? 1231 : 1237);
+    result = prime * result + (this._has_xsize ? 1231 : 1237);
+    result = prime * result + (this._has_ysize ? 1231 : 1237);
+    result = prime * result + (this._has_zsize ? 1231 : 1237);
+    result = prime * result + ((this._location == null) ? 0 : this._location.hashCode());
+    result = prime * result + ((this._rotation == null) ? 0 : this._rotation.hashCode());
+    result = prime * result + (this._transparent ? 1231 : 1237);
+    result = prime * result + Float.floatToIntBits(this._xsize);
+    result = prime * result + Float.floatToIntBits(this._ysize);
+    result = prime * result + Float.floatToIntBits(this._zsize);
+    result = prime * result + ((this.propertyChangeListeners == null) ? 0 : this.propertyChangeListeners.hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    XMLBox other = (XMLBox)obj;
+    if (this._color == null) {
+      if (other._color != null) {
+        return false;
+      }
+    } else if (!this._color.equals(other._color)) {
+      return false;
+    }
+    if (this._has_transparent != other._has_transparent) {
+      return false;
+    }
+    if (this._has_xsize != other._has_xsize) {
+      return false;
+    }
+    if (this._has_ysize != other._has_ysize) {
+      return false;
+    }
+    if (this._has_zsize != other._has_zsize) {
+      return false;
+    }
+    if (this._location == null) {
+      if (other._location != null) {
+        return false;
+      }
+    } else if (!this._location.equals(other._location)) {
+      return false;
+    }
+    if (this._rotation == null) {
+      if (other._rotation != null) {
+        return false;
+      }
+    } else if (!this._rotation.equals(other._rotation)) {
+      return false;
+    }
+    if (this._transparent != other._transparent) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._xsize) != Float.floatToIntBits(other._xsize)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._ysize) != Float.floatToIntBits(other._ysize)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._zsize) != Float.floatToIntBits(other._zsize)) {
+      return false;
+    }
+    if (this.propertyChangeListeners == null) {
+      if (other.propertyChangeListeners != null) {
+        return false;
+      }
+    } else if (!this.propertyChangeListeners.equals(other.propertyChangeListeners)) {
+      return false;
+    }
+    return true;
   }
 
   /**

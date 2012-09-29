@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: XMLCone.java,v 1.2 2007/11/20 02:51:56 morimune Exp $
- */
-
 package org.mklab.mikity.xml.model;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import java.beans.PropertyChangeListener;
 import java.util.Vector;
@@ -24,14 +13,6 @@ import javax.xml.bind.annotation.XmlElement;
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
 public class XMLCone implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
 
   /**
@@ -100,22 +81,14 @@ public class XMLCone implements java.io.Serializable {
    */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
 
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
-
   /**
    * コンストラクター
    */
   public XMLCone() {
     super();
     this.propertyChangeListeners = new Vector<PropertyChangeListener>();
-  } // -- org.mklab.mikity.xml.XMLCone()
-
-  // -----------/
-  // - Methods -/
-  // -----------/
-
+  }
+  
   /**
    * Method addPropertyChangeListenerRegisters a PropertyChangeListener with this class.
    * 
@@ -123,72 +96,72 @@ public class XMLCone implements java.io.Serializable {
    */
   public void addPropertyChangeListener(java.beans.PropertyChangeListener pcl) {
     this.propertyChangeListeners.addElement(pcl);
-  } // -- void addPropertyChangeListener(java.beans.PropertyChangeListener)
+  }
 
   /**
    * Method deleteDiv
    */
   public void deleteDiv() {
     this._has_div = false;
-  } // -- void deleteDiv()
+  }
 
   /**
    * Method deleteHeight
    */
   public void deleteHeight() {
     this._has_height = false;
-  } // -- void deleteHeight()
+  }
 
   /**
    * Method deleteR
    */
   public void deleteR() {
     this._has_r = false;
-  } // -- void deleteR()
+  }
 
   /**
    * Method deleteTransparent
    */
   public void deleteTransparent() {
     this._has_transparent = false;
-  } // -- void deleteTransparent()
+  }
 
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
-   */
-  @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
-
-    if (obj instanceof XMLCone) {
-
-      XMLCone temp = (XMLCone)obj;
-      if (this._r != temp._r) return false;
-      if (this._has_r != temp._has_r) return false;
-      if (this._height != temp._height) return false;
-      if (this._has_height != temp._has_height) return false;
-      if (this._div != temp._div) return false;
-      if (this._has_div != temp._has_div) return false;
-      if (this._color != null) {
-        if (temp._color == null) return false;
-        else if (!(this._color.equals(temp._color))) return false;
-      } else if (temp._color != null) return false;
-      if (this._transparent != temp._transparent) return false;
-      if (this._has_transparent != temp._has_transparent) return false;
-      if (this._rotation != null) {
-        if (temp._rotation == null) return false;
-        else if (!(this._rotation.equals(temp._rotation))) return false;
-      } else if (temp._rotation != null) return false;
-      if (this._location != null) {
-        if (temp._location == null) return false;
-        else if (!(this._location.equals(temp._location))) return false;
-      } else if (temp._location != null) return false;
-      return true;
-    }
-    return false;
-  } // -- boolean equals(java.lang.Object)
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof XMLCone) {
+//
+//      XMLCone temp = (XMLCone)obj;
+//      if (this._r != temp._r) return false;
+//      if (this._has_r != temp._has_r) return false;
+//      if (this._height != temp._height) return false;
+//      if (this._has_height != temp._has_height) return false;
+//      if (this._div != temp._div) return false;
+//      if (this._has_div != temp._has_div) return false;
+//      if (this._color != null) {
+//        if (temp._color == null) return false;
+//        else if (!(this._color.equals(temp._color))) return false;
+//      } else if (temp._color != null) return false;
+//      if (this._transparent != temp._transparent) return false;
+//      if (this._has_transparent != temp._has_transparent) return false;
+//      if (this._rotation != null) {
+//        if (temp._rotation == null) return false;
+//        else if (!(this._rotation.equals(temp._rotation))) return false;
+//      } else if (temp._rotation != null) return false;
+//      if (this._location != null) {
+//        if (temp._location == null) return false;
+//        else if (!(this._location.equals(temp._location))) return false;
+//      } else if (temp._location != null) return false;
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
    * Returns the value of field 'color'.
@@ -197,7 +170,99 @@ public class XMLCone implements java.io.Serializable {
    */
   public java.lang.String loadColor() {
     return this._color;
-  } // -- java.lang.String getColor()
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this._color == null) ? 0 : this._color.hashCode());
+    result = prime * result + this._div;
+    result = prime * result + (this._has_div ? 1231 : 1237);
+    result = prime * result + (this._has_height ? 1231 : 1237);
+    result = prime * result + (this._has_r ? 1231 : 1237);
+    result = prime * result + (this._has_transparent ? 1231 : 1237);
+    result = prime * result + Float.floatToIntBits(this._height);
+    result = prime * result + ((this._location == null) ? 0 : this._location.hashCode());
+    result = prime * result + Float.floatToIntBits(this._r);
+    result = prime * result + ((this._rotation == null) ? 0 : this._rotation.hashCode());
+    result = prime * result + (this._transparent ? 1231 : 1237);
+    result = prime * result + ((this.propertyChangeListeners == null) ? 0 : this.propertyChangeListeners.hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    XMLCone other = (XMLCone)obj;
+    if (this._color == null) {
+      if (other._color != null) {
+        return false;
+      }
+    } else if (!this._color.equals(other._color)) {
+      return false;
+    }
+    if (this._div != other._div) {
+      return false;
+    }
+    if (this._has_div != other._has_div) {
+      return false;
+    }
+    if (this._has_height != other._has_height) {
+      return false;
+    }
+    if (this._has_r != other._has_r) {
+      return false;
+    }
+    if (this._has_transparent != other._has_transparent) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._height) != Float.floatToIntBits(other._height)) {
+      return false;
+    }
+    if (this._location == null) {
+      if (other._location != null) {
+        return false;
+      }
+    } else if (!this._location.equals(other._location)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this._r) != Float.floatToIntBits(other._r)) {
+      return false;
+    }
+    if (this._rotation == null) {
+      if (other._rotation != null) {
+        return false;
+      }
+    } else if (!this._rotation.equals(other._rotation)) {
+      return false;
+    }
+    if (this._transparent != other._transparent) {
+      return false;
+    }
+    if (this.propertyChangeListeners == null) {
+      if (other.propertyChangeListeners != null) {
+        return false;
+      }
+    } else if (!this.propertyChangeListeners.equals(other.propertyChangeListeners)) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Returns the value of field 'div'.
@@ -206,7 +271,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public int loadDiv() {
     return this._div;
-  } // -- int getDiv()
+  }
 
   /**
    * Returns the value of field 'height'.
@@ -215,7 +280,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public float loadHeight() {
     return this._height;
-  } // -- float getHeight()
+  }
 
   /**
    * Returns the value of field 'location'.
@@ -224,7 +289,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.model.Location loadLocation() {
     return this._location;
-  } // -- org.mklab.mikity.xml.Location getLocation()
+  }
 
   /**
    * Returns the value of field 'r'.
@@ -233,7 +298,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public float loadR() {
     return this._r;
-  } // -- float getR()
+  }
 
   /**
    * Returns the value of field 'rotation'.
@@ -242,7 +307,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.model.Rotation loadRotation() {
     return this._rotation;
-  } // -- org.mklab.mikity.xml.Rotation getRotation()
+  }
 
   /**
    * Returns the value of field 'transparent'.
@@ -251,7 +316,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public boolean loadTransparent() {
     return this._transparent;
-  } // -- boolean getTransparent()
+  }
 
   /**
    * Method hasDiv
@@ -260,7 +325,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public boolean hasDiv() {
     return this._has_div;
-  } // -- boolean hasDiv()
+  }
 
   /**
    * Method hasHeight
@@ -269,7 +334,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public boolean hasHeight() {
     return this._has_height;
-  } // -- boolean hasHeight()
+  }
 
   /**
    * Method hasR
@@ -278,7 +343,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public boolean hasR() {
     return this._has_r;
-  } // -- boolean hasR()
+  }
 
   /**
    * Method hasTransparent
@@ -287,7 +352,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public boolean hasTransparent() {
     return this._has_transparent;
-  } // -- boolean hasTransparent()
+  }
 
   /**
    * Method notifyPropertyChangeListenersNotifies all registered PropertyChangeListeners when a bound property's value changes.
@@ -303,9 +368,7 @@ public class XMLCone implements java.io.Serializable {
     for (int i = 0; i < this.propertyChangeListeners.size(); i++) {
       (this.propertyChangeListeners.elementAt(i)).propertyChange(event);
     }
-  } // -- void notifyPropertyChangeListeners(java.lang.String, java.lang.Object,
-
-  // java.lang.Object)
+  }
 
   /**
    * Method removePropertyChangeListenerRemoves the given PropertyChangeListener from this classes list of ProperyChangeListeners.
@@ -315,9 +378,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public boolean removePropertyChangeListener(java.beans.PropertyChangeListener pcl) {
     return this.propertyChangeListeners.removeElement(pcl);
-  } // -- boolean
-
-  // removePropertyChangeListener(java.beans.PropertyChangeListener)
+  }
 
   /**
    * Sets the value of field 'color'.
@@ -326,7 +387,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public void setColor(java.lang.String color) {
     this._color = color;
-  } // -- void setColor(java.lang.String)
+  }
 
   /**
    * Sets the value of field 'div'.
@@ -336,7 +397,7 @@ public class XMLCone implements java.io.Serializable {
   public void setDiv(int div) {
     this._div = div;
     this._has_div = true;
-  } // -- void setDiv(int)
+  }
 
   /**
    * Sets the value of field 'height'.
@@ -346,7 +407,7 @@ public class XMLCone implements java.io.Serializable {
   public void setHeight(float height) {
     this._height = height;
     this._has_height = true;
-  } // -- void setHeight(float)
+  }
 
   /**
    * Sets the value of field 'location'.
@@ -355,7 +416,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public void setLocation(org.mklab.mikity.xml.model.Location location) {
     this._location = location;
-  } // -- void setLocation(org.mklab.mikity.xml.Location)
+  }
 
   /**
    * Sets the value of field 'r'.
@@ -365,7 +426,7 @@ public class XMLCone implements java.io.Serializable {
   public void setR(float r) {
     this._r = r;
     this._has_r = true;
-  } // -- void setR(float)
+  }
 
   /**
    * Sets the value of field 'rotation'.
@@ -374,7 +435,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public void setRotation(org.mklab.mikity.xml.model.Rotation rotation) {
     this._rotation = rotation;
-  } // -- void setRotation(org.mklab.mikity.xml.Rotation)
+  }
 
   /**
    * Sets the value of field 'transparent'.
@@ -384,6 +445,5 @@ public class XMLCone implements java.io.Serializable {
   public void setTransparent(boolean transparent) {
     this._transparent = transparent;
     this._has_transparent = true;
-  } // -- void setTransparent(boolean)
-
+  }
 }

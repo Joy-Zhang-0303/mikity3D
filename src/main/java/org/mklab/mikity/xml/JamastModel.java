@@ -1,15 +1,4 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.5.3</a>, using an XML
- * Schema.
- * $Id: Model.java,v 1.15 2007/08/03 03:30:27 morimune Exp $
- */
-
 package org.mklab.mikity.xml;
-
-//---------------------------------/
-//- Imported classes and packages -/
-//---------------------------------/
 
 import java.util.ArrayList;
 
@@ -24,24 +13,12 @@ import org.mklab.mikity.xml.model.Group;
  * @version $Revision: 1.15 $ $Date: 2007/08/03 03:30:27 $
  */
 public class JamastModel implements java.io.Serializable {
-
-  // --------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
   /**
    * Field _groupList
    */
   @XmlElement
   private java.util.ArrayList<Group> _groupList;
-
-  // ----------------/
-  // - Constructors -/
-  // ----------------/
 
   /**
    * コンストラクター
@@ -50,10 +27,6 @@ public class JamastModel implements java.io.Serializable {
     super();
     this._groupList = new ArrayList<Group>();
   }
-
-  // -----------/
-  // - Methods -/
-  // -----------/
 
   /**
    * Method addGroup
@@ -83,26 +56,26 @@ public class JamastModel implements java.io.Serializable {
     this._groupList.clear();
   }
 
-  /**
-   * Note: hashCode() has not been overriden
-   * 
-   * @param obj オブジェクト
-   */
-  @Override
-  public boolean equals(java.lang.Object obj) {
-    if (this == obj) return true;
-
-    if (obj instanceof JamastModel) {
-
-      JamastModel temp = (JamastModel)obj;
-      if (this._groupList != null) {
-        if (temp._groupList == null) return false;
-        else if (!(this._groupList.equals(temp._groupList))) return false;
-      } else if (temp._groupList != null) return false;
-      return true;
-    }
-    return false;
-  } 
+//  /**
+//   * Note: hashCode() has not been overriden
+//   * 
+//   * @param obj オブジェクト
+//   */
+//  @Override
+//  public boolean equals(java.lang.Object obj) {
+//    if (this == obj) return true;
+//
+//    if (obj instanceof JamastModel) {
+//
+//      JamastModel temp = (JamastModel)obj;
+//      if (this._groupList != null) {
+//        if (temp._groupList == null) return false;
+//        else if (!(this._groupList.equals(temp._groupList))) return false;
+//      } else if (temp._groupList != null) return false;
+//      return true;
+//    }
+//    return false;
+//  } 
 
   /**
    * Method getGroup
@@ -119,6 +92,42 @@ public class JamastModel implements java.io.Serializable {
 
     return this._groupList.get(index);
   } 
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this._groupList == null) ? 0 : this._groupList.hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    JamastModel other = (JamastModel)obj;
+    if (this._groupList == null) {
+      if (other._groupList != null) {
+        return false;
+      }
+    } else if (!this._groupList.equals(other._groupList)) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Method getGroup
