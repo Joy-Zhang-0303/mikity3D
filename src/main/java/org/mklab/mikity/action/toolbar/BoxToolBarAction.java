@@ -21,7 +21,6 @@ public class BoxToolBarAction extends Action {
    */
   private MainWindow window;
 
-  // private CollisionCanceller dc;
   private Jamast root;
 
   /**
@@ -32,7 +31,6 @@ public class BoxToolBarAction extends Action {
   public BoxToolBarAction(final MainWindow window, CollisionCanceller dc) {
     super();
     this.window = window;
-    // this.dc = dc;
     setText("Box"); //$NON-NLS-1$
   }
 
@@ -54,13 +52,11 @@ public class BoxToolBarAction extends Action {
     this.root = MainWindow.getRoot();
     Group group = this.root.loadModel(0).loadGroup(0);
 
-    //JoglBox box = new JoglBox();
     XMLBox box = new XMLBox();
     box.setXsize(0.10f);
     box.setYsize(0.10f);
     box.setZsize(0.10f);
     box.setColor("red"); //$NON-NLS-1$
-    // dc.checkCollision(box,box.loadLocation(),group);
     group.addXMLBox(box);
     updateBox();
   }

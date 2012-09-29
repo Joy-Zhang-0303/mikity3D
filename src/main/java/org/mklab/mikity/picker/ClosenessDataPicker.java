@@ -11,7 +11,7 @@ import org.mklab.nfc.matrix.Matrix;
 
 
 /**
- * 現在の再生時刻に近い時間の行列データのデータを取得するためのクラス
+ * 現在の再生時刻に近い時間の行列データのデータを取得するためのクラスです。
  * 
  * @author miki
  * @version $Revision: 1.5 $.2005/01/12

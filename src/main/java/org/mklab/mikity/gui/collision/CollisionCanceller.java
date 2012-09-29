@@ -6,6 +6,7 @@
 package org.mklab.mikity.gui.collision;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -32,12 +33,10 @@ public class CollisionCanceller {
   private Location loc;
 
   /** これまで追加したプリミティブの存在範囲  */
-  private ArrayList<PrimitiveRange> rangeList;
-  //private float rangeArray[];
+  private List<PrimitiveRange> rangeList;
 
   /** これまで追加したプリミティブの位置座標  */
-  private ArrayList<Location> locList;
-  //private Location locArray[];
+  private List<Location> locList;
 
   /** 2つのプリミティブの位置座標間の距離   */
   private float distance;
@@ -78,11 +77,11 @@ public class CollisionCanceller {
     this.collideFlag = false;
     this.pr.setRange(prim);
     this.range = this.pr.getRange();
-    this.loc = checkLoc(getLoc(prim));
+    this.loc = checkLocation(getLocation(prim));
 
     float listRange = 0.0f;
     Location listLoc = null;
-    // primLoc = checkLoc(primLoc);
+
     // 重複を探知するまでリスト内のプリミティブを調査
     if (this.locList.size() > 0) {
       PrimitiveRange primRange = new PrimitiveRange();
@@ -99,7 +98,7 @@ public class CollisionCanceller {
         j++;
       } while (this.collideFlag == false && j < this.locList.size());
     }
-    checkCollisionFlag(prim, this.range, checkLoc(primLoc), listRange, listLoc, group);
+    checkCollisionFlag(prim, this.range, checkLocation(primLoc), listRange, listLoc, group);
   }
 
   /**
@@ -115,10 +114,7 @@ public class CollisionCanceller {
       msg.setText(Messages.getString("CollisionCanceller.0")); //$NON-NLS-1$
       msg.setMessage(Messages.getString("CollisionCanceller.1")); //$NON-NLS-1$
       msg.open();
-      // al.adjustLoc(range,primLoc,listRange,listLoc,range);
-      // checkDuplication(prim,al.getNewLocation(),group);
     } else {
-      // primLoc = al.getNewLocation();//なぜかこれがないと無限ループになる…
       addLocationList(primLoc);
       addRangeList(prim);
       addPrimitive(prim, primLoc, group);
@@ -131,7 +127,7 @@ public class CollisionCanceller {
    * @param prim プリミティブ
    * @return 位置座標
    */
-  private Location getLoc(Object prim) {
+  private Location getLocation(Object prim) {
     Location localLocation = new Location();
     if (prim instanceof XMLBox) {
       XMLBox box = (XMLBox)prim;
@@ -165,7 +161,7 @@ public class CollisionCanceller {
    * @param argLocation 　プリミティブの位置座標
    * @return 更新したプリミティブの位置座標
    */
-  private Location checkLoc(Location argLocation) {
+  private Location checkLocation(Location argLocation) {
     if (argLocation == null) {
       argLocation = new Location();
       argLocation.setX(0.0f);
@@ -183,7 +179,7 @@ public class CollisionCanceller {
   private void addLocationList(Location argLocation) {
     Location primLoc = new Location();
     primLoc = argLocation;
-    this.locList.add(checkLoc(primLoc));
+    this.locList.add(checkLocation(primLoc));
   }
 
   /**

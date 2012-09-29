@@ -12,7 +12,7 @@ import java.io.IOException;
 
 
 /**
- * 設定データに関するクラス
+ * 設定データを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.2 $. 2004/11/18
@@ -242,7 +242,7 @@ public class ConfigData {
   }
 
   /**
-   * xcenter を戻します。
+   * xcenter を返します。
    * 
    * @return xcenter
    */
@@ -251,7 +251,8 @@ public class ConfigData {
   }
 
   /**
-   * @param xcenter xcenter を設定。
+   * xcenter を設定します。
+   * @param xcenter xcenter
    */
   public void setXcenter(double xcenter) {
     this.xcenter = xcenter;

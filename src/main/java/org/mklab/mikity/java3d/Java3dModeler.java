@@ -18,10 +18,10 @@ public class Java3dModeler extends Modeler {
    * @param parent 親
    * @param style スタイル
    * @param root ルート
-   * @param dc 重複防止
+   * @param canceller 重複防止
    */
-  public Java3dModeler(Composite parent, int style, Jamast root, CollisionCanceller dc) {
-    super(parent, style, root, dc);
+  public Java3dModeler(Composite parent, int style, Jamast root, CollisionCanceller canceller) {
+    super(parent, style, root, canceller);
   }
 
   /**

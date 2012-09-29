@@ -9,7 +9,7 @@ import org.mklab.mikity.xml.model.Location;
 
 
 /**
- * プリミティブが重複すると判断された場合、追加しようとしているプリミティブの位置座標を変更するクラス
+ * プリミティブが重複すると判断された場合、追加しようとしているプリミティブの位置座標を変更するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.2 $. 2006/07/26
@@ -43,8 +43,8 @@ public class AdjustLocation {
    * @param listLoc 　リスト内の座標
    * @param distance 　二つのプリミティブの距離
    */
-  public void adjustLoc(float range, Location primLoc, float listRange, Location listLoc, float distance) {
-    calculateLoc(range, primLoc, listRange, listLoc, distance);
+  public void adjustLocation(float range, Location primLoc, float listRange, Location listLoc, float distance) {
+    calculateLocation(range, primLoc, listRange, listLoc, distance);
     this.newLoc.setX(this.locX);
     this.newLoc.setY(this.locY);
     this.newLoc.setZ(this.locZ);
@@ -68,7 +68,7 @@ public class AdjustLocation {
    * @param listLoc 　リスト内の座標
    * @param distance 　二つのプリミティブの距離
    */
-  private void calculateLoc(float range, Location primLoc, float listRange, Location listLoc, float distance) {
+  private void calculateLocation(float range, Location primLoc, float listRange, Location listLoc, float distance) {
 
     float rate = (range + listRange) * 1.25f / distance;
 

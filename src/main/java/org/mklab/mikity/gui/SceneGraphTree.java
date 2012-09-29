@@ -70,12 +70,12 @@ public class SceneGraphTree {
   Modeler modeler;
 
   /** */
-  ConnectorSelect cs;
+  ConnectorSelect select;
   /** */
   Connect connect;
 
   /** */
-  CollisionCanceller dc;
+  CollisionCanceller canceller;
 
   /** */
   boolean usedDHParam = false;
@@ -95,17 +95,17 @@ public class SceneGraphTree {
    * @param composite コンポジット
    * @param modeler モデラー
    * @param model モデル
-   * @param dc 重複防止(コリジョンキャンセラー)
+   * @param canceller 重複防止(コリジョンキャンセラー)
    */
-  public SceneGraphTree(final Composite composite, final Modeler modeler, final JamastModel model, CollisionCanceller dc) {
+  public SceneGraphTree(final Composite composite, final Modeler modeler, final JamastModel model, CollisionCanceller canceller) {
     this.model = model;
     this.modeler = modeler;
     // ファイルの読み込みを行う
     createTree(composite);
     this.comp = composite;
-    this.dc = dc;
-    this.dc.setComposite(this.comp);
-    this.cs = new ConnectorSelect(composite, this, modeler);
+    this.canceller = canceller;
+    this.canceller.setComposite(this.comp);
+    this.select = new ConnectorSelect(composite, this, modeler);
     this.connect = new Connect();
   }
 
@@ -174,7 +174,7 @@ public class SceneGraphTree {
           editPoly.open();
           setTree();
         } else if (doubleClickObj instanceof XMLConnector) {
-          SceneGraphTree.this.cs.select(SceneGraphTree.this.targetObj, SceneGraphTree.this.root, SceneGraphTree.this.xmlTree, SceneGraphTree.this.targetGroup);
+          SceneGraphTree.this.select.select(SceneGraphTree.this.targetObj, SceneGraphTree.this.root, SceneGraphTree.this.xmlTree, SceneGraphTree.this.targetGroup);
         } else {
           EditPrimitiveDialog editPrim = new EditPrimitiveDialog(composite.getShell(), doubleClickObj, SceneGraphTree.this.targetGroup);
           editPrim.open();
@@ -259,7 +259,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        AddPrimitiveDialog localAddPrim = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.dc);
+        AddPrimitiveDialog localAddPrim = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.canceller);
         localAddPrim.open();
         setTree();
       }
@@ -397,7 +397,7 @@ public class SceneGraphTree {
         } else {
           SceneGraphTree.this.root = SceneGraphTree.this.targetGroup;
           PrimitiveConnector pConnector = new PrimitiveConnector();
-          SceneGraphTree.this.connect.setPrimitiveNS(SceneGraphTree.this.targetObj, SceneGraphTree.this.cs.getTreeConnectorFlag());
+          SceneGraphTree.this.connect.setPrimitiveNS(SceneGraphTree.this.targetObj, SceneGraphTree.this.select.getTreeConnectorFlag());
           pConnector.createPrimitiveConnector(SceneGraphTree.this.targetObj);
           setTree();
         }
@@ -408,7 +408,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        SceneGraphTree.this.cs.select(SceneGraphTree.this.targetObj, SceneGraphTree.this.root, SceneGraphTree.this.xmlTree, SceneGraphTree.this.targetGroup);
+        SceneGraphTree.this.select.select(SceneGraphTree.this.targetObj, SceneGraphTree.this.root, SceneGraphTree.this.xmlTree, SceneGraphTree.this.targetGroup);
       }
     });
 
@@ -417,8 +417,8 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(SelectionEvent e) {
         // コネクタN,Sの位置および回転情報を取得
-        SceneGraphTree.this.connect.connectorNS(SceneGraphTree.this.cs.getConnectorN());
-        SceneGraphTree.this.connect.connectorNS(SceneGraphTree.this.cs.getConnectorS());
+        SceneGraphTree.this.connect.connectorNS(SceneGraphTree.this.select.getConnectorN());
+        SceneGraphTree.this.connect.connectorNS(SceneGraphTree.this.select.getConnectorS());
 
         // 移動させるコネクタの新しい座標と回転を設定。
         SceneGraphTree.this.connect.setNewLoc();
@@ -431,7 +431,7 @@ public class SceneGraphTree {
         // 接続
         SceneGraphTree.this.connect.connect();
         // 必要のなくなったコネクタはグループごと消去。コネクタフラグもリセット
-        SceneGraphTree.this.cs.reset(SceneGraphTree.this.root);
+        SceneGraphTree.this.select.reset(SceneGraphTree.this.root);
       }
     });
   }

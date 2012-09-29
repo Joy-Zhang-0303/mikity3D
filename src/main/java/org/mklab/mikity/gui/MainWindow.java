@@ -44,13 +44,6 @@ import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.config.ModelUnit;
 import org.mklab.mikity.xml.model.Group;
 
-
-/*
- * Created on 2004/12/01
- * Copyright (C) 2004 Koga Laboratory. All rights reserved.
- *
- */
-
 /**
  * 実行画面に関するクラス
  * 
@@ -79,18 +72,14 @@ public class MainWindow extends ApplicationWindow {
   Action FILE_EXIT_ACTION = new FileExitAction(this);
 
   private Composite comp;
-  private CollisionCanceller dc = new CollisionCanceller(this.comp);
+  private CollisionCanceller canceller = new CollisionCanceller(this.comp);
 
-  private Action TOOLBAR_BOX_ACTION = new BoxToolBarAction(this, this.dc);
-  private Action TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this, this.dc);
-  private Action TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this, this.dc);
-  private Action TOOLBAR_CONE_ACTION = new ConeToolBarAction(this, this.dc);
+  private Action TOOLBAR_BOX_ACTION = new BoxToolBarAction(this, this.canceller);
+  private Action TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this, this.canceller);
+  private Action TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this, this.canceller);
+  private Action TOOLBAR_CONE_ACTION = new ConeToolBarAction(this, this.canceller);
   private Action TOOLBAR_TRIANGLE_ACTION = new TrianglePolygonToolBarAction(this);
   private Action TOOLBAR_QUAD_ACTION = new QuadPolygonToolBarAction(this);
-
-  // private Action VIEW_CHANGE_ACTION = new ChangeViewPointModeAction(this);
-  // private Action PICKING_ACTION = new ChangePickingModeAction(this);
-  // private Action CONNECT_ACTION = new ChangeConnectModeAction(this);
 
   private File file;
   private File loadFile;
@@ -140,8 +129,8 @@ public class MainWindow extends ApplicationWindow {
 
     // TODO Java3d or JOGL
     // Java3d or JOGL
-    this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.dc);
-    //this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.dc);
+    this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.canceller);
+    //this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.canceller);
     
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     return localComposite;
@@ -241,9 +230,7 @@ public class MainWindow extends ApplicationWindow {
       }
     });
 
-    /*
-     * ファイルの上書き保存
-     */
+    // ファイルの上書き保存
     this.saveButton.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -252,9 +239,8 @@ public class MainWindow extends ApplicationWindow {
       }
     });
 
-    /*
-     * ファイルの別名保存
-     */
+
+    // ファイルの別名保存
     this.saveAsButton.addSelectionListener(new SaveAsButtonSelectionListener());
 
     this.modelerButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {

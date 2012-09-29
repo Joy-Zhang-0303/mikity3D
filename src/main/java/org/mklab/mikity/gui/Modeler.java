@@ -54,7 +54,7 @@ public abstract class Modeler extends Composite {
   private String dataLengthUnit;
 
   /** */
-  CollisionCanceller dc;
+  CollisionCanceller canceller;
 
   /**
    * コンストラクター
@@ -62,14 +62,14 @@ public abstract class Modeler extends Composite {
    * @param parent 親
    * @param style スタイル
    * @param root ルート
-   * @param dc コリジョンキャンセラー
+   * @param canceller コリジョンキャンセラー
    */
-  public Modeler(Composite parent, int style, final Jamast root, CollisionCanceller dc) {
+  public Modeler(Composite parent, int style, final Jamast root, CollisionCanceller canceller) {
     super(parent, style);
     this.root = root;
     this.setLayout(new GridLayout());
     this.setLayoutData(new GridData(GridData.FILL_BOTH));
-    this.dc = dc;
+    this.canceller = canceller;
     // SashForm 画面を垂直に広げることができる
     SashForm sash = new SashForm(this, SWT.NONE);
     sash.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -110,7 +110,7 @@ public abstract class Modeler extends Composite {
     this.treeViewerGroup.setLayoutData(data);
     this.treeViewerGroup.setText(Messages.getString("Modeler.0")); //$NON-NLS-1$
 
-    this.tree = new SceneGraphTree(this.treeViewerGroup, this, this.root.loadModel(0), this.dc);
+    this.tree = new SceneGraphTree(this.treeViewerGroup, this, this.root.loadModel(0), this.canceller);
     createViewer();
   }
 
@@ -269,7 +269,7 @@ public abstract class Modeler extends Composite {
           return;
         }
 
-        AddPrimitiveDialog addPrim = new AddPrimitiveDialog(getShell(), group, Modeler.this.dc);
+        AddPrimitiveDialog addPrim = new AddPrimitiveDialog(getShell(), group, Modeler.this.canceller);
         addPrim.open();
 
         Modeler.this.tree.fillTree();

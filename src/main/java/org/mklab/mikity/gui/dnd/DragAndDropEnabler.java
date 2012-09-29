@@ -41,7 +41,7 @@ public class DragAndDropEnabler {
   private static final int OPERATION = DND.DROP_MOVE | DND.DROP_COPY | DND.DROP_LINK;
 
   /** */
-  TreeItem dragItem;
+  TreeItem treeItem;
 
   /**
    * コンストラクター ドラッグ元として {@link Tree}を設定する
@@ -50,12 +50,12 @@ public class DragAndDropEnabler {
    */
   public DragAndDropEnabler(final Tree tree) {
     this.tree = tree;
-    DragSource ds = new DragSource(tree, OPERATION);
-    DropTarget dt = new DropTarget(tree, OPERATION);
-    ds.addDragListener(new MyDragSourceListener());
-    ds.setTransfer(TYPE);
-    dt.setTransfer(TYPE);
-    dt.addDropListener(new MyDropTargetListener());
+    DragSource source = new DragSource(tree, OPERATION);
+    DropTarget target = new DropTarget(tree, OPERATION);
+    source.addDragListener(new MyDragSourceListener());
+    source.setTransfer(TYPE);
+    target.setTransfer(TYPE);
+    target.addDropListener(new MyDropTargetListener());
   }
 
   /**
@@ -126,8 +126,8 @@ public class DragAndDropEnabler {
       } else {
         return;
       }
-      Object obj = DragAndDropEnabler.this.dragItem.getData();
-      Group sourceGroup = (Group)DragAndDropEnabler.this.dragItem.getParentItem().getData();
+      Object obj = DragAndDropEnabler.this.treeItem.getData();
+      Group sourceGroup = (Group)DragAndDropEnabler.this.treeItem.getParentItem().getData();
 
       if (obj instanceof XMLBox) {
         sourceGroup.removeXMLBox((XMLBox)obj);
@@ -159,10 +159,10 @@ public class DragAndDropEnabler {
         throw new RuntimeException(Messages.getString("DragAndDropEnabler.0")); //$NON-NLS-1$
       }
       TreeItem newItem = new TreeItem(targetItem, SWT.NONE);
-      newItem.setText(DragAndDropEnabler.this.dragItem.getText());
+      newItem.setText(DragAndDropEnabler.this.treeItem.getText());
       newItem.setData(obj);
 
-      DragAndDropEnabler.this.dragItem.dispose();
+      DragAndDropEnabler.this.treeItem.dispose();
 
     }
 
@@ -192,7 +192,7 @@ public class DragAndDropEnabler {
         e.doit = false;
         return;
       }
-      DragAndDropEnabler.this.dragItem = DragAndDropEnabler.this.tree.getSelection()[0];
+      DragAndDropEnabler.this.treeItem = DragAndDropEnabler.this.tree.getSelection()[0];
     }
 
     /**
