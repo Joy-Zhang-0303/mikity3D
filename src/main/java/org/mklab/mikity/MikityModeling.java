@@ -9,12 +9,12 @@ import org.eclipse.swt.widgets.Display;
 import org.mklab.mikity.gui.ModelingWindow;
 
 /**
- * JAMAST(JAva3D Modeling And Simulation Tool)のメインクラスです。
+ * モデリングツールのメインクラスです。
  * 
  * @author Miki Koga(miki@mk.ces.kyutech.ac.jp)
  * @version $Revision: 1.2 $.2005/02/09
  */
-public class Jamast {
+public class MikityModeling {
 
   /**
    * メインメソッドです。

@@ -105,7 +105,7 @@ public class AnimationWindow extends ApplicationWindow {
     this.manager = new MovableGroupManager(root);
     this.root = root;
   }
-
+  
   /**
    * シェルの設定
    * 
