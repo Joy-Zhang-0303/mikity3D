@@ -94,7 +94,7 @@ public class ModelingWindow extends ApplicationWindow {
   private Button saveAsButton;
   private boolean isDirty;
 
-  private Modeler modeler;
+  private AbstractModeler modeler;
 
   /**
    * コンストラクター

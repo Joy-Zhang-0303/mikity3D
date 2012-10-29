@@ -28,12 +28,16 @@ import org.mklab.mikity.xml.config.ModelUnit;
 
 
 /**
- * Primitiveを作成して、Linkを作成するクラス Treeからグループを読み込む
+ * モデラーを表すクラスです。
+ * 
+ * Primitiveを作成し、Linkを作成するクラスです。
+ * 
+ * Treeからグループを読み込みます。
  * 
  * @author miki
  * @version $Revision: 1.22 $.2004/12/03
  */
-public abstract class Modeler extends Composite {
+public abstract class AbstractModeler extends Composite {
 
   /** */
   protected SceneGraphTree tree;
@@ -64,12 +68,13 @@ public abstract class Modeler extends Composite {
    * @param root ルート
    * @param canceller コリジョンキャンセラー
    */
-  public Modeler(Composite parent, int style, final Jamast root, CollisionCanceller canceller) {
+  public AbstractModeler(Composite parent, int style, final Jamast root, CollisionCanceller canceller) {
     super(parent, style);
     this.root = root;
     this.setLayout(new GridLayout());
     this.setLayoutData(new GridData(GridData.FILL_BOTH));
     this.canceller = canceller;
+
     // SashForm 画面を垂直に広げることができる
     SashForm sash = new SashForm(this, SWT.NONE);
     sash.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -77,7 +82,6 @@ public abstract class Modeler extends Composite {
 
     createViewerComp(sash);
     createTreeComp(sash);
-
   }
 
 
@@ -199,7 +203,7 @@ public abstract class Modeler extends Composite {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        org.mklab.mikity.xml.model.Group group = Modeler.this.tree.getSelectionGroup();
+        org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
         if (group == null) {
           MsgUtil.showMsg(getShell(), Messages.getString("Modeler.8")); //$NON-NLS-1$
           return;
@@ -208,7 +212,7 @@ public abstract class Modeler extends Composite {
         AddGroupDialog addGroup = new AddGroupDialog(getShell(), group);
         addGroup.open();
 
-        Modeler.this.tree.fillTree();
+        AbstractModeler.this.tree.fillTree();
         createViewer();
       }
     });
@@ -218,7 +222,7 @@ public abstract class Modeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        org.mklab.mikity.xml.model.Group group = Modeler.this.tree.getSelectionGroup();
+        org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
         if (group == null) {
           MsgUtil.showMsg(getShell(), Messages.getString("Modeler.9")); //$NON-NLS-1$
           return;
@@ -230,27 +234,27 @@ public abstract class Modeler extends Composite {
           mesBox.setText(Messages.getString("Modeler.11")); //$NON-NLS-1$
           int result = mesBox.open();
           if (result == SWT.YES) {
-            GroupConfigDialogDH groupConf = new GroupConfigDialogDH(getShell(), group, Modeler.this.tree.getGroupEditable());
+            GroupConfigDialogDH groupConf = new GroupConfigDialogDH(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
             groupConf.open();
           } else if (result == SWT.NO) {
-            GroupConfigDialogLink groupConf = new GroupConfigDialogLink(getShell(), group, Modeler.this.tree.getGroupEditable());
+            GroupConfigDialogLink groupConf = new GroupConfigDialogLink(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
             groupConf.open();
           }
         }
 
         for (int i = 0; i < linkdata.length; i++) {
           if (linkdata[i].hasDH()) {
-            GroupConfigDialogDH groupConf = new GroupConfigDialogDH(getShell(), group, Modeler.this.tree.getGroupEditable());
+            GroupConfigDialogDH groupConf = new GroupConfigDialogDH(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
             groupConf.open();
             break;
           } else if (linkdata[i].hasLink()) {
-            GroupConfigDialogLink groupConf = new GroupConfigDialogLink(getShell(), group, Modeler.this.tree.getGroupEditable());
+            GroupConfigDialogLink groupConf = new GroupConfigDialogLink(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
             groupConf.open();
             break;
           }
         }
 
-        Modeler.this.tree.fillTree();
+        AbstractModeler.this.tree.fillTree();
         createViewer();
       }
     });
@@ -260,7 +264,7 @@ public abstract class Modeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        org.mklab.mikity.xml.model.Group group = Modeler.this.tree.getSelectionGroup();
+        org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
         if (group == null) {
           MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
           box.setText(Messages.getString("Modeler.12")); //$NON-NLS-1$
@@ -269,10 +273,10 @@ public abstract class Modeler extends Composite {
           return;
         }
 
-        AddPrimitiveDialog addPrim = new AddPrimitiveDialog(getShell(), group, Modeler.this.canceller);
+        AddPrimitiveDialog addPrim = new AddPrimitiveDialog(getShell(), group, AbstractModeler.this.canceller);
         addPrim.open();
 
-        Modeler.this.tree.fillTree();
+        AbstractModeler.this.tree.fillTree();
         createViewer();
       }
     });
@@ -282,8 +286,8 @@ public abstract class Modeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        Object prim = Modeler.this.tree.getSelectionData();
-        org.mklab.mikity.xml.model.Group group = Modeler.this.tree.getSelectionGroup();
+        Object prim = AbstractModeler.this.tree.getSelectionData();
+        org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
 
         if (prim == null) {
           MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
@@ -296,7 +300,7 @@ public abstract class Modeler extends Composite {
         EditPrimitiveDialog editPrim = new EditPrimitiveDialog(getShell(), prim, group);
         editPrim.open();
 
-        Modeler.this.tree.fillTree();
+        AbstractModeler.this.tree.fillTree();
         createViewer();
 
       }

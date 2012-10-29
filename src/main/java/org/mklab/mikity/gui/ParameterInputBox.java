@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Text;
 
 
 /**
- * 数値の入力を行うボックスに関するクラス
+ * 数値の入力を行うボックスに関するクラスです。
  * 
  * @author miki
  * @version $Revision: 1.11 $.2004/12/15

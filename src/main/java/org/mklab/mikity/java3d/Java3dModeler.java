@@ -2,7 +2,7 @@ package org.mklab.mikity.java3d;
 
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
-import org.mklab.mikity.gui.Modeler;
+import org.mklab.mikity.gui.AbstractModeler;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.Jamast;
 
@@ -11,7 +11,7 @@ import org.mklab.mikity.xml.Jamast;
  * @author iwamoto
  * @version $Revision$, 2012/01/12
  */
-public class Java3dModeler extends Modeler {
+public class Java3dModeler extends AbstractModeler {
   private Java3dModelCanvas canvas;
   /**
    * Initialize the generated object of {@link Java3dModeler}.
@@ -36,7 +36,7 @@ public class Java3dModeler extends Modeler {
   }
 
   /**
-   * @see org.mklab.mikity.gui.Modeler#createModelCanvas(org.eclipse.swt.widgets.Composite)
+   * @see org.mklab.mikity.gui.AbstractModeler#createModelCanvas(org.eclipse.swt.widgets.Composite)
    */
   @Override
   public void createModelCanvas(Composite viewerComp) {

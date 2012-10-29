@@ -70,7 +70,7 @@ public class SceneGraphTree {
   private boolean editable = true;
 
   /** */
-  private Modeler modeler;
+  private AbstractModeler modeler;
 
   /** */
   private ConnectorSelect select;
@@ -100,7 +100,7 @@ public class SceneGraphTree {
    * @param model モデル
    * @param canceller 重複防止(コリジョンキャンセラー)
    */
-  public SceneGraphTree(final Composite composite, final Modeler modeler, final JamastModel model, CollisionCanceller canceller) {
+  public SceneGraphTree(final Composite composite, final AbstractModeler modeler, final JamastModel model, CollisionCanceller canceller) {
     this.model = model;
     this.modeler = modeler;
     // ファイルの読み込みを行う

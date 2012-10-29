@@ -9,7 +9,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
-import org.mklab.mikity.gui.Modeler;
+import org.mklab.mikity.gui.AbstractModeler;
 import org.mklab.mikity.gui.SceneGraphTree;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLConnector;
@@ -25,7 +25,7 @@ public class ConnectorSelect {
 
   private Composite composite;
   private SceneGraphTree tree;
-  private Modeler modeler;
+  private AbstractModeler modeler;
 
   /** コネクタN、Sであるかの真偽 */
   private boolean _hasS = false;
@@ -49,7 +49,7 @@ public class ConnectorSelect {
    * @param tree キー
    * @param modeler モデラー
    */
-  public ConnectorSelect(Composite composite, SceneGraphTree tree, Modeler modeler) {
+  public ConnectorSelect(Composite composite, SceneGraphTree tree, AbstractModeler modeler) {
     this.composite = composite;
     this.tree = tree;
     this.modeler = modeler;
