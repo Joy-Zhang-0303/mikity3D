@@ -50,41 +50,40 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  * Displays a single-selection tree, a multi-selection tree, and a checkbox tree
  */
 public class SceneGraphTree {
+  /** */
+  private Tree xmlTree;
+  /** */
+  private JamastModel model;
+  /** */
+  private Composite comp;
+  /** */
+  private TreeItem selectItem = null;
+  /** */
+  private Object targetObj = null;
+  /** */
+  private Group targetGroup = null;
+  /** */
+  private Group targetParentGroup = null;
+  /** */
+  private Group root = null;
+  /** */
+  private boolean editable = true;
 
   /** */
-  Tree xmlTree;
-  /** */
-  JamastModel model;
-  /** */
-  Composite comp;
-  /** */
-  TreeItem selectItem = null;
-  /** */
-  Object targetObj = null;
-  /** */
-  Group targetGroup = null;
-  /** */
-  Group targetParentGroup = null;
-  /** */
-  Group root = null;
-  /** */
-  boolean editable = true;
+  private Modeler modeler;
 
   /** */
-  Modeler modeler;
+  private ConnectorSelect select;
+  /** */
+  private Connect connect;
 
   /** */
-  ConnectorSelect select;
-  /** */
-  Connect connect;
+  private CollisionCanceller canceller;
 
   /** */
-  CollisionCanceller canceller;
-
+  private boolean usedDHParam = false;
   /** */
-  boolean usedDHParam = false;
-  /** */
-  boolean usedLink = false;
+  private boolean usedLink = false;
 
   /**
    * コンストラクター

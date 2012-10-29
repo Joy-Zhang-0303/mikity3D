@@ -36,13 +36,6 @@ import org.mklab.mikity.xml.Jamast;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
-
-/*
- * Created on 2004/12/02
- * Copyright (C) 2004 Koga Laboratory. All rights reserved.
- *
- */
-
 /**
  * アニメーション描画を行うウィンドウを表すクラスです。
  * 
@@ -51,52 +44,51 @@ import org.mklab.nfc.matx.MatxMatrix;
  */
 
 public class AnimationWindow extends ApplicationWindow {
-
   /** アニメーション用タスク */
-  AnimationTask task;
+  private AnimationTask animationTask;
   /** */
-  SliderPositionMoveTask stask;
+  private SliderPositionMoveTask sliderTask;
 
   /** */
   public static boolean playable = true;
 
   /** */
-  double endTime;
+  private double endTime;
 
   private Jamast root;
 
   /** */
-  double speed = 1.0;
+  private double speed = 1.0;
 
   /** */
-  Timer timer = new Timer();
+  private Timer timer = new Timer();
 
   /** */
-  Slider timeSlider;
+  private Slider timeSlider;
 
   /** 等間隔の時間を保存しとく配列 */
-  double[] timeTable;
+  private double[] timeTable;
 
   /** */
-  Matrix data;
+  private Matrix data;
 
   /** */
-  Text filePathText;
+  private Text filePathText;
 
   /** */
-  MovableGroupManager manager;
+  private MovableGroupManager manager;
 
   /** */
-  Label startTimeLabel;
+  private Label startTimeLabel;
   /** */
-  Label currentTimeLabel;
+  private Label currentTimeLabel;
   /** */
-  Label endTimeLabel;
+  private Label endTimeLabel;
 
   private boolean usedDHParam = false;
   private boolean usedLink = false;
   /** */
-  ParameterInputBox playSpeed;
+  private ParameterInputBox playSpeed;
 
   // TODO Java3d or JOGL
   private Java3dModelCanvas modelCanvas;
@@ -112,7 +104,6 @@ public class AnimationWindow extends ApplicationWindow {
     super(parentShell);
     this.manager = new MovableGroupManager(root);
     this.root = root;
-    //    setShellStyle(SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
   }
 
   /**
@@ -157,11 +148,11 @@ public class AnimationWindow extends ApplicationWindow {
   @Override
   protected void handleShellCloseEvent() {
 
-    if (this.task != null) {
-      this.task.cancel();
+    if (this.animationTask != null) {
+      this.animationTask.cancel();
     }
-    if (this.stask != null) {
-      this.stask.cancel();
+    if (this.sliderTask != null) {
+      this.sliderTask.cancel();
     }
     if (this.timer != null) {
       this.timer.cancel();
@@ -237,8 +228,8 @@ public class AnimationWindow extends ApplicationWindow {
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         AnimationWindow.this.speed += 0.1;
-        if (AnimationWindow.this.task != null) {
-          AnimationWindow.this.task.setSpeed(AnimationWindow.this.speed);
+        if (AnimationWindow.this.animationTask != null) {
+          AnimationWindow.this.animationTask.setSpeed(AnimationWindow.this.speed);
         }
         // double型をString型に変更
         String stValue = String.valueOf(AnimationWindow.this.speed);
@@ -253,8 +244,8 @@ public class AnimationWindow extends ApplicationWindow {
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         AnimationWindow.this.speed -= 0.1;
-        if (AnimationWindow.this.task != null) {
-          AnimationWindow.this.task.setSpeed(AnimationWindow.this.speed);
+        if (AnimationWindow.this.animationTask != null) {
+          AnimationWindow.this.animationTask.setSpeed(AnimationWindow.this.speed);
         }
         String stValue = String.valueOf(AnimationWindow.this.speed);
         stValue = stValue.substring(0, stValue.indexOf(".") + 2); //$NON-NLS-1$
@@ -313,8 +304,8 @@ public class AnimationWindow extends ApplicationWindow {
       public void widgetSelected(SelectionEvent arg0) {
         double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
         AnimationWindow.this.manager.processStimulus(t);
-        if (AnimationWindow.this.task != null) {
-          AnimationWindow.this.task.setCurrentTime(t);
+        if (AnimationWindow.this.animationTask != null) {
+          AnimationWindow.this.animationTask.setCurrentTime(t);
           String st = String.valueOf(t);
           if (st.length() > 5) {
             st = st.substring(0, 4);
@@ -476,15 +467,15 @@ public class AnimationWindow extends ApplicationWindow {
     playable = false;
 
     this.endTime = this.manager.getEndTime();
-    this.task = new AnimationTask(0, this.endTime, this.manager, this.modelCanvas);
-    this.task.setSpeed(this.playSpeed.getDoubleValue());// スピードの設定
-    this.task.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
+    this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.modelCanvas);
+    this.animationTask.setSpeed(this.playSpeed.getDoubleValue());// スピードの設定
+    this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
     
-    this.stask = new SliderPositionMoveTask(this.task, this.timeSlider);
+    this.sliderTask = new SliderPositionMoveTask(this.animationTask, this.timeSlider);
     
     this.timer = new Timer();
-    this.timer.schedule(this.task, 0, 10);
-    this.timer.schedule(this.stask, 0, 10);
+    this.timer.schedule(this.animationTask, 0, 10);
+    this.timer.schedule(this.sliderTask, 0, 10);
   }
 
   private class SliderPositionMoveTask extends TimerTask {
