@@ -6,7 +6,7 @@
 package org.mklab.mikity.action;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.gui.dialog.ConfigDialog;
 
 
@@ -18,13 +18,13 @@ import org.mklab.mikity.gui.dialog.ConfigDialog;
  */
 public class ConfigDialogOpenAction extends Action {
 
-  private MainWindow window;
+  private ModelingWindow window;
 
   /**
    * 新しく生成された<code>ConfigDialogOpenAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    */
-  public ConfigDialogOpenAction(final MainWindow window) {
+  public ConfigDialogOpenAction(final ModelingWindow window) {
     this.window = window;
     setText(Messages.getString("ConfigDialogOpenAction.0")); //$NON-NLS-1$
     setToolTipText(Messages.getString("ConfigDialogOpenAction.1")); //$NON-NLS-1$
@@ -37,7 +37,7 @@ public class ConfigDialogOpenAction extends Action {
    */
   @Override
   public void run() {
-    ConfigDialog dialog = new ConfigDialog(this.window.getShell(), MainWindow.getRoot().loadConfig(0));
+    ConfigDialog dialog = new ConfigDialog(this.window.getShell(), ModelingWindow.getRoot().loadConfig(0));
     dialog.open();
     this.window.setDirty(true);
   }

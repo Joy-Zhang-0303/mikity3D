@@ -44,13 +44,13 @@ import org.mklab.nfc.matx.MatxMatrix;
  */
 
 /**
- * シミュレーションの描画を行うクラス
+ * アニメーション描画を行うウィンドウを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.21 $.2004/12/02
  */
 
-public class SimulationViewer extends ApplicationWindow {
+public class AnimationWindow extends ApplicationWindow {
 
   /** アニメーション用タスク */
   AnimationTask task;
@@ -108,7 +108,7 @@ public class SimulationViewer extends ApplicationWindow {
    * @param parentShell 親シェル
    * @param root ルート
    */
-  public SimulationViewer(final Shell parentShell, final Jamast root) {
+  public AnimationWindow(final Shell parentShell, final Jamast root) {
     super(parentShell);
     this.manager = new MovableGroupManager(root);
     this.root = root;
@@ -236,15 +236,15 @@ public class SimulationViewer extends ApplicationWindow {
 
       @Override
       public void widgetSelected(SelectionEvent arg0) {
-        SimulationViewer.this.speed += 0.1;
-        if (SimulationViewer.this.task != null) {
-          SimulationViewer.this.task.setSpeed(SimulationViewer.this.speed);
+        AnimationWindow.this.speed += 0.1;
+        if (AnimationWindow.this.task != null) {
+          AnimationWindow.this.task.setSpeed(AnimationWindow.this.speed);
         }
         // double型をString型に変更
-        String stValue = String.valueOf(SimulationViewer.this.speed);
+        String stValue = String.valueOf(AnimationWindow.this.speed);
         // 小数点第二以下を表示しないようにする
         stValue = stValue.substring(0, stValue.indexOf(".") + 2); //$NON-NLS-1$
-        SimulationViewer.this.playSpeed.setText(stValue);
+        AnimationWindow.this.playSpeed.setText(stValue);
       }
     });
 
@@ -252,13 +252,13 @@ public class SimulationViewer extends ApplicationWindow {
 
       @Override
       public void widgetSelected(SelectionEvent arg0) {
-        SimulationViewer.this.speed -= 0.1;
-        if (SimulationViewer.this.task != null) {
-          SimulationViewer.this.task.setSpeed(SimulationViewer.this.speed);
+        AnimationWindow.this.speed -= 0.1;
+        if (AnimationWindow.this.task != null) {
+          AnimationWindow.this.task.setSpeed(AnimationWindow.this.speed);
         }
-        String stValue = String.valueOf(SimulationViewer.this.speed);
+        String stValue = String.valueOf(AnimationWindow.this.speed);
         stValue = stValue.substring(0, stValue.indexOf(".") + 2); //$NON-NLS-1$
-        SimulationViewer.this.playSpeed.setText(stValue);
+        AnimationWindow.this.playSpeed.setText(stValue);
       }
     });
 
@@ -277,7 +277,7 @@ public class SimulationViewer extends ApplicationWindow {
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         // スレッドを停止させる。復元不能
-        SimulationViewer.this.timer.cancel();
+        AnimationWindow.this.timer.cancel();
         playable = true;
       }
     });
@@ -311,15 +311,15 @@ public class SimulationViewer extends ApplicationWindow {
 
       @Override
       public void widgetSelected(SelectionEvent arg0) {
-        double t = SimulationViewer.this.timeTable[SimulationViewer.this.timeSlider.getSelection()];
-        SimulationViewer.this.manager.processStimulus(t);
-        if (SimulationViewer.this.task != null) {
-          SimulationViewer.this.task.setCurrentTime(t);
+        double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
+        AnimationWindow.this.manager.processStimulus(t);
+        if (AnimationWindow.this.task != null) {
+          AnimationWindow.this.task.setCurrentTime(t);
           String st = String.valueOf(t);
           if (st.length() > 5) {
             st = st.substring(0, 4);
           }
-          SimulationViewer.this.currentTimeLabel.setText(st);
+          AnimationWindow.this.currentTimeLabel.setText(st);
         }
       }
     });
@@ -347,7 +347,7 @@ public class SimulationViewer extends ApplicationWindow {
       @Override
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          setTimeData(new File(SimulationViewer.this.filePathText.getText()));
+          setTimeData(new File(AnimationWindow.this.filePathText.getText()));
         }
       }
     });
@@ -525,12 +525,12 @@ public class SimulationViewer extends ApplicationWindow {
           if (st.length() > 5) {
             st = st.substring(0, 4);
           }
-          if (SimulationViewer.this.currentTimeLabel.isDisposed()) {
+          if (AnimationWindow.this.currentTimeLabel.isDisposed()) {
             return;
           }
-          SimulationViewer.this.currentTimeLabel.setText(st);
-          for (int i = 0; i < SimulationViewer.this.timeTable.length; i++) {
-            if (SimulationViewer.this.timeTable[i] > ct) {
+          AnimationWindow.this.currentTimeLabel.setText(st);
+          for (int i = 0; i < AnimationWindow.this.timeTable.length; i++) {
+            if (AnimationWindow.this.timeTable[i] > ct) {
               if (SliderPositionMoveTask.this.slider.isDisposed()) {
                 return;
               }

@@ -13,8 +13,10 @@ import org.eclipse.swt.widgets.Label;
 
 
 /**
+ * ここで単位の表示を行う予定です。
+ * 
  * @author miki
- * @version $Revision: 1.5 $.2005/02/14 ここで単位の表示を行う予定
+ * @version $Revision: 1.5 $.2005/02/14 
  */
 public class UnitLabel extends Composite {
 

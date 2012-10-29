@@ -6,9 +6,9 @@
 package org.mklab.mikity.action;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.gui.SceneGraphTree;
-import org.mklab.mikity.gui.SimulationViewer;
+import org.mklab.mikity.gui.AnimationWindow;
 
 
 /**
@@ -20,13 +20,13 @@ import org.mklab.mikity.gui.SimulationViewer;
 public class AnimationWindowOpenAction extends Action {
 
   /** ウィンドウ */
-  private MainWindow window;
+  private ModelingWindow window;
 
   /**
    * 新しく生成された<code>AnimationWindowOpenAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    */
-  public AnimationWindowOpenAction(MainWindow window) {
+  public AnimationWindowOpenAction(ModelingWindow window) {
     setText(Messages.getString("AnimationWindowOpenAction.0")); //$NON-NLS-1$
     setToolTipText(Messages.getString("AnimationWindowOpenAction.1")); //$NON-NLS-1$
     this.window = window;
@@ -39,9 +39,9 @@ public class AnimationWindowOpenAction extends Action {
    */
   @Override
   public void run() {
-    SimulationViewer viewer = new SimulationViewer(this.window.getShell(), MainWindow.getRoot());
+    AnimationWindow viewer = new AnimationWindow(this.window.getShell(), ModelingWindow.getRoot());
     SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(MainWindow.getRoot().loadModel(0).loadGroup(0), false);
+    tree.setAllTransparent(ModelingWindow.getRoot().loadModel(0).loadGroup(0), false);
     viewer.open();
     this.window.setDirty(true);
   }

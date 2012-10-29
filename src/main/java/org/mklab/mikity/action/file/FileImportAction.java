@@ -7,7 +7,7 @@ package org.mklab.mikity.action.file;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 
 
 /**
@@ -18,14 +18,14 @@ import org.mklab.mikity.gui.MainWindow;
  */
 public class FileImportAction extends Action {
 
-  private MainWindow window;
+  private ModelingWindow window;
 
   /**
    * 新しく生成された<code>FileImportAction</code>オブジェクトを初期化します。
    * 
    * @param window ウィンドウ
    */
-  public FileImportAction(final MainWindow window) {
+  public FileImportAction(final ModelingWindow window) {
     super();
     this.window = window;
     setText(Messages.getString("FileImportAction.0")); //$NON-NLS-1$

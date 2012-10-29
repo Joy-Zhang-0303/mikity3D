@@ -7,7 +7,7 @@ package org.mklab.mikity.action.file;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 
 
 /**
@@ -18,14 +18,14 @@ import org.mklab.mikity.gui.MainWindow;
  */
 public class FileOpenAction extends Action {
 
-  private MainWindow window;
+  private ModelingWindow window;
 
   /**
    * コンストラクター
    * 
    * @param window ウィンドウ
    */
-  public FileOpenAction(final MainWindow window) {
+  public FileOpenAction(final ModelingWindow window) {
     super();
     this.window = window;
     setText(Messages.getString("FileOpenAction.0")); //$NON-NLS-1$

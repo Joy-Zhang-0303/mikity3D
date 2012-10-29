@@ -1,7 +1,7 @@
 package org.mklab.mikity.action.toolbar;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
@@ -19,7 +19,7 @@ public class BoxToolBarAction extends Action {
   /**
    * プログラム実行画面クラスMainWindowのフィールド
    */
-  private MainWindow window;
+  private ModelingWindow window;
 
   private Jamast root;
 
@@ -28,7 +28,7 @@ public class BoxToolBarAction extends Action {
    * @param window ウィンドウ
    * @param dc キャンセラー
    */
-  public BoxToolBarAction(final MainWindow window, CollisionCanceller dc) {
+  public BoxToolBarAction(final ModelingWindow window, CollisionCanceller dc) {
     super();
     this.window = window;
     setText("Box"); //$NON-NLS-1$
@@ -49,7 +49,7 @@ public class BoxToolBarAction extends Action {
    */
   @Override
   public void run() {
-    this.root = MainWindow.getRoot();
+    this.root = ModelingWindow.getRoot();
     Group group = this.root.loadModel(0).loadGroup(0);
 
     XMLBox box = new XMLBox();

@@ -5,7 +5,7 @@
 package org.mklab.mikity.action.file;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 
 
 /**
@@ -15,7 +15,7 @@ import org.mklab.mikity.gui.MainWindow;
  */
 public class FileSaveAction extends Action {
 
-  private MainWindow window;
+  private ModelingWindow window;
 
   /**
    * コンストラクター
@@ -23,7 +23,7 @@ public class FileSaveAction extends Action {
    * @param window ウィンドウ
    * 
    */
-  public FileSaveAction(final MainWindow window) {
+  public FileSaveAction(final ModelingWindow window) {
     setText(Messages.getString("FileSaveAction.0")); //$NON-NLS-1$
     this.window = window;
   }

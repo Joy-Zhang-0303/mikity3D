@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.gui.connector;
 
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 
@@ -29,7 +29,7 @@ public class ConnectorGroup {
    * @return コネクタを含んだグループ。
    */
   public Group createConnectorGroup() {
-    Jamast root = MainWindow.getRoot();
+    Jamast root = ModelingWindow.getRoot();
     this.group = root.loadModel(0).loadGroup(0);
     Group newgroup = new Group();
     newgroup.setName("Connector"); //$NON-NLS-1$

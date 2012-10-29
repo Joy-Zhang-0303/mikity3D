@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.gui.connector;
 
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
@@ -151,7 +151,7 @@ public class PrimitiveConnector {
    * @return　newgroup　コネクタNを持つグループ
    */
   public Group createConnectorNGroup() {
-    Jamast root = MainWindow.getRoot();
+    Jamast root = ModelingWindow.getRoot();
     Group groupN = root.loadModel(0).loadGroup(0);
     Group newgroup = new Group();
     newgroup.setName("ConnectorN"); //$NON-NLS-1$
@@ -165,7 +165,7 @@ public class PrimitiveConnector {
    * @return　newgroup　コネクタSを持つグループ
    */
   public Group createConnectorSGroup() {
-    Jamast root = MainWindow.getRoot();
+    Jamast root = ModelingWindow.getRoot();
     Group groupS = root.loadModel(0).loadGroup(0);
     Group newgroup = new Group();
     newgroup.setName("ConnectorS"); //$NON-NLS-1$

@@ -9,7 +9,7 @@ import java.io.File;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.util.MsgUtil;
 
 
@@ -21,7 +21,7 @@ import org.mklab.mikity.util.MsgUtil;
  */
 public class FileSaveAsAction extends Action {
 
-  private MainWindow window;
+  private ModelingWindow window;
 
   /**
    * コンストラクター
@@ -29,7 +29,7 @@ public class FileSaveAsAction extends Action {
    * @param window ウィンドウ
    * 
    */
-  public FileSaveAsAction(final MainWindow window) {
+  public FileSaveAsAction(final ModelingWindow window) {
     this.window = window;
     setText(Messages.getString("FileSaveAsAction.0")); //$NON-NLS-1$
   }

@@ -43,7 +43,11 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 
 /**
- * Displays a single-selection tree, a multi-selection tree, and a checkbox tree ツリーの読み込み、書き込みを行う
+ * シーングラフを表すクラスです。
+ * 
+ * ツリーの読み込み、書き込みを行います。
+ * 
+ * Displays a single-selection tree, a multi-selection tree, and a checkbox tree
  */
 public class SceneGraphTree {
 

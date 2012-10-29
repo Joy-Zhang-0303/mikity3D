@@ -12,7 +12,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.xml.JamastConfig;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastModel;
@@ -26,14 +26,14 @@ import org.mklab.mikity.xml.JamastModel;
  */
 public class FileNewAction extends Action {
 
-  private MainWindow window;
+  private ModelingWindow window;
 
   /**
    * コンストラクター
    * 
    * @param window ウィンドウ
    */
-  public FileNewAction(final MainWindow window) {
+  public FileNewAction(final ModelingWindow window) {
     super();
     this.window = window;
     setText(Messages.getString("FileNewAction.0")); //$NON-NLS-1$

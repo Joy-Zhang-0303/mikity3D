@@ -10,17 +10,19 @@ import org.mklab.mikity.xml.model.Group;
 
 /**
  * モデルのキャンバスを表すインターフェースです。
+ * 
  * @author koga
  * @version $Revision$, 2012/02/19
  */
 public interface ModelCanvas {
   /**
-   * fileからXMLを読み込む
+   * XMLファイルを読み込みます。
    */
   void load();
   
   /**
-   * @param groups いったんトップグループの全てを消してから書き込む
+   * 一旦トップグループの全てを消してから書き込みます。
+   * @param groups グループ群 
    */
   void setChild(Group[] groups);
 }

@@ -6,11 +6,10 @@
 package org.mklab.mikity;
 
 import org.eclipse.swt.widgets.Display;
-import org.mklab.mikity.gui.MainWindow;
-
+import org.mklab.mikity.gui.ModelingWindow;
 
 /**
- * JAMAST(JAva3D Modeling And Simulation Tool)のメインクラス
+ * JAMAST(JAva3D Modeling And Simulation Tool)のメインクラスです。
  * 
  * @author Miki Koga(miki@mk.ces.kyutech.ac.jp)
  * @version $Revision: 1.2 $.2005/02/09
@@ -18,13 +17,13 @@ import org.mklab.mikity.gui.MainWindow;
 public class Jamast {
 
   /**
-   * @param args 文字列
+   * メインメソッドです。
+   * @param args コマンドライン引数
    */
   public static void main(String[] args) {
-    MainWindow main = new MainWindow();
+    final ModelingWindow main = new ModelingWindow();
     main.setBlockOnOpen(true);
     main.open();
     Display.getCurrent().dispose();
-    System.exit(0);
   }
 }

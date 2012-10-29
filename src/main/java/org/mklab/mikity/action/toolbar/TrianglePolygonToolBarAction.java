@@ -6,7 +6,7 @@
 package org.mklab.mikity.action.toolbar;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
@@ -24,7 +24,7 @@ public class TrianglePolygonToolBarAction extends Action {
   /**
    * プログラム実行画面クラスMainWindowのフィールド
    */
-  private MainWindow window;
+  private ModelingWindow window;
   private Jamast root;
 
   /**
@@ -32,7 +32,7 @@ public class TrianglePolygonToolBarAction extends Action {
    * 
    * @param window ウィンドウ
    */
-  public TrianglePolygonToolBarAction(final MainWindow window) {
+  public TrianglePolygonToolBarAction(final ModelingWindow window) {
     super();
     this.window = window;
     setText("Triagle"); //$NON-NLS-1$
@@ -53,7 +53,7 @@ public class TrianglePolygonToolBarAction extends Action {
    */
   @Override
   public void run() {
-    this.root = MainWindow.getRoot();
+    this.root = ModelingWindow.getRoot();
     Group group = this.root.loadModel(0).loadGroup(0);
     XMLTrianglePolygon triangle = new XMLTrianglePolygon();
 

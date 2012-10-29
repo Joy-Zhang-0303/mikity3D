@@ -45,12 +45,12 @@ import org.mklab.mikity.xml.config.ModelUnit;
 import org.mklab.mikity.xml.model.Group;
 
 /**
- * 実行画面に関するクラス
+ * モデリングを行うウィンドウを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.21 $.2004/12/01
  */
-public class MainWindow extends ApplicationWindow {
+public class ModelingWindow extends ApplicationWindow {
 
   /** */
   Action FILE_NEW_ACTION = new FileNewAction(this);
@@ -100,7 +100,7 @@ public class MainWindow extends ApplicationWindow {
    * コンストラクター
    * 
    */
-  public MainWindow() {
+  public ModelingWindow() {
     this(null);
   }
 
@@ -109,7 +109,7 @@ public class MainWindow extends ApplicationWindow {
    * 
    * @param shell シェル
    */
-  public MainWindow(final Shell shell) {
+  public ModelingWindow(final Shell shell) {
     super(shell);
     addMenuBar();
     addToolBar(SWT.FLAT);
@@ -158,7 +158,7 @@ public class MainWindow extends ApplicationWindow {
       @Override
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          setFile(MainWindow.this.filePathText.getText());
+          setFile(ModelingWindow.this.filePathText.getText());
         }
       }
     });
@@ -173,7 +173,7 @@ public class MainWindow extends ApplicationWindow {
 
       @Override
       public void widgetSelected(SelectionEvent arg0) {
-        MainWindow.this.FILE_OPEN_ACTION.run();
+        ModelingWindow.this.FILE_OPEN_ACTION.run();
       }
     });
   }
@@ -226,7 +226,7 @@ public class MainWindow extends ApplicationWindow {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        MainWindow.this.FILE_NEW_ACTION.run();
+        ModelingWindow.this.FILE_NEW_ACTION.run();
       }
     });
 
@@ -235,7 +235,7 @@ public class MainWindow extends ApplicationWindow {
 
       @Override
       public void widgetSelected(SelectionEvent arg0) {
-        MainWindow.this.FILE_SAVE_ACTION.run();
+        ModelingWindow.this.FILE_SAVE_ACTION.run();
       }
     });
 
@@ -247,7 +247,7 @@ public class MainWindow extends ApplicationWindow {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        MainWindow.this.MODELER_OPEN_ACTION.run();
+        ModelingWindow.this.MODELER_OPEN_ACTION.run();
       }
     });
 
@@ -255,7 +255,7 @@ public class MainWindow extends ApplicationWindow {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        MainWindow.this.CONFIGDIALOG_OPEN_ACTION.run();
+        ModelingWindow.this.CONFIGDIALOG_OPEN_ACTION.run();
       }
     });
 
@@ -263,7 +263,7 @@ public class MainWindow extends ApplicationWindow {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        MainWindow.this.ANIMATION_WINDOW_OPEN_ACTION.run();
+        ModelingWindow.this.ANIMATION_WINDOW_OPEN_ACTION.run();
       }
     });
 
@@ -366,7 +366,7 @@ public class MainWindow extends ApplicationWindow {
 
     @Override
     public void widgetSelected(SelectionEvent arg0) {
-      MainWindow.this.FILE_SAVE_AS_ACTION.run();
+      ModelingWindow.this.FILE_SAVE_AS_ACTION.run();
     }
   }
 

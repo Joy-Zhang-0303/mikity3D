@@ -6,7 +6,7 @@
 package org.mklab.mikity.action;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.xml.Jamast;
@@ -21,7 +21,7 @@ import org.mklab.mikity.xml.Jamast;
 public class AddPrimitiveAction extends Action {
 
   /** ウィンド */
-  private MainWindow window;
+  private ModelingWindow window;
 
   /** ダイアログ */
   AddPrimitiveDialog dialog;
@@ -33,7 +33,7 @@ public class AddPrimitiveAction extends Action {
    * @param window ウィンドウ
    * @param canceller 重複防止
    */
-  public AddPrimitiveAction(final MainWindow window, CollisionCanceller canceller) {
+  public AddPrimitiveAction(final ModelingWindow window, CollisionCanceller canceller) {
     super();
     this.window = window;
     this.canceller = canceller;
@@ -49,7 +49,7 @@ public class AddPrimitiveAction extends Action {
   @Override
   public void run() {
     System.out.println(Messages.getString("AddPrimitiveAction.2")); //$NON-NLS-1$
-    Jamast root = MainWindow.getRoot();
+    Jamast root = ModelingWindow.getRoot();
     this.dialog = new AddPrimitiveDialog(this.window.getShell(), root.loadModel(0).loadGroup(0), this.canceller);
   }
 }

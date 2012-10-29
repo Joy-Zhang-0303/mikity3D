@@ -7,7 +7,7 @@ package org.mklab.mikity.action.file;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.util.MsgUtil;
 
 
@@ -19,7 +19,7 @@ import org.mklab.mikity.util.MsgUtil;
  */
 public class FileExitAction extends Action {
 
-  private MainWindow window;
+  private ModelingWindow window;
 
   /**
    * コンストラクター
@@ -27,7 +27,7 @@ public class FileExitAction extends Action {
    * @param window ウィンドウ
    * 
    */
-  public FileExitAction(final MainWindow window) {
+  public FileExitAction(final ModelingWindow window) {
     this.window = window;
     setText(Messages.getString("FileExitAction.0")); //$NON-NLS-1$
     setToolTipText(Messages.getString("FileExitAction.1")); //$NON-NLS-1$

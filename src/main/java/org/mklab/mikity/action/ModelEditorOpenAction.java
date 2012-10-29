@@ -6,7 +6,7 @@
 package org.mklab.mikity.action;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 
 
 /**
@@ -16,13 +16,13 @@ import org.mklab.mikity.gui.MainWindow;
 public class ModelEditorOpenAction extends Action {
 
   /** */
-  MainWindow window;
+  ModelingWindow window;
 
   /**
    * 新しく生成された<code>ModelEditorOpenAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    */
-  public ModelEditorOpenAction(final MainWindow window) {
+  public ModelEditorOpenAction(final ModelingWindow window) {
     this.window = window;
   }
 

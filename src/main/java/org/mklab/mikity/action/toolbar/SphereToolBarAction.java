@@ -1,7 +1,7 @@
 package org.mklab.mikity.action.toolbar;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.gui.MainWindow;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
@@ -17,7 +17,7 @@ import org.mklab.mikity.xml.model.XMLSphere;
 public class SphereToolBarAction extends Action {
 
   /** プログラム実行画面クラスMainWindowのフィールド */
-  private MainWindow window;
+  private ModelingWindow window;
 
   // private CollisionCanceller dc;
 
@@ -27,7 +27,7 @@ public class SphereToolBarAction extends Action {
    * @param window ウィンドウ
    * @param dc キャンセラー
    */
-  public SphereToolBarAction(final MainWindow window, CollisionCanceller dc) {
+  public SphereToolBarAction(final ModelingWindow window, CollisionCanceller dc) {
     super();
     this.window = window;
     // this.dc = dc;
@@ -50,7 +50,7 @@ public class SphereToolBarAction extends Action {
   @Override
   public void run() {
 
-    Jamast root = MainWindow.getRoot();
+    Jamast root = ModelingWindow.getRoot();
     Group group = root.loadModel(0).loadGroup(0);
 
     XMLSphere sph = new XMLSphere();

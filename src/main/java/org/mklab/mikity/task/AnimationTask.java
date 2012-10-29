@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.TimerTask;
 
 import org.mklab.mikity.gui.ModelCanvas;
-import org.mklab.mikity.gui.SimulationViewer;
+import org.mklab.mikity.gui.AnimationWindow;
 import org.mklab.mikity.jogl.JoglModelCanvas;
 import org.mklab.mikity.model.MovableGroupManager;
 
@@ -118,7 +118,7 @@ public class AnimationTask extends TimerTask {
     // SimulationViewer.setCurrentTime(currentTime);
 
     if (this.currentTime > this.endTime) {
-      SimulationViewer.playable = true;
+      AnimationWindow.playable = true;
       cancel();
       fireAnimationDone();
     }
