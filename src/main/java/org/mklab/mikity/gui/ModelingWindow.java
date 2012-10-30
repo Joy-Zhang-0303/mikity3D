@@ -37,6 +37,7 @@ import org.mklab.mikity.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.action.toolbar.TrianglePolygonToolBarAction;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.java3d.Java3dModeler;
+import org.mklab.mikity.jogl.JoglModeler;
 import org.mklab.mikity.xml.JAXBMarshaller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
@@ -129,8 +130,8 @@ public class ModelingWindow extends ApplicationWindow {
 
     // TODO Java3d or JOGL
     // Java3d or JOGL
-    this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.canceller);
-    //this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.canceller);
+    //this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.canceller);
+    this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.canceller);
     
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     return localComposite;
