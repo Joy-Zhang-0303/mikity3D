@@ -18,22 +18,6 @@ public class JoglTriangleObject implements JoglObject {
   @XmlAttribute
   private String _color;
 
-  /*
-  float[] white = new float[] {1.0f, 1.0f, 1.0f, 1.0f};
-  float[] lightGray = new float[] {0.75f, 0.75f, 0.75f, 1.0f};
-  float[] gray = new float[] {0.5f, 0.5f, 0.5f, 1.0f};
-  float[] darkGray = new float[] {0.25f, 0.25f, 0.25f, 1.0f};
-  float[] black = new float[] {0.0f, 0.0f, 0.0f, 1.0f};
-  float[] red = new float[] {1.0f, 0.0f, 0.0f, 1.0f};
-  float[] pink = new float[] {1.0f, 0.69f, 0.69f, 1.0f};
-  float[] orange = new float[] {1.0f, 0.78f, 0.0f, 1.0f};
-  float[] yellow = new float[] {1.0f, 1.0f, 0.0f, 1.0f};
-  float[] green = new float[] {0.0f, 1.0f, 0.0f, 1.0f};
-  float[] magenta = new float[] {1.0f, 0.0f, 1.0f, 1.0f};
-  float[] cyan = new float[] {0.0f, 1.0f, 1.0f, 1.0f};
-  float[] blue = new float[] {0.0f, 0.0f, 1.0f, 1.0f};
-  */
-  
   private float[][] _point = new float[3][3];
 
   /**
@@ -46,43 +30,30 @@ public class JoglTriangleObject implements JoglObject {
 
     if (this._color != null) {
       if (this._color == "white") { //$NON-NLS-1$
-        //gl.glColor4fv(this.white, 0);
         gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
       } else if (this._color == "lightGray") { //$NON-NLS-1$
-        //gl.glColor4fv(this.lightGray, 0);
         gl.glColor4f(0.75f, 0.75f, 0.75f, 1.0f);
       } else if (this._color == "gray") { //$NON-NLS-1$
-        //gl.glColor4fv(this.gray, 0);
         gl.glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
       } else if (this._color == "darkGray") { //$NON-NLS-1$
-        //gl.glColor4fv(this.darkGray, 0);
         gl.glColor4f(0.25f, 0.25f, 0.25f, 1.0f);
       } else if (this._color == "black") { //$NON-NLS-1$
-        //gl.glColor4fv(this.black, 0);
         gl.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
       } else if (this._color == "red") { //$NON-NLS-1$
-        //gl.glColor4fv(this.red, 0);
         gl.glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
       } else if (this._color == "pink") { //$NON-NLS-1$
-        //gl.glColor4fv(this.pink, 0);
         gl.glColor4f(1.0f, 0.69f, 0.69f, 1.0f);
       } else if (this._color == "orange") { //$NON-NLS-1$
-        //gl.glColor4fv(this.orange, 0);
         gl.glColor4f(1.0f, 0.78f, 0.0f, 1.0f);
       } else if (this._color == "yellow") { //$NON-NLS-1$
-        //gl.glColor4fv(this.yellow, 0);
         gl.glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
       } else if (this._color == "green") { //$NON-NLS-1$
-        //gl.glColor4fv(this.green,0);
         gl.glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
       } else if (this._color == "magenta") { //$NON-NLS-1$
-        //gl.glColor4fv(this.magenta, 0);
         gl.glColor4f(1.0f, 0.0f, 1.0f, 1.0f);
       } else if (this._color == "cyan") { //$NON-NLS-1$
-        //gl.glColor4fv(this.cyan, 0);
         gl.glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
       } else if (this._color == "blue") { //$NON-NLS-1$
-        //gl.glColor4fv(this.blue, 0);
         gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
       }
     }
