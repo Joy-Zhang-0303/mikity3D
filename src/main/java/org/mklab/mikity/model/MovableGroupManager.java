@@ -22,7 +22,7 @@ import org.mklab.nfc.matrix.Matrix;
 
 
 /**
- * 動かせるグループの管理をする
+ * 動かせるグループの管理をするクラスです。
  * 
  * @author miki
  * @version $Revision: 1.10 $.2005/01/14
@@ -30,9 +30,9 @@ import org.mklab.nfc.matrix.Matrix;
 public class MovableGroupManager {
 
   /** 動かせるグループのリスト */
-  private List<IMovableGroup> movableList = new ArrayList<IMovableGroup>();
-  private Map<IMovableGroup, DataPicker> pickMap = new HashMap<IMovableGroup, DataPicker>();
-  private static Map<Group, IMovableGroup> groupMap = new HashMap<Group, IMovableGroup>();
+  private List<IMovableGroup> movableGroups = new ArrayList<IMovableGroup>();
+  private Map<IMovableGroup, DataPicker> pickers = new HashMap<IMovableGroup, DataPicker>();
+  private static Map<Group, IMovableGroup> groups = new HashMap<Group, IMovableGroup>();
   private int dataCount;
   private double startTime;
   private double endTime;
@@ -57,16 +57,17 @@ public class MovableGroupManager {
    * 移動可能なグループを追加する。
    * 
    * @param tg
-   * @param pick
+   * @param picker
    */
-  private void addMovableGroup(final IMovableGroup tg, final DataPicker pick) {
-    this.movableList.add(tg);
-    this.pickMap.put(tg, pick);
+  private void addMovableGroup(final IMovableGroup tg, final DataPicker picker) {
+    this.movableGroups.add(tg);
+    this.pickers.put(tg, picker);
 
-    this.dataCount = Math.max(this.dataCount, pick.getDataCount());
-    this.startTime = Math.min(this.startTime, pick.getStartTime());
-    this.endTime = Math.max(this.endTime, pick.getEndTime());
+    this.dataCount = Math.max(this.dataCount, picker.getDataCount());
+    this.startTime = Math.min(this.startTime, picker.getStartTime());
+    this.endTime = Math.max(this.endTime, picker.getEndTime());
   }
+  
 
   /**
    * 時間ごとのリンクデータを読み取り、アニメーションを実行(DHパラメータ用)
@@ -75,9 +76,9 @@ public class MovableGroupManager {
    */
   public void processStimulusDH(double time) {
     // リストの中に入っているIMovableGroup全てに対して同じ処理を行う
-    for (Iterator<IMovableGroup> iter = this.movableList.iterator(); iter.hasNext();) {
+    for (Iterator<IMovableGroup> iter = this.movableGroups.iterator(); iter.hasNext();) {
       IMovableGroup mg = iter.next();
-      DataPicker picker = this.pickMap.get(mg);
+      DataPicker picker = this.pickers.get(mg);
 
       if (picker.getDHParameter(time) != null) {
         mg.setDHParameter(picker.getDHParameter(time));
@@ -92,23 +93,23 @@ public class MovableGroupManager {
    */
   public void processStimulus(double time) {
     // リストの中に入っているIMovableGroup全てに対して同じ処理を行う
-    for (Iterator<IMovableGroup> iter = this.movableList.iterator(); iter.hasNext();) {
+    for (Iterator<IMovableGroup> iter = this.movableGroups.iterator(); iter.hasNext();) {
       IMovableGroup mg = iter.next();
-      DataPicker picker = this.pickMap.get(mg);
+      DataPicker picker = this.pickers.get(mg);
 
       mg.setLinkParameter(picker.getLinkParameter(time));
     }
   }
 
   /**
-   * グループを追加する。
+   * グループを追加します。
    * 
    * @param group 追加するグループ
    */
   private void addGroup(final Group[] group) {
     for (int i = 0; i < group.length; i++) {
       Group g = group[i];
-      IMovableGroup tg = groupMap.get(g);
+      IMovableGroup tg = groups.get(g);
       setMovableLinkData(g.loadLinkdata(), tg);
       addGroup(g.loadGroup());
     }
@@ -224,7 +225,7 @@ public class MovableGroupManager {
   }
 
   /**
-   * 終了時間を取得する。
+   * 終了時間を返します。
    * 
    * @return endTime 終了時間
    */
@@ -233,7 +234,7 @@ public class MovableGroupManager {
   }
 
   /**
-   * 開始時間を取得する。
+   * 開始時間を返します。
    * 
    * @return startTime 開始時間
    */
@@ -242,13 +243,13 @@ public class MovableGroupManager {
   }
 
   /**
-   * 行列データの設定
+   * 時系列データを設定します。
    * 
-   * @param data 行列データ
+   * @param data 時系列ンデータ
    */
   public void setData(final Matrix data) {
     this.data = data;
-    this.movableList.clear();
+    this.movableGroups.clear();
     addGroup(this.root.loadModel(0).loadGroup());
   }
 
@@ -257,7 +258,7 @@ public class MovableGroupManager {
    * @param tg トランスフォームグループ
    */
   public static void assignGroup(final Group group, final MyTransformGroup tg) {
-    groupMap.put(group, tg);
+    groups.put(group, tg);
   }
 
   /**
@@ -265,7 +266,7 @@ public class MovableGroupManager {
    * @param tg トランスフォームグループ
    */
   public static void assignGroup(final Group group, final JoglTransformGroup tg) {
-    groupMap.put(group, tg);
+    groups.put(group, tg);
   }
   
   /**
