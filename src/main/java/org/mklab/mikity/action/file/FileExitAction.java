@@ -8,7 +8,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.mklab.mikity.gui.ModelingWindow;
-import org.mklab.mikity.util.MsgUtil;
+import org.mklab.mikity.util.MessagegUtil;
 
 
 /**
@@ -39,7 +39,7 @@ public class FileExitAction extends Action {
   @Override
   public void run() {
     if (this.window.isDirty()) {
-      int ans = MsgUtil.showYesNoCancelMsg(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
+      int ans = MessagegUtil.showYesNoCancel(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
       switch (ans) {
         case SWT.YES:
           FileDialog dialog = new FileDialog(this.window.getShell());

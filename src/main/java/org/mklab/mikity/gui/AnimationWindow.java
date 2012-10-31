@@ -31,7 +31,7 @@ import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
-import org.mklab.mikity.util.MsgUtil;
+import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
@@ -460,7 +460,7 @@ public class AnimationWindow extends ApplicationWindow {
       this.timer.cancel();
     }
     if (this.data == null || this.timeTable == null) {
-      MsgUtil.showMsg(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
+      MessagegUtil.show(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
       System.out.println(Messages.getString("SimulationViewer.5")); //$NON-NLS-1$
       return;
     }

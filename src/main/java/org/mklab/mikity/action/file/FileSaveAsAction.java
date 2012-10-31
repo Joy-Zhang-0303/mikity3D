@@ -10,7 +10,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.mklab.mikity.gui.ModelingWindow;
-import org.mklab.mikity.util.MsgUtil;
+import org.mklab.mikity.util.MessagegUtil;
 
 
 /**
@@ -50,7 +50,7 @@ public class FileSaveAsAction extends Action {
     }
     File file = new File(filePath);
     if (file.exists()) {
-      int yesno = MsgUtil.showYesNoMsg(this.window.getShell(), Messages.getString("FileSaveAsAction.2")); //$NON-NLS-1$
+      int yesno = MessagegUtil.showYesNo(this.window.getShell(), Messages.getString("FileSaveAsAction.2")); //$NON-NLS-1$
       if (yesno != SWT.YES) {
         return;
       }

@@ -21,7 +21,7 @@ import org.mklab.mikity.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogDH;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogLink;
-import org.mklab.mikity.util.MsgUtil;
+import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.config.ModelUnit;
@@ -205,7 +205,7 @@ public abstract class AbstractModeler extends Composite {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
         if (group == null) {
-          MsgUtil.showMsg(getShell(), Messages.getString("Modeler.8")); //$NON-NLS-1$
+          MessagegUtil.show(getShell(), Messages.getString("Modeler.8")); //$NON-NLS-1$
           return;
         }
 
@@ -224,7 +224,7 @@ public abstract class AbstractModeler extends Composite {
 
         org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
         if (group == null) {
-          MsgUtil.showMsg(getShell(), Messages.getString("Modeler.9")); //$NON-NLS-1$
+          MessagegUtil.show(getShell(), Messages.getString("Modeler.9")); //$NON-NLS-1$
           return;
         }
         org.mklab.mikity.xml.model.Linkdata[] linkdata = group.loadLinkdata();
