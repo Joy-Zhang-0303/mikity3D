@@ -9,7 +9,7 @@ import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.jogl.models.JoglLocation;
 import org.mklab.mikity.jogl.models.JoglRotation;
 import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.IMovableGroup;
+import org.mklab.mikity.model.MovableGroup;
 import org.mklab.mikity.model.LinkParameter;
 
 
@@ -19,7 +19,7 @@ import org.mklab.mikity.model.LinkParameter;
  * @author iwamoto
  * @version $Revision$, 2012/02/07
  */
-public class JoglTransformGroup implements JoglCoordinate, IMovableGroup {
+public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
 
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
@@ -84,7 +84,7 @@ public class JoglTransformGroup implements JoglCoordinate, IMovableGroup {
   }
 
   /**
-   * @see org.mklab.mikity.model.IMovableGroup#setDHParameter(org.mklab.mikity.model.DHParameter)
+   * @see org.mklab.mikity.model.MovableGroup#setDHParameter(org.mklab.mikity.model.DHParameter)
    */
   @Override
   public void setDHParameter(DHParameter param) {
@@ -92,7 +92,7 @@ public class JoglTransformGroup implements JoglCoordinate, IMovableGroup {
   }
 
   /**
-   * @see org.mklab.mikity.model.IMovableGroup#setLinkParameter(org.mklab.mikity.model.LinkParameter)
+   * @see org.mklab.mikity.model.MovableGroup#setLinkParameter(org.mklab.mikity.model.LinkParameter)
    */
   @Override
   public void setLinkParameter(LinkParameter link) {

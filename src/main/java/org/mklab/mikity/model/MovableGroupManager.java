@@ -30,9 +30,9 @@ import org.mklab.nfc.matrix.Matrix;
 public class MovableGroupManager {
 
   /** 動かせるグループのリスト */
-  private List<IMovableGroup> movableGroups = new ArrayList<IMovableGroup>();
-  private Map<IMovableGroup, DataPicker> pickers = new HashMap<IMovableGroup, DataPicker>();
-  private static Map<Group, IMovableGroup> groups = new HashMap<Group, IMovableGroup>();
+  private List<MovableGroup> movableGroups = new ArrayList<MovableGroup>();
+  private Map<MovableGroup, DataPicker> pickers = new HashMap<MovableGroup, DataPicker>();
+  private static Map<Group, MovableGroup> groups = new HashMap<Group, MovableGroup>();
   private int dataCount;
   private double startTime;
   private double endTime;
@@ -59,7 +59,7 @@ public class MovableGroupManager {
    * @param tg
    * @param picker
    */
-  private void addMovableGroup(final IMovableGroup tg, final DataPicker picker) {
+  private void addMovableGroup(final MovableGroup tg, final DataPicker picker) {
     this.movableGroups.add(tg);
     this.pickers.put(tg, picker);
 
@@ -76,8 +76,8 @@ public class MovableGroupManager {
    */
   public void processStimulusDH(double time) {
     // リストの中に入っているIMovableGroup全てに対して同じ処理を行う
-    for (Iterator<IMovableGroup> iter = this.movableGroups.iterator(); iter.hasNext();) {
-      IMovableGroup mg = iter.next();
+    for (Iterator<MovableGroup> iter = this.movableGroups.iterator(); iter.hasNext();) {
+      MovableGroup mg = iter.next();
       DataPicker picker = this.pickers.get(mg);
 
       if (picker.getDHParameter(time) != null) {
@@ -93,8 +93,8 @@ public class MovableGroupManager {
    */
   public void processStimulus(double time) {
     // リストの中に入っているIMovableGroup全てに対して同じ処理を行う
-    for (Iterator<IMovableGroup> iter = this.movableGroups.iterator(); iter.hasNext();) {
-      IMovableGroup mg = iter.next();
+    for (Iterator<MovableGroup> iter = this.movableGroups.iterator(); iter.hasNext();) {
+      MovableGroup mg = iter.next();
       DataPicker picker = this.pickers.get(mg);
 
       mg.setLinkParameter(picker.getLinkParameter(time));
@@ -109,7 +109,7 @@ public class MovableGroupManager {
   private void addGroup(final Group[] group) {
     for (int i = 0; i < group.length; i++) {
       Group g = group[i];
-      IMovableGroup tg = groups.get(g);
+      MovableGroup tg = groups.get(g);
       setMovableLinkData(g.loadLinkdata(), tg);
       addGroup(g.loadGroup());
     }
@@ -121,7 +121,7 @@ public class MovableGroupManager {
    * @param linkdata リンクデータ
    * @param tg TransformGroup
    */
-  private void setMovableLinkData(Linkdata[] linkdata, IMovableGroup tg) {
+  private void setMovableLinkData(Linkdata[] linkdata, MovableGroup tg) {
     if (linkdata.length == 0) {
       return;
     }

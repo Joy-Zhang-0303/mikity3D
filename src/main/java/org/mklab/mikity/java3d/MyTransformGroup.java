@@ -14,7 +14,7 @@ import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 
 import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.IMovableGroup;
+import org.mklab.mikity.model.MovableGroup;
 import org.mklab.mikity.model.LinkParameter;
 
 
@@ -24,7 +24,7 @@ import org.mklab.mikity.model.LinkParameter;
  * @author SHOGO
  * @version $Revision: 1.17 $.2005/11/22
  */
-public class MyTransformGroup extends TransformGroup implements IMovableGroup {
+public class MyTransformGroup extends TransformGroup implements MovableGroup {
 
   /**
    * コンストラクター
@@ -142,7 +142,7 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
   /**
    * リンクパラメータを設定する。
    * 
-   * @see org.mklab.mikity.model.IMovableGroup#setLinkParameter(org.mklab.mikity.model.LinkParameter)
+   * @see org.mklab.mikity.model.MovableGroup#setLinkParameter(org.mklab.mikity.model.LinkParameter)
    */
   @Override
   public void setLinkParameter(final LinkParameter link) {
@@ -189,7 +189,7 @@ public class MyTransformGroup extends TransformGroup implements IMovableGroup {
   /**
    * DHパラメータを設定する。
    * 
-   * @see org.mklab.mikity.model.IMovableGroup#setDHParameter(org.mklab.mikity.model.DHParameter)
+   * @see org.mklab.mikity.model.MovableGroup#setDHParameter(org.mklab.mikity.model.DHParameter)
    */
   @Override
   public void setDHParameter(final DHParameter param) {
