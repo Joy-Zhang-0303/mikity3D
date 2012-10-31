@@ -100,9 +100,9 @@ public class AnimationTask extends TimerTask {
     // currentTimeにdiffTime*speedを足す speedは１で現実と同じ時間経過
     this.currentTime += diffTime * this.speed;
 
-    if (this.manager.getDH()) {
+    if (this.manager.isUsingDHParameter()) {
       this.manager.processStimulusDH(this.currentTime);
-    } else if (this.manager.getLink()) {
+    } else if (this.manager.isUingLinkParameter()) {
       this.manager.processStimulus(this.currentTime);
     }
 

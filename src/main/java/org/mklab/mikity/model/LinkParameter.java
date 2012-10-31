@@ -6,7 +6,7 @@
 package org.mklab.mikity.model;
 
 /**
- * リンクパラメータに関するクラス
+ * リンクパラメータを表すクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.2 $. 2008/02/29
@@ -55,7 +55,7 @@ public class LinkParameter {
   }
 
   /**
-   * X座標並進の値を取得する。
+   * X座標並進の値を返します。
    * 
    * @return X座標並進の値
    */
@@ -64,7 +64,7 @@ public class LinkParameter {
   }
 
   /**
-   * X座標並進の値を設定する。
+   * X座標並進の値を設定します。
    * 
    * @param locX X座標
    */
@@ -73,7 +73,7 @@ public class LinkParameter {
   }
 
   /**
-   * Y座標並進の値を取得する。
+   * Y座標並進の値を返します。
    * 
    * @return Y座標並進の値
    */
@@ -82,7 +82,7 @@ public class LinkParameter {
   }
 
   /**
-   * Y座標並進の値を設定する。
+   * Y座標並進の値を設定します。
    * 
    * @param locY Y座標
    */
@@ -91,7 +91,7 @@ public class LinkParameter {
   }
 
   /**
-   * Z座標並進の値を取得する。
+   * Z座標並進の値を返します。
    * 
    * @return Z座標並進の値
    */
@@ -100,7 +100,7 @@ public class LinkParameter {
   }
 
   /**
-   * Z座標並進の値を設定する。
+   * Z座標並進の値を設定します。
    * 
    * @param locZ Z座標
    */
@@ -109,7 +109,7 @@ public class LinkParameter {
   }
 
   /**
-   * X座標回転の値を取得する。
+   * X座標回転の値を返します。
    * 
    * @return X座標回転の値
    */
@@ -118,7 +118,7 @@ public class LinkParameter {
   }
 
   /**
-   * X座標回転の値を設定する。
+   * X座標回転の値を設定します。
    * 
    * @param rotX X座標回転の値
    */
@@ -127,7 +127,7 @@ public class LinkParameter {
   }
 
   /**
-   * Y座標回転の値を取得する。
+   * Y座標回転の値を返します。
    * 
    * @return Y座標回転の値
    */
@@ -136,7 +136,7 @@ public class LinkParameter {
   }
 
   /**
-   * Y座標回転の値を設定する。
+   * Y座標回転の値を設定します。
    * 
    * @param rotY Y座標回転の値
    */
@@ -145,7 +145,7 @@ public class LinkParameter {
   }
 
   /**
-   * Z座標回転の値を取得する。
+   * Z座標回転の値を返します。
    * 
    * @return Z座標回転の値
    */
@@ -154,7 +154,7 @@ public class LinkParameter {
   }
 
   /**
-   * Z座標回転の値を設定する。
+   * Z座標回転の値を設定します。
    * 
    * @param rotZ Z座標回転の値
    */

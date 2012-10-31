@@ -6,28 +6,19 @@
 package org.mklab.mikity.model;
 
 /**
- * DHパラメータに関するクラス
+ * DHパラメータを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.4 $.2005/01/17
  */
 public class DHParameter {
-
-  /**
-   * 
-   */
+  /** */
   public static final int A = 1;
-  /**
-   * 
-   */
+  /** */
   public static final int ALPHA = 2;
-  /**
-   * 
-   */
+  /** */
   public static final int D = 3;
-  /**
-   * 
-   */
+  /** */
   public static final int THETA = 4;
 
   /** */
@@ -61,7 +52,7 @@ public class DHParameter {
   }
 
   /**
-   * パラメータaの値を取得する。
+   * パラメータaの値を返します。
    * 
    * @return a パラメータaの値
    */
@@ -70,7 +61,7 @@ public class DHParameter {
   }
 
   /**
-   * パラメータaの値を設定する。
+   * パラメータaの値を設定します。
    * 
    * @param a パラメータaの値
    */
@@ -79,7 +70,7 @@ public class DHParameter {
   }
 
   /**
-   * パラメータalphaの値を取得する。
+   * パラメータalphaの値を返します。
    * 
    * @return パラメータalphaの値
    */
@@ -88,7 +79,7 @@ public class DHParameter {
   }
 
   /**
-   * パラメータalphaの値を設定する。
+   * パラメータalphaの値を設定します。
    * 
    * @param alpha パラメータalpha
    */
@@ -97,7 +88,7 @@ public class DHParameter {
   }
 
   /**
-   * パラメータdの値を取得する。
+   * パラメータdの値を返します。
    * 
    * @return パラメータdの値
    */
@@ -106,7 +97,7 @@ public class DHParameter {
   }
 
   /**
-   * パラメータdの値を設定する。
+   * パラメータdの値を設定します。
    * 
    * @param d パラメータdの値
    */
@@ -115,7 +106,7 @@ public class DHParameter {
   }
 
   /**
-   * パラメータthetaの値を取得する。
+   * パラメータthetaの値を返します。
    * 
    * @return パラメータthetaの値
    */
@@ -124,7 +115,7 @@ public class DHParameter {
   }
 
   /**
-   * パラメータthetaの値を設定する。
+   * パラメータthetaの値を設定します。
    * 
    * @param theta パラメータthetaの値
    */

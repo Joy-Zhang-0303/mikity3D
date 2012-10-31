@@ -14,25 +14,25 @@ import org.mklab.mikity.java3d.MyTransformGroup;
 
 
 /**
- * Modelerにおける編集をサポートする座標軸を作成するために、 Group毎にtgを登録したいと思った
+ * Modelerにおける編集をサポートする座標軸を作成するために、 Group毎にtgを登録します。
  * 
  * @author miki
  * @version $Revision: 1.3 $.2005/02/02
  */
 public class GroupManager {
 
-  private static List<MyTransformGroup> groupList = new ArrayList<MyTransformGroup>();
+  private static List<MyTransformGroup> groups = new ArrayList<MyTransformGroup>();
   private static Map<MyTransformGroup, String> pickMap = new HashMap<MyTransformGroup, String>();
 
   /**
-   * 指定した名前のグループの追加を行う。
+   * 指定した名前のグループを追加します。
    * 
    * @param name 名前
-   * @param tg トランスフォームグループ
+   * @param group トランスフォームグループ
    */
-  public static void addGroup(String name, MyTransformGroup tg) {
-    groupList.add(tg);
-    pickMap.put(tg, name);
+  public static void addGroup(String name, MyTransformGroup group) {
+    groups.add(group);
+    pickMap.put(group, name);
 
   }
 

@@ -22,7 +22,7 @@ import org.mklab.nfc.matrix.Matrix;
 
 
 /**
- * 動かせるグループの管理をするクラスです。
+ * 動かせるグループの管理するクラスです。
  * 
  * @author miki
  * @version $Revision: 1.10 $.2005/01/14
@@ -41,8 +41,8 @@ public class MovableGroupManager {
 
   private Jamast root;
 
-  private boolean usedDHParam = false;
-  private boolean usedLink = false;
+  private boolean usingDHParameter = false;
+  private boolean usingLinkParameter = false;
 
   /**
    * コンストラクター
@@ -56,12 +56,12 @@ public class MovableGroupManager {
   /**
    * 移動可能なグループを追加する。
    * 
-   * @param tg
+   * @param group
    * @param picker
    */
-  private void addMovableGroup(final MovableGroup tg, final DataPicker picker) {
-    this.movableGroups.add(tg);
-    this.pickers.put(tg, picker);
+  private void addMovableGroup(final MovableGroup group, final DataPicker picker) {
+    this.movableGroups.add(group);
+    this.pickers.put(group, picker);
 
     this.dataCount = Math.max(this.dataCount, picker.getDataCount());
     this.startTime = Math.min(this.startTime, picker.getStartTime());
@@ -119,9 +119,9 @@ public class MovableGroupManager {
    * 移動可能なグループリストの設定
    * 
    * @param linkdata リンクデータ
-   * @param tg TransformGroup
+   * @param group TransformGroup
    */
-  private void setMovableLinkData(Linkdata[] linkdata, MovableGroup tg) {
+  private void setMovableLinkData(Linkdata[] linkdata, MovableGroup group) {
     if (linkdata.length == 0) {
       return;
     }
@@ -212,13 +212,13 @@ public class MovableGroupManager {
         }
       }
     }
-    addMovableGroup(tg, picker);
+    addMovableGroup(group, picker);
   }
 
   /**
    * データの個数を返します。
    * 
-   * @return データカウント
+   * @return データの個数
    */
   public int getDataCount() {
     return this.dataCount;
@@ -245,7 +245,7 @@ public class MovableGroupManager {
   /**
    * 時系列データを設定します。
    * 
-   * @param data 時系列ンデータ
+   * @param data 時系列データ
    */
   public void setData(final Matrix data) {
     this.data = data;
@@ -270,38 +270,38 @@ public class MovableGroupManager {
   }
   
   /**
-   * DHパラメータの使用の有無を設定
+   * DHパラメータの使用の有無を設定します。
    * 
-   * @param used DHパラメータ使用の有無
+   * @param using DHパラメータ使用の有無
    */
-  public void setDH(boolean used) {
-    this.usedDHParam = used;
+  public void setUsingDHParameter(boolean using) {
+    this.usingDHParameter = using;
   }
 
   /**
-   * DHパラメータの使用の有無を返す
+   * DHパラメータの使用の有無を返します。
    * 
    * @return　usedDHParam　DHパラメータの使用の有無
    */
-  public boolean getDH() {
-    return this.usedDHParam;
+  public boolean isUsingDHParameter() {
+    return this.usingDHParameter;
   }
 
   /**
-   * リンクパラメータの使用の有無を設定
+   * リンクパラメータの使用の有無を設定します。
    * 
-   * @param used リンクパラメータ使用の有無
+   * @param using リンクパラメータ使用の有無
    */
-  public void setLink(boolean used) {
-    this.usedLink = used;
+  public void setUsingLinkParameter(boolean using) {
+    this.usingLinkParameter = using;
   }
 
   /**
-   * リンクパラメータの使用の有無を返す
+   * リンクパラメータの使用の有無を返します。
    * 
    * @return　usedLink　リンクパラメータ使用の有無
    */
-  public boolean getLink() {
-    return this.usedLink;
+  public boolean isUingLinkParameter() {
+    return this.usingLinkParameter;
   }
 }
