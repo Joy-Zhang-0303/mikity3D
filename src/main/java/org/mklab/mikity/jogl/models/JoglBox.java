@@ -39,7 +39,6 @@ public class JoglBox implements JoglObject {
   @XmlAttribute
   private String _color;
 
-
   /**
    * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
    */
@@ -50,7 +49,6 @@ public class JoglBox implements JoglObject {
         {-this._xsize / 2, -this._ysize / 2, this._zsize / 2}, {this._xsize / 2, -this._ysize / 2, this._zsize / 2}, {this._xsize / 2, this._ysize / 2, -this._zsize / 2},
         {-this._xsize / 2, this._ysize / 2, -this._zsize / 2}, {-this._xsize / 2, -this._ysize / 2, -this._zsize / 2}, {this._xsize / 2, -this._ysize / 2, -this._zsize / 2}};
 
- 
     if (this._color != null) {
       if (this._color.equals("white")) { //$NON-NLS-1$
         gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -113,6 +111,7 @@ public class JoglBox implements JoglObject {
     gl.glVertex3fv(vertice[2], 0);
 
     gl.glEnd(); // 描画処理が終了しました
+
     gl.glPopMatrix();
   }
 

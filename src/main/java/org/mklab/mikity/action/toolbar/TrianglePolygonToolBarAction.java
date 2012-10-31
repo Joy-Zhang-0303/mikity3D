@@ -35,7 +35,7 @@ public class TrianglePolygonToolBarAction extends Action {
   public TrianglePolygonToolBarAction(final ModelingWindow window) {
     super();
     this.window = window;
-    setText("Triagle"); //$NON-NLS-1$
+    setText("Triangle"); //$NON-NLS-1$
   }
 
   /**

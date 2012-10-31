@@ -1,5 +1,9 @@
 package org.mklab.mikity.jogl.models;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+
 import javax.media.opengl.GL;
 import javax.xml.bind.annotation.XmlAttribute;
 
@@ -20,13 +24,16 @@ public class JoglTriangleObject implements JoglObject {
 
   private float[][] _point = new float[3][3];
 
+  //一行追加
+  private FloatBuffer vertexBuffer;//頂点バッファ
+
   /**
    * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
    */
   @Override
   public void apply(GL gl) {
 
-    float x, y, z;
+    //float x, y, z;
 
     if (this._color != null) {
       if (this._color == "white") { //$NON-NLS-1$
@@ -58,17 +65,48 @@ public class JoglTriangleObject implements JoglObject {
       }
     }
 
+    /* 
     gl.glBegin(GL.GL_TRIANGLES);
     for (int i = 0; i < 3; i++) {
-      x = this._point[i][0];
-      y = this._point[i][1];
-      z = this._point[i][2];
-      gl.glVertex3f(x, y, z);
+     x = this._point[i][0];
+     y = this._point[i][1];
+     z = this._point[i][2];
+     gl.glVertex3f(x, y, z);
     }
+    
+    gl.glVertex3f(this._point[0][0],this._point[0][1],this._point[0][2]);
+    gl.glVertex3f(this._point[1][0],this._point[1][1],this._point[1][2]);
+    gl.glVertex3f(this._point[2][0],this._point[2][1],this._point[2][2]);
+    
     gl.glEnd();
+    */
+    
+    //追加     
+    //頂点配列の有効化
+    gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
+    //頂点バッファの生成
+    float[] vertexs = {
+        this._point[0][0], this._point[0][1], this._point[0][2],
+        this._point[1][0], this._point[1][1], this._point[1][2],
+        this._point[2][0], this._point[2][1], this._point[2][2],
+        };
+
+    this.vertexBuffer = makeFloatBuffer(vertexs);
+
+    gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
+    gl.glDrawArrays(GL.GL_TRIANGLES, 0, 3); //プリミティブの描画
+  
     gl.glPopMatrix();
-    
-    
+
+  }
+
+  //追加
+  //float配列をFloatBufferに変換
+  private FloatBuffer makeFloatBuffer(float[] array) {
+    FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    fb.put(array).position(0);
+    return fb;
+
   }
 
   /**
