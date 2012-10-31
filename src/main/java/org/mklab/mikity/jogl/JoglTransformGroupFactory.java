@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.LinkParameter;
+import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.xml.model.Group;
@@ -24,7 +24,7 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 public class JoglTransformGroupFactory {
 
   /** */
-  static List<LinkParameter> links;
+  static List<CoordinateParameter> links;
   
   /** */
   static List<DHParameter> parameters;
@@ -36,13 +36,13 @@ public class JoglTransformGroupFactory {
   public static JoglTransformGroup create(Group group) {
     JoglTransformGroup tg = new JoglTransformGroup();
     if (links == null) {
-      links = new ArrayList<LinkParameter>();
+      links = new ArrayList<CoordinateParameter>();
     }
     if(parameters == null){
       parameters = new ArrayList<DHParameter>();
     }
     DHParameter parameter = new DHParameter();
-    LinkParameter link = new LinkParameter();
+    CoordinateParameter link = new CoordinateParameter();
     /*
      * DHParameterの設定
      */

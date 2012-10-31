@@ -375,7 +375,7 @@ public class AnimationWindow extends ApplicationWindow {
             this.manager.setUsingDHParameter(this.usedDHParam);
           } else if (link[j].hasLink()) {
             this.usedLink = true;
-            this.manager.setUsingLinkParameter(this.usedLink);
+            this.manager.setUsingCoordinateParameter(this.usedLink);
           } else {
             this.usedDHParam = false;
             this.usedLink = false;

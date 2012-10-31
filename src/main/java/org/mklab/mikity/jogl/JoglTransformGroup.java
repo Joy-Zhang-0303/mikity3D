@@ -10,7 +10,7 @@ import org.mklab.mikity.jogl.models.JoglLocation;
 import org.mklab.mikity.jogl.models.JoglRotation;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.MovableGroup;
-import org.mklab.mikity.model.LinkParameter;
+import org.mklab.mikity.model.CoordinateParameter;
 
 
 /**
@@ -92,10 +92,10 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
   }
 
   /**
-   * @see org.mklab.mikity.model.MovableGroup#setLinkParameter(org.mklab.mikity.model.LinkParameter)
+   * @see org.mklab.mikity.model.MovableGroup#setLinkParameter(org.mklab.mikity.model.CoordinateParameter)
    */
   @Override
-  public void setLinkParameter(LinkParameter link) {
+  public void setLinkParameter(CoordinateParameter link) {
     double locX = link.getLocX();
     double locY = link.getLocY();
     double locZ = link.getLocZ();

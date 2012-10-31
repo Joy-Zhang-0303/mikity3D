@@ -7,7 +7,7 @@ package org.mklab.mikity.util;
 
 import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.LinkParameter;
+import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.xml.model.Linkdata;
 
 
@@ -69,10 +69,10 @@ public class Util {
    * @param linkdata 　リンクデータ
    * @return parameter　リンクパラメータ
    */
-  public static LinkParameter getLinkParameter(final Linkdata[] linkdata) {
+  public static CoordinateParameter getLinkParameter(final Linkdata[] linkdata) {
     int scale = Java3dModelCanvas.scale;
     boolean radian = Java3dModelCanvas.radian;
-    LinkParameter link = new LinkParameter();
+    CoordinateParameter link = new CoordinateParameter();
     // linkdataが無い場合はlinkdata.lengthが0になる
     for (int i = 0; i < linkdata.length; i++) {
       // Constが存在する場合

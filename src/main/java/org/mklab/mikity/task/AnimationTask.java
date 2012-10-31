@@ -102,7 +102,7 @@ public class AnimationTask extends TimerTask {
 
     if (this.manager.isUsingDHParameter()) {
       this.manager.processStimulusDH(this.currentTime);
-    } else if (this.manager.isUingLinkParameter()) {
+    } else if (this.manager.isUingCoordinateParameter()) {
       this.manager.processStimulus(this.currentTime);
     }
 

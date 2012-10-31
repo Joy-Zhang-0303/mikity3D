@@ -13,7 +13,7 @@ import org.mklab.mikity.jogl.models.JoglRotation;
 import org.mklab.mikity.jogl.models.JoglSphere;
 import org.mklab.mikity.jogl.models.JoglTriangleObject;
 import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.LinkParameter;
+import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLCone;
@@ -332,7 +332,7 @@ public class JoglPrimitiveFactory {
    * @param parameters DHパラメータ
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static JoglTransformGroup create(XMLTrianglePolygon triangle, List<DHParameter> parameters, List<LinkParameter> links) {
+  public static JoglTransformGroup create(XMLTrianglePolygon triangle, List<DHParameter> parameters, List<CoordinateParameter> links) {
     JoglTransformGroup tg = new JoglTransformGroup();
 
     if (parameters == null && links == null) {
@@ -397,7 +397,7 @@ public class JoglPrimitiveFactory {
    * @param parameters DHパラメータ
    * @return　tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static JoglTransformGroup create(XMLQuadPolygon quad, List<DHParameter> parameters, List<LinkParameter> links) {
+  public static JoglTransformGroup create(XMLQuadPolygon quad, List<DHParameter> parameters, List<CoordinateParameter> links) {
     JoglTransformGroup tg = new JoglTransformGroup();
 
     if (parameters == null && links == null && quad.loadMatrix().getElement(0,3) == 0.0f && quad.loadMatrix().getElement(1,3) == 0.0f && quad.loadMatrix().getElement(2,3) == 0.0f) {
@@ -462,7 +462,7 @@ public class JoglPrimitiveFactory {
    * @param links リンクパラメータのリスト
    * @param tg JOGLトランスフォームグループ
    */
-  public static void setLinkParameter(List<LinkParameter> links, JoglTransformGroup tg) {
+  public static void setLinkParameter(List<CoordinateParameter> links, JoglTransformGroup tg) {
     float locX = 0, locY = 0, locZ = 0, rotX = 0, rotY = 0, rotZ = 0;
 
     for (int i = 0; i < links.size(); i++) {

@@ -8,7 +8,7 @@ package org.mklab.mikity.picker;
 import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.java3d.MyTransformGroup;
 import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.LinkParameter;
+import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;
 
@@ -23,7 +23,7 @@ public abstract class DataPicker {
   /** */
   protected DHParameter[] params;
   /** */
-  protected LinkParameter[] link;
+  protected CoordinateParameter[] link;
   /** */
   protected MyTransformGroup trans;
 
@@ -47,9 +47,9 @@ public abstract class DataPicker {
     for (int i = 0; i < this.params.length; i++) {
       this.params[i] = new DHParameter();
     }
-    this.link = new LinkParameter[data.getColumnSize()];
+    this.link = new CoordinateParameter[data.getColumnSize()];
     for (int i = 0; i < this.link.length; i++) {
-      this.link[i] = new LinkParameter();
+      this.link[i] = new CoordinateParameter();
     }
   }
 
@@ -106,22 +106,22 @@ public abstract class DataPicker {
     }
 
     switch (moveType) {
-      case LinkParameter.LOCX:
+      case CoordinateParameter.LOCX:
         for (int i = 0; i < this.link.length; i++) {
           this.link[i].setLocX(this.data.getElement(row, i + 1).doubleValue() / dataScale);
         }
         break;
-      case LinkParameter.LOCY:
+      case CoordinateParameter.LOCY:
         for (int i = 0; i < this.link.length; i++) {
           this.link[i].setLocY(this.data.getElement(row, i + 1).doubleValue() / dataScale);
         }
         break;
-      case LinkParameter.LOCZ:
+      case CoordinateParameter.LOCZ:
         for (int i = 0; i < this.link.length; i++) {
           this.link[i].setLocZ(this.data.getElement(row, i + 1).doubleValue() / dataScale);
         }
         break;
-      case LinkParameter.ROTX:
+      case CoordinateParameter.ROTX:
         for (int i = 0; i < this.link.length; i++) {
           if (dataIsRadian) {
             this.link[i].setRotX(this.data.getElement(row, i + 1).doubleValue());
@@ -130,7 +130,7 @@ public abstract class DataPicker {
           }
         }
         break;
-      case LinkParameter.ROTY:
+      case CoordinateParameter.ROTY:
         for (int i = 0; i < this.link.length; i++) {
           if (dataIsRadian) {
             this.link[i].setRotY(this.data.getElement(row, i + 1).doubleValue());
@@ -139,7 +139,7 @@ public abstract class DataPicker {
           }
         }
         break;
-      case LinkParameter.ROTZ:
+      case CoordinateParameter.ROTZ:
         for (int i = 0; i < this.link.length; i++) {
           if (dataIsRadian) {
             this.link[i].setRotZ(this.data.getElement(row, i + 1).doubleValue());
@@ -201,22 +201,22 @@ public abstract class DataPicker {
    */
   public void setConstantValue(int setType, double constantValue) {
     switch (setType) {
-      case LinkParameter.LOCX:
+      case CoordinateParameter.LOCX:
         for (int i = 0; i < this.link.length; i++) {
           this.link[i].setLocX(constantValue / modelScale + this.link[i].getLocX());
         }
         break;
-      case LinkParameter.LOCY:
+      case CoordinateParameter.LOCY:
         for (int i = 0; i < this.link.length; i++) {
           this.link[i].setLocY(constantValue / modelScale + this.link[i].getLocY());
         }
         break;
-      case LinkParameter.LOCZ:
+      case CoordinateParameter.LOCZ:
         for (int i = 0; i < this.link.length; i++) {
           this.link[i].setLocZ(constantValue / modelScale + this.link[i].getLocZ());
         }
         break;
-      case LinkParameter.ROTX:
+      case CoordinateParameter.ROTX:
         for (int i = 0; i < this.link.length; i++) {
           if (Java3dModelCanvas.radian) {
             this.link[i].setRotX(constantValue + this.link[i].getRotX());
@@ -225,7 +225,7 @@ public abstract class DataPicker {
           }
         }
         break;
-      case LinkParameter.ROTY:
+      case CoordinateParameter.ROTY:
         for (int i = 0; i < this.link.length; i++) {
           if (Java3dModelCanvas.radian) {
             this.link[i].setRotY(constantValue + this.link[i].getRotY());
@@ -234,7 +234,7 @@ public abstract class DataPicker {
           }
         }
         break;
-      case LinkParameter.ROTZ:
+      case CoordinateParameter.ROTZ:
         for (int i = 0; i < this.link.length; i++) {
           if (Java3dModelCanvas.radian) {
             this.link[i].setRotZ(constantValue + this.link[i].getRotZ());
@@ -309,7 +309,7 @@ public abstract class DataPicker {
    * @param time 時間
    * @return unknown
    */
-  public abstract LinkParameter getLinkParameter(double time);
+  public abstract CoordinateParameter getLinkParameter(double time);
 
   /**
    * @param dScale スケール

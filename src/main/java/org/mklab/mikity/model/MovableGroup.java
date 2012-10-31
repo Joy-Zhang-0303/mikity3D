@@ -24,5 +24,5 @@ public interface MovableGroup {
    * リンクのパラメータを設定します。
    * @param parameter リンクパラメータ
    */
-   void setLinkParameter(final LinkParameter parameter);
+   void setLinkParameter(final CoordinateParameter parameter);
 }

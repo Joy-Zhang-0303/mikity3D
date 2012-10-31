@@ -6,12 +6,12 @@
 package org.mklab.mikity.model;
 
 /**
- * リンクパラメータを表すクラスです。
+ * 座標パラメータを表すクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.2 $. 2008/02/29
  */
-public class LinkParameter {
+public class CoordinateParameter {
 
   /** */
   public static final int LOCX = 1;
@@ -31,7 +31,7 @@ public class LinkParameter {
   /**
    * コンストラクタ
    */
-  public LinkParameter() {
+  public CoordinateParameter() {
     this(0, 0, 0, 0, 0, 0);
   }
 
@@ -45,7 +45,7 @@ public class LinkParameter {
    * @param rotY Y座標回転
    * @param rotZ Z座標回転
    */
-  public LinkParameter(double locX, double locY, double locZ, double rotX, double rotY, double rotZ) {
+  public CoordinateParameter(double locX, double locY, double locZ, double rotX, double rotY, double rotZ) {
     this.locX = locX;
     this.locY = locY;
     this.locZ = locZ;

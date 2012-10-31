@@ -42,7 +42,7 @@ public class MovableGroupManager {
   private Jamast root;
 
   private boolean usingDHParameter = false;
-  private boolean usingLinkParameter = false;
+  private boolean usingCoordinateParameter = false;
 
   /**
    * コンストラクター
@@ -288,20 +288,20 @@ public class MovableGroupManager {
   }
 
   /**
-   * リンクパラメータの使用の有無を設定します。
+   * 座標パラメータの使用の有無を設定します。
    * 
-   * @param using リンクパラメータ使用の有無
+   * @param using 座標パラメータ使用の有無
    */
-  public void setUsingLinkParameter(boolean using) {
-    this.usingLinkParameter = using;
+  public void setUsingCoordinateParameter(boolean using) {
+    this.usingCoordinateParameter = using;
   }
 
   /**
-   * リンクパラメータの使用の有無を返します。
+   * 座標パラメータの使用の有無を返します。
    * 
-   * @return　usedLink　リンクパラメータ使用の有無
+   * @return　usedLink　座標パラメータ使用の有無
    */
-  public boolean isUingLinkParameter() {
-    return this.usingLinkParameter;
+  public boolean isUingCoordinateParameter() {
+    return this.usingCoordinateParameter;
   }
 }

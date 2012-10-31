@@ -6,7 +6,7 @@
 package org.mklab.mikity.picker;
 
 import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.LinkParameter;
+import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.nfc.matrix.Matrix;
 
 
@@ -44,7 +44,7 @@ public class ClosenessDataPicker extends DataPicker {
    * @see org.mklab.mikity.picker.DataPicker#getLinkParameter(double)
    */
   @Override
-  public LinkParameter getLinkParameter(double time) {
+  public CoordinateParameter getLinkParameter(double time) {
     int col = getColumn(time);
     return this.link[col - 1];
   }

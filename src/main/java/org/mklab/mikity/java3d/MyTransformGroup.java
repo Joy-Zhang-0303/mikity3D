@@ -15,7 +15,7 @@ import javax.vecmath.Vector3f;
 
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.MovableGroup;
-import org.mklab.mikity.model.LinkParameter;
+import org.mklab.mikity.model.CoordinateParameter;
 
 
 /**
@@ -142,10 +142,10 @@ public class MyTransformGroup extends TransformGroup implements MovableGroup {
   /**
    * リンクパラメータを設定する。
    * 
-   * @see org.mklab.mikity.model.MovableGroup#setLinkParameter(org.mklab.mikity.model.LinkParameter)
+   * @see org.mklab.mikity.model.MovableGroup#setLinkParameter(org.mklab.mikity.model.CoordinateParameter)
    */
   @Override
-  public void setLinkParameter(final LinkParameter link) {
+  public void setLinkParameter(final CoordinateParameter link) {
     double locX = link.getLocX();
     double locY = link.getLocY();
     double locZ = link.getLocZ();
