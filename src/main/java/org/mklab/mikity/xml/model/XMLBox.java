@@ -127,43 +127,6 @@ public class XMLBox implements java.io.Serializable {
     this._has_zsize = false;
   }
 
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof XMLBox) {
-//
-//      XMLBox temp = (XMLBox)obj;
-//      if (this._xsize != temp._xsize) return false;
-//      if (this._has_xsize != temp._has_xsize) return false;
-//      if (this._ysize != temp._ysize) return false;
-//      if (this._has_ysize != temp._has_ysize) return false;
-//      if (this._zsize != temp._zsize) return false;
-//      if (this._has_zsize != temp._has_zsize) return false;
-//      if (this._color != null) {
-//        if (temp._color == null) return false;
-//        else if (!(this._color.equals(temp._color))) return false;
-//      } else if (temp._color != null) return false;
-//      if (this._transparent != temp._transparent) return false;
-//      if (this._has_transparent != temp._has_transparent) return false;
-//      if (this._rotation != null) {
-//        if (temp._rotation == null) return false;
-//        else if (!(this._rotation.equals(temp._rotation))) return false;
-//      } else if (temp._rotation != null) return false;
-//      if (this._location != null) {
-//        if (temp._location == null) return false;
-//        else if (!(this._location.equals(temp._location))) return false;
-//      } else if (temp._location != null) return false;
-//      return true;
-//    }
-//    return false;
-//  }
-
   /**
    * Returns the value of field 'color'.
    * 

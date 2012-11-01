@@ -47,47 +47,6 @@ public class JamastConfig implements java.io.Serializable {
   @XmlElement
   private org.mklab.mikity.xml.config.DataUnit _dataUnit;
 
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof JamastConfig) {
-//
-//      JamastConfig temp = (JamastConfig)obj;
-//      if (this._data != null) {
-//        if (temp._data == null) return false;
-//        else if (!(this._data.equals(temp._data))) return false;
-//      } else if (temp._data != null) return false;
-//      if (this._background != null) {
-//        if (temp._background == null) return false;
-//        else if (!(this._background.equals(temp._background))) return false;
-//      } else if (temp._background != null) return false;
-//      if (this._light != null) {
-//        if (temp._light == null) return false;
-//        else if (!(this._light.equals(temp._light))) return false;
-//      } else if (temp._light != null) return false;
-//      if (this._view != null) {
-//        if (temp._view == null) return false;
-//        else if (!(this._view.equals(temp._view))) return false;
-//      } else if (temp._view != null) return false;
-//      if (this._modelUnit != null) {
-//        if (temp._modelUnit == null) return false;
-//        else if (!(this._modelUnit.equals(temp._modelUnit))) return false;
-//      } else if (temp._modelUnit != null) return false;
-//      if (this._dataUnit != null) {
-//        if (temp._dataUnit == null) return false;
-//        else if (!(this._dataUnit.equals(temp._dataUnit))) return false;
-//      } else if (temp._dataUnit != null) return false;
-//      return true;
-//    }
-//    return false;
-//  }
-
   /**
    * Returns the value of field 'background'.
    * 

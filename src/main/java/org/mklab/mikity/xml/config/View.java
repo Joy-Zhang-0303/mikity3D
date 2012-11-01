@@ -119,35 +119,6 @@ public class View implements java.io.Serializable {
     this._has_zrotate = false;
   }
 
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof View) {
-//
-//      View temp = (View)obj;
-//      if (this._xrotate != temp._xrotate) return false;
-//      if (this._has_xrotate != temp._has_xrotate) return false;
-//      if (this._yrotate != temp._yrotate) return false;
-//      if (this._has_yrotate != temp._has_yrotate) return false;
-//      if (this._zrotate != temp._zrotate) return false;
-//      if (this._has_zrotate != temp._has_zrotate) return false;
-//      if (this._x != temp._x) return false;
-//      if (this._has_x != temp._has_x) return false;
-//      if (this._y != temp._y) return false;
-//      if (this._has_y != temp._has_y) return false;
-//      if (this._z != temp._z) return false;
-//      if (this._has_z != temp._has_z) return false;
-//      return true;
-//    }
-//    return false;
-//  }
-
   /**
    * Returns the value of field 'x'.
    * 

@@ -23,31 +23,6 @@ public class DataUnit implements java.io.Serializable {
   @XmlAttribute
   private java.lang.String _length;
 
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof DataUnit) {
-//
-//      DataUnit temp = (DataUnit)obj;
-//      if (this._angle != null) {
-//        if (temp._angle == null) return false;
-//        else if (!(this._angle.equals(temp._angle))) return false;
-//      } else if (temp._angle != null) return false;
-//      if (this._length != null) {
-//        if (temp._length == null) return false;
-//        else if (!(this._length.equals(temp._length))) return false;
-//      } else if (temp._length != null) return false;
-//      return true;
-//    }
-//    return false;
-//  }
-
   /**
    * Returns the value of field 'angle'.
    * 

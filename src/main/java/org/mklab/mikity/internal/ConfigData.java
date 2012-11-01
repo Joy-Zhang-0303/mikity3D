@@ -162,7 +162,7 @@ public class ConfigData {
   }
 
   /**
-   * agentfile を戻します。
+   * agentfile を返します。
    * 
    * @return agentfile
    */
@@ -171,14 +171,14 @@ public class ConfigData {
   }
 
   /**
-   * @param agentfile agentfile を設定。
+   * @param agentfile agentfile を設定します。
    */
   public void setAgentfile(String[] agentfile) {
     this.agentfile = agentfile;
   }
 
   /**
-   * bgcolor を戻します。
+   * bgcolor を返します。
    * 
    * @return bgcolor
    */
@@ -187,14 +187,14 @@ public class ConfigData {
   }
 
   /**
-   * @param bgcolor bgcolor を設定。
+   * @param bgcolor bgcolor を設定します。
    */
   public void setBgcolor(String bgcolor) {
     this.bgcolor = bgcolor;
   }
 
   /**
-   * data を戻します。
+   * data を返します。
    * 
    * @return data
    */
@@ -203,14 +203,14 @@ public class ConfigData {
   }
 
   /**
-   * @param data data を設定。
+   * @param data data を設定します。
    */
   public void setData(String[] data) {
     this.data = data;
   }
 
   /**
-   * link を戻します。
+   * link を返します。
    * 
    * @return link
    */
@@ -219,14 +219,14 @@ public class ConfigData {
   }
 
   /**
-   * @param link link を設定。
+   * @param link link を設定します。
    */
   public void setLink(String[] link) {
     this.link = link;
   }
 
   /**
-   * parent を戻します。
+   * parent を返します。
    * 
    * @return parent
    */
@@ -235,7 +235,7 @@ public class ConfigData {
   }
 
   /**
-   * @param parent parent を設定。
+   * @param parent parent を設定します。
    */
   public void setParent(int parent) {
     this.parent = parent;
@@ -259,7 +259,7 @@ public class ConfigData {
   }
 
   /**
-   * xeye を戻します。
+   * xeye を返します。
    * 
    * @return xeye
    */
@@ -268,14 +268,14 @@ public class ConfigData {
   }
 
   /**
-   * @param xeye xeye を設定。
+   * @param xeye xeye を設定します。
    */
   public void setXeye(double xeye) {
     this.xeye = xeye;
   }
 
   /**
-   * xoffset を戻します。
+   * xoffset を返します。
    * 
    * @return xoffset
    */
@@ -284,14 +284,14 @@ public class ConfigData {
   }
 
   /**
-   * @param xoffset xoffset を設定。
+   * @param xoffset xoffset を設定します。
    */
   public void setXoffset(double xoffset) {
     this.xoffset = xoffset;
   }
 
   /**
-   * xroll を戻します。
+   * xroll を返します。
    * 
    * @return xroll
    */
@@ -300,14 +300,14 @@ public class ConfigData {
   }
 
   /**
-   * @param xroll xroll を設定。
+   * @param xroll xroll を設定します。
    */
   public void setXroll(double xroll) {
     this.xroll = xroll;
   }
 
   /**
-   * xsize を戻します。
+   * xsize を返します。
    * 
    * @return xsize
    */
@@ -316,14 +316,14 @@ public class ConfigData {
   }
 
   /**
-   * @param xsize xsize を設定。
+   * @param xsize xsize を設定します。
    */
   public void setXsize(int xsize) {
     this.xsize = xsize;
   }
 
   /**
-   * ycenter を戻します。
+   * ycenter を返します。
    * 
    * @return ycenter
    */
@@ -332,14 +332,14 @@ public class ConfigData {
   }
 
   /**
-   * @param ycenter ycenter を設定。
+   * @param ycenter ycenter を設定します。
    */
   public void setYcenter(double ycenter) {
     this.ycenter = ycenter;
   }
 
   /**
-   * yeye を戻します。
+   * yeye を返します。
    * 
    * @return yeye
    */
@@ -348,14 +348,14 @@ public class ConfigData {
   }
 
   /**
-   * @param yeye yeye を設定。
+   * @param yeye yeye を設定します。
    */
   public void setYeye(double yeye) {
     this.yeye = yeye;
   }
 
   /**
-   * yoffset を戻します。
+   * yoffset を返します。
    * 
    * @return yoffset
    */
@@ -364,14 +364,14 @@ public class ConfigData {
   }
 
   /**
-   * @param yoffset yoffset を設定。
+   * @param yoffset yoffset を設定します。
    */
   public void setYoffset(double yoffset) {
     this.yoffset = yoffset;
   }
 
   /**
-   * yroll を戻します。
+   * yroll を返します。
    * 
    * @return yroll
    */
@@ -380,14 +380,14 @@ public class ConfigData {
   }
 
   /**
-   * @param yroll yroll を設定。
+   * @param yroll yroll を設定します。
    */
   public void setYroll(double yroll) {
     this.yroll = yroll;
   }
 
   /**
-   * ysize を戻します。
+   * ysize を返します。
    * 
    * @return ysize
    */
@@ -396,14 +396,14 @@ public class ConfigData {
   }
 
   /**
-   * @param ysize ysize を設定。
+   * @param ysize ysize を設定します。
    */
   public void setYsize(int ysize) {
     this.ysize = ysize;
   }
 
   /**
-   * zcenter を戻します。
+   * zcenter を返します。
    * 
    * @return zcenter
    */
@@ -412,14 +412,14 @@ public class ConfigData {
   }
 
   /**
-   * @param zcenter zcenter を設定。
+   * @param zcenter zcenter を設定します。
    */
   public void setZcenter(double zcenter) {
     this.zcenter = zcenter;
   }
 
   /**
-   * zeye を戻します。
+   * zeye を返します。
    * 
    * @return zeye
    */
@@ -428,14 +428,14 @@ public class ConfigData {
   }
 
   /**
-   * @param zeye zeye を設定。
+   * @param zeye zeye を設定します。
    */
   public void setZeye(double zeye) {
     this.zeye = zeye;
   }
 
   /**
-   * zoffset を戻します。
+   * zoffset を返します。
    * 
    * @return zoffset
    */
@@ -444,14 +444,14 @@ public class ConfigData {
   }
 
   /**
-   * @param zoffset zoffset を設定。
+   * @param zoffset zoffset を設定します。
    */
   public void setZoffset(double zoffset) {
     this.zoffset = zoffset;
   }
 
   /**
-   * zroll を戻します。
+   * zroll を返します。
    * 
    * @return zroll
    */
@@ -460,7 +460,7 @@ public class ConfigData {
   }
 
   /**
-   * @param zroll zroll を設定。
+   * @param zroll zroll を設定します。
    */
   public void setZroll(double zroll) {
     this.zroll = zroll;

@@ -54,28 +54,7 @@ public class JamastModel implements java.io.Serializable {
    */
   public void clearGroup() {
     this._groupList.clear();
-  }
-
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof JamastModel) {
-//
-//      JamastModel temp = (JamastModel)obj;
-//      if (this._groupList != null) {
-//        if (temp._groupList == null) return false;
-//        else if (!(this._groupList.equals(temp._groupList))) return false;
-//      } else if (temp._groupList != null) return false;
-//      return true;
-//    }
-//    return false;
-//  } 
+  } 
 
   /**
    * Method getGroup

@@ -16,27 +16,6 @@ public class Background implements java.io.Serializable {
   @XmlAttribute
   private java.lang.String _color;
   
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof Background) {
-//
-//      Background temp = (Background)obj;
-//      if (this._color != null) {
-//        if (temp._color == null) return false;
-//        else if (!(this._color.equals(temp._color))) return false;
-//      } else if (temp._color != null) return false;
-//      return true;
-//    }
-//    return false;
-//  }
-
   /**
    * {@inheritDoc}
    */

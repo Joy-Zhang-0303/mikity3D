@@ -90,31 +90,6 @@ public class Jamast implements java.io.Serializable {
     this._modelList.clear();
   }
 
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof Jamast) {
-//
-//      Jamast temp = (Jamast)obj;
-//      if (this._modelList != null) {
-//        if (temp._modelList == null) return false;
-//        else if (!(this._modelList.equals(temp._modelList))) return false;
-//      } else if (temp._modelList != null) return false;
-//      if (this._configList != null) {
-//        if (temp._configList == null) return false;
-//        else if (!(this._configList.equals(temp._configList))) return false;
-//      } else if (temp._configList != null) return false;
-//      return true;
-//    }
-//    return false;
-//  }
-
   /**
    * Method getConfig
    * 

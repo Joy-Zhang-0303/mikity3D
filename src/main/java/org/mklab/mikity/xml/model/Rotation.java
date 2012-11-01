@@ -86,29 +86,6 @@ public class Rotation implements java.io.Serializable {
     this._has_zrotate = false;
   }
 
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof Rotation) {
-//
-//      Rotation temp = (Rotation)obj;
-//      if (this._xrotate != temp._xrotate) return false;
-//      if (this._has_xrotate != temp._has_xrotate) return false;
-//      if (this._yrotate != temp._yrotate) return false;
-//      if (this._has_yrotate != temp._has_yrotate) return false;
-//      if (this._zrotate != temp._zrotate) return false;
-//      if (this._has_zrotate != temp._has_zrotate) return false;
-//      return true;
-//    }
-//    return false;
-//  }
-
   /**
    * Returns the value of field 'xrotate'.
    * 

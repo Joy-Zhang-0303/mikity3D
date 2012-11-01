@@ -57,31 +57,6 @@ public class Linkdata implements java.io.Serializable {
     this._has_const = false;
   }
 
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof Linkdata) {
-//
-//      Linkdata temp = (Linkdata)obj;
-//      if (this._target != null) {
-//        if (temp._target == null) return false;
-//        else if (!(this._target.equals(temp._target))) return false;
-//      } else if (temp._target != null) return false;
-//      if (this._const != temp._const) return false;
-//      if (this._has_const != temp._has_const) return false;
-//      if (this._column != temp._column) return false;
-//      if (this._has_column != temp._has_column) return false;
-//      return true;
-//    }
-//    return false;
-//  }
-
   /**
    * Returns the value of field 'column'.
    * 

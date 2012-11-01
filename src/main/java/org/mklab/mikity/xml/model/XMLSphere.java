@@ -108,41 +108,6 @@ public class XMLSphere implements java.io.Serializable {
     this._has_transparent = false;
   }
 
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof XMLSphere) {
-//
-//      XMLSphere temp = (XMLSphere)obj;
-//      if (this._r != temp._r) return false;
-//      if (this._has_r != temp._has_r) return false;
-//      if (this._div != temp._div) return false;
-//      if (this._has_div != temp._has_div) return false;
-//      if (this._color != null) {
-//        if (temp._color == null) return false;
-//        else if (!(this._color.equals(temp._color))) return false;
-//      } else if (temp._color != null) return false;
-//      if (this._transparent != temp._transparent) return false;
-//      if (this._has_transparent != temp._has_transparent) return false;
-//      if (this._rotation != null) {
-//        if (temp._rotation == null) return false;
-//        else if (!(this._rotation.equals(temp._rotation))) return false;
-//      } else if (temp._rotation != null) return false;
-//      if (this._location != null) {
-//        if (temp._location == null) return false;
-//        else if (!(this._location.equals(temp._location))) return false;
-//      } else if (temp._location != null) return false;
-//      return true;
-//    }
-//    return false;
-//  }
-
   /**
    * Returns the value of field 'color'.
    * 
