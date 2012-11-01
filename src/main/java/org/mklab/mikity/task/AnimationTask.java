@@ -46,16 +46,6 @@ public class AnimationTask extends TimerTask {
     this.canvas = canvas;
   }
 
-//  /**
-//   * コンストラクター
-//   * 
-//   * @param endTime 終了時刻
-//   * @param manager グループマネージャー
-//   */
-//  public AnimationTask(double endTime, MovableGroupManager manager) {
-//    this(0, endTime, manager);
-//  }
-
   /**
    * {@link AnimationTaskListener}を登録します。
    * 
@@ -100,9 +90,9 @@ public class AnimationTask extends TimerTask {
     // currentTimeにdiffTime*speedを足す speedは１で現実と同じ時間経過
     this.currentTime += diffTime * this.speed;
 
-    if (this.manager.isUsingDHParameter()) {
+    if (this.manager.hasDHParameter()) {
       this.manager.processStimulusDH(this.currentTime);
-    } else if (this.manager.isUingCoordinateParameter()) {
+    } else if (this.manager.hasCoordinateParameter()) {
       this.manager.processStimulus(this.currentTime);
     }
 

@@ -357,74 +357,6 @@ public class Group implements java.io.Serializable {
     this._XMLQuadPolygonList.clear();
   } 
 
-//  /**
-//   * Note: hashCode() has not been overriden
-//   * 
-//   * @param obj オブジェクト
-//   */
-//  @Override
-//  public boolean equals(java.lang.Object obj) {
-//    if (this == obj) return true;
-//
-//    if (obj instanceof Group) {
-//
-//      Group temp = (Group)obj;
-//      if (this._name != null) {
-//        if (temp._name == null) return false;
-//        else if (!(this._name.equals(temp._name))) return false;
-//      } else if (temp._name != null) return false;
-//      if (this._XMLBoxList != null) {
-//        if (temp._XMLBoxList == null) return false;
-//        else if (!(this._XMLBoxList.equals(temp._XMLBoxList))) return false;
-//      } else if (temp._XMLBoxList != null) return false;
-//      if (this._XMLCylinderList != null) {
-//        if (temp._XMLCylinderList == null) return false;
-//        else if (!(this._XMLCylinderList.equals(temp._XMLCylinderList))) return false;
-//      } else if (temp._XMLCylinderList != null) return false;
-//      if (this._XMLSphereList != null) {
-//        if (temp._XMLSphereList == null) return false;
-//        else if (!(this._XMLSphereList.equals(temp._XMLSphereList))) return false;
-//      } else if (temp._XMLSphereList != null) return false;
-//      if (this._XMLConeList != null) {
-//        if (temp._XMLConeList == null) return false;
-//        else if (!(this._XMLConeList.equals(temp._XMLConeList))) return false;
-//      } else if (temp._XMLConeList != null) return false;
-//      if (this._XMLConnectorList != null) {
-//        if (temp._XMLConnectorList == null) return false;
-//        else if (!(this._XMLConnectorList.equals(temp._XMLConnectorList))) return false;
-//      } else if (temp._XMLConnectorList != null) return false;
-//
-//      if (this._XMLTrianglePolygonList != null) {
-//        if (temp._XMLTrianglePolygonList == null) return false;
-//        else if (!(this._XMLTrianglePolygonList.equals(temp._XMLTrianglePolygonList))) return false;
-//      } else if (temp._XMLTrianglePolygonList != null) return false;
-//
-//      if (this._XMLQuadPolygonList != null) {
-//        if (temp._XMLQuadPolygonList == null) return false;
-//        else if (!(this._XMLQuadPolygonList.equals(temp._XMLQuadPolygonList))) return false;
-//      } else if (temp._XMLQuadPolygonList != null) return false;
-//
-//      if (this._location != null) {
-//        if (temp._location == null) return false;
-//        else if (!(this._location.equals(temp._location))) return false;
-//      } else if (temp._location != null) return false;
-//      if (this._rotation != null) {
-//        if (temp._rotation == null) return false;
-//        else if (!(this._rotation.equals(temp._rotation))) return false;
-//      } else if (temp._rotation != null) return false;
-//      if (this._linkdataList != null) {
-//        if (temp._linkdataList == null) return false;
-//        else if (!(this._linkdataList.equals(temp._linkdataList))) return false;
-//      } else if (temp._linkdataList != null) return false;
-//      if (this._groupList != null) {
-//        if (temp._groupList == null) return false;
-//        else if (!(this._groupList.equals(temp._groupList))) return false;
-//      } else if (temp._groupList != null) return false;
-//      return true;
-//    }
-//    return false;
-//  } 
-
   /**
    * Method getGroup
    * 
@@ -1465,7 +1397,6 @@ public class Group implements java.io.Serializable {
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
   public void setXMLQuadPolygon(int index, org.mklab.mikity.xml.model.XMLQuadPolygon vXMLQuadPolygon) throws java.lang.IndexOutOfBoundsException {
-    // -- check bounds for index
     if ((index < 0) || (index > this._XMLQuadPolygonList.size())) {
       throw new IndexOutOfBoundsException();
     }

@@ -41,8 +41,8 @@ public class MovableGroupManager {
 
   private Jamast root;
 
-  private boolean usingDHParameter = false;
-  private boolean usingCoordinateParameter = false;
+  private boolean hasDHParameter = false;
+  private boolean hasCoordinateParameter = false;
 
   /**
    * コンストラクター
@@ -274,8 +274,8 @@ public class MovableGroupManager {
    * 
    * @param using DHパラメータ使用の有無
    */
-  public void setUsingDHParameter(boolean using) {
-    this.usingDHParameter = using;
+  public void setHasDHParameter(boolean using) {
+    this.hasDHParameter = using;
   }
 
   /**
@@ -283,8 +283,8 @@ public class MovableGroupManager {
    * 
    * @return　usedDHParam　DHパラメータの使用の有無
    */
-  public boolean isUsingDHParameter() {
-    return this.usingDHParameter;
+  public boolean hasDHParameter() {
+    return this.hasDHParameter;
   }
 
   /**
@@ -292,8 +292,8 @@ public class MovableGroupManager {
    * 
    * @param using 座標パラメータ使用の有無
    */
-  public void setUsingCoordinateParameter(boolean using) {
-    this.usingCoordinateParameter = using;
+  public void setHasCoordinateParameter(boolean using) {
+    this.hasCoordinateParameter = using;
   }
 
   /**
@@ -301,7 +301,7 @@ public class MovableGroupManager {
    * 
    * @return　usedLink　座標パラメータ使用の有無
    */
-  public boolean isUingCoordinateParameter() {
-    return this.usingCoordinateParameter;
+  public boolean hasCoordinateParameter() {
+    return this.hasCoordinateParameter;
   }
 }
