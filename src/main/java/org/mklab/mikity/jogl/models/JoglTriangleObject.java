@@ -16,9 +16,6 @@ import org.mklab.mikity.jogl.JoglObject;
  */
 public class JoglTriangleObject implements JoglObject {
 
-  //  @XmlElement
-  //  private Location[] _point = new Location[3];
-
   @XmlAttribute
   private String _color;
 
@@ -102,7 +99,7 @@ public class JoglTriangleObject implements JoglObject {
 
   //追加
   //float配列をFloatBufferに変換
-  private FloatBuffer makeFloatBuffer(float[] array) {
+  private static FloatBuffer makeFloatBuffer(float[] array) {
     FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     fb.put(array).position(0);
     return fb;
