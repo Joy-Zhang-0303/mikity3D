@@ -92,10 +92,10 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
   }
 
   /**
-   * @see org.mklab.mikity.model.MovableGroup#setLinkParameter(org.mklab.mikity.model.CoordinateParameter)
+   * @see org.mklab.mikity.model.MovableGroup#setCoordinateParameter(org.mklab.mikity.model.CoordinateParameter)
    */
   @Override
-  public void setLinkParameter(CoordinateParameter link) {
+  public void setCoordinateParameter(CoordinateParameter link) {
     double locX = link.getLocX();
     double locY = link.getLocY();
     double locZ = link.getLocZ();
@@ -123,7 +123,7 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     }
     
     for (JoglTransformGroup group : this.transformGroups) {
-      group.setLinkParameter(link);
+      group.setCoordinateParameter(link);
     }
   }
 }

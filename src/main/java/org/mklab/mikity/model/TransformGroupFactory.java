@@ -80,7 +80,7 @@ public class TransformGroupFactory {
       } else if (linkData[i].hasLink()) {
         // DHパラメータを使わないVer
         CoordinateParameter link = Util.getLinkParameter(linkData);
-        tg.setLinkParameter(link);
+        tg.setCoordinateParameter(link);
         break;
       }
     }

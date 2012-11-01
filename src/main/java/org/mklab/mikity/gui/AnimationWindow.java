@@ -115,7 +115,7 @@ public class AnimationWindow extends ApplicationWindow {
   protected void configureShell(final Shell shell) {
     super.configureShell(shell);
     shell.setSize(647, 500);
-    shell.setText("SimulationViewer"); //$NON-NLS-1$
+    shell.setText("Animation Viewer"); //$NON-NLS-1$
   }
 
   /**
@@ -303,7 +303,7 @@ public class AnimationWindow extends ApplicationWindow {
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
-        AnimationWindow.this.manager.processStimulus(t);
+        AnimationWindow.this.manager.processStimulusWithCoordinateParameter(t);
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setCurrentTime(t);
           String st = String.valueOf(t);

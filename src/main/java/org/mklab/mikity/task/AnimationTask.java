@@ -91,9 +91,9 @@ public class AnimationTask extends TimerTask {
     this.currentTime += diffTime * this.speed;
 
     if (this.manager.hasDHParameter()) {
-      this.manager.processStimulusDH(this.currentTime);
+      this.manager.processStimulusWithDHParameter(this.currentTime);
     } else if (this.manager.hasCoordinateParameter()) {
-      this.manager.processStimulus(this.currentTime);
+      this.manager.processStimulusWithCoordinateParameter(this.currentTime);
     }
 
     

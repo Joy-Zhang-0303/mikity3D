@@ -7,14 +7,13 @@ package org.mklab.mikity.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.mklab.mikity.java3d.MyTransformGroup;
 import org.mklab.mikity.jogl.JoglTransformGroup;
-import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.picker.AbstractDataPicker;
+import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Linkdata;
@@ -32,7 +31,9 @@ public class MovableGroupManager {
   /** 動かせるグループのリスト */
   private List<MovableGroup> movableGroups = new ArrayList<MovableGroup>();
   private Map<MovableGroup, AbstractDataPicker> pickers = new HashMap<MovableGroup, AbstractDataPicker>();
-  private static Map<Group, MovableGroup> groups = new HashMap<Group, MovableGroup>();
+
+  private static Map<Group, MovableGroup> MOVABLE_GROUPS = new HashMap<Group, MovableGroup>();
+  
   private int dataCount;
   private double startTime;
   private double endTime;
@@ -70,46 +71,45 @@ public class MovableGroupManager {
   
 
   /**
-   * 時間ごとのリンクデータを読み取り、アニメーションを実行(DHパラメータ用)
+   * 時刻毎のリンクデータを取得し、アニメーションを実行(DHパラメータ用)します。
    * 
-   * @param time 時間
+   * @param t 時刻
    */
-  public void processStimulusDH(double time) {
-    // リストの中に入っているIMovableGroup全てに対して同じ処理を行う
-    for (Iterator<MovableGroup> iter = this.movableGroups.iterator(); iter.hasNext();) {
-      MovableGroup mg = iter.next();
-      AbstractDataPicker picker = this.pickers.get(mg);
-
-      if (picker.getDHParameter(time) != null) {
-        mg.setDHParameter(picker.getDHParameter(time));
+  public void processStimulusWithDHParameter(double t) {
+    for (MovableGroup group : this.movableGroups) {
+      AbstractDataPicker picker = this.pickers.get(group);
+      DHParameter parameter = picker.getDHParameter(t);
+      
+      if (parameter != null) {
+        group.setDHParameter(parameter);
       }
     }
   }
 
   /**
-   * 時間ごとのリンクデータを読み取り、アニメーションを実行
+   * 時刻毎のリンクデータを取得し、アニメーション(座標パラメータ用)を実行します。
    * 
-   * @param time 時間
+   * @param t 時刻
    */
-  public void processStimulus(double time) {
-    // リストの中に入っているIMovableGroup全てに対して同じ処理を行う
-    for (Iterator<MovableGroup> iter = this.movableGroups.iterator(); iter.hasNext();) {
-      MovableGroup mg = iter.next();
-      AbstractDataPicker picker = this.pickers.get(mg);
-
-      mg.setLinkParameter(picker.getCoordinateParameter(time));
+  public void processStimulusWithCoordinateParameter(double t) {
+    for (MovableGroup group : this.movableGroups) {
+      AbstractDataPicker picker = this.pickers.get(group);
+      CoordinateParameter parameter = picker.getCoordinateParameter(t);
+      if (parameter != null) {
+        group.setCoordinateParameter(parameter);
+      }
     }
   }
 
   /**
    * グループを追加します。
    * 
-   * @param group 追加するグループ
+   * @param groups 追加するグループ
    */
-  private void addGroup(final Group[] group) {
-    for (int i = 0; i < group.length; i++) {
-      Group g = group[i];
-      MovableGroup tg = groups.get(g);
+  private void addGroup(final Group[] groups) {
+    for (int i = 0; i < groups.length; i++) {
+      Group g = groups[i];
+      MovableGroup tg = MOVABLE_GROUPS.get(g);
       setMovableLinkData(g.loadLinkdata(), tg);
       addGroup(g.loadGroup());
     }
@@ -252,22 +252,6 @@ public class MovableGroupManager {
     this.movableGroups.clear();
     addGroup(this.root.loadModel(0).loadGroup());
   }
-
-  /**
-   * @param group グループ
-   * @param tg トランスフォームグループ
-   */
-  public static void assignGroup(final Group group, final MyTransformGroup tg) {
-    groups.put(group, tg);
-  }
-
-  /**
-   * @param group グループ
-   * @param tg トランスフォームグループ
-   */
-  public static void assignGroup(final Group group, final JoglTransformGroup tg) {
-    groups.put(group, tg);
-  }
   
   /**
    * DHパラメータの使用の有無を設定します。
@@ -303,5 +287,21 @@ public class MovableGroupManager {
    */
   public boolean hasCoordinateParameter() {
     return this.hasCoordinateParameter;
+  }
+  
+  /**
+   * @param group グループ
+   * @param tg トランスフォームグループ
+   */
+  public static void assignGroup(final Group group, final MyTransformGroup tg) {
+    MOVABLE_GROUPS.put(group, tg);
+  }
+
+  /**
+   * @param group グループ
+   * @param tg トランスフォームグループ
+   */
+  public static void assignGroup(final Group group, final JoglTransformGroup tg) {
+    MOVABLE_GROUPS.put(group, tg);
   }
 }

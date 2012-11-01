@@ -16,13 +16,13 @@ public interface MovableGroup {
   /**
    * グループのDHパラメーターを設定します。
    * 
-   * @param parameter グループのDHパラメーター
+   * @param parameter DHパラメーター
    */
   void setDHParameter(DHParameter parameter);
 
   /**
-   * リンクのパラメータを設定します。
-   * @param parameter リンクパラメータ
+   * グループの座標パラメータを設定します。
+   * @param parameter 座標パラメータ
    */
-   void setLinkParameter(final CoordinateParameter parameter);
+   void setCoordinateParameter(final CoordinateParameter parameter);
 }

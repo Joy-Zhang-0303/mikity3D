@@ -142,10 +142,10 @@ public class MyTransformGroup extends TransformGroup implements MovableGroup {
   /**
    * リンクパラメータを設定する。
    * 
-   * @see org.mklab.mikity.model.MovableGroup#setLinkParameter(org.mklab.mikity.model.CoordinateParameter)
+   * @see org.mklab.mikity.model.MovableGroup#setCoordinateParameter(org.mklab.mikity.model.CoordinateParameter)
    */
   @Override
-  public void setLinkParameter(final CoordinateParameter link) {
+  public void setCoordinateParameter(final CoordinateParameter link) {
     double locX = link.getLocX();
     double locY = link.getLocY();
     double locZ = link.getLocZ();
