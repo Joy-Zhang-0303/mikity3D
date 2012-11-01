@@ -11,12 +11,12 @@ import org.mklab.nfc.matrix.Matrix;
 
 
 /**
- * 現在の再生時刻に近い時間の行列データのデータを取得するためのクラスです。
+ * 現在の再生時刻に近い時間のデータを抽出するクラスです。
  * 
  * @author miki
  * @version $Revision: 1.5 $.2005/01/12
  */
-public class ClosenessDataPicker extends DataPicker {
+public class ClosenessDataPicker extends AbstractDataPicker {
 
   /**
    * コンストラクター
@@ -28,25 +28,21 @@ public class ClosenessDataPicker extends DataPicker {
   }
 
   /**
-   * DHパラメータを取得する。
-   * 
-   * @see org.mklab.mikity.picker.DataPicker#getDHParameter(double)
+   * {@inheritDoc}
    */
   @Override
   public DHParameter getDHParameter(double time) {
     int col = getColumn(time);
-    return this.params[col - 1];
+    return this.dhParameters[col - 1];
   }
 
   /**
-   * リンクパラメータを取得する。
-   * 
-   * @see org.mklab.mikity.picker.DataPicker#getLinkParameter(double)
+   * {@inheritDoc}
    */
   @Override
-  public CoordinateParameter getLinkParameter(double time) {
+  public CoordinateParameter getCoordinateParameter(double time) {
     int col = getColumn(time);
-    return this.link[col - 1];
+    return this.coordinateParameters[col - 1];
   }
 
 }

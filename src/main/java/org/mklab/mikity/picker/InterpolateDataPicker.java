@@ -11,10 +11,12 @@ import org.mklab.nfc.matrix.Matrix;
 
 
 /**
+ * 与えられた時間のデータが無い際に、 前後のデータの比を用いてデータを補間して返すクラスです。 
+ * 
  * @author miki
  * @version $Revision: 1.3 $.2005/01/17 再生する際に必要なデータを補間して使用する
  */
-public class InterpolateDataPicker extends DataPicker {
+public class InterpolateDataPicker extends AbstractDataPicker {
 
   /**
    * コンストラクター　行列を読み込む
@@ -26,22 +28,18 @@ public class InterpolateDataPicker extends DataPicker {
   }
 
   /**
-   * 与えられた時間のデータが無い際に、 前後のデータの比を用いてデータを補間 return 補間した値
-   * 
-   * @see org.mklab.mikity.picker.DataPicker#getDHParameter(double)
+   * {@inheritDoc}
    */
   @Override
-  public DHParameter getDHParameter(double time) {
+  public DHParameter getDHParameter(double t) {
     return null;
   }
 
   /**
-   * 与えられた時間のデータが無い際に、 前後のデータの比を用いてデータを補間 return 補間した値
-   * 
-   * @see org.mklab.mikity.picker.DataPicker#getLinkParameter(double)
+   * {@inheritDoc}
    */
   @Override
-  public CoordinateParameter getLinkParameter(double time) {
+  public CoordinateParameter getCoordinateParameter(double t) {
     return null;
   }
 }

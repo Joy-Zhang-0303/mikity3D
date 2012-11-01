@@ -14,7 +14,7 @@ import java.util.Map;
 import org.mklab.mikity.java3d.MyTransformGroup;
 import org.mklab.mikity.jogl.JoglTransformGroup;
 import org.mklab.mikity.picker.ClosenessDataPicker;
-import org.mklab.mikity.picker.DataPicker;
+import org.mklab.mikity.picker.AbstractDataPicker;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Linkdata;
@@ -31,7 +31,7 @@ public class MovableGroupManager {
 
   /** 動かせるグループのリスト */
   private List<MovableGroup> movableGroups = new ArrayList<MovableGroup>();
-  private Map<MovableGroup, DataPicker> pickers = new HashMap<MovableGroup, DataPicker>();
+  private Map<MovableGroup, AbstractDataPicker> pickers = new HashMap<MovableGroup, AbstractDataPicker>();
   private static Map<Group, MovableGroup> groups = new HashMap<Group, MovableGroup>();
   private int dataCount;
   private double startTime;
@@ -59,7 +59,7 @@ public class MovableGroupManager {
    * @param group
    * @param picker
    */
-  private void addMovableGroup(final MovableGroup group, final DataPicker picker) {
+  private void addMovableGroup(final MovableGroup group, final AbstractDataPicker picker) {
     this.movableGroups.add(group);
     this.pickers.put(group, picker);
 
@@ -78,7 +78,7 @@ public class MovableGroupManager {
     // リストの中に入っているIMovableGroup全てに対して同じ処理を行う
     for (Iterator<MovableGroup> iter = this.movableGroups.iterator(); iter.hasNext();) {
       MovableGroup mg = iter.next();
-      DataPicker picker = this.pickers.get(mg);
+      AbstractDataPicker picker = this.pickers.get(mg);
 
       if (picker.getDHParameter(time) != null) {
         mg.setDHParameter(picker.getDHParameter(time));
@@ -95,9 +95,9 @@ public class MovableGroupManager {
     // リストの中に入っているIMovableGroup全てに対して同じ処理を行う
     for (Iterator<MovableGroup> iter = this.movableGroups.iterator(); iter.hasNext();) {
       MovableGroup mg = iter.next();
-      DataPicker picker = this.pickers.get(mg);
+      AbstractDataPicker picker = this.pickers.get(mg);
 
-      mg.setLinkParameter(picker.getLinkParameter(time));
+      mg.setLinkParameter(picker.getCoordinateParameter(time));
     }
   }
 
@@ -125,7 +125,7 @@ public class MovableGroupManager {
     if (linkdata.length == 0) {
       return;
     }
-    DataPicker picker = new ClosenessDataPicker(this.data);
+    AbstractDataPicker picker = new ClosenessDataPicker(this.data);
 
     for (int i = 0; i < linkdata.length; i++) {
       if (linkdata[i].hasDH()) {
@@ -163,7 +163,7 @@ public class MovableGroupManager {
           } else {
             System.err.println(Messages.getString("MovableGroupManager.1")); //$NON-NLS-1$
           }
-          picker.setConstantValueDH(setType, constantValue);
+          picker.setConstantDHParameter(setType, constantValue);
         }
       } else if (linkdata[i].hasLink()) {
         if (linkdata[i].hasColumn()) {
@@ -208,7 +208,7 @@ public class MovableGroupManager {
           } else {
             //
           }
-          picker.setConstantValue(setType, constantValue);
+          picker.setConstantCoordinateParameter(setType, constantValue);
         }
       }
     }
