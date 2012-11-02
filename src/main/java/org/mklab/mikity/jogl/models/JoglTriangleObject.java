@@ -21,7 +21,6 @@ public class JoglTriangleObject implements JoglObject {
 
   private float[][] _point = new float[3][3];
 
-  //一行追加
   private FloatBuffer vertexBuffer;//頂点バッファ
 
   /**
@@ -78,7 +77,6 @@ public class JoglTriangleObject implements JoglObject {
     gl.glEnd();
     */
     
-    //追加     
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
     //頂点バッファの生成
@@ -97,7 +95,6 @@ public class JoglTriangleObject implements JoglObject {
 
   }
 
-  //追加
   //float配列をFloatBufferに変換
   private static FloatBuffer makeFloatBuffer(float[] array) {
     FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();

@@ -21,7 +21,6 @@ public class JoglQuadObject implements JoglObject {
   @XmlAttribute
   private String _color;
 
-  //2行追加
   private FloatBuffer vertexBuffer;//頂点バッファ
   private ByteBuffer indexBuffer;//インデックスバッファ
   
@@ -32,7 +31,6 @@ public class JoglQuadObject implements JoglObject {
   @Override
   public void apply(GL gl) {
     //float x, y, z;
-
     
     if (this._color != null) {
       if (this._color.equals("white")) { //$NON-NLS-1$
@@ -63,6 +61,7 @@ public class JoglQuadObject implements JoglObject {
         gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
       }
     }
+
     /*
     gl.glBegin(GL.GL_QUADS);
     for (int i = 0; i < 4; i++) {
@@ -99,7 +98,6 @@ public class JoglQuadObject implements JoglObject {
     gl.glPopMatrix();
   }
 
-  //追加
   //float配列をFloatBufferに変換
   private static FloatBuffer makeFloatBuffer(float[] array) {
     FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
