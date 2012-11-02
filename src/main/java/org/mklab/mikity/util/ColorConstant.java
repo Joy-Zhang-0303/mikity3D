@@ -13,7 +13,7 @@ import javax.vecmath.Color3f;
 
 
 /**
- * 色彩に関するクラス
+ * 色彩を表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.4 $.2004/11/26

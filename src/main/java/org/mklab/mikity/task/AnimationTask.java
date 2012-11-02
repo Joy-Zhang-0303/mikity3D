@@ -25,7 +25,7 @@ public class AnimationTask extends TimerTask {
   private long startTime = System.currentTimeMillis();
   private double endTime = 0.0;
   private MovableGroupManager manager;
-  private List<AnimationTaskListener> listenerList = new ArrayList<AnimationTaskListener>();
+  private List<AnimationTaskListener> listeners = new ArrayList<AnimationTaskListener>();
   private final double initialTime;
   
   private ModelCanvas canvas;
@@ -52,7 +52,7 @@ public class AnimationTask extends TimerTask {
    * @param l リスナ
    */
   public void addAnimationTaskListener(AnimationTaskListener l) {
-    this.listenerList.add(l);
+    this.listeners.add(l);
   }
 
   /**
@@ -134,8 +134,8 @@ public class AnimationTask extends TimerTask {
    * アニメーションの完了を通知します。
    */
   private void fireAnimationDone() {
-    for (AnimationTaskListener l : this.listenerList) {
-      l.taskDone();
+    for (AnimationTaskListener listener : this.listeners) {
+      listener.taskDone();
     }
   }
 
@@ -143,8 +143,8 @@ public class AnimationTask extends TimerTask {
    * アニメーションの開始を通知します。
    */
   private void fireAnimationStarted() {
-    for (AnimationTaskListener l : this.listenerList) {
-      l.taskStarted();
+    for (AnimationTaskListener listener : this.listeners) {
+      listener.taskStarted();
     }
   }
 }

@@ -79,7 +79,7 @@ public class TransformGroupFactory {
         break;
       } else if (linkData[i].hasLink()) {
         // DHパラメータを使わないVer
-        CoordinateParameter link = Util.getLinkParameter(linkData);
+        CoordinateParameter link = Util.getCoordinateParameter(linkData);
         tg.setCoordinateParameter(link);
         break;
       }

@@ -19,11 +19,10 @@ public interface AnimationTaskListener {
    * アニメーションの開始時に必ず呼び出されます。<p>
    * 例えば、アニメーションの初期時間が0でない場合でも、つまり途中からの開始であっても呼び出されます。
    */
-  public void taskStarted();
+  void taskStarted();
   
   /**
    * アニメーション終了時に必ず呼び出されます。
    */
-  public void taskDone();
-
+   void taskDone();
 }

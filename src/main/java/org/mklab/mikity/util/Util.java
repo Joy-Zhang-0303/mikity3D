@@ -10,9 +10,8 @@ import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.xml.model.Linkdata;
 
-
 /**
- * 有用性に関するクラス
+ * ユーティリティクラスです。
  * 
  * @author miki
  * @version $Revision: 1.7 $.2005/02/05
@@ -27,10 +26,10 @@ public class Util {
   }
 
   /**
-   * DHパラメータを取得する。
+   * DHパラメータを返します。
    * 
-   * @param linkdata 　リンクデータ
-   * @return parameter　DHパラメータ
+   * @param linkdata リンクデータ
+   * @return DHパラメータ
    */
   public static DHParameter getDHParameter(final Linkdata[] linkdata) {
     int scale = Java3dModelCanvas.scale;
@@ -64,54 +63,55 @@ public class Util {
   }
 
   /**
-   * リンクパラメータを取得する。
+   * 座標パラメータを返します。
    * 
-   * @param linkdata 　リンクデータ
-   * @return parameter　リンクパラメータ
+   * @param linkData リンクデータ
+   * @return 座標パラメータ
    */
-  public static CoordinateParameter getLinkParameter(final Linkdata[] linkdata) {
+  public static CoordinateParameter getCoordinateParameter(final Linkdata[] linkData) {
     int scale = Java3dModelCanvas.scale;
     boolean radian = Java3dModelCanvas.radian;
-    CoordinateParameter link = new CoordinateParameter();
+    CoordinateParameter parameter = new CoordinateParameter();
+    
     // linkdataが無い場合はlinkdata.lengthが0になる
-    for (int i = 0; i < linkdata.length; i++) {
+    for (int i = 0; i < linkData.length; i++) {
       // Constが存在する場合
-      if (linkdata[i].hasConst()) {
+      if (linkData[i].hasConst()) {
         // かつ、targetがthetaであるか、dであるかを判別
-        if (linkdata[i].loadTarget().equals("locationX")) { //$NON-NLS-1$
-          link.setLocX(linkdata[i].loadConst() / scale);
-        } else if (linkdata[i].loadTarget().equals("rotationX")) { //$NON-NLS-1$
+        if (linkData[i].loadTarget().equals("locationX")) { //$NON-NLS-1$
+          parameter.setLocX(linkData[i].loadConst() / scale);
+        } else if (linkData[i].loadTarget().equals("rotationX")) { //$NON-NLS-1$
           if (radian) {
-            link.setRotX(linkdata[i].loadConst());
+            parameter.setRotX(linkData[i].loadConst());
           } else {
-            link.setRotX(Math.toRadians(linkdata[i].loadConst()));
+            parameter.setRotX(Math.toRadians(linkData[i].loadConst()));
           }
-        } else if (linkdata[i].loadTarget().equals("locationY")) { //$NON-NLS-1$
-          link.setLocY(linkdata[i].loadConst() / scale);
-        } else if (linkdata[i].loadTarget().equals("rotationY")) { //$NON-NLS-1$
+        } else if (linkData[i].loadTarget().equals("locationY")) { //$NON-NLS-1$
+          parameter.setLocY(linkData[i].loadConst() / scale);
+        } else if (linkData[i].loadTarget().equals("rotationY")) { //$NON-NLS-1$
           if (radian) {
-            link.setRotY(linkdata[i].loadConst());
+            parameter.setRotY(linkData[i].loadConst());
           } else {
-            link.setRotY(Math.toRadians(linkdata[i].loadConst()));
+            parameter.setRotY(Math.toRadians(linkData[i].loadConst()));
           }
-        } else if (linkdata[i].loadTarget().equals("locationZ")) { //$NON-NLS-1$
-          link.setLocZ(linkdata[i].loadConst() / scale);
-        } else if (linkdata[i].loadTarget().equals("rotationZ")) { //$NON-NLS-1$
+        } else if (linkData[i].loadTarget().equals("locationZ")) { //$NON-NLS-1$
+          parameter.setLocZ(linkData[i].loadConst() / scale);
+        } else if (linkData[i].loadTarget().equals("rotationZ")) { //$NON-NLS-1$
           if (radian) {
-            link.setRotZ(linkdata[i].loadConst());
+            parameter.setRotZ(linkData[i].loadConst());
           } else {
-            link.setRotZ(Math.toRadians(linkdata[i].loadConst()));
+            parameter.setRotZ(Math.toRadians(linkData[i].loadConst()));
           }
         }
       }
     }
-    return link;
+    return parameter;
   }
 
   /**
-   * パラメータを取得する。
+   * パラメータを返します。
    * 
-   * @param linkdata 　リンクデータ
+   * @param linkdata リンクデータ
    * @param key key
    * @return null
    */

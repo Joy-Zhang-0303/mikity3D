@@ -56,7 +56,7 @@ public class JoglTransformGroupFactory {
         break;
       } else if (linkData[i].hasLink()) {
         // DHパラメータを使わないVer
-        link = Util.getLinkParameter(linkData);
+        link = Util.getCoordinateParameter(linkData);
         //        tg.setLinkParameter(link);
         links.add(link);
         break;
