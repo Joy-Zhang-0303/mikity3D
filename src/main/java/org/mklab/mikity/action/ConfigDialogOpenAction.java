@@ -11,7 +11,7 @@ import org.mklab.mikity.gui.dialog.ConfigDialog;
 
 
 /**
- * 各種設定画面を展開するクラス
+ * 各種設定画面を展開するクラスです。
  * 
  * @author Yusuke Tsutsui
  * @version $Revision: 1.4 $.2005/02/18
@@ -31,7 +31,7 @@ public class ConfigDialogOpenAction extends Action {
   }
 
   /**
-   * 各種設定画面を展開する
+   * 各種設定画面を展開します。
    * 
    * @see org.eclipse.jface.action.IAction#run()
    */

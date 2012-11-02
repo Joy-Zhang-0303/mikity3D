@@ -9,7 +9,7 @@ import org.eclipse.jface.action.Action;
 
 
 /**
- * プリミティブの編集を行うクラス
+ * プリミティブの編集を行うクラスです。
  * 
  * @author miki
  * @version $Revision: 1.3 $.2005/02/14
@@ -25,7 +25,7 @@ public class EditPrimitiveAction extends Action {
   }
 
   /**
-   * プリミティブの編集を行う
+   * プリミティブを編集します。
    * 
    * @see org.eclipse.jface.action.IAction#run()
    */

@@ -9,16 +9,14 @@ import org.mklab.mikity.xml.model.XMLCone;
 
 
 /**
- * マウス操作による円錐プリミティブ作成のためのツールバーを作成する。
+ * マウス操作による円錐プリミティブ作成のためのツールバーを作成するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.2 $.2005/11/21
  */
 public class ConeToolBarAction extends Action {
 
-  /**
-   * プログラム実行画面クラスMainWindowのフィールド
-   */
+  /** プログラム実行画面クラスMainWindowのフィールド  */
   private ModelingWindow window;
 
   // private CollisionCanceller dc;
@@ -36,7 +34,7 @@ public class ConeToolBarAction extends Action {
   }
 
   /**
-   * 追加した円錐の情報をキャンバスとツリーに追加させる。
+   * 追加した円錐の情報をキャンバスとツリーに追加します。
    */
   private void updateCone() {
     this.window.fillTree();

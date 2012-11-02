@@ -9,16 +9,13 @@ import org.mklab.mikity.xml.model.XMLCylinder;
 
 
 /**
- * マウス操作による円柱プリミティブ作成のためのツールバーを作成する。
+ * マウス操作による円柱プリミティブ作成のためのツールバーを作成するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.2 $.2005/11/21
  */
 public class CylinderToolBarAction extends Action {
-
-  /**
-   *プログラム実行画面クラスMainWindowのフィールド
-   */
+  /** プログラム実行画面クラスMainWindowのフィールド  */
   private ModelingWindow window;
 
   // private CollisionCanceller dc;
@@ -37,7 +34,7 @@ public class CylinderToolBarAction extends Action {
   }
 
   /**
-   * 追加した円柱の情報をキャンバスとツリーに追加させる。
+   * 追加した円柱の情報をキャンバスとツリーに追加します。
    */
   private void updateCylinder() {
     this.window.fillTree();

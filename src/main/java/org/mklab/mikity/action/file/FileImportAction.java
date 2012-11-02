@@ -11,7 +11,7 @@ import org.mklab.mikity.gui.ModelingWindow;
 
 
 /**
- * モデリングファイルデータを現在のツリーに追加するアクションです
+ * モデリングファイルデータを現在のツリーに追加するアクションです。
  * 
  * @author SHOGO
  * @version $Revision: 1.2 $. 2007/12/04

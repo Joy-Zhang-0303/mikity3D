@@ -33,7 +33,7 @@ public class AnimationWindowOpenAction extends Action {
   }
 
   /**
-   * アニメーション画面を展開する
+   * アニメーション画面を展開します。
    * 
    * @see org.eclipse.jface.action.IAction#run()
    */

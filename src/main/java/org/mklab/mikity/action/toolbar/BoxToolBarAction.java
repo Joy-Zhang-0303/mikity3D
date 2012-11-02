@@ -9,16 +9,14 @@ import org.mklab.mikity.xml.model.XMLBox;
 
 
 /**
- * マウス操作による直方体プリミティブ作成のためのツールバーを作成する。
+ * マウス操作による直方体プリミティブ作成のためのツールバーを作成するクラスです，
  * 
  * @author SHOGO
  * @version $Revision: 1.3 $.2005/11/21
  */
 public class BoxToolBarAction extends Action {
 
-  /**
-   * プログラム実行画面クラスMainWindowのフィールド
-   */
+  /**　プログラム実行画面クラスMainWindowのフィールド   */
   private ModelingWindow window;
 
   private Jamast root;
@@ -35,7 +33,7 @@ public class BoxToolBarAction extends Action {
   }
 
   /**
-   * 追加した直方体の情報をキャンバスとツリーに追加させる。
+   * 追加した直方体の情報をキャンバスとツリーに追加します。
    */
   private void updateBox() {
     this.window.fillTree();

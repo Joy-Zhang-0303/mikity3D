@@ -9,7 +9,7 @@ import org.mklab.mikity.xml.model.XMLSphere;
 
 
 /**
- * マウス操作による球プリミティブ作成のためのツールバーを作成する。
+ * マウス操作による球プリミティブ作成のためのツールバーを作成するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.2 $.2005/11/21
@@ -35,7 +35,7 @@ public class SphereToolBarAction extends Action {
   }
 
   /**
-   * 追加した球体の情報をキャンバスとツリーに追加させる。
+   * 追加した球体の情報をキャンバスとツリーに追加します。
    */
   private void updateSphere() {
     this.window.fillTree();

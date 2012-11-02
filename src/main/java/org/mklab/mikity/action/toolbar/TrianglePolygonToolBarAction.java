@@ -14,16 +14,14 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 
 /**
- * マウス操作による三角形ポリゴン作成のためのツールバーを作成する。
+ * マウス操作による三角形ポリゴン作成のためのツールバーを作成するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.5 $. 2007/11/14
  */
 public class TrianglePolygonToolBarAction extends Action {
 
-  /**
-   * プログラム実行画面クラスMainWindowのフィールド
-   */
+  /** プログラム実行画面クラスMainWindowのフィールド  */
   private ModelingWindow window;
   private Jamast root;
 
@@ -39,7 +37,7 @@ public class TrianglePolygonToolBarAction extends Action {
   }
 
   /**
-   * 追加した三角形ポリゴンの情報をキャンバスとツリーに追加させる。
+   * 追加した三角形ポリゴンの情報をキャンバスとツリーに追加します。
    */
   private void updateTriagle() {
     this.window.fillTree();

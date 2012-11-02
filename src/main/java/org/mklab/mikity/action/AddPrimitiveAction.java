@@ -13,7 +13,7 @@ import org.mklab.mikity.xml.Jamast;
 
 
 /**
- * プリミティブの追加を行うクラス
+ * プリミティブの追加を行うクラスです。
  * 
  * @author miki
  * @version $Revision: 1.6 $.2005/02/10
@@ -42,7 +42,7 @@ public class AddPrimitiveAction extends Action {
   }
 
   /**
-   * プリミティブの追加を実行する
+   * プリミティブを追加します。
    * 
    * @see org.eclipse.jface.action.IAction#run()
    */

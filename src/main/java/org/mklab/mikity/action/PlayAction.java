@@ -9,7 +9,7 @@ import org.eclipse.jface.action.Action;
 
 
 /**
- * シミュレーションの再生を行うクラス
+ * シミュレーションの再生を行うクラスです。
  * 
  * @author miki
  * @version $Revision: 1.3 $.2005/02/14
@@ -25,7 +25,7 @@ public class PlayAction extends Action {
   }
 
   /**
-   * シミュレーションの再生を行うクラス
+   * シミュレーションを再生します。
    * 
    * @see org.eclipse.jface.action.IAction#run()
    */

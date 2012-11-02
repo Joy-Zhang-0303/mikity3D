@@ -14,16 +14,13 @@ import org.mklab.mikity.xml.model.XMLQuadPolygon;
 
 
 /**
- * マウス操作による四角形ポリゴン作成のためのツールバーを作成する。
+ * マウス操作による四角形ポリゴン作成のためのツールバーを作成するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.5 $. 2007/11/14
  */
 public class QuadPolygonToolBarAction extends Action {
-
-  /**
-   * プログラム実行画面クラスMainWindowのフィールド
-   */
+  /**　プログラム実行画面クラスMainWindowのフィールド */
   private ModelingWindow window;
 
   private Jamast root;
@@ -40,7 +37,7 @@ public class QuadPolygonToolBarAction extends Action {
   }
 
   /**
-   * 追加した四角形ポリゴンの情報をキャンバスとツリーに追加させる。
+   * 追加した四角形ポリゴンの情報をキャンバスとツリーに追加します。
    */
   private void updateQuad() {
     this.window.fillTree();
