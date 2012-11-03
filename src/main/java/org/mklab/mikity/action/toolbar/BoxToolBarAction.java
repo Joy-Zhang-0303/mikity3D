@@ -15,11 +15,8 @@ import org.mklab.mikity.xml.model.XMLBox;
  * @version $Revision: 1.3 $.2005/11/21
  */
 public class BoxToolBarAction extends Action {
-
   /**　プログラム実行画面クラスMainWindowのフィールド   */
   private ModelingWindow window;
-
-  private Jamast root;
 
   /**
    * 新しく生成された<code>BoxToolBarAction</code>オブジェクトを初期化します。
@@ -27,7 +24,6 @@ public class BoxToolBarAction extends Action {
    * @param dc キャンセラー
    */
   public BoxToolBarAction(final ModelingWindow window, CollisionCanceller dc) {
-    super();
     this.window = window;
     setText("Box"); //$NON-NLS-1$
   }
@@ -47,14 +43,14 @@ public class BoxToolBarAction extends Action {
    */
   @Override
   public void run() {
-    this.root = ModelingWindow.getRoot();
-    Group group = this.root.loadModel(0).loadGroup(0);
-
-    XMLBox box = new XMLBox();
+    final XMLBox box = new XMLBox();
     box.setXsize(0.10f);
     box.setYsize(0.10f);
     box.setZsize(0.10f);
     box.setColor("red"); //$NON-NLS-1$
+    
+    final Jamast root = ModelingWindow.getRoot();
+    final Group group = root.loadModel(0).loadGroup(0);
     group.addXMLBox(box);
     updateBox();
   }

@@ -19,17 +19,13 @@ public class ConeToolBarAction extends Action {
   /** プログラム実行画面クラスMainWindowのフィールド  */
   private ModelingWindow window;
 
-  // private CollisionCanceller dc;
-
   /**
    * 新しく生成された<code>ConeToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    * @param dc キャンセラー
    */
   public ConeToolBarAction(final ModelingWindow window, CollisionCanceller dc) {
-    super();
     this.window = window;
-    // this.dc = dc;
     setText("Cone"); //$NON-NLS-1$
   }
 
@@ -48,16 +44,14 @@ public class ConeToolBarAction extends Action {
    */
   @Override
   public void run() {
-
-    Jamast root = ModelingWindow.getRoot();
-    Group group = root.loadModel(0).loadGroup(0);
-
-    XMLCone cone = new XMLCone();
+    final XMLCone cone = new XMLCone();
     cone.setR(0.10f);
     cone.setHeight(0.10f);
     cone.setDiv(20);
     cone.setColor("green"); //$NON-NLS-1$
-    // dc.checkCollision(cone,cone.loadLocation(),group);
+    
+    final Jamast root = ModelingWindow.getRoot();
+    final Group group = root.loadModel(0).loadGroup(0);
     group.addXMLCone(cone);
     updateCone();
   }

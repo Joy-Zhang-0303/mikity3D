@@ -18,8 +18,6 @@ public class CylinderToolBarAction extends Action {
   /** プログラム実行画面クラスMainWindowのフィールド  */
   private ModelingWindow window;
 
-  // private CollisionCanceller dc;
-
   /**
    * コンストラクター
    * 
@@ -27,9 +25,7 @@ public class CylinderToolBarAction extends Action {
    * @param dc キャンセラー
    */
   public CylinderToolBarAction(final ModelingWindow window, CollisionCanceller dc) {
-    super();
     this.window = window;
-    // this.dc =dc;
     setText("Cylinder"); //$NON-NLS-1$
   }
 
@@ -48,16 +44,16 @@ public class CylinderToolBarAction extends Action {
    */
   @Override
   public void run() {
-    Jamast root = ModelingWindow.getRoot();
-    Group group = root.loadModel(0).loadGroup(0);
-
-    XMLCylinder cyl = new XMLCylinder();
-    cyl.setR(0.10f);
-    cyl.setHeight(0.10f);
-    cyl.setDiv(20);
-    cyl.setColor("blue"); //$NON-NLS-1$
-    // dc.checkCollision(cyl,cyl.loadLocation(),group);
-    group.addXMLCylinder(cyl);
+    final XMLCylinder cylinder = new XMLCylinder();    
+    cylinder.setR(0.10f);
+    cylinder.setHeight(0.10f);
+    cylinder.setDiv(20);
+    cylinder.setColor("blue"); //$NON-NLS-1$
+    
+    final Jamast root = ModelingWindow.getRoot();
+    final Group group = root.loadModel(0).loadGroup(0);
+    group.addXMLCylinder(cylinder);
+    
     updateCylinder();
   }
 }

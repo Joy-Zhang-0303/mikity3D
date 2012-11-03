@@ -20,10 +20,8 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  * @version $Revision: 1.5 $. 2007/11/14
  */
 public class TrianglePolygonToolBarAction extends Action {
-
   /** プログラム実行画面クラスMainWindowのフィールド  */
   private ModelingWindow window;
-  private Jamast root;
 
   /**
    * コンストラクター
@@ -31,9 +29,8 @@ public class TrianglePolygonToolBarAction extends Action {
    * @param window ウィンドウ
    */
   public TrianglePolygonToolBarAction(final ModelingWindow window) {
-    super();
     this.window = window;
-    setText("Triangle"); //$NON-NLS-1$
+    setText("TrianglePolygon"); //$NON-NLS-1$
   }
 
   /**
@@ -51,18 +48,17 @@ public class TrianglePolygonToolBarAction extends Action {
    */
   @Override
   public void run() {
-    this.root = ModelingWindow.getRoot();
-    Group group = this.root.loadModel(0).loadGroup(0);
-    XMLTrianglePolygon triangle = new XMLTrianglePolygon();
-
-    Location loc1 = new Location(0.3f, 0.3f, 0.0f);
-    Location loc2 = new Location(-0.3f, 0.3f, 0.0f);
-    Location loc3 = new Location(-0.3f, -0.3f, 0.0f);
-
-    Location[] locs = {loc1, loc2, loc3};
-    triangle.setPointLocations(locs);
-    triangle.setColor("red"); //$NON-NLS-1$
-    group.addXMLTrianglePolygon(triangle);
+    final XMLTrianglePolygon polygon = new XMLTrianglePolygon();
+    final Location p1 = new Location(0.3f, 0.3f, 0.0f);
+    final Location p2 = new Location(-0.3f, 0.3f, 0.0f);
+    final Location p3 = new Location(-0.3f, -0.3f, 0.0f);
+    final Location[] locations = {p1, p2, p3};
+    polygon.setPointLocations(locations);
+    polygon.setColor("red"); //$NON-NLS-1$
+    
+    final Jamast root = ModelingWindow.getRoot();
+    final Group group = root.loadModel(0).loadGroup(0);
+    group.addXMLTrianglePolygon(polygon);
 
     updateTriagle();
   }

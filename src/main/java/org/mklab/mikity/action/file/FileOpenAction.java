@@ -41,9 +41,8 @@ public class FileOpenAction extends Action {
    */
   @Override
   public void run() {
-    FileDialog dialog = new FileDialog(this.window.getShell());
-    // ファイルを選択させる
-    String fileName = dialog.open();
+    final FileDialog dialog = new FileDialog(this.window.getShell());
+    final String fileName = dialog.open();
     if (fileName == null) {
       return;
     }

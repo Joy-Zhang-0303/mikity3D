@@ -15,11 +15,8 @@ import org.mklab.mikity.xml.model.XMLSphere;
  * @version $Revision: 1.2 $.2005/11/21
  */
 public class SphereToolBarAction extends Action {
-
   /** プログラム実行画面クラスMainWindowのフィールド */
   private ModelingWindow window;
-
-  // private CollisionCanceller dc;
 
   /**
    * コンストラクター
@@ -28,9 +25,7 @@ public class SphereToolBarAction extends Action {
    * @param dc キャンセラー
    */
   public SphereToolBarAction(final ModelingWindow window, CollisionCanceller dc) {
-    super();
     this.window = window;
-    // this.dc = dc;
     setText("Sphere"); //$NON-NLS-1$
   }
 
@@ -49,16 +44,15 @@ public class SphereToolBarAction extends Action {
    */
   @Override
   public void run() {
-
-    Jamast root = ModelingWindow.getRoot();
-    Group group = root.loadModel(0).loadGroup(0);
-
-    XMLSphere sph = new XMLSphere();
-    sph.setR(0.10f);
-    sph.setDiv(20);
-    sph.setColor("yellow"); //$NON-NLS-1$
-    // dc.checkCollision(sph,sph.loadLocation(),group);
-    group.addXMLSphere(sph);
+    final XMLSphere sphere = new XMLSphere();
+    sphere.setR(0.10f);
+    sphere.setDiv(20);
+    sphere.setColor("yellow"); //$NON-NLS-1$
+    
+    final Jamast root = ModelingWindow.getRoot();
+    final Group group = root.loadModel(0).loadGroup(0);
+    group.addXMLSphere(sphere);
+    
     updateSphere();
   }
 }

@@ -23,17 +23,14 @@ public class QuadPolygonToolBarAction extends Action {
   /**　プログラム実行画面クラスMainWindowのフィールド */
   private ModelingWindow window;
 
-  private Jamast root;
-
   /**
    * コンストラクター
    * 
    * @param window ウィンドウ
    */
   public QuadPolygonToolBarAction(final ModelingWindow window) {
-    super();
     this.window = window;
-    setText("Quad"); //$NON-NLS-1$
+    setText("QuadPolygon"); //$NON-NLS-1$
   }
 
   /**
@@ -51,20 +48,18 @@ public class QuadPolygonToolBarAction extends Action {
    */
   @Override
   public void run() {
-    this.root = ModelingWindow.getRoot();
-    Group group = this.root.loadModel(0).loadGroup(0);
-    XMLQuadPolygon quad = new XMLQuadPolygon();
-
-    Location loc1 = new Location(0.3f, 0.3f, 0.0f);
-    Location loc2 = new Location(-0.3f, 0.3f, 0.0f);
-    Location loc3 = new Location(-0.3f, -0.3f, 0.0f);
-    Location loc4 = new Location(0.3f, -0.3f, 0.0f);
-
-    Location[] locs = {loc1, loc2, loc3, loc4};
-
-    quad.setPointLocations(locs);
-    quad.setColor("blue"); //$NON-NLS-1$
-    group.addXMLQuadPolygon(quad);
+    final XMLQuadPolygon polygon = new XMLQuadPolygon();
+    final Location p1 = new Location(0.3f, 0.3f, 0.0f);
+    final Location p2 = new Location(-0.3f, 0.3f, 0.0f);
+    final Location p3 = new Location(-0.3f, -0.3f, 0.0f);
+    final Location p4 = new Location(0.3f, -0.3f, 0.0f);
+    final Location[] locations = {p1, p2, p3, p4};
+    polygon.setPointLocations(locations);
+    polygon.setColor("blue"); //$NON-NLS-1$
+    
+    final Jamast root = ModelingWindow.getRoot();
+    final Group group = root.loadModel(0).loadGroup(0);
+    group.addXMLQuadPolygon(polygon);
 
     updateQuad();
   }
