@@ -29,8 +29,9 @@ public class DHParameter {
   double alpha;
   /** */
   double theta;
+  
   /**
-   * コンストラクター
+   * 新しく生成された<code>DHParameter</code>オブジェクトを初期化します。
    */
   public DHParameter() {
     this(0, 0, 0, 0);

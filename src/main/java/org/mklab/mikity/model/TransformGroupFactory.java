@@ -19,50 +19,49 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  * @version $Revision$, 2011/12/22
  */
 public class TransformGroupFactory {
-  
   /**
    * @param group グループ
    * @return トランスフォームグループ
    */
-  public static MyTransformGroup create(Group group) {
-    MyTransformGroup tg = new MyTransformGroup();
+  public static MyTransformGroup create(final Group group) {
+    final MyTransformGroup tg = new MyTransformGroup();
     
-    XMLBox[] xmlBox = group.loadXMLBox();
-    for (int i = 0; i < xmlBox.length; i++) {
-      tg.addChild(PrimitiveFactory.create(xmlBox[i]));
+    final XMLBox[] boxes = group.loadXMLBox();
+    for (int i = 0; i < boxes.length; i++) {
+      tg.addChild(PrimitiveFactory.create(boxes[i]));
     }
 
-    XMLCylinder[] xmlCylinder = group.loadXMLCylinder();
-    for (int i = 0; i < xmlCylinder.length; i++) {
-      tg.addChild(PrimitiveFactory.create(xmlCylinder[i]));
+    final XMLCylinder[] cylinders = group.loadXMLCylinder();
+    for (int i = 0; i < cylinders.length; i++) {
+      tg.addChild(PrimitiveFactory.create(cylinders[i]));
     }
 
-    XMLSphere[] xmlSphere = group.loadXMLSphere();
-    for (int i = 0; i < xmlSphere.length; i++) {
-      tg.addChild(PrimitiveFactory.create(xmlSphere[i]));
+    final XMLSphere[] spheres = group.loadXMLSphere();
+    for (int i = 0; i < spheres.length; i++) {
+      tg.addChild(PrimitiveFactory.create(spheres[i]));
     }
 
-    XMLCone[] xmlCone = group.loadXMLCone();
-    for (int i = 0; i < xmlCone.length; i++) {
-      tg.addChild(PrimitiveFactory.create(xmlCone[i]));
+    final XMLCone[] cones = group.loadXMLCone();
+    for (int i = 0; i < cones.length; i++) {
+      tg.addChild(PrimitiveFactory.create(cones[i]));
     }
 
-    XMLConnector[] xmlConnector = group.loadXMLConnector();
-    for (int i = 0; i < xmlConnector.length; i++) {
-      tg.addChild(PrimitiveFactory.create(xmlConnector[i]));
+    final XMLConnector[] connectors = group.loadXMLConnector();
+    for (int i = 0; i < connectors.length; i++) {
+      tg.addChild(PrimitiveFactory.create(connectors[i]));
     }
 
-    XMLTrianglePolygon[] xmlTriangle = group.loadXMLTrianglePolygon();
-    for (int i = 0; i < xmlTriangle.length; i++) {
-      tg.addChild(PrimitiveFactory.create(xmlTriangle[i]));
+    final XMLTrianglePolygon[] trianglePolygons = group.loadXMLTrianglePolygon();
+    for (int i = 0; i < trianglePolygons.length; i++) {
+      tg.addChild(PrimitiveFactory.create(trianglePolygons[i]));
     }
 
-    XMLQuadPolygon[] xmlQuad = group.loadXMLQuadPolygon();
-    for (int i = 0; i < xmlQuad.length; i++) {
-      tg.addChild(PrimitiveFactory.create(xmlQuad[i]));
+    final XMLQuadPolygon[] quadPolygons = group.loadXMLQuadPolygon();
+    for (int i = 0; i < quadPolygons.length; i++) {
+      tg.addChild(PrimitiveFactory.create(quadPolygons[i]));
     }
 
-    Group[] groups = group.loadGroup();
+    final Group[] groups = group.loadGroup();
     for (int i = 0; i < groups.length; i++) {
       tg.addChild(PrimitiveFactory.create(groups[i]));
     }
@@ -70,22 +69,22 @@ public class TransformGroupFactory {
     /*
      * DHParameterの設定
      */
-    Linkdata[] linkData = group.loadLinkdata();
+    final Linkdata[] linkData = group.loadLinkdata();
     for (int i = 0; i < linkData.length; i++) {
       if (linkData[i].hasDH()) {
         // 初期値のDHパラメータを作成
-        DHParameter parameter = Util.getDHParameter(linkData);
+        final DHParameter parameter = Util.getDHParameter(linkData);
         tg.setDHParameter(parameter);
         break;
       } else if (linkData[i].hasLink()) {
         // DHパラメータを使わないVer
-        CoordinateParameter link = Util.getCoordinateParameter(linkData);
-        tg.setCoordinateParameter(link);
+        final CoordinateParameter parameter = Util.getCoordinateParameter(linkData);
+        tg.setCoordinateParameter(parameter);
         break;
       }
     }
 
-    // //MyTransformGroup と Groupの関連付けを行う
+    // MyTransformGroup と Groupの関連付けを行う
     MovableGroupManager.assignGroup(group, tg);
     
     return tg;
