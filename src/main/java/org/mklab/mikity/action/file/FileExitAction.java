@@ -46,10 +46,10 @@ public class FileExitAction extends Action {
       int ans = MessagegUtil.showYesNoCancel(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
       switch (ans) {
         case SWT.YES:
-          FileDialog dialog = new FileDialog(this.window.getShell());
-          String path = dialog.getFileName();
-          this.window.setFile(path);
           try {
+            final FileDialog dialog = new FileDialog(this.window.getShell());
+            final String path = dialog.getFileName();
+            this.window.setFile(path);
             this.window.save();
           } catch (JAXBException e) {
             throw new RuntimeException(e);

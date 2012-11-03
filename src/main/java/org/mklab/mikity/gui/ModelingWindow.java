@@ -39,11 +39,11 @@ import org.mklab.mikity.action.toolbar.QuadPolygonToolBarAction;
 import org.mklab.mikity.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.action.toolbar.TrianglePolygonToolBarAction;
 import org.mklab.mikity.gui.collision.CollisionCanceller;
-import org.mklab.mikity.java3d.Java3dModeler;
 import org.mklab.mikity.jogl.JoglModeler;
 import org.mklab.mikity.xml.JAXBMarshaller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
+import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.config.ModelUnit;
 import org.mklab.mikity.xml.model.Group;
@@ -87,7 +87,7 @@ public class ModelingWindow extends ApplicationWindow {
 
   private File file;
   private File loadFile;
-  private static Jamast root = FileNewAction.createEmptyModel();
+  private static Jamast root = ModelingWindow.createEmptyModel();
   /** */
   Text filePathText;
   private Button newModelButton;
@@ -405,7 +405,7 @@ public class ModelingWindow extends ApplicationWindow {
     marshaller.unmarshal(this.file);
     root = marshaller.getRoot();
     if (root == null) {
-      root = FileNewAction.createEmptyModel();
+      root = ModelingWindow.createEmptyModel();
       Group groupBlender = root.loadModel(0).loadGroup(0);
       Group[] polygonGroupList = marshaller.getBlenderGroup().loadGroup();
       for (int i = 0; i < polygonGroupList.length; i++) {
@@ -549,5 +549,20 @@ public class ModelingWindow extends ApplicationWindow {
    */
   public File getLoadFile() {
     return this.loadFile;
+  }
+
+  /**
+   * @return root
+   */
+  public static Jamast createEmptyModel() {
+    final Jamast root = new Jamast();
+    final JamastConfig jamastConfig = new JamastConfig();
+    final JamastModel jamastModel = new JamastModel();
+    root.addConfig(jamastConfig);
+    root.addModel(jamastModel);
+    org.mklab.mikity.xml.model.Group rootGroup = new org.mklab.mikity.xml.model.Group();
+    rootGroup.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
+    jamastModel.addGroup(rootGroup);
+    return root;
   }
 }

@@ -15,9 +15,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
 import org.mklab.mikity.gui.ModelingWindow;
-import org.mklab.mikity.xml.JamastConfig;
-import org.mklab.mikity.xml.Jamast;
-import org.mklab.mikity.xml.JamastModel;
 
 
 /**
@@ -47,59 +44,38 @@ public class FileNewAction extends Action {
    */
   @Override
   public void run() {
-    // ファイル名を決定
-    FileDialog dialog = new FileDialog(this.window.getShell());
+    final FileDialog dialog = new FileDialog(this.window.getShell());
     dialog.setText(Messages.getString("FileNewAction.2")); //$NON-NLS-1$
-    String fileName = dialog.open();
+
+    final String fileName = dialog.open();
     if (fileName == null) {
       return;
     }
-    File file = new File(fileName);
+    
     try {
-      // 新しいファイルを作成、うまく作成できれば
+      final File file = new File(fileName);
       if (file.createNewFile()) {
-        try {
-          this.window.setFile(fileName);
-          this.window.load();
-        } catch (JAXBException e) {
-          throw new RuntimeException(e);
-        }
+        this.window.setFile(fileName);
+        this.window.load();
       } else {
         // 新規作成したいが、もともとその名前のファイルが存在するとき
-        MessageBox msg = new MessageBox(this.window.getShell(), SWT.YES | SWT.NO);
-        msg.setText(Messages.getString("FileNewAction.3")); //$NON-NLS-1$
-        msg.setMessage(Messages.getString("FileNewAction.4")); //$NON-NLS-1$
-        int ret = msg.open();
-        if (ret == SWT.YES) {
-          // createNewModelFile(file);
-          // Jamast root = createEmptyModel();
-          try {
-            this.window.setFile(fileName);
-            this.window.load();
-          } catch (JAXBException e) {
-            throw new RuntimeException(e);
-          }
-        } else if (ret == SWT.NO) {
+        final MessageBox messageBox = new MessageBox(this.window.getShell(), SWT.YES | SWT.NO);
+        messageBox.setText(Messages.getString("FileNewAction.3")); //$NON-NLS-1$
+        messageBox.setMessage(Messages.getString("FileNewAction.4")); //$NON-NLS-1$
+        final int yesNo = messageBox.open();
+
+        if (yesNo == SWT.YES) {
+          this.window.setFile(fileName);
+          this.window.load();
+        } else if (yesNo == SWT.NO) {
           return;
         }
         return;
       }
     } catch (IOException e1) {
       throw new RuntimeException(e1);
+    } catch (JAXBException e) {
+      throw new RuntimeException(e);
     }
-  }
-
-  /**
-   * @return root
-   */
-  public static Jamast createEmptyModel() {
-    Jamast root = new Jamast();
-    JamastModel tmpModel;
-    root.addConfig(new JamastConfig());
-    root.addModel(tmpModel = new JamastModel());
-    org.mklab.mikity.xml.model.Group rootGroup = new org.mklab.mikity.xml.model.Group();
-    rootGroup.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
-    tmpModel.addGroup(rootGroup);
-    return root;
   }
 }

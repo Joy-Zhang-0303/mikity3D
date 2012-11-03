@@ -13,7 +13,6 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
 import org.mklab.mikity.gui.ModelingWindow;
 
-
 /**
  * モデリングファイルデータを現在のツリーに追加するアクションです。
  * 
@@ -40,14 +39,15 @@ public class FileImportAction extends Action {
    */
   @Override
   public void run() {
-    FileDialog dialog = new FileDialog(this.window.getShell());
-    // ファイルを選択させる
-    String fileName = dialog.open();
+    final FileDialog dialog = new FileDialog(this.window.getShell());
+
+    final String fileName = dialog.open();
     if (fileName == null) {
       return;
     }
-    this.window.setFile(fileName);
+    
     try {
+      this.window.setFile(fileName);
       this.window.importFile();
     } catch (IOException e) {
       throw new RuntimeException(e);
