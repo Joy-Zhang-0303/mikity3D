@@ -273,7 +273,7 @@ public abstract class AbstractModeler extends Composite {
           return;
         }
 
-        AddPrimitiveDialog addPrim = new AddPrimitiveDialog(getShell(), group, AbstractModeler.this.canceller);
+        AddPrimitiveDialog addPrim = new AddPrimitiveDialog(getShell(), group);
         addPrim.open();
 
         AbstractModeler.this.tree.fillTree();

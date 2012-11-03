@@ -15,7 +15,6 @@ import org.eclipse.jface.action.Action;
  * @version $Revision: 1.3 $.2005/02/14
  */
 public class PlayAction extends Action {
-
   /**
    * コンストラクター
    */
@@ -31,7 +30,6 @@ public class PlayAction extends Action {
    */
   @Override
   public void run() {
-    // TODO Auto-generated method stub
     System.out.println(Messages.getString("PlayAction.2")); //$NON-NLS-1$
   }
 }

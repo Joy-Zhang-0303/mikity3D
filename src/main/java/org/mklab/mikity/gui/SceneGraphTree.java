@@ -262,7 +262,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        AddPrimitiveDialog localAddPrim = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.canceller);
+        AddPrimitiveDialog localAddPrim = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
         localAddPrim.open();
         setTree();
       }

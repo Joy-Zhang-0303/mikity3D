@@ -18,7 +18,6 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.gui.ParameterInputBox;
 import org.mklab.mikity.gui.UnitLabel;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.Rotation;
@@ -70,16 +69,13 @@ public class AddPrimitiveDialog {
    * 
    * @param parentShell 親シェル
    * @param group グループ
-   * @param dc キャンセラー
    */
-  public AddPrimitiveDialog(Shell parentShell, Group group, CollisionCanceller dc) {
+  public AddPrimitiveDialog(Shell parentShell, Group group) {
     this.parentShell = parentShell;
     this.group = group;
     this.angleUnit = UnitLabel.getUnit("modelAngle"); //$NON-NLS-1$
     this.lengthUnit = UnitLabel.getUnit("modelLength"); //$NON-NLS-1$
     createSShell();
-
-    // this.dc = dc;
   }
 
   /**

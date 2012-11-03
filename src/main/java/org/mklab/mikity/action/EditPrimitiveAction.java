@@ -15,7 +15,6 @@ import org.eclipse.jface.action.Action;
  * @version $Revision: 1.3 $.2005/02/14
  */
 public class EditPrimitiveAction extends Action {
-
   /**
    * コンストラクター
    */
