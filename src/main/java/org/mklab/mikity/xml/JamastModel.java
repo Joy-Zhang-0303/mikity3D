@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.mklab.mikity.xml.model.Group;
 
-
 /**
  * Class Model.
  * 
@@ -64,7 +63,6 @@ public class JamastModel implements java.io.Serializable {
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
   public org.mklab.mikity.xml.model.Group loadGroup(int index) throws java.lang.IndexOutOfBoundsException {
-    // -- check bounds for index
     if ((index < 0) || (index > this._groupList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -115,11 +113,11 @@ public class JamastModel implements java.io.Serializable {
    */
   public org.mklab.mikity.xml.model.Group[] loadGroup() {
     int size = this._groupList.size();
-    org.mklab.mikity.xml.model.Group[] mArray = new org.mklab.mikity.xml.model.Group[size];
+    org.mklab.mikity.xml.model.Group[] groups = new org.mklab.mikity.xml.model.Group[size];
     for (int index = 0; index < size; index++) {
-      mArray[index] = this._groupList.get(index);
+      groups[index] = this._groupList.get(index);
     }
-    return mArray;
+    return groups;
   } 
 
   /**
@@ -159,7 +157,6 @@ public class JamastModel implements java.io.Serializable {
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
   public void setGroup(int index, org.mklab.mikity.xml.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
-    // -- check bounds for index
     if ((index < 0) || (index > this._groupList.size())) {
       throw new IndexOutOfBoundsException();
     }

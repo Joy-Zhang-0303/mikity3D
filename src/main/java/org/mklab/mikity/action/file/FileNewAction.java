@@ -8,6 +8,8 @@ package org.mklab.mikity.action.file;
 import java.io.File;
 import java.io.IOException;
 
+import javax.xml.bind.JAXBException;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
@@ -56,8 +58,12 @@ public class FileNewAction extends Action {
     try {
       // 新しいファイルを作成、うまく作成できれば
       if (file.createNewFile()) {
-        this.window.setFile(fileName);
-        this.window.load();
+        try {
+          this.window.setFile(fileName);
+          this.window.load();
+        } catch (JAXBException e) {
+          throw new RuntimeException(e);
+        }
       } else {
         // 新規作成したいが、もともとその名前のファイルが存在するとき
         MessageBox msg = new MessageBox(this.window.getShell(), SWT.YES | SWT.NO);
@@ -67,8 +73,12 @@ public class FileNewAction extends Action {
         if (ret == SWT.YES) {
           // createNewModelFile(file);
           // Jamast root = createEmptyModel();
-          this.window.setFile(fileName);
-          this.window.load();
+          try {
+            this.window.setFile(fileName);
+            this.window.load();
+          } catch (JAXBException e) {
+            throw new RuntimeException(e);
+          }
         } else if (ret == SWT.NO) {
           return;
         }

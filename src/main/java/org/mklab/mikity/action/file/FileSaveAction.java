@@ -4,6 +4,10 @@
  */
 package org.mklab.mikity.action.file;
 
+import java.io.IOException;
+
+import javax.xml.bind.JAXBException;
+
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.gui.ModelingWindow;
 
@@ -35,8 +39,11 @@ public class FileSaveAction extends Action {
   public void run() {
     try {
       this.window.save();
-    } catch (IllegalArgumentException e) {
       new FileSaveAsAction(this.window).run();
+    } catch (JAXBException e) {
+      throw new RuntimeException(e);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
   }
 }

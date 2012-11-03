@@ -4,6 +4,10 @@
  */
 package org.mklab.mikity.action.file;
 
+import java.io.IOException;
+
+import javax.xml.bind.JAXBException;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
@@ -45,7 +49,13 @@ public class FileExitAction extends Action {
           FileDialog dialog = new FileDialog(this.window.getShell());
           String path = dialog.getFileName();
           this.window.setFile(path);
-          this.window.save();
+          try {
+            this.window.save();
+          } catch (JAXBException e) {
+            throw new RuntimeException(e);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
           break;
         case SWT.NO:
           break;

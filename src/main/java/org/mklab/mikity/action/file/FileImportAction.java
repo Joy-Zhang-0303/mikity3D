@@ -5,6 +5,10 @@
  */
 package org.mklab.mikity.action.file;
 
+import java.io.IOException;
+
+import javax.xml.bind.JAXBException;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
 import org.mklab.mikity.gui.ModelingWindow;
@@ -43,6 +47,12 @@ public class FileImportAction extends Action {
       return;
     }
     this.window.setFile(fileName);
-    this.window.importFile();
+    try {
+      this.window.importFile();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    } catch (JAXBException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

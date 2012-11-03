@@ -23,16 +23,14 @@ import org.mklab.mikity.xml.model.Group;
 
 
 /**
- * JAXBを用いてモデリングデータの保存・読込を行うクラス
+ * JAXBを用いてモデルデータの保存・読込を行うクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/07/10
  */
 public class JAXBMarshaller {
 
-  /**
-   * 現在のモデリングデータのルート
-   */
+  /** モデルデータのルート */
   private Jamast root;
 
   private Collada collada;
@@ -43,70 +41,62 @@ public class JAXBMarshaller {
    * コンストラクタ
    */
   public JAXBMarshaller() {
-  // nothing to do
+    // nothing to do
   }
 
   /**
    * コンストラクタ
    * 
-   * @param root 　現在のモデリングデータのルート
+   * @param root モデルデータのルート
    */
   public JAXBMarshaller(Jamast root) {
     this.root = root;
   }
 
   /**
-   * 現在のモデリングデータを指定したファイルに保存する
+   * 現在のモデルデータを指定したファイルに保存します。
    * 
-   * @param file 　保存ファイル
+   * @param file 保存ファイル
+   * @throws JAXBException ファイルに保存できない場合
+   * @throws IOException ファイルに保存できない場合
    * @throws IllegalArgumentException 例外
    */
-  public void marshal(File file) throws IllegalArgumentException {
-    try {
-      JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
-      Marshaller marshaller = context.createMarshaller();
-      FileWriter write = new FileWriter(file);
-      marshaller.marshal(this.root, write);
-      write.close();
-    } catch (JAXBException e) {
-      throw new RuntimeException(e);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+  public void marshal(File file) throws JAXBException, IOException {
+    JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
+    Marshaller marshaller = context.createMarshaller();
+    FileWriter write = new FileWriter(file);
+    marshaller.marshal(this.root, write);
+    write.close();
   }
 
   /**
-   * 指定したファイルを読み込む
+   * 指定したファイルを読み込みます。
    * 
-   * @param file 　読込ファイル
-   * @throws IllegalArgumentException 例外
+   * @param file 読込ファイル
+   * @throws JAXBException ファイルを読み込めない場合
+   * @throws IOException ファイルを読み込めない場合
    */
-  public void unmarshal(File file) throws IllegalArgumentException {
+  public void unmarshal(File file) throws IOException, JAXBException {
     loadScene(file);
   }
 
   /**
-   * 指定したJAMASTファイルを読み込む
+   * 指定したJAMASTファイルを読み込みます。
    * 
-   * @param file 　読込JAMASTファイル
-   * @throws IllegalArgumentException
+   * @param file 読込JAMASTファイル
+   * @throws JAXBException ファイルを読み込めない場合 
+   * @throws IOException ファイルを読み込めない場合 
    */
-  private void loadJamastScene(File file) throws IllegalArgumentException {
-    try {
-      JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
-      Unmarshaller unmarshaller = context.createUnmarshaller();
-      FileReader reader = new FileReader(file);
-      this.root = (Jamast)unmarshaller.unmarshal(reader);
-      reader.close();
-    } catch (JAXBException e) {
-      throw new RuntimeException(e);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+  private void loadJamastScene(File file) throws JAXBException, IOException {
+    JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
+    Unmarshaller unmarshaller = context.createUnmarshaller();
+    FileReader reader = new FileReader(file);
+    this.root = (Jamast)unmarshaller.unmarshal(reader);
+    reader.close();
   }
 
   /**
-   * 指定したJAMASTファイルを読み込む
+   * 指定したJAMASTファイルを読み込みます。
    * 
    * @param file 　読込JAMASTファイル
    * @return root
@@ -124,43 +114,35 @@ public class JAXBMarshaller {
   }
 
   /**
-   * 指定したJAMASTファイルを読み込む
+   * 指定したJAMASTファイルを読み込みます。
    * 
    * @param file 　読込JAMASTファイル
    * @return root
+   * @throws JAXBException ファイルを読み込めない場合
    * @throws IllegalArgumentException 例外
    */
-  public Jamast createJamast(URL file) throws IllegalArgumentException {
-    try {
-      JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
-      Unmarshaller unmarshaller = context.createUnmarshaller();
-      return (Jamast)unmarshaller.unmarshal(file);
-    } catch (JAXBException e) {
-      throw new RuntimeException(e);
-    }
+  public Jamast createJamast(URL file) throws JAXBException {
+    JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
+    Unmarshaller unmarshaller = context.createUnmarshaller();
+    return (Jamast)unmarshaller.unmarshal(file);
   }
 
   /**
-   * 指定したBlenderファイルを読み込む
+   * 指定したBlenderファイルを読み込みます。
    * 
-   * @param file 　読込Blenderファイル
-   * @throws IllegalArgumentException
+   * @param file Blenderファイル
+   * @throws JAXBException ファイルがvalidでない場合
+   * @throws IOException ファイルを読み込めない場合
    */
-  private void loadBlenderScene(File file) throws IllegalArgumentException {
-    try {
-      setLoadFile(file);
-      ColladaFileTransformer cft = new ColladaFileTransformer(file);
-      File blender = cft.getTransformedFile();
-      JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.blender.Collada.class);
-      Unmarshaller unmarshaller = context.createUnmarshaller();
-      FileReader reader = new FileReader(blender);
-      this.collada = (Collada)unmarshaller.unmarshal(reader);
-      reader.close();
-    } catch (JAXBException e) {
-      throw new RuntimeException(e);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+  private void loadBlenderScene(File file) throws JAXBException, IOException {
+    setLoadFile(file);
+    ColladaFileTransformer cft = new ColladaFileTransformer(file);
+    File blender = cft.getTransformedFile();
+    JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.blender.Collada.class);
+    Unmarshaller unmarshaller = context.createUnmarshaller();
+    FileReader reader = new FileReader(blender);
+    this.collada = (Collada)unmarshaller.unmarshal(reader);
+    reader.close();
   }
 
   /**
@@ -174,37 +156,36 @@ public class JAXBMarshaller {
    * 種類を判別し、ファイルを読み込む。
    * 
    * @param file 読込ファイル
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
    */
-  private void loadScene(File file) {
-    try {
-      final BufferedReader reader = new BufferedReader(new FileReader(file));
-      final StringBuffer data = new StringBuffer();
+  private void loadScene(File file) throws IOException, JAXBException {
+    final BufferedReader reader = new BufferedReader(new FileReader(file));
+    final StringBuffer data = new StringBuffer();
 
-      String line;
-      while ((line = reader.readLine()) != null) {
-        data.append(line);
-      }
-      reader.close();
+    String line;
+    while ((line = reader.readLine()) != null) {
+      data.append(line);
+    }
+    reader.close();
 
-      if (data.indexOf("<jamast") != -1) { //$NON-NLS-1$
-        loadJamastScene(file);
-        return;
-      }
-      if (data.indexOf("<collada") != -1 || data.indexOf("<COLLADA") != -1) { //$NON-NLS-1$ //$NON-NLS-2$
-        loadBlenderScene(file);
-        return;
-      }
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    if (data.indexOf("<jamast") != -1) { //$NON-NLS-1$
+      loadJamastScene(file);
+      return;
+    }
+
+    if (data.indexOf("<collada") != -1 || data.indexOf("<COLLADA") != -1) { //$NON-NLS-1$ //$NON-NLS-2$
+      loadBlenderScene(file);
+      return;
     }
 
     throw new IllegalArgumentException("Neither jamast nor collada data"); //$NON-NLS-1$
   }
 
   /**
-   * 現在のモデリングデータのルートを返す
+   * 現在のモデルデータのルートを返します。
    * 
-   * @return 現在のモデリングデータのルート
+   * @return 現在のモデルデータのルート
    */
   public Jamast getRoot() {
     return this.root;

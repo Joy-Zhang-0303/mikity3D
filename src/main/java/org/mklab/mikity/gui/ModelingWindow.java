@@ -1,6 +1,9 @@
 package org.mklab.mikity.gui;
 
 import java.io.File;
+import java.io.IOException;
+
+import javax.xml.bind.JAXBException;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
@@ -372,11 +375,13 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * ファイルを保存する
+   * ファイルを保存します。
+   * @throws IOException ファイルに保存できない場合 
+   * @throws JAXBException ファイルに保存できない場合 
    * 
    * @throws IllegalArgumentException 例外
    */
-  public void save() {
+  public void save() throws JAXBException, IOException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
@@ -388,9 +393,11 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * ファイルを読み込む
+   * ファイルを読み込みます。
+   * @throws IOException ファイルに保存できない場合 
+   * @throws JAXBException ファイルに保存できない場合 
    */
-  public void load() {
+  public void load() throws IOException, JAXBException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
@@ -417,9 +424,11 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * インポート
+   * ファイルを読み込みます。
+   * @throws JAXBException ファイルを読み込めない場合 
+   * @throws IOException ファイルを読み込めない場合 
    */
-  public void importFile() {
+  public void importFile() throws IOException, JAXBException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.14")); //$NON-NLS-1$
     }
