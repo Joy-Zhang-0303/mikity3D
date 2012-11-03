@@ -19,104 +19,65 @@ import java.io.IOException;
  * 
  */
 public class ConfigData {
-
-  /**
-   * エージェントファイル
-   */
+  /** エージェントファイル */
   private String[] agentfile = new String[10];
-  /**
-   * ウインドウの横幅
-   */
+  /**ウインドウの横幅 */
   private int xsize;
-  /**
-   * ウインドウの縦幅
-   */
+  /** ウインドウの縦幅 */
   private int ysize;
-  /**
-   * X軸方向のずれ
-   */
+  /** X軸方向のずれ */
   private double xoffset;
-  /**
-   * 画面中心と座標中心のオフセット　ｘ座標のずらす値
-   */
+  /** 画面中心と座標中心のオフセット　ｘ座標のずらす値 */
   private double yoffset;
-  /**
-   * 画面中心と座標中心のオフセット　ｙ座標のずらす値
-   */
+  /** 画面中心と座標中心のオフセット　ｙ座標のずらす値 */
   private double zoffset;
-  /**
-   * 画面中心と座標中心のオフセット　ｚ座標のずらす値
-   */
+  /** 画面中心と座標中心のオフセット　ｚ座標のずらす値 */
   private double xcenter;
-  /**
-   * 各エージェントの座標系の原点の位置のｘ座標のずれ
-   */
+  /** 各エージェントの座標系の原点の位置のｘ座標のずれ */
   private double ycenter;
-  /**
-   * 各エージェントの座標系の原点の位置のｙ座標のずれ
-   */
+  /** 各エージェントの座標系の原点の位置のｙ座標のずれ */
   private double zcenter;
-  /**
-   * 各エージェントの座標系の原点の位置のｚ座標のずれ
-   */
+  /** 各エージェントの座標系の原点の位置のｚ座標のずれ */
   private String bgcolor;
-  /**
-   * 背景の色
-   */
+  /** 背景の色 */
   private double xeye;
-  /**
-   *視点の位置　ｘ座標
-   */
+  /** 視点の位置　ｘ座標 */
   private double yeye;
-  /**
-   *視点の位置　ｙ座標
-   */
+  /** 視点の位置　ｙ座標 */
   private double zeye;
-  /**
-   *視点の位置　ｚ座標
-   */
+  /** 視点の位置　ｚ座標 */
   private double xroll;
-  /**
-   *objectのｘ軸周りの回転
-   */
+  /** objectのｘ軸周りの回転 */
   private double yroll;
-  /**
-   *objectのｙ軸周りの回転
-   */
+  /** objectのｙ軸周りの回転 */
   private double zroll;
-  /**
-   *objectのｚ軸周りの回転
-   */
+  /** objectのｚ軸周りの回転 */
   private String[] data = new String[10];
-
+  
   private int parent;
-  /**
-   * 親リンクの番号
-   */
+  
+  /** 親リンクの番号 */
   private String[] link = new String[10];
 
   /**
    * コンストラクター
    * 
    * @param filename ファイルネーム
-   * @throws IOException 例外
+   * @throws IOException ファイルを読み込めない場合
    */
   public ConfigData(String filename) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader(filename));
+    final BufferedReader br = new BufferedReader(new FileReader(filename));
 
     String line = br.readLine();
-    String[] values;
+    
     while (line != null) {
-      // #で始らなかったら
       if (!line.startsWith("#")) { //$NON-NLS-1$
-        values = line.split("\\s"); //$NON-NLS-1$
+        final String[] values = line.split("\\s"); //$NON-NLS-1$
 
         if (line.startsWith("xsize")) { //$NON-NLS-1$
-          // String型で取り出したvalues[1]をint型に変える
           this.xsize = Integer.parseInt(values[1]);
         } else if (line.startsWith("ysize")) { //$NON-NLS-1$
           this.ysize = Integer.parseInt(values[1]);
-          System.out.println(this.ysize);
         } else if (line.startsWith("xoffset")) { //$NON-NLS-1$
           this.xoffset = Double.parseDouble(values[1]);
         } else if (line.startsWith("yoffset")) { //$NON-NLS-1$
@@ -130,7 +91,6 @@ public class ConfigData {
         } else if (line.startsWith("zcenter")) { //$NON-NLS-1$
           this.zcenter = Double.parseDouble(values[1]);
         } else if (line.startsWith("bgcolor")) { //$NON-NLS-1$
-          // String型のままでよい。
           this.bgcolor = values[1];
         } else if (line.startsWith("xeye")) { //$NON-NLS-1$
           this.xeye = Double.parseDouble(values[1]);
@@ -163,7 +123,6 @@ public class ConfigData {
 
   /**
    * agentfile を返します。
-   * 
    * @return agentfile
    */
   public String[] getAgentfile() {
@@ -171,7 +130,8 @@ public class ConfigData {
   }
 
   /**
-   * @param agentfile agentfile を設定します。
+   * agentfile を設定します。
+   * @param agentfile agentfile
    */
   public void setAgentfile(String[] agentfile) {
     this.agentfile = agentfile;
@@ -179,7 +139,6 @@ public class ConfigData {
 
   /**
    * bgcolor を返します。
-   * 
    * @return bgcolor
    */
   public String getBgcolor() {
@@ -187,7 +146,8 @@ public class ConfigData {
   }
 
   /**
-   * @param bgcolor bgcolor を設定します。
+   * bgcolor を設定します。
+   * @param bgcolor bgcolor
    */
   public void setBgcolor(String bgcolor) {
     this.bgcolor = bgcolor;
@@ -195,7 +155,6 @@ public class ConfigData {
 
   /**
    * data を返します。
-   * 
    * @return data
    */
   public String[] getData() {
@@ -203,7 +162,8 @@ public class ConfigData {
   }
 
   /**
-   * @param data data を設定します。
+   * data を設定します。
+   * @param data data
    */
   public void setData(String[] data) {
     this.data = data;
@@ -211,7 +171,6 @@ public class ConfigData {
 
   /**
    * link を返します。
-   * 
    * @return link
    */
   public String[] getLink() {
@@ -219,7 +178,8 @@ public class ConfigData {
   }
 
   /**
-   * @param link link を設定します。
+   * link を設定します。
+   * @param link link
    */
   public void setLink(String[] link) {
     this.link = link;
@@ -227,7 +187,6 @@ public class ConfigData {
 
   /**
    * parent を返します。
-   * 
    * @return parent
    */
   public int getParent() {
@@ -235,7 +194,8 @@ public class ConfigData {
   }
 
   /**
-   * @param parent parent を設定します。
+   * parent を設定します。
+   * @param parent parent 
    */
   public void setParent(int parent) {
     this.parent = parent;
@@ -243,7 +203,6 @@ public class ConfigData {
 
   /**
    * xcenter を返します。
-   * 
    * @return xcenter
    */
   public double getXcenter() {
@@ -260,7 +219,6 @@ public class ConfigData {
 
   /**
    * xeye を返します。
-   * 
    * @return xeye
    */
   public double getXeye() {
@@ -268,7 +226,8 @@ public class ConfigData {
   }
 
   /**
-   * @param xeye xeye を設定します。
+   * xeye を設定します。
+   * @param xeye xeye
    */
   public void setXeye(double xeye) {
     this.xeye = xeye;
@@ -276,7 +235,6 @@ public class ConfigData {
 
   /**
    * xoffset を返します。
-   * 
    * @return xoffset
    */
   public double getXoffset() {
@@ -284,7 +242,8 @@ public class ConfigData {
   }
 
   /**
-   * @param xoffset xoffset を設定します。
+   * xoffset を設定します。
+   * @param xoffset xoffset
    */
   public void setXoffset(double xoffset) {
     this.xoffset = xoffset;
@@ -292,7 +251,6 @@ public class ConfigData {
 
   /**
    * xroll を返します。
-   * 
    * @return xroll
    */
   public double getXroll() {
@@ -300,7 +258,8 @@ public class ConfigData {
   }
 
   /**
-   * @param xroll xroll を設定します。
+   * xroll を設定します。
+   * @param xroll xroll
    */
   public void setXroll(double xroll) {
     this.xroll = xroll;
@@ -308,7 +267,6 @@ public class ConfigData {
 
   /**
    * xsize を返します。
-   * 
    * @return xsize
    */
   public int getXsize() {
@@ -316,7 +274,8 @@ public class ConfigData {
   }
 
   /**
-   * @param xsize xsize を設定します。
+   * xsize を設定します。
+   * @param xsize xsize
    */
   public void setXsize(int xsize) {
     this.xsize = xsize;
@@ -324,7 +283,6 @@ public class ConfigData {
 
   /**
    * ycenter を返します。
-   * 
    * @return ycenter
    */
   public double getYcenter() {
@@ -332,7 +290,8 @@ public class ConfigData {
   }
 
   /**
-   * @param ycenter ycenter を設定します。
+   * ycenter を設定します。
+   * @param ycenter ycenter
    */
   public void setYcenter(double ycenter) {
     this.ycenter = ycenter;
@@ -340,7 +299,6 @@ public class ConfigData {
 
   /**
    * yeye を返します。
-   * 
    * @return yeye
    */
   public double getYeye() {
@@ -348,7 +306,8 @@ public class ConfigData {
   }
 
   /**
-   * @param yeye yeye を設定します。
+   * yeye を設定します。
+   * @param yeye yeye
    */
   public void setYeye(double yeye) {
     this.yeye = yeye;
@@ -356,7 +315,6 @@ public class ConfigData {
 
   /**
    * yoffset を返します。
-   * 
    * @return yoffset
    */
   public double getYoffset() {
@@ -364,7 +322,8 @@ public class ConfigData {
   }
 
   /**
-   * @param yoffset yoffset を設定します。
+   * yoffset を設定します。
+   * @param yoffset yoffset
    */
   public void setYoffset(double yoffset) {
     this.yoffset = yoffset;
@@ -372,7 +331,6 @@ public class ConfigData {
 
   /**
    * yroll を返します。
-   * 
    * @return yroll
    */
   public double getYroll() {
@@ -380,7 +338,8 @@ public class ConfigData {
   }
 
   /**
-   * @param yroll yroll を設定します。
+   * yroll を設定します。
+   * @param yroll yroll
    */
   public void setYroll(double yroll) {
     this.yroll = yroll;
@@ -388,7 +347,6 @@ public class ConfigData {
 
   /**
    * ysize を返します。
-   * 
    * @return ysize
    */
   public int getYsize() {
@@ -396,7 +354,8 @@ public class ConfigData {
   }
 
   /**
-   * @param ysize ysize を設定します。
+   * ysize を設定します。
+   * @param ysize ysize
    */
   public void setYsize(int ysize) {
     this.ysize = ysize;
@@ -404,7 +363,6 @@ public class ConfigData {
 
   /**
    * zcenter を返します。
-   * 
    * @return zcenter
    */
   public double getZcenter() {
@@ -412,7 +370,8 @@ public class ConfigData {
   }
 
   /**
-   * @param zcenter zcenter を設定します。
+   * zcenter を設定します。
+   * @param zcenter zcenter
    */
   public void setZcenter(double zcenter) {
     this.zcenter = zcenter;
@@ -420,7 +379,6 @@ public class ConfigData {
 
   /**
    * zeye を返します。
-   * 
    * @return zeye
    */
   public double getZeye() {
@@ -428,7 +386,8 @@ public class ConfigData {
   }
 
   /**
-   * @param zeye zeye を設定します。
+   * zeye を設定します。
+   * @param zeye zeye
    */
   public void setZeye(double zeye) {
     this.zeye = zeye;
@@ -436,7 +395,6 @@ public class ConfigData {
 
   /**
    * zoffset を返します。
-   * 
    * @return zoffset
    */
   public double getZoffset() {
@@ -444,7 +402,8 @@ public class ConfigData {
   }
 
   /**
-   * @param zoffset zoffset を設定します。
+   * zoffset を設定します。
+   * @param zoffset zoffset
    */
   public void setZoffset(double zoffset) {
     this.zoffset = zoffset;
@@ -452,7 +411,6 @@ public class ConfigData {
 
   /**
    * zroll を返します。
-   * 
    * @return zroll
    */
   public double getZroll() {
@@ -460,7 +418,8 @@ public class ConfigData {
   }
 
   /**
-   * @param zroll zroll を設定します。
+   * zroll を設定します。
+   * @param zroll zroll
    */
   public void setZroll(double zroll) {
     this.zroll = zroll;
