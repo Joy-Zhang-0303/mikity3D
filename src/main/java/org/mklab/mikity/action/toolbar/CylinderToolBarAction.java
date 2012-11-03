@@ -2,7 +2,6 @@ package org.mklab.mikity.action.toolbar;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.gui.ModelingWindow;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLCylinder;
@@ -22,9 +21,8 @@ public class CylinderToolBarAction extends Action {
    * コンストラクター
    * 
    * @param window ウィンドウ
-   * @param dc キャンセラー
    */
-  public CylinderToolBarAction(final ModelingWindow window, CollisionCanceller dc) {
+  public CylinderToolBarAction(final ModelingWindow window) {
     this.window = window;
     setText("Cylinder"); //$NON-NLS-1$
   }

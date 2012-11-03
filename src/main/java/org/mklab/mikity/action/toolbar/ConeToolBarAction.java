@@ -2,7 +2,6 @@ package org.mklab.mikity.action.toolbar;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.gui.ModelingWindow;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLCone;
@@ -22,9 +21,8 @@ public class ConeToolBarAction extends Action {
   /**
    * 新しく生成された<code>ConeToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
-   * @param dc キャンセラー
    */
-  public ConeToolBarAction(final ModelingWindow window, CollisionCanceller dc) {
+  public ConeToolBarAction(final ModelingWindow window) {
     this.window = window;
     setText("Cone"); //$NON-NLS-1$
   }

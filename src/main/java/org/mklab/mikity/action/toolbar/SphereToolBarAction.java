@@ -2,7 +2,6 @@ package org.mklab.mikity.action.toolbar;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.gui.ModelingWindow;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLSphere;
@@ -22,9 +21,8 @@ public class SphereToolBarAction extends Action {
    * コンストラクター
    * 
    * @param window ウィンドウ
-   * @param dc キャンセラー
    */
-  public SphereToolBarAction(final ModelingWindow window, CollisionCanceller dc) {
+  public SphereToolBarAction(final ModelingWindow window) {
     this.window = window;
     setText("Sphere"); //$NON-NLS-1$
   }

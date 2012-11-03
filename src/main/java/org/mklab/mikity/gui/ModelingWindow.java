@@ -78,10 +78,10 @@ public class ModelingWindow extends ApplicationWindow {
   private Composite comp;
   private CollisionCanceller canceller = new CollisionCanceller(this.comp);
 
-  private Action TOOLBAR_BOX_ACTION = new BoxToolBarAction(this, this.canceller);
-  private Action TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this, this.canceller);
-  private Action TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this, this.canceller);
-  private Action TOOLBAR_CONE_ACTION = new ConeToolBarAction(this, this.canceller);
+  private Action TOOLBAR_BOX_ACTION = new BoxToolBarAction(this);
+  private Action TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this);
+  private Action TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this);
+  private Action TOOLBAR_CONE_ACTION = new ConeToolBarAction(this);
   private Action TOOLBAR_TRIANGLE_ACTION = new TrianglePolygonToolBarAction(this);
   private Action TOOLBAR_QUAD_ACTION = new QuadPolygonToolBarAction(this);
 

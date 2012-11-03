@@ -2,7 +2,6 @@ package org.mklab.mikity.action.toolbar;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.gui.ModelingWindow;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLBox;
@@ -21,9 +20,8 @@ public class BoxToolBarAction extends Action {
   /**
    * 新しく生成された<code>BoxToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
-   * @param dc キャンセラー
    */
-  public BoxToolBarAction(final ModelingWindow window, CollisionCanceller dc) {
+  public BoxToolBarAction(final ModelingWindow window) {
     this.window = window;
     setText("Box"); //$NON-NLS-1$
   }
