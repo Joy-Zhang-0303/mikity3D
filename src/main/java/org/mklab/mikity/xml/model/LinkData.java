@@ -46,14 +46,14 @@ public class LinkData implements java.io.Serializable {
   /**
    * Method deleteColumn
    */
-  public void deleteColumn() {
+  public void deleteDataNumber() {
     this._has_column = false;
   }
 
   /**
    * Method deleteConst
    */
-  public void deleteConst() {
+  public void deleteInitialValue() {
     this._has_const = false;
   }
 
@@ -62,7 +62,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @return the value of field 'column'.
    */
-  public int loadColumn() {
+  public int loadDataNumber() {
     return this._column;
   }
 
@@ -133,7 +133,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @return the value of field 'const'.
    */
-  public double loadConst() {
+  public double loadInitialValue() {
     return this._const;
   }
 
@@ -142,7 +142,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @return the value of field 'target'.
    */
-  public java.lang.String loadTarget() {
+  public java.lang.String loadTargetName() {
     return this._target;
   }
 
@@ -151,7 +151,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @return has_colimn
    */
-  public boolean hasColumn() {
+  public boolean hasDataNumber() {
     if (this._column != 0) {
       this._has_column = true;
     }
@@ -163,7 +163,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @return has_const
    */
-  public boolean hasConst() {
+  public boolean hasInitialValue() {
     if (this._const != 0.0) {
       this._has_const = true;
     }
@@ -175,7 +175,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @param column the value of field 'column'.
    */
-  public void setColumn(int column) {
+  public void setDataNumber(int column) {
     this._column = column;
     this._has_column = true;
   }
@@ -185,7 +185,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @param _const コンスト
    */
-  public void setConst(double _const) {
+  public void setInitialValue(double _const) {
     this._const = _const;
     this._has_const = true;
   }
@@ -195,7 +195,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @param target the value of field 'target'.
    */
-  public void setTarget(java.lang.String target) {
+  public void setTargetName(java.lang.String target) {
     this._target = target;
   }
 

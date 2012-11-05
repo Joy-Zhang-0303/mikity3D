@@ -144,12 +144,12 @@ public class GroupConfigDialogLink {
   void addLinkData(final ParameterInputBox dh, final ParameterInputBox col) {
     if (dh.getFloatValue() != 0.0 || col.getIntValue() != 0) {
       LinkData linkdata = new LinkData();
-      linkdata.setTarget(dh.getLabelText());
+      linkdata.setTargetName(dh.getLabelText());
       if (dh.getFloatValue() != 0.0) {
-        linkdata.setConst(dh.getFloatValue());
+        linkdata.setInitialValue(dh.getFloatValue());
       }
       if (col.getIntValue() != 0) {
-        linkdata.setColumn(col.getIntValue());
+        linkdata.setDataNumber(col.getIntValue());
       }
       this.group.addLinkdata(linkdata);
     }
@@ -241,14 +241,14 @@ public class GroupConfigDialogLink {
     LinkData[] linkdata = this.group.loadLinkData();
 
     for (int i = 0; i < linkdata.length; i++) {
-      String target = linkdata[i].loadTarget();
+      String target = linkdata[i].loadTargetName();
       // if(linkdata[i].hasColumn()){
       // column = "" + linkdata[i].getColumn();
       // } else{
       // column = "0";
       // }
-      String column = linkdata[i].hasColumn() ? "" + linkdata[i].loadColumn() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      String constant = linkdata[i].hasConst() ? "" + linkdata[i].loadConst() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      String column = linkdata[i].hasDataNumber() ? "" + linkdata[i].loadDataNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      String constant = linkdata[i].hasInitialValue() ? "" + linkdata[i].loadInitialValue() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       if (target.equals("locationX")) { //$NON-NLS-1$
         this.columnLocX.setText(column);
         this.locX.setText(constant);

@@ -56,7 +56,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void addMoveTypeDH(DHParameterType type, int row) {
+  public final void addMoveType(DHParameterType type, int row) {
     if (this.data.getRowSize() < row) {
       throw new IllegalArgumentException(); 
     }
@@ -64,29 +64,33 @@ public abstract class AbstractDataPicker implements DataPicker {
     switch (type) {
       case A:
         for (int i = 0; i < this.dhParameters.length; i++) {
-          this.dhParameters[i].setA(this.data.getElement(row, i + 1).doubleValue() / dataScale);
+          double value = this.data.getElement(row, i + 1).doubleValue();
+          this.dhParameters[i].setA(value / dataScale);
         }
         break;
       case ALPHA:
         for (int i = 0; i < this.dhParameters.length; i++) {
+          double value = this.data.getElement(row, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.dhParameters[i].setAlpha(this.data.getElement(row, i + 1).doubleValue());
+            this.dhParameters[i].setAlpha(value);
           } else {
-            this.dhParameters[i].setAlpha(Math.toRadians(this.data.getElement(row, i + 1).doubleValue()));
+            this.dhParameters[i].setAlpha(Math.toRadians(value));
           }
         }
         break;
       case D:
         for (int i = 0; i < this.dhParameters.length; i++) {
-          this.dhParameters[i].setD(this.data.getElement(row, i + 1).doubleValue() / dataScale);
+          double value = this.data.getElement(row, i + 1).doubleValue();
+          this.dhParameters[i].setD(value / dataScale);
         }
         break;
       case THETA:
         for (int i = 0; i < this.dhParameters.length; i++) {
+          double value = this.data.getElement(row, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.dhParameters[i].setTheta(this.data.getElement(row, i + 1).doubleValue());
+            this.dhParameters[i].setTheta(value);
           } else {
-            this.dhParameters[i].setTheta(Math.toRadians(this.data.getElement(row, i + 1).doubleValue()));
+            this.dhParameters[i].setTheta(Math.toRadians(value));
           }
         }
         break;
@@ -98,7 +102,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void addMoveTypeCoordinate(CoordinateParameterType type, int row) {
+  public final void addMoveType(CoordinateParameterType type, int row) {
     if (this.data.getRowSize() < row) {
       throw new IllegalAccessError();
     }
@@ -106,43 +110,49 @@ public abstract class AbstractDataPicker implements DataPicker {
     switch (type) {
       case LOCX:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          this.coordinateParameters[i].setLocX(this.data.getElement(row, i + 1).doubleValue() / dataScale);
+          double value = this.data.getElement(row, i + 1).doubleValue();
+          this.coordinateParameters[i].setLocX(value / dataScale);
         }
         break;
       case LOCY:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          this.coordinateParameters[i].setLocY(this.data.getElement(row, i + 1).doubleValue() / dataScale);
+          double value = this.data.getElement(row, i + 1).doubleValue();
+          this.coordinateParameters[i].setLocY(value / dataScale);
         }
         break;
       case LOCZ:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          this.coordinateParameters[i].setLocZ(this.data.getElement(row, i + 1).doubleValue() / dataScale);
+          double value = this.data.getElement(row, i + 1).doubleValue();
+          this.coordinateParameters[i].setLocZ(value / dataScale);
         }
         break;
       case ROTX:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
+          double value = this.data.getElement(row, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.coordinateParameters[i].setRotX(this.data.getElement(row, i + 1).doubleValue());
+            this.coordinateParameters[i].setRotX(value);
           } else {
-            this.coordinateParameters[i].setRotX(Math.toRadians(this.data.getElement(row, i + 1).doubleValue()));
+            this.coordinateParameters[i].setRotX(Math.toRadians(value));
           }
         }
         break;
       case ROTY:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
+          double value = this.data.getElement(row, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.coordinateParameters[i].setRotY(this.data.getElement(row, i + 1).doubleValue());
+            this.coordinateParameters[i].setRotY(value);
           } else {
-            this.coordinateParameters[i].setRotY(Math.toRadians(this.data.getElement(row, i + 1).doubleValue()));
+            this.coordinateParameters[i].setRotY(Math.toRadians(value));
           }
         }
         break;
       case ROTZ:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
+          double value = this.data.getElement(row, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.coordinateParameters[i].setRotZ(this.data.getElement(row, i + 1).doubleValue());
+            this.coordinateParameters[i].setRotZ(value);
           } else {
-            this.coordinateParameters[i].setRotZ(Math.toRadians(this.data.getElement(row, i + 1).doubleValue()));
+            this.coordinateParameters[i].setRotZ(Math.toRadians(value));
           }
         }
         break;
@@ -154,7 +164,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public void setDHParameter(DHParameterType type, double value) {
+  public void setParameter(DHParameterType type, double value) {
     switch (type) {
       case A:
         for (int i = 0; i < this.dhParameters.length; i++) {
@@ -194,7 +204,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public void setCoordinateParameter(CoordinateParameterType type, double value) {
+  public void setParameter(CoordinateParameterType type, double value) {
     switch (type) {
       case LOCX:
         for (int i = 0; i < this.coordinateParameters.length; i++) {

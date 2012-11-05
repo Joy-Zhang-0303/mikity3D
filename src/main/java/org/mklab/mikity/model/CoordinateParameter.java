@@ -12,20 +12,12 @@ package org.mklab.mikity.model;
  * @version $Revision: 1.2 $. 2008/02/29
  */
 public class CoordinateParameter {
-//  /** */
-//  public static final int LOCX = 1;
-//  /** */
-//  public static final int LOCY = 2;
-//  /** */
-//  public static final int LOCZ = 3;
-//  /** */
-//  public static final int ROTX = 4;
-//  /** */
-//  public static final int ROTY = 5;
-//  /** */
-//  public static final int ROTZ = 6;
-
-  private double locX, locY, locZ, rotX, rotY, rotZ;
+  private double locX;
+  private double locY;
+  private double locZ;
+  private double rotX;
+  private double rotY;
+  private double rotZ;
 
   /**
    * 新しく生成された<code>CoordinateParameter</code>オブジェクトを初期化します。

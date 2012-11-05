@@ -396,14 +396,14 @@ public class Node {
         this.g.setName(this.name);
         LinkData[] linkdata = new LinkData[3];
         linkdata[0] = new LinkData();
-        linkdata[0].setTarget("locationX"); //$NON-NLS-1$
-        linkdata[0].setConst(this.matrix4f.m03);
+        linkdata[0].setTargetName("locationX"); //$NON-NLS-1$
+        linkdata[0].setInitialValue(this.matrix4f.m03);
         linkdata[1] = new LinkData();
-        linkdata[1].setTarget("locationY"); //$NON-NLS-1$
-        linkdata[1].setConst(this.matrix4f.m13);
+        linkdata[1].setTargetName("locationY"); //$NON-NLS-1$
+        linkdata[1].setInitialValue(this.matrix4f.m13);
         linkdata[2] = new LinkData();
-        linkdata[2].setTarget("locationZ"); //$NON-NLS-1$
-        linkdata[2].setConst(this.matrix4f.m23);
+        linkdata[2].setTargetName("locationZ"); //$NON-NLS-1$
+        linkdata[2].setInitialValue(this.matrix4f.m23);
         this.g.setLinkData(linkdata);
       }
     }

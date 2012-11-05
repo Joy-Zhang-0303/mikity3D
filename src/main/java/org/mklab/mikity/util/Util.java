@@ -38,23 +38,23 @@ public class Util {
     // linkdataが無い場合はlinkdata.lengthが0になる
     for (int i = 0; i < linkdata.length; i++) {
       // Constが存在する場合
-      if (linkdata[i].hasConst()) {
+      if (linkdata[i].hasInitialValue()) {
         // かつ、targetがthetaであるか、dであるかを判別
-        if (linkdata[i].loadTarget().equals("theta")) { //$NON-NLS-1$
+        if (linkdata[i].loadTargetName().equals("theta")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setTheta(linkdata[i].loadConst());
+            parameter.setTheta(linkdata[i].loadInitialValue());
           } else {
-            parameter.setTheta(Math.toRadians(linkdata[i].loadConst()));
+            parameter.setTheta(Math.toRadians(linkdata[i].loadInitialValue()));
           }
-        } else if (linkdata[i].loadTarget().equals("d")) { //$NON-NLS-1$
-          parameter.setD(linkdata[i].loadConst() / scale);
-        } else if (linkdata[i].loadTarget().equals("a")) { //$NON-NLS-1$
-          parameter.setA(linkdata[i].loadConst() / scale);
-        } else if (linkdata[i].loadTarget().equals("alpha")) { //$NON-NLS-1$
+        } else if (linkdata[i].loadTargetName().equals("d")) { //$NON-NLS-1$
+          parameter.setD(linkdata[i].loadInitialValue() / scale);
+        } else if (linkdata[i].loadTargetName().equals("a")) { //$NON-NLS-1$
+          parameter.setA(linkdata[i].loadInitialValue() / scale);
+        } else if (linkdata[i].loadTargetName().equals("alpha")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setAlpha(linkdata[i].loadConst());
+            parameter.setAlpha(linkdata[i].loadInitialValue());
           } else {
-            parameter.setAlpha(Math.toRadians(linkdata[i].loadConst()));
+            parameter.setAlpha(Math.toRadians(linkdata[i].loadInitialValue()));
           }
         }
       }
@@ -76,31 +76,31 @@ public class Util {
     // linkdataが無い場合はlinkdata.lengthが0になる
     for (int i = 0; i < linkData.length; i++) {
       // Constが存在する場合
-      if (linkData[i].hasConst()) {
+      if (linkData[i].hasInitialValue()) {
         // かつ、targetがthetaであるか、dであるかを判別
-        if (linkData[i].loadTarget().equals("locationX")) { //$NON-NLS-1$
-          parameter.setLocX(linkData[i].loadConst() / scale);
-        } else if (linkData[i].loadTarget().equals("rotationX")) { //$NON-NLS-1$
+        if (linkData[i].loadTargetName().equals("locationX")) { //$NON-NLS-1$
+          parameter.setLocX(linkData[i].loadInitialValue() / scale);
+        } else if (linkData[i].loadTargetName().equals("rotationX")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setRotX(linkData[i].loadConst());
+            parameter.setRotX(linkData[i].loadInitialValue());
           } else {
-            parameter.setRotX(Math.toRadians(linkData[i].loadConst()));
+            parameter.setRotX(Math.toRadians(linkData[i].loadInitialValue()));
           }
-        } else if (linkData[i].loadTarget().equals("locationY")) { //$NON-NLS-1$
-          parameter.setLocY(linkData[i].loadConst() / scale);
-        } else if (linkData[i].loadTarget().equals("rotationY")) { //$NON-NLS-1$
+        } else if (linkData[i].loadTargetName().equals("locationY")) { //$NON-NLS-1$
+          parameter.setLocY(linkData[i].loadInitialValue() / scale);
+        } else if (linkData[i].loadTargetName().equals("rotationY")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setRotY(linkData[i].loadConst());
+            parameter.setRotY(linkData[i].loadInitialValue());
           } else {
-            parameter.setRotY(Math.toRadians(linkData[i].loadConst()));
+            parameter.setRotY(Math.toRadians(linkData[i].loadInitialValue()));
           }
-        } else if (linkData[i].loadTarget().equals("locationZ")) { //$NON-NLS-1$
-          parameter.setLocZ(linkData[i].loadConst() / scale);
-        } else if (linkData[i].loadTarget().equals("rotationZ")) { //$NON-NLS-1$
+        } else if (linkData[i].loadTargetName().equals("locationZ")) { //$NON-NLS-1$
+          parameter.setLocZ(linkData[i].loadInitialValue() / scale);
+        } else if (linkData[i].loadTargetName().equals("rotationZ")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setRotZ(linkData[i].loadConst());
+            parameter.setRotZ(linkData[i].loadInitialValue());
           } else {
-            parameter.setRotZ(Math.toRadians(linkData[i].loadConst()));
+            parameter.setRotZ(Math.toRadians(linkData[i].loadInitialValue()));
           }
         }
       }

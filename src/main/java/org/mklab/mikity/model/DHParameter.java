@@ -12,23 +12,14 @@ package org.mklab.mikity.model;
  * @version $Revision: 1.4 $.2005/01/17
  */
 public class DHParameter {
-//  /** */
-//  public static final int A = 1;
-//  /** */
-//  public static final int ALPHA = 2;
-//  /** */
-//  public static final int D = 3;
-//  /** */
-//  public static final int THETA = 4;
-
   /** 位置 */
-  double a;
+  private double a;
   /** D */
-  double d;
+  private double d;
   /** α */
-  double alpha;
+  private double alpha;
   /** 角度 */
-  double theta;
+  private double theta;
   
   /**
    * 新しく生成された<code>DHParameter</code>オブジェクトを初期化します。

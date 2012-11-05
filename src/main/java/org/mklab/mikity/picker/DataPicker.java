@@ -33,29 +33,32 @@ public interface DataPicker {
   CoordinateParameter getCoordinateParameter(double t);
 
   /**
-   * @param type タイプ
-   * @param row 行
+   * @param type パラメータのタイプ
+   * @param row 行番号
    */
-  void addMoveTypeDH(DHParameterType type, int row);
+  void addMoveType(DHParameterType type, int row);
 
   /**
-   * @param type タイプ
-   * @param row 行
+   * @param type パラメータのタイプ
+   * @param row 行番号
    */
-  void addMoveTypeCoordinate(CoordinateParameterType type, int row);
+  void addMoveType(CoordinateParameterType type, int row);
 
   /**
-   * initialTranformに固定値をセットする
-   * @param type タイプ
+   * initialTranformに値を設定します。
+   * 
+   * @param type パラメータのタイプ
    * @param value 値
    */
-  void setDHParameter(DHParameterType type, double value);
+  void setParameter(DHParameterType type, double value);
 
   /**
-   * @param type セットタイプ
-   * @param value initialTranformに固定値をセットする
+   * initialTranformに値を設定します。
+   * 
+   * @param type パラメータのタイプ
+   * @param value 値
    */
-  void setCoordinateParameter(CoordinateParameterType type, double value);
+  void setParameter(CoordinateParameterType type, double value);
 
   /**
    * @param t 時間を与えると、それに最も近い時間のある行rowを返す
@@ -66,7 +69,7 @@ public interface DataPicker {
   /**
    * @param row データの行数（何番目のデータか）
    * @param t 時刻
-   * @return 時刻timeのときのrow行目のデータ
+   * @return 時刻tのときのrow行目のデータ
    */
   double getValue(int row, double t);
 

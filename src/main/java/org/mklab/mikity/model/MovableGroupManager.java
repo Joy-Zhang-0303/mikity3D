@@ -135,9 +135,9 @@ public class MovableGroupManager {
 
     for (int i = 0; i < linkData.length; i++) {
       if (linkData[i].hasDHParameter()) {
-        if (linkData[i].hasColumn()) {
-          final int column = linkData[i].loadColumn();
-          final String target = linkData[i].loadTarget();
+        if (linkData[i].hasDataNumber()) {
+          final int column = linkData[i].loadDataNumber();
+          final String target = linkData[i].loadTargetName();
           DHParameterType type;
 
           if (target.equals("a")) { //$NON-NLS-1$
@@ -151,11 +151,11 @@ public class MovableGroupManager {
           } else {
             throw new IllegalArgumentException(Messages.getString("MovableGroupManager.0")); //$NON-NLS-1$
           }
-          picker.addMoveTypeDH(type, column);
+          picker.addMoveType(type, column);
         }
-        if (linkData[i].hasConst()) {
-          final double value = linkData[i].loadConst();
-          final String target = linkData[i].loadTarget();
+        if (linkData[i].hasInitialValue()) {
+          final double value = linkData[i].loadInitialValue();
+          final String target = linkData[i].loadTargetName();
           DHParameterType type;
 
           if (target.equals("a")) { //$NON-NLS-1$
@@ -169,12 +169,12 @@ public class MovableGroupManager {
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.1")); //$NON-NLS-1$
           }
-          picker.setDHParameter(type, value);
+          picker.setParameter(type, value);
         }
       } else if (linkData[i].hasCoordinateParameter()) {
-        if (linkData[i].hasColumn()) {
-          final int column = linkData[i].loadColumn();
-          final String target = linkData[i].loadTarget();
+        if (linkData[i].hasDataNumber()) {
+          final int column = linkData[i].loadDataNumber();
+          final String target = linkData[i].loadTargetName();
           CoordinateParameterType type;
 
           if (target.equals("locationX")) { //$NON-NLS-1$
@@ -192,11 +192,11 @@ public class MovableGroupManager {
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
-          picker.addMoveTypeCoordinate(type, column);
+          picker.addMoveType(type, column);
         }
-        if (linkData[i].hasConst()) {
-          final double value = linkData[i].loadConst();
-          final String target = linkData[i].loadTarget();
+        if (linkData[i].hasInitialValue()) {
+          final double value = linkData[i].loadInitialValue();
+          final String target = linkData[i].loadTargetName();
           CoordinateParameterType type;
 
           if (target.equals("locationX")) { //$NON-NLS-1$
@@ -214,7 +214,7 @@ public class MovableGroupManager {
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.3")); //$NON-NLS-1$
           }
-          picker.setCoordinateParameter(type, value);
+          picker.setParameter(type, value);
         }
       }
     }
