@@ -19,18 +19,12 @@ import org.mklab.mikity.model.CoordinateParameter;
 
 
 /**
- * TransformGroupに関するクラス
+ * TransformGroupを拡張したクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.17 $.2005/11/22
  */
 public class MyTransformGroup extends TransformGroup implements MovableGroup {
-
-  /**
-   * コンストラクター
-   */
-  // Matrix4d initialMatrix = new Matrix4d();
-  // private DHParameter dhParameter;
   /**
    * コンストラクター
    */
@@ -46,18 +40,17 @@ public class MyTransformGroup extends TransformGroup implements MovableGroup {
    * @param scale 大きさ
    */
   public void mulScale(Vector3f scale) {
-    // スケールのdouble型化
     Vector3d scale3d = new Vector3d();
     scale3d.x = scale.x;
     scale3d.y = scale.y;
     scale3d.z = scale.z;
 
     // 座標系の変換行列の取得
-    Transform3D transform1 = new Transform3D();
+    final Transform3D transform1 = new Transform3D();
     this.getTransform(transform1);
 
     // 新たなスケール行列の設定
-    Transform3D transform2 = new Transform3D();
+    final Transform3D transform2 = new Transform3D();
     transform2.setScale(scale3d);
 
     // スケール行列の乗算
@@ -116,11 +109,11 @@ public class MyTransformGroup extends TransformGroup implements MovableGroup {
    */
   public void mulTranslation(Vector3f translation) {
     // 座標系の変換行列の取得
-    Transform3D transform1 = new Transform3D();
+    final Transform3D transform1 = new Transform3D();
     this.getTransform(transform1);
 
     // 新たな平行移動行列の設定
-    Transform3D transform2 = new Transform3D();
+    final Transform3D transform2 = new Transform3D();
     transform2.setTranslation(translation);
 
     // 平行移動行列の乗算
@@ -140,92 +133,87 @@ public class MyTransformGroup extends TransformGroup implements MovableGroup {
   }
 
   /**
-   * リンクパラメータを設定する。
-   * 
-   * @see org.mklab.mikity.model.MovableGroup#setCoordinateParameter(org.mklab.mikity.model.CoordinateParameter)
+   * {@inheritDoc}
    */
   @Override
-  public void setCoordinateParameter(final CoordinateParameter link) {
-    double locX = link.getLocX();
-    double locY = link.getLocY();
-    double locZ = link.getLocZ();
-    double rotX = link.getRotX();
-    double rotY = link.getRotY();
-    double rotZ = link.getRotZ();
-    
-    //System.out.println("lx, ly, lz=" + locX + "," + locY + "," + locZ);
-    //System.out.println("rx, ry, rz=" + rotX + "," + rotY + "," + rotZ);
+  public void setCoordinateParameter(final CoordinateParameter parameter) {
+    final Transform3D transform = new Transform3D();
 
-    // Matrix4d k = (Matrix4d)initialMatrix.clone();
-    Transform3D initialTransform = new Transform3D();
+    final Transform3D translate1 = new Transform3D();
+    final double rotY = parameter.getRotY();
+    translate1.setRotation(new AxisAngle4d(0.0, 1.0, 0.0, rotY));
+    transform.mul(translate1);
 
-    Transform3D translate = new Transform3D();
-    translate.setRotation(new AxisAngle4d(0.0, 1.0, 0.0, rotY));
-    initialTransform.mul(translate);
+    final Transform3D translate2 = new Transform3D();
+    final double locY = parameter.getLocY();
+    translate2.setTranslation(new Vector3d(0.0, locY, 0.0));
+    transform.mul(translate2);
 
-    translate = new Transform3D();
-    translate.setTranslation(new Vector3d(0.0, locY, 0.0));
-    initialTransform.mul(translate);
+    final Transform3D translate3 = new Transform3D();
+    final double locX = parameter.getLocX();
+    translate3.setTranslation(new Vector3d(locX, 0.0, 0.0));
+    transform.mul(translate3);
 
-    translate = new Transform3D();
-    translate.setTranslation(new Vector3d(locX, 0.0, 0.0));
-    initialTransform.mul(translate);
+    final Transform3D translate4 = new Transform3D();
+    final double rotX = parameter.getRotX();
+    translate4.setRotation(new AxisAngle4d(1.0, 0.0, 0.0, rotX));
+    transform.mul(translate4);
 
-    translate = new Transform3D();
-    translate.setRotation(new AxisAngle4d(1.0, 0.0, 0.0, rotX));
-    initialTransform.mul(translate);
+    final Transform3D translate5 = new Transform3D();
+    final double locZ = parameter.getLocZ();
+    translate5.setTranslation(new Vector3d(0.0, 0.0, locZ));
+    transform.mul(translate5);
 
-    translate = new Transform3D();
-    translate.setTranslation(new Vector3d(0.0, 0.0, locZ));
-    initialTransform.mul(translate);
+    final Transform3D translate6 = new Transform3D();
+    final double rotZ = parameter.getRotZ();
+    translate6.setRotation(new AxisAngle4d(0.0, 0.0, 1.0, rotZ));
+    transform.mul(translate6);
 
-    translate = new Transform3D();
-    translate.setRotation(new AxisAngle4d(0.0, 0.0, 1.0, rotZ));
-    initialTransform.mul(translate);
-
-    setTransform(initialTransform);
+    setTransform(transform);
   }
 
   /**
-   * DHパラメータを設定する。
-   * 
-   * @see org.mklab.mikity.model.MovableGroup#setDHParameter(org.mklab.mikity.model.DHParameter)
+   * {@inheritDoc}
    */
   @Override
-  public void setDHParameter(final DHParameter param) {
+  public void setDHParameter(final DHParameter parameter) {
     /*
      * DHParameterとは。 座標系Σ(i-1)からΣiへの変換は
      * 
-     * 1.xi軸に沿ってa(i-1)だけ並進 2.x(i-1)軸回りにα(i-1)だけ回転 3.ziに沿ってdiだけ並進 4.zi軸回りにθiだけ回転
+     * 1.xi軸に沿ってa(i-1)だけ並進
+     * 
+     * 2.x(i-1)軸回りにα(i-1)だけ回転 
+     * 
+     * 3.ziに沿ってdiだけ並進 
+     * 
+     * 4.zi軸回りにθiだけ回転
      */
-
-    double a = param.getA();
-    double alpha = param.getAlpha();
-    double d = param.getD();
-    double theta = param.getTheta();
-
-    // Matrix4d k = (Matrix4d)initialMatrix.clone();
-    Transform3D initialTransform = new Transform3D();
-
-    // initialTransform.set(k);
-    Transform3D translate = new Transform3D();
+    final Transform3D transform = new Transform3D();
+    
     // 1.xi軸に沿ってa(i-1)だけ並進
-    // translate.setTranslation(new Vector3d(a/1000,0.0,0.0));
-    translate.setTranslation(new Vector3d(a, 0.0, 0.0));
-    initialTransform.mul(translate);
-    // 2.x(i-1)軸回りにα(i-1)だけ回転
-    translate = new Transform3D();
-    translate.setRotation(new AxisAngle4d(1.0, 0.0, 0.0, alpha));
-    initialTransform.mul(translate);
-    // 3.ziに沿ってdiだけ並進
-    translate = new Transform3D();
-    translate.setTranslation(new Vector3d(0.0, 0.0, d));
-    initialTransform.mul(translate);
-    // 4.zi軸回りにθiだけ回転
-    translate = new Transform3D();
-    translate.setRotation(new AxisAngle4d(0.0, 0.0, 1.0, theta));
-    initialTransform.mul(translate);
+    final Transform3D translate1 = new Transform3D();
+    final double a = parameter.getA();
+    translate1.setTranslation(new Vector3d(a, 0.0, 0.0));
+    transform.mul(translate1);
 
-    setTransform(initialTransform);
+    // 2.x(i-1)軸回りにα(i-1)だけ回転
+    final Transform3D translate2 = new Transform3D();
+    final double alpha = parameter.getAlpha();
+    translate2.setRotation(new AxisAngle4d(1.0, 0.0, 0.0, alpha));
+    transform.mul(translate2);
+    
+    // 3.ziに沿ってdiだけ並進
+    final Transform3D translate3 = new Transform3D();
+    final double d = parameter.getD();
+    translate3.setTranslation(new Vector3d(0.0, 0.0, d));
+    transform.mul(translate3);
+    
+    // 4.zi軸回りにθiだけ回転
+    final Transform3D translate4 = new Transform3D();
+    final double theta = parameter.getTheta();
+    translate4.setRotation(new AxisAngle4d(0.0, 0.0, 1.0, theta));
+    transform.mul(translate4);
+
+    setTransform(transform);
   }
 }

@@ -23,14 +23,9 @@ import com.sun.j3d.utils.geometry.NormalGenerator;
  * @version $Revision: 1.2 $.2005/11/22
  */
 public class MyTriPolygons extends MyTransformGroup {
-
-  /**
-     * 
-     */
+  /** */
   public static final int RENDERING_FRONT = 0;
-  /**
-     * 
-     */
+  /** */
   public static final int RENDERING_ALL = 1;
 
   private GeometryArray geom = null;
@@ -115,29 +110,26 @@ public class MyTriPolygons extends MyTransformGroup {
   }
 
   /**
-   * @see org.mklab.mikity.java3d.MyTransformGroup#mulScale(javax.vecmath.Vector3f)
+   * {@inheritDoc}
    */
   @Override
   public void mulScale(Vector3f scale) {
-    // スケールの座標変換
     super.mulScale(scale);
   }
 
   /**
-   * @see org.mklab.mikity.java3d.MyTransformGroup#mulRotation(javax.vecmath.AxisAngle4f)
+   * {@inheritDoc}
    */
   @Override
   public void mulRotation(AxisAngle4f angle) {
-    // 回転の座標変換
     super.mulRotation(angle);
   }
 
   /**
-   * @see org.mklab.mikity.java3d.MyTransformGroup#mulTranslation(javax.vecmath.Vector3f)
+   * {@inheritDoc}
    */
   @Override
   public void mulTranslation(Vector3f translation) {
-    // 平行移動の座標変換
     super.mulTranslation(translation);
   }
 }

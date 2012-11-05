@@ -21,13 +21,13 @@ public class DHParameter {
   /** */
   public static final int THETA = 4;
 
-  /** */
+  /** 位置 */
   double a;
-  /** */
+  /** D */
   double d;
-  /** */
+  /** α */
   double alpha;
-  /** */
+  /** 角度 */
   double theta;
   
   /**
