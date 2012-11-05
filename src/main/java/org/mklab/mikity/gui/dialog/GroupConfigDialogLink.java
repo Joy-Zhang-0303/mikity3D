@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.gui.ParameterInputBox;
-import org.mklab.mikity.xml.model.Linkdata;
+import org.mklab.mikity.xml.model.LinkData;
 
 
 /**
@@ -143,7 +143,7 @@ public class GroupConfigDialogLink {
    */
   void addLinkData(final ParameterInputBox dh, final ParameterInputBox col) {
     if (dh.getFloatValue() != 0.0 || col.getIntValue() != 0) {
-      Linkdata linkdata = new Linkdata();
+      LinkData linkdata = new LinkData();
       linkdata.setTarget(dh.getLabelText());
       if (dh.getFloatValue() != 0.0) {
         linkdata.setConst(dh.getFloatValue());
@@ -238,7 +238,7 @@ public class GroupConfigDialogLink {
    * Linkdata の column を表示させる
    */
   private void setParam() {
-    Linkdata[] linkdata = this.group.loadLinkdata();
+    LinkData[] linkdata = this.group.loadLinkData();
 
     for (int i = 0; i < linkdata.length; i++) {
       String target = linkdata[i].loadTarget();

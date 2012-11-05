@@ -16,7 +16,7 @@ import org.mklab.mikity.picker.AbstractDataPicker;
 import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.Linkdata;
+import org.mklab.mikity.xml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
 
 
@@ -110,7 +110,7 @@ public class MovableGroupManager {
     for (int i = 0; i < groups.length; i++) {
       Group g = groups[i];
       MovableGroup tg = MOVABLE_GROUPS.get(g);
-      setMovableLinkData(g.loadLinkdata(), tg);
+      setMovableLinkData(g.loadLinkData(), tg);
       addGroup(g.loadGroup());
     }
   }
@@ -121,7 +121,7 @@ public class MovableGroupManager {
    * @param linkdata リンクデータ
    * @param group TransformGroup
    */
-  private void setMovableLinkData(Linkdata[] linkdata, MovableGroup group) {
+  private void setMovableLinkData(LinkData[] linkdata, MovableGroup group) {
     if (linkdata.length == 0) {
       return;
     }

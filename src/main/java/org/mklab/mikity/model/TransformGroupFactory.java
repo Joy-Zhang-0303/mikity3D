@@ -4,7 +4,7 @@ import org.mklab.mikity.java3d.MyTransformGroup;
 import org.mklab.mikity.java3d.PrimitiveFactory;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.Linkdata;
+import org.mklab.mikity.xml.model.LinkData;
 import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLCone;
 import org.mklab.mikity.xml.model.XMLConnector;
@@ -69,7 +69,7 @@ public class TransformGroupFactory {
     /*
      * DHParameterの設定
      */
-    final Linkdata[] linkData = group.loadLinkdata();
+    final LinkData[] linkData = group.loadLinkData();
     for (int i = 0; i < linkData.length; i++) {
       if (linkData[i].hasDH()) {
         // 初期値のDHパラメータを作成

@@ -32,7 +32,7 @@ import org.mklab.mikity.gui.dialog.GroupConfigDialogLink;
 import org.mklab.mikity.gui.dnd.DragAndDropEnabler;
 import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.Linkdata;
+import org.mklab.mikity.xml.model.LinkData;
 import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLCone;
 import org.mklab.mikity.xml.model.XMLConnector;
@@ -828,7 +828,7 @@ public class SceneGraphTree {
   void checkUsedLinkType(Group[] g) {
     if (g.length != 0 || this.usedDHParam == false || this.usedLink == false) {
       for (int i = 0; i < g.length; i++) {
-        Linkdata[] link = g[i].loadLinkdata();
+        LinkData[] link = g[i].loadLinkData();
         for (int j = 0; j < link.length; j++) {
           if (link[j].hasDH()) {
             this.usedDHParam = true;

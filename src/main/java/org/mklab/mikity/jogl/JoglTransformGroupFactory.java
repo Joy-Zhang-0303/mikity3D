@@ -8,7 +8,7 @@ import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.Linkdata;
+import org.mklab.mikity.xml.model.LinkData;
 import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLCone;
 import org.mklab.mikity.xml.model.XMLCylinder;
@@ -46,7 +46,7 @@ public class JoglTransformGroupFactory {
     /*
      * DHParameterの設定
      */
-    Linkdata[] linkData = group.loadLinkdata();
+    LinkData[] linkData = group.loadLinkData();
     for (int i = 0; i < linkData.length; i++) {
       if (linkData[i].hasDH()) {
         // 初期値のDHパラメータを作成

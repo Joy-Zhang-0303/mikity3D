@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.Linkdata;
+import org.mklab.mikity.xml.model.LinkData;
 
 
 
@@ -394,17 +394,17 @@ public class Node {
     if (this.type != null) {
       if (this.type.equals("JOINT")) { //$NON-NLS-1$
         this.g.setName(this.name);
-        Linkdata[] linkdata = new Linkdata[3];
-        linkdata[0] = new Linkdata();
+        LinkData[] linkdata = new LinkData[3];
+        linkdata[0] = new LinkData();
         linkdata[0].setTarget("locationX"); //$NON-NLS-1$
         linkdata[0].setConst(this.matrix4f.m03);
-        linkdata[1] = new Linkdata();
+        linkdata[1] = new LinkData();
         linkdata[1].setTarget("locationY"); //$NON-NLS-1$
         linkdata[1].setConst(this.matrix4f.m13);
-        linkdata[2] = new Linkdata();
+        linkdata[2] = new LinkData();
         linkdata[2].setTarget("locationZ"); //$NON-NLS-1$
         linkdata[2].setConst(this.matrix4f.m23);
-        this.g.setLinkdata(linkdata);
+        this.g.setLinkData(linkdata);
       }
     }
   }

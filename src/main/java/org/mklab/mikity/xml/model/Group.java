@@ -78,7 +78,7 @@ public class Group implements java.io.Serializable {
    * Field _linkdataList
    */
   @XmlElement
-  private java.util.ArrayList<Linkdata> _linkdataList;
+  private java.util.ArrayList<LinkData> _linkdataList;
 
   /**
    * Field _groupList
@@ -99,7 +99,7 @@ public class Group implements java.io.Serializable {
     this._XMLTrianglePolygonList = new ArrayList<XMLTrianglePolygon>();
     this._XMLQuadPolygonList = new ArrayList<XMLQuadPolygon>();
 
-    this._linkdataList = new ArrayList<Linkdata>();
+    this._linkdataList = new ArrayList<LinkData>();
     this._groupList = new ArrayList<Group>();
     this._location = new Location();
     this._rotation = new Rotation();
@@ -132,7 +132,7 @@ public class Group implements java.io.Serializable {
    * @param vLinkdata リンクデータ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addLinkdata(org.mklab.mikity.xml.model.Linkdata vLinkdata) throws java.lang.IndexOutOfBoundsException {
+  public void addLinkdata(org.mklab.mikity.xml.model.LinkData vLinkdata) throws java.lang.IndexOutOfBoundsException {
     this._linkdataList.add(vLinkdata);
   } 
 
@@ -143,7 +143,7 @@ public class Group implements java.io.Serializable {
    * @param vLinkdata リンクデータ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addLinkdata(int index, org.mklab.mikity.xml.model.Linkdata vLinkdata) throws java.lang.IndexOutOfBoundsException {
+  public void addLinkdata(int index, org.mklab.mikity.xml.model.LinkData vLinkdata) throws java.lang.IndexOutOfBoundsException {
     this._linkdataList.add(index, vLinkdata);
   } 
 
@@ -535,7 +535,7 @@ public class Group implements java.io.Serializable {
    * @return _linkdataList.get(index)
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.xml.model.Linkdata loadLinkdata(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.xml.model.LinkData loadLinkData(int index) throws java.lang.IndexOutOfBoundsException {
     if ((index < 0) || (index > this._linkdataList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -548,9 +548,9 @@ public class Group implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.xml.model.Linkdata[] loadLinkdata() {
+  public org.mklab.mikity.xml.model.LinkData[] loadLinkData() {
     final int size = this._linkdataList.size();
-    final org.mklab.mikity.xml.model.Linkdata[] linkDatas = new org.mklab.mikity.xml.model.Linkdata[size];
+    final org.mklab.mikity.xml.model.LinkData[] linkDatas = new org.mklab.mikity.xml.model.LinkData[size];
     for (int i = 0; i < size; i++) {
       linkDatas[i] = this._linkdataList.get(i);
     }
@@ -562,7 +562,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<Linkdata> loadLinkdataAsReference() {
+  public java.util.ArrayList<LinkData> loadLinkDataAsReference() {
     return this._linkdataList;
   } 
 
@@ -571,7 +571,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return _linkdataList.size()
    */
-  public int loadLinkdataCount() {
+  public int loadLinkDataCount() {
     return this._linkdataList.size();
   } 
 
@@ -948,7 +948,7 @@ public class Group implements java.io.Serializable {
    * @param vLinkdata リンクデータ
    * @return removed
    */
-  public boolean removeLinkdata(org.mklab.mikity.xml.model.Linkdata vLinkdata) {
+  public boolean removeLinkdata(org.mklab.mikity.xml.model.LinkData vLinkdata) {
     boolean removed = this._linkdataList.remove(vLinkdata);
     return removed;
   } 
@@ -1086,7 +1086,7 @@ public class Group implements java.io.Serializable {
    * @param vLinkdata リンクデータ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setLinkdata(int index, org.mklab.mikity.xml.model.Linkdata vLinkdata) throws java.lang.IndexOutOfBoundsException {
+  public void setLinkData(int index, org.mklab.mikity.xml.model.LinkData vLinkdata) throws java.lang.IndexOutOfBoundsException {
     if ((index < 0) || (index > this._linkdataList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1098,7 +1098,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param linkdataArray リンクデータの文字列
    */
-  public void setLinkdata(org.mklab.mikity.xml.model.Linkdata[] linkdataArray) {
+  public void setLinkData(org.mklab.mikity.xml.model.LinkData[] linkdataArray) {
     // -- copy array
     this._linkdataList.clear();
     for (int i = 0; i < linkdataArray.length; i++) {
@@ -1111,7 +1111,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param linkdataCollection the ArrayList to copy.
    */
-  public void setLinkdataAsReference(java.util.ArrayList<Linkdata> linkdataCollection) {
+  public void setLinkDataAsReference(java.util.ArrayList<LinkData> linkdataCollection) {
     this._linkdataList = linkdataCollection;
   } 
 

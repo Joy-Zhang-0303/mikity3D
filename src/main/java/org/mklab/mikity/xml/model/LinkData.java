@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  * 
  * @version $Revision: 1.3 $ $Date: 2008/02/03 04:25:09 $
  */
-public class Linkdata implements java.io.Serializable {
+public class LinkData implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
@@ -99,7 +99,7 @@ public class Linkdata implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Linkdata other = (Linkdata)obj;
+    LinkData other = (LinkData)obj;
     if (this._column != other._column) {
       return false;
     }

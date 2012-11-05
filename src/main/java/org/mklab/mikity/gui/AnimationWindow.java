@@ -368,7 +368,7 @@ public class AnimationWindow extends ApplicationWindow {
     org.mklab.mikity.xml.model.Group[] subGroup = group.loadGroup();
     if (subGroup.length != 0) {
       for (int i = 0; i < subGroup.length; i++) {
-        org.mklab.mikity.xml.model.Linkdata[] link = subGroup[i].loadLinkdata();
+        org.mklab.mikity.xml.model.LinkData[] link = subGroup[i].loadLinkData();
         for (int j = 0; j < link.length; j++) {
           if (link[j].hasDH()) {
             this.usedDHParam = true;
