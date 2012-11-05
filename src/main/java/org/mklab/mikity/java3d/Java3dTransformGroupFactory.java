@@ -28,7 +28,7 @@ public class Java3dTransformGroupFactory {
    * @param group グループ
    * @return トランスフォームグループ
    */
-  public static Java3dTransformGroup create(final Group group) {
+  public Java3dTransformGroup create(final Group group) {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     
     final XMLBox[] boxes = group.loadXMLBox();

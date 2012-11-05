@@ -63,7 +63,7 @@ public class Java3dPrimitiveFactory {
     scale = Java3dModelCanvas.scale;
     radian = Java3dModelCanvas.radian;
 
-    return Java3dTransformGroupFactory.create(group);
+    return new Java3dTransformGroupFactory().create(group);
   }
 
   /**

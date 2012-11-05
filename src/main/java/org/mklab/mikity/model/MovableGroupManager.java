@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mklab.mikity.java3d.Java3dTransformGroup;
-import org.mklab.mikity.jogl.JoglTransformGroup;
 import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.picker.DataPicker;
 import org.mklab.mikity.xml.Jamast;
@@ -305,15 +303,15 @@ public class MovableGroupManager {
    * @param group グループ
    * @param tg トランスフォームグループ
    */
-  public static void assignGroup(final Group group, final Java3dTransformGroup tg) {
+  public static void assignGroup(final Group group, final MovableGroup tg) {
     MOVABLE_GROUPS.put(group, tg);
   }
 
-  /**
-   * @param group グループ
-   * @param tg トランスフォームグループ
-   */
-  public static void assignGroup(final Group group, final JoglTransformGroup tg) {
-    MOVABLE_GROUPS.put(group, tg);
-  }
+//  /**
+//   * @param group グループ
+//   * @param tg トランスフォームグループ
+//   */
+//  public static void assignGroup(final Group group, final JoglTransformGroup tg) {
+//    MOVABLE_GROUPS.put(group, tg);
+//  }
 }
