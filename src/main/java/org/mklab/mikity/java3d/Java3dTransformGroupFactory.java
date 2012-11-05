@@ -1,9 +1,10 @@
-package org.mklab.mikity.model;
+package org.mklab.mikity.java3d;
 
 import javax.media.j3d.TransformGroup;
 
-import org.mklab.mikity.java3d.Java3dTransformGroup;
-import org.mklab.mikity.java3d.Java3dPrimitiveFactory;
+import org.mklab.mikity.model.CoordinateParameter;
+import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.LinkData;
@@ -21,7 +22,7 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  * @author iwamoto
  * @version $Revision$, 2011/12/22
  */
-public class TransformGroupFactory {
+public class Java3dTransformGroupFactory {
   /**
    * {@link TransformGroup}を生成します。
    * @param group グループ

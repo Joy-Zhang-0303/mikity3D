@@ -19,7 +19,6 @@ import javax.vecmath.Matrix4f;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
-import org.mklab.mikity.model.TransformGroupFactory;
 import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
@@ -64,7 +63,7 @@ public class Java3dPrimitiveFactory {
     scale = Java3dModelCanvas.scale;
     radian = Java3dModelCanvas.radian;
 
-    return TransformGroupFactory.create(group);
+    return Java3dTransformGroupFactory.create(group);
   }
 
   /**
