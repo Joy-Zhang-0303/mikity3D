@@ -7,8 +7,10 @@ package org.mklab.mikity.picker;
 
 import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.java3d.MyTransformGroup;
-import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.CoordinateParameter;
+import org.mklab.mikity.model.CoordinateParameterType;
+import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.DHParameterType;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;
 
@@ -21,9 +23,9 @@ import org.mklab.nfc.matrix.Matrix;
 public abstract class AbstractDataPicker implements DataPicker {
 
   private DoubleMatrix data;
-  /** */
+  /** DHパラメータ */
   protected DHParameter[] dhParameters;
-  /** */
+  /** 座標パラメータ */
   protected CoordinateParameter[] coordinateParameters;
   /** */
   protected MyTransformGroup tg;
@@ -44,6 +46,7 @@ public abstract class AbstractDataPicker implements DataPicker {
     for (int i = 0; i < this.dhParameters.length; i++) {
       this.dhParameters[i] = new DHParameter();
     }
+    
     this.coordinateParameters = new CoordinateParameter[data.getColumnSize()];
     for (int i = 0; i < this.coordinateParameters.length; i++) {
       this.coordinateParameters[i] = new CoordinateParameter();
@@ -53,18 +56,18 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void addMoveTypeDH(int moveType, int row) {
+  public final void addMoveTypeDH(DHParameterType type, int row) {
     if (this.data.getRowSize() < row) {
-      // 
+      throw new IllegalArgumentException(); 
     }
 
-    switch (moveType) {
-      case DHParameter.A:
+    switch (type) {
+      case A:
         for (int i = 0; i < this.dhParameters.length; i++) {
           this.dhParameters[i].setA(this.data.getElement(row, i + 1).doubleValue() / dataScale);
         }
         break;
-      case DHParameter.ALPHA:
+      case ALPHA:
         for (int i = 0; i < this.dhParameters.length; i++) {
           if (dataIsRadian) {
             this.dhParameters[i].setAlpha(this.data.getElement(row, i + 1).doubleValue());
@@ -73,12 +76,12 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case DHParameter.D:
+      case D:
         for (int i = 0; i < this.dhParameters.length; i++) {
           this.dhParameters[i].setD(this.data.getElement(row, i + 1).doubleValue() / dataScale);
         }
         break;
-      case DHParameter.THETA:
+      case THETA:
         for (int i = 0; i < this.dhParameters.length; i++) {
           if (dataIsRadian) {
             this.dhParameters[i].setTheta(this.data.getElement(row, i + 1).doubleValue());
@@ -95,28 +98,28 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void addMoveTypeCoordinate(int moveType, int row) {
+  public final void addMoveTypeCoordinate(CoordinateParameterType type, int row) {
     if (this.data.getRowSize() < row) {
-      //
+      throw new IllegalAccessError();
     }
 
-    switch (moveType) {
-      case CoordinateParameter.LOCX:
+    switch (type) {
+      case LOCX:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           this.coordinateParameters[i].setLocX(this.data.getElement(row, i + 1).doubleValue() / dataScale);
         }
         break;
-      case CoordinateParameter.LOCY:
+      case LOCY:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           this.coordinateParameters[i].setLocY(this.data.getElement(row, i + 1).doubleValue() / dataScale);
         }
         break;
-      case CoordinateParameter.LOCZ:
+      case LOCZ:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           this.coordinateParameters[i].setLocZ(this.data.getElement(row, i + 1).doubleValue() / dataScale);
         }
         break;
-      case CoordinateParameter.ROTX:
+      case ROTX:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (dataIsRadian) {
             this.coordinateParameters[i].setRotX(this.data.getElement(row, i + 1).doubleValue());
@@ -125,7 +128,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case CoordinateParameter.ROTY:
+      case ROTY:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (dataIsRadian) {
             this.coordinateParameters[i].setRotY(this.data.getElement(row, i + 1).doubleValue());
@@ -134,7 +137,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case CoordinateParameter.ROTZ:
+      case ROTZ:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (dataIsRadian) {
             this.coordinateParameters[i].setRotZ(this.data.getElement(row, i + 1).doubleValue());
@@ -151,14 +154,14 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public void setDHParameter(int type, double value) {
+  public void setDHParameter(DHParameterType type, double value) {
     switch (type) {
-      case DHParameter.A:
+      case A:
         for (int i = 0; i < this.dhParameters.length; i++) {
           this.dhParameters[i].setA(value / modelScale + this.dhParameters[i].getA());
         }
         break;
-      case DHParameter.ALPHA:
+      case ALPHA:
         for (int i = 0; i < this.dhParameters.length; i++) {
           // どうにかする。
           if (Java3dModelCanvas.radian) {
@@ -169,12 +172,12 @@ public abstract class AbstractDataPicker implements DataPicker {
         }
 
         break;
-      case DHParameter.D:
+      case D:
         for (int i = 0; i < this.dhParameters.length; i++) {
           this.dhParameters[i].setD(value / modelScale + this.dhParameters[i].getD());
         }
         break;
-      case DHParameter.THETA:
+      case THETA:
         for (int i = 0; i < this.dhParameters.length; i++) {
           if (Java3dModelCanvas.radian) {
             this.dhParameters[i].setTheta(value + this.dhParameters[i].getTheta());
@@ -191,24 +194,24 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public void setCoordinateParameter(int type, double value) {
+  public void setCoordinateParameter(CoordinateParameterType type, double value) {
     switch (type) {
-      case CoordinateParameter.LOCX:
+      case LOCX:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           this.coordinateParameters[i].setLocX(value / modelScale + this.coordinateParameters[i].getLocX());
         }
         break;
-      case CoordinateParameter.LOCY:
+      case LOCY:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           this.coordinateParameters[i].setLocY(value / modelScale + this.coordinateParameters[i].getLocY());
         }
         break;
-      case CoordinateParameter.LOCZ:
+      case LOCZ:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           this.coordinateParameters[i].setLocZ(value / modelScale + this.coordinateParameters[i].getLocZ());
         }
         break;
-      case CoordinateParameter.ROTX:
+      case ROTX:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (Java3dModelCanvas.radian) {
             this.coordinateParameters[i].setRotX(value + this.coordinateParameters[i].getRotX());
@@ -217,7 +220,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case CoordinateParameter.ROTY:
+      case ROTY:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (Java3dModelCanvas.radian) {
             this.coordinateParameters[i].setRotY(value + this.coordinateParameters[i].getRotY());
@@ -226,7 +229,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case CoordinateParameter.ROTZ:
+      case ROTZ:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (Java3dModelCanvas.radian) {
             this.coordinateParameters[i].setRotZ(value + this.coordinateParameters[i].getRotZ());
@@ -243,24 +246,24 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public int getColumn(double time) {
+  public int getColumn(double t) {
     // 時系列データからそれに最も近い時間のある行を返す。
-    DoubleMatrix error = this.data.getRowVector(1).subtractElementWise(time).absElementWise();
+    DoubleMatrix error = this.data.getRowVector(1).subtractElementWise(t).absElementWise();
     return error.minimumRowWise().getIndices().getIntElement(1);
   }
 
   /**
    * {@inheritDoc}
    */
-  public double getValue(int row, double time) {
-    return getValue(row, getColumn(time));
+  public double getValue(int row, double t) {
+    return getValue(row, getColumn(t));
   }
 
   /**
    * {@inheritDoc}
    */
-  public double getValue(int row, int col) {
-    return this.data.getElement(row, col).doubleValue();
+  public double getValue(int row, int column) {
+    return this.data.getElement(row, column).doubleValue();
   }
 
   /**

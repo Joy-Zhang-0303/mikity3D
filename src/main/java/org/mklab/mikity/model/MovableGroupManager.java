@@ -27,21 +27,27 @@ import org.mklab.nfc.matrix.Matrix;
  * @version $Revision: 1.10 $.2005/01/14
  */
 public class MovableGroupManager {
-  /** 動かせるグループのリスト */
+  /** 動かせるグループ */
   private List<MovableGroup> movableGroups = new ArrayList<MovableGroup>();
+  /** データ抽出器 */
   private Map<MovableGroup, DataPicker> pickers = new HashMap<MovableGroup, DataPicker>();
 
   private static Map<Group, MovableGroup> MOVABLE_GROUPS = new HashMap<Group, MovableGroup>();
   
+  /** データの個数 */
   private int dataCount;
+  /** 開始時間 */
   private double startTime;
+  /** 終了時間 */
   private double endTime;
-
+  /** 時系列データ */
   private Matrix data;
 
   private Jamast root;
 
+  /** DHパラメータを使用するならばtrue */
   private boolean hasDHParameter = false;
+  /** 座標パラメータを使用するならばtrue */
   private boolean hasCoordinateParameter = false;
 
   /**
@@ -110,18 +116,18 @@ public class MovableGroupManager {
     for (int i = 0; i < groups.length; i++) {
       final Group group = groups[i];
       final MovableGroup tg = MOVABLE_GROUPS.get(group);
-      setMovableLinkData(group.loadLinkData(), tg);
+      setLinkData(group.loadLinkData(), tg);
       addGroups(group.loadGroups());
     }
   }
 
   /**
-   * 移動可能なグループリストの設定
+   * 移動可能なグループのリンクデータを設定します。
    * 
    * @param linkData リンクデータ
    * @param group TransformGroup
    */
-  private void setMovableLinkData(LinkData[] linkData, MovableGroup group) {
+  private void setLinkData(LinkData[] linkData, MovableGroup group) {
     if (linkData.length == 0) {
       return;
     }
@@ -132,16 +138,16 @@ public class MovableGroupManager {
         if (linkData[i].hasColumn()) {
           final int column = linkData[i].loadColumn();
           final String target = linkData[i].loadTarget();
-          int type = 0;
+          DHParameterType type;
 
           if (target.equals("a")) { //$NON-NLS-1$
-            type = DHParameter.A;
+            type = DHParameterType.A;
           } else if (target.equals("alpha")) { //$NON-NLS-1$
-            type = DHParameter.ALPHA;
+            type = DHParameterType.ALPHA;
           } else if (target.equals("d")) { //$NON-NLS-1$
-            type = DHParameter.D;
+            type = DHParameterType.D;
           } else if (target.equals("theta")) { //$NON-NLS-1$
-            type = DHParameter.THETA;
+            type = DHParameterType.THETA;
           } else {
             throw new IllegalArgumentException(Messages.getString("MovableGroupManager.0")); //$NON-NLS-1$
           }
@@ -150,16 +156,16 @@ public class MovableGroupManager {
         if (linkData[i].hasConst()) {
           final double value = linkData[i].loadConst();
           final String target = linkData[i].loadTarget();
-          int type = 0;
+          DHParameterType type;
 
           if (target.equals("a")) { //$NON-NLS-1$
-            type = DHParameter.A;
+            type = DHParameterType.A;
           } else if (target.equals("alpha")) { //$NON-NLS-1$
-            type = DHParameter.ALPHA;
+            type = DHParameterType.ALPHA;
           } else if (target.equals("d")) { //$NON-NLS-1$
-            type = DHParameter.D;
+            type = DHParameterType.D;
           } else if (target.equals("theta")) { //$NON-NLS-1$
-            type = DHParameter.THETA;
+            type = DHParameterType.THETA;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.1")); //$NON-NLS-1$
           }
@@ -169,20 +175,20 @@ public class MovableGroupManager {
         if (linkData[i].hasColumn()) {
           final int column = linkData[i].loadColumn();
           final String target = linkData[i].loadTarget();
-          int type = 0;
+          CoordinateParameterType type;
 
           if (target.equals("locationX")) { //$NON-NLS-1$
-            type = 1;
+            type = CoordinateParameterType.LOCX;
           } else if (target.equals("locationY")) { //$NON-NLS-1$
-            type = 2;
+            type = CoordinateParameterType.LOCY;
           } else if (target.equals("locationZ")) { //$NON-NLS-1$
-            type = 3;
+            type = CoordinateParameterType.LOCZ;
           } else if (target.equals("rotationX")) { //$NON-NLS-1$
-            type = 4;
+            type = CoordinateParameterType.ROTX;
           } else if (target.equals("rotationY")) { //$NON-NLS-1$
-            type = 5;
+            type = CoordinateParameterType.ROTY;
           } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-            type = 6;
+            type = CoordinateParameterType.ROTZ;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
@@ -191,20 +197,20 @@ public class MovableGroupManager {
         if (linkData[i].hasConst()) {
           final double value = linkData[i].loadConst();
           final String target = linkData[i].loadTarget();
-          int type = 0;
+          CoordinateParameterType type;
 
           if (target.equals("locationX")) { //$NON-NLS-1$
-            type = 1;
+            type = CoordinateParameterType.LOCX;
           } else if (target.equals("locationY")) { //$NON-NLS-1$
-            type = 2;
+            type = CoordinateParameterType.LOCY;
           } else if (target.equals("locationZ")) { //$NON-NLS-1$
-            type = 3;
+            type = CoordinateParameterType.LOCZ;
           } else if (target.equals("rotationX")) { //$NON-NLS-1$
-            type = 4;
+            type = CoordinateParameterType.ROTX;
           } else if (target.equals("rotationY")) { //$NON-NLS-1$
-            type = 5;
+            type = CoordinateParameterType.ROTY;
           } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-            type = 6;
+            type = CoordinateParameterType.ROTZ;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.3")); //$NON-NLS-1$
           }
@@ -262,7 +268,7 @@ public class MovableGroupManager {
   /**
    * DHパラメータの使用の有無を設定します。
    * 
-   * @param hasDHParameter DHパラメータ使用の有無
+   * @param hasDHParameter DHパラメータ使用するならばtrue
    */
   public void setHasDHParameter(boolean hasDHParameter) {
     this.hasDHParameter = hasDHParameter;
@@ -271,7 +277,7 @@ public class MovableGroupManager {
   /**
    * DHパラメータの使用の有無を返します。
    * 
-   * @return　DHパラメータの使用の有無
+   * @return　DHパラメータの使用をするならばtrue
    */
   public boolean hasDHParameter() {
     return this.hasDHParameter;
@@ -280,7 +286,7 @@ public class MovableGroupManager {
   /**
    * 座標パラメータの使用の有無を設定します。
    * 
-   * @param hasCoordinateParameter 座標パラメータ使用の有無
+   * @param hasCoordinateParameter 座標パラメータ使用するならばtrue
    */
   public void setHasCoordinateParameter(boolean hasCoordinateParameter) {
     this.hasCoordinateParameter = hasCoordinateParameter;
@@ -289,7 +295,7 @@ public class MovableGroupManager {
   /**
    * 座標パラメータの使用の有無を返します。
    * 
-   * @return　座標パラメータ使用の有無
+   * @return　座標パラメータを使用するならばtrue
    */
   public boolean hasCoordinateParameter() {
     return this.hasCoordinateParameter;

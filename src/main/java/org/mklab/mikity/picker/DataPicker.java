@@ -6,7 +6,9 @@
 package org.mklab.mikity.picker;
 
 import org.mklab.mikity.model.CoordinateParameter;
+import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.DHParameterType;
 
 
 /**
@@ -34,26 +36,26 @@ public interface DataPicker {
    * @param type タイプ
    * @param row 行
    */
-  void addMoveTypeDH(int type, int row);
+  void addMoveTypeDH(DHParameterType type, int row);
 
   /**
    * @param type タイプ
    * @param row 行
    */
-  void addMoveTypeCoordinate(int type, int row);
+  void addMoveTypeCoordinate(CoordinateParameterType type, int row);
 
   /**
    * initialTranformに固定値をセットする
    * @param type タイプ
    * @param value 値
    */
-  void setDHParameter(int type, double value);
+  void setDHParameter(DHParameterType type, double value);
 
   /**
    * @param type セットタイプ
    * @param value initialTranformに固定値をセットする
    */
-  void setCoordinateParameter(int type, double value);
+  void setCoordinateParameter(CoordinateParameterType type, double value);
 
   /**
    * @param t 時間を与えると、それに最も近い時間のある行rowを返す

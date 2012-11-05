@@ -12,6 +12,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.DHParameterType;
 import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.picker.DataPicker;
 import org.mklab.nfc.matrix.Matrix;
@@ -40,7 +41,7 @@ public class DataPickerTest {
   @Test
   public void testSetup() {
     DataPicker picker = new ClosenessDataPicker(this.data);
-    picker.addMoveTypeDH(DHParameter.D, 2);
+    picker.addMoveTypeDH(DHParameterType.D, 2);
     DHParameter param = picker.getDHParameter(13.59);
     assertTrue(8.921 == param.getD());
 
@@ -49,7 +50,7 @@ public class DataPickerTest {
 
     assertTrue(0.0 == param.getAlpha());
 
-    picker.addMoveTypeDH(DHParameter.ALPHA, 3);
+    picker.addMoveTypeDH(DHParameterType.ALPHA, 3);
     assertTrue(-0.010995 == param.getAlpha());
 
   }
