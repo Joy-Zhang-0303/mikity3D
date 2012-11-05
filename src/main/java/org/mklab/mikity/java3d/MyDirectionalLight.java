@@ -12,7 +12,7 @@ import javax.vecmath.Vector3f;
 
 
 /**
- * 方向指示灯に関するクラス
+ * 方向指示灯を表すクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $.2005/11/22

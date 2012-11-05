@@ -24,7 +24,7 @@ public class MyUniverse {
   /** */
   private static Applet applet = null;
   /** */
-  public static SimpleUniverse universe = null;
+  private static SimpleUniverse universe = null;
   /** */
   private static Canvas3D canvas = null;
   /** */

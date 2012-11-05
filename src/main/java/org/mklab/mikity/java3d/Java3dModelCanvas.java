@@ -24,7 +24,7 @@ import com.sun.j3d.utils.universe.SimpleUniverse;
 
 
 /**
- * キャンバスに関するクラス
+ * キャンバスを表すクラスです。
  * 
  * @author Miki Koga
  * @version $Revision: 1.6 $.2004/12/16
@@ -155,7 +155,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   }
 
   /**
-   * fileからXMLを読み込む
+   * fileからXMLを読み込みます。
    */
   @Override
   public void load() {
@@ -165,7 +165,8 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   }
 
   /**
-   * @param groups いったんトップグループの全てを消してから書き込む
+   * いったんトップグループの全てを消してから書き込みます。
+   * @param groups グループ 
    */
   @Override
   public void setChild(Group[] groups) {
@@ -187,7 +188,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   }
   
   /**
-   * XMLデータからConfigデータを読み込む
+   * XMLデータからConfigデータを読み込みます。
    * 
    * @param argRoot
    */

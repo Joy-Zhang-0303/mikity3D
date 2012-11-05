@@ -15,13 +15,12 @@ import com.sun.j3d.utils.universe.ViewingPlatform;
 
 
 /**
- * 視点に関するクラス
+ * 視点を表すクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $.2005/11/22
  */
 public class MyViewpoint {
-
   private TransformGroup vpTg = null;
 
   /**
@@ -32,7 +31,6 @@ public class MyViewpoint {
    * @param universe2 空間
    */
   public MyViewpoint(AxisAngle4f angle4f, Vector3f vector3f, SimpleUniverse universe2) {
-
     ViewingPlatform vp = universe2.getViewingPlatform();
     this.vpTg = vp.getViewPlatformTransform();
 
@@ -50,6 +48,7 @@ public class MyViewpoint {
    */
   public MyViewpoint(SimpleUniverse uni, View view, int mouseOperationType) {
     ViewingPlatform vp = uni.getViewingPlatform();
+    
     this.vpTg = vp.getViewPlatformTransform();
     if (mouseOperationType == 0) {
       // 視点方向の設定

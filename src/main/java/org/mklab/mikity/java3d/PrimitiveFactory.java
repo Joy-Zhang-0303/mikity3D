@@ -331,17 +331,17 @@ public class PrimitiveFactory {
     if (rot != null) {
       if (radian == false) {
         // radian表記でない場合
-        tg.mulRotation(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rot.loadXrotate())));
-        tg.mulRotation(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(rot.loadYrotate())));
-        tg.mulRotation(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(rot.loadZrotate())));
+        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rot.loadXrotate())));
+        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(rot.loadYrotate())));
+        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(rot.loadZrotate())));
       } else {
-        tg.mulRotation(new AxisAngle4f(1.0f, 0.0f, 0.0f, rot.loadXrotate()));
-        tg.mulRotation(new AxisAngle4f(0.0f, 1.0f, 0.0f, rot.loadYrotate()));
-        tg.mulRotation(new AxisAngle4f(0.0f, 0.0f, 1.0f, rot.loadZrotate()));
+        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, rot.loadXrotate()));
+        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, rot.loadYrotate()));
+        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, rot.loadZrotate()));
       }
     }
     if (loc != null) {
-      tg.mulTranslation(new Vector3f(loc.loadX() / scale, loc.loadY() / scale, loc.loadZ() / scale));
+      tg.translate(new Vector3f(loc.loadX() / scale, loc.loadY() / scale, loc.loadZ() / scale));
     }
   }
 
@@ -364,8 +364,8 @@ public class PrimitiveFactory {
       mat3.setElement(2,0,matrix.getElement(2,0));
       mat3.setElement(2,1,matrix.getElement(2,1));
       mat3.setElement(2,2,matrix.getElement(2,2));
-      tg.mulRotation(mat3);
-      tg.mulTranslation(new Vector3f(matrix.getElement(0,3) / matrix.getScale(), matrix.getElement(1,33) / matrix.getScale(), matrix.getElement(2,3) / matrix.getScale()));
+      tg.rotate(mat3);
+      tg.translate(new Vector3f(matrix.getElement(0,3) / matrix.getScale(), matrix.getElement(1,33) / matrix.getScale(), matrix.getElement(2,3) / matrix.getScale()));
     }
   }
 

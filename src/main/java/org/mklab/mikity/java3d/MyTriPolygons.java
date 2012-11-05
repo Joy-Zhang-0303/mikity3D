@@ -18,9 +18,7 @@ import com.sun.j3d.utils.geometry.NormalGenerator;
  */
 public class MyTriPolygons extends MyTransformGroup {
   /** */
-  public static final int RENDERING_FRONT = 0;
-  /** */
-  public static final int RENDERING_ALL = 1;
+  private static final int RENDERING_ALL = 1;
 
   private GeometryArray geom = null;
   private Appearance app = null;
@@ -36,9 +34,8 @@ public class MyTriPolygons extends MyTransformGroup {
    */
   public MyTriPolygons(Point3d[] vertex, Material material, TransparencyAttributes transAttr, int mode) {
     // 形状の枠組み生成
-    Shape3D shape = new Shape3D();
-
-    Point3d[] vertex2 = new Point3d[(vertex.length - 2) * 3];
+    final Shape3D shape = new Shape3D();
+    final Point3d[] vertex2 = new Point3d[(vertex.length - 2) * 3];
 
     for (int i = 0, j = 0; i < (vertex.length - 2); i++, j += 3) {
       vertex2[j] = vertex[0];
@@ -59,7 +56,7 @@ public class MyTriPolygons extends MyTransformGroup {
    */
   private Geometry geometry(Point3d[] vertex) {
     // 形状の原型設定
-    GeometryInfo info = new GeometryInfo(GeometryInfo.TRIANGLE_ARRAY);
+    final GeometryInfo info = new GeometryInfo(GeometryInfo.TRIANGLE_ARRAY);
 
     // 頂点座標の設定
     info.setCoordinates(vertex);
@@ -99,28 +96,4 @@ public class MyTriPolygons extends MyTransformGroup {
 
     return this.app;
   }
-
-//  /**
-//   * {@inheritDoc}
-//   */
-//  @Override
-//  public void mulScale(Vector3f scale) {
-//    super.mulScale(scale);
-//  }
-//
-//  /**
-//   * {@inheritDoc}
-//   */
-//  @Override
-//  public void mulRotation(AxisAngle4f angle) {
-//    super.mulRotation(angle);
-//  }
-//
-//  /**
-//   * {@inheritDoc}
-//   */
-//  @Override
-//  public void mulTranslation(Vector3f translation) {
-//    super.mulTranslation(translation);
-//  }
 }
