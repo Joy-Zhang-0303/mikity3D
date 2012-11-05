@@ -14,6 +14,7 @@ import org.mklab.mikity.java3d.MyTransformGroup;
 import org.mklab.mikity.jogl.JoglTransformGroup;
 import org.mklab.mikity.picker.AbstractDataPicker;
 import org.mklab.mikity.picker.ClosenessDataPicker;
+import org.mklab.mikity.picker.DataPicker;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.LinkData;
@@ -29,7 +30,7 @@ import org.mklab.nfc.matrix.Matrix;
 public class MovableGroupManager {
   /** 動かせるグループのリスト */
   private List<MovableGroup> movableGroups = new ArrayList<MovableGroup>();
-  private Map<MovableGroup, AbstractDataPicker> pickers = new HashMap<MovableGroup, AbstractDataPicker>();
+  private Map<MovableGroup, DataPicker> pickers = new HashMap<MovableGroup, DataPicker>();
 
   private static Map<Group, MovableGroup> MOVABLE_GROUPS = new HashMap<Group, MovableGroup>();
   
@@ -59,7 +60,7 @@ public class MovableGroupManager {
    * @param group
    * @param picker
    */
-  private void addMovableGroup(final MovableGroup group, final AbstractDataPicker picker) {
+  private void addMovableGroup(final MovableGroup group, final DataPicker picker) {
     this.movableGroups.add(group);
     this.pickers.put(group, picker);
 
@@ -76,7 +77,7 @@ public class MovableGroupManager {
    */
   public void processStimulusWithDHParameter(double t) {
     for (MovableGroup group : this.movableGroups) {
-      AbstractDataPicker picker = this.pickers.get(group);
+      DataPicker picker = this.pickers.get(group);
       DHParameter parameter = picker.getDHParameter(t);
       
       if (parameter != null) {
@@ -92,7 +93,7 @@ public class MovableGroupManager {
    */
   public void processStimulusWithCoordinateParameter(double t) {
     for (MovableGroup group : this.movableGroups) {
-      AbstractDataPicker picker = this.pickers.get(group);
+      DataPicker picker = this.pickers.get(group);
       CoordinateParameter parameter = picker.getCoordinateParameter(t);
       if (parameter != null) {
         group.setCoordinateParameter(parameter);
@@ -124,7 +125,7 @@ public class MovableGroupManager {
     if (linkdata.length == 0) {
       return;
     }
-    AbstractDataPicker picker = new ClosenessDataPicker(this.data);
+    DataPicker picker = new ClosenessDataPicker(this.data);
 
     for (int i = 0; i < linkdata.length; i++) {
       if (linkdata[i].hasDhParameter()) {

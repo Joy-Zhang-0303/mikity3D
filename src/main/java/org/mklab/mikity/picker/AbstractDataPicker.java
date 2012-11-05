@@ -18,7 +18,7 @@ import org.mklab.nfc.matrix.Matrix;
  * @author miki
  * @version $Revision: 1.7 $.2005/01/17
  */
-public abstract class AbstractDataPicker {
+public abstract class AbstractDataPicker implements DataPicker {
 
   private DoubleMatrix data;
   /** */
@@ -53,24 +53,9 @@ public abstract class AbstractDataPicker {
       this.coordinateParameters[i] = new CoordinateParameter();
     }
   }
-
-  /**
-   * 指定された時刻のDHパラメータを返します。
-   * @param t 時刻
-   * @return 指定された時刻のDHパラメータ
-   */
-  public abstract DHParameter getDHParameter(double t);
-
-  /**
-   * 指定された時刻の座標パラメータを返します。
-   * @param t 時刻
-   * @return 指定された時刻の座標パラメータ
-   */
-  public abstract CoordinateParameter getCoordinateParameter(double t);
   
   /**
-   * @param moveType タイプ
-   * @param row 行
+   * {@inheritDoc}
    */
   public final void addMoveTypeDH(int moveType, int row) {
     if (this.data.getRowSize() < row) {
@@ -112,8 +97,7 @@ public abstract class AbstractDataPicker {
   }
 
   /**
-   * @param moveType タイプ
-   * @param row 行
+   * {@inheritDoc}
    */
   public final void addMoveType(int moveType, int row) {
     if (this.data.getRowSize() < row) {
@@ -169,9 +153,7 @@ public abstract class AbstractDataPicker {
   }
 
   /**
-   * initialTranformに固定値をセットする
-   * @param type タイプ
-   * @param value 値
+   * {@inheritDoc}
    */
   public void setConstantDHParameter(int type, double value) {
     switch (type) {
@@ -211,8 +193,7 @@ public abstract class AbstractDataPicker {
   }
 
   /**
-   * @param type セットタイプ
-   * @param value initialTranformに固定値をセットする
+   * {@inheritDoc}
    */
   public void setConstantCoordinateParameter(int type, double value) {
     switch (type) {
@@ -264,8 +245,7 @@ public abstract class AbstractDataPicker {
   }
 
   /**
-   * @param time 時間を与えると、それに最も近い時間のある行rowを返す
-   * @return getValue(row, getColumn(time))
+   * {@inheritDoc}
    */
   public int getColumn(double time) {
     // 時系列データからそれに最も近い時間のある行を返す。
@@ -274,41 +254,35 @@ public abstract class AbstractDataPicker {
   }
 
   /**
-   * @param row データの行数（何番目のデータか）
-   * @param time 時刻
-   * @return 時刻timeのときのrow行目のデータ
+   * {@inheritDoc}
    */
   public double getValue(int row, double time) {
     return getValue(row, getColumn(time));
   }
 
   /**
-   * @param row 行
-   * @param col 列
-   * @return data.getElement(row, col)
+   * {@inheritDoc}
    */
   public double getValue(int row, int col) {
     return this.data.getElement(row, col).doubleValue();
   }
 
   /**
-   * @return data.getColSize()
+   * {@inheritDoc}
    */
   public int getDataCount() {
     return this.data.getColumnSize();
   }
 
   /**
-   * @return data.getElement(1, getDataCount())
+   * {@inheritDoc}
    */
   public double getEndTime() {
     return this.data.getElement(1, getDataCount()).doubleValue();
   }
 
   /**
-   * シミュレーションの開始時刻を返す。
-   * 
-   * @return シミュレーションの開始時刻
+   * {@inheritDoc}
    */
   public double getStartTime() {
     return this.data.getElement(1, 1).doubleValue();
