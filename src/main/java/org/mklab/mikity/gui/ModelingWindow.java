@@ -407,7 +407,7 @@ public class ModelingWindow extends ApplicationWindow {
     if (root == null) {
       root = ModelingWindow.createEmptyModel();
       Group groupBlender = root.loadModel(0).loadGroup(0);
-      Group[] polygonGroupList = marshaller.getBlenderGroup().loadGroup();
+      Group[] polygonGroupList = marshaller.getBlenderGroup().loadGroups();
       for (int i = 0; i < polygonGroupList.length; i++) {
         groupBlender.addGroup(polygonGroupList[i]);
       }
@@ -446,7 +446,7 @@ public class ModelingWindow extends ApplicationWindow {
       org.mklab.mikity.xml.model.XMLConnector[] connector = importGroup.loadXMLConnector();
       org.mklab.mikity.xml.model.XMLTrianglePolygon[] triangle = importGroup.loadXMLTrianglePolygon();
       org.mklab.mikity.xml.model.XMLQuadPolygon[] quad = importGroup.loadXMLQuadPolygon();
-      org.mklab.mikity.xml.model.Group[] group = importGroup.loadGroup();
+      org.mklab.mikity.xml.model.Group[] group = importGroup.loadGroups();
 
       Group rootGroup = root.loadModel(0).loadGroup(0);
 
@@ -492,7 +492,7 @@ public class ModelingWindow extends ApplicationWindow {
       }
     } else {
       Group groupBlender = root.loadModel(0).loadGroup(0);
-      Group[] polygonGroupList = marshaller.getBlenderGroup().loadGroup();
+      Group[] polygonGroupList = marshaller.getBlenderGroup().loadGroups();
       for (int i = 0; i < polygonGroupList.length; i++) {
         groupBlender.addGroup(polygonGroupList[i]);
       }

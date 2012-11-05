@@ -16,8 +16,10 @@ import org.mklab.mikity.model.MovableGroupManager;
 
 
 /**
+ * アニメーションを実行するクラスです。
+ * 
  * @author miki
- * @version $Revision: 1.6 $.2005/01/24 アニメーションを実行する
+ * @version $Revision: 1.6 $.2005/01/24 
  */
 public class AnimationTask extends TimerTask {
   private double currentTime = 0.0;
@@ -49,10 +51,10 @@ public class AnimationTask extends TimerTask {
   /**
    * {@link AnimationTaskListener}を登録します。
    * 
-   * @param l リスナ
+   * @param listener リスナ
    */
-  public void addAnimationTaskListener(AnimationTaskListener l) {
-    this.listeners.add(l);
+  public void addAnimationTaskListener(AnimationTaskListener listener) {
+    this.listeners.add(listener);
   }
 
   /**
@@ -82,30 +84,20 @@ public class AnimationTask extends TimerTask {
       fireAnimationStarted();
     }
 
-    // さらに今の時間からstartTimeを引いた差分をdiffTimeに入れる
     double diffTime = (scheduledExecutionTime() - this.startTime) / 1000.0;
-
     this.startTime = System.currentTimeMillis();
-
-    // currentTimeにdiffTime*speedを足す speedは１で現実と同じ時間経過
     this.currentTime += diffTime * this.speed;
 
     if (this.manager.hasDHParameter()) {
-      this.manager.processStimulusWithDHParameter(this.currentTime);
+      this.manager.performAnimationWithDHParameter(this.currentTime);
     } else if (this.manager.hasCoordinateParameter()) {
-      this.manager.processStimulusWithCoordinateParameter(this.currentTime);
+      this.manager.performAnimationWithCoordinateParameter(this.currentTime);
     }
 
     
     if (this.canvas instanceof JoglModelCanvas) {
       ((JoglModelCanvas)this.canvas).display();
     }
-    
-    //    else if(this.manager.getDH()&&this.manager.getLink()){
-    //      this.manager.processStimulus(this.currentTime);
-    //    }
-
-    // SimulationViewer.setCurrentTime(currentTime);
 
     if (this.currentTime > this.endTime) {
       AnimationWindow.playable = true;
@@ -115,6 +107,7 @@ public class AnimationTask extends TimerTask {
   }
 
   /**
+   * アニメーションの現在の時刻を返します。
    * @return 現在の時刻
    */
   public double getCurrentTime() {
@@ -124,7 +117,7 @@ public class AnimationTask extends TimerTask {
   /**
    * アニメーションの現在の時刻を設定します。
    * 
-   * @param t 時間
+   * @param t 現在の時刻
    */
   public void setCurrentTime(double t) {
     this.currentTime = t;
@@ -134,7 +127,7 @@ public class AnimationTask extends TimerTask {
    * アニメーションの完了を通知します。
    */
   private void fireAnimationDone() {
-    for (AnimationTaskListener listener : this.listeners) {
+    for (final AnimationTaskListener listener : this.listeners) {
       listener.taskDone();
     }
   }
@@ -143,7 +136,7 @@ public class AnimationTask extends TimerTask {
    * アニメーションの開始を通知します。
    */
   private void fireAnimationStarted() {
-    for (AnimationTaskListener listener : this.listeners) {
+    for (final AnimationTaskListener listener : this.listeners) {
       listener.taskStarted();
     }
   }

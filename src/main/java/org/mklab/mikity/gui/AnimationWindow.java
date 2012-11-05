@@ -303,7 +303,7 @@ public class AnimationWindow extends ApplicationWindow {
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
-        AnimationWindow.this.manager.processStimulusWithCoordinateParameter(t);
+        AnimationWindow.this.manager.performAnimationWithCoordinateParameter(t);
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setCurrentTime(t);
           String st = String.valueOf(t);
@@ -365,7 +365,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   private void checkLinkParameterType(org.mklab.mikity.xml.model.Group group) {
-    org.mklab.mikity.xml.model.Group[] subGroup = group.loadGroup();
+    org.mklab.mikity.xml.model.Group[] subGroup = group.loadGroups();
     if (subGroup.length != 0) {
       for (int i = 0; i < subGroup.length; i++) {
         org.mklab.mikity.xml.model.LinkData[] link = subGroup[i].loadLinkData();
@@ -399,6 +399,7 @@ public class AnimationWindow extends ApplicationWindow {
 
       this.timeSlider.setEnabled(true);
       this.manager.setData(this.data);
+      this.manager.updateMovableGroups();
 
       org.mklab.mikity.xml.model.Group group = this.root.loadModel(0).loadGroup(0);
       checkLinkParameterType(group);
@@ -433,6 +434,7 @@ public class AnimationWindow extends ApplicationWindow {
 
     this.timeSlider.setEnabled(true);
     this.manager.setData(this.data);
+    this.manager.updateMovableGroups();
 
     org.mklab.mikity.xml.model.Group group = this.root.loadModel(0).loadGroup(0);
     checkLinkParameterType(group);

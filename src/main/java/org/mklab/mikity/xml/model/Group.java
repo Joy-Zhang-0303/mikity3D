@@ -501,7 +501,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.xml.model.Group[] loadGroup() {
+  public org.mklab.mikity.xml.model.Group[] loadGroups() {
     final int size = this._groupList.size();
     final org.mklab.mikity.xml.model.Group[] groups = new org.mklab.mikity.xml.model.Group[size];
     for (int i = 0; i < size; i++) {

@@ -65,7 +65,7 @@ public class TransformGroupFactory {
       tg.addChild(PrimitiveFactory.create(quadPolygons[i]));
     }
 
-    final Group[] groups = group.loadGroup();
+    final Group[] groups = group.loadGroups();
     for (int i = 0; i < groups.length; i++) {
       tg.addChild(PrimitiveFactory.create(groups[i]));
     }

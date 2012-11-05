@@ -30,10 +30,7 @@ public abstract class AbstractDataPicker implements DataPicker {
 
   private static int dataScale = 1;
   private static int modelScale = 1;
-
   private static boolean dataIsRadian = true;
-  /** */
-  //static boolean modelIsRadian = true;
 
   /**
    * コンストラクター
@@ -98,7 +95,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void addMoveType(int moveType, int row) {
+  public final void addMoveTypeCoordinate(int moveType, int row) {
     if (this.data.getRowSize() < row) {
       //
     }

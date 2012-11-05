@@ -596,7 +596,7 @@ public class SceneGraphTree {
       }
     }
 
-    Group[] groups = group.loadGroup();
+    Group[] groups = group.loadGroups();
 
     for (int i = 0; i < groups.length; i++) {
       setAllTransparent(groups[i], transparent);
@@ -736,7 +736,7 @@ public class SceneGraphTree {
       if (item != null) {
         item.setExpanded(true);
       }
-      Group[] childGroup = group[i].loadGroup();
+      Group[] childGroup = group[i].loadGroups();
       addTreeItem(child, childGroup);
     }
     if (item != null) {
@@ -838,7 +838,7 @@ public class SceneGraphTree {
             break;
           }
         }
-        checkUsedLinkType(g[i].loadGroup());
+        checkUsedLinkType(g[i].loadGroups());
       }
     }
   }

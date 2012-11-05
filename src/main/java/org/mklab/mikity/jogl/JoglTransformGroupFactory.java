@@ -98,7 +98,7 @@ public class JoglTransformGroupFactory {
       tg.addChild(JoglPrimitiveFactory.create(xmlQuad[i], parameters, links));
     }
 
-    Group[] groups = group.loadGroup();
+    Group[] groups = group.loadGroups();
     for (int i = 0; i < groups.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(groups[i]));
     }
