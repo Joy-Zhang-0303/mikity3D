@@ -23,77 +23,66 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  */
 public class JoglTransformGroupFactory {
   /** */
-  private List<CoordinateParameter> coordinateParameters;
+  private List<CoordinateParameter> coordinateParameters = new ArrayList<CoordinateParameter>();
   /** */
-  private List<DHParameter> dhParameters;
+  private List<DHParameter> dhParameters = new ArrayList<DHParameter>();
 
   /**
    * @param group グループ
    * @return トランスフォームグループ
    */
   public JoglTransformGroup create(Group group) {
-    JoglTransformGroup tg = new JoglTransformGroup();
-    if (coordinateParameters == null) {
-      coordinateParameters = new ArrayList<CoordinateParameter>();
-    }
-    if(dhParameters == null){
-      dhParameters = new ArrayList<DHParameter>();
-    }
-    DHParameter dhParameter = new DHParameter();
-    CoordinateParameter coordinateParameter = new CoordinateParameter();
-    /*
-     * DHParameterの設定
-     */
-    LinkData[] linkData = group.loadLinkData();
+    final LinkData[] linkData = group.loadLinkData();
     for (int i = 0; i < linkData.length; i++) {
       if (linkData[i].hasDHParameter()) {
-        // 初期値のDHパラメータを作成
-        dhParameter = Util.getDHParameter(linkData);
-        dhParameters.add(dhParameter);
+        DHParameter dhParameter = Util.getDHParameter(linkData);
+        this.dhParameters.add(dhParameter);
         break;
       } else if (linkData[i].hasCoordinateParameter()) {
-        coordinateParameter = Util.getCoordinateParameter(linkData);
-        coordinateParameters.add(coordinateParameter);
+        CoordinateParameter coordinateParameter = Util.getCoordinateParameter(linkData);
+        this.coordinateParameters.add(coordinateParameter);
         break;
       }
     }
 
-    XMLBox[] boxes = group.loadXMLBox();
+    final JoglTransformGroup tg = new JoglTransformGroup();
+    
+    final XMLBox[] boxes = group.loadXMLBox();
     for (int i = 0; i < boxes.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(boxes[i]));
     }
 
-    XMLCylinder[] cylinders = group.loadXMLCylinder();
+    final XMLCylinder[] cylinders = group.loadXMLCylinder();
     for (int i = 0; i < cylinders.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(cylinders[i]));
     }
 
-    XMLSphere[] spheres = group.loadXMLSphere();
+    final XMLSphere[] spheres = group.loadXMLSphere();
     for (int i = 0; i < spheres.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(spheres[i]));
     }
 
-    XMLCone[] cones = group.loadXMLCone();
+    final XMLCone[] cones = group.loadXMLCone();
     for (int i = 0; i < cones.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(cones[i]));
     }
 
-    //    XMLConnector[] xmlConnector = group.loadXMLConnector();
-    //    for (int i = 0; i < xmlConnector.length; i++) {
-    //      tg.addChild(JoglPrimitiveFactory.create(xmlConnector[i]));
+    //    final XMLConnector[] connectors = group.loadXMLConnector();
+    //    for (int i = 0; i < Connectors.length; i++) {
+    //      tg.addChild(JoglPrimitiveFactory.create(connectors[i]));
     //    }
 
-    XMLTrianglePolygon[] trianglePolygons = group.loadXMLTrianglePolygon();
+    final XMLTrianglePolygon[] trianglePolygons = group.loadXMLTrianglePolygon();
     for (int i = 0; i < trianglePolygons.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(trianglePolygons[i], dhParameters, coordinateParameters));
+      tg.addChild(JoglPrimitiveFactory.create(trianglePolygons[i], this.dhParameters, this.coordinateParameters));
     }
 
-    XMLQuadPolygon[] quadPolygons = group.loadXMLQuadPolygon();
+    final XMLQuadPolygon[] quadPolygons = group.loadXMLQuadPolygon();
     for (int i = 0; i < quadPolygons.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(quadPolygons[i], dhParameters, coordinateParameters));
+      tg.addChild(JoglPrimitiveFactory.create(quadPolygons[i], this.dhParameters, this.coordinateParameters));
     }
 
-    Group[] groups = group.loadGroups();
+    final Group[] groups = group.loadGroups();
     for (int i = 0; i < groups.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(groups[i]));
     }
