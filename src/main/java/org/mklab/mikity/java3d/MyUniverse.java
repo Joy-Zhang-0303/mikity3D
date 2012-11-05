@@ -17,63 +17,35 @@ import com.sun.j3d.utils.universe.ViewingPlatform;
 
 
 /**
- * @author SHOGO
- * @version $Revision: 1.7 $.2005/11/22
- */
+  * @author miki
+  * @version $Revision: 1.7 $.2004/12/22
+  */
 public class MyUniverse {
-
-  /**
-   * 
-   */
-  // 主要オブジェクト変数
-  public static Applet applet = null;
-  /**
-   * 
-   */
+  /** */
+  private static Applet applet = null;
+  /** */
   public static SimpleUniverse universe = null;
-  /**
-   * 
-   */
-  public static Canvas3D canvas = null;
+  /** */
+  private static Canvas3D canvas = null;
+  /** */
+  private static float fieldOfView = (float)Math.toRadians(45.);
+  /** */
+  private static float frontDistance = 0.5f;
+  /** */
+  private static float backDistance = 100.0f;
+  /** */
+  static float boundsRadius = 100.0f;
+  /** */
+  static float creaseAngle = (float)Math.toRadians(44.);
+  /** */
+  private static int division = 30;
 
-  // 環境パラメータ変数
-  /**
-   * 
-   */
-  public static float fieldOfView = (float)Math.toRadians(45.);
-  /**
-     * 
-     */
-  public static float frontDistance = 0.5f;
-  /**
-     * 
-     */
-  public static float backDistance = 100.0f;
-  /**
-     * 
-     */
-  public static float boundsRadius = 100.0f;
-  /**
-     * 
-     */
-  public static float creaseAngle = (float)Math.toRadians(44.);
-  /**
-   * 
-   */
-  public static int division = 30;
-
-  /**
-   * 
-   */
-  // ウィンドウ用変数
-  // public static Vector canvasWindow = new Vector();
   /**
    * コンストラクター
    * 
    * @param app アプレット
    */
   public MyUniverse(Applet app) {
-    // アプレットの設定
     applet = app;
 
     // 画面オブジェクトの生成
@@ -92,19 +64,12 @@ public class MyUniverse {
   }
 
   /**
-   * コンストラクター
-   * 
-   * @param frame フレーム
    */
-  /*
-   * frameに画像を張る！12/2追加
-   * 
-   * @author miki
-   * 
-   * @version $Revision: 1.7 $.2004/12/22
+  /**
+   * 新しく生成された<code>MyUniverse</code>オブジェクトを初期化します。
+   * @param frame
    */
   public MyUniverse(Frame frame) {
-
     // 画面オブジェクトの生成
     canvas = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
     canvas.setCursor(new Cursor(Cursor.HAND_CURSOR));

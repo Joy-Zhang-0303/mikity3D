@@ -1,8 +1,5 @@
 package org.mklab.mikity.java3d;
 
-//**********************************************************************
-//             MyTriPolygonsクラス（暫定版）                           *
-//**********************************************************************
 import javax.media.j3d.Appearance;
 import javax.media.j3d.Geometry;
 import javax.media.j3d.GeometryArray;
@@ -10,13 +7,10 @@ import javax.media.j3d.Material;
 import javax.media.j3d.PolygonAttributes;
 import javax.media.j3d.Shape3D;
 import javax.media.j3d.TransparencyAttributes;
-import javax.vecmath.AxisAngle4f;
 import javax.vecmath.Point3d;
-import javax.vecmath.Vector3f;
 
 import com.sun.j3d.utils.geometry.GeometryInfo;
 import com.sun.j3d.utils.geometry.NormalGenerator;
-
 
 /**
  * @author SHOGO
@@ -52,10 +46,7 @@ public class MyTriPolygons extends MyTransformGroup {
       vertex2[j + 2] = vertex[(i + 2) % vertex.length];
     }
 
-    // 形状座標の設定
     shape.setGeometry(geometry(vertex2));
-
-    // 質感の設定
     shape.setAppearance(appearance(material, transAttr, mode));
 
     // 座標系に物体オブジェクトの接続
@@ -74,9 +65,9 @@ public class MyTriPolygons extends MyTransformGroup {
     info.setCoordinates(vertex);
 
     // 法線の設定
-    NormalGenerator normalGen = new NormalGenerator();
-    normalGen.setCreaseAngle(this.creaseAngle);
-    normalGen.generateNormals(info);
+    NormalGenerator generator = new NormalGenerator();
+    generator.setCreaseAngle(this.creaseAngle);
+    generator.generateNormals(info);
 
     // 形状の取得
     this.geom = info.getGeometryArray();
@@ -100,36 +91,36 @@ public class MyTriPolygons extends MyTransformGroup {
 
     // 裏面描画
     if (mode == RENDERING_ALL) {
-      PolygonAttributes polAttr = new PolygonAttributes();
-      polAttr.setCullFace(PolygonAttributes.CULL_NONE);
-      polAttr.setBackFaceNormalFlip(true);
-      this.app.setPolygonAttributes(polAttr);
+      PolygonAttributes attributes = new PolygonAttributes();
+      attributes.setCullFace(PolygonAttributes.CULL_NONE);
+      attributes.setBackFaceNormalFlip(true);
+      this.app.setPolygonAttributes(attributes);
     }
 
     return this.app;
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void mulScale(Vector3f scale) {
-    super.mulScale(scale);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void mulRotation(AxisAngle4f angle) {
-    super.mulRotation(angle);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void mulTranslation(Vector3f translation) {
-    super.mulTranslation(translation);
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  @Override
+//  public void mulScale(Vector3f scale) {
+//    super.mulScale(scale);
+//  }
+//
+//  /**
+//   * {@inheritDoc}
+//   */
+//  @Override
+//  public void mulRotation(AxisAngle4f angle) {
+//    super.mulRotation(angle);
+//  }
+//
+//  /**
+//   * {@inheritDoc}
+//   */
+//  @Override
+//  public void mulTranslation(Vector3f translation) {
+//    super.mulTranslation(translation);
+//  }
 }
