@@ -1,8 +1,5 @@
 package org.mklab.mikity.java3d;
 
-//**********************************************************************
-//             MyTransformGroupクラス（暫定版） *
-//**********************************************************************
 import javax.media.j3d.Group;
 import javax.media.j3d.Node;
 import javax.media.j3d.Transform3D;
@@ -24,11 +21,11 @@ import org.mklab.mikity.model.CoordinateParameter;
  * @author SHOGO
  * @version $Revision: 1.17 $.2005/11/22
  */
-public class MyTransformGroup extends TransformGroup implements MovableGroup {
+public class Java3dTransformGroup extends TransformGroup implements MovableGroup {
   /**
    * コンストラクター
    */
-  public MyTransformGroup() {
+  public Java3dTransformGroup() {
     setCapability(Group.ALLOW_CHILDREN_EXTEND);
     setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
     setCapability(TransformGroup.ALLOW_TRANSFORM_READ);

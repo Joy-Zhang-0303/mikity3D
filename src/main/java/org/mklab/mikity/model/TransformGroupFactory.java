@@ -2,8 +2,8 @@ package org.mklab.mikity.model;
 
 import javax.media.j3d.TransformGroup;
 
-import org.mklab.mikity.java3d.MyTransformGroup;
-import org.mklab.mikity.java3d.PrimitiveFactory;
+import org.mklab.mikity.java3d.Java3dTransformGroup;
+import org.mklab.mikity.java3d.Java3dPrimitiveFactory;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.LinkData;
@@ -27,47 +27,47 @@ public class TransformGroupFactory {
    * @param group グループ
    * @return トランスフォームグループ
    */
-  public static MyTransformGroup create(final Group group) {
-    final MyTransformGroup tg = new MyTransformGroup();
+  public static Java3dTransformGroup create(final Group group) {
+    final Java3dTransformGroup tg = new Java3dTransformGroup();
     
     final XMLBox[] boxes = group.loadXMLBox();
     for (int i = 0; i < boxes.length; i++) {
-      tg.addChild(PrimitiveFactory.create(boxes[i]));
+      tg.addChild(Java3dPrimitiveFactory.create(boxes[i]));
     }
 
     final XMLCylinder[] cylinders = group.loadXMLCylinder();
     for (int i = 0; i < cylinders.length; i++) {
-      tg.addChild(PrimitiveFactory.create(cylinders[i]));
+      tg.addChild(Java3dPrimitiveFactory.create(cylinders[i]));
     }
 
     final XMLSphere[] spheres = group.loadXMLSphere();
     for (int i = 0; i < spheres.length; i++) {
-      tg.addChild(PrimitiveFactory.create(spheres[i]));
+      tg.addChild(Java3dPrimitiveFactory.create(spheres[i]));
     }
 
     final XMLCone[] cones = group.loadXMLCone();
     for (int i = 0; i < cones.length; i++) {
-      tg.addChild(PrimitiveFactory.create(cones[i]));
+      tg.addChild(Java3dPrimitiveFactory.create(cones[i]));
     }
 
     final XMLConnector[] connectors = group.loadXMLConnector();
     for (int i = 0; i < connectors.length; i++) {
-      tg.addChild(PrimitiveFactory.create(connectors[i]));
+      tg.addChild(Java3dPrimitiveFactory.create(connectors[i]));
     }
 
     final XMLTrianglePolygon[] trianglePolygons = group.loadXMLTrianglePolygon();
     for (int i = 0; i < trianglePolygons.length; i++) {
-      tg.addChild(PrimitiveFactory.create(trianglePolygons[i]));
+      tg.addChild(Java3dPrimitiveFactory.create(trianglePolygons[i]));
     }
 
     final XMLQuadPolygon[] quadPolygons = group.loadXMLQuadPolygon();
     for (int i = 0; i < quadPolygons.length; i++) {
-      tg.addChild(PrimitiveFactory.create(quadPolygons[i]));
+      tg.addChild(Java3dPrimitiveFactory.create(quadPolygons[i]));
     }
 
     final Group[] groups = group.loadGroups();
     for (int i = 0; i < groups.length; i++) {
-      tg.addChild(PrimitiveFactory.create(groups[i]));
+      tg.addChild(Java3dPrimitiveFactory.create(groups[i]));
     }
 
     final LinkData[] data = group.loadLinkData();

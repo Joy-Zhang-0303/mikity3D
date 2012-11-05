@@ -6,7 +6,7 @@
 package org.mklab.mikity.picker;
 
 import org.mklab.mikity.java3d.Java3dModelCanvas;
-import org.mklab.mikity.java3d.MyTransformGroup;
+import org.mklab.mikity.java3d.Java3dTransformGroup;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.mikity.model.DHParameter;
@@ -28,7 +28,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /** 座標パラメータ */
   protected CoordinateParameter[] coordinateParameters;
   /** */
-  protected MyTransformGroup tg;
+  protected Java3dTransformGroup tg;
 
   private static int dataScale = 1;
   private static int modelScale = 1;

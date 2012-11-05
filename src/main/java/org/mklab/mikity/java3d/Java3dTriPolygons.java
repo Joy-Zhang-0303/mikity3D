@@ -16,13 +16,13 @@ import com.sun.j3d.utils.geometry.NormalGenerator;
  * @author SHOGO
  * @version $Revision: 1.2 $.2005/11/22
  */
-public class MyTriPolygons extends MyTransformGroup {
+public class Java3dTriPolygons extends Java3dTransformGroup {
   /** */
   private static final int RENDERING_ALL = 1;
 
   private GeometryArray geom = null;
   private Appearance app = null;
-  private double creaseAngle = MyUniverse.creaseAngle;
+  private double creaseAngle = Java3dUniverse.creaseAngle;
 
   /**
    * コンストラクター
@@ -32,7 +32,7 @@ public class MyTriPolygons extends MyTransformGroup {
    * @param transAttr 透明の属性
    * @param mode モード
    */
-  public MyTriPolygons(Point3d[] vertex, Material material, TransparencyAttributes transAttr, int mode) {
+  public Java3dTriPolygons(Point3d[] vertex, Material material, TransparencyAttributes transAttr, int mode) {
     // 形状の枠組み生成
     final Shape3D shape = new Shape3D();
     final Point3d[] vertex2 = new Point3d[(vertex.length - 2) * 3];

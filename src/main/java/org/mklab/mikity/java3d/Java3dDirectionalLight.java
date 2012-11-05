@@ -1,8 +1,5 @@
 package org.mklab.mikity.java3d;
 
-//**********************************************************************
-//            MyDirectionalLightクラス（暫定版） *
-//**********************************************************************
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.DirectionalLight;
@@ -10,16 +7,15 @@ import javax.vecmath.Color3f;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
-
 /**
  * 方向指示灯を表すクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $.2005/11/22
  */
-public class MyDirectionalLight extends BranchGroup {
+public class Java3dDirectionalLight extends BranchGroup {
 
-  private double radius = MyUniverse.boundsRadius;
+  private double radius = Java3dUniverse.boundsRadius;
 
   /**
    * コンストラクター
@@ -27,8 +23,7 @@ public class MyDirectionalLight extends BranchGroup {
    * @param color 色
    * @param direction ベクトル
    */
-  public MyDirectionalLight(Color3f color, Vector3f direction) {
-    // 光源オブジェクトの生成
+  public Java3dDirectionalLight(Color3f color, Vector3f direction) {
     DirectionalLight light = new DirectionalLight(color, direction);
 
     // 影響範囲の設定

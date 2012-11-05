@@ -20,7 +20,7 @@ import com.sun.j3d.utils.universe.ViewingPlatform;
  * @author SHOGO
  * @version $Revision: 1.4 $.2005/11/22
  */
-public class MyViewpoint {
+public class Java3dViewpoint {
   private TransformGroup vpTg = null;
 
   /**
@@ -30,7 +30,7 @@ public class MyViewpoint {
    * @param vector3f ベクトル
    * @param universe2 空間
    */
-  public MyViewpoint(AxisAngle4f angle4f, Vector3f vector3f, SimpleUniverse universe2) {
+  public Java3dViewpoint(AxisAngle4f angle4f, Vector3f vector3f, SimpleUniverse universe2) {
     ViewingPlatform vp = universe2.getViewingPlatform();
     this.vpTg = vp.getViewPlatformTransform();
 
@@ -46,7 +46,7 @@ public class MyViewpoint {
    * @param view 視点
    * @param mouseOperationType マウスの操作タイプ
    */
-  public MyViewpoint(SimpleUniverse uni, View view, int mouseOperationType) {
+  public Java3dViewpoint(SimpleUniverse uni, View view, int mouseOperationType) {
     ViewingPlatform vp = uni.getViewingPlatform();
     
     this.vpTg = vp.getViewPlatformTransform();

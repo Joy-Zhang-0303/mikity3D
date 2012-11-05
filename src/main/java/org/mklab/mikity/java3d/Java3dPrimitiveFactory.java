@@ -45,15 +45,13 @@ import com.sun.j3d.utils.geometry.Sphere;
  * @author miki
  * @version $Revision: 1.21 $.2004/11/30
  */
-public class PrimitiveFactory {
+public class Java3dPrimitiveFactory {
 
   /** 単位 */
   private static int scale = 1;
   private static boolean radian = true;
 
-  /**
-   * 透明度の設定
-   */
+  /** 透明度の設定 */
   private static TransparencyAttributes transAttr = new TransparencyAttributes(TransparencyAttributes.NICEST, 0.7f);
 
   /**
@@ -62,7 +60,7 @@ public class PrimitiveFactory {
    * @param group グループ
    * @return tg トランスフォームグループ
    */
-  public static MyTransformGroup create(Group group) {
+  public static Java3dTransformGroup create(Group group) {
     scale = Java3dModelCanvas.scale;
     radian = Java3dModelCanvas.radian;
 
@@ -75,7 +73,7 @@ public class PrimitiveFactory {
    * @param box ボックス
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static MyTransformGroup create(XMLBox box) {
+  public static Java3dTransformGroup create(XMLBox box) {
     int flag = Primitive.GENERATE_NORMALS;
     Primitive primitive = new Box(box.loadXsize() / (scale * 2), box.loadYsize() / (scale * 2), box.loadZsize() / (scale * 2), flag, null);
     Appearance appearance = new Appearance();
@@ -87,14 +85,14 @@ public class PrimitiveFactory {
       }
     }
     primitive.setAppearance(appearance);
-    MyTransformGroup tg = new MyTransformGroup();
+    Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
     // 続けると長くなるので、一度Locationを得る
-    Location loc = box.loadLocation();
-    Rotation rot = box.loadRotation();
+    Location location = box.loadLocation();
+    Rotation rotation = box.loadRotation();
 
-    applyLocRot(loc, rot, tg);
+    applyLocRot(location, rotation, tg);
 
     return tg;
   }
@@ -105,7 +103,7 @@ public class PrimitiveFactory {
    * @param cylinder シリンダー
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static MyTransformGroup create(XMLCylinder cylinder) {
+  public static Java3dTransformGroup create(XMLCylinder cylinder) {
     int flag = Primitive.GENERATE_NORMALS;
     if (cylinder.loadDiv() < 3) {
       cylinder.setDiv(10);
@@ -119,13 +117,13 @@ public class PrimitiveFactory {
       }
     }
     primitive.setAppearance(appearance);
-    MyTransformGroup tg = new MyTransformGroup();
+    Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    Location loc = cylinder.loadLocation();
-    Rotation rot = cylinder.loadRotation();
+    Location location = cylinder.loadLocation();
+    Rotation rotation = cylinder.loadRotation();
 
-    applyLocRot(loc, rot, tg);
+    applyLocRot(location, rotation, tg);
 
     return tg;
   }
@@ -136,7 +134,7 @@ public class PrimitiveFactory {
    * @param sphere スフィア
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static MyTransformGroup create(XMLSphere sphere) {
+  public static Java3dTransformGroup create(XMLSphere sphere) {
     int flag = Primitive.GENERATE_NORMALS;
     if (sphere.loadDiv() < 3) { 
       sphere.setDiv(10);
@@ -150,13 +148,13 @@ public class PrimitiveFactory {
       }
     }
     primitive.setAppearance(appearance);
-    MyTransformGroup tg = new MyTransformGroup();
+    Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    Location loc = sphere.loadLocation();
-    Rotation rot = sphere.loadRotation();
+    Location location = sphere.loadLocation();
+    Rotation rotation = sphere.loadRotation();
 
-    applyLocRot(loc, rot, tg);
+    applyLocRot(location, rotation, tg);
 
     return tg;
   }
@@ -167,7 +165,7 @@ public class PrimitiveFactory {
    * @param cone コーン
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static MyTransformGroup create(XMLCone cone) {
+  public static Java3dTransformGroup create(XMLCone cone) {
     int flag = Primitive.GENERATE_NORMALS;
     if (cone.loadDiv() < 3) { 
       cone.setDiv(10);
@@ -181,13 +179,13 @@ public class PrimitiveFactory {
       }
     }
     primitive.setAppearance(appearance);
-    MyTransformGroup tg = new MyTransformGroup();
+    Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    Location loc = cone.loadLocation();
-    Rotation rot = cone.loadRotation();
+    Location location = cone.loadLocation();
+    Rotation rotation = cone.loadRotation();
 
-    applyLocRot(loc, rot, tg);
+    applyLocRot(location, rotation, tg);
 
     return tg;
   }
@@ -198,7 +196,7 @@ public class PrimitiveFactory {
    * @param connector コネクタ
    * @return tg 与えられたファイルで出来るプリミティブ (XMLConnector クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static MyTransformGroup create(XMLConnector connector) {
+  public static Java3dTransformGroup create(XMLConnector connector) {
     int flag = Primitive.GENERATE_NORMALS;
     Primitive primitive = new Cylinder(connector.loadR(), connector.loadHeight(), flag, connector.loadDiv(), connector.loadDiv(), null);
     Appearance appearance = new Appearance();
@@ -209,12 +207,12 @@ public class PrimitiveFactory {
       }
     }
     primitive.setAppearance(appearance);
-    MyTransformGroup tg = new MyTransformGroup();
+    Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
-    Location loc = connector.loadLocation();
-    Rotation rot = connector.loadRotation();
+    Location location = connector.loadLocation();
+    Rotation rotation = connector.loadRotation();
 
-    applyLocRot(loc, rot, tg);
+    applyLocRot(location, rotation, tg);
 
     return tg;
   }
@@ -225,7 +223,7 @@ public class PrimitiveFactory {
    * @param triangle 三角形ポリゴン
    * @return tg 与えられたファイルで出来るプリミティブ (XMLTrianglePolygon クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static MyTransformGroup create(XMLTrianglePolygon triangle) {
+  public static Java3dTransformGroup create(XMLTrianglePolygon triangle) {
     Point3f[] vertices = new Point3f[3];
 
     for (int i = 0; i < vertices.length; i++) {
@@ -248,7 +246,7 @@ public class PrimitiveFactory {
     geometry.setCoordinateIndices(0, indices);
     geometry.setColors(0, colors);
     geometry.setColorIndices(0, colorIndices);
-    MyTransformGroup tg = new MyTransformGroup();
+    Java3dTransformGroup tg = new Java3dTransformGroup();
     Shape3D shape = new Shape3D(geometry);
 
     Appearance appearance = new Appearance();
@@ -261,11 +259,11 @@ public class PrimitiveFactory {
     shape.setAppearance(appearance);
 
     tg.addChild(shape);
-    Location loc = triangle.loadLocation();
-    Rotation rot = triangle.loadRotation();
+    Location location = triangle.loadLocation();
+    Rotation rotation = triangle.loadRotation();
     Matrix4f matrix = triangle.loadMatrix();
     applyMatrix(matrix, tg);
-    applyLocRot(loc, rot, tg);
+    applyLocRot(location, rotation, tg);
     return tg;
   }
 
@@ -275,7 +273,7 @@ public class PrimitiveFactory {
    * @param quad 四角形ポリゴン
    * @return tg 与えられたファイルで出来るプリミティブ (XMLQuadPolygon クラス名 org.mklab.mikity.xml 変数名)
    */
-  public static MyTransformGroup create(XMLQuadPolygon quad) {
+  public static Java3dTransformGroup create(XMLQuadPolygon quad) {
     Point3f[] vertices = new Point3f[4];
 
     for (int i = 0; i < vertices.length; i++) {
@@ -299,7 +297,7 @@ public class PrimitiveFactory {
     geometry.setCoordinateIndices(0, indices);
     geometry.setColors(0, colors);
     geometry.setColorIndices(0, colorIndices);
-    MyTransformGroup tg = new MyTransformGroup();
+    Java3dTransformGroup tg = new Java3dTransformGroup();
     Shape3D shape = new Shape3D(geometry);
 
     Appearance appearance = new Appearance();
@@ -312,11 +310,11 @@ public class PrimitiveFactory {
     shape.setAppearance(appearance);
 
     tg.addChild(shape);
-    Location loc = quad.loadLocation();
-    Rotation rot = quad.loadRotation();
+    Location location = quad.loadLocation();
+    Rotation rotation = quad.loadRotation();
     Matrix4f matrix = quad.loadMatrix();
     applyMatrix(matrix, tg);
-    applyLocRot(loc, rot, tg);
+    applyLocRot(location, rotation, tg);
     return tg;
   }
 
@@ -327,7 +325,7 @@ public class PrimitiveFactory {
    * @param rot
    * @param tg
    */
-  private static void applyLocRot(Location loc, Rotation rot, MyTransformGroup tg) {
+  private static void applyLocRot(Location loc, Rotation rot, Java3dTransformGroup tg) {
     if (rot != null) {
       if (radian == false) {
         // radian表記でない場合
@@ -352,7 +350,7 @@ public class PrimitiveFactory {
    * @param rot
    * @param tg
    */
-  private static void applyMatrix(Matrix4f matrix, MyTransformGroup tg) {
+  private static void applyMatrix(Matrix4f matrix, Java3dTransformGroup tg) {
     if (matrix != null) {
       Matrix3f mat3 = new Matrix3f();
       mat3.setElement(0,0,matrix.getElement(0,3));

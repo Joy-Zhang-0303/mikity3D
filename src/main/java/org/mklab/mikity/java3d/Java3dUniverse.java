@@ -20,7 +20,7 @@ import com.sun.j3d.utils.universe.ViewingPlatform;
   * @author miki
   * @version $Revision: 1.7 $.2004/12/22
   */
-public class MyUniverse {
+public class Java3dUniverse {
   /** */
   private static Applet applet = null;
   /** */
@@ -45,7 +45,7 @@ public class MyUniverse {
    * 
    * @param app アプレット
    */
-  public MyUniverse(Applet app) {
+  public Java3dUniverse(Applet app) {
     applet = app;
 
     // 画面オブジェクトの生成
@@ -69,7 +69,7 @@ public class MyUniverse {
    * 新しく生成された<code>MyUniverse</code>オブジェクトを初期化します。
    * @param frame
    */
-  public MyUniverse(Frame frame) {
+  public Java3dUniverse(Frame frame) {
     // 画面オブジェクトの生成
     canvas = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
     canvas.setCursor(new Cursor(Cursor.HAND_CURSOR));

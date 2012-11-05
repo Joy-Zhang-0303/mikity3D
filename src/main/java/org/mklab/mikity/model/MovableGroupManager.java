@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mklab.mikity.java3d.MyTransformGroup;
+import org.mklab.mikity.java3d.Java3dTransformGroup;
 import org.mklab.mikity.jogl.JoglTransformGroup;
 import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.picker.DataPicker;
@@ -305,7 +305,7 @@ public class MovableGroupManager {
    * @param group グループ
    * @param tg トランスフォームグループ
    */
-  public static void assignGroup(final Group group, final MyTransformGroup tg) {
+  public static void assignGroup(final Group group, final Java3dTransformGroup tg) {
     MOVABLE_GROUPS.put(group, tg);
   }
 

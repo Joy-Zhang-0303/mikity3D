@@ -70,7 +70,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     getParameter(root);
 
     // 平行光線の設定
-    MyDirectionalLight light = new MyDirectionalLight(new Color3f(1.0f, 1.0f, 1.0f), this.lightLocation);
+    Java3dDirectionalLight light = new Java3dDirectionalLight(new Color3f(1.0f, 1.0f, 1.0f), this.lightLocation);
 
     // 背景色の設定
     BranchGroup background = createBackground(this.backgroundColor);
@@ -79,7 +79,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     bg.addChild(background);
 
     // 基準座標系の設定
-    MyTransformGroup tg = new MyTransformGroup();
+    Java3dTransformGroup tg = new Java3dTransformGroup();
 
     initializeMouse(tg);
 
@@ -133,7 +133,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    * 
    * @param tg 追加対象ノード
    */
-  private void initializeMouse(final MyTransformGroup tg) {
+  private void initializeMouse(final Java3dTransformGroup tg) {
     final float radius = 100f;
 
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
@@ -180,7 +180,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
 
     for (int i = 0; i < groups.length; i++) {
       bg.addChild(tg);
-      MyTransformGroup child = PrimitiveFactory.create(groups[i]);
+      Java3dTransformGroup child = Java3dPrimitiveFactory.create(groups[i]);
       tg.addChild(child);
     }
 
@@ -190,10 +190,10 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   /**
    * XMLデータからConfigデータを読み込みます。
    * 
-   * @param argRoot
+   * @param aRoot
    */
-  private void getParameter(Jamast argRoot) {
-    JamastConfig config = argRoot.loadConfig(0);
+  private void getParameter(Jamast aRoot) {
+    JamastConfig config = aRoot.loadConfig(0);
     if (config == null) {
       return;
     }
@@ -213,9 +213,9 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
 
     // 視点の位置、向きをセット
     if (config.loadView() != null) {
-      new MyViewpoint(this.universe, config.loadView(), this.mouseOperationType);
+      new Java3dViewpoint(this.universe, config.loadView(), this.mouseOperationType);
     } else {
-      new MyViewpoint(new AxisAngle4f(1.0f, 0.0f, 0.0f, -0.2f), new Vector3f(0.0f, 0.3f, 1.0f), this.universe);
+      new Java3dViewpoint(new AxisAngle4f(1.0f, 0.0f, 0.0f, -0.2f), new Vector3f(0.0f, 0.3f, 1.0f), this.universe);
     }
 
   }
