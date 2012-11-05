@@ -1,5 +1,7 @@
 package org.mklab.mikity.model;
 
+import javax.media.j3d.TransformGroup;
+
 import org.mklab.mikity.java3d.MyTransformGroup;
 import org.mklab.mikity.java3d.PrimitiveFactory;
 import org.mklab.mikity.util.Util;
@@ -15,11 +17,13 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 
 /**
+ * {@link TransformGroup}のファクトリークラスです。
  * @author iwamoto
  * @version $Revision$, 2011/12/22
  */
 public class TransformGroupFactory {
   /**
+   * {@link TransformGroup}を生成します。
    * @param group グループ
    * @return トランスフォームグループ
    */
@@ -66,19 +70,14 @@ public class TransformGroupFactory {
       tg.addChild(PrimitiveFactory.create(groups[i]));
     }
 
-    /*
-     * DHParameterの設定
-     */
-    final LinkData[] linkData = group.loadLinkData();
-    for (int i = 0; i < linkData.length; i++) {
-      if (linkData[i].hasDH()) {
-        // 初期値のDHパラメータを作成
-        final DHParameter parameter = Util.getDHParameter(linkData);
+    final LinkData[] data = group.loadLinkData();
+    for (int i = 0; i < data.length; i++) {
+      if (data[i].hasDhParameter()) {
+        final DHParameter parameter = Util.getDHParameter(data);
         tg.setDHParameter(parameter);
         break;
-      } else if (linkData[i].hasLink()) {
-        // DHパラメータを使わないVer
-        final CoordinateParameter parameter = Util.getCoordinateParameter(linkData);
+      } else if (data[i].hasCoordinateParameter()) {
+        final CoordinateParameter parameter = Util.getCoordinateParameter(data);
         tg.setCoordinateParameter(parameter);
         break;
       }

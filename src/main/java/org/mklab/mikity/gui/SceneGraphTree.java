@@ -830,10 +830,10 @@ public class SceneGraphTree {
       for (int i = 0; i < g.length; i++) {
         LinkData[] link = g[i].loadLinkData();
         for (int j = 0; j < link.length; j++) {
-          if (link[j].hasDH()) {
+          if (link[j].hasDhParameter()) {
             this.usedDHParam = true;
             break;
-          } else if (link[j].hasLink()) {
+          } else if (link[j].hasCoordinateParameter()) {
             this.usedLink = true;
             break;
           }

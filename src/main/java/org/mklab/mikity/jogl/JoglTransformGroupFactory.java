@@ -48,13 +48,13 @@ public class JoglTransformGroupFactory {
      */
     LinkData[] linkData = group.loadLinkData();
     for (int i = 0; i < linkData.length; i++) {
-      if (linkData[i].hasDH()) {
+      if (linkData[i].hasDhParameter()) {
         // 初期値のDHパラメータを作成
         parameter = Util.getDHParameter(linkData);
         //        tg.setDHParameter(parameter);
         parameters.add(parameter);
         break;
-      } else if (linkData[i].hasLink()) {
+      } else if (linkData[i].hasCoordinateParameter()) {
         // DHパラメータを使わないVer
         link = Util.getCoordinateParameter(linkData);
         //        tg.setLinkParameter(link);

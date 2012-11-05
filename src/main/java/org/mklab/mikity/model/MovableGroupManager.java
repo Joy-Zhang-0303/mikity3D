@@ -27,7 +27,6 @@ import org.mklab.nfc.matrix.Matrix;
  * @version $Revision: 1.10 $.2005/01/14
  */
 public class MovableGroupManager {
-
   /** 動かせるグループのリスト */
   private List<MovableGroup> movableGroups = new ArrayList<MovableGroup>();
   private Map<MovableGroup, AbstractDataPicker> pickers = new HashMap<MovableGroup, AbstractDataPicker>();
@@ -128,7 +127,7 @@ public class MovableGroupManager {
     AbstractDataPicker picker = new ClosenessDataPicker(this.data);
 
     for (int i = 0; i < linkdata.length; i++) {
-      if (linkdata[i].hasDH()) {
+      if (linkdata[i].hasDhParameter()) {
         if (linkdata[i].hasColumn()) {
           int col = linkdata[i].loadColumn();
           String target = linkdata[i].loadTarget();
@@ -165,7 +164,7 @@ public class MovableGroupManager {
           }
           picker.setConstantDHParameter(setType, constantValue);
         }
-      } else if (linkdata[i].hasLink()) {
+      } else if (linkdata[i].hasCoordinateParameter()) {
         if (linkdata[i].hasColumn()) {
           int col = linkdata[i].loadColumn();
           String target = linkdata[i].loadTarget();
