@@ -47,13 +47,13 @@ public interface DataPicker {
    * @param type タイプ
    * @param value 値
    */
-  void setConstantDHParameter(int type, double value);
+  void setDHParameter(int type, double value);
 
   /**
    * @param type セットタイプ
    * @param value initialTranformに固定値をセットする
    */
-  void setConstantCoordinateParameter(int type, double value);
+  void setCoordinateParameter(int type, double value);
 
   /**
    * @param time 時間を与えると、それに最も近い時間のある行rowを返す

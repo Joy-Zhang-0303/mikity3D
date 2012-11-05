@@ -72,7 +72,7 @@ public class TransformGroupFactory {
 
     final LinkData[] data = group.loadLinkData();
     for (int i = 0; i < data.length; i++) {
-      if (data[i].hasDhParameter()) {
+      if (data[i].hasDHParameter()) {
         final DHParameter parameter = Util.getDHParameter(data);
         tg.setDHParameter(parameter);
         break;

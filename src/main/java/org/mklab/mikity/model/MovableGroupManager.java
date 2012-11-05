@@ -12,7 +12,6 @@ import java.util.Map;
 
 import org.mklab.mikity.java3d.MyTransformGroup;
 import org.mklab.mikity.jogl.JoglTransformGroup;
-import org.mklab.mikity.picker.AbstractDataPicker;
 import org.mklab.mikity.picker.ClosenessDataPicker;
 import org.mklab.mikity.picker.DataPicker;
 import org.mklab.mikity.xml.Jamast;
@@ -108,30 +107,30 @@ public class MovableGroupManager {
    */
   private void addGroup(final Group[] groups) {
     for (int i = 0; i < groups.length; i++) {
-      Group g = groups[i];
-      MovableGroup tg = MOVABLE_GROUPS.get(g);
-      setMovableLinkData(g.loadLinkData(), tg);
-      addGroup(g.loadGroup());
+      Group group = groups[i];
+      MovableGroup tg = MOVABLE_GROUPS.get(group);
+      setMovableLinkData(group.loadLinkData(), tg);
+      addGroup(group.loadGroup());
     }
   }
 
   /**
    * 移動可能なグループリストの設定
    * 
-   * @param linkdata リンクデータ
+   * @param linkData リンクデータ
    * @param group TransformGroup
    */
-  private void setMovableLinkData(LinkData[] linkdata, MovableGroup group) {
-    if (linkdata.length == 0) {
+  private void setMovableLinkData(LinkData[] linkData, MovableGroup group) {
+    if (linkData.length == 0) {
       return;
     }
     DataPicker picker = new ClosenessDataPicker(this.data);
 
-    for (int i = 0; i < linkdata.length; i++) {
-      if (linkdata[i].hasDhParameter()) {
-        if (linkdata[i].hasColumn()) {
-          int col = linkdata[i].loadColumn();
-          String target = linkdata[i].loadTarget();
+    for (int i = 0; i < linkData.length; i++) {
+      if (linkData[i].hasDHParameter()) {
+        if (linkData[i].hasColumn()) {
+          int column = linkData[i].loadColumn();
+          String target = linkData[i].loadTarget();
           int setType = 0;
 
           if (target.equals("a")) { //$NON-NLS-1$
@@ -145,11 +144,11 @@ public class MovableGroupManager {
           } else {
             System.out.println(Messages.getString("MovableGroupManager.0")); //$NON-NLS-1$
           }
-          picker.addMoveTypeDH(setType, col);
+          picker.addMoveTypeDH(setType, column);
         }
-        if (linkdata[i].hasConst()) {
-          double constantValue = linkdata[i].loadConst();
-          String target = linkdata[i].loadTarget();
+        if (linkData[i].hasConst()) {
+          double value = linkData[i].loadConst();
+          String target = linkData[i].loadTarget();
           int setType = 0;
 
           if (target.equals("a")) { //$NON-NLS-1$
@@ -163,12 +162,12 @@ public class MovableGroupManager {
           } else {
             System.err.println(Messages.getString("MovableGroupManager.1")); //$NON-NLS-1$
           }
-          picker.setConstantDHParameter(setType, constantValue);
+          picker.setDHParameter(setType, value);
         }
-      } else if (linkdata[i].hasCoordinateParameter()) {
-        if (linkdata[i].hasColumn()) {
-          int col = linkdata[i].loadColumn();
-          String target = linkdata[i].loadTarget();
+      } else if (linkData[i].hasCoordinateParameter()) {
+        if (linkData[i].hasColumn()) {
+          int column = linkData[i].loadColumn();
+          String target = linkData[i].loadTarget();
           int setType = 0;
 
           if (target.equals("locationX")) { //$NON-NLS-1$
@@ -186,11 +185,11 @@ public class MovableGroupManager {
           } else {
             //
           }
-          picker.addMoveType(setType, col);
+          picker.addMoveType(setType, column);
         }
-        if (linkdata[i].hasConst()) {
-          double constantValue = linkdata[i].loadConst();
-          String target = linkdata[i].loadTarget();
+        if (linkData[i].hasConst()) {
+          double value = linkData[i].loadConst();
+          String target = linkData[i].loadTarget();
           int setType = 0;
 
           if (target.equals("locationX")) { //$NON-NLS-1$
@@ -208,7 +207,7 @@ public class MovableGroupManager {
           } else {
             //
           }
-          picker.setConstantCoordinateParameter(setType, constantValue);
+          picker.setCoordinateParameter(setType, value);
         }
       }
     }

@@ -48,7 +48,7 @@ public class JoglTransformGroupFactory {
      */
     LinkData[] linkData = group.loadLinkData();
     for (int i = 0; i < linkData.length; i++) {
-      if (linkData[i].hasDhParameter()) {
+      if (linkData[i].hasDHParameter()) {
         // 初期値のDHパラメータを作成
         parameter = Util.getDHParameter(linkData);
         //        tg.setDHParameter(parameter);

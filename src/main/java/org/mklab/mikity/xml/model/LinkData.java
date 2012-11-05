@@ -202,7 +202,7 @@ public class LinkData implements java.io.Serializable {
   /**
    * @return DHを持つならばtrue
    */
-  public boolean hasDhParameter() {
+  public boolean hasDHParameter() {
     if (this._target.equals("a") || this._target.equals("alpha") || this._target.equals("d") || this._target.equals("theta")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
       this._has_dh = true;
     }

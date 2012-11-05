@@ -243,7 +243,7 @@ public abstract class AbstractModeler extends Composite {
         }
 
         for (int i = 0; i < linkdata.length; i++) {
-          if (linkdata[i].hasDhParameter()) {
+          if (linkdata[i].hasDHParameter()) {
             GroupConfigDialogDH groupConf = new GroupConfigDialogDH(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
             groupConf.open();
             break;

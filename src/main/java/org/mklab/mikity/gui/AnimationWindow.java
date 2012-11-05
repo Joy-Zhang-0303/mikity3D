@@ -370,7 +370,7 @@ public class AnimationWindow extends ApplicationWindow {
       for (int i = 0; i < subGroup.length; i++) {
         org.mklab.mikity.xml.model.LinkData[] link = subGroup[i].loadLinkData();
         for (int j = 0; j < link.length; j++) {
-          if (link[j].hasDhParameter()) {
+          if (link[j].hasDHParameter()) {
             this.usedDHParam = true;
             this.manager.setHasDHParameter(this.usedDHParam);
           } else if (link[j].hasCoordinateParameter()) {

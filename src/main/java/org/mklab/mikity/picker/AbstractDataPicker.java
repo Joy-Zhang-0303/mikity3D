@@ -14,7 +14,7 @@ import org.mklab.nfc.matrix.Matrix;
 
 
 /**
- * データを抽出するクラスです。
+ * データを抽出するため抽象クラスです。
  * @author miki
  * @version $Revision: 1.7 $.2005/01/17
  */
@@ -43,7 +43,6 @@ public abstract class AbstractDataPicker implements DataPicker {
   public AbstractDataPicker(Matrix data) {
     this.data = (DoubleMatrix)data;
 
-    // 列の数の配列を作成
     this.dhParameters = new DHParameter[data.getColumnSize()];
     for (int i = 0; i < this.dhParameters.length; i++) {
       this.dhParameters[i] = new DHParameter();
@@ -155,7 +154,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public void setConstantDHParameter(int type, double value) {
+  public void setDHParameter(int type, double value) {
     switch (type) {
       case DHParameter.A:
         for (int i = 0; i < this.dhParameters.length; i++) {
@@ -195,7 +194,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public void setConstantCoordinateParameter(int type, double value) {
+  public void setCoordinateParameter(int type, double value) {
     switch (type) {
       case CoordinateParameter.LOCX:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
@@ -288,16 +287,16 @@ public abstract class AbstractDataPicker implements DataPicker {
     return this.data.getElement(1, 1).doubleValue();
   }
 
-  /**
-   * @param dScale スケール
-   * @param dRadian 角度
-   * @param mRadian 角度
-   * @param mScale スケール
-   */
-  public static void setScale(int dScale, boolean dRadian, int mScale, boolean mRadian) {
-    // dataScale = dScale;
-    dataIsRadian = dRadian;
-    modelScale = mScale;
-    modelIsRadian = mRadian;
-  }
+//  /**
+//   * @param dScale スケール
+//   * @param dRadian 角度
+//   * @param mRadian 角度
+//   * @param mScale スケール
+//   */
+//  public static void setScale(int dScale, boolean dRadian, int mScale, boolean mRadian) {
+//    // dataScale = dScale;
+//    dataIsRadian = dRadian;
+//    modelScale = mScale;
+//    modelIsRadian = mRadian;
+//  }
 }
