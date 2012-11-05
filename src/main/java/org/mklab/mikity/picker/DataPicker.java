@@ -63,17 +63,17 @@ public interface DataPicker {
 
   /**
    * @param row データの行数（何番目のデータか）
-   * @param time 時刻
+   * @param t 時刻
    * @return 時刻timeのときのrow行目のデータ
    */
-  double getValue(int row, double time);
+  double getValue(int row, double t);
 
   /**
    * @param row 行
-   * @param col 列
-   * @return data.getElement(row, col)
+   * @param column 列
+   * @return data.getElement(row, column)
    */
-  double getValue(int row, int col);
+  double getValue(int row, int column);
 
   /**
    * @return data.getColSize()

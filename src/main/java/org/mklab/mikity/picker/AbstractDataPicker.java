@@ -26,14 +26,14 @@ public abstract class AbstractDataPicker implements DataPicker {
   /** */
   protected CoordinateParameter[] coordinateParameters;
   /** */
-  protected MyTransformGroup trans;
+  protected MyTransformGroup tg;
 
   private static int dataScale = 1;
   private static int modelScale = 1;
 
   private static boolean dataIsRadian = true;
   /** */
-  static boolean modelIsRadian = true;
+  //static boolean modelIsRadian = true;
 
   /**
    * コンストラクター
@@ -286,17 +286,4 @@ public abstract class AbstractDataPicker implements DataPicker {
   public double getStartTime() {
     return this.data.getElement(1, 1).doubleValue();
   }
-
-//  /**
-//   * @param dScale スケール
-//   * @param dRadian 角度
-//   * @param mRadian 角度
-//   * @param mScale スケール
-//   */
-//  public static void setScale(int dScale, boolean dRadian, int mScale, boolean mRadian) {
-//    // dataScale = dScale;
-//    dataIsRadian = dRadian;
-//    modelScale = mScale;
-//    modelIsRadian = mRadian;
-//  }
 }

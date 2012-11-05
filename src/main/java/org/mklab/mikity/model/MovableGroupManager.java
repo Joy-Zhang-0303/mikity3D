@@ -255,16 +255,16 @@ public class MovableGroupManager {
   /**
    * DHパラメータの使用の有無を設定します。
    * 
-   * @param using DHパラメータ使用の有無
+   * @param hasDHParameter DHパラメータ使用の有無
    */
-  public void setHasDHParameter(boolean using) {
-    this.hasDHParameter = using;
+  public void setHasDHParameter(boolean hasDHParameter) {
+    this.hasDHParameter = hasDHParameter;
   }
 
   /**
    * DHパラメータの使用の有無を返します。
    * 
-   * @return　usedDHParam　DHパラメータの使用の有無
+   * @return　DHパラメータの使用の有無
    */
   public boolean hasDHParameter() {
     return this.hasDHParameter;
@@ -273,16 +273,16 @@ public class MovableGroupManager {
   /**
    * 座標パラメータの使用の有無を設定します。
    * 
-   * @param using 座標パラメータ使用の有無
+   * @param hasCoordinateParameter 座標パラメータ使用の有無
    */
-  public void setHasCoordinateParameter(boolean using) {
-    this.hasCoordinateParameter = using;
+  public void setHasCoordinateParameter(boolean hasCoordinateParameter) {
+    this.hasCoordinateParameter = hasCoordinateParameter;
   }
 
   /**
    * 座標パラメータの使用の有無を返します。
    * 
-   * @return　usedLink　座標パラメータ使用の有無
+   * @return　座標パラメータ使用の有無
    */
   public boolean hasCoordinateParameter() {
     return this.hasCoordinateParameter;

@@ -30,7 +30,6 @@ public class InterpolateDataPicker extends AbstractDataPicker {
   /**
    * {@inheritDoc}
    */
-  @Override
   public DHParameter getDHParameter(double t) {
     return null;
   }
@@ -38,7 +37,6 @@ public class InterpolateDataPicker extends AbstractDataPicker {
   /**
    * {@inheritDoc}
    */
-  @Override
   public CoordinateParameter getCoordinateParameter(double t) {
     return null;
   }

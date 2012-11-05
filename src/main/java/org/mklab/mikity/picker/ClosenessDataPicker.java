@@ -30,19 +30,17 @@ public class ClosenessDataPicker extends AbstractDataPicker {
   /**
    * {@inheritDoc}
    */
-  @Override
-  public DHParameter getDHParameter(double time) {
-    int col = getColumn(time);
-    return this.dhParameters[col - 1];
+  public DHParameter getDHParameter(double t) {
+    int column = getColumn(t);
+    return this.dhParameters[column - 1];
   }
 
   /**
    * {@inheritDoc}
    */
-  @Override
-  public CoordinateParameter getCoordinateParameter(double time) {
-    int col = getColumn(time);
-    return this.coordinateParameters[col - 1];
+  public CoordinateParameter getCoordinateParameter(double t) {
+    int column = getColumn(t);
+    return this.coordinateParameters[column - 1];
   }
 
 }
