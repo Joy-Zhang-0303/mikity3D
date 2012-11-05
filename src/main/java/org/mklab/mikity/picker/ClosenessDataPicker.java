@@ -31,7 +31,7 @@ public class ClosenessDataPicker extends AbstractDataPicker {
    * {@inheritDoc}
    */
   public DHParameter getDHParameter(double t) {
-    int column = getColumn(t);
+    int column = getDataNumber(t);
     return this.dhParameters[column - 1];
   }
 
@@ -39,7 +39,7 @@ public class ClosenessDataPicker extends AbstractDataPicker {
    * {@inheritDoc}
    */
   public CoordinateParameter getCoordinateParameter(double t) {
-    int column = getColumn(t);
+    int column = getDataNumber(t);
     return this.coordinateParameters[column - 1];
   }
 

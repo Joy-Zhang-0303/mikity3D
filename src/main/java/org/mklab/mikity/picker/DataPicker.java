@@ -34,15 +34,15 @@ public interface DataPicker {
 
   /**
    * @param type パラメータのタイプ
-   * @param row 行番号
+   * @param dataNumber データ番号
    */
-  void addMoveType(DHParameterType type, int row);
+  void readAndSetParameter(DHParameterType type, int dataNumber);
 
   /**
    * @param type パラメータのタイプ
-   * @param row 行番号
+   * @param dataNumber データ番号
    */
-  void addMoveType(CoordinateParameterType type, int row);
+  void readAndSetParameter(CoordinateParameterType type, int dataNumber);
 
   /**
    * initialTranformに値を設定します。
@@ -61,24 +61,26 @@ public interface DataPicker {
   void setParameter(CoordinateParameterType type, double value);
 
   /**
-   * @param t 時間を与えると、それに最も近い時間のある行rowを返す
-   * @return getValue(row, getColumn(time))
-   */
-  int getColumn(double t);
-
-  /**
-   * @param row データの行数（何番目のデータか）
+   * 与えられた時刻に最も近いデータが存在する時刻に対応するデータ番号を返します。
+   * 
    * @param t 時刻
-   * @return 時刻tのときのrow行目のデータ
+   * @return 与えられた時刻に最も近いデータが存在する時刻に対応するデータ番号
    */
-  double getValue(int row, double t);
+  int getDataNumber(double t);
 
-  /**
-   * @param row 行
-   * @param column 列
-   * @return data.getElement(row, column)
-   */
-  double getValue(int row, int column);
+//  /**
+//   * @param row データの番号
+//   * @param t 時刻
+//   * @return 時刻tのときのdataNumber番のデータ
+//   */
+//  double getValue(int row, double t);
+
+//  /**
+//   * @param row 行
+//   * @param column 列
+//   * @return data.getElement(row, column)
+//   */
+//  double getValue(int row, int column);
 
   /**
    * @return data.getColSize()

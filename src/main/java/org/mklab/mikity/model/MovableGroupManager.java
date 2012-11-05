@@ -136,35 +136,35 @@ public class MovableGroupManager {
     for (int i = 0; i < linkData.length; i++) {
       if (linkData[i].hasDHParameter()) {
         if (linkData[i].hasDataNumber()) {
-          final int column = linkData[i].loadDataNumber();
-          final String target = linkData[i].loadTargetName();
+          final int dataNumber = linkData[i].loadDataNumber();
+          final String parameterName = linkData[i].loadTargetName();
           DHParameterType type;
 
-          if (target.equals("a")) { //$NON-NLS-1$
+          if (parameterName.equals("a")) { //$NON-NLS-1$
             type = DHParameterType.A;
-          } else if (target.equals("alpha")) { //$NON-NLS-1$
+          } else if (parameterName.equals("alpha")) { //$NON-NLS-1$
             type = DHParameterType.ALPHA;
-          } else if (target.equals("d")) { //$NON-NLS-1$
+          } else if (parameterName.equals("d")) { //$NON-NLS-1$
             type = DHParameterType.D;
-          } else if (target.equals("theta")) { //$NON-NLS-1$
+          } else if (parameterName.equals("theta")) { //$NON-NLS-1$
             type = DHParameterType.THETA;
           } else {
             throw new IllegalArgumentException(Messages.getString("MovableGroupManager.0")); //$NON-NLS-1$
           }
-          picker.addMoveType(type, column);
+          picker.readAndSetParameter(type, dataNumber);
         }
         if (linkData[i].hasInitialValue()) {
           final double value = linkData[i].loadInitialValue();
-          final String target = linkData[i].loadTargetName();
+          final String parameterName = linkData[i].loadTargetName();
           DHParameterType type;
 
-          if (target.equals("a")) { //$NON-NLS-1$
+          if (parameterName.equals("a")) { //$NON-NLS-1$
             type = DHParameterType.A;
-          } else if (target.equals("alpha")) { //$NON-NLS-1$
+          } else if (parameterName.equals("alpha")) { //$NON-NLS-1$
             type = DHParameterType.ALPHA;
-          } else if (target.equals("d")) { //$NON-NLS-1$
+          } else if (parameterName.equals("d")) { //$NON-NLS-1$
             type = DHParameterType.D;
-          } else if (target.equals("theta")) { //$NON-NLS-1$
+          } else if (parameterName.equals("theta")) { //$NON-NLS-1$
             type = DHParameterType.THETA;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.1")); //$NON-NLS-1$
@@ -173,43 +173,43 @@ public class MovableGroupManager {
         }
       } else if (linkData[i].hasCoordinateParameter()) {
         if (linkData[i].hasDataNumber()) {
-          final int column = linkData[i].loadDataNumber();
-          final String target = linkData[i].loadTargetName();
+          final int dataNumber = linkData[i].loadDataNumber();
+          final String parameterName = linkData[i].loadTargetName();
           CoordinateParameterType type;
 
-          if (target.equals("locationX")) { //$NON-NLS-1$
+          if (parameterName.equals("locationX")) { //$NON-NLS-1$
             type = CoordinateParameterType.LOCX;
-          } else if (target.equals("locationY")) { //$NON-NLS-1$
+          } else if (parameterName.equals("locationY")) { //$NON-NLS-1$
             type = CoordinateParameterType.LOCY;
-          } else if (target.equals("locationZ")) { //$NON-NLS-1$
+          } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
             type = CoordinateParameterType.LOCZ;
-          } else if (target.equals("rotationX")) { //$NON-NLS-1$
+          } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
             type = CoordinateParameterType.ROTX;
-          } else if (target.equals("rotationY")) { //$NON-NLS-1$
+          } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
             type = CoordinateParameterType.ROTY;
-          } else if (target.equals("rotationZ")) { //$NON-NLS-1$
+          } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
             type = CoordinateParameterType.ROTZ;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
-          picker.addMoveType(type, column);
+          picker.readAndSetParameter(type, dataNumber);
         }
         if (linkData[i].hasInitialValue()) {
           final double value = linkData[i].loadInitialValue();
-          final String target = linkData[i].loadTargetName();
+          final String parameterName = linkData[i].loadTargetName();
           CoordinateParameterType type;
 
-          if (target.equals("locationX")) { //$NON-NLS-1$
+          if (parameterName.equals("locationX")) { //$NON-NLS-1$
             type = CoordinateParameterType.LOCX;
-          } else if (target.equals("locationY")) { //$NON-NLS-1$
+          } else if (parameterName.equals("locationY")) { //$NON-NLS-1$
             type = CoordinateParameterType.LOCY;
-          } else if (target.equals("locationZ")) { //$NON-NLS-1$
+          } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
             type = CoordinateParameterType.LOCZ;
-          } else if (target.equals("rotationX")) { //$NON-NLS-1$
+          } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
             type = CoordinateParameterType.ROTX;
-          } else if (target.equals("rotationY")) { //$NON-NLS-1$
+          } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
             type = CoordinateParameterType.ROTY;
-          } else if (target.equals("rotationZ")) { //$NON-NLS-1$
+          } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
             type = CoordinateParameterType.ROTZ;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.3")); //$NON-NLS-1$
