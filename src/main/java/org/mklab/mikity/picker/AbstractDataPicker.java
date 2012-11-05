@@ -56,7 +56,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void readAndSetParameter(DHParameterType type, int dataNumber) {
+  public final void readDataAndSetParameter(DHParameterType type, int dataNumber) {
     if (this.data.getRowSize() < dataNumber) {
       throw new IllegalArgumentException(); 
     }
@@ -102,7 +102,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void readAndSetParameter(CoordinateParameterType type, int dataNumber) {
+  public final void readDataAndSetParameter(CoordinateParameterType type, int dataNumber) {
     if (this.data.getRowSize() < dataNumber) {
       throw new IllegalAccessError();
     }
@@ -260,20 +260,6 @@ public abstract class AbstractDataPicker implements DataPicker {
     DoubleMatrix error = this.data.getRowVector(1).subtractElementWise(t).absElementWise();
     return error.minimumRowWise().getIndices().getIntElement(1);
   }
-
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public double getValue(int row, double t) {
-//    return getValue(row, getDataNumber(t));
-//  }
-
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public double getValue(int row, int column) {
-//    return this.data.getElement(row, column).doubleValue();
-//  }
 
   /**
    * {@inheritDoc}

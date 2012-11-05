@@ -21,7 +21,7 @@ public class ClosenessDataPicker extends AbstractDataPicker {
   /**
    * コンストラクター
    * 
-   * @param data data
+   * @param data データ
    */
   public ClosenessDataPicker(Matrix data) {
     super(data);

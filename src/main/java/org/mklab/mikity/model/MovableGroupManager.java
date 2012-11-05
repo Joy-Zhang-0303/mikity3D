@@ -151,7 +151,7 @@ public class MovableGroupManager {
           } else {
             throw new IllegalArgumentException(Messages.getString("MovableGroupManager.0")); //$NON-NLS-1$
           }
-          picker.readAndSetParameter(type, dataNumber);
+          picker.readDataAndSetParameter(type, dataNumber);
         }
         if (linkData[i].hasInitialValue()) {
           final double value = linkData[i].loadInitialValue();
@@ -192,7 +192,7 @@ public class MovableGroupManager {
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
-          picker.readAndSetParameter(type, dataNumber);
+          picker.readDataAndSetParameter(type, dataNumber);
         }
         if (linkData[i].hasInitialValue()) {
           final double value = linkData[i].loadInitialValue();

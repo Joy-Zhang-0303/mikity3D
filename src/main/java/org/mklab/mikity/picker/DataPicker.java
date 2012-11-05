@@ -17,7 +17,6 @@ import org.mklab.mikity.model.DHParameterType;
  * @version $Revision$, 2012/11/05
  */
 public interface DataPicker {
-
   /**
    * 指定された時刻のDHパラメータを返します。
    * @param t 時刻
@@ -33,19 +32,21 @@ public interface DataPicker {
   CoordinateParameter getCoordinateParameter(double t);
 
   /**
+   * データを読み込み，パラメータを設定します。
    * @param type パラメータのタイプ
    * @param dataNumber データ番号
    */
-  void readAndSetParameter(DHParameterType type, int dataNumber);
+  void readDataAndSetParameter(DHParameterType type, int dataNumber);
 
   /**
+   * データを読み込み，パラメータを設定します。
    * @param type パラメータのタイプ
    * @param dataNumber データ番号
    */
-  void readAndSetParameter(CoordinateParameterType type, int dataNumber);
+  void readDataAndSetParameter(CoordinateParameterType type, int dataNumber);
 
   /**
-   * initialTranformに値を設定します。
+   * 値を設定します。
    * 
    * @param type パラメータのタイプ
    * @param value 値
@@ -53,7 +54,7 @@ public interface DataPicker {
   void setParameter(DHParameterType type, double value);
 
   /**
-   * initialTranformに値を設定します。
+   * 値を設定します。
    * 
    * @param type パラメータのタイプ
    * @param value 値
@@ -61,41 +62,29 @@ public interface DataPicker {
   void setParameter(CoordinateParameterType type, double value);
 
   /**
-   * 与えられた時刻に最も近いデータが存在する時刻に対応するデータ番号を返します。
+   * 与えられた時間に最も近いデータが存在する時刻に対応するデータ番号を返します。
    * 
-   * @param t 時刻
-   * @return 与えられた時刻に最も近いデータが存在する時刻に対応するデータ番号
+   * @param t 時間
+   * @return 与えられた時間に最も近いデータが存在する時刻に対応するデータ番号
    */
   int getDataNumber(double t);
 
-//  /**
-//   * @param row データの番号
-//   * @param t 時刻
-//   * @return 時刻tのときのdataNumber番のデータ
-//   */
-//  double getValue(int row, double t);
-
-//  /**
-//   * @param row 行
-//   * @param column 列
-//   * @return data.getElement(row, column)
-//   */
-//  double getValue(int row, int column);
-
   /**
-   * @return data.getColSize()
+   * データ数を返します。
+   * @return データ数
    */
   int getDataCount();
 
   /**
-   * @return data.getElement(1, getDataCount())
+   * 終了時間を返します。
+   * @return 終了時間
    */
   double getEndTime();
 
   /**
-   * シミュレーションの開始時刻を返す。
+   * 開始時間を返す。
    * 
-   * @return シミュレーションの開始時刻
+   * @return 開始時間
    */
   double getStartTime();
 
