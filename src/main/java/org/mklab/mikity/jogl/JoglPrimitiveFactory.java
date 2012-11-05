@@ -466,12 +466,12 @@ public class JoglPrimitiveFactory {
     float locX = 0, locY = 0, locZ = 0, rotX = 0, rotY = 0, rotZ = 0;
 
     for (int i = 0; i < links.size(); i++) {
-      locX = locX + (float)links.get(i).getLocX();
-      locY = locY + (float)links.get(i).getLocY();
-      locZ = locZ + (float)links.get(i).getLocZ();
+      locX = locX + (float)links.get(i).getX();
+      locY = locY + (float)links.get(i).getY();
+      locZ = locZ + (float)links.get(i).getZ();
       rotX = rotX + (float)links.get(i).getRotX();
-      rotY = rotY + (float)links.get(i).getRotY();
-      rotZ = rotZ + (float)links.get(i).getRotZ();
+      rotY = rotY + (float)links.get(i).getThY();
+      rotZ = rotZ + (float)links.get(i).getThZ();
     }
 
     if (rotX == 0.0f && rotY == 0.0f && rotZ == 0.0f) {

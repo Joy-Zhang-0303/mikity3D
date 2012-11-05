@@ -12,12 +12,12 @@ package org.mklab.mikity.model;
  * @version $Revision: 1.2 $. 2008/02/29
  */
 public class CoordinateParameter {
-  private double locX;
-  private double locY;
-  private double locZ;
-  private double rotX;
-  private double rotY;
-  private double rotZ;
+  private double x;
+  private double y;
+  private double z;
+  private double thX;
+  private double thY;
+  private double thZ;
 
   /**
    * 新しく生成された<code>CoordinateParameter</code>オブジェクトを初期化します。
@@ -29,20 +29,20 @@ public class CoordinateParameter {
   /**
    * コンストラクタ
    * 
-   * @param locX X座標並進
-   * @param locY Y座標並進
-   * @param locZ Z座標並進
-   * @param rotX X座標回転
-   * @param rotY Y座標回転
-   * @param rotZ Z座標回転
+   * @param x X座標並進
+   * @param y Y座標並進
+   * @param z Z座標並進
+   * @param thX X座標回転
+   * @param thY Y座標回転
+   * @param thZ Z座標回転
    */
-  public CoordinateParameter(double locX, double locY, double locZ, double rotX, double rotY, double rotZ) {
-    this.locX = locX;
-    this.locY = locY;
-    this.locZ = locZ;
-    this.rotX = rotX;
-    this.rotY = rotY;
-    this.locZ = rotZ;
+  public CoordinateParameter(double x, double y, double z, double thX, double thY, double thZ) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.thX = thX;
+    this.thY = thY;
+    this.z = thZ;
   }
 
   /**
@@ -50,17 +50,17 @@ public class CoordinateParameter {
    * 
    * @return X座標並進の値
    */
-  public double getLocX() {
-    return this.locX;
+  public double getX() {
+    return this.x;
   }
 
   /**
    * X座標並進の値を設定します。
    * 
-   * @param locX X座標
+   * @param x X座標
    */
-  public void setLocX(double locX) {
-    this.locX = locX;
+  public void setX(double x) {
+    this.x = x;
   }
 
   /**
@@ -68,17 +68,17 @@ public class CoordinateParameter {
    * 
    * @return Y座標並進の値
    */
-  public double getLocY() {
-    return this.locY;
+  public double getY() {
+    return this.y;
   }
 
   /**
    * Y座標並進の値を設定します。
    * 
-   * @param locY Y座標
+   * @param y Y座標
    */
-  public void setLocY(double locY) {
-    this.locY = locY;
+  public void setY(double y) {
+    this.y = y;
   }
 
   /**
@@ -86,17 +86,17 @@ public class CoordinateParameter {
    * 
    * @return Z座標並進の値
    */
-  public double getLocZ() {
-    return this.locZ;
+  public double getZ() {
+    return this.z;
   }
 
   /**
    * Z座標並進の値を設定します。
    * 
-   * @param locZ Z座標
+   * @param z Z座標
    */
-  public void setLocZ(double locZ) {
-    this.locZ = locZ;
+  public void setZ(double z) {
+    this.z = z;
   }
 
   /**
@@ -105,16 +105,16 @@ public class CoordinateParameter {
    * @return X座標回転の値
    */
   public double getRotX() {
-    return this.rotX;
+    return this.thX;
   }
 
   /**
    * X座標回転の値を設定します。
    * 
-   * @param rotX X座標回転の値
+   * @param thX X座標回転の値
    */
-  public void setRotX(double rotX) {
-    this.rotX = rotX;
+  public void setThX(double thX) {
+    this.thX = thX;
   }
 
   /**
@@ -122,17 +122,17 @@ public class CoordinateParameter {
    * 
    * @return Y座標回転の値
    */
-  public double getRotY() {
-    return this.rotY;
+  public double getThY() {
+    return this.thY;
   }
 
   /**
    * Y座標回転の値を設定します。
    * 
-   * @param rotY Y座標回転の値
+   * @param thY Y座標回転の値
    */
-  public void setRotY(double rotY) {
-    this.rotY = rotY;
+  public void setThY(double thY) {
+    this.thY = thY;
   }
 
   /**
@@ -140,16 +140,16 @@ public class CoordinateParameter {
    * 
    * @return Z座標回転の値
    */
-  public double getRotZ() {
-    return this.rotZ;
+  public double getThZ() {
+    return this.thZ;
   }
 
   /**
    * Z座標回転の値を設定します。
    * 
-   * @param rotZ Z座標回転の値
+   * @param thZ Z座標回転の値
    */
-  public void setRotZ(double rotZ) {
-    this.rotZ = rotZ;
+  public void setThZ(double thZ) {
+    this.thZ = thZ;
   }
 }

@@ -22,10 +22,8 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  * @version $Revision$, 2012/02/07
  */
 public class JoglTransformGroupFactory {
-
   /** */
   static List<CoordinateParameter> links;
-  
   /** */
   static List<DHParameter> parameters;
 
@@ -41,8 +39,8 @@ public class JoglTransformGroupFactory {
     if(parameters == null){
       parameters = new ArrayList<DHParameter>();
     }
-    DHParameter parameter = new DHParameter();
-    CoordinateParameter link = new CoordinateParameter();
+    DHParameter dhParameter = new DHParameter();
+    CoordinateParameter coordinateParameter = new CoordinateParameter();
     /*
      * DHParameterの設定
      */
@@ -50,37 +48,37 @@ public class JoglTransformGroupFactory {
     for (int i = 0; i < linkData.length; i++) {
       if (linkData[i].hasDHParameter()) {
         // 初期値のDHパラメータを作成
-        parameter = Util.getDHParameter(linkData);
-        //        tg.setDHParameter(parameter);
-        parameters.add(parameter);
+        dhParameter = Util.getDHParameter(linkData);
+        // tg.setDHParameter(parameter);
+        parameters.add(dhParameter);
         break;
       } else if (linkData[i].hasCoordinateParameter()) {
         // DHパラメータを使わないVer
-        link = Util.getCoordinateParameter(linkData);
-        //        tg.setLinkParameter(link);
-        links.add(link);
+        coordinateParameter = Util.getCoordinateParameter(linkData);
+        // tg.setLinkParameter(link);
+        links.add(coordinateParameter);
         break;
       }
     }
 
-    XMLBox[] xmlBox = group.loadXMLBox();
-    for (int i = 0; i < xmlBox.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(xmlBox[i]));
+    XMLBox[] boxes = group.loadXMLBox();
+    for (int i = 0; i < boxes.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(boxes[i]));
     }
 
-    XMLCylinder[] xmlCylinder = group.loadXMLCylinder();
-    for (int i = 0; i < xmlCylinder.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(xmlCylinder[i]));
+    XMLCylinder[] cylinders = group.loadXMLCylinder();
+    for (int i = 0; i < cylinders.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(cylinders[i]));
     }
 
-    XMLSphere[] xmlSphere = group.loadXMLSphere();
-    for (int i = 0; i < xmlSphere.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(xmlSphere[i]));
+    XMLSphere[] spheres = group.loadXMLSphere();
+    for (int i = 0; i < spheres.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(spheres[i]));
     }
 
-    XMLCone[] xmlCone = group.loadXMLCone();
-    for (int i = 0; i < xmlCone.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(xmlCone[i]));
+    XMLCone[] cones = group.loadXMLCone();
+    for (int i = 0; i < cones.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(cones[i]));
     }
 
     //    XMLConnector[] xmlConnector = group.loadXMLConnector();
@@ -88,14 +86,14 @@ public class JoglTransformGroupFactory {
     //      tg.addChild(JoglPrimitiveFactory.create(xmlConnector[i]));
     //    }
 
-    XMLTrianglePolygon[] xmlTriangle = group.loadXMLTrianglePolygon();
-    for (int i = 0; i < xmlTriangle.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(xmlTriangle[i], parameters, links));
+    XMLTrianglePolygon[] trianglePolygons = group.loadXMLTrianglePolygon();
+    for (int i = 0; i < trianglePolygons.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(trianglePolygons[i], parameters, links));
     }
 
-    XMLQuadPolygon[] xmlQuad = group.loadXMLQuadPolygon();
-    for (int i = 0; i < xmlQuad.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(xmlQuad[i], parameters, links));
+    XMLQuadPolygon[] quadPolygons = group.loadXMLQuadPolygon();
+    for (int i = 0; i < quadPolygons.length; i++) {
+      tg.addChild(JoglPrimitiveFactory.create(quadPolygons[i], parameters, links));
     }
 
     Group[] groups = group.loadGroups();
@@ -103,7 +101,7 @@ public class JoglTransformGroupFactory {
       tg.addChild(JoglPrimitiveFactory.create(groups[i]));
     }
 
-    //    // //MyTransformGroup と Groupの関連付けを行う
+    //MyTransformGroup と Groupの関連付けを行う
     MovableGroupManager.assignGroup(group, tg);
 
     return tg;

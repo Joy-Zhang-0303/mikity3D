@@ -178,17 +178,17 @@ public class MovableGroupManager {
           CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.LOCX;
+            type = CoordinateParameterType.X;
           } else if (parameterName.equals("locationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.LOCY;
+            type = CoordinateParameterType.Y;
           } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.LOCZ;
+            type = CoordinateParameterType.Z;
           } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTX;
+            type = CoordinateParameterType.TH_X;
           } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTY;
+            type = CoordinateParameterType.TH_Y;
           } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTZ;
+            type = CoordinateParameterType.TH_Z;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
@@ -200,17 +200,17 @@ public class MovableGroupManager {
           CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.LOCX;
+            type = CoordinateParameterType.X;
           } else if (parameterName.equals("locationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.LOCY;
+            type = CoordinateParameterType.Y;
           } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.LOCZ;
+            type = CoordinateParameterType.Z;
           } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTX;
+            type = CoordinateParameterType.TH_X;
           } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTY;
+            type = CoordinateParameterType.TH_Y;
           } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTZ;
+            type = CoordinateParameterType.TH_Z;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.3")); //$NON-NLS-1$
           }

@@ -24,5 +24,5 @@ public interface MovableGroup {
    * グループの座標パラメータを設定します。
    * @param parameter 座標パラメータ
    */
-   void setCoordinateParameter(final CoordinateParameter parameter);
+   void setCoordinateParameter(CoordinateParameter parameter);
 }

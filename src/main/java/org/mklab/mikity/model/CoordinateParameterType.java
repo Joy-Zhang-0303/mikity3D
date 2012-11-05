@@ -12,16 +12,16 @@ package org.mklab.mikity.model;
  * @version $Revision$, 2012/11/05
  */
 public enum CoordinateParameterType {
-  /**LOCX  */
-  LOCX,
-  /** LOCY */
-  LOCY,
-  /** LOCZ */
-  LOCZ,
-  /** ROTX */
-  ROTX,
-  /** ROTY */
-  ROTY,
-  /** ROTZ */
-  ROTZ;
+  /** X  */
+  X,
+  /** Y */
+  Y,
+  /** Z */
+  Z,
+  /** thX */
+  TH_X,
+  /** thY */
+  TH_Y,
+  /** thZ */
+  TH_Z;
 }

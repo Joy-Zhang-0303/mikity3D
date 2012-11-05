@@ -96,12 +96,12 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
    */
   @Override
   public void setCoordinateParameter(CoordinateParameter link) {
-    double locX = link.getLocX();
-    double locY = link.getLocY();
-    double locZ = link.getLocZ();
+    double locX = link.getX();
+    double locY = link.getY();
+    double locZ = link.getZ();
     double rotX = link.getRotX();
-    double rotY = link.getRotY();
-    double rotZ = link.getRotZ();
+    double rotY = link.getThY();
+    double rotZ = link.getThZ();
 
     //System.out.println("lx, ly, lz(set)(this)=" + locX + "," + locY + "," + locZ + ":" + this);
     //System.out.println("rx, ry, rz(set)(this)=" + rotX + "," + rotY + "," + rotZ + ":" + this);

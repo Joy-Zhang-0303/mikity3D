@@ -108,51 +108,51 @@ public abstract class AbstractDataPicker implements DataPicker {
     }
 
     switch (type) {
-      case LOCX:
+      case X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           double value = this.data.getElement(dataNumber, i + 1).doubleValue();
-          this.coordinateParameters[i].setLocX(value / dataScale);
+          this.coordinateParameters[i].setX(value / dataScale);
         }
         break;
-      case LOCY:
+      case Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           double value = this.data.getElement(dataNumber, i + 1).doubleValue();
-          this.coordinateParameters[i].setLocY(value / dataScale);
+          this.coordinateParameters[i].setY(value / dataScale);
         }
         break;
-      case LOCZ:
+      case Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           double value = this.data.getElement(dataNumber, i + 1).doubleValue();
-          this.coordinateParameters[i].setLocZ(value / dataScale);
+          this.coordinateParameters[i].setZ(value / dataScale);
         }
         break;
-      case ROTX:
+      case TH_X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.coordinateParameters[i].setRotX(value);
+            this.coordinateParameters[i].setThX(value);
           } else {
-            this.coordinateParameters[i].setRotX(Math.toRadians(value));
+            this.coordinateParameters[i].setThX(Math.toRadians(value));
           }
         }
         break;
-      case ROTY:
+      case TH_Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.coordinateParameters[i].setRotY(value);
+            this.coordinateParameters[i].setThY(value);
           } else {
-            this.coordinateParameters[i].setRotY(Math.toRadians(value));
+            this.coordinateParameters[i].setThY(Math.toRadians(value));
           }
         }
         break;
-      case ROTZ:
+      case TH_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.coordinateParameters[i].setRotZ(value);
+            this.coordinateParameters[i].setThZ(value);
           } else {
-            this.coordinateParameters[i].setRotZ(Math.toRadians(value));
+            this.coordinateParameters[i].setThZ(Math.toRadians(value));
           }
         }
         break;
@@ -206,45 +206,45 @@ public abstract class AbstractDataPicker implements DataPicker {
    */
   public void setParameter(CoordinateParameterType type, double value) {
     switch (type) {
-      case LOCX:
+      case X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          this.coordinateParameters[i].setLocX(value / modelScale + this.coordinateParameters[i].getLocX());
+          this.coordinateParameters[i].setX(value / modelScale + this.coordinateParameters[i].getX());
         }
         break;
-      case LOCY:
+      case Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          this.coordinateParameters[i].setLocY(value / modelScale + this.coordinateParameters[i].getLocY());
+          this.coordinateParameters[i].setY(value / modelScale + this.coordinateParameters[i].getY());
         }
         break;
-      case LOCZ:
+      case Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          this.coordinateParameters[i].setLocZ(value / modelScale + this.coordinateParameters[i].getLocZ());
+          this.coordinateParameters[i].setZ(value / modelScale + this.coordinateParameters[i].getZ());
         }
         break;
-      case ROTX:
+      case TH_X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (Java3dModelCanvas.radian) {
-            this.coordinateParameters[i].setRotX(value + this.coordinateParameters[i].getRotX());
+            this.coordinateParameters[i].setThX(value + this.coordinateParameters[i].getRotX());
           } else {
-            this.coordinateParameters[i].setRotX(Math.toRadians(value) + this.coordinateParameters[i].getRotX());
+            this.coordinateParameters[i].setThX(Math.toRadians(value) + this.coordinateParameters[i].getRotX());
           }
         }
         break;
-      case ROTY:
+      case TH_Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (Java3dModelCanvas.radian) {
-            this.coordinateParameters[i].setRotY(value + this.coordinateParameters[i].getRotY());
+            this.coordinateParameters[i].setThY(value + this.coordinateParameters[i].getThY());
           } else {
-            this.coordinateParameters[i].setRotY(Math.toRadians(value) + this.coordinateParameters[i].getRotY());
+            this.coordinateParameters[i].setThY(Math.toRadians(value) + this.coordinateParameters[i].getThY());
           }
         }
         break;
-      case ROTZ:
+      case TH_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (Java3dModelCanvas.radian) {
-            this.coordinateParameters[i].setRotZ(value + this.coordinateParameters[i].getRotZ());
+            this.coordinateParameters[i].setThZ(value + this.coordinateParameters[i].getThZ());
           } else {
-            this.coordinateParameters[i].setRotZ(Math.toRadians(value) + this.coordinateParameters[i].getRotZ());
+            this.coordinateParameters[i].setThZ(Math.toRadians(value) + this.coordinateParameters[i].getThZ());
           }
         }
         break;

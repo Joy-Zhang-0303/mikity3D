@@ -79,28 +79,28 @@ public class Util {
       if (linkData[i].hasInitialValue()) {
         // かつ、targetがthetaであるか、dであるかを判別
         if (linkData[i].loadTargetName().equals("locationX")) { //$NON-NLS-1$
-          parameter.setLocX(linkData[i].loadInitialValue() / scale);
+          parameter.setX(linkData[i].loadInitialValue() / scale);
         } else if (linkData[i].loadTargetName().equals("rotationX")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setRotX(linkData[i].loadInitialValue());
+            parameter.setThX(linkData[i].loadInitialValue());
           } else {
-            parameter.setRotX(Math.toRadians(linkData[i].loadInitialValue()));
+            parameter.setThX(Math.toRadians(linkData[i].loadInitialValue()));
           }
         } else if (linkData[i].loadTargetName().equals("locationY")) { //$NON-NLS-1$
-          parameter.setLocY(linkData[i].loadInitialValue() / scale);
+          parameter.setY(linkData[i].loadInitialValue() / scale);
         } else if (linkData[i].loadTargetName().equals("rotationY")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setRotY(linkData[i].loadInitialValue());
+            parameter.setThY(linkData[i].loadInitialValue());
           } else {
-            parameter.setRotY(Math.toRadians(linkData[i].loadInitialValue()));
+            parameter.setThY(Math.toRadians(linkData[i].loadInitialValue()));
           }
         } else if (linkData[i].loadTargetName().equals("locationZ")) { //$NON-NLS-1$
-          parameter.setLocZ(linkData[i].loadInitialValue() / scale);
+          parameter.setZ(linkData[i].loadInitialValue() / scale);
         } else if (linkData[i].loadTargetName().equals("rotationZ")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setRotZ(linkData[i].loadInitialValue());
+            parameter.setThZ(linkData[i].loadInitialValue());
           } else {
-            parameter.setRotZ(Math.toRadians(linkData[i].loadInitialValue()));
+            parameter.setThZ(Math.toRadians(linkData[i].loadInitialValue()));
           }
         }
       }
