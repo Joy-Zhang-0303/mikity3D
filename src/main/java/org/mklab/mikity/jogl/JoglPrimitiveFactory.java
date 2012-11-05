@@ -36,7 +36,7 @@ public class JoglPrimitiveFactory {
    * @return tg トランスフォームグループ
    */
   public static JoglTransformGroup create(Group group) {
-    return JoglTransformGroupFactory.create(group);
+    return new JoglTransformGroupFactory().create(group);
   }
 
   /**

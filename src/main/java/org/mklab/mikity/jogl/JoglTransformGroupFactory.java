@@ -23,21 +23,21 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  */
 public class JoglTransformGroupFactory {
   /** */
-  static List<CoordinateParameter> links;
+  private List<CoordinateParameter> coordinateParameters;
   /** */
-  static List<DHParameter> parameters;
+  private List<DHParameter> dhParameters;
 
   /**
    * @param group グループ
    * @return トランスフォームグループ
    */
-  public static JoglTransformGroup create(Group group) {
+  public JoglTransformGroup create(Group group) {
     JoglTransformGroup tg = new JoglTransformGroup();
-    if (links == null) {
-      links = new ArrayList<CoordinateParameter>();
+    if (coordinateParameters == null) {
+      coordinateParameters = new ArrayList<CoordinateParameter>();
     }
-    if(parameters == null){
-      parameters = new ArrayList<DHParameter>();
+    if(dhParameters == null){
+      dhParameters = new ArrayList<DHParameter>();
     }
     DHParameter dhParameter = new DHParameter();
     CoordinateParameter coordinateParameter = new CoordinateParameter();
@@ -49,14 +49,11 @@ public class JoglTransformGroupFactory {
       if (linkData[i].hasDHParameter()) {
         // 初期値のDHパラメータを作成
         dhParameter = Util.getDHParameter(linkData);
-        // tg.setDHParameter(parameter);
-        parameters.add(dhParameter);
+        dhParameters.add(dhParameter);
         break;
       } else if (linkData[i].hasCoordinateParameter()) {
-        // DHパラメータを使わないVer
         coordinateParameter = Util.getCoordinateParameter(linkData);
-        // tg.setLinkParameter(link);
-        links.add(coordinateParameter);
+        coordinateParameters.add(coordinateParameter);
         break;
       }
     }
@@ -88,12 +85,12 @@ public class JoglTransformGroupFactory {
 
     XMLTrianglePolygon[] trianglePolygons = group.loadXMLTrianglePolygon();
     for (int i = 0; i < trianglePolygons.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(trianglePolygons[i], parameters, links));
+      tg.addChild(JoglPrimitiveFactory.create(trianglePolygons[i], dhParameters, coordinateParameters));
     }
 
     XMLQuadPolygon[] quadPolygons = group.loadXMLQuadPolygon();
     for (int i = 0; i < quadPolygons.length; i++) {
-      tg.addChild(JoglPrimitiveFactory.create(quadPolygons[i], parameters, links));
+      tg.addChild(JoglPrimitiveFactory.create(quadPolygons[i], dhParameters, coordinateParameters));
     }
 
     Group[] groups = group.loadGroups();

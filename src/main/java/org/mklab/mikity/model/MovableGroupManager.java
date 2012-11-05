@@ -306,12 +306,4 @@ public class MovableGroupManager {
   public static void assignGroup(final Group group, final MovableGroup tg) {
     MOVABLE_GROUPS.put(group, tg);
   }
-
-//  /**
-//   * @param group グループ
-//   * @param tg トランスフォームグループ
-//   */
-//  public static void assignGroup(final Group group, final JoglTransformGroup tg) {
-//    MOVABLE_GROUPS.put(group, tg);
-//  }
 }

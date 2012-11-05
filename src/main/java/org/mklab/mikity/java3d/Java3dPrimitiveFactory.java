@@ -73,25 +73,23 @@ public class Java3dPrimitiveFactory {
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
   public static Java3dTransformGroup create(XMLBox box) {
-    int flag = Primitive.GENERATE_NORMALS;
-    Primitive primitive = new Box(box.loadXsize() / (scale * 2), box.loadYsize() / (scale * 2), box.loadZsize() / (scale * 2), flag, null);
-    Appearance appearance = new Appearance();
+    final int flag = Primitive.GENERATE_NORMALS;
+    final Primitive primitive = new Box(box.loadXsize() / (scale * 2), box.loadYsize() / (scale * 2), box.loadZsize() / (scale * 2), flag, null);
+    final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(box.loadColor()));
     if (box.hasTransparent()) {
-      // hasTransparent = true ならばプリミティブを半透明にする
       if (box.loadTransparent() == true) {
         appearance.setTransparencyAttributes(transAttr);
       }
     }
     primitive.setAppearance(appearance);
-    Java3dTransformGroup tg = new Java3dTransformGroup();
+    final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    // 続けると長くなるので、一度Locationを得る
-    Location location = box.loadLocation();
-    Rotation rotation = box.loadRotation();
+    final Location location = box.loadLocation();
+    final Rotation rotation = box.loadRotation();
 
-    applyLocRot(location, rotation, tg);
+    applyLocationRotation(location, rotation, tg);
 
     return tg;
   }
@@ -103,12 +101,12 @@ public class Java3dPrimitiveFactory {
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
   public static Java3dTransformGroup create(XMLCylinder cylinder) {
-    int flag = Primitive.GENERATE_NORMALS;
+    final int flag = Primitive.GENERATE_NORMALS;
     if (cylinder.loadDiv() < 3) {
       cylinder.setDiv(10);
     }
-    Primitive primitive = new Cylinder(cylinder.loadR(), cylinder.loadHeight(), flag, cylinder.loadDiv(), cylinder.loadDiv(), null);
-    Appearance appearance = new Appearance();
+    final Primitive primitive = new Cylinder(cylinder.loadR(), cylinder.loadHeight(), flag, cylinder.loadDiv(), cylinder.loadDiv(), null);
+    final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(cylinder.loadColor()));
     if (cylinder.hasTransparent()) {
       if (cylinder.loadTransparent() == true) {
@@ -116,13 +114,13 @@ public class Java3dPrimitiveFactory {
       }
     }
     primitive.setAppearance(appearance);
-    Java3dTransformGroup tg = new Java3dTransformGroup();
+    final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    Location location = cylinder.loadLocation();
-    Rotation rotation = cylinder.loadRotation();
+    final Location location = cylinder.loadLocation();
+    final Rotation rotation = cylinder.loadRotation();
 
-    applyLocRot(location, rotation, tg);
+    applyLocationRotation(location, rotation, tg);
 
     return tg;
   }
@@ -134,12 +132,12 @@ public class Java3dPrimitiveFactory {
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
   public static Java3dTransformGroup create(XMLSphere sphere) {
-    int flag = Primitive.GENERATE_NORMALS;
+    final int flag = Primitive.GENERATE_NORMALS;
     if (sphere.loadDiv() < 3) { 
       sphere.setDiv(10);
     }
-    Primitive primitive = new Sphere(sphere.loadR(), flag, sphere.loadDiv(), null);
-    Appearance appearance = new Appearance();
+    final Primitive primitive = new Sphere(sphere.loadR(), flag, sphere.loadDiv(), null);
+    final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(sphere.loadColor()));
     if (sphere.hasTransparent()) {
       if (sphere.loadTransparent() == true) {
@@ -147,13 +145,13 @@ public class Java3dPrimitiveFactory {
       }
     }
     primitive.setAppearance(appearance);
-    Java3dTransformGroup tg = new Java3dTransformGroup();
+    final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    Location location = sphere.loadLocation();
-    Rotation rotation = sphere.loadRotation();
+    final Location location = sphere.loadLocation();
+    final Rotation rotation = sphere.loadRotation();
 
-    applyLocRot(location, rotation, tg);
+    applyLocationRotation(location, rotation, tg);
 
     return tg;
   }
@@ -165,12 +163,12 @@ public class Java3dPrimitiveFactory {
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
   public static Java3dTransformGroup create(XMLCone cone) {
-    int flag = Primitive.GENERATE_NORMALS;
+    final int flag = Primitive.GENERATE_NORMALS;
     if (cone.loadDiv() < 3) { 
       cone.setDiv(10);
     }
-    Primitive primitive = new Cone(cone.loadR(), cone.loadHeight(), flag, cone.loadDiv(), cone.loadDiv(), null);
-    Appearance appearance = new Appearance();
+    final Primitive primitive = new Cone(cone.loadR(), cone.loadHeight(), flag, cone.loadDiv(), cone.loadDiv(), null);
+    final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(cone.loadColor()));
     if (cone.hasTransparent()) {
       if (cone.loadTransparent() == true) {
@@ -178,13 +176,13 @@ public class Java3dPrimitiveFactory {
       }
     }
     primitive.setAppearance(appearance);
-    Java3dTransformGroup tg = new Java3dTransformGroup();
+    final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    Location location = cone.loadLocation();
-    Rotation rotation = cone.loadRotation();
+    final Location location = cone.loadLocation();
+    final Rotation rotation = cone.loadRotation();
 
-    applyLocRot(location, rotation, tg);
+    applyLocationRotation(location, rotation, tg);
 
     return tg;
   }
@@ -196,9 +194,9 @@ public class Java3dPrimitiveFactory {
    * @return tg 与えられたファイルで出来るプリミティブ (XMLConnector クラス名 org.mklab.mikity.xml 変数名)
    */
   public static Java3dTransformGroup create(XMLConnector connector) {
-    int flag = Primitive.GENERATE_NORMALS;
-    Primitive primitive = new Cylinder(connector.loadR(), connector.loadHeight(), flag, connector.loadDiv(), connector.loadDiv(), null);
-    Appearance appearance = new Appearance();
+    final int flag = Primitive.GENERATE_NORMALS;
+    final Primitive primitive = new Cylinder(connector.loadR(), connector.loadHeight(), flag, connector.loadDiv(), connector.loadDiv(), null);
+    final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(connector.loadColor()));
     if (connector.hasTransparent()) {
       if (connector.loadTransparent() == true) {
@@ -206,12 +204,12 @@ public class Java3dPrimitiveFactory {
       }
     }
     primitive.setAppearance(appearance);
-    Java3dTransformGroup tg = new Java3dTransformGroup();
+    final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
-    Location location = connector.loadLocation();
-    Rotation rotation = connector.loadRotation();
+    final Location location = connector.loadLocation();
+    final Rotation rotation = connector.loadRotation();
 
-    applyLocRot(location, rotation, tg);
+    applyLocationRotation(location, rotation, tg);
 
     return tg;
   }
@@ -223,20 +221,20 @@ public class Java3dPrimitiveFactory {
    * @return tg 与えられたファイルで出来るプリミティブ (XMLTrianglePolygon クラス名 org.mklab.mikity.xml 変数名)
    */
   public static Java3dTransformGroup create(XMLTrianglePolygon triangle) {
-    Point3f[] vertices = new Point3f[3];
+    final Point3f[] vertices = new Point3f[3];
 
     for (int i = 0; i < vertices.length; i++) {
       vertices[i] = new Point3f(triangle.loadPointLocationX(i), triangle.loadPointLocationY(i), triangle.loadPointLocationZ(i));
     }
 
-    Vector3f[] normals = triangle.loadNormalVector();
+    final Vector3f[] normals = triangle.loadNormalVector();
 
-    int[] indices = {0, 1, 2};
-    Color3f[] colors = new Color3f[3];
+    final int[] indices = {0, 1, 2};
+    final Color3f[] colors = new Color3f[3];
     colors[0] = ColorConstant.getColor(triangle.loadColor());
     colors[1] = ColorConstant.getColor(triangle.loadColor());
     colors[2] = ColorConstant.getColor(triangle.loadColor());
-    int[] colorIndices = {0, 1, 2};
+    final int[] colorIndices = {0, 1, 2};
 
     IndexedTriangleArray geometry = new IndexedTriangleArray(vertices.length, GeometryArray.COORDINATES | GeometryArray.COLOR_3 | GeometryArray.NORMALS, indices.length);
     geometry.setCoordinates(0, vertices);
@@ -245,10 +243,10 @@ public class Java3dPrimitiveFactory {
     geometry.setCoordinateIndices(0, indices);
     geometry.setColors(0, colors);
     geometry.setColorIndices(0, colorIndices);
-    Java3dTransformGroup tg = new Java3dTransformGroup();
-    Shape3D shape = new Shape3D(geometry);
+    final Java3dTransformGroup tg = new Java3dTransformGroup();
+    final Shape3D shape = new Shape3D(geometry);
 
-    Appearance appearance = new Appearance();
+    final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(triangle.loadColor()));
     if (triangle.hasTransparent()) {
       if (triangle.loadTransparent() == true) {
@@ -258,11 +256,11 @@ public class Java3dPrimitiveFactory {
     shape.setAppearance(appearance);
 
     tg.addChild(shape);
-    Location location = triangle.loadLocation();
-    Rotation rotation = triangle.loadRotation();
-    Matrix4f matrix = triangle.loadMatrix();
+    final Location location = triangle.loadLocation();
+    final Rotation rotation = triangle.loadRotation();
+    final Matrix4f matrix = triangle.loadMatrix();
     applyMatrix(matrix, tg);
-    applyLocRot(location, rotation, tg);
+    applyLocationRotation(location, rotation, tg);
     return tg;
   }
 
@@ -273,33 +271,33 @@ public class Java3dPrimitiveFactory {
    * @return tg 与えられたファイルで出来るプリミティブ (XMLQuadPolygon クラス名 org.mklab.mikity.xml 変数名)
    */
   public static Java3dTransformGroup create(XMLQuadPolygon quad) {
-    Point3f[] vertices = new Point3f[4];
+    final Point3f[] vertices = new Point3f[4];
 
     for (int i = 0; i < vertices.length; i++) {
       vertices[i] = new Point3f(quad.loadPointLocationX(i), quad.loadPointLocationY(i), quad.loadPointLocationZ(i));
     }
 
-    Vector3f[] normals = quad.loadNormalVector();
+    final Vector3f[] normals = quad.loadNormalVector();
 
-    int[] indices = {0, 1, 2, 3};
-    Color3f[] colors = new Color3f[4];
+    final int[] indices = {0, 1, 2, 3};
+    final Color3f[] colors = new Color3f[4];
     colors[0] = ColorConstant.getColor(quad.loadColor());
     colors[1] = ColorConstant.getColor(quad.loadColor());
     colors[2] = ColorConstant.getColor(quad.loadColor());
     colors[3] = ColorConstant.getColor(quad.loadColor());
-    int[] colorIndices = {0, 1, 2, 3};
+    final int[] colorIndices = {0, 1, 2, 3};
 
-    IndexedQuadArray geometry = new IndexedQuadArray(vertices.length, GeometryArray.COORDINATES | GeometryArray.COLOR_3 | GeometryArray.NORMALS, indices.length);
+    final IndexedQuadArray geometry = new IndexedQuadArray(vertices.length, GeometryArray.COORDINATES | GeometryArray.COLOR_3 | GeometryArray.NORMALS, indices.length);
     geometry.setCoordinates(0, vertices);
     // 法線配列追加
     geometry.setNormals(0, normals);
     geometry.setCoordinateIndices(0, indices);
     geometry.setColors(0, colors);
     geometry.setColorIndices(0, colorIndices);
-    Java3dTransformGroup tg = new Java3dTransformGroup();
-    Shape3D shape = new Shape3D(geometry);
+    final Java3dTransformGroup tg = new Java3dTransformGroup();
+    final Shape3D shape = new Shape3D(geometry);
 
-    Appearance appearance = new Appearance();
+    final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(quad.loadColor()));
     if (quad.hasTransparent()) {
       if (quad.loadTransparent() == true) {
@@ -309,44 +307,41 @@ public class Java3dPrimitiveFactory {
     shape.setAppearance(appearance);
 
     tg.addChild(shape);
-    Location location = quad.loadLocation();
-    Rotation rotation = quad.loadRotation();
-    Matrix4f matrix = quad.loadMatrix();
+    final Location location = quad.loadLocation();
+    final Rotation rotation = quad.loadRotation();
+    final Matrix4f matrix = quad.loadMatrix();
     applyMatrix(matrix, tg);
-    applyLocRot(location, rotation, tg);
+    applyLocationRotation(location, rotation, tg);
     return tg;
   }
 
   /**
-   * 単位を考慮して、渡されたtgに 回転移動、平行移動を行って返す
+   * 単位を考慮して、渡されたtgに 回転移動、平行移動を行って返します。
    * 
-   * @param loc
-   * @param rot
+   * @param location
+   * @param rotation
    * @param tg
    */
-  private static void applyLocRot(Location loc, Rotation rot, Java3dTransformGroup tg) {
-    if (rot != null) {
+  private static void applyLocationRotation(Location location, Rotation rotation, Java3dTransformGroup tg) {
+    if (rotation != null) {
       if (radian == false) {
-        // radian表記でない場合
-        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rot.loadXrotate())));
-        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(rot.loadYrotate())));
-        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(rot.loadZrotate())));
+        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rotation.loadXrotate())));
+        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(rotation.loadYrotate())));
+        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(rotation.loadZrotate())));
       } else {
-        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, rot.loadXrotate()));
-        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, rot.loadYrotate()));
-        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, rot.loadZrotate()));
+        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, rotation.loadXrotate()));
+        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, rotation.loadYrotate()));
+        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, rotation.loadZrotate()));
       }
     }
-    if (loc != null) {
-      tg.translate(new Vector3f(loc.loadX() / scale, loc.loadY() / scale, loc.loadZ() / scale));
+    if (location != null) {
+      tg.translate(new Vector3f(location.loadX() / scale, location.loadY() / scale, location.loadZ() / scale));
     }
   }
 
   /**
-   * 単位を考慮して、渡されたtgに 回転移動、平行移動を行って返す
+   * 単位を考慮して、渡されたtgに 回転移動、平行移動を行って返します。
    * 
-   * @param loc
-   * @param rot
    * @param tg
    */
   private static void applyMatrix(Matrix4f matrix, Java3dTransformGroup tg) {
