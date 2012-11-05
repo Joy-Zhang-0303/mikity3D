@@ -40,16 +40,14 @@ import com.sun.j3d.utils.geometry.Sphere;
 
 
 /**
- * プリミティブおよびポリゴンの生成を行うクラス
+ * プリミティブおよびポリゴンの生成クラスするクラスです。
  * 
  * @author miki
  * @version $Revision: 1.21 $.2004/11/30
  */
 public class PrimitiveFactory {
 
-  /**
-   * 単位
-   */
+  /** 単位 */
   private static int scale = 1;
   private static boolean radian = true;
 
@@ -96,7 +94,7 @@ public class PrimitiveFactory {
     Location loc = box.loadLocation();
     Rotation rot = box.loadRotation();
 
-    setLocRot(loc, rot, tg);
+    applyLocRot(loc, rot, tg);
 
     return tg;
   }
@@ -127,7 +125,7 @@ public class PrimitiveFactory {
     Location loc = cylinder.loadLocation();
     Rotation rot = cylinder.loadRotation();
 
-    setLocRot(loc, rot, tg);
+    applyLocRot(loc, rot, tg);
 
     return tg;
   }
@@ -140,7 +138,9 @@ public class PrimitiveFactory {
    */
   public static MyTransformGroup create(XMLSphere sphere) {
     int flag = Primitive.GENERATE_NORMALS;
-    if (sphere.loadDiv() < 3) sphere.setDiv(10);
+    if (sphere.loadDiv() < 3) { 
+      sphere.setDiv(10);
+    }
     Primitive primitive = new Sphere(sphere.loadR(), flag, sphere.loadDiv(), null);
     Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(sphere.loadColor()));
@@ -156,7 +156,7 @@ public class PrimitiveFactory {
     Location loc = sphere.loadLocation();
     Rotation rot = sphere.loadRotation();
 
-    setLocRot(loc, rot, tg);
+    applyLocRot(loc, rot, tg);
 
     return tg;
   }
@@ -169,7 +169,9 @@ public class PrimitiveFactory {
    */
   public static MyTransformGroup create(XMLCone cone) {
     int flag = Primitive.GENERATE_NORMALS;
-    if (cone.loadDiv() < 3) cone.setDiv(10);
+    if (cone.loadDiv() < 3) { 
+      cone.setDiv(10);
+    }
     Primitive primitive = new Cone(cone.loadR(), cone.loadHeight(), flag, cone.loadDiv(), cone.loadDiv(), null);
     Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(cone.loadColor()));
@@ -185,7 +187,7 @@ public class PrimitiveFactory {
     Location loc = cone.loadLocation();
     Rotation rot = cone.loadRotation();
 
-    setLocRot(loc, rot, tg);
+    applyLocRot(loc, rot, tg);
 
     return tg;
   }
@@ -212,7 +214,7 @@ public class PrimitiveFactory {
     Location loc = connector.loadLocation();
     Rotation rot = connector.loadRotation();
 
-    setLocRot(loc, rot, tg);
+    applyLocRot(loc, rot, tg);
 
     return tg;
   }
@@ -262,8 +264,8 @@ public class PrimitiveFactory {
     Location loc = triangle.loadLocation();
     Rotation rot = triangle.loadRotation();
     Matrix4f matrix = triangle.loadMatrix();
-    setMatrix(matrix, tg);
-    setLocRot(loc, rot, tg);
+    applyMatrix(matrix, tg);
+    applyLocRot(loc, rot, tg);
     return tg;
   }
 
@@ -313,8 +315,8 @@ public class PrimitiveFactory {
     Location loc = quad.loadLocation();
     Rotation rot = quad.loadRotation();
     Matrix4f matrix = quad.loadMatrix();
-    setMatrix(matrix, tg);
-    setLocRot(loc, rot, tg);
+    applyMatrix(matrix, tg);
+    applyLocRot(loc, rot, tg);
     return tg;
   }
 
@@ -324,9 +326,8 @@ public class PrimitiveFactory {
    * @param loc
    * @param rot
    * @param tg
-   * @return tg
    */
-  private static MyTransformGroup setLocRot(Location loc, Rotation rot, MyTransformGroup tg) {
+  private static void applyLocRot(Location loc, Rotation rot, MyTransformGroup tg) {
     if (rot != null) {
       if (radian == false) {
         // radian表記でない場合
@@ -342,7 +343,6 @@ public class PrimitiveFactory {
     if (loc != null) {
       tg.mulTranslation(new Vector3f(loc.loadX() / scale, loc.loadY() / scale, loc.loadZ() / scale));
     }
-    return tg;
   }
 
   /**
@@ -351,9 +351,8 @@ public class PrimitiveFactory {
    * @param loc
    * @param rot
    * @param tg
-   * @return tg
    */
-  private static MyTransformGroup setMatrix(Matrix4f matrix, MyTransformGroup tg) {
+  private static void applyMatrix(Matrix4f matrix, MyTransformGroup tg) {
     if (matrix != null) {
       Matrix3f mat3 = new Matrix3f();
       mat3.setElement(0,0,matrix.getElement(0,3));
@@ -368,23 +367,22 @@ public class PrimitiveFactory {
       tg.mulRotation(mat3);
       tg.mulTranslation(new Vector3f(matrix.getElement(0,3) / matrix.getScale(), matrix.getElement(1,33) / matrix.getScale(), matrix.getElement(2,3) / matrix.getScale()));
     }
-    return tg;
   }
 
   /**
-   * 色を設定したMaterialを取得する
+   * 色を設定したMaterialを返します。
    * 
    * @param colorName 色名
    * @return Material 色を設定したMaterial
    */
   private static Material getMaterial(String colorName) {
-    Material material = new Material();
+    final Material material = new Material();
     material.setDiffuseColor(new Color3f(ColorConstant.getColor(colorName)));
     return material;
   }
 
   /**
-   * モデルを作成する際のスケールを読み込む
+   * モデルを作成する際のスケールを設定します。
    * 
    * @param scal プリミティブの大きさ
    * @param rad 角度
