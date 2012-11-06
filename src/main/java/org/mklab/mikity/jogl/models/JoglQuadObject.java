@@ -75,6 +75,8 @@ public class JoglQuadObject implements JoglObject {
     
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
+    
+    gl.glDisable(GL.GL_CULL_FACE);
 
    //頂点バッファの生成
     float[] vertexs = {

@@ -79,6 +79,9 @@ public class JoglTriangleObject implements JoglObject {
     
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
+    
+    gl.glDisable(GL.GL_CULL_FACE);
+    
     //頂点バッファの生成
     float[] vertexs = {
         this._point[0][0], this._point[0][1], this._point[0][2],
