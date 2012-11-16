@@ -1,6 +1,7 @@
 package org.mklab.mikity.xml.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -18,49 +19,49 @@ public class Group implements java.io.Serializable {
    * Field _name
    */
   @XmlAttribute
-  private java.lang.String _name;
+  private String _name;
 
   /**
    * Field _XMLBoxList
    */
   @XmlElement
-  private java.util.ArrayList<XMLBox> _XMLBoxList;
+  private List<XMLBox> _XMLBoxList;
 
   /**
    * Field _XMLCylinderList
    */
   @XmlElement
-  private java.util.ArrayList<XMLCylinder> _XMLCylinderList;
+  private List<XMLCylinder> _XMLCylinderList;
 
   /**
    * Field _XMLSphereList
    */
   @XmlElement
-  private java.util.ArrayList<XMLSphere> _XMLSphereList;
+  private List<XMLSphere> _XMLSphereList;
 
   /**
    * Field _XMLConeList
    */
   @XmlElement
-  private java.util.ArrayList<XMLCone> _XMLConeList;
+  private List<XMLCone> _XMLConeList;
 
   /**
    * Field _XMLConnectorList
    */
   @XmlElement
-  private java.util.ArrayList<XMLConnector> _XMLConnectorList;
+  private List<XMLConnector> _XMLConnectorList;
 
   /**
    * Field _XMLTrianglePolygonList
    */
   @XmlElement
-  private java.util.ArrayList<XMLTrianglePolygon> _XMLTrianglePolygonList;
+  private List<XMLTrianglePolygon> _XMLTrianglePolygonList;
 
   /**
    * Field _XMLQuadPolygonList
    */
   @XmlElement
-  private java.util.ArrayList<XMLQuadPolygon> _XMLQuadPolygonList;
+  private List<XMLQuadPolygon> _XMLQuadPolygonList;
 
   /**
    * Field _location
@@ -78,13 +79,13 @@ public class Group implements java.io.Serializable {
    * Field _linkdataList
    */
   @XmlElement
-  private java.util.ArrayList<LinkData> _linkdataList;
+  private List<LinkData> _linkdataList;
 
   /**
    * Field _groupList
    */
   @XmlElement
-  private java.util.ArrayList<Group> _groupList;
+  private List<Group> _groupList;
 
   /**
    * コンストラクター
@@ -515,7 +516,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<Group> getGroupAsReference() {
+  public List<Group> getGroupAsReference() {
     return this._groupList;
   } 
 
@@ -562,7 +563,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<LinkData> getLinkDataAsReference() {
+  public List<LinkData> getLinkDataAsReference() {
     return this._linkdataList;
   } 
 
@@ -589,7 +590,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return the value of field 'name'.
    */
-  public java.lang.String loadName() {
+  public String loadName() {
     return this._name;
   } 
 
@@ -636,7 +637,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<XMLBox> getXMLBoxAsReference() {
+  public List<XMLBox> getXMLBoxAsReference() {
     return this._XMLBoxList;
   } 
 
@@ -683,7 +684,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<XMLCone> getXMLConeAsReference() {
+  public List<XMLCone> getXMLConeAsReference() {
     return this._XMLConeList;
   } 
 
@@ -730,7 +731,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<XMLCylinder> getXMLCylinderAsReference() {
+  public List<XMLCylinder> getXMLCylinderAsReference() {
     return this._XMLCylinderList;
   } 
 
@@ -777,7 +778,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<XMLSphere> getXMLSphereAsReference() {
+  public List<XMLSphere> getXMLSphereAsReference() {
     return this._XMLSphereList;
   } 
 
@@ -824,7 +825,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<XMLConnector> getXMLConnectorAsReference() {
+  public List<XMLConnector> getXMLConnectorAsReference() {
     return this._XMLConnectorList;
   } 
 
@@ -871,7 +872,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<XMLTrianglePolygon> getXMLTrianglePolygonAsReference() {
+  public java.util.List<XMLTrianglePolygon> getXMLTrianglePolygonAsReference() {
     return this._XMLTrianglePolygonList;
   } 
 
@@ -918,7 +919,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<XMLQuadPolygon> getXMLQuadPolygonAsReference() {
+  public List<XMLQuadPolygon> getXMLQuadPolygonAsReference() {
     return this._XMLQuadPolygonList;
   } 
 
@@ -1062,7 +1063,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param groupCollection the Vector to copy.
    */
-  public void setGroup(java.util.ArrayList<Group> groupCollection) {
+  public void setGroup(List<Group> groupCollection) {
     // -- copy collection
     this._groupList.clear();
     for (int i = 0; i < groupCollection.size(); i++) {
@@ -1075,7 +1076,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param groupCollection the ArrayList to copy.
    */
-  public void setGroupAsReference(java.util.ArrayList<Group> groupCollection) {
+  public void setGroupAsReference(List<Group> groupCollection) {
     this._groupList = groupCollection;
   } 
 
@@ -1111,7 +1112,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param linkdataCollection the ArrayList to copy.
    */
-  public void setLinkDataAsReference(java.util.ArrayList<LinkData> linkdataCollection) {
+  public void setLinkDataAsReference(List<LinkData> linkdataCollection) {
     this._linkdataList = linkdataCollection;
   } 
 
@@ -1174,7 +1175,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLBoxCollection the ArrayList to copy.
    */
-  public void setXMLBoxAsReference(java.util.ArrayList<XMLBox> XMLBoxCollection) {
+  public void setXMLBoxAsReference(List<XMLBox> XMLBoxCollection) {
     this._XMLBoxList = XMLBoxCollection;
   } 
 
@@ -1210,7 +1211,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLConeCollection the ArrayList to copy.
    */
-  public void setXMLConeAsReference(java.util.ArrayList<XMLCone> XMLConeCollection) {
+  public void setXMLConeAsReference(List<XMLCone> XMLConeCollection) {
     this._XMLConeList = XMLConeCollection;
   } 
 
@@ -1246,7 +1247,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLCylinderCollection the ArrayList to copy.
    */
-  public void setXMLCylinderAsReference(java.util.ArrayList<XMLCylinder> XMLCylinderCollection) {
+  public void setXMLCylinderAsReference(List<XMLCylinder> XMLCylinderCollection) {
     this._XMLCylinderList = XMLCylinderCollection;
   } 
 
@@ -1282,7 +1283,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLSphereCollection the ArrayList to copy.
    */
-  public void setXMLSphereAsReference(java.util.ArrayList<XMLSphere> XMLSphereCollection) {
+  public void setXMLSphereAsReference(List<XMLSphere> XMLSphereCollection) {
     this._XMLSphereList = XMLSphereCollection;
   } 
 
@@ -1317,7 +1318,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLConnectorCollection the ArrayList to copy.
    */
-  public void setXMLConnectorAsReference(java.util.ArrayList<XMLConnector> XMLConnectorCollection) {
+  public void setXMLConnectorAsReference(List<XMLConnector> XMLConnectorCollection) {
     this._XMLConnectorList = XMLConnectorCollection;
   } 
 
@@ -1353,7 +1354,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLTrianglePolygonCollection the ArrayList to copy.
    */
-  public void setXMLTrianglePolygonAsReference(java.util.ArrayList<XMLTrianglePolygon> XMLTrianglePolygonCollection) {
+  public void setXMLTrianglePolygonAsReference(List<XMLTrianglePolygon> XMLTrianglePolygonCollection) {
     this._XMLTrianglePolygonList = XMLTrianglePolygonCollection;
   } 
 
@@ -1389,7 +1390,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLQuadPolygonCollection the ArrayList to copy.
    */
-  public void setXMLQuadPolygonAsReference(java.util.ArrayList<XMLQuadPolygon> XMLQuadPolygonCollection) {
+  public void setXMLQuadPolygonAsReference(List<XMLQuadPolygon> XMLQuadPolygonCollection) {
     this._XMLQuadPolygonList = XMLQuadPolygonCollection;
   } 
 }
