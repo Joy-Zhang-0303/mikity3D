@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.picker;
 
-import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.mikity.model.DHParameter;

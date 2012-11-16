@@ -36,8 +36,8 @@ public class Library_visual_scenes {
    * 
    * @return　visual_scene.getNodeNameList()　各ノードの名前が追加されているリスト
    */
-  public List<String> getNodeNameList() {
-    return this.visual_scene.getNodeNameList();
+  public List<String> getNodeNames() {
+    return this.visual_scene.getNodeNames();
   }
 
   /**
@@ -45,15 +45,15 @@ public class Library_visual_scenes {
    * 
    * @return　visual_scene.getMatrixList()　変換行列が追加されているリスト
    */
-  public List<Matrix4f> getMatrixList() {
-    return this.visual_scene.getMatrixList();
+  public List<Matrix4f> getMatrices() {
+    return this.visual_scene.getTransformMatrices();
   }
 
   /**
-   * 変換行列を生成する
+   * 変換行列をせいせいします。
    */
   public void createMatrix() {
-    this.visual_scene.createMatrix();
+    this.visual_scene.createTransformMatrix();
   }
 
   /**

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(Polylist要素)
+ * Blenderから出力したCOLLADAデータを読み込むためのクラス(Polylist要素)です。
  * 
  * @author Iwamoto
  * @version $Revision: 1.2 $. 2011/10/12

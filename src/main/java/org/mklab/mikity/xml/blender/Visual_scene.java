@@ -15,78 +15,74 @@ import org.mklab.mikity.xml.model.Group;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(Visual_scene要素)
+ * Blenderから出力したCOLLADAデータを読み込むためのクラス(Visual_scene要素)です。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/11/30
  */
 public class Visual_scene {
-
   @XmlElement
-  private ArrayList<Node> node;
+  private List<Node> nodes;
 
-  /**
-   * ノードの名前リスト
-   */
-  private List<String> nameList;
-  /**
-   * 変換行列リスト
-   */
-  private List<Matrix4f> matrixList;
+  /** ノードの名前  */
+  private List<String> nodeNames;
+  /** 変換行列 */
+  private List<Matrix4f> transformMatrices;
 
   private Group rootGroup;
 
   /**
-   * コンストラクタ
+   * 新しく生成された<code>Visual_scene</code>オブジェクトを初期化します。
    */
   public Visual_scene() {
-    this.node = new ArrayList<Node>();
-    this.nameList = new ArrayList<String>();
-    this.matrixList = new ArrayList<Matrix4f>();
+    this.nodes = new ArrayList<Node>();
+    this.nodeNames = new ArrayList<String>();
+    this.transformMatrices = new ArrayList<Matrix4f>();
     this.rootGroup = new Group();
   }
 
   /**
-   * 各ノードの名前が追加されているリストを返す
+   * 各ノードの名前が追加されているリストを返します。
    * 
    * @return　nameList 各ノードの名前が追加されているリスト
    */
-  public List<String> getNodeNameList() {
-    for (int i = 0; i < this.node.size(); i++) {
-      this.nameList.add(this.node.get(i).loadGeometryURL());
+  public List<String> getNodeNames() {
+    for (final Node node : this.nodes) {
+      this.nodeNames.add(node.loadGeometryURL());
     }
-    return this.nameList;
+    return this.nodeNames;
   }
 
   /**
-   * 変換行列が追加されているリストを返す
+   * 変換行列が追加されているリストを返します。
    * 
    * @return　matrixList　変換行列が追加されているリスト
    */
-  public List<Matrix4f> getMatrixList() {
-    for (int i = 0; i < this.node.size(); i++) {
-      this.matrixList.add(this.node.get(i).loadMatrix());
+  public List<Matrix4f> getTransformMatrices() {
+    for (final Node node :this.nodes) {
+      this.transformMatrices.add(node.loadMatrix());
     }
-    return this.matrixList;
+    return this.transformMatrices;
   }
 
   /**
-   * 各ノードごとに変換行列を生成する
+   * 各ノードごとに変換行列を生成します。
    */
-  public void createMatrix() {
-    for (int i = 0; i < this.node.size(); i++) {
-      this.node.get(i).createMatrix();
+  public void createTransformMatrix() {
+    for (final Node node : this.nodes) {
+      node.createTransformMatrix();
     }
   }
 
   private void createScene() {
-    for (int i = 0; i < this.node.size(); i++) {
-      this.node.get(i).createGroup();
-      this.node.get(i).createScene();
+    for (final Node node : this.nodes) {
+      node.createGroup();
+      node.createScene();
     }
-    for (int i = 0; i < this.node.size(); i++) {
-      if (this.node.get(i) != null && this.node.get(i).getGroup().loadName() != null) {
-        this.rootGroup.addGroup(this.node.get(i).getGroup());
+    
+    for (final Node node : this.nodes) {
+      if (node != null && node.getGroup().loadName() != null) {
+        this.rootGroup.addGroup(node.getGroup());
       }
     }
   }

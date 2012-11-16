@@ -11,28 +11,23 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
- * Blenderデータを読み込む際、ルート要素を小文字に変換するためのファイル
+ * Blenderデータを読み込む際、ルート要素を小文字に変換するためのクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.2 $. 2007/11/30
  */
 public class ColladaFileTransformer {
 
-  /**
-   * 読み込みファイル(変換前)
-   */
+  /** 読み込みファイル(変換前)　*/
   private File fileBefore;
-  /**
-   * 読み込みファイル(変換後のものを書き込む別ファイル)
-   */
+  /** 読み込みファイル(変換後のものを書き込む別ファイル) */
   private File fileAfter;
-  /**
-   * 変換後の内容を各行ごとにまとめたリスト
-   */
-  private ArrayList<String> note;
+  /** 変換後の内容を各行ごとにまとめたリスト */
+  private List<String> note;
 
   /**
    * コンストラクタ
@@ -50,9 +45,9 @@ public class ColladaFileTransformer {
    */
   private void transformFile() {
     try {
-      BufferedReader br = new BufferedReader(new FileReader(this.fileBefore));
+      BufferedReader reader = new BufferedReader(new FileReader(this.fileBefore));
       String line;
-      while ((line = br.readLine()) != null) {
+      while ((line = reader.readLine()) != null) {
         if (line.indexOf("<COLLADA") != -1) { //$NON-NLS-1$
           this.note.add("<collada>"); //$NON-NLS-1$
         } else if (line.indexOf("</COLLADA") != -1) { //$NON-NLS-1$
@@ -61,7 +56,7 @@ public class ColladaFileTransformer {
           this.note.add(line);
         }
       }
-      br.close();
+      reader.close();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -72,11 +67,11 @@ public class ColladaFileTransformer {
    */
   private void writeTransformedFile() {
     try {
-      FileWriter fw = new FileWriter(this.fileAfter);
+      FileWriter writer = new FileWriter(this.fileAfter);
       for (int i = 0; i < this.note.size(); i++) {
-        fw.write(this.note.get(i) + "\n"); //$NON-NLS-1$
+        writer.write(this.note.get(i) + "\n"); //$NON-NLS-1$
       }
-      fw.close();
+      writer.close();
     } catch (Exception e) {
       throw new RuntimeException(e);
     }

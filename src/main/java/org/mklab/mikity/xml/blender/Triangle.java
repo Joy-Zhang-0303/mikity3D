@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(Triangle要素) 頂点座標のうち、使用する頂点の番号を取得する
+ * Blenderから出力したCOLLADAデータを読み込むためのクラス(Triangle要素) 頂点座標のうち、使用する頂点の番号を取得するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.2 $. 2007/11/30

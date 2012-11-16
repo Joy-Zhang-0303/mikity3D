@@ -139,10 +139,10 @@ public class Node {
   }
 
   /**
-   * 変換行列の要素をまとめた文字列から余分なものを省いて各要素の値を抽出して変換行列を生成する
+   * 変換行列の要素をまとめた文字列から余分なものを省いて，各要素の値を抽出して変換行列を生成します。
    */
   @SuppressWarnings("boxing")
-  public void createMatrix() {
+  public void createTransformMatrix() {
     if(this.translate == null){
       if (this.name.indexOf("-N") != -1) { //$NON-NLS-1$
         this.name = this.name.substring(0, this.name.indexOf("-N")); //$NON-NLS-1$
@@ -179,7 +179,7 @@ public class Node {
       }
       if (this.node.size() != 0) {
         for (int i = 0; i < this.node.size(); i++) {
-          this.node.get(i).createMatrix();
+          this.node.get(i).createTransformMatrix();
           this.matrix_node.add(this.node.get(i).loadMatrix());
         }
       }
@@ -249,7 +249,7 @@ public class Node {
       
       if (this.node.size() != 0) {
         for (int i = 0; i < this.node.size(); i++) {
-          this.node.get(i).createMatrix();
+          this.node.get(i).createTransformMatrix();
           this.matrix_node.add(this.node.get(i).loadMatrix());
         }
       }
