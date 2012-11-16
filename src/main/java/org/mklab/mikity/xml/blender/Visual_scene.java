@@ -48,7 +48,7 @@ public class Visual_scene {
    */
   public List<String> getNodeNames() {
     for (final Node node : this.nodes) {
-      this.nodeNames.add(node.loadGeometryURL());
+      this.nodeNames.add(node.getGeometryURL());
     }
     return this.nodeNames;
   }
@@ -60,7 +60,7 @@ public class Visual_scene {
    */
   public List<Matrix4f> getTransformMatrices() {
     for (final Node node :this.nodes) {
-      this.transformMatrices.add(node.loadMatrix());
+      this.transformMatrices.add(node.getTransformMatrix());
     }
     return this.transformMatrices;
   }
