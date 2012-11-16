@@ -6,11 +6,11 @@
 package org.mklab.mikity.picker;
 
 import org.mklab.mikity.java3d.Java3dModelCanvas;
-import org.mklab.mikity.java3d.Java3dTransformGroup;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.DHParameterType;
+import org.mklab.mikity.util.Util;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;
 
@@ -27,8 +27,6 @@ public abstract class AbstractDataPicker implements DataPicker {
   protected DHParameter[] dhParameters;
   /** 座標パラメータ */
   protected CoordinateParameter[] coordinateParameters;
-  /** */
-  protected Java3dTransformGroup tg;
 
   private static int dataScale = 1;
   private static int modelScale = 1;
@@ -174,7 +172,7 @@ public abstract class AbstractDataPicker implements DataPicker {
       case ALPHA:
         for (int i = 0; i < this.dhParameters.length; i++) {
           // どうにかする。
-          if (Java3dModelCanvas.radian) {
+          if (Util.radian) {
             this.dhParameters[i].setAlpha(value + this.dhParameters[i].getAlpha());
           } else {
             this.dhParameters[i].setAlpha(Math.toRadians(value) + this.dhParameters[i].getAlpha());
@@ -189,7 +187,7 @@ public abstract class AbstractDataPicker implements DataPicker {
         break;
       case THETA:
         for (int i = 0; i < this.dhParameters.length; i++) {
-          if (Java3dModelCanvas.radian) {
+          if (Util.radian) {
             this.dhParameters[i].setTheta(value + this.dhParameters[i].getTheta());
           } else {
             this.dhParameters[i].setTheta(Math.toRadians(value) + this.dhParameters[i].getTheta());
@@ -223,7 +221,7 @@ public abstract class AbstractDataPicker implements DataPicker {
         break;
       case TH_X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          if (Java3dModelCanvas.radian) {
+          if (Util.radian) {
             this.coordinateParameters[i].setThX(value + this.coordinateParameters[i].getRotX());
           } else {
             this.coordinateParameters[i].setThX(Math.toRadians(value) + this.coordinateParameters[i].getRotX());
@@ -232,7 +230,7 @@ public abstract class AbstractDataPicker implements DataPicker {
         break;
       case TH_Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          if (Java3dModelCanvas.radian) {
+          if (Util.radian) {
             this.coordinateParameters[i].setThY(value + this.coordinateParameters[i].getThY());
           } else {
             this.coordinateParameters[i].setThY(Math.toRadians(value) + this.coordinateParameters[i].getThY());
@@ -241,7 +239,7 @@ public abstract class AbstractDataPicker implements DataPicker {
         break;
       case TH_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          if (Java3dModelCanvas.radian) {
+          if (Util.radian) {
             this.coordinateParameters[i].setThZ(value + this.coordinateParameters[i].getThZ());
           } else {
             this.coordinateParameters[i].setThZ(Math.toRadians(value) + this.coordinateParameters[i].getThZ());

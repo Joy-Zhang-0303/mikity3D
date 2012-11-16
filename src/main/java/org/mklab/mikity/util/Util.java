@@ -17,7 +17,10 @@ import org.mklab.mikity.xml.model.LinkData;
  * @version $Revision: 1.7 $.2005/02/05
  */
 public class Util {
-
+  public static int scale = 1;
+  
+  public static boolean radian = false;
+  
   /**
    * コンストラクター
    */
@@ -32,8 +35,6 @@ public class Util {
    * @return DHパラメータ
    */
   public static DHParameter getDHParameter(final LinkData[] linkdata) {
-    int scale = Java3dModelCanvas.scale;
-    boolean radian = Java3dModelCanvas.radian;
     DHParameter parameter = new DHParameter(); // 初期値全てゼロのDHParameter
     // linkdataが無い場合はlinkdata.lengthが0になる
     for (int i = 0; i < linkdata.length; i++) {
@@ -69,8 +70,6 @@ public class Util {
    * @return 座標パラメータ
    */
   public static CoordinateParameter getCoordinateParameter(final LinkData[] linkData) {
-    int scale = Java3dModelCanvas.scale;
-    boolean radian = Java3dModelCanvas.radian;
     CoordinateParameter parameter = new CoordinateParameter();
     
     // linkdataが無い場合はlinkdata.lengthが0になる
