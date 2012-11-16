@@ -407,7 +407,7 @@ public class ModelingWindow extends ApplicationWindow {
     if (root == null) {
       root = ModelingWindow.createEmptyModel();
       Group groupBlender = root.loadModel(0).loadGroup(0);
-      Group[] polygonGroupList = marshaller.getBlenderGroup().loadGroups();
+      Group[] polygonGroupList = marshaller.getBlenderGroup().getGroups();
       for (int i = 0; i < polygonGroupList.length; i++) {
         groupBlender.addGroup(polygonGroupList[i]);
       }
@@ -439,14 +439,14 @@ public class ModelingWindow extends ApplicationWindow {
     if (marshaller.getRoot() != null) {
       Group importGroup = marshaller.getRoot().loadModel(0).loadGroup(0);
 
-      org.mklab.mikity.xml.model.XMLBox[] box = importGroup.loadXMLBox();
-      org.mklab.mikity.xml.model.XMLCone[] cone = importGroup.loadXMLCone();
-      org.mklab.mikity.xml.model.XMLCylinder[] cylinder = importGroup.loadXMLCylinder();
-      org.mklab.mikity.xml.model.XMLSphere[] sphere = importGroup.loadXMLSphere();
-      org.mklab.mikity.xml.model.XMLConnector[] connector = importGroup.loadXMLConnector();
-      org.mklab.mikity.xml.model.XMLTrianglePolygon[] triangle = importGroup.loadXMLTrianglePolygon();
-      org.mklab.mikity.xml.model.XMLQuadPolygon[] quad = importGroup.loadXMLQuadPolygon();
-      org.mklab.mikity.xml.model.Group[] group = importGroup.loadGroups();
+      org.mklab.mikity.xml.model.XMLBox[] box = importGroup.getXMLBox();
+      org.mklab.mikity.xml.model.XMLCone[] cone = importGroup.getXMLCone();
+      org.mklab.mikity.xml.model.XMLCylinder[] cylinder = importGroup.getXMLCylinder();
+      org.mklab.mikity.xml.model.XMLSphere[] sphere = importGroup.getXMLSphere();
+      org.mklab.mikity.xml.model.XMLConnector[] connector = importGroup.getXMLConnector();
+      org.mklab.mikity.xml.model.XMLTrianglePolygon[] triangle = importGroup.getXMLTrianglePolygon();
+      org.mklab.mikity.xml.model.XMLQuadPolygon[] quad = importGroup.getXMLQuadPolygon();
+      org.mklab.mikity.xml.model.Group[] group = importGroup.getGroups();
 
       Group rootGroup = root.loadModel(0).loadGroup(0);
 
@@ -492,7 +492,7 @@ public class ModelingWindow extends ApplicationWindow {
       }
     } else {
       Group groupBlender = root.loadModel(0).loadGroup(0);
-      Group[] polygonGroupList = marshaller.getBlenderGroup().loadGroups();
+      Group[] polygonGroupList = marshaller.getBlenderGroup().getGroups();
       for (int i = 0; i < polygonGroupList.length; i++) {
         groupBlender.addGroup(polygonGroupList[i]);
       }

@@ -227,7 +227,7 @@ public abstract class AbstractModeler extends Composite {
           MessagegUtil.show(getShell(), Messages.getString("Modeler.9")); //$NON-NLS-1$
           return;
         }
-        org.mklab.mikity.xml.model.LinkData[] linkdata = group.loadLinkData();
+        org.mklab.mikity.xml.model.LinkData[] linkdata = group.getLinkData();
         if (linkdata.length == 0) {
           MessageBox mesBox = new MessageBox(getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           mesBox.setMessage(Messages.getString("Modeler.10")); //$NON-NLS-1$

@@ -41,7 +41,7 @@ public class Node {
 
   private List<Matrix4f> matrixNodes;
 
-  private String url;
+  private String geometryURL;
 
   private Group group;
 
@@ -91,7 +91,7 @@ public class Node {
    * @return geometry URL
    */
   public String getGeometryURL() {
-    return this.url;
+    return this.geometryURL;
   }
 
   /**
@@ -208,8 +208,7 @@ public class Node {
         setRotateMatrix(this.rotateNum,i);//this.rotateNumber.get(i),i);
       }
       //変換行列の作成
-      makeMatrix4f();
-      
+      createMatrix4f();   
       
       if (this.nodes.size() != 0) {
         for (int i = 0; i < this.nodes.size(); i++) {
@@ -222,8 +221,7 @@ public class Node {
 
   }
 
-  private void makeMatrix4f() {
-    
+  private void createMatrix4f() {
     for(int i = 0; i < 4; i++){
       for(int j = 0; j < 4; j++){
         for (int k = 0; k < 4; k++){
@@ -247,7 +245,6 @@ public class Node {
     }
     setMatrix4f();
   }
-    
 
   private void setMatrix4f() {
     float[] elements = new float[4];
@@ -257,7 +254,6 @@ public class Node {
       }
       this.matrix4f.setRow(i, elements);
     }
-    
   }
 
   private  void setRotateMatrix(float[][] rotate,int k) {
@@ -323,14 +319,14 @@ public class Node {
   }
 
   private void setURL() {
-    this.url = this.instance_geometry.loadURL();
-    if (this.url != null) {
-      if (this.url.indexOf("-G") != -1) { //$NON-NLS-1$
-        this.url = this.url.substring(1, this.url.indexOf("-G")); //$NON-NLS-1$
-      } else if (this.url.indexOf("-m") != -1){ //$NON-NLS-1$
-        this.url = this.url.substring(1, this.url.indexOf("-m")); //$NON-NLS-1$
+    this.geometryURL = this.instance_geometry.getGeometryURL();
+    if (this.geometryURL != null) {
+      if (this.geometryURL.indexOf("-G") != -1) { //$NON-NLS-1$
+        this.geometryURL = this.geometryURL.substring(1, this.geometryURL.indexOf("-G")); //$NON-NLS-1$
+      } else if (this.geometryURL.indexOf("-m") != -1){ //$NON-NLS-1$
+        this.geometryURL = this.geometryURL.substring(1, this.geometryURL.indexOf("-m")); //$NON-NLS-1$
       }else{
-        this.url = this.url.substring(1);
+        this.geometryURL = this.geometryURL.substring(1);
       }
     }
   }
@@ -339,13 +335,14 @@ public class Node {
    * 
    */
   public void createScene() {
-    for (int i = 0; i < this.nodes.size(); i++) {
-      this.nodes.get(i).createGroup();
-      this.nodes.get(i).createScene();
+    for (final Node node : this.nodes) {
+      node.createGroup();
+      node.createScene();
     }
-    for (int i = 0; i < this.nodes.size(); i++) {
-      if (this.nodes.get(i) != null) {
-        this.group.addGroup(this.nodes.get(i).getGroup());
+    
+    for (final Node node : this.nodes) {
+      if (node != null) {
+        this.group.addGroup(node.getGroup());
       }
     }
     

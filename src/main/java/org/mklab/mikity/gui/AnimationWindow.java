@@ -365,10 +365,10 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   private void checkLinkParameterType(org.mklab.mikity.xml.model.Group group) {
-    org.mklab.mikity.xml.model.Group[] subGroup = group.loadGroups();
+    org.mklab.mikity.xml.model.Group[] subGroup = group.getGroups();
     if (subGroup.length != 0) {
       for (int i = 0; i < subGroup.length; i++) {
-        org.mklab.mikity.xml.model.LinkData[] link = subGroup[i].loadLinkData();
+        org.mklab.mikity.xml.model.LinkData[] link = subGroup[i].getLinkData();
         for (int j = 0; j < link.length; j++) {
           if (link[j].hasDHParameter()) {
             this.usedDHParam = true;

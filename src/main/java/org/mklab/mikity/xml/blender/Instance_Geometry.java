@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 public class Instance_Geometry {
 
   @XmlAttribute
-  private String url;
+  private String geometryURL;
 
   /**
    * 新しく生成された<code>Instance_Geometry</code>オブジェクトを初期化します。
@@ -27,7 +27,7 @@ public class Instance_Geometry {
   /**
    * @return URL
    */
-  public String loadURL() {
-    return this.url;
+  public String getGeometryURL() {
+    return this.geometryURL;
   }
 }

@@ -114,8 +114,8 @@ public class MovableGroupManager {
     for (int i = 0; i < groups.length; i++) {
       final Group group = groups[i];
       final MovableGroup tg = MOVABLE_GROUPS.get(group);
-      setLinkData(group.loadLinkData(), tg);
-      addGroups(group.loadGroups());
+      setLinkData(group.getLinkData(), tg);
+      addGroups(group.getGroups());
     }
   }
 
