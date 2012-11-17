@@ -16,12 +16,12 @@ import org.mklab.mikity.xml.model.XMLConnector;
 
 
 /**
- * 使用するコネクタを選択するクラス
+ * 使用するコネクタを選択するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.3 $. 2006/07/04
  */
-public class ConnectorSelect {
+public class ConnectorSelector {
 
   private Composite composite;
   private SceneGraphTree tree;
@@ -49,7 +49,7 @@ public class ConnectorSelect {
    * @param tree キー
    * @param modeler モデラー
    */
-  public ConnectorSelect(Composite composite, SceneGraphTree tree, AbstractModeler modeler) {
+  public ConnectorSelector(Composite composite, SceneGraphTree tree, AbstractModeler modeler) {
     this.composite = composite;
     this.tree = tree;
     this.modeler = modeler;
@@ -112,7 +112,7 @@ public class ConnectorSelect {
     this.connectorN = argConnector;
 
     PrimitiveConnector pConnector = new PrimitiveConnector();
-    Group groupN = pConnector.createConnectorNGroup();
+    Group groupN = pConnector.createConnectorNorthGroup();
     groupN.addXMLConnector(argConnector);
     this.targetGroupN = groupN;
     root.removeGroup(targetGroup);
@@ -135,7 +135,7 @@ public class ConnectorSelect {
     this.connectorS = argConnector;
 
     PrimitiveConnector pConnector = new PrimitiveConnector();
-    Group groupS = pConnector.createConnectorSGroup();
+    Group groupS = pConnector.createConnectorSouthGroup();
     groupS.addXMLConnector(argConnector);
     this.targetGroupS = groupS;
     root.removeGroup(targetGroup);

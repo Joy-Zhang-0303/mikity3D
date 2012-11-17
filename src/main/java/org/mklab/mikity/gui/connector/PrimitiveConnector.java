@@ -17,7 +17,7 @@ import org.mklab.mikity.xml.model.XMLSphere;
 
 
 /**
- * プリミティブに適したコネクタを追加するクラス
+ * プリミティブに適したコネクタを追加するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.3 $.2006/01/31
@@ -38,22 +38,22 @@ public class PrimitiveConnector {
   private Rotation primRot;
 
   /** 直方体のコネクタ */
-  private BoxConnector boxC;
+  private BoxConnector boxConnector;
   /** 円錐のコネクタ */
-  private ConeConnector coneC;
+  private ConeConnector coneConnector;
   /** 円柱のコネクタ */
-  private CylinderConnector cylinderC;
+  private CylinderConnector cylinderConnector;
   /** 球体のコネクタ */
-  private SphereConnector sphereC;
+  private SphereConnector sphereConnector;
 
   /**
    * コンストラクター
    */
   public PrimitiveConnector() {
-    this.boxC = new BoxConnector();
-    this.coneC = new ConeConnector();
-    this.cylinderC = new CylinderConnector();
-    this.sphereC = new SphereConnector();
+    this.boxConnector = new BoxConnector();
+    this.coneConnector = new ConeConnector();
+    this.cylinderConnector = new CylinderConnector();
+    this.sphereConnector = new SphereConnector();
   }
 
   /**
@@ -75,7 +75,7 @@ public class PrimitiveConnector {
       this.primRot = box.loadRotation();
       checkRot(this.primRot);
 
-      this.boxC.createBoxConnector(this.param1, this.param2, this.param3, this.primLoc, this.primRot);
+      this.boxConnector.createBoxConnector(this.param1, this.param2, this.param3, this.primLoc, this.primRot);
     } else if (prim instanceof XMLCone) {
       XMLCone cone = (XMLCone)prim;
 
@@ -88,7 +88,7 @@ public class PrimitiveConnector {
       this.primRot = cone.loadRotation();
       checkRot(this.primRot);
 
-      this.coneC.createConeConnector(this.param1, this.param2, this.primLoc, this.primRot);
+      this.coneConnector.createConeConnector(this.param1, this.param2, this.primLoc, this.primRot);
     } else if (prim instanceof XMLCylinder) {
       XMLCylinder cylinder = (XMLCylinder)prim;
 
@@ -101,7 +101,7 @@ public class PrimitiveConnector {
       this.primRot = cylinder.loadRotation();
       checkRot(this.primRot);
 
-      this.cylinderC.createCylinderConnector(this.param1, this.param2, this.primLoc, this.primRot);
+      this.cylinderConnector.createCylinderConnector(this.param1, this.param2, this.primLoc, this.primRot);
     } else if (prim instanceof XMLSphere) {
       XMLSphere sphere = (XMLSphere)prim;
 
@@ -113,7 +113,7 @@ public class PrimitiveConnector {
       this.primRot = sphere.loadRotation();
       checkRot(this.primRot);
 
-      this.sphereC.createSphereConnector(this.param1, this.primLoc, this.primRot);
+      this.sphereConnector.createSphereConnector(this.param1, this.primLoc, this.primRot);
     }
   }
 
@@ -150,13 +150,13 @@ public class PrimitiveConnector {
    * 
    * @return　newgroup　コネクタNを持つグループ
    */
-  public Group createConnectorNGroup() {
+  public Group createConnectorNorthGroup() {
     Jamast root = ModelingWindow.getRoot();
     Group groupN = root.loadModel(0).loadGroup(0);
-    Group newgroup = new Group();
-    newgroup.setName("ConnectorN"); //$NON-NLS-1$
-    groupN.addGroup(newgroup);
-    return newgroup;
+    Group newGroup = new Group();
+    newGroup.setName("ConnectorN"); //$NON-NLS-1$
+    groupN.addGroup(newGroup);
+    return newGroup;
   }
 
   /**
@@ -164,12 +164,12 @@ public class PrimitiveConnector {
    * 
    * @return　newgroup　コネクタSを持つグループ
    */
-  public Group createConnectorSGroup() {
+  public Group createConnectorSouthGroup() {
     Jamast root = ModelingWindow.getRoot();
     Group groupS = root.loadModel(0).loadGroup(0);
-    Group newgroup = new Group();
-    newgroup.setName("ConnectorS"); //$NON-NLS-1$
-    groupS.addGroup(newgroup);
-    return newgroup;
+    Group newGroup = new Group();
+    newGroup.setName("ConnectorS"); //$NON-NLS-1$
+    groupS.addGroup(newGroup);
+    return newGroup;
   }
 }

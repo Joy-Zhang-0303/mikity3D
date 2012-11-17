@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.mklab.mikity.gui.connector.Connect;
-import org.mklab.mikity.gui.connector.ConnectorSelect;
+import org.mklab.mikity.gui.connector.ConnectorSelector;
 import org.mklab.mikity.gui.connector.PrimitiveConnector;
 import org.mklab.mikity.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.gui.dialog.AddPrimitiveDialog;
@@ -71,7 +71,7 @@ public class SceneGraphTree {
   private AbstractModeler modeler;
 
   /** */
-  private ConnectorSelect select;
+  private ConnectorSelector select;
   /** */
   private Connect connect;
   /** */
@@ -99,7 +99,7 @@ public class SceneGraphTree {
     // ファイルの読み込みを行う
     createTree(composite);
     this.comp = composite;
-    this.select = new ConnectorSelect(composite, this, modeler);
+    this.select = new ConnectorSelector(composite, this, modeler);
     this.connect = new Connect();
   }
 

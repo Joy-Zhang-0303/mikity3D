@@ -15,45 +15,30 @@ import org.mklab.mikity.xml.model.XMLSphere;
 
 
 /**
- * コネクタを使って接続を実行するためのクラス
+ * コネクタを使って接続を実行するためのクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.3 $.2006/02/03
  */
 public class Connect {
+  /** 接続に使用するプリミティブ  */
+  private Object primitives[] = new Object[2];
 
-  /**
-   * 接続に使用するプリミティブ
-   */
-  private Object prim[] = new Object[2];
-
-  /**
-   * 各コネクタの位置座標
-   */
+  /** 各コネクタの位置座標  */
   private Location cLoc[] = new Location[2];
-  /**
-   * 各コネクタの回転
-   */
+  /** 各コネクタの回転  */
   private Rotation cRot[] = new Rotation[2];
 
-  /**
-   * 各プリミティブの位置座標
-   */
+  /** 各プリミティブの位置座標  */
   private Location pLoc[] = new Location[2];
-  /**
-   * 各プリミティブの回転
-   */
+  /** 各プリミティブの回転 */
   private Rotation pRot[] = new Rotation[2];
 
-  /**
-   * プリミティブ中心〜コネクタの距離
-   */
+  /** プリミティブ中心〜コネクタの距離 */
   private float length[] = new float[2];
 
-  /**
-   * 各コネクタ番号
-   */
-  private int cNum[] = new int[2];
+  /** 各コネクタ番号 */
+  private int connectorNumber[] = new int[2];
 
   /**
    * 移動後のプリミティブの位置座標
@@ -71,14 +56,14 @@ public class Connect {
    */
   public Connect() {
     for (int i = 0; i < 2; i++) {
-      this.prim[i] = new Object();
+      this.primitives[i] = new Object();
       this.cLoc[i] = new Location();
       this.cRot[i] = new Rotation();
 
       this.pLoc[i] = new Location();
       this.pRot[i] = new Rotation();
 
-      this.cNum[i] = 0;
+      this.connectorNumber[i] = 0;
     }
 
     this.newLoc = new Location();
@@ -86,35 +71,6 @@ public class Connect {
 
     this.cNewRot = new ConnectNewRotation();
   }
-
-  // /**
-  // * 接続基点となるコネクタN,Sの位置&回転に関する情報を取得する。
-  // * @param cylinder　コネクタ
-  // */
-  // public void connectorNS(XMLCylinder cylinder, String ns){
-  // int i = checkNS(ns);
-  //		
-  // if(cylinder.getLocation() == null){
-  // cLoc[i].setX(0.0f);
-  // cLoc[i].setY(0.0f);
-  // cLoc[i].setZ(0.0f);
-  // }else{
-  // cLoc[i].setX(cylinder.getLocation().getX());
-  // cLoc[i].setY(cylinder.getLocation().getY());
-  // cLoc[i].setZ(cylinder.getLocation().getZ());
-  // }
-  // if(cylinder.getRotation() ==null){
-  // cRot[i].setXrotate(0.0f);
-  // cRot[i].setYrotate(0.0f);
-  // cRot[i].setZrotate(0.0f);
-  // }else{
-  // cRot[i].setXrotate(cylinder.getRotation().getXrotate());
-  // cRot[i].setYrotate(cylinder.getRotation().getYrotate());
-  // cRot[i].setZrotate(cylinder.getRotation().getZrotate());
-  // }
-  // //length[i] = cylinder.getLengthToCenter();
-  // //cNum[i] = cylinder.getNum();
-  // }
 
   /**
    * 接続基点となるコネクタN,Sの位置&回転に関する情報を取得する。
@@ -143,7 +99,7 @@ public class Connect {
       this.cRot[i].setZrotate(connector.loadRotation().loadZrotate());
     }
     this.length[i] = connector.loadLengthToCenter();
-    this.cNum[i] = connector.loadNum();
+    this.connectorNumber[i] = connector.loadNum();
   }
 
   /**
@@ -155,7 +111,7 @@ public class Connect {
   public void setPrimitiveNS(Object prim, String ns) {
     int i = checkNS(ns);
 
-    this.prim[i] = prim;
+    this.primitives[i] = prim;
 
     if (prim instanceof XMLBox) {
       XMLBox box = (XMLBox)prim;
@@ -180,7 +136,7 @@ public class Connect {
    */
   public Object getPrimitiveNS(String ns) {
     int i = checkNS(ns);
-    return this.prim[i];
+    return this.primitives[i];
   }
 
   /**
@@ -317,24 +273,12 @@ public class Connect {
     this.newLoc.setZ((this.cLoc[0].loadZ() - this.pLoc[0].loadZ()) * rate + this.pLoc[0].loadZ());
   }
 
-  // public void setNewRot(int i){
-  // // float rotGapX = cRot[1].getXrotate()-cRot[0].getXrotate();
-  // // float rotGapY = cRot[1].getYrotate()-cRot[0].getYrotate();
-  // // float rotGapZ = cRot[1].getZrotate()-cRot[0].getZrotate();
-  // newRot.setXrotate(cRot[0].getXrotate());
-  // newRot.setYrotate(cRot[0].getYrotate());
-  // newRot.setZrotate(cRot[0].getZrotate());
-  // // newRot.setXrotate(rotGapX+pRot[1].getXrotate());
-  // // newRot.setYrotate(rotGapY+pRot[1].getYrotate());
-  // // newRot.setZrotate(rotGapZ+pRot[1].getZrotate());
-  // }
-
   /**
    * 接続後のプリミティブSの回転を決定する。
    */
   public void setNewRot() {
     this.cNewRot.setPrimitiveNRotation(this.pRot[0]);
-    this.cNewRot.setNewRot(this.cNum[0], this.cNum[1]);
+    this.cNewRot.setNewRot(this.connectorNumber[0], this.connectorNumber[1]);
     this.newRot = this.cNewRot.getNewRot();
   }
 
@@ -342,20 +286,20 @@ public class Connect {
    * コネクタを通じてプリミティブの接続を行う。
    */
   public void connect() {
-    if (this.prim[1] instanceof XMLBox) {
-      XMLBox box = (XMLBox)this.prim[1];
+    if (this.primitives[1] instanceof XMLBox) {
+      XMLBox box = (XMLBox)this.primitives[1];
       box.setLocation(checkLoc(this.newLoc));
       box.setRotation(checkRot(this.newRot));
-    } else if (this.prim[1] instanceof XMLCone) {
-      XMLCone cone = (XMLCone)this.prim[1];
+    } else if (this.primitives[1] instanceof XMLCone) {
+      XMLCone cone = (XMLCone)this.primitives[1];
       cone.setLocation(checkLoc(this.newLoc));
       cone.setRotation(checkRot(this.newRot));
-    } else if (this.prim[1] instanceof XMLCylinder) {
-      XMLCylinder cylinder = (XMLCylinder)this.prim[1];
+    } else if (this.primitives[1] instanceof XMLCylinder) {
+      XMLCylinder cylinder = (XMLCylinder)this.primitives[1];
       cylinder.setLocation(checkLoc(this.newLoc));
       cylinder.setRotation(checkRot(this.newRot));
-    } else if (this.prim[1] instanceof XMLSphere) {
-      XMLSphere sphere = (XMLSphere)this.prim[1];
+    } else if (this.primitives[1] instanceof XMLSphere) {
+      XMLSphere sphere = (XMLSphere)this.primitives[1];
       sphere.setLocation(checkLoc(this.newLoc));
       sphere.setRotation(checkRot(this.newRot));
     }
