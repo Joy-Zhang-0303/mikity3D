@@ -26,7 +26,7 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 
 /**
- * Dragを可能にするためのリスナー
+ * Dragを可能にするためのリスナークラスです。
  * 
  * @author Yusuke Tsutsui
  * @version $Revision: 1.6 $.2004/12/15
@@ -147,12 +147,7 @@ public class DragAndDropEnabler {
       } else if (obj instanceof XMLQuadPolygon) {
         sourceGroup.removeXMLQuadPolygon((XMLQuadPolygon)obj);
         group.addXMLQuadPolygon((XMLQuadPolygon)obj);
-      }
-      // else if(obj instanceof XMLConnector){
-      // sourceGroup.removeXMLConnector((XMLConnector)obj);
-      // group.addXMLConnector((XMLConnector)obj);
-      // }
-      else if (obj instanceof Group) {
+      } else if (obj instanceof Group) {
         sourceGroup.removeGroup((Group)obj);
         group.addGroup((Group)obj);
       } else {
