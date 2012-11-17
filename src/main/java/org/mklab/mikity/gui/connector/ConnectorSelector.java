@@ -28,19 +28,19 @@ public class ConnectorSelector {
   private AbstractModeler modeler;
 
   /** コネクタN、Sであるかの真偽 */
-  private boolean _hasS = false;
-  private boolean _hasN = false;
+  private boolean hasSouth = false;
+  private boolean hasNorth = false;
 
   /** コネクタN */
-  private XMLConnector connectorN;
+  private XMLConnector connectorNorth;
   /** コネクタS */
-  private XMLConnector connectorS;
+  private XMLConnector connectorSouth;
   private XMLConnector connector;
 
   /** コネクタN,Sを所有するグループ */
-  private Group targetGroupN;
+  private Group targetGroupNorth;
   /** */
-  private Group targetGroupS;
+  private Group targetGroupSouth;
 
   /**
    * コンストラクタ
@@ -70,11 +70,11 @@ public class ConnectorSelector {
     if (targetObj instanceof XMLConnector) {
       this.connector = (XMLConnector)targetObj;
 
-      if (this._hasN == true) {
-        if (this._hasS == false) {
+      if (this.hasNorth == true) {
+        if (this.hasSouth == false) {
           String flag = this.connector.loadFlag();
           if (flag == "-") { //$NON-NLS-1$
-            selectConnectorS(this.connector, root, xmlTree, targetGroup);
+            selectConnectorSouth(this.connector, root, xmlTree, targetGroup);
           } else if (flag == "N") { //$NON-NLS-1$
             MessageBox mesBox = new MessageBox(this.composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
             mesBox.setMessage(Messages.getString("ConnectorSelect.0")); //$NON-NLS-1$
@@ -88,7 +88,7 @@ public class ConnectorSelector {
           mesBox.open();
         }
       } else {
-        selectConnectorN(this.connector, root, xmlTree, targetGroup);
+        selectConnectorNorth(this.connector, root, xmlTree, targetGroup);
       }
     } else {
       MessageBox mesBox = new MessageBox(this.composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
@@ -106,15 +106,15 @@ public class ConnectorSelector {
    * @param xmlTree 　シーングラフツリー
    * @param targetGroup 　現在右クリックしているコネクタを所有するグループ
    */
-  private void selectConnectorN(XMLConnector argConnector, Group root, Tree xmlTree, Group targetGroup) {
-    this._hasN = true;
+  private void selectConnectorNorth(XMLConnector argConnector, Group root, Tree xmlTree, Group targetGroup) {
+    this.hasNorth = true;
     argConnector.setFlag("N"); //$NON-NLS-1$
-    this.connectorN = argConnector;
+    this.connectorNorth = argConnector;
 
     PrimitiveConnector pConnector = new PrimitiveConnector();
     Group groupN = pConnector.createConnectorNorthGroup();
     groupN.addXMLConnector(argConnector);
-    this.targetGroupN = groupN;
+    this.targetGroupNorth = groupN;
     root.removeGroup(targetGroup);
     xmlTree.getSelection()[0].dispose();
     this.tree.fillTree();
@@ -129,15 +129,15 @@ public class ConnectorSelector {
    * @param xmlTree 　シーングラフツリー
    * @param targetGroup 　現在右クリックしているコネクタを所有するグループ
    */
-  private void selectConnectorS(XMLConnector argConnector, Group root, Tree xmlTree, Group targetGroup) {
-    this._hasS = true;
+  private void selectConnectorSouth(XMLConnector argConnector, Group root, Tree xmlTree, Group targetGroup) {
+    this.hasSouth = true;
     argConnector.setFlag("S"); //$NON-NLS-1$
-    this.connectorS = argConnector;
+    this.connectorSouth = argConnector;
 
     PrimitiveConnector pConnector = new PrimitiveConnector();
     Group groupS = pConnector.createConnectorSouthGroup();
     groupS.addXMLConnector(argConnector);
-    this.targetGroupS = groupS;
+    this.targetGroupSouth = groupS;
     root.removeGroup(targetGroup);
     xmlTree.getSelection()[0].dispose();
     this.tree.fillTree();
@@ -149,9 +149,9 @@ public class ConnectorSelector {
    * 
    * @param connector 　コネクタ
    */
-  public void setConnectorN(XMLConnector connector) {
-    this.connectorN = connector;
-    this._hasN = true;
+  public void setConnectorNorth(XMLConnector connector) {
+    this.connectorNorth = connector;
+    this.hasNorth = true;
   }
 
   /**
@@ -159,9 +159,9 @@ public class ConnectorSelector {
    * 
    * @param connector 　コネクタ
    */
-  public void setConnectorS(XMLConnector connector) {
-    this.connectorS = connector;
-    this._hasS = true;
+  public void setConnectorSouth(XMLConnector connector) {
+    this.connectorSouth = connector;
+    this.hasSouth = true;
   }
 
   /**
@@ -170,7 +170,7 @@ public class ConnectorSelector {
    * @return　connectorN　コネクタN
    */
   public XMLConnector getConnectorN() {
-    return this.connectorN;
+    return this.connectorNorth;
   }
 
   /**
@@ -179,7 +179,7 @@ public class ConnectorSelector {
    * @return　connectorS　コネクタS
    */
   public XMLConnector getConnectorS() {
-    return this.connectorS;
+    return this.connectorSouth;
   }
 
   /**
@@ -189,9 +189,9 @@ public class ConnectorSelector {
     String flag = "-"; //$NON-NLS-1$
     //
     // ツリー全体からコネクタのフラグの状態を検索する記述
-    if (this._hasN == false) {
+    if (this.hasNorth == false) {
       flag = "N"; //$NON-NLS-1$
-    } else if (this._hasN == true && this._hasS == false) {
+    } else if (this.hasNorth == true && this.hasSouth == false) {
       flag = "S"; //$NON-NLS-1$
     }
     return flag;
@@ -203,11 +203,11 @@ public class ConnectorSelector {
    * @param root 　ルート
    */
   public void reset(Group root) {
-    root.removeGroup(this.targetGroupN);
-    root.removeGroup(this.targetGroupS);
+    root.removeGroup(this.targetGroupNorth);
+    root.removeGroup(this.targetGroupSouth);
     this.tree.fillTree();
     this.modeler.createViewer();
-    this._hasN = false;
-    this._hasS = false;
+    this.hasNorth = false;
+    this.hasSouth = false;
   }
 }
