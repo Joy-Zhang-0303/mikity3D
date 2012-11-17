@@ -1,5 +1,6 @@
 package org.mklab.mikity.gui;
 
+import java.awt.Component;
 import java.awt.Frame;
 import java.io.File;
 import java.io.FileInputStream;
@@ -90,9 +91,8 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   private ParameterInputBox playSpeed;
 
-  // TODO Java3d or JOGL
-  private Java3dModelCanvas modelCanvas;
-  //private JoglModelCanvas modelCanvas;
+  // TODO Java3d or JOGL (ModelCanvas)
+  private ModelCanvas modelCanvas;
 
   /**
    * コンストラクター
@@ -104,6 +104,10 @@ public class AnimationWindow extends ApplicationWindow {
     super(parentShell);
     this.manager = new MovableGroupManager(root);
     this.root = root;
+    
+    // TODO Java3d or JOGL
+    this.modelCanvas = new Java3dModelCanvas(this.root);
+    //this.modelCanvas = new JoglModelCanvas(this.root);
   }
   
   /**
@@ -173,13 +177,9 @@ public class AnimationWindow extends ApplicationWindow {
     viewer.setLayoutData(gridData);
 
     // AWTのフレームを作る。
-    final Frame awtFrame = SWT_AWT.new_Frame(viewer);
+    final Frame awtFrame = SWT_AWT.new_Frame(viewer);   
     
-    // TODO Java3d or JOGL
-    this.modelCanvas = new Java3dModelCanvas(this.root);
-    //this.modelCanvas = new JoglModelCanvas(this.root);
-    
-    awtFrame.add(this.modelCanvas);
+    awtFrame.add((Component)this.modelCanvas);
     this.modelCanvas.load();
   }
 

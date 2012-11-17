@@ -83,7 +83,9 @@ public class ModelingWindow extends ApplicationWindow {
 
   private File file;
   private File loadFile;
+  
   private static Jamast root = ModelingWindow.createEmptyModel();
+  
   /** */
   Text filePathText;
   private Button newModelButton;
@@ -95,6 +97,21 @@ public class ModelingWindow extends ApplicationWindow {
   private boolean isDirty;
 
   private AbstractModeler modeler;
+
+  /**
+   * @return root
+   */
+  private static Jamast createEmptyModel() {
+    final JamastConfig config = new JamastConfig();
+    final JamastModel model = new JamastModel();
+    final Jamast localRoot = new Jamast();
+    localRoot.addConfig(config);
+    localRoot.addModel(model);
+    final Group group = new Group();
+    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
+    model.addGroup(group);
+    return localRoot;
+  }
 
   /**
    * コンストラクター
@@ -126,8 +143,7 @@ public class ModelingWindow extends ApplicationWindow {
     localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
     // TODO Java3d or JOGL
-    // Java3d or JOGL
-    //this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.canceller);
+    //this.modeler = new Java3dModeler(localComposite, SWT.NONE, root);
     this.modeler = new JoglModeler(localComposite, SWT.NONE, root);
     
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -543,20 +559,5 @@ public class ModelingWindow extends ApplicationWindow {
    */
   public File getLoadFile() {
     return this.loadFile;
-  }
-
-  /**
-   * @return root
-   */
-  public static Jamast createEmptyModel() {
-    final Jamast root = new Jamast();
-    final JamastConfig jamastConfig = new JamastConfig();
-    final JamastModel jamastModel = new JamastModel();
-    root.addConfig(jamastConfig);
-    root.addModel(jamastModel);
-    org.mklab.mikity.xml.model.Group rootGroup = new org.mklab.mikity.xml.model.Group();
-    rootGroup.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
-    jamastModel.addGroup(rootGroup);
-    return root;
   }
 }
