@@ -38,7 +38,6 @@ import org.mklab.mikity.action.toolbar.CylinderToolBarAction;
 import org.mklab.mikity.action.toolbar.QuadPolygonToolBarAction;
 import org.mklab.mikity.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.action.toolbar.TrianglePolygonToolBarAction;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.jogl.JoglModeler;
 import org.mklab.mikity.xml.JAXBMarshaller;
 import org.mklab.mikity.xml.Jamast;
