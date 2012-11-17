@@ -67,7 +67,7 @@ public class MovableGroupManager {
     this.movableGroups.add(group);
     this.pickers.put(group, picker);
 
-    this.dataCount = Math.max(this.dataCount, picker.getDataCount());
+    this.dataCount = Math.max(this.dataCount, picker.getDataSize());
     this.startTime = Math.min(this.startTime, picker.getStartTime());
     this.endTime = Math.max(this.endTime, picker.getEndTime());
   }

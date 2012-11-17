@@ -14,7 +14,7 @@ import org.mklab.nfc.matrix.Matrix;
  * 与えられた時間のデータが無い際に、 前後のデータの比を用いてデータを補間して返すクラスです。 
  * 
  * @author miki
- * @version $Revision: 1.3 $.2005/01/17 再生する際に必要なデータを補間して使用する
+ * @version $Revision: 1.3 $.2005/01/17
  */
 public class InterpolateDataPicker extends AbstractDataPicker {
 

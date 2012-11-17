@@ -261,7 +261,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public int getDataCount() {
+  public int getDataSize() {
     return this.data.getColumnSize();
   }
 
@@ -269,7 +269,7 @@ public abstract class AbstractDataPicker implements DataPicker {
    * {@inheritDoc}
    */
   public double getEndTime() {
-    return this.data.getElement(1, getDataCount()).doubleValue();
+    return this.data.getElement(1, getDataSize()).doubleValue();
   }
 
   /**
