@@ -28,25 +28,6 @@ public class PrimitiveConnector {
   /** プリミティブの回転 */
   private Rotation primRotation;
 
-  /** 直方体のコネクタ */
-  private BoxConnector boxConnector;
-  /** 円錐のコネクタ */
-  private ConeConnector coneConnector;
-  /** 円柱のコネクタ */
-  private CylinderConnector cylinderConnector;
-  /** 球体のコネクタ */
-  private SphereConnector sphereConnector;
-
-  /**
-   * コンストラクター
-   */
-  public PrimitiveConnector() {
-    this.boxConnector = new BoxConnector();
-    this.coneConnector = new ConeConnector();
-    this.cylinderConnector = new CylinderConnector();
-    this.sphereConnector = new SphereConnector();
-  }
-
   /**
    * プリミティブごとのの各パラメータを取得し、キャンバス上のプリミティブごとに適したコネクタを追加する。 コネクタを追加されるプリミティブ
    * 
@@ -54,11 +35,10 @@ public class PrimitiveConnector {
    */
   public void createPrimitiveConnector(Object prim) {
     if (prim instanceof XMLBox) {
-      XMLBox box = (XMLBox)prim;
-
-      float param1 = box.loadXsize();
-      float param2 = box.loadYsize();
-      float param3 = box.loadZsize();
+      final XMLBox box = (XMLBox)prim;
+      final float param1 = box.loadXsize();
+      final float param2 = box.loadYsize();
+      final float param3 = box.loadZsize();
 
       this.primLocation = box.loadLocation();
       checkLocation(this.primLocation);
@@ -66,12 +46,12 @@ public class PrimitiveConnector {
       this.primRotation = box.loadRotation();
       checkRotation(this.primRotation);
 
-      this.boxConnector.createBoxConnector(param1, param2, param3, this.primLocation, this.primRotation);
+      final BoxConnector boxConnector = new BoxConnector();
+      boxConnector.createBoxConnector(param1, param2, param3, this.primLocation, this.primRotation);
     } else if (prim instanceof XMLCone) {
-      XMLCone cone = (XMLCone)prim;
-
-      float param1 = cone.loadR();
-      float param2 = cone.loadHeight();
+      final XMLCone cone = (XMLCone)prim;
+      final float param1 = cone.loadR();
+      final float param2 = cone.loadHeight();
 
       this.primLocation = cone.loadLocation();
       checkLocation(this.primLocation);
@@ -79,12 +59,12 @@ public class PrimitiveConnector {
       this.primRotation = cone.loadRotation();
       checkRotation(this.primRotation);
 
-      this.coneConnector.createConeConnector(param1, param2, this.primLocation, this.primRotation);
+      final ConeConnector coneConnector = new ConeConnector();
+      coneConnector.createConeConnector(param1, param2, this.primLocation, this.primRotation);
     } else if (prim instanceof XMLCylinder) {
-      XMLCylinder cylinder = (XMLCylinder)prim;
-
-      float param1 = cylinder.loadR();
-      float param2 = cylinder.loadHeight();
+      final XMLCylinder cylinder = (XMLCylinder)prim;
+      final float param1 = cylinder.loadR();
+      final float param2 = cylinder.loadHeight();
 
       this.primLocation = cylinder.loadLocation();
       checkLocation(this.primLocation);
@@ -92,11 +72,11 @@ public class PrimitiveConnector {
       this.primRotation = cylinder.loadRotation();
       checkRotation(this.primRotation);
 
-      this.cylinderConnector.createCylinderConnector(param1, param2, this.primLocation, this.primRotation);
+      final CylinderConnector cylinderConnector = new CylinderConnector();
+      cylinderConnector.createCylinderConnector(param1, param2, this.primLocation, this.primRotation);
     } else if (prim instanceof XMLSphere) {
-      XMLSphere sphere = (XMLSphere)prim;
-
-      float param1 = sphere.loadR();
+      final XMLSphere sphere = (XMLSphere)prim;
+      final float param1 = sphere.loadR();
 
       this.primLocation = sphere.loadLocation();
       checkLocation(this.primLocation);
@@ -104,7 +84,8 @@ public class PrimitiveConnector {
       this.primRotation = sphere.loadRotation();
       checkRotation(this.primRotation);
 
-      this.sphereConnector.createSphereConnector(param1, this.primLocation, this.primRotation);
+      final SphereConnector sphereConnector = new SphereConnector();
+      sphereConnector.createSphereConnector(param1, this.primLocation, this.primRotation);
     }
   }
 
