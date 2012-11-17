@@ -111,8 +111,8 @@ public class ConnectorSelector {
     argConnector.setFlag("N"); //$NON-NLS-1$
     this.connectorNorth = argConnector;
 
-    PrimitiveConnector pConnector = new PrimitiveConnector();
-    Group groupN = pConnector.createNorthConnectorGroup();
+    final PrimitiveConnector pConnector = new PrimitiveConnector();
+    final Group groupN = pConnector.createNorthConnectorGroup();
     groupN.addXMLConnector(argConnector);
     this.targetGroupNorth = groupN;
     root.removeGroup(targetGroup);
@@ -134,8 +134,8 @@ public class ConnectorSelector {
     argConnector.setFlag("S"); //$NON-NLS-1$
     this.connectorSouth = argConnector;
 
-    PrimitiveConnector pConnector = new PrimitiveConnector();
-    Group groupS = pConnector.createSouthConnectorGroup();
+    final PrimitiveConnector pConnector = new PrimitiveConnector();
+    final Group groupS = pConnector.createSouthConnectorGroup();
     groupS.addXMLConnector(argConnector);
     this.targetGroupSouth = groupS;
     root.removeGroup(targetGroup);

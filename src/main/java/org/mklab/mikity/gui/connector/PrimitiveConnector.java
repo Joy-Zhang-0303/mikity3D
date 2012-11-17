@@ -23,19 +23,10 @@ import org.mklab.mikity.xml.model.XMLSphere;
  * @version $Revision: 1.3 $.2006/01/31
  */
 public class PrimitiveConnector {
-
-  /** プリミティブのパラメータ1 */
-  private float param1;
-  /** プリミティブのパラメータ2 */
-  private float param2;
-  /** プリミティブのパラメータ3 */
-  private float param3;
-
   /** プリミティブの座標 */
-  private Location primLoc;
-
+  private Location primLocation;
   /** プリミティブの回転 */
-  private Rotation primRot;
+  private Rotation primRotation;
 
   /** 直方体のコネクタ */
   private BoxConnector boxConnector;
@@ -65,83 +56,83 @@ public class PrimitiveConnector {
     if (prim instanceof XMLBox) {
       XMLBox box = (XMLBox)prim;
 
-      this.param1 = box.loadXsize();
-      this.param2 = box.loadYsize();
-      this.param3 = box.loadZsize();
+      float param1 = box.loadXsize();
+      float param2 = box.loadYsize();
+      float param3 = box.loadZsize();
 
-      this.primLoc = box.loadLocation();
-      checkLoc(this.primLoc);
+      this.primLocation = box.loadLocation();
+      checkLocation(this.primLocation);
 
-      this.primRot = box.loadRotation();
-      checkRot(this.primRot);
+      this.primRotation = box.loadRotation();
+      checkRotation(this.primRotation);
 
-      this.boxConnector.createBoxConnector(this.param1, this.param2, this.param3, this.primLoc, this.primRot);
+      this.boxConnector.createBoxConnector(param1, param2, param3, this.primLocation, this.primRotation);
     } else if (prim instanceof XMLCone) {
       XMLCone cone = (XMLCone)prim;
 
-      this.param1 = cone.loadR();
-      this.param2 = cone.loadHeight();
+      float param1 = cone.loadR();
+      float param2 = cone.loadHeight();
 
-      this.primLoc = cone.loadLocation();
-      checkLoc(this.primLoc);
+      this.primLocation = cone.loadLocation();
+      checkLocation(this.primLocation);
 
-      this.primRot = cone.loadRotation();
-      checkRot(this.primRot);
+      this.primRotation = cone.loadRotation();
+      checkRotation(this.primRotation);
 
-      this.coneConnector.createConeConnector(this.param1, this.param2, this.primLoc, this.primRot);
+      this.coneConnector.createConeConnector(param1, param2, this.primLocation, this.primRotation);
     } else if (prim instanceof XMLCylinder) {
       XMLCylinder cylinder = (XMLCylinder)prim;
 
-      this.param1 = cylinder.loadR();
-      this.param2 = cylinder.loadHeight();
+      float param1 = cylinder.loadR();
+      float param2 = cylinder.loadHeight();
 
-      this.primLoc = cylinder.loadLocation();
-      checkLoc(this.primLoc);
+      this.primLocation = cylinder.loadLocation();
+      checkLocation(this.primLocation);
 
-      this.primRot = cylinder.loadRotation();
-      checkRot(this.primRot);
+      this.primRotation = cylinder.loadRotation();
+      checkRotation(this.primRotation);
 
-      this.cylinderConnector.createCylinderConnector(this.param1, this.param2, this.primLoc, this.primRot);
+      this.cylinderConnector.createCylinderConnector(param1, param2, this.primLocation, this.primRotation);
     } else if (prim instanceof XMLSphere) {
       XMLSphere sphere = (XMLSphere)prim;
 
-      this.param1 = sphere.loadR();
+      float param1 = sphere.loadR();
 
-      this.primLoc = sphere.loadLocation();
-      checkLoc(this.primLoc);
+      this.primLocation = sphere.loadLocation();
+      checkLocation(this.primLocation);
 
-      this.primRot = sphere.loadRotation();
-      checkRot(this.primRot);
+      this.primRotation = sphere.loadRotation();
+      checkRotation(this.primRotation);
 
-      this.sphereConnector.createSphereConnector(this.param1, this.primLoc, this.primRot);
+      this.sphereConnector.createSphereConnector(param1, this.primLocation, this.primRotation);
     }
   }
 
   /**
    * プリミティブの位置座標におけるパラメータが変化していないとき、各座標に0.0の値を代入する。
    * 
-   * @param loc 　プリミティブの位置座標
+   * @param location 　プリミティブの位置座標
    */
-  private void checkLoc(Location loc) {
-    if (loc == null) {
-      this.primLoc = new Location();
-      this.primLoc.setX(0.0f);
-      this.primLoc.setY(0.0f);
-      this.primLoc.setZ(0.0f);
+  private void checkLocation(Location location) {
+    if (location == null) {
+      this.primLocation = new Location();
+      this.primLocation.setX(0.0f);
+      this.primLocation.setY(0.0f);
+      this.primLocation.setZ(0.0f);
     }
   }
 
   /**
    * プリミティブの各軸の回転角度におけるパラメータが変化していないとき、各軸の回転角度に0.0の値を代入する。
    * 
-   * @param rot 　プリミティブの回転角度
+   * @param rotation 　プリミティブの回転角度
    */
-  private void checkRot(Rotation rot) {
-    if (rot == null) {
-      this.primRot = new Rotation();
-      this.primRot.setXrotate(0.0f);
-      this.primRot.setYrotate(0.0f);
-      this.primRot.setZrotate(0.0f);
+  private void checkRotation(Rotation rotation) {
+    if (rotation == null) {
+      this.primRotation = new Rotation();
+      this.primRotation.setXrotate(0.0f);
+      this.primRotation.setYrotate(0.0f);
+      this.primRotation.setZrotate(0.0f);
     }
   }
 
