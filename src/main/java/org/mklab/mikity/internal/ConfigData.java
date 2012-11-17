@@ -19,39 +19,39 @@ import java.io.IOException;
  * 
  */
 public class ConfigData {
-  /** エージェントファイル */
-  private String[] agentfile = new String[10];
+//  /** エージェントファイル */
+//  private String[] agentfile = new String[10];
   /**ウインドウの横幅 */
   private int xsize;
   /** ウインドウの縦幅 */
   private int ysize;
-  /** X軸方向のずれ */
-  private double xoffset;
   /** 画面中心と座標中心のオフセット　ｘ座標のずらす値 */
+  private double xoffset;
+  /** 画面中心と座標中心のオフセット　ｙ座標のずらす値 */  
   private double yoffset;
-  /** 画面中心と座標中心のオフセット　ｙ座標のずらす値 */
-  private double zoffset;
   /** 画面中心と座標中心のオフセット　ｚ座標のずらす値 */
-  private double xcenter;
+  private double zoffset;
   /** 各エージェントの座標系の原点の位置のｘ座標のずれ */
-  private double ycenter;
+  private double xcenter;
   /** 各エージェントの座標系の原点の位置のｙ座標のずれ */
-  private double zcenter;
+  private double ycenter;
   /** 各エージェントの座標系の原点の位置のｚ座標のずれ */
-  private String bgcolor;
+  private double zcenter;
   /** 背景の色 */
-  private double xeye;
+  private String bgcolor;
   /** 視点の位置　ｘ座標 */
-  private double yeye;
+  private double xeye;
   /** 視点の位置　ｙ座標 */
-  private double zeye;
+  private double yeye;
   /** 視点の位置　ｚ座標 */
-  private double xroll;
+  private double zeye;
   /** objectのｘ軸周りの回転 */
-  private double yroll;
+  private double xroll;
   /** objectのｙ軸周りの回転 */
-  private double zroll;
+  private double yroll;
   /** objectのｚ軸周りの回転 */
+  private double zroll;
+  
   private String[] data = new String[10];
   
   private int parent;
@@ -121,21 +121,21 @@ public class ConfigData {
     br.close();
   }
 
-  /**
-   * agentfile を返します。
-   * @return agentfile
-   */
-  public String[] getAgentfile() {
-    return this.agentfile;
-  }
+//  /**
+//   * agentfile を返します。
+//   * @return agentfile
+//   */
+//  public String[] getAgentfile() {
+//    return this.agentfile;
+//  }
 
-  /**
-   * agentfile を設定します。
-   * @param agentfile agentfile
-   */
-  public void setAgentfile(String[] agentfile) {
-    this.agentfile = agentfile;
-  }
+//  /**
+//   * agentfile を設定します。
+//   * @param agentfile agentfile
+//   */
+//  public void setAgentfile(String[] agentfile) {
+//    this.agentfile = agentfile;
+//  }
 
   /**
    * bgcolor を返します。
@@ -153,21 +153,21 @@ public class ConfigData {
     this.bgcolor = bgcolor;
   }
 
-  /**
-   * data を返します。
-   * @return data
-   */
-  public String[] getData() {
-    return this.data;
-  }
-
-  /**
-   * data を設定します。
-   * @param data data
-   */
-  public void setData(String[] data) {
-    this.data = data;
-  }
+//  /**
+//   * data を返します。
+//   * @return data
+//   */
+//  public String[] getData() {
+//    return this.data;
+//  }
+//
+//  /**
+//   * data を設定します。
+//   * @param data data
+//   */
+//  public void setData(String[] data) {
+//    this.data = data;
+//  }
 
   /**
    * link を返します。
