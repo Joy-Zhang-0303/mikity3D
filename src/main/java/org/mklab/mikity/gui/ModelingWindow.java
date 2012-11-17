@@ -87,15 +87,15 @@ public class ModelingWindow extends ApplicationWindow {
   private static Jamast root = ModelingWindow.createEmptyModel();
   
   /** */
-  Text filePathText;
+  private Text filePathText;
   private Button newModelButton;
   private Button modelerButton;
   private Button configButton;
   private Button simButton;
   private Button saveButton;
   private Button saveAsButton;
-  private boolean isDirty;
-
+  
+  private boolean dirty;
   private AbstractModeler modeler;
 
   /**
@@ -345,10 +345,10 @@ public class ModelingWindow extends ApplicationWindow {
    * 単位の設定
    */
   private void setUnit() {
-    JamastConfig config = root.loadConfig(0);
+    final JamastConfig config = root.loadConfig(0);
 
     if (config.loadModelUnit() != null) {
-      ModelUnit modelUnit = config.loadModelUnit();
+      final ModelUnit modelUnit = config.loadModelUnit();
       if (modelUnit.loadAngle() != null) {
         UnitLabel.setModelAngle(modelUnit.loadAngle());
       }
@@ -357,7 +357,7 @@ public class ModelingWindow extends ApplicationWindow {
       }
     }
     if (config.loadDataUnit() != null) {
-      DataUnit dataUnit = config.loadDataUnit();
+      final DataUnit dataUnit = config.loadDataUnit();
       if (dataUnit.loadAngle() != null) {
         UnitLabel.setDataAngle(dataUnit.loadAngle());
       }
@@ -368,7 +368,7 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * シーングラフのルートの取得
+   * シーングラフのルートを返します。
    * 
    * @return root
    */
@@ -377,7 +377,6 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   final class SaveAsButtonSelectionListener extends SelectionAdapter {
-
     @Override
     public void widgetSelected(SelectionEvent arg0) {
       ModelingWindow.this.FILE_SAVE_AS_ACTION.run();
@@ -399,7 +398,7 @@ public class ModelingWindow extends ApplicationWindow {
     JAXBMarshaller marshaller = new JAXBMarshaller(root);
     marshaller.marshal(this.file);
     setFile(this.file.getPath());
-    this.isDirty = false;
+    this.dirty = false;
   }
 
   /**
@@ -430,7 +429,7 @@ public class ModelingWindow extends ApplicationWindow {
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     this.modeler.setModel(root);
     // setEditable(false);
-    this.isDirty = false;
+    this.dirty = false;
   }
 
   /**
@@ -515,21 +514,21 @@ public class ModelingWindow extends ApplicationWindow {
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     this.modeler.setModel(root);
     // setEditable(false);
-    this.isDirty = false;
+    this.dirty = false;
   }
 
   /**
    * @return isDirty
    */
   public boolean isDirty() {
-    return this.isDirty;
+    return this.dirty;
   }
 
   /**
    * @param dirty 変更されている場合true
    */
   public void setDirty(final boolean dirty) {
-    this.isDirty = true;
+    this.dirty = dirty;
   }
 
   @Override

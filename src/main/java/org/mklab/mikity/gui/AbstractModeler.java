@@ -22,8 +22,6 @@ import org.mklab.mikity.gui.dialog.GroupConfigDialogDH;
 import org.mklab.mikity.gui.dialog.GroupConfigDialogLink;
 import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.xml.Jamast;
-import org.mklab.mikity.xml.config.DataUnit;
-import org.mklab.mikity.xml.config.ModelUnit;
 
 
 /**
@@ -44,14 +42,14 @@ public abstract class AbstractModeler extends Composite {
   /** */
   protected Frame awtFrame;
   private Group treeViewerGroup;
-  /** */
-  private String modelAngleUnit;
-  /** */
-  private String modelLengthUnit;
-  /** */
-  private String dataAngleUnit;
-  /** */
-  private String dataLengthUnit;
+//  /** */
+//  private String modelAngleUnit;
+//  /** */
+//  private String modelLengthUnit;
+//  /** */
+//  private String dataAngleUnit;
+//  /** */
+//  private String dataLengthUnit;
 
   /**
    * コンストラクター
@@ -303,40 +301,40 @@ public abstract class AbstractModeler extends Composite {
    */
   public void setModel(Jamast root) {
     this.root = root;
-    setUnit();
+    //setUnit();
     this.tree.setModel(root.loadModel(0));
     createViewer();
   }
 
-  /**
-   * 
-   */
-  public void setUnit() {
-    this.modelAngleUnit = "radian"; //$NON-NLS-1$
-    this.modelLengthUnit = "m"; //$NON-NLS-1$
-    this.dataAngleUnit = "radian"; //$NON-NLS-1$
-    this.dataLengthUnit = "m"; //$NON-NLS-1$
-
-    final ModelUnit modelUnit = this.root.loadConfig(0).loadModelUnit();
-    if (modelUnit != null) {
-      if (modelUnit.loadAngle() != null) {
-        this.modelAngleUnit = modelUnit.loadAngle();
-      }
-      if (modelUnit.loadLength() != null) {
-        this.modelLengthUnit = modelUnit.loadLength();
-      }
-    }
-    
-    final DataUnit dataUnit = this.root.loadConfig(0).loadDataUnit();
-    if (dataUnit != null) {
-      if (dataUnit.loadAngle() != null) {
-        this.dataAngleUnit = dataUnit.loadAngle();
-      }
-      if (dataUnit.loadLength() != null) {
-        this.dataLengthUnit = dataUnit.loadLength();
-      }
-    }
-  }
+//  /**
+//   * 
+//   */
+//  public void setUnit() {
+//    this.modelAngleUnit = "radian"; //$NON-NLS-1$
+//    this.modelLengthUnit = "m"; //$NON-NLS-1$
+//    this.dataAngleUnit = "radian"; //$NON-NLS-1$
+//    this.dataLengthUnit = "m"; //$NON-NLS-1$
+//
+//    final ModelUnit modelUnit = this.root.loadConfig(0).loadModelUnit();
+//    if (modelUnit != null) {
+//      if (modelUnit.loadAngle() != null) {
+//        this.modelAngleUnit = modelUnit.loadAngle();
+//      }
+//      if (modelUnit.loadLength() != null) {
+//        this.modelLengthUnit = modelUnit.loadLength();
+//      }
+//    }
+//    
+//    final DataUnit dataUnit = this.root.loadConfig(0).loadDataUnit();
+//    if (dataUnit != null) {
+//      if (dataUnit.loadAngle() != null) {
+//        this.dataAngleUnit = dataUnit.loadAngle();
+//      }
+//      if (dataUnit.loadLength() != null) {
+//        this.dataLengthUnit = dataUnit.loadLength();
+//      }
+//    }
+//  }
 
   /**
    * シーングラフツリーにプリミティブのデータを追加させる。
