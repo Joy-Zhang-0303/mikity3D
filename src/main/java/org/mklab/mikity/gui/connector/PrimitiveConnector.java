@@ -24,68 +24,68 @@ import org.mklab.mikity.xml.model.XMLSphere;
  */
 public class PrimitiveConnector {
   /** プリミティブの座標 */
-  private Location primLocation;
+  private Location location;
   /** プリミティブの回転 */
-  private Rotation primRotation;
+  private Rotation rotation;
 
   /**
    * プリミティブごとのの各パラメータを取得し、キャンバス上のプリミティブごとに適したコネクタを追加する。 コネクタを追加されるプリミティブ
    * 
-   * @param prim プリミティブ
+   * @param primitive プリミティブ
    */
-  public void createPrimitiveConnector(Object prim) {
-    if (prim instanceof XMLBox) {
-      final XMLBox box = (XMLBox)prim;
-      final float param1 = box.loadXsize();
-      final float param2 = box.loadYsize();
-      final float param3 = box.loadZsize();
+  public void createPrimitiveConnector(Object primitive) {
+    if (primitive instanceof XMLBox) {
+      final XMLBox box = (XMLBox)primitive;
+      final float x = box.loadXsize();
+      final float y = box.loadYsize();
+      final float z = box.loadZsize();
 
-      this.primLocation = box.loadLocation();
-      checkLocation(this.primLocation);
+      this.location = box.loadLocation();
+      checkLocation(this.location);
 
-      this.primRotation = box.loadRotation();
-      checkRotation(this.primRotation);
+      this.rotation = box.loadRotation();
+      checkRotation(this.rotation);
 
       final BoxConnector boxConnector = new BoxConnector();
-      boxConnector.createBoxConnector(param1, param2, param3, this.primLocation, this.primRotation);
-    } else if (prim instanceof XMLCone) {
-      final XMLCone cone = (XMLCone)prim;
-      final float param1 = cone.loadR();
-      final float param2 = cone.loadHeight();
+      boxConnector.createBoxConnector(x, y, z, this.location, this.rotation);
+    } else if (primitive instanceof XMLCone) {
+      final XMLCone cone = (XMLCone)primitive;
+      final float radius = cone.loadR();
+      final float height = cone.loadHeight();
 
-      this.primLocation = cone.loadLocation();
-      checkLocation(this.primLocation);
+      this.location = cone.loadLocation();
+      checkLocation(this.location);
 
-      this.primRotation = cone.loadRotation();
-      checkRotation(this.primRotation);
+      this.rotation = cone.loadRotation();
+      checkRotation(this.rotation);
 
       final ConeConnector coneConnector = new ConeConnector();
-      coneConnector.createConeConnector(param1, param2, this.primLocation, this.primRotation);
-    } else if (prim instanceof XMLCylinder) {
-      final XMLCylinder cylinder = (XMLCylinder)prim;
-      final float param1 = cylinder.loadR();
-      final float param2 = cylinder.loadHeight();
+      coneConnector.createConeConnector(radius, height, this.location, this.rotation);
+    } else if (primitive instanceof XMLCylinder) {
+      final XMLCylinder cylinder = (XMLCylinder)primitive;
+      final float raidius = cylinder.loadR();
+      final float height = cylinder.loadHeight();
 
-      this.primLocation = cylinder.loadLocation();
-      checkLocation(this.primLocation);
+      this.location = cylinder.loadLocation();
+      checkLocation(this.location);
 
-      this.primRotation = cylinder.loadRotation();
-      checkRotation(this.primRotation);
+      this.rotation = cylinder.loadRotation();
+      checkRotation(this.rotation);
 
       final CylinderConnector cylinderConnector = new CylinderConnector();
-      cylinderConnector.createCylinderConnector(param1, param2, this.primLocation, this.primRotation);
-    } else if (prim instanceof XMLSphere) {
-      final XMLSphere sphere = (XMLSphere)prim;
-      final float param1 = sphere.loadR();
+      cylinderConnector.createCylinderConnector(raidius, height, this.location, this.rotation);
+    } else if (primitive instanceof XMLSphere) {
+      final XMLSphere sphere = (XMLSphere)primitive;
+      final float radius = sphere.loadR();
 
-      this.primLocation = sphere.loadLocation();
-      checkLocation(this.primLocation);
+      this.location = sphere.loadLocation();
+      checkLocation(this.location);
 
-      this.primRotation = sphere.loadRotation();
-      checkRotation(this.primRotation);
+      this.rotation = sphere.loadRotation();
+      checkRotation(this.rotation);
 
       final SphereConnector sphereConnector = new SphereConnector();
-      sphereConnector.createSphereConnector(param1, this.primLocation, this.primRotation);
+      sphereConnector.createSphereConnector(radius, this.location, this.rotation);
     }
   }
 
@@ -96,10 +96,10 @@ public class PrimitiveConnector {
    */
   private void checkLocation(Location location) {
     if (location == null) {
-      this.primLocation = new Location();
-      this.primLocation.setX(0.0f);
-      this.primLocation.setY(0.0f);
-      this.primLocation.setZ(0.0f);
+      this.location = new Location();
+      this.location.setX(0.0f);
+      this.location.setY(0.0f);
+      this.location.setZ(0.0f);
     }
   }
 
@@ -110,10 +110,10 @@ public class PrimitiveConnector {
    */
   private void checkRotation(Rotation rotation) {
     if (rotation == null) {
-      this.primRotation = new Rotation();
-      this.primRotation.setXrotate(0.0f);
-      this.primRotation.setYrotate(0.0f);
-      this.primRotation.setZrotate(0.0f);
+      this.rotation = new Rotation();
+      this.rotation.setXrotate(0.0f);
+      this.rotation.setYrotate(0.0f);
+      this.rotation.setZrotate(0.0f);
     }
   }
 
