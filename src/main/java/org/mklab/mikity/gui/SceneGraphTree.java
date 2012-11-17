@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.gui.connector.Connect;
 import org.mklab.mikity.gui.connector.ConnectorSelect;
 import org.mklab.mikity.gui.connector.PrimitiveConnector;
@@ -68,7 +67,6 @@ public class SceneGraphTree {
   private Group root = null;
   /** */
   private boolean editable = true;
-
   /** */
   private AbstractModeler modeler;
 
@@ -76,10 +74,6 @@ public class SceneGraphTree {
   private ConnectorSelect select;
   /** */
   private Connect connect;
-
-  /** */
-  private CollisionCanceller canceller;
-
   /** */
   private boolean usedDHParam = false;
   /** */
@@ -98,16 +92,13 @@ public class SceneGraphTree {
    * @param composite コンポジット
    * @param modeler モデラー
    * @param model モデル
-   * @param canceller 重複防止(コリジョンキャンセラー)
    */
-  public SceneGraphTree(final Composite composite, final AbstractModeler modeler, final JamastModel model, CollisionCanceller canceller) {
+  public SceneGraphTree(final Composite composite, final AbstractModeler modeler, final JamastModel model) {
     this.model = model;
     this.modeler = modeler;
     // ファイルの読み込みを行う
     createTree(composite);
     this.comp = composite;
-    this.canceller = canceller;
-    this.canceller.setComposite(this.comp);
     this.select = new ConnectorSelect(composite, this, modeler);
     this.connect = new Connect();
   }

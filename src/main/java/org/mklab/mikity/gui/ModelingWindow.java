@@ -75,9 +75,6 @@ public class ModelingWindow extends ApplicationWindow {
   /** */
   Action FILE_EXIT_ACTION = new FileExitAction(this);
 
-  private Composite comp;
-  private CollisionCanceller canceller = new CollisionCanceller(this.comp);
-
   private Action TOOLBAR_BOX_ACTION = new BoxToolBarAction(this);
   private Action TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this);
   private Action TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this);
@@ -129,12 +126,10 @@ public class ModelingWindow extends ApplicationWindow {
     localComposite.setLayout(new GridLayout());
     localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-    this.comp = localComposite;
-
     // TODO Java3d or JOGL
     // Java3d or JOGL
     //this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.canceller);
-    this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.canceller);
+    this.modeler = new JoglModeler(localComposite, SWT.NONE, root);
     
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     return localComposite;

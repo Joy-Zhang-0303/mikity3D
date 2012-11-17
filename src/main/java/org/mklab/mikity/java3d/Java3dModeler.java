@@ -3,7 +3,6 @@ package org.mklab.mikity.java3d;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
 import org.mklab.mikity.gui.AbstractModeler;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.Jamast;
 
 
@@ -18,10 +17,9 @@ public class Java3dModeler extends AbstractModeler {
    * @param parent 親
    * @param style スタイル
    * @param root ルート
-   * @param canceller 重複防止
    */
-  public Java3dModeler(Composite parent, int style, Jamast root, CollisionCanceller canceller) {
-    super(parent, style, root, canceller);
+  public Java3dModeler(Composite parent, int style, Jamast root) {
+    super(parent, style, root);
   }
 
   /**

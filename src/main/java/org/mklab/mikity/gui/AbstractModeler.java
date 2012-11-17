@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.MessageBox;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.EditPrimitiveDialog;
@@ -53,8 +52,6 @@ public abstract class AbstractModeler extends Composite {
   private String dataAngleUnit;
   /** */
   private String dataLengthUnit;
-  /** */
-  private CollisionCanceller canceller;
 
   /**
    * コンストラクター
@@ -62,14 +59,12 @@ public abstract class AbstractModeler extends Composite {
    * @param parent 親
    * @param style スタイル
    * @param root ルート
-   * @param canceller コリジョンキャンセラー
    */
-  public AbstractModeler(Composite parent, int style, final Jamast root, CollisionCanceller canceller) {
+  public AbstractModeler(Composite parent, int style, final Jamast root) {
     super(parent, style);
     this.root = root;
     this.setLayout(new GridLayout());
     this.setLayoutData(new GridData(GridData.FILL_BOTH));
-    this.canceller = canceller;
 
     // SashForm 画面を垂直に広げることができる
     SashForm sash = new SashForm(this, SWT.NONE);
@@ -110,7 +105,7 @@ public abstract class AbstractModeler extends Composite {
     this.treeViewerGroup.setLayoutData(data);
     this.treeViewerGroup.setText(Messages.getString("Modeler.0")); //$NON-NLS-1$
 
-    this.tree = new SceneGraphTree(this.treeViewerGroup, this, this.root.loadModel(0), this.canceller);
+    this.tree = new SceneGraphTree(this.treeViewerGroup, this, this.root.loadModel(0));
     createViewer();
   }
 
