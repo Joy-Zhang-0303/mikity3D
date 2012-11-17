@@ -38,13 +38,10 @@ import org.mklab.mikity.xml.config.ModelUnit;
  * @version $Revision: 1.22 $.2004/12/03
  */
 public abstract class AbstractModeler extends Composite {
-
   /** */
   protected SceneGraphTree tree;
-
   /** */
-  protected Jamast root;
-  
+  protected Jamast root; 
   /** */
   protected Frame awtFrame;
   private Group treeViewerGroup;
@@ -56,9 +53,8 @@ public abstract class AbstractModeler extends Composite {
   private String dataAngleUnit;
   /** */
   private String dataLengthUnit;
-
   /** */
-  CollisionCanceller canceller;
+  private CollisionCanceller canceller;
 
   /**
    * コンストラクター
@@ -266,14 +262,14 @@ public abstract class AbstractModeler extends Composite {
 
         org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
         if (group == null) {
-          MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
+          final MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
           box.setText(Messages.getString("Modeler.12")); //$NON-NLS-1$
           box.setMessage(Messages.getString("Modeler.13")); //$NON-NLS-1$
           box.open();
           return;
         }
 
-        AddPrimitiveDialog addPrim = new AddPrimitiveDialog(getShell(), group);
+        final AddPrimitiveDialog addPrim = new AddPrimitiveDialog(getShell(), group);
         addPrim.open();
 
         AbstractModeler.this.tree.fillTree();
@@ -286,18 +282,18 @@ public abstract class AbstractModeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        Object prim = AbstractModeler.this.tree.getSelectionData();
-        org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
+        final Object prim = AbstractModeler.this.tree.getSelectionData();
+        final org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
 
         if (prim == null) {
-          MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
+          final MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
           box.setText(Messages.getString("Modeler.14")); //$NON-NLS-1$
           box.setMessage(Messages.getString("Modeler.15")); //$NON-NLS-1$
           box.open();
           return;
         }
 
-        EditPrimitiveDialog editPrim = new EditPrimitiveDialog(getShell(), prim, group);
+        final EditPrimitiveDialog editPrim = new EditPrimitiveDialog(getShell(), prim, group);
         editPrim.open();
 
         AbstractModeler.this.tree.fillTree();
@@ -326,8 +322,8 @@ public abstract class AbstractModeler extends Composite {
     this.dataAngleUnit = "radian"; //$NON-NLS-1$
     this.dataLengthUnit = "m"; //$NON-NLS-1$
 
-    if (this.root.loadConfig(0).loadModelUnit() != null) {
-      ModelUnit modelUnit = this.root.loadConfig(0).loadModelUnit();
+    final ModelUnit modelUnit = this.root.loadConfig(0).loadModelUnit();
+    if (modelUnit != null) {
       if (modelUnit.loadAngle() != null) {
         this.modelAngleUnit = modelUnit.loadAngle();
       }
@@ -335,8 +331,9 @@ public abstract class AbstractModeler extends Composite {
         this.modelLengthUnit = modelUnit.loadLength();
       }
     }
-    if (this.root.loadConfig(0).loadDataUnit() != null) {
-      DataUnit dataUnit = this.root.loadConfig(0).loadDataUnit();
+    
+    final DataUnit dataUnit = this.root.loadConfig(0).loadDataUnit();
+    if (dataUnit != null) {
       if (dataUnit.loadAngle() != null) {
         this.dataAngleUnit = dataUnit.loadAngle();
       }
