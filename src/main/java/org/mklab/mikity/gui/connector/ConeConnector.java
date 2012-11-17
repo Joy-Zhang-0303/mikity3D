@@ -20,7 +20,7 @@ import org.mklab.mikity.xml.model.XMLConnector;
 public class ConeConnector {
 
   /** コネクタの所属するグループ */
-  private ConnectorGroup group;
+  private ConnectorGroupFactory group;
 
   /** コネクタ1~2の座標 */
   private XMLConnector connectors[] = new XMLConnector[2];
@@ -31,7 +31,7 @@ public class ConeConnector {
    * コンストラクター
    */
   public ConeConnector() {
-    this.group = new ConnectorGroup();
+    this.group = new ConnectorGroupFactory();
   }
 
   /**

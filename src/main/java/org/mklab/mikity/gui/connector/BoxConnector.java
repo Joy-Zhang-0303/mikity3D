@@ -19,7 +19,7 @@ import org.mklab.mikity.xml.model.XMLConnector;
  */
 public class BoxConnector {
   /** コネクタの所属するグループ */
-  private ConnectorGroup group;
+  private ConnectorGroupFactory group;
 
   /** コネクタ1~6 */
   private XMLConnector connectors[] = new XMLConnector[6];
@@ -30,7 +30,7 @@ public class BoxConnector {
    * コンストラクター
    */
   public BoxConnector() {
-    this.group = new ConnectorGroup();
+    this.group = new ConnectorGroupFactory();
   }
 
   /**

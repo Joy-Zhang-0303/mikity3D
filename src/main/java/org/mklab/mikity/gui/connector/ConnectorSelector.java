@@ -112,7 +112,7 @@ public class ConnectorSelector {
     this.connectorNorth = argConnector;
 
     PrimitiveConnector pConnector = new PrimitiveConnector();
-    Group groupN = pConnector.createConnectorNorthGroup();
+    Group groupN = pConnector.createNorthConnectorGroup();
     groupN.addXMLConnector(argConnector);
     this.targetGroupNorth = groupN;
     root.removeGroup(targetGroup);
@@ -135,7 +135,7 @@ public class ConnectorSelector {
     this.connectorSouth = argConnector;
 
     PrimitiveConnector pConnector = new PrimitiveConnector();
-    Group groupS = pConnector.createConnectorSouthGroup();
+    Group groupS = pConnector.createSouthConnectorGroup();
     groupS.addXMLConnector(argConnector);
     this.targetGroupSouth = groupS;
     root.removeGroup(targetGroup);

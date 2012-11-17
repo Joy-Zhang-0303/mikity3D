@@ -16,21 +16,19 @@ import org.mklab.mikity.xml.model.Group;
  * @author SHOGO
  * @version $Revision: 1.3 $.2006/01/31
  */
-public class ConnectorGroup {
-  /** コネクタを含んだグループ  */
-  private Group group;
-
+public class ConnectorGroupFactory {
   /**
-   * コネクタを含んだグループを返す。
+   * コネクタを含んだグループを返します。
    * 
-   * @return コネクタを含んだグループ。
+   * @return コネクタを含んだグループ
    */
   public Group createConnectorGroup() {
     final Jamast root = ModelingWindow.getRoot();
-    this.group = root.loadModel(0).loadGroup(0);
-    final Group newgroup = new Group();
-    newgroup.setName("Connector"); //$NON-NLS-1$
-    this.group.addGroup(newgroup);
-    return newgroup;
+    final Group connectorGroup = new Group();
+    connectorGroup.setName("Connector"); //$NON-NLS-1$
+    
+    final Group routGroup = root.loadModel(0).loadGroup(0);
+    routGroup.addGroup(connectorGroup);
+    return connectorGroup;
   }
 }

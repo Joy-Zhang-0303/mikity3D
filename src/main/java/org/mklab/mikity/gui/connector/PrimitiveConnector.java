@@ -146,30 +146,32 @@ public class PrimitiveConnector {
   }
 
   /**
-   * コネクタNを持つグループを生成した後返す
+   * コネクタNを持つグループを生成します。
    * 
    * @return　newgroup　コネクタNを持つグループ
    */
-  public Group createConnectorNorthGroup() {
-    Jamast root = ModelingWindow.getRoot();
-    Group groupN = root.loadModel(0).loadGroup(0);
-    Group newGroup = new Group();
-    newGroup.setName("ConnectorN"); //$NON-NLS-1$
-    groupN.addGroup(newGroup);
-    return newGroup;
+  public Group createNorthConnectorGroup() {
+    final Group northGroup = new Group();
+    northGroup.setName("ConnectorN"); //$NON-NLS-1$
+
+    final Jamast root = ModelingWindow.getRoot();
+    final Group routGroup = root.loadModel(0).loadGroup(0);
+    routGroup.addGroup(northGroup);
+    return northGroup;
   }
 
   /**
-   * コネクタSを持つグループを生成した後返す
+   * コネクタSを持つグループを生成します。
    * 
    * @return　newgroup　コネクタSを持つグループ
    */
-  public Group createConnectorSouthGroup() {
-    Jamast root = ModelingWindow.getRoot();
-    Group groupS = root.loadModel(0).loadGroup(0);
-    Group newGroup = new Group();
-    newGroup.setName("ConnectorS"); //$NON-NLS-1$
-    groupS.addGroup(newGroup);
-    return newGroup;
+  public Group createSouthConnectorGroup() {   
+    final Group southGroup = new Group();
+    southGroup.setName("ConnectorS"); //$NON-NLS-1$
+    
+    final Jamast root = ModelingWindow.getRoot();
+    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    rootGroup.addGroup(southGroup);
+    return southGroup;
   }
 }
