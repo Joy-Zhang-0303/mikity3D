@@ -29,8 +29,8 @@ public final class MessagegUtil {
    * @param message メッセージ
    */
   public static void show(final Shell shell, final String message) {
-    MessageBox box = new MessageBox(shell);
     if (message != null) {
+      final MessageBox box = new MessageBox(shell);
       box.setMessage(message);
       box.setText("JAMAST"); //$NON-NLS-1$
       box.open();
@@ -45,7 +45,7 @@ public final class MessagegUtil {
    * @return SWT.YES,SWT.NO, SWT.CANCEL
    */
   public static int showYesNo(final Shell shell, final String message) {
-    MessageBox box = new MessageBox(shell, SWT.YES | SWT.NO);
+    final MessageBox box = new MessageBox(shell, SWT.YES | SWT.NO);
     box.setMessage(message);
     box.setText("JAMAST"); //$NON-NLS-1$
     return box.open();
@@ -59,7 +59,7 @@ public final class MessagegUtil {
    * @return SWT.YES,SWT.NO, SWT.CANCEL
    */
   public static int showYesNoCancel(final Shell shell, final String message) {
-    MessageBox box = new MessageBox(shell, SWT.YES | SWT.NO | SWT.CANCEL);
+    final MessageBox box = new MessageBox(shell, SWT.YES | SWT.NO | SWT.CANCEL);
     box.setMessage(message);
     box.setText("JAMAST"); //$NON-NLS-1$
     return box.open();
