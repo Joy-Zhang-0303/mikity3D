@@ -18,20 +18,6 @@ import org.mklab.mikity.xml.model.XMLConnector;
  * @version $Revision: 1.3 $.2006/01/31
  */
 public class SphereConnector {
-
-  /** コネクタの所属するグループ */
-  private ConnectorGroupFactory group;
-
-  /** コネクタ1~6 */
-  private XMLConnector cnnectors[] = new XMLConnector[6];
-
-  /**
-   * コンストラクター
-   */
-  public SphereConnector() {
-    this.group = new ConnectorGroupFactory();
-  }
-
   /**
    * 球体プリミティブにコネクタを追加する。
    * 
@@ -40,34 +26,39 @@ public class SphereConnector {
    * @param rot 球体の回転
    */
   public void createSphereConnector(float r, Location loc, Rotation rot) {
-    for (int i = 0; i < this.cnnectors.length; i++) {
-      this.cnnectors[i] = new XMLConnector();
-      this.cnnectors[i].setNum(i + 1);
-      this.cnnectors[i].checkParameterR(r);
+    /** コネクタ1~6 */
+    final XMLConnector cnnectors[] = new XMLConnector[6];
+    
+    for (int i = 0; i < cnnectors.length; i++) {
+      cnnectors[i] = new XMLConnector();
+      cnnectors[i].setNum(i + 1);
+      cnnectors[i].checkParameterR(r);
     }
 
-    for (int i = 0; i < this.cnnectors.length; i++) {
-      this.cnnectors[i].setLengthToCenter(r);
+    for (int i = 0; i < cnnectors.length; i++) {
+      cnnectors[i].setLengthToCenter(r);
     }
 
-    Group cGroup = this.group.createConnectorGroup();
 
-    this.cnnectors[0].setConnectorRotation(0.0f, 0.0f, 0.0f);
-    this.cnnectors[1].setConnectorRotation(180.0f, 0.0f, 0.0f);
-    this.cnnectors[2].setConnectorRotation(90.0f, 0.0f, 0.0f);
-    this.cnnectors[3].setConnectorRotation(-90.0f, 0.0f, 0.0f);
-    this.cnnectors[4].setConnectorRotation(0.0f, 0.0f, -90.0f);
-    this.cnnectors[5].setConnectorRotation(0.0f, 0.0f, 90.0f);
+    cnnectors[0].setConnectorRotation(0.0f, 0.0f, 0.0f);
+    cnnectors[1].setConnectorRotation(180.0f, 0.0f, 0.0f);
+    cnnectors[2].setConnectorRotation(90.0f, 0.0f, 0.0f);
+    cnnectors[3].setConnectorRotation(-90.0f, 0.0f, 0.0f);
+    cnnectors[4].setConnectorRotation(0.0f, 0.0f, -90.0f);
+    cnnectors[5].setConnectorRotation(0.0f, 0.0f, 90.0f);
 
-    this.cnnectors[0].setConnectorLocation(loc.loadX(), loc.loadY() + r, loc.loadZ());
-    this.cnnectors[1].setConnectorLocation(loc.loadX(), loc.loadY() - r, loc.loadZ());
-    this.cnnectors[2].setConnectorLocation(loc.loadX(), loc.loadY(), loc.loadZ() + r);
-    this.cnnectors[3].setConnectorLocation(loc.loadX(), loc.loadY(), loc.loadZ() - r);
-    this.cnnectors[4].setConnectorLocation(loc.loadX() + r, loc.loadY(), loc.loadZ());
-    this.cnnectors[5].setConnectorLocation(loc.loadX() - r, loc.loadY(), loc.loadZ());
+    cnnectors[0].setConnectorLocation(loc.loadX(), loc.loadY() + r, loc.loadZ());
+    cnnectors[1].setConnectorLocation(loc.loadX(), loc.loadY() - r, loc.loadZ());
+    cnnectors[2].setConnectorLocation(loc.loadX(), loc.loadY(), loc.loadZ() + r);
+    cnnectors[3].setConnectorLocation(loc.loadX(), loc.loadY(), loc.loadZ() - r);
+    cnnectors[4].setConnectorLocation(loc.loadX() + r, loc.loadY(), loc.loadZ());
+    cnnectors[5].setConnectorLocation(loc.loadX() - r, loc.loadY(), loc.loadZ());
 
-    for (int x = 0; x < this.cnnectors.length; x++) {
-      cGroup.addXMLConnector(this.cnnectors[x]);
+    final ConnectorGroupFactory group = new ConnectorGroupFactory();
+    final Group cGroup = group.createConnectorGroup();
+
+    for (int x = 0; x < cnnectors.length; x++) {
+      cGroup.addXMLConnector(cnnectors[x]);
     }
   }
 }

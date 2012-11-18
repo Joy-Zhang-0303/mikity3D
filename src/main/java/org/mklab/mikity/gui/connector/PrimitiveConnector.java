@@ -92,10 +92,10 @@ public class PrimitiveConnector {
   /**
    * プリミティブの位置座標におけるパラメータが変化していないとき、各座標に0.0の値を代入する。
    * 
-   * @param location 　プリミティブの位置座標
+   * @param argLocation 　プリミティブの位置座標
    */
-  private void checkLocation(Location location) {
-    if (location == null) {
+  private void checkLocation(Location argLocation) {
+    if (argLocation == null) {
       this.location = new Location();
       this.location.setX(0.0f);
       this.location.setY(0.0f);
@@ -106,10 +106,10 @@ public class PrimitiveConnector {
   /**
    * プリミティブの各軸の回転角度におけるパラメータが変化していないとき、各軸の回転角度に0.0の値を代入する。
    * 
-   * @param rotation 　プリミティブの回転角度
+   * @param argRotation 　プリミティブの回転角度
    */
-  private void checkRotation(Rotation rotation) {
-    if (rotation == null) {
+  private void checkRotation(Rotation argRotation) {
+    if (argRotation == null) {
       this.rotation = new Rotation();
       this.rotation.setXrotate(0.0f);
       this.rotation.setYrotate(0.0f);
@@ -120,7 +120,7 @@ public class PrimitiveConnector {
   /**
    * コネクタNを持つグループを生成します。
    * 
-   * @return　newgroup　コネクタNを持つグループ
+   * @return　コネクタNを持つグループ
    */
   public Group createNorthConnectorGroup() {
     final Group northGroup = new Group();
@@ -135,7 +135,7 @@ public class PrimitiveConnector {
   /**
    * コネクタSを持つグループを生成します。
    * 
-   * @return　newgroup　コネクタSを持つグループ
+   * @return　コネクタSを持つグループ
    */
   public Group createSouthConnectorGroup() {   
     final Group southGroup = new Group();
