@@ -34,6 +34,9 @@ import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
 import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.xml.Jamast;
+import org.mklab.mikity.xml.JamastConfig;
+import org.mklab.mikity.xml.JamastModel;
+import org.mklab.mikity.xml.model.Group;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
@@ -91,7 +94,7 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   private ParameterInputBox playSpeed;
 
-  // TODO Java3d or JOGL (ModelCanvas)
+  //  ModelCanvas
   private ModelCanvas modelCanvas;
 
   /**
@@ -102,12 +105,51 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public AnimationWindow(final Shell parentShell, final Jamast root) {
     super(parentShell);
-    this.manager = new MovableGroupManager(root);
     this.root = root;
+    this.manager = new MovableGroupManager(this.root);
     
     // TODO Java3d or JOGL
     this.modelCanvas = new Java3dModelCanvas(this.root);
     //this.modelCanvas = new JoglModelCanvas(this.root);
+  }
+  
+  /**
+   * コンストラクター
+   * 
+   * @param parentShell 親シェル
+   * @param modelFile モデルファイル
+   */
+  public AnimationWindow(final Shell parentShell, File modelFile) {
+    super(parentShell);
+    this.root = createEmptyModel();
+    this.manager = new MovableGroupManager(this.root);
+    
+    // TODO Java3d or JOGL
+    this.modelCanvas = new Java3dModelCanvas(this.root);
+    //this.modelCanvas = new JoglModelCanvas(this.root);
+  }
+  
+  /**
+   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
+   * @param modelFilePath モデルのファイルへのパス
+   */
+  public AnimationWindow(String modelFilePath) {
+    this(null, new File(modelFilePath));
+  }
+  
+  /**
+   * @return root
+   */
+  private Jamast createEmptyModel() {
+    final JamastConfig config = new JamastConfig();
+    final JamastModel model = new JamastModel();
+    final Jamast localRoot = new Jamast();
+    localRoot.addConfig(config);
+    localRoot.addModel(model);
+    final Group group = new Group();
+    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
+    model.addGroup(group);
+    return localRoot;
   }
   
   /**

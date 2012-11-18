@@ -82,7 +82,6 @@ public class ModelingWindow extends ApplicationWindow {
   private Action TOOLBAR_QUAD_ACTION = new QuadPolygonToolBarAction(this);
 
   private File file;
-  private File loadFile;
   
   private Jamast root;
   
@@ -97,7 +96,6 @@ public class ModelingWindow extends ApplicationWindow {
   
   private boolean dirty;
   private AbstractModeler modeler;
-
 
   /**
    * コンストラクター
@@ -412,21 +410,25 @@ public class ModelingWindow extends ApplicationWindow {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
+    
     JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(this.file);
-    this.root = marshaller.getRoot();
-    if (this.root == null) {
-      this.root = createEmptyModel();
-      Group groupBlender = this.root.loadModel(0).loadGroup(0);
-      Group[] polygonGroupList = marshaller.getBlenderGroup().getGroups();
-      for (int i = 0; i < polygonGroupList.length; i++) {
-        groupBlender.addGroup(polygonGroupList[i]);
+    
+    Jamast newRoot = marshaller.getRoot();
+    if (newRoot == null) {
+      newRoot = createEmptyModel();
+      final Group group = newRoot.loadModel(0).loadGroup(0);
+      final Group[] polygonGroups = marshaller.getBlenderGroup().getGroups();
+      for (int i = 0; i < polygonGroups.length; i++) {
+        group.addGroup(polygonGroups[i]);
       }
     }
-    this.loadFile = marshaller.getLoadFile();
+    
+    this.root = newRoot;
+    
     // setEditable(true);
-    SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(getRoot().loadModel(0).loadGroup(0), false);
+    final SceneGraphTree tree = new SceneGraphTree();
+    tree.setAllTransparent(this.root.loadModel(0).loadGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
@@ -553,12 +555,12 @@ public class ModelingWindow extends ApplicationWindow {
     this.modeler.createViewer();
   }
 
-  /**
-   * 読み込みファイルの取得
-   * 
-   * @return　loadFile　読み込みファイル
-   */
-  public File getLoadFile() {
-    return this.loadFile;
-  }
+//  /**
+//   * 読み込みファイルの取得
+//   * 
+//   * @return　loadFile　読み込みファイル
+//   */
+//  public File getLoadFile() {
+//    return this.loadFile;
+//  }
 }
