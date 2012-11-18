@@ -97,21 +97,7 @@ public class ModelingWindow extends ApplicationWindow {
   
   private boolean dirty;
   private AbstractModeler modeler;
-  
-  /**
-   * @return root
-   */
-  private Jamast createEmptyModel() {
-    final JamastConfig config = new JamastConfig();
-    final JamastModel model = new JamastModel();
-    final Jamast localRoot = new Jamast();
-    localRoot.addConfig(config);
-    localRoot.addModel(model);
-    final Group group = new Group();
-    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
-    model.addGroup(group);
-    return localRoot;
-  }
+
 
   /**
    * コンストラクター
@@ -133,6 +119,21 @@ public class ModelingWindow extends ApplicationWindow {
     addToolBar(SWT.FLAT);
     addStatusLine();
   }
+  
+  /**
+   * @return root
+   */
+  private Jamast createEmptyModel() {
+    final JamastConfig config = new JamastConfig();
+    final JamastModel model = new JamastModel();
+    final Jamast localRoot = new Jamast();
+    localRoot.addConfig(config);
+    localRoot.addModel(model);
+    final Group group = new Group();
+    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
+    model.addGroup(group);
+    return localRoot;
+  }
 
   /**
    * @see org.eclipse.jface.window.Window#createContents(org.eclipse.swt.widgets.Composite)
@@ -144,7 +145,7 @@ public class ModelingWindow extends ApplicationWindow {
     localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
     // TODO Java3d or JOGL
-    //this.modeler = new Java3dModeler(localComposite, SWT.NONE, root);
+    //this.modeler = new Java3dModeler(localComposite, SWT.NONE, this.root);
     this.modeler = new JoglModeler(localComposite, SWT.NONE, this.root);
     
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
