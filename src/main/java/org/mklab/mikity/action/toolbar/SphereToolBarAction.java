@@ -47,7 +47,7 @@ public class SphereToolBarAction extends Action {
     sphere.setDiv(20);
     sphere.setColor("yellow"); //$NON-NLS-1$
     
-    final Jamast root = ModelingWindow.getRoot();
+    final Jamast root = this.window.getRoot();
     final Group group = root.loadModel(0).loadGroup(0);
     group.addXMLSphere(sphere);
     

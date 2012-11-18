@@ -84,7 +84,7 @@ public class ModelingWindow extends ApplicationWindow {
   private File file;
   private File loadFile;
   
-  private static Jamast root = ModelingWindow.createEmptyModel();
+  private Jamast root;
   
   /** */
   private Text filePathText;
@@ -97,11 +97,11 @@ public class ModelingWindow extends ApplicationWindow {
   
   private boolean dirty;
   private AbstractModeler modeler;
-
+  
   /**
    * @return root
    */
-  private static Jamast createEmptyModel() {
+  private Jamast createEmptyModel() {
     final JamastConfig config = new JamastConfig();
     final JamastModel model = new JamastModel();
     final Jamast localRoot = new Jamast();
@@ -128,6 +128,7 @@ public class ModelingWindow extends ApplicationWindow {
    */
   public ModelingWindow(final Shell shell) {
     super(shell);
+    this.root = createEmptyModel();
     addMenuBar();
     addToolBar(SWT.FLAT);
     addStatusLine();
@@ -144,7 +145,7 @@ public class ModelingWindow extends ApplicationWindow {
 
     // TODO Java3d or JOGL
     //this.modeler = new Java3dModeler(localComposite, SWT.NONE, root);
-    this.modeler = new JoglModeler(localComposite, SWT.NONE, root);
+    this.modeler = new JoglModeler(localComposite, SWT.NONE, this.root);
     
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     return localComposite;
@@ -345,7 +346,7 @@ public class ModelingWindow extends ApplicationWindow {
    * 単位の設定
    */
   private void setUnit() {
-    final JamastConfig config = root.loadConfig(0);
+    final JamastConfig config = this.root.loadConfig(0);
 
     if (config.loadModelUnit() != null) {
       final ModelUnit modelUnit = config.loadModelUnit();
@@ -372,8 +373,8 @@ public class ModelingWindow extends ApplicationWindow {
    * 
    * @return root
    */
-  public static Jamast getRoot() {
-    return root;
+  public Jamast getRoot() {
+    return this.root;
   }
 
   final class SaveAsButtonSelectionListener extends SelectionAdapter {
@@ -394,8 +395,8 @@ public class ModelingWindow extends ApplicationWindow {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
-    root.loadJamastXMLData();
-    JAXBMarshaller marshaller = new JAXBMarshaller(root);
+    this.root.loadJamastXMLData();
+    JAXBMarshaller marshaller = new JAXBMarshaller(this.root);
     marshaller.marshal(this.file);
     setFile(this.file.getPath());
     this.dirty = false;
@@ -412,10 +413,10 @@ public class ModelingWindow extends ApplicationWindow {
     }
     JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(this.file);
-    root = marshaller.getRoot();
-    if (root == null) {
-      root = ModelingWindow.createEmptyModel();
-      Group groupBlender = root.loadModel(0).loadGroup(0);
+    this.root = marshaller.getRoot();
+    if (this.root == null) {
+      this.root = createEmptyModel();
+      Group groupBlender = this.root.loadModel(0).loadGroup(0);
       Group[] polygonGroupList = marshaller.getBlenderGroup().getGroups();
       for (int i = 0; i < polygonGroupList.length; i++) {
         groupBlender.addGroup(polygonGroupList[i]);
@@ -427,7 +428,7 @@ public class ModelingWindow extends ApplicationWindow {
     tree.setAllTransparent(getRoot().loadModel(0).loadGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
-    this.modeler.setModel(root);
+    this.modeler.setModel(this.root);
     // setEditable(false);
     this.dirty = false;
   }
@@ -457,7 +458,7 @@ public class ModelingWindow extends ApplicationWindow {
       org.mklab.mikity.xml.model.XMLQuadPolygon[] quad = importGroup.getXMLQuadPolygon();
       org.mklab.mikity.xml.model.Group[] group = importGroup.getGroups();
 
-      Group rootGroup = root.loadModel(0).loadGroup(0);
+      Group rootGroup = this.root.loadModel(0).loadGroup(0);
 
       if (box != null) {
         for (int i = 0; i < box.length; i++) {
@@ -500,7 +501,7 @@ public class ModelingWindow extends ApplicationWindow {
         }
       }
     } else {
-      Group groupBlender = root.loadModel(0).loadGroup(0);
+      Group groupBlender = this.root.loadModel(0).loadGroup(0);
       Group[] polygonGroupList = marshaller.getBlenderGroup().getGroups();
       for (int i = 0; i < polygonGroupList.length; i++) {
         groupBlender.addGroup(polygonGroupList[i]);
@@ -512,7 +513,7 @@ public class ModelingWindow extends ApplicationWindow {
     tree.setAllTransparent(getRoot().loadModel(0).loadGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
-    this.modeler.setModel(root);
+    this.modeler.setModel(this.root);
     // setEditable(false);
     this.dirty = false;
   }

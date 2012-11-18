@@ -56,7 +56,7 @@ public class TrianglePolygonToolBarAction extends Action {
     polygon.setPointLocations(locations);
     polygon.setColor("red"); //$NON-NLS-1$
     
-    final Jamast root = ModelingWindow.getRoot();
+    final Jamast root = this.window.getRoot();
     final Group group = root.loadModel(0).loadGroup(0);
     group.addXMLTrianglePolygon(polygon);
 
