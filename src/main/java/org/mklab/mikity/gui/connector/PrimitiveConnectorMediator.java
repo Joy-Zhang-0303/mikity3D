@@ -7,6 +7,7 @@ package org.mklab.mikity.gui.connector;
 
 import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.xml.Jamast;
+import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLCone;
@@ -21,13 +22,13 @@ import org.mklab.mikity.xml.model.XMLSphere;
  * @author SHOGO
  * @version $Revision: 1.3 $.2006/01/31
  */
-public class PrimitiveConnector {
+public class PrimitiveConnectorMediator {
   /**
    * プリミティブごとのの各パラメータを取得し、キャンバス上のプリミティブごとに適したコネクタを追加する。 
    * 
    * @param primitive コネクタを追加されるプリミティブ
    */
-  public void addConnectors(Object primitive) {
+  public void addConnectorsTo(Object primitive) {
     final XMLConnector[] connectors;
     if (primitive instanceof XMLBox) {
       connectors = createConnectors((XMLBox)primitive);
@@ -78,40 +79,11 @@ public class PrimitiveConnector {
    */
   private Group createConnectorGroup() {
     final Jamast root = ModelingWindow.getRoot();
-    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    final JamastModel model = root.loadModel(0);
+    final Group rootGroup = model.loadGroup(0);
     
     final Group group = new Group();
     group.setName("Connector"); //$NON-NLS-1$
-    rootGroup.addGroup(group);
-    return group;
-  }
-  
-  /**
-   * コネクタNを持つグループを生成します。
-   * 
-   * @return　コネクタNを持つグループ
-   */
-  public Group createNorthConnectorGroup() {
-    final Jamast root = ModelingWindow.getRoot();
-    final Group rootGroup = root.loadModel(0).loadGroup(0);
-    
-    final Group group = new Group();
-    group.setName("ConnectorN"); //$NON-NLS-1$
-    rootGroup.addGroup(group);
-    return group;
-  }
-
-  /**
-   * コネクタSを持つグループを生成します。
-   * 
-   * @return　コネクタSを持つグループ
-   */
-  public Group createSouthConnectorGroup() {   
-    final Jamast root = ModelingWindow.getRoot();
-    final Group rootGroup = root.loadModel(0).loadGroup(0);
-
-    final Group group = new Group();
-    group.setName("ConnectorS"); //$NON-NLS-1$
     rootGroup.addGroup(group);
     return group;
   }

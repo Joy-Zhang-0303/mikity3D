@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.mklab.mikity.gui.connector.Connect;
 import org.mklab.mikity.gui.connector.ConnectorSelector;
-import org.mklab.mikity.gui.connector.PrimitiveConnector;
+import org.mklab.mikity.gui.connector.PrimitiveConnectorMediator;
 import org.mklab.mikity.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.gui.dialog.AddQuadPolygonDialog;
@@ -390,9 +390,9 @@ public class SceneGraphTree {
           mesBox.open();
         } else {
           SceneGraphTree.this.root = SceneGraphTree.this.targetGroup;
-          final PrimitiveConnector pConnector = new PrimitiveConnector();
+          final PrimitiveConnectorMediator pConnector = new PrimitiveConnectorMediator();
           SceneGraphTree.this.connect.setPrimitiveNS(SceneGraphTree.this.targetObj, SceneGraphTree.this.select.getTreeConnectorFlag());
-          pConnector.addConnectors(SceneGraphTree.this.targetObj);
+          pConnector.addConnectorsTo(SceneGraphTree.this.targetObj);
           setTree();
         }
       }

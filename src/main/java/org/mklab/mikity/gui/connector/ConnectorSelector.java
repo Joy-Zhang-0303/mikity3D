@@ -10,7 +10,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.mklab.mikity.gui.AbstractModeler;
+import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.gui.SceneGraphTree;
+import org.mklab.mikity.xml.Jamast;
+import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLConnector;
 
@@ -57,7 +60,7 @@ public class ConnectorSelector {
   }
 
   /**
-   * 現在右クリックしている物をコネクタN,Sに設定する。 右クリックしているものがコネクタのときのみ、設定を行う。
+   * 現在右クリックしている物をコネクタN,Sに設定します。 右クリックしているものがコネクタのときのみ、設定を行います。
    * 
    * @param targetObj 現在右クリックしている物
    * @param root ルート
@@ -100,7 +103,7 @@ public class ConnectorSelector {
   }
 
   /**
-   * 現在クリックしているコネクタをコネクタNに設定する
+   * 現在クリックしているコネクタをコネクタNに設定します。
    * 
    * @param cylinder コネクタ
    * @param root ルート
@@ -112,8 +115,7 @@ public class ConnectorSelector {
     argConnector.setFlag("N"); //$NON-NLS-1$
     this.connectorNorth = argConnector;
 
-    final PrimitiveConnector pConnector = new PrimitiveConnector();
-    final Group groupN = pConnector.createNorthConnectorGroup();
+    final Group groupN = createNorthConnectorGroup();
     groupN.addXMLConnector(argConnector);
     this.targetGroupNorth = groupN;
     root.removeGroup(targetGroup);
@@ -123,7 +125,23 @@ public class ConnectorSelector {
   }
 
   /**
-   * 現在クリックしているコネクタをコネクタSに設定する
+   * コネクタNを持つグループを生成します。
+   * 
+   * @return　コネクタNを持つグループ
+   */
+  private Group createNorthConnectorGroup() {
+    final Jamast root = ModelingWindow.getRoot();
+    final JamastModel model = root.loadModel(0);
+    final Group rootGroup = model.loadGroup(0);
+    
+    final Group group = new Group();
+    group.setName("ConnectorN"); //$NON-NLS-1$
+    rootGroup.addGroup(group);
+    return group;
+  }
+  
+  /**
+   * 現在クリックしているコネクタをコネクタSに設定します。
    * 
    * @param argConnector コネクタ
    * @param root ルート
@@ -135,14 +153,29 @@ public class ConnectorSelector {
     argConnector.setFlag("S"); //$NON-NLS-1$
     this.connectorSouth = argConnector;
 
-    final PrimitiveConnector pConnector = new PrimitiveConnector();
-    final Group groupS = pConnector.createSouthConnectorGroup();
+    final Group groupS = createSouthConnectorGroup();
     groupS.addXMLConnector(argConnector);
     this.targetGroupSouth = groupS;
     root.removeGroup(targetGroup);
     xmlTree.getSelection()[0].dispose();
     this.tree.fillTree();
     this.modeler.createViewer();
+  }
+  
+  /**
+   * コネクタSを持つグループを生成します。
+   * 
+   * @return　コネクタSを持つグループ
+   */
+  private Group createSouthConnectorGroup() {   
+    final Jamast root = ModelingWindow.getRoot();
+    final JamastModel model = root.loadModel(0);
+    final Group rootGroup = model.loadGroup(0);
+
+    final Group group = new Group();
+    group.setName("ConnectorS"); //$NON-NLS-1$
+    rootGroup.addGroup(group);
+    return group;
   }
 
   /**
