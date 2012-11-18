@@ -40,10 +40,8 @@ public class PrimitiveConnector {
     } else {
       throw new IllegalArgumentException();
     }
-    
-    final ConnectorGroupFactory groupFactory = new ConnectorGroupFactory();
-    final Group group = groupFactory.createGroup();
-    
+
+    final Group group = createConnectorGroup();
     for (int i = 0; i < connectors.length; i++) {
       group.addXMLConnector(connectors[i]);
     }
@@ -74,18 +72,33 @@ public class PrimitiveConnector {
   }
 
   /**
+   * コネクタを含んだグループを返します。
+   * 
+   * @return コネクタを含んだグループ
+   */
+  private Group createConnectorGroup() {
+    final Jamast root = ModelingWindow.getRoot();
+    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    
+    final Group group = new Group();
+    group.setName("Connector"); //$NON-NLS-1$
+    rootGroup.addGroup(group);
+    return group;
+  }
+  
+  /**
    * コネクタNを持つグループを生成します。
    * 
    * @return　コネクタNを持つグループ
    */
   public Group createNorthConnectorGroup() {
-    final Group northGroup = new Group();
-    northGroup.setName("ConnectorN"); //$NON-NLS-1$
-
     final Jamast root = ModelingWindow.getRoot();
-    final Group routGroup = root.loadModel(0).loadGroup(0);
-    routGroup.addGroup(northGroup);
-    return northGroup;
+    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    
+    final Group group = new Group();
+    group.setName("ConnectorN"); //$NON-NLS-1$
+    rootGroup.addGroup(group);
+    return group;
   }
 
   /**
@@ -94,12 +107,12 @@ public class PrimitiveConnector {
    * @return　コネクタSを持つグループ
    */
   public Group createSouthConnectorGroup() {   
-    final Group southGroup = new Group();
-    southGroup.setName("ConnectorS"); //$NON-NLS-1$
-    
     final Jamast root = ModelingWindow.getRoot();
     final Group rootGroup = root.loadModel(0).loadGroup(0);
-    rootGroup.addGroup(southGroup);
-    return southGroup;
+
+    final Group group = new Group();
+    group.setName("ConnectorS"); //$NON-NLS-1$
+    rootGroup.addGroup(group);
+    return group;
   }
 }
