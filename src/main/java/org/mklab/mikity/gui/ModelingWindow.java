@@ -403,16 +403,36 @@ public class ModelingWindow extends ApplicationWindow {
 
   /**
    * ファイルを読み込みます。
-   * @throws IOException ファイルに保存できない場合 
-   * @throws JAXBException ファイルに保存できない場合 
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
    */
   public void load() throws IOException, JAXBException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     
+    this.root = loadJamastFile(this.file);
+    
+    // setEditable(true);
+    final SceneGraphTree tree = new SceneGraphTree();
+    tree.setAllTransparent(this.root.loadModel(0).loadGroup(0), false);
+    setUnit();
+    setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
+    this.modeler.setModel(this.root);
+    // setEditable(false);
+    this.dirty = false;
+  }
+  
+  /**
+   * Jamastファイルを読み込みます。
+   * @param jamastFile Jamastファイル
+   * @return JAMAST
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
+   */
+  private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
     JAXBMarshaller marshaller = new JAXBMarshaller();
-    marshaller.unmarshal(this.file);
+    marshaller.unmarshal(jamastFile);
     
     Jamast newRoot = marshaller.getRoot();
     if (newRoot == null) {
@@ -423,17 +443,8 @@ public class ModelingWindow extends ApplicationWindow {
         group.addGroup(polygonGroups[i]);
       }
     }
-    
-    this.root = newRoot;
-    
-    // setEditable(true);
-    final SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(this.root.loadModel(0).loadGroup(0), false);
-    setUnit();
-    setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
-    this.modeler.setModel(this.root);
-    // setEditable(false);
-    this.dirty = false;
+
+    return newRoot;
   }
 
   /**
