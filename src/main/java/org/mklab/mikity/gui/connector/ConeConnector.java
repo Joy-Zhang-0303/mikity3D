@@ -52,11 +52,11 @@ public class ConeConnector {
     connectors[0].setConnectorLocation(location.loadX() + turnLocation.getNewLocation2().loadX(), location.loadY() + turnLocation.getNewLocation2().loadY(), location.loadZ() + turnLocation.getNewLocation2().loadZ());
     connectors[1].setConnectorLocation(location.loadX() - turnLocation.getNewLocation2().loadX(), location.loadY() - turnLocation.getNewLocation2().loadY(), location.loadZ() - turnLocation.getNewLocation2().loadZ());
 
-    final ConnectorGroupFactory group = new ConnectorGroupFactory();
-    final Group connectorGroup = group.createConnectorGroup();
+    final ConnectorGroupFactory groupFactory = new ConnectorGroupFactory();
+    final Group group = groupFactory.createConnectorGroup();
 
     for (int x = 0; x < connectors.length; x++) {
-      connectorGroup.addXMLConnector(connectors[x]);
+      group.addXMLConnector(connectors[x]);
     }
   }
 }

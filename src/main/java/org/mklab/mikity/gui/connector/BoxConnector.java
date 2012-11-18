@@ -65,12 +65,11 @@ public class BoxConnector {
     connectors[4].setConnectorLocation(location.loadX() + turnLocation.getNewLocation3().loadX(), location.loadY() + turnLocation.getNewLocation3().loadY(), location.loadZ() + turnLocation.getNewLocation3().loadZ());
     connectors[5].setConnectorLocation(location.loadX() - turnLocation.getNewLocation3().loadX(), location.loadY() - turnLocation.getNewLocation3().loadY(), location.loadZ() - turnLocation.getNewLocation3().loadZ());
 
-    /** コネクタの所属するグループ */
-    final ConnectorGroupFactory group = new ConnectorGroupFactory();
-
-    Group cGroup = group.createConnectorGroup();
+    final ConnectorGroupFactory groupFactory = new ConnectorGroupFactory();
+    final Group group = groupFactory.createConnectorGroup();
+    
     for (int x = 0; x < connectors.length; x++) {
-      cGroup.addXMLConnector(connectors[x]);
+      group.addXMLConnector(connectors[x]);
     }
   }
 }
