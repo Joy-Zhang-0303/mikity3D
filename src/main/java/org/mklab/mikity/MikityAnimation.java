@@ -5,6 +5,10 @@
  */
 package org.mklab.mikity;
 
+import java.io.IOException;
+
+import javax.xml.bind.JAXBException;
+
 import org.eclipse.swt.widgets.Display;
 import org.mklab.mikity.gui.AnimationWindow;
 
@@ -19,9 +23,11 @@ public class MikityAnimation {
   /**
    * メインメソッドです。
    * @param args コマンドライン引数
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
    */
-  public static void main(String[] args) {
-    final String modelFileName = "";  //$NON-NLS-1$
+  public static void main(String[] args) throws IOException, JAXBException {
+    final String modelFileName = "sample/pendulum/pendulum/pendulum.xml";  //$NON-NLS-1$
     final AnimationWindow main = new AnimationWindow(modelFileName);
     main.setBlockOnOpen(true);
     main.open();

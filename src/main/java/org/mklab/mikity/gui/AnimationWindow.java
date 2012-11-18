@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.xml.bind.JAXBException;
+
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
@@ -33,6 +35,7 @@ import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
 import org.mklab.mikity.util.MessagegUtil;
+import org.mklab.mikity.xml.JAXBMarshaller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
 import org.mklab.mikity.xml.JamastModel;
@@ -118,10 +121,12 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param parentShell 親シェル
    * @param modelFile モデルファイル
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
    */
-  public AnimationWindow(final Shell parentShell, File modelFile) {
+  public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, JAXBException {
     super(parentShell);
-    this.root = createEmptyModel();
+    this.root = loadJamastFile(modelFile);
     this.manager = new MovableGroupManager(this.root);
     
     // TODO Java3d or JOGL
@@ -132,9 +137,35 @@ public class AnimationWindow extends ApplicationWindow {
   /**
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
    * @param modelFilePath モデルのファイルへのパス
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
    */
-  public AnimationWindow(String modelFilePath) {
+  public AnimationWindow(String modelFilePath) throws IOException, JAXBException {
     this(null, new File(modelFilePath));
+  }
+  
+  /**
+   * Jamastファイルを読み込みます。
+   * @param jamastFile Jamastファイル
+   * @return JAMAST
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
+   */
+  private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
+    JAXBMarshaller marshaller = new JAXBMarshaller();
+    marshaller.unmarshal(jamastFile);
+    
+    Jamast newRoot = marshaller.getRoot();
+    if (newRoot == null) {
+      newRoot = createEmptyModel();
+      final Group group = newRoot.loadModel(0).loadGroup(0);
+      final Group[] polygonGroups = marshaller.getBlenderGroup().getGroups();
+      for (int i = 0; i < polygonGroups.length; i++) {
+        group.addGroup(polygonGroups[i]);
+      }
+    }
+
+    return newRoot;
   }
   
   /**
