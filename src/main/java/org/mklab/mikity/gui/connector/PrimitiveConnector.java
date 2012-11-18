@@ -10,6 +10,7 @@ import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLCone;
+import org.mklab.mikity.xml.model.XMLConnector;
 import org.mklab.mikity.xml.model.XMLCylinder;
 import org.mklab.mikity.xml.model.XMLSphere;
 
@@ -27,35 +28,49 @@ public class PrimitiveConnector {
    * @param primitive コネクタを追加されるプリミティブ
    */
   public void addConnectors(Object primitive) {
+    final XMLConnector[] connectors;
     if (primitive instanceof XMLBox) {
-      addConnectorsToBox((XMLBox)primitive);
+      connectors = createConnectors((XMLBox)primitive);
     } else if (primitive instanceof XMLCone) {
-      addConnectorsToCone((XMLCone)primitive);
+      connectors = createConnectors((XMLCone)primitive);
     } else if (primitive instanceof XMLCylinder) {
-      addConnectorsToCylinder((XMLCylinder)primitive);
+      connectors = createConnectors((XMLCylinder)primitive);
     } else if (primitive instanceof XMLSphere) {
-      addConnectorsToSphere((XMLSphere)primitive);
+      connectors = createConnectors((XMLSphere)primitive);
+    } else {
+      throw new IllegalArgumentException();
+    }
+    
+    final ConnectorGroupFactory groupFactory = new ConnectorGroupFactory();
+    final Group group = groupFactory.createGroup();
+    
+    for (int i = 0; i < connectors.length; i++) {
+      group.addXMLConnector(connectors[i]);
     }
   }
 
-  private void addConnectorsToSphere(final XMLSphere sphere) {
-    final SphereConnector connector = new SphereConnector();
-    connector.addConnectors(sphere);
+  private XMLConnector[] createConnectors(final XMLSphere sphere) {
+    final SphereConnectorFactory factory = new SphereConnectorFactory();
+    final XMLConnector[] connectors = factory.createConnectors(sphere);
+    return connectors;
   }
 
-  private void addConnectorsToCylinder(final XMLCylinder cylinder) {
-    final CylinderConnector connector = new CylinderConnector();
-    connector.addConnectors(cylinder);
+  private XMLConnector[] createConnectors(final XMLCylinder cylinder) {
+    final CylinderConnectorFactory factory = new CylinderConnectorFactory();
+    final XMLConnector[] connectors = factory.createConnectors(cylinder);
+    return connectors;
   }
 
-  private void addConnectorsToCone(final XMLCone cone) {
-    final ConeConnector connector = new ConeConnector();
-    connector.addConnectors(cone);
+  private XMLConnector[] createConnectors(final XMLCone cone) {
+    final ConeConnectorFactory factory = new ConeConnectorFactory();
+    final XMLConnector[] connectors = factory.createConnectors(cone);
+    return connectors;
   }
 
-  private void addConnectorsToBox(final XMLBox box) {
-    final BoxConnector connector = new BoxConnector();
-    connector.addConnectors(box);
+  private XMLConnector[] createConnectors(final XMLBox box) {
+    final BoxConnectorFactory factory = new BoxConnectorFactory();
+    final XMLConnector[] connectors = factory.createConnectors(box);
+    return connectors;
   }
 
   /**

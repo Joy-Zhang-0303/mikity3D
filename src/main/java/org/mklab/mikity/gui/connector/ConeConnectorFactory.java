@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.gui.connector;
 
-import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.Rotation;
 import org.mklab.mikity.xml.model.XMLCone;
@@ -18,12 +17,13 @@ import org.mklab.mikity.xml.model.XMLConnector;
  * @author SHOGO
  * @version $Revision: 1.3 $.2006/01/31
  */
-public class ConeConnector {
+public class ConeConnectorFactory {
   /**
-   * 円錐プリミティブにコネクタを追加する。
+   * 円錐プリミティブのコネクタを生成します。
    * @param cone 円錐プリミティブ
+   * @return 円錐プリミティブのコネクタ
    */
-  public void addConnectors(XMLCone cone) {
+  public XMLConnector[] createConnectors(XMLCone cone) {
     final float radius = cone.loadR();
     final float height = cone.loadHeight();
     
@@ -37,7 +37,6 @@ public class ConeConnector {
       rotation = new Rotation(0,0,0);
     }
 
-    
     /** コネクタ1~2の座標 */
     final XMLConnector connectors[] = new XMLConnector[2];
     
@@ -62,12 +61,7 @@ public class ConeConnector {
 
     connectors[0].setConnectorLocation(location.loadX() + turnLocation.getNewLocation2().loadX(), location.loadY() + turnLocation.getNewLocation2().loadY(), location.loadZ() + turnLocation.getNewLocation2().loadZ());
     connectors[1].setConnectorLocation(location.loadX() - turnLocation.getNewLocation2().loadX(), location.loadY() - turnLocation.getNewLocation2().loadY(), location.loadZ() - turnLocation.getNewLocation2().loadZ());
-
-    final ConnectorGroupFactory factory = new ConnectorGroupFactory();
-    final Group group = factory.createGroup();
-
-    for (int x = 0; x < connectors.length; x++) {
-      group.addXMLConnector(connectors[x]);
-    }
+    
+    return connectors;
   }
 }
