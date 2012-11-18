@@ -26,7 +26,7 @@ public class CylinderConnector {
    * @param location 円柱の座標
    * @param rotation 円柱の回転
    */
-  public void createCylinderConnector(float radius, float height, Location location, Rotation rotation) {
+  public void addConnectors(float radius, float height, Location location, Rotation rotation) {
     final XMLConnector connectors[] = new XMLConnector[6];
     
     for (int i = 0; i < connectors.length; i++) {
@@ -62,8 +62,8 @@ public class CylinderConnector {
     connectors[4].setConnectorLocation(location.loadX() + turnLocation.getNewLocation3().loadX(), location.loadY() + turnLocation.getNewLocation3().loadY(), location.loadZ() + turnLocation.getNewLocation3().loadZ());
     connectors[5].setConnectorLocation(location.loadX() - turnLocation.getNewLocation3().loadX(), location.loadY() - turnLocation.getNewLocation3().loadY(), location.loadZ() - turnLocation.getNewLocation3().loadZ());
 
-    final ConnectorGroupFactory groupFactory = new ConnectorGroupFactory();
-    final Group group = groupFactory.createConnectorGroup();
+    final ConnectorGroupFactory factory = new ConnectorGroupFactory();
+    final Group group = factory.createGroup();
     
     for (int x = 0; x < connectors.length; x++) {
       group.addXMLConnector(connectors[x]);

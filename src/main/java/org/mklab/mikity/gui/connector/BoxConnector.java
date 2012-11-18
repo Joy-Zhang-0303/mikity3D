@@ -27,7 +27,7 @@ public class BoxConnector {
    * @param location 直方体の座標
    * @param rotation 直方体の回転
    */
-  public void createBoxConnector(float xSize, float ySize, float zSize, Location location, Rotation rotation) {
+  public void addConnectors(float xSize, float ySize, float zSize, Location location, Rotation rotation) {
     final XMLConnector connectors[] = new XMLConnector[6];
     
     for (int i = 0; i < connectors.length; i++) {
@@ -65,11 +65,11 @@ public class BoxConnector {
     connectors[4].setConnectorLocation(location.loadX() + turnLocation.getNewLocation3().loadX(), location.loadY() + turnLocation.getNewLocation3().loadY(), location.loadZ() + turnLocation.getNewLocation3().loadZ());
     connectors[5].setConnectorLocation(location.loadX() - turnLocation.getNewLocation3().loadX(), location.loadY() - turnLocation.getNewLocation3().loadY(), location.loadZ() - turnLocation.getNewLocation3().loadZ());
 
-    final ConnectorGroupFactory groupFactory = new ConnectorGroupFactory();
-    final Group group = groupFactory.createConnectorGroup();
+    final ConnectorGroupFactory factory = new ConnectorGroupFactory();
+    final Group group = factory.createGroup();
     
-    for (int x = 0; x < connectors.length; x++) {
-      group.addXMLConnector(connectors[x]);
+    for (int i = 0; i < connectors.length; i++) {
+      group.addXMLConnector(connectors[i]);
     }
   }
 }

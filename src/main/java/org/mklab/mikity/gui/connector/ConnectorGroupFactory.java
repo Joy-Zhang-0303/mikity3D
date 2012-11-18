@@ -22,13 +22,13 @@ public class ConnectorGroupFactory {
    * 
    * @return コネクタを含んだグループ
    */
-  public Group createConnectorGroup() {
+  public Group createGroup() {
     final Jamast root = ModelingWindow.getRoot();
-    final Group connectorGroup = new Group();
-    connectorGroup.setName("Connector"); //$NON-NLS-1$
-    
     final Group routGroup = root.loadModel(0).loadGroup(0);
-    routGroup.addGroup(connectorGroup);
-    return connectorGroup;
+    
+    final Group group = new Group();
+    group.setName("Connector"); //$NON-NLS-1$
+    routGroup.addGroup(group);
+    return group;
   }
 }

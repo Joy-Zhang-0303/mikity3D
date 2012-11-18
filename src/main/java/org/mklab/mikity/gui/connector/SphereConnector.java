@@ -25,7 +25,7 @@ public class SphereConnector {
    * @param location 球体の座標
    * @param rotation 球体の回転
    */
-  public void createSphereConnector(float radius, Location location, Rotation rotation) {
+  public void addConnectors(float radius, Location location, Rotation rotation) {
     final XMLConnector cnnectors[] = new XMLConnector[6];
     
     for (int i = 0; i < cnnectors.length; i++) {
@@ -37,7 +37,6 @@ public class SphereConnector {
     for (int i = 0; i < cnnectors.length; i++) {
       cnnectors[i].setLengthToCenter(radius);
     }
-
 
     cnnectors[0].setConnectorRotation(0.0f, 0.0f, 0.0f);
     cnnectors[1].setConnectorRotation(180.0f, 0.0f, 0.0f);
@@ -53,8 +52,8 @@ public class SphereConnector {
     cnnectors[4].setConnectorLocation(location.loadX() + radius, location.loadY(), location.loadZ());
     cnnectors[5].setConnectorLocation(location.loadX() - radius, location.loadY(), location.loadZ());
 
-    final ConnectorGroupFactory groupFactory = new ConnectorGroupFactory();
-    final Group group = groupFactory.createConnectorGroup();
+    final ConnectorGroupFactory factory = new ConnectorGroupFactory();
+    final Group group = factory.createGroup();
 
     for (int x = 0; x < cnnectors.length; x++) {
       group.addXMLConnector(cnnectors[x]);

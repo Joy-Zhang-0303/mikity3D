@@ -26,7 +26,7 @@ public class ConeConnector {
    * @param location 円錐の座標
    * @param rotation 円錐の回転
    */
-  public void createConeConnector(float radius, float height, Location location, Rotation rotation) {
+  public void addConnectors(float radius, float height, Location location, Rotation rotation) {
     /** コネクタ1~2の座標 */
     final XMLConnector connectors[] = new XMLConnector[2];
     
@@ -52,8 +52,8 @@ public class ConeConnector {
     connectors[0].setConnectorLocation(location.loadX() + turnLocation.getNewLocation2().loadX(), location.loadY() + turnLocation.getNewLocation2().loadY(), location.loadZ() + turnLocation.getNewLocation2().loadZ());
     connectors[1].setConnectorLocation(location.loadX() - turnLocation.getNewLocation2().loadX(), location.loadY() - turnLocation.getNewLocation2().loadY(), location.loadZ() - turnLocation.getNewLocation2().loadZ());
 
-    final ConnectorGroupFactory groupFactory = new ConnectorGroupFactory();
-    final Group group = groupFactory.createConnectorGroup();
+    final ConnectorGroupFactory factory = new ConnectorGroupFactory();
+    final Group group = factory.createGroup();
 
     for (int x = 0; x < connectors.length; x++) {
       group.addXMLConnector(connectors[x]);

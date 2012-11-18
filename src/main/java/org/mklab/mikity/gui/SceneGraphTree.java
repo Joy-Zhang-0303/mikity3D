@@ -379,20 +379,20 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(SelectionEvent e) {
         if (SceneGraphTree.this.targetObj instanceof Group) {
-          MessageBox mesBox = new MessageBox(composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
+          final MessageBox mesBox = new MessageBox(composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
           mesBox.setMessage(Messages.getString("SceneGraphTree.22")); //$NON-NLS-1$
           mesBox.setText(Messages.getString("SceneGraphTree.23")); //$NON-NLS-1$
           mesBox.open();
         } else if (SceneGraphTree.this.targetObj instanceof XMLConnector) {
-          MessageBox mesBox = new MessageBox(composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
+          final MessageBox mesBox = new MessageBox(composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
           mesBox.setMessage(Messages.getString("SceneGraphTree.24")); //$NON-NLS-1$
           mesBox.setText(Messages.getString("SceneGraphTree.25")); //$NON-NLS-1$
           mesBox.open();
         } else {
           SceneGraphTree.this.root = SceneGraphTree.this.targetGroup;
-          PrimitiveConnector pConnector = new PrimitiveConnector();
+          final PrimitiveConnector pConnector = new PrimitiveConnector();
           SceneGraphTree.this.connect.setPrimitiveNS(SceneGraphTree.this.targetObj, SceneGraphTree.this.select.getTreeConnectorFlag());
-          pConnector.createPrimitiveConnector(SceneGraphTree.this.targetObj);
+          pConnector.addConnectors(SceneGraphTree.this.targetObj);
           setTree();
         }
       }
