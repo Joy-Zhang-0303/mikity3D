@@ -390,8 +390,9 @@ public class SceneGraphTree {
           mesBox.open();
         } else {
           SceneGraphTree.this.root = SceneGraphTree.this.targetGroup;
-          final PrimitiveConnectorMediator pConnector = new PrimitiveConnectorMediator();
           SceneGraphTree.this.connect.setPrimitiveNS(SceneGraphTree.this.targetObj, SceneGraphTree.this.select.getTreeConnectorFlag());
+          
+          final PrimitiveConnectorMediator pConnector = new PrimitiveConnectorMediator(SceneGraphTree.this.model);
           pConnector.addConnectorsTo(SceneGraphTree.this.targetObj);
           setTree();
         }

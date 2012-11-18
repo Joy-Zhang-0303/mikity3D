@@ -5,8 +5,6 @@
  */
 package org.mklab.mikity.gui.connector;
 
-import org.mklab.mikity.gui.ModelingWindow;
-import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLBox;
@@ -23,6 +21,17 @@ import org.mklab.mikity.xml.model.XMLSphere;
  * @version $Revision: 1.3 $.2006/01/31
  */
 public class PrimitiveConnectorMediator {
+  /** */
+  private JamastModel model;
+  
+  /**
+   * 新しく生成された<code>PrimitiveConnectorMediator</code>オブジェクトを初期化します。
+   * @param model モデル
+   */
+  public PrimitiveConnectorMediator(final JamastModel model) {
+    this.model = model;
+  }
+  
   /**
    * プリミティブごとのの各パラメータを取得し、キャンバス上のプリミティブごとに適したコネクタを追加する。 
    * 
@@ -48,6 +57,23 @@ public class PrimitiveConnectorMediator {
     }
   }
 
+  /**
+   * コネクタを含んだグループを返します。
+   * 
+   * @return コネクタを含んだグループ
+   */
+  private Group createConnectorGroup() {
+    //final Jamast root = ModelingWindow.getRoot();
+    //final JamastModel model = root.loadModel(0);
+    
+    final Group rootGroup = this.model.loadGroup(0);
+    
+    final Group group = new Group();
+    group.setName("Connector"); //$NON-NLS-1$
+    rootGroup.addGroup(group);
+    return group;
+  }
+
   private XMLConnector[] createConnectors(final XMLSphere sphere) {
     final SphereConnectorFactory factory = new SphereConnectorFactory();
     final XMLConnector[] connectors = factory.createConnectors(sphere);
@@ -70,21 +96,5 @@ public class PrimitiveConnectorMediator {
     final BoxConnectorFactory factory = new BoxConnectorFactory();
     final XMLConnector[] connectors = factory.createConnectors(box);
     return connectors;
-  }
-
-  /**
-   * コネクタを含んだグループを返します。
-   * 
-   * @return コネクタを含んだグループ
-   */
-  private Group createConnectorGroup() {
-    final Jamast root = ModelingWindow.getRoot();
-    final JamastModel model = root.loadModel(0);
-    final Group rootGroup = model.loadGroup(0);
-    
-    final Group group = new Group();
-    group.setName("Connector"); //$NON-NLS-1$
-    rootGroup.addGroup(group);
-    return group;
   }
 }

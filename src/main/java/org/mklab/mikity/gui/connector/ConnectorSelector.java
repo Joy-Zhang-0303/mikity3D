@@ -10,9 +10,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.mklab.mikity.gui.AbstractModeler;
-import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.gui.SceneGraphTree;
-import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLConnector;
@@ -130,8 +128,10 @@ public class ConnectorSelector {
    * @return　コネクタNを持つグループ
    */
   private Group createNorthConnectorGroup() {
-    final Jamast root = ModelingWindow.getRoot();
-    final JamastModel model = root.loadModel(0);
+    //final Jamast root = ModelingWindow.getRoot();
+    //final JamastModel model = root.loadModel(0);
+    
+    final JamastModel model = this.tree.getModel();
     final Group rootGroup = model.loadGroup(0);
     
     final Group group = new Group();
@@ -168,8 +168,10 @@ public class ConnectorSelector {
    * @return　コネクタSを持つグループ
    */
   private Group createSouthConnectorGroup() {   
-    final Jamast root = ModelingWindow.getRoot();
-    final JamastModel model = root.loadModel(0);
+    //final Jamast root = ModelingWindow.getRoot();
+    //final JamastModel model = root.loadModel(0);
+    
+    final JamastModel model = this.tree.getModel();
     final Group rootGroup = model.loadGroup(0);
 
     final Group group = new Group();
