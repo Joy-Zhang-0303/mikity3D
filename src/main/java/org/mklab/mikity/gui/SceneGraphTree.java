@@ -436,12 +436,14 @@ public class SceneGraphTree {
   void setObj() {
     this.targetObj = null;
     this.targetGroup = null;
+    
     this.targetParentGroup = null;
     if (this.xmlTree.getSelectionCount() == 0) {
       // 何も選択されていないとき
       setAllTransparent(this.model.loadGroup(1), true);
       return;
     }
+    
     this.targetObj = this.xmlTree.getSelection()[0].getData();
     if (this.targetObj instanceof Group) {
       this.targetGroup = (Group)this.targetObj;

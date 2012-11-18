@@ -35,6 +35,7 @@ public class ConnectorSelector {
   private XMLConnector connectorNorth;
   /** コネクタS */
   private XMLConnector connectorSouth;
+  
   private XMLConnector connector;
 
   /** コネクタN,Sを所有するグループ */
@@ -58,10 +59,10 @@ public class ConnectorSelector {
   /**
    * 現在右クリックしている物をコネクタN,Sに設定する。 右クリックしているものがコネクタのときのみ、設定を行う。
    * 
-   * @param targetObj 　現在右クリックしている物
-   * @param root 　ルート
-   * @param xmlTree 　シーングラフツリー
-   * @param targetGroup 　現在右クリックしている物を所有するグループ
+   * @param targetObj 現在右クリックしている物
+   * @param root ルート
+   * @param xmlTree シーングラフツリー
+   * @param targetGroup 現在右クリックしている物を所有するグループ
    */
   public void select(Object targetObj, Group root, Tree xmlTree, Group targetGroup) {
     //
@@ -101,10 +102,10 @@ public class ConnectorSelector {
   /**
    * 現在クリックしているコネクタをコネクタNに設定する
    * 
-   * @param cylinder 　コネクタ
-   * @param root 　ルート
-   * @param xmlTree 　シーングラフツリー
-   * @param targetGroup 　現在右クリックしているコネクタを所有するグループ
+   * @param cylinder コネクタ
+   * @param root ルート
+   * @param xmlTree シーングラフツリー
+   * @param targetGroup 現在右クリックしているコネクタを所有するグループ
    */
   private void selectConnectorNorth(XMLConnector argConnector, Group root, Tree xmlTree, Group targetGroup) {
     this.hasNorth = true;
@@ -124,10 +125,10 @@ public class ConnectorSelector {
   /**
    * 現在クリックしているコネクタをコネクタSに設定する
    * 
-   * @param argConnector 　コネクタ
-   * @param root 　ルート
-   * @param xmlTree 　シーングラフツリー
-   * @param targetGroup 　現在右クリックしているコネクタを所有するグループ
+   * @param argConnector コネクタ
+   * @param root ルート
+   * @param xmlTree シーングラフツリー
+   * @param targetGroup 現在右クリックしているコネクタを所有するグループ
    */
   private void selectConnectorSouth(XMLConnector argConnector, Group root, Tree xmlTree, Group targetGroup) {
     this.hasSouth = true;
@@ -147,7 +148,7 @@ public class ConnectorSelector {
   /**
    * コネクタNを選択する
    * 
-   * @param connector 　コネクタ
+   * @param connector コネクタ
    */
   public void setConnectorNorth(XMLConnector connector) {
     this.connectorNorth = connector;
@@ -157,7 +158,7 @@ public class ConnectorSelector {
   /**
    * コネクタSを選択する
    * 
-   * @param connector 　コネクタ
+   * @param connector コネクタ
    */
   public void setConnectorSouth(XMLConnector connector) {
     this.connectorSouth = connector;
@@ -200,7 +201,7 @@ public class ConnectorSelector {
   /**
    * 選択しているコネクタをデフォルトの状態に戻す
    * 
-   * @param root 　ルート
+   * @param root ルート
    */
   public void reset(Group root) {
     root.removeGroup(this.targetGroupNorth);

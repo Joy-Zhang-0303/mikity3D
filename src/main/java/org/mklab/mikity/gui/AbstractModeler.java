@@ -42,14 +42,6 @@ public abstract class AbstractModeler extends Composite {
   /** */
   protected Frame awtFrame;
   private Group treeViewerGroup;
-//  /** */
-//  private String modelAngleUnit;
-//  /** */
-//  private String modelLengthUnit;
-//  /** */
-//  private String dataAngleUnit;
-//  /** */
-//  private String dataLengthUnit;
 
   /**
    * コンストラクター
