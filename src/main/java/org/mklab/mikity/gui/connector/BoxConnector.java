@@ -8,6 +8,7 @@ package org.mklab.mikity.gui.connector;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.Rotation;
+import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLConnector;
 
 
@@ -20,14 +21,23 @@ import org.mklab.mikity.xml.model.XMLConnector;
 public class BoxConnector {
   /**
    * 直方体プリミティブにコネクタを追加する。
-   * 
-   * @param xSize 直方体の幅
-   * @param ySize 直方体の高さ
-   * @param zSize 直方体の奥行き
-   * @param location 直方体の座標
-   * @param rotation 直方体の回転
+   * @param box 直方体プリミティブ
    */
-  public void addConnectors(float xSize, float ySize, float zSize, Location location, Rotation rotation) {
+  public void addConnectors(XMLBox box) {
+    final float xSize = box.loadXsize();
+    final float ySize = box.loadYsize();
+    final float zSize = box.loadZsize();
+
+    Location location = box.loadLocation();
+    if (location == null) {
+      location = new Location(0,0,0);
+    }
+
+    Rotation rotation = box.loadRotation();
+    if (rotation == null) {
+      rotation = new Rotation(0,0,0);
+    }
+    
     final XMLConnector connectors[] = new XMLConnector[6];
     
     for (int i = 0; i < connectors.length; i++) {

@@ -8,6 +8,7 @@ package org.mklab.mikity.gui.connector;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.Rotation;
+import org.mklab.mikity.xml.model.XMLCone;
 import org.mklab.mikity.xml.model.XMLConnector;
 
 
@@ -20,13 +21,23 @@ import org.mklab.mikity.xml.model.XMLConnector;
 public class ConeConnector {
   /**
    * 円錐プリミティブにコネクタを追加する。
-   * 
-   * @param radius 円錐の半径
-   * @param height 円錐の高さ
-   * @param location 円錐の座標
-   * @param rotation 円錐の回転
+   * @param cone 円錐プリミティブ
    */
-  public void addConnectors(float radius, float height, Location location, Rotation rotation) {
+  public void addConnectors(XMLCone cone) {
+    final float radius = cone.loadR();
+    final float height = cone.loadHeight();
+    
+    Location location = cone.loadLocation();
+    if (location == null) {
+      location = new Location(0,0,0);
+    }
+
+    Rotation rotation = cone.loadRotation();
+    if (rotation == null) {
+      rotation = new Rotation(0,0,0);
+    }
+
+    
     /** コネクタ1~2の座標 */
     final XMLConnector connectors[] = new XMLConnector[2];
     

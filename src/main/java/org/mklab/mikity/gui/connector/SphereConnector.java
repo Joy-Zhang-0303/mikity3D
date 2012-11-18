@@ -9,7 +9,7 @@ import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.Rotation;
 import org.mklab.mikity.xml.model.XMLConnector;
-
+import org.mklab.mikity.xml.model.XMLSphere;
 
 /**
  * Sphereにコネクタを表示させるためのクラス
@@ -20,12 +20,22 @@ import org.mklab.mikity.xml.model.XMLConnector;
 public class SphereConnector {
   /**
    * 球体プリミティブにコネクタを追加する。
-   * 
-   * @param radius 球体の半径
-   * @param location 球体の座標
-   * @param rotation 球体の回転
+   * @param sphere 球体プリミティブ
    */
-  public void addConnectors(float radius, Location location, Rotation rotation) {
+  public void addConnectors(XMLSphere sphere) {
+    final float radius = sphere.loadR();
+
+    Location location = sphere.loadLocation();
+    if (location == null) {
+      location = new Location(0,0,0);
+    }
+
+    Rotation rotation = sphere.loadRotation();
+    if (rotation == null) {
+      rotation = new Rotation(0,0,0);
+    }
+    
+    
     final XMLConnector cnnectors[] = new XMLConnector[6];
     
     for (int i = 0; i < cnnectors.length; i++) {

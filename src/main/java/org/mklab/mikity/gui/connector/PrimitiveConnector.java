@@ -8,8 +8,6 @@ package org.mklab.mikity.gui.connector;
 import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.Location;
-import org.mklab.mikity.xml.model.Rotation;
 import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLCone;
 import org.mklab.mikity.xml.model.XMLCylinder;
@@ -41,75 +39,23 @@ public class PrimitiveConnector {
   }
 
   private void addConnectorsToSphere(final XMLSphere sphere) {
-    final float radius = sphere.loadR();
-
-    Location location = sphere.loadLocation();
-    if (location == null) {
-      location = new Location(0,0,0);
-    }
-
-    Rotation rotation = sphere.loadRotation();
-    if (rotation == null) {
-      rotation = new Rotation(0,0,0);
-    }
-
     final SphereConnector connector = new SphereConnector();
-    connector.addConnectors(radius, location, rotation);
+    connector.addConnectors(sphere);
   }
 
   private void addConnectorsToCylinder(final XMLCylinder cylinder) {
-    final float raidius = cylinder.loadR();
-    final float height = cylinder.loadHeight();
-
-    Location location = cylinder.loadLocation();
-    if (location == null) {
-      location = new Location(0,0,0);
-    }
-
-    Rotation rotation = cylinder.loadRotation();
-    if (rotation == null) {
-      rotation = new Rotation(0,0,0);
-    }
-
     final CylinderConnector connector = new CylinderConnector();
-    connector.addConnectors(raidius, height, location, rotation);
+    connector.addConnectors(cylinder);
   }
 
   private void addConnectorsToCone(final XMLCone cone) {
-    final float radius = cone.loadR();
-    final float height = cone.loadHeight();
-    
-    Location location = cone.loadLocation();
-    if (location == null) {
-      location = new Location(0,0,0);
-    }
-
-    Rotation rotation = cone.loadRotation();
-    if (rotation == null) {
-      rotation = new Rotation(0,0,0);
-    }
-
     final ConeConnector connector = new ConeConnector();
-    connector.addConnectors(radius, height, location, rotation);
+    connector.addConnectors(cone);
   }
 
   private void addConnectorsToBox(final XMLBox box) {
-    final float x = box.loadXsize();
-    final float y = box.loadYsize();
-    final float z = box.loadZsize();
-
-    Location location = box.loadLocation();
-    if (location == null) {
-      location = new Location(0,0,0);
-    }
-
-    Rotation rotation = box.loadRotation();
-    if (rotation == null) {
-      rotation = new Rotation(0,0,0);
-    }
-
     final BoxConnector connector = new BoxConnector();
-    connector.addConnectors(x, y, z, location, rotation);
+    connector.addConnectors(box);
   }
 
   /**

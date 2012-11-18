@@ -9,6 +9,7 @@ import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.Rotation;
 import org.mklab.mikity.xml.model.XMLConnector;
+import org.mklab.mikity.xml.model.XMLCylinder;
 
 
 /**
@@ -20,13 +21,23 @@ import org.mklab.mikity.xml.model.XMLConnector;
 public class CylinderConnector {
   /**
    * 円柱プリミティブにコネクタを追加する。
-   * 
-   * @param radius 円柱の半径
-   * @param height 円柱の高さ
-   * @param location 円柱の座標
-   * @param rotation 円柱の回転
+   * @param cylinder 円柱プリミティブ
    */
-  public void addConnectors(float radius, float height, Location location, Rotation rotation) {
+  public void addConnectors(XMLCylinder cylinder) {
+    final float radius = cylinder.loadR();
+    final float height = cylinder.loadHeight();
+
+    Location location = cylinder.loadLocation();
+    if (location == null) {
+      location = new Location(0,0,0);
+    }
+
+    Rotation rotation = cylinder.loadRotation();
+    if (rotation == null) {
+      rotation = new Rotation(0,0,0);
+    }
+
+    
     final XMLConnector connectors[] = new XMLConnector[6];
     
     for (int i = 0; i < connectors.length; i++) {
