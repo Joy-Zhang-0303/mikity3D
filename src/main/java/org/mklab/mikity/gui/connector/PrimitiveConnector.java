@@ -23,11 +23,6 @@ import org.mklab.mikity.xml.model.XMLSphere;
  * @version $Revision: 1.3 $.2006/01/31
  */
 public class PrimitiveConnector {
-  /** プリミティブの座標 */
-  private Location location;
-  /** プリミティブの回転 */
-  private Rotation rotation;
-
   /**
    * プリミティブごとのの各パラメータを取得し、キャンバス上のプリミティブごとに適したコネクタを追加する。 コネクタを追加されるプリミティブ
    * 
@@ -40,80 +35,68 @@ public class PrimitiveConnector {
       final float y = box.loadYsize();
       final float z = box.loadZsize();
 
-      this.location = box.loadLocation();
-      checkLocation(this.location);
+      Location location = box.loadLocation();
+      if (location == null) {
+        location = new Location(0,0,0);
+      }
 
-      this.rotation = box.loadRotation();
-      checkRotation(this.rotation);
+      Rotation rotation = box.loadRotation();
+      if (rotation == null) {
+        rotation = new Rotation(0,0,0);
+      }
 
       final BoxConnector boxConnector = new BoxConnector();
-      boxConnector.createBoxConnector(x, y, z, this.location, this.rotation);
+      boxConnector.createBoxConnector(x, y, z, location, rotation);
     } else if (primitive instanceof XMLCone) {
       final XMLCone cone = (XMLCone)primitive;
       final float radius = cone.loadR();
       final float height = cone.loadHeight();
+      
+      Location location = cone.loadLocation();
+      if (location == null) {
+        location = new Location(0,0,0);
+      }
 
-      this.location = cone.loadLocation();
-      checkLocation(this.location);
-
-      this.rotation = cone.loadRotation();
-      checkRotation(this.rotation);
+      Rotation rotation = cone.loadRotation();
+      if (rotation == null) {
+        rotation = new Rotation(0,0,0);
+      }
 
       final ConeConnector coneConnector = new ConeConnector();
-      coneConnector.createConeConnector(radius, height, this.location, this.rotation);
+      coneConnector.createConeConnector(radius, height, location, rotation);
     } else if (primitive instanceof XMLCylinder) {
       final XMLCylinder cylinder = (XMLCylinder)primitive;
       final float raidius = cylinder.loadR();
       final float height = cylinder.loadHeight();
 
-      this.location = cylinder.loadLocation();
-      checkLocation(this.location);
+      Location location = cylinder.loadLocation();
+      if (location == null) {
+        location = new Location(0,0,0);
+      }
 
-      this.rotation = cylinder.loadRotation();
-      checkRotation(this.rotation);
+      Rotation rotation = cylinder.loadRotation();
+      if (rotation == null) {
+        rotation = new Rotation(0,0,0);
+      }
 
       final CylinderConnector cylinderConnector = new CylinderConnector();
-      cylinderConnector.createCylinderConnector(raidius, height, this.location, this.rotation);
+      cylinderConnector.createCylinderConnector(raidius, height, location, rotation);
     } else if (primitive instanceof XMLSphere) {
       final XMLSphere sphere = (XMLSphere)primitive;
       final float radius = sphere.loadR();
 
-      this.location = sphere.loadLocation();
-      checkLocation(this.location);
+      Location location = sphere.loadLocation();
+      if (location == null) {
+        location = new Location(0,0,0);
+      }
 
-      this.rotation = sphere.loadRotation();
-      checkRotation(this.rotation);
+      Rotation rotation = sphere.loadRotation();
+      if (rotation == null) {
+        rotation = new Rotation(0,0,0);
+      }
 
       final SphereConnector sphereConnector = new SphereConnector();
-      sphereConnector.createSphereConnector(radius, this.location, this.rotation);
-    }
-  }
-
-  /**
-   * プリミティブの位置座標におけるパラメータが変化していないとき、各座標に0.0の値を代入する。
-   * 
-   * @param argLocation 　プリミティブの位置座標
-   */
-  private void checkLocation(Location argLocation) {
-    if (argLocation == null) {
-      this.location = new Location();
-      this.location.setX(0.0f);
-      this.location.setY(0.0f);
-      this.location.setZ(0.0f);
-    }
-  }
-
-  /**
-   * プリミティブの各軸の回転角度におけるパラメータが変化していないとき、各軸の回転角度に0.0の値を代入する。
-   * 
-   * @param argRotation 　プリミティブの回転角度
-   */
-  private void checkRotation(Rotation argRotation) {
-    if (argRotation == null) {
-      this.rotation = new Rotation();
-      this.rotation.setXrotate(0.0f);
-      this.rotation.setYrotate(0.0f);
-      this.rotation.setZrotate(0.0f);
+      sphereConnector.createSphereConnector(radius, location, rotation);
     }
   }
 
