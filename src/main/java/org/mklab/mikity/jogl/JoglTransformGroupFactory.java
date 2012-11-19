@@ -32,7 +32,7 @@ public class JoglTransformGroupFactory {
    * @return トランスフォームグループ
    */
   public JoglTransformGroup create(Group group) {
-    final LinkData[] linkData = group.loadLinkData();
+    final LinkData[] linkData = group.getLinkData();
     for (int i = 0; i < linkData.length; i++) {
       if (linkData[i].hasDHParameter()) {
         DHParameter dhParameter = Util.getDHParameter(linkData);
@@ -47,22 +47,22 @@ public class JoglTransformGroupFactory {
 
     final JoglTransformGroup tg = new JoglTransformGroup();
     
-    final XMLBox[] boxes = group.loadXMLBox();
+    final XMLBox[] boxes = group.getXMLBox();
     for (int i = 0; i < boxes.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(boxes[i]));
     }
 
-    final XMLCylinder[] cylinders = group.loadXMLCylinder();
+    final XMLCylinder[] cylinders = group.getXMLCylinder();
     for (int i = 0; i < cylinders.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(cylinders[i]));
     }
 
-    final XMLSphere[] spheres = group.loadXMLSphere();
+    final XMLSphere[] spheres = group.getXMLSphere();
     for (int i = 0; i < spheres.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(spheres[i]));
     }
 
-    final XMLCone[] cones = group.loadXMLCone();
+    final XMLCone[] cones = group.getXMLCone();
     for (int i = 0; i < cones.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(cones[i]));
     }
@@ -72,17 +72,17 @@ public class JoglTransformGroupFactory {
     //      tg.addChild(JoglPrimitiveFactory.create(connectors[i]));
     //    }
 
-    final XMLTrianglePolygon[] trianglePolygons = group.loadXMLTrianglePolygon();
+    final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygon();
     for (int i = 0; i < trianglePolygons.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(trianglePolygons[i], this.dhParameters, this.coordinateParameters));
     }
 
-    final XMLQuadPolygon[] quadPolygons = group.loadXMLQuadPolygon();
+    final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygon();
     for (int i = 0; i < quadPolygons.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(quadPolygons[i], this.dhParameters, this.coordinateParameters));
     }
 
-    final Group[] groups = group.loadGroups();
+    final Group[] groups = group.getGroups();
     for (int i = 0; i < groups.length; i++) {
       tg.addChild(JoglPrimitiveFactory.create(groups[i]));
     }

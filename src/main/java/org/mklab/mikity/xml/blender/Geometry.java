@@ -12,7 +12,7 @@ import org.mklab.mikity.xml.model.Group;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(Geometry要素)
+ * Blenderから出力したCOLLADAデータを読み込むためのクラス(Geometry要素)です。
  * 
  * @author SHOGO
  * @version $Revision: 1.6 $. 2007/11/30

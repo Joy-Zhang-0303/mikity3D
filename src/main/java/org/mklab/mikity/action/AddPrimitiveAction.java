@@ -42,7 +42,7 @@ public class AddPrimitiveAction extends Action {
    */
   @Override
   public void run() {
-    final Jamast root = ModelingWindow.getRoot();
+    final Jamast root = this.window.getRoot();
     this.dialog = new AddPrimitiveDialog(this.window.getShell(), root.loadModel(0).loadGroup(0));
   }
 }

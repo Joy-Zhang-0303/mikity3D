@@ -128,8 +128,8 @@ public class Mesh {
    * @param name 名前
    */
   public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes, String name) {
-    final List<String> nameList = library_visual_scenes.getNodeNameList();
-    final List<Matrix4f> matrixList = library_visual_scenes.getMatrixList();
+    final List<String> nameList = library_visual_scenes.getNodeNames();
+    final List<Matrix4f> matrixList = library_visual_scenes.getMatrices();
     for (int i = 0; i < nameList.size(); i++) {
       if (nameList.get(i) != null && nameList.get(i).equals(name)) {
         this.matrix = matrixList.get(i);

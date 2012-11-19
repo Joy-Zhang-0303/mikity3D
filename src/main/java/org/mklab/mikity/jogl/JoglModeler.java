@@ -3,7 +3,6 @@ package org.mklab.mikity.jogl;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
 import org.mklab.mikity.gui.AbstractModeler;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.xml.Jamast;
 
 
@@ -20,10 +19,9 @@ public class JoglModeler extends AbstractModeler {
    * @param parent ツリーの親
    * @param style スタイル
    * @param root ツリーのルート
-   * @param dc 重複防止
    */
-  public JoglModeler(Composite parent, int style, Jamast root, CollisionCanceller dc) {
-    super(parent, style, root, dc);
+  public JoglModeler(Composite parent, int style, Jamast root) {
+    super(parent, style, root);
   }
   
   /**

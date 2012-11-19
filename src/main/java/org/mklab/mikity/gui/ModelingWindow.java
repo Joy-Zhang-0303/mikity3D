@@ -38,7 +38,6 @@ import org.mklab.mikity.action.toolbar.CylinderToolBarAction;
 import org.mklab.mikity.action.toolbar.QuadPolygonToolBarAction;
 import org.mklab.mikity.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.action.toolbar.TrianglePolygonToolBarAction;
-import org.mklab.mikity.gui.collision.CollisionCanceller;
 import org.mklab.mikity.jogl.JoglModeler;
 import org.mklab.mikity.xml.JAXBMarshaller;
 import org.mklab.mikity.xml.Jamast;
@@ -75,9 +74,6 @@ public class ModelingWindow extends ApplicationWindow {
   /** */
   Action FILE_EXIT_ACTION = new FileExitAction(this);
 
-  private Composite comp;
-  private CollisionCanceller canceller = new CollisionCanceller(this.comp);
-
   private Action TOOLBAR_BOX_ACTION = new BoxToolBarAction(this);
   private Action TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this);
   private Action TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this);
@@ -86,18 +82,19 @@ public class ModelingWindow extends ApplicationWindow {
   private Action TOOLBAR_QUAD_ACTION = new QuadPolygonToolBarAction(this);
 
   private File file;
-  private File loadFile;
-  private static Jamast root = ModelingWindow.createEmptyModel();
+  
+  private Jamast root;
+  
   /** */
-  Text filePathText;
+  private Text filePathText;
   private Button newModelButton;
   private Button modelerButton;
   private Button configButton;
   private Button simButton;
   private Button saveButton;
   private Button saveAsButton;
-  private boolean isDirty;
-
+  
+  private boolean dirty;
   private AbstractModeler modeler;
 
   /**
@@ -115,9 +112,25 @@ public class ModelingWindow extends ApplicationWindow {
    */
   public ModelingWindow(final Shell shell) {
     super(shell);
+    this.root = createEmptyModel();
     addMenuBar();
     addToolBar(SWT.FLAT);
     addStatusLine();
+  }
+  
+  /**
+   * @return root
+   */
+  private Jamast createEmptyModel() {
+    final JamastConfig config = new JamastConfig();
+    final JamastModel model = new JamastModel();
+    final Jamast localRoot = new Jamast();
+    localRoot.addConfig(config);
+    localRoot.addModel(model);
+    final Group group = new Group();
+    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
+    model.addGroup(group);
+    return localRoot;
   }
 
   /**
@@ -129,12 +142,9 @@ public class ModelingWindow extends ApplicationWindow {
     localComposite.setLayout(new GridLayout());
     localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-    this.comp = localComposite;
-
     // TODO Java3d or JOGL
-    // Java3d or JOGL
-    //this.modeler = new Java3dModeler(localComposite, SWT.NONE, root, this.canceller);
-    this.modeler = new JoglModeler(localComposite, SWT.NONE, root, this.canceller);
+    //this.modeler = new Java3dModeler(localComposite, SWT.NONE, this.root);
+    this.modeler = new JoglModeler(localComposite, SWT.NONE, this.root);
     
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     return localComposite;
@@ -335,10 +345,10 @@ public class ModelingWindow extends ApplicationWindow {
    * 単位の設定
    */
   private void setUnit() {
-    JamastConfig config = root.loadConfig(0);
+    final JamastConfig config = this.root.loadConfig(0);
 
     if (config.loadModelUnit() != null) {
-      ModelUnit modelUnit = config.loadModelUnit();
+      final ModelUnit modelUnit = config.loadModelUnit();
       if (modelUnit.loadAngle() != null) {
         UnitLabel.setModelAngle(modelUnit.loadAngle());
       }
@@ -347,7 +357,7 @@ public class ModelingWindow extends ApplicationWindow {
       }
     }
     if (config.loadDataUnit() != null) {
-      DataUnit dataUnit = config.loadDataUnit();
+      final DataUnit dataUnit = config.loadDataUnit();
       if (dataUnit.loadAngle() != null) {
         UnitLabel.setDataAngle(dataUnit.loadAngle());
       }
@@ -358,16 +368,15 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * シーングラフのルートの取得
+   * シーングラフのルートを返します。
    * 
    * @return root
    */
-  public static Jamast getRoot() {
-    return root;
+  public Jamast getRoot() {
+    return this.root;
   }
 
   final class SaveAsButtonSelectionListener extends SelectionAdapter {
-
     @Override
     public void widgetSelected(SelectionEvent arg0) {
       ModelingWindow.this.FILE_SAVE_AS_ACTION.run();
@@ -385,42 +394,57 @@ public class ModelingWindow extends ApplicationWindow {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
-    root.loadJamastXMLData();
-    JAXBMarshaller marshaller = new JAXBMarshaller(root);
+    this.root.loadJamastXMLData();
+    JAXBMarshaller marshaller = new JAXBMarshaller(this.root);
     marshaller.marshal(this.file);
     setFile(this.file.getPath());
-    this.isDirty = false;
+    this.dirty = false;
   }
 
   /**
    * ファイルを読み込みます。
-   * @throws IOException ファイルに保存できない場合 
-   * @throws JAXBException ファイルに保存できない場合 
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
    */
   public void load() throws IOException, JAXBException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
-    JAXBMarshaller marshaller = new JAXBMarshaller();
-    marshaller.unmarshal(this.file);
-    root = marshaller.getRoot();
-    if (root == null) {
-      root = ModelingWindow.createEmptyModel();
-      Group groupBlender = root.loadModel(0).loadGroup(0);
-      Group[] polygonGroupList = marshaller.getBlenderGroup().loadGroups();
-      for (int i = 0; i < polygonGroupList.length; i++) {
-        groupBlender.addGroup(polygonGroupList[i]);
-      }
-    }
-    this.loadFile = marshaller.getLoadFile();
+    
+    this.root = loadJamastFile(this.file);
+    
     // setEditable(true);
-    SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(getRoot().loadModel(0).loadGroup(0), false);
+    final SceneGraphTree tree = new SceneGraphTree();
+    tree.setAllTransparent(this.root.loadModel(0).loadGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
-    this.modeler.setModel(root);
+    this.modeler.setModel(this.root);
     // setEditable(false);
-    this.isDirty = false;
+    this.dirty = false;
+  }
+  
+  /**
+   * Jamastファイルを読み込みます。
+   * @param jamastFile Jamastファイル
+   * @return JAMAST
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
+   */
+  private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
+    JAXBMarshaller marshaller = new JAXBMarshaller();
+    marshaller.unmarshal(jamastFile);
+    
+    Jamast newRoot = marshaller.getRoot();
+    if (newRoot == null) {
+      newRoot = createEmptyModel();
+      final Group group = newRoot.loadModel(0).loadGroup(0);
+      final Group[] polygonGroups = marshaller.getBlenderGroup().getGroups();
+      for (int i = 0; i < polygonGroups.length; i++) {
+        group.addGroup(polygonGroups[i]);
+      }
+    }
+
+    return newRoot;
   }
 
   /**
@@ -439,16 +463,16 @@ public class ModelingWindow extends ApplicationWindow {
     if (marshaller.getRoot() != null) {
       Group importGroup = marshaller.getRoot().loadModel(0).loadGroup(0);
 
-      org.mklab.mikity.xml.model.XMLBox[] box = importGroup.loadXMLBox();
-      org.mklab.mikity.xml.model.XMLCone[] cone = importGroup.loadXMLCone();
-      org.mklab.mikity.xml.model.XMLCylinder[] cylinder = importGroup.loadXMLCylinder();
-      org.mklab.mikity.xml.model.XMLSphere[] sphere = importGroup.loadXMLSphere();
-      org.mklab.mikity.xml.model.XMLConnector[] connector = importGroup.loadXMLConnector();
-      org.mklab.mikity.xml.model.XMLTrianglePolygon[] triangle = importGroup.loadXMLTrianglePolygon();
-      org.mklab.mikity.xml.model.XMLQuadPolygon[] quad = importGroup.loadXMLQuadPolygon();
-      org.mklab.mikity.xml.model.Group[] group = importGroup.loadGroups();
+      org.mklab.mikity.xml.model.XMLBox[] box = importGroup.getXMLBox();
+      org.mklab.mikity.xml.model.XMLCone[] cone = importGroup.getXMLCone();
+      org.mklab.mikity.xml.model.XMLCylinder[] cylinder = importGroup.getXMLCylinder();
+      org.mklab.mikity.xml.model.XMLSphere[] sphere = importGroup.getXMLSphere();
+      org.mklab.mikity.xml.model.XMLConnector[] connector = importGroup.getXMLConnector();
+      org.mklab.mikity.xml.model.XMLTrianglePolygon[] triangle = importGroup.getXMLTrianglePolygon();
+      org.mklab.mikity.xml.model.XMLQuadPolygon[] quad = importGroup.getXMLQuadPolygon();
+      org.mklab.mikity.xml.model.Group[] group = importGroup.getGroups();
 
-      Group rootGroup = root.loadModel(0).loadGroup(0);
+      Group rootGroup = this.root.loadModel(0).loadGroup(0);
 
       if (box != null) {
         for (int i = 0; i < box.length; i++) {
@@ -491,8 +515,8 @@ public class ModelingWindow extends ApplicationWindow {
         }
       }
     } else {
-      Group groupBlender = root.loadModel(0).loadGroup(0);
-      Group[] polygonGroupList = marshaller.getBlenderGroup().loadGroups();
+      Group groupBlender = this.root.loadModel(0).loadGroup(0);
+      Group[] polygonGroupList = marshaller.getBlenderGroup().getGroups();
       for (int i = 0; i < polygonGroupList.length; i++) {
         groupBlender.addGroup(polygonGroupList[i]);
       }
@@ -503,23 +527,23 @@ public class ModelingWindow extends ApplicationWindow {
     tree.setAllTransparent(getRoot().loadModel(0).loadGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
-    this.modeler.setModel(root);
+    this.modeler.setModel(this.root);
     // setEditable(false);
-    this.isDirty = false;
+    this.dirty = false;
   }
 
   /**
    * @return isDirty
    */
   public boolean isDirty() {
-    return this.isDirty;
+    return this.dirty;
   }
 
   /**
    * @param dirty 変更されている場合true
    */
   public void setDirty(final boolean dirty) {
-    this.isDirty = true;
+    this.dirty = dirty;
   }
 
   @Override
@@ -542,27 +566,12 @@ public class ModelingWindow extends ApplicationWindow {
     this.modeler.createViewer();
   }
 
-  /**
-   * 読み込みファイルの取得
-   * 
-   * @return　loadFile　読み込みファイル
-   */
-  public File getLoadFile() {
-    return this.loadFile;
-  }
-
-  /**
-   * @return root
-   */
-  public static Jamast createEmptyModel() {
-    final Jamast root = new Jamast();
-    final JamastConfig jamastConfig = new JamastConfig();
-    final JamastModel jamastModel = new JamastModel();
-    root.addConfig(jamastConfig);
-    root.addModel(jamastModel);
-    org.mklab.mikity.xml.model.Group rootGroup = new org.mklab.mikity.xml.model.Group();
-    rootGroup.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
-    jamastModel.addGroup(rootGroup);
-    return root;
-  }
+//  /**
+//   * 読み込みファイルの取得
+//   * 
+//   * @return　loadFile　読み込みファイル
+//   */
+//  public File getLoadFile() {
+//    return this.loadFile;
+//  }
 }

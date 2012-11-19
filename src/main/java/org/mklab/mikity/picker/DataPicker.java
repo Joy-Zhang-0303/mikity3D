@@ -73,7 +73,7 @@ public interface DataPicker {
    * データ数を返します。
    * @return データ数
    */
-  int getDataCount();
+  int getDataSize();
 
   /**
    * 終了時間を返します。

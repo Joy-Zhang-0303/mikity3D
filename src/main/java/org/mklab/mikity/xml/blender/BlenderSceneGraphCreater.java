@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.xml.blender;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLQuadPolygon;
@@ -28,24 +28,24 @@ public class BlenderSceneGraphCreater {
   }
 
   /**
-   * @param g グループ
+   * @param group グループ
    * @param argScene シーン
    */
-  public void checkGroupName(Group g, Group argScene) {
-    ArrayList<Group> group = g.loadGroupAsReference();
-    for (int i = 0; i < group.size(); i++) {
-      if (group.get(i).loadName().equals(argScene.loadName())) {
-        ArrayList<XMLTrianglePolygon> triangleList = g.loadGroups()[i].loadXMLTrianglePolygonAsReference();
-        ArrayList<XMLQuadPolygon> quadList = g.loadGroups()[i].loadXMLQuadPolygonAsReference();
-        addTrianglePolygonList(argScene, triangleList);
-        addQuadPolygonList(argScene, quadList);
+  public void checkGroupName(Group group, Group argScene) {
+    final List<Group> groups = group.getGroupAsReference();
+    for (int i = 0; i < groups.size(); i++) {
+      if (groups.get(i).loadName().equals(argScene.loadName())) {
+        final List<XMLTrianglePolygon> trianglePolygons = group.getGroups()[i].getXMLTrianglePolygonAsReference();
+        final List<XMLQuadPolygon> quadPolygons = group.getGroups()[i].getXMLQuadPolygonAsReference();
+        addTrianglePolygons(argScene, trianglePolygons);
+        addQuadPolygons(argScene, quadPolygons);
       }
     }
 
-    ArrayList<Group> child = argScene.loadGroupAsReference();
+    final List<Group> child = argScene.getGroupAsReference();
     if (child != null) {
       for (int i = 0; i < child.size(); i++) {
-        checkGroupName(g, child.get(i));
+        checkGroupName(group, child.get(i));
       }
     }
     this.scene = argScene;
@@ -53,21 +53,21 @@ public class BlenderSceneGraphCreater {
 
   /**
    * @param argScene
-   * @param triangleList
+   * @param trianglePolygons
    */
-  private void addTrianglePolygonList(Group argScene, ArrayList<XMLTrianglePolygon> triangleList) {
-    for (int k = 0; k < triangleList.size(); k++) {
-      argScene.addXMLTrianglePolygon(triangleList.get(k));
+  private void addTrianglePolygons(Group argScene, List<XMLTrianglePolygon> trianglePolygons) {
+    for (int k = 0; k < trianglePolygons.size(); k++) {
+      argScene.addXMLTrianglePolygon(trianglePolygons.get(k));
     }
   }
 
   /**
    * @param argScene
-   * @param quadList
+   * @param quadPolygons
    */
-  private void addQuadPolygonList(Group argScene, ArrayList<XMLQuadPolygon> quadList) {
-    for (int k = 0; k < quadList.size(); k++) {
-      argScene.addXMLQuadPolygon(quadList.get(k));
+  private void addQuadPolygons(Group argScene, List<XMLQuadPolygon> quadPolygons) {
+    for (int k = 0; k < quadPolygons.size(); k++) {
+      argScene.addXMLQuadPolygon(quadPolygons.get(k));
     }
   }
 

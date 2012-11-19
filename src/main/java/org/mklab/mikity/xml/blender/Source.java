@@ -13,7 +13,7 @@ import org.mklab.mikity.xml.model.Location;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(Source要素)
+ * Blenderから出力したCOLLADAデータを読み込むためのクラス(Source要素)です。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/11/30

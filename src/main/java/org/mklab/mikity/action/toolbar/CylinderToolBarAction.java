@@ -48,7 +48,7 @@ public class CylinderToolBarAction extends Action {
     cylinder.setDiv(20);
     cylinder.setColor("blue"); //$NON-NLS-1$
     
-    final Jamast root = ModelingWindow.getRoot();
+    final Jamast root = this.window.getRoot();
     final Group group = root.loadModel(0).loadGroup(0);
     group.addXMLCylinder(cylinder);
     

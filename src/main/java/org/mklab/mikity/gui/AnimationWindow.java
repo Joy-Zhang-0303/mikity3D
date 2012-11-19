@@ -1,5 +1,6 @@
 package org.mklab.mikity.gui;
 
+import java.awt.Component;
 import java.awt.Frame;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.xml.bind.JAXBException;
 
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
@@ -32,7 +35,11 @@ import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
 import org.mklab.mikity.util.MessagegUtil;
+import org.mklab.mikity.xml.JAXBMarshaller;
 import org.mklab.mikity.xml.Jamast;
+import org.mklab.mikity.xml.JamastConfig;
+import org.mklab.mikity.xml.JamastModel;
+import org.mklab.mikity.xml.model.Group;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
@@ -90,9 +97,8 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   private ParameterInputBox playSpeed;
 
-  // TODO Java3d or JOGL
-  private Java3dModelCanvas modelCanvas;
-  //private JoglModelCanvas modelCanvas;
+  //  ModelCanvas
+  private ModelCanvas modelCanvas;
 
   /**
    * コンストラクター
@@ -102,8 +108,79 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public AnimationWindow(final Shell parentShell, final Jamast root) {
     super(parentShell);
-    this.manager = new MovableGroupManager(root);
     this.root = root;
+    this.manager = new MovableGroupManager(this.root);
+    
+    // TODO Java3d or JOGL
+    this.modelCanvas = new Java3dModelCanvas(this.root);
+    //this.modelCanvas = new JoglModelCanvas(this.root);
+  }
+  
+  /**
+   * コンストラクター
+   * 
+   * @param parentShell 親シェル
+   * @param modelFile モデルファイル
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
+   */
+  public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, JAXBException {
+    super(parentShell);
+    this.root = loadJamastFile(modelFile);
+    this.manager = new MovableGroupManager(this.root);
+    
+    // TODO Java3d or JOGL
+    this.modelCanvas = new Java3dModelCanvas(this.root);
+    //this.modelCanvas = new JoglModelCanvas(this.root);
+  }
+  
+  /**
+   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
+   * @param modelFilePath モデルのファイルへのパス
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
+   */
+  public AnimationWindow(String modelFilePath) throws IOException, JAXBException {
+    this(null, new File(modelFilePath));
+  }
+  
+  /**
+   * Jamastファイルを読み込みます。
+   * @param jamastFile Jamastファイル
+   * @return JAMAST
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JAXBException ファイルを読み込めない場合
+   */
+  private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
+    JAXBMarshaller marshaller = new JAXBMarshaller();
+    marshaller.unmarshal(jamastFile);
+    
+    Jamast newRoot = marshaller.getRoot();
+    if (newRoot == null) {
+      newRoot = createEmptyModel();
+      final Group group = newRoot.loadModel(0).loadGroup(0);
+      final Group[] polygonGroups = marshaller.getBlenderGroup().getGroups();
+      for (int i = 0; i < polygonGroups.length; i++) {
+        group.addGroup(polygonGroups[i]);
+      }
+    }
+
+    return newRoot;
+  }
+  
+  /**
+   * @return root
+   */
+  private Jamast createEmptyModel() {
+    final JamastConfig config = new JamastConfig();
+    final JamastModel model = new JamastModel();
+    final Jamast localRoot = new Jamast();
+    localRoot.addConfig(config);
+    localRoot.addModel(model);
+    final Group group = new Group();
+    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
+    model.addGroup(group);
+    return localRoot;
   }
   
   /**
@@ -173,13 +250,9 @@ public class AnimationWindow extends ApplicationWindow {
     viewer.setLayoutData(gridData);
 
     // AWTのフレームを作る。
-    final Frame awtFrame = SWT_AWT.new_Frame(viewer);
+    final Frame awtFrame = SWT_AWT.new_Frame(viewer);   
     
-    // TODO Java3d or JOGL
-    this.modelCanvas = new Java3dModelCanvas(this.root);
-    //this.modelCanvas = new JoglModelCanvas(this.root);
-    
-    awtFrame.add(this.modelCanvas);
+    awtFrame.add((Component)this.modelCanvas);
     this.modelCanvas.load();
   }
 
@@ -365,10 +438,10 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   private void checkLinkParameterType(org.mklab.mikity.xml.model.Group group) {
-    org.mklab.mikity.xml.model.Group[] subGroup = group.loadGroups();
+    org.mklab.mikity.xml.model.Group[] subGroup = group.getGroups();
     if (subGroup.length != 0) {
       for (int i = 0; i < subGroup.length; i++) {
-        org.mklab.mikity.xml.model.LinkData[] link = subGroup[i].loadLinkData();
+        org.mklab.mikity.xml.model.LinkData[] link = subGroup[i].getLinkData();
         for (int j = 0; j < link.length; j++) {
           if (link[j].hasDHParameter()) {
             this.usedDHParam = true;

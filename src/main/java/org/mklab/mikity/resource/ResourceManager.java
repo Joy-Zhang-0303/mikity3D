@@ -14,7 +14,7 @@ import org.eclipse.swt.graphics.Image;
 
 
 /**
- * アイコンなどのリソースを管理するクラス
+ * アイコンなどのリソースを管理するクラスです。
  * 
  * @author miki
  * @version $Revision: 1.4 $.2005/01/25
@@ -52,7 +52,7 @@ public class ResourceManager {
   }
 
   /**
-   * リソースを全て破棄する
+   * リソースを全て破棄します。
    */
   public static void dispose() {
     for (Iterator<String> iter = imageMap.keySet().iterator(); iter.hasNext();) {

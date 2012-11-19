@@ -31,47 +31,47 @@ public class Java3dTransformGroupFactory {
   public Java3dTransformGroup create(final Group group) {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     
-    final XMLBox[] boxes = group.loadXMLBox();
+    final XMLBox[] boxes = group.getXMLBox();
     for (int i = 0; i < boxes.length; i++) {
       tg.addChild(Java3dPrimitiveFactory.create(boxes[i]));
     }
 
-    final XMLCylinder[] cylinders = group.loadXMLCylinder();
+    final XMLCylinder[] cylinders = group.getXMLCylinder();
     for (int i = 0; i < cylinders.length; i++) {
       tg.addChild(Java3dPrimitiveFactory.create(cylinders[i]));
     }
 
-    final XMLSphere[] spheres = group.loadXMLSphere();
+    final XMLSphere[] spheres = group.getXMLSphere();
     for (int i = 0; i < spheres.length; i++) {
       tg.addChild(Java3dPrimitiveFactory.create(spheres[i]));
     }
 
-    final XMLCone[] cones = group.loadXMLCone();
+    final XMLCone[] cones = group.getXMLCone();
     for (int i = 0; i < cones.length; i++) {
       tg.addChild(Java3dPrimitiveFactory.create(cones[i]));
     }
 
-    final XMLConnector[] connectors = group.loadXMLConnector();
+    final XMLConnector[] connectors = group.getXMLConnector();
     for (int i = 0; i < connectors.length; i++) {
       tg.addChild(Java3dPrimitiveFactory.create(connectors[i]));
     }
 
-    final XMLTrianglePolygon[] trianglePolygons = group.loadXMLTrianglePolygon();
+    final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygon();
     for (int i = 0; i < trianglePolygons.length; i++) {
       tg.addChild(Java3dPrimitiveFactory.create(trianglePolygons[i]));
     }
 
-    final XMLQuadPolygon[] quadPolygons = group.loadXMLQuadPolygon();
+    final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygon();
     for (int i = 0; i < quadPolygons.length; i++) {
       tg.addChild(Java3dPrimitiveFactory.create(quadPolygons[i]));
     }
 
-    final Group[] groups = group.loadGroups();
+    final Group[] groups = group.getGroups();
     for (int i = 0; i < groups.length; i++) {
       tg.addChild(Java3dPrimitiveFactory.create(groups[i]));
     }
 
-    final LinkData[] data = group.loadLinkData();
+    final LinkData[] data = group.getLinkData();
     for (int i = 0; i < data.length; i++) {
       if (data[i].hasDHParameter()) {
         final DHParameter parameter = Util.getDHParameter(data);

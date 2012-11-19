@@ -47,9 +47,9 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   private Vector3f lightLocation = new Vector3f(0.2f, -0.8f, -0.8f);
 
   /** */
-  public static int scale = 1;
+
   /** */
-  public static boolean radian = false;
+
 
   /**
    * コンストラクター universe --> BranchGroup --> TransformGroup --> topGroup

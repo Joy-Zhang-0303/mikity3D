@@ -20,6 +20,7 @@ import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
 import org.mklab.mikity.util.ColorConstant;
+import org.mklab.mikity.util.Util;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.Rotation;
@@ -45,11 +46,6 @@ import com.sun.j3d.utils.geometry.Sphere;
  * @version $Revision: 1.21 $.2004/11/30
  */
 public class Java3dPrimitiveFactory {
-
-  /** 単位 */
-  private static int scale = 1;
-  private static boolean radian = true;
-
   /** 透明度の設定 */
   private static TransparencyAttributes transAttr = new TransparencyAttributes(TransparencyAttributes.NICEST, 0.7f);
 
@@ -59,10 +55,7 @@ public class Java3dPrimitiveFactory {
    * @param group グループ
    * @return tg トランスフォームグループ
    */
-  public static Java3dTransformGroup create(Group group) {
-    scale = Java3dModelCanvas.scale;
-    radian = Java3dModelCanvas.radian;
-
+  public static Java3dTransformGroup create(Group group) { 
     return new Java3dTransformGroupFactory().create(group);
   }
 
@@ -74,7 +67,7 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLBox box) {
     final int flag = Primitive.GENERATE_NORMALS;
-    final Primitive primitive = new Box(box.loadXsize() / (scale * 2), box.loadYsize() / (scale * 2), box.loadZsize() / (scale * 2), flag, null);
+    final Primitive primitive = new Box(box.loadXsize() / (Util.scale * 2), box.loadYsize() / (Util.scale * 2), box.loadZsize() / (Util.scale * 2), flag, null);
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(box.loadColor()));
     if (box.hasTransparent()) {
@@ -324,7 +317,7 @@ public class Java3dPrimitiveFactory {
    */
   private static void applyLocationRotation(Location location, Rotation rotation, Java3dTransformGroup tg) {
     if (rotation != null) {
-      if (radian == false) {
+      if (Util.radian == false) {
         tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rotation.loadXrotate())));
         tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(rotation.loadYrotate())));
         tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(rotation.loadZrotate())));
@@ -335,7 +328,7 @@ public class Java3dPrimitiveFactory {
       }
     }
     if (location != null) {
-      tg.translate(new Vector3f(location.loadX() / scale, location.loadY() / scale, location.loadZ() / scale));
+      tg.translate(new Vector3f(location.loadX() / Util.scale, location.loadY() / Util.scale, location.loadZ() / Util.scale));
     }
   }
 
@@ -373,14 +366,14 @@ public class Java3dPrimitiveFactory {
     return material;
   }
 
-  /**
-   * モデルを作成する際のスケールを設定します。
-   * 
-   * @param scal プリミティブの大きさ
-   * @param rad 角度
-   */
-  public static void setScale(int scal, boolean rad) {
-    scale = scal;
-    radian = rad;
-  }
+//  /**
+//   * モデルを作成する際のスケールを設定します。
+//   * 
+//   * @param scal プリミティブの大きさ
+//   * @param rad 角度
+//   */
+//  public static void setScale(int scal, boolean rad) {
+//    scale = scal;
+//    radian = rad;
+//  }
 }

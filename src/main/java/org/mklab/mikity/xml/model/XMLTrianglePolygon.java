@@ -124,7 +124,7 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * 
+   *  
    */
   public void setNormalVector() {
     Vector3f v1 = new Vector3f(this._point[1].loadX() - this._point[0].loadX(), this._point[1].loadY() - this._point[0].loadY(), this._point[1].loadZ() - this._point[0].loadZ());

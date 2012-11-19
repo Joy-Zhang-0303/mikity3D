@@ -236,7 +236,7 @@ public class GroupConfigDialogDH {
    * Linkdata の column を表示させる
    */
   private void setParam() {
-    LinkData[] linkdata = this.group.loadLinkData();
+    LinkData[] linkdata = this.group.getLinkData();
 
     for (int i = 0; i < linkdata.length; i++) {
       String target = linkdata[i].loadTargetName();

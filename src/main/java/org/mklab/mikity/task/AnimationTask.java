@@ -128,7 +128,7 @@ public class AnimationTask extends TimerTask {
    */
   private void fireAnimationDone() {
     for (final AnimationTaskListener listener : this.listeners) {
-      listener.taskDone();
+      listener.tearDownAnimation();
     }
   }
 
@@ -137,7 +137,7 @@ public class AnimationTask extends TimerTask {
    */
   private void fireAnimationStarted() {
     for (final AnimationTaskListener listener : this.listeners) {
-      listener.taskStarted();
+      listener.setUpAnimation();
     }
   }
 }
