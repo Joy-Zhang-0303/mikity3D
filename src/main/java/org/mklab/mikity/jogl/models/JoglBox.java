@@ -64,7 +64,7 @@ public class JoglBox implements JoglObject {
         {-this._xsize / 2, this._ysize / 2, -this._zsize / 2}, {-this._xsize / 2, -this._ysize / 2, -this._zsize / 2}, {this._xsize / 2, -this._ysize / 2, -this._zsize / 2}};
    */
     
-    float[] vertice = {
+    float[] vertexs = {
         this._xsize / 2, this._ysize / 2, this._zsize / 2,
         -this._xsize / 2, this._ysize / 2, this._zsize / 2,
         -this._xsize / 2, -this._ysize / 2, this._zsize / 2,
@@ -74,7 +74,7 @@ public class JoglBox implements JoglObject {
         -this._xsize / 2, -this._ysize / 2, -this._zsize / 2,
         this._xsize / 2, -this._ysize / 2, -this._zsize / 2,
     };
-    this.vertexBuffer = makeFloatBuffer(vertice);
+    this.vertexBuffer = makeFloatBuffer(vertexs);
     
     //インデックスバッファの生成
     byte[] indexs = {
