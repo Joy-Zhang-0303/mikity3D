@@ -60,6 +60,7 @@ public class JoglCone implements JoglObject {
        
     float[] vertexs = new float[(this._div+2)*3];
     
+    // TODO 描画は出来てますが、vertexs[]かindexs[]にどこか問題があると思います。
     
     //頂点バッファの生成
     vertexs[0] = 0.0f;
@@ -72,11 +73,12 @@ public class JoglCone implements JoglObject {
       vertexs[i*3+1] = -this._height / 2.0f;
       vertexs[i*3+2] = this._r * (float)Math.sin(ang);
     }
-    this.vertexBuffer = makeFloatBuffer(vertexs);
     
     vertexs[3+this._div*3] = 0.0f;
     vertexs[4+this._div*3] = -this._height/2.0f;
     vertexs[5+this._div*3] = 0.0f;
+
+    this.vertexBuffer = makeFloatBuffer(vertexs);
     
     //インデックスバッファの生成
     byte[] indexs = new byte[this._div*6];
@@ -168,8 +170,8 @@ public class JoglCone implements JoglObject {
     //頂点バッファの指定 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
     
-    /*
-    gl.glNormal3f(0.0f, 1.0f, 0.0f);
+    
+    /*gl.glNormal3f(0.0f, 1.0f, 0.0f);
     this.indexBuffer.position(0);
     gl.glDrawElements(GL.GL_TRIANGLE_STRIP,this._div*3,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
  
@@ -179,7 +181,8 @@ public class JoglCone implements JoglObject {
     */
     this.indexBuffer.position(0);
     gl.glDrawElements(GL.GL_TRIANGLE_STRIP,this._div*6,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
-  
+    
+    
     
     gl.glPopMatrix();
   }
