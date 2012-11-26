@@ -128,6 +128,7 @@ public class MovableGroupManager {
     if (linkData.length == 0) {
       return;
     }
+    
     final DataPicker picker = new ClosenessDataPicker(this.data);
 
     for (int i = 0; i < linkData.length; i++) {
@@ -135,7 +136,7 @@ public class MovableGroupManager {
         if (linkData[i].hasDataNumber()) {
           final int dataNumber = linkData[i].loadDataNumber();
           final String parameterName = linkData[i].loadTargetName();
-          DHParameterType type;
+          final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
             type = DHParameterType.A;
@@ -150,10 +151,11 @@ public class MovableGroupManager {
           }
           picker.readDataAndSetParameter(type, dataNumber);
         }
+        
         if (linkData[i].hasInitialValue()) {
           final double value = linkData[i].loadInitialValue();
           final String parameterName = linkData[i].loadTargetName();
-          DHParameterType type;
+          final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
             type = DHParameterType.A;
@@ -172,7 +174,7 @@ public class MovableGroupManager {
         if (linkData[i].hasDataNumber()) {
           final int dataNumber = linkData[i].loadDataNumber();
           final String parameterName = linkData[i].loadTargetName();
-          CoordinateParameterType type;
+          final CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
             type = CoordinateParameterType.X;
@@ -191,10 +193,11 @@ public class MovableGroupManager {
           }
           picker.readDataAndSetParameter(type, dataNumber);
         }
+        
         if (linkData[i].hasInitialValue()) {
           final double value = linkData[i].loadInitialValue();
           final String parameterName = linkData[i].loadTargetName();
-          CoordinateParameterType type;
+          final CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
             type = CoordinateParameterType.X;

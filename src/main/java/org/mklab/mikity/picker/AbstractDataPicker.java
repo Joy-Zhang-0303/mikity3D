@@ -20,7 +20,6 @@ import org.mklab.nfc.matrix.Matrix;
  * @version $Revision: 1.7 $.2005/01/17
  */
 public abstract class AbstractDataPicker implements DataPicker {
-
   private DoubleMatrix data;
   /** DHパラメータ */
   protected DHParameter[] dhParameters;
@@ -253,14 +252,6 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public int getDataNumber(double t) {
-    DoubleMatrix error = this.data.getRowVector(1).subtractElementWise(t).absElementWise();
-    return error.minimumRowWise().getIndices().getIntElement(1);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
   public int getDataSize() {
     return this.data.getColumnSize();
   }
@@ -277,5 +268,13 @@ public abstract class AbstractDataPicker implements DataPicker {
    */
   public double getStartTime() {
     return this.data.getElement(1, 1).doubleValue();
+  }
+  
+  /**
+   * データを返します。
+   * @return データ
+   */
+  public DoubleMatrix getData() {
+    return this.data;
   }
 }
