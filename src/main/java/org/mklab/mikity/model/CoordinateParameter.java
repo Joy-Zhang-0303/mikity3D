@@ -27,8 +27,7 @@ public class CoordinateParameter {
   }
 
   /**
-   * コンストラクタ
-   * 
+   * 新しく生成された<code>CoordinateParameter</code>オブジェクトを初期化します。
    * @param x X座標並進
    * @param y Y座標並進
    * @param z Z座標並進

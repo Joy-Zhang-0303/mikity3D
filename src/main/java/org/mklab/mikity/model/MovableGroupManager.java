@@ -49,8 +49,7 @@ public class MovableGroupManager {
   private boolean hasCoordinateParameter = false;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>MovableGroupManager</code>オブジェクトを初期化します。
    * @param root ルート
    */
   public MovableGroupManager(Jamast root) {
