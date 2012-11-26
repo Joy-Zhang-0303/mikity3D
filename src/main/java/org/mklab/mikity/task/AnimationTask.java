@@ -22,21 +22,27 @@ import org.mklab.mikity.model.MovableGroupManager;
  * @version $Revision: 1.6 $.2005/01/24 
  */
 public class AnimationTask extends TimerTask {
-  private double currentTime = 0.0;
+  /** アニメーションの速度(1.0のときに実時間で再生) */
   private double speed = 1.0;
-  private long startTime = System.currentTimeMillis();
-  private double endTime = 0.0;
+  /** グループマネージャ　*/
   private MovableGroupManager manager;
+  /** リスナー　*/
   private List<AnimationTaskListener> listeners = new ArrayList<AnimationTaskListener>();
+  /** 現在の時間　*/
+  private double currentTime = 0.0;
+  /** 開始時間　*/
   private final double initialTime;
-  
+  /** 終了時間　*/
+  private double endTime = 0.0;
+  private long startTime = System.currentTimeMillis();
+  /** モデルキャンバス　*/
   private ModelCanvas canvas;
   
   /**
    * コンストラクター
    * 
-   * @param initialTime アニメーションのスタート時間
-   * @param endTime 終了時刻
+   * @param initialTime 開始時間
+   * @param endTime 終了時間
    * @param manager グループマネージャー
    * @param canvas モデルキャンバス
    */
@@ -58,18 +64,18 @@ public class AnimationTask extends TimerTask {
   }
 
   /**
-   * アニメーションを行う速度を返します。 速度は1.0のときに実時間で再生します。
+   * アニメーションの速度を返します。 速度は1.0のときに実時間で再生します。
    * 
-   * @return 現在の速度
+   * @return アニメーションの速度
    */
   public double getSpeed() {
     return this.speed;
   }
 
   /**
-   * アニメーションを行う速度を設定します。 速度が1.0のときに実時間で再生します。
+   * アニメーションの速度を設定します。 速度が1.0のときに実時間で再生します。
    * 
-   * @param speed スピード
+   * @param speed アニメーションの速度
    */
   public void setSpeed(double speed) {
     this.speed = speed;
@@ -84,7 +90,7 @@ public class AnimationTask extends TimerTask {
       fireAnimationStarted();
     }
 
-    double diffTime = (scheduledExecutionTime() - this.startTime) / 1000.0;
+    final double diffTime = (scheduledExecutionTime() - this.startTime) / 1000.0;
     this.startTime = System.currentTimeMillis();
     this.currentTime += diffTime * this.speed;
 
@@ -94,7 +100,6 @@ public class AnimationTask extends TimerTask {
       this.manager.performAnimationWithCoordinateParameter(this.currentTime);
     }
 
-    
     if (this.canvas instanceof JoglModelCanvas) {
       ((JoglModelCanvas)this.canvas).display();
     }
