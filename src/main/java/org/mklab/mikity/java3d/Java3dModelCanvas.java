@@ -64,22 +64,22 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     this.universe = new SimpleUniverse(this);
 
     // ブランチグループを設定
-    BranchGroup bg = new BranchGroup();
+    final BranchGroup bg = new BranchGroup();
     bg.setCapability(BranchGroup.ALLOW_DETACH);
 
     getParameter(root);
 
     // 平行光線の設定
-    Java3dDirectionalLight light = new Java3dDirectionalLight(new Color3f(1.0f, 1.0f, 1.0f), this.lightLocation);
+    final Java3dDirectionalLight light = new Java3dDirectionalLight(new Color3f(1.0f, 1.0f, 1.0f), this.lightLocation);
 
     // 背景色の設定
-    BranchGroup background = createBackground(this.backgroundColor);
+    final BranchGroup background = createBackground(this.backgroundColor);
 
     bg.addChild(light);
     bg.addChild(background);
 
     // 基準座標系の設定
-    Java3dTransformGroup tg = new Java3dTransformGroup();
+    final Java3dTransformGroup tg = new Java3dTransformGroup();
 
     initializeMouse(tg);
 
@@ -91,7 +91,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     // BranchGroupにTransformGroupをAddする
     bg.addChild(tg);
 
-    TransformGroup transform = new TransformGroup();
+    final TransformGroup transform = new TransformGroup();
     transform.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
     bg.addChild(transform);
 
@@ -119,9 +119,9 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     final BranchGroup group = new BranchGroup();
     final double radius = Double.POSITIVE_INFINITY;
 
-    Background background = new Background(color);
+    final Background background = new Background(color);
 
-    BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), radius);
+    final BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), radius);
     background.setApplicationBounds(bounds);
 
     group.addChild(background);
@@ -139,17 +139,17 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 
-    BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), radius);
+    final BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), radius);
 
-    MouseZoom zoom = new MouseZoom(tg);
+    final MouseZoom zoom = new MouseZoom(tg);
     zoom.setSchedulingBounds(bounds);
     tg.addChild(zoom);
 
-    MouseRotate rotate = new MouseRotate(tg);
+    final MouseRotate rotate = new MouseRotate(tg);
     rotate.setSchedulingBounds(bounds);
     tg.addChild(rotate);
 
-    MouseTranslate translate = new MouseTranslate(tg);
+    final MouseTranslate translate = new MouseTranslate(tg);
     translate.setSchedulingBounds(bounds);
     tg.addChild(translate);
   }
@@ -172,10 +172,10 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   public void setChild(Group[] groups) {
     this.topGroup.removeAllChildren();
 
-    BranchGroup bg = new BranchGroup();
+    final BranchGroup bg = new BranchGroup();
     bg.setCapability(BranchGroup.ALLOW_DETACH);
 
-    TransformGroup tg = new TransformGroup();
+    final TransformGroup tg = new TransformGroup();
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 
     for (int i = 0; i < groups.length; i++) {
@@ -193,7 +193,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    * @param aRoot
    */
   private void getParameter(Jamast aRoot) {
-    JamastConfig config = aRoot.loadConfig(0);
+    final JamastConfig config = aRoot.loadConfig(0);
     if (config == null) {
       return;
     }

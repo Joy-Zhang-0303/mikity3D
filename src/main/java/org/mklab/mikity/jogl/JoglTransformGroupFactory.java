@@ -35,11 +35,11 @@ public class JoglTransformGroupFactory {
     final LinkData[] linkData = group.getLinkData();
     for (int i = 0; i < linkData.length; i++) {
       if (linkData[i].hasDHParameter()) {
-        DHParameter dhParameter = Util.getDHParameter(linkData);
+        final DHParameter dhParameter = Util.getDHParameter(linkData);
         this.dhParameters.add(dhParameter);
         break;
       } else if (linkData[i].hasCoordinateParameter()) {
-        CoordinateParameter coordinateParameter = Util.getCoordinateParameter(linkData);
+        final CoordinateParameter coordinateParameter = Util.getCoordinateParameter(linkData);
         this.coordinateParameters.add(coordinateParameter);
         break;
       }
