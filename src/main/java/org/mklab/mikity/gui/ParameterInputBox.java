@@ -23,7 +23,6 @@ import org.eclipse.swt.widgets.Text;
  * @version $Revision: 1.11 $.2004/12/15
  */
 public class ParameterInputBox extends Composite {
-
   private Label label;
   private Label label1;
   private Text text;
@@ -40,7 +39,7 @@ public class ParameterInputBox extends Composite {
    */
   public ParameterInputBox(Composite composite, int style, String key, String value) {
     super(composite, style);
-    GridLayout layout = new GridLayout();
+    final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     layout.marginHeight = 0;
     layout.marginWidth = 0;
@@ -61,12 +60,14 @@ public class ParameterInputBox extends Composite {
         ParameterInputBox.this.changed = true;
       }
     });
-    GridData data = new GridData();
-    data.widthHint = 65;
-    this.text.setLayoutData(data);
-    data = new GridData(GridData.FILL_HORIZONTAL);
-    data.horizontalSpan = 2;
-    this.setLayoutData(data);
+    
+    final GridData data1 = new GridData();
+    data1.widthHint = 65;
+    this.text.setLayoutData(data1);
+    
+    final GridData data2 = new GridData(GridData.FILL_HORIZONTAL);
+    data2.horizontalSpan = 2;
+    this.setLayoutData(data2);
   }
 
   /**
@@ -78,7 +79,7 @@ public class ParameterInputBox extends Composite {
    */
   public ParameterInputBox(Composite c, String lab, String but) {
     super(c, SWT.NONE);
-    GridLayout layout = new GridLayout();
+    final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     layout.marginHeight = 0;
     layout.marginWidth = 0;
@@ -87,7 +88,7 @@ public class ParameterInputBox extends Composite {
     this.label1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     this.label1.setAlignment(SWT.RIGHT);
     this.label1.setText(lab);
-    Button button = new Button(this, SWT.NONE);
+    final Button button = new Button(this, SWT.NONE);
     button.setText(but);
   }
 
@@ -100,28 +101,28 @@ public class ParameterInputBox extends Composite {
    */
   public ParameterInputBox(Composite c, int style, int value) {
     super(c, SWT.RIGHT);
-    GridLayout layout = new GridLayout();
+    final GridLayout layout = new GridLayout();
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     this.setLayout(layout);
     this.text = new Text(this, SWT.BORDER | SWT.RIGHT | style);
-    GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 65;
     this.text.setLayoutData(data);
     this.text.setText("" + value); //$NON-NLS-1$
   }
 
   /**
-   * テキストボックスの文字をfloat型で返す
+   * テキストボックスの文字をfloat型で返します。
    * 
-   * @return Float.parseFloat(text.getText())
+   * @return テキストボックスの文字の値
    */
   public float getFloatValue() {
     return Float.parseFloat(this.text.getText());
   }
 
   /**
-   * テキストボックスの中の数字をセット
+   * テキストボックスの中の数字を設定します。
    * 
    * @param value 値
    */
@@ -139,16 +140,16 @@ public class ParameterInputBox extends Composite {
   }
 
   /**
-   * テキストボックスの文字をInt型で返す
+   * テキストボックスの文字をInt型で返します。
    * 
-   * @return (int)getDoubleValue()
+   * @return テキストボックスの文字の値
    */
   public int getIntValue() {
     return (int)getDoubleValue();
   }
 
   /**
-   * テキストボックスの文字をセット
+   * テキストボックスの文字を設定します。
    * 
    * @param string 文字列
    */
@@ -160,36 +161,36 @@ public class ParameterInputBox extends Composite {
   }
 
   /**
-   * テキストボックスの文字を返す
+   * テキストボックスの文字を返します。
    * 
-   * @return text.getText()
+   * @return テキストボックスの文字
    */
   public String getText() {
     return this.text.getText();
   }
 
   /**
-   * ラベルの文字をセットする
+   * ラベルの文字を設定します。
    * 
    * @param string 文字列
-１１   */
+   */
   public void setLabelText(String string) {
     this.label.setText(string);
   }
 
   /**
-   * ラベルの文字を返す
+   * ラベルの文字を返します。
    * 
-   * @return label.getText()
+   * @return ラベルの文字
    */
   public String getLabelText() {
     return this.label.getText();
   }
 
   /**
-   * テキストボックスに入っている値が 数字ではないときにfalseを返す
+   * テキストボックスに入っている値が 数字であるか判別します。
    * 
-   * @return boolean
+   * @return boolean テキストボックスに入っている値が 数字ではないときにfalse
    */
   public boolean checkParam() {
     try {

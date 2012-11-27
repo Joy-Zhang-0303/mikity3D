@@ -30,7 +30,6 @@ public class FileOpenAction extends Action {
    * @param window ウィンドウ
    */
   public FileOpenAction(final ModelingWindow window) {
-    super();
     this.window = window;
     setText(Messages.getString("FileOpenAction.0")); //$NON-NLS-1$
     setToolTipText(Messages.getString("FileOpenAction.1")); //$NON-NLS-1$

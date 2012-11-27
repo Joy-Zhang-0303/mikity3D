@@ -40,6 +40,7 @@ import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
 import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.model.Group;
+import org.mklab.mikity.xml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
@@ -152,7 +153,7 @@ public class AnimationWindow extends ApplicationWindow {
    * @throws JAXBException ファイルを読み込めない場合
    */
   private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
-    JAXBMarshaller marshaller = new JAXBMarshaller();
+    final JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(jamastFile);
     
     Jamast newRoot = marshaller.getRoot();
@@ -202,7 +203,7 @@ public class AnimationWindow extends ApplicationWindow {
    */
   @Override
   protected Control createContents(final Composite parent) {
-    SashForm sash = new SashForm(parent, SWT.NONE);
+    final SashForm sash = new SashForm(parent, SWT.NONE);
     sash.setLayoutData(new GridData(GridData.FILL_BOTH));
     sash.setLayout(new GridLayout());
 
@@ -285,8 +286,8 @@ public class AnimationWindow extends ApplicationWindow {
 
     // timeLabel.setText("" + task.getCurrentTime());
 
-    Composite speedComp = new Composite(otherController, SWT.NONE);
-    GridLayout speedLayout = new GridLayout();
+    final Composite speedComp = new Composite(otherController, SWT.NONE);
+    final GridLayout speedLayout = new GridLayout();
     speedLayout.numColumns = 2;
     speedComp.setLayout(speedLayout);
     this.playSpeed = new ParameterInputBox(speedComp, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -355,18 +356,19 @@ public class AnimationWindow extends ApplicationWindow {
   private void createTimeBar(final Composite parent) {
     final Composite composite = new Composite(parent, SWT.NONE);
     composite.setLayout(new GridLayout(3, true));
-    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
 
     this.startTimeLabel = new Label(composite, SWT.NONE | SWT.LEFT);
     this.currentTimeLabel = new Label(composite, SWT.NONE | SWT.CENTER);
     this.currentTimeLabel.setText("0.0"); //$NON-NLS-1$
-    this.currentTimeLabel.setLayoutData(gridData);
+    this.currentTimeLabel.setLayoutData(gridData1);
     this.endTimeLabel = new Label(composite, SWT.NONE | SWT.RIGHT);
 
     this.timeSlider = new Slider(composite, SWT.NONE);
-    gridData = new GridData(GridData.FILL_HORIZONTAL);
-    gridData.horizontalSpan = 3;
-    this.timeSlider.setLayoutData(gridData);
+    
+    final GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
+    gridData2.horizontalSpan = 3;
+    this.timeSlider.setLayoutData(gridData2);
     this.timeSlider.setMinimum(0);
     this.timeSlider.setMaximum(0);
     // dataCount スライダーの最大値
@@ -395,8 +397,8 @@ public class AnimationWindow extends ApplicationWindow {
    * @param composite
    */
   private void createFileChooseComp(final Composite composite) {
-    Composite comp = new Composite(composite, SWT.NONE);
-    GridLayout layout = new GridLayout();
+    final Composite comp = new Composite(composite, SWT.NONE);
+    final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
     comp.setLayout(layout);
     comp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -416,7 +418,7 @@ public class AnimationWindow extends ApplicationWindow {
       }
     });
 
-    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 4;
     this.filePathText.setLayoutData(gridData);
 
@@ -437,11 +439,11 @@ public class AnimationWindow extends ApplicationWindow {
     });
   }
 
-  private void checkLinkParameterType(org.mklab.mikity.xml.model.Group group) {
-    org.mklab.mikity.xml.model.Group[] subGroup = group.getGroups();
+  private void checkLinkParameterType(Group group) {
+    final Group[] subGroup = group.getGroups();
     if (subGroup.length != 0) {
       for (int i = 0; i < subGroup.length; i++) {
-        org.mklab.mikity.xml.model.LinkData[] link = subGroup[i].getLinkData();
+        final LinkData[] link = subGroup[i].getLinkData();
         for (int j = 0; j < link.length; j++) {
           if (link[j].hasDHParameter()) {
             this.usedDHParam = true;
@@ -466,7 +468,7 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public void setTimeData(final File file) {
     try {
-      FileInputStream input = new FileInputStream(file);
+      final FileInputStream input = new FileInputStream(file);
       this.data = MatxMatrix.readMatFormat(input);
       input.close();
 
@@ -474,7 +476,7 @@ public class AnimationWindow extends ApplicationWindow {
       this.manager.setData(this.data);
       this.manager.updateMovableGroups();
 
-      org.mklab.mikity.xml.model.Group group = this.root.loadModel(0).loadGroup(0);
+      final Group group = this.root.loadModel(0).loadGroup(0);
       checkLinkParameterType(group);
 
       final int dataCount = this.manager.getDataCount();
@@ -509,7 +511,7 @@ public class AnimationWindow extends ApplicationWindow {
     this.manager.setData(this.data);
     this.manager.updateMovableGroups();
 
-    org.mklab.mikity.xml.model.Group group = this.root.loadModel(0).loadGroup(0);
+    final Group group = this.root.loadModel(0).loadGroup(0);
     checkLinkParameterType(group);
 
     final int dataCount = this.manager.getDataCount();
@@ -578,7 +580,7 @@ public class AnimationWindow extends ApplicationWindow {
         return;
       }
 
-      Display display = getShell().getDisplay();
+      final Display display = getShell().getDisplay();
       if (display.isDisposed()) {
         return;
       }

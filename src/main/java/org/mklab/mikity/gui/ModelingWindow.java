@@ -46,6 +46,13 @@ import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.config.ModelUnit;
 import org.mklab.mikity.xml.model.Group;
+import org.mklab.mikity.xml.model.XMLBox;
+import org.mklab.mikity.xml.model.XMLCone;
+import org.mklab.mikity.xml.model.XMLConnector;
+import org.mklab.mikity.xml.model.XMLCylinder;
+import org.mklab.mikity.xml.model.XMLQuadPolygon;
+import org.mklab.mikity.xml.model.XMLSphere;
+import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 /**
  * モデリングを行うウィンドウを表すクラスです。
@@ -138,7 +145,7 @@ public class ModelingWindow extends ApplicationWindow {
    */
   @Override
   protected Control createContents(Composite composite) {
-    Composite localComposite = new Composite(composite, SWT.NONE);
+    final Composite localComposite = new Composite(composite, SWT.NONE);
     localComposite.setLayout(new GridLayout());
     localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
@@ -156,8 +163,8 @@ public class ModelingWindow extends ApplicationWindow {
    * @param composite コンポジット
    */
   public void createFileChooseComp(final Composite composite) {
-    Composite localComposite = new Composite(composite, SWT.NONE);
-    GridLayout layout = new GridLayout();
+    final Composite localComposite = new Composite(composite, SWT.NONE);
+    final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
     localComposite.setLayout(layout);
     localComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -177,7 +184,7 @@ public class ModelingWindow extends ApplicationWindow {
       }
     });
 
-    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 4;
     this.filePathText.setLayoutData(gridData);
 
@@ -209,8 +216,8 @@ public class ModelingWindow extends ApplicationWindow {
    * @param composite コンポジット
    */
   public void createMainButtonComp(final Composite composite) {
-    Composite localComposite = new Composite(composite, SWT.NONE);
-    GridLayout layout = new GridLayout();
+    final Composite localComposite = new Composite(composite, SWT.NONE);
+    final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
     localComposite.setLayout(layout);
     localComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -301,9 +308,9 @@ public class ModelingWindow extends ApplicationWindow {
    */
   @Override
   protected MenuManager createMenuManager() {
-    MenuManager manager = new MenuManager();
+    final MenuManager manager = new MenuManager();
 
-    MenuManager localFile = new MenuManager(Messages.getString("MainWindow.8")); //$NON-NLS-1$
+    final MenuManager localFile = new MenuManager(Messages.getString("MainWindow.8")); //$NON-NLS-1$
     localFile.add(this.FILE_NEW_ACTION);
     localFile.add(this.FILE_OPEN_ACTION);
     localFile.add(this.FILE_SAVE_ACTION);
@@ -313,11 +320,11 @@ public class ModelingWindow extends ApplicationWindow {
     localFile.add(this.FILE_EXIT_ACTION);
     manager.add(localFile);
 
-    MenuManager edit = new MenuManager(Messages.getString("MainWindow.9")); //$NON-NLS-1$
+    final MenuManager edit = new MenuManager(Messages.getString("MainWindow.9")); //$NON-NLS-1$
     edit.add(this.CONFIGDIALOG_OPEN_ACTION);
     manager.add(edit);
 
-    MenuManager play = new MenuManager(Messages.getString("MainWindow.10")); //$NON-NLS-1$
+    final MenuManager play = new MenuManager(Messages.getString("MainWindow.10")); //$NON-NLS-1$
     play.add(this.ANIMATION_WINDOW_OPEN_ACTION);
     manager.add(play);
 
@@ -331,7 +338,7 @@ public class ModelingWindow extends ApplicationWindow {
    */
   @Override
   protected ToolBarManager createToolBarManager(int arg0) {
-    ToolBarManager toolbar = new ToolBarManager();
+    final ToolBarManager toolbar = new ToolBarManager();
     toolbar.add(this.TOOLBAR_BOX_ACTION);
     toolbar.add(this.TOOLBAR_SPHERE_ACTION);
     toolbar.add(this.TOOLBAR_CYLINDER_ACTION);
@@ -395,7 +402,7 @@ public class ModelingWindow extends ApplicationWindow {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
     this.root.loadJamastXMLData();
-    JAXBMarshaller marshaller = new JAXBMarshaller(this.root);
+    final JAXBMarshaller marshaller = new JAXBMarshaller(this.root);
     marshaller.marshal(this.file);
     setFile(this.file.getPath());
     this.dirty = false;
@@ -431,7 +438,7 @@ public class ModelingWindow extends ApplicationWindow {
    * @throws JAXBException ファイルを読み込めない場合
    */
   private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
-    JAXBMarshaller marshaller = new JAXBMarshaller();
+    final JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(jamastFile);
     
     Jamast newRoot = marshaller.getRoot();
@@ -457,22 +464,22 @@ public class ModelingWindow extends ApplicationWindow {
       throw new IllegalArgumentException(Messages.getString("MainWindow.14")); //$NON-NLS-1$
     }
 
-    JAXBMarshaller marshaller = new JAXBMarshaller();
+    final JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(this.file);
 
     if (marshaller.getRoot() != null) {
-      Group importGroup = marshaller.getRoot().loadModel(0).loadGroup(0);
+      final Group importGroup = marshaller.getRoot().loadModel(0).loadGroup(0);
 
-      org.mklab.mikity.xml.model.XMLBox[] box = importGroup.getXMLBox();
-      org.mklab.mikity.xml.model.XMLCone[] cone = importGroup.getXMLCone();
-      org.mklab.mikity.xml.model.XMLCylinder[] cylinder = importGroup.getXMLCylinder();
-      org.mklab.mikity.xml.model.XMLSphere[] sphere = importGroup.getXMLSphere();
-      org.mklab.mikity.xml.model.XMLConnector[] connector = importGroup.getXMLConnector();
-      org.mklab.mikity.xml.model.XMLTrianglePolygon[] triangle = importGroup.getXMLTrianglePolygon();
-      org.mklab.mikity.xml.model.XMLQuadPolygon[] quad = importGroup.getXMLQuadPolygon();
-      org.mklab.mikity.xml.model.Group[] group = importGroup.getGroups();
+      final XMLBox[] box = importGroup.getXMLBox();
+      final XMLCone[] cone = importGroup.getXMLCone();
+      final XMLCylinder[] cylinder = importGroup.getXMLCylinder();
+      final XMLSphere[] sphere = importGroup.getXMLSphere();
+      final XMLConnector[] connector = importGroup.getXMLConnector();
+      final XMLTrianglePolygon[] triangle = importGroup.getXMLTrianglePolygon();
+      final XMLQuadPolygon[] quad = importGroup.getXMLQuadPolygon();
+      final Group[] group = importGroup.getGroups();
 
-      Group rootGroup = this.root.loadModel(0).loadGroup(0);
+      final Group rootGroup = this.root.loadModel(0).loadGroup(0);
 
       if (box != null) {
         for (int i = 0; i < box.length; i++) {
@@ -515,15 +522,15 @@ public class ModelingWindow extends ApplicationWindow {
         }
       }
     } else {
-      Group groupBlender = this.root.loadModel(0).loadGroup(0);
-      Group[] polygonGroupList = marshaller.getBlenderGroup().getGroups();
+      final Group groupBlender = this.root.loadModel(0).loadGroup(0);
+      final Group[] polygonGroupList = marshaller.getBlenderGroup().getGroups();
       for (int i = 0; i < polygonGroupList.length; i++) {
         groupBlender.addGroup(polygonGroupList[i]);
       }
     }
 
     // setEditable(true);
-    SceneGraphTree tree = new SceneGraphTree();
+    final SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(getRoot().loadModel(0).loadGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
@@ -533,7 +540,7 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * @return isDirty
+   * @return isDirty 変更されている場合true
    */
   public boolean isDirty() {
     return this.dirty;
@@ -546,6 +553,9 @@ public class ModelingWindow extends ApplicationWindow {
     this.dirty = dirty;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected void handleShellCloseEvent() {
     this.FILE_EXIT_ACTION.run();
@@ -565,13 +575,4 @@ public class ModelingWindow extends ApplicationWindow {
   public void createViewer() {
     this.modeler.createViewer();
   }
-
-//  /**
-//   * 読み込みファイルの取得
-//   * 
-//   * @return　loadFile　読み込みファイル
-//   */
-//  public File getLoadFile() {
-//    return this.loadFile;
-//  }
 }
