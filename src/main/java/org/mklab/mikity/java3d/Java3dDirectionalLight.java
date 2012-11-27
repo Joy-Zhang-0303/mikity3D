@@ -15,7 +15,8 @@ import javax.vecmath.Vector3f;
  */
 public class Java3dDirectionalLight extends BranchGroup {
 
-  private double radius = Java3dUniverse.boundsRadius;
+  /** */
+  private double radius = 100.0f;
 
   /**
    * コンストラクター
