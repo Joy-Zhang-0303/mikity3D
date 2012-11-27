@@ -34,14 +34,14 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 public class DragAndDropEnabler {
 
   /** ライブラリツリー */
-  Tree tree = null;
+  private Tree tree = null;
   /** タイプ */
   private static final Transfer[] TYPE = new Transfer[] {TextTransfer.getInstance()};
   /** 操作 */
   private static final int OPERATION = DND.DROP_MOVE | DND.DROP_COPY | DND.DROP_LINK;
 
   /** */
-  TreeItem treeItem;
+  private TreeItem treeItem;
 
   /**
    * コンストラクター ドラッグ元として {@link Tree}を設定する

@@ -50,34 +50,34 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  */
 public class SceneGraphTree {
   /** */
-  Tree xmlTree;
+  private Tree xmlTree;
   /** */
-  JamastModel model;
+  private JamastModel model;
   /** */
   private Composite comp;
   /** */
-  TreeItem selectItem = null;
+  private TreeItem selectItem = null;
   /** */
-  Object targetObj = null;
+  private Object targetObj = null;
   /** */
-  Group targetGroup = null;
+  private Group targetGroup = null;
   /** */
-  Group targetParentGroup = null;
+  private Group targetParentGroup = null;
   /** */
-  Group root = null;
+  private Group root = null;
   /** */
-  boolean editable = true;
+  private boolean editable = true;
   /** */
   private AbstractModeler modeler;
 
   /** */
-  ConnectorSelector select;
+  private ConnectorSelector select;
   /** */
-  Connect connect;
+  private Connect connect;
   /** */
-  boolean usedDHParam = false;
+  private boolean usedDHParam = false;
   /** */
-  boolean usedLink = false;
+  private boolean usedLink = false;
 
   /**
    * コンストラクター

@@ -23,7 +23,7 @@ public class AddPrimitiveAction extends Action {
   private ModelingWindow window;
 
   /** ダイアログ */
-  AddPrimitiveDialog dialog;
+  private AddPrimitiveDialog dialog;
 
   /**
    * 新しく生成された<code>AddPrimitiveAction</code>オブジェクトを初期化します。
