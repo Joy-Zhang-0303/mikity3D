@@ -31,8 +31,8 @@ public class Java3dViewpoint {
    * @param universe2 空間
    */
   public Java3dViewpoint(AxisAngle4f angle4f, Vector3f vector3f, SimpleUniverse universe2) {
-    ViewingPlatform vp = universe2.getViewingPlatform();
-    this.vpTg = vp.getViewPlatformTransform();
+    final ViewingPlatform viewPoint = universe2.getViewingPlatform();
+    this.vpTg = viewPoint.getViewPlatformTransform();
 
     // ビューポイントのセット
     setViewpoint(angle4f, vector3f);
@@ -52,14 +52,14 @@ public class Java3dViewpoint {
     this.vpTg = vp.getViewPlatformTransform();
     if (mouseOperationType == 0) {
       // 視点方向の設定
-      Transform3D transform1 = new Transform3D();
+      final Transform3D transform1 = new Transform3D();
       transform1.setRotation(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(view.loadXrotate())));
-      Transform3D transform2 = new Transform3D();
+      final Transform3D transform2 = new Transform3D();
       transform2.setRotation(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(view.loadYrotate())));
-      Transform3D transform3 = new Transform3D();
+      final Transform3D transform3 = new Transform3D();
       transform3.setRotation(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(view.loadZrotate())));
       // 視点位置の設定
-      Transform3D transform4 = new Transform3D();
+      final Transform3D transform4 = new Transform3D();
       transform4.setTranslation(new Vector3f(view.loadX(), view.loadY(), view.loadZ()));
 
       // 変換行列の乗算
@@ -80,9 +80,9 @@ public class Java3dViewpoint {
    */
   public void setViewpoint(AxisAngle4f angle, Vector3f position) {
     // 視点位置＆方向を設定
-    Transform3D transform1 = new Transform3D();
+    final Transform3D transform1 = new Transform3D();
     transform1.setRotation(angle);
-    Transform3D transform2 = new Transform3D();
+    final Transform3D transform2 = new Transform3D();
     transform2.setTranslation(position);
 
     // ２つの変換行列の乗算（angle -> positionの順）

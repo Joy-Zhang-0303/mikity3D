@@ -30,11 +30,10 @@ import com.sun.j3d.utils.universe.SimpleUniverse;
  * @version $Revision: 1.6 $.2004/12/16
  */
 public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
-
   /** */
   private static final long serialVersionUID = 1L;
   /** マウス操作の状態の表す数値 */
-  public int mouseOperationType = 0;
+  private int mouseOperationType = 0;
   /** 読み込んだファイルのルート */
   private Jamast root;
 

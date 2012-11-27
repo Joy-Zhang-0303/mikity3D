@@ -19,11 +19,11 @@ import com.sun.j3d.utils.universe.ViewingPlatform;
   */
 public class Java3dUniverse {
   /** */
-  private static Applet applet = null;
+  private Applet applet = null;
   /** */
   private static SimpleUniverse universe = null;
   /** */
-  private static Canvas3D canvas = null;
+  private Canvas3D canvas = null;
   /** */
   private static float fieldOfView = (float)Math.toRadians(45.);
   /** */
@@ -43,15 +43,15 @@ public class Java3dUniverse {
    * @param app アプレット
    */
   public Java3dUniverse(Applet app) {
-    applet = app;
+    this.applet = app;
 
     // 画面オブジェクトの生成
     canvas = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
     canvas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
     // 画面レイアウトの設定
-    applet.setLayout(new BorderLayout());
-    applet.add(canvas, BorderLayout.CENTER);
+    this.applet.setLayout(new BorderLayout());
+    this.applet.add(canvas, BorderLayout.CENTER);
 
     // シンプルユニバースの生成
     universe = new SimpleUniverse(canvas);
