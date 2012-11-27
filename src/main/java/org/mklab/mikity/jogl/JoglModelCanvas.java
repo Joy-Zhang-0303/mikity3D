@@ -19,6 +19,8 @@ import org.mklab.mikity.xml.model.Group;
 
 
 /**
+ * JOGL用のキャンバスを表すクラスです。
+ * 
  * @author iwamoto
  * @version $Revision$, 2012/01/11
  */

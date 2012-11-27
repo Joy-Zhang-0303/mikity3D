@@ -290,26 +290,24 @@ public abstract class AbstractModeler extends Composite {
   }
 
   /**
+   * ツリーのルートを設定します。
    * @param root ツリーのルート
    */
   public void setModel(Jamast root) {
     this.root = root;
-    //setUnit();
     this.tree.setModel(root.loadModel(0));
     createViewer();
   }
 
   /**
-   * シーングラフツリーにプリミティブのデータを追加させる。
+   * シーングラフツリーにプリミティブのデータを追加します。
    */
   public void fillTree() {
     this.tree.fillTree();
   }
   
   /**
-   * GroupをsinsiCanvasに読み込ませ、Frameにaddする
-   * 
-   * @version $Revision: 1.22 $.2005/01/25
+   * GroupをsinsiCanvasに読み込ませ、Frameにaddします。
    */
   public abstract void createViewer();
 

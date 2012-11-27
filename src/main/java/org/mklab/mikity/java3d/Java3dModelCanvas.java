@@ -15,6 +15,7 @@ import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.xml.JamastConfig;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.config.Light;
+import org.mklab.mikity.xml.config.View;
 import org.mklab.mikity.xml.model.Group;
 
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
@@ -24,7 +25,7 @@ import com.sun.j3d.utils.universe.SimpleUniverse;
 
 
 /**
- * キャンバスを表すクラスです。
+ * Java3D用のキャンバスを表すクラスです。
  * 
  * @author Miki Koga
  * @version $Revision: 1.6 $.2004/12/16
@@ -42,8 +43,14 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   /** ユニバース */
   private SimpleUniverse universe;
 
+  /** 背景色 */
   private Color3f backgroundColor;
+  
+  /** 光源の位置 */
   private Vector3f lightLocation = new Vector3f(0.2f, -0.8f, -0.8f);
+  
+  /** 視点の位置と向き */
+  private Java3dViewpoint viewPoint;
 
   /**
    * コンストラクター universe --> BranchGroup --> TransformGroup --> topGroup
@@ -54,14 +61,13 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     super(SimpleUniverse.getPreferredConfiguration());
     this.root = root;
 
-    // シンプルユニバースを設定
     this.universe = new SimpleUniverse(this);
 
     // ブランチグループを設定
     final BranchGroup bg = new BranchGroup();
     bg.setCapability(BranchGroup.ALLOW_DETACH);
 
-    getParameter(root);
+    loadConfigurationFromXML(root);
 
     // 平行光線の設定
     final Java3dDirectionalLight light = new Java3dDirectionalLight(new Color3f(1.0f, 1.0f, 1.0f), this.lightLocation);
@@ -152,7 +158,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    * {@inheritDoc}
    */
   public void load() {
-    getParameter(this.root);
+    loadConfigurationFromXML(this.root);
     Group[] group = this.root.loadModel(0).loadGroup();
     setChild(group);
   }
@@ -171,7 +177,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
 
     for (int i = 0; i < groups.length; i++) {
       bg.addChild(tg);
-      Java3dTransformGroup child = Java3dPrimitiveFactory.create(groups[i]);
+      final Java3dTransformGroup child = Java3dPrimitiveFactory.create(groups[i]);
       tg.addChild(child);
     }
 
@@ -183,30 +189,33 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    * 
    * @param aRoot
    */
-  private void getParameter(Jamast aRoot) {
+  private void loadConfigurationFromXML(Jamast aRoot) {
     final JamastConfig config = aRoot.loadConfig(0);
     if (config == null) {
       return;
     }
 
     // 背景色をセット
-    if (config.loadBackground() == null) {
-      this.backgroundColor = ColorConstant.getColor("white"); //$NON-NLS-1$
+    final org.mklab.mikity.xml.config.Background loadedBackgroundColor = config.loadBackground();
+    if (loadedBackgroundColor != null) {
+      this.backgroundColor = ColorConstant.getColor(loadedBackgroundColor.loadColor());
     } else {
-      this.backgroundColor = ColorConstant.getColor(config.loadBackground().loadColor());
+      this.backgroundColor = ColorConstant.getColor("white"); //$NON-NLS-1$
     }
 
     // 光源の位置をセット
-    if (config.loadLight() != null) {
-      final Light light = config.loadLight();
+    final Light loadedLightLocation = config.loadLight();
+    if (loadedLightLocation != null) {
+      final Light light = loadedLightLocation;
       this.lightLocation = new Vector3f(light.loadX(), light.loadY(), light.loadZ());
     }
 
-    // 視点の位置、向きをセット
-    if (config.loadView() != null) {
-      new Java3dViewpoint(this.universe, config.loadView(), this.mouseOperationType);
+    // 視点の位置と向きをセット
+    final View loadedViewPoint = config.loadView();
+    if (loadedViewPoint != null) {
+      this.viewPoint = new Java3dViewpoint(this.universe, loadedViewPoint, this.mouseOperationType);
     } else {
-      new Java3dViewpoint(new AxisAngle4f(1.0f, 0.0f, 0.0f, -0.2f), new Vector3f(0.0f, 0.3f, 1.0f), this.universe);
+      this.viewPoint = new Java3dViewpoint(new AxisAngle4f(1.0f, 0.0f, 0.0f, -0.2f), new Vector3f(0.0f, 0.3f, 1.0f), this.universe);
     }
 
   }

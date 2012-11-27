@@ -311,8 +311,8 @@ public class Java3dPrimitiveFactory {
   /**
    * 単位を考慮して、渡されたtgに 回転移動、平行移動を行って返します。
    * 
-   * @param location
-   * @param rotation
+   * @param location 平行移動
+   * @param rotation 回転移動
    * @param tg
    */
   private static void applyLocationRotation(Location location, Rotation rotation, Java3dTransformGroup tg) {
