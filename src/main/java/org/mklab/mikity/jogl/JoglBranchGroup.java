@@ -20,7 +20,7 @@ public class JoglBranchGroup implements JoglObject {
   private List<JoglTransformGroup> transfromGroups;
 
   /**
-   * Initialize the generated object of {@link JoglBranchGroup}.
+   * 新しく生成された<code>JoglBranchGroup</code>オブジェクトを初期化します。
    */
   public JoglBranchGroup() {
     this.objects = new ArrayList<JoglObject>();
@@ -46,9 +46,8 @@ public class JoglBranchGroup implements JoglObject {
   }
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
     for (int i = 0; i < this.objects.size(); i++) {
       JoglObject object = this.objects.get(i);

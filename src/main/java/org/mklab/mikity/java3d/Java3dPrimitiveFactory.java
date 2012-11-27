@@ -50,7 +50,7 @@ public class Java3dPrimitiveFactory {
   private static TransparencyAttributes transAttr = new TransparencyAttributes(TransparencyAttributes.NICEST, 0.7f);
 
   /**
-   * グループを作る。
+   * グループを生成します。
    * 
    * @param group グループ
    * @return tg トランスフォームグループ
@@ -60,7 +60,7 @@ public class Java3dPrimitiveFactory {
   }
 
   /**
-   * 与えられたboxインスタンスのプリミティブを作成する。
+   * 与えられたboxインスタンスのプリミティブを生成します。
    * 
    * @param box ボックス
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
@@ -88,7 +88,7 @@ public class Java3dPrimitiveFactory {
   }
 
   /**
-   * 与えられたcylinderインスタンスのプリミティブを作成する。
+   * 与えられたcylinderインスタンスのプリミティブを生成します。
    * 
    * @param cylinder シリンダー
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
@@ -365,15 +365,4 @@ public class Java3dPrimitiveFactory {
     material.setDiffuseColor(new Color3f(ColorConstant.getColor(colorName)));
     return material;
   }
-
-//  /**
-//   * モデルを作成する際のスケールを設定します。
-//   * 
-//   * @param scal プリミティブの大きさ
-//   * @param rad 角度
-//   */
-//  public static void setScale(int scal, boolean rad) {
-//    scale = scal;
-//    radian = rad;
-//  }
 }

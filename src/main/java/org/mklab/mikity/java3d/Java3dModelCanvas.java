@@ -45,11 +45,6 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   private Color3f backgroundColor;
   private Vector3f lightLocation = new Vector3f(0.2f, -0.8f, -0.8f);
 
-  /** */
-
-  /** */
-
-
   /**
    * コンストラクター universe --> BranchGroup --> TransformGroup --> topGroup
    * 
@@ -154,9 +149,8 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   }
 
   /**
-   * fileからXMLを読み込みます。
+   * {@inheritDoc}
    */
-  @Override
   public void load() {
     getParameter(this.root);
     Group[] group = this.root.loadModel(0).loadGroup();
@@ -164,10 +158,8 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   }
 
   /**
-   * いったんトップグループの全てを消してから書き込みます。
-   * @param groups グループ 
+   * {@inheritDoc}
    */
-  @Override
   public void setChild(Group[] groups) {
     this.topGroup.removeAllChildren();
 
@@ -206,7 +198,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
 
     // 光源の位置をセット
     if (config.loadLight() != null) {
-      Light light = config.loadLight();
+      final Light light = config.loadLight();
       this.lightLocation = new Vector3f(light.loadX(), light.loadY(), light.loadZ());
     }
 

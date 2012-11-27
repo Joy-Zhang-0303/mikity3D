@@ -34,7 +34,7 @@ public class Java3dModeler extends AbstractModeler {
   }
 
   /**
-   * @see org.mklab.mikity.gui.AbstractModeler#createModelCanvas(org.eclipse.swt.widgets.Composite)
+   * {@inheritDoc}
    */
   @Override
   public void createModelCanvas(Composite viewerComp) {

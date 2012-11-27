@@ -47,7 +47,7 @@ public class Java3dViewpoint {
    * @param mouseOperationType マウスの操作タイプ
    */
   public Java3dViewpoint(SimpleUniverse uni, View view, int mouseOperationType) {
-    ViewingPlatform vp = uni.getViewingPlatform();
+    final ViewingPlatform vp = uni.getViewingPlatform();
     
     this.vpTg = vp.getViewPlatformTransform();
     if (mouseOperationType == 0) {
