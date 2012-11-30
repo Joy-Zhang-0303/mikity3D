@@ -1,8 +1,3 @@
-/*
- * $Id: JAXBMarshaller.java,v 1.4 2008/01/18 08:02:19 morimune Exp $
- * Copyright (C) 2004-2005 Koga Laboratoy. All rights reserved.
- *
- */
 package org.mklab.mikity.xml;
 
 import java.io.BufferedReader;
@@ -28,14 +23,8 @@ public class JAXBUnmarshaller {
   /** モデルデータのルート */
   private Jamast root;
 
+  /** Colladaのグループ */
   private Collada collada;
-
-  /**
-   * コンストラクタ
-   */
-  public JAXBUnmarshaller() {
-    // nothing to do
-  }
 
   /**
    * 指定したファイルを読み込みます。
@@ -60,7 +49,7 @@ public class JAXBUnmarshaller {
     }
 
     if (data.indexOf("<collada") != -1 || data.indexOf("<COLLADA") != -1) { //$NON-NLS-1$ //$NON-NLS-2$
-      loadBlenderFile(file);
+      loadColladaFile(file);
       return;
     }
 
@@ -83,23 +72,23 @@ public class JAXBUnmarshaller {
     this.root = jamast;
   }
 
-  /**
-   * 指定したJAMASTファイルを読み込みます。
-   * 
-   * @param file JAMASTファイル
-   * @return root
-   * @throws JAXBException 例外
-   * @throws IOException ファイルの読み込みに失敗した場合
-   *
-   */
-  public Jamast createJamast(File file) throws JAXBException, IOException {
-    final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
-    final Unmarshaller unmarshaller = context.createUnmarshaller();
-    final FileReader reader = new FileReader(file);
-    final Jamast jamast = (Jamast)unmarshaller.unmarshal(reader);
-    reader.close();
-    return jamast;
-  }
+//  /**
+//   * 指定したJAMASTファイルを読み込みます。
+//   * 
+//   * @param file JAMASTファイル
+//   * @return root
+//   * @throws JAXBException 例外
+//   * @throws IOException ファイルの読み込みに失敗した場合
+//   *
+//   */
+//  public Jamast createJamast(File file) throws JAXBException, IOException {
+//    final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
+//    final Unmarshaller unmarshaller = context.createUnmarshaller();
+//    final FileReader reader = new FileReader(file);
+//    final Jamast jamast = (Jamast)unmarshaller.unmarshal(reader);
+//    reader.close();
+//    return jamast;
+//  }
 
   /**
    * 指定したBlenderファイルを読み込みます。
@@ -108,7 +97,7 @@ public class JAXBUnmarshaller {
    * @throws JAXBException ファイルがvalidでない場合
    * @throws IOException ファイルを読み込めない場合
    */
-  private void loadBlenderFile(File file) throws JAXBException, IOException {
+  private void loadColladaFile(File file) throws JAXBException, IOException {
     final ColladaFileTransformer transformer = new ColladaFileTransformer(file);
     final File blender = transformer.getTransformedFile();
     final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.blender.Collada.class);
@@ -119,7 +108,8 @@ public class JAXBUnmarshaller {
   }
 
   /**
-   * @return belender group
+   * Colladaのグループを返します。
+   * @return Colladaのグループ
    */
   public Group getClolladaGroup() {
     return this.collada.getColladaPolygonGroup();

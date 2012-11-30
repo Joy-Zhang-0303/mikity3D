@@ -1,8 +1,3 @@
-/*
- * $Id: JAXBMarshaller.java,v 1.4 2008/01/18 08:02:19 morimune Exp $
- * Copyright (C) 2004-2005 Koga Laboratoy. All rights reserved.
- *
- */
 package org.mklab.mikity.xml;
 
 import java.io.File;
