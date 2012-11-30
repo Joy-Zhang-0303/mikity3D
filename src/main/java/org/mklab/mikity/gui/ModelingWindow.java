@@ -126,21 +126,6 @@ public class ModelingWindow extends ApplicationWindow {
     addToolBar(SWT.FLAT);
     addStatusLine();
   }
-  
-//  /**
-//   * @return root
-//   */
-//  private Jamast createEmptyModel() {
-//    final JamastConfig config = new JamastConfig();
-//    final JamastModel model = new JamastModel();
-//    final Jamast localRoot = new Jamast();
-//    localRoot.addConfig(config);
-//    localRoot.addModel(model);
-//    final Group group = new Group();
-//    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
-//    model.addGroup(group);
-//    return localRoot;
-//  }
 
   /**
    * @see org.eclipse.jface.window.Window#createContents(org.eclipse.swt.widgets.Composite)
