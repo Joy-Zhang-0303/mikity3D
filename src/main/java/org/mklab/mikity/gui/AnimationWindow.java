@@ -135,15 +135,15 @@ public class AnimationWindow extends ApplicationWindow {
     //this.modelCanvas = new JoglModelCanvas(this.root);
   }
   
-  /**
-   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
-   * @param modelFilePath モデルのファイルへのパス
-   * @throws IOException ファイルを読み込めない場合
-   * @throws JAXBException ファイルを読み込めない場合
-   */
-  public AnimationWindow(String modelFilePath) throws IOException, JAXBException {
-    this(null, new File(modelFilePath));
-  }
+//  /**
+//   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
+//   * @param modelFilePath モデルのファイルへのパス
+//   * @throws IOException ファイルを読み込めない場合
+//   * @throws JAXBException ファイルを読み込めない場合
+//   */
+//  public AnimationWindow(String modelFilePath) throws IOException, JAXBException {
+//    this(null, new File(modelFilePath));
+//  }
   
   /**
    * Jamastファイルを読み込みます。

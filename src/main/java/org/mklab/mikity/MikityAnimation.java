@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.xml.bind.JAXBException;
@@ -28,7 +29,7 @@ public class MikityAnimation {
    */
   public static void main(String[] args) throws IOException, JAXBException {
     final String modelFileName = "sample/pendulum/pendulum/pendulum.xml";  //$NON-NLS-1$
-    final AnimationWindow main = new AnimationWindow(modelFileName);
+    final AnimationWindow main = new AnimationWindow(null, new File(modelFileName));
     main.setBlockOnOpen(true);
     main.open();
     Display.getCurrent().dispose();

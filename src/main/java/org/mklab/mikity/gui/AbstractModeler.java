@@ -37,7 +37,7 @@ import org.mklab.mikity.xml.Jamast;
 public abstract class AbstractModeler extends Composite {
   /** */
   protected SceneGraphTree tree;
-  /** */
+  /** ルート */
   protected Jamast root; 
   /** */
   protected Frame awtFrame;
@@ -67,7 +67,7 @@ public abstract class AbstractModeler extends Composite {
 
 
   /**
-   * 3Dグラフィックスを表示するcompositeの作成
+   * 3Dグラフィックスを表示するcompositeを作成します。
    * 
    * @param composite
    */
@@ -80,7 +80,7 @@ public abstract class AbstractModeler extends Composite {
   }
 
   /**
-   * Treeを表示するcompositeの作成
+   * Treeを表示するcompositeを作成します。
    * 
    * @param composite
    */
@@ -100,7 +100,7 @@ public abstract class AbstractModeler extends Composite {
   }
 
   /**
-   * 編集機能を持ったコンポジットを作成してみる。
+   * 編集機能を持ったコンポジットを作成します。
    * 
    * @param composite コンポジット
    */
@@ -111,7 +111,7 @@ public abstract class AbstractModeler extends Composite {
   }
 
   /**
-   * 編集機能を持ったコンポジットを作成してみる。
+   * 編集機能を持ったコンポジットを作成します。
    * 
    * @param composite コンポジット
    */
@@ -123,7 +123,7 @@ public abstract class AbstractModeler extends Composite {
   }
 
   /**
-   * 状態の表示、編集を行うアプリケーションを表示するcompositeの作成
+   * 状態の表示、編集を行うアプリケーションを表示するcompositeを作成します。
    * 
    * @param comp コンポジット
    */
@@ -190,8 +190,8 @@ public abstract class AbstractModeler extends Composite {
           return;
         }
 
-        final AddGroupDialog addGroup = new AddGroupDialog(getShell(), group);
-        addGroup.open();
+        final AddGroupDialog dialog = new AddGroupDialog(getShell(), group);
+        dialog.open();
 
         AbstractModeler.this.tree.fillTree();
         createViewer();
@@ -255,8 +255,8 @@ public abstract class AbstractModeler extends Composite {
           return;
         }
 
-        final AddPrimitiveDialog addPrim = new AddPrimitiveDialog(getShell(), group);
-        addPrim.open();
+        final AddPrimitiveDialog dialog = new AddPrimitiveDialog(getShell(), group);
+        dialog.open();
 
         AbstractModeler.this.tree.fillTree();
         createViewer();
