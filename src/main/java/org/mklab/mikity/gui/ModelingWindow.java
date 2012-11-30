@@ -429,32 +429,6 @@ public class ModelingWindow extends ApplicationWindow {
     // setEditable(false);
     this.dirty = false;
   }
-  
-//  /**
-//   * Jamastファイルを読み込みます。
-//   * @param jamastFile Jamastファイル
-//   * @return JAMAST
-//   * @throws IOException ファイルを読み込めない場合
-//   * @throws JAXBException ファイルを読み込めない場合
-//   */
-//  private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
-//    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
-//    unmarshaller.unmarshal(jamastFile);
-//    
-//    final Jamast newRoot1 = unmarshaller.getRoot();
-//    if (newRoot1 != null) {
-//      return newRoot1;
-//    }
-//    
-//    final Jamast newRoot2 = createEmptyModel();
-//    final Group group = newRoot2.loadModel(0).loadGroup(0);
-//    final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
-//    for (int i = 0; i < groups.length; i++) {
-//      group.addGroup(groups[i]);
-//    }
-//
-//    return newRoot2;
-//  }
 
   /**
    * ファイルを読み込みます。

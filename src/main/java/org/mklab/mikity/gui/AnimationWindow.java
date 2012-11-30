@@ -133,47 +133,6 @@ public class AnimationWindow extends ApplicationWindow {
     //this.modelCanvas = new JoglModelCanvas(this.root);
   }
   
-//  /**
-//   * Jamastファイルを読み込みます。
-//   * @param jamastFile Jamastファイル
-//   * @return JAMAST
-//   * @throws IOException ファイルを読み込めない場合
-//   * @throws JAXBException ファイルを読み込めない場合
-//   */
-//  private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
-//    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
-//    unmarshaller.unmarshal(jamastFile);
-//    
-//    final Jamast newRoot1 = unmarshaller.getRoot();
-//    if (newRoot1 != null) {
-//      return newRoot1;
-//    }
-//    
-//    final Jamast newRoot2 = createEmptyModel();
-//    final Group group = newRoot2.loadModel(0).loadGroup(0);
-//    final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
-//    for (int i = 0; i < groups.length; i++) {
-//      group.addGroup(groups[i]);
-//    }
-//
-//    return newRoot2;
-//  }
-  
-//  /**
-//   * @return root
-//   */
-//  private Jamast createEmptyModel() {
-//    final JamastConfig config = new JamastConfig();
-//    final JamastModel model = new JamastModel();
-//    final Jamast localRoot = new Jamast();
-//    localRoot.addConfig(config);
-//    localRoot.addModel(model);
-//    final Group group = new Group();
-//    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
-//    model.addGroup(group);
-//    return localRoot;
-//  }
-  
   /**
    * シェルの設定
    * 
