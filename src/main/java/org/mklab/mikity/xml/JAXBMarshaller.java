@@ -35,8 +35,6 @@ public class JAXBMarshaller {
 
   private Collada collada;
 
-  //private File f;
-
   /**
    * コンストラクタ
    */
@@ -83,7 +81,7 @@ public class JAXBMarshaller {
   /**
    * 指定したJAMASTファイルを読み込みます。
    * 
-   * @param file 読込JAMASTファイル
+   * @param file JAMASTファイル
    * @throws JAXBException ファイルを読み込めない場合 
    * @throws IOException ファイルを読み込めない場合 
    */
@@ -91,41 +89,42 @@ public class JAXBMarshaller {
     final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
     final Unmarshaller unmarshaller = context.createUnmarshaller();
     final FileReader reader = new FileReader(file);
-    this.root = (Jamast)unmarshaller.unmarshal(reader);
+    final Jamast jamast = (Jamast)unmarshaller.unmarshal(reader);
     reader.close();
+    this.root = jamast;
   }
 
   /**
    * 指定したJAMASTファイルを読み込みます。
    * 
-   * @param file 　読込JAMASTファイル
+   * @param file JAMASTファイル
    * @return root
-   * @throws IllegalArgumentException 例外
    * @throws JAXBException 例外
    * @throws IOException ファイルの読み込みに失敗した場合
+   *
    */
-  public Jamast createJamast(File file) throws IllegalArgumentException, JAXBException, IOException {
+  public Jamast createJamast(File file) throws JAXBException, IOException {
     final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
     final Unmarshaller unmarshaller = context.createUnmarshaller();
     final FileReader reader = new FileReader(file);
-    Jamast jamast = (Jamast)unmarshaller.unmarshal(reader);
+    final Jamast jamast = (Jamast)unmarshaller.unmarshal(reader);
     reader.close();
     return jamast;
   }
 
-  /**
-   * 指定したJAMASTファイルを読み込みます。
-   * 
-   * @param file 　読込JAMASTファイル
-   * @return root
-   * @throws JAXBException ファイルを読み込めない場合
-   * @throws IllegalArgumentException 例外
-   */
-  public Jamast createJamast(URL file) throws JAXBException {
-    final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
-    final Unmarshaller unmarshaller = context.createUnmarshaller();
-    return (Jamast)unmarshaller.unmarshal(file);
-  }
+//  /**
+//   * 指定したJAMASTファイルを読み込みます。
+//   * 
+//   * @param file 　読込JAMASTファイル
+//   * @return root
+//   * @throws JAXBException ファイルを読み込めない場合
+//   * @throws IllegalArgumentException 例外
+//   */
+//  public Jamast createJamast(URL file) throws JAXBException {
+//    final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
+//    final Unmarshaller unmarshaller = context.createUnmarshaller();
+//    return (Jamast)unmarshaller.unmarshal(file);
+//  }
 
   /**
    * 指定したBlenderファイルを読み込みます。
@@ -190,18 +189,4 @@ public class JAXBMarshaller {
   public Jamast getRoot() {
     return this.root;
   }
-
-//  /**
-//   * @param f
-//   */
-//  private void setLoadFile(File f) {
-//    this.f = f;
-//  }
-
-//  /**
-//   * @return file
-//   */
-//  public File getLoadFile() {
-//    return this.f;
-//  }
 }
