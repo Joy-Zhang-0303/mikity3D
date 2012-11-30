@@ -43,6 +43,7 @@ import org.mklab.mikity.xml.JAXBMarshaller;
 import org.mklab.mikity.xml.JAXBUnmarshaller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
+import org.mklab.mikity.xml.JamastLoader;
 import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.config.ModelUnit;
@@ -417,7 +418,7 @@ public class ModelingWindow extends ApplicationWindow {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     
-    this.root = loadJamastFile(this.file);
+    this.root = new JamastLoader().loadJamastFile(this.file);
     
     // setEditable(true);
     final SceneGraphTree tree = new SceneGraphTree();
@@ -436,7 +437,7 @@ public class ModelingWindow extends ApplicationWindow {
    * @throws IOException ファイルを読み込めない場合
    * @throws JAXBException ファイルを読み込めない場合
    */
-  private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
+  public Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
     final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
     unmarshaller.unmarshal(jamastFile);
     

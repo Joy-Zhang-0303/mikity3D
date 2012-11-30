@@ -38,6 +38,7 @@ import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.xml.JAXBUnmarshaller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
+import org.mklab.mikity.xml.JamastLoader;
 import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.LinkData;
@@ -127,7 +128,7 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, JAXBException {
     super(parentShell);
-    this.root = loadJamastFile(modelFile);
+    this.root = new JamastLoader().loadJamastFile(modelFile);
     this.manager = new MovableGroupManager(this.root);
     
     // TODO Java3d or JOGL
@@ -153,9 +154,9 @@ public class AnimationWindow extends ApplicationWindow {
     
     final Jamast newRoot2 = createEmptyModel();
     final Group group = newRoot2.loadModel(0).loadGroup(0);
-    final Group[] polygonGroups = unmarshaller.getClolladaGroup().getGroups();
-    for (int i = 0; i < polygonGroups.length; i++) {
-      group.addGroup(polygonGroups[i]);
+    final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
+    for (int i = 0; i < groups.length; i++) {
+      group.addGroup(groups[i]);
     }
 
     return newRoot2;
