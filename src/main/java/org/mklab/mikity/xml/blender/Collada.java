@@ -12,7 +12,7 @@ import org.mklab.mikity.xml.model.Group;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(ルート要素)です。
+ * COLLADAデータを読み込むためのクラス(ルート要素)です。
  * 
  * @author SHOGO
  * @version $Revision: 1.6 $. 2007/11/30
@@ -34,11 +34,11 @@ public class Collada {
   }
 
   /**
-   * Blenderデータから作成したシーングラフのグループを返します。
+   * Colladaデータから作成したシーングラフのグループを返します。
    * 
-   * @return　g　Blenderのポリゴンをまとめたグループ
+   * @return　g　のポリゴンをまとめたグループ
    */
-  public Group getBlenderPolygonGroup() {
+  public Group getColladaPolygonGroup() {
     this.library_visual_scenes.createMatrix();
     this.library_geometries.setLibraryVisualScenes(this.library_visual_scenes);
     return this.library_geometries.getBlenderPolygonGroup();

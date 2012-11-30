@@ -448,7 +448,7 @@ public class ModelingWindow extends ApplicationWindow {
     
     final Jamast newRoot2 = createEmptyModel();
     final Group group = newRoot2.loadModel(0).loadGroup(0);
-    final Group[] groups = marshaller.getBlenderGroup().getGroups();
+    final Group[] groups = marshaller.getClolladaGroup().getGroups();
     for (int i = 0; i < groups.length; i++) {
       group.addGroup(groups[i]);
     }
@@ -525,7 +525,7 @@ public class ModelingWindow extends ApplicationWindow {
         }
       }
     } else {
-      final Group[] groups = marshaller.getBlenderGroup().getGroups();
+      final Group[] groups = marshaller.getClolladaGroup().getGroups();
       for (int i = 0; i < groups.length; i++) {
         group.addGroup(groups[i]);
       }

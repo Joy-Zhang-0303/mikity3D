@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -20,7 +19,6 @@ import javax.xml.bind.Unmarshaller;
 import org.mklab.mikity.xml.blender.Collada;
 import org.mklab.mikity.xml.blender.ColladaFileTransformer;
 import org.mklab.mikity.xml.model.Group;
-
 
 /**
  * JAXBを用いてモデルデータの保存・読込を行うクラスです。
@@ -112,20 +110,6 @@ public class JAXBMarshaller {
     return jamast;
   }
 
-//  /**
-//   * 指定したJAMASTファイルを読み込みます。
-//   * 
-//   * @param file 　読込JAMASTファイル
-//   * @return root
-//   * @throws JAXBException ファイルを読み込めない場合
-//   * @throws IllegalArgumentException 例外
-//   */
-//  public Jamast createJamast(URL file) throws JAXBException {
-//    final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
-//    final Unmarshaller unmarshaller = context.createUnmarshaller();
-//    return (Jamast)unmarshaller.unmarshal(file);
-//  }
-
   /**
    * 指定したBlenderファイルを読み込みます。
    * 
@@ -147,8 +131,8 @@ public class JAXBMarshaller {
   /**
    * @return belender group
    */
-  public Group getBlenderGroup() {
-    return this.collada.getBlenderPolygonGroup();
+  public Group getClolladaGroup() {
+    return this.collada.getColladaPolygonGroup();
   }
 
   /**

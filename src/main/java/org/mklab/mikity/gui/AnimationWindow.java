@@ -153,7 +153,7 @@ public class AnimationWindow extends ApplicationWindow {
     
     final Jamast newRoot2 = createEmptyModel();
     final Group group = newRoot2.loadModel(0).loadGroup(0);
-    final Group[] polygonGroups = marshaller.getBlenderGroup().getGroups();
+    final Group[] polygonGroups = marshaller.getClolladaGroup().getGroups();
     for (int i = 0; i < polygonGroups.length; i++) {
       group.addGroup(polygonGroups[i]);
     }
