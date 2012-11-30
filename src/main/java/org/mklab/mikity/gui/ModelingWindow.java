@@ -441,17 +441,19 @@ public class ModelingWindow extends ApplicationWindow {
     final JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(jamastFile);
     
-    Jamast newRoot = marshaller.getRoot();
-    if (newRoot == null) {
-      newRoot = createEmptyModel();
-      final Group group = newRoot.loadModel(0).loadGroup(0);
-      final Group[] polygonGroups = marshaller.getBlenderGroup().getGroups();
-      for (int i = 0; i < polygonGroups.length; i++) {
-        group.addGroup(polygonGroups[i]);
-      }
+    final Jamast newRoot1 = marshaller.getRoot();
+    if (newRoot1 != null) {
+      return newRoot1;
+    }
+    
+    final Jamast newRoot2 = createEmptyModel();
+    final Group group = newRoot2.loadModel(0).loadGroup(0);
+    final Group[] groups = marshaller.getBlenderGroup().getGroups();
+    for (int i = 0; i < groups.length; i++) {
+      group.addGroup(groups[i]);
     }
 
-    return newRoot;
+    return newRoot2;
   }
 
   /**
@@ -467,65 +469,65 @@ public class ModelingWindow extends ApplicationWindow {
     final JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(this.file);
 
-    if (marshaller.getRoot() != null) {
-      final Group importGroup = marshaller.getRoot().loadModel(0).loadGroup(0);
+    final Group group = this.root.loadModel(0).loadGroup(0);
 
-      final XMLBox[] box = importGroup.getXMLBox();
-      final XMLCone[] cone = importGroup.getXMLCone();
-      final XMLCylinder[] cylinder = importGroup.getXMLCylinder();
-      final XMLSphere[] sphere = importGroup.getXMLSphere();
-      final XMLConnector[] connector = importGroup.getXMLConnector();
-      final XMLTrianglePolygon[] triangle = importGroup.getXMLTrianglePolygon();
-      final XMLQuadPolygon[] quad = importGroup.getXMLQuadPolygon();
-      final Group[] group = importGroup.getGroups();
+    final Jamast newRoot = marshaller.getRoot();
+    if (newRoot != null) {
+      final Group newGroup = newRoot.loadModel(0).loadGroup(0);
 
-      final Group rootGroup = this.root.loadModel(0).loadGroup(0);
-
-      if (box != null) {
-        for (int i = 0; i < box.length; i++) {
-          rootGroup.addXMLBox(box[i]);
+      final XMLBox[] boxs = newGroup.getXMLBox();
+      final XMLCone[] cones = newGroup.getXMLCone();
+      final XMLCylinder[] cylinders = newGroup.getXMLCylinder();
+      final XMLSphere[] spheres = newGroup.getXMLSphere();
+      final XMLConnector[] connectors = newGroup.getXMLConnector();
+      final XMLTrianglePolygon[] triangles = newGroup.getXMLTrianglePolygon();
+      final XMLQuadPolygon[] quads = newGroup.getXMLQuadPolygon();
+      final Group[] groups = newGroup.getGroups();
+      
+      if (boxs != null) {
+        for (int i = 0; i < boxs.length; i++) {
+          group.addXMLBox(boxs[i]);
         }
       }
-      if (cone != null) {
-        for (int i = 0; i < cone.length; i++) {
-          rootGroup.addXMLCone(cone[i]);
+      if (cones != null) {
+        for (int i = 0; i < cones.length; i++) {
+          group.addXMLCone(cones[i]);
         }
       }
-      if (cylinder != null) {
-        for (int i = 0; i < cylinder.length; i++) {
-          rootGroup.addXMLCylinder(cylinder[i]);
+      if (cylinders != null) {
+        for (int i = 0; i < cylinders.length; i++) {
+          group.addXMLCylinder(cylinders[i]);
         }
       }
-      if (sphere != null) {
-        for (int i = 0; i < sphere.length; i++) {
-          rootGroup.addXMLSphere(sphere[i]);
+      if (spheres != null) {
+        for (int i = 0; i < spheres.length; i++) {
+          group.addXMLSphere(spheres[i]);
         }
       }
-      if (connector != null) {
-        for (int i = 0; i < connector.length; i++) {
-          rootGroup.addXMLConnector(connector[i]);
+      if (connectors != null) {
+        for (int i = 0; i < connectors.length; i++) {
+          group.addXMLConnector(connectors[i]);
         }
       }
-      if (triangle != null) {
-        for (int i = 0; i < triangle.length; i++) {
-          rootGroup.addXMLTrianglePolygon(triangle[i]);
+      if (triangles != null) {
+        for (int i = 0; i < triangles.length; i++) {
+          group.addXMLTrianglePolygon(triangles[i]);
         }
       }
-      if (quad != null) {
-        for (int i = 0; i < quad.length; i++) {
-          rootGroup.addXMLQuadPolygon(quad[i]);
+      if (quads != null) {
+        for (int i = 0; i < quads.length; i++) {
+          group.addXMLQuadPolygon(quads[i]);
         }
       }
-      if (group != null) {
-        for (int i = 0; i < group.length; i++) {
-          rootGroup.addGroup(group[i]);
+      if (groups != null) {
+        for (int i = 0; i < groups.length; i++) {
+          group.addGroup(groups[i]);
         }
       }
     } else {
-      final Group groupBlender = this.root.loadModel(0).loadGroup(0);
-      final Group[] polygonGroupList = marshaller.getBlenderGroup().getGroups();
-      for (int i = 0; i < polygonGroupList.length; i++) {
-        groupBlender.addGroup(polygonGroupList[i]);
+      final Group[] groups = marshaller.getBlenderGroup().getGroups();
+      for (int i = 0; i < groups.length; i++) {
+        group.addGroup(groups[i]);
       }
     }
 

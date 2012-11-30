@@ -146,17 +146,19 @@ public class AnimationWindow extends ApplicationWindow {
     final JAXBMarshaller marshaller = new JAXBMarshaller();
     marshaller.unmarshal(jamastFile);
     
-    Jamast newRoot = marshaller.getRoot();
-    if (newRoot == null) {
-      newRoot = createEmptyModel();
-      final Group group = newRoot.loadModel(0).loadGroup(0);
-      final Group[] polygonGroups = marshaller.getBlenderGroup().getGroups();
-      for (int i = 0; i < polygonGroups.length; i++) {
-        group.addGroup(polygonGroups[i]);
-      }
+    final Jamast newRoot1 = marshaller.getRoot();
+    if (newRoot1 != null) {
+      return newRoot1;
+    }
+    
+    final Jamast newRoot2 = createEmptyModel();
+    final Group group = newRoot2.loadModel(0).loadGroup(0);
+    final Group[] polygonGroups = marshaller.getBlenderGroup().getGroups();
+    for (int i = 0; i < polygonGroups.length; i++) {
+      group.addGroup(polygonGroups[i]);
     }
 
-    return newRoot;
+    return newRoot2;
   }
   
   /**
