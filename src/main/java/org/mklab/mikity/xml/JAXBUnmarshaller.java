@@ -72,28 +72,10 @@ public class JAXBUnmarshaller {
     this.root = jamast;
   }
 
-//  /**
-//   * 指定したJAMASTファイルを読み込みます。
-//   * 
-//   * @param file JAMASTファイル
-//   * @return root
-//   * @throws JAXBException 例外
-//   * @throws IOException ファイルの読み込みに失敗した場合
-//   *
-//   */
-//  public Jamast createJamast(File file) throws JAXBException, IOException {
-//    final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.xml.Jamast.class);
-//    final Unmarshaller unmarshaller = context.createUnmarshaller();
-//    final FileReader reader = new FileReader(file);
-//    final Jamast jamast = (Jamast)unmarshaller.unmarshal(reader);
-//    reader.close();
-//    return jamast;
-//  }
-
   /**
-   * 指定したBlenderファイルを読み込みます。
+   * 指定したColladaファイルを読み込みます。
    * 
-   * @param file Blenderファイル
+   * @param file Colladaファイル
    * @throws JAXBException ファイルがvalidでない場合
    * @throws IOException ファイルを読み込めない場合
    */
