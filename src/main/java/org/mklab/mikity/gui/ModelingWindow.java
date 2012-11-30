@@ -40,6 +40,7 @@ import org.mklab.mikity.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.action.toolbar.TrianglePolygonToolBarAction;
 import org.mklab.mikity.jogl.JoglModeler;
 import org.mklab.mikity.xml.JAXBMarshaller;
+import org.mklab.mikity.xml.JAXBUnmarshaller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
 import org.mklab.mikity.xml.JamastModel;
@@ -391,11 +392,9 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * ファイルを保存します。
+   * ファイルに保存します。
    * @throws IOException ファイルに保存できない場合 
    * @throws JAXBException ファイルに保存できない場合 
-   * 
-   * @throws IllegalArgumentException 例外
    */
   public void save() throws JAXBException, IOException {
     if (this.file == null) {
@@ -438,17 +437,17 @@ public class ModelingWindow extends ApplicationWindow {
    * @throws JAXBException ファイルを読み込めない場合
    */
   private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
-    final JAXBMarshaller marshaller = new JAXBMarshaller();
-    marshaller.unmarshal(jamastFile);
+    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+    unmarshaller.unmarshal(jamastFile);
     
-    final Jamast newRoot1 = marshaller.getRoot();
+    final Jamast newRoot1 = unmarshaller.getRoot();
     if (newRoot1 != null) {
       return newRoot1;
     }
     
     final Jamast newRoot2 = createEmptyModel();
     final Group group = newRoot2.loadModel(0).loadGroup(0);
-    final Group[] groups = marshaller.getClolladaGroup().getGroups();
+    final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
     for (int i = 0; i < groups.length; i++) {
       group.addGroup(groups[i]);
     }
@@ -466,12 +465,12 @@ public class ModelingWindow extends ApplicationWindow {
       throw new IllegalArgumentException(Messages.getString("MainWindow.14")); //$NON-NLS-1$
     }
 
-    final JAXBMarshaller marshaller = new JAXBMarshaller();
-    marshaller.unmarshal(this.file);
+    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+    unmarshaller.unmarshal(this.file);
 
     final Group group = this.root.loadModel(0).loadGroup(0);
 
-    final Jamast newRoot = marshaller.getRoot();
+    final Jamast newRoot = unmarshaller.getRoot();
     if (newRoot != null) {
       final Group newGroup = newRoot.loadModel(0).loadGroup(0);
 
@@ -525,7 +524,7 @@ public class ModelingWindow extends ApplicationWindow {
         }
       }
     } else {
-      final Group[] groups = marshaller.getClolladaGroup().getGroups();
+      final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
       for (int i = 0; i < groups.length; i++) {
         group.addGroup(groups[i]);
       }

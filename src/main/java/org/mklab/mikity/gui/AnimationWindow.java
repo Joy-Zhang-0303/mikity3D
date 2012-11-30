@@ -35,7 +35,7 @@ import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
 import org.mklab.mikity.util.MessagegUtil;
-import org.mklab.mikity.xml.JAXBMarshaller;
+import org.mklab.mikity.xml.JAXBUnmarshaller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
 import org.mklab.mikity.xml.JamastModel;
@@ -143,17 +143,17 @@ public class AnimationWindow extends ApplicationWindow {
    * @throws JAXBException ファイルを読み込めない場合
    */
   private Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
-    final JAXBMarshaller marshaller = new JAXBMarshaller();
-    marshaller.unmarshal(jamastFile);
+    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+    unmarshaller.unmarshal(jamastFile);
     
-    final Jamast newRoot1 = marshaller.getRoot();
+    final Jamast newRoot1 = unmarshaller.getRoot();
     if (newRoot1 != null) {
       return newRoot1;
     }
     
     final Jamast newRoot2 = createEmptyModel();
     final Group group = newRoot2.loadModel(0).loadGroup(0);
-    final Group[] polygonGroups = marshaller.getClolladaGroup().getGroups();
+    final Group[] polygonGroups = unmarshaller.getClolladaGroup().getGroups();
     for (int i = 0; i < polygonGroups.length; i++) {
       group.addGroup(polygonGroups[i]);
     }
