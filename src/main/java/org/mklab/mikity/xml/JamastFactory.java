@@ -15,21 +15,21 @@ import org.mklab.mikity.xml.model.Group;
 
 
 /**
- * Jamastファイルを読み込むクラスです。
+ * Jamastモデルを生成するクラスです。
  * @author koga
  * @version $Revision$, 2012/12/01
  */
-public class JamastLoader {
+public class JamastFactory {
   /**
    * Jamastファイルを読み込みます。
-   * @param jamastFile Jamastファイル
-   * @return JAMAST
+   * @param file Jamastファイル
+   * @return Jamastモデル
    * @throws IOException ファイルを読み込めない場合
    * @throws JAXBException ファイルを読み込めない場合
    */
-  public Jamast loadJamastFile(File jamastFile) throws IOException, JAXBException {
+  public Jamast loadJamastFile(File file) throws IOException, JAXBException {
     final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
-    unmarshaller.unmarshal(jamastFile);
+    unmarshaller.unmarshal(file);
     
     final Jamast newRoot1 = unmarshaller.getRoot();
     if (newRoot1 != null) {
@@ -47,9 +47,10 @@ public class JamastLoader {
   }
   
   /**
-   * @return root
+   * 空のモデルを生成します。
+   * @return Jamastモデル
    */
-  private Jamast createEmptyModel() {
+  public Jamast createEmptyModel() {
     final JamastConfig config = new JamastConfig();
     final JamastModel model = new JamastModel();
     final Jamast localRoot = new Jamast();

@@ -43,7 +43,7 @@ import org.mklab.mikity.xml.JAXBMarshaller;
 import org.mklab.mikity.xml.JAXBUnmarshaller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
-import org.mklab.mikity.xml.JamastLoader;
+import org.mklab.mikity.xml.JamastFactory;
 import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.config.ModelUnit;
@@ -121,26 +121,26 @@ public class ModelingWindow extends ApplicationWindow {
    */
   public ModelingWindow(final Shell shell) {
     super(shell);
-    this.root = createEmptyModel();
+    this.root = new JamastFactory().createEmptyModel();
     addMenuBar();
     addToolBar(SWT.FLAT);
     addStatusLine();
   }
   
-  /**
-   * @return root
-   */
-  private Jamast createEmptyModel() {
-    final JamastConfig config = new JamastConfig();
-    final JamastModel model = new JamastModel();
-    final Jamast localRoot = new Jamast();
-    localRoot.addConfig(config);
-    localRoot.addModel(model);
-    final Group group = new Group();
-    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
-    model.addGroup(group);
-    return localRoot;
-  }
+//  /**
+//   * @return root
+//   */
+//  private Jamast createEmptyModel() {
+//    final JamastConfig config = new JamastConfig();
+//    final JamastModel model = new JamastModel();
+//    final Jamast localRoot = new Jamast();
+//    localRoot.addConfig(config);
+//    localRoot.addModel(model);
+//    final Group group = new Group();
+//    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
+//    model.addGroup(group);
+//    return localRoot;
+//  }
 
   /**
    * @see org.eclipse.jface.window.Window#createContents(org.eclipse.swt.widgets.Composite)
@@ -418,7 +418,7 @@ public class ModelingWindow extends ApplicationWindow {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     
-    this.root = new JamastLoader().loadJamastFile(this.file);
+    this.root = new JamastFactory().loadJamastFile(this.file);
     
     // setEditable(true);
     final SceneGraphTree tree = new SceneGraphTree();

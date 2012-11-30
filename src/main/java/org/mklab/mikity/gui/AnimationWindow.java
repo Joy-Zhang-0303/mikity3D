@@ -36,7 +36,7 @@ import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
 import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.xml.Jamast;
-import org.mklab.mikity.xml.JamastLoader;
+import org.mklab.mikity.xml.JamastFactory;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
@@ -125,7 +125,7 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, JAXBException {
     super(parentShell);
-    this.root = new JamastLoader().loadJamastFile(modelFile);
+    this.root = new JamastFactory().loadJamastFile(modelFile);
     this.manager = new MovableGroupManager(this.root);
     
     // TODO Java3d or JOGL
