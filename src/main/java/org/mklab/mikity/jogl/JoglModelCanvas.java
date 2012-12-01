@@ -38,13 +38,17 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   
   private double[] eye = {0.0,0.0, 5.0};
 
-  private float rotx = 0.0f, roty = 0.0f;
+  private float rotx = 0.0f;
+  private float roty = 0.0f;
   private float s_rotx, s_roty;
-  private Point start_point, end_point;
+  private Point start_point;
+  private Point end_point;
   private float scale = 0.0f;
   private float s_scale;
-  private float translatex = 0.0f, translatey = 0.0f;
-  private float s_translatex, s_translatey;
+  private float translatex = 0.0f;
+  private float translatey = 0.0f;
+  private float s_translatex;
+  private float s_translatey;
 
   //光源の設定です 
   private float[] lightPosition0 = {0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源1です 
@@ -232,12 +236,19 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
 
     if (SwingUtilities.isLeftMouseButton(e)) {
       this.end_point = getMousePosition(true);
+      if (this.start_point == null) {
+        this.start_point = new Point(this.end_point);
+      }
       this.rotx = this.s_rotx + (this.end_point.y - this.start_point.y);
       this.roty = this.s_roty + (this.end_point.x - this.start_point.x);
       this.display();
     }
+    
     if (SwingUtilities.isMiddleMouseButton(e)) {
       this.end_point = getMousePosition(true);
+      if (this.start_point == null) {
+        this.start_point = new Point(this.end_point);
+      }
       int z = Math.abs(this.end_point.y - this.start_point.y);
       if (this.end_point.y > this.start_point.y) {
         this.scale = this.s_scale - z / 25.0f;
@@ -247,8 +258,12 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
       this.display();
 
     }
+    
     if (SwingUtilities.isRightMouseButton(e) == true) {
       this.end_point = getMousePosition(true);
+      if (this.start_point == null) {
+        this.start_point = new Point(this.end_point);
+      }
       this.translatex = this.s_translatex + (this.end_point.y - this.start_point.y) / 100.0f;
       this.translatey = this.s_translatey + (this.end_point.x - this.start_point.x) / 100.0f;
       this.display();

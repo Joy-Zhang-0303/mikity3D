@@ -44,7 +44,6 @@ import org.mklab.mikity.xml.JAXBUnmarshaller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
 import org.mklab.mikity.xml.JamastFactory;
-import org.mklab.mikity.xml.JamastModel;
 import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.config.ModelUnit;
 import org.mklab.mikity.xml.model.Group;
@@ -492,7 +491,8 @@ public class ModelingWindow extends ApplicationWindow {
 
     // setEditable(true);
     final SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(getRoot().loadModel(0).loadGroup(0), false);
+    tree.setAllTransparent(this.root.loadModel(0).loadGroup(0), false);
+    //tree.setAllTransparent(group, false);
     setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
