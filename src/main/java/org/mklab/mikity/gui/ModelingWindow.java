@@ -335,7 +335,7 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * 単位の設定
+   * 単位を設定します。
    */
   private void setUnit() {
     final JamastConfig config = this.root.loadConfig(0);
@@ -349,6 +349,7 @@ public class ModelingWindow extends ApplicationWindow {
         UnitLabel.setModelLength(modelUnit.loadLength());
       }
     }
+    
     if (config.loadDataUnit() != null) {
       final DataUnit dataUnit = config.loadDataUnit();
       if (dataUnit.loadAngle() != null) {
@@ -415,90 +416,100 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * ファイルを読み込みます。
+   * ファイルを読み込み，データをモデルに追加します。
    * @throws JAXBException ファイルを読み込めない場合 
    * @throws IOException ファイルを読み込めない場合 
    */
   public void importFile() throws IOException, JAXBException {
-    if (this.file == null) {
-      throw new IllegalArgumentException(Messages.getString("MainWindow.14")); //$NON-NLS-1$
-    }
-
-    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
-    unmarshaller.unmarshal(this.file);
-
-    final Group group = this.root.loadModel(0).loadGroup(0);
-
-    final Jamast newRoot = unmarshaller.getRoot();
-    if (newRoot != null) {
-      final Group newGroup = newRoot.loadModel(0).loadGroup(0);
-
-      final XMLBox[] boxs = newGroup.getXMLBox();
-      final XMLCone[] cones = newGroup.getXMLCone();
-      final XMLCylinder[] cylinders = newGroup.getXMLCylinder();
-      final XMLSphere[] spheres = newGroup.getXMLSphere();
-      final XMLConnector[] connectors = newGroup.getXMLConnector();
-      final XMLTrianglePolygon[] triangles = newGroup.getXMLTrianglePolygon();
-      final XMLQuadPolygon[] quads = newGroup.getXMLQuadPolygon();
-      final Group[] groups = newGroup.getGroups();
-      
-      if (boxs != null) {
-        for (int i = 0; i < boxs.length; i++) {
-          group.addXMLBox(boxs[i]);
-        }
-      }
-      if (cones != null) {
-        for (int i = 0; i < cones.length; i++) {
-          group.addXMLCone(cones[i]);
-        }
-      }
-      if (cylinders != null) {
-        for (int i = 0; i < cylinders.length; i++) {
-          group.addXMLCylinder(cylinders[i]);
-        }
-      }
-      if (spheres != null) {
-        for (int i = 0; i < spheres.length; i++) {
-          group.addXMLSphere(spheres[i]);
-        }
-      }
-      if (connectors != null) {
-        for (int i = 0; i < connectors.length; i++) {
-          group.addXMLConnector(connectors[i]);
-        }
-      }
-      if (triangles != null) {
-        for (int i = 0; i < triangles.length; i++) {
-          group.addXMLTrianglePolygon(triangles[i]);
-        }
-      }
-      if (quads != null) {
-        for (int i = 0; i < quads.length; i++) {
-          group.addXMLQuadPolygon(quads[i]);
-        }
-      }
-      if (groups != null) {
-        for (int i = 0; i < groups.length; i++) {
-          group.addGroup(groups[i]);
-        }
-      }
-    } else {
-      final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
-      for (int i = 0; i < groups.length; i++) {
-        group.addGroup(groups[i]);
-      }
-    }
+    new JamastFactory().importJavaFile(this.file, this.root);
 
     // setEditable(true);
     final SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(this.root.loadModel(0).loadGroup(0), false);
-    //tree.setAllTransparent(group, false);
     setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
     // setEditable(false);
     this.dirty = false;
   }
+
+//  /**
+//   * ファイルを読み込み，データをrootに追加します。
+//   * @param localFile ファイル
+//   * @param localRoot Jamastのroot
+//   * @throws JAXBException ファイルを読み込めない場合 
+//   * @throws IOException ファイルを読み込めない場合 
+//   */
+//  private void importJavaFile(File localFile, Jamast localRoot) throws IOException, JAXBException {
+//    if (localFile == null) {
+//      throw new IllegalArgumentException(Messages.getString("MainWindow.14")); //$NON-NLS-1$
+//    }
+//
+//    final Group group = localRoot.loadModel(0).loadGroup(0);
+//    
+//    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+//    unmarshaller.unmarshal(localFile);
+//
+//    final Jamast newRoot = unmarshaller.getRoot();
+//    if (newRoot != null) {
+//      final Group newGroup = newRoot.loadModel(0).loadGroup(0);
+//
+//      final XMLBox[] boxs = newGroup.getXMLBox();
+//      final XMLCone[] cones = newGroup.getXMLCone();
+//      final XMLCylinder[] cylinders = newGroup.getXMLCylinder();
+//      final XMLSphere[] spheres = newGroup.getXMLSphere();
+//      final XMLConnector[] connectors = newGroup.getXMLConnector();
+//      final XMLTrianglePolygon[] triangles = newGroup.getXMLTrianglePolygon();
+//      final XMLQuadPolygon[] quads = newGroup.getXMLQuadPolygon();
+//      final Group[] groups = newGroup.getGroups();
+//      
+//      if (boxs != null) {
+//        for (int i = 0; i < boxs.length; i++) {
+//          group.addXMLBox(boxs[i]);
+//        }
+//      }
+//      if (cones != null) {
+//        for (int i = 0; i < cones.length; i++) {
+//          group.addXMLCone(cones[i]);
+//        }
+//      }
+//      if (cylinders != null) {
+//        for (int i = 0; i < cylinders.length; i++) {
+//          group.addXMLCylinder(cylinders[i]);
+//        }
+//      }
+//      if (spheres != null) {
+//        for (int i = 0; i < spheres.length; i++) {
+//          group.addXMLSphere(spheres[i]);
+//        }
+//      }
+//      if (connectors != null) {
+//        for (int i = 0; i < connectors.length; i++) {
+//          group.addXMLConnector(connectors[i]);
+//        }
+//      }
+//      if (triangles != null) {
+//        for (int i = 0; i < triangles.length; i++) {
+//          group.addXMLTrianglePolygon(triangles[i]);
+//        }
+//      }
+//      if (quads != null) {
+//        for (int i = 0; i < quads.length; i++) {
+//          group.addXMLQuadPolygon(quads[i]);
+//        }
+//      }
+//      if (groups != null) {
+//        for (int i = 0; i < groups.length; i++) {
+//          group.addGroup(groups[i]);
+//        }
+//      }
+//    } else {
+//      final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
+//      for (int i = 0; i < groups.length; i++) {
+//        group.addGroup(groups[i]);
+//      }
+//    }
+//  }
 
   /**
    * @return isDirty 変更されている場合true
@@ -524,14 +535,14 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * シーングラフツリーにプリミティブのデータを追加させる。
+   * シーングラフツリーにプリミティブのデータを追加します。
    */
   public void fillTree() {
     this.modeler.fillTree();
   }
 
   /**
-   * GroupをsinsiCanvasに読み込ませ、Frameにaddする。
+   * GroupをsinsiCanvasに読み込ませ、Frameに追加します。
    */
   public void createViewer() {
     this.modeler.createViewer();
