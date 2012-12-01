@@ -273,8 +273,7 @@ public class ModelingWindow extends ApplicationWindow {
    * @param filePath ファイルパス
    */
   public void setFile(String filePath) {
-    File tmp = new File(filePath);
-    this.file = tmp;
+    this.file = new File(filePath);
     this.modeler.createViewer();
   }
 
@@ -309,7 +308,7 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * ツールバーを作成する。
+   * ツールバーを作成します。
    * 
    * @return ツールバー
    */
@@ -412,6 +411,10 @@ public class ModelingWindow extends ApplicationWindow {
    * @throws IOException ファイルを読み込めない場合 
    */
   public void importFile() throws IOException, JAXBException {
+    if (this.file == null) {
+      throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
+    }
+    
     new JamastFactory().importJavaFile(this.file, this.root);
 
     // setEditable(true);

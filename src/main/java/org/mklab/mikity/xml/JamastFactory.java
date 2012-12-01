@@ -35,10 +35,6 @@ public class JamastFactory {
    * @throws IOException ファイルを読み込めない場合 
    */
   public void importJavaFile(File localFile, Jamast localRoot) throws IOException, JAXBException {
-    if (localFile == null) {
-      throw new IllegalArgumentException(Messages.getString("MainWindow.14")); //$NON-NLS-1$
-    }
-
     final Group group = localRoot.loadModel(0).loadGroup(0);
     
     final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
