@@ -40,20 +40,11 @@ import org.mklab.mikity.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.action.toolbar.TrianglePolygonToolBarAction;
 import org.mklab.mikity.jogl.JoglModeler;
 import org.mklab.mikity.xml.JAXBMarshaller;
-import org.mklab.mikity.xml.JAXBUnmarshaller;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
 import org.mklab.mikity.xml.JamastFactory;
 import org.mklab.mikity.xml.config.DataUnit;
 import org.mklab.mikity.xml.config.ModelUnit;
-import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.XMLBox;
-import org.mklab.mikity.xml.model.XMLCone;
-import org.mklab.mikity.xml.model.XMLConnector;
-import org.mklab.mikity.xml.model.XMLCylinder;
-import org.mklab.mikity.xml.model.XMLQuadPolygon;
-import org.mklab.mikity.xml.model.XMLSphere;
-import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 /**
  * モデリングを行うウィンドウを表すクラスです。
@@ -432,84 +423,6 @@ public class ModelingWindow extends ApplicationWindow {
     // setEditable(false);
     this.dirty = false;
   }
-
-//  /**
-//   * ファイルを読み込み，データをrootに追加します。
-//   * @param localFile ファイル
-//   * @param localRoot Jamastのroot
-//   * @throws JAXBException ファイルを読み込めない場合 
-//   * @throws IOException ファイルを読み込めない場合 
-//   */
-//  private void importJavaFile(File localFile, Jamast localRoot) throws IOException, JAXBException {
-//    if (localFile == null) {
-//      throw new IllegalArgumentException(Messages.getString("MainWindow.14")); //$NON-NLS-1$
-//    }
-//
-//    final Group group = localRoot.loadModel(0).loadGroup(0);
-//    
-//    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
-//    unmarshaller.unmarshal(localFile);
-//
-//    final Jamast newRoot = unmarshaller.getRoot();
-//    if (newRoot != null) {
-//      final Group newGroup = newRoot.loadModel(0).loadGroup(0);
-//
-//      final XMLBox[] boxs = newGroup.getXMLBox();
-//      final XMLCone[] cones = newGroup.getXMLCone();
-//      final XMLCylinder[] cylinders = newGroup.getXMLCylinder();
-//      final XMLSphere[] spheres = newGroup.getXMLSphere();
-//      final XMLConnector[] connectors = newGroup.getXMLConnector();
-//      final XMLTrianglePolygon[] triangles = newGroup.getXMLTrianglePolygon();
-//      final XMLQuadPolygon[] quads = newGroup.getXMLQuadPolygon();
-//      final Group[] groups = newGroup.getGroups();
-//      
-//      if (boxs != null) {
-//        for (int i = 0; i < boxs.length; i++) {
-//          group.addXMLBox(boxs[i]);
-//        }
-//      }
-//      if (cones != null) {
-//        for (int i = 0; i < cones.length; i++) {
-//          group.addXMLCone(cones[i]);
-//        }
-//      }
-//      if (cylinders != null) {
-//        for (int i = 0; i < cylinders.length; i++) {
-//          group.addXMLCylinder(cylinders[i]);
-//        }
-//      }
-//      if (spheres != null) {
-//        for (int i = 0; i < spheres.length; i++) {
-//          group.addXMLSphere(spheres[i]);
-//        }
-//      }
-//      if (connectors != null) {
-//        for (int i = 0; i < connectors.length; i++) {
-//          group.addXMLConnector(connectors[i]);
-//        }
-//      }
-//      if (triangles != null) {
-//        for (int i = 0; i < triangles.length; i++) {
-//          group.addXMLTrianglePolygon(triangles[i]);
-//        }
-//      }
-//      if (quads != null) {
-//        for (int i = 0; i < quads.length; i++) {
-//          group.addXMLQuadPolygon(quads[i]);
-//        }
-//      }
-//      if (groups != null) {
-//        for (int i = 0; i < groups.length; i++) {
-//          group.addGroup(groups[i]);
-//        }
-//      }
-//    } else {
-//      final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
-//      for (int i = 0; i < groups.length; i++) {
-//        group.addGroup(groups[i]);
-//      }
-//    }
-//  }
 
   /**
    * @return isDirty 変更されている場合true
