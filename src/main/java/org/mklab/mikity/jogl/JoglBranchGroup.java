@@ -28,7 +28,7 @@ public class JoglBranchGroup implements JoglObject {
   }
 
   /**
-   * オブジェクトを追加します
+   * オブジェクトを追加します。
    * 
    * @param object オブジェクト
    */
@@ -37,7 +37,7 @@ public class JoglBranchGroup implements JoglObject {
   }
 
   /**
-   * 座標系を追加します
+   * 座標系を追加します。
    * 
    * @param tg 座標系
    */
@@ -50,11 +50,11 @@ public class JoglBranchGroup implements JoglObject {
    */
   public void apply(GL gl) {
     for (int i = 0; i < this.objects.size(); i++) {
-      JoglObject object = this.objects.get(i);
+      final JoglObject object = this.objects.get(i);
       object.apply(gl);
     }
     for (int i = 0; i < this.transfromGroups.size(); i++) {
-      JoglTransformGroup tg = this.transfromGroups.get(i);
+      final JoglTransformGroup tg = this.transfromGroups.get(i);
       tg.apply(gl);
     }
 

@@ -143,7 +143,7 @@ public class SceneGraphTree {
             final GroupConfigDialogLink groupConf = new GroupConfigDialogLink(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           } else {
-            MessageBox mesBox = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+            final MessageBox mesBox = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
             mesBox.setMessage(Messages.getString("SceneGraphTree.1")); //$NON-NLS-1$
             mesBox.setText(Messages.getString("SceneGraphTree.2")); //$NON-NLS-1$
             int result = mesBox.open();
@@ -152,7 +152,7 @@ public class SceneGraphTree {
               groupConf.open();
               setTree();
             } else if (result == SWT.NO) {
-              GroupConfigDialogLink groupConf = new GroupConfigDialogLink(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+              final GroupConfigDialogLink groupConf = new GroupConfigDialogLink(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
               groupConf.open();
               setTree();
             }
