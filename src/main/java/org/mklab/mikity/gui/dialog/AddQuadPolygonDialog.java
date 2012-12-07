@@ -32,7 +32,7 @@ import org.mklab.mikity.xml.model.XMLQuadPolygon;
 public class AddQuadPolygonDialog {
 
   private Shell parentShell;
-  Shell sShell;
+  private Shell sShell;
 
   private ParameterInputBox paramX_1;
   private ParameterInputBox paramY_1;

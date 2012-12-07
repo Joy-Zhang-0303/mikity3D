@@ -19,6 +19,8 @@ import org.mklab.mikity.xml.model.Group;
 
 
 /**
+ * JOGL用のキャンバスを表すクラスです。
+ * 
  * @author iwamoto
  * @version $Revision$, 2012/01/11
  */
@@ -36,13 +38,18 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   
   private double[] eye = {0.0,0.0, 5.0};
 
-  private float rotx = 0.0f, roty = 0.0f;
-  private float s_rotx, s_roty;
-  private Point start_point, end_point;
+  private float rotx = 0.0f;
+  private float roty = 0.0f;
+  private float s_rotx;
+  private float s_roty;
+  private Point start_point;
+  private Point end_point;
   private float scale = 0.0f;
   private float s_scale;
-  private float translatex = 0.0f, translatey = 0.0f;
-  private float s_translatex, s_translatey;
+  private float translatex = 0.0f;
+  private float translatey = 0.0f;
+  private float s_translatex;
+  private float s_translatey;
 
   //光源の設定です 
   private float[] lightPosition0 = {0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源1です 
@@ -77,7 +84,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    */
   @Override
   public void init(GLAutoDrawable drawable) {
-    GL gl = drawable.getGL();
+    final GL gl = drawable.getGL();
     this.glu = new GLU();
 
     gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -97,7 +104,6 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
-
   }
 
   /**
@@ -105,7 +111,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    */
   @Override
   public void display(GLAutoDrawable drawable) {
-    GL gl = drawable.getGL();
+    final GL gl = drawable.getGL();
 
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
@@ -120,7 +126,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
     gl.glRotatef(this.rotx, 1.0f, 0.0f, 0.0f);
     gl.glRotatef(this.roty, 0.0f, 1.0f, 0.0f);
     
-    for (JoglBranchGroup group : this.groups) {
+    for (final JoglBranchGroup group : this.groups) {
       group.apply(gl);
     }
   }
@@ -158,7 +164,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    */
   @Override
   public void reshape(GLAutoDrawable drawable, int x, int y, int w, int h) {
-    GL gl = drawable.getGL();
+    final GL gl = drawable.getGL();
     //
     gl.glViewport(0, 0, w, h);
     gl.glMatrixMode(GL.GL_PROJECTION);
@@ -177,15 +183,26 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
       this.s_rotx = this.rotx;
       this.s_roty = this.roty;
       this.start_point = getMousePosition(true);
+      if (this.end_point == null) {
+        this.end_point = new Point(this.start_point);
+      }
     }
+    
     if (SwingUtilities.isMiddleMouseButton(e) == true) {
       this.s_scale = this.scale;
       this.start_point = getMousePosition(true);
+      if (this.end_point == null) {
+        this.end_point = new Point(this.start_point);
+      }
     }
+    
     if (SwingUtilities.isRightMouseButton(e) == true) {
       this.s_translatex = this.translatex;
       this.s_translatey = this.translatey;
       this.start_point = getMousePosition(true);
+      if (this.end_point == null) {
+        this.end_point = new Point(this.start_point);
+      }
     }
 
   }
@@ -227,15 +244,21 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    */
   @Override
   public void mouseDragged(MouseEvent e) {
-
     if (SwingUtilities.isLeftMouseButton(e)) {
       this.end_point = getMousePosition(true);
+      if (this.start_point == null) {
+        this.start_point = new Point(this.end_point);
+      }
       this.rotx = this.s_rotx + (this.end_point.y - this.start_point.y);
       this.roty = this.s_roty + (this.end_point.x - this.start_point.x);
       this.display();
     }
+    
     if (SwingUtilities.isMiddleMouseButton(e)) {
       this.end_point = getMousePosition(true);
+      if (this.start_point == null) {
+        this.start_point = new Point(this.end_point);
+      }
       int z = Math.abs(this.end_point.y - this.start_point.y);
       if (this.end_point.y > this.start_point.y) {
         this.scale = this.s_scale - z / 25.0f;
@@ -245,8 +268,12 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
       this.display();
 
     }
+    
     if (SwingUtilities.isRightMouseButton(e) == true) {
       this.end_point = getMousePosition(true);
+      if (this.start_point == null) {
+        this.start_point = new Point(this.end_point);
+      }
       this.translatex = this.s_translatex + (this.end_point.y - this.start_point.y) / 100.0f;
       this.translatey = this.s_translatey + (this.end_point.x - this.start_point.x) / 100.0f;
       this.display();

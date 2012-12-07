@@ -29,8 +29,7 @@ public class DHParameter {
   }
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>DHParameter</code>オブジェクトを初期化します。
    * @param a 位置
    * @param alpha α
    * @param d D
@@ -44,34 +43,34 @@ public class DHParameter {
   }
 
   /**
-   * パラメータaの値を返します。
+   * パラメータaを返します。
    * 
-   * @return a パラメータaの値
+   * @return a パラメータa
    */
   public double getA() {
     return this.a;
   }
 
   /**
-   * パラメータaの値を設定します。
+   * パラメータaを設定します。
    * 
-   * @param a パラメータaの値
+   * @param a パラメータa
    */
   public void setA(double a) {
     this.a = a;
   }
 
   /**
-   * パラメータalphaの値を返します。
+   * パラメータalphaを返します。
    * 
-   * @return パラメータalphaの値
+   * @return パラメータalpha
    */
   public double getAlpha() {
     return this.alpha;
   }
 
   /**
-   * パラメータalphaの値を設定します。
+   * パラメータalphaを設定します。
    * 
    * @param alpha パラメータalpha
    */
@@ -80,36 +79,36 @@ public class DHParameter {
   }
 
   /**
-   * パラメータdの値を返します。
+   * パラメータdを返します。
    * 
-   * @return パラメータdの値
+   * @return パラメータd
    */
   public double getD() {
     return this.d;
   }
 
   /**
-   * パラメータdの値を設定します。
+   * パラメータdを設定します。
    * 
-   * @param d パラメータdの値
+   * @param d パラメータd
    */
   public void setD(double d) {
     this.d = d;
   }
 
   /**
-   * パラメータthetaの値を返します。
+   * パラメータthetaを返します。
    * 
-   * @return パラメータthetaの値
+   * @return パラメータtheta
    */
   public double getTheta() {
     return this.theta;
   }
 
   /**
-   * パラメータthetaの値を設定します。
+   * パラメータthetaを設定します。
    * 
-   * @param theta パラメータthetaの値
+   * @param theta パラメータtheta
    */
   public void setTheta(double theta) {
     this.theta = theta;

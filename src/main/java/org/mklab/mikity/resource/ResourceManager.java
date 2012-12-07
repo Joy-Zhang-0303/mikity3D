@@ -43,7 +43,7 @@ public class ResourceManager {
       return imageMap.get(key);
     }
     try {
-      Image img = new Image(null, ResourceManager.class.getResourceAsStream("/" + key)); //$NON-NLS-1$
+      final Image img = new Image(null, ResourceManager.class.getResourceAsStream("/" + key)); //$NON-NLS-1$
       imageMap.put(key, img);
       return img;
     } catch (SWTException e) {
@@ -56,7 +56,7 @@ public class ResourceManager {
    */
   public static void dispose() {
     for (Iterator<String> iter = imageMap.keySet().iterator(); iter.hasNext();) {
-      Image key = imageMap.get(iter.next());
+      final Image key = imageMap.get(iter.next());
       if (!key.isDisposed()) {
         key.dispose();
       }

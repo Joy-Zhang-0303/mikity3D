@@ -36,7 +36,7 @@ import org.mklab.mikity.xml.model.XMLSphere;
 public class AddPrimitiveDialog {
 
   private Shell parentShell;
-  Shell sShell;
+  private Shell sShell;
 
   private ParameterInputBox param1;
   private ParameterInputBox param2;
@@ -56,7 +56,7 @@ public class AddPrimitiveDialog {
   private String angleUnit;
   private String lengthUnit;
 
-  int selectedIndex = boxFlag;
+  private int selectedIndex = boxFlag;
   private static final int boxFlag = 0;
   private static final int cylFlag = 1;
   private static final int sphFlag = 2;

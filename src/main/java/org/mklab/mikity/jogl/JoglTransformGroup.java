@@ -20,16 +20,15 @@ import org.mklab.mikity.model.CoordinateParameter;
  * @version $Revision$, 2012/02/07
  */
 public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
-
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
   /** トランスフォームグループのリスト */
   private List<JoglTransformGroup> transformGroups;
-  /** 座標系のリスト */
+  /** 座標系 */
   private JoglCoordinate coordinate;
 
   /**
-   * Initialize the generated object of {@link JoglTransformGroup}.
+   * 新しく生成された<code>JoglTransformGroup</code>オブジェクトを初期化します。
    */
   public JoglTransformGroup() {
     this.objects = new ArrayList<JoglObject>();
@@ -64,44 +63,41 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
   }
 
   /**
-   * @see org.mklab.mikity.jogl.models.JoglCoordinate#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
     if (this.coordinate != null) {
       this.coordinate.apply(gl);
     }
 
     for (int i = 0; i < this.objects.size(); i++) {
-      JoglObject object = this.objects.get(i);
+      final JoglObject object = this.objects.get(i);
       object.apply(gl);
     }
 
     for (int i = 0; i < this.transformGroups.size(); i++) {
-      JoglTransformGroup tg = this.transformGroups.get(i);
+      final JoglTransformGroup tg = this.transformGroups.get(i);
       tg.apply(gl);
     }
   }
 
   /**
-   * @see org.mklab.mikity.model.MovableGroup#setDHParameter(org.mklab.mikity.model.DHParameter)
+   * {@inheritDoc}
    */
-  @Override
-  public void setDHParameter(DHParameter param) {
+  public void setDHParameter(DHParameter parameter) {
     // TODO 自動生成されたメソッド・スタブ
   }
 
   /**
-   * @see org.mklab.mikity.model.MovableGroup#setCoordinateParameter(org.mklab.mikity.model.CoordinateParameter)
+   * {@inheritDoc}
    */
-  @Override
-  public void setCoordinateParameter(CoordinateParameter link) {
-    double locX = link.getX();
-    double locY = link.getY();
-    double locZ = link.getZ();
-    double rotX = link.getRotX();
-    double rotY = link.getThY();
-    double rotZ = link.getThZ();
+  public void setCoordinateParameter(CoordinateParameter parameter) {
+    final double locX = parameter.getX();
+    final double locY = parameter.getY();
+    final double locZ = parameter.getZ();
+    final double rotX = parameter.getRotX();
+    final double rotY = parameter.getThY();
+    final double rotZ = parameter.getThZ();
 
     //System.out.println("lx, ly, lz(set)(this)=" + locX + "," + locY + "," + locZ + ":" + this);
     //System.out.println("rx, ry, rz(set)(this)=" + rotX + "," + rotY + "," + rotZ + ":" + this);
@@ -123,7 +119,7 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     }
     
     for (JoglTransformGroup group : this.transformGroups) {
-      group.setCoordinateParameter(link);
+      group.setCoordinateParameter(parameter);
     }
   }
 }

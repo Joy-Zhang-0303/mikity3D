@@ -15,7 +15,8 @@ import org.mklab.mikity.gui.ModelingWindow;
  */
 public class ModelEditorOpenAction extends Action {
   /** */
-  ModelingWindow window;
+  private ModelingWindow window;
+  
 
   /**
    * 新しく生成された<code>ModelEditorOpenAction</code>オブジェクトを初期化します。

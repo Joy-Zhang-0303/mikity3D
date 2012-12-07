@@ -32,12 +32,12 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
   }
 
   /**
-   * モデルの拡大縮小の演算を行う。
+   * モデルの拡大縮小の演算を行います。
    * 
-   * @param scale 大きさ
+   * @param scale ケール
    */
   public void scale(Vector3f scale) {
-    Vector3d scale3d = new Vector3d();
+    final Vector3d scale3d = new Vector3d();
     scale3d.x = scale.x;
     scale3d.y = scale.y;
     scale3d.z = scale.z;
@@ -58,17 +58,17 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
   }
 
   /**
-   * モデルの回転移動の演算を行う。
+   * モデルの回転移動の演算を行います。
    * 
    * @param angle 角度
    */
   public void rotate(AxisAngle4f angle) {
     // 座標系の変換行列の取得
-    Transform3D transform1 = new Transform3D();
+    final Transform3D transform1 = new Transform3D();
     this.getTransform(transform1);
 
     // 新たな回転行列の設定
-    Transform3D transform2 = new Transform3D();
+    final Transform3D transform2 = new Transform3D();
     transform2.setRotation(angle);
 
     // 回転行列の乗算
@@ -81,15 +81,15 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
   /**
    * モデルの回転移動の演算を行う。
    * 
-   * @param matrix 変換行列
+   * @param matrix 回転移動の行列
    */
   public void rotate(Matrix3f matrix) {
     // 座標系の変換行列の取得
-    Transform3D transform1 = new Transform3D();
+    final Transform3D transform1 = new Transform3D();
     this.getTransform(transform1);
 
     // 新たな回転行列の設定
-    Transform3D transform2 = new Transform3D();
+    final Transform3D transform2 = new Transform3D();
     transform2.setRotation(matrix);
 
     // 回転行列の乗算
@@ -100,9 +100,9 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
   }
 
   /**
-   * モデルの平行移動の演算を行う。
+   * モデルの平行移動の演算を行います。
    * 
-   * @param translation 移動
+   * @param translation 平行移動
    */
   public void translate(Vector3f translation) {
     // 座標系の変換行列の取得

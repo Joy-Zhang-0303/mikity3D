@@ -20,7 +20,7 @@ public class JoglBranchGroup implements JoglObject {
   private List<JoglTransformGroup> transfromGroups;
 
   /**
-   * Initialize the generated object of {@link JoglBranchGroup}.
+   * 新しく生成された<code>JoglBranchGroup</code>オブジェクトを初期化します。
    */
   public JoglBranchGroup() {
     this.objects = new ArrayList<JoglObject>();
@@ -28,7 +28,7 @@ public class JoglBranchGroup implements JoglObject {
   }
 
   /**
-   * オブジェクトを追加します
+   * オブジェクトを追加します。
    * 
    * @param object オブジェクト
    */
@@ -37,7 +37,7 @@ public class JoglBranchGroup implements JoglObject {
   }
 
   /**
-   * 座標系を追加します
+   * 座標系を追加します。
    * 
    * @param tg 座標系
    */
@@ -46,16 +46,15 @@ public class JoglBranchGroup implements JoglObject {
   }
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
     for (int i = 0; i < this.objects.size(); i++) {
-      JoglObject object = this.objects.get(i);
+      final JoglObject object = this.objects.get(i);
       object.apply(gl);
     }
     for (int i = 0; i < this.transfromGroups.size(); i++) {
-      JoglTransformGroup tg = this.transfromGroups.get(i);
+      final JoglTransformGroup tg = this.transfromGroups.get(i);
       tg.apply(gl);
     }
 

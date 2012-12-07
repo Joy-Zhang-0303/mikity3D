@@ -29,7 +29,6 @@ public class FileImportAction extends Action {
    * @param window ウィンドウ
    */
   public FileImportAction(final ModelingWindow window) {
-    super();
     this.window = window;
     setText(Messages.getString("FileImportAction.0")); //$NON-NLS-1$
   }

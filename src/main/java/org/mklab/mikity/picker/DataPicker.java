@@ -62,14 +62,6 @@ public interface DataPicker {
   void setParameter(CoordinateParameterType type, double value);
 
   /**
-   * 与えられた時間に最も近いデータが存在する時刻に対応するデータ番号を返します。
-   * 
-   * @param t 時間
-   * @return 与えられた時間に最も近いデータが存在する時刻に対応するデータ番号
-   */
-  int getDataNumber(double t);
-
-  /**
    * データ数を返します。
    * @return データ数
    */
