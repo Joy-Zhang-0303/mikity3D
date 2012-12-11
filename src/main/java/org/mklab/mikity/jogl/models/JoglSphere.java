@@ -44,15 +44,17 @@ public class JoglSphere implements JoglObject {
    */
   @Override
   public void apply(GL gl) {
-    //GLUT glut = new GLUT();
+    // TODO this._div=16までしか対応していない。
+  
+    this._div = 16;
     
-    //test
-    this._div = 9;
-    this._r = 2;
-    
+    float radius = this._r;
     int cnt;
-    int incV = (int)(2*this._r/this._div);
-    int incU = 360/this._div;
+    int grid = this._div;
+    int grid1 = grid+1;
+    
+    float incV = 2*radius/grid;
+    int incU = 360/grid;
     
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
@@ -62,74 +64,79 @@ public class JoglSphere implements JoglObject {
     
 
     //頂点バッファの生成
-    float[] vertexs = new float[(2 + (this._div-1)*this._div)*3];
+    float[] vertexs = new float[(2 + (grid1-2)*grid)*3];
     cnt = 0;
     vertexs[cnt++] = 0.0f;
-    vertexs[cnt++] = -this._r;
+    vertexs[cnt++] = -radius;
     vertexs[cnt++] = 0.0f;
     
-    double d = this._r;
-    double y, t, r;
-    for(int iv =1; iv<this._div; ++iv){
+    float d = radius;
+    float y, t, r;
+    
+    for(int iv =1; iv< grid1-1; ++iv){
       y = iv * incV - d;
-      r = Math.sqrt(d * d - y * y);
-      for(int iu = 0; iu < this._div; ++iu){
-        t = iu * incU * Math.PI/180;
+      r = (float)Math.sqrt(d * d - y * y);
+      for(int iu = 0; iu < grid; ++iu){
+        t = (float)(iu * incU * Math.PI/180);
         vertexs[cnt++] = (float)(r*Math.cos(t));
-        vertexs[cnt++] = (float)y;
+        vertexs[cnt++] = y;
         vertexs[cnt++] = (float)(r * Math.sin(t));
       }
     }
     
     vertexs[cnt++] = 0.0f;
-    vertexs[cnt++] = this._r;
+    vertexs[cnt++] = radius;
     vertexs[cnt++] = 0.0f;
     
     this.vertexBuffer = makeFloatBuffer(vertexs);
 
     
     //test
-    for(int i = 0; i <= (2+(this._div-1)*this._div)*3-1; i++){
-      System.out.println("vertexs["+i+"] = " + vertexs[i]);
-    }
+   // for(int i = 0; i <= vertexs.length-1; i++){
+    //  System.out.println("vertexs["+i+"] = " + vertexs[i]); //$NON-NLS-1$ //$NON-NLS-2$
+    //}
 
     
     
     //インデックスバッファの生成
-    byte[] indexs = new byte[((this._div-1)*this._div*2)*3];
+    byte[] indexs = new byte[((grid-1)*grid*2)*3];
     cnt = 0;
-    for(int iu = 0; iu < this._div; ++iu){
+    for(int iu = 0; iu < grid; ++iu){
       indexs[cnt++] = 0;
-      indexs[cnt++] = (byte)((iu + 1)% this._div + 1);
+      indexs[cnt++] = (byte)((iu + 1)% grid + 1);
       indexs[cnt++] = (byte)(iu + 1);
     }
     
-    for(int iv = 1; iv < this._div + 1 - 2; ++iv){
-      for(int iu = 0; iu < this._div; ++iu){
-        int m = (iv - 1) * this._div;
+    for(int iv = 1; iv < grid1 - 2; ++iv){
+      for(int iu = 0; iu < grid; ++iu){
+        int m = (iv - 1) * grid;
         
         //TriangleA
         indexs[cnt++] = (byte)(iu + 1 + m);
-        indexs[cnt++] = (byte)((iu + 1)% this._div + 1 + m);
-        indexs[cnt++] = (byte)(iu + 1 + this._div + m);
+        indexs[cnt++] = (byte)((iu + 1)% grid + 1 + m);
+        indexs[cnt++] = (byte)(iu + 1 + grid + m);
         
         //TriangleB
-        indexs[cnt++] = (byte)((iu + 1)% this._div + 1 + this._div + m);
-        indexs[cnt++] = (byte)(iu + 1 + this._div + m);
-        indexs[cnt++] = (byte)((iu + 1)% this._div + 1 + m);
+        indexs[cnt++] = (byte)((iu + 1)% grid1 + grid + m);
+        indexs[cnt++] = (byte)(iu + 1 + grid + m);
+        indexs[cnt++] = (byte)((iu + 1)% grid + 1 + m);
       }
     }
     
-    int n = (2 + (this._div + 1 - 2)*this._div)-1;
-    for(int iu = n - this._div; iu < n; ++ iu){
+    int n = (2 + (grid1 - 2)*grid)-1;
+    for(int iu = n - grid; iu < n; ++ iu){
       indexs[cnt++] = (byte)iu;
-      indexs[cnt++] = (byte)(iu % this._div + n - this._div);
+      indexs[cnt++] = (byte)(iu % grid + n - grid);
       indexs[cnt++] = (byte)n;
     }
     
     this.indexBuffer = makeByteBuffer(indexs);
     
-    
+    //test
+    //for(int i = 0; i <= indexs.length-1; i++){
+     // System.out.println("indexs["+ i +"] = " + indexs[i]);  //$NON-NLS-1$//$NON-NLS-2$
+    //}
+
     
     
     if (this._color != null) {
@@ -162,13 +169,12 @@ public class JoglSphere implements JoglObject {
       }
     }
 
-   //glut.glutSolidSphere(this._r, this._div, this._div);
 
     //頂点バッファの指定 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
 
     this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,((this._div-1)*this._div*2)*3,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
+    gl.glDrawElements(GL.GL_TRIANGLE_FAN,indexs.length,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
          
     gl.glPopMatrix();
     gl.glPopMatrix();

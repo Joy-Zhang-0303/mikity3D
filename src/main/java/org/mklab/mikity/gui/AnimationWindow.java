@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.java3d.Java3dModelCanvas;
+import org.mklab.mikity.jogl.JoglModelCanvas;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
