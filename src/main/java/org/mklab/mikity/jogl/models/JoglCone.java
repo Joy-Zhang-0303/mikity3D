@@ -60,7 +60,7 @@ public class JoglCone implements JoglObject {
        
     float[] vertexs = new float[(this._div+2)*3];
     
-    // TODO 描画は出来てますが、vertexs[]かindexs[]にどこか問題があると思います。
+    // TODO 描画は出来てますが、Normal3fを使うとバグがでます。vertexs[]かindexs[]にどこか問題があると思います。
     
     //頂点バッファの生成
     vertexs[0] = 0.0f;
@@ -143,44 +143,22 @@ public class JoglCone implements JoglObject {
         gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
       }
     }
-/*
-    gl.glBegin(GL.GL_TRIANGLE_FAN);
-    gl.glNormal3f(0.0f, 1.0f, 0.0f);
-    gl.glVertex3f(0.0f, this._height / 2.0f, 0.0f);
-    for (i = this._div; i >= 0; i--) {
-      ang = 2.0 * PAI / this._div * i;
-      gl.glNormal3f(0.0f, -1.0f, 0.0f);
-      gl.glVertex3f(this._r * (float)Math.cos(ang), -this._height / 2.0f, this._r * (float)Math.sin(ang));
-    }
-    gl.glEnd();
-
-    gl.glBegin(GL.GL_TRIANGLE_FAN);
-    gl.glNormal3f(0.0f, -1.0f, 0.0f);
-    gl.glVertex3f(0.0f, -this._height / 2.0f, 0.0f);
-    for (i = 0; i <= this._div; i++) {
-      ang = 2.0 * PAI / this._div * i;
-      gl.glNormal3f(0.0f, -1.0f, 0.0f);
-      gl.glVertex3f(this._r * (float)Math.cos(ang), -this._height / 2.0f, this._r * (float)Math.sin(ang));
-    }
-    gl.glEnd();
-*/
-
-
+    
 
     //頂点バッファの指定 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
     
-    
-    /*gl.glNormal3f(0.0f, 1.0f, 0.0f);
+/*    
+    gl.glNormal3f(0.0f, 1.0f, 0.0f);
     this.indexBuffer.position(0);
     gl.glDrawElements(GL.GL_TRIANGLE_STRIP,this._div*3,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
  
     gl.glNormal3f(0.0f, -1.0f, 0.0f);   
     this.indexBuffer.position(this._div*3);
     gl.glDrawElements(GL.GL_TRIANGLE_STRIP,this._div*3,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
-    */
+*/    
     this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,this._div*6,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,indexs.length,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
     
     
     

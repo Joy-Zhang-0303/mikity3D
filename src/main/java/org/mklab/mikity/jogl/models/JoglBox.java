@@ -57,13 +57,7 @@ public class JoglBox implements JoglObject {
     
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
-    
-    /*
-    float[][] vertice = new float[][] { {this._xsize / 2, this._ysize / 2, this._zsize / 2}, {-this._xsize / 2, this._ysize / 2, this._zsize / 2},
-        {-this._xsize / 2, -this._ysize / 2, this._zsize / 2}, {this._xsize / 2, -this._ysize / 2, this._zsize / 2}, {this._xsize / 2, this._ysize / 2, -this._zsize / 2},
-        {-this._xsize / 2, this._ysize / 2, -this._zsize / 2}, {-this._xsize / 2, -this._ysize / 2, -this._zsize / 2}, {this._xsize / 2, -this._ysize / 2, -this._zsize / 2}};
-   */
-    
+        
     float[] vertexs = {
         this._xsize / 2, this._ysize / 2, this._zsize / 2,
         -this._xsize / 2, this._ysize / 2, this._zsize / 2,
@@ -117,40 +111,6 @@ public class JoglBox implements JoglObject {
       }
     }
 
-    /*
-    gl.glBegin(GL.GL_QUADS); // 四角形を描画することを宣言します 
-    gl.glVertex3fv(vertice[0], 0);
-    gl.glVertex3fv(vertice[1], 0);
-    gl.glVertex3fv(vertice[2], 0);
-    gl.glVertex3fv(vertice[3], 0); // 4つ目の頂点を指定するとポリゴンが描画されます
-
-    gl.glVertex3fv(vertice[7], 0);
-    gl.glVertex3fv(vertice[6], 0);
-    gl.glVertex3fv(vertice[5], 0);
-    gl.glVertex3fv(vertice[4], 0);
-
-    gl.glVertex3fv(vertice[0], 0);
-    gl.glVertex3fv(vertice[3], 0);
-    gl.glVertex3fv(vertice[7], 0);
-    gl.glVertex3fv(vertice[4], 0);
-
-    gl.glVertex3fv(vertice[5], 0);
-    gl.glVertex3fv(vertice[6], 0);
-    gl.glVertex3fv(vertice[2], 0);
-    gl.glVertex3fv(vertice[1], 0); // 4つ目の頂点を指定するとポリゴンが描画されます 
-
-    gl.glVertex3fv(vertice[4], 0);
-    gl.glVertex3fv(vertice[5], 0);
-    gl.glVertex3fv(vertice[1], 0);
-    gl.glVertex3fv(vertice[0], 0);
-
-    gl.glVertex3fv(vertice[6], 0);
-    gl.glVertex3fv(vertice[7], 0);
-    gl.glVertex3fv(vertice[3], 0);
-    gl.glVertex3fv(vertice[2], 0);
-
-    gl.glEnd(); // 描画処理が終了しました
-    */
     
     this.indexBuffer.position(0);
     gl.glDrawElements(GL.GL_TRIANGLE_STRIP,10,GL.GL_UNSIGNED_BYTE,this.indexBuffer);

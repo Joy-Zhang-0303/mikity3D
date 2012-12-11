@@ -30,7 +30,6 @@ public class JoglQuadObject implements JoglObject {
    */
   @Override
   public void apply(GL gl) {
-    //float x, y, z;
     
     if (this._color != null) {
       if (this._color.equals("white")) { //$NON-NLS-1$
@@ -61,17 +60,6 @@ public class JoglQuadObject implements JoglObject {
         gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
       }
     }
-
-    /*
-    gl.glBegin(GL.GL_QUADS);
-    for (int i = 0; i < 4; i++) {
-      x = this._point[i][0];
-      y = this._point[i][1];
-      z = this._point[i][2];
-      gl.glVertex3f(x, y, z);
-    }
-    gl.glEnd();
-    */
     
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);

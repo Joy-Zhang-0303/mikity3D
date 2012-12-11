@@ -29,8 +29,6 @@ public class JoglTriangleObject implements JoglObject {
   @Override
   public void apply(GL gl) {
 
-    //float x, y, z;
-
     if (this._color != null) {
       if (this._color == "white") { //$NON-NLS-1$
         gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -60,22 +58,6 @@ public class JoglTriangleObject implements JoglObject {
         gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
       }
     }
-
-    /* 
-    gl.glBegin(GL.GL_TRIANGLES);
-    for (int i = 0; i < 3; i++) {
-     x = this._point[i][0];
-     y = this._point[i][1];
-     z = this._point[i][2];
-     gl.glVertex3f(x, y, z);
-    }
-    
-    gl.glVertex3f(this._point[0][0],this._point[0][1],this._point[0][2]);
-    gl.glVertex3f(this._point[1][0],this._point[1][1],this._point[1][2]);
-    gl.glVertex3f(this._point[2][0],this._point[2][1],this._point[2][2]);
-    
-    gl.glEnd();
-    */
     
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);

@@ -213,18 +213,9 @@ public class JoglCylinder implements JoglObject {
 
     //頂点バッファの指定 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
-    /*
+
     this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 3*this._div, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
-    
-    this.indexBuffer.position(3*this._div);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,3*this._div, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
-    
-    this.indexBuffer.position(6*this._div);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,6*this._div, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
-    */
-    this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,12*this._div,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,indexs.length,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
     
     gl.glPopMatrix();
   }
