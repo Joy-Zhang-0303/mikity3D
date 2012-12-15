@@ -93,59 +93,59 @@ public class EditTrianglePolygonDialog {
    */
   private void createSShell() {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    GridLayout layout = new GridLayout();
+    final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 600));
     this.sShell.setText(Messages.getString("EditTrianglePolygonDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
 
-    Label groupLabel = new Label(this.sShell, SWT.LEFT);
+    final Label groupLabel = new Label(this.sShell, SWT.LEFT);
     groupLabel.setText(Messages.getString("EditTrianglePolygonDialog.1") + this.groupName); //$NON-NLS-1$
     setGridLayout(groupLabel, 2);
 
     this.primLabel = new Label(this.sShell, SWT.NONE);
     setGridLayout(this.primLabel, 2);
 
-    Group beforeGroup = new Group(this.sShell, SWT.NONE);
+    final Group beforeGroup = new Group(this.sShell, SWT.NONE);
     beforeGroup.setText(Messages.getString("EditTrianglePolygonDialog.2")); //$NON-NLS-1$
     setGridLayout(beforeGroup, 1);
-    GridLayout beforeLayout = new GridLayout(2, true);
+    final GridLayout beforeLayout = new GridLayout(2, true);
     beforeGroup.setLayout(beforeLayout);
 
     this.paramX_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramY_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramZ_1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label label1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label label1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label1, 2);
 
     this.paramX_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramY_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.7"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramZ_2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label label2 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label label2 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label2, 2);
     this.paramX_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.9"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramY_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.10"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramZ_3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.color = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "color", ""); //$NON-NLS-1$ //$NON-NLS-2$
-    Label label3 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label label3 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label3, 2);
 
     this.paramR_X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.12"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramR_Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.13"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramR_Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label labelR1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label labelR1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelR1, 2);
 
     this.paramL_X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramL_Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.16"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramL_Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label labelL1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label labelL1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelL1, 2);
 
     this.afterGroup = new Group(this.sShell, SWT.NONE);
     this.afterGroup.setText(Messages.getString("EditTrianglePolygonDialog.18")); //$NON-NLS-1$
     setGridLayout(this.afterGroup, 1);
-    GridLayout afterLayout = new GridLayout(3, false);
+    final GridLayout afterLayout = new GridLayout(3, false);
     this.afterGroup.setLayout(afterLayout);
 
     this.newParamX_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
@@ -155,7 +155,7 @@ public class EditTrianglePolygonDialog {
     this.newParamZ_1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
-    Label label4 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label label4 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label4, 3);
 
     this.newParamX_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
@@ -165,7 +165,7 @@ public class EditTrianglePolygonDialog {
     this.newParamZ_2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
-    Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
 
     this.newParamX_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
@@ -175,12 +175,12 @@ public class EditTrianglePolygonDialog {
     this.newParamZ_3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
-    Label colorLabel = new Label(this.afterGroup, SWT.RIGHT);
+    final Label colorLabel = new Label(this.afterGroup, SWT.RIGHT);
     colorLabel.setText("→"); //$NON-NLS-1$
     setGridLayout(colorLabel, 1);
     this.colorCombo = new ColorComboBox(this.afterGroup, this.COLORS);
     this.colorCombo.createColorCombo();
-    Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label6, 3);
 
     this.newParamR_X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
@@ -190,7 +190,7 @@ public class EditTrianglePolygonDialog {
     this.newParamR_Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
 
-    Label labelR2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label labelR2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelR2, 3);
 
     this.newParamL_X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
@@ -200,7 +200,7 @@ public class EditTrianglePolygonDialog {
     this.newParamL_Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
-    Label labelL2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label labelL2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelL2, 3);
     // UnitLabel test = new UnitLabel(afterGroup, "modelAngle");
 
@@ -214,7 +214,7 @@ public class EditTrianglePolygonDialog {
    * @param hSpan
    */
   private void setGridLayout(Control control, int hSpan) {
-    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = hSpan;
     control.setLayoutData(gridData);
   }
@@ -226,10 +226,10 @@ public class EditTrianglePolygonDialog {
     final Composite comp = new Composite(this.sShell, SWT.NONE);
     setGridLayout(comp, 2);
 
-    GridLayout compLayout = new GridLayout(2, true);
+    final GridLayout compLayout = new GridLayout(2, true);
     comp.setLayout(compLayout);
 
-    Button okButton = new Button(comp, SWT.NONE);
+    final Button okButton = new Button(comp, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("EditTrianglePolygonDialog.35")); //$NON-NLS-1$
 
@@ -239,7 +239,7 @@ public class EditTrianglePolygonDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         // 数字以外が入っていないかを判断
         if (Check()) {
-          MessageBox mesBox = new MessageBox(EditTrianglePolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+          final MessageBox mesBox = new MessageBox(EditTrianglePolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           mesBox.setMessage(Messages.getString("EditTrianglePolygonDialog.36")); //$NON-NLS-1$
           mesBox.setText(Messages.getString("EditTrianglePolygonDialog.37")); //$NON-NLS-1$
           int result = mesBox.open();
@@ -248,7 +248,7 @@ public class EditTrianglePolygonDialog {
             EditTrianglePolygonDialog.this.sShell.close();
           }
         } else {
-          MessageBox mgb = new MessageBox(EditTrianglePolygonDialog.this.sShell, SWT.ICON_WARNING);
+          final MessageBox mgb = new MessageBox(EditTrianglePolygonDialog.this.sShell, SWT.ICON_WARNING);
           mgb.setMessage(Messages.getString("EditTrianglePolygonDialog.38")); //$NON-NLS-1$
           mgb.setText(Messages.getString("EditTrianglePolygonDialog.39")); //$NON-NLS-1$
           mgb.open();
@@ -256,7 +256,7 @@ public class EditTrianglePolygonDialog {
       }
     });
 
-    Button cancelButton = new Button(comp, SWT.NONE);
+    final Button cancelButton = new Button(comp, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText(Messages.getString("EditTrianglePolygonDialog.40")); //$NON-NLS-1$
 
@@ -265,7 +265,7 @@ public class EditTrianglePolygonDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        MessageBox mesBox = new MessageBox(EditTrianglePolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        final MessageBox mesBox = new MessageBox(EditTrianglePolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         mesBox.setMessage(Messages.getString("EditTrianglePolygonDialog.41")); //$NON-NLS-1$
         mesBox.setText(Messages.getString("EditTrianglePolygonDialog.42")); //$NON-NLS-1$
         int result = mesBox.open();
@@ -334,7 +334,7 @@ public class EditTrianglePolygonDialog {
    * パラメータを変更する
    */
   void setParam() {
-    Location[] newLoc = new Location[3];
+    final Location[] newLoc = new Location[3];
 
     newLoc[0] = new Location(this.newParamX_1.getFloatValue(), this.newParamY_1.getFloatValue(), this.newParamZ_1.getFloatValue());
     newLoc[1] = new Location(this.newParamX_2.getFloatValue(), this.newParamY_2.getFloatValue(), this.newParamZ_2.getFloatValue());

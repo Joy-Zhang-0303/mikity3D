@@ -73,7 +73,7 @@ public class GroupConfigDialogDH {
   private void createSShell() {
     // SWT.APPLICATION_MODAL→このシェルを閉じないと、親シェルを編集できなくする
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    GridLayout layout = new GridLayout();
+    final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 350));
     this.sShell.setText(Messages.getString("GroupConfigDialogDH.0")); //$NON-NLS-1$
@@ -88,7 +88,7 @@ public class GroupConfigDialogDH {
     }
     createGroup();
 
-    Button okButton = new Button(this.sShell, SWT.NONE);
+    final Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("GroupConfigDialogDH.2")); //$NON-NLS-1$
 
@@ -98,7 +98,7 @@ public class GroupConfigDialogDH {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         if (Check()) {
-          MessageBox mesBox = new MessageBox(GroupConfigDialogDH.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+          final MessageBox mesBox = new MessageBox(GroupConfigDialogDH.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           mesBox.setMessage(Messages.getString("GroupConfigDialogDH.3")); //$NON-NLS-1$
           mesBox.setText(Messages.getString("GroupConfigDialogDH.4")); //$NON-NLS-1$
           int result = mesBox.open();
@@ -112,14 +112,14 @@ public class GroupConfigDialogDH {
             GroupConfigDialogDH.this.sShell.close();
           }
         } else {
-          MessageBox mgb = new MessageBox(GroupConfigDialogDH.this.sShell, SWT.ICON_WARNING);
+          final MessageBox mgb = new MessageBox(GroupConfigDialogDH.this.sShell, SWT.ICON_WARNING);
           mgb.setMessage(Messages.getString("GroupConfigDialogDH.5")); //$NON-NLS-1$
           mgb.setText(Messages.getString("GroupConfigDialogDH.6")); //$NON-NLS-1$
         }
       }
     });
 
-    Button cancelButton = new Button(this.sShell, SWT.NONE);
+    final Button cancelButton = new Button(this.sShell, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText(Messages.getString("GroupConfigDialogDH.7")); //$NON-NLS-1$
 
@@ -147,7 +147,7 @@ public class GroupConfigDialogDH {
    */
   void addLinkData(final ParameterInputBox dh, final ParameterInputBox col) {
     if (dh.getFloatValue() != 0.0 || col.getIntValue() != 0) {
-      LinkData linkdata = new LinkData();
+      final LinkData linkdata = new LinkData();
       linkdata.setTargetName(dh.getLabelText());
       if (dh.getFloatValue() != 0.0) {
         linkdata.setInitialValue(dh.getFloatValue());
@@ -170,30 +170,30 @@ public class GroupConfigDialogDH {
       style = SWT.READ_ONLY;
     }
 
-    Group paramGroup = new Group(this.sShell, SWT.NONE);
-    GridLayout layout = new GridLayout();
-    GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    final Group paramGroup = new Group(this.sShell, SWT.NONE);
+    final GridLayout layout = new GridLayout();
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.horizontalSpan = 2;
     layout.numColumns = 3;
     paramGroup.setText("DHParameter"); //$NON-NLS-1$
     paramGroup.setLayout(layout);
     paramGroup.setLayoutData(data);
 
-    GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 40;
-    Label label1 = new Label(paramGroup, SWT.RIGHT);
+    final Label label1 = new Label(paramGroup, SWT.RIGHT);
     label1.setText(Messages.getString("GroupConfigDialogDH.10")); //$NON-NLS-1$
     label1.setLayoutData(gridData1);
 
-    GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
     gridData2.widthHint = 65;
-    Label label2 = new Label(paramGroup, SWT.RIGHT);
+    final Label label2 = new Label(paramGroup, SWT.RIGHT);
     label2.setText(Messages.getString("GroupConfigDialogDH.11")); //$NON-NLS-1$
     label2.setLayoutData(gridData2);
 
-    GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
     gridData3.widthHint = 65;
-    Label label3 = new Label(paramGroup, SWT.RIGHT);
+    final Label label3 = new Label(paramGroup, SWT.RIGHT);
     label3.setText(Messages.getString("GroupConfigDialogDH.12")); //$NON-NLS-1$
     label3.setLayoutData(gridData3);
 
@@ -217,7 +217,7 @@ public class GroupConfigDialogDH {
    */
   private void createStatusBar() {
     this.statusLabel = new Label(this.sShell, SWT.BORDER);
-    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
     this.statusLabel.setLayoutData(gridData);
     setStatus(""); //$NON-NLS-1$
@@ -236,17 +236,17 @@ public class GroupConfigDialogDH {
    * Linkdata の column を表示させる
    */
   private void setParam() {
-    LinkData[] linkdata = this.group.getLinkData();
+    final LinkData[] linkdata = this.group.getLinkData();
 
     for (int i = 0; i < linkdata.length; i++) {
-      String target = linkdata[i].loadTargetName();
+      final String target = linkdata[i].loadTargetName();
       // if(linkdata[i].hasColumn()){
       // column = "" + linkdata[i].getColumn();
       // } else{
       // column = "0";
       // }
-      String column = linkdata[i].hasDataNumber() ? "" + linkdata[i].loadDataNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      String constant = linkdata[i].hasInitialValue() ? "" + linkdata[i].loadInitialValue() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String column = linkdata[i].hasDataNumber() ? "" + linkdata[i].loadDataNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String constant = linkdata[i].hasInitialValue() ? "" + linkdata[i].loadInitialValue() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       if (target.equals("a")) { //$NON-NLS-1$
         this.columnA.setText(column);
         this.a.setText(constant);
@@ -301,7 +301,7 @@ public class GroupConfigDialogDH {
    */
   public void open() {
     this.sShell.open();
-    Display display = this.sShell.getDisplay();
+    final Display display = this.sShell.getDisplay();
     while (!this.sShell.isDisposed()) {
       if (!display.readAndDispatch()) {
         display.sleep();

@@ -18,7 +18,7 @@ import org.mklab.mikity.xml.model.Group;
 
 
 /**
- * groupを追加する
+ * groupを追加します。
  * 
  * @author miki
  * @version $Revision: 1.1 $.2005/02/10
@@ -49,14 +49,14 @@ public class AddGroupDialog extends ApplicationWindow {
    */
   @Override
   protected Control createContents(Composite parent) {
-    Composite comp = new Composite(parent, SWT.NONE);
-    GridLayout layout = new GridLayout(2, false);
+    final Composite comp = new Composite(parent, SWT.NONE);
+    final GridLayout layout = new GridLayout(2, false);
     comp.setLayout(layout);
 
     new ParameterInputBox(comp, SWT.READ_ONLY, Messages.getString("AddGroupDialog.0"), this.group.loadName()); //$NON-NLS-1$
     final ParameterInputBox groupParam = new ParameterInputBox(comp, SWT.NONE, Messages.getString("AddGroupDialog.1"), Messages.getString("AddGroupDialog.2")); //$NON-NLS-1$ //$NON-NLS-2$
 
-    Button okButton = new Button(comp, SWT.NONE);
+    final Button okButton = new Button(comp, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("AddGroupDialog.3")); //$NON-NLS-1$
 
@@ -71,7 +71,7 @@ public class AddGroupDialog extends ApplicationWindow {
       }
     });
 
-    Button cancelButton = new Button(comp, SWT.NONE);
+    final Button cancelButton = new Button(comp, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText(Messages.getString("AddGroupDialog.4")); //$NON-NLS-1$
 

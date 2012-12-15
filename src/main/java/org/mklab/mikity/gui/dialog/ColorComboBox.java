@@ -48,7 +48,7 @@ public class ColorComboBox {
    */
   public void createColorCombo() {
     this.colorCombo = new Combo(this.afterGroup, SWT.READ_ONLY);
-    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     this.colorCombo.setLayoutData(gridData);
     this.colorCombo.setItems(this.COLORS);
   }

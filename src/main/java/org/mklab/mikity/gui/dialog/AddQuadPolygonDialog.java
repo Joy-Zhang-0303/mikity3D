@@ -77,24 +77,24 @@ public class AddQuadPolygonDialog {
    */
   private void createSShell() {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    GridLayout layout = new GridLayout();
-    layout.numColumns = 2;
+    final GridLayout layout1 = new GridLayout();
+    layout1.numColumns = 2;
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(300, 650));
     this.sShell.setText(Messages.getString("AddQuadPolygonDialog.0")); //$NON-NLS-1$
-    this.sShell.setLayout(layout);
+    this.sShell.setLayout(layout1);
 
-    Label groupLabel = new Label(this.sShell, SWT.LEFT);
+    final Label groupLabel = new Label(this.sShell, SWT.LEFT);
     groupLabel.setText(Messages.getString("AddQuadPolygonDialog.1") + this.group.loadName()); //$NON-NLS-1$
-    GridData gLabelData = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gLabelData = new GridData(GridData.FILL_HORIZONTAL);
     gLabelData.horizontalSpan = 3;
     groupLabel.setLayoutData(gLabelData);
 
     GridData vertexData = new GridData(GridData.FILL_HORIZONTAL);
-    org.eclipse.swt.widgets.Group vertexGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
+    final org.eclipse.swt.widgets.Group vertexGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
     vertexGroup.setText(Messages.getString("AddQuadPolygonDialog.2")); //$NON-NLS-1$
-    layout = new GridLayout();
-    layout.numColumns = 3;
-    vertexGroup.setLayout(layout);
+    final GridLayout layout2 = new GridLayout();
+    layout2.numColumns = 3;
+    vertexGroup.setLayout(layout2);
     vertexData = new GridData(GridData.FILL_HORIZONTAL);
     vertexData.horizontalSpan = 3;
     vertexGroup.setLayoutData(vertexData);
@@ -108,19 +108,19 @@ public class AddQuadPolygonDialog {
     this.paramX_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.6"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramY_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.7"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramZ_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label label2 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label label2 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label2, 2);
     this.paramX_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.9"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramY_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.10"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramZ_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label label3 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label label3 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label3, 2);
     this.paramX_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.12"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramY_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.13"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
     this.paramZ_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
 
-    GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
-    Label colorLabel = new Label(this.sShell, SWT.RIGHT);
+    final GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
+    final Label colorLabel = new Label(this.sShell, SWT.RIGHT);
     colorLabel.setText("color"); //$NON-NLS-1$
     colorLabel.setLayoutData(labelData2);
     createColorCombo();
@@ -128,41 +128,41 @@ public class AddQuadPolygonDialog {
     GridData rotData = new GridData(GridData.FILL_HORIZONTAL);
     org.eclipse.swt.widgets.Group rotateGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
     rotateGroup.setText(Messages.getString("AddQuadPolygonDialog.16")); //$NON-NLS-1$
-    layout = new GridLayout();
-    layout.numColumns = 3;
-    rotateGroup.setLayout(layout);
+    final GridLayout layout3 = new GridLayout();
+    layout3.numColumns = 3;
+    rotateGroup.setLayout(layout3);
     rotData = new GridData(GridData.FILL_HORIZONTAL);
     rotData.horizontalSpan = 3;
     rotateGroup.setLayoutData(rotData);
 
     this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label unitLabelRX = new Label(rotateGroup, SWT.NONE);
+    final Label unitLabelRX = new Label(rotateGroup, SWT.NONE);
     unitLabelRX.setText(this.angleUnit + " "); //$NON-NLS-1$
     this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.18"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label unitLabelRY = new Label(rotateGroup, SWT.NONE);
+    final Label unitLabelRY = new Label(rotateGroup, SWT.NONE);
     unitLabelRY.setText(this.angleUnit + " "); //$NON-NLS-1$
     this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.19"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label unitLabelRZ = new Label(rotateGroup, SWT.NONE);
+    final Label unitLabelRZ = new Label(rotateGroup, SWT.NONE);
     unitLabelRZ.setText(this.angleUnit + " "); //$NON-NLS-1$
 
     GridData locData = new GridData(GridData.FILL_HORIZONTAL);
     org.eclipse.swt.widgets.Group locationGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
     locationGroup.setText(Messages.getString("AddQuadPolygonDialog.20")); //$NON-NLS-1$
-    layout = new GridLayout();
-    layout.numColumns = 3;
-    locationGroup.setLayout(layout);
+    final GridLayout layout4 = new GridLayout();
+    layout4.numColumns = 3;
+    locationGroup.setLayout(layout4);
     locData = new GridData(GridData.FILL_HORIZONTAL);
     locData.horizontalSpan = 3;
     locationGroup.setLayoutData(locData);
 
     this.locX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.21"), "0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label unitLabelLX = new Label(locationGroup, SWT.NONE);
+    final Label unitLabelLX = new Label(locationGroup, SWT.NONE);
     unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
     this.locY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.22"), "0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label unitLabelLY = new Label(locationGroup, SWT.NONE);
+    final Label unitLabelLY = new Label(locationGroup, SWT.NONE);
     unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
     this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.23"), "0");  //$NON-NLS-1$//$NON-NLS-2$
-    Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
+    final Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
     unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
 
     createButtonComp();
@@ -173,7 +173,7 @@ public class AddQuadPolygonDialog {
    */
   private void createButtonComp() {
 
-    Button okButton = new Button(this.sShell, SWT.NONE);
+    final Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("AddQuadPolygonDialog.24")); //$NON-NLS-1$
 
@@ -194,7 +194,7 @@ public class AddQuadPolygonDialog {
       }
     });
 
-    Button cancelButton = new Button(this.sShell, SWT.NONE);
+    final Button cancelButton = new Button(this.sShell, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText(Messages.getString("AddQuadPolygonDialog.27")); //$NON-NLS-1$
 
@@ -203,7 +203,7 @@ public class AddQuadPolygonDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        MessageBox mesBox = new MessageBox(AddQuadPolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        final MessageBox mesBox = new MessageBox(AddQuadPolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         mesBox.setMessage(Messages.getString("AddQuadPolygonDialog.28")); //$NON-NLS-1$
         mesBox.setText(Messages.getString("AddQuadPolygonDialog.29")); //$NON-NLS-1$
         int result = mesBox.open();
@@ -218,14 +218,14 @@ public class AddQuadPolygonDialog {
    * ポリゴンの生成
    */
   void addPolygon() {
-    XMLQuadPolygon quad = new XMLQuadPolygon();
-    Rotation rot = new Rotation();
-    Location loc = new Location();
+    final XMLQuadPolygon quad = new XMLQuadPolygon();
+    final Rotation rot = new Rotation();
+    final Location loc = new Location();
 
-    Location vertex1 = new Location(this.paramX_1.getFloatValue(), this.paramY_1.getFloatValue(), this.paramZ_1.getFloatValue());
-    Location vertex2 = new Location(this.paramX_2.getFloatValue(), this.paramY_2.getFloatValue(), this.paramZ_2.getFloatValue());
-    Location vertex3 = new Location(this.paramX_3.getFloatValue(), this.paramY_3.getFloatValue(), this.paramZ_3.getFloatValue());
-    Location vertex4 = new Location(this.paramX_4.getFloatValue(), this.paramY_4.getFloatValue(), this.paramZ_4.getFloatValue());
+    final Location vertex1 = new Location(this.paramX_1.getFloatValue(), this.paramY_1.getFloatValue(), this.paramZ_1.getFloatValue());
+    final Location vertex2 = new Location(this.paramX_2.getFloatValue(), this.paramY_2.getFloatValue(), this.paramZ_2.getFloatValue());
+    final Location vertex3 = new Location(this.paramX_3.getFloatValue(), this.paramY_3.getFloatValue(), this.paramZ_3.getFloatValue());
+    final Location vertex4 = new Location(this.paramX_4.getFloatValue(), this.paramY_4.getFloatValue(), this.paramZ_4.getFloatValue());
     quad.setPointLocations(vertex1, vertex2, vertex3, vertex4);
     if (getRot(rot) != null) {
       quad.setRotation(getRot(rot));
@@ -244,7 +244,7 @@ public class AddQuadPolygonDialog {
    * @param hSpan
    */
   private void setGridLayout(Control control, int hSpan) {
-    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = hSpan;
     control.setLayoutData(gridData);
   }
@@ -353,9 +353,9 @@ public class AddQuadPolygonDialog {
    */
   private void createColorCombo() {
     this.colorCombo = new Combo(this.sShell, SWT.READ_ONLY);
-    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     this.colorCombo.setLayoutData(gridData);
-    String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
+    final String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
     this.colorCombo.setItems(COLORS);
     this.colorCombo.setText("blue"); //$NON-NLS-1$
   }
@@ -365,7 +365,7 @@ public class AddQuadPolygonDialog {
    */
   public void open() {
     this.sShell.open();
-    Display display = this.sShell.getDisplay();
+    final Display display = this.sShell.getDisplay();
     while (!this.sShell.isDisposed()) {
       if (!display.readAndDispatch()) {
         display.sleep();
