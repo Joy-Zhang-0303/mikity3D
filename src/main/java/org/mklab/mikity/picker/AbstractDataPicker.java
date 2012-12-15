@@ -60,13 +60,13 @@ public abstract class AbstractDataPicker implements DataPicker {
     switch (type) {
       case A:
         for (int i = 0; i < this.dhParameters.length; i++) {
-          double value = this.data.getElement(dataNumber, i + 1).doubleValue();
+          final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           this.dhParameters[i].setA(value / dataScale);
         }
         break;
       case ALPHA:
         for (int i = 0; i < this.dhParameters.length; i++) {
-          double value = this.data.getElement(dataNumber, i + 1).doubleValue();
+          final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
             this.dhParameters[i].setAlpha(value);
           } else {
@@ -76,13 +76,13 @@ public abstract class AbstractDataPicker implements DataPicker {
         break;
       case D:
         for (int i = 0; i < this.dhParameters.length; i++) {
-          double value = this.data.getElement(dataNumber, i + 1).doubleValue();
+          final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           this.dhParameters[i].setD(value / dataScale);
         }
         break;
       case THETA:
         for (int i = 0; i < this.dhParameters.length; i++) {
-          double value = this.data.getElement(dataNumber, i + 1).doubleValue();
+          final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
             this.dhParameters[i].setTheta(value);
           } else {
@@ -106,25 +106,25 @@ public abstract class AbstractDataPicker implements DataPicker {
     switch (type) {
       case X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          double value = this.data.getElement(dataNumber, i + 1).doubleValue();
+          final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           this.coordinateParameters[i].setX(value / dataScale);
         }
         break;
       case Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          double value = this.data.getElement(dataNumber, i + 1).doubleValue();
+          final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           this.coordinateParameters[i].setY(value / dataScale);
         }
         break;
       case Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          double value = this.data.getElement(dataNumber, i + 1).doubleValue();
+          final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           this.coordinateParameters[i].setZ(value / dataScale);
         }
         break;
       case TH_X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          double value = this.data.getElement(dataNumber, i + 1).doubleValue();
+          final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
             this.coordinateParameters[i].setThX(value);
           } else {
@@ -134,7 +134,7 @@ public abstract class AbstractDataPicker implements DataPicker {
         break;
       case TH_Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          double value = this.data.getElement(dataNumber, i + 1).doubleValue();
+          final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
             this.coordinateParameters[i].setThY(value);
           } else {
@@ -144,7 +144,7 @@ public abstract class AbstractDataPicker implements DataPicker {
         break;
       case TH_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
-          double value = this.data.getElement(dataNumber, i + 1).doubleValue();
+          final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
             this.coordinateParameters[i].setThZ(value);
           } else {

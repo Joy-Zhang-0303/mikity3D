@@ -16,14 +16,14 @@ import org.mklab.mikity.model.CoordinateParameter;
 
 
 /**
- * TransformGroupを拡張したクラスです。
+ * {@link TransformGroup}を拡張したクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.17 $.2005/11/22
  */
 public class Java3dTransformGroup extends TransformGroup implements MovableGroup {
   /**
-   * コンストラクター
+   * 新しく生成された<code>Java3dTransformGroup</code>オブジェクトを初期化します。
    */
   public Java3dTransformGroup() {
     setCapability(Group.ALLOW_CHILDREN_EXTEND);

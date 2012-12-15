@@ -107,20 +107,4 @@ public class Util {
     }
     return parameter;
   }
-
-//  /**
-//   * パラメータを返します。
-//   * 
-//   * @param linkdata リンクデータ
-//   * @param key key
-//   * @return null
-//   */
-//  public static LinkData getParameter(final LinkData[] linkdata, final String key) {
-//    for (int i = 0; i < linkdata.length; i++) {
-//      if (linkdata[i].equals(key)) {
-//        return linkdata[i];
-//      }
-//    }
-//    return null;
-//  }
 }

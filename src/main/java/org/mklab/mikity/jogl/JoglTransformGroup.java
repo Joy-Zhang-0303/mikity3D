@@ -70,14 +70,12 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
       this.coordinate.apply(gl);
     }
 
-    for (int i = 0; i < this.objects.size(); i++) {
-      final JoglObject object = this.objects.get(i);
+    for (final JoglObject object : this.objects) {
       object.apply(gl);
     }
 
-    for (int i = 0; i < this.transformGroups.size(); i++) {
-      final JoglTransformGroup tg = this.transformGroups.get(i);
-      tg.apply(gl);
+    for (final JoglTransformGroup group : this.transformGroups) {
+      group.apply(gl);
     }
   }
 
@@ -118,7 +116,7 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
       }
     }
     
-    for (JoglTransformGroup group : this.transformGroups) {
+    for (final JoglTransformGroup group : this.transformGroups) {
       group.setCoordinateParameter(parameter);
     }
   }

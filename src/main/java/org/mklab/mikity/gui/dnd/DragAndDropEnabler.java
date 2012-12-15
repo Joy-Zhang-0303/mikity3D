@@ -50,8 +50,8 @@ public class DragAndDropEnabler {
    */
   public DragAndDropEnabler(final Tree tree) {
     this.tree = tree;
-    DragSource source = new DragSource(tree, OPERATION);
-    DropTarget target = new DropTarget(tree, OPERATION);
+    final DragSource source = new DragSource(tree, OPERATION);
+    final DropTarget target = new DropTarget(tree, OPERATION);
     source.addDragListener(new MyDragSourceListener());
     source.setTransfer(TYPE);
     target.setTransfer(TYPE);
@@ -93,8 +93,7 @@ public class DragAndDropEnabler {
      */
     @Override
     public void dragOver(DropTargetEvent e) {
-
-      TreeItem item = DragAndDropEnabler.this.tree.getItem(DragAndDropEnabler.this.tree.toControl(e.x, e.y));
+      final TreeItem item = DragAndDropEnabler.this.tree.getItem(DragAndDropEnabler.this.tree.toControl(e.x, e.y));
       if (item == null) {
         e.detail = DND.DROP_NONE;
       } else {
@@ -108,7 +107,7 @@ public class DragAndDropEnabler {
     @Override
     public void drop(DropTargetEvent e) {
       // 今マウスがある場所のアイテムを取得
-      TreeItem item = DragAndDropEnabler.this.tree.getItem(DragAndDropEnabler.this.tree.toControl(e.x, e.y));
+      final TreeItem item = DragAndDropEnabler.this.tree.getItem(DragAndDropEnabler.this.tree.toControl(e.x, e.y));
       if (item == null) {
         return;
       }
@@ -126,8 +125,8 @@ public class DragAndDropEnabler {
       } else {
         return;
       }
-      Object obj = DragAndDropEnabler.this.treeItem.getData();
-      Group sourceGroup = (Group)DragAndDropEnabler.this.treeItem.getParentItem().getData();
+      final Object obj = DragAndDropEnabler.this.treeItem.getData();
+      final Group sourceGroup = (Group)DragAndDropEnabler.this.treeItem.getParentItem().getData();
 
       if (obj instanceof XMLBox) {
         sourceGroup.removeXMLBox((XMLBox)obj);
@@ -153,7 +152,7 @@ public class DragAndDropEnabler {
       } else {
         throw new RuntimeException(Messages.getString("DragAndDropEnabler.0")); //$NON-NLS-1$
       }
-      TreeItem newItem = new TreeItem(targetItem, SWT.NONE);
+      final TreeItem newItem = new TreeItem(targetItem, SWT.NONE);
       newItem.setText(DragAndDropEnabler.this.treeItem.getText());
       newItem.setData(obj);
 

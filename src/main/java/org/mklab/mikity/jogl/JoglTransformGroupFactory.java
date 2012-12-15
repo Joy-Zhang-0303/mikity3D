@@ -31,7 +31,7 @@ public class JoglTransformGroupFactory {
    * @param group グループ
    * @return トランスフォームグループ
    */
-  public JoglTransformGroup create(Group group) {
+  public JoglTransformGroup create(final Group group) {
     final LinkData[] linkData = group.getLinkData();
     for (int i = 0; i < linkData.length; i++) {
       if (linkData[i].hasDHParameter()) {
