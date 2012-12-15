@@ -33,7 +33,7 @@ import org.mklab.mikity.xml.config.View;
  */
 public class ConfigDialog {
 
-  private Shell sShell = null;
+  Shell sShell = null;
   private Shell parentShell = null;
   private Group editGroup;
   private Combo colorCombo;

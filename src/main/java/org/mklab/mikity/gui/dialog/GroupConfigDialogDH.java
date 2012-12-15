@@ -27,28 +27,28 @@ import org.mklab.mikity.xml.model.LinkData;
 public class GroupConfigDialogDH {
 
   /** */
-  private Shell sShell = null;
+  Shell sShell = null;
   private Shell parentShell = null;
-  private org.mklab.mikity.xml.model.Group group;
+  org.mklab.mikity.xml.model.Group group;
 
   /** */
-  private ParameterInputBox groupName;
+  ParameterInputBox groupName;
   /** */
-  private ParameterInputBox a;
+  ParameterInputBox a;
   /** */
-  private ParameterInputBox alpha;
+  ParameterInputBox alpha;
   /** */
-  private ParameterInputBox d;
+  ParameterInputBox d;
   /** */
-  private ParameterInputBox theta;
+  ParameterInputBox theta;
   /** */
-  private ParameterInputBox columnA;
+  ParameterInputBox columnA;
   /** */
-  private ParameterInputBox columnAlpha;
+  ParameterInputBox columnAlpha;
   /** */
-  private ParameterInputBox columnD;
+  ParameterInputBox columnD;
   /** */
-  private ParameterInputBox columnTheta;
+  ParameterInputBox columnTheta;
 
   private boolean editable;
   private Label statusLabel;

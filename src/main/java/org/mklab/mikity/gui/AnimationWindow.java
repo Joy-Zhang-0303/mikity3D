@@ -31,7 +31,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.java3d.Java3dModelCanvas;
-import org.mklab.mikity.jogl.JoglModelCanvas;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
@@ -52,7 +51,7 @@ import org.mklab.nfc.matx.MatxMatrix;
 
 public class AnimationWindow extends ApplicationWindow {
   /** アニメーション用タスク */
-  private AnimationTask animationTask;
+  AnimationTask animationTask;
   /** */
   private SliderPositionMoveTask sliderTask;
 
@@ -65,37 +64,37 @@ public class AnimationWindow extends ApplicationWindow {
   private Jamast root;
 
   /** */
-  private double speed = 1.0;
+  double speed = 1.0;
 
   /** */
-  private Timer timer = new Timer();
+  Timer timer = new Timer();
 
   /** */
-  private Slider timeSlider;
+  Slider timeSlider;
 
   /** 等間隔の時間を保存しとく配列 */
-  private double[] timeTable;
+  double[] timeTable;
 
   /** */
   private Matrix data;
 
   /** */
-  private Text filePathText;
+  Text filePathText;
 
   /** */
-  private MovableGroupManager manager;
+  MovableGroupManager manager;
 
   /** */
   private Label startTimeLabel;
   /** */
-  private Label currentTimeLabel;
+  Label currentTimeLabel;
   /** */
   private Label endTimeLabel;
 
   private boolean usedDHParam = false;
   private boolean usedLink = false;
   /** */
-  private ParameterInputBox playSpeed;
+  ParameterInputBox playSpeed;
 
   //  ModelCanvas
   private ModelCanvas modelCanvas;

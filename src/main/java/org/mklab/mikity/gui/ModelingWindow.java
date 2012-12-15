@@ -85,7 +85,7 @@ public class ModelingWindow extends ApplicationWindow {
   private Jamast root;
   
   /** */
-  private Text filePathText;
+  Text filePathText;
   private Button newModelButton;
   private Button modelerButton;
   private Button configButton;

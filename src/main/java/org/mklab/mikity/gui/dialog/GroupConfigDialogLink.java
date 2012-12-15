@@ -26,23 +26,23 @@ import org.mklab.mikity.xml.model.LinkData;
  */
 public class GroupConfigDialogLink {
 
-  private Shell sShell = null;
+  Shell sShell = null;
   private Shell parentShell = null;
-  private org.mklab.mikity.xml.model.Group group;
+  org.mklab.mikity.xml.model.Group group;
 
-  private ParameterInputBox groupName;
-  private ParameterInputBox locX;
-  private ParameterInputBox locY;
-  private ParameterInputBox locZ;
-  private ParameterInputBox rotX;
-  private ParameterInputBox rotY;
-  private ParameterInputBox rotZ;
-  private ParameterInputBox columnLocX;
-  private ParameterInputBox columnLocY;
-  private ParameterInputBox columnLocZ;
-  private ParameterInputBox columnRotX;
-  private ParameterInputBox columnRotY;
-  private ParameterInputBox columnRotZ;
+  ParameterInputBox groupName;
+  ParameterInputBox locX;
+  ParameterInputBox locY;
+  ParameterInputBox locZ;
+  ParameterInputBox rotX;
+  ParameterInputBox rotY;
+  ParameterInputBox rotZ;
+  ParameterInputBox columnLocX;
+  ParameterInputBox columnLocY;
+  ParameterInputBox columnLocZ;
+  ParameterInputBox columnRotX;
+  ParameterInputBox columnRotY;
+  ParameterInputBox columnRotZ;
 
   private boolean editable;
   private Label statusLabel;
