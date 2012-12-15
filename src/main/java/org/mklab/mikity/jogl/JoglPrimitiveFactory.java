@@ -2,6 +2,8 @@ package org.mklab.mikity.jogl;
 
 import java.util.List;
 
+import javax.vecmath.Matrix4f;
+
 import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
 import org.mklab.mikity.jogl.models.JoglCylinder;
@@ -15,6 +17,8 @@ import org.mklab.mikity.jogl.models.JoglTriangleObject;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.xml.model.Group;
+import org.mklab.mikity.xml.model.Location;
+import org.mklab.mikity.xml.model.Rotation;
 import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLCone;
 import org.mklab.mikity.xml.model.XMLCylinder;
@@ -91,28 +95,30 @@ public class JoglPrimitiveFactory {
     //      setLinkParameter(links, tg);
     //    }
 
-    if (box.loadLocation() != null && box.loadRotation() != null) {
-      float xloc = box.loadLocation().loadX() * 10f;
-      float yloc = box.loadLocation().loadY() * 10f;
-      float zloc = box.loadLocation().loadZ() * 10f;
-      float xrot = box.loadRotation().loadXrotate();
-      float yrot = box.loadRotation().loadYrotate();
-      float zrot = box.loadRotation().loadZrotate();
+    final Location boxLocation = box.loadLocation();
+    final Rotation boxRotation = box.loadRotation();
+    
+    if (boxLocation != null && boxRotation != null) {
+      final float xloc = boxLocation.loadX() * 10f;
+      final float yloc = boxLocation.loadY() * 10f;
+      final float zloc = boxLocation.loadZ() * 10f;
+      final float xrot = boxRotation.loadXrotate();
+      final float yrot = boxRotation.loadYrotate();
+      final float zrot = boxRotation.loadZrotate();
       final JoglLocRot locationRotation = new JoglLocRot();
       locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
       tg.setCoordinate(locationRotation);
-
-    } else if (box.loadLocation() != null && box.loadRotation() == null) {
-      float xloc = box.loadLocation().loadX();
-      float yloc = box.loadLocation().loadY();
-      float zloc = box.loadLocation().loadZ();
+    } else if (boxLocation != null) {
+      final float xloc = boxLocation.loadX();
+      final float yloc = boxLocation.loadY();
+      final float zloc = boxLocation.loadZ();
       final JoglLocation locationRotation = new JoglLocation();
       locationRotation.setLocation(xloc, yloc, zloc);
       tg.setCoordinate(locationRotation);
-    } else if (box.loadLocation() == null && box.loadRotation() != null) {
-      float xrot = box.loadRotation().loadXrotate();
-      float yrot = box.loadRotation().loadYrotate();
-      float zrot = box.loadRotation().loadZrotate();
+    } else if (boxRotation != null) {
+      final float xrot = boxRotation.loadXrotate();
+      final float yrot = boxRotation.loadYrotate();
+      final float zrot = boxRotation.loadZrotate();
       final JoglRotation rotation = new JoglRotation();
       rotation.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(rotation);
@@ -163,27 +169,30 @@ public class JoglPrimitiveFactory {
     //      setLinkParameter(links, tg);
     //    }
 
-    if (cylinder.loadLocation() != null && cylinder.loadRotation() != null) {
-      final float xloc = cylinder.loadLocation().loadX();
-      final float yloc = cylinder.loadLocation().loadY();
-      final float zloc = cylinder.loadLocation().loadZ();
-      final float xrot = cylinder.loadRotation().loadXrotate();
-      final float yrot = cylinder.loadRotation().loadYrotate();
-      final float zrot = cylinder.loadRotation().loadZrotate();
+    final Location cylinderLocation = cylinder.loadLocation();
+    final Rotation cylinderRotation = cylinder.loadRotation();
+    
+    if (cylinderLocation != null && cylinderRotation != null) {
+      final float xloc = cylinderLocation.loadX();
+      final float yloc = cylinderLocation.loadY();
+      final float zloc = cylinderLocation.loadZ();
+      final float xrot = cylinderRotation.loadXrotate();
+      final float yrot = cylinderRotation.loadYrotate();
+      final float zrot = cylinderRotation.loadZrotate();
       final JoglLocRot locationRotation = new JoglLocRot();
       locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
       tg.setCoordinate(locationRotation);
-    } else if (cylinder.loadLocation() != null && cylinder.loadRotation() == null) {
-      final float xloc = cylinder.loadLocation().loadX();
-      final float yloc = cylinder.loadLocation().loadY();
-      final float zloc = cylinder.loadLocation().loadZ();
+    } else if (cylinderLocation != null) {
+      final float xloc = cylinderLocation.loadX();
+      final float yloc = cylinderLocation.loadY();
+      final float zloc = cylinderLocation.loadZ();
       final JoglLocation location = new JoglLocation();
       location.setLocation(xloc, yloc, zloc);
       tg.setCoordinate(location);
-    } else if (cylinder.loadLocation() == null && cylinder.loadRotation() != null) {
-      final float xrot = cylinder.loadRotation().loadXrotate();
-      final float yrot = cylinder.loadRotation().loadYrotate();
-      final float zrot = cylinder.loadRotation().loadZrotate();
+    } else if (cylinderRotation != null) {
+      final float xrot = cylinderRotation.loadXrotate();
+      final float yrot = cylinderRotation.loadYrotate();
+      final float zrot = cylinderRotation.loadZrotate();
       final JoglRotation rotation = new JoglRotation();
       rotation.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(rotation);
@@ -240,27 +249,31 @@ public class JoglPrimitiveFactory {
     //    } else if (links != null) {
     //      setLinkParameter(links, tg);
     //    }
-    if (sphere.loadLocation() != null && sphere.loadRotation() != null) {
-      final float xloc = sphere.loadLocation().loadX();
-      final float yloc = sphere.loadLocation().loadY();
-      final float zloc = sphere.loadLocation().loadZ();
-      final float xrot = sphere.loadRotation().loadXrotate();
-      final float yrot = sphere.loadRotation().loadYrotate();
-      final float zrot = sphere.loadRotation().loadZrotate();
+    
+    final Location sphereLocation = sphere.loadLocation();
+    final Rotation sphereRotation = sphere.loadRotation();
+    
+    if (sphereLocation != null && sphereRotation != null) {
+      final float xloc = sphereLocation.loadX();
+      final float yloc = sphereLocation.loadY();
+      final float zloc = sphereLocation.loadZ();
+      final float xrot = sphereRotation.loadXrotate();
+      final float yrot = sphereRotation.loadYrotate();
+      final float zrot = sphereRotation.loadZrotate();
       final JoglLocRot locationRotation = new JoglLocRot();
       locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
       tg.setCoordinate(locationRotation);
-    } else if (sphere.loadLocation() != null && sphere.loadRotation() == null) {
-      final float xloc = sphere.loadLocation().loadX();
-      final float yloc = sphere.loadLocation().loadY();
-      final float zloc = sphere.loadLocation().loadZ();
+    } else if (sphereLocation != null) {
+      final float xloc = sphereLocation.loadX();
+      final float yloc = sphereLocation.loadY();
+      final float zloc = sphereLocation.loadZ();
       final JoglLocation location = new JoglLocation();
       location.setLocation(xloc, yloc, zloc);
       tg.setCoordinate(location);
-    } else if (sphere.loadLocation() == null && sphere.loadRotation() != null) {
-      final float xrot = sphere.loadRotation().loadXrotate();
-      final float yrot = sphere.loadRotation().loadYrotate();
-      final float zrot = sphere.loadRotation().loadZrotate();
+    } else if (sphereRotation != null) {
+      final float xrot = sphereRotation.loadXrotate();
+      final float yrot = sphereRotation.loadYrotate();
+      final float zrot = sphereRotation.loadZrotate();
       final JoglRotation rotation = new JoglRotation();
       rotation.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(rotation);
@@ -284,27 +297,30 @@ public class JoglPrimitiveFactory {
   public static JoglTransformGroup create(XMLCone cone) {
     final JoglTransformGroup tg = new JoglTransformGroup();
 
-    if (cone.loadLocation() != null && cone.loadRotation() != null) {
-      final float xloc = cone.loadLocation().loadX();
-      final float yloc = cone.loadLocation().loadY();
-      final float zloc = cone.loadLocation().loadZ();
-      final float xrot = cone.loadRotation().loadXrotate();
-      final float yrot = cone.loadRotation().loadYrotate();
-      final float zrot = cone.loadRotation().loadZrotate();
+    final Location coneLocation = cone.loadLocation();
+    final Rotation coneRotation = cone.loadRotation();
+    
+    if (coneLocation != null && coneRotation != null) {
+      final float xloc = coneLocation.loadX();
+      final float yloc = coneLocation.loadY();
+      final float zloc = coneLocation.loadZ();
+      final float xrot = coneRotation.loadXrotate();
+      final float yrot = coneRotation.loadYrotate();
+      final float zrot = coneRotation.loadZrotate();
       final JoglLocRot locationRotation = new JoglLocRot();
       locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
       tg.setCoordinate(locationRotation);
-    } else if (cone.loadLocation() != null && cone.loadRotation() == null) {
-      final float xloc = cone.loadLocation().loadX();
-      final float yloc = cone.loadLocation().loadY();
-      final float zloc = cone.loadLocation().loadZ();
+    } else if (coneLocation != null) {
+      final float xloc = coneLocation.loadX();
+      final float yloc = coneLocation.loadY();
+      final float zloc = coneLocation.loadZ();
       final JoglLocation location = new JoglLocation();
       location.setLocation(xloc, yloc, zloc);
       tg.setCoordinate(location);
-    } else if (cone.loadLocation() == null && cone.loadRotation() != null) {
-      final float xrot = cone.loadRotation().loadXrotate();
-      final float yrot = cone.loadRotation().loadYrotate();
-      final float zrot = cone.loadRotation().loadZrotate();
+    } else if (coneRotation != null) {
+      final float xrot = coneRotation.loadXrotate();
+      final float yrot = coneRotation.loadYrotate();
+      final float zrot = coneRotation.loadZrotate();
       final JoglRotation rotation = new JoglRotation();
       rotation.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(rotation);
@@ -331,37 +347,42 @@ public class JoglPrimitiveFactory {
   public static JoglTransformGroup create(XMLTrianglePolygon triangle, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final JoglTransformGroup tg = new JoglTransformGroup();
 
-    if (dhParameters == null && coordinateParameters == null) {
-      if (triangle.loadLocation() != null && triangle.loadRotation() != null) {
-        final float xloc = triangle.loadLocation().loadX();
-        final float yloc = triangle.loadLocation().loadY();
-        final float zloc = triangle.loadLocation().loadZ();
-        final float xrot = triangle.loadRotation().loadXrotate();
-        final float yrot = triangle.loadRotation().loadYrotate();
-        final float zrot = triangle.loadRotation().loadZrotate();
+    final Matrix4f triangleMatrix = triangle.loadMatrix();
+    
+    if (dhParameters == null && coordinateParameters == null && triangleMatrix.getElement(0, 3) == 0.0f && triangleMatrix.getElement(1, 3) == 0.0f && triangleMatrix.getElement(2, 3) == 0.0f) {
+      final Location triangleLocation = triangle.loadLocation();
+      final Rotation triangleRotation = triangle.loadRotation();
+      
+      if (triangleLocation != null && triangleRotation != null) {
+        final float xloc = triangleLocation.loadX();
+        final float yloc = triangleLocation.loadY();
+        final float zloc = triangleLocation.loadZ();
+        final float xrot = triangleRotation.loadXrotate();
+        final float yrot = triangleRotation.loadYrotate();
+        final float zrot = triangleRotation.loadZrotate();
         final JoglLocRot locationRotation = new JoglLocRot();
         locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
         tg.setCoordinate(locationRotation);
-      } else if (triangle.loadLocation() != null && triangle.loadRotation() == null) {
-        final float xloc = triangle.loadLocation().loadX();
-        final float yloc = triangle.loadLocation().loadY();
-        final float zloc = triangle.loadLocation().loadZ();
+      } else if (triangleLocation != null) {
+        final float xloc = triangleLocation.loadX();
+        final float yloc = triangleLocation.loadY();
+        final float zloc = triangleLocation.loadZ();
         final JoglLocation location = new JoglLocation();
         location.setLocation(xloc, yloc, zloc);
         tg.setCoordinate(location);
-      } else if (triangle.loadLocation() == null && triangle.loadRotation() != null) {
-        final float xrot = triangle.loadRotation().loadXrotate();
-        final float yrot = triangle.loadRotation().loadYrotate();
-        final float zrot = triangle.loadRotation().loadZrotate();
+      } else if (triangleRotation != null) {
+        final float xrot = triangleRotation.loadXrotate();
+        final float yrot = triangleRotation.loadYrotate();
+        final float zrot = triangleRotation.loadZrotate();
         final JoglRotation rotation = new JoglRotation();
         rotation.setRotation(xrot, yrot, zrot);
         tg.setCoordinate(rotation);
       }
-    } else if (triangle.loadMatrix().getElement(0, 3) != 0.0f || triangle.loadMatrix().getElement(1, 3) != 0.0f || triangle.loadMatrix().getElement(2, 3) != 0.0f) {
+    } else if (triangleMatrix.getElement(0, 3) != 0.0f || triangleMatrix.getElement(1, 3) != 0.0f || triangleMatrix.getElement(2, 3) != 0.0f) {
       final JoglLocation location = new JoglLocation();
-      location.setLocation(triangle.loadMatrix().getElement(0, 3), triangle.loadMatrix().getElement(1, 3), triangle.loadMatrix().getElement(2, 3));
+      location.setLocation(triangleMatrix.getElement(0, 3), triangleMatrix.getElement(1, 3), triangleMatrix.getElement(2, 3));
       tg.setCoordinate(location);
-    } else if (dhParameters == null) {
+    } else if (dhParameters != null) {
       setDHParameter(dhParameters, tg);
     } else if (coordinateParameters != null) {
       setLinkParameter(coordinateParameters, tg);
@@ -391,38 +412,41 @@ public class JoglPrimitiveFactory {
    */
   public static JoglTransformGroup create(XMLQuadPolygon quad, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final JoglTransformGroup tg = new JoglTransformGroup();
-
-    if (dhParameters == null && coordinateParameters == null && quad.loadMatrix().getElement(0, 3) == 0.0f && quad.loadMatrix().getElement(1, 3) == 0.0f && quad.loadMatrix().getElement(2, 3) == 0.0f) {
-      if (quad.loadLocation() != null && quad.loadRotation() != null) {
-        final float xloc = quad.loadLocation().loadX();
-        final float yloc = quad.loadLocation().loadY();
-        final float zloc = quad.loadLocation().loadZ();
-        final float xrot = quad.loadRotation().loadXrotate();
-        final float yrot = quad.loadRotation().loadYrotate();
-        final float zrot = quad.loadRotation().loadZrotate();
+    final Matrix4f matrix = quad.loadMatrix();
+    
+    if (dhParameters == null && coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
+      final Location quadLocation = quad.loadLocation();
+      final Rotation quadRotation = quad.loadRotation();
+      if (quadLocation != null && quadRotation != null) {
+        final float xloc = quadLocation.loadX();
+        final float yloc = quadLocation.loadY();
+        final float zloc = quadLocation.loadZ();
+        final float xrot = quadRotation.loadXrotate();
+        final float yrot = quadRotation.loadYrotate();
+        final float zrot = quadRotation.loadZrotate();
         final JoglLocRot locationRotation = new JoglLocRot();
         locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
         tg.setCoordinate(locationRotation);
-      } else if (quad.loadLocation() != null && quad.loadRotation() == null) {
-        final float xloc = quad.loadLocation().loadX();
-        final float yloc = quad.loadLocation().loadY();
-        final float zloc = quad.loadLocation().loadZ();
+      } else if (quadLocation != null) {
+        final float xloc = quadLocation.loadX();
+        final float yloc = quadLocation.loadY();
+        final float zloc = quadLocation.loadZ();
         final JoglLocation location = new JoglLocation();
         location.setLocation(xloc, yloc, zloc);
         tg.setCoordinate(location);
-      } else if (quad.loadLocation() == null && quad.loadRotation() != null) {
-        final float xrot = quad.loadRotation().loadXrotate();
-        final float yrot = quad.loadRotation().loadYrotate();
-        final float zrot = quad.loadRotation().loadZrotate();
+      } else if (quadRotation != null) {
+        final float xrot = quadRotation.loadXrotate();
+        final float yrot = quadRotation.loadYrotate();
+        final float zrot = quadRotation.loadZrotate();
         final JoglRotation rotation = new JoglRotation();
         rotation.setRotation(xrot, yrot, zrot);
         tg.setCoordinate(rotation);
       }
-    } else if (quad.loadMatrix().getElement(0, 3) != 0.0f || quad.loadMatrix().getElement(1, 3) != 0.0f || quad.loadMatrix().getElement(2, 3) != 0.0f) {
-      final JoglLocation loc = new JoglLocation();
-      loc.setLocation(quad.loadMatrix().getElement(0, 3), quad.loadMatrix().getElement(1, 3), quad.loadMatrix().getElement(2, 3));
-      tg.setCoordinate(loc);
-    } else if (dhParameters == null) {
+    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
+      final JoglLocation location = new JoglLocation();
+      location.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
+      tg.setCoordinate(location);
+    } else if (dhParameters != null) {
       setDHParameter(dhParameters, tg);
     } else if (coordinateParameters != null) {
       setLinkParameter(coordinateParameters, tg);
