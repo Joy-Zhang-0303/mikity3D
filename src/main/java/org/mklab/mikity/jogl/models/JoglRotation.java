@@ -27,37 +27,38 @@ public class JoglRotation implements JoglCoordinate {
    */
   @XmlAttribute
   private float _zrotate;
-  
+
   /**
    * @see org.mklab.mikity.jogl.models.JoglCoordinate#apply(javax.media.opengl.GL)
    */
   @Override
   public void apply(GL gl) {
     gl.glPushMatrix();
-    if(this._xrotate != 0.0f){
+    if (this._xrotate != 0.0f) {
       gl.glRotatef(this._xrotate, 1.0f, 0.0f, 0.0f);
     }
-    if(this._yrotate != 0.0f){
+    if (this._yrotate != 0.0f) {
       gl.glRotatef(this._yrotate, 0.0f, 1.0f, 0.0f);
     }
-    if(this._zrotate != 0.0f){
+    if (this._zrotate != 0.0f) {
       gl.glRotatef(this._zrotate, 0.0f, 0.0f, 1.0f);
     }
   }
-  
+
   /**
    * @param x x軸に関する回転角
    * @param y y軸に関する回転角
    * @param z z軸に関する回転角
    */
-  public void setRotation(float x,float y,float z){
+  public void setRotation(float x, float y, float z) {
     this._xrotate = x;
     this._yrotate = y;
     this._zrotate = z;
   }
-  
+
   /**
    * 回転します。
+   * 
    * @param x x軸に関する回転角
    * @param y y軸に関する回転角
    * @param z z軸に関する回転角
@@ -67,5 +68,4 @@ public class JoglRotation implements JoglCoordinate {
     this._yrotate += y;
     this._zrotate += z;
   }
-
 }

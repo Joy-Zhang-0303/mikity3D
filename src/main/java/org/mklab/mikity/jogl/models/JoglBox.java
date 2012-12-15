@@ -18,10 +18,6 @@ import org.mklab.mikity.jogl.JoglObject;
  */
 public class JoglBox implements JoglObject {
 
-  //--------------------------/
-  // - Class/Member Variables -/
-  // --------------------------/
-
   /**
    * Field _xsize
    */
@@ -45,42 +41,30 @@ public class JoglBox implements JoglObject {
 
   private FloatBuffer vertexBuffer;//頂点バッファ
   private ByteBuffer indexBuffer;//インデックスバッファ
-  
+
   /**
    * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
    */
   @Override
   public void apply(GL gl) {
-
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
-    
+
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
-        
-    float[] vertexs = {
-        this._xsize / 2, this._ysize / 2, this._zsize / 2,
-        -this._xsize / 2, this._ysize / 2, this._zsize / 2,
-        -this._xsize / 2, -this._ysize / 2, this._zsize / 2,
-        this._xsize / 2, -this._ysize / 2, this._zsize / 2,
-        this._xsize / 2, this._ysize / 2, -this._zsize / 2,
-        -this._xsize / 2, this._ysize / 2, -this._zsize / 2,
-        -this._xsize / 2, -this._ysize / 2, -this._zsize / 2,
-        this._xsize / 2, -this._ysize / 2, -this._zsize / 2,
-    };
+
+    float[] vertexs = {this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, -this._ysize / 2, this._zsize / 2, this._xsize / 2,
+        -this._ysize / 2, this._zsize / 2, this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2, -this._ysize / 2,
+        -this._zsize / 2, this._xsize / 2, -this._ysize / 2, -this._zsize / 2,};
     this.vertexBuffer = makeFloatBuffer(vertexs);
-    
+
     //インデックスバッファの生成
-    byte[] indexs = {
-        0,4,1,5,2,6,3,7,0,4,
-        4,7,5,6,
-        0,1,3,2
-    };
+    byte[] indexs = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
     this.indexBuffer = makeByteBuffer(indexs);
 
     //頂点バッファの指定
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
-    
+
     if (this._color != null) {
       if (this._color.equals("white")) { //$NON-NLS-1$
         gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -111,19 +95,18 @@ public class JoglBox implements JoglObject {
       }
     }
 
-    
     this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,10,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
-    
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 10, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
+
     this.indexBuffer.position(10);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,4,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
-    
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
+
     this.indexBuffer.position(14);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,4,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
-    
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
+
     gl.glPopMatrix();
   }
-  
+
   //float配列をFloatBufferに変換
   private static FloatBuffer makeFloatBuffer(float[] array) {
     FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
@@ -131,10 +114,10 @@ public class JoglBox implements JoglObject {
     return fb;
 
   }
+
   //byte配列をByteBufferに変換
   private static ByteBuffer makeByteBuffer(byte[] array) {
-    ByteBuffer bb = ByteBuffer.allocateDirect(array.length).order(
-        ByteOrder.nativeOrder());
+    ByteBuffer bb = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     bb.put(array).position(0);
     return bb;
   }

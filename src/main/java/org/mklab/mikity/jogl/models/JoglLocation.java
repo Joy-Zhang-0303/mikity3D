@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision$, 2012/02/07
  */
 public class JoglLocation implements JoglCoordinate {
-
   /**
    * Field _x
    */

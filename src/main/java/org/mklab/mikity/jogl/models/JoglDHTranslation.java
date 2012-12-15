@@ -8,14 +8,13 @@ import javax.media.opengl.GL;
  * @version $Revision$, 2012/02/14
  */
 public class JoglDHTranslation implements JoglCoordinate {
-
   private double _a;
   private double _alpha;
   private double _d;
   private double _theta;
   
   /**
-   * @see org.mklab.mikity.jogl.models.JoglCoordinate#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
   @Override
   public void apply(GL gl) {
@@ -39,5 +38,4 @@ public class JoglDHTranslation implements JoglCoordinate {
     this._d = d;
     this._theta = theta;
   }
-
 }

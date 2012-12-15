@@ -4,7 +4,6 @@ import javax.media.opengl.GL;
 import javax.xml.bind.annotation.XmlAttribute;
 
 
-
 /**
  * @author iwamoto
  * @version $Revision$, 2012/02/09
@@ -52,10 +51,10 @@ public class JoglLocRot implements JoglCoordinate {
    */
   @Override
   public void apply(GL gl) {
-
     gl.glPushMatrix();
     gl.glTranslatef(this._x, this._y, this._z);
     gl.glPushMatrix();
+    
     if (this._xrotate != 0.0f) {
       gl.glRotatef(this._xrotate, 1.0f, 0.0f, 0.0f);
     }
@@ -75,15 +74,12 @@ public class JoglLocRot implements JoglCoordinate {
    * @param yrot y軸に対しての回転
    * @param zrot z軸に対しての回転
    */
-  public void setLocRot(float xloc, float yloc, float zloc,float xrot, float yrot, float zrot) {
-
+  public void setLocRot(float xloc, float yloc, float zloc, float xrot, float yrot, float zrot) {
     this._x = xloc;
     this._y = yloc;
     this._z = zloc;
     this._xrotate = xrot;
     this._yrotate = yrot;
     this._zrotate = zrot;
-
   }
-  
 }

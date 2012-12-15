@@ -15,7 +15,6 @@ import org.mklab.mikity.jogl.JoglObject;
  * @version $Revision$, 2012/01/31
  */
 public class JoglCylinder implements JoglObject {
-
   /**
    * Field _r
    */
@@ -45,11 +44,6 @@ public class JoglCylinder implements JoglObject {
    */
   @Override
   public void apply(GL gl) {
-
-    int i;
-    double ang;
-    double PAI = 3.1415;
-
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
 
@@ -58,28 +52,26 @@ public class JoglCylinder implements JoglObject {
 
     float[] vertexs = new float[(this._div * 2 + 2) * 3];
 
-    // TODO 描画がおかしいですが、これ以上考えても今は案が出てこないのでPushしました。vertexsかindexsの配列がおかしいのかもしれません。
+    // TODO 描画がおかしいですが、これ以上考えても今は案が出てこないのでPushしました。
+    // TODO vertexsかindexsの配列がおかしいのかもしれません。
     //頂点バッファの生成
     vertexs[0] = 0.0f;
     vertexs[1] = this._height / 2.0f;
     vertexs[2] = 0.0f;
-
     
-    for (i = 1; i <= this._div; i++) {
-      ang = 2.0 * PAI / this._div * i;
+    for (int i = 1; i <= this._div; i++) {
+      final double ang = 2.0 * Math.PI / this._div * i;
       vertexs[i * 3] = this._r * (float)Math.cos(ang);
       vertexs[i * 3 + 1] = this._height / 2.0f;
       vertexs[i * 3 + 2] = this._r * (float)Math.sin(ang);
     }
-
     
     vertexs[3 + this._div * 3] = 0.0f;
     vertexs[4 + this._div * 3] = -this._height / 2.0f;
     vertexs[5 + this._div * 3] = 0.0f;
-
     
-    for (i = 1; i <= this._div; i++) {
-      ang = 2.0 * PAI / this._div * i;
+    for (int i = 1; i <= this._div; i++) {
+      double ang = 2.0 * Math.PI / this._div * i;
       vertexs[i * 3 + 3 + this._div * 3] = this._r * (float)Math.cos(ang);
       vertexs[i * 3 + 4 + this._div * 3] = -this._height / 2.0f;
       vertexs[i * 3 + 5 + this._div * 3] = this._r * (float)Math.sin(ang);
@@ -90,29 +82,29 @@ public class JoglCylinder implements JoglObject {
     //インデックスバッファの生成
     byte[] indexs = new byte[this._div * 12];
     
-    for (i = 1; i <= this._div; i++) {
+    for (int i = 1; i <= this._div; i++) {
       indexs[3 * i - 3] = 0;
     }
     
-    for (i = 1; i <= this._div; i++) {
+    for (int i = 1; i <= this._div; i++) {
       indexs[3 * i - 2] = (byte)i;
     }
     
-    for (i = 1; i <= this._div-1; i++) {
+    for (int i = 1; i <= this._div-1; i++) {
       indexs[3 * i - 1] = (byte)(i + 1);
     }
     
     indexs[3 * this._div - 1] = 1;
     
-    for (i = 1; i <= this._div; i++) {
+    for (int i = 1; i <= this._div; i++) {
       indexs[this._div * 3 + 3 * i - 3] = (byte)(1 + this._div);
     }
     
-    for (i = 1; i <= this._div; i++) {
+    for (int i = 1; i <= this._div; i++) {
       indexs[this._div * 3 + 3 * i - 2] = (byte)(i + 1 + this._div);
     }
     
-    for (i = 1; i <= this._div-1; i++) {
+    for (int i = 1; i <= this._div-1; i++) {
       indexs[this._div * 3 + 3 * i - 1] = (byte)(i + 2 + this._div);
     }
     
@@ -120,29 +112,29 @@ public class JoglCylinder implements JoglObject {
 
     //側面
 
-    for (i = 1; i <= this._div; i++) {
+    for (int i = 1; i <= this._div; i++) {
       indexs[this._div * 6 + 3 * i - 3] = (byte)(this._div + 1 + i);
     }
     
-    for (i = 1; i <= this._div; i++) {
+    for (int i = 1; i <= this._div; i++) {
       indexs[this._div * 6 + 3 * i - 2] = (byte)i;
     }
     
-    for (i = 1; i <= this._div - 1; i++) {
+    for (int i = 1; i <= this._div - 1; i++) {
       indexs[this._div * 6 + 3 * i - 1] = (byte)(i + 1);
     }
 
     indexs[this._div * 9 - 1] = 1;
 
-    for (i = 1; i <= this._div; i++) {
+    for (int i = 1; i <= this._div; i++) {
       indexs[this._div * 9 + 3 * i - 3] = (byte)(i);
     }
 
-    for (i = 1; i <= this._div; i++) {
+    for (int i = 1; i <= this._div; i++) {
       indexs[this._div * 9 + 3 * i - 2] = (byte)(i + 1 + this._div);
     }
     
-    for (i = 1; i <= this._div - 1; i++) {
+    for (int i = 1; i <= this._div - 1; i++) {
       indexs[this._div * 9 + 3 * i - 1] = (byte)(i + 2 + this._div);
     }
 
@@ -253,5 +245,4 @@ public class JoglCylinder implements JoglObject {
   public void setColor(String color) {
     this._color = color;
   }
-
 }

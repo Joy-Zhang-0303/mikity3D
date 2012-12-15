@@ -13,7 +13,6 @@ import javax.media.opengl.GL;
  * @version $Revision$, 2012/01/20
  */
 public class JoglBranchGroup implements JoglObject {
-
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
   /** 座標系 */
@@ -49,13 +48,12 @@ public class JoglBranchGroup implements JoglObject {
    * {@inheritDoc}
    */
   public void apply(GL gl) {
-    for (int i = 0; i < this.objects.size(); i++) {
-      final JoglObject object = this.objects.get(i);
+    for (final JoglObject object : this.objects) {
       object.apply(gl);
     }
-    for (int i = 0; i < this.transfromGroups.size(); i++) {
-      final JoglTransformGroup tg = this.transfromGroups.get(i);
-      tg.apply(gl);
+    
+    for (final JoglTransformGroup group : this.transfromGroups) {
+      group.apply(gl);
     }
 
   }
