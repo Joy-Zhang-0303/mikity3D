@@ -26,16 +26,16 @@ public class Java3dViewpoint {
   /**
    * コンストラクター
    * 
-   * @param orientation 視点の方向
+   * @param orientationAngle 視点の方向と角度
    * @param position 視点の位置
    * @param universe 空間
    */
-  public Java3dViewpoint(AxisAngle4f orientation, Vector3f position, SimpleUniverse universe) {
+  public Java3dViewpoint(AxisAngle4f orientationAngle, Vector3f position, SimpleUniverse universe) {
     final ViewingPlatform viewPoint = universe.getViewingPlatform();
     this.viewPointTranform = viewPoint.getViewPlatformTransform();
 
     // ビューポイントのセット
-    setViewpoint(orientation, position);
+    setViewpoint(orientationAngle, position);
   }
 
   /**
@@ -78,12 +78,12 @@ public class Java3dViewpoint {
   /**
    * 視点の位置と方向を設定します。
    * 
-   * @param orientation 方向
+   * @param orientationAngle 方向と角度
    * @param position 位置
    */
-  public void setViewpoint(AxisAngle4f orientation, Vector3f position) {
+  public void setViewpoint(AxisAngle4f orientationAngle, Vector3f position) {
     final Transform3D transform1 = new Transform3D();
-    transform1.setRotation(orientation);
+    transform1.setRotation(orientationAngle);
     final Transform3D transform2 = new Transform3D();
     transform2.setTranslation(position);
 

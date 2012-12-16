@@ -11,7 +11,9 @@ import org.mklab.mikity.xml.Jamast;
  * @version $Revision$, 2012/01/12
  */
 public class Java3dModeler extends AbstractModeler {
+  /** キャンバス */
   private Java3dModelCanvas canvas;
+  
   /**
    * Initialize the generated object of {@link Java3dModeler}.
    * @param parent 親

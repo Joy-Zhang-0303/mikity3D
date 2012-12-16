@@ -134,24 +134,24 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    * @param tg 追加対象ノード
    */
   private void initializeMouse(final Java3dTransformGroup tg) {
-    final float radius = 100f;
-
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 
-    final BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), radius);
+    final Point3d center = new Point3d(0.0, 0.0, 0.0);
+    final float radius = 100f;
+    final BoundingSphere bounding = new BoundingSphere(center, radius);
 
     final MouseZoom zoom = new MouseZoom(tg);
-    zoom.setSchedulingBounds(bounds);
+    zoom.setSchedulingBounds(bounding);
     tg.addChild(zoom);
 
-    final MouseRotate rotate = new MouseRotate(tg);
-    rotate.setSchedulingBounds(bounds);
-    tg.addChild(rotate);
+    final MouseRotate rotation = new MouseRotate(tg);
+    rotation.setSchedulingBounds(bounding);
+    tg.addChild(rotation);
 
-    final MouseTranslate translate = new MouseTranslate(tg);
-    translate.setSchedulingBounds(bounds);
-    tg.addChild(translate);
+    final MouseTranslate translation = new MouseTranslate(tg);
+    translation.setSchedulingBounds(bounding);
+    tg.addChild(translation);
   }
 
   /**
@@ -196,9 +196,9 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     }
 
     // 背景色をセット
-    final org.mklab.mikity.xml.config.Background loadedBackgroundColor = configuration.loadBackground();
-    if (loadedBackgroundColor != null) {
-      this.backgroundColor = ColorConstant.getColor(loadedBackgroundColor.loadColor());
+    final org.mklab.mikity.xml.config.Background loadedBackground = configuration.loadBackground();
+    if (loadedBackground != null) {
+      this.backgroundColor = ColorConstant.getColor(loadedBackground.loadColor());
     } else {
       this.backgroundColor = ColorConstant.getColor("white"); //$NON-NLS-1$
     }
@@ -210,14 +210,14 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
       this.lightLocation = new Vector3f(light.loadX(), light.loadY(), light.loadZ());
     }
 
-    // 視点の位置と向きをセット
+    // 視点の位置と方向をセット
     final View loadedViewPoint = configuration.loadView();
     if (loadedViewPoint != null) {
       this.viewPoint = new Java3dViewpoint(this.universe, loadedViewPoint, this.mouseOperationType);
     } else {
-      final AxisAngle4f orientation = new AxisAngle4f(1.0f, 0.0f, 0.0f, -0.2f);
+      final AxisAngle4f orientationAngle = new AxisAngle4f(1.0f, 0.0f, 0.0f, -0.2f);
       final Vector3f position = new Vector3f(0.0f, 0.3f, 1.0f);
-      this.viewPoint = new Java3dViewpoint(orientation, position, this.universe);
+      this.viewPoint = new Java3dViewpoint(orientationAngle, position, this.universe);
     }
 
   }

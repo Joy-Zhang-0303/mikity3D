@@ -31,43 +31,35 @@ public class Java3dTransformGroupFactory {
   public Java3dTransformGroup create(final Group group) {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     
-    final XMLBox[] boxes = group.getXMLBox();
-    for (final XMLBox box : boxes) {
+    for (final XMLBox box : group.getXMLBox()) {
       tg.addChild(Java3dPrimitiveFactory.create(box));
     }
 
-    final XMLCylinder[] cylinders = group.getXMLCylinder();
-    for (final XMLCylinder cylinder : cylinders) {
+    for (final XMLCylinder cylinder : group.getXMLCylinder()) {
       tg.addChild(Java3dPrimitiveFactory.create(cylinder));
     }
 
-    final XMLSphere[] spheres = group.getXMLSphere();
-    for (final XMLSphere sphere : spheres) {
+    for (final XMLSphere sphere : group.getXMLSphere()) {
       tg.addChild(Java3dPrimitiveFactory.create(sphere));
     }
 
-    final XMLCone[] cones = group.getXMLCone();
-    for (final XMLCone cone : cones) {
+    for (final XMLCone cone : group.getXMLCone()) {
       tg.addChild(Java3dPrimitiveFactory.create(cone));
     }
 
-    final XMLConnector[] connectors = group.getXMLConnector();
-    for (final XMLConnector connector : connectors) {
+    for (final XMLConnector connector : group.getXMLConnector()) {
       tg.addChild(Java3dPrimitiveFactory.create(connector));
     }
 
-    final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygon();
-    for (final XMLTrianglePolygon polygon : trianglePolygons) {
+    for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygon()) {
       tg.addChild(Java3dPrimitiveFactory.create(polygon));
     }
 
-    final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygon();
-    for (final XMLQuadPolygon polygon : quadPolygons) {
+    for (final XMLQuadPolygon polygon : group.getXMLQuadPolygon()) {
       tg.addChild(Java3dPrimitiveFactory.create(polygon));
     }
 
-    final Group[] childGroups = group.getGroups();
-    for (final Group childGroup : childGroups) {
+    for (final Group childGroup : group.getGroups()) {
       tg.addChild(Java3dPrimitiveFactory.create(childGroup));
     }
 
