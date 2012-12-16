@@ -12,18 +12,15 @@ public class JoglDHTranslation implements JoglCoordinate {
   private double _alpha;
   private double _d;
   private double _theta;
-  
+
   /**
    * {@inheritDoc}
    */
-  @Override
-  public void apply(GL gl) {
-    
+  public void apply(GL gl) {   
     gl.glTranslated(this._a,0.0,0.0);
     gl.glRotated(this._alpha, 1.0, 0.0, 0.0);
     gl.glTranslated(0.0, 0.0, this._d);
     gl.glRotated(this._theta, 0.0, 0.0, 1.0);
-
   }
   
   /**

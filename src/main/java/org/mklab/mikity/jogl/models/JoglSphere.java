@@ -15,39 +15,35 @@ import org.mklab.mikity.jogl.JoglObject;
  * @version $Revision$, 2012/02/09
  */
 public class JoglSphere implements JoglObject {
-  /**
-   * Field _r
-   */
+  /** _r */
   @XmlAttribute
   private float _r;
 
-  /**
-   * Field _div
-   */
+  /** _div */
   @XmlAttribute
   private int _div;
 
   /** */
   protected String _color;
 
-  private FloatBuffer vertexBuffer;//頂点バッファ
-  private ByteBuffer indexBuffer;//インデックスバッファ
+  /** 頂点バッファ */
+  private FloatBuffer vertexBuffer;
+  /** インデックスバッファ */
+  private ByteBuffer indexBuffer;
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
     // TODO this._div=16までしか対応していない。
-
     this._div = 16;
 
-    float radius = this._r;
-    int grid = this._div;
-    int grid1 = grid + 1;
+    final float radius = this._r;
+    final int grid = this._div;
+    final int grid1 = grid + 1;
 
-    float incV = 2 * radius / grid;
-    int incU = 360 / grid;
+    final float incV = 2 * radius / grid;
+    final int incU = 360 / grid;
 
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
@@ -56,28 +52,28 @@ public class JoglSphere implements JoglObject {
     gl.glEnable(GL.GL_DEPTH_TEST);
 
     //頂点バッファの生成
-    float[] vertexs = new float[(2 + (grid1 - 2) * grid) * 3];
-    int cnt = 0;
-    vertexs[cnt++] = 0.0f;
-    vertexs[cnt++] = -radius;
-    vertexs[cnt++] = 0.0f;
+    final float[] vertexs = new float[(2 + (grid1 - 2) * grid) * 3];
+    int count1 = 0;
+    vertexs[count1++] = 0.0f;
+    vertexs[count1++] = -radius;
+    vertexs[count1++] = 0.0f;
 
-    float d = radius;
+    final float d = radius;
 
     for (int iv = 1; iv < grid1 - 1; ++iv) {
-      float y = iv * incV - d;
-      float r = (float)Math.sqrt(d * d - y * y);
+      final float y = iv * incV - d;
+      final float r = (float)Math.sqrt(d * d - y * y);
       for (int iu = 0; iu < grid; ++iu) {
-        float t = (float)(iu * incU * Math.PI / 180);
-        vertexs[cnt++] = (float)(r * Math.cos(t));
-        vertexs[cnt++] = y;
-        vertexs[cnt++] = (float)(r * Math.sin(t));
+        final float t = (float)(iu * incU * Math.PI / 180);
+        vertexs[count1++] = (float)(r * Math.cos(t));
+        vertexs[count1++] = y;
+        vertexs[count1++] = (float)(r * Math.sin(t));
       }
     }
 
-    vertexs[cnt++] = 0.0f;
-    vertexs[cnt++] = radius;
-    vertexs[cnt++] = 0.0f;
+    vertexs[count1++] = 0.0f;
+    vertexs[count1++] = radius;
+    vertexs[count1++] = 0.0f;
 
     this.vertexBuffer = makeFloatBuffer(vertexs);
 
@@ -87,12 +83,12 @@ public class JoglSphere implements JoglObject {
     //}
 
     //インデックスバッファの生成
-    byte[] indexs = new byte[((grid - 1) * grid * 2) * 3];
-    cnt = 0;
+    final byte[] indexs = new byte[((grid - 1) * grid * 2) * 3];
+    int count2 = 0;
     for (int iu = 0; iu < grid; ++iu) {
-      indexs[cnt++] = 0;
-      indexs[cnt++] = (byte)((iu + 1) % grid + 1);
-      indexs[cnt++] = (byte)(iu + 1);
+      indexs[count2++] = 0;
+      indexs[count2++] = (byte)((iu + 1) % grid + 1);
+      indexs[count2++] = (byte)(iu + 1);
     }
 
     for (int iv = 1; iv < grid1 - 2; ++iv) {
@@ -100,22 +96,22 @@ public class JoglSphere implements JoglObject {
         int m = (iv - 1) * grid;
 
         //TriangleA
-        indexs[cnt++] = (byte)(iu + 1 + m);
-        indexs[cnt++] = (byte)((iu + 1) % grid + 1 + m);
-        indexs[cnt++] = (byte)(iu + 1 + grid + m);
+        indexs[count2++] = (byte)(iu + 1 + m);
+        indexs[count2++] = (byte)((iu + 1) % grid + 1 + m);
+        indexs[count2++] = (byte)(iu + 1 + grid + m);
 
         //TriangleB
-        indexs[cnt++] = (byte)((iu + 1) % grid1 + grid + m);
-        indexs[cnt++] = (byte)(iu + 1 + grid + m);
-        indexs[cnt++] = (byte)((iu + 1) % grid + 1 + m);
+        indexs[count2++] = (byte)((iu + 1) % grid1 + grid + m);
+        indexs[count2++] = (byte)(iu + 1 + grid + m);
+        indexs[count2++] = (byte)((iu + 1) % grid + 1 + m);
       }
     }
 
-    int n = (2 + (grid1 - 2) * grid) - 1;
+    final int n = (2 + (grid1 - 2) * grid) - 1;
     for (int iu = n - grid; iu < n; ++iu) {
-      indexs[cnt++] = (byte)iu;
-      indexs[cnt++] = (byte)(iu % grid + n - grid);
-      indexs[cnt++] = (byte)n;
+      indexs[count2++] = (byte)iu;
+      indexs[count2++] = (byte)(iu % grid + n - grid);
+      indexs[count2++] = (byte)n;
     }
 
     this.indexBuffer = makeByteBuffer(indexs);
@@ -165,27 +161,35 @@ public class JoglSphere implements JoglObject {
     gl.glPopMatrix();
   }
 
-  //float配列をFloatBufferに変換
+  /**
+   * float配列をFloatBufferに変換
+   * @param array
+   * @return
+   */
   private static FloatBuffer makeFloatBuffer(float[] array) {
-    final FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
-    fb.put(array).position(0);
-    return fb;
+    final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    buffer.put(array).position(0);
+    return buffer;
   }
 
-  //byte配列をByteBufferに変換
+  /**
+   * byte配列をByteBufferに変換
+   * @param array
+   * @return
+   */
   private static ByteBuffer makeByteBuffer(byte[] array) {
-    final ByteBuffer bb = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
-    bb.put(array).position(0);
-    return bb;
+    final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
+    buffer.put(array).position(0);
+    return buffer;
   }
 
   /**
    * @param div 分割数
-   * @param r 半径
+   * @param radius 半径
    */
-  public void setSize(int div, float r) {
+  public void setSize(int div, float radius) {
     this._div = div;
-    this._r = r;
+    this._r = radius;
   }
 
   /**

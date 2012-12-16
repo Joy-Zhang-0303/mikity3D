@@ -16,19 +16,19 @@ import org.mklab.mikity.jogl.JoglObject;
  */
 public class JoglTriangleObject implements JoglObject {
 
+  /** 色 */
   @XmlAttribute
   private String _color;
 
   private float[][] _point = new float[3][3];
 
-  private FloatBuffer vertexBuffer;//頂点バッファ
+  /** 頂点バッファ */
+  private FloatBuffer vertexBuffer;//
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
-
     if (this._color != null) {
       if (this._color == "white") { //$NON-NLS-1$
         gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -58,43 +58,39 @@ public class JoglTriangleObject implements JoglObject {
         gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
       }
     }
-    
+
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
-    
+
     gl.glDisable(GL.GL_CULL_FACE);
-    
+
     //頂点バッファの生成
-    float[] vertexs = {
-        this._point[0][0], this._point[0][1], this._point[0][2],
-        this._point[1][0], this._point[1][1], this._point[1][2],
-        this._point[2][0], this._point[2][1], this._point[2][2],
-        };
+    final float[] vertexs = {this._point[0][0], this._point[0][1], this._point[0][2], this._point[1][0], this._point[1][1], this._point[1][2], this._point[2][0], this._point[2][1], this._point[2][2],};
 
     this.vertexBuffer = makeFloatBuffer(vertexs);
 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
     gl.glDrawArrays(GL.GL_TRIANGLES, 0, 3); //プリミティブの描画
-  
-    gl.glPopMatrix();
 
+    gl.glPopMatrix();
   }
 
-  //float配列をFloatBufferに変換
+  /**
+   * float配列をFloatBufferに変換
+   * @param array
+   * @return
+   */
   private static FloatBuffer makeFloatBuffer(float[] array) {
-    FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
-    fb.put(array).position(0);
-    return fb;
-
+    FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    buffer.put(array).position(0);
+    return buffer;
   }
 
   /**
    * @param point 座標
    */
   public void setSize(float[][] point) {
-
     this._point = point;
-
   }
 
   /**
@@ -103,5 +99,4 @@ public class JoglTriangleObject implements JoglObject {
   public void setColor(String color) {
     this._color = color;
   }
-
 }

@@ -9,47 +9,33 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision$, 2012/02/09
  */
 public class JoglLocRot implements JoglCoordinate {
-
-  /**
-   * Field _xrotate
-   */
+  /** _xrotate */
   @XmlAttribute
   private float _xrotate;
 
-  /**
-   * Field _yrotate
-   */
+  /** _yrotate */
   @XmlAttribute
   private float _yrotate;
 
-  /**
-   * Field _zrotate
-   */
+  /** _zrotate */
   @XmlAttribute
   private float _zrotate;
 
-  /**
-   * Field _x
-   */
+  /** _x */
   @XmlAttribute
   private float _x;
 
-  /**
-   * Field _y
-   */
+  /** _y*/
   @XmlAttribute
   private float _y;
 
-  /**
-   * Field _z
-   */
+  /** _z */
   @XmlAttribute
   private float _z;
 
   /**
-   * @see org.mklab.mikity.jogl.models.JoglCoordinate#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
     gl.glPushMatrix();
     gl.glTranslatef(this._x, this._y, this._z);

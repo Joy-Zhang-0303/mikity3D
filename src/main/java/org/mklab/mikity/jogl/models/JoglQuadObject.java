@@ -17,16 +17,18 @@ import org.mklab.mikity.jogl.JoglObject;
 public class JoglQuadObject implements JoglObject {
   private float[][] _point = new float[4][3];
 
+  /** 色 */
   @XmlAttribute
   private String _color;
 
-  private FloatBuffer vertexBuffer;//頂点バッファ
-  private ByteBuffer indexBuffer;//インデックスバッファ
+  /** 頂点バッファ */
+  private FloatBuffer vertexBuffer;
+  /** インデックスバッファ */
+  private ByteBuffer indexBuffer;
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
     if (this._color != null) {
       if (this._color.equals("white")) { //$NON-NLS-1$
@@ -64,12 +66,12 @@ public class JoglQuadObject implements JoglObject {
     gl.glDisable(GL.GL_CULL_FACE);
 
     //頂点バッファの生成
-    float[] vertexs = {this._point[0][0], this._point[0][1], this._point[0][2], this._point[1][0], this._point[1][1], this._point[1][2], this._point[2][0], this._point[2][1], this._point[2][2],
+    final float[] vertexs = {this._point[0][0], this._point[0][1], this._point[0][2], this._point[1][0], this._point[1][1], this._point[1][2], this._point[2][0], this._point[2][1], this._point[2][2],
         this._point[3][0], this._point[3][1], this._point[3][2],};
     this.vertexBuffer = makeFloatBuffer(vertexs);
 
     //インデックスバッファの生成
-    byte[] indexs = {0, 1, 2, 0, 2, 3};
+    final byte[] indexs = {0, 1, 2, 0, 2, 3};
     this.indexBuffer = makeByteBuffer(indexs);
 
     //頂点バッファの指定
@@ -80,20 +82,27 @@ public class JoglQuadObject implements JoglObject {
 
     gl.glPopMatrix();
   }
-
-  //float配列をFloatBufferに変換
+  
+  /**
+   * float配列をFloatBufferに変換
+   * @param array
+   * @return
+   */
   private static FloatBuffer makeFloatBuffer(float[] array) {
-    final FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
-    fb.put(array).position(0);
-    return fb;
+    final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    buffer.put(array).position(0);
+    return buffer;
 
   }
-
-  //byte配列をByteBufferに変換
+  /**
+   * byte配列をByteBufferに変換
+   * @param array
+   * @return
+   */
   private static ByteBuffer makeByteBuffer(byte[] array) {
-    final ByteBuffer bb = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
-    bb.put(array).position(0);
-    return bb;
+    final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
+    buffer.put(array).position(0);
+    return buffer;
   }
 
   /**

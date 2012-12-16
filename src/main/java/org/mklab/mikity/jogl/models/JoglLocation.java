@@ -9,35 +9,28 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision$, 2012/02/07
  */
 public class JoglLocation implements JoglCoordinate {
-  /**
-   * Field _x
-   */
+  /** _x */
   @XmlAttribute
   private float _x;
 
-  /**
-   * Field _y
-   */
+  /** _y */
   @XmlAttribute
   private float _y;
 
-  /**
-   * Field _z
-   */
+  /** _z */
   @XmlAttribute
   private float _z;
 
   /**
-   * @see org.mklab.mikity.jogl.models.JoglCoordinate#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
     gl.glPushMatrix();
     gl.glTranslatef(this._x, this._y, this._z);
   }
 
   /**
-   * 位置を設定
+   * 位置を設定します。
    * 
    * @param x x座標
    * @param y y座標
@@ -51,6 +44,7 @@ public class JoglLocation implements JoglCoordinate {
   
   /**
    * 平行移動します。
+   * 
    * @param x x座用
    * @param y y座標
    * @param z z座標

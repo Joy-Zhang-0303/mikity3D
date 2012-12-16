@@ -9,29 +9,21 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision$, 2012/02/08
  */
 public class JoglRotation implements JoglCoordinate {
-
-  /**
-   * Field _xrotate
-   */
+  /** _xrotate */
   @XmlAttribute
   private float _xrotate;
 
-  /**
-   * Field _yrotate
-   */
+  /** _yrotate */
   @XmlAttribute
   private float _yrotate;
 
-  /**
-   * Field _zrotate
-   */
+  /** _zrotate */
   @XmlAttribute
   private float _zrotate;
 
   /**
-   * @see org.mklab.mikity.jogl.models.JoglCoordinate#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
     gl.glPushMatrix();
     if (this._xrotate != 0.0f) {
@@ -46,26 +38,26 @@ public class JoglRotation implements JoglCoordinate {
   }
 
   /**
-   * @param x x軸に関する回転角
-   * @param y y軸に関する回転角
-   * @param z z軸に関する回転角
+   * @param xRotation x軸に関する回転角
+   * @param yRotation y軸に関する回転角
+   * @param zRotation z軸に関する回転角
    */
-  public void setRotation(float x, float y, float z) {
-    this._xrotate = x;
-    this._yrotate = y;
-    this._zrotate = z;
+  public void setRotation(float xRotation, float yRotation, float zRotation) {
+    this._xrotate = xRotation;
+    this._yrotate = yRotation;
+    this._zrotate = zRotation;
   }
 
   /**
    * 回転します。
    * 
-   * @param x x軸に関する回転角
-   * @param y y軸に関する回転角
-   * @param z z軸に関する回転角
+   * @param xRotation x軸に関する回転角
+   * @param yRotation y軸に関する回転角
+   * @param zRotation z軸に関する回転角
    */
-  public void rotate(float x, float y, float z) {
-    this._xrotate += x;
-    this._yrotate += y;
-    this._zrotate += z;
+  public void rotate(float xRotation, float yRotation, float zRotation) {
+    this._xrotate += xRotation;
+    this._yrotate += yRotation;
+    this._zrotate += zRotation;
   }
 }

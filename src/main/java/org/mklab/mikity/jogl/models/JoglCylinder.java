@@ -15,34 +15,29 @@ import org.mklab.mikity.jogl.JoglObject;
  * @version $Revision$, 2012/01/31
  */
 public class JoglCylinder implements JoglObject {
-  /**
-   * Field _r
-   */
+  /** r */
   @XmlAttribute
   protected float _r;
 
-  /**
-   * Field _height
-   */
+  /** height */
   @XmlAttribute
   protected float _height;
 
-  /**
-   * Field _div
-   */
+  /** _div */
   @XmlAttribute
   protected int _div;
 
   @XmlAttribute
   private String _color;
 
-  private FloatBuffer vertexBuffer;//頂点バッファ
-  private ByteBuffer indexBuffer;//インデックスバッファ
+  /** 頂点バッファ */
+  private FloatBuffer vertexBuffer;
+  /** インデックスバッファ */
+  private ByteBuffer indexBuffer;
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
@@ -50,7 +45,7 @@ public class JoglCylinder implements JoglObject {
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
 
-    float[] vertexs = new float[(this._div * 2 + 2) * 3];
+    final float[] vertexs = new float[(this._div * 2 + 2) * 3];
 
     // TODO 描画がおかしいですが、これ以上考えても今は案が出てこないのでPushしました。
     // TODO vertexsかindexsの配列がおかしいのかもしれません。
@@ -80,7 +75,7 @@ public class JoglCylinder implements JoglObject {
     this.vertexBuffer = makeFloatBuffer(vertexs);
 
     //インデックスバッファの生成
-    byte[] indexs = new byte[this._div * 12];
+    final byte[] indexs = new byte[this._div * 12];
     
     for (int i = 1; i <= this._div; i++) {
       indexs[3 * i - 3] = 0;
@@ -212,29 +207,37 @@ public class JoglCylinder implements JoglObject {
     gl.glPopMatrix();
   }
 
-  //float配列をFloatBufferに変換
+  /**
+   * float配列をFloatBufferに変換
+   * @param array
+   * @return
+   */
   private static FloatBuffer makeFloatBuffer(float[] array) {
-    FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
-    fb.put(array).position(0);
-    return fb;
+    final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    buffer.put(array).position(0);
+    return buffer;
 
   }
 
-  //byte配列をByteBufferに変換
+  /**
+   * byte配列をByteBufferに変換
+   * @param array
+   * @return
+   */
   private static ByteBuffer makeByteBuffer(byte[] array) {
-    ByteBuffer bb = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
-    bb.put(array).position(0);
-    return bb;
+    final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
+    buffer.put(array).position(0);
+    return buffer;
   }
 
   /**
    * @param div 分割数
-   * @param r 半径
+   * @param radius 半径
    * @param hight 高さ
    */
-  public void setSize(int div, float r, float hight) {
+  public void setSize(int div, float radius, float hight) {
     this._div = div;
-    this._r = r;
+    this._r = radius;
     this._height = hight;
 
   }
