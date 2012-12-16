@@ -79,8 +79,9 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
     addMouseMotionListener(this);
     this.root = root;
   }
+
   /**
-   * @see javax.media.opengl.GLEventListener#init(javax.media.opengl.GLAutoDrawable)
+   * {@inheritDoc}
    */
   @Override
   public void init(GLAutoDrawable drawable) {
@@ -107,7 +108,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   }
 
   /**
-   * @see javax.media.opengl.GLEventListener#display(javax.media.opengl.GLAutoDrawable)
+   * {@inheritDoc}
    */
   @Override
   public void display(GLAutoDrawable drawable) {
