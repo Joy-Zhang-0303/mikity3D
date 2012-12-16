@@ -159,8 +159,8 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    */
   public void load() {
     loadConfigurationFromXML(this.root);
-    Group[] group = this.root.loadModel(0).loadGroup();
-    setChild(group);
+    final Group[] groups = this.root.loadModel(0).loadGroup();
+    setChild(groups);
   }
 
   /**
@@ -190,13 +190,13 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    * @param aRoot
    */
   private void loadConfigurationFromXML(Jamast aRoot) {
-    final JamastConfig config = aRoot.loadConfig(0);
-    if (config == null) {
+    final JamastConfig configuration = aRoot.loadConfig(0);
+    if (configuration == null) {
       return;
     }
 
     // 背景色をセット
-    final org.mklab.mikity.xml.config.Background loadedBackgroundColor = config.loadBackground();
+    final org.mklab.mikity.xml.config.Background loadedBackgroundColor = configuration.loadBackground();
     if (loadedBackgroundColor != null) {
       this.backgroundColor = ColorConstant.getColor(loadedBackgroundColor.loadColor());
     } else {
@@ -204,18 +204,20 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     }
 
     // 光源の位置をセット
-    final Light loadedLightLocation = config.loadLight();
+    final Light loadedLightLocation = configuration.loadLight();
     if (loadedLightLocation != null) {
       final Light light = loadedLightLocation;
       this.lightLocation = new Vector3f(light.loadX(), light.loadY(), light.loadZ());
     }
 
     // 視点の位置と向きをセット
-    final View loadedViewPoint = config.loadView();
+    final View loadedViewPoint = configuration.loadView();
     if (loadedViewPoint != null) {
       this.viewPoint = new Java3dViewpoint(this.universe, loadedViewPoint, this.mouseOperationType);
     } else {
-      this.viewPoint = new Java3dViewpoint(new AxisAngle4f(1.0f, 0.0f, 0.0f, -0.2f), new Vector3f(0.0f, 0.3f, 1.0f), this.universe);
+      final AxisAngle4f orientation = new AxisAngle4f(1.0f, 0.0f, 0.0f, -0.2f);
+      final Vector3f position = new Vector3f(0.0f, 0.3f, 1.0f);
+      this.viewPoint = new Java3dViewpoint(orientation, position, this.universe);
     }
 
   }

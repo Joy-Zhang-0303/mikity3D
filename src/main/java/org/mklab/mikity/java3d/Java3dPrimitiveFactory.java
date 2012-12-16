@@ -46,6 +46,7 @@ import com.sun.j3d.utils.geometry.Sphere;
  * @version $Revision: 1.21 $.2004/11/30
  */
 public class Java3dPrimitiveFactory {
+
   /** 透明度の設定 */
   private static TransparencyAttributes transAttr = new TransparencyAttributes(TransparencyAttributes.NICEST, 0.7f);
 
@@ -55,7 +56,7 @@ public class Java3dPrimitiveFactory {
    * @param group グループ
    * @return tg トランスフォームグループ
    */
-  public static Java3dTransformGroup create(Group group) { 
+  public static Java3dTransformGroup create(Group group) {
     return new Java3dTransformGroupFactory().create(group);
   }
 
@@ -82,7 +83,7 @@ public class Java3dPrimitiveFactory {
     final Location location = box.loadLocation();
     final Rotation rotation = box.loadRotation();
 
-    applyLocationRotation(location, rotation, tg);
+    transform(location, rotation, tg);
 
     return tg;
   }
@@ -113,7 +114,7 @@ public class Java3dPrimitiveFactory {
     final Location location = cylinder.loadLocation();
     final Rotation rotation = cylinder.loadRotation();
 
-    applyLocationRotation(location, rotation, tg);
+    transform(location, rotation, tg);
 
     return tg;
   }
@@ -126,7 +127,7 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLSphere sphere) {
     final int flag = Primitive.GENERATE_NORMALS;
-    if (sphere.loadDiv() < 3) { 
+    if (sphere.loadDiv() < 3) {
       sphere.setDiv(10);
     }
     final Primitive primitive = new Sphere(sphere.loadR(), flag, sphere.loadDiv(), null);
@@ -144,7 +145,7 @@ public class Java3dPrimitiveFactory {
     final Location location = sphere.loadLocation();
     final Rotation rotation = sphere.loadRotation();
 
-    applyLocationRotation(location, rotation, tg);
+    transform(location, rotation, tg);
 
     return tg;
   }
@@ -157,7 +158,7 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLCone cone) {
     final int flag = Primitive.GENERATE_NORMALS;
-    if (cone.loadDiv() < 3) { 
+    if (cone.loadDiv() < 3) {
       cone.setDiv(10);
     }
     final Primitive primitive = new Cone(cone.loadR(), cone.loadHeight(), flag, cone.loadDiv(), cone.loadDiv(), null);
@@ -175,7 +176,7 @@ public class Java3dPrimitiveFactory {
     final Location location = cone.loadLocation();
     final Rotation rotation = cone.loadRotation();
 
-    applyLocationRotation(location, rotation, tg);
+    transform(location, rotation, tg);
 
     return tg;
   }
@@ -202,7 +203,7 @@ public class Java3dPrimitiveFactory {
     final Location location = connector.loadLocation();
     final Rotation rotation = connector.loadRotation();
 
-    applyLocationRotation(location, rotation, tg);
+    transform(location, rotation, tg);
 
     return tg;
   }
@@ -252,8 +253,8 @@ public class Java3dPrimitiveFactory {
     final Location location = triangle.loadLocation();
     final Rotation rotation = triangle.loadRotation();
     final Matrix4f matrix = triangle.loadMatrix();
-    applyMatrix(matrix, tg);
-    applyLocationRotation(location, rotation, tg);
+    transform(matrix, tg);
+    transform(location, rotation, tg);
     return tg;
   }
 
@@ -303,19 +304,19 @@ public class Java3dPrimitiveFactory {
     final Location location = quad.loadLocation();
     final Rotation rotation = quad.loadRotation();
     final Matrix4f matrix = quad.loadMatrix();
-    applyMatrix(matrix, tg);
-    applyLocationRotation(location, rotation, tg);
+    transform(matrix, tg);
+    transform(location, rotation, tg);
     return tg;
   }
 
   /**
-   * 単位を考慮して、渡されたtgに 回転移動、平行移動を行って返します。
+   * 単位を考慮して、渡されたtgに 回転変換と平行変換を適用します。
    * 
    * @param location 平行移動
    * @param rotation 回転移動
    * @param tg
    */
-  private static void applyLocationRotation(Location location, Rotation rotation, Java3dTransformGroup tg) {
+  private static void transform(Location location, Rotation rotation, Java3dTransformGroup tg) {
     if (rotation != null) {
       if (Util.radian == false) {
         tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rotation.loadXrotate())));
@@ -333,24 +334,24 @@ public class Java3dPrimitiveFactory {
   }
 
   /**
-   * 単位を考慮して、渡されたtgに 回転移動、平行移動を行って返します。
+   * 単位を考慮して、渡されたtgに 回転変換と平行変換を適用します。
    * 
    * @param tg
    */
-  private static void applyMatrix(Matrix4f matrix, Java3dTransformGroup tg) {
+  private static void transform(Matrix4f matrix, Java3dTransformGroup tg) {
     if (matrix != null) {
-      Matrix3f mat3 = new Matrix3f();
-      mat3.setElement(0,0,matrix.getElement(0,3));
-      mat3.setElement(0,1,matrix.getElement(0,1));
-      mat3.setElement(0,2,matrix.getElement(0,2));
-      mat3.setElement(1,0,matrix.getElement(1,0));
-      mat3.setElement(1,1,matrix.getElement(1,1));
-      mat3.setElement(1,2,matrix.getElement(1,2));
-      mat3.setElement(2,0,matrix.getElement(2,0));
-      mat3.setElement(2,1,matrix.getElement(2,1));
-      mat3.setElement(2,2,matrix.getElement(2,2));
-      tg.rotate(mat3);
-      tg.translate(new Vector3f(matrix.getElement(0,3) / matrix.getScale(), matrix.getElement(1,33) / matrix.getScale(), matrix.getElement(2,3) / matrix.getScale()));
+      final Matrix3f matrix3 = new Matrix3f();
+      matrix3.setElement(0, 0, matrix.getElement(0, 3));
+      matrix3.setElement(0, 1, matrix.getElement(0, 1));
+      matrix3.setElement(0, 2, matrix.getElement(0, 2));
+      matrix3.setElement(1, 0, matrix.getElement(1, 0));
+      matrix3.setElement(1, 1, matrix.getElement(1, 1));
+      matrix3.setElement(1, 2, matrix.getElement(1, 2));
+      matrix3.setElement(2, 0, matrix.getElement(2, 0));
+      matrix3.setElement(2, 1, matrix.getElement(2, 1));
+      matrix3.setElement(2, 2, matrix.getElement(2, 2));
+      tg.rotate(matrix3);
+      tg.translate(new Vector3f(matrix.getElement(0, 3) / matrix.getScale(), matrix.getElement(1, 33) / matrix.getScale(), matrix.getElement(2, 3) / matrix.getScale()));
     }
   }
 

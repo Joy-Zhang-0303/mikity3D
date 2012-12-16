@@ -22,10 +22,10 @@ public class Java3dDirectionalLight extends BranchGroup {
    * コンストラクター
    * 
    * @param color 色
-   * @param direction ベクトル
+   * @param orientaion 方向
    */
-  public Java3dDirectionalLight(Color3f color, Vector3f direction) {
-    final DirectionalLight light = new DirectionalLight(color, direction);
+  public Java3dDirectionalLight(Color3f color, Vector3f orientaion) {
+    final DirectionalLight light = new DirectionalLight(color, orientaion);
 
     // 影響範囲の設定
     final BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), this.radius);

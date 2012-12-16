@@ -21,36 +21,36 @@ import com.sun.j3d.utils.universe.ViewingPlatform;
  * @version $Revision: 1.4 $.2005/11/22
  */
 public class Java3dViewpoint {
-  private TransformGroup vpTg = null;
+  private TransformGroup viewPointTranform = null;
 
   /**
    * コンストラクター
    * 
-   * @param angle4f アングル
-   * @param vector3f ベクトル
-   * @param universe2 空間
+   * @param orientation 視点の方向
+   * @param position 視点の位置
+   * @param universe 空間
    */
-  public Java3dViewpoint(AxisAngle4f angle4f, Vector3f vector3f, SimpleUniverse universe2) {
-    final ViewingPlatform viewPoint = universe2.getViewingPlatform();
-    this.vpTg = viewPoint.getViewPlatformTransform();
+  public Java3dViewpoint(AxisAngle4f orientation, Vector3f position, SimpleUniverse universe) {
+    final ViewingPlatform viewPoint = universe.getViewingPlatform();
+    this.viewPointTranform = viewPoint.getViewPlatformTransform();
 
     // ビューポイントのセット
-    setViewpoint(angle4f, vector3f);
+    setViewpoint(orientation, position);
   }
 
   /**
    * 
    * コンストラクター
    * 
-   * @param uni 空間
+   * @param universe 空間
    * @param view 視点
-   * @param mouseOperationType マウスの操作タイプ
+   * @param type マウスの操作タイプ
    */
-  public Java3dViewpoint(SimpleUniverse uni, View view, int mouseOperationType) {
-    final ViewingPlatform vp = uni.getViewingPlatform();
+  public Java3dViewpoint(SimpleUniverse universe, View view, int type) {
+    final ViewingPlatform viewPoint = universe.getViewingPlatform();
     
-    this.vpTg = vp.getViewPlatformTransform();
-    if (mouseOperationType == 0) {
+    this.viewPointTranform = viewPoint.getViewPlatformTransform();
+    if (type == 0) {
       // 視点方向の設定
       final Transform3D transform1 = new Transform3D();
       transform1.setRotation(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(view.loadXrotate())));
@@ -71,20 +71,19 @@ public class Java3dViewpoint {
       transform1.mul(transform4);
 
       // 座標変換されえた視点座標系の設定
-      this.vpTg.setTransform(transform1);
+      this.viewPointTranform.setTransform(transform1);
     }
   }
 
   /**
-   * 視点の設定を行う。
+   * 視点の位置と方向を設定します。
    * 
-   * @param angle 視点
+   * @param orientation 方向
    * @param position 位置
    */
-  public void setViewpoint(AxisAngle4f angle, Vector3f position) {
-    // 視点位置＆方向を設定
+  public void setViewpoint(AxisAngle4f orientation, Vector3f position) {
     final Transform3D transform1 = new Transform3D();
-    transform1.setRotation(angle);
+    transform1.setRotation(orientation);
     final Transform3D transform2 = new Transform3D();
     transform2.setTranslation(position);
 
@@ -92,7 +91,7 @@ public class Java3dViewpoint {
     transform2.mul(transform1);
 
     // 座標変換された視点座標系の設定
-    this.vpTg.setTransform(transform2);
+    this.viewPointTranform.setTransform(transform2);
   }
 
 }

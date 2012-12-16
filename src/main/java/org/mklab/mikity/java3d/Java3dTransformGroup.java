@@ -60,16 +60,16 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
   /**
    * モデルの回転移動の演算を行います。
    * 
-   * @param angle 角度
+   * @param orientationAngle 方向と角度
    */
-  public void rotate(AxisAngle4f angle) {
+  public void rotate(AxisAngle4f orientationAngle) {
     // 座標系の変換行列の取得
     final Transform3D transform1 = new Transform3D();
     this.getTransform(transform1);
 
     // 新たな回転行列の設定
     final Transform3D transform2 = new Transform3D();
-    transform2.setRotation(angle);
+    transform2.setRotation(orientationAngle);
 
     // 回転行列の乗算
     transform2.mul(transform1);

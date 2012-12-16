@@ -23,17 +23,12 @@ public class Java3dModeler extends AbstractModeler {
   }
 
   /**
-   * GroupをsinsiCanvasに読み込ませ、Frameにaddする
-   * 
-   * @version $Revision: 1.22 $.2005/01/25
-   */
-  /**
    * {@inheritDoc}
    */
   @Override
   public void createViewer() {
-    final org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
-    this.canvas.setChild(group); 
+    final org.mklab.mikity.xml.model.Group[] groups = this.tree.getModel().loadGroup();
+    this.canvas.setChild(groups); 
   }
 
   /**
