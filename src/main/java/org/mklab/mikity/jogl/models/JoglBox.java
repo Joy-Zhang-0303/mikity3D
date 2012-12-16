@@ -25,11 +25,11 @@ public class JoglBox implements JoglObject {
   @XmlAttribute
   private float _ysize;
 
-  /** 　_zsize */
+  /** _zsize */
   @XmlAttribute
   private float _zsize;
 
-  /** */
+  /** 色 */
   @XmlAttribute
   private String _color;
 
@@ -48,10 +48,10 @@ public class JoglBox implements JoglObject {
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
 
-    final float[] vertexs = {this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, -this._ysize / 2, this._zsize / 2,
+    final float[] vertices = {this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, -this._ysize / 2, this._zsize / 2,
         this._xsize / 2, -this._ysize / 2, this._zsize / 2, this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2,
         -this._ysize / 2, -this._zsize / 2, this._xsize / 2, -this._ysize / 2, -this._zsize / 2,};
-    this.vertexBuffer = makeFloatBuffer(vertexs);
+    this.vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
     final byte[] indices = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
@@ -139,6 +139,7 @@ public class JoglBox implements JoglObject {
   }
 
   /**
+   * 色を設定します。
    * @param color 色
    */
   public void setColor(String color) {

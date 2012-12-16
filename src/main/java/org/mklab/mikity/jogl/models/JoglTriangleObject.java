@@ -23,7 +23,7 @@ public class JoglTriangleObject implements JoglObject {
   private float[][] _point = new float[3][3];
 
   /** 頂点バッファ */
-  private FloatBuffer vertexBuffer;//
+  private FloatBuffer vertexBuffer;
 
   /**
    * {@inheritDoc}
@@ -65,9 +65,9 @@ public class JoglTriangleObject implements JoglObject {
     gl.glDisable(GL.GL_CULL_FACE);
 
     //頂点バッファの生成
-    final float[] vertexs = {this._point[0][0], this._point[0][1], this._point[0][2], this._point[1][0], this._point[1][1], this._point[1][2], this._point[2][0], this._point[2][1], this._point[2][2],};
+    final float[] vertices = {this._point[0][0], this._point[0][1], this._point[0][2], this._point[1][0], this._point[1][1], this._point[1][2], this._point[2][0], this._point[2][1], this._point[2][2],};
 
-    this.vertexBuffer = makeFloatBuffer(vertexs);
+    this.vertexBuffer = makeFloatBuffer(vertices);
 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
     gl.glDrawArrays(GL.GL_TRIANGLES, 0, 3); //プリミティブの描画
@@ -81,19 +81,20 @@ public class JoglTriangleObject implements JoglObject {
    * @return
    */
   private static FloatBuffer makeFloatBuffer(float[] array) {
-    FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     buffer.put(array).position(0);
     return buffer;
   }
 
   /**
-   * @param point 座標
+   * @param points 点
    */
-  public void setSize(float[][] point) {
-    this._point = point;
+  public void setSize(float[][] points) {
+    this._point = points;
   }
 
   /**
+   * 色を設定します。
    * @param color 色
    */
   public void setColor(String color) {

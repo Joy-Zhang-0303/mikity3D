@@ -180,6 +180,7 @@ public class JoglSphere implements JoglObject {
   }
 
   /**
+   * 大きさを設定します。
    * @param div 分割数
    * @param radius 半径
    */
@@ -189,6 +190,7 @@ public class JoglSphere implements JoglObject {
   }
 
   /**
+   * 色を設定します。
    * @param color 色
    */
   public void setColor(String color) {

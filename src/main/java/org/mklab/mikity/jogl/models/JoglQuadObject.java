@@ -92,8 +92,8 @@ public class JoglQuadObject implements JoglObject {
     final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     buffer.put(array).position(0);
     return buffer;
-
   }
+  
   /**
    * byte配列をByteBufferに変換
    * @param array
@@ -106,7 +106,7 @@ public class JoglQuadObject implements JoglObject {
   }
 
   /**
-   * @param points 座標
+   * @param points 点
    */
   public void setSize(float[][] points) {
     this._point = points;
