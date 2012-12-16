@@ -17,25 +17,25 @@ public class JoglModelCreater {
   /**
    * オブジェクトのグループを生成します。
    * 
-   * @param group グループ
+   * @param groups グループ
    * 
    * @return オブジェクトのグループ
    */
-  public JoglBranchGroup[] create(Group[] group) {
+  public JoglBranchGroup[] create(Group[] groups) {
     final JoglBranchGroup bg = new JoglBranchGroup();
 
     final JoglTransformGroup tg = new JoglTransformGroup();
-    for (int i = 0; i < group.length; i++) {
-      final JoglTransformGroup child = JoglPrimitiveFactory.create(group[i]);
+    for (final Group group : groups) {
+      final JoglTransformGroup child = JoglPrimitiveFactory.create(group);
       tg.addChild(child);
     }
 
     bg.addChild(tg); ///////
     
-    final List<JoglBranchGroup> groups = new ArrayList<JoglBranchGroup>();
-    groups.add(bg);
+    final List<JoglBranchGroup> branchGroups = new ArrayList<JoglBranchGroup>();
+    branchGroups.add(bg);
 
-    return groups.toArray(new JoglBranchGroup[groups.size()]);
+    return branchGroups.toArray(new JoglBranchGroup[branchGroups.size()]);
   }
 
 }

@@ -132,37 +132,31 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   }
 
   /**
-   * 
+   * {@inheritDoc}
    */
-  @Override
   public void load(){
-    Group[] group = this.root.loadModel(0).loadGroup();
+    final Group[] group = this.root.loadModel(0).loadGroup();
     setChild(group);
   }
-  
+
   /**
-   * オブジェクトのグループを設定します。
-   * 
-   * @param group オブジェクトのグループ
+   * {@inheritDoc}
    */
-  @Override
   public void setChild(Group[] group) {
-    JoglBranchGroup[] branchGroup = new JoglModelCreater().create(group);
+    final JoglBranchGroup[] branchGroup = new JoglModelCreater().create(group);
     this.groups = branchGroup;
   }
 
   /**
    * {@inheritDoc}
    */
-  @Override
   public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
     // nothing to do
   }
 
   /**
-   * @see javax.media.opengl.GLEventListener#reshape(javax.media.opengl.GLAutoDrawable, int, int, int, int)
+   * {@inheritDoc}
    */
-  @Override
   public void reshape(GLAutoDrawable drawable, int x, int y, int w, int h) {
     final GL gl = drawable.getGL();
     //
@@ -174,11 +168,9 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   }
 
   /**
-   * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+   * {@inheritDoc}
    */
-  @Override
   public void mousePressed(MouseEvent e) {
-
     if (SwingUtilities.isLeftMouseButton(e) == true) {
       this.s_rotx = this.rotx;
       this.s_roty = this.roty;
@@ -208,41 +200,36 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   }
 
   /**
-   * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+   * {@inheritDoc}
    */
-  @Override
   public void mouseClicked(MouseEvent e) {
     // nothing to do
   }
 
   /**
-   * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+   * {@inheritDoc}
    */
-  @Override
   public void mouseEntered(MouseEvent e) {
     // nothing to do
   }
 
   /**
-   * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+   * {@inheritDoc}
    */
-  @Override
   public void mouseExited(MouseEvent e) {
     // nothing to do
   }
 
   /**
-   * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+   * {@inheritDoc}
    */
-  @Override
   public void mouseReleased(MouseEvent e) {
     // nothing to do
   }
 
   /**
-   * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
+   * {@inheritDoc}
    */
-  @Override
   public void mouseDragged(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e)) {
       this.end_point = getMousePosition(true);
@@ -259,14 +246,13 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
       if (this.start_point == null) {
         this.start_point = new Point(this.end_point);
       }
-      int z = Math.abs(this.end_point.y - this.start_point.y);
+      final int z = Math.abs(this.end_point.y - this.start_point.y);
       if (this.end_point.y > this.start_point.y) {
         this.scale = this.s_scale - z / 25.0f;
       } else {
         this.scale = this.s_scale + z / 25.0f;
       }
       this.display();
-
     }
     
     if (SwingUtilities.isRightMouseButton(e) == true) {
@@ -281,11 +267,9 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   }
 
   /**
-   * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
+   * {@inheritDoc}
    */
-  @Override
   public void mouseMoved(MouseEvent e) {
     // nothing to do
   }
-
 }

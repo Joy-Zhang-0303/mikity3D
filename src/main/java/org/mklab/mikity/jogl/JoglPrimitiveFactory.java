@@ -52,48 +52,15 @@ public class JoglPrimitiveFactory {
    * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
    */
   public static JoglTransformGroup create(XMLBox box) {
-    float xsize = box.loadXsize();
-    float ysize = box.loadYsize();
-    float zsize = box.loadZsize();
+    final float xsize = box.loadXsize();
+    final float ysize = box.loadYsize();
+    final float zsize = box.loadZsize();
     final String color = box.loadColor();
     final JoglBox child = new JoglBox();
     child.setColor(color);
     child.setSize(xsize, ysize, zsize);
 
     final JoglTransformGroup tg = new JoglTransformGroup();
-
-    //    if (parameters == null && links == null) {
-    //      if (box.loadLocation() != null && box.loadRotation() != null) {
-    //        float xloc = box.loadLocation().loadX();
-    //        float yloc = box.loadLocation().loadY();
-    //        float zloc = box.loadLocation().loadZ();
-    //        float xrot = box.loadRotation().loadXrotate();
-    //        float yrot = box.loadRotation().loadYrotate();
-    //        float zrot = box.loadRotation().loadZrotate();
-    //        JoglLocRot loc = new JoglLocRot();
-    //        loc.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
-    //        tg.setCoordinate(loc);
-    //
-    //      } else if (box.loadLocation() != null && box.loadRotation() == null) {
-    //        float xloc = box.loadLocation().loadX();
-    //        float yloc = box.loadLocation().loadY();
-    //        float zloc = box.loadLocation().loadZ();
-    //        JoglLocation loc = new JoglLocation();
-    //        loc.setLocation(xloc, yloc, zloc);
-    //        tg.setCoordinate(loc);
-    //      } else if (box.loadLocation() == null && box.loadRotation() != null) {
-    //        float xrot = box.loadRotation().loadXrotate();
-    //        float yrot = box.loadRotation().loadYrotate();
-    //        float zrot = box.loadRotation().loadZrotate();
-    //        JoglRotation rot = new JoglRotation();
-    //        rot.setRotation(xrot, yrot, zrot);
-    //        tg.setCoordinate(rot);
-    //      }
-    //    }else if (parameters == null) {
-    //      setDHParameter(parameters, tg);
-    //    } else if (links != null) {
-    //      setLinkParameter(links, tg);
-    //    }
 
     final Location boxLocation = box.loadLocation();
     final Rotation boxRotation = box.loadRotation();
@@ -125,7 +92,7 @@ public class JoglPrimitiveFactory {
     }
 
     tg.addChild(child);
-
+    
     return tg;
   }
 
@@ -135,39 +102,6 @@ public class JoglPrimitiveFactory {
    */
   public static JoglTransformGroup create(XMLCylinder cylinder) {
     final JoglTransformGroup tg = new JoglTransformGroup();
-
-    //    if (parameters == null && links == null) {
-    //      if (cylinder.loadLocation() != null && cylinder.loadRotation() != null) {
-    //        float xloc = cylinder.loadLocation().loadX();
-    //        float yloc = cylinder.loadLocation().loadY();
-    //        float zloc = cylinder.loadLocation().loadZ();
-    //        float xrot = cylinder.loadRotation().loadXrotate();
-    //        float yrot = cylinder.loadRotation().loadYrotate();
-    //        float zrot = cylinder.loadRotation().loadZrotate();
-    //        JoglLocRot loc = new JoglLocRot();
-    //        loc.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
-    //        tg.setCoordinate(loc);
-    //
-    //      } else if (cylinder.loadLocation() != null && cylinder.loadRotation() == null) {
-    //        float xloc = cylinder.loadLocation().loadX();
-    //        float yloc = cylinder.loadLocation().loadY();
-    //        float zloc = cylinder.loadLocation().loadZ();
-    //        JoglLocation loc = new JoglLocation();
-    //        loc.setLocation(xloc, yloc, zloc);
-    //        tg.setCoordinate(loc);
-    //      } else if (cylinder.loadLocation() == null && cylinder.loadRotation() != null) {
-    //        float xrot = cylinder.loadRotation().loadXrotate();
-    //        float yrot = cylinder.loadRotation().loadYrotate();
-    //        float zrot = cylinder.loadRotation().loadZrotate();
-    //        JoglRotation rot = new JoglRotation();
-    //        rot.setRotation(xrot, yrot, zrot);
-    //        tg.setCoordinate(rot);
-    //      }
-    //    }else if (parameters == null) {
-    //      setDHParameter(parameters, tg);
-    //    } else if (links != null) {
-    //      setLinkParameter(links, tg);
-    //    }
 
     final Location cylinderLocation = cylinder.loadLocation();
     final Rotation cylinderRotation = cylinder.loadRotation();
@@ -216,39 +150,6 @@ public class JoglPrimitiveFactory {
    */
   public static JoglTransformGroup create(XMLSphere sphere) {
     final JoglTransformGroup tg = new JoglTransformGroup();
-
-    //    if (parameters == null && links == null) {
-    //      if (sphere.loadLocation() != null && sphere.loadRotation() != null) {
-    //        float xloc = sphere.loadLocation().loadX();
-    //        float yloc = sphere.loadLocation().loadY();
-    //        float zloc = sphere.loadLocation().loadZ();
-    //        float xrot = sphere.loadRotation().loadXrotate();
-    //        float yrot = sphere.loadRotation().loadYrotate();
-    //        float zrot = sphere.loadRotation().loadZrotate();
-    //        JoglLocRot loc = new JoglLocRot();
-    //        loc.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
-    //        tg.setCoordinate(loc);
-    //
-    //      } else if (sphere.loadLocation() != null && sphere.loadRotation() == null) {
-    //        float xloc = sphere.loadLocation().loadX();
-    //        float yloc = sphere.loadLocation().loadY();
-    //        float zloc = sphere.loadLocation().loadZ();
-    //        JoglLocation loc = new JoglLocation();
-    //        loc.setLocation(xloc, yloc, zloc);
-    //        tg.setCoordinate(loc);
-    //      } else if (sphere.loadLocation() == null && sphere.loadRotation() != null) {
-    //        float xrot = sphere.loadRotation().loadXrotate();
-    //        float yrot = sphere.loadRotation().loadYrotate();
-    //        float zrot = sphere.loadRotation().loadZrotate();
-    //        JoglRotation rot = new JoglRotation();
-    //        rot.setRotation(xrot, yrot, zrot);
-    //        tg.setCoordinate(rot);
-    //      }
-    //    }else if (parameters == null) {
-    //      setDHParameter(parameters, tg);
-    //    } else if (links != null) {
-    //      setLinkParameter(links, tg);
-    //    }
     
     final Location sphereLocation = sphere.loadLocation();
     final Rotation sphereRotation = sphere.loadRotation();

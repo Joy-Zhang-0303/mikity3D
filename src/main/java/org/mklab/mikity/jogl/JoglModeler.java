@@ -23,20 +23,18 @@ public class JoglModeler extends AbstractModeler {
   public JoglModeler(Composite parent, int style, Jamast root) {
     super(parent, style, root);
   }
-  
+
   /**
-   * GroupをsinsiCanvasに読み込ませ、Frameにaddする
-   * 
-   * @version $Revision: 1.22 $.2005/01/25
+   * {@inheritDoc}
    */
   @Override
   public void createViewer() {
-    org.mklab.mikity.xml.model.Group[] group = this.tree.getModel().loadGroup();
-    this.canvas.setChild(group);
+    org.mklab.mikity.xml.model.Group[] groups = this.tree.getModel().loadGroup();
+    this.canvas.setChild(groups);
   }
-  
+
   /**
-   * @see org.mklab.mikity.gui.AbstractModeler#createModelCanvas(org.eclipse.swt.widgets.Composite)
+   * {@inheritDoc}
    */
   @Override
   public void createModelCanvas(Composite viewerComp) {
