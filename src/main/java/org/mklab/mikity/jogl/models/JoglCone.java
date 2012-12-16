@@ -15,19 +15,19 @@ import org.mklab.mikity.jogl.JoglObject;
  * @version $Revision$, 2012/02/09
  */
 public class JoglCone implements JoglObject {
-  /** _r */
+  /** 半径 */
   @XmlAttribute
   protected float _r;
 
-  /** _height */
+  /** 高さ */
   @XmlAttribute
   protected float _height;
 
-  /** _div */
+  /** 分割数 */
   @XmlAttribute
   protected int _div;
 
-  /** */
+  /** 色 */
   protected String _color;
 
   /** 頂点バッファ */
@@ -45,61 +45,61 @@ public class JoglCone implements JoglObject {
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
 
-    final float[] vertexs = new float[(this._div + 2) * 3];
+    final float[] vertices = new float[(this._div + 2) * 3];
 
     // TODO 描画は出来てますが、Normal3fを使うとバグがでます。
     // TODO vertexs[]かindexs[]にどこか問題があると思います。
 
     //頂点バッファの生成
-    vertexs[0] = 0.0f;
-    vertexs[1] = this._height / 2.0f;
-    vertexs[2] = 0.0f;
+    vertices[0] = 0.0f;
+    vertices[1] = this._height / 2.0f;
+    vertices[2] = 0.0f;
 
     for (int i = 1; i <= this._div; i++) {
-      final double ang = 2.0 * Math.PI / this._div * i;
-      vertexs[i * 3] = this._r * (float)Math.cos(ang);
-      vertexs[i * 3 + 1] = -this._height / 2.0f;
-      vertexs[i * 3 + 2] = this._r * (float)Math.sin(ang);
+      final double theta = 2.0 * Math.PI / this._div * i;
+      vertices[i * 3] = this._r * (float)Math.cos(theta);
+      vertices[i * 3 + 1] = -this._height / 2.0f;
+      vertices[i * 3 + 2] = this._r * (float)Math.sin(theta);
     }
 
-    vertexs[3 + this._div * 3] = 0.0f;
-    vertexs[4 + this._div * 3] = -this._height / 2.0f;
-    vertexs[5 + this._div * 3] = 0.0f;
+    vertices[3 + this._div * 3] = 0.0f;
+    vertices[4 + this._div * 3] = -this._height / 2.0f;
+    vertices[5 + this._div * 3] = 0.0f;
 
-    this.vertexBuffer = makeFloatBuffer(vertexs);
+    this.vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
-    final byte[] indexs = new byte[this._div * 6];
+    final byte[] indices = new byte[this._div * 6];
 
     for (int i = 1; i <= this._div; i++) {
-      indexs[3 * i - 3] = 0;
+      indices[3 * i - 3] = 0;
     }
 
     for (int i = 1; i <= this._div; i++) {
-      indexs[3 * i - 2] = (byte)i;
+      indices[3 * i - 2] = (byte)i;
     }
 
     for (int i = 1; i <= (this._div - 1); i++) {
-      indexs[3 * i - 1] = (byte)(i + 1);
+      indices[3 * i - 1] = (byte)(i + 1);
     }
 
-    indexs[3 * this._div - 1] = 1;
+    indices[3 * this._div - 1] = 1;
 
     for (int i = 1; i <= this._div; i++) {
-      indexs[this._div * 3 + 3 * i - 3] = (byte)(this._div + 1);
+      indices[this._div * 3 + 3 * i - 3] = (byte)(this._div + 1);
     }
 
     for (int i = 1; i <= this._div; i++) {
-      indexs[this._div * 3 + 3 * i - 2] = (byte)(i);
+      indices[this._div * 3 + 3 * i - 2] = (byte)(i);
     }
 
     for (int i = 1; i <= this._div - 1; i++) {
-      indexs[this._div * 3 + 3 * i - 1] = (byte)(i + 1);
+      indices[this._div * 3 + 3 * i - 1] = (byte)(i + 1);
     }
 
-    indexs[this._div * 6 - 1] = 1;
+    indices[this._div * 6 - 1] = 1;
 
-    this.indexBuffer = makeByteBuffer(indexs);
+    this.indexBuffer = makeByteBuffer(indices);
 
     if (this._color != null) {
       if (this._color.equals("white")) { //$NON-NLS-1$
@@ -144,7 +144,7 @@ public class JoglCone implements JoglObject {
         gl.glDrawElements(GL.GL_TRIANGLE_STRIP,this._div*3,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
     */
     this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, indexs.length, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, indices.length, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
 
     gl.glPopMatrix();
   }
@@ -172,6 +172,7 @@ public class JoglCone implements JoglObject {
   }
 
   /**
+   * 大きさを設定します。
    * @param div 分割数
    * @param radius 半径
    * @param hight 高さ
@@ -183,6 +184,7 @@ public class JoglCone implements JoglObject {
   }
 
   /**
+   * 色を設定します。
    * @param color 色
    */
   public void setColor(String color) {

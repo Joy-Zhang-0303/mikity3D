@@ -17,35 +17,30 @@ import org.mklab.mikity.jogl.JoglObject;
  * @version $Revision$, 2012/01/26
  */
 public class JoglBox implements JoglObject {
-
-  /**
-   * Field _xsize
-   */
+  /** _xsize */
   @XmlAttribute
   private float _xsize;
 
-  /**
-   * Field _ysize
-   */
+  /** _ysize */
   @XmlAttribute
   private float _ysize;
 
-  /**
-   * Field _zsize
-   */
+  /** 　_zsize */
   @XmlAttribute
   private float _zsize;
 
+  /** */
   @XmlAttribute
   private String _color;
 
-  private FloatBuffer vertexBuffer;//頂点バッファ
-  private ByteBuffer indexBuffer;//インデックスバッファ
+  /** 頂点バッファ　 */
+  private FloatBuffer vertexBuffer;
+  /** インデックスバッファ */
+  private ByteBuffer indexBuffer;
 
   /**
-   * @see org.mklab.mikity.jogl.JoglObject#apply(javax.media.opengl.GL)
+   * {@inheritDoc}
    */
-  @Override
   public void apply(GL gl) {
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
@@ -53,14 +48,14 @@ public class JoglBox implements JoglObject {
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
 
-    float[] vertexs = {this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, -this._ysize / 2, this._zsize / 2, this._xsize / 2,
-        -this._ysize / 2, this._zsize / 2, this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2, -this._ysize / 2,
-        -this._zsize / 2, this._xsize / 2, -this._ysize / 2, -this._zsize / 2,};
+    final float[] vertexs = {this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, -this._ysize / 2, this._zsize / 2,
+        this._xsize / 2, -this._ysize / 2, this._zsize / 2, this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2,
+        -this._ysize / 2, -this._zsize / 2, this._xsize / 2, -this._ysize / 2, -this._zsize / 2,};
     this.vertexBuffer = makeFloatBuffer(vertexs);
 
     //インデックスバッファの生成
-    byte[] indexs = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
-    this.indexBuffer = makeByteBuffer(indexs);
+    final byte[] indices = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
+    this.indexBuffer = makeByteBuffer(indices);
 
     //頂点バッファの指定
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
@@ -107,32 +102,40 @@ public class JoglBox implements JoglObject {
     gl.glPopMatrix();
   }
 
-  //float配列をFloatBufferに変換
+  /**
+   * float配列をFloatBufferに変換
+   * @param array
+   * @return
+   */
   private static FloatBuffer makeFloatBuffer(float[] array) {
-    FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
-    fb.put(array).position(0);
-    return fb;
+    final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    buffer.put(array).position(0);
+    return buffer;
 
-  }
-
-  //byte配列をByteBufferに変換
-  private static ByteBuffer makeByteBuffer(byte[] array) {
-    ByteBuffer bb = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
-    bb.put(array).position(0);
-    return bb;
   }
 
   /**
-   * 大きさの設定
-   * 
-   * @param x xの長さ
-   * @param y yの長さ
-   * @param z zの長さ
+   * byte配列をByteBufferに変換
+   * @param array
+   * @return
    */
-  public void setSize(float x, float y, float z) {
-    this._xsize = x;
-    this._ysize = y;
-    this._zsize = z;
+  private static ByteBuffer makeByteBuffer(byte[] array) {
+    final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
+    buffer.put(array).position(0);
+    return buffer;
+  }
+
+  /**
+   * 大きさを設定します。
+   * 
+   * @param xSize xの長さ
+   * @param ySize yの長さ
+   * @param zSize zの長さ
+   */
+  public void setSize(float xSize, float ySize, float zSize) {
+    this._xsize = xSize;
+    this._ysize = ySize;
+    this._zsize = zSize;
   }
 
   /**

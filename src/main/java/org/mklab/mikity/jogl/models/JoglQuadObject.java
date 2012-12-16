@@ -66,13 +66,13 @@ public class JoglQuadObject implements JoglObject {
     gl.glDisable(GL.GL_CULL_FACE);
 
     //頂点バッファの生成
-    final float[] vertexs = {this._point[0][0], this._point[0][1], this._point[0][2], this._point[1][0], this._point[1][1], this._point[1][2], this._point[2][0], this._point[2][1], this._point[2][2],
+    final float[] vertices = {this._point[0][0], this._point[0][1], this._point[0][2], this._point[1][0], this._point[1][1], this._point[1][2], this._point[2][0], this._point[2][1], this._point[2][2],
         this._point[3][0], this._point[3][1], this._point[3][2],};
-    this.vertexBuffer = makeFloatBuffer(vertexs);
+    this.vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
-    final byte[] indexs = {0, 1, 2, 0, 2, 3};
-    this.indexBuffer = makeByteBuffer(indexs);
+    final byte[] indices = {0, 1, 2, 0, 2, 3};
+    this.indexBuffer = makeByteBuffer(indices);
 
     //頂点バッファの指定
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
@@ -106,13 +106,14 @@ public class JoglQuadObject implements JoglObject {
   }
 
   /**
-   * @param point 座標
+   * @param points 座標
    */
-  public void setSize(float[][] point) {
-    this._point = point;
+  public void setSize(float[][] points) {
+    this._point = points;
   }
 
   /**
+   * 色を設定します。
    * @param color 色
    */
   public void setColor(String color) {

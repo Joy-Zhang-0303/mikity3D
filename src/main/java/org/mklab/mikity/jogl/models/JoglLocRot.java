@@ -9,27 +9,27 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision$, 2012/02/09
  */
 public class JoglLocRot implements JoglCoordinate {
-  /** _xrotate */
+  /** x軸周りの回転 */
   @XmlAttribute
   private float _xrotate;
 
-  /** _yrotate */
+  /** y軸周りの回転 */
   @XmlAttribute
   private float _yrotate;
 
-  /** _zrotate */
+  /** z軸周りの回転 */
   @XmlAttribute
   private float _zrotate;
 
-  /** _x */
+  /** x */
   @XmlAttribute
   private float _x;
 
-  /** _y*/
+  /** y*/
   @XmlAttribute
   private float _y;
 
-  /** _z */
+  /** z */
   @XmlAttribute
   private float _z;
 
@@ -53,19 +53,19 @@ public class JoglLocRot implements JoglCoordinate {
   }
 
   /**
-   * @param xloc x座標
-   * @param yloc y座標
-   * @param zloc z座標
-   * @param xrot x軸に対しての回転
-   * @param yrot y軸に対しての回転
-   * @param zrot z軸に対しての回転
+   * @param x x座標
+   * @param y y座標
+   * @param z z座標
+   * @param xRotation x軸周りの回転
+   * @param yRotation y軸周りの回転
+   * @param zRotation z軸周りの回転
    */
-  public void setLocRot(float xloc, float yloc, float zloc, float xrot, float yrot, float zrot) {
-    this._x = xloc;
-    this._y = yloc;
-    this._z = zloc;
-    this._xrotate = xrot;
-    this._yrotate = yrot;
-    this._zrotate = zrot;
+  public void setLocRot(float x, float y, float z, float xRotation, float yRotation, float zRotation) {
+    this._x = x;
+    this._y = y;
+    this._z = z;
+    this._xrotate = xRotation;
+    this._yrotate = yRotation;
+    this._zrotate = zRotation;
   }
 }

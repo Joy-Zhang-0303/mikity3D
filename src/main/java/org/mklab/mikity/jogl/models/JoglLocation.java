@@ -9,15 +9,15 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision$, 2012/02/07
  */
 public class JoglLocation implements JoglCoordinate {
-  /** _x */
+  /** x */
   @XmlAttribute
   private float _x;
 
-  /** _y */
+  /** y */
   @XmlAttribute
   private float _y;
 
-  /** _z */
+  /** z */
   @XmlAttribute
   private float _z;
 

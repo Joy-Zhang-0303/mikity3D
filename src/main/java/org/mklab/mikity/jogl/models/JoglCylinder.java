@@ -15,18 +15,19 @@ import org.mklab.mikity.jogl.JoglObject;
  * @version $Revision$, 2012/01/31
  */
 public class JoglCylinder implements JoglObject {
-  /** r */
+  /** 半径 */
   @XmlAttribute
   protected float _r;
 
-  /** height */
+  /** 高さ */
   @XmlAttribute
   protected float _height;
 
-  /** _div */
+  /** 分割数 */
   @XmlAttribute
   protected int _div;
 
+  /** 色　*/
   @XmlAttribute
   private String _color;
 
@@ -45,97 +46,97 @@ public class JoglCylinder implements JoglObject {
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
 
-    final float[] vertexs = new float[(this._div * 2 + 2) * 3];
+    final float[] vertices = new float[(this._div * 2 + 2) * 3];
 
     // TODO 描画がおかしいですが、これ以上考えても今は案が出てこないのでPushしました。
     // TODO vertexsかindexsの配列がおかしいのかもしれません。
     //頂点バッファの生成
-    vertexs[0] = 0.0f;
-    vertexs[1] = this._height / 2.0f;
-    vertexs[2] = 0.0f;
+    vertices[0] = 0.0f;
+    vertices[1] = this._height / 2.0f;
+    vertices[2] = 0.0f;
     
     for (int i = 1; i <= this._div; i++) {
-      final double ang = 2.0 * Math.PI / this._div * i;
-      vertexs[i * 3] = this._r * (float)Math.cos(ang);
-      vertexs[i * 3 + 1] = this._height / 2.0f;
-      vertexs[i * 3 + 2] = this._r * (float)Math.sin(ang);
+      final double theta = 2.0 * Math.PI / this._div * i;
+      vertices[i * 3] = this._r * (float)Math.cos(theta);
+      vertices[i * 3 + 1] = this._height / 2.0f;
+      vertices[i * 3 + 2] = this._r * (float)Math.sin(theta);
     }
     
-    vertexs[3 + this._div * 3] = 0.0f;
-    vertexs[4 + this._div * 3] = -this._height / 2.0f;
-    vertexs[5 + this._div * 3] = 0.0f;
+    vertices[3 + this._div * 3] = 0.0f;
+    vertices[4 + this._div * 3] = -this._height / 2.0f;
+    vertices[5 + this._div * 3] = 0.0f;
     
     for (int i = 1; i <= this._div; i++) {
-      double ang = 2.0 * Math.PI / this._div * i;
-      vertexs[i * 3 + 3 + this._div * 3] = this._r * (float)Math.cos(ang);
-      vertexs[i * 3 + 4 + this._div * 3] = -this._height / 2.0f;
-      vertexs[i * 3 + 5 + this._div * 3] = this._r * (float)Math.sin(ang);
+      final double theta = 2.0 * Math.PI / this._div * i;
+      vertices[i * 3 + 3 + this._div * 3] = this._r * (float)Math.cos(theta);
+      vertices[i * 3 + 4 + this._div * 3] = -this._height / 2.0f;
+      vertices[i * 3 + 5 + this._div * 3] = this._r * (float)Math.sin(theta);
     }
 
-    this.vertexBuffer = makeFloatBuffer(vertexs);
+    this.vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
-    final byte[] indexs = new byte[this._div * 12];
+    final byte[] indices = new byte[this._div * 12];
     
     for (int i = 1; i <= this._div; i++) {
-      indexs[3 * i - 3] = 0;
+      indices[3 * i - 3] = 0;
     }
     
     for (int i = 1; i <= this._div; i++) {
-      indexs[3 * i - 2] = (byte)i;
+      indices[3 * i - 2] = (byte)i;
     }
     
     for (int i = 1; i <= this._div-1; i++) {
-      indexs[3 * i - 1] = (byte)(i + 1);
+      indices[3 * i - 1] = (byte)(i + 1);
     }
     
-    indexs[3 * this._div - 1] = 1;
+    indices[3 * this._div - 1] = 1;
     
     for (int i = 1; i <= this._div; i++) {
-      indexs[this._div * 3 + 3 * i - 3] = (byte)(1 + this._div);
+      indices[this._div * 3 + 3 * i - 3] = (byte)(1 + this._div);
     }
     
     for (int i = 1; i <= this._div; i++) {
-      indexs[this._div * 3 + 3 * i - 2] = (byte)(i + 1 + this._div);
+      indices[this._div * 3 + 3 * i - 2] = (byte)(i + 1 + this._div);
     }
     
     for (int i = 1; i <= this._div-1; i++) {
-      indexs[this._div * 3 + 3 * i - 1] = (byte)(i + 2 + this._div);
+      indices[this._div * 3 + 3 * i - 1] = (byte)(i + 2 + this._div);
     }
     
-    indexs[this._div * 6 - 1] = (byte)(this._div + 2);
+    indices[this._div * 6 - 1] = (byte)(this._div + 2);
 
     //側面
 
     for (int i = 1; i <= this._div; i++) {
-      indexs[this._div * 6 + 3 * i - 3] = (byte)(this._div + 1 + i);
+      indices[this._div * 6 + 3 * i - 3] = (byte)(this._div + 1 + i);
     }
     
     for (int i = 1; i <= this._div; i++) {
-      indexs[this._div * 6 + 3 * i - 2] = (byte)i;
-    }
-    
-    for (int i = 1; i <= this._div - 1; i++) {
-      indexs[this._div * 6 + 3 * i - 1] = (byte)(i + 1);
-    }
-
-    indexs[this._div * 9 - 1] = 1;
-
-    for (int i = 1; i <= this._div; i++) {
-      indexs[this._div * 9 + 3 * i - 3] = (byte)(i);
-    }
-
-    for (int i = 1; i <= this._div; i++) {
-      indexs[this._div * 9 + 3 * i - 2] = (byte)(i + 1 + this._div);
+      indices[this._div * 6 + 3 * i - 2] = (byte)i;
     }
     
     for (int i = 1; i <= this._div - 1; i++) {
-      indexs[this._div * 9 + 3 * i - 1] = (byte)(i + 2 + this._div);
+      indices[this._div * 6 + 3 * i - 1] = (byte)(i + 1);
     }
 
-    indexs[this._div * 12 - 1] = (byte)(this._div + 1);
+    indices[this._div * 9 - 1] = 1;
 
-    this.indexBuffer = makeByteBuffer(indexs);
+    for (int i = 1; i <= this._div; i++) {
+      indices[this._div * 9 + 3 * i - 3] = (byte)(i);
+    }
+
+    for (int i = 1; i <= this._div; i++) {
+      indices[this._div * 9 + 3 * i - 2] = (byte)(i + 1 + this._div);
+    }
+    
+    for (int i = 1; i <= this._div - 1; i++) {
+      indices[this._div * 9 + 3 * i - 1] = (byte)(i + 2 + this._div);
+    }
+
+    indices[this._div * 12 - 1] = (byte)(this._div + 1);
+
+    this.indexBuffer = makeByteBuffer(indices);
 
     if (this._color != null) {
       if (this._color.equals("white")) { //$NON-NLS-1$
@@ -202,7 +203,7 @@ public class JoglCylinder implements JoglObject {
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
 
     this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,indexs.length,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,indices.length,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
     
     gl.glPopMatrix();
   }
@@ -239,10 +240,10 @@ public class JoglCylinder implements JoglObject {
     this._div = div;
     this._r = radius;
     this._height = hight;
-
   }
 
   /**
+   * 色を設定します。
    * @param color 色
    */
   public void setColor(String color) {

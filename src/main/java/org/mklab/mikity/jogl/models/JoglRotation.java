@@ -9,15 +9,15 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision$, 2012/02/08
  */
 public class JoglRotation implements JoglCoordinate {
-  /** _xrotate */
+  /** x軸周りの回転 */
   @XmlAttribute
   private float _xrotate;
 
-  /** _yrotate */
+  /** y軸周りの回転 */
   @XmlAttribute
   private float _yrotate;
 
-  /** _zrotate */
+  /** z軸周りの回転 */
   @XmlAttribute
   private float _zrotate;
 
@@ -38,9 +38,9 @@ public class JoglRotation implements JoglCoordinate {
   }
 
   /**
-   * @param xRotation x軸に関する回転角
-   * @param yRotation y軸に関する回転角
-   * @param zRotation z軸に関する回転角
+   * @param xRotation x軸軸周りの回転
+   * @param yRotation y軸軸周りの回転
+   * @param zRotation z軸軸周りの回転
    */
   public void setRotation(float xRotation, float yRotation, float zRotation) {
     this._xrotate = xRotation;
@@ -51,9 +51,9 @@ public class JoglRotation implements JoglCoordinate {
   /**
    * 回転します。
    * 
-   * @param xRotation x軸に関する回転角
-   * @param yRotation y軸に関する回転角
-   * @param zRotation z軸に関する回転角
+   * @param xRotation x軸周りの回転
+   * @param yRotation y軸周りの回転
+   * @param zRotation z軸周りの回転
    */
   public void rotate(float xRotation, float yRotation, float zRotation) {
     this._xrotate += xRotation;
