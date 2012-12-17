@@ -8,7 +8,7 @@ import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
 import org.mklab.mikity.jogl.models.JoglCylinder;
 import org.mklab.mikity.jogl.models.JoglDHTranslation;
-import org.mklab.mikity.jogl.models.JoglLocRot;
+import org.mklab.mikity.jogl.models.JoglLocationRotation;
 import org.mklab.mikity.jogl.models.JoglLocation;
 import org.mklab.mikity.jogl.models.JoglQuadObject;
 import org.mklab.mikity.jogl.models.JoglRotation;
@@ -72,8 +72,9 @@ public class JoglPrimitiveFactory {
       final float xrot = boxRotation.loadXrotate();
       final float yrot = boxRotation.loadYrotate();
       final float zrot = boxRotation.loadZrotate();
-      final JoglLocRot locationRotation = new JoglLocRot();
-      locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
+      final JoglLocationRotation locationRotation = new JoglLocationRotation();
+      locationRotation.setLocation(xloc, yloc, zloc);
+      locationRotation.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(locationRotation);
     } else if (boxLocation != null) {
       final float xloc = boxLocation.loadX();
@@ -113,8 +114,9 @@ public class JoglPrimitiveFactory {
       final float xrot = cylinderRotation.loadXrotate();
       final float yrot = cylinderRotation.loadYrotate();
       final float zrot = cylinderRotation.loadZrotate();
-      final JoglLocRot locationRotation = new JoglLocRot();
-      locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
+      final JoglLocationRotation locationRotation = new JoglLocationRotation();
+      locationRotation.setLocation(xloc, yloc, zloc);
+      locationRotation.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(locationRotation);
     } else if (cylinderLocation != null) {
       final float xloc = cylinderLocation.loadX();
@@ -162,8 +164,9 @@ public class JoglPrimitiveFactory {
       final float xrot = sphereRotation.loadXrotate();
       final float yrot = sphereRotation.loadYrotate();
       final float zrot = sphereRotation.loadZrotate();
-      final JoglLocRot locationRotation = new JoglLocRot();
-      locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
+      final JoglLocationRotation locationRotation = new JoglLocationRotation();
+      locationRotation.setLocation(xloc, yloc, zloc);
+      locationRotation.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(locationRotation);
     } else if (sphereLocation != null) {
       final float xloc = sphereLocation.loadX();
@@ -210,8 +213,9 @@ public class JoglPrimitiveFactory {
       final float xrot = coneRotation.loadXrotate();
       final float yrot = coneRotation.loadYrotate();
       final float zrot = coneRotation.loadZrotate();
-      final JoglLocRot locationRotation = new JoglLocRot();
-      locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
+      final JoglLocationRotation locationRotation = new JoglLocationRotation();
+      locationRotation.setLocation(xloc, yloc, zloc);
+      locationRotation.setRotation(xrot, yrot, zrot);
       tg.setCoordinate(locationRotation);
     } else if (coneLocation != null) {
       final float xloc = coneLocation.loadX();
@@ -264,8 +268,9 @@ public class JoglPrimitiveFactory {
         final float xrot = polygonRotation.loadXrotate();
         final float yrot = polygonRotation.loadYrotate();
         final float zrot = polygonRotation.loadZrotate();
-        final JoglLocRot locationRotation = new JoglLocRot();
-        locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
+        final JoglLocationRotation locationRotation = new JoglLocationRotation();
+        locationRotation.setLocation(xloc, yloc, zloc);
+        locationRotation.setRotation(xrot, yrot, zrot);
         tg.setCoordinate(locationRotation);
       } else if (polygonLocation != null) {
         final float xloc = polygonLocation.loadX();
@@ -328,8 +333,9 @@ public class JoglPrimitiveFactory {
         final float xrot = polygonRotation.loadXrotate();
         final float yrot = polygonRotation.loadYrotate();
         final float zrot = polygonRotation.loadZrotate();
-        final JoglLocRot locationRotation = new JoglLocRot();
-        locationRotation.setLocRot(xloc, yloc, zloc, xrot, yrot, zrot);
+        final JoglLocationRotation locationRotation = new JoglLocationRotation();
+        locationRotation.setLocation(xloc, yloc, zloc);
+        locationRotation.setRotation(xrot, yrot, zrot);
         tg.setCoordinate(locationRotation);
       } else if (polygonLocation != null) {
         final float xloc = polygonLocation.loadX();
@@ -399,8 +405,9 @@ public class JoglPrimitiveFactory {
       location.setLocation(locX, locY, locZ);
       group.setCoordinate(location);
     } else { //if(locX == 0.0f && locY == 0.0f && locZ == 0.0f){
-      final JoglLocRot locationRotation = new JoglLocRot();
-      locationRotation.setLocRot(locX, locY, locZ, rotX, rotY, rotZ);
+      final JoglLocationRotation locationRotation = new JoglLocationRotation();
+      locationRotation.setLocation(locX, locY, locZ);
+      locationRotation.setRotation(rotX, rotY, rotZ);
       group.setCoordinate(locationRotation);
     }
   }
