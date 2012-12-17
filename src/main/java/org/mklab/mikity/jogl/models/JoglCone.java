@@ -150,22 +150,24 @@ public class JoglCone implements JoglObject {
   }
 
   /**
-   * float配列をFloatBufferに変換
+   * float配列をFloatBufferに変換します。
+   * 
    * @param array
    * @return
    */
-  private static FloatBuffer makeFloatBuffer(float[] array) {
+  private FloatBuffer makeFloatBuffer(float[] array) {
     final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     buffer.put(array).position(0);
     return buffer;
   }
   
   /**
-   * byte配列をByteBufferに変換
+   * byte配列をByteBufferに変換します。
+   * 
    * @param array
    * @return
    */
-  private static ByteBuffer makeByteBuffer(byte[] array) {
+  private ByteBuffer makeByteBuffer(byte[] array) {
     final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     buffer.put(array).position(0);
     return buffer;
@@ -173,14 +175,21 @@ public class JoglCone implements JoglObject {
 
   /**
    * 大きさを設定します。
-   * @param div 分割数
-   * @param radius 半径
+   * 
+   * @param radius 底面の半径
    * @param hight 高さ
    */
-  public void setSize(int div, float radius, float hight) {
-    this._div = div;
+  public void setSize(float radius, float hight) {
     this._r = radius;
     this._height = hight;
+  }
+  
+  /**
+   * 分割数を設定します。
+   * @param div 分割数
+   */
+  public void setDiv(int div) {
+    this._div = div;
   }
 
   /**

@@ -76,21 +76,23 @@ public class JoglTriangleObject implements JoglObject {
   }
 
   /**
-   * float配列をFloatBufferに変換
+   * float配列をFloatBufferに変換します。
+   * 
    * @param array
    * @return
    */
-  private static FloatBuffer makeFloatBuffer(float[] array) {
+  private FloatBuffer makeFloatBuffer(float[] array) {
     final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     buffer.put(array).position(0);
     return buffer;
   }
 
   /**
-   * @param points 点
+   * 頂点を設定します。
+   * @param vertices 頂点
    */
-  public void setSize(float[][] points) {
-    this._point = points;
+  public void setVertices(float[][] vertices) {
+    this._point = vertices;
   }
 
   /**

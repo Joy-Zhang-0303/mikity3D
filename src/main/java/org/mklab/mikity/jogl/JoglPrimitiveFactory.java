@@ -133,12 +133,13 @@ public class JoglPrimitiveFactory {
     }
 
     final int div = cylinder.loadDiv();
-    final float r = cylinder.loadR();
+    final float radius = cylinder.loadR();
     final float hight = cylinder.loadHeight();
     final JoglCylinder child = new JoglCylinder();
     final String color = cylinder.loadColor();
+    child.setSize(radius, hight);
+    child.setDiv(div);
     child.setColor(color);
-    child.setSize(div, r, hight);
     tg.addChild(child);
 
     return tg;
@@ -181,11 +182,12 @@ public class JoglPrimitiveFactory {
     }
 
     final int div = sphere.loadDiv();
-    final float r = sphere.loadR();
+    final float radius = sphere.loadR();
     final JoglSphere child = new JoglSphere();
     final String color = sphere.loadColor();
+    child.setSize(radius);
+    child.setDiv(div);
     child.setColor(color);
-    child.setSize(div, r);
     tg.addChild(child);
 
     return tg;
@@ -227,13 +229,14 @@ public class JoglPrimitiveFactory {
       tg.setCoordinate(rotation);
     }
 
-    final int div = cone.loadDiv();
-    final float r = cone.loadR();
+    final float radius = cone.loadR();
     final float hight = cone.loadHeight();
+    final int div = cone.loadDiv();
     final String color = cone.loadColor();
     final JoglCone child = new JoglCone();
     child.setColor(color);
-    child.setSize(div, r, hight);
+    child.setSize(radius, hight);
+    child.setDiv(div);
     tg.addChild(child);
 
     return tg;
@@ -299,7 +302,7 @@ public class JoglPrimitiveFactory {
     }
     final JoglTriangleObject child = new JoglTriangleObject();
     child.setColor(color);
-    child.setSize(point);
+    child.setVertices(point);
     tg.addChild(child);
 
     return tg;
@@ -364,7 +367,7 @@ public class JoglPrimitiveFactory {
 
     final JoglQuadObject child = new JoglQuadObject();
     child.setColor(color);
-    child.setSize(point);
+    child.setVertices(point);
     tg.addChild(child);
 
     return tg;
