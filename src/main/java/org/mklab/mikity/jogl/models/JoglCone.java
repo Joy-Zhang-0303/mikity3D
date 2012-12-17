@@ -24,14 +24,6 @@ public class JoglCone extends AbstractJoglObject {
   @XmlAttribute
   protected int _div;
 
-  /** 色 */
-  protected String _color;
-
-  /** 頂点バッファ */
-  private FloatBuffer vertexBuffer;
-  /** インデックスバッファ */
-  private ByteBuffer indexBuffer;
-
   /**
    * {@inheritDoc}
    */
@@ -63,7 +55,7 @@ public class JoglCone extends AbstractJoglObject {
     vertices[4 + this._div * 3] = -this._height / 2.0f;
     vertices[5 + this._div * 3] = 0.0f;
 
-    this.vertexBuffer = makeFloatBuffer(vertices);
+    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
     final byte[] indices = new byte[this._div * 6];
@@ -96,14 +88,12 @@ public class JoglCone extends AbstractJoglObject {
 
     indices[this._div * 6 - 1] = 1;
 
-    this.indexBuffer = makeByteBuffer(indices);
+    final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
-    if (this._color != null) {
-      applyColor(gl, this._color);
-    }
+    applyColor(gl);
 
     //頂点バッファの指定 
-    gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
+    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
 
     /*    
         gl.glNormal3f(0.0f, 1.0f, 0.0f);
@@ -114,8 +104,8 @@ public class JoglCone extends AbstractJoglObject {
         this.indexBuffer.position(this._div*3);
         gl.glDrawElements(GL.GL_TRIANGLE_STRIP,this._div*3,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
     */
-    this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, indices.length, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
+    indexBuffer.position(0);
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, indices.length, GL.GL_UNSIGNED_BYTE, indexBuffer);
 
     gl.glPopMatrix();
   }
@@ -137,13 +127,5 @@ public class JoglCone extends AbstractJoglObject {
    */
   public void setDiv(int div) {
     this._div = div;
-  }
-
-  /**
-   * 色を設定します。
-   * @param color 色
-   */
-  public void setColor(String color) {
-    this._color = color;
   }
 }

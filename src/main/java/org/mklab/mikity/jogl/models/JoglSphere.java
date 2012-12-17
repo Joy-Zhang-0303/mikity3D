@@ -19,14 +19,6 @@ public class JoglSphere extends AbstractJoglObject {
   @XmlAttribute
   private int _div;
 
-  /** 色 */
-  protected String _color;
-
-  /** 頂点バッファ */
-  private FloatBuffer vertexBuffer;
-  /** インデックスバッファ */
-  private ByteBuffer indexBuffer;
-
   /**
    * {@inheritDoc}
    */
@@ -67,7 +59,7 @@ public class JoglSphere extends AbstractJoglObject {
     vertices[count1++] = radius;
     vertices[count1++] = 0.0f;
 
-    this.vertexBuffer = makeFloatBuffer(vertices);
+    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
     //test
     // for(int i = 0; i <= vertexs.length-1; i++){
@@ -106,22 +98,20 @@ public class JoglSphere extends AbstractJoglObject {
       indices[count2++] = (byte)n;
     }
 
-    this.indexBuffer = makeByteBuffer(indices);
+    final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
     //test
     //for(int i = 0; i <= indexs.length-1; i++){
     // System.out.println("indexs["+ i +"] = " + indexs[i]);  //$NON-NLS-1$//$NON-NLS-2$
     //}
 
-    if (this._color != null) {
-      applyColor(gl, this._color);
-    }
+    applyColor(gl);
 
     //頂点バッファの指定 
-    gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
+    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
 
-    this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_FAN, indices.length, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
+    indexBuffer.position(0);
+    gl.glDrawElements(GL.GL_TRIANGLE_FAN, indices.length, GL.GL_UNSIGNED_BYTE, indexBuffer);
 
     gl.glPopMatrix();
     gl.glPopMatrix();
@@ -142,13 +132,5 @@ public class JoglSphere extends AbstractJoglObject {
    */
   public void setDiv(int div) {
     this._div = div;
-  }
-
-  /**
-   * 色を設定します。
-   * @param color 色
-   */
-  public void setColor(String color) {
-    this._color = color;
   }
 }

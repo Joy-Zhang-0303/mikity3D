@@ -26,15 +26,6 @@ public class JoglBox extends AbstractJoglObject {
   @XmlAttribute
   private float _zsize;
 
-  /** 色 */
-  @XmlAttribute
-  private String _color;
-
-  /** 頂点バッファ　 */
-  private FloatBuffer vertexBuffer;
-  /** インデックスバッファ */
-  private ByteBuffer indexBuffer;
-
   /**
    * {@inheritDoc}
    */
@@ -48,27 +39,25 @@ public class JoglBox extends AbstractJoglObject {
     final float[] vertices = {this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, -this._ysize / 2, this._zsize / 2,
         this._xsize / 2, -this._ysize / 2, this._zsize / 2, this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2,
         -this._ysize / 2, -this._zsize / 2, this._xsize / 2, -this._ysize / 2, -this._zsize / 2,};
-    this.vertexBuffer = makeFloatBuffer(vertices);
+    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
     final byte[] indices = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
-    this.indexBuffer = makeByteBuffer(indices);
+    final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
     //頂点バッファの指定
-    gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
+    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
 
-    if (this._color != null) {
-      applyColor(gl, this._color);
-    }
+    applyColor(gl);
 
-    this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 10, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
+    indexBuffer.position(0);
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 10, GL.GL_UNSIGNED_BYTE, indexBuffer);
 
-    this.indexBuffer.position(10);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
+    indexBuffer.position(10);
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, indexBuffer);
 
-    this.indexBuffer.position(14);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, this.indexBuffer);
+    indexBuffer.position(14);
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, indexBuffer);
 
     gl.glPopMatrix();
   }
@@ -85,13 +74,4 @@ public class JoglBox extends AbstractJoglObject {
     this._ysize = ySize;
     this._zsize = zSize;
   }
-
-  /**
-   * 色を設定します。
-   * @param color 色
-   */
-  public void setColor(String color) {
-    this._color = color;
-  }
-
 }

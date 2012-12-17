@@ -14,24 +14,15 @@ import javax.xml.bind.annotation.XmlAttribute;
 public class JoglCylinder extends AbstractJoglObject {
   /** 半径 */
   @XmlAttribute
-  protected float _r;
+  private float _r;
 
   /** 高さ */
   @XmlAttribute
-  protected float _height;
+  private float _height;
 
   /** 分割数 */
   @XmlAttribute
-  protected int _div;
-
-  /** 色　*/
-  @XmlAttribute
-  private String _color;
-
-  /** 頂点バッファ */
-  private FloatBuffer vertexBuffer;
-  /** インデックスバッファ */
-  private ByteBuffer indexBuffer;
+  private int _div;
 
   /**
    * {@inheritDoc}
@@ -70,7 +61,7 @@ public class JoglCylinder extends AbstractJoglObject {
       vertices[i * 3 + 5 + this._div * 3] = this._r * (float)Math.sin(theta);
     }
 
-    this.vertexBuffer = makeFloatBuffer(vertices);
+    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
     final byte[] indices = new byte[this._div * 12];
@@ -133,11 +124,9 @@ public class JoglCylinder extends AbstractJoglObject {
 
     indices[this._div * 12 - 1] = (byte)(this._div + 1);
 
-    this.indexBuffer = makeByteBuffer(indices);
+    final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
-    if (this._color != null) {
-      applyColor(gl, this._color);
-    }
+    applyColor(gl);
 
     /*
     gl.glBegin(GL.GL_TRIANGLE_FAN);
@@ -171,10 +160,10 @@ public class JoglCylinder extends AbstractJoglObject {
     */
 
     //頂点バッファの指定 
-    gl.glVertexPointer(3, GL.GL_FLOAT, 0, this.vertexBuffer);
+    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
 
-    this.indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,indices.length,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
+    indexBuffer.position(0);
+    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,indices.length,GL.GL_UNSIGNED_BYTE, indexBuffer);
     
     gl.glPopMatrix();
   }
@@ -196,13 +185,5 @@ public class JoglCylinder extends AbstractJoglObject {
    */
   public void setDiv(int div) {
     this._div = div;
-  }
-
-  /**
-   * 色を設定します。
-   * @param color 色
-   */
-  public void setColor(String color) {
-    this._color = color;
   }
 }
