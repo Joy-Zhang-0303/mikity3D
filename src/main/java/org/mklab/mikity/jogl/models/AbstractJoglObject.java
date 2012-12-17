@@ -5,6 +5,10 @@
  */
 package org.mklab.mikity.jogl.models;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+
 import javax.media.opengl.GL;
 
 import org.mklab.mikity.jogl.JoglObject;
@@ -54,4 +58,27 @@ public abstract class AbstractJoglObject implements JoglObject {
     }
   }
 
+  /**
+   * float配列をFloatBufferに変換します。
+   * 
+   * @param array 変換元
+   * @return 変換結果
+   */
+  public FloatBuffer makeFloatBuffer(float[] array) {
+    final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    buffer.put(array).position(0);
+    return buffer;
+  }
+
+  /**
+   * byte配列をByteBufferに変換します。
+   * 
+   * @param array 変換元
+   * @return 変換結果
+   */
+  public ByteBuffer makeByteBuffer(byte[] array) {
+    final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
+    buffer.put(array).position(0);
+    return buffer;
+  }
 }

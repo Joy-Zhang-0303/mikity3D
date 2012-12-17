@@ -1,7 +1,6 @@
 package org.mklab.mikity.jogl.models;
 
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
@@ -126,30 +125,6 @@ public class JoglSphere extends AbstractJoglObject {
 
     gl.glPopMatrix();
     gl.glPopMatrix();
-  }
-
-  /**
-   * float配列をFloatBufferに変換します。
-   * 
-   * @param array
-   * @return
-   */
-  private FloatBuffer makeFloatBuffer(float[] array) {
-    final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
-    buffer.put(array).position(0);
-    return buffer;
-  }
-
-  /**
-   * byte配列をByteBufferに変換します。
-   * 
-   * @param array
-   * @return
-   */
-  private ByteBuffer makeByteBuffer(byte[] array) {
-    final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
-    buffer.put(array).position(0);
-    return buffer;
   }
 
   /**
