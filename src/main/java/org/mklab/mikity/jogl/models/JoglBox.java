@@ -4,7 +4,6 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
-import javax.xml.bind.annotation.XmlAttribute;
 
 
 /**
@@ -14,17 +13,14 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision$, 2012/01/26
  */
 public class JoglBox extends AbstractJoglObject {
-  /** _xsize */
-  @XmlAttribute
-  private float _xsize;
+  /** 幅 */
+  private float xSize;
 
-  /** _ysize */
-  @XmlAttribute
-  private float _ysize;
+  /** 奥行 */
+  private float ySize;
 
-  /** _zsize */
-  @XmlAttribute
-  private float _zsize;
+  /** 高さ */
+  private float zSize;
 
   /**
    * {@inheritDoc}
@@ -36,11 +32,11 @@ public class JoglBox extends AbstractJoglObject {
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
 
-    final float[] vertices = {this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, this._ysize / 2, this._zsize / 2, -this._xsize / 2, -this._ysize / 2, this._zsize / 2,
-        this._xsize / 2, -this._ysize / 2, this._zsize / 2, this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2, this._ysize / 2, -this._zsize / 2, -this._xsize / 2,
-        -this._ysize / 2, -this._zsize / 2, this._xsize / 2, -this._ysize / 2, -this._zsize / 2,};
+    final float[] vertices = {this.xSize / 2, this.ySize / 2, this.zSize / 2, -this.xSize / 2, this.ySize / 2, this.zSize / 2, -this.xSize / 2, -this.ySize / 2, this.zSize / 2,
+        this.xSize / 2, -this.ySize / 2, this.zSize / 2, this.xSize / 2, this.ySize / 2, -this.zSize / 2, -this.xSize / 2, this.ySize / 2, -this.zSize / 2, -this.xSize / 2,
+        -this.ySize / 2, -this.zSize / 2, this.xSize / 2, -this.ySize / 2, -this.zSize / 2,};
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
-
+    
     //インデックスバッファの生成
     final byte[] indices = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
@@ -65,13 +61,13 @@ public class JoglBox extends AbstractJoglObject {
   /**
    * 大きさを設定します。
    * 
-   * @param xSize xの長さ
-   * @param ySize yの長さ
-   * @param zSize zの長さ
+   * @param xSize 幅
+   * @param ySize 高さ
+   * @param zSize 奥行
    */
   public void setSize(float xSize, float ySize, float zSize) {
-    this._xsize = xSize;
-    this._ysize = ySize;
-    this._zsize = zSize;
+    this.xSize = xSize;
+    this.ySize = ySize;
+    this.zSize = zSize;
   }
 }

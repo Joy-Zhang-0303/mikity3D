@@ -4,7 +4,6 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
-import javax.xml.bind.annotation.XmlAttribute;
 
 
 /**
@@ -12,17 +11,14 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @version $Revision$, 2012/01/31
  */
 public class JoglCylinder extends AbstractJoglObject {
-  /** 半径 */
-  @XmlAttribute
-  private float _r;
+  /** 底面の半径 */
+  private float radius;
 
   /** 高さ */
-  @XmlAttribute
-  private float _height;
+  private float height;
 
   /** 分割数 */
-  @XmlAttribute
-  private int _div;
+  private int div;
 
   /**
    * {@inheritDoc}
@@ -34,95 +30,95 @@ public class JoglCylinder extends AbstractJoglObject {
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
 
-    final float[] vertices = new float[(this._div * 2 + 2) * 3];
+    final float[] vertices = new float[(this.div * 2 + 2) * 3];
 
     // TODO 描画がおかしいですが、これ以上考えても今は案が出てこないのでPushしました。
     // TODO vertexsかindexsの配列がおかしいのかもしれません。
     //頂点バッファの生成
     vertices[0] = 0.0f;
-    vertices[1] = this._height / 2.0f;
+    vertices[1] = this.height / 2.0f;
     vertices[2] = 0.0f;
     
-    for (int i = 1; i <= this._div; i++) {
-      final double theta = 2.0 * Math.PI / this._div * i;
-      vertices[i * 3] = this._r * (float)Math.cos(theta);
-      vertices[i * 3 + 1] = this._height / 2.0f;
-      vertices[i * 3 + 2] = this._r * (float)Math.sin(theta);
+    for (int i = 1; i <= this.div; i++) {
+      final double theta = 2.0 * Math.PI / this.div * i;
+      vertices[i * 3] = this.radius * (float)Math.cos(theta);
+      vertices[i * 3 + 1] = this.height / 2.0f;
+      vertices[i * 3 + 2] = this.radius * (float)Math.sin(theta);
     }
     
-    vertices[3 + this._div * 3] = 0.0f;
-    vertices[4 + this._div * 3] = -this._height / 2.0f;
-    vertices[5 + this._div * 3] = 0.0f;
+    vertices[3 + this.div * 3] = 0.0f;
+    vertices[4 + this.div * 3] = -this.height / 2.0f;
+    vertices[5 + this.div * 3] = 0.0f;
     
-    for (int i = 1; i <= this._div; i++) {
-      final double theta = 2.0 * Math.PI / this._div * i;
-      vertices[i * 3 + 3 + this._div * 3] = this._r * (float)Math.cos(theta);
-      vertices[i * 3 + 4 + this._div * 3] = -this._height / 2.0f;
-      vertices[i * 3 + 5 + this._div * 3] = this._r * (float)Math.sin(theta);
+    for (int i = 1; i <= this.div; i++) {
+      final double theta = 2.0 * Math.PI / this.div * i;
+      vertices[i * 3 + 3 + this.div * 3] = this.radius * (float)Math.cos(theta);
+      vertices[i * 3 + 4 + this.div * 3] = -this.height / 2.0f;
+      vertices[i * 3 + 5 + this.div * 3] = this.radius * (float)Math.sin(theta);
     }
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
-    final byte[] indices = new byte[this._div * 12];
+    final byte[] indices = new byte[this.div * 12];
     
-    for (int i = 1; i <= this._div; i++) {
+    for (int i = 1; i <= this.div; i++) {
       indices[3 * i - 3] = 0;
     }
     
-    for (int i = 1; i <= this._div; i++) {
+    for (int i = 1; i <= this.div; i++) {
       indices[3 * i - 2] = (byte)i;
     }
     
-    for (int i = 1; i <= this._div-1; i++) {
+    for (int i = 1; i <= this.div-1; i++) {
       indices[3 * i - 1] = (byte)(i + 1);
     }
     
-    indices[3 * this._div - 1] = 1;
+    indices[3 * this.div - 1] = 1;
     
-    for (int i = 1; i <= this._div; i++) {
-      indices[this._div * 3 + 3 * i - 3] = (byte)(1 + this._div);
+    for (int i = 1; i <= this.div; i++) {
+      indices[this.div * 3 + 3 * i - 3] = (byte)(1 + this.div);
     }
     
-    for (int i = 1; i <= this._div; i++) {
-      indices[this._div * 3 + 3 * i - 2] = (byte)(i + 1 + this._div);
+    for (int i = 1; i <= this.div; i++) {
+      indices[this.div * 3 + 3 * i - 2] = (byte)(i + 1 + this.div);
     }
     
-    for (int i = 1; i <= this._div-1; i++) {
-      indices[this._div * 3 + 3 * i - 1] = (byte)(i + 2 + this._div);
+    for (int i = 1; i <= this.div-1; i++) {
+      indices[this.div * 3 + 3 * i - 1] = (byte)(i + 2 + this.div);
     }
     
-    indices[this._div * 6 - 1] = (byte)(this._div + 2);
+    indices[this.div * 6 - 1] = (byte)(this.div + 2);
 
     //側面
 
-    for (int i = 1; i <= this._div; i++) {
-      indices[this._div * 6 + 3 * i - 3] = (byte)(this._div + 1 + i);
+    for (int i = 1; i <= this.div; i++) {
+      indices[this.div * 6 + 3 * i - 3] = (byte)(this.div + 1 + i);
     }
     
-    for (int i = 1; i <= this._div; i++) {
-      indices[this._div * 6 + 3 * i - 2] = (byte)i;
+    for (int i = 1; i <= this.div; i++) {
+      indices[this.div * 6 + 3 * i - 2] = (byte)i;
     }
     
-    for (int i = 1; i <= this._div - 1; i++) {
-      indices[this._div * 6 + 3 * i - 1] = (byte)(i + 1);
+    for (int i = 1; i <= this.div - 1; i++) {
+      indices[this.div * 6 + 3 * i - 1] = (byte)(i + 1);
     }
 
-    indices[this._div * 9 - 1] = 1;
+    indices[this.div * 9 - 1] = 1;
 
-    for (int i = 1; i <= this._div; i++) {
-      indices[this._div * 9 + 3 * i - 3] = (byte)(i);
+    for (int i = 1; i <= this.div; i++) {
+      indices[this.div * 9 + 3 * i - 3] = (byte)(i);
     }
 
-    for (int i = 1; i <= this._div; i++) {
-      indices[this._div * 9 + 3 * i - 2] = (byte)(i + 1 + this._div);
+    for (int i = 1; i <= this.div; i++) {
+      indices[this.div * 9 + 3 * i - 2] = (byte)(i + 1 + this.div);
     }
     
-    for (int i = 1; i <= this._div - 1; i++) {
-      indices[this._div * 9 + 3 * i - 1] = (byte)(i + 2 + this._div);
+    for (int i = 1; i <= this.div - 1; i++) {
+      indices[this.div * 9 + 3 * i - 1] = (byte)(i + 2 + this.div);
     }
 
-    indices[this._div * 12 - 1] = (byte)(this._div + 1);
+    indices[this.div * 12 - 1] = (byte)(this.div + 1);
 
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
@@ -171,12 +167,12 @@ public class JoglCylinder extends AbstractJoglObject {
   /**
    * 大きさを設定します。
    * 
-   * @param radius 半径
-   * @param hight 高さ
+   * @param radius 底面の半径
+   * @param height 高さ
    */
-  public void setSize(float radius, float hight) {
-    this._r = radius;
-    this._height = hight;
+  public void setSize(float radius, float height) {
+    this.radius = radius;
+    this.height = height;
   }
   
   /**
@@ -184,6 +180,6 @@ public class JoglCylinder extends AbstractJoglObject {
    * @param div 分割数
    */
   public void setDiv(int div) {
-    this._div = div;
+    this.div = div;
   }
 }

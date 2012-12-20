@@ -11,7 +11,7 @@ import javax.media.opengl.GL;
  */
 public class JoglTriangleObject extends AbstractJoglObject {
   /** 頂点 */
-  private float[][] _point = new float[3][3];
+  private float[][] points = new float[3][3];
 
   /**
    * {@inheritDoc}
@@ -25,7 +25,7 @@ public class JoglTriangleObject extends AbstractJoglObject {
     gl.glDisable(GL.GL_CULL_FACE);
 
     //頂点バッファの生成
-    final float[] vertices = {this._point[0][0], this._point[0][1], this._point[0][2], this._point[1][0], this._point[1][1], this._point[1][2], this._point[2][0], this._point[2][1], this._point[2][2],};
+    final float[] vertices = {this.points[0][0], this.points[0][1], this.points[0][2], this.points[1][0], this.points[1][1], this.points[1][2], this.points[2][0], this.points[2][1], this.points[2][2],};
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
@@ -37,9 +37,9 @@ public class JoglTriangleObject extends AbstractJoglObject {
 
   /**
    * 頂点を設定します。
-   * @param vertices 頂点
+   * @param points 頂点
    */
-  public void setVertices(float[][] vertices) {
-    this._point = vertices;
+  public void setPoints(float[][] points) {
+    this.points = points;
   }
 }

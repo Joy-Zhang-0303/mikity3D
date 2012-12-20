@@ -4,7 +4,6 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
-import javax.xml.bind.annotation.XmlAttribute;
 
 /**
  * @author iwamoto
@@ -12,12 +11,10 @@ import javax.xml.bind.annotation.XmlAttribute;
  */
 public class JoglSphere extends AbstractJoglObject {
   /** 半径 */
-  @XmlAttribute
-  private float _r;
+  private float radius;
 
   /** 分割数 */
-  @XmlAttribute
-  private int _div;
+  private int div;
 
   /**
    * {@inheritDoc}
@@ -30,9 +27,9 @@ public class JoglSphere extends AbstractJoglObject {
     gl.glEnable(GL.GL_DEPTH_TEST);
 
     // TODO this._div=16までしか対応していない。
-    this._div = 16;
-    final float radius = this._r;
-    final int grid = this._div;
+    this.div = 16;
+    final float radius = this.radius;
+    final int grid = this.div;
     final int grid1 = grid + 1;
     final float incV = 2 * radius / grid;
     final int incU = 360 / grid;
@@ -123,7 +120,7 @@ public class JoglSphere extends AbstractJoglObject {
    * @param radius 半径
    */
   public void setSize(float radius) {
-    this._r = radius;
+    this.radius = radius;
   }
   
   /**
@@ -131,6 +128,6 @@ public class JoglSphere extends AbstractJoglObject {
    * @param div 分割数
    */
   public void setDiv(int div) {
-    this._div = div;
+    this.div = div;
   }
 }

@@ -12,8 +12,8 @@ import javax.vecmath.Vector3f;
 
 import org.mklab.mikity.gui.ModelCanvas;
 import org.mklab.mikity.util.ColorConstant;
-import org.mklab.mikity.xml.JamastConfig;
 import org.mklab.mikity.xml.Jamast;
+import org.mklab.mikity.xml.JamastConfig;
 import org.mklab.mikity.xml.config.Light;
 import org.mklab.mikity.xml.config.View;
 import org.mklab.mikity.xml.model.Group;
