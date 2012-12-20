@@ -90,28 +90,28 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
    * {@inheritDoc}
    */
   public void setCoordinateParameter(CoordinateParameter parameter) {
-    final double locX = parameter.getX();
-    final double locY = parameter.getY();
-    final double locZ = parameter.getZ();
-    final double rotX = parameter.getRotationX();
-    final double rotY = parameter.getRotationY();
-    final double rotZ = parameter.getRotationZ();
+    final double x = parameter.getX();
+    final double y = parameter.getY();
+    final double z = parameter.getZ();
+    final double rotationX = parameter.getRotationX();
+    final double rotationY = parameter.getRotationY();
+    final double rotationZ = parameter.getRotationZ();
 
     //System.out.println("lx, ly, lz(set)(this)=" + locX + "," + locY + "," + locZ + ":" + this);
     //System.out.println("rx, ry, rz(set)(this)=" + rotX + "," + rotY + "," + rotZ + ":" + this);
 
-    if (locX != 0 || locY != 0 || locZ != 0) {
+    if (x != 0 || y != 0 || z != 0) {
       if (this.coordinate != null) {
         if (this.coordinate instanceof JoglLocation) {
-          ((JoglLocation)this.coordinate).translate((float)locX, (float)locY, (float)locZ);
+          ((JoglLocation)this.coordinate).translate((float)x, (float)y, (float)z);
         }
       }
     }
 
-    if (rotX != 0 || rotY != 0 || rotZ != 0) {
+    if (rotationX != 0 || rotationY != 0 || rotationZ != 0) {
       if (this.coordinate != null) {
         if (this.coordinate instanceof JoglRotation) {
-          ((JoglRotation)this.coordinate).rotate((float)rotX, (float)rotY, (float)rotZ);
+          ((JoglRotation)this.coordinate).rotate((float)rotationX, (float)rotationY, (float)rotationZ);
         }
       }
     }
