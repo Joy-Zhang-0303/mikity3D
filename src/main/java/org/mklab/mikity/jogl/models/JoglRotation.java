@@ -1,8 +1,6 @@
 package org.mklab.mikity.jogl.models;
 
 import javax.media.opengl.GL;
-import javax.xml.bind.annotation.XmlAttribute;
-
 
 /**
  * @author iwamoto
@@ -10,54 +8,51 @@ import javax.xml.bind.annotation.XmlAttribute;
  */
 public class JoglRotation implements JoglCoordinate {
   /** x軸周りの回転 */
-  @XmlAttribute
-  private float _xrotate;
+  private float rotationX;
 
   /** y軸周りの回転 */
-  @XmlAttribute
-  private float _yrotate;
+  private float rotationY;
 
   /** z軸周りの回転 */
-  @XmlAttribute
-  private float _zrotate;
+  private float rotationZ;
 
   /**
    * {@inheritDoc}
    */
   public void apply(GL gl) {
     gl.glPushMatrix();
-    if (this._xrotate != 0.0f) {
-      gl.glRotatef(this._xrotate, 1.0f, 0.0f, 0.0f);
+    if (this.rotationX != 0.0f) {
+      gl.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
     }
-    if (this._yrotate != 0.0f) {
-      gl.glRotatef(this._yrotate, 0.0f, 1.0f, 0.0f);
+    if (this.rotationY != 0.0f) {
+      gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
     }
-    if (this._zrotate != 0.0f) {
-      gl.glRotatef(this._zrotate, 0.0f, 0.0f, 1.0f);
+    if (this.rotationZ != 0.0f) {
+      gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
     }
   }
 
   /**
-   * @param xRotation x軸軸周りの回転
-   * @param yRotation y軸軸周りの回転
-   * @param zRotation z軸軸周りの回転
+   * @param rotationX x軸軸周りの回転
+   * @param rotationY y軸軸周りの回転
+   * @param rotationZ z軸軸周りの回転
    */
-  public void setRotation(float xRotation, float yRotation, float zRotation) {
-    this._xrotate = xRotation;
-    this._yrotate = yRotation;
-    this._zrotate = zRotation;
+  public void setRotation(float rotationX, float rotationY, float rotationZ) {
+    this.rotationX = rotationX;
+    this.rotationY = rotationY;
+    this.rotationZ = rotationZ;
   }
 
   /**
    * 回転します。
    * 
-   * @param xRotation x軸周りの回転
-   * @param yRotation y軸周りの回転
-   * @param zRotation z軸周りの回転
+   * @param dRotationX x軸周りの回転
+   * @param dRotationY y軸周りの回転
+   * @param dRotationZ z軸周りの回転
    */
-  public void rotate(float xRotation, float yRotation, float zRotation) {
-    this._xrotate += xRotation;
-    this._yrotate += yRotation;
-    this._zrotate += zRotation;
+  public void rotate(float dRotationX, float dRotationY, float dRotationZ) {
+    this.rotationX += dRotationX;
+    this.rotationY += dRotationY;
+    this.rotationZ += dRotationZ;
   }
 }

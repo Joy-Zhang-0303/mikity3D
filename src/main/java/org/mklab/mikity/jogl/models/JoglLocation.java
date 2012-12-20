@@ -1,7 +1,6 @@
 package org.mklab.mikity.jogl.models;
 
 import javax.media.opengl.GL;
-import javax.xml.bind.annotation.XmlAttribute;
 
 
 /**
@@ -10,23 +9,20 @@ import javax.xml.bind.annotation.XmlAttribute;
  */
 public class JoglLocation implements JoglCoordinate {
   /** x */
-  @XmlAttribute
-  private float _x;
+  private float x;
 
   /** y */
-  @XmlAttribute
-  private float _y;
+  private float y;
 
   /** z */
-  @XmlAttribute
-  private float _z;
+  private float z;
 
   /**
    * {@inheritDoc}
    */
   public void apply(GL gl) {
     gl.glPushMatrix();
-    gl.glTranslatef(this._x, this._y, this._z);
+    gl.glTranslatef(this.x, this.y, this.z);
   }
 
   /**
@@ -37,21 +33,21 @@ public class JoglLocation implements JoglCoordinate {
    * @param z z座標
    */
   public void setLocation(float x, float y, float z) {
-    this._x = x;
-    this._y = y;
-    this._z = z;
+    this.x = x;
+    this.y = y;
+    this.z = z;
   }
   
   /**
    * 平行移動します。
    * 
-   * @param x x座用
-   * @param y y座標
-   * @param z z座標
+   * @param dx x座用
+   * @param dy y座標
+   * @param dz z座標
    */
-  public void translate(float x, float y, float z) {
-    this._x += x;
-    this._y += y;
-    this._z += z;
+  public void translate(float dx, float dy, float dz) {
+    this.x += dx;
+    this.y += dy;
+    this.z += dz;
   }
 }

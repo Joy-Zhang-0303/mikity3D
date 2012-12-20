@@ -1,7 +1,6 @@
 package org.mklab.mikity.jogl.models;
 
 import javax.media.opengl.GL;
-import javax.xml.bind.annotation.XmlAttribute;
 
 
 /**
@@ -10,45 +9,39 @@ import javax.xml.bind.annotation.XmlAttribute;
  */
 public class JoglLocationRotation implements JoglCoordinate {
   /** x軸周りの回転 */
-  @XmlAttribute
-  private float _xrotate;
+  private float rotationX;
 
   /** y軸周りの回転 */
-  @XmlAttribute
-  private float _yrotate;
+  private float rotationY;
 
   /** z軸周りの回転 */
-  @XmlAttribute
-  private float _zrotate;
+  private float rotationZ;
 
   /** x */
-  @XmlAttribute
-  private float _x;
+  private float x;
 
   /** y*/
-  @XmlAttribute
-  private float _y;
+  private float y;
 
   /** z */
-  @XmlAttribute
-  private float _z;
+  private float z;
 
   /**
    * {@inheritDoc}
    */
   public void apply(GL gl) {
     gl.glPushMatrix();
-    gl.glTranslatef(this._x, this._y, this._z);
+    gl.glTranslatef(this.x, this.y, this.z);
     gl.glPushMatrix();
     
-    if (this._xrotate != 0.0f) {
-      gl.glRotatef(this._xrotate, 1.0f, 0.0f, 0.0f);
+    if (this.rotationX != 0.0f) {
+      gl.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
     }
-    if (this._yrotate != 0.0f) {
-      gl.glRotatef(this._yrotate, 0.0f, 1.0f, 0.0f);
+    if (this.rotationY != 0.0f) {
+      gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
     }
-    if (this._zrotate != 0.0f) {
-      gl.glRotatef(this._zrotate, 0.0f, 0.0f, 1.0f);
+    if (this.rotationZ != 0.0f) {
+      gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
     }
   }
 
@@ -58,40 +51,21 @@ public class JoglLocationRotation implements JoglCoordinate {
    * @param z z座標
    */
   public void setLocation(float x, float y, float z) {
-    this._x = x;
-    this._y = y;
-    this._z = z;
+    this.x = x;
+    this.y = y;
+    this.z = z;
   }
 
   /**
    * x-y-z軸周りの回転を設定します。
    * 
-   * @param xRotation x軸周りの回転
-   * @param yRotation y軸周りの回転
-   * @param zRotation z軸周りの回転
+   * @param rotationX x軸周りの回転
+   * @param rotationY y軸周りの回転
+   * @param rotationZ z軸周りの回転
    */
-  public void setRotation(float xRotation, float yRotation, float zRotation) {
-    this._xrotate = xRotation;
-    this._yrotate = yRotation;
-    this._zrotate = zRotation;
+  public void setRotation(float rotationX, float rotationY, float rotationZ) {
+    this.rotationX = rotationX;
+    this.rotationY = rotationY;
+    this.rotationZ = rotationZ;
   }
-  
-//  /**
-//   * x-y-z座標を設定します。
-//   * 
-//   * @param x x座標
-//   * @param y y座標
-//   * @param z z座標
-//   * @param xRotation x軸周りの回転
-//   * @param yRotation y軸周りの回転
-//   * @param zRotation z軸周りの回転
-//   */
-//  public void setLocRot(float x, float y, float z, float xRotation, float yRotation, float zRotation) {
-//    this._x = x;
-//    this._y = y;
-//    this._z = z;
-//    this._xrotate = xRotation;
-//    this._yrotate = yRotation;
-//    this._zrotate = zRotation;
-//  }
 }
