@@ -384,30 +384,30 @@ public class JoglPrimitiveFactory {
    * @param group JOGLトランスフォームグループ
    */
   public static void setLinkParameter(List<CoordinateParameter> parameters, JoglTransformGroup group) {
-    float locX = 0; 
-    float locY = 0; 
-    float locZ = 0; 
-    float rotX = 0; 
-    float rotY = 0; 
-    float rotZ = 0;
+    float x = 0; 
+    float y = 0; 
+    float z = 0; 
+    float xRotation = 0; 
+    float yRotation = 0; 
+    float zRotation = 0;
 
     for (final CoordinateParameter parameter : parameters) {
-      locX = locX + (float)parameter.getX();
-      locY = locY + (float)parameter.getY();
-      locZ = locZ + (float)parameter.getZ();
-      rotX = rotX + (float)parameter.getRotX();
-      rotY = rotY + (float)parameter.getThY();
-      rotZ = rotZ + (float)parameter.getThZ();
+      x = x + (float)parameter.getX();
+      y = y + (float)parameter.getY();
+      z = z + (float)parameter.getZ();
+      xRotation = xRotation + (float)parameter.getRotationX();
+      yRotation = yRotation + (float)parameter.getRotationY();
+      zRotation = zRotation + (float)parameter.getRotationZ();
     }
 
-    if (rotX == 0.0f && rotY == 0.0f && rotZ == 0.0f) {
+    if (xRotation == 0.0f && yRotation == 0.0f && zRotation == 0.0f) {
       final JoglLocation location = new JoglLocation();
-      location.setLocation(locX, locY, locZ);
+      location.setLocation(x, y, z);
       group.setCoordinate(location);
     } else { //if(locX == 0.0f && locY == 0.0f && locZ == 0.0f){
       final JoglLocationRotation locationRotation = new JoglLocationRotation();
-      locationRotation.setLocation(locX, locY, locZ);
-      locationRotation.setRotation(rotX, rotY, rotZ);
+      locationRotation.setLocation(x, y, z);
+      locationRotation.setRotation(xRotation, yRotation, zRotation);
       group.setCoordinate(locationRotation);
     }
   }

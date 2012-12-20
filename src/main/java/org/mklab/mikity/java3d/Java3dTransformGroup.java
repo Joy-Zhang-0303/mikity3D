@@ -137,7 +137,7 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
     final Transform3D transform = new Transform3D();
 
     final Transform3D translate1 = new Transform3D();
-    final double rotY = parameter.getThY();
+    final double rotY = parameter.getRotationY();
     translate1.setRotation(new AxisAngle4d(0.0, 1.0, 0.0, rotY));
     transform.mul(translate1);
 
@@ -152,7 +152,7 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
     transform.mul(translate3);
 
     final Transform3D translate4 = new Transform3D();
-    final double rotX = parameter.getRotX();
+    final double rotX = parameter.getRotationX();
     translate4.setRotation(new AxisAngle4d(1.0, 0.0, 0.0, rotX));
     transform.mul(translate4);
 
@@ -162,7 +162,7 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
     transform.mul(translate5);
 
     final Transform3D translate6 = new Transform3D();
-    final double rotZ = parameter.getThZ();
+    final double rotZ = parameter.getRotationZ();
     translate6.setRotation(new AxisAngle4d(0.0, 0.0, 1.0, rotZ));
     transform.mul(translate6);
 

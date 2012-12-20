@@ -82,25 +82,25 @@ public class Util {
           parameter.setX(linkData[i].loadInitialValue() / scale);
         } else if (linkData[i].loadTargetName().equals("rotationX")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setThX(linkData[i].loadInitialValue());
+            parameter.setRationX(linkData[i].loadInitialValue());
           } else {
-            parameter.setThX(Math.toRadians(linkData[i].loadInitialValue()));
+            parameter.setRationX(Math.toRadians(linkData[i].loadInitialValue()));
           }
         } else if (linkData[i].loadTargetName().equals("locationY")) { //$NON-NLS-1$
           parameter.setY(linkData[i].loadInitialValue() / scale);
         } else if (linkData[i].loadTargetName().equals("rotationY")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setThY(linkData[i].loadInitialValue());
+            parameter.setRotationY(linkData[i].loadInitialValue());
           } else {
-            parameter.setThY(Math.toRadians(linkData[i].loadInitialValue()));
+            parameter.setRotationY(Math.toRadians(linkData[i].loadInitialValue()));
           }
         } else if (linkData[i].loadTargetName().equals("locationZ")) { //$NON-NLS-1$
           parameter.setZ(linkData[i].loadInitialValue() / scale);
         } else if (linkData[i].loadTargetName().equals("rotationZ")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setThZ(linkData[i].loadInitialValue());
+            parameter.setRotationZ(linkData[i].loadInitialValue());
           } else {
-            parameter.setThZ(Math.toRadians(linkData[i].loadInitialValue()));
+            parameter.setRotationZ(Math.toRadians(linkData[i].loadInitialValue()));
           }
         }
       }

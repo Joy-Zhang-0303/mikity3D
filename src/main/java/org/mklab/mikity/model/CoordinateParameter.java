@@ -15,9 +15,9 @@ public class CoordinateParameter {
   private double x;
   private double y;
   private double z;
-  private double thX;
-  private double thY;
-  private double thZ;
+  private double rotationX;
+  private double rotationY;
+  private double rotationZ;
 
   /**
    * 新しく生成された<code>CoordinateParameter</code>オブジェクトを初期化します。
@@ -31,17 +31,17 @@ public class CoordinateParameter {
    * @param x X座標並進
    * @param y Y座標並進
    * @param z Z座標並進
-   * @param thX X座標回転
-   * @param thY Y座標回転
-   * @param thZ Z座標回転
+   * @param rotationX X座標回転
+   * @param rotationY Y座標回転
+   * @param rotationZ Z座標回転
    */
-  public CoordinateParameter(double x, double y, double z, double thX, double thY, double thZ) {
+  public CoordinateParameter(double x, double y, double z, double rotationX, double rotationY, double rotationZ) {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.thX = thX;
-    this.thY = thY;
-    this.z = thZ;
+    this.rotationX = rotationX;
+    this.rotationY = rotationY;
+    this.rotationZ = rotationZ;
   }
 
   /**
@@ -103,17 +103,17 @@ public class CoordinateParameter {
    * 
    * @return X座標回転の値
    */
-  public double getRotX() {
-    return this.thX;
+  public double getRotationX() {
+    return this.rotationX;
   }
 
   /**
    * X座標回転の値を設定します。
    * 
-   * @param thX X座標回転の値
+   * @param rotationX X座標回転の値
    */
-  public void setThX(double thX) {
-    this.thX = thX;
+  public void setRationX(double rotationX) {
+    this.rotationX = rotationX;
   }
 
   /**
@@ -121,17 +121,17 @@ public class CoordinateParameter {
    * 
    * @return Y座標回転の値
    */
-  public double getThY() {
-    return this.thY;
+  public double getRotationY() {
+    return this.rotationY;
   }
 
   /**
    * Y座標回転の値を設定します。
    * 
-   * @param thY Y座標回転の値
+   * @param rotationY Y座標回転の値
    */
-  public void setThY(double thY) {
-    this.thY = thY;
+  public void setRotationY(double rotationY) {
+    this.rotationY = rotationY;
   }
 
   /**
@@ -139,16 +139,16 @@ public class CoordinateParameter {
    * 
    * @return Z座標回転の値
    */
-  public double getThZ() {
-    return this.thZ;
+  public double getRotationZ() {
+    return this.rotationZ;
   }
 
   /**
    * Z座標回転の値を設定します。
    * 
-   * @param thZ Z座標回転の値
+   * @param rotationZ Z座標回転の値
    */
-  public void setThZ(double thZ) {
-    this.thZ = thZ;
+  public void setRotationZ(double rotationZ) {
+    this.rotationZ = rotationZ;
   }
 }
