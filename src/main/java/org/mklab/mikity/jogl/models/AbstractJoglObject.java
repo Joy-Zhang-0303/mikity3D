@@ -10,7 +10,6 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
-import javax.xml.bind.annotation.XmlAttribute;
 
 import org.mklab.mikity.jogl.JoglObject;
 
@@ -23,15 +22,14 @@ import org.mklab.mikity.jogl.JoglObject;
  */
 public abstract class AbstractJoglObject implements JoglObject {
   /** 色 */
-  @XmlAttribute
-  private String _color;
+  private String color;
 
   /**
    * 色を設定します。
    * @param color 色
    */
   public void setColor(String color) {
-    this._color = color;
+    this.color = color;
   }
 
   /**
@@ -40,35 +38,35 @@ public abstract class AbstractJoglObject implements JoglObject {
    * @param gl GL　
    */
   public void applyColor(GL gl) {
-    if (this._color == null) {
+    if (this.color == null) {
       return;
     }
     
-    if (this._color.equals("white")) { //$NON-NLS-1$
+    if (this.color.equals("white")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-    } else if (this._color.equals("lightGray")) { //$NON-NLS-1$
+    } else if (this.color.equals("lightGray")) { //$NON-NLS-1$
       gl.glColor4f(0.75f, 0.75f, 0.75f, 1.0f);
-    } else if (this._color.equals("gray")) { //$NON-NLS-1$
+    } else if (this.color.equals("gray")) { //$NON-NLS-1$
       gl.glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
-    } else if (this._color.equals("darkGray")) { //$NON-NLS-1$
+    } else if (this.color.equals("darkGray")) { //$NON-NLS-1$
       gl.glColor4f(0.25f, 0.25f, 0.25f, 1.0f);
-    } else if (this._color.equals("black")) { //$NON-NLS-1$
+    } else if (this.color.equals("black")) { //$NON-NLS-1$
       gl.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
-    } else if (this._color.equals("red")) { //$NON-NLS-1$
+    } else if (this.color.equals("red")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
-    } else if (this._color.equals("pink")) { //$NON-NLS-1$
+    } else if (this.color.equals("pink")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 0.69f, 0.69f, 1.0f);
-    } else if (this._color.equals("orange")) { //$NON-NLS-1$
+    } else if (this.color.equals("orange")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 0.78f, 0.0f, 1.0f);
-    } else if (this._color.equals("yellow")) { //$NON-NLS-1$
+    } else if (this.color.equals("yellow")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
-    } else if (this._color.equals("green")) { //$NON-NLS-1$
+    } else if (this.color.equals("green")) { //$NON-NLS-1$
       gl.glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
-    } else if (this._color.equals("magenta")) { //$NON-NLS-1$
+    } else if (this.color.equals("magenta")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 0.0f, 1.0f, 1.0f);
-    } else if (this._color.equals("cyan")) { //$NON-NLS-1$
+    } else if (this.color.equals("cyan")) { //$NON-NLS-1$
       gl.glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
-    } else if (this._color.equals("blue")) { //$NON-NLS-1$
+    } else if (this.color.equals("blue")) { //$NON-NLS-1$
       gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
     }
   }
