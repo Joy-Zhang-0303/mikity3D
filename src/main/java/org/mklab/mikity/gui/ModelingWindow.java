@@ -25,7 +25,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.action.AnimationWindowOpenAction;
 import org.mklab.mikity.action.ConfigDialogOpenAction;
-import org.mklab.mikity.action.ModelEditorOpenAction;
 import org.mklab.mikity.action.file.FileExitAction;
 import org.mklab.mikity.action.file.FileImportAction;
 import org.mklab.mikity.action.file.FileNewAction;
@@ -66,7 +65,7 @@ public class ModelingWindow extends ApplicationWindow {
   /** */
   Action FILE_IMPORT_ACTION = new FileImportAction(this);
   /** */
-  Action MODELER_OPEN_ACTION = new ModelEditorOpenAction(this);
+  //Action MODELER_OPEN_ACTION = new ModelEditorOpenAction(this);
   /** */
   Action CONFIGDIALOG_OPEN_ACTION = new ConfigDialogOpenAction(this);
   /** */
