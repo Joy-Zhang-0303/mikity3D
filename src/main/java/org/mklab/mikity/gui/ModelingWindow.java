@@ -273,13 +273,6 @@ public class ModelingWindow extends ApplicationWindow {
     return this.root;
   }
 
-//  final class SaveAsButtonSelectionListener extends SelectionAdapter {
-//    @Override
-//    public void widgetSelected(SelectionEvent arg0) {
-//      ModelingWindow.this.FILE_SAVE_AS_ACTION.run();
-//    }
-//  }
-
   /**
    * ファイルに保存します。
    * @throws IOException ファイルに保存できない場合 
