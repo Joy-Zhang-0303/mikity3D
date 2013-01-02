@@ -74,9 +74,9 @@ public class SceneGraphTree {
   /** */
   Connect connect;
   /** */
-  boolean usedDHParam = false;
+  boolean usedDHParameter = false;
   /** */
-  boolean usedLink = false;
+  boolean usedCoordinateParameter = false;
 
   /**
    * コンストラクター
@@ -136,10 +136,10 @@ public class SceneGraphTree {
           }
           checkUsedLinkType(SceneGraphTree.this.model.loadGroup());
 
-          if (SceneGraphTree.this.usedDHParam) {
+          if (SceneGraphTree.this.usedDHParameter) {
             final GroupConfigDialogDH groupConf = new GroupConfigDialogDH(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
-          } else if (SceneGraphTree.this.usedLink) {
+          } else if (SceneGraphTree.this.usedCoordinateParameter) {
             final GroupConfigDialogLink groupConf = new GroupConfigDialogLink(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           } else {
@@ -296,10 +296,10 @@ public class SceneGraphTree {
         if (SceneGraphTree.this.targetObj instanceof Group) {
           checkUsedLinkType(SceneGraphTree.this.model.loadGroup());
 
-          if (SceneGraphTree.this.usedDHParam) {
+          if (SceneGraphTree.this.usedDHParameter) {
             final GroupConfigDialogDH groupConf = new GroupConfigDialogDH(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
-          } else if (SceneGraphTree.this.usedLink) {
+          } else if (SceneGraphTree.this.usedCoordinateParameter) {
             final GroupConfigDialogLink groupConf = new GroupConfigDialogLink(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           } else {
@@ -661,76 +661,76 @@ public class SceneGraphTree {
   /**
    * 
    * @param item
-   * @param group
+   * @param groups
    */
-  private void addTreeItem(TreeItem item, Group[] group) {
+  private void addTreeItem(TreeItem item, Group[] groups) {
     // Groupの長さだけ繰り返す
-    for (int i = 0; i < group.length; i++) {
+    for (int i = 0; i < groups.length; i++) {
       // 子となるTreeItem、childに名前をつけて接続
       TreeItem child = null;
       if (item == null) {
         child = new TreeItem(this.xmlTree, SWT.NONE);
-        child.setText("rootGroup : " + group[i].loadName()); //$NON-NLS-1$
+        child.setText("rootGroup : " + groups[i].loadName()); //$NON-NLS-1$
       } else {
         child = new TreeItem(item, SWT.NONE);
-        child.setText("Group : " + group[i].loadName()); //$NON-NLS-1$
+        child.setText("Group : " + groups[i].loadName()); //$NON-NLS-1$
       }
-      child.setData(group[i]);
+      child.setData(groups[i]);
 
-      final XMLBox[] box = group[i].getXMLBox();
-      for (int j = 0; j < box.length; j++) {
+      final XMLBox[] boxes = groups[i].getXMLBox();
+      for (int j = 0; j < boxes.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("box ( " + box[j].loadXsize() + ", " + box[j].loadYsize() + ", " + box[j].loadZsize() + ", " + box[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-        boxChild.setData(box[j]);
-      }
-
-      final XMLCylinder[] cyl = group[i].getXMLCylinder();
-      for (int j = 0; j < cyl.length; j++) {
-        final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cylinder ( " + cyl[j].loadR() + ", " + cyl[j].loadHeight() + ", " + cyl[j].loadDiv() + ", " + cyl[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-        boxChild.setData(cyl[j]);
+        boxChild.setText("box ( " + boxes[j].loadXsize() + ", " + boxes[j].loadYsize() + ", " + boxes[j].loadZsize() + ", " + boxes[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setData(boxes[j]);
       }
 
-      final XMLSphere[] sph = group[i].getXMLSphere();
-      for (int j = 0; j < sph.length; j++) {
+      final XMLCylinder[] cylinders = groups[i].getXMLCylinder();
+      for (int j = 0; j < cylinders.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Sphere ( " + sph[j].loadR() + ", " + sph[j].loadDiv() + ", " + sph[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-        boxChild.setData(sph[j]);
+        boxChild.setText("Cylinder ( " + cylinders[j].loadR() + ", " + cylinders[j].loadHeight() + ", " + cylinders[j].loadDiv() + ", " + cylinders[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setData(cylinders[j]);
       }
 
-      final XMLCone[] cone = group[i].getXMLCone();
-      for (int j = 0; j < cone.length; j++) {
+      final XMLSphere[] spheres = groups[i].getXMLSphere();
+      for (int j = 0; j < spheres.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cone ( " + cone[j].loadR() + ", " + cone[j].loadHeight() + ", " + cone[j].loadDiv() + ", " + cone[j].loadColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-        boxChild.setData(cone[j]);
+        boxChild.setText("Sphere ( " + spheres[j].loadR() + ", " + spheres[j].loadDiv() + ", " + spheres[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        boxChild.setData(spheres[j]);
+      }
+
+      final XMLCone[] cones = groups[i].getXMLCone();
+      for (int j = 0; j < cones.length; j++) {
+        final TreeItem boxChild = new TreeItem(child, SWT.NONE);
+        boxChild.setText("Cone ( " + cones[j].loadR() + ", " + cones[j].loadHeight() + ", " + cones[j].loadDiv() + ", " + cones[j].loadColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setData(cones[j]);
       }
       
-      final XMLConnector[] connector = group[i].getXMLConnector();
-      for (int j = 0; j < connector.length; j++) {
+      final XMLConnector[] connectors = groups[i].getXMLConnector();
+      for (int j = 0; j < connectors.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Connector ( No." + connector[j].loadNum() + ", " + connector[j].loadFlag() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-        boxChild.setData(connector[j]);
+        boxChild.setText("Connector ( No." + connectors[j].loadNum() + ", " + connectors[j].loadFlag() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+        boxChild.setData(connectors[j]);
       }
 
-      final XMLTrianglePolygon[] triangle = group[i].getXMLTrianglePolygon();
-      for (int j = 0; j < triangle.length; j++) {
+      final XMLTrianglePolygon[] trianglePolygons = groups[i].getXMLTrianglePolygon();
+      for (int j = 0; j < trianglePolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Triangle ( " + triangle[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$
-        boxChild.setData(triangle[j]);
+        boxChild.setText("Triangle ( " + trianglePolygons[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$
+        boxChild.setData(trianglePolygons[j]);
       }
 
-      final XMLQuadPolygon[] quad = group[i].getXMLQuadPolygon();
-      for (int j = 0; j < quad.length; j++) {
+      final XMLQuadPolygon[] quadPolygons = groups[i].getXMLQuadPolygon();
+      for (int j = 0; j < quadPolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Quad ( " + quad[j].loadColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$
-        boxChild.setData(quad[j]);
+        boxChild.setText("Quad ( " + quadPolygons[j].loadColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$
+        boxChild.setData(quadPolygons[j]);
       }
 
       if (item != null) {
         item.setExpanded(true);
       }
-      final Group[] childGroup = group[i].getGroups();
-      addTreeItem(child, childGroup);
+      final Group[] childGroups = groups[i].getGroups();
+      addTreeItem(child, childGroups);
     }
     if (item != null) {
       item.setExpanded(true);
@@ -816,23 +816,29 @@ public class SceneGraphTree {
   /**
    * 現在ツリーのリンク関係にDHパラメータが使われているか調べる
    * 
-   * @param g グループリスト
+   * @param groups グループリスト
    */
-  void checkUsedLinkType(Group[] g) {
-    if (g.length != 0 || this.usedDHParam == false || this.usedLink == false) {
-      for (int i = 0; i < g.length; i++) {
-        final LinkData[] link = g[i].getLinkData();
-        for (int j = 0; j < link.length; j++) {
-          if (link[j].hasDHParameter()) {
-            this.usedDHParam = true;
-            break;
-          } else if (link[j].hasCoordinateParameter()) {
-            this.usedLink = true;
-            break;
-          }
+  void checkUsedLinkType(Group[] groups) {
+    if (groups.length == 0) {
+      return;
+    }
+    
+    if (this.usedDHParameter && this.usedCoordinateParameter) {
+      return;
+    }
+      
+    for (int i = 0; i < groups.length; i++) {
+      final LinkData[] links = groups[i].getLinkData();
+      for (int j = 0; j < links.length; j++) {
+        if (links[j].hasDHParameter()) {
+          this.usedDHParameter = true;
+          break;
+        } else if (links[j].hasCoordinateParameter()) {
+          this.usedCoordinateParameter = true;
+          break;
         }
-        checkUsedLinkType(g[i].getGroups());
       }
+      checkUsedLinkType(groups[i].getGroups());
     }
   }
 }
