@@ -118,48 +118,6 @@ public class ModelingWindow extends ApplicationWindow {
     return localComposite;
   }
 
-//  /**
-//   * ファイルを選択するボタン
-//   * 
-//   * @param composite コンポジット
-//   */
-//  public void createFileChooseComp(final Composite composite) {
-//    final Composite localComposite = new Composite(composite, SWT.NONE);
-//    final GridLayout layout = new GridLayout();
-//    layout.numColumns = 6;
-//    localComposite.setLayout(layout);
-//    localComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//
-//    final Label label = new Label(localComposite, SWT.NONE);
-//    label.setText(Messages.getString("MainWindow.0")); //$NON-NLS-1$
-//
-//    this.filePathText = new Text(localComposite, SWT.BORDER);
-//    this.filePathText.setText(""); //$NON-NLS-1$
-//    this.filePathText.addTraverseListener(new TraverseListener() {
-//
-//      @Override
-//      public void keyTraversed(TraverseEvent e) {
-//        if (e.detail == SWT.TRAVERSE_RETURN) {
-//          setFile(ModelingWindow.this.filePathText.getText());
-//        }
-//      }
-//    });
-//
-//    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-//    gridData.horizontalSpan = 4;
-//    this.filePathText.setLayoutData(gridData);
-//
-//    final Button refButton = new Button(localComposite, SWT.BORDER);
-//    refButton.setText(Messages.getString("MainWindow.1")); //$NON-NLS-1$
-//    refButton.addSelectionListener(new SelectionAdapter() {
-//
-//      @Override
-//      public void widgetSelected(SelectionEvent arg0) {
-//        ModelingWindow.this.FILE_OPEN_ACTION.run();
-//      }
-//    });
-//  }
-
   /**
    * シェルの設定を行う
    * 
