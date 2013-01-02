@@ -62,7 +62,7 @@ public class FileSaveAsAction extends Action {
 
     try {
       this.window.setFile(filePath);
-      this.window.save();
+      this.window.saveFile();
     } catch (JAXBException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {

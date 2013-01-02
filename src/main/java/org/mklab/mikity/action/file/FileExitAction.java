@@ -50,7 +50,7 @@ public class FileExitAction extends Action {
             final FileDialog dialog = new FileDialog(this.window.getShell());
             final String path = dialog.getFileName();
             this.window.setFile(path);
-            this.window.save();
+            this.window.saveFile();
           } catch (JAXBException e) {
             throw new RuntimeException(e);
           } catch (IOException e) {

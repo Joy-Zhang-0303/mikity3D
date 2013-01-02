@@ -38,7 +38,7 @@ public class FileSaveAction extends Action {
   @Override
   public void run() {
     try {
-      this.window.save();
+      this.window.saveFile();
       new FileSaveAsAction(this.window).run();
     } catch (JAXBException e) {
       throw new RuntimeException(e);

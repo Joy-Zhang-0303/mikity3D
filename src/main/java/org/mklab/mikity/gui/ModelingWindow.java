@@ -53,7 +53,6 @@ import org.mklab.mikity.xml.config.ModelUnit;
  * @version $Revision: 1.21 $.2004/12/01
  */
 public class ModelingWindow extends ApplicationWindow {
-
   /** */
   Action FILE_NEW_ACTION = new FileNewAction(this);
   /** */
@@ -86,12 +85,6 @@ public class ModelingWindow extends ApplicationWindow {
   
   /** */
   Text filePathText;
-//  private Button newModelButton;
-//  private Button modelerButton;
-//  private Button configButton;
-//  private Button simButton;
-//  private Button saveButton;
-//  private Button saveAsButton;
   
   private boolean dirty;
   private AbstractModeler modeler;
@@ -187,88 +180,8 @@ public class ModelingWindow extends ApplicationWindow {
     shell.setText("Modeler"); //$NON-NLS-1$
   }
 
-//  /**
-//   * ボタンを作成、配置
-//   * 
-//   * @param composite コンポジット
-//   */
-//  public void createMainButtonComp(final Composite composite) {
-//    final Composite localComposite = new Composite(composite, SWT.NONE);
-//    final GridLayout layout = new GridLayout();
-//    layout.numColumns = 6;
-//    localComposite.setLayout(layout);
-//    localComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//
-//    this.newModelButton = new Button(localComposite, SWT.NONE);
-//    this.newModelButton.setText(Messages.getString("MainWindow.2")); //$NON-NLS-1$
-//
-//    this.modelerButton = new Button(localComposite, SWT.NONE);
-//    this.modelerButton.setText(Messages.getString("MainWindow.3")); //$NON-NLS-1$
-//
-//    this.configButton = new Button(localComposite, SWT.NONE);
-//    this.configButton.setText(Messages.getString("MainWindow.4")); //$NON-NLS-1$
-//
-//    this.simButton = new Button(localComposite, SWT.NONE);
-//    this.simButton.setText(Messages.getString("MainWindow.5")); //$NON-NLS-1$
-//
-//    this.saveAsButton = new Button(localComposite, SWT.NONE);
-//    this.saveAsButton.setText(Messages.getString("MainWindow.6")); //$NON-NLS-1$
-//
-//    this.saveButton = new Button(localComposite, SWT.NONE);
-//    this.saveButton.setText(Messages.getString("MainWindow.7")); //$NON-NLS-1$
-//
-//    // 編集できないようにする
-//    // setEditable(false);
-//
-//    this.newModelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-//
-//      @Override
-//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-//        ModelingWindow.this.FILE_NEW_ACTION.run();
-//      }
-//    });
-//
-//    // ファイルの上書き保存
-//    this.saveButton.addSelectionListener(new SelectionAdapter() {
-//
-//      @Override
-//      public void widgetSelected(SelectionEvent arg0) {
-//        ModelingWindow.this.FILE_SAVE_ACTION.run();
-//      }
-//    });
-//
-//
-//    // ファイルの別名保存
-//    this.saveAsButton.addSelectionListener(new SaveAsButtonSelectionListener());
-//
-//    this.modelerButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-//
-//      @Override
-//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-//        ModelingWindow.this.MODELER_OPEN_ACTION.run();
-//      }
-//    });
-//
-//    this.configButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-//
-//      @Override
-//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-//        ModelingWindow.this.CONFIGDIALOG_OPEN_ACTION.run();
-//      }
-//    });
-//
-//    this.simButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-//
-//      @Override
-//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-//        ModelingWindow.this.ANIMATION_WINDOW_OPEN_ACTION.run();
-//      }
-//    });
-//
-//  }
-
   /**
-   * ファイルの設定を行う
+   * ファイルを設定します。
    * 
    * @param filePath ファイルパス
    */
@@ -360,19 +273,19 @@ public class ModelingWindow extends ApplicationWindow {
     return this.root;
   }
 
-  final class SaveAsButtonSelectionListener extends SelectionAdapter {
-    @Override
-    public void widgetSelected(SelectionEvent arg0) {
-      ModelingWindow.this.FILE_SAVE_AS_ACTION.run();
-    }
-  }
+//  final class SaveAsButtonSelectionListener extends SelectionAdapter {
+//    @Override
+//    public void widgetSelected(SelectionEvent arg0) {
+//      ModelingWindow.this.FILE_SAVE_AS_ACTION.run();
+//    }
+//  }
 
   /**
    * ファイルに保存します。
    * @throws IOException ファイルに保存できない場合 
    * @throws JAXBException ファイルに保存できない場合 
    */
-  public void save() throws JAXBException, IOException {
+  public void saveFile() throws JAXBException, IOException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
@@ -388,20 +301,18 @@ public class ModelingWindow extends ApplicationWindow {
    * @throws IOException ファイルを読み込めない場合
    * @throws JAXBException ファイルを読み込めない場合
    */
-  public void load() throws IOException, JAXBException {
+  public void loadFile() throws IOException, JAXBException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     
     this.root = new JamastFactory().loadJamastFile(this.file);
     
-    // setEditable(true);
     final SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(this.root.loadModel(0).loadGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
-    // setEditable(false);
     this.dirty = false;
   }
 
@@ -417,17 +328,16 @@ public class ModelingWindow extends ApplicationWindow {
     
     new JamastFactory().importJavaFile(this.file, this.root);
 
-    // setEditable(true);
     final SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(this.root.loadModel(0).loadGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
-    // setEditable(false);
     this.dirty = false;
   }
 
   /**
+   * 変更されているか判定します。
    * @return isDirty 変更されている場合true
    */
   public boolean isDirty() {
@@ -435,6 +345,7 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
+   * 変更されているか設定します。
    * @param dirty 変更されている場合true
    */
   public void setDirty(final boolean dirty) {

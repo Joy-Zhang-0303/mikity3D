@@ -55,7 +55,7 @@ public class FileNewAction extends Action {
       final File file = new File(fileName);
       if (file.createNewFile()) {
         this.window.setFile(fileName);
-        this.window.load();
+        this.window.loadFile();
       } else {
         // 新規作成したいが、もともとその名前のファイルが存在するとき
         final MessageBox messageBox = new MessageBox(this.window.getShell(), SWT.YES | SWT.NO);
@@ -65,7 +65,7 @@ public class FileNewAction extends Action {
 
         if (yesNo == SWT.YES) {
           this.window.setFile(fileName);
-          this.window.load();
+          this.window.loadFile();
         } else if (yesNo == SWT.NO) {
           return;
         }
