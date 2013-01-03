@@ -96,7 +96,7 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   ParameterInputBox playSpeed;
 
-  //  ModelCanvas
+  /** ModelCanvas */
   private ModelCanvas modelCanvas;
 
   /**
@@ -125,13 +125,6 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, JAXBException {
     this(parentShell, new JamastFactory().loadJamastFile(modelFile));
-//    super(parentShell);
-//    this.root = new JamastFactory().loadJamastFile(modelFile);
-//    this.manager = new MovableGroupManager(this.root);
-//    
-//    // TODO Java3d or JOGL
-//    this.modelCanvas = new Java3dModelCanvas(this.root);
-//    //this.modelCanvas = new JoglModelCanvas(this.root);
   }
   
   /**
