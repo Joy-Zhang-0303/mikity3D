@@ -139,7 +139,7 @@ public class JamastFactory {
     localRoot.addConfig(config);
     localRoot.addModel(model);
     final Group group = new Group();
-    group.setName(Messages.getString("FileNewAction.5")); //$NON-NLS-1$
+    group.setName("Group0"); //$NON-NLS-1$
     model.addGroup(group);
     return localRoot;
   }

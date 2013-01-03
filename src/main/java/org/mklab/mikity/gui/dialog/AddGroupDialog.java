@@ -64,7 +64,7 @@ public class AddGroupDialog extends ApplicationWindow {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        Group newGroup = new Group();
+        final Group newGroup = new Group();
         newGroup.setName(groupParam.getText());
         AddGroupDialog.this.group.addGroup(newGroup);
         close();
