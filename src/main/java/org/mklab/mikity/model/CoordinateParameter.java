@@ -15,9 +15,9 @@ public class CoordinateParameter {
   private double x;
   private double y;
   private double z;
-  private double rotationX;
-  private double rotationY;
-  private double rotationZ;
+  private double angleX;
+  private double angleY;
+  private double angleZ;
 
   /**
    * 新しく生成された<code>CoordinateParameter</code>オブジェクトを初期化します。
@@ -31,17 +31,17 @@ public class CoordinateParameter {
    * @param x X座標並進
    * @param y Y座標並進
    * @param z Z座標並進
-   * @param rotationX X座標回転
-   * @param rotationY Y座標回転
-   * @param rotationZ Z座標回転
+   * @param angleX X座標回転
+   * @param angleY Y座標回転
+   * @param angleZ Z座標回転
    */
-  public CoordinateParameter(double x, double y, double z, double rotationX, double rotationY, double rotationZ) {
+  public CoordinateParameter(double x, double y, double z, double angleX, double angleY, double angleZ) {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.rotationX = rotationX;
-    this.rotationY = rotationY;
-    this.rotationZ = rotationZ;
+    this.angleX = angleX;
+    this.angleY = angleY;
+    this.angleZ = angleZ;
   }
 
   /**
@@ -103,17 +103,17 @@ public class CoordinateParameter {
    * 
    * @return X座標回転の値
    */
-  public double getRotationX() {
-    return this.rotationX;
+  public double getAngleX() {
+    return this.angleX;
   }
 
   /**
    * X座標回転の値を設定します。
    * 
-   * @param rotationX X座標回転の値
+   * @param angleX X座標回転の値
    */
-  public void setRationX(double rotationX) {
-    this.rotationX = rotationX;
+  public void setAngleX(double angleX) {
+    this.angleX = angleX;
   }
 
   /**
@@ -121,17 +121,17 @@ public class CoordinateParameter {
    * 
    * @return Y座標回転の値
    */
-  public double getRotationY() {
-    return this.rotationY;
+  public double getAngleY() {
+    return this.angleY;
   }
 
   /**
    * Y座標回転の値を設定します。
    * 
-   * @param rotationY Y座標回転の値
+   * @param angleY Y座標回転の値
    */
-  public void setRotationY(double rotationY) {
-    this.rotationY = rotationY;
+  public void setAngleY(double angleY) {
+    this.angleY = angleY;
   }
 
   /**
@@ -139,16 +139,16 @@ public class CoordinateParameter {
    * 
    * @return Z座標回転の値
    */
-  public double getRotationZ() {
-    return this.rotationZ;
+  public double getAngleZ() {
+    return this.angleZ;
   }
 
   /**
    * Z座標回転の値を設定します。
    * 
-   * @param rotationZ Z座標回転の値
+   * @param angleZ Z座標回転の値
    */
-  public void setRotationZ(double rotationZ) {
-    this.rotationZ = rotationZ;
+  public void setAngleZ(double angleZ) {
+    this.angleZ = angleZ;
   }
 }

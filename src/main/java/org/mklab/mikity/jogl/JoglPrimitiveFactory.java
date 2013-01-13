@@ -395,9 +395,9 @@ public class JoglPrimitiveFactory {
       x = x + (float)parameter.getX();
       y = y + (float)parameter.getY();
       z = z + (float)parameter.getZ();
-      xRotation = xRotation + (float)parameter.getRotationX();
-      yRotation = yRotation + (float)parameter.getRotationY();
-      zRotation = zRotation + (float)parameter.getRotationZ();
+      xRotation = xRotation + (float)parameter.getAngleX();
+      yRotation = yRotation + (float)parameter.getAngleY();
+      zRotation = zRotation + (float)parameter.getAngleZ();
     }
 
     if (xRotation == 0.0f && yRotation == 0.0f && zRotation == 0.0f) {

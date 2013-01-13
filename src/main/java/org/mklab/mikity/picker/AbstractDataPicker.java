@@ -126,9 +126,9 @@ public abstract class AbstractDataPicker implements DataPicker {
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.coordinateParameters[i].setRationX(value);
+            this.coordinateParameters[i].setAngleX(value);
           } else {
-            this.coordinateParameters[i].setRationX(Math.toRadians(value));
+            this.coordinateParameters[i].setAngleX(Math.toRadians(value));
           }
         }
         break;
@@ -136,9 +136,9 @@ public abstract class AbstractDataPicker implements DataPicker {
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.coordinateParameters[i].setRotationY(value);
+            this.coordinateParameters[i].setAngleY(value);
           } else {
-            this.coordinateParameters[i].setRotationY(Math.toRadians(value));
+            this.coordinateParameters[i].setAngleY(Math.toRadians(value));
           }
         }
         break;
@@ -146,9 +146,9 @@ public abstract class AbstractDataPicker implements DataPicker {
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataNumber, i + 1).doubleValue();
           if (dataIsRadian) {
-            this.coordinateParameters[i].setRotationZ(value);
+            this.coordinateParameters[i].setAngleZ(value);
           } else {
-            this.coordinateParameters[i].setRotationZ(Math.toRadians(value));
+            this.coordinateParameters[i].setAngleZ(Math.toRadians(value));
           }
         }
         break;
@@ -220,27 +220,27 @@ public abstract class AbstractDataPicker implements DataPicker {
       case TH_X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (Util.radian) {
-            this.coordinateParameters[i].setRationX(value + this.coordinateParameters[i].getRotationX());
+            this.coordinateParameters[i].setAngleX(value + this.coordinateParameters[i].getAngleX());
           } else {
-            this.coordinateParameters[i].setRationX(Math.toRadians(value) + this.coordinateParameters[i].getRotationX());
+            this.coordinateParameters[i].setAngleX(Math.toRadians(value) + this.coordinateParameters[i].getAngleX());
           }
         }
         break;
       case TH_Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (Util.radian) {
-            this.coordinateParameters[i].setRotationY(value + this.coordinateParameters[i].getRotationY());
+            this.coordinateParameters[i].setAngleY(value + this.coordinateParameters[i].getAngleY());
           } else {
-            this.coordinateParameters[i].setRotationY(Math.toRadians(value) + this.coordinateParameters[i].getRotationY());
+            this.coordinateParameters[i].setAngleY(Math.toRadians(value) + this.coordinateParameters[i].getAngleY());
           }
         }
         break;
       case TH_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           if (Util.radian) {
-            this.coordinateParameters[i].setRotationZ(value + this.coordinateParameters[i].getRotationZ());
+            this.coordinateParameters[i].setAngleZ(value + this.coordinateParameters[i].getAngleZ());
           } else {
-            this.coordinateParameters[i].setRotationZ(Math.toRadians(value) + this.coordinateParameters[i].getRotationZ());
+            this.coordinateParameters[i].setAngleZ(Math.toRadians(value) + this.coordinateParameters[i].getAngleZ());
           }
         }
         break;

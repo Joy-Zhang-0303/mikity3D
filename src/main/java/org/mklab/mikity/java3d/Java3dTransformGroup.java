@@ -136,35 +136,35 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
   public void setCoordinateParameter(final CoordinateParameter parameter) {
     final Transform3D transform = new Transform3D();
 
-    final Transform3D translate1 = new Transform3D();
-    final double rotY = parameter.getRotationY();
-    translate1.setRotation(new AxisAngle4d(0.0, 1.0, 0.0, rotY));
-    transform.mul(translate1);
+    final Transform3D rotationY = new Transform3D();
+    final double angleY = parameter.getAngleY();
+    rotationY.setRotation(new AxisAngle4d(0.0, 1.0, 0.0, angleY));
+    transform.mul(rotationY);
 
-    final Transform3D translate2 = new Transform3D();
-    final double locY = parameter.getY();
-    translate2.setTranslation(new Vector3d(0.0, locY, 0.0));
-    transform.mul(translate2);
+    final Transform3D translationY = new Transform3D();
+    final double y = parameter.getY();
+    translationY.setTranslation(new Vector3d(0.0, y, 0.0));
+    transform.mul(translationY);
 
-    final Transform3D translate3 = new Transform3D();
-    final double locX = parameter.getX();
-    translate3.setTranslation(new Vector3d(locX, 0.0, 0.0));
-    transform.mul(translate3);
+    final Transform3D translationX = new Transform3D();
+    final double x = parameter.getX();
+    translationX.setTranslation(new Vector3d(x, 0.0, 0.0));
+    transform.mul(translationX);
 
-    final Transform3D translate4 = new Transform3D();
-    final double rotX = parameter.getRotationX();
-    translate4.setRotation(new AxisAngle4d(1.0, 0.0, 0.0, rotX));
-    transform.mul(translate4);
+    final Transform3D rotationX = new Transform3D();
+    final double angleX = parameter.getAngleX();
+    rotationX.setRotation(new AxisAngle4d(1.0, 0.0, 0.0, angleX));
+    transform.mul(rotationX);
 
-    final Transform3D translate5 = new Transform3D();
-    final double locZ = parameter.getZ();
-    translate5.setTranslation(new Vector3d(0.0, 0.0, locZ));
-    transform.mul(translate5);
+    final Transform3D translationZ = new Transform3D();
+    final double z = parameter.getZ();
+    translationZ.setTranslation(new Vector3d(0.0, 0.0, z));
+    transform.mul(translationZ);
 
-    final Transform3D translate6 = new Transform3D();
-    final double rotZ = parameter.getRotationZ();
-    translate6.setRotation(new AxisAngle4d(0.0, 0.0, 1.0, rotZ));
-    transform.mul(translate6);
+    final Transform3D rotationZ = new Transform3D();
+    final double angleZ = parameter.getAngleZ();
+    rotationZ.setRotation(new AxisAngle4d(0.0, 0.0, 1.0, angleZ));
+    transform.mul(rotationZ);
 
     setTransform(transform);
   }
@@ -175,41 +175,33 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
   @Override
   public void setDHParameter(final DHParameter parameter) {
     /*
-     * DHParameterとは。 座標系Σ(i-1)からΣiへの変換は
-     * 
-     * 1.xi軸に沿ってa(i-1)だけ並進
-     * 
-     * 2.x(i-1)軸回りにα(i-1)だけ回転 
-     * 
-     * 3.ziに沿ってdiだけ並進 
-     * 
-     * 4.zi軸回りにθiだけ回転
+     * 座標系Σ(i-1)からΣiへの変換
      */
     final Transform3D transform = new Transform3D();
     
     // 1.xi軸に沿ってa(i-1)だけ並進
-    final Transform3D translate1 = new Transform3D();
+    final Transform3D translationA = new Transform3D();
     final double a = parameter.getA();
-    translate1.setTranslation(new Vector3d(a, 0.0, 0.0));
-    transform.mul(translate1);
+    translationA.setTranslation(new Vector3d(a, 0.0, 0.0));
+    transform.mul(translationA);
 
     // 2.x(i-1)軸回りにα(i-1)だけ回転
-    final Transform3D translate2 = new Transform3D();
+    final Transform3D rotationAlpha = new Transform3D();
     final double alpha = parameter.getAlpha();
-    translate2.setRotation(new AxisAngle4d(1.0, 0.0, 0.0, alpha));
-    transform.mul(translate2);
+    rotationAlpha.setRotation(new AxisAngle4d(1.0, 0.0, 0.0, alpha));
+    transform.mul(rotationAlpha);
     
     // 3.ziに沿ってdiだけ並進
-    final Transform3D translate3 = new Transform3D();
+    final Transform3D translationD = new Transform3D();
     final double d = parameter.getD();
-    translate3.setTranslation(new Vector3d(0.0, 0.0, d));
-    transform.mul(translate3);
+    translationD.setTranslation(new Vector3d(0.0, 0.0, d));
+    transform.mul(translationD);
     
     // 4.zi軸回りにθiだけ回転
-    final Transform3D translate4 = new Transform3D();
+    final Transform3D rotationTheta = new Transform3D();
     final double theta = parameter.getTheta();
-    translate4.setRotation(new AxisAngle4d(0.0, 0.0, 1.0, theta));
-    transform.mul(translate4);
+    rotationTheta.setRotation(new AxisAngle4d(0.0, 0.0, 1.0, theta));
+    transform.mul(rotationTheta);
 
     setTransform(transform);
   }

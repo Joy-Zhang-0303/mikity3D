@@ -94,9 +94,9 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     final double x = parameter.getX();
     final double y = parameter.getY();
     final double z = parameter.getZ();
-    final double rotationX = parameter.getRotationX();
-    final double rotationY = parameter.getRotationY();
-    final double rotationZ = parameter.getRotationZ();
+    final double angleX = parameter.getAngleX();
+    final double angleY = parameter.getAngleY();
+    final double angleZ = parameter.getAngleZ();
 
     //System.out.println("lx, ly, lz(set)(this)=" + locX + "," + locY + "," + locZ + ":" + this);
     //System.out.println("rx, ry, rz(set)(this)=" + rotX + "," + rotY + "," + rotZ + ":" + this);
@@ -109,10 +109,10 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
       }
     }
 
-    if (rotationX != 0 || rotationY != 0 || rotationZ != 0) {
+    if (angleX != 0 || angleY != 0 || angleZ != 0) {
       if (this.coordinate != null) {
         if (this.coordinate instanceof JoglRotation) {
-          ((JoglRotation)this.coordinate).rotate((float)rotationX, (float)rotationY, (float)rotationZ);
+          ((JoglRotation)this.coordinate).rotate((float)angleX, (float)angleY, (float)angleZ);
         }
       }
     }
