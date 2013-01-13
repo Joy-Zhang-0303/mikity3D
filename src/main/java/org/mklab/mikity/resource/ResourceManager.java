@@ -21,14 +21,14 @@ import org.eclipse.swt.graphics.Image;
  */
 public class ResourceManager {
 
-  private static Map<String, Image> imageMap = new HashMap<String, Image>();
+  private static Map<String, Image> images = new HashMap<String, Image>();
 
   /** 再生画像ファイル定数 */
   public static final String PLAYBACK = "playback.gif"; //$NON-NLS-1$
   /** 停止画像ファイル定数 */
   public static final String STOP = "stop.gif"; //$NON-NLS-1$
   /** 速度増画像ファイル定数 */
-  public static final String FAST = "fast.gif"; //$NON-NLS-1$
+  public static final String FASTER = "fast.gif"; //$NON-NLS-1$
   /** 速度減画像ファイル定数 */
   public static final String SLOW = "slow.gif"; //$NON-NLS-1$
 
@@ -39,12 +39,12 @@ public class ResourceManager {
    * @return リソース名で指定された画像
    */
   public static Image getImage(String key) {
-    if (imageMap.containsKey(key)) {
-      return imageMap.get(key);
+    if (images.containsKey(key)) {
+      return images.get(key);
     }
     try {
       final Image img = new Image(null, ResourceManager.class.getResourceAsStream("/" + key)); //$NON-NLS-1$
-      imageMap.put(key, img);
+      images.put(key, img);
       return img;
     } catch (SWTException e) {
       throw new RuntimeException(e);
@@ -55,12 +55,12 @@ public class ResourceManager {
    * リソースを全て破棄します。
    */
   public static void dispose() {
-    for (Iterator<String> iter = imageMap.keySet().iterator(); iter.hasNext();) {
-      final Image key = imageMap.get(iter.next());
+    for (Iterator<String> iter = images.keySet().iterator(); iter.hasNext();) {
+      final Image key = images.get(iter.next());
       if (!key.isDisposed()) {
         key.dispose();
       }
-      imageMap.remove(key);
+      images.remove(key);
     }
   }
 

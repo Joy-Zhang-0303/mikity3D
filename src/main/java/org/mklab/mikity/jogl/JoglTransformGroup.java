@@ -84,6 +84,7 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
    */
   public void setDHParameter(DHParameter parameter) {
     // TODO 自動生成されたメソッド・スタブ
+    System.out.println("JoglTransformGroup#setDHParameter()"); //$NON-NLS-1$
   }
 
   /**

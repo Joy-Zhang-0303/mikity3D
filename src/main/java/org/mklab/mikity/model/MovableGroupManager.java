@@ -70,7 +70,6 @@ public class MovableGroupManager {
     this.startTime = Math.min(this.startTime, picker.getStartTime());
     this.endTime = Math.max(this.endTime, picker.getEndTime());
   }
-  
 
   /**
    * 時刻毎のリンクデータ(DHパラメータ)を取得し、アニメーションを実行します。
@@ -110,8 +109,7 @@ public class MovableGroupManager {
    * @param groups 追加するグループ
    */
   private void addGroups(final Group[] groups) {
-    for (int i = 0; i < groups.length; i++) {
-      final Group group = groups[i];
+    for (final Group group : groups) {
       final MovableGroup tg = MOVABLE_GROUPS.get(group);
       setLinkData(group.getLinkData(), tg);
       addGroups(group.getGroups());

@@ -87,7 +87,7 @@ public class AnimationTask extends TimerTask {
   @Override
   public void run() {
     if (this.currentTime == this.initialTime) {
-      fireAnimationStarted();
+      fireAnimationStart();
     }
 
     final double diffTime = (scheduledExecutionTime() - this.startTime) / 1000.0;
@@ -140,7 +140,7 @@ public class AnimationTask extends TimerTask {
   /**
    * アニメーションの開始を通知します。
    */
-  private void fireAnimationStarted() {
+  private void fireAnimationStart() {
     for (final AnimationTaskListener listener : this.listeners) {
       listener.setUpAnimation();
     }

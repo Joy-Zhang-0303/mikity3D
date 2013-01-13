@@ -42,6 +42,7 @@ import org.mklab.mikity.xml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
+
 /**
  * アニメーション描画を行うウィンドウを表すクラスです。
  * 
@@ -50,6 +51,7 @@ import org.mklab.nfc.matx.MatxMatrix;
  */
 
 public class AnimationWindow extends ApplicationWindow {
+
   /** アニメーション用タスク */
   AnimationTask animationTask;
   /** */
@@ -91,8 +93,8 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   private Label endTimeLabel;
 
-  private boolean usedDHParam = false;
-  private boolean usedLink = false;
+  private boolean usingDHParameter = false;
+  private boolean usingCoordinateParameter = false;
   /** */
   ParameterInputBox playSpeed;
 
@@ -109,12 +111,12 @@ public class AnimationWindow extends ApplicationWindow {
     super(parentShell);
     this.root = root;
     this.manager = new MovableGroupManager(this.root);
-    
+
     // TODO Java3d or JOGL
     this.modelCanvas = new Java3dModelCanvas(this.root);
     //this.modelCanvas = new JoglModelCanvas(this.root);
   }
-  
+
   /**
    * コンストラクター
    * 
@@ -126,7 +128,7 @@ public class AnimationWindow extends ApplicationWindow {
   public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, JAXBException {
     this(parentShell, new JamastFactory().loadJamastFile(modelFile));
   }
-  
+
   /**
    * シェルの設定
    * 
@@ -168,7 +170,6 @@ public class AnimationWindow extends ApplicationWindow {
    */
   @Override
   protected void handleShellCloseEvent() {
-
     if (this.animationTask != null) {
       this.animationTask.cancel();
     }
@@ -194,8 +195,8 @@ public class AnimationWindow extends ApplicationWindow {
     viewer.setLayoutData(gridData);
 
     // AWTのフレームを作る。
-    final Frame awtFrame = SWT_AWT.new_Frame(viewer);   
-    
+    final Frame awtFrame = SWT_AWT.new_Frame(viewer);
+
     awtFrame.add((Component)this.modelCanvas);
     this.modelCanvas.load();
   }
@@ -206,13 +207,13 @@ public class AnimationWindow extends ApplicationWindow {
    * @param parent
    */
   private void createController(final Composite parent) {
-    final Composite controllerComp = new Composite(parent, SWT.NONE);
-    controllerComp.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.VERTICAL_ALIGN_END));
-    controllerComp.setLayout(new GridLayout());
+    final Composite controllerComposite = new Composite(parent, SWT.NONE);
+    controllerComposite.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.VERTICAL_ALIGN_END));
+    controllerComposite.setLayout(new GridLayout());
 
-    createFileChooseComp(controllerComp);
+    createFileChooseComp(controllerComposite);
 
-    final Composite otherController = new Composite(controllerComp, SWT.NONE);
+    final Composite otherController = new Composite(controllerComposite, SWT.NONE);
     otherController.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     otherController.setLayout(new GridLayout());
 
@@ -222,42 +223,38 @@ public class AnimationWindow extends ApplicationWindow {
     playbackButton.setImage(ResourceManager.getImage(ResourceManager.PLAYBACK));
     final Button stopButton = new Button(playerComp, SWT.NONE);
     stopButton.setImage(ResourceManager.getImage(ResourceManager.STOP));
-    final Button slowButton = new Button(playerComp, SWT.NONE);
-    slowButton.setImage(ResourceManager.getImage(ResourceManager.SLOW));
-    final Button fastButton = new Button(playerComp, SWT.NONE);
-    fastButton.setImage(ResourceManager.getImage(ResourceManager.FAST));
+    final Button slowerButton = new Button(playerComp, SWT.NONE);
+    slowerButton.setImage(ResourceManager.getImage(ResourceManager.SLOW));
+    final Button fasterButton = new Button(playerComp, SWT.NONE);
+    fasterButton.setImage(ResourceManager.getImage(ResourceManager.FASTER));
 
     // timeLabel.setText("" + task.getCurrentTime());
 
-    final Composite speedComp = new Composite(otherController, SWT.NONE);
+    final Composite speedComposite = new Composite(otherController, SWT.NONE);
     final GridLayout speedLayout = new GridLayout();
     speedLayout.numColumns = 2;
-    speedComp.setLayout(speedLayout);
-    this.playSpeed = new ParameterInputBox(speedComp, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    speedComposite.setLayout(speedLayout);
+    this.playSpeed = new ParameterInputBox(speedComposite, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     createTimeBar(otherController);
 
-    final Composite comp2 = new Composite(controllerComp, SWT.NONE);
-    comp2.setLayout(new GridLayout(3, false));
+    final Composite composite2 = new Composite(controllerComposite, SWT.NONE);
+    composite2.setLayout(new GridLayout(3, false));
 
-    fastButton.addSelectionListener(new SelectionAdapter() {
-
+    fasterButton.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         AnimationWindow.this.speed += 0.1;
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setSpeed(AnimationWindow.this.speed);
         }
-        // double型をString型に変更
         String stValue = String.valueOf(AnimationWindow.this.speed);
-        // 小数点第二以下を表示しないようにする
         stValue = stValue.substring(0, stValue.indexOf(".") + 2); //$NON-NLS-1$
         AnimationWindow.this.playSpeed.setText(stValue);
       }
     });
 
-    slowButton.addSelectionListener(new SelectionAdapter() {
-
+    slowerButton.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         AnimationWindow.this.speed -= 0.1;
@@ -270,18 +267,14 @@ public class AnimationWindow extends ApplicationWindow {
       }
     });
 
-    // 再生ボタンによるイベント
     playbackButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         runAnimation();
       }
     });
 
-    // 停止ボタンによるイベント
     stopButton.addSelectionListener(new SelectionAdapter() {
-
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         // スレッドを停止させる。復元不能
@@ -308,7 +301,7 @@ public class AnimationWindow extends ApplicationWindow {
     this.endTimeLabel = new Label(composite, SWT.NONE | SWT.RIGHT);
 
     this.timeSlider = new Slider(composite, SWT.NONE);
-    
+
     final GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
     gridData2.horizontalSpan = 3;
     this.timeSlider.setLayoutData(gridData2);
@@ -372,9 +365,9 @@ public class AnimationWindow extends ApplicationWindow {
 
       @Override
       public void widgetSelected(SelectionEvent arg0) {
-        FileDialog dialog = new FileDialog(composite.getShell());
+        final FileDialog dialog = new FileDialog(composite.getShell());
         // ファイルを選択させる
-        String ret = dialog.open();
+        final String ret = dialog.open();
         if (ret != null) {
           setTimeData(new File(ret));
         }
@@ -383,24 +376,22 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   private void checkLinkParameterType(Group group) {
-    final Group[] subGroup = group.getGroups();
-    if (subGroup.length != 0) {
-      for (int i = 0; i < subGroup.length; i++) {
-        final LinkData[] link = subGroup[i].getLinkData();
-        for (int j = 0; j < link.length; j++) {
-          if (link[j].hasDHParameter()) {
-            this.usedDHParam = true;
-            this.manager.setHasDHParameter(this.usedDHParam);
-          } else if (link[j].hasCoordinateParameter()) {
-            this.usedLink = true;
-            this.manager.setHasCoordinateParameter(this.usedLink);
-          } else {
-            this.usedDHParam = false;
-            this.usedLink = false;
-          }
+    final Group[] groups = group.getGroups();
+    for (int i = 0; i < groups.length; i++) {
+      final LinkData[] link = groups[i].getLinkData();
+      for (int j = 0; j < link.length; j++) {
+        if (link[j].hasDHParameter()) {
+          this.usingDHParameter = true;
+          this.manager.setHasDHParameter(this.usingDHParameter);
+        } else if (link[j].hasCoordinateParameter()) {
+          this.usingCoordinateParameter = true;
+          this.manager.setHasCoordinateParameter(this.usingCoordinateParameter);
+        } else {
+          this.usingDHParameter = false;
+          this.usingCoordinateParameter = false;
         }
-        checkLinkParameterType(subGroup[i]);
       }
+      checkLinkParameterType(groups[i]);
     }
   }
 
@@ -490,16 +481,15 @@ public class AnimationWindow extends ApplicationWindow {
     this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.modelCanvas);
     this.animationTask.setSpeed(this.playSpeed.getDoubleValue());// スピードの設定
     this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
-    
+
     this.sliderTask = new SliderPositionMoveTask(this.animationTask, this.timeSlider);
-    
+
     this.timer = new Timer();
     this.timer.schedule(this.animationTask, 0, 10);
     this.timer.schedule(this.sliderTask, 0, 10);
   }
 
   private class SliderPositionMoveTask extends TimerTask {
-
     AnimationTask localTask;
     Slider slider;
 
@@ -531,17 +521,18 @@ public class AnimationWindow extends ApplicationWindow {
 
         @Override
         public void run() {
-          double ct = SliderPositionMoveTask.this.localTask.getCurrentTime();
-          String st = String.valueOf(ct);
-          if (st.length() > 5) {
-            st = st.substring(0, 4);
+          double time = SliderPositionMoveTask.this.localTask.getCurrentTime();
+          String timeString = String.valueOf(time);
+          if (timeString.length() > 5) {
+            timeString = timeString.substring(0, 4);
           }
           if (AnimationWindow.this.currentTimeLabel.isDisposed()) {
             return;
           }
-          AnimationWindow.this.currentTimeLabel.setText(st);
+          
+          AnimationWindow.this.currentTimeLabel.setText(timeString);
           for (int i = 0; i < AnimationWindow.this.timeTable.length; i++) {
-            if (AnimationWindow.this.timeTable[i] > ct) {
+            if (AnimationWindow.this.timeTable[i] > time) {
               if (SliderPositionMoveTask.this.slider.isDisposed()) {
                 return;
               }
