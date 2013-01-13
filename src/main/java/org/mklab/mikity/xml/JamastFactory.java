@@ -10,7 +10,6 @@ import java.io.IOException;
 
 import javax.xml.bind.JAXBException;
 
-import org.mklab.mikity.gui.Messages;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.XMLBox;
 import org.mklab.mikity.xml.model.XMLCone;

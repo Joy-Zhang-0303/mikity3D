@@ -40,19 +40,33 @@ public class EditPrimitiveDialog {
   Shell sShell;
   private Object primitive;
   private String groupName;
-  private String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
+  private String[] colors = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
   private ColorComboBox colorCombo;
   private Group afterGroup;
   private Label primLabel;
-  private ParameterInputBox param1, param2, param3;
-  private Label uLabel1, uLabel2, uLabel3;
-  private ParameterInputBox rotX, rotY, rotZ;
-  private ParameterInputBox locX, locY, locZ;
+  private ParameterInputBox param1;
+  private ParameterInputBox param2;
+  private ParameterInputBox param3;
+  private Label uLabel1;
+  private Label uLabel2;
+  private Label uLabel3;
+  private ParameterInputBox rotX;
+  private ParameterInputBox rotY;
+  private ParameterInputBox rotZ;
+  private ParameterInputBox locX;
+  private ParameterInputBox locY;
+  private ParameterInputBox locZ;
   private ParameterInputBox color;
 
-  private ParameterInputBox newParam1, newParam2, newParam3;
-  private ParameterInputBox newRotX, newRotY, newRotZ;
-  private ParameterInputBox newLocX, newLocY, newLocZ;
+  private ParameterInputBox newParam1;
+  private ParameterInputBox newParam2;
+  private ParameterInputBox newParam3;
+  private ParameterInputBox newRotX;
+  private ParameterInputBox newRotY;
+  private ParameterInputBox newRotZ;
+  private ParameterInputBox newLocX;
+  private ParameterInputBox newLocY;
+  private ParameterInputBox newLocZ;
 
   private boolean rotB = true;
   private boolean locB = true;
@@ -183,7 +197,7 @@ public class EditPrimitiveDialog {
     colorLabel.setText("→"); //$NON-NLS-1$
     setGridLayout(colorLabel, 1);
 
-    this.colorCombo = new ColorComboBox(this.afterGroup, this.COLORS);
+    this.colorCombo = new ColorComboBox(this.afterGroup, this.colors);
     this.colorCombo.createColorCombo();
     final Label spaceLabel = new Label(this.afterGroup, SWT.NONE);
     spaceLabel.setText(" "); //$NON-NLS-1$
