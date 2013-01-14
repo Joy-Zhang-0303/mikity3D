@@ -174,9 +174,7 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
    */
   @Override
   public void setDHParameter(final DHParameter parameter) {
-    /*
-     * 座標系Σ(i-1)からΣiへの変換
-     */
+    /* 座標系Σ(i-1)からΣiへの変換   */
     final Transform3D transform = new Transform3D();
     
     // 1.xi軸に沿ってa(i-1)だけ並進

@@ -3,7 +3,10 @@ package org.mklab.mikity.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.media.j3d.Transform3D;
 import javax.media.opengl.GL;
+import javax.vecmath.AxisAngle4d;
+import javax.vecmath.Vector3d;
 
 import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.jogl.models.JoglLocation;
@@ -83,8 +86,46 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
    * {@inheritDoc}
    */
   public void setDHParameter(DHParameter parameter) {
-    // TODO 自動生成されたメソッド・スタブ
-    System.out.println("JoglTransformGroup#setDHParameter()"); //$NON-NLS-1$
+    for (final JoglTransformGroup group : this.transformGroups) {
+      group.setDHParameter(parameter);
+    }
+    
+    /* 座標系Σ(i-1)からΣiへの変換   */
+    
+    // 1.xi軸に沿ってa(i-1)だけ並進
+    final double a = parameter.getA();
+    if (a != 0) {
+      if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
+        ((JoglLocation)this.coordinate).translate((float)a, 0, 0);
+      }
+    }
+
+    // 2.x(i-1)軸回りにα(i-1)だけ回転
+    final double alpha = parameter.getAlpha();
+    if (alpha != 0) {
+      if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
+        ((JoglRotation)this.coordinate).rotate((float)alpha, 0, 0);
+      }
+    }
+    
+    // 3.ziに沿ってdiだけ並進   
+    final double d = parameter.getD();
+    if (d != 0) {
+      if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
+        ((JoglLocation)this.coordinate).translate(0, 0, (float)d);
+      }
+    }
+
+    // 4.zi軸回りにθiだけ回転
+    final double theta = parameter.getTheta();
+    if (theta != 0) {
+      if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
+        ((JoglRotation)this.coordinate).rotate(0, 0, (float)theta);
+      }
+    }
+    
+    System.out.println("(a, alpha, d, theta) = (" + a + ", " + alpha + ", " + d + ", " + theta + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    //System.out.println("JoglTransformGroup#setDHParameter()"); //$NON-NLS-1$   
   }
 
   /**
@@ -94,26 +135,22 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     final double x = parameter.getX();
     final double y = parameter.getY();
     final double z = parameter.getZ();
-    final double angleX = parameter.getAngleX();
-    final double angleY = parameter.getAngleY();
-    final double angleZ = parameter.getAngleZ();
-
     //System.out.println("lx, ly, lz(set)(this)=" + locX + "," + locY + "," + locZ + ":" + this);
-    //System.out.println("rx, ry, rz(set)(this)=" + rotX + "," + rotY + "," + rotZ + ":" + this);
 
     if (x != 0 || y != 0 || z != 0) {
-      if (this.coordinate != null) {
-        if (this.coordinate instanceof JoglLocation) {
-          ((JoglLocation)this.coordinate).translate((float)x, (float)y, (float)z);
-        }
+      if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
+        ((JoglLocation)this.coordinate).translate((float)x, (float)y, (float)z);
       }
     }
 
+    final double angleX = parameter.getAngleX();
+    final double angleY = parameter.getAngleY();
+    final double angleZ = parameter.getAngleZ();
+    //System.out.println("rx, ry, rz(set)(this)=" + rotX + "," + rotY + "," + rotZ + ":" + this);
+    
     if (angleX != 0 || angleY != 0 || angleZ != 0) {
-      if (this.coordinate != null) {
-        if (this.coordinate instanceof JoglRotation) {
-          ((JoglRotation)this.coordinate).rotate((float)angleX, (float)angleY, (float)angleZ);
-        }
+      if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
+        ((JoglRotation)this.coordinate).rotate((float)angleX, (float)angleY, (float)angleZ);
       }
     }
     
