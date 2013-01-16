@@ -15,29 +15,17 @@ package org.mklab.mikity.gui.connector;
  */
 public class CosSin {
 
-  /**
-   * コサインX
-   */
+  /** コサインX*/
   private float cosx;
-  /**
-   * コサインY
-   */
+  /** コサインY */
   private float cosy;
-  /**
-   * コサインZ
-   */
+  /** コサインZ */
   private float cosz;
-  /**
-   * サインX
-   */
+  /** サインX */
   private float sinx;
-  /**
-   * サインY
-   */
+  /** サインY */
   private float siny;
-  /**
-   * サインZ
-   */
+  /** サインZ */
   private float sinz;
 
   /**

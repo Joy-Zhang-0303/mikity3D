@@ -9,12 +9,12 @@ import org.mklab.mikity.xml.model.Location;
 
 
 /**
- * プリミティブの回転に応じてコネクタの位置を決定するクラス
+ * プリミティブの回転に応じてコネクタの位置を決定するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.3 $. 2006/07/13
  */
-public class TurnLocation {
+public class ConnectorLocationFactory {
 
   /** 正弦余弦演算 */
   private CosSin cossin;
@@ -59,7 +59,7 @@ public class TurnLocation {
    * @param yRot 　Y軸回転
    * @param zRot 　Z軸回転
    */
-  public TurnLocation(float xSize, float ySize, float zSize, float xRot, float yRot, float zRot) {
+  public ConnectorLocationFactory(float xSize, float ySize, float zSize, float xRot, float yRot, float zRot) {
     this.cMatrix[0][0] = xSize;
     this.cMatrix[0][1] = 0.0f;
     this.cMatrix[0][2] = 0.0f;

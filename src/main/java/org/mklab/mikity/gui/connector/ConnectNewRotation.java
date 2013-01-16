@@ -16,22 +16,14 @@ import org.mklab.mikity.xml.model.Rotation;
  */
 public class ConnectNewRotation {
 
-  /**
-   * 更新後の回転
-   */
+  /** 更新後の回転 */
   private Rotation newRot;
 
-  /**
-   * プリミティブのX軸回転
-   */
+  /** プリミティブのX軸回転 */
   private float x;
-  /**
-   * プリミティブのY軸回転
-   */
+  /** プリミティブのY軸回転 */
   private float y;
-  /**
-   * プリミティブのZ軸回転
-   */
+  /** プリミティブのZ軸回転 */
   private float z;
 
   /**
@@ -63,22 +55,22 @@ public class ConnectNewRotation {
     if (s == 1) {
       switch (n) {
         case 1:
-          setRotN2();
+          setRotationN2();
           break;
         case 2:
-          setRotN1();
+          setRotationN1();
           break;
         case 3:
-          setRotN4();
+          setRotationN4();
           break;
         case 4:
-          setRotN3();
+          setRotationN3();
           break;
         case 5:
-          setRotN6();
+          setRotationN6();
           break;
         case 6:
-          setRotN5();
+          setRotationN5();
           break;
         default:
           throw new IllegalArgumentException();
@@ -86,22 +78,22 @@ public class ConnectNewRotation {
     } else if (s == 2) {
       switch (n) {
         case 1:
-          setRotN1();
+          setRotationN1();
           break;
         case 2:
-          setRotN2();
+          setRotationN2();
           break;
         case 3:
-          setRotN3();
+          setRotationN3();
           break;
         case 4:
-          setRotN4();
+          setRotationN4();
           break;
         case 5:
-          setRotN5();
+          setRotationN5();
           break;
         case 6:
-          setRotN6();
+          setRotationN6();
           break;
         default:
           throw new IllegalArgumentException();
@@ -109,22 +101,22 @@ public class ConnectNewRotation {
     } else if (s == 3) {
       switch (n) {
         case 1:
-          setRotN6();
+          setRotationN6();
           break;
         case 2:
-          setRotN5();
+          setRotationN5();
           break;
         case 3:
-          setRotN2();
+          setRotationN2();
           break;
         case 4:
-          setRotN1();
+          setRotationN1();
           break;
         case 5:
-          setRotN4();
+          setRotationN4();
           break;
         case 6:
-          setRotN3();
+          setRotationN3();
           break;
         default:
           throw new IllegalArgumentException();
@@ -132,22 +124,22 @@ public class ConnectNewRotation {
     } else if (s == 4) {
       switch (n) {
         case 1:
-          setRotN5();
+          setRotationN5();
           break;
         case 2:
-          setRotN6();
+          setRotationN6();
           break;
         case 3:
-          setRotN1();
+          setRotationN1();
           break;
         case 4:
-          setRotN2();
+          setRotationN2();
           break;
         case 5:
-          setRotN3();
+          setRotationN3();
           break;
         case 6:
-          setRotN4();
+          setRotationN4();
           break;
         default:
           throw new IllegalArgumentException();
@@ -155,22 +147,22 @@ public class ConnectNewRotation {
     } else if (s == 5) {
       switch (n) {
         case 1:
-          setRotN3();
+          setRotationN3();
           break;
         case 2:
-          setRotN4();
+          setRotationN4();
           break;
         case 3:
-          setRotN6();
+          setRotationN6();
           break;
         case 4:
-          setRotN5();
+          setRotationN5();
           break;
         case 5:
-          setRotN2();
+          setRotationN2();
           break;
         case 6:
-          setRotN1();
+          setRotationN1();
           break;
         default:
           throw new IllegalArgumentException();
@@ -178,22 +170,22 @@ public class ConnectNewRotation {
     } else if (s == 6) {
       switch (n) {
         case 1:
-          setRotN4();
+          setRotationN4();
           break;
         case 2:
-          setRotN3();
+          setRotationN3();
           break;
         case 3:
-          setRotN5();
+          setRotationN5();
           break;
         case 4:
-          setRotN6();
+          setRotationN6();
           break;
         case 5:
-          setRotN1();
+          setRotationN1();
           break;
         case 6:
-          setRotN2();
+          setRotationN2();
           break;
         default:
           throw new IllegalArgumentException();
@@ -206,7 +198,7 @@ public class ConnectNewRotation {
   /**
    * 移動後の回転(1)
    */
-  private void setRotN1() {
+  private void setRotationN1() {
     this.newRot.setXrotate(this.x);
     this.newRot.setYrotate(this.y);
     this.newRot.setZrotate(this.z);
@@ -215,7 +207,7 @@ public class ConnectNewRotation {
   /**
    * 移動後の回転(2)
    */
-  private void setRotN2() {
+  private void setRotationN2() {
     this.newRot.setXrotate(this.x + 180.0f);
     this.newRot.setYrotate(this.y);
     this.newRot.setZrotate(this.z);
@@ -224,7 +216,7 @@ public class ConnectNewRotation {
   /**
    * 移動後の回転(3)
    */
-  private void setRotN3() {
+  private void setRotationN3() {
     this.newRot.setXrotate(-this.y);
     this.newRot.setYrotate(0.0f);
     this.newRot.setZrotate(this.z - 90.0f);
@@ -233,7 +225,7 @@ public class ConnectNewRotation {
   /**
    * 移動後の回転(4)
    */
-  private void setRotN4() {
+  private void setRotationN4() {
     this.newRot.setXrotate(this.y);
     this.newRot.setYrotate(0.0f);
     this.newRot.setZrotate(this.z + 90.0f);
@@ -242,7 +234,7 @@ public class ConnectNewRotation {
   /**
    * 移動後の回転(5)
    */
-  private void setRotN5() {
+  private void setRotationN5() {
     this.newRot.setXrotate(this.x + 90.0f);
     this.newRot.setYrotate(this.y);
     this.newRot.setZrotate(this.z);
@@ -251,7 +243,7 @@ public class ConnectNewRotation {
   /**
    * 移動後の回転(6)
    */
-  private void setRotN6() {
+  private void setRotationN6() {
     this.newRot.setXrotate(this.x - 90.0f);
     this.newRot.setYrotate(this.y);
     this.newRot.setZrotate(this.z);
@@ -262,7 +254,7 @@ public class ConnectNewRotation {
    * 
    * @return　newRot　更新後の回転
    */
-  public Rotation getNewRot() {
+  public Rotation getNewRotation() {
     return this.newRot;
   }
 }

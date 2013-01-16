@@ -66,7 +66,7 @@ public class BoxConnectorFactory {
     connectors[4].setConnectorRotation(rotation.loadXrotate() + 90.0f, rotation.loadYrotate(), rotation.loadZrotate());
     connectors[5].setConnectorRotation(rotation.loadXrotate() - 90.0f, rotation.loadYrotate(), rotation.loadZrotate());
 
-    final TurnLocation turnLocation = new TurnLocation(xSize / 2.0f, ySize / 2.0f, zSize / 2.0f, rotation.loadXrotate(), rotation.loadYrotate(), rotation.loadZrotate());
+    final ConnectorLocationFactory turnLocation = new ConnectorLocationFactory(xSize / 2.0f, ySize / 2.0f, zSize / 2.0f, rotation.loadXrotate(), rotation.loadYrotate(), rotation.loadZrotate());
 
     connectors[0].setConnectorLocation(location.loadX() + turnLocation.getNewLocation2().loadX(), location.loadY() + turnLocation.getNewLocation2().loadY(), location.loadZ() + turnLocation.getNewLocation2().loadZ());
     connectors[1].setConnectorLocation(location.loadX() - turnLocation.getNewLocation2().loadX(), location.loadY() - turnLocation.getNewLocation2().loadY(), location.loadZ() - turnLocation.getNewLocation2().loadZ());
