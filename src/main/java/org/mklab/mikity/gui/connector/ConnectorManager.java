@@ -45,7 +45,7 @@ public class ConnectorManager {
   /** 移動後のプリミティブの回転  */
   private Rotation newPrimitiveRotation;
 
-  private ConnectNewRotation newConnectorRotation;
+  private ConnectorNewRotation newConnectorRotation;
 
   /**
    * コンストラクター
@@ -65,7 +65,7 @@ public class ConnectorManager {
     this.newPrimitiveLocation = new Location();
     this.newPrimitiveRotation = new Rotation();
 
-    this.newConnectorRotation = new ConnectNewRotation();
+    this.newConnectorRotation = new ConnectorNewRotation();
   }
 
   /**
@@ -276,7 +276,7 @@ public class ConnectorManager {
    */
   public void setNewRotation() {
     this.newConnectorRotation.setPrimitiveNRotation(this.primitiveRotations[0]);
-    this.newConnectorRotation.setNewRot(this.connectorNumbers[0], this.connectorNumbers[1]);
+    this.newConnectorRotation.setNewRotation(this.connectorNumbers[0], this.connectorNumbers[1]);
     this.newPrimitiveRotation = this.newConnectorRotation.getNewRotation();
   }
 

@@ -7,7 +7,7 @@ import javax.media.opengl.GL;
  * @author iwamoto
  * @version $Revision$, 2012/02/14
  */
-public class JoglDHTranslation implements JoglCoordinate {
+public class JoglDHTransformation implements JoglCoordinate {
   /** a */
   private double a;
   /** alpha */
@@ -33,7 +33,7 @@ public class JoglDHTranslation implements JoglCoordinate {
    * @param d d
    * @param theta θ
    */
-  public void setDHtrans(double a, double alpha, double d, double theta) {
+  public void setDHParameters(double a, double alpha, double d, double theta) {
     this.a = a;
     this.alpha = alpha;
     this.d = d;

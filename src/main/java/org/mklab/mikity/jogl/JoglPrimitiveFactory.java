@@ -7,13 +7,13 @@ import javax.vecmath.Matrix4f;
 import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
 import org.mklab.mikity.jogl.models.JoglCylinder;
-import org.mklab.mikity.jogl.models.JoglDHTranslation;
+import org.mklab.mikity.jogl.models.JoglDHTransformation;
 import org.mklab.mikity.jogl.models.JoglLocation;
 import org.mklab.mikity.jogl.models.JoglLocationRotation;
-import org.mklab.mikity.jogl.models.JoglQuadObject;
+import org.mklab.mikity.jogl.models.JoglQuadPolygon;
 import org.mklab.mikity.jogl.models.JoglRotation;
 import org.mklab.mikity.jogl.models.JoglSphere;
-import org.mklab.mikity.jogl.models.JoglTriangleObject;
+import org.mklab.mikity.jogl.models.JoglTrianglePolygon;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.xml.model.Group;
@@ -305,7 +305,7 @@ public class JoglPrimitiveFactory {
       points[i][1] = polygon.loadPointLocationY(i);
       points[i][2] = polygon.loadPointLocationZ(i);
     }
-    final JoglTriangleObject child = new JoglTriangleObject();
+    final JoglTrianglePolygon child = new JoglTrianglePolygon();
     child.setColor(color);
     child.setPoints(points);
     tg.addChild(child);
@@ -371,7 +371,7 @@ public class JoglPrimitiveFactory {
       points[i][2] = polygon.loadPointLocationZ(i);
     }
 
-    final JoglQuadObject child = new JoglQuadObject();
+    final JoglQuadPolygon child = new JoglQuadPolygon();
     child.setColor(color);
     child.setPoints(points);
     tg.addChild(child);
@@ -429,8 +429,8 @@ public class JoglPrimitiveFactory {
       theta += parameter.getTheta();
     }
 
-    final JoglDHTranslation translation = new JoglDHTranslation();
-    translation.setDHtrans(a, alpha, d, theta);
+    final JoglDHTransformation translation = new JoglDHTransformation();
+    translation.setDHParameters(a, alpha, d, theta);
     group.setCoordinate(translation);
   }
 }

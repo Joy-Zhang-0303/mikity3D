@@ -9,40 +9,37 @@ import org.mklab.mikity.xml.model.Rotation;
 
 
 /**
- * コネクタの更新後の回転を設定するクラス
+ * コネクタの更新後の回転を設定するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $. 2008/02/29
  */
-public class ConnectNewRotation {
-
+public class ConnectorNewRotation {
   /** 更新後の回転 */
-  private Rotation newRot;
-
+  private Rotation newRotation;
   /** プリミティブのX軸回転 */
-  private float x;
+  private float xRatation;
   /** プリミティブのY軸回転 */
-  private float y;
+  private float yRatation;
   /** プリミティブのZ軸回転 */
-  private float z;
+  private float zRotation;
 
   /**
    * コンストラクタ
    */
-  public ConnectNewRotation() {
-    this.newRot = new Rotation();
-
+  public ConnectorNewRotation() {
+    this.newRotation = new Rotation();
   }
 
   /**
    * 基準プリミティブの回転を取得する
    * 
-   * @param primNRot 　基準プリミティブの回転
+   * @param primitiveNRot 基準プリミティブの回転
    */
-  public void setPrimitiveNRotation(Rotation primNRot) {
-    this.x = primNRot.loadXrotate();
-    this.y = primNRot.loadYrotate();
-    this.z = primNRot.loadZrotate();
+  public void setPrimitiveNRotation(Rotation primitiveNRot) {
+    this.xRatation = primitiveNRot.loadXrotate();
+    this.yRatation = primitiveNRot.loadYrotate();
+    this.zRotation = primitiveNRot.loadZrotate();
   }
 
   /**
@@ -51,7 +48,7 @@ public class ConnectNewRotation {
    * @param n 　コネクタNの番号
    * @param s 　コネクタSの番号
    */
-  public void setNewRot(int n, int s) {
+  public void setNewRotation(int n, int s) {
     if (s == 1) {
       switch (n) {
         case 1:
@@ -199,54 +196,54 @@ public class ConnectNewRotation {
    * 移動後の回転(1)
    */
   private void setRotationN1() {
-    this.newRot.setXrotate(this.x);
-    this.newRot.setYrotate(this.y);
-    this.newRot.setZrotate(this.z);
+    this.newRotation.setXrotate(this.xRatation);
+    this.newRotation.setYrotate(this.yRatation);
+    this.newRotation.setZrotate(this.zRotation);
   }
 
   /**
    * 移動後の回転(2)
    */
   private void setRotationN2() {
-    this.newRot.setXrotate(this.x + 180.0f);
-    this.newRot.setYrotate(this.y);
-    this.newRot.setZrotate(this.z);
+    this.newRotation.setXrotate(this.xRatation + 180.0f);
+    this.newRotation.setYrotate(this.yRatation);
+    this.newRotation.setZrotate(this.zRotation);
   }
 
   /**
    * 移動後の回転(3)
    */
   private void setRotationN3() {
-    this.newRot.setXrotate(-this.y);
-    this.newRot.setYrotate(0.0f);
-    this.newRot.setZrotate(this.z - 90.0f);
+    this.newRotation.setXrotate(-this.yRatation);
+    this.newRotation.setYrotate(0.0f);
+    this.newRotation.setZrotate(this.zRotation - 90.0f);
   }
 
   /**
    * 移動後の回転(4)
    */
   private void setRotationN4() {
-    this.newRot.setXrotate(this.y);
-    this.newRot.setYrotate(0.0f);
-    this.newRot.setZrotate(this.z + 90.0f);
+    this.newRotation.setXrotate(this.yRatation);
+    this.newRotation.setYrotate(0.0f);
+    this.newRotation.setZrotate(this.zRotation + 90.0f);
   }
 
   /**
    * 移動後の回転(5)
    */
   private void setRotationN5() {
-    this.newRot.setXrotate(this.x + 90.0f);
-    this.newRot.setYrotate(this.y);
-    this.newRot.setZrotate(this.z);
+    this.newRotation.setXrotate(this.xRatation + 90.0f);
+    this.newRotation.setYrotate(this.yRatation);
+    this.newRotation.setZrotate(this.zRotation);
   }
 
   /**
    * 移動後の回転(6)
    */
   private void setRotationN6() {
-    this.newRot.setXrotate(this.x - 90.0f);
-    this.newRot.setYrotate(this.y);
-    this.newRot.setZrotate(this.z);
+    this.newRotation.setXrotate(this.xRatation - 90.0f);
+    this.newRotation.setYrotate(this.yRatation);
+    this.newRotation.setZrotate(this.zRotation);
   }
 
   /**
@@ -255,6 +252,6 @@ public class ConnectNewRotation {
    * @return　newRot　更新後の回転
    */
   public Rotation getNewRotation() {
-    return this.newRot;
+    return this.newRotation;
   }
 }
