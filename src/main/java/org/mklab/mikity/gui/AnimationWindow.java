@@ -521,7 +521,7 @@ public class AnimationWindow extends ApplicationWindow {
 
         @Override
         public void run() {
-          double time = SliderPositionMoveTask.this.localTask.getCurrentTime();
+          final double time = SliderPositionMoveTask.this.localTask.getCurrentTime();
           String timeString = String.valueOf(time);
           if (timeString.length() > 5) {
             timeString = timeString.substring(0, 4);
