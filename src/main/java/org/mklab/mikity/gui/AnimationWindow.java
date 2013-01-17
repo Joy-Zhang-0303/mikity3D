@@ -184,7 +184,9 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * This method initializes viewer 実際にシミュレーションを見る画面
+   * This method initializes viewer
+   * 
+   * 実際にシミュレーションを見る画面
    * 
    * @param comp
    */
@@ -202,7 +204,9 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * This method initializes controllerComp コントローラCompositの中身
+   * This method initializes controllerComp
+   * 
+   * コントローラCompositの中身
    * 
    * @param parent
    */
@@ -378,14 +382,14 @@ public class AnimationWindow extends ApplicationWindow {
   private void checkLinkParameterType(Group group) {
     final Group[] groups = group.getGroups();
     for (int i = 0; i < groups.length; i++) {
-      final LinkData[] link = groups[i].getLinkData();
-      for (int j = 0; j < link.length; j++) {
-        if (link[j].hasDHParameter()) {
+      final LinkData[] links = groups[i].getLinkData();
+      for (int j = 0; j < links.length; j++) {
+        if (links[j].hasDHParameter()) {
           this.usingDHParameter = true;
-          this.manager.setHasDHParameter(this.usingDHParameter);
-        } else if (link[j].hasCoordinateParameter()) {
+          this.manager.setHasDHParameter(true);
+        } else if (links[j].hasCoordinateParameter()) {
           this.usingCoordinateParameter = true;
-          this.manager.setHasCoordinateParameter(this.usingCoordinateParameter);
+          this.manager.setHasCoordinateParameter(true);
         } else {
           this.usingDHParameter = false;
           this.usingCoordinateParameter = false;
@@ -410,8 +414,8 @@ public class AnimationWindow extends ApplicationWindow {
       this.manager.setData(this.data);
       this.manager.updateMovableGroups();
 
-      final Group group = this.root.loadModel(0).loadGroup(0);
-      checkLinkParameterType(group);
+      final Group rootGroup = this.root.loadModel(0).loadGroup(0);
+      checkLinkParameterType(rootGroup);
 
       final int dataCount = this.manager.getDataCount();
 
@@ -434,7 +438,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * 実行時間バーを設定する。
+   * 実行時間を設定します。
    * 
    * @param data データ
    */
@@ -445,8 +449,8 @@ public class AnimationWindow extends ApplicationWindow {
     this.manager.setData(this.data);
     this.manager.updateMovableGroups();
 
-    final Group group = this.root.loadModel(0).loadGroup(0);
-    checkLinkParameterType(group);
+    final Group rootGroup = this.root.loadModel(0).loadGroup(0);
+    checkLinkParameterType(rootGroup);
 
     final int dataCount = this.manager.getDataCount();
 

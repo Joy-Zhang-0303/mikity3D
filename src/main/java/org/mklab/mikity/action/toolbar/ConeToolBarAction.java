@@ -49,8 +49,8 @@ public class ConeToolBarAction extends Action {
     cone.setColor("green"); //$NON-NLS-1$
     
     final Jamast root = this.window.getRoot();
-    final Group group = root.loadModel(0).loadGroup(0);
-    group.addXMLCone(cone);
+    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    rootGroup.addXMLCone(cone);
     updateCone();
   }
 }

@@ -48,8 +48,8 @@ public class BoxToolBarAction extends Action {
     box.setColor("red"); //$NON-NLS-1$
     
     final Jamast root = this.window.getRoot();
-    final Group group = root.loadModel(0).loadGroup(0);
-    group.addXMLBox(box);
+    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    rootGroup.addXMLBox(box);
     updateBox();
   }
 }

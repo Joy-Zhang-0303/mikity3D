@@ -66,11 +66,11 @@ public class PrimitiveConnectorMediator {
     //final Jamast root = ModelingWindow.getRoot();
     //final JamastModel model = root.loadModel(0);
     
-    final Group rootGroup = this.model.loadGroup(0);
+    final Group parentGroup = this.model.loadGroup(0);
     
     final Group group = new Group();
     group.setName("Connector"); //$NON-NLS-1$
-    rootGroup.addGroup(group);
+    parentGroup.addGroup(group);
     return group;
   }
 

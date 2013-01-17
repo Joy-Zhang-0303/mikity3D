@@ -29,73 +29,73 @@ public class JamastFactory {
   /**
    * ファイルを読み込み，データをrootに追加します。
    * @param localFile ファイル
-   * @param localRoot Jamastのroot
+   * @param root Jamastのroot
    * @throws JAXBException ファイルを読み込めない場合 
    * @throws IOException ファイルを読み込めない場合 
    */
-  public void importJavaFile(File localFile, Jamast localRoot) throws IOException, JAXBException {
-    final Group group = localRoot.loadModel(0).loadGroup(0);
+  public void importJavaFile(File localFile, Jamast root) throws IOException, JAXBException {
+    final Group rootGroup = root.loadModel(0).loadGroup(0);
     
     final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
     unmarshaller.unmarshal(localFile);
 
     final Jamast newRoot = unmarshaller.getRoot();
     if (newRoot != null) {
-      final Group newGroup = newRoot.loadModel(0).loadGroup(0);
+      final Group newRootGroup = newRoot.loadModel(0).loadGroup(0);
 
-      final XMLBox[] boxs = newGroup.getXMLBox();
-      final XMLCone[] cones = newGroup.getXMLCone();
-      final XMLCylinder[] cylinders = newGroup.getXMLCylinder();
-      final XMLSphere[] spheres = newGroup.getXMLSphere();
-      final XMLConnector[] connectors = newGroup.getXMLConnector();
-      final XMLTrianglePolygon[] triangles = newGroup.getXMLTrianglePolygon();
-      final XMLQuadPolygon[] quads = newGroup.getXMLQuadPolygon();
-      final Group[] groups = newGroup.getGroups();
+      final XMLBox[] boxes = newRootGroup.getXMLBox();
+      final XMLCone[] cones = newRootGroup.getXMLCone();
+      final XMLCylinder[] cylinders = newRootGroup.getXMLCylinder();
+      final XMLSphere[] spheres = newRootGroup.getXMLSphere();
+      final XMLConnector[] connectors = newRootGroup.getXMLConnector();
+      final XMLTrianglePolygon[] trianglePolygons = newRootGroup.getXMLTrianglePolygon();
+      final XMLQuadPolygon[] quadPolygons = newRootGroup.getXMLQuadPolygon();
+      final Group[] groups = newRootGroup.getGroups();
       
-      if (boxs != null) {
-        for (int i = 0; i < boxs.length; i++) {
-          group.addXMLBox(boxs[i]);
+      if (boxes != null) {
+        for (int i = 0; i < boxes.length; i++) {
+          rootGroup.addXMLBox(boxes[i]);
         }
       }
       if (cones != null) {
         for (int i = 0; i < cones.length; i++) {
-          group.addXMLCone(cones[i]);
+          rootGroup.addXMLCone(cones[i]);
         }
       }
       if (cylinders != null) {
         for (int i = 0; i < cylinders.length; i++) {
-          group.addXMLCylinder(cylinders[i]);
+          rootGroup.addXMLCylinder(cylinders[i]);
         }
       }
       if (spheres != null) {
         for (int i = 0; i < spheres.length; i++) {
-          group.addXMLSphere(spheres[i]);
+          rootGroup.addXMLSphere(spheres[i]);
         }
       }
       if (connectors != null) {
         for (int i = 0; i < connectors.length; i++) {
-          group.addXMLConnector(connectors[i]);
+          rootGroup.addXMLConnector(connectors[i]);
         }
       }
-      if (triangles != null) {
-        for (int i = 0; i < triangles.length; i++) {
-          group.addXMLTrianglePolygon(triangles[i]);
+      if (trianglePolygons != null) {
+        for (int i = 0; i < trianglePolygons.length; i++) {
+          rootGroup.addXMLTrianglePolygon(trianglePolygons[i]);
         }
       }
-      if (quads != null) {
-        for (int i = 0; i < quads.length; i++) {
-          group.addXMLQuadPolygon(quads[i]);
+      if (quadPolygons != null) {
+        for (int i = 0; i < quadPolygons.length; i++) {
+          rootGroup.addXMLQuadPolygon(quadPolygons[i]);
         }
       }
       if (groups != null) {
         for (int i = 0; i < groups.length; i++) {
-          group.addGroup(groups[i]);
+          rootGroup.addGroup(groups[i]);
         }
       }
     } else {
       final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
       for (int i = 0; i < groups.length; i++) {
-        group.addGroup(groups[i]);
+        rootGroup.addGroup(groups[i]);
       }
     }
   }
@@ -112,19 +112,19 @@ public class JamastFactory {
     final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
     unmarshaller.unmarshal(file);
     
-    final Jamast newRoot1 = unmarshaller.getRoot();
-    if (newRoot1 != null) {
-      return newRoot1;
+    final Jamast root = unmarshaller.getRoot();
+    if (root != null) {
+      return root;
     }
     
-    final Jamast newRoot2 = createEmptyModel();
-    final Group group = newRoot2.loadModel(0).loadGroup(0);
+    final Jamast newRoot = createEmptyModel();
+    final Group newRootGroup = newRoot.loadModel(0).loadGroup(0);
     final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
     for (int i = 0; i < groups.length; i++) {
-      group.addGroup(groups[i]);
+      newRootGroup.addGroup(groups[i]);
     }
 
-    return newRoot2;
+    return newRoot;
   }
   
   /**
@@ -133,13 +133,16 @@ public class JamastFactory {
    */
   public Jamast createEmptyModel() {
     final JamastConfig config = new JamastConfig();
-    final JamastModel model = new JamastModel();
-    final Jamast localRoot = new Jamast();
-    localRoot.addConfig(config);
-    localRoot.addModel(model);
+    
     final Group group = new Group();
     group.setName("Group0"); //$NON-NLS-1$
+    
+    final JamastModel model = new JamastModel();
     model.addGroup(group);
-    return localRoot;
+    
+    final Jamast root = new Jamast();
+    root.addConfig(config);
+    root.addModel(model);
+    return root;
   }
 }

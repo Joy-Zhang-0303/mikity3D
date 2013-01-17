@@ -122,7 +122,7 @@ public class MovableGroupManager {
    * @param linkData リンクデータ
    * @param group TransformGroup
    */
-  private void setLinkData(LinkData[] linkData, MovableGroup group) {
+  private void setLinkData(final LinkData[] linkData, final MovableGroup group) {
     if (linkData.length == 0) {
       return;
     }

@@ -57,8 +57,8 @@ public class TrianglePolygonToolBarAction extends Action {
     polygon.setColor("red"); //$NON-NLS-1$
     
     final Jamast root = this.window.getRoot();
-    final Group group = root.loadModel(0).loadGroup(0);
-    group.addXMLTrianglePolygon(polygon);
+    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    rootGroup.addXMLTrianglePolygon(polygon);
 
     updateTriagle();
   }

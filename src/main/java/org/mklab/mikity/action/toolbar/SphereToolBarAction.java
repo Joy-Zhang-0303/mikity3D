@@ -48,8 +48,8 @@ public class SphereToolBarAction extends Action {
     sphere.setColor("yellow"); //$NON-NLS-1$
     
     final Jamast root = this.window.getRoot();
-    final Group group = root.loadModel(0).loadGroup(0);
-    group.addXMLSphere(sphere);
+    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    rootGroup.addXMLSphere(sphere);
     
     updateSphere();
   }

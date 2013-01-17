@@ -132,11 +132,11 @@ public class ConnectorSelector {
     //final JamastModel model = root.loadModel(0);
     
     final JamastModel model = this.tree.getModel();
-    final Group rootGroup = model.loadGroup(0);
+    final Group parentGroup = model.loadGroup(0);
     
     final Group group = new Group();
     group.setName("ConnectorN"); //$NON-NLS-1$
-    rootGroup.addGroup(group);
+    parentGroup.addGroup(group);
     return group;
   }
   
@@ -172,11 +172,11 @@ public class ConnectorSelector {
     //final JamastModel model = root.loadModel(0);
     
     final JamastModel model = this.tree.getModel();
-    final Group rootGroup = model.loadGroup(0);
+    final Group parentGroup = model.loadGroup(0);
 
     final Group group = new Group();
     group.setName("ConnectorS"); //$NON-NLS-1$
-    rootGroup.addGroup(group);
+    parentGroup.addGroup(group);
     return group;
   }
 
