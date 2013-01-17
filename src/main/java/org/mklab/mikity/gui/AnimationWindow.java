@@ -93,8 +93,8 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   private Label endTimeLabel;
 
-  private boolean usingDHParameter = false;
-  private boolean usingCoordinateParameter = false;
+//  private boolean usingDHParameter = false;
+//  private boolean usingCoordinateParameter = false;
   /** */
   ParameterInputBox playSpeed;
 
@@ -385,14 +385,14 @@ public class AnimationWindow extends ApplicationWindow {
       final LinkData[] links = groups[i].getLinkData();
       for (int j = 0; j < links.length; j++) {
         if (links[j].hasDHParameter()) {
-          this.usingDHParameter = true;
+          //this.usingDHParameter = true;
           this.manager.setHasDHParameter(true);
         } else if (links[j].hasCoordinateParameter()) {
-          this.usingCoordinateParameter = true;
+          //this.usingCoordinateParameter = true;
           this.manager.setHasCoordinateParameter(true);
         } else {
-          this.usingDHParameter = false;
-          this.usingCoordinateParameter = false;
+          //this.usingDHParameter = false;
+          //this.usingCoordinateParameter = false;
         }
       }
       checkLinkParameterType(groups[i]);

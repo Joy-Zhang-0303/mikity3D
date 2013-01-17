@@ -3,10 +3,7 @@ package org.mklab.mikity.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.media.j3d.Transform3D;
 import javax.media.opengl.GL;
-import javax.vecmath.AxisAngle4d;
-import javax.vecmath.Vector3d;
 
 import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.jogl.models.JoglLocation;
@@ -26,7 +23,7 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
   /** トランスフォームグループのリスト */
-  private List<JoglTransformGroup> transformGroups;
+  private List<JoglTransformGroup> groups;
   /** 座標系 */
   private JoglCoordinate coordinate;
 
@@ -35,11 +32,11 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
    */
   public JoglTransformGroup() {
     this.objects = new ArrayList<JoglObject>();
-    this.transformGroups = new ArrayList<JoglTransformGroup>();
+    this.groups = new ArrayList<JoglTransformGroup>();
   }
 
   /**
-   * オブジェクトを追加します
+   * オブジェクトを追加します。
    * 
    * @param child オブジェクト
    */
@@ -48,21 +45,21 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
   }
 
   /**
-   * トランスフォームグループを追加します
+   * トランスフォームグループを追加します。
    * 
-   * @param group トランスフォームグループ
+   * @param child トランスフォームグループ
    */
-  public void addChild(JoglTransformGroup group) {
-    this.transformGroups.add(group);
+  public void addChild(JoglTransformGroup child) {
+    this.groups.add(child);
   }
 
   /**
-   * 座標系を追加します
+   * 座標系を設定します。
    * 
-   * @param corrdinate 座標系
+   * @param coordinate 座標系
    */
-  public void setCoordinate(JoglCoordinate corrdinate) {
-    this.coordinate = corrdinate;
+  public void setCoordinate(JoglCoordinate coordinate) {
+    this.coordinate = coordinate;
   }
 
   /**
@@ -77,7 +74,7 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
       object.apply(gl);
     }
 
-    for (final JoglTransformGroup group : this.transformGroups) {
+    for (final JoglTransformGroup group : this.groups) {
       group.apply(gl);
     }
   }
@@ -86,7 +83,7 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
    * {@inheritDoc}
    */
   public void setDHParameter(DHParameter parameter) {
-    for (final JoglTransformGroup group : this.transformGroups) {
+    for (final JoglTransformGroup group : this.groups) {
       group.setDHParameter(parameter);
     }
     
@@ -154,7 +151,7 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
       }
     }
     
-    for (final JoglTransformGroup group : this.transformGroups) {
+    for (final JoglTransformGroup group : this.groups) {
       group.setCoordinateParameter(parameter);
     }
   }
