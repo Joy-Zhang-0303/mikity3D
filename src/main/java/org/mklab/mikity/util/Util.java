@@ -31,32 +31,31 @@ public class Util {
   /**
    * DHパラメータを返します。
    * 
-   * @param linkdata リンクデータ
+   * @param links リンクデータ
    * @return DHパラメータ
    */
-  public static DHParameter getDHParameter(final LinkData[] linkdata) {
-    DHParameter parameter = new DHParameter(); // 初期値全てゼロのDHParameter
+  public static DHParameter getDHParameter(final LinkData[] links) {
+    final DHParameter parameter = new DHParameter(); // 初期値全てゼロのDHParameter
 
-    // linkdataが無い場合はlinkdata.lengthが0になる
-    for (int i = 0; i < linkdata.length; i++) {
+    for (final LinkData link : links) {
       // Constが存在する場合
-      if (linkdata[i].hasInitialValue()) {
-        // かつ、targetがthetaであるか、dであるかを判別
-        if (linkdata[i].loadTargetName().equals("theta")) { //$NON-NLS-1$
+      if (link.hasInitialValue()) {
+        final String parameterName = link.loadTargetName();
+        if (parameterName.equals("theta")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setTheta(linkdata[i].loadInitialValue());
+            parameter.setTheta(link.loadInitialValue());
           } else {
-            parameter.setTheta(Math.toRadians(linkdata[i].loadInitialValue()));
+            parameter.setTheta(Math.toRadians(link.loadInitialValue()));
           }
-        } else if (linkdata[i].loadTargetName().equals("d")) { //$NON-NLS-1$
-          parameter.setD(linkdata[i].loadInitialValue() / scale);
-        } else if (linkdata[i].loadTargetName().equals("a")) { //$NON-NLS-1$
-          parameter.setA(linkdata[i].loadInitialValue() / scale);
-        } else if (linkdata[i].loadTargetName().equals("alpha")) { //$NON-NLS-1$
+        } else if (parameterName.equals("d")) { //$NON-NLS-1$
+          parameter.setD(link.loadInitialValue() / scale);
+        } else if (parameterName.equals("a")) { //$NON-NLS-1$
+          parameter.setA(link.loadInitialValue() / scale);
+        } else if (parameterName.equals("alpha")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setAlpha(linkdata[i].loadInitialValue());
+            parameter.setAlpha(link.loadInitialValue());
           } else {
-            parameter.setAlpha(Math.toRadians(linkdata[i].loadInitialValue()));
+            parameter.setAlpha(Math.toRadians(link.loadInitialValue()));
           }
         }
       }
@@ -67,40 +66,39 @@ public class Util {
   /**
    * 座標パラメータを返します。
    * 
-   * @param linkData リンクデータ
+   * @param links リンクデータ
    * @return 座標パラメータ
    */
-  public static CoordinateParameter getCoordinateParameter(final LinkData[] linkData) {
+  public static CoordinateParameter getCoordinateParameter(final LinkData[] links) {
     final CoordinateParameter parameter = new CoordinateParameter();
 
-    // linkdataが無い場合はlinkdata.lengthが0になる
-    for (int i = 0; i < linkData.length; i++) {
+    for (final LinkData link : links) {
       // Constが存在する場合
-      if (linkData[i].hasInitialValue()) {
-        // かつ、targetがthetaであるか、dであるかを判別
-        if (linkData[i].loadTargetName().equals("locationX")) { //$NON-NLS-1$
-          parameter.setX(linkData[i].loadInitialValue() / scale);
-        } else if (linkData[i].loadTargetName().equals("rotationX")) { //$NON-NLS-1$
+      if (link.hasInitialValue()) {
+        final String parameterName = link.loadTargetName();
+        if (parameterName.equals("locationX")) { //$NON-NLS-1$
+          parameter.setX(link.loadInitialValue() / scale);
+        } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setAngleX(linkData[i].loadInitialValue());
+            parameter.setAngleX(link.loadInitialValue());
           } else {
-            parameter.setAngleX(Math.toRadians(linkData[i].loadInitialValue()));
+            parameter.setAngleX(Math.toRadians(link.loadInitialValue()));
           }
-        } else if (linkData[i].loadTargetName().equals("locationY")) { //$NON-NLS-1$
-          parameter.setY(linkData[i].loadInitialValue() / scale);
-        } else if (linkData[i].loadTargetName().equals("rotationY")) { //$NON-NLS-1$
+        } else if (parameterName.equals("locationY")) { //$NON-NLS-1$
+          parameter.setY(link.loadInitialValue() / scale);
+        } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setAngleY(linkData[i].loadInitialValue());
+            parameter.setAngleY(link.loadInitialValue());
           } else {
-            parameter.setAngleY(Math.toRadians(linkData[i].loadInitialValue()));
+            parameter.setAngleY(Math.toRadians(link.loadInitialValue()));
           }
-        } else if (linkData[i].loadTargetName().equals("locationZ")) { //$NON-NLS-1$
-          parameter.setZ(linkData[i].loadInitialValue() / scale);
-        } else if (linkData[i].loadTargetName().equals("rotationZ")) { //$NON-NLS-1$
+        } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
+          parameter.setZ(link.loadInitialValue() / scale);
+        } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
           if (radian) {
-            parameter.setAngleZ(linkData[i].loadInitialValue());
+            parameter.setAngleZ(link.loadInitialValue());
           } else {
-            parameter.setAngleZ(Math.toRadians(linkData[i].loadInitialValue()));
+            parameter.setAngleZ(Math.toRadians(link.loadInitialValue()));
           }
         }
       }

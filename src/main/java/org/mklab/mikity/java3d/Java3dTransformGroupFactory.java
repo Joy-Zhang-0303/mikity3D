@@ -29,57 +29,57 @@ public class Java3dTransformGroupFactory {
    * @return トランスフォームグループ
    */
   public Java3dTransformGroup create(final Group group) {
-    final Java3dTransformGroup tg = new Java3dTransformGroup();
+    final Java3dTransformGroup transformGroup = new Java3dTransformGroup();
     
     for (final XMLBox box : group.getXMLBox()) {
-      tg.addChild(Java3dPrimitiveFactory.create(box));
+      transformGroup.addChild(Java3dPrimitiveFactory.create(box));
     }
 
     for (final XMLCylinder cylinder : group.getXMLCylinder()) {
-      tg.addChild(Java3dPrimitiveFactory.create(cylinder));
+      transformGroup.addChild(Java3dPrimitiveFactory.create(cylinder));
     }
 
     for (final XMLSphere sphere : group.getXMLSphere()) {
-      tg.addChild(Java3dPrimitiveFactory.create(sphere));
+      transformGroup.addChild(Java3dPrimitiveFactory.create(sphere));
     }
 
     for (final XMLCone cone : group.getXMLCone()) {
-      tg.addChild(Java3dPrimitiveFactory.create(cone));
+      transformGroup.addChild(Java3dPrimitiveFactory.create(cone));
     }
 
     for (final XMLConnector connector : group.getXMLConnector()) {
-      tg.addChild(Java3dPrimitiveFactory.create(connector));
+      transformGroup.addChild(Java3dPrimitiveFactory.create(connector));
     }
 
     for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygon()) {
-      tg.addChild(Java3dPrimitiveFactory.create(polygon));
+      transformGroup.addChild(Java3dPrimitiveFactory.create(polygon));
     }
 
     for (final XMLQuadPolygon polygon : group.getXMLQuadPolygon()) {
-      tg.addChild(Java3dPrimitiveFactory.create(polygon));
+      transformGroup.addChild(Java3dPrimitiveFactory.create(polygon));
     }
 
-    for (final Group childGroup : group.getGroups()) {
-      tg.addChild(Java3dPrimitiveFactory.create(childGroup));
+    for (final Group child : group.getGroups()) {
+      transformGroup.addChild(Java3dPrimitiveFactory.create(child));
     }
 
-    final LinkData[] parameters = group.getLinkData();
-    for (int i = 0; i < parameters.length; i++) {
-      if (parameters[i].hasDHParameter()) {
-        final DHParameter parameter = Util.getDHParameter(parameters);
-        tg.setDHParameter(parameter);
+    final LinkData[] links = group.getLinkData();
+    for (int i = 0; i < links.length; i++) {
+      if (links[i].hasDHParameter()) {
+        final DHParameter parameter = Util.getDHParameter(links);
+        transformGroup.setDHParameter(parameter);
         break;
-      } else if (parameters[i].hasCoordinateParameter()) {
-        final CoordinateParameter parameter = Util.getCoordinateParameter(parameters);
-        tg.setCoordinateParameter(parameter);
+      } else if (links[i].hasCoordinateParameter()) {
+        final CoordinateParameter parameter = Util.getCoordinateParameter(links);
+        transformGroup.setCoordinateParameter(parameter);
         break;
       }
     }
 
     // MyTransformGroup と Groupの関連付けを行う
-    MovableGroupManager.assignGroup(group, tg);
+    MovableGroupManager.assignGroup(group, transformGroup);
     
-    return tg;
+    return transformGroup;
   }
   
 }

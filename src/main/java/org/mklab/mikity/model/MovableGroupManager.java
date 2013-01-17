@@ -26,11 +26,11 @@ import org.mklab.nfc.matrix.Matrix;
  */
 public class MovableGroupManager {
   /** 動かせるグループ */
-  private List<MovableGroup> movableGroups = new ArrayList<MovableGroup>();
+  private List<MovableGroup> groups = new ArrayList<MovableGroup>();
   /** データ抽出器 */
   private Map<MovableGroup, DataPicker> pickers = new HashMap<MovableGroup, DataPicker>();
 
-  private static Map<Group, MovableGroup> MOVABLE_GROUPS = new HashMap<Group, MovableGroup>();
+  private static Map<Group, MovableGroup> GROUPS = new HashMap<Group, MovableGroup>();
   
   /** データの個数 */
   private int dataCount;
@@ -57,13 +57,13 @@ public class MovableGroupManager {
   }
 
   /**
-   * 移動可能なグループを追加する。
+   * 移動可能なグループを追加します。
    * 
    * @param group グループ
    * @param picker データ抽出器
    */
   private void addMovableGroup(final MovableGroup group, final DataPicker picker) {
-    this.movableGroups.add(group);
+    this.groups.add(group);
     this.pickers.put(group, picker);
 
     this.dataCount = Math.max(this.dataCount, picker.getDataSize());
@@ -77,7 +77,7 @@ public class MovableGroupManager {
    * @param t 時刻
    */
   public void performAnimationWithDHParameter(double t) {
-    for (final MovableGroup group : this.movableGroups) {
+    for (final MovableGroup group : this.groups) {
       final DataPicker picker = this.pickers.get(group);
       final DHParameter parameter = picker.getDHParameter(t);
       
@@ -93,7 +93,7 @@ public class MovableGroupManager {
    * @param t 時刻
    */
   public void performAnimationWithCoordinateParameter(double t) {
-    for (final MovableGroup group : this.movableGroups) {
+    for (final MovableGroup group : this.groups) {
       final DataPicker picker = this.pickers.get(group);
       final CoordinateParameter parameter = picker.getCoordinateParameter(t);
       
@@ -106,12 +106,12 @@ public class MovableGroupManager {
   /**
    * グループを追加します。
    * 
-   * @param groups 追加するグループ
+   * @param children 追加するグループ
    */
-  private void addGroups(final Group[] groups) {
-    for (final Group group : groups) {
-      final MovableGroup tg = MOVABLE_GROUPS.get(group);
-      setLinkData(group.getLinkData(), tg);
+  private void addGroups(final Group[] children) {
+    for (final Group group : children) {
+      final MovableGroup movableGroup = GROUPS.get(group);
+      setLinkData(group.getLinkData(), movableGroup);
       addGroups(group.getGroups());
     }
   }
@@ -119,21 +119,21 @@ public class MovableGroupManager {
   /**
    * 移動可能なグループのリンクデータを設定します。
    * 
-   * @param linkData リンクデータ
+   * @param links リンクデータ
    * @param group TransformGroup
    */
-  private void setLinkData(final LinkData[] linkData, final MovableGroup group) {
-    if (linkData.length == 0) {
+  private void setLinkData(final LinkData[] links, final MovableGroup group) {
+    if (links.length == 0) {
       return;
     }
     
     final DataPicker picker = new ClosenessDataPicker(this.data);
 
-    for (int i = 0; i < linkData.length; i++) {
-      if (linkData[i].hasDHParameter()) {
-        if (linkData[i].hasDataNumber()) {
-          final int dataNumber = linkData[i].loadDataNumber();
-          final String parameterName = linkData[i].loadTargetName();
+    for (int i = 0; i < links.length; i++) {
+      if (links[i].hasDHParameter()) {
+        if (links[i].hasDataNumber()) {
+          final int dataNumber = links[i].loadDataNumber();
+          final String parameterName = links[i].loadTargetName();
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
@@ -150,9 +150,9 @@ public class MovableGroupManager {
           picker.readDataAndSetParameter(type, dataNumber);
         }
         
-        if (linkData[i].hasInitialValue()) {
-          final double value = linkData[i].loadInitialValue();
-          final String parameterName = linkData[i].loadTargetName();
+        if (links[i].hasInitialValue()) {
+          final double value = links[i].loadInitialValue();
+          final String parameterName = links[i].loadTargetName();
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
@@ -168,10 +168,10 @@ public class MovableGroupManager {
           }
           picker.setParameter(type, value);
         }
-      } else if (linkData[i].hasCoordinateParameter()) {
-        if (linkData[i].hasDataNumber()) {
-          final int dataNumber = linkData[i].loadDataNumber();
-          final String parameterName = linkData[i].loadTargetName();
+      } else if (links[i].hasCoordinateParameter()) {
+        if (links[i].hasDataNumber()) {
+          final int dataNumber = links[i].loadDataNumber();
+          final String parameterName = links[i].loadTargetName();
           final CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
@@ -192,9 +192,9 @@ public class MovableGroupManager {
           picker.readDataAndSetParameter(type, dataNumber);
         }
         
-        if (linkData[i].hasInitialValue()) {
-          final double value = linkData[i].loadInitialValue();
-          final String parameterName = linkData[i].loadTargetName();
+        if (links[i].hasInitialValue()) {
+          final double value = links[i].loadInitialValue();
+          final String parameterName = links[i].loadTargetName();
           final CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
@@ -259,7 +259,7 @@ public class MovableGroupManager {
    * 移動可能なグループを更新します。
    */
   public void updateMovableGroups() {
-    this.movableGroups.clear();
+    this.groups.clear();
     addGroups(this.root.loadModel(0).loadGroup());
   }
   
@@ -301,9 +301,9 @@ public class MovableGroupManager {
   
   /**
    * @param group グループ
-   * @param tg トランスフォームグループ
+   * @param movableGroup トランスフォームグループ
    */
-  public static void assignGroup(final Group group, final MovableGroup tg) {
-    MOVABLE_GROUPS.put(group, tg);
+  public static void assignGroup(final Group group, final MovableGroup movableGroup) {
+    GROUPS.put(group, movableGroup);
   }
 }
