@@ -119,9 +119,9 @@ public class MovableGroupManager {
         this.isUpdated = true;
       }
       
-      if (this.isUpdated == false) {
+      //if (this.isUpdated == false) {
         update(group.getGroups(), data);
-      }
+      //}
     }
   }
 
