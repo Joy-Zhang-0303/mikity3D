@@ -92,46 +92,38 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     
     // 1.xi軸に沿ってa(i-1)だけ並進
     final double a = parameter.getA();
-    if (a != 0) {
-      if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
-        ((JoglLocation)this.coordinate).translate((float)a, 0, 0);
-      }
-      if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
-        ((JoglLocationRotation)this.coordinate).translate((float)a, 0, 0);
-      }
+    if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
+      ((JoglLocation)this.coordinate).setLocation((float)a, 0, 0);
+    }
+    if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
+      ((JoglLocationRotation)this.coordinate).setLocation((float)a, 0, 0);
     }
 
     // 2.x(i-1)軸回りにα(i-1)だけ回転
     final double alpha = parameter.getAlpha();
-    if (alpha != 0) {
-      if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
-        ((JoglRotation)this.coordinate).rotate((float)alpha, 0, 0);
-      }
-      if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
-        ((JoglLocationRotation)this.coordinate).rotate((float)alpha, 0, 0);
-      }
+    if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
+      ((JoglRotation)this.coordinate).setRotation((float)alpha, 0, 0);
+    }
+    if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
+      ((JoglLocationRotation)this.coordinate).setRotation((float)alpha, 0, 0);
     }
     
     // 3.ziに沿ってdiだけ並進   
     final double d = parameter.getD();
-    if (d != 0) {
-      if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
-        ((JoglLocation)this.coordinate).translate(0, 0, (float)d);
-      }
-      if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
-        ((JoglLocationRotation)this.coordinate).translate(0, 0, (float)d);
-      }
+    if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
+      ((JoglLocation)this.coordinate).setLocation(0, 0, (float)d);
+    }
+    if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
+      ((JoglLocationRotation)this.coordinate).setLocation(0, 0, (float)d);
     }
 
     // 4.zi軸回りにθiだけ回転
     final double theta = parameter.getTheta();
-    if (theta != 0) {
-      if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
-        ((JoglRotation)this.coordinate).rotate(0, 0, (float)theta);
-      }
-      if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
-        ((JoglLocationRotation)this.coordinate).rotate(0, 0, (float)theta);
-      }
+    if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
+      ((JoglRotation)this.coordinate).setRotation(0, 0, (float)theta);
+    }
+    if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
+      ((JoglLocationRotation)this.coordinate).setRotation(0, 0, (float)theta);
     }
     
     System.out.println("(a, alpha, d, theta) = (" + a + ", " + alpha + ", " + d + ", " + theta + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
@@ -149,10 +141,10 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
 
     if (x != 0 || y != 0 || z != 0) {
       if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
-        ((JoglLocation)this.coordinate).translate((float)x, (float)y, (float)z);
+        ((JoglLocation)this.coordinate).setLocation((float)x, (float)y, (float)z);
       }
       if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
-        ((JoglLocationRotation)this.coordinate).translate((float)x, (float)y, (float)z);
+        ((JoglLocationRotation)this.coordinate).setLocation((float)x, (float)y, (float)z);
       }
     }
 
@@ -163,10 +155,10 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     
     if (angleX != 0 || angleY != 0 || angleZ != 0) {
       if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
-        ((JoglRotation)this.coordinate).rotate((float)angleX, (float)angleY, (float)angleZ);
+        ((JoglRotation)this.coordinate).setRotation((float)angleX, (float)angleY, (float)angleZ);
       }
       if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
-        ((JoglLocationRotation)this.coordinate).rotate((float)angleX, (float)angleY, (float)angleZ);
+        ((JoglLocationRotation)this.coordinate).setRotation((float)angleX, (float)angleY, (float)angleZ);
       }
     }
     

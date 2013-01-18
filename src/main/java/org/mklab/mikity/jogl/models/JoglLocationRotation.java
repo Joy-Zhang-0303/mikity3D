@@ -8,22 +8,22 @@ import javax.media.opengl.GL;
  * @version $Revision$, 2012/02/09
  */
 public class JoglLocationRotation implements JoglCoordinate {
-  /** x軸周りの回転 */
+  /** x軸周りの回転[rad] */
   private float rotationX;
 
-  /** y軸周りの回転 */
+  /** y軸周りの回転[rad] */
   private float rotationY;
 
-  /** z軸周りの回転 */
+  /** z軸周りの回転[rad] */
   private float rotationZ;
 
-  /** x */
+  /** x[m] */
   private float x;
 
-  /** y*/
+  /** y[m] */
   private float y;
 
-  /** z */
+  /** z[m] */
   private float z;
 
   /**
@@ -33,13 +33,13 @@ public class JoglLocationRotation implements JoglCoordinate {
     gl.glTranslatef(this.x, this.y, this.z);
     
     if (this.rotationX != 0.0f) {
-      gl.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
+      gl.glRotatef((float)Math.toDegrees(this.rotationX), 1.0f, 0.0f, 0.0f);
     }
     if (this.rotationY != 0.0f) {
-      gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
+      gl.glRotatef((float)Math.toDegrees(this.rotationY), 0.0f, 1.0f, 0.0f);
     }
     if (this.rotationZ != 0.0f) {
-      gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
+      gl.glRotatef((float)Math.toDegrees(this.rotationZ), 0.0f, 0.0f, 1.0f);
     }
   }
 

@@ -8,13 +8,13 @@ import javax.media.opengl.GL;
  * @version $Revision$, 2012/02/07
  */
 public class JoglLocation implements JoglCoordinate {
-  /** x */
+  /** x[m] */
   private float x;
 
-  /** y */
+  /** y[m] */
   private float y;
 
-  /** z */
+  /** z[m] */
   private float z;
 
   /**

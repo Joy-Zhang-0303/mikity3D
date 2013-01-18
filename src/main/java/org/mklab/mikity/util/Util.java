@@ -19,7 +19,7 @@ public class Util {
   /** */
   public static int scale = 1;
   /** */
-  public static boolean radian = false;
+  public static boolean radian = true;
   
   /**
    * コンストラクター
