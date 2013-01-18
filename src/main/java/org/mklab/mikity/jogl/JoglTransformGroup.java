@@ -84,9 +84,9 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
    * {@inheritDoc}
    */
   public void setDHParameter(DHParameter parameter) {
-    for (final JoglTransformGroup group : this.groups) {
-      group.setDHParameter(parameter);
-    }
+//    for (final JoglTransformGroup group : this.groups) {
+//      group.setDHParameter(parameter);
+//    }
     
     /* 座標系Σ(i-1)からΣiへの変換   */
     
