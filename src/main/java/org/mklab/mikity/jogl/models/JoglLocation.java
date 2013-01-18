@@ -21,7 +21,7 @@ public class JoglLocation implements JoglCoordinate {
    * {@inheritDoc}
    */
   public void apply(GL gl) {
-    gl.glPushMatrix();
+    //gl.glPushMatrix();
     gl.glTranslatef(this.x, this.y, this.z);
   }
 

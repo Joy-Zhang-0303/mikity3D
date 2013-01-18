@@ -103,7 +103,7 @@ public class JoglCone extends AbstractJoglObject {
     indexBuffer.position(0);
     gl.glDrawElements(GL.GL_TRIANGLE_STRIP, indices.length, GL.GL_UNSIGNED_BYTE, indexBuffer);
 
-    gl.glPopMatrix();
+    //gl.glPopMatrix();
   }
 
   /**

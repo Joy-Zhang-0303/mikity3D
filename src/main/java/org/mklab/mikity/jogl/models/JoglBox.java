@@ -55,7 +55,7 @@ public class JoglBox extends AbstractJoglObject {
     indexBuffer.position(14);
     gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, indexBuffer);
 
-    gl.glPopMatrix();
+    //gl.glPopMatrix();
   }
 
   /**

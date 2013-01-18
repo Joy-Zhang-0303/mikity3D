@@ -30,9 +30,9 @@ public class JoglLocationRotation implements JoglCoordinate {
    * {@inheritDoc}
    */
   public void apply(GL gl) {
-    gl.glPushMatrix();
+    //gl.glPushMatrix();
+    
     gl.glTranslatef(this.x, this.y, this.z);
-    gl.glPushMatrix();
     
     if (this.rotationX != 0.0f) {
       gl.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
@@ -43,6 +43,8 @@ public class JoglLocationRotation implements JoglCoordinate {
     if (this.rotationZ != 0.0f) {
       gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
     }
+    
+    //gl.glPopMatrix();
   }
 
   /**

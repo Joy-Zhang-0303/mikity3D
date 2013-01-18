@@ -67,6 +67,8 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
    * {@inheritDoc}
    */
   public void apply(GL gl) {
+    gl.glPushMatrix();
+    
     if (this.coordinate != null) {
       this.coordinate.apply(gl);
     }
@@ -78,16 +80,14 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     for (final JoglTransformGroup group : this.groups) {
       group.apply(gl);
     }
+    
+    gl.glPopMatrix();
   }
 
   /**
    * {@inheritDoc}
    */
   public void setDHParameter(DHParameter parameter) {
-//    for (final JoglTransformGroup group : this.groups) {
-//      group.setDHParameter(parameter);
-//    }
-    
     /* 座標系Σ(i-1)からΣiへの変換   */
     
     // 1.xi軸に沿ってa(i-1)だけ並進
