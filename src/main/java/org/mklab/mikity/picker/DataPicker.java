@@ -32,18 +32,18 @@ public interface DataPicker {
   CoordinateParameter getCoordinateParameter(double t);
 
   /**
-   * データを読み込み，パラメータを設定します。
+   * データをピックアップし，パラメータを設定します。
    * @param type パラメータのタイプ
    * @param dataNumber データ番号
    */
-  void readDataAndSetParameter(DHParameterType type, int dataNumber);
+  void pickupParameter(DHParameterType type, int dataNumber);
 
   /**
-   * データを読み込み，パラメータを設定します。
+   * データをピックアップし，パラメータを設定します。
    * @param type パラメータのタイプ
    * @param dataNumber データ番号
    */
-  void readDataAndSetParameter(CoordinateParameterType type, int dataNumber);
+  void pickupParameter(CoordinateParameterType type, int dataNumber);
 
   /**
    * 値を設定します。

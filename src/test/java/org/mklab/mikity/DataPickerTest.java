@@ -41,7 +41,7 @@ public class DataPickerTest {
   @Test
   public void testSetup() {
     DataPicker picker = new ClosenessDataPicker(this.data);
-    picker.readDataAndSetParameter(DHParameterType.D, 2);
+    picker.pickupParameter(DHParameterType.D, 2);
     DHParameter param = picker.getDHParameter(13.59);
     assertTrue(8.921 == param.getD());
 
@@ -50,7 +50,7 @@ public class DataPickerTest {
 
     assertTrue(0.0 == param.getAlpha());
 
-    picker.readDataAndSetParameter(DHParameterType.ALPHA, 3);
+    picker.pickupParameter(DHParameterType.ALPHA, 3);
     assertTrue(-0.010995 == param.getAlpha());
 
   }

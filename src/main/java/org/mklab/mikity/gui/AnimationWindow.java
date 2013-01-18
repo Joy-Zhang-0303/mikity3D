@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
-import org.mklab.mikity.jogl.JoglModelCanvas;
+import org.mklab.mikity.java3d.Java3dModelCanvas;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
@@ -110,8 +110,8 @@ public class AnimationWindow extends ApplicationWindow {
     this.manager = new MovableGroupManager(this.root);
 
     // TODO Java3d or JOGL
-    //this.modelCanvas = new Java3dModelCanvas(this.root);
-    this.modelCanvas = new JoglModelCanvas(this.root);
+    this.modelCanvas = new Java3dModelCanvas(this.root);
+    //this.modelCanvas = new JoglModelCanvas(this.root);
   }
 
   /**
@@ -403,8 +403,8 @@ public class AnimationWindow extends ApplicationWindow {
       input.close();
 
       this.timeSlider.setEnabled(true);
+      //this.manager.setData(this.data);
       this.manager.setData(this.data);
-      this.manager.updateMovableGroups();
 
       final Group rootGroup = this.root.loadModel(0).loadGroup(0);
       checkLinkParameterType(rootGroup);
@@ -438,8 +438,8 @@ public class AnimationWindow extends ApplicationWindow {
     this.data = data;
 
     this.timeSlider.setEnabled(true);
+    //this.manager.setData(this.data);
     this.manager.setData(this.data);
-    this.manager.updateMovableGroups();
 
     final Group rootGroup = this.root.loadModel(0).loadGroup(0);
     checkLinkParameterType(rootGroup);

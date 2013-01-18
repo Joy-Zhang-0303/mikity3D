@@ -26,11 +26,11 @@ import org.mklab.nfc.matrix.Matrix;
  */
 public class MovableGroupManager {
   /** 動かせるグループ */
-  private List<MovableGroup> groups = new ArrayList<MovableGroup>();
+  private List<MovableGroup> movableGroups = new ArrayList<MovableGroup>();
   /** データ抽出器 */
   private Map<MovableGroup, DataPicker> pickers = new HashMap<MovableGroup, DataPicker>();
 
-  private static Map<Group, MovableGroup> GROUPS = new HashMap<Group, MovableGroup>();
+  private static Map<Group, MovableGroup> MOVABLE_GROUPS = new HashMap<Group, MovableGroup>();
   
   /** データの個数 */
   private int dataCount;
@@ -39,7 +39,7 @@ public class MovableGroupManager {
   /** 終了時間 */
   private double endTime;
   /** 時系列データ */
-  private Matrix data;
+  //private Matrix data;
 
   private Jamast root;
 
@@ -63,7 +63,7 @@ public class MovableGroupManager {
    * @param picker データ抽出器
    */
   private void addMovableGroup(final MovableGroup movableGroup, final DataPicker picker) {
-    this.groups.add(movableGroup);
+    this.movableGroups.add(movableGroup);
     this.pickers.put(movableGroup, picker);
 
     this.dataCount = Math.max(this.dataCount, picker.getDataSize());
@@ -77,7 +77,7 @@ public class MovableGroupManager {
    * @param t 時刻
    */
   public void performAnimationWithDHParameter(double t) {
-    for (final MovableGroup group : this.groups) {
+    for (final MovableGroup group : this.movableGroups) {
       final DataPicker picker = this.pickers.get(group);
       final DHParameter parameter = picker.getDHParameter(t);
       
@@ -93,7 +93,7 @@ public class MovableGroupManager {
    * @param t 時刻
    */
   public void performAnimationWithCoordinateParameter(double t) {
-    for (final MovableGroup group : this.groups) {
+    for (final MovableGroup group : this.movableGroups) {
       final DataPicker picker = this.pickers.get(group);
       final CoordinateParameter parameter = picker.getCoordinateParameter(t);
       
@@ -107,28 +107,28 @@ public class MovableGroupManager {
    * グループを追加します。
    * 
    * @param children 追加するグループ
+   * @param data 時系列データ
    */
-  private void addGroups(final Group[] children) {
+  private void addGroups(final Group[] children, Matrix data) {
     for (final Group group : children) {
-      final MovableGroup movableGroup = GROUPS.get(group);
+      final MovableGroup movableGroup = MOVABLE_GROUPS.get(group);
       final LinkData[] links = group.getLinkData();
-      setLinkData(links, movableGroup);
-      addGroups(group.getGroups());
+      if (links.length != 0) {
+        final DataPicker picker = createPicker(data, links);
+        addMovableGroup(movableGroup, picker);
+      }
+      addGroups(group.getGroups(), data);
     }
   }
 
   /**
    * 移動可能なグループのリンクデータを設定します。
    * 
+   * @param data 時系列デー
    * @param links リンクデータ
-   * @param movableGroup 移動可能なグループ
    */
-  private void setLinkData(final LinkData[] links, final MovableGroup movableGroup) {
-    if (links.length == 0) {
-      return;
-    }
-    
-    final DataPicker picker = new ClosenessDataPicker(this.data);
+  private DataPicker createPicker(final Matrix data, final LinkData[] links) {
+    final DataPicker picker = new ClosenessDataPicker(data);
 
     for (final LinkData link : links) {
       if (link.hasDHParameter()) {
@@ -148,7 +148,7 @@ public class MovableGroupManager {
           } else {
             throw new IllegalArgumentException(Messages.getString("MovableGroupManager.0")); //$NON-NLS-1$
           }
-          picker.readDataAndSetParameter(type, dataNumber);
+          picker.pickupParameter(type, dataNumber);
         }
         
         if (link.hasInitialValue()) {
@@ -190,7 +190,7 @@ public class MovableGroupManager {
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
-          picker.readDataAndSetParameter(type, dataNumber);
+          picker.pickupParameter(type, dataNumber);
         }
         
         if (link.hasInitialValue()) {
@@ -217,7 +217,8 @@ public class MovableGroupManager {
         }
       }
     }
-    addMovableGroup(movableGroup, picker);
+     
+    return picker;
   }
 
   /**
@@ -252,16 +253,9 @@ public class MovableGroupManager {
    * 
    * @param data 時系列データ
    */
-  public void setData(final Matrix data) {
-    this.data = data;
-  }
-
-  /**
-   * 移動可能なグループを更新します。
-   */
-  public void updateMovableGroups() {
-    this.groups.clear();
-    addGroups(this.root.loadModel(0).loadGroup());
+  public void setData(Matrix data) {
+    this.movableGroups.clear();
+    addGroups(this.root.loadModel(0).loadGroup(), data);
   }
   
   /**
@@ -305,6 +299,6 @@ public class MovableGroupManager {
    * @param movableGroup 移動可能なグループ
    */
   public static void assignGroup(final Group group, final MovableGroup movableGroup) {
-    GROUPS.put(group, movableGroup);
+    MOVABLE_GROUPS.put(group, movableGroup);
   }
 }

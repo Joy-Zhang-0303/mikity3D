@@ -52,7 +52,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void readDataAndSetParameter(DHParameterType type, int dataNumber) {
+  public final void pickupParameter(DHParameterType type, int dataNumber) {
     if (this.data.getRowSize() < dataNumber) {
       throw new IllegalArgumentException(); 
     }
@@ -98,7 +98,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void readDataAndSetParameter(CoordinateParameterType type, int dataNumber) {
+  public final void pickupParameter(CoordinateParameterType type, int dataNumber) {
     if (this.data.getRowSize() < dataNumber) {
       throw new IllegalAccessError();
     }
