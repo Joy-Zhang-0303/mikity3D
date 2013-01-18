@@ -130,11 +130,11 @@ public class MovableGroupManager {
     
     final DataPicker picker = new ClosenessDataPicker(this.data);
 
-    for (int i = 0; i < links.length; i++) {
-      if (links[i].hasDHParameter()) {
-        if (links[i].hasDataNumber()) {
-          final int dataNumber = links[i].loadDataNumber();
-          final String parameterName = links[i].loadTargetName();
+    for (final LinkData link : links) {
+      if (link.hasDHParameter()) {
+        if (link.hasDataNumber()) {
+          final int dataNumber = link.loadDataNumber();
+          final String parameterName = link.loadTargetName();
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
@@ -151,9 +151,9 @@ public class MovableGroupManager {
           picker.readDataAndSetParameter(type, dataNumber);
         }
         
-        if (links[i].hasInitialValue()) {
-          final double value = links[i].loadInitialValue();
-          final String parameterName = links[i].loadTargetName();
+        if (link.hasInitialValue()) {
+          final double initialValue = link.loadInitialValue();
+          final String parameterName = link.loadTargetName();
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
@@ -167,12 +167,12 @@ public class MovableGroupManager {
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.1")); //$NON-NLS-1$
           }
-          picker.setParameter(type, value);
+          picker.setParameter(type, initialValue);
         }
-      } else if (links[i].hasCoordinateParameter()) {
-        if (links[i].hasDataNumber()) {
-          final int dataNumber = links[i].loadDataNumber();
-          final String parameterName = links[i].loadTargetName();
+      } else if (link.hasCoordinateParameter()) {
+        if (link.hasDataNumber()) {
+          final int dataNumber = link.loadDataNumber();
+          final String parameterName = link.loadTargetName();
           final CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
@@ -193,9 +193,9 @@ public class MovableGroupManager {
           picker.readDataAndSetParameter(type, dataNumber);
         }
         
-        if (links[i].hasInitialValue()) {
-          final double value = links[i].loadInitialValue();
-          final String parameterName = links[i].loadTargetName();
+        if (link.hasInitialValue()) {
+          final double initialValue = link.loadInitialValue();
+          final String parameterName = link.loadTargetName();
           final CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
@@ -213,7 +213,7 @@ public class MovableGroupManager {
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.3")); //$NON-NLS-1$
           }
-          picker.setParameter(type, value);
+          picker.setParameter(type, initialValue);
         }
       }
     }

@@ -274,7 +274,7 @@ public abstract class AbstractDataPicker implements DataPicker {
    * データを返します。
    * @return データ
    */
-  public DoubleMatrix getData() {
+  DoubleMatrix getData() {
     return this.data;
   }
 }

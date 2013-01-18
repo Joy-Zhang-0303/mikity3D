@@ -8,6 +8,7 @@ package org.mklab.mikity.picker;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.nfc.matrix.DoubleMatrix;
+import org.mklab.nfc.matrix.IntMatrix;
 import org.mklab.nfc.matrix.Matrix;
 
 
@@ -32,25 +33,27 @@ public class ClosenessDataPicker extends AbstractDataPicker {
    * @param t 時間
    * @return 与えられた時間に最も近いデータが存在する時刻に対応するデータ番号
    */
-  public int getDataNumber(double t) {
-    final DoubleMatrix error = getData().getRowVector(1).subtractElementWise(t).absElementWise();
-    return error.minimumRowWise().getIndices().getIntElement(1);
+  private int getDataNumber(double t) {
+    final DoubleMatrix times = getData().getRowVector(1);
+    final DoubleMatrix timeDifferences = times.subtractElementWise(t).absElementWise();
+    final IntMatrix rowColumn = timeDifferences.minimumRowWise().getIndices();
+    return rowColumn.getIntElement(1);
   }
   
   /**
    * {@inheritDoc}
    */
   public DHParameter getDHParameter(double t) {
-    final int column = getDataNumber(t);
-    return this.dhParameters[column - 1];
+    final int number = getDataNumber(t);
+    return this.dhParameters[number - 1];
   }
 
   /**
    * {@inheritDoc}
    */
   public CoordinateParameter getCoordinateParameter(double t) {
-    final int column = getDataNumber(t);
-    return this.coordinateParameters[column - 1];
+    final int number = getDataNumber(t);
+    return this.coordinateParameters[number - 1];
   }
 
 }
