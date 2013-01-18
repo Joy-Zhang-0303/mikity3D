@@ -38,8 +38,6 @@ public class MovableGroupManager {
   private double startTime;
   /** 終了時間 */
   private double endTime;
-  /** 時系列データ */
-  //private Matrix data;
 
   private Jamast root;
 
@@ -47,6 +45,8 @@ public class MovableGroupManager {
   private boolean hasDHParameter = false;
   /** 座標パラメータを使用するならばtrue */
   private boolean hasCoordinateParameter = false;
+  
+  private boolean isUpdated = false;
 
   /**
    * 新しく生成された<code>MovableGroupManager</code>オブジェクトを初期化します。
@@ -104,20 +104,24 @@ public class MovableGroupManager {
   }
 
   /**
-   * グループを追加します。
+   * グループを更新します。
    * 
-   * @param children 追加するグループ
+   * @param groups グループ
    * @param data 時系列データ
    */
-  private void addGroups(final Group[] children, Matrix data) {
-    for (final Group group : children) {
+  private void update(final Group[] groups, Matrix data) {
+    for (final Group group : groups) {
       final MovableGroup movableGroup = MOVABLE_GROUPS.get(group);
       final LinkData[] links = group.getLinkData();
       if (links.length != 0) {
         final DataPicker picker = createPicker(data, links);
         addMovableGroup(movableGroup, picker);
+        this.isUpdated = true;
       }
-      addGroups(group.getGroups(), data);
+      
+      if (this.isUpdated == false) {
+        update(group.getGroups(), data);
+      }
     }
   }
 
@@ -255,7 +259,12 @@ public class MovableGroupManager {
    */
   public void setData(Matrix data) {
     this.movableGroups.clear();
-    addGroups(this.root.loadModel(0).loadGroup(), data);
+    this.dataCount = 0;
+    this.startTime = 0;
+    this.endTime = 0;
+    
+    this.isUpdated = false;
+    update(this.root.loadModel(0).loadGroup(), data);
   }
   
   /**

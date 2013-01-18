@@ -7,6 +7,7 @@ import javax.media.opengl.GL;
 
 import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.jogl.models.JoglLocation;
+import org.mklab.mikity.jogl.models.JoglLocationRotation;
 import org.mklab.mikity.jogl.models.JoglRotation;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
@@ -95,6 +96,9 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
       if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
         ((JoglLocation)this.coordinate).translate((float)a, 0, 0);
       }
+      if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
+        ((JoglLocationRotation)this.coordinate).translate((float)a, 0, 0);
+      }
     }
 
     // 2.x(i-1)軸回りにα(i-1)だけ回転
@@ -102,6 +106,9 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     if (alpha != 0) {
       if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
         ((JoglRotation)this.coordinate).rotate((float)alpha, 0, 0);
+      }
+      if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
+        ((JoglLocationRotation)this.coordinate).rotate((float)alpha, 0, 0);
       }
     }
     
@@ -111,6 +118,9 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
       if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
         ((JoglLocation)this.coordinate).translate(0, 0, (float)d);
       }
+      if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
+        ((JoglLocationRotation)this.coordinate).translate(0, 0, (float)d);
+      }
     }
 
     // 4.zi軸回りにθiだけ回転
@@ -118,6 +128,9 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     if (theta != 0) {
       if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
         ((JoglRotation)this.coordinate).rotate(0, 0, (float)theta);
+      }
+      if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
+        ((JoglLocationRotation)this.coordinate).rotate(0, 0, (float)theta);
       }
     }
     
@@ -138,6 +151,9 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
       if (this.coordinate != null && this.coordinate instanceof JoglLocation) {
         ((JoglLocation)this.coordinate).translate((float)x, (float)y, (float)z);
       }
+      if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
+        ((JoglLocationRotation)this.coordinate).translate((float)x, (float)y, (float)z);
+      }
     }
 
     final double angleX = parameter.getAngleX();
@@ -148,6 +164,9 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     if (angleX != 0 || angleY != 0 || angleZ != 0) {
       if (this.coordinate != null && this.coordinate instanceof JoglRotation) {
         ((JoglRotation)this.coordinate).rotate((float)angleX, (float)angleY, (float)angleZ);
+      }
+      if (this.coordinate != null && this.coordinate instanceof JoglLocationRotation) {
+        ((JoglLocationRotation)this.coordinate).rotate((float)angleX, (float)angleY, (float)angleZ);
       }
     }
     

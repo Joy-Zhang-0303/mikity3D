@@ -68,4 +68,30 @@ public class JoglLocationRotation implements JoglCoordinate {
     this.rotationY = rotationY;
     this.rotationZ = rotationZ;
   }
+  
+  /**
+   * 平行移動します。
+   * 
+   * @param dx x座用
+   * @param dy y座標
+   * @param dz z座標
+   */
+  public void translate(float dx, float dy, float dz) {
+    this.x += dx;
+    this.y += dy;
+    this.z += dz;
+  }
+  
+  /**
+   * 回転します。
+   * 
+   * @param dRotationX x軸周りの回転
+   * @param dRotationY y軸周りの回転
+   * @param dRotationZ z軸周りの回転
+   */
+  public void rotate(float dRotationX, float dRotationY, float dRotationZ) {
+    this.rotationX += dRotationX;
+    this.rotationY += dRotationY;
+    this.rotationZ += dRotationZ;
+  }
 }
