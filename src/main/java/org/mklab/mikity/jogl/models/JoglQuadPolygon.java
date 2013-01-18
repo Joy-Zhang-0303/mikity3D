@@ -39,8 +39,6 @@ public class JoglQuadPolygon extends AbstractJoglObject {
 
     //プリミティブの描画
     gl.glDrawElements(GL.GL_TRIANGLES, 6, GL.GL_UNSIGNED_BYTE, indexBuffer);
-
-    //gl.glPopMatrix();
   } 
 
   /**

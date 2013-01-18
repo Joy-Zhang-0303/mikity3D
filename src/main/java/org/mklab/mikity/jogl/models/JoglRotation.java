@@ -20,7 +20,6 @@ public class JoglRotation implements JoglCoordinate {
    * {@inheritDoc}
    */
   public void apply(GL gl) {
-    //gl.glPushMatrix();
     if (this.rotationX != 0.0f) {
       gl.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
     }

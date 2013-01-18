@@ -31,8 +31,6 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
     gl.glDrawArrays(GL.GL_TRIANGLES, 0, 3); //プリミティブの描画
-
-    //gl.glPopMatrix();
   }
 
   /**
