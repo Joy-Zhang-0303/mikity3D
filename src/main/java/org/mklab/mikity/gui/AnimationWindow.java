@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
-import org.mklab.mikity.java3d.Java3dModelCanvas;
+import org.mklab.mikity.jogl.JoglModelCanvas;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.resource.ResourceManager;
 import org.mklab.mikity.task.AnimationTask;
@@ -110,8 +110,8 @@ public class AnimationWindow extends ApplicationWindow {
     this.manager = new MovableGroupManager(this.root);
 
     // TODO Java3d or JOGL
-    this.modelCanvas = new Java3dModelCanvas(this.root);
-    //this.modelCanvas = new JoglModelCanvas(this.root);
+    //this.modelCanvas = new Java3dModelCanvas(this.root);
+    this.modelCanvas = new JoglModelCanvas(this.root);
   }
 
   /**
@@ -368,9 +368,9 @@ public class AnimationWindow extends ApplicationWindow {
       public void widgetSelected(SelectionEvent arg0) {
         final FileDialog dialog = new FileDialog(composite.getShell());
         // ファイルを選択させる
-        final String ret = dialog.open();
-        if (ret != null) {
-          setTimeData(new File(ret));
+        final String filePath = dialog.open();
+        if (filePath != null) {
+          setTimeData(new File(filePath));
         }
       }
     });

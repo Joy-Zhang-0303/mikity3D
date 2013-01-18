@@ -29,57 +29,57 @@ public class Java3dTransformGroupFactory {
    * @return トランスフォームグループ
    */
   public Java3dTransformGroup create(final Group group) {
-    final Java3dTransformGroup transformGroup = new Java3dTransformGroup();
+    final Java3dTransformGroup movableGroup = new Java3dTransformGroup();
     
     for (final XMLBox box : group.getXMLBox()) {
-      transformGroup.addChild(Java3dPrimitiveFactory.create(box));
+      movableGroup.addChild(Java3dPrimitiveFactory.create(box));
     }
 
     for (final XMLCylinder cylinder : group.getXMLCylinder()) {
-      transformGroup.addChild(Java3dPrimitiveFactory.create(cylinder));
+      movableGroup.addChild(Java3dPrimitiveFactory.create(cylinder));
     }
 
     for (final XMLSphere sphere : group.getXMLSphere()) {
-      transformGroup.addChild(Java3dPrimitiveFactory.create(sphere));
+      movableGroup.addChild(Java3dPrimitiveFactory.create(sphere));
     }
 
     for (final XMLCone cone : group.getXMLCone()) {
-      transformGroup.addChild(Java3dPrimitiveFactory.create(cone));
+      movableGroup.addChild(Java3dPrimitiveFactory.create(cone));
     }
 
     for (final XMLConnector connector : group.getXMLConnector()) {
-      transformGroup.addChild(Java3dPrimitiveFactory.create(connector));
+      movableGroup.addChild(Java3dPrimitiveFactory.create(connector));
     }
 
     for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygon()) {
-      transformGroup.addChild(Java3dPrimitiveFactory.create(polygon));
+      movableGroup.addChild(Java3dPrimitiveFactory.create(polygon));
     }
 
     for (final XMLQuadPolygon polygon : group.getXMLQuadPolygon()) {
-      transformGroup.addChild(Java3dPrimitiveFactory.create(polygon));
+      movableGroup.addChild(Java3dPrimitiveFactory.create(polygon));
     }
 
     for (final Group child : group.getGroups()) {
-      transformGroup.addChild(Java3dPrimitiveFactory.create(child));
+      movableGroup.addChild(Java3dPrimitiveFactory.create(child));
     }
 
     final LinkData[] links = group.getLinkData();
     for (int i = 0; i < links.length; i++) {
       if (links[i].hasDHParameter()) {
-        final DHParameter parameter = Util.getDHParameter(links);
-        transformGroup.setDHParameter(parameter);
+        final DHParameter dhParameter = Util.getDHParameter(links);
+        movableGroup.setDHParameter(dhParameter);
         break;
       } else if (links[i].hasCoordinateParameter()) {
-        final CoordinateParameter parameter = Util.getCoordinateParameter(links);
-        transformGroup.setCoordinateParameter(parameter);
+        final CoordinateParameter coordinateParameter = Util.getCoordinateParameter(links);
+        movableGroup.setCoordinateParameter(coordinateParameter);
         break;
       }
     }
 
-    // MyTransformGroup と Groupの関連付けを行う
-    MovableGroupManager.assignGroup(group, transformGroup);
+    // MovableGroup と Groupの関連付けを行う
+    MovableGroupManager.assignGroup(group, movableGroup);
     
-    return transformGroup;
+    return movableGroup;
   }
   
 }

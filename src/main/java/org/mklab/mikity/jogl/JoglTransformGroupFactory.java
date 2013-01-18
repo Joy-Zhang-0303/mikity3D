@@ -32,58 +32,53 @@ public class JoglTransformGroupFactory {
    * @return トランスフォームグループ
    */
   public JoglTransformGroup create(final Group group) {
-    final LinkData[] parameters = group.getLinkData();
-    for (int i = 0; i < parameters.length; i++) {
-      if (parameters[i].hasDHParameter()) {
-        final DHParameter dhParameter = Util.getDHParameter(parameters);
+    final LinkData[] links = group.getLinkData();
+    for (final LinkData link : links) {
+      if (link.hasDHParameter()) {
+        final DHParameter dhParameter = Util.getDHParameter(links);
         this.dhParameters.add(dhParameter);
         break;
-      } else if (parameters[i].hasCoordinateParameter()) {
-        final CoordinateParameter coordinateParameter = Util.getCoordinateParameter(parameters);
+      } else if (link.hasCoordinateParameter()) {
+        final CoordinateParameter coordinateParameter = Util.getCoordinateParameter(links);
         this.coordinateParameters.add(coordinateParameter);
         break;
       }
     }
 
-    final JoglTransformGroup tg = new JoglTransformGroup();
+    final JoglTransformGroup movableGroup = new JoglTransformGroup();
     
     for (final XMLBox box : group.getXMLBox()) {
-      tg.addChild(JoglPrimitiveFactory.create(box));
+      movableGroup.addChild(JoglPrimitiveFactory.create(box));
     }
 
     for (final XMLCylinder cylinder : group.getXMLCylinder()) {
-      tg.addChild(JoglPrimitiveFactory.create(cylinder));
+      movableGroup.addChild(JoglPrimitiveFactory.create(cylinder));
     }
 
     for (final XMLSphere sphere : group.getXMLSphere()) {
-      tg.addChild(JoglPrimitiveFactory.create(sphere));
+      movableGroup.addChild(JoglPrimitiveFactory.create(sphere));
     }
 
     for (final XMLCone cone : group.getXMLCone()) {
-      tg.addChild(JoglPrimitiveFactory.create(cone));
+      movableGroup.addChild(JoglPrimitiveFactory.create(cone));
     }
 
-    //    final XMLConnector[] connectors = group.loadXMLConnector();
-    //    for (int i = 0; i < Connectors.length; i++) {
-    //      tg.addChild(JoglPrimitiveFactory.create(connectors[i]));
-    //    }
-
     for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygon()) {
-      tg.addChild(JoglPrimitiveFactory.create(polygon, this.dhParameters, this.coordinateParameters));
+      movableGroup.addChild(JoglPrimitiveFactory.create(polygon, this.dhParameters, this.coordinateParameters));
     }
 
     for (final XMLQuadPolygon polygon : group.getXMLQuadPolygon()) {
-      tg.addChild(JoglPrimitiveFactory.create(polygon, this.dhParameters, this.coordinateParameters));
+      movableGroup.addChild(JoglPrimitiveFactory.create(polygon, this.dhParameters, this.coordinateParameters));
     }
 
-    for (final Group childGroup : group.getGroups()) {
-      tg.addChild(JoglPrimitiveFactory.create(childGroup));
+    for (final Group child : group.getGroups()) {
+      movableGroup.addChild(JoglPrimitiveFactory.create(child));
     }
 
-    //MyTransformGroup と Groupの関連付けを行う
-    MovableGroupManager.assignGroup(group, tg);
+    // MovableGroup と Groupの関連付けを行う
+    MovableGroupManager.assignGroup(group, movableGroup);
 
-    return tg;
+    return movableGroup;
   }
 
 }

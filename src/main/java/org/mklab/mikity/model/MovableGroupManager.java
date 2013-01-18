@@ -59,12 +59,12 @@ public class MovableGroupManager {
   /**
    * 移動可能なグループを追加します。
    * 
-   * @param group グループ
+   * @param movableGroup グループ
    * @param picker データ抽出器
    */
-  private void addMovableGroup(final MovableGroup group, final DataPicker picker) {
-    this.groups.add(group);
-    this.pickers.put(group, picker);
+  private void addMovableGroup(final MovableGroup movableGroup, final DataPicker picker) {
+    this.groups.add(movableGroup);
+    this.pickers.put(movableGroup, picker);
 
     this.dataCount = Math.max(this.dataCount, picker.getDataSize());
     this.startTime = Math.min(this.startTime, picker.getStartTime());
@@ -111,7 +111,8 @@ public class MovableGroupManager {
   private void addGroups(final Group[] children) {
     for (final Group group : children) {
       final MovableGroup movableGroup = GROUPS.get(group);
-      setLinkData(group.getLinkData(), movableGroup);
+      final LinkData[] links = group.getLinkData();
+      setLinkData(links, movableGroup);
       addGroups(group.getGroups());
     }
   }
@@ -120,9 +121,9 @@ public class MovableGroupManager {
    * 移動可能なグループのリンクデータを設定します。
    * 
    * @param links リンクデータ
-   * @param group TransformGroup
+   * @param movableGroup 移動可能なグループ
    */
-  private void setLinkData(final LinkData[] links, final MovableGroup group) {
+  private void setLinkData(final LinkData[] links, final MovableGroup movableGroup) {
     if (links.length == 0) {
       return;
     }
@@ -216,7 +217,7 @@ public class MovableGroupManager {
         }
       }
     }
-    addMovableGroup(group, picker);
+    addMovableGroup(movableGroup, picker);
   }
 
   /**
@@ -264,7 +265,7 @@ public class MovableGroupManager {
   }
   
   /**
-   * DHパラメータの使用の有無を設定します。
+   * DHパラメータを使用しているか設定します。
    * 
    * @param hasDHParameter DHパラメータ使用するならばtrue
    */
@@ -273,7 +274,7 @@ public class MovableGroupManager {
   }
 
   /**
-   * DHパラメータの使用の有無を返します。
+   * DHパラメータを使用しているか判定します
    * 
    * @return　DHパラメータの使用をするならばtrue
    */
@@ -282,7 +283,7 @@ public class MovableGroupManager {
   }
 
   /**
-   * 座標パラメータの使用の有無を設定します。
+   * 座標パラメータを使用しているか設定します。
    * 
    * @param hasCoordinateParameter 座標パラメータ使用するならばtrue
    */
@@ -291,7 +292,7 @@ public class MovableGroupManager {
   }
 
   /**
-   * 座標パラメータの使用の有無を返します。
+   * 座標パラメータを使用しているか判定します。
    * 
    * @return　座標パラメータを使用するならばtrue
    */
@@ -301,7 +302,7 @@ public class MovableGroupManager {
   
   /**
    * @param group グループ
-   * @param movableGroup トランスフォームグループ
+   * @param movableGroup 移動可能なグループ
    */
   public static void assignGroup(final Group group, final MovableGroup movableGroup) {
     GROUPS.put(group, movableGroup);
