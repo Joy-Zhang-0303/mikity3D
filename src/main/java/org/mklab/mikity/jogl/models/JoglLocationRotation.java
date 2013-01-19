@@ -92,4 +92,12 @@ public class JoglLocationRotation implements JoglCoordinate {
     this.rotationY += dRotationY;
     this.rotationZ += dRotationZ;
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "(" + this.x + ", " + this.y + ", " + this.z + ", " + this.rotationX + ", " + this.rotationY + ", " + this.rotationZ +  ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+  }
 }

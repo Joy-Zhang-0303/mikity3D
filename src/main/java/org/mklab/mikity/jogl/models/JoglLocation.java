@@ -49,4 +49,12 @@ public class JoglLocation implements JoglCoordinate {
     this.y += dy;
     this.z += dz;
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "(" + this.x + ", " + this.y + ", " + this.z + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+  }
 }
