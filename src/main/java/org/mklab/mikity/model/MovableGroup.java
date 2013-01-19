@@ -13,6 +13,12 @@ package org.mklab.mikity.model;
  */
 public interface MovableGroup {
   /**
+   * 名前を設定します。
+   * @param name 名前
+   */
+  void setName(String name);
+  
+  /**
    * グループのDHパラメーターを設定します。
    * 
    * @param parameter DHパラメーター

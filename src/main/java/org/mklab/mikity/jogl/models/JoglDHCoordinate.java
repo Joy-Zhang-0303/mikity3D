@@ -7,7 +7,7 @@ import javax.media.opengl.GL;
  * @author iwamoto
  * @version $Revision$, 2012/02/14
  */
-public class JoglDHTransformation implements JoglCoordinate {
+public class JoglDHCoordinate implements JoglCoordinate {
   /** a */
   private double a;
   /** alpha */

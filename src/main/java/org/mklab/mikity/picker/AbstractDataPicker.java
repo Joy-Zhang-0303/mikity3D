@@ -9,7 +9,6 @@ import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.DHParameterType;
-import org.mklab.mikity.task.AnimationTask;
 import org.mklab.mikity.util.Util;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;

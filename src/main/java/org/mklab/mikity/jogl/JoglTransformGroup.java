@@ -27,6 +27,8 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
   private List<JoglTransformGroup> groups;
   /** 座標系 */
   private JoglCoordinate coordinate;
+  /** 名前 */
+  private String name;
 
   /**
    * 新しく生成された<code>JoglTransformGroup</code>オブジェクトを初期化します。
@@ -91,46 +93,32 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     if (this.coordinate == null) {
       return;
     }
+
+    final double a = parameter.getA();
+    final double alpha = parameter.getAlpha();
+    final double d = parameter.getD();
+    final double theta = parameter.getTheta();
     
     /* 座標系Σ(i-1)からΣiへの変換   */
     
     // 1.xi軸に沿ってa(i-1)だけ並進
-    final double a = parameter.getA();
-    if (this.coordinate instanceof JoglLocation) {
-      ((JoglLocation)this.coordinate).setLocation((float)a, 0, 0);
-    }
-    if (this.coordinate instanceof JoglLocationRotation) {
-      ((JoglLocationRotation)this.coordinate).setLocation((float)a, 0, 0);
-    }
-
     // 2.x(i-1)軸回りにα(i-1)だけ回転
-    final double alpha = parameter.getAlpha();
-    if (this.coordinate instanceof JoglRotation) {
-      ((JoglRotation)this.coordinate).setRotation((float)alpha, 0, 0);
-    }
-    if (this.coordinate instanceof JoglLocationRotation) {
-      ((JoglLocationRotation)this.coordinate).setRotation((float)alpha, 0, 0);
-    }
-    
     // 3.ziに沿ってdiだけ並進   
-    final double d = parameter.getD();
-    if (this.coordinate instanceof JoglLocation) {
-      ((JoglLocation)this.coordinate).setLocation(0, 0, (float)d);
-    }
-    if (this.coordinate instanceof JoglLocationRotation) {
-      ((JoglLocationRotation)this.coordinate).setLocation(0, 0, (float)d);
-    }
-
     // 4.zi軸回りにθiだけ回転
-    final double theta = parameter.getTheta();
-    if (this.coordinate instanceof JoglRotation) {
-      ((JoglRotation)this.coordinate).setRotation(0, 0, (float)theta);
+    
+    if (this.coordinate instanceof JoglLocation) {
+      ((JoglLocation)this.coordinate).setLocation((float)a, 0, (float)d);
     }
     if (this.coordinate instanceof JoglLocationRotation) {
-      ((JoglLocationRotation)this.coordinate).setRotation(0, 0, (float)theta);
+      ((JoglLocationRotation)this.coordinate).setLocation((float)a, 0, (float)d);
     }
     
-    System.out.println("(a, alpha, d, theta) = (" + a + ", " + alpha + ", " + d + ", " + theta + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    if (this.coordinate instanceof JoglRotation) {
+      ((JoglRotation)this.coordinate).setRotation((float)alpha, 0, (float)theta);
+    }
+    if (this.coordinate instanceof JoglLocationRotation) {
+      ((JoglLocationRotation)this.coordinate).setRotation((float)alpha, 0, (float)theta);
+    }
   }
 
   /**
@@ -167,4 +155,28 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
       }
     }
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    if (this.name == null) {
+      return super.toString();
+    }
+
+    if (this.coordinate == null) {
+      return this.name;
+    }
+    
+    return this.name + this.coordinate;
+  }
+  
 }

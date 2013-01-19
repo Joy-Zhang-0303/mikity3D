@@ -22,6 +22,9 @@ import org.mklab.mikity.model.MovableGroup;
  * @version $Revision: 1.17 $.2005/11/22
  */
 public class Java3dTransformGroup extends TransformGroup implements MovableGroup {
+  /** 名前 */
+  private String name;
+  
   /**
    * 新しく生成された<code>Java3dTransformGroup</code>オブジェクトを初期化します。
    */
@@ -202,5 +205,23 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
     transform.mul(rotationTheta);
 
     setTransform(transform);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    if (this.name == null) {
+      return super.toString();
+    }
+    return this.name;
   }
 }

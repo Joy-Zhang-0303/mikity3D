@@ -7,7 +7,7 @@ import javax.vecmath.Matrix4f;
 import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
 import org.mklab.mikity.jogl.models.JoglCylinder;
-import org.mklab.mikity.jogl.models.JoglDHTransformation;
+import org.mklab.mikity.jogl.models.JoglDHCoordinate;
 import org.mklab.mikity.jogl.models.JoglLocation;
 import org.mklab.mikity.jogl.models.JoglLocationRotation;
 import org.mklab.mikity.jogl.models.JoglQuadPolygon;
@@ -442,7 +442,7 @@ public class JoglPrimitiveFactory {
       theta += parameter.getTheta();
     }
 
-    final JoglDHTransformation coordinate = new JoglDHTransformation();
+    final JoglDHCoordinate coordinate = new JoglDHCoordinate();
     coordinate.setDHParameters(a, alpha, d, theta);
     group.setCoordinate(coordinate);
   }

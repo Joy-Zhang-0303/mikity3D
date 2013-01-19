@@ -80,6 +80,11 @@ public class JoglTransformGroupFactory {
     final JoglCoordinate coordinate = createCoordinateOf(group);
     movableGroup.setCoordinate(coordinate);
     
+    final String name = group.loadName();
+    if (name != null) {
+      movableGroup.setName(name);
+    }
+    
     // MovableGroup と Groupの関連付けを行う
     MovableGroupManager.assignGroup(group, movableGroup);
 
