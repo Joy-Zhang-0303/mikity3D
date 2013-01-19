@@ -315,7 +315,7 @@ public class AnimationWindow extends ApplicationWindow {
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
-        AnimationWindow.this.manager.performAnimationWithCoordinateParameter(t);
+        AnimationWindow.this.manager.updateMovableGroupsWithCoordinateParameter(t);
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setCurrentTime(t);
           String st = String.valueOf(t);

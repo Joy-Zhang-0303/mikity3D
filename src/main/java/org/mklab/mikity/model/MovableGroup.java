@@ -6,13 +6,12 @@
 package org.mklab.mikity.model;
 
 /**
- * 移動可能なグループを表すインターフェイスです。
+ * 可動グループを表すインターフェイスです。
  * 
  * @author miki
  * @version $Revision: 1.4 $.2005/01/14
  */
 public interface MovableGroup {
-
   /**
    * グループのDHパラメーターを設定します。
    * 

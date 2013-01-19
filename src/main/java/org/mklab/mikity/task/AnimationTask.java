@@ -95,9 +95,9 @@ public class AnimationTask extends TimerTask {
     this.currentTime += diffTime * this.speed;
 
     if (this.manager.hasDHParameter()) {
-      this.manager.performAnimationWithDHParameter(this.currentTime);
+      this.manager.updateMovableGroupsWithDHParameter(this.currentTime);
     } else if (this.manager.hasCoordinateParameter()) {
-      this.manager.performAnimationWithCoordinateParameter(this.currentTime);
+      this.manager.updateMovableGroupsWithCoordinateParameter(this.currentTime);
     }
 
     if (this.canvas instanceof JoglModelCanvas) {

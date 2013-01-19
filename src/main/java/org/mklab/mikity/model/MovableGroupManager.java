@@ -19,18 +19,18 @@ import org.mklab.nfc.matrix.Matrix;
 
 
 /**
- * 動かせるグループを管理するクラスです。
+ * 可動グループを管理するクラスです。
  * 
  * @author miki
  * @version $Revision: 1.10 $.2005/01/14
  */
 public class MovableGroupManager {
-  /** 動かせるグループ */
+  /** グループとと可動グループのマップ */
+  private static Map<Group, MovableGroup> MOVABLE_GROUPS = new HashMap<Group, MovableGroup>();
+  /** 可動グループ */
   private List<MovableGroup> movableGroups = new ArrayList<MovableGroup>();
   /** データ抽出器 */
   private Map<MovableGroup, DataPicker> pickers = new HashMap<MovableGroup, DataPicker>();
-
-  private static Map<Group, MovableGroup> MOVABLE_GROUPS = new HashMap<Group, MovableGroup>();
   
   /** データの個数 */
   private int dataCount;
@@ -39,94 +39,83 @@ public class MovableGroupManager {
   /** 終了時間 */
   private double endTime;
 
+  /** ルートグループ */
   private Jamast root;
 
   /** DHパラメータを使用するならばtrue */
   private boolean hasDHParameter = false;
   /** 座標パラメータを使用するならばtrue */
   private boolean hasCoordinateParameter = false;
-  
-  private boolean isUpdated = false;
 
   /**
    * 新しく生成された<code>MovableGroupManager</code>オブジェクトを初期化します。
    * @param root ルート
    */
-  public MovableGroupManager(Jamast root) {
+  public MovableGroupManager(final Jamast root) {
     this.root = root;
   }
 
   /**
-   * 移動可能なグループを追加します。
+   * 可動グループを追加します。
    * 
-   * @param movableGroup グループ
+   * @param movableGroup 可動グループ
    * @param picker データ抽出器
    */
   private void addMovableGroup(final MovableGroup movableGroup, final DataPicker picker) {
     this.movableGroups.add(movableGroup);
     this.pickers.put(movableGroup, picker);
-
     this.dataCount = Math.max(this.dataCount, picker.getDataSize());
     this.startTime = Math.min(this.startTime, picker.getStartTime());
     this.endTime = Math.max(this.endTime, picker.getEndTime());
   }
 
   /**
-   * 時刻毎のリンクデータ(DHパラメータ)を取得し、アニメーションを実行します。
+   * 指定された時刻のデータで可動グループを更新します。
    * 
    * @param t 時刻
    */
-  public void performAnimationWithDHParameter(double t) {
-    for (final MovableGroup group : this.movableGroups) {
-      final DataPicker picker = this.pickers.get(group);
+  public void updateMovableGroupsWithDHParameter(final double t) {
+    for (final MovableGroup movableGroup : this.movableGroups) {
+      final DataPicker picker = this.pickers.get(movableGroup);
       final DHParameter parameter = picker.getDHParameter(t);
-      
-      if (parameter != null) {
-        group.setDHParameter(parameter);
-      }
+      movableGroup.setDHParameter(parameter);
     }
   }
 
   /**
-   * 時刻毎のリンクデータ(座標パラメータ)を取得し、アニメーションを実行します。
+   * 指定された時刻のデータで可動グループを更新します。
    * 
    * @param t 時刻
    */
-  public void performAnimationWithCoordinateParameter(double t) {
-    for (final MovableGroup group : this.movableGroups) {
-      final DataPicker picker = this.pickers.get(group);
+  public void updateMovableGroupsWithCoordinateParameter(final double t) {
+    for (final MovableGroup movableGroup : this.movableGroups) {
+      final DataPicker picker = this.pickers.get(movableGroup);
       final CoordinateParameter parameter = picker.getCoordinateParameter(t);
-      
-      if (parameter != null) {
-        group.setCoordinateParameter(parameter);
-      }
+      movableGroup.setCoordinateParameter(parameter);
     }
   }
 
   /**
-   * グループを更新します。
+   * 可動グループを登録します。
    * 
    * @param groups グループ
    * @param data 時系列データ
    */
-  private void update(final Group[] groups, Matrix data) {
+  private void registerMovableGroups(final Group[] groups, final Matrix data) {
     for (final Group group : groups) {
       final MovableGroup movableGroup = MOVABLE_GROUPS.get(group);
       final LinkData[] links = group.getLinkData();
       if (links.length != 0) {
         final DataPicker picker = createPicker(data, links);
         addMovableGroup(movableGroup, picker);
-        this.isUpdated = true;
       }
-      
-      //if (this.isUpdated == false) {
-        update(group.getGroups(), data);
-      //}
+
+      registerMovableGroups(group.getGroups(), data);
     }
   }
 
   /**
-   * 移動可能なグループのリンクデータを設定します。
+   * データ抽出器を生成します。
    * 
    * @param data 時系列デー
    * @param links リンクデータ
@@ -257,14 +246,13 @@ public class MovableGroupManager {
    * 
    * @param data 時系列データ
    */
-  public void setData(Matrix data) {
-    this.movableGroups.clear();
+  public void setData(final Matrix data) {
     this.dataCount = 0;
     this.startTime = 0;
     this.endTime = 0;
-    
-    this.isUpdated = false;
-    update(this.root.loadModel(0).loadGroup(), data);
+
+    this.movableGroups.clear();
+    registerMovableGroups(this.root.loadModel(0).loadGroup(), data);
   }
   
   /**
@@ -272,7 +260,7 @@ public class MovableGroupManager {
    * 
    * @param hasDHParameter DHパラメータ使用するならばtrue
    */
-  public void setHasDHParameter(boolean hasDHParameter) {
+  public void setHasDHParameter(final boolean hasDHParameter) {
     this.hasDHParameter = hasDHParameter;
   }
 
@@ -290,7 +278,7 @@ public class MovableGroupManager {
    * 
    * @param hasCoordinateParameter 座標パラメータ使用するならばtrue
    */
-  public void setHasCoordinateParameter(boolean hasCoordinateParameter) {
+  public void setHasCoordinateParameter(final boolean hasCoordinateParameter) {
     this.hasCoordinateParameter = hasCoordinateParameter;
   }
 
@@ -304,8 +292,9 @@ public class MovableGroupManager {
   }
   
   /**
+   * グループと可動グループを対応付けします。
    * @param group グループ
-   * @param movableGroup 移動可能なグループ
+   * @param movableGroup 可動グループ
    */
   public static void assignGroup(final Group group, final MovableGroup movableGroup) {
     MOVABLE_GROUPS.put(group, movableGroup);
