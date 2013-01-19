@@ -294,7 +294,7 @@ public class JoglPrimitiveFactory {
     } else if (dhParameters != null) {
       setDHParameter(dhParameters, tg);
     } else if (coordinateParameters != null) {
-      setLinkParameter(coordinateParameters, tg);
+      setCoordinateParameter(coordinateParameters, tg);
     }
 
     final String color = polygon.loadColor();
@@ -359,7 +359,7 @@ public class JoglPrimitiveFactory {
     } else if (dhParameters != null) {
       setDHParameter(dhParameters, tg);
     } else if (coordinateParameters != null) {
-      setLinkParameter(coordinateParameters, tg);
+      setCoordinateParameter(coordinateParameters, tg);
     }
 
     final String color = polygon.loadColor();
@@ -383,7 +383,7 @@ public class JoglPrimitiveFactory {
    * @param parameters リンクパラメータのリスト
    * @param group JOGLトランスフォームグループ
    */
-  public static void setLinkParameter(List<CoordinateParameter> parameters, JoglTransformGroup group) {
+  public static void setCoordinateParameter(List<CoordinateParameter> parameters, JoglTransformGroup group) {
     float x = 0; 
     float y = 0; 
     float z = 0; 
@@ -429,8 +429,8 @@ public class JoglPrimitiveFactory {
       theta += parameter.getTheta();
     }
 
-    final JoglDHTransformation translation = new JoglDHTransformation();
-    translation.setDHParameters(a, alpha, d, theta);
-    group.setCoordinate(translation);
+    final JoglDHTransformation transformation = new JoglDHTransformation();
+    transformation.setDHParameters(a, alpha, d, theta);
+    group.setCoordinate(transformation);
   }
 }

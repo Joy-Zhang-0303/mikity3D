@@ -77,8 +77,7 @@ public class MovableGroupManager {
   public void updateMovableGroupsWithDHParameter(final double t) {
     for (final MovableGroup movableGroup : this.movableGroups) {
       final DataPicker picker = this.pickers.get(movableGroup);
-      final DHParameter parameter = picker.getDHParameter(t);
-      movableGroup.setDHParameter(parameter);
+      movableGroup.setDHParameter(picker.getDHParameter(t));
     }
   }
 
@@ -90,8 +89,7 @@ public class MovableGroupManager {
   public void updateMovableGroupsWithCoordinateParameter(final double t) {
     for (final MovableGroup movableGroup : this.movableGroups) {
       final DataPicker picker = this.pickers.get(movableGroup);
-      final CoordinateParameter parameter = picker.getCoordinateParameter(t);
-      movableGroup.setCoordinateParameter(parameter);
+      movableGroup.setCoordinateParameter(picker.getCoordinateParameter(t));
     }
   }
 
