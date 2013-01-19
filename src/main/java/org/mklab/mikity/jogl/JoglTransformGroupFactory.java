@@ -3,6 +3,7 @@ package org.mklab.mikity.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.jogl.models.JoglLocation;
 import org.mklab.mikity.jogl.models.JoglLocationRotation;
 import org.mklab.mikity.jogl.models.JoglRotation;
@@ -40,12 +41,10 @@ public class JoglTransformGroupFactory {
     final LinkData[] links = group.getLinkData();
     for (final LinkData link : links) {
       if (link.hasDHParameter()) {
-        final DHParameter dhParameter = Util.getDHParameter(links);
-        this.dhParameters.add(dhParameter);
+        this.dhParameters.add(Util.getDHParameter(links));
         break;
       } else if (link.hasCoordinateParameter()) {
-        final CoordinateParameter coordinateParameter = Util.getCoordinateParameter(links);
-        this.coordinateParameters.add(coordinateParameter);
+        this.coordinateParameters.add(Util.getCoordinateParameter(links));
         break;
       }
     }
@@ -80,7 +79,8 @@ public class JoglTransformGroupFactory {
       movableGroup.addChild(JoglPrimitiveFactory.create(child));
     }
 
-    setCoordinateOfMovableGroup(group, movableGroup);
+    final JoglCoordinate coordinate = createCoordinate(group);
+    movableGroup.setCoordinate(coordinate);
     
     // MovableGroup と Groupの関連付けを行う
     MovableGroupManager.assignGroup(group, movableGroup);
@@ -89,11 +89,11 @@ public class JoglTransformGroupFactory {
   }
 
   /**
-   * 移動可能なグループの座標を設定します。
+   * 移動可能なグループの座標を生成します。
    * @param group グループ
-   * @param movableGroup 移動可能なグループ
+   * @return 移動可能なグループの座標
    */
-  private void setCoordinateOfMovableGroup(final Group group, final JoglTransformGroup movableGroup) {
+  private JoglCoordinate createCoordinate(final Group group) {
     final Location groupLocation = group.getLocation();
     final Rotation groupRotation = group.getRotation();
     
@@ -107,22 +107,27 @@ public class JoglTransformGroupFactory {
       final JoglLocationRotation locationRotation = new JoglLocationRotation();
       locationRotation.setLocation(xLocation, yLocation, zLocation);
       locationRotation.setRotation(xRotation, yRotation, zRotation);
-      movableGroup.setCoordinate(locationRotation);
-    } else if (groupLocation != null) {
-      final float xLocation = groupLocation.loadX();
-      final float yLocation = groupLocation.loadY();
-      final float zLocation = groupLocation.loadZ();
-      final JoglLocation locationRotation = new JoglLocation();
-      locationRotation.setLocation(xLocation, yLocation, zLocation);
-      movableGroup.setCoordinate(locationRotation);
-    } else if (groupRotation != null) {
+      return locationRotation;
+    } 
+    
+    if (groupLocation != null) {
+      final float xLocation = groupLocation.loadX() * 10f;
+      final float yLocation = groupLocation.loadY() * 10f;
+      final float zLocation = groupLocation.loadZ() * 10f;
+      final JoglLocation location = new JoglLocation();
+      location.setLocation(xLocation, yLocation, zLocation);
+      return location;
+    }
+    
+    if (groupRotation != null) {
       final float xRotation = groupRotation.loadXrotate();
       final float yRotation = groupRotation.loadYrotate();
       final float zRotation = groupRotation.loadZrotate();
       final JoglRotation rotation = new JoglRotation();
       rotation.setRotation(xRotation, yRotation, zRotation);
-      movableGroup.setCoordinate(rotation);
+      return rotation;
     }
-  }
 
+    throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$
+  }
 }
