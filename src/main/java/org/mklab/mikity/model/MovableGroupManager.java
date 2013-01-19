@@ -139,7 +139,7 @@ public class MovableGroupManager {
           } else {
             throw new IllegalArgumentException(Messages.getString("MovableGroupManager.0")); //$NON-NLS-1$
           }
-          picker.pickupParameter(type, dataNumber);
+          picker.pickup(type, dataNumber);
         }
         
         if (link.hasInitialValue()) {
@@ -181,7 +181,7 @@ public class MovableGroupManager {
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
-          picker.pickupParameter(type, dataNumber);
+          picker.pickup(type, dataNumber);
         }
         
         if (link.hasInitialValue()) {
@@ -217,7 +217,7 @@ public class MovableGroupManager {
    * 
    * @return データの個数
    */
-  public int getDataCount() {
+  public int getDataSize() {
     return this.dataCount;
   }
 

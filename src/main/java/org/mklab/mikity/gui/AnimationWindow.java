@@ -409,9 +409,9 @@ public class AnimationWindow extends ApplicationWindow {
       final Group rootGroup = this.root.loadModel(0).loadGroup(0);
       checkLinkParameterType(rootGroup);
 
-      final int dataCount = this.manager.getDataCount();
+      final int dataSize = this.manager.getDataSize();
 
-      this.timeTable = new double[dataCount];
+      this.timeTable = new double[dataSize];
 
       this.endTime = this.manager.getEndTime();
       this.startTimeLabel.setText("" + this.manager.getStartTime()); //$NON-NLS-1$
@@ -419,7 +419,7 @@ public class AnimationWindow extends ApplicationWindow {
       for (int i = 0; i < this.timeTable.length; i++) {
         this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
       }
-      this.timeSlider.setMaximum(dataCount);
+      this.timeSlider.setMaximum(dataSize);
 
       this.filePathText.setText(file.getPath());
     } catch (FileNotFoundException e) {
@@ -444,9 +444,9 @@ public class AnimationWindow extends ApplicationWindow {
     final Group rootGroup = this.root.loadModel(0).loadGroup(0);
     checkLinkParameterType(rootGroup);
 
-    final int dataCount = this.manager.getDataCount();
+    final int dataSize = this.manager.getDataSize();
 
-    this.timeTable = new double[dataCount];
+    this.timeTable = new double[dataSize];
 
     this.endTime = this.manager.getEndTime();
     this.startTimeLabel.setText("" + this.manager.getStartTime()); //$NON-NLS-1$
@@ -454,7 +454,7 @@ public class AnimationWindow extends ApplicationWindow {
     for (int i = 0; i < this.timeTable.length; i++) {
       this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
     }
-    this.timeSlider.setMaximum(dataCount);
+    this.timeSlider.setMaximum(dataSize);
 
     this.filePathText.setText("data"); //$NON-NLS-1$
   }

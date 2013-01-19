@@ -34,16 +34,16 @@ public interface DataPicker {
   /**
    * データをピックアップし，パラメータを設定します。
    * @param type パラメータのタイプ
-   * @param dataNumber データ番号
+   * @param dataIndex データ番号
    */
-  void pickupParameter(DHParameterType type, int dataNumber);
+  void pickup(DHParameterType type, int dataIndex);
 
   /**
    * データをピックアップし，パラメータを設定します。
    * @param type パラメータのタイプ
-   * @param dataNumber データ番号
+   * @param dataIndex データ番号
    */
-  void pickupParameter(CoordinateParameterType type, int dataNumber);
+  void pickup(CoordinateParameterType type, int dataIndex);
 
   /**
    * 値を設定します。
@@ -62,8 +62,8 @@ public interface DataPicker {
   void setParameter(CoordinateParameterType type, double value);
 
   /**
-   * データ数を返します。
-   * @return データ数
+   * データの個数を返します。
+   * @return データの個数
    */
   int getDataSize();
 
