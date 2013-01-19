@@ -173,11 +173,11 @@ public class MovableGroupManager {
           } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
             type = CoordinateParameterType.Z;
           } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.TH_X;
+            type = CoordinateParameterType.ANGLE_X;
           } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.TH_Y;
+            type = CoordinateParameterType.ANGLE_Y;
           } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.TH_Z;
+            type = CoordinateParameterType.ANGLE_Z;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
@@ -196,11 +196,11 @@ public class MovableGroupManager {
           } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
             type = CoordinateParameterType.Z;
           } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.TH_X;
+            type = CoordinateParameterType.ANGLE_X;
           } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.TH_Y;
+            type = CoordinateParameterType.ANGLE_Y;
           } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.TH_Z;
+            type = CoordinateParameterType.ANGLE_Z;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.3")); //$NON-NLS-1$
           }
