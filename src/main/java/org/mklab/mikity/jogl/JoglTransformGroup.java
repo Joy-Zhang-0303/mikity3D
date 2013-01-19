@@ -137,11 +137,15 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
    * {@inheritDoc}
    */
   public void setCoordinateParameter(CoordinateParameter parameter) {
+    if (this.coordinate == null) {
+      return;
+    }
+    
     final double x = parameter.getX();
     final double y = parameter.getY();
     final double z = parameter.getZ();
 
-    if (this.coordinate != null && (x != 0 || y != 0 || z != 0)) {
+    if (x != 0 || y != 0 || z != 0) {
       if (this.coordinate instanceof JoglLocation) {
         ((JoglLocation)this.coordinate).setLocation((float)x, (float)y, (float)z);
       }
@@ -154,17 +158,13 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     final double angleY = parameter.getAngleY();
     final double angleZ = parameter.getAngleZ();
     
-    if (this.coordinate != null && (angleX != 0 || angleY != 0 || angleZ != 0)) {
+    if (angleX != 0 || angleY != 0 || angleZ != 0) {
       if (this.coordinate instanceof JoglRotation) {
         ((JoglRotation)this.coordinate).setRotation((float)angleX, (float)angleY, (float)angleZ);
       }
       if (this.coordinate instanceof JoglLocationRotation) {
         ((JoglLocationRotation)this.coordinate).setRotation((float)angleX, (float)angleY, (float)angleZ);
       }
-    }
-    
-    for (final JoglTransformGroup group : this.groups) {
-      group.setCoordinateParameter(parameter);
     }
   }
 }
