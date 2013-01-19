@@ -6,6 +6,7 @@ import javax.vecmath.Matrix4f;
 
 import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
+import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.jogl.models.JoglCylinder;
 import org.mklab.mikity.jogl.models.JoglDHCoordinate;
 import org.mklab.mikity.jogl.models.JoglLocation;
@@ -299,9 +300,11 @@ public class JoglPrimitiveFactory {
       location.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setCoordinate(location);
     } else if (dhParameters != null) {
-      setDHParameter(dhParameters, group);
+      final JoglCoordinate coordinate = createDHParameterCoordinate(dhParameters);
+      group.setCoordinate(coordinate);
     } else if (coordinateParameters != null) {
-      setCoordinateParameter(coordinateParameters, group);
+      final JoglCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
+      group.setCoordinate(coordinate);
     }
 
     final String color = polygon.loadColor();
@@ -366,9 +369,11 @@ public class JoglPrimitiveFactory {
       location.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setCoordinate(location);
     } else if (dhParameters != null) {
-      setDHParameter(dhParameters, group);
+      final JoglCoordinate coordinate = createDHParameterCoordinate(dhParameters);
+      group.setCoordinate(coordinate);
     } else if (coordinateParameters != null) {
-      setCoordinateParameter(coordinateParameters, group);
+      final JoglCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
+      group.setCoordinate(coordinate);
     }
 
     final String color = polygon.loadColor();
@@ -390,9 +395,8 @@ public class JoglPrimitiveFactory {
 
   /**
    * @param parameters リンクパラメータのリスト
-   * @param group JOGLトランスフォームグループ
    */
-  private static void setCoordinateParameter(List<CoordinateParameter> parameters, JoglTransformGroup group) {
+  private static JoglCoordinate createCoordinateParameterCoordinate(List<CoordinateParameter> parameters) {
     float x = 0; 
     float y = 0; 
     float z = 0; 
@@ -413,23 +417,24 @@ public class JoglPrimitiveFactory {
       final JoglLocationRotation locationRotation = new JoglLocationRotation();
       locationRotation.setLocation(x, y, z);
       locationRotation.setRotation(xRotation, yRotation, zRotation);
-      group.setCoordinate(locationRotation);
+      return locationRotation;
     } else if (x == 0.0f || y == 0.0f || z == 0.0f) {
       final JoglLocation location = new JoglLocation();
       location.setLocation(x, y, z);
-      group.setCoordinate(location);
+      return location;
     } else if (xRotation == 0.0f || yRotation == 0.0f || zRotation == 0.0f) {
       final JoglRotation rotation = new JoglRotation();
       rotation.setRotation(xRotation, yRotation, zRotation);
-      group.setCoordinate(rotation);
+      return rotation;
+    } else {
+      throw new IllegalArgumentException();
     }
   }
 
   /**
    * @param parameters DHパラメータのリスト
-   * @param group JOGLトランスフォームグループ
    */
-  private static void setDHParameter(List<DHParameter> parameters, JoglTransformGroup group) {
+  private static JoglCoordinate createDHParameterCoordinate(List<DHParameter> parameters) {
     float a = 0; 
     float alpha = 0; 
     float d = 0; 
@@ -443,7 +448,8 @@ public class JoglPrimitiveFactory {
     }
 
     final JoglDHCoordinate coordinate = new JoglDHCoordinate();
-    coordinate.setDHParameters(a, alpha, d, theta);
-    group.setCoordinate(coordinate);
+    coordinate.setParameters(a, alpha, d, theta);
+      
+    return coordinate;
   }
 }

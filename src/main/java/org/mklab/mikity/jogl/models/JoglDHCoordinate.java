@@ -33,7 +33,7 @@ public class JoglDHCoordinate implements JoglCoordinate {
    * @param d d
    * @param theta θ
    */
-  public void setDHParameters(double a, double alpha, double d, double theta) {
+  public void setParameters(double a, double alpha, double d, double theta) {
     this.a = a;
     this.alpha = alpha;
     this.d = d;

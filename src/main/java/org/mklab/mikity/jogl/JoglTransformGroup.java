@@ -94,17 +94,14 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
       return;
     }
 
-    final double a = parameter.getA();
-    final double alpha = parameter.getAlpha();
-    final double d = parameter.getD();
-    final double theta = parameter.getTheta();
-    
     /* 座標系Σ(i-1)からΣiへの変換   */
-    
     // 1.xi軸に沿ってa(i-1)だけ並進
     // 2.x(i-1)軸回りにα(i-1)だけ回転
     // 3.ziに沿ってdiだけ並進   
     // 4.zi軸回りにθiだけ回転
+    
+    final double a = parameter.getA();
+    final double d = parameter.getD();
     
     if (this.coordinate instanceof JoglLocation) {
       ((JoglLocation)this.coordinate).setLocation((float)a, 0, (float)d);
@@ -112,7 +109,10 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     if (this.coordinate instanceof JoglLocationRotation) {
       ((JoglLocationRotation)this.coordinate).setLocation((float)a, 0, (float)d);
     }
-    
+
+    final double alpha = parameter.getAlpha();
+    final double theta = parameter.getTheta();
+
     if (this.coordinate instanceof JoglRotation) {
       ((JoglRotation)this.coordinate).setRotation((float)alpha, 0, (float)theta);
     }
