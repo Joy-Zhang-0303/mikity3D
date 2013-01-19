@@ -39,17 +39,17 @@ public class JoglPrimitiveFactory {
    * グループを生成します。
    * 
    * @param group グループ
-   * @return tg トランスフォームグループ
+   * @return トランスフォームグループ
    */
   public static JoglTransformGroup create(Group group) {
     return new JoglTransformGroupFactory().create(group);
   }
 
   /**
-   * 与えられたboxインスタンスのプリミティブを生成します。
+   * 与えられたboxを含む可動グループを生成します。
    * 
    * @param box ボックス
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
+   * @return 与えられたboxを含む可動グループ
    */
   public static JoglTransformGroup create(XMLBox box) {
     final float xSize = box.loadXsize();
@@ -60,7 +60,7 @@ public class JoglPrimitiveFactory {
     child.setColor(color);
     child.setSize(xSize, ySize, zSize);
 
-    final JoglTransformGroup tg = new JoglTransformGroup();
+    final JoglTransformGroup group = new JoglTransformGroup();
 
     final Location boxLocation = box.loadLocation();
     final Rotation boxRotation = box.loadRotation();
@@ -75,34 +75,36 @@ public class JoglPrimitiveFactory {
       final JoglLocationRotation locationRotation = new JoglLocationRotation();
       locationRotation.setLocation(xLocation, yLocation, zLocation);
       locationRotation.setRotation(xRotation, yRotation, zRotation);
-      tg.setCoordinate(locationRotation);
+      group.setCoordinate(locationRotation);
     } else if (boxLocation != null) {
       final float xLocation = boxLocation.loadX();
       final float yLocation = boxLocation.loadY();
       final float zLocation = boxLocation.loadZ();
       final JoglLocation locationRotation = new JoglLocation();
       locationRotation.setLocation(xLocation, yLocation, zLocation);
-      tg.setCoordinate(locationRotation);
+      group.setCoordinate(locationRotation);
     } else if (boxRotation != null) {
       final float xRotation = boxRotation.loadXrotate();
       final float yRotation = boxRotation.loadYrotate();
       final float zRotation = boxRotation.loadZrotate();
       final JoglRotation rotation = new JoglRotation();
       rotation.setRotation(xRotation, yRotation, zRotation);
-      tg.setCoordinate(rotation);
+      group.setCoordinate(rotation);
     }
 
-    tg.addChild(child);
+    group.addChild(child);
     
-    return tg;
+    return group;
   }
 
   /**
+   * 与えられたcylinderを含む可動グループを生成します。
+   * 
    * @param cylinder シリンダー
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
+   * @return 与えられたcylinderを含む可動グループ
    */
   public static JoglTransformGroup create(XMLCylinder cylinder) {
-    final JoglTransformGroup tg = new JoglTransformGroup();
+    final JoglTransformGroup group = new JoglTransformGroup();
 
     final Location cylinderLocation = cylinder.loadLocation();
     final Rotation cylinderRotation = cylinder.loadRotation();
@@ -117,21 +119,21 @@ public class JoglPrimitiveFactory {
       final JoglLocationRotation locationRotation = new JoglLocationRotation();
       locationRotation.setLocation(xLocation, yLocation, zLocation);
       locationRotation.setRotation(xRotation, yRotation, zRotation);
-      tg.setCoordinate(locationRotation);
+      group.setCoordinate(locationRotation);
     } else if (cylinderLocation != null) {
       final float xLocation = cylinderLocation.loadX();
       final float yLocation = cylinderLocation.loadY();
       final float zLocation = cylinderLocation.loadZ();
       final JoglLocation location = new JoglLocation();
       location.setLocation(xLocation, yLocation, zLocation);
-      tg.setCoordinate(location);
+      group.setCoordinate(location);
     } else if (cylinderRotation != null) {
       final float xRotation = cylinderRotation.loadXrotate();
       final float yRotation = cylinderRotation.loadYrotate();
       final float zRotation = cylinderRotation.loadZrotate();
       final JoglRotation rotation = new JoglRotation();
       rotation.setRotation(xRotation, yRotation, zRotation);
-      tg.setCoordinate(rotation);
+      group.setCoordinate(rotation);
     }
 
     final int div = cylinder.loadDiv();
@@ -142,17 +144,19 @@ public class JoglPrimitiveFactory {
     child.setSize(radius, hight);
     child.setDiv(div);
     child.setColor(color);
-    tg.addChild(child);
+    group.addChild(child);
 
-    return tg;
+    return group;
   }
 
   /**
+   * 与えられたsphereを含む可動グループを生成します。
+   * 
    * @param sphere 球体
-   * @return 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
+   * @return 与えられたsphereを含む可動グループ
    */
   public static JoglTransformGroup create(XMLSphere sphere) {
-    final JoglTransformGroup tg = new JoglTransformGroup();
+    final JoglTransformGroup group = new JoglTransformGroup();
     
     final Location sphereLocation = sphere.loadLocation();
     final Rotation sphereRotation = sphere.loadRotation();
@@ -167,21 +171,21 @@ public class JoglPrimitiveFactory {
       final JoglLocationRotation locationRotation = new JoglLocationRotation();
       locationRotation.setLocation(xLocation, yLocation, zLocatino);
       locationRotation.setRotation(xRotation, yRotation, zRotation);
-      tg.setCoordinate(locationRotation);
+      group.setCoordinate(locationRotation);
     } else if (sphereLocation != null) {
       final float xLocation = sphereLocation.loadX();
       final float yLocation = sphereLocation.loadY();
       final float zLocation = sphereLocation.loadZ();
       final JoglLocation location = new JoglLocation();
       location.setLocation(xLocation, yLocation, zLocation);
-      tg.setCoordinate(location);
+      group.setCoordinate(location);
     } else if (sphereRotation != null) {
       final float xRotation = sphereRotation.loadXrotate();
       final float yRotation = sphereRotation.loadYrotate();
       final float zRotation = sphereRotation.loadZrotate();
       final JoglRotation rotation = new JoglRotation();
       rotation.setRotation(xRotation, yRotation, zRotation);
-      tg.setCoordinate(rotation);
+      group.setCoordinate(rotation);
     }
 
     final int div = sphere.loadDiv();
@@ -191,17 +195,18 @@ public class JoglPrimitiveFactory {
     child.setSize(radius);
     child.setDiv(div);
     child.setColor(color);
-    tg.addChild(child);
+    group.addChild(child);
 
-    return tg;
+    return group;
   }
 
   /**
+   * 与えられたconeを含む可動グループを生成します。
    * @param cone コーン
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
+   * @return 与えられたconeを含む可動グループ
    */
   public static JoglTransformGroup create(XMLCone cone) {
-    final JoglTransformGroup tg = new JoglTransformGroup();
+    final JoglTransformGroup group = new JoglTransformGroup();
 
     final Location coneLocation = cone.loadLocation();
     final Rotation coneRotation = cone.loadRotation();
@@ -216,21 +221,21 @@ public class JoglPrimitiveFactory {
       final JoglLocationRotation locationRotation = new JoglLocationRotation();
       locationRotation.setLocation(xLocation, yLocation, zLocation);
       locationRotation.setRotation(xRotation, yRotation, zRotation);
-      tg.setCoordinate(locationRotation);
+      group.setCoordinate(locationRotation);
     } else if (coneLocation != null) {
       final float xLocation = coneLocation.loadX();
       final float yLocation = coneLocation.loadY();
       final float zLocation = coneLocation.loadZ();
       final JoglLocation location = new JoglLocation();
       location.setLocation(xLocation, yLocation, zLocation);
-      tg.setCoordinate(location);
+      group.setCoordinate(location);
     } else if (coneRotation != null) {
       final float xRotation = coneRotation.loadXrotate();
       final float yRotation = coneRotation.loadYrotate();
       final float zRotation = coneRotation.loadZrotate();
       final JoglRotation rotation = new JoglRotation();
       rotation.setRotation(xRotation, yRotation, zRotation);
-      tg.setCoordinate(rotation);
+      group.setCoordinate(rotation);
     }
 
     final float radius = cone.loadR();
@@ -241,19 +246,21 @@ public class JoglPrimitiveFactory {
     child.setColor(color);
     child.setSize(radius, hight);
     child.setDiv(div);
-    tg.addChild(child);
+    group.addChild(child);
 
-    return tg;
+    return group;
   }
 
   /**
+   * 与えられた三角形ポリゴンを含む可動グループを生成します。
+   * 
    * @param polygon 三角形のポリゴン
    * @param coordinateParameters リンクパラメータ
    * @param dhParameters DHパラメータ
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
+   * @return 与えられた三角形ポリゴンを含む可動グループを生成します。
    */
   public static JoglTransformGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
-    final JoglTransformGroup tg = new JoglTransformGroup();
+    final JoglTransformGroup group = new JoglTransformGroup();
 
     final Matrix4f matrix = polygon.loadMatrix();
     
@@ -271,30 +278,30 @@ public class JoglPrimitiveFactory {
         final JoglLocationRotation locationRotation = new JoglLocationRotation();
         locationRotation.setLocation(xLocation, yLocation, zLocation);
         locationRotation.setRotation(xRotation, yRotation, zRotation);
-        tg.setCoordinate(locationRotation);
+        group.setCoordinate(locationRotation);
       } else if (polygonLocation != null) {
         final float xLocation = polygonLocation.loadX();
         final float yLocation = polygonLocation.loadY();
         final float zLocation = polygonLocation.loadZ();
         final JoglLocation location = new JoglLocation();
         location.setLocation(xLocation, yLocation, zLocation);
-        tg.setCoordinate(location);
+        group.setCoordinate(location);
       } else if (polygonRotation != null) {
         final float xRotation = polygonRotation.loadXrotate();
         final float yRotation = polygonRotation.loadYrotate();
         final float zRotation = polygonRotation.loadZrotate();
         final JoglRotation rotation = new JoglRotation();
         rotation.setRotation(xRotation, yRotation, zRotation);
-        tg.setCoordinate(rotation);
+        group.setCoordinate(rotation);
       }
     } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
       final JoglLocation location = new JoglLocation();
       location.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
-      tg.setCoordinate(location);
+      group.setCoordinate(location);
     } else if (dhParameters != null) {
-      setDHParameter(dhParameters, tg);
+      setDHParameter(dhParameters, group);
     } else if (coordinateParameters != null) {
-      setCoordinateParameter(coordinateParameters, tg);
+      setCoordinateParameter(coordinateParameters, group);
     }
 
     final String color = polygon.loadColor();
@@ -308,19 +315,21 @@ public class JoglPrimitiveFactory {
     final JoglTrianglePolygon child = new JoglTrianglePolygon();
     child.setColor(color);
     child.setPoints(points);
-    tg.addChild(child);
+    group.addChild(child);
 
-    return tg;
+    return group;
   }
 
   /**
+   * 与えられた四角形ポリゴンを含む可動グループを生成します。
+   * 
    * @param polygon 四角形のポリゴン
    * @param coordinateParameters リンクパラメータ
    * @param dhParameters DHパラメータ
-   * @return　tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
+   * @return　与えられた四角形ポリゴンを含む可動グループ
    */
   public static JoglTransformGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
-    final JoglTransformGroup tg = new JoglTransformGroup();
+    final JoglTransformGroup group = new JoglTransformGroup();
     final Matrix4f matrix = polygon.loadMatrix();
     
     if (dhParameters == null && coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
@@ -336,30 +345,30 @@ public class JoglPrimitiveFactory {
         final JoglLocationRotation locationRotation = new JoglLocationRotation();
         locationRotation.setLocation(xLocation, yLocation, zLocation);
         locationRotation.setRotation(xRotation, yRotation, zRotation);
-        tg.setCoordinate(locationRotation);
+        group.setCoordinate(locationRotation);
       } else if (polygonLocation != null) {
         final float xLocation = polygonLocation.loadX();
         final float yLocation = polygonLocation.loadY();
         final float zLocation = polygonLocation.loadZ();
         final JoglLocation location = new JoglLocation();
         location.setLocation(xLocation, yLocation, zLocation);
-        tg.setCoordinate(location);
+        group.setCoordinate(location);
       } else if (polygonRotation != null) {
         final float xRotation = polygonRotation.loadXrotate();
         final float yRotation = polygonRotation.loadYrotate();
         final float zRotation = polygonRotation.loadZrotate();
         final JoglRotation rotation = new JoglRotation();
         rotation.setRotation(xRotation, yRotation, zRotation);
-        tg.setCoordinate(rotation);
+        group.setCoordinate(rotation);
       }
     } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
       final JoglLocation location = new JoglLocation();
       location.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
-      tg.setCoordinate(location);
+      group.setCoordinate(location);
     } else if (dhParameters != null) {
-      setDHParameter(dhParameters, tg);
+      setDHParameter(dhParameters, group);
     } else if (coordinateParameters != null) {
-      setCoordinateParameter(coordinateParameters, tg);
+      setCoordinateParameter(coordinateParameters, group);
     }
 
     final String color = polygon.loadColor();
@@ -374,16 +383,16 @@ public class JoglPrimitiveFactory {
     final JoglQuadPolygon child = new JoglQuadPolygon();
     child.setColor(color);
     child.setPoints(points);
-    tg.addChild(child);
+    group.addChild(child);
 
-    return tg;
+    return group;
   }
 
   /**
    * @param parameters リンクパラメータのリスト
    * @param group JOGLトランスフォームグループ
    */
-  public static void setCoordinateParameter(List<CoordinateParameter> parameters, JoglTransformGroup group) {
+  private static void setCoordinateParameter(List<CoordinateParameter> parameters, JoglTransformGroup group) {
     float x = 0; 
     float y = 0; 
     float z = 0; 
@@ -400,15 +409,19 @@ public class JoglPrimitiveFactory {
       zRotation = zRotation + (float)parameter.getAngleZ();
     }
 
-    if (xRotation == 0.0f && yRotation == 0.0f && zRotation == 0.0f) {
-      final JoglLocation location = new JoglLocation();
-      location.setLocation(x, y, z);
-      group.setCoordinate(location);
-    } else { //if(locX == 0.0f && locY == 0.0f && locZ == 0.0f){
+    if ((x == 0.0f || y == 0.0f || z == 0.0f) && (xRotation == 0.0f || yRotation == 0.0f || zRotation == 0.0f)) {
       final JoglLocationRotation locationRotation = new JoglLocationRotation();
       locationRotation.setLocation(x, y, z);
       locationRotation.setRotation(xRotation, yRotation, zRotation);
       group.setCoordinate(locationRotation);
+    } else if (x == 0.0f || y == 0.0f || z == 0.0f) {
+      final JoglLocation location = new JoglLocation();
+      location.setLocation(x, y, z);
+      group.setCoordinate(location);
+    } else if (xRotation == 0.0f || yRotation == 0.0f || zRotation == 0.0f) {
+      final JoglRotation rotation = new JoglRotation();
+      rotation.setRotation(xRotation, yRotation, zRotation);
+      group.setCoordinate(rotation);
     }
   }
 
@@ -416,7 +429,7 @@ public class JoglPrimitiveFactory {
    * @param parameters DHパラメータのリスト
    * @param group JOGLトランスフォームグループ
    */
-  public static void setDHParameter(List<DHParameter> parameters, JoglTransformGroup group) {
+  private static void setDHParameter(List<DHParameter> parameters, JoglTransformGroup group) {
     float a = 0; 
     float alpha = 0; 
     float d = 0; 
@@ -429,8 +442,8 @@ public class JoglPrimitiveFactory {
       theta += parameter.getTheta();
     }
 
-    final JoglDHTransformation transformation = new JoglDHTransformation();
-    transformation.setDHParameters(a, alpha, d, theta);
-    group.setCoordinate(transformation);
+    final JoglDHTransformation coordinate = new JoglDHTransformation();
+    coordinate.setDHParameters(a, alpha, d, theta);
+    group.setCoordinate(coordinate);
   }
 }

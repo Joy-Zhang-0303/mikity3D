@@ -28,27 +28,11 @@ import org.mklab.mikity.xml.model.XMLTrianglePolygon;
  * @version $Revision$, 2012/02/07
  */
 public class JoglTransformGroupFactory {
-  /** */
-  private List<CoordinateParameter> coordinateParameters = new ArrayList<CoordinateParameter>();
-  /** */
-  private List<DHParameter> dhParameters = new ArrayList<DHParameter>();
-
   /**
    * @param group グループ
    * @return トランスフォームグループ
    */
   public JoglTransformGroup create(final Group group) {
-    final LinkData[] links = group.getLinkData();
-    for (final LinkData link : links) {
-      if (link.hasDHParameter()) {
-        this.dhParameters.add(Util.getDHParameter(links));
-        break;
-      } else if (link.hasCoordinateParameter()) {
-        this.coordinateParameters.add(Util.getCoordinateParameter(links));
-        break;
-      }
-    }
-
     final JoglTransformGroup movableGroup = new JoglTransformGroup();
     
     for (final XMLBox box : group.getXMLBox()) {
@@ -67,12 +51,26 @@ public class JoglTransformGroupFactory {
       movableGroup.addChild(JoglPrimitiveFactory.create(cone));
     }
 
+    final List<CoordinateParameter> coordinateParameters = new ArrayList<CoordinateParameter>();
+    final List<DHParameter> dhParameters = new ArrayList<DHParameter>();
+    
+    final LinkData[] links = group.getLinkData();
+    for (final LinkData link : links) {
+      if (link.hasDHParameter()) {
+        dhParameters.add(Util.getDHParameter(links));
+        break;
+      } else if (link.hasCoordinateParameter()) {
+        coordinateParameters.add(Util.getCoordinateParameter(links));
+        break;
+      }
+    }
+    
     for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygon()) {
-      movableGroup.addChild(JoglPrimitiveFactory.create(polygon, this.dhParameters, this.coordinateParameters));
+      movableGroup.addChild(JoglPrimitiveFactory.create(polygon, dhParameters, coordinateParameters));
     }
 
     for (final XMLQuadPolygon polygon : group.getXMLQuadPolygon()) {
-      movableGroup.addChild(JoglPrimitiveFactory.create(polygon, this.dhParameters, this.coordinateParameters));
+      movableGroup.addChild(JoglPrimitiveFactory.create(polygon, dhParameters, coordinateParameters));
     }
 
     for (final Group child : group.getGroups()) {
@@ -98,9 +96,9 @@ public class JoglTransformGroupFactory {
     final Rotation groupRotation = group.getRotation();
     
     if (groupLocation != null && groupRotation != null) {
-      final float xLocation = groupLocation.loadX() * 10f;
-      final float yLocation = groupLocation.loadY() * 10f;
-      final float zLocation = groupLocation.loadZ() * 10f;
+      final float xLocation = groupLocation.loadX();
+      final float yLocation = groupLocation.loadY();
+      final float zLocation = groupLocation.loadZ();
       final float xRotation = groupRotation.loadXrotate();
       final float yRotation = groupRotation.loadYrotate();
       final float zRotation = groupRotation.loadZrotate();
@@ -111,9 +109,9 @@ public class JoglTransformGroupFactory {
     } 
     
     if (groupLocation != null) {
-      final float xLocation = groupLocation.loadX() * 10f;
-      final float yLocation = groupLocation.loadY() * 10f;
-      final float zLocation = groupLocation.loadZ() * 10f;
+      final float xLocation = groupLocation.loadX();
+      final float yLocation = groupLocation.loadY();
+      final float zLocation = groupLocation.loadZ();
       final JoglLocation location = new JoglLocation();
       location.setLocation(xLocation, yLocation, zLocation);
       return location;
