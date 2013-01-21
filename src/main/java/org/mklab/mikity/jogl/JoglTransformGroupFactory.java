@@ -117,7 +117,7 @@ public class JoglTransformGroupFactory {
       final float xLocation = groupLocation.loadX();
       final float yLocation = groupLocation.loadY();
       final float zLocation = groupLocation.loadZ();
-      final JoglLocation location = new JoglLocation();
+      final JoglLocationRotation location = new JoglLocationRotation();
       location.setLocation(xLocation, yLocation, zLocation);
       return location;
     }
@@ -126,7 +126,7 @@ public class JoglTransformGroupFactory {
       final float xRotation = groupRotation.loadXrotate();
       final float yRotation = groupRotation.loadYrotate();
       final float zRotation = groupRotation.loadZrotate();
-      final JoglRotation rotation = new JoglRotation();
+      final JoglLocationRotation rotation = new JoglLocationRotation();
       rotation.setRotation(xRotation, yRotation, zRotation);
       return rotation;
     }
