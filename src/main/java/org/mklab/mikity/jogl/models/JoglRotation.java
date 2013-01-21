@@ -42,19 +42,6 @@ public class JoglRotation implements JoglCoordinate {
     this.rotationZ = rotationZ;
   }
 
-//  /**
-//   * 回転します。
-//   * 
-//   * @param dRotationX x軸周りの回転
-//   * @param dRotationY y軸周りの回転
-//   * @param dRotationZ z軸周りの回転
-//   */
-//  public void rotate(float dRotationX, float dRotationY, float dRotationZ) {
-//    this.rotationX += dRotationX;
-//    this.rotationY += dRotationY;
-//    this.rotationZ += dRotationZ;
-//  }
-
   /**
    * {@inheritDoc}
    */

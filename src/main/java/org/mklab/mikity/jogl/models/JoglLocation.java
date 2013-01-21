@@ -37,19 +37,6 @@ public class JoglLocation implements JoglCoordinate {
     this.z = z;
   }
   
-//  /**
-//   * 平行移動します。
-//   * 
-//   * @param dx x座用
-//   * @param dy y座標
-//   * @param dz z座標
-//   */
-//  public void translate(float dx, float dy, float dz) {
-//    this.x += dx;
-//    this.y += dy;
-//    this.z += dz;
-//  }
-  
   /**
    * {@inheritDoc}
    */
