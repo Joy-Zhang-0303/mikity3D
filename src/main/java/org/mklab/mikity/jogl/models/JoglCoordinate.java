@@ -9,7 +9,7 @@ import javax.media.opengl.GL;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class JoglLocationRotation {
+public class JoglCoordinate {
   /** x軸周りの回転[rad] */
   private float rotationX;
 

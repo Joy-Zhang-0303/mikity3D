@@ -3,7 +3,7 @@ package org.mklab.mikity.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.jogl.models.JoglLocationRotation;
+import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.MovableGroupManager;
@@ -74,7 +74,7 @@ public class JoglTransformGroupFactory {
       movableGroup.addChild(JoglPrimitiveFactory.create(child));
     }
 
-    final JoglLocationRotation coordinate = createCoordinateOf(group);
+    final JoglCoordinate coordinate = createCoordinateOf(group);
     movableGroup.setCoordinate(coordinate);
     
     final String name = group.loadName();
@@ -93,7 +93,7 @@ public class JoglTransformGroupFactory {
    * @param group グループ
    * @return 移動可能なグループの座標
    */
-  private JoglLocationRotation createCoordinateOf(final Group group) {
+  private JoglCoordinate createCoordinateOf(final Group group) {
     final Location groupLocation = group.getLocation();
     final Rotation groupRotation = group.getRotation();
     
@@ -104,7 +104,7 @@ public class JoglTransformGroupFactory {
       final float xRotation = groupRotation.loadXrotate();
       final float yRotation = groupRotation.loadYrotate();
       final float zRotation = groupRotation.loadZrotate();
-      final JoglLocationRotation coordinate = new JoglLocationRotation();
+      final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setLocation(xLocation, yLocation, zLocation);
       coordinate.setRotation(xRotation, yRotation, zRotation);
       return coordinate;
@@ -114,7 +114,7 @@ public class JoglTransformGroupFactory {
       final float xLocation = groupLocation.loadX();
       final float yLocation = groupLocation.loadY();
       final float zLocation = groupLocation.loadZ();
-      final JoglLocationRotation coordinate = new JoglLocationRotation();
+      final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setLocation(xLocation, yLocation, zLocation);
       return coordinate;
     }
@@ -123,7 +123,7 @@ public class JoglTransformGroupFactory {
       final float xRotation = groupRotation.loadXrotate();
       final float yRotation = groupRotation.loadYrotate();
       final float zRotation = groupRotation.loadZrotate();
-      final JoglLocationRotation coordinate = new JoglLocationRotation();
+      final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setRotation(xRotation, yRotation, zRotation);
       return coordinate;
     }
