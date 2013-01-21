@@ -24,7 +24,7 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
   /** トランスフォームグループのリスト */
   private List<JoglTransformGroup> groups;
   /** 座標系 */
-  private JoglCoordinate coordinate;
+  private JoglLocationRotation coordinate;
   /** 名前 */
   private String name;
 
@@ -59,7 +59,7 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
    * 
    * @param coordinate 座標系
    */
-  public void setCoordinate(JoglCoordinate coordinate) {
+  public void setCoordinate(JoglLocationRotation coordinate) {
     this.coordinate = coordinate;
   }
 

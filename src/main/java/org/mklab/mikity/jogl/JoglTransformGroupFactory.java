@@ -75,7 +75,7 @@ public class JoglTransformGroupFactory {
       movableGroup.addChild(JoglPrimitiveFactory.create(child));
     }
 
-    final JoglCoordinate coordinate = createCoordinateOf(group);
+    final JoglLocationRotation coordinate = createCoordinateOf(group);
     movableGroup.setCoordinate(coordinate);
     
     final String name = group.loadName();
@@ -94,7 +94,7 @@ public class JoglTransformGroupFactory {
    * @param group グループ
    * @return 移動可能なグループの座標
    */
-  private JoglCoordinate createCoordinateOf(final Group group) {
+  private JoglLocationRotation createCoordinateOf(final Group group) {
     final Location groupLocation = group.getLocation();
     final Rotation groupRotation = group.getRotation();
     

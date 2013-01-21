@@ -315,10 +315,10 @@ public class JoglPrimitiveFactory {
       coordinate.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setCoordinate(coordinate);
     } else if (dhParameters != null) {
-      final JoglCoordinate coordinate = createCoordinate(dhParameters);
+      final JoglLocationRotation coordinate = createDhParameterCoordinate(dhParameters);
       group.setCoordinate(coordinate);
     } else if (coordinateParameters != null) {
-      final JoglCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
+      final JoglLocationRotation coordinate = createCoordinateParameterCoordinate(coordinateParameters);
       group.setCoordinate(coordinate);
     }
 
@@ -385,10 +385,10 @@ public class JoglPrimitiveFactory {
       coordinate.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setCoordinate(coordinate);
     } else if (dhParameters != null) {
-      final JoglCoordinate coordinate = createCoordinate(dhParameters);
+      final JoglLocationRotation coordinate = createDhParameterCoordinate(dhParameters);
       group.setCoordinate(coordinate);
     } else if (coordinateParameters != null) {
-      final JoglCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
+      final JoglLocationRotation coordinate = createCoordinateParameterCoordinate(coordinateParameters);
       group.setCoordinate(coordinate);
     }
 
@@ -400,7 +400,7 @@ public class JoglPrimitiveFactory {
   /**
    * @param parameters リンクパラメータのリスト
    */
-  private static JoglCoordinate createCoordinateParameterCoordinate(List<CoordinateParameter> parameters) {
+  private static JoglLocationRotation createCoordinateParameterCoordinate(List<CoordinateParameter> parameters) {
     float x = 0; 
     float y = 0; 
     float z = 0; 
@@ -426,7 +426,7 @@ public class JoglPrimitiveFactory {
   /**
    * @param parameters DHパラメータのリスト
    */
-  private static JoglCoordinate createCoordinate(List<DHParameter> parameters) {
+  private static JoglLocationRotation createDhParameterCoordinate(List<DHParameter> parameters) {
     float a = 0; 
     float alpha = 0; 
     float d = 0; 
