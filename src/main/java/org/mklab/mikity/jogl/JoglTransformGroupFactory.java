@@ -3,7 +3,6 @@ package org.mklab.mikity.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.jogl.models.JoglLocationRotation;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
@@ -105,28 +104,28 @@ public class JoglTransformGroupFactory {
       final float xRotation = groupRotation.loadXrotate();
       final float yRotation = groupRotation.loadYrotate();
       final float zRotation = groupRotation.loadZrotate();
-      final JoglLocationRotation locationRotation = new JoglLocationRotation();
-      locationRotation.setLocation(xLocation, yLocation, zLocation);
-      locationRotation.setRotation(xRotation, yRotation, zRotation);
-      return locationRotation;
+      final JoglLocationRotation coordinate = new JoglLocationRotation();
+      coordinate.setLocation(xLocation, yLocation, zLocation);
+      coordinate.setRotation(xRotation, yRotation, zRotation);
+      return coordinate;
     } 
     
     if (groupLocation != null) {
       final float xLocation = groupLocation.loadX();
       final float yLocation = groupLocation.loadY();
       final float zLocation = groupLocation.loadZ();
-      final JoglLocationRotation location = new JoglLocationRotation();
-      location.setLocation(xLocation, yLocation, zLocation);
-      return location;
+      final JoglLocationRotation coordinate = new JoglLocationRotation();
+      coordinate.setLocation(xLocation, yLocation, zLocation);
+      return coordinate;
     }
     
     if (groupRotation != null) {
       final float xRotation = groupRotation.loadXrotate();
       final float yRotation = groupRotation.loadYrotate();
       final float zRotation = groupRotation.loadZrotate();
-      final JoglLocationRotation rotation = new JoglLocationRotation();
-      rotation.setRotation(xRotation, yRotation, zRotation);
-      return rotation;
+      final JoglLocationRotation coordinate = new JoglLocationRotation();
+      coordinate.setRotation(xRotation, yRotation, zRotation);
+      return coordinate;
     }
 
     throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$

@@ -6,7 +6,6 @@ import javax.vecmath.Matrix4f;
 
 import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
-import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.jogl.models.JoglCylinder;
 import org.mklab.mikity.jogl.models.JoglLocationRotation;
 import org.mklab.mikity.jogl.models.JoglQuadPolygon;

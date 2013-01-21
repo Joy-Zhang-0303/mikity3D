@@ -101,16 +101,12 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     final double a = parameter.getA();
     final double d = parameter.getD();
     
-    if (this.coordinate instanceof JoglLocationRotation) {
-      ((JoglLocationRotation)this.coordinate).setLocation((float)a, 0, (float)d);
-    }
+    this.coordinate.setLocation((float)a, 0, (float)d);
 
     final double alpha = parameter.getAlpha();
     final double theta = parameter.getTheta();
 
-    if (this.coordinate instanceof JoglLocationRotation) {
-      ((JoglLocationRotation)this.coordinate).setRotation((float)alpha, 0, (float)theta);
-    }
+    this.coordinate.setRotation((float)alpha, 0, (float)theta);
   }
 
   /**
@@ -124,18 +120,14 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
     final double x = parameter.getX();
     final double y = parameter.getY();
     final double z = parameter.getZ();
-
-    if (this.coordinate instanceof JoglLocationRotation) {
-      ((JoglLocationRotation)this.coordinate).setLocation((float)x, (float)y, (float)z);
-    }
+    
+    this.coordinate.setLocation((float)x, (float)y, (float)z);
 
     final double angleX = parameter.getAngleX();
     final double angleY = parameter.getAngleY();
     final double angleZ = parameter.getAngleZ();
     
-    if (this.coordinate instanceof JoglLocationRotation) {
-      ((JoglLocationRotation)this.coordinate).setRotation((float)angleX, (float)angleY, (float)angleZ);
-    }
+    this.coordinate.setRotation((float)angleX, (float)angleY, (float)angleZ);
   }
 
   /**
