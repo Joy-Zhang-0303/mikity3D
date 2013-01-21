@@ -8,7 +8,6 @@ import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
 import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.jogl.models.JoglCylinder;
-import org.mklab.mikity.jogl.models.JoglDHCoordinate;
 import org.mklab.mikity.jogl.models.JoglLocationRotation;
 import org.mklab.mikity.jogl.models.JoglQuadPolygon;
 import org.mklab.mikity.jogl.models.JoglSphere;
@@ -316,7 +315,7 @@ public class JoglPrimitiveFactory {
       coordinate.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setCoordinate(coordinate);
     } else if (dhParameters != null) {
-      final JoglCoordinate coordinate = createDHParameterCoordinate(dhParameters);
+      final JoglCoordinate coordinate = createCoordinate(dhParameters);
       group.setCoordinate(coordinate);
     } else if (coordinateParameters != null) {
       final JoglCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
@@ -386,7 +385,7 @@ public class JoglPrimitiveFactory {
       coordinate.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setCoordinate(coordinate);
     } else if (dhParameters != null) {
-      final JoglCoordinate coordinate = createDHParameterCoordinate(dhParameters);
+      final JoglCoordinate coordinate = createCoordinate(dhParameters);
       group.setCoordinate(coordinate);
     } else if (coordinateParameters != null) {
       final JoglCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
@@ -427,7 +426,7 @@ public class JoglPrimitiveFactory {
   /**
    * @param parameters DHパラメータのリスト
    */
-  private static JoglCoordinate createDHParameterCoordinate(List<DHParameter> parameters) {
+  private static JoglCoordinate createCoordinate(List<DHParameter> parameters) {
     float a = 0; 
     float alpha = 0; 
     float d = 0; 
@@ -440,8 +439,9 @@ public class JoglPrimitiveFactory {
       theta += parameter.getTheta();
     }
 
-    final JoglDHCoordinate coordinate = new JoglDHCoordinate();
-    coordinate.setParameters(a, alpha, d, theta);
+    final JoglLocationRotation coordinate = new JoglLocationRotation();
+    coordinate.setLocation(a, 0, d);
+    coordinate.setRotation(alpha, 0, theta);
       
     return coordinate;
   }
