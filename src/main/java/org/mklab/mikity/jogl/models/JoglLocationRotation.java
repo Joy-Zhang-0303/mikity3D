@@ -9,7 +9,7 @@ import javax.media.opengl.GL;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class JoglLocationRotation implements JoglCoordinate {
+public class JoglLocationRotation {
   /** x軸周りの回転[rad] */
   private float rotationX;
 
@@ -29,7 +29,8 @@ public class JoglLocationRotation implements JoglCoordinate {
   private float z;
 
   /**
-   * {@inheritDoc}
+   * GLによる座標変換を適用します。
+   * @param gl GL
    */
   public void apply(GL gl) {
     gl.glTranslatef(this.x, this.y, this.z);

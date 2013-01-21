@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 
-import org.mklab.mikity.jogl.models.JoglCoordinate;
 import org.mklab.mikity.jogl.models.JoglLocationRotation;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
@@ -18,7 +17,7 @@ import org.mklab.mikity.model.MovableGroup;
  * @author iwamoto
  * @version $Revision$, 2012/02/07
  */
-public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
+public class JoglTransformGroup implements MovableGroup {
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
   /** トランスフォームグループのリスト */
@@ -64,7 +63,8 @@ public class JoglTransformGroup implements JoglCoordinate, MovableGroup {
   }
 
   /**
-   * {@inheritDoc}
+   * GLによる操作(座標変換・描画)を適用します。
+   * @param gl GL
    */
   public void apply(GL gl) {
     gl.glPushMatrix();
