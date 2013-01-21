@@ -4,6 +4,8 @@ import javax.media.opengl.GL;
 
 
 /**
+ * JOGLの座標系を表すクラスです。
+ * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
@@ -31,16 +33,9 @@ public class JoglLocationRotation implements JoglCoordinate {
    */
   public void apply(GL gl) {
     gl.glTranslatef(this.x, this.y, this.z);
-    
-    if (this.rotationX != 0.0f) {
-      gl.glRotatef((float)Math.toDegrees(this.rotationX), 1.0f, 0.0f, 0.0f);
-    }
-    if (this.rotationY != 0.0f) {
-      gl.glRotatef((float)Math.toDegrees(this.rotationY), 0.0f, 1.0f, 0.0f);
-    }
-    if (this.rotationZ != 0.0f) {
-      gl.glRotatef((float)Math.toDegrees(this.rotationZ), 0.0f, 0.0f, 1.0f);
-    }
+    gl.glRotatef((float)Math.toDegrees(this.rotationX), 1.0f, 0.0f, 0.0f);
+    gl.glRotatef((float)Math.toDegrees(this.rotationY), 0.0f, 1.0f, 0.0f);
+    gl.glRotatef((float)Math.toDegrees(this.rotationZ), 0.0f, 0.0f, 1.0f);
   }
 
   /**
