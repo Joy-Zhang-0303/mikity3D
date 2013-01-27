@@ -6,9 +6,10 @@
 package org.mklab.mikity.xml.model;
 
 import javax.vecmath.Matrix4f;
-import javax.vecmath.Vector3f;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+
+import org.mklab.mikity.util.Vector3;
 
 
 /**
@@ -26,7 +27,7 @@ public class XMLTrianglePolygon {
   @XmlElement
   private Rotation _rotation;
 
-  private Vector3f[] _normal = new Vector3f[3];
+  private Vector3[] _normal = new Vector3[3];
 
   private Matrix4f _matrix;
 
@@ -48,7 +49,6 @@ public class XMLTrianglePolygon {
       this._point[i] = new Location();
     }
     this._color = "orange"; //$NON-NLS-1$
-//    this._color = "red"; //$NON-NLS-1$
     this._matrix = new Matrix4f(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
     setNormalVector();
   }
@@ -111,15 +111,15 @@ public class XMLTrianglePolygon {
    * @param loc 位置
    */
   public void setNormalVector(Location loc) {
-    this._normal[0] = new Vector3f(loc.loadX(), loc.loadY(), loc.loadZ());
-    this._normal[1] = new Vector3f(loc.loadX(), loc.loadY(), loc.loadZ());
-    this._normal[2] = new Vector3f(loc.loadX(), loc.loadY(), loc.loadZ());
+    this._normal[0] = new Vector3(loc.loadX(), loc.loadY(), loc.loadZ());
+    this._normal[1] = new Vector3(loc.loadX(), loc.loadY(), loc.loadZ());
+    this._normal[2] = new Vector3(loc.loadX(), loc.loadY(), loc.loadZ());
   }
 
   /**
    * @param nor 法線ベクトル
    */
-  public void setNormalVector(Vector3f[] nor) {
+  public void setNormalVector(Vector3[] nor) {
     this._normal = nor;
   }
 
@@ -127,11 +127,9 @@ public class XMLTrianglePolygon {
    *  
    */
   public void setNormalVector() {
-    Vector3f v1 = new Vector3f(this._point[1].loadX() - this._point[0].loadX(), this._point[1].loadY() - this._point[0].loadY(), this._point[1].loadZ() - this._point[0].loadZ());
-    Vector3f v2 = new Vector3f(this._point[2].loadX() - this._point[1].loadX(), this._point[2].loadY() - this._point[1].loadY(), this._point[2].loadZ() - this._point[1].loadZ());
-    Vector3f n = new Vector3f();
-    n.cross(v1, v2);
-    n.normalize();
+    Vector3 v1 = new Vector3(this._point[1].loadX() - this._point[0].loadX(), this._point[1].loadY() - this._point[0].loadY(), this._point[1].loadZ() - this._point[0].loadZ());
+    Vector3 v2 = new Vector3(this._point[2].loadX() - this._point[1].loadX(), this._point[2].loadY() - this._point[1].loadY(), this._point[2].loadZ() - this._point[1].loadZ());
+    Vector3 n = v1.cross(v2).normalize();
     this._normal[0] = n;
     this._normal[1] = n;
     this._normal[2] = n;
@@ -192,7 +190,7 @@ public class XMLTrianglePolygon {
   /**
    * @return normal vector
    */
-  public Vector3f[] loadNormalVector() {
+  public Vector3[] loadNormalVector() {
     setNormalVector();
     return this._normal;
   }
@@ -209,7 +207,7 @@ public class XMLTrianglePolygon {
    */
   public void deleteTransparent() {
     this._has_transparent = false;
-  } // -- void deleteTransparent()
+  }
 
   /**
    * Sets the value of field 'transparent'.
@@ -228,7 +226,7 @@ public class XMLTrianglePolygon {
    */
   public boolean loadTransparent() {
     return this._transparent;
-  } // -- boolean getTransparent()
+  }
 
   /**
    * Method hasTransparent
@@ -237,5 +235,5 @@ public class XMLTrianglePolygon {
    */
   public boolean hasTransparent() {
     return this._has_transparent;
-  } // -- boolean hasTransparent()
+  }
 }

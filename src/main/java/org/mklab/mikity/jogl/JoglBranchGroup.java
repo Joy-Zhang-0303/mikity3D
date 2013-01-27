@@ -16,14 +16,14 @@ public class JoglBranchGroup implements JoglObject {
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
   /** 座標系 */
-  private List<JoglTransformGroup> transfromGroups;
+  private List<JoglTransformGroup> groups;
 
   /**
    * 新しく生成された<code>JoglBranchGroup</code>オブジェクトを初期化します。
    */
   public JoglBranchGroup() {
     this.objects = new ArrayList<JoglObject>();
-    this.transfromGroups = new ArrayList<JoglTransformGroup>();
+    this.groups = new ArrayList<JoglTransformGroup>();
   }
 
   /**
@@ -38,10 +38,10 @@ public class JoglBranchGroup implements JoglObject {
   /**
    * 座標系を追加します。
    * 
-   * @param tg 座標系
+   * @param group 座標系
    */
-  public void addChild(JoglTransformGroup tg) {
-    this.transfromGroups.add(tg);
+  public void addChild(JoglTransformGroup group) {
+    this.groups.add(group);
   }
 
   /**
@@ -52,7 +52,7 @@ public class JoglBranchGroup implements JoglObject {
       object.apply(gl);
     }
     
-    for (final JoglTransformGroup group : this.transfromGroups) {
+    for (final JoglTransformGroup group : this.groups) {
       group.apply(gl);
     }
 

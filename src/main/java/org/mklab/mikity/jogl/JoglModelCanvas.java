@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.SwingUtilities;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -11,12 +12,10 @@ import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLJPanel;
 import javax.media.opengl.glu.GLU;
-import javax.swing.SwingUtilities;
 
 import org.mklab.mikity.gui.ModelCanvas;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
-
 
 /**
  * JOGL用のキャンバスを表すクラスです。
@@ -25,7 +24,6 @@ import org.mklab.mikity.xml.model.Group;
  * @version $Revision$, 2012/01/11
  */
 public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventListener, MouseListener, MouseMotionListener {
-
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
 
@@ -38,28 +36,42 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   
   private double[] eye = {0.0,0.0, 5.0};
 
-  private float rotx = 0.0f;
-  private float roty = 0.0f;
-  private float s_rotx;
-  private float s_roty;
-  private Point start_point;
-  private Point end_point;
+  /** X軸に関する回転角度 */
+  private float rotationX = 0.0f;
+  /** Y軸に関する回転角度 */
+  private float rotationY = 0.0f;
+  /** X軸方向への移動距離 */
+  private float translationX = 0.0f;
+  /** Y軸方向への移動距離 */
+  private float translationY = 0.0f;
+  /** 拡大縮小率 */
   private float scale = 0.0f;
-  private float s_scale;
-  private float translatex = 0.0f;
-  private float translatey = 0.0f;
-  private float s_translatex;
-  private float s_translatey;
+
+  /** マウスボタンを押した点 */
+  private Point startPoint;
+  /** マウスボタンを離した点 */
+  private Point endPoint;
+
+  /** X軸に関する開始回転角度 */
+  private float startRotationX;
+  /** Y軸に関する終了回転角度 */
+  private float startRotationY;
+  /** X軸方向への移動開始距離 */
+  private float startTranslationX;
+  /** Y軸方向への移動開始距離 */
+  private float startTranslationY;
+  /** 開始拡大縮小率 */
+  private float startScale;
 
   //光源の設定です 
-  private float[] lightPosition0 = {0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源1です 
-  private float[] lightPosition1 = {-0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源2です 
+  private float[] lightLocation0 = {0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源1です 
+  private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源2です 
   private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f}; // 反射光の強さです 
   private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f}; // 拡散光の強さです 
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
 
   /**
-   * Initialize the generated object of {@link JoglModelCanvas}.
+   * 新しく生成された<code>JoglModelCanvas</code>オブジェクトを初期化します。
    */
   public JoglModelCanvas() {
     super(new GLCapabilities());
@@ -96,12 +108,12 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
     gl.glEnable(GL.GL_LIGHT1);
     gl.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, 90.0f);
     
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, this.lightPosition0, 0); // 平行光源を設定します 
+    gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, this.lightPosition1, 0); // 平行光源を設定します 
+    gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, this.lightLocation1, 0); // 平行光源を設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
@@ -122,10 +134,10 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
 
     this.glu.gluLookAt(this.eye[0], this.eye[1], this.eye[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
-    gl.glTranslatef(this.translatey, -this.translatex, 0.0f);
+    gl.glTranslatef(this.translationY, -this.translationX, 0.0f);
     gl.glTranslatef(0.0f, 0.0f, -this.scale);
-    gl.glRotatef(this.rotx, 1.0f, 0.0f, 0.0f);
-    gl.glRotatef(this.roty, 0.0f, 1.0f, 0.0f);
+    gl.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
+    gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
     
     for (final JoglBranchGroup group : this.groups) {
       group.apply(gl);
@@ -173,28 +185,28 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    */
   public void mousePressed(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e) == true) {
-      this.s_rotx = this.rotx;
-      this.s_roty = this.roty;
-      this.start_point = getMousePosition(true);
-      if (this.end_point == null) {
-        this.end_point = new Point(this.start_point);
+      this.startRotationX = this.rotationX;
+      this.startRotationY = this.rotationY;
+      this.startPoint = getMousePosition(true);
+      if (this.endPoint == null) {
+        this.endPoint = new Point(this.startPoint);
       }
     }
     
     if (SwingUtilities.isMiddleMouseButton(e) == true) {
-      this.s_scale = this.scale;
-      this.start_point = getMousePosition(true);
-      if (this.end_point == null) {
-        this.end_point = new Point(this.start_point);
+      this.startScale = this.scale;
+      this.startPoint = getMousePosition(true);
+      if (this.endPoint == null) {
+        this.endPoint = new Point(this.startPoint);
       }
     }
     
     if (SwingUtilities.isRightMouseButton(e) == true) {
-      this.s_translatex = this.translatex;
-      this.s_translatey = this.translatey;
-      this.start_point = getMousePosition(true);
-      if (this.end_point == null) {
-        this.end_point = new Point(this.start_point);
+      this.startTranslationX = this.translationX;
+      this.startTranslationY = this.translationY;
+      this.startPoint = getMousePosition(true);
+      if (this.endPoint == null) {
+        this.endPoint = new Point(this.startPoint);
       }
     }
 
@@ -233,36 +245,36 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    */
   public void mouseDragged(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e)) {
-      this.end_point = getMousePosition(true);
-      if (this.start_point == null) {
-        this.start_point = new Point(this.end_point);
+      this.endPoint = getMousePosition(true);
+      if (this.startPoint == null) {
+        this.startPoint = new Point(this.endPoint);
       }
-      this.rotx = this.s_rotx + (this.end_point.y - this.start_point.y);
-      this.roty = this.s_roty + (this.end_point.x - this.start_point.x);
+      this.rotationX = this.startRotationX + (this.endPoint.y - this.startPoint.y);
+      this.rotationY = this.startRotationY + (this.endPoint.x - this.startPoint.x);
       this.display();
     }
     
     if (SwingUtilities.isMiddleMouseButton(e)) {
-      this.end_point = getMousePosition(true);
-      if (this.start_point == null) {
-        this.start_point = new Point(this.end_point);
+      this.endPoint = getMousePosition(true);
+      if (this.startPoint == null) {
+        this.startPoint = new Point(this.endPoint);
       }
-      final int z = Math.abs(this.end_point.y - this.start_point.y);
-      if (this.end_point.y > this.start_point.y) {
-        this.scale = this.s_scale - z / 25.0f;
+      final int z = Math.abs(this.endPoint.y - this.startPoint.y);
+      if (this.endPoint.y > this.startPoint.y) {
+        this.scale = this.startScale - z / 25.0f;
       } else {
-        this.scale = this.s_scale + z / 25.0f;
+        this.scale = this.startScale + z / 25.0f;
       }
       this.display();
     }
     
     if (SwingUtilities.isRightMouseButton(e) == true) {
-      this.end_point = getMousePosition(true);
-      if (this.start_point == null) {
-        this.start_point = new Point(this.end_point);
+      this.endPoint = getMousePosition(true);
+      if (this.startPoint == null) {
+        this.startPoint = new Point(this.endPoint);
       }
-      this.translatex = this.s_translatex + (this.end_point.y - this.start_point.y) / 100.0f;
-      this.translatey = this.s_translatey + (this.end_point.x - this.start_point.x) / 100.0f;
+      this.translationX = this.startTranslationX + (this.endPoint.y - this.startPoint.y) / 100.0f;
+      this.translationY = this.startTranslationY + (this.endPoint.x - this.startPoint.x) / 100.0f;
       this.display();
     }
   }

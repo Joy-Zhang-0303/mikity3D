@@ -2,6 +2,7 @@ package org.mklab.mikity.jogl;
 
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
+
 import org.mklab.mikity.gui.AbstractModeler;
 import org.mklab.mikity.xml.Jamast;
 

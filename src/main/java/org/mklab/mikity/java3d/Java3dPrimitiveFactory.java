@@ -21,6 +21,7 @@ import javax.vecmath.Vector3f;
 
 import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.util.Util;
+import org.mklab.mikity.util.Vector3;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.Rotation;
@@ -221,7 +222,11 @@ public class Java3dPrimitiveFactory {
       vertices[i] = new Point3f(triangle.loadPointLocationX(i), triangle.loadPointLocationY(i), triangle.loadPointLocationZ(i));
     }
 
-    final Vector3f[] normals = triangle.loadNormalVector();
+    final Vector3[] normals = triangle.loadNormalVector();
+    final Vector3f[] normalsF = new Vector3f[3];
+    normalsF[0] = new Vector3f(normals[0].getX(), normals[0].getY(), normals[0].getZ());
+    normalsF[1] = new Vector3f(normals[1].getX(), normals[1].getY(), normals[1].getZ());
+    normalsF[2] = new Vector3f(normals[2].getX(), normals[2].getY(), normals[2].getZ());
 
     final int[] indices = {0, 1, 2};
     final Color3f[] colors = new Color3f[3];
@@ -233,7 +238,7 @@ public class Java3dPrimitiveFactory {
     IndexedTriangleArray geometry = new IndexedTriangleArray(vertices.length, GeometryArray.COORDINATES | GeometryArray.COLOR_3 | GeometryArray.NORMALS, indices.length);
     geometry.setCoordinates(0, vertices);
     // 法線配列追加
-    geometry.setNormals(0, normals);
+    geometry.setNormals(0, normalsF);
     geometry.setCoordinateIndices(0, indices);
     geometry.setColors(0, colors);
     geometry.setColorIndices(0, colorIndices);
