@@ -5,11 +5,11 @@
  */
 package org.mklab.mikity.xml.model;
 
-import javax.vecmath.Vector3f;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 import org.mklab.mikity.util.Matrix4;
+import org.mklab.mikity.util.Vector3;
 
 
 /**
@@ -27,7 +27,7 @@ public class XMLQuadPolygon {
   @XmlElement
   private Rotation _rotation;
 
-  private Vector3f[] _normal = new Vector3f[4];
+  private Vector3[] _normal = new Vector3[4];
 
   private Matrix4 _matrix;
 
@@ -121,12 +121,10 @@ public class XMLQuadPolygon {
    */
   public void setNormalVector() {
     // 修正
-    Vector3f v1 = new Vector3f(this._point[1].loadX() - this._point[0].loadX(), this._point[1].loadY() - this._point[0].loadY(), this._point[1].loadZ() - this._point[0].loadZ());
-    Vector3f v2 = new Vector3f(this._point[2].loadX() - this._point[1].loadX(), this._point[2].loadY() - this._point[1].loadY(), this._point[2].loadZ() - this._point[1].loadZ());
+    Vector3 v1 = new Vector3(this._point[1].loadX() - this._point[0].loadX(), this._point[1].loadY() - this._point[0].loadY(), this._point[1].loadZ() - this._point[0].loadZ());
+    Vector3 v2 = new Vector3(this._point[2].loadX() - this._point[1].loadX(), this._point[2].loadY() - this._point[1].loadY(), this._point[2].loadZ() - this._point[1].loadZ());
 
-    Vector3f n = new Vector3f();
-    n.cross(v1, v2);
-    n.normalize();
+    Vector3 n = v1.cross(v2).normalize();
 
     this._normal[0] = n;
     this._normal[1] = n;
@@ -137,7 +135,7 @@ public class XMLQuadPolygon {
   /**
    * @param n 法線ベクトル
    */
-  public void setNormalVector(Vector3f[] n) {
+  public void setNormalVector(Vector3[] n) {
     this._normal = n;
   }
 
@@ -145,10 +143,10 @@ public class XMLQuadPolygon {
    * @param loc 位置
    */
   public void setNormalVector(Location loc) {
-    this._normal[0] = new Vector3f(loc.loadX(), loc.loadY(), loc.loadZ());
-    this._normal[1] = new Vector3f(loc.loadX(), loc.loadY(), loc.loadZ());
-    this._normal[2] = new Vector3f(loc.loadX(), loc.loadY(), loc.loadZ());
-    this._normal[3] = new Vector3f(loc.loadX(), loc.loadY(), loc.loadZ());
+    this._normal[0] = new Vector3(loc.loadX(), loc.loadY(), loc.loadZ());
+    this._normal[1] = new Vector3(loc.loadX(), loc.loadY(), loc.loadZ());
+    this._normal[2] = new Vector3(loc.loadX(), loc.loadY(), loc.loadZ());
+    this._normal[3] = new Vector3(loc.loadX(), loc.loadY(), loc.loadZ());
   }
 
   /**
@@ -199,7 +197,7 @@ public class XMLQuadPolygon {
   /**
    * @return normal vector
    */
-  public Vector3f[] loadNormalVector() {
+  public Vector3[] loadNormalVector() {
     setNormalVector();
     return this._normal;
   }

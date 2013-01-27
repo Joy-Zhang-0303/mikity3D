@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.xml.model;
 
-import javax.vecmath.Matrix4f;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 

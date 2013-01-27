@@ -283,7 +283,12 @@ public class Java3dPrimitiveFactory {
       vertices[i] = new Point3f(quad.loadPointLocationX(i), quad.loadPointLocationY(i), quad.loadPointLocationZ(i));
     }
 
-    final Vector3f[] normals = quad.loadNormalVector();
+    final Vector3[] normals = quad.loadNormalVector();
+    final Vector3f[] normalsF = new Vector3f[4];
+    normalsF[0] = new Vector3f(normals[0].getX(), normals[0].getY(), normals[0].getZ());
+    normalsF[1] = new Vector3f(normals[1].getX(), normals[1].getY(), normals[1].getZ());
+    normalsF[2] = new Vector3f(normals[2].getX(), normals[2].getY(), normals[2].getZ());
+    normalsF[3] = new Vector3f(normals[3].getX(), normals[3].getY(), normals[3].getZ());
 
     final int[] indices = {0, 1, 2, 3};
     final Color3[] colors = new Color3[4];
@@ -302,7 +307,7 @@ public class Java3dPrimitiveFactory {
     final IndexedQuadArray geometry = new IndexedQuadArray(vertices.length, GeometryArray.COORDINATES | GeometryArray.COLOR_3 | GeometryArray.NORMALS, indices.length);
     geometry.setCoordinates(0, vertices);
     // 法線配列追加
-    geometry.setNormals(0, normals);
+    geometry.setNormals(0, normalsF);
     geometry.setCoordinateIndices(0, indices);
     geometry.setColors(0, colorsF);
     geometry.setColorIndices(0, colorIndices);
