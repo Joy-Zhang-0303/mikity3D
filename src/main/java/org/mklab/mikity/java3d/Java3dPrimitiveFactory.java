@@ -20,6 +20,7 @@ import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
 import org.mklab.mikity.util.ColorConstant;
+import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.util.Vector3;
 import org.mklab.mikity.xml.model.Group;
@@ -257,7 +258,7 @@ public class Java3dPrimitiveFactory {
     tg.addChild(shape);
     final Location location = triangle.loadLocation();
     final Rotation rotation = triangle.loadRotation();
-    final Matrix4f matrix = triangle.loadMatrix();
+    final Matrix4 matrix = triangle.loadMatrix();
     transform(matrix, tg);
     transform(location, rotation, tg);
     return tg;
@@ -308,7 +309,7 @@ public class Java3dPrimitiveFactory {
     tg.addChild(shape);
     final Location location = quad.loadLocation();
     final Rotation rotation = quad.loadRotation();
-    final Matrix4f matrix = quad.loadMatrix();
+    final Matrix4 matrix = quad.loadMatrix();
     transform(matrix, tg);
     transform(location, rotation, tg);
     return tg;
@@ -343,7 +344,7 @@ public class Java3dPrimitiveFactory {
    * 
    * @param tg
    */
-  private static void transform(Matrix4f matrix, Java3dTransformGroup tg) {
+  private static void transform(Matrix4 matrix, Java3dTransformGroup tg) {
     if (matrix != null) {
       final Matrix3f matrix3 = new Matrix3f();
       matrix3.setElement(0, 0, matrix.getElement(0, 3));
@@ -356,7 +357,7 @@ public class Java3dPrimitiveFactory {
       matrix3.setElement(2, 1, matrix.getElement(2, 1));
       matrix3.setElement(2, 2, matrix.getElement(2, 2));
       tg.rotate(matrix3);
-      tg.translate(new Vector3f(matrix.getElement(0, 3) / matrix.getScale(), matrix.getElement(1, 33) / matrix.getScale(), matrix.getElement(2, 3) / matrix.getScale()));
+      tg.translate(new Vector3f(matrix.getElement(0, 3) / matrix.getScale(), matrix.getElement(1, 3) / matrix.getScale(), matrix.getElement(2, 3) / matrix.getScale()));
     }
   }
 

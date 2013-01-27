@@ -11,6 +11,7 @@ import java.util.List;
 import javax.vecmath.Matrix4f;
 import javax.xml.bind.annotation.XmlElement;
 
+import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.XMLQuadPolygon;
@@ -39,7 +40,7 @@ public class Mesh {
    */
   private Group blenderGroup;
 
-  private Matrix4f matrix;
+  private Matrix4 matrix;
 
   /**
    * コンストラクタ
@@ -50,7 +51,7 @@ public class Mesh {
     this.triangles = new Triangle();
     this.polylist = new Polylist();
     this.blenderGroup = new Group();
-    this.matrix = new Matrix4f(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 
   /**
@@ -129,7 +130,7 @@ public class Mesh {
    */
   public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes, String name) {
     final List<String> nameList = library_visual_scenes.getNodeNames();
-    final List<Matrix4f> matrixList = library_visual_scenes.getMatrices();
+    final List<Matrix4> matrixList = library_visual_scenes.getMatrices();
     for (int i = 0; i < nameList.size(); i++) {
       if (nameList.get(i) != null && nameList.get(i).equals(name)) {
         this.matrix = matrixList.get(i);

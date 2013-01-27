@@ -5,10 +5,11 @@
  */
 package org.mklab.mikity.xml.model;
 
-import javax.vecmath.Matrix4f;
 import javax.vecmath.Vector3f;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+
+import org.mklab.mikity.util.Matrix4;
 
 
 /**
@@ -28,7 +29,7 @@ public class XMLQuadPolygon {
 
   private Vector3f[] _normal = new Vector3f[4];
 
-  private Matrix4f _matrix;
+  private Matrix4 _matrix;
 
   /**
    * Field _transparent
@@ -49,7 +50,7 @@ public class XMLQuadPolygon {
     }
     this._color = "orange"; //$NON-NLS-1$
 //    this._color = "blue"; //$NON-NLS-1$
-    this._matrix = new Matrix4f(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    this._matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 
   /**
@@ -111,7 +112,7 @@ public class XMLQuadPolygon {
   /**
    * @param matrix 行列
    */
-  public void setMatrix(Matrix4f matrix) {
+  public void setMatrix(Matrix4 matrix) {
     this._matrix = matrix;
   }
 
@@ -206,7 +207,7 @@ public class XMLQuadPolygon {
   /**
    * @return matrix
    */
-  public Matrix4f loadMatrix() {
+  public Matrix4 loadMatrix() {
     return this._matrix;
   }
 

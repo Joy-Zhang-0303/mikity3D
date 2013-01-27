@@ -6,13 +6,14 @@ import javax.vecmath.Matrix4f;
 
 import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
-import org.mklab.mikity.jogl.models.JoglCylinder;
 import org.mklab.mikity.jogl.models.JoglCoordinate;
+import org.mklab.mikity.jogl.models.JoglCylinder;
 import org.mklab.mikity.jogl.models.JoglQuadPolygon;
 import org.mklab.mikity.jogl.models.JoglSphere;
 import org.mklab.mikity.jogl.models.JoglTrianglePolygon;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.Location;
 import org.mklab.mikity.xml.model.Rotation;
@@ -270,7 +271,7 @@ public class JoglPrimitiveFactory {
       points[i][1] = polygon.loadPointLocationY(i);
       points[i][2] = polygon.loadPointLocationZ(i);
     }
-    final Matrix4f matrix = polygon.loadMatrix();
+    final Matrix4 matrix = polygon.loadMatrix();
     final String color = polygon.loadColor();
     
     final JoglTrianglePolygon child = new JoglTrianglePolygon();
@@ -341,7 +342,7 @@ public class JoglPrimitiveFactory {
       points[i][1] = polygon.loadPointLocationY(i);
       points[i][2] = polygon.loadPointLocationZ(i);
     }
-    final Matrix4f matrix = polygon.loadMatrix();
+    final Matrix4 matrix = polygon.loadMatrix();
     final String color = polygon.loadColor();
     
     final JoglQuadPolygon child = new JoglQuadPolygon();

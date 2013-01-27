@@ -7,9 +7,9 @@ package org.mklab.mikity.xml.blender;
 
 import java.util.List;
 
-import javax.vecmath.Matrix4f;
 import javax.xml.bind.annotation.XmlElement;
 
+import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.xml.model.Group;
 
 
@@ -45,7 +45,7 @@ public class Library_visual_scenes {
    * 
    * @return　visual_scene.getMatrixList()　変換行列が追加されているリスト
    */
-  public List<Matrix4f> getMatrices() {
+  public List<Matrix4> getMatrices() {
     return this.visual_scene.getTransformMatrices();
   }
 

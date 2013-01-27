@@ -11,6 +11,7 @@ import java.util.List;
 import javax.vecmath.Matrix4f;
 import javax.xml.bind.annotation.XmlElement;
 
+import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.xml.model.Group;
 
 
@@ -27,7 +28,7 @@ public class Visual_scene {
   /** ノードの名前  */
   private List<String> nodeNames;
   /** 変換行列 */
-  private List<Matrix4f> transformMatrices;
+  private List<Matrix4> transformMatrices;
 
   private Group rootGroup;
 
@@ -37,7 +38,7 @@ public class Visual_scene {
   public Visual_scene() {
     this.nodes = new ArrayList<Node>();
     this.nodeNames = new ArrayList<String>();
-    this.transformMatrices = new ArrayList<Matrix4f>();
+    this.transformMatrices = new ArrayList<Matrix4>();
     this.rootGroup = new Group();
   }
 
@@ -58,7 +59,7 @@ public class Visual_scene {
    * 
    * @return　matrixList　変換行列が追加されているリスト
    */
-  public List<Matrix4f> getTransformMatrices() {
+  public List<Matrix4> getTransformMatrices() {
     for (final Node node :this.nodes) {
       this.transformMatrices.add(node.getTransformMatrix());
     }

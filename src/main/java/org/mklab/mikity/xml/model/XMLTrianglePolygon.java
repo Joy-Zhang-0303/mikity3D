@@ -9,6 +9,7 @@ import javax.vecmath.Matrix4f;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
+import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.util.Vector3;
 
 
@@ -29,7 +30,7 @@ public class XMLTrianglePolygon {
 
   private Vector3[] _normal = new Vector3[3];
 
-  private Matrix4f _matrix;
+  private Matrix4 _matrix;
 
   /**
    * Field _transparent
@@ -49,7 +50,7 @@ public class XMLTrianglePolygon {
       this._point[i] = new Location();
     }
     this._color = "orange"; //$NON-NLS-1$
-    this._matrix = new Matrix4f(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    this._matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
     setNormalVector();
   }
 
@@ -138,7 +139,7 @@ public class XMLTrianglePolygon {
   /**
    * @param matrix 行列
    */
-  public void setMatrix(Matrix4f matrix) {
+  public void setMatrix(Matrix4 matrix) {
     this._matrix = matrix;
   }
 
@@ -198,7 +199,7 @@ public class XMLTrianglePolygon {
   /**
    * @return matrix
    */
-  public Matrix4f loadMatrix() {
+  public Matrix4 loadMatrix() {
     return this._matrix;
   }
 

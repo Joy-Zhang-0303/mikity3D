@@ -12,6 +12,7 @@ import javax.vecmath.Matrix4f;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
+import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.LinkData;
 
@@ -39,7 +40,7 @@ public class Node {
   @XmlElement
   private List<String> rotate;
 
-  private List<Matrix4f> matrixNodes;
+  private List<Matrix4> matrixNodes;
 
   private String geometryURL;
 
@@ -48,7 +49,7 @@ public class Node {
   /** 列ベクトルリスト */
   private List<String> vectors;
   /** 変換行列 */
-  private Matrix4f matrix4f;
+  private Matrix4 matrix4f;
 
   /** translateの番号記録用 */
   private float rotateNum[][] = {{(float)0.0,(float)0.0,(float)0.0,(float)0.0},{(float)0.0,(float)0.0,(float)0.0,(float)0.0},{(float)0.0,(float)0.0,(float)0.0,(float)0.0}};
@@ -73,8 +74,8 @@ public class Node {
     this.instance_geometry = new Instance_Geometry();
     this.nodes = new ArrayList<Node>();
     this.vectors = new ArrayList<String>();
-    this.matrix4f = new Matrix4f();
-    this.matrixNodes = new ArrayList<Matrix4f>();
+    this.matrix4f = new Matrix4();
+    this.matrixNodes = new ArrayList<Matrix4>();
     this.group = new Group();
   }
 
@@ -99,7 +100,7 @@ public class Node {
    * 
    * @return 変換行列
    */
-  public Matrix4f getTransformMatrix() {
+  public Matrix4 getTransformMatrix() {
     return this.matrix4f;
   }
 
@@ -358,13 +359,13 @@ public class Node {
         LinkData[] linkdata = new LinkData[3];
         linkdata[0] = new LinkData();
         linkdata[0].setTargetName("locationX"); //$NON-NLS-1$
-        linkdata[0].setInitialValue(this.matrix4f.m03);
+        linkdata[0].setInitialValue(this.matrix4f.getElement(0,3)); // m03
         linkdata[1] = new LinkData();
         linkdata[1].setTargetName("locationY"); //$NON-NLS-1$
-        linkdata[1].setInitialValue(this.matrix4f.m13);
+        linkdata[1].setInitialValue(this.matrix4f.getElement(1,3)); // m13
         linkdata[2] = new LinkData();
         linkdata[2].setTargetName("locationZ"); //$NON-NLS-1$
-        linkdata[2].setInitialValue(this.matrix4f.m23);
+        linkdata[2].setInitialValue(this.matrix4f.getElement(2,3)); // m23
         this.group.setLinkData(linkdata);
       }
     }
