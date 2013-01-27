@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.eclipse.swt.SWTException;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -42,13 +41,10 @@ public class ResourceManager {
     if (images.containsKey(key)) {
       return images.get(key);
     }
-    try {
-      final Image img = new Image(null, ResourceManager.class.getResourceAsStream("/" + key)); //$NON-NLS-1$
-      images.put(key, img);
-      return img;
-    } catch (SWTException e) {
-      throw new RuntimeException(e);
-    }
+
+    final Image img = new Image(null, ResourceManager.class.getResourceAsStream("/" + key)); //$NON-NLS-1$
+    images.put(key, img);
+    return img;
   }
 
   /**

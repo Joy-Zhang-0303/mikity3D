@@ -11,6 +11,7 @@ import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
 import org.mklab.mikity.gui.ModelCanvas;
+import org.mklab.mikity.util.Color3;
 import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.JamastConfig;
@@ -44,7 +45,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   private SimpleUniverse universe;
 
   /** 背景色 */
-  private Color3f backgroundColor;
+  private Color3 backgroundColor;
   
   /** 光源の位置 */
   private Vector3f lightLocation = new Vector3f(0.2f, -0.8f, -0.8f);
@@ -115,11 +116,13 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    * @param color 背景色
    * @return 背景ノード
    */
-  private BranchGroup createBackground(final Color3f color) {
+  private BranchGroup createBackground(final Color3 color) {
     final BranchGroup group = new BranchGroup();
     final double radius = Double.POSITIVE_INFINITY;
 
-    final Background background = new Background(color);
+    final Color3f colorF = new Color3f(color.getR(), color.getG(), color.getB());
+    
+    final Background background = new Background(colorF);
 
     final BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), radius);
     background.setApplicationBounds(bounds);

@@ -2,8 +2,6 @@ package org.mklab.mikity.jogl;
 
 import java.util.List;
 
-import javax.vecmath.Matrix4f;
-
 import org.mklab.mikity.jogl.models.JoglBox;
 import org.mklab.mikity.jogl.models.JoglCone;
 import org.mklab.mikity.jogl.models.JoglCoordinate;

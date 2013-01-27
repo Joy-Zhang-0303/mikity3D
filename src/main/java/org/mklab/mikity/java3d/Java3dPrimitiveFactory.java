@@ -15,10 +15,10 @@ import javax.media.j3d.TransparencyAttributes;
 import javax.vecmath.AxisAngle4f;
 import javax.vecmath.Color3f;
 import javax.vecmath.Matrix3f;
-import javax.vecmath.Matrix4f;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
+import org.mklab.mikity.util.Color3;
 import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.util.Util;
@@ -230,10 +230,16 @@ public class Java3dPrimitiveFactory {
     normalsF[2] = new Vector3f(normals[2].getX(), normals[2].getY(), normals[2].getZ());
 
     final int[] indices = {0, 1, 2};
-    final Color3f[] colors = new Color3f[3];
+    final Color3[] colors = new Color3[3];
     colors[0] = ColorConstant.getColor(triangle.loadColor());
     colors[1] = ColorConstant.getColor(triangle.loadColor());
     colors[2] = ColorConstant.getColor(triangle.loadColor());
+    final Color3f[] colorsF = new Color3f[4];
+    colorsF[0] = new Color3f(colors[0].getR(), colors[0].getG(), colors[0].getB());
+    colorsF[1] = new Color3f(colors[1].getR(), colors[1].getG(), colors[1].getB());
+    colorsF[2] = new Color3f(colors[2].getR(), colors[2].getG(), colors[2].getB());
+    colorsF[3] = new Color3f(colors[3].getR(), colors[3].getG(), colors[3].getB());
+    
     final int[] colorIndices = {0, 1, 2};
 
     IndexedTriangleArray geometry = new IndexedTriangleArray(vertices.length, GeometryArray.COORDINATES | GeometryArray.COLOR_3 | GeometryArray.NORMALS, indices.length);
@@ -241,7 +247,7 @@ public class Java3dPrimitiveFactory {
     // 法線配列追加
     geometry.setNormals(0, normalsF);
     geometry.setCoordinateIndices(0, indices);
-    geometry.setColors(0, colors);
+    geometry.setColors(0, colorsF);
     geometry.setColorIndices(0, colorIndices);
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     final Shape3D shape = new Shape3D(geometry);
@@ -280,11 +286,17 @@ public class Java3dPrimitiveFactory {
     final Vector3f[] normals = quad.loadNormalVector();
 
     final int[] indices = {0, 1, 2, 3};
-    final Color3f[] colors = new Color3f[4];
+    final Color3[] colors = new Color3[4];
     colors[0] = ColorConstant.getColor(quad.loadColor());
     colors[1] = ColorConstant.getColor(quad.loadColor());
     colors[2] = ColorConstant.getColor(quad.loadColor());
     colors[3] = ColorConstant.getColor(quad.loadColor());
+    final Color3f[] colorsF = new Color3f[4];
+    colorsF[0] = new Color3f(colors[0].getR(), colors[0].getG(), colors[0].getB());
+    colorsF[1] = new Color3f(colors[1].getR(), colors[1].getG(), colors[1].getB());
+    colorsF[2] = new Color3f(colors[2].getR(), colors[2].getG(), colors[2].getB());
+    colorsF[3] = new Color3f(colors[3].getR(), colors[3].getG(), colors[3].getB());
+    
     final int[] colorIndices = {0, 1, 2, 3};
 
     final IndexedQuadArray geometry = new IndexedQuadArray(vertices.length, GeometryArray.COORDINATES | GeometryArray.COLOR_3 | GeometryArray.NORMALS, indices.length);
@@ -292,7 +304,7 @@ public class Java3dPrimitiveFactory {
     // 法線配列追加
     geometry.setNormals(0, normals);
     geometry.setCoordinateIndices(0, indices);
-    geometry.setColors(0, colors);
+    geometry.setColors(0, colorsF);
     geometry.setColorIndices(0, colorIndices);
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     final Shape3D shape = new Shape3D(geometry);
@@ -369,7 +381,9 @@ public class Java3dPrimitiveFactory {
    */
   private static Material getMaterial(String colorName) {
     final Material material = new Material();
-    material.setDiffuseColor(new Color3f(ColorConstant.getColor(colorName)));
+    final Color3 color = ColorConstant.getColor(colorName);
+    final Color3f colorF = new Color3f(color.getR(), color.getG(), color.getB());
+    material.setDiffuseColor(colorF);
     return material;
   }
 }
