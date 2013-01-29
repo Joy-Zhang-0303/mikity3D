@@ -1,4 +1,4 @@
-package org.mklab.mikity.action.toolbar;
+package org.mklab.mikity.view.action.toolbar;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.gui.ModelingWindow;

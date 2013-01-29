@@ -1,36 +1,36 @@
-package org.mklab.mikity.action.toolbar;
+package org.mklab.mikity.view.action.toolbar;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.gui.ModelingWindow;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.XMLCylinder;
+import org.mklab.mikity.xml.model.XMLCone;
 
 
 /**
- * マウス操作による円柱プリミティブ作成のためのツールバーを作成するクラスです。
+ * マウス操作による円錐プリミティブ作成のためのツールバーを作成するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.2 $.2005/11/21
  */
-public class CylinderToolBarAction extends Action {
+public class ConeToolBarAction extends Action {
+
   /** プログラム実行画面クラスMainWindowのフィールド  */
   private ModelingWindow window;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>ConeToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    */
-  public CylinderToolBarAction(final ModelingWindow window) {
+  public ConeToolBarAction(final ModelingWindow window) {
     this.window = window;
-    setText("Cylinder"); //$NON-NLS-1$
+    setText("Cone"); //$NON-NLS-1$
   }
 
   /**
-   * 追加した円柱の情報をキャンバスとツリーに追加します。
+   * 追加した円錐の情報をキャンバスとツリーに追加します。
    */
-  private void updateCylinder() {
+  private void updateCone() {
     this.window.fillTree();
     this.window.createViewer();
   }
@@ -42,16 +42,15 @@ public class CylinderToolBarAction extends Action {
    */
   @Override
   public void run() {
-    final XMLCylinder cylinder = new XMLCylinder();    
-    cylinder.setR(0.10f);
-    cylinder.setHeight(0.10f);
-    cylinder.setDiv(20);
-    cylinder.setColor("blue"); //$NON-NLS-1$
+    final XMLCone cone = new XMLCone();
+    cone.setR(0.10f);
+    cone.setHeight(0.10f);
+    cone.setDiv(20);
+    cone.setColor("green"); //$NON-NLS-1$
     
     final Jamast root = this.window.getRoot();
     final Group rootGroup = root.loadModel(0).loadGroup(0);
-    rootGroup.addXMLCylinder(cylinder);
-    
-    updateCylinder();
+    rootGroup.addXMLCone(cone);
+    updateCone();
   }
 }

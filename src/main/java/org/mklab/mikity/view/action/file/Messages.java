@@ -1,4 +1,4 @@
-package org.mklab.mikity.action;
+package org.mklab.mikity.view.action.file;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -10,18 +10,21 @@ import java.util.ResourceBundle;
  */
 public class Messages {
 
-  private static final String BUNDLE_NAME = "org.mklab.mikity.action.messages"; //$NON-NLS-1$
+  private static final String BUNDLE_NAME = "org.mklab.mikity.action.file.messages"; //$NON-NLS-1$
 
   private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
+  /**
+   * 新しく生成された<code>Messages</code>オブジェクトを初期化します。
+   * 
+   */
   private Messages() {
   //
   }
 
   /**
-   * キーに対応する文字列を返します。
    * @param key キー
-   * @return キーに対応する文字列
+   * @return key メッセージ
    */
   public static String getString(String key) {
     try {
