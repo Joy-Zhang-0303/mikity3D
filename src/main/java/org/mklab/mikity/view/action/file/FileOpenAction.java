@@ -11,7 +11,7 @@ import javax.xml.bind.JAXBException;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
-import org.mklab.mikity.gui.ModelingWindow;
+import org.mklab.mikity.view.gui.ModelingWindow;
 
 
 /**

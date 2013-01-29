@@ -9,7 +9,7 @@ import java.io.IOException;
 import javax.xml.bind.JAXBException;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.gui.ModelingWindow;
+import org.mklab.mikity.view.gui.ModelingWindow;
 
 
 /**

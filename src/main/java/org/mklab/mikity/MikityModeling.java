@@ -6,7 +6,7 @@
 package org.mklab.mikity;
 
 import org.eclipse.swt.widgets.Display;
-import org.mklab.mikity.gui.ModelingWindow;
+import org.mklab.mikity.view.gui.ModelingWindow;
 
 /**
  * モデリングツールのメインクラスです。

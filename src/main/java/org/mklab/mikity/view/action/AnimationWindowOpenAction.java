@@ -6,9 +6,9 @@
 package org.mklab.mikity.view.action;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.gui.AnimationWindow;
-import org.mklab.mikity.gui.ModelingWindow;
-import org.mklab.mikity.gui.SceneGraphTree;
+import org.mklab.mikity.view.gui.AnimationWindow;
+import org.mklab.mikity.view.gui.ModelingWindow;
+import org.mklab.mikity.view.gui.SceneGraphTree;
 
 
 /**

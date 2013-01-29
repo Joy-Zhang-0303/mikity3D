@@ -11,7 +11,7 @@ import java.io.IOException;
 import javax.xml.bind.JAXBException;
 
 import org.eclipse.swt.widgets.Display;
-import org.mklab.mikity.gui.AnimationWindow;
+import org.mklab.mikity.view.gui.AnimationWindow;
 
 /**
  * アニメーションツールのメインクラスです。
