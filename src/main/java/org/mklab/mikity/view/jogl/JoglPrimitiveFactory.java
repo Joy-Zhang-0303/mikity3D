@@ -2,8 +2,8 @@ package org.mklab.mikity.view.jogl;
 
 import java.util.List;
 
-import org.mklab.mikity.model.CoordinateParameter;
-import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.model.CoordinateParameter;
+import org.mklab.mikity.model.model.DHParameter;
 import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.view.jogl.models.JoglBox;
 import org.mklab.mikity.view.jogl.models.JoglCone;

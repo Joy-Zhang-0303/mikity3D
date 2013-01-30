@@ -10,9 +10,9 @@ import javax.vecmath.Matrix3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 
-import org.mklab.mikity.model.CoordinateParameter;
-import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.MovableGroup;
+import org.mklab.mikity.model.model.CoordinateParameter;
+import org.mklab.mikity.model.model.DHParameter;
+import org.mklab.mikity.model.model.MovableGroup;
 
 
 /**

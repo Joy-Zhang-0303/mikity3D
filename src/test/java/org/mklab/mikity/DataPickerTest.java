@@ -11,10 +11,10 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.DHParameterType;
-import org.mklab.mikity.picker.ClosenessDataPicker;
-import org.mklab.mikity.picker.DataPicker;
+import org.mklab.mikity.model.model.DHParameter;
+import org.mklab.mikity.model.model.DHParameterType;
+import org.mklab.mikity.model.picker.ClosenessDataPicker;
+import org.mklab.mikity.model.picker.DataPicker;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 

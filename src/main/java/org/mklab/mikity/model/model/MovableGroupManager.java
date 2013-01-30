@@ -3,15 +3,15 @@
  * Copyright (C) 2005 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.model;
+package org.mklab.mikity.model.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mklab.mikity.picker.ClosenessDataPicker;
-import org.mklab.mikity.picker.DataPicker;
+import org.mklab.mikity.model.picker.ClosenessDataPicker;
+import org.mklab.mikity.model.picker.DataPicker;
 import org.mklab.mikity.xml.Jamast;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.LinkData;

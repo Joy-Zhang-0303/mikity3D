@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.picker;
+package org.mklab.mikity.model.picker;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

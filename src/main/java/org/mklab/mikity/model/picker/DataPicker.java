@@ -3,12 +3,12 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.picker;
+package org.mklab.mikity.model.picker;
 
-import org.mklab.mikity.model.CoordinateParameter;
-import org.mklab.mikity.model.CoordinateParameterType;
-import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.DHParameterType;
+import org.mklab.mikity.model.model.CoordinateParameter;
+import org.mklab.mikity.model.model.CoordinateParameterType;
+import org.mklab.mikity.model.model.DHParameter;
+import org.mklab.mikity.model.model.DHParameterType;
 
 
 /**
