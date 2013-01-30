@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.model.model.MovableGroupManager;
-import org.mklab.mikity.resource.ResourceManager;
+import org.mklab.mikity.resource.ImageManager;
 import org.mklab.mikity.task.AnimationTask;
 import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.view.jogl.JoglModelCanvas;
@@ -221,13 +221,13 @@ public class AnimationWindow extends ApplicationWindow {
     final Composite playerComp = new Composite(otherController, SWT.NONE);
     playerComp.setLayout(new GridLayout(4, false));
     final Button playbackButton = new Button(playerComp, SWT.NONE);
-    playbackButton.setImage(ResourceManager.getImage(ResourceManager.PLAYBACK));
+    playbackButton.setImage(ImageManager.getImage(ImageManager.PLAYBACK));
     final Button stopButton = new Button(playerComp, SWT.NONE);
-    stopButton.setImage(ResourceManager.getImage(ResourceManager.STOP));
+    stopButton.setImage(ImageManager.getImage(ImageManager.STOP));
     final Button slowerButton = new Button(playerComp, SWT.NONE);
-    slowerButton.setImage(ResourceManager.getImage(ResourceManager.SLOW));
+    slowerButton.setImage(ImageManager.getImage(ImageManager.SLOW));
     final Button fasterButton = new Button(playerComp, SWT.NONE);
-    fasterButton.setImage(ResourceManager.getImage(ResourceManager.FASTER));
+    fasterButton.setImage(ImageManager.getImage(ImageManager.FASTER));
 
     // timeLabel.setText("" + task.getCurrentTime());
 

@@ -13,12 +13,12 @@ import org.eclipse.swt.graphics.Image;
 
 
 /**
- * アイコンなどのリソースを管理するクラスです。
+ * 画像を管理するクラスです。
  * 
  * @author miki
  * @version $Revision: 1.4 $.2005/01/25
  */
-public class ResourceManager {
+public class ImageManager {
 
   private static Map<String, Image> images = new HashMap<String, Image>();
 
@@ -32,31 +32,33 @@ public class ResourceManager {
   public static final String SLOW = "slow.gif"; //$NON-NLS-1$
 
   /**
-   * リソース名で指定された画像を返します。 このリソースはクラスパス直下のresourceディレクトリ内を検索します。 リソースが登録されていない場合には新規にリソースを読み込み {@link Map}に登録します。 Mapに登録されている場合にはそのリソースが返されます。
+   * リソース名で指定された画像を返します。
    * 
-   * @param key リソース名
+   * このリソースはクラスパス直下のresourceディレクトリ内を検索します。 リソースが登録されていない場合には新規にリソースを読み込み {@link Map}に登録します。 Mapに登録されている場合にはそのリソースが返されます。
+   * 
+   * @param name リソース名
    * @return リソース名で指定された画像
    */
-  public static Image getImage(String key) {
-    if (images.containsKey(key)) {
-      return images.get(key);
+  public static Image getImage(String name) {
+    if (images.containsKey(name)) {
+      return images.get(name);
     }
 
-    final Image img = new Image(null, ResourceManager.class.getResourceAsStream("/" + key)); //$NON-NLS-1$
-    images.put(key, img);
-    return img;
+    final Image image = new Image(null, ImageManager.class.getResourceAsStream("/" + name)); //$NON-NLS-1$
+    images.put(name, image);
+    return image;
   }
 
   /**
    * リソースを全て破棄します。
    */
   public static void dispose() {
-    for (Iterator<String> iter = images.keySet().iterator(); iter.hasNext();) {
-      final Image key = images.get(iter.next());
-      if (!key.isDisposed()) {
-        key.dispose();
+    for (Iterator<String> iterator = images.keySet().iterator(); iterator.hasNext();) {
+      final Image name = images.get(iterator.next());
+      if (!name.isDisposed()) {
+        name.dispose();
       }
-      images.remove(key);
+      images.remove(name);
     }
   }
 
