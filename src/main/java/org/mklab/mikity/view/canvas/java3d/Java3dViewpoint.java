@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.java3d;
+package org.mklab.mikity.view.canvas.java3d;
 
 //**********************************************************************
 //MyViewpointクラス                                       *

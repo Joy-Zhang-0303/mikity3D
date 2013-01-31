@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.jogl.primitive;
+package org.mklab.mikity.view.canvas.jogl.primitive;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -11,7 +11,7 @@ import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
 
-import org.mklab.mikity.view.jogl.JoglObject;
+import org.mklab.mikity.view.canvas.jogl.JoglObject;
 
 
 /**

@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.jogl.primitive;
+package org.mklab.mikity.view.canvas.jogl.primitive;
 
 import java.nio.FloatBuffer;
 

@@ -1,8 +1,7 @@
-package org.mklab.mikity.view.jogl;
+package org.mklab.mikity.view.canvas.java3d;
 
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
-
 import org.mklab.mikity.model.xml.Jamast;
 import org.mklab.mikity.view.gui.AbstractModeler;
 
@@ -11,17 +10,17 @@ import org.mklab.mikity.view.gui.AbstractModeler;
  * @author iwamoto
  * @version $Revision$, 2012/01/12
  */
-public class JoglModeler extends AbstractModeler {
-  private JoglModelCanvas canvas;
+public class Java3dModeler extends AbstractModeler {
+  /** キャンバス */
+  private Java3dModelCanvas canvas;
   
   /**
-   * Initialize the generated object of {@link JoglModeler}.
-   * 
-   * @param parent ツリーの親
+   * Initialize the generated object of {@link Java3dModeler}.
+   * @param parent 親
    * @param style スタイル
-   * @param root ツリーのルート
+   * @param root ルート
    */
-  public JoglModeler(Composite parent, int style, Jamast root) {
+  public Java3dModeler(Composite parent, int style, Jamast root) {
     super(parent, style, root);
   }
 
@@ -30,8 +29,8 @@ public class JoglModeler extends AbstractModeler {
    */
   @Override
   public void createViewer() {
-    org.mklab.mikity.model.xml.model.Group[] groups = this.tree.getModel().loadGroup();
-    this.canvas.setChild(groups);
+    final org.mklab.mikity.model.xml.model.Group[] groups = this.tree.getModel().loadGroup();
+    this.canvas.setChild(groups); 
   }
 
   /**
@@ -41,8 +40,7 @@ public class JoglModeler extends AbstractModeler {
   public void createModelCanvas(Composite viewerComp) {
     // 何もないキャンバスを作る
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);
-    this.canvas = new JoglModelCanvas(this.root);
-    this.awtFrame.add(this.canvas); 
+    this.canvas = new Java3dModelCanvas(this.root);
+    this.awtFrame.add(this.canvas);
   }
-
 }

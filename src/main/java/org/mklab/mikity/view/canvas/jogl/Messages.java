@@ -3,7 +3,7 @@
  * Copyright (C) 2013 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.jogl;
+package org.mklab.mikity.view.canvas.jogl;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.jogl;
+package org.mklab.mikity.view.canvas.jogl;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;

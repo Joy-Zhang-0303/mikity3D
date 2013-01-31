@@ -23,6 +23,7 @@ import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.JamastFactory;
 import org.mklab.mikity.model.xml.config.DataUnit;
 import org.mklab.mikity.model.xml.config.ModelUnit;
+import org.mklab.mikity.view.canvas.jogl.JoglModeler;
 import org.mklab.mikity.view.gui.action.AnimationWindowOpenAction;
 import org.mklab.mikity.view.gui.action.ConfigDialogOpenAction;
 import org.mklab.mikity.view.gui.action.file.FileExitAction;
@@ -37,7 +38,6 @@ import org.mklab.mikity.view.gui.action.toolbar.CylinderToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.QuadPolygonToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.TrianglePolygonToolBarAction;
-import org.mklab.mikity.view.jogl.JoglModeler;
 
 /**
  * モデリングを行うウィンドウを表すクラスです。

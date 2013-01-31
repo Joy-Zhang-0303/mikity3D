@@ -3,7 +3,7 @@
  * Copyright (C) 2004 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.java3d;
+package org.mklab.mikity.view.canvas.java3d;
 
 import javax.media.j3d.Appearance;
 import javax.media.j3d.GeometryArray;
