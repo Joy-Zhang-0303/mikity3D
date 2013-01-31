@@ -15,6 +15,16 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.mklab.mikity.model.xml.JamastModel;
+import org.mklab.mikity.model.xml.model.Group;
+import org.mklab.mikity.model.xml.model.LinkData;
+import org.mklab.mikity.model.xml.model.XMLBox;
+import org.mklab.mikity.model.xml.model.XMLCone;
+import org.mklab.mikity.model.xml.model.XMLConnector;
+import org.mklab.mikity.model.xml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.model.XMLSphere;
+import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
 import org.mklab.mikity.view.gui.connector.ConnectorManager;
 import org.mklab.mikity.view.gui.connector.ConnectorSelector;
 import org.mklab.mikity.view.gui.connector.PrimitiveConnectorMediator;
@@ -28,16 +38,6 @@ import org.mklab.mikity.view.gui.dialog.EditTrianglePolygonDialog;
 import org.mklab.mikity.view.gui.dialog.GroupConfigDialogCoordinateParameter;
 import org.mklab.mikity.view.gui.dialog.GroupConfigDialogDHParameter;
 import org.mklab.mikity.view.gui.dnd.DragAndDropEnabler;
-import org.mklab.mikity.xml.JamastModel;
-import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.LinkData;
-import org.mklab.mikity.xml.model.XMLBox;
-import org.mklab.mikity.xml.model.XMLCone;
-import org.mklab.mikity.xml.model.XMLConnector;
-import org.mklab.mikity.xml.model.XMLCylinder;
-import org.mklab.mikity.xml.model.XMLQuadPolygon;
-import org.mklab.mikity.xml.model.XMLSphere;
-import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 
 /**

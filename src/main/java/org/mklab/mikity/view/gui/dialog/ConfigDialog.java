@@ -16,13 +16,13 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.mklab.mikity.model.xml.JamastConfig;
+import org.mklab.mikity.model.xml.config.Background;
+import org.mklab.mikity.model.xml.config.DataUnit;
+import org.mklab.mikity.model.xml.config.Light;
+import org.mklab.mikity.model.xml.config.ModelUnit;
+import org.mklab.mikity.model.xml.config.View;
 import org.mklab.mikity.view.gui.ParameterInputBox;
-import org.mklab.mikity.xml.JamastConfig;
-import org.mklab.mikity.xml.config.Background;
-import org.mklab.mikity.xml.config.DataUnit;
-import org.mklab.mikity.xml.config.Light;
-import org.mklab.mikity.xml.config.ModelUnit;
-import org.mklab.mikity.xml.config.View;
 
 
 /**

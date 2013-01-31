@@ -4,6 +4,15 @@ import java.util.List;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.xml.model.Group;
+import org.mklab.mikity.model.xml.model.Location;
+import org.mklab.mikity.model.xml.model.Rotation;
+import org.mklab.mikity.model.xml.model.XMLBox;
+import org.mklab.mikity.model.xml.model.XMLCone;
+import org.mklab.mikity.model.xml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.model.XMLSphere;
+import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.view.jogl.models.JoglBox;
 import org.mklab.mikity.view.jogl.models.JoglCone;
@@ -12,15 +21,6 @@ import org.mklab.mikity.view.jogl.models.JoglCylinder;
 import org.mklab.mikity.view.jogl.models.JoglQuadPolygon;
 import org.mklab.mikity.view.jogl.models.JoglSphere;
 import org.mklab.mikity.view.jogl.models.JoglTrianglePolygon;
-import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.Location;
-import org.mklab.mikity.xml.model.Rotation;
-import org.mklab.mikity.xml.model.XMLBox;
-import org.mklab.mikity.xml.model.XMLCone;
-import org.mklab.mikity.xml.model.XMLCylinder;
-import org.mklab.mikity.xml.model.XMLQuadPolygon;
-import org.mklab.mikity.xml.model.XMLSphere;
-import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 
 /**

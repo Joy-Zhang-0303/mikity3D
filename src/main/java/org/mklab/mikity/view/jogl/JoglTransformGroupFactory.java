@@ -6,18 +6,18 @@ import java.util.List;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.MovableGroupManager;
+import org.mklab.mikity.model.xml.model.Group;
+import org.mklab.mikity.model.xml.model.LinkData;
+import org.mklab.mikity.model.xml.model.Location;
+import org.mklab.mikity.model.xml.model.Rotation;
+import org.mklab.mikity.model.xml.model.XMLBox;
+import org.mklab.mikity.model.xml.model.XMLCone;
+import org.mklab.mikity.model.xml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.model.XMLSphere;
+import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.view.jogl.models.JoglCoordinate;
-import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.LinkData;
-import org.mklab.mikity.xml.model.Location;
-import org.mklab.mikity.xml.model.Rotation;
-import org.mklab.mikity.xml.model.XMLBox;
-import org.mklab.mikity.xml.model.XMLCone;
-import org.mklab.mikity.xml.model.XMLCylinder;
-import org.mklab.mikity.xml.model.XMLQuadPolygon;
-import org.mklab.mikity.xml.model.XMLSphere;
-import org.mklab.mikity.xml.model.XMLTrianglePolygon;
 
 
 /**

@@ -15,13 +15,13 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.MessageBox;
+import org.mklab.mikity.model.xml.Jamast;
 import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.GroupConfigDialogCoordinateParameter;
 import org.mklab.mikity.view.gui.dialog.GroupConfigDialogDHParameter;
-import org.mklab.mikity.xml.Jamast;
 
 
 /**
@@ -184,7 +184,7 @@ public abstract class AbstractModeler extends Composite {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        final org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
+        final org.mklab.mikity.model.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
         if (group == null) {
           MessagegUtil.show(getShell(), Messages.getString("Modeler.8")); //$NON-NLS-1$
           return;
@@ -203,13 +203,13 @@ public abstract class AbstractModeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
+        final org.mklab.mikity.model.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
         if (group == null) {
           MessagegUtil.show(getShell(), Messages.getString("Modeler.9")); //$NON-NLS-1$
           return;
         }
         
-        final         org.mklab.mikity.xml.model.LinkData[] linkdata = group.getLinkData();
+        final         org.mklab.mikity.model.xml.model.LinkData[] linkdata = group.getLinkData();
         if (linkdata.length == 0) {
           final MessageBox mesBox = new MessageBox(getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           mesBox.setMessage(Messages.getString("Modeler.10")); //$NON-NLS-1$
@@ -246,7 +246,7 @@ public abstract class AbstractModeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
+        final org.mklab.mikity.model.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
         if (group == null) {
           final MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
           box.setText(Messages.getString("Modeler.12")); //$NON-NLS-1$
@@ -269,7 +269,7 @@ public abstract class AbstractModeler extends Composite {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         final Object prim = AbstractModeler.this.tree.getSelectionData();
-        final org.mklab.mikity.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
+        final org.mklab.mikity.model.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
 
         if (prim == null) {
           final MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);

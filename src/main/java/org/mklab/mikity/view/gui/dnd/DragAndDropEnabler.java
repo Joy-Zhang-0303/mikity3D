@@ -16,13 +16,13 @@ import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.XMLBox;
-import org.mklab.mikity.xml.model.XMLCone;
-import org.mklab.mikity.xml.model.XMLCylinder;
-import org.mklab.mikity.xml.model.XMLQuadPolygon;
-import org.mklab.mikity.xml.model.XMLSphere;
-import org.mklab.mikity.xml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.model.Group;
+import org.mklab.mikity.model.xml.model.XMLBox;
+import org.mklab.mikity.model.xml.model.XMLCone;
+import org.mklab.mikity.model.xml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.model.XMLSphere;
+import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
 
 
 /**

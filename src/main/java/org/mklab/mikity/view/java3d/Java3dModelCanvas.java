@@ -10,14 +10,14 @@ import javax.vecmath.Color3f;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
+import org.mklab.mikity.model.xml.Jamast;
+import org.mklab.mikity.model.xml.JamastConfig;
+import org.mklab.mikity.model.xml.config.Light;
+import org.mklab.mikity.model.xml.config.View;
+import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.util.Color3;
 import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.view.gui.ModelCanvas;
-import org.mklab.mikity.xml.Jamast;
-import org.mklab.mikity.xml.JamastConfig;
-import org.mklab.mikity.xml.config.Light;
-import org.mklab.mikity.xml.config.View;
-import org.mklab.mikity.xml.model.Group;
 
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
@@ -199,7 +199,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     }
 
     // 背景色をセット
-    final org.mklab.mikity.xml.config.Background loadedBackground = configuration.loadBackground();
+    final org.mklab.mikity.model.xml.config.Background loadedBackground = configuration.loadBackground();
     if (loadedBackground != null) {
       this.backgroundColor = ColorConstant.getColor(loadedBackground.loadColor());
     } else {

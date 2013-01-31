@@ -5,10 +5,10 @@
  */
 package org.mklab.mikity.view.gui.connector;
 
-import org.mklab.mikity.xml.model.Location;
-import org.mklab.mikity.xml.model.Rotation;
-import org.mklab.mikity.xml.model.XMLConnector;
-import org.mklab.mikity.xml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.model.Location;
+import org.mklab.mikity.model.xml.model.Rotation;
+import org.mklab.mikity.model.xml.model.XMLConnector;
+import org.mklab.mikity.model.xml.model.XMLCylinder;
 
 
 /**

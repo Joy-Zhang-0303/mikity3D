@@ -3,7 +3,7 @@ package org.mklab.mikity.view.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.xml.model.Group;
+import org.mklab.mikity.model.xml.model.Group;
 
 
 /**

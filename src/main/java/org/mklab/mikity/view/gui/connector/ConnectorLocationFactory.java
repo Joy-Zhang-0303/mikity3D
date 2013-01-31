@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.view.gui.connector;
 
-import org.mklab.mikity.xml.model.Location;
+import org.mklab.mikity.model.xml.model.Location;
 
 
 /**

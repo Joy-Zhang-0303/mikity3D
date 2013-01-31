@@ -2,8 +2,8 @@ package org.mklab.mikity.view.java3d;
 
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
+import org.mklab.mikity.model.xml.Jamast;
 import org.mklab.mikity.view.gui.AbstractModeler;
-import org.mklab.mikity.xml.Jamast;
 
 
 /**
@@ -29,7 +29,7 @@ public class Java3dModeler extends AbstractModeler {
    */
   @Override
   public void createViewer() {
-    final org.mklab.mikity.xml.model.Group[] groups = this.tree.getModel().loadGroup();
+    final org.mklab.mikity.model.xml.model.Group[] groups = this.tree.getModel().loadGroup();
     this.canvas.setChild(groups); 
   }
 

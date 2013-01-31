@@ -13,8 +13,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.view.gui.ParameterInputBox;
-import org.mklab.mikity.xml.model.Group;
 
 
 /**

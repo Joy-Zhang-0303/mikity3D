@@ -15,12 +15,12 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.mklab.mikity.model.xml.model.Group;
+import org.mklab.mikity.model.xml.model.Location;
+import org.mklab.mikity.model.xml.model.Rotation;
+import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
-import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.Location;
-import org.mklab.mikity.xml.model.Rotation;
-import org.mklab.mikity.xml.model.XMLQuadPolygon;
 
 
 /**

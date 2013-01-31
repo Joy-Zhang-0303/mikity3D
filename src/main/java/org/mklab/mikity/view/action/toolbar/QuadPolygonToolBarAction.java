@@ -6,11 +6,11 @@
 package org.mklab.mikity.view.action.toolbar;
 
 import org.eclipse.jface.action.Action;
+import org.mklab.mikity.model.xml.Jamast;
+import org.mklab.mikity.model.xml.model.Group;
+import org.mklab.mikity.model.xml.model.Location;
+import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.view.gui.ModelingWindow;
-import org.mklab.mikity.xml.Jamast;
-import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.Location;
-import org.mklab.mikity.xml.model.XMLQuadPolygon;
 
 
 /**

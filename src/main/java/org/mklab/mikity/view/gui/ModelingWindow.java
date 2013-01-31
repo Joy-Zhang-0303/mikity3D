@@ -17,6 +17,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.mklab.mikity.model.xml.JAXBMarshaller;
+import org.mklab.mikity.model.xml.Jamast;
+import org.mklab.mikity.model.xml.JamastConfig;
+import org.mklab.mikity.model.xml.JamastFactory;
+import org.mklab.mikity.model.xml.config.DataUnit;
+import org.mklab.mikity.model.xml.config.ModelUnit;
 import org.mklab.mikity.view.action.AnimationWindowOpenAction;
 import org.mklab.mikity.view.action.ConfigDialogOpenAction;
 import org.mklab.mikity.view.action.file.FileExitAction;
@@ -32,12 +38,6 @@ import org.mklab.mikity.view.action.toolbar.QuadPolygonToolBarAction;
 import org.mklab.mikity.view.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.view.action.toolbar.TrianglePolygonToolBarAction;
 import org.mklab.mikity.view.jogl.JoglModeler;
-import org.mklab.mikity.xml.JAXBMarshaller;
-import org.mklab.mikity.xml.Jamast;
-import org.mklab.mikity.xml.JamastConfig;
-import org.mklab.mikity.xml.JamastFactory;
-import org.mklab.mikity.xml.config.DataUnit;
-import org.mklab.mikity.xml.config.ModelUnit;
 
 /**
  * モデリングを行うウィンドウを表すクラスです。

@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.view.gui;
 
-import org.mklab.mikity.xml.model.Group;
+import org.mklab.mikity.model.xml.model.Group;
 
 
 /**

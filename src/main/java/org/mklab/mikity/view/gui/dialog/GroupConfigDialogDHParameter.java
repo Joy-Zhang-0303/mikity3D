@@ -14,8 +14,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.mklab.mikity.model.xml.model.LinkData;
 import org.mklab.mikity.view.gui.ParameterInputBox;
-import org.mklab.mikity.xml.model.LinkData;
 
 
 /**
@@ -29,7 +29,7 @@ public class GroupConfigDialogDHParameter {
   /** */
   Shell sShell = null;
   private Shell parentShell = null;
-  org.mklab.mikity.xml.model.Group group;
+  org.mklab.mikity.model.xml.model.Group group;
 
   /** */
   ParameterInputBox groupName;
@@ -60,7 +60,7 @@ public class GroupConfigDialogDHParameter {
    * @param group グループ
    * @param editable 編集可能性
    */
-  public GroupConfigDialogDHParameter(Shell parentShell, org.mklab.mikity.xml.model.Group group, boolean editable) {
+  public GroupConfigDialogDHParameter(Shell parentShell, org.mklab.mikity.model.xml.model.Group group, boolean editable) {
     this.parentShell = parentShell;
     this.group = group;
     this.editable = editable;

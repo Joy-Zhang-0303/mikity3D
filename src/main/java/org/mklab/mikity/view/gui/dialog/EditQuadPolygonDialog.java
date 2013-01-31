@@ -16,11 +16,11 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.mklab.mikity.model.xml.model.Location;
+import org.mklab.mikity.model.xml.model.Rotation;
+import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
-import org.mklab.mikity.xml.model.Location;
-import org.mklab.mikity.xml.model.Rotation;
-import org.mklab.mikity.xml.model.XMLQuadPolygon;
 
 
 /**
@@ -62,7 +62,7 @@ public class EditQuadPolygonDialog {
    * @param quad ポリゴン
    * @param group グループ
    */
-  public EditQuadPolygonDialog(Shell parentShell, XMLQuadPolygon quad, org.mklab.mikity.xml.model.Group group) {
+  public EditQuadPolygonDialog(Shell parentShell, XMLQuadPolygon quad, org.mklab.mikity.model.xml.model.Group group) {
     this.parentShell = parentShell;
     this.quad = quad;
     this.groupName = group.loadName();

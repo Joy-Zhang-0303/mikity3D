@@ -13,9 +13,9 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLJPanel;
 import javax.media.opengl.glu.GLU;
 
+import org.mklab.mikity.model.xml.Jamast;
+import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.view.gui.ModelCanvas;
-import org.mklab.mikity.xml.Jamast;
-import org.mklab.mikity.xml.model.Group;
 
 /**
  * JOGL用のキャンバスを表すクラスです。

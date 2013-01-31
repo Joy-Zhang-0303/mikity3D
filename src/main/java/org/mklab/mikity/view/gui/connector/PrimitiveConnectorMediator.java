@@ -5,13 +5,13 @@
  */
 package org.mklab.mikity.view.gui.connector;
 
-import org.mklab.mikity.xml.JamastModel;
-import org.mklab.mikity.xml.model.Group;
-import org.mklab.mikity.xml.model.XMLBox;
-import org.mklab.mikity.xml.model.XMLCone;
-import org.mklab.mikity.xml.model.XMLConnector;
-import org.mklab.mikity.xml.model.XMLCylinder;
-import org.mklab.mikity.xml.model.XMLSphere;
+import org.mklab.mikity.model.xml.JamastModel;
+import org.mklab.mikity.model.xml.model.Group;
+import org.mklab.mikity.model.xml.model.XMLBox;
+import org.mklab.mikity.model.xml.model.XMLCone;
+import org.mklab.mikity.model.xml.model.XMLConnector;
+import org.mklab.mikity.model.xml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.model.XMLSphere;
 
 
 /**

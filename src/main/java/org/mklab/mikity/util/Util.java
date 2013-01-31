@@ -7,7 +7,7 @@ package org.mklab.mikity.util;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.xml.model.LinkData;
+import org.mklab.mikity.model.xml.model.LinkData;
 
 /**
  * ユーティリティクラスです。

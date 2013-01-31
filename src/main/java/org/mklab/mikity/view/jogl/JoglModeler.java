@@ -3,8 +3,8 @@ package org.mklab.mikity.view.jogl;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
 
+import org.mklab.mikity.model.xml.Jamast;
 import org.mklab.mikity.view.gui.AbstractModeler;
-import org.mklab.mikity.xml.Jamast;
 
 
 /**
@@ -30,7 +30,7 @@ public class JoglModeler extends AbstractModeler {
    */
   @Override
   public void createViewer() {
-    org.mklab.mikity.xml.model.Group[] groups = this.tree.getModel().loadGroup();
+    org.mklab.mikity.model.xml.model.Group[] groups = this.tree.getModel().loadGroup();
     this.canvas.setChild(groups);
   }
 
