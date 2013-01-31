@@ -15,7 +15,7 @@ import javax.media.opengl.glu.GLU;
 
 import org.mklab.mikity.model.xml.Jamast;
 import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.view.gui.ModelCanvas;
+import org.mklab.mikity.view.canvas.ModelCanvas;
 
 /**
  * JOGL用のキャンバスを表すクラスです。

@@ -17,7 +17,7 @@ import org.mklab.mikity.model.xml.config.View;
 import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.util.Color3;
 import org.mklab.mikity.util.ColorConstant;
-import org.mklab.mikity.view.gui.ModelCanvas;
+import org.mklab.mikity.view.canvas.ModelCanvas;
 
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;

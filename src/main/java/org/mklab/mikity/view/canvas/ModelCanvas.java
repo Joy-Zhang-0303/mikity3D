@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.gui;
+package org.mklab.mikity.view.canvas;
 
 import org.mklab.mikity.model.xml.model.Group;
 
