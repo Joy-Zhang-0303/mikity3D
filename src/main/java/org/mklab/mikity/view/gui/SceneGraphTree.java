@@ -35,8 +35,8 @@ import org.mklab.mikity.view.gui.dialog.AddTrianglePolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditQuadPolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditTrianglePolygonDialog;
-import org.mklab.mikity.view.gui.dialog.GroupConfigDialogCoordinateParameter;
-import org.mklab.mikity.view.gui.dialog.GroupConfigDialogDHParameter;
+import org.mklab.mikity.view.gui.dialog.GroupConfigWithCoordinateParameterDialog;
+import org.mklab.mikity.view.gui.dialog.GroupConfigWithDHParameterDialog;
 import org.mklab.mikity.view.gui.dnd.DragAndDropEnabler;
 
 
@@ -137,10 +137,10 @@ public class SceneGraphTree {
           checkUsedLinkType(SceneGraphTree.this.model.loadGroup());
 
           if (SceneGraphTree.this.usedDHParameter) {
-            final GroupConfigDialogDHParameter groupConf = new GroupConfigDialogDHParameter(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           } else if (SceneGraphTree.this.usedCoordinateParameter) {
-            final GroupConfigDialogCoordinateParameter groupConf = new GroupConfigDialogCoordinateParameter(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           } else {
             final MessageBox mesBox = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
@@ -148,11 +148,11 @@ public class SceneGraphTree {
             mesBox.setText(Messages.getString("SceneGraphTree.2")); //$NON-NLS-1$
             int result = mesBox.open();
             if (result == SWT.YES) {
-              GroupConfigDialogDHParameter groupConf = new GroupConfigDialogDHParameter(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+              GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
               groupConf.open();
               setTree();
             } else if (result == SWT.NO) {
-              final GroupConfigDialogCoordinateParameter groupConf = new GroupConfigDialogCoordinateParameter(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+              final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
               groupConf.open();
               setTree();
             }
@@ -297,10 +297,10 @@ public class SceneGraphTree {
           checkUsedLinkType(SceneGraphTree.this.model.loadGroup());
 
           if (SceneGraphTree.this.usedDHParameter) {
-            final GroupConfigDialogDHParameter groupConf = new GroupConfigDialogDHParameter(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           } else if (SceneGraphTree.this.usedCoordinateParameter) {
-            final GroupConfigDialogCoordinateParameter groupConf = new GroupConfigDialogCoordinateParameter(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           } else {
             final MessageBox mesBox = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
@@ -308,11 +308,11 @@ public class SceneGraphTree {
             mesBox.setText(Messages.getString("SceneGraphTree.15")); //$NON-NLS-1$
             int result = mesBox.open();
             if (result == SWT.YES) {
-              final GroupConfigDialogDHParameter groupConf = new GroupConfigDialogDHParameter(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+              final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
               groupConf.open();
               setTree();
             } else if (result == SWT.NO) {
-              final GroupConfigDialogCoordinateParameter groupConf = new GroupConfigDialogCoordinateParameter(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+              final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
               groupConf.open();
               setTree();
             }

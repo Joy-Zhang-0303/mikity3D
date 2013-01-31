@@ -20,8 +20,8 @@ import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
-import org.mklab.mikity.view.gui.dialog.GroupConfigDialogCoordinateParameter;
-import org.mklab.mikity.view.gui.dialog.GroupConfigDialogDHParameter;
+import org.mklab.mikity.view.gui.dialog.GroupConfigWithCoordinateParameterDialog;
+import org.mklab.mikity.view.gui.dialog.GroupConfigWithDHParameterDialog;
 
 
 /**
@@ -216,21 +216,21 @@ public abstract class AbstractModeler extends Composite {
           mesBox.setText(Messages.getString("Modeler.11")); //$NON-NLS-1$
           int result = mesBox.open();
           if (result == SWT.YES) {
-            final GroupConfigDialogDHParameter groupConf = new GroupConfigDialogDHParameter(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
+            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
             groupConf.open();
           } else if (result == SWT.NO) {
-            GroupConfigDialogCoordinateParameter groupConf = new GroupConfigDialogCoordinateParameter(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
+            GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
             groupConf.open();
           }
         }
 
         for (int i = 0; i < linkdata.length; i++) {
           if (linkdata[i].hasDHParameter()) {
-            final GroupConfigDialogDHParameter groupConf = new GroupConfigDialogDHParameter(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
+            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
             groupConf.open();
             break;
           } else if (linkdata[i].hasCoordinateParameter()) {
-            final GroupConfigDialogCoordinateParameter groupConf = new GroupConfigDialogCoordinateParameter(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
+            final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
             groupConf.open();
             break;
           }

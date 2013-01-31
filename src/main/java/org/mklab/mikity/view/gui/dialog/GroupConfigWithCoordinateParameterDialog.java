@@ -24,7 +24,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
  * @author miki
  * @version $Revision: 1.1 $.2005/02/03
  */
-public class GroupConfigDialogCoordinateParameter {
+public class GroupConfigWithCoordinateParameterDialog {
 
   Shell sShell = null;
   private Shell parentShell = null;
@@ -54,7 +54,7 @@ public class GroupConfigDialogCoordinateParameter {
    * @param group グループ
    * @param editable 編集可能性
    */
-  public GroupConfigDialogCoordinateParameter(Shell parentShell, org.mklab.mikity.model.xml.model.Group group, boolean editable) {
+  public GroupConfigWithCoordinateParameterDialog(Shell parentShell, org.mklab.mikity.model.xml.model.Group group, boolean editable) {
     this.parentShell = parentShell;
     this.group = group;
     this.editable = editable;
@@ -92,23 +92,23 @@ public class GroupConfigDialogCoordinateParameter {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         if (Check()) {
-          final MessageBox mesBox = new MessageBox(GroupConfigDialogCoordinateParameter.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+          final MessageBox mesBox = new MessageBox(GroupConfigWithCoordinateParameterDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           mesBox.setMessage(Messages.getString("GroupConfigDialogLink.5")); //$NON-NLS-1$
           mesBox.setText(Messages.getString("GroupConfigDialogLink.6")); //$NON-NLS-1$
           int result = mesBox.open();
           if (result == SWT.YES) {
-            GroupConfigDialogCoordinateParameter.this.group.setName(GroupConfigDialogCoordinateParameter.this.groupName.getText());
-            GroupConfigDialogCoordinateParameter.this.group.clearLinkdata();
-            addLinkData(GroupConfigDialogCoordinateParameter.this.locX, GroupConfigDialogCoordinateParameter.this.columnLocX);
-            addLinkData(GroupConfigDialogCoordinateParameter.this.locY, GroupConfigDialogCoordinateParameter.this.columnLocY);
-            addLinkData(GroupConfigDialogCoordinateParameter.this.locZ, GroupConfigDialogCoordinateParameter.this.columnLocZ);
-            addLinkData(GroupConfigDialogCoordinateParameter.this.rotX, GroupConfigDialogCoordinateParameter.this.columnRotX);
-            addLinkData(GroupConfigDialogCoordinateParameter.this.rotY, GroupConfigDialogCoordinateParameter.this.columnRotY);
-            addLinkData(GroupConfigDialogCoordinateParameter.this.rotZ, GroupConfigDialogCoordinateParameter.this.columnRotZ);
-            GroupConfigDialogCoordinateParameter.this.sShell.close();
+            GroupConfigWithCoordinateParameterDialog.this.group.setName(GroupConfigWithCoordinateParameterDialog.this.groupName.getText());
+            GroupConfigWithCoordinateParameterDialog.this.group.clearLinkdata();
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locX, GroupConfigWithCoordinateParameterDialog.this.columnLocX);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locY, GroupConfigWithCoordinateParameterDialog.this.columnLocY);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locZ, GroupConfigWithCoordinateParameterDialog.this.columnLocZ);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotX, GroupConfigWithCoordinateParameterDialog.this.columnRotX);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotY, GroupConfigWithCoordinateParameterDialog.this.columnRotY);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotZ, GroupConfigWithCoordinateParameterDialog.this.columnRotZ);
+            GroupConfigWithCoordinateParameterDialog.this.sShell.close();
           }
         } else {
-          final MessageBox mgb = new MessageBox(GroupConfigDialogCoordinateParameter.this.sShell, SWT.ICON_WARNING);
+          final MessageBox mgb = new MessageBox(GroupConfigWithCoordinateParameterDialog.this.sShell, SWT.ICON_WARNING);
           mgb.setMessage(Messages.getString("GroupConfigDialogLink.7")); //$NON-NLS-1$
           mgb.setText(Messages.getString("GroupConfigDialogLink.8")); //$NON-NLS-1$
         }
@@ -124,7 +124,7 @@ public class GroupConfigDialogCoordinateParameter {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         // キャンセルが選択されたら、変更しないでシェルを閉じる
-        GroupConfigDialogCoordinateParameter.this.sShell.close();
+        GroupConfigWithCoordinateParameterDialog.this.sShell.close();
       }
     });
 
