@@ -3,7 +3,7 @@
  * Copyright (C) 2005 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.resource;
+package org.mklab.mikity.model.resource;
 
 import java.util.HashMap;
 import java.util.Iterator;
