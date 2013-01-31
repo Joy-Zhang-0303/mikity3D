@@ -8,7 +8,7 @@ import javax.media.opengl.GL;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.MovableGroup;
-import org.mklab.mikity.view.jogl.models.JoglCoordinate;
+import org.mklab.mikity.view.jogl.primitive.JoglCoordinate;
 
 
 /**

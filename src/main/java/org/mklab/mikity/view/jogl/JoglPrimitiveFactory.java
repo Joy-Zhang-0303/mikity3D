@@ -14,13 +14,13 @@ import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.model.XMLSphere;
 import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Matrix4;
-import org.mklab.mikity.view.jogl.models.JoglBox;
-import org.mklab.mikity.view.jogl.models.JoglCone;
-import org.mklab.mikity.view.jogl.models.JoglCoordinate;
-import org.mklab.mikity.view.jogl.models.JoglCylinder;
-import org.mklab.mikity.view.jogl.models.JoglQuadPolygon;
-import org.mklab.mikity.view.jogl.models.JoglSphere;
-import org.mklab.mikity.view.jogl.models.JoglTrianglePolygon;
+import org.mklab.mikity.view.jogl.primitive.JoglBox;
+import org.mklab.mikity.view.jogl.primitive.JoglCone;
+import org.mklab.mikity.view.jogl.primitive.JoglCoordinate;
+import org.mklab.mikity.view.jogl.primitive.JoglCylinder;
+import org.mklab.mikity.view.jogl.primitive.JoglQuadPolygon;
+import org.mklab.mikity.view.jogl.primitive.JoglSphere;
+import org.mklab.mikity.view.jogl.primitive.JoglTrianglePolygon;
 
 
 /**

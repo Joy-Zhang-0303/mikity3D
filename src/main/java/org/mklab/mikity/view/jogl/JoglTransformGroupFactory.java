@@ -17,7 +17,7 @@ import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.model.XMLSphere;
 import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Util;
-import org.mklab.mikity.view.jogl.models.JoglCoordinate;
+import org.mklab.mikity.view.jogl.primitive.JoglCoordinate;
 
 
 /**

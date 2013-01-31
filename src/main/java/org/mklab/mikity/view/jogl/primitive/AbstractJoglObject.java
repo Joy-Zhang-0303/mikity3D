@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.jogl.models;
+package org.mklab.mikity.view.jogl.primitive;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
