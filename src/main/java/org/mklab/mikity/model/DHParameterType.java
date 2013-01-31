@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.model.model;
+package org.mklab.mikity.model;
 
 
 /**

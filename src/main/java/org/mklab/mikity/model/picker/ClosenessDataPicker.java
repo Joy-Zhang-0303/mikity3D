@@ -5,8 +5,8 @@
  */
 package org.mklab.mikity.model.picker;
 
-import org.mklab.mikity.model.model.CoordinateParameter;
-import org.mklab.mikity.model.model.DHParameter;
+import org.mklab.mikity.model.CoordinateParameter;
+import org.mklab.mikity.model.DHParameter;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.IntMatrix;
 import org.mklab.nfc.matrix.Matrix;

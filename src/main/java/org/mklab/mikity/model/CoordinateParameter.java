@@ -3,7 +3,7 @@
  * Copyright (C) 2004-2005 Koga Laboratoy. All rights reserved.
  *
  */
-package org.mklab.mikity.model.model;
+package org.mklab.mikity.model;
 
 /**
  * 座標パラメータを表すクラスです。

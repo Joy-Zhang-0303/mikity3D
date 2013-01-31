@@ -3,7 +3,7 @@
  * Copyright (C) 2005 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.model.model;
+package org.mklab.mikity.model;
 
 /**
  * DHパラメータを表すクラスです。

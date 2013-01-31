@@ -2,9 +2,9 @@ package org.mklab.mikity.view.java3d;
 
 import javax.media.j3d.TransformGroup;
 
-import org.mklab.mikity.model.model.CoordinateParameter;
-import org.mklab.mikity.model.model.DHParameter;
-import org.mklab.mikity.model.model.MovableGroupManager;
+import org.mklab.mikity.model.CoordinateParameter;
+import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.xml.model.Group;
 import org.mklab.mikity.xml.model.LinkData;

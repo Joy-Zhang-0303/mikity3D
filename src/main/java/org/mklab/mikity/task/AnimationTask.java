@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
 
-import org.mklab.mikity.model.model.MovableGroupManager;
+import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.view.gui.AnimationWindow;
 import org.mklab.mikity.view.gui.ModelCanvas;
 import org.mklab.mikity.view.jogl.JoglModelCanvas;

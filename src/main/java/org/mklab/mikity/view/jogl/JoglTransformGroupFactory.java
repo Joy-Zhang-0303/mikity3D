@@ -3,9 +3,9 @@ package org.mklab.mikity.view.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.model.CoordinateParameter;
-import org.mklab.mikity.model.model.DHParameter;
-import org.mklab.mikity.model.model.MovableGroupManager;
+import org.mklab.mikity.model.CoordinateParameter;
+import org.mklab.mikity.model.DHParameter;
+import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.view.jogl.models.JoglCoordinate;
 import org.mklab.mikity.xml.model.Group;
