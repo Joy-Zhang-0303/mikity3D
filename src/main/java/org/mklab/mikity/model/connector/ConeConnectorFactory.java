@@ -3,7 +3,7 @@
  * Copyright (C) 2006 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.gui.connector;
+package org.mklab.mikity.model.connector;
 
 import org.mklab.mikity.model.xml.model.Location;
 import org.mklab.mikity.model.xml.model.Rotation;
