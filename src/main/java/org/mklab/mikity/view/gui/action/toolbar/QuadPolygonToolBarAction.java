@@ -3,7 +3,7 @@
  * Copyright (C) 2004-2005 Koga Laboratoy. All rights reserved.
  *
  */
-package org.mklab.mikity.view.action.toolbar;
+package org.mklab.mikity.view.gui.action.toolbar;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.Jamast;

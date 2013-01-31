@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.action.toolbar;
+package org.mklab.mikity.view.gui.action.toolbar;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.Jamast;

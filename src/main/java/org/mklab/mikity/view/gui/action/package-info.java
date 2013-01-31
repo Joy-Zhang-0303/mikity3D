@@ -1,4 +1,4 @@
 /**
  * SWTで実行するクラスを提供します。
  */
-package org.mklab.mikity.view.action;
+package org.mklab.mikity.view.gui.action;

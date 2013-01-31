@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.action.file;
+package org.mklab.mikity.view.gui.action.file;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

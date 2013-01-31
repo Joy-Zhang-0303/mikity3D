@@ -1,9 +1,9 @@
 /*
- * Created on 2005/02/14
- * Copyright (C) 2005 Koga Laboratory. All rights reserved.
+ * $Id: FileImportAction.java,v 1.2 2008/02/29 13:51:56 morimune Exp $
+ * Copyright (C) 2004-2005 Koga Laboratoy. All rights reserved.
  *
  */
-package org.mklab.mikity.view.action.file;
+package org.mklab.mikity.view.gui.action.file;
 
 import java.io.IOException;
 
@@ -13,26 +13,24 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
-
 /**
- * モデリングデータを読み込むアクションです。
+ * モデリングファイルデータを現在のツリーに追加するアクションです。
  * 
- * @author miki
- * @version $Revision: 1.4 $.2005/02/14
+ * @author SHOGO
+ * @version $Revision: 1.2 $. 2007/12/04
  */
-public class FileOpenAction extends Action {
+public class FileImportAction extends Action {
 
   private ModelingWindow window;
 
   /**
-   * コンストラクター
+   * 新しく生成された<code>FileImportAction</code>オブジェクトを初期化します。
    * 
    * @param window ウィンドウ
    */
-  public FileOpenAction(final ModelingWindow window) {
+  public FileImportAction(final ModelingWindow window) {
     this.window = window;
-    setText(Messages.getString("FileOpenAction.0")); //$NON-NLS-1$
-    setToolTipText(Messages.getString("FileOpenAction.1")); //$NON-NLS-1$
+    setText(Messages.getString("FileImportAction.0")); //$NON-NLS-1$
   }
 
   /**
@@ -41,6 +39,7 @@ public class FileOpenAction extends Action {
   @Override
   public void run() {
     final FileDialog dialog = new FileDialog(this.window.getShell());
+
     final String fileName = dialog.open();
     if (fileName == null) {
       return;
@@ -48,7 +47,7 @@ public class FileOpenAction extends Action {
     
     try {
       this.window.setFile(fileName);
-      this.window.loadFile();
+      this.window.importFile();
     } catch (IOException e) {
       throw new RuntimeException(e);
     } catch (JAXBException e) {

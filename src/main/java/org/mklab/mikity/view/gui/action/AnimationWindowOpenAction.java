@@ -3,7 +3,7 @@
  * Copyright (C) 2005 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.action;
+package org.mklab.mikity.view.gui.action;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.view.gui.AnimationWindow;

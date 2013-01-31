@@ -2,7 +2,7 @@
  * Created on 2004/10/10
  * Copyright (C) 2004 Koga Laboratory. All rights reserved.
  */
-package org.mklab.mikity.view.action.file;
+package org.mklab.mikity.view.gui.action.file;
 
 import java.io.IOException;
 
