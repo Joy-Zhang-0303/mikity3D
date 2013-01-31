@@ -3,7 +3,7 @@
  * Copyright (C) 2010 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.task;
+package org.mklab.mikity.control;
 
 /**
  * アニメーションタスクのリスナインターフェースです。
