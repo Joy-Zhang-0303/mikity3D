@@ -16,10 +16,10 @@ import org.mklab.mikity.model.xml.model.Group;
  * @version $Revision$, 2012/02/19
  */
 public interface ModelCanvas {
-  /**
-   * XMLファイルを読み込みます。
-   */
-  void load();
+//  /**
+//   * XMLファイルを読み込みます。
+//   */
+//  void load();
   
   /**
    * 一旦トップグループの全てを消してから書き込みます。

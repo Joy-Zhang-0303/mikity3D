@@ -158,16 +158,16 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     tg.addChild(translation);
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public void load() {
-    final Group[] children = this.root.getModel(0).getGroups();
-    setChildren(children);
-
-    final JamastConfig configuration = this.root.getConfig(0);
-    setConfiguration(configuration);
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void load() {
+//    final Group[] children = this.root.getModel(0).getGroups();
+//    setChildren(children);
+//
+//    final JamastConfig configuration = this.root.getConfig(0);
+//    setConfiguration(configuration);
+//  }
 
   /**
    * {@inheritDoc}

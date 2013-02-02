@@ -34,6 +34,7 @@ import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.model.resource.ImageManager;
 import org.mklab.mikity.model.xml.Jamast;
+import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.JamastFactory;
 import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.model.xml.model.LinkData;
@@ -192,7 +193,14 @@ public class AnimationWindow extends ApplicationWindow {
     // AWTのフレームを作る。
     final Frame frame = SWT_AWT.new_Frame(composite);
     frame.add((Component)this.modelCanvas);
-    this.modelCanvas.load();
+    
+    final Group[] children = this.root.getModel(0).getGroups();
+    this.modelCanvas.setChildren(children);
+
+    final JamastConfig configuration = this.root.getConfig(0);
+    this.modelCanvas.setConfiguration(configuration);
+
+    //this.modelCanvas.load();
   }
 
   /**
