@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.view.canvas;
 
+import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.model.Group;
 
 
@@ -25,4 +26,11 @@ public interface ModelCanvas {
    * @param groups グループ群 
    */
   void setChildren(Group[] groups);
+  
+  /**
+   * 環境データを設定します。
+   * 
+   * @param configuration 環境データ
+   */
+  void setConfiguration(JamastConfig configuration);
 }

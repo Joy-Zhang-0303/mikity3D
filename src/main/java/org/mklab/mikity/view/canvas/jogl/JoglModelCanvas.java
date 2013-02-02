@@ -14,6 +14,7 @@ import javax.media.opengl.GLJPanel;
 import javax.media.opengl.glu.GLU;
 
 import org.mklab.mikity.model.xml.Jamast;
+import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.view.canvas.ModelCanvas;
 
@@ -145,8 +146,11 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    * {@inheritDoc}
    */
   public void load(){
-    final Group[] groups = this.root.getModel(0).getGroups();
-    setChildren(groups);
+    final Group[] children = this.root.getModel(0).getGroups();
+    setChildren(children);
+    
+    final JamastConfig configuration = this.root.getConfig(0);
+    setConfiguration(configuration);
   }
 
   /**
@@ -156,6 +160,16 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
     this.topGroups = new JoglModelCreater().create(children);
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  public void setConfiguration(JamastConfig configuration) {
+    if (configuration == null) {
+      return;
+    }
+    // TODO
+  }
+  
   /**
    * {@inheritDoc}
    */

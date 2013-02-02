@@ -68,7 +68,8 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     final BranchGroup bg = new BranchGroup();
     bg.setCapability(BranchGroup.ALLOW_DETACH);
 
-    loadConfigurationFromXML(root);
+    final JamastConfig configuration = this.root.getConfig(0);
+    setConfiguration(configuration);
 
     // 平行光線の設定
     final Java3dDirectionalLight light = new Java3dDirectionalLight(new Color3f(1.0f, 1.0f, 1.0f), this.lightLocation);
@@ -161,9 +162,11 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    * {@inheritDoc}
    */
   public void load() {
-    loadConfigurationFromXML(this.root);
-    final Group[] groups = this.root.getModel(0).getGroups();
-    setChildren(groups);
+    final Group[] children = this.root.getModel(0).getGroups();
+    setChildren(children);
+
+    final JamastConfig configuration = this.root.getConfig(0);
+    setConfiguration(configuration);
   }
 
   /**
@@ -186,14 +189,11 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
 
     this.topGroup.addChild(branchGroup);
   }
-  
+
   /**
-   * XMLデータからConfigデータを読み込みます。
-   * 
-   * @param aRoot
+   * {@inheritDoc}
    */
-  private void loadConfigurationFromXML(Jamast aRoot) {
-    final JamastConfig configuration = aRoot.getConfig(0);
+  public void setConfiguration(JamastConfig configuration) {
     if (configuration == null) {
       return;
     }
@@ -222,6 +222,5 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
       final Vector3f position = new Vector3f(0.0f, 0.3f, 1.0f);
       this.viewPoint = new Java3dViewpoint(orientationAngle, position, this.universe);
     }
-
   }
 }
