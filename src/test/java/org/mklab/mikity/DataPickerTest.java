@@ -8,6 +8,7 @@ package org.mklab.mikity;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,22 +25,23 @@ import org.mklab.nfc.matx.MatxMatrix;
  * @version $Revision: 1.6 $.2005/01/17
  */
 public class DataPickerTest {
-
-  Matrix data;
+  private Matrix data;
 
   /**
    * @throws IOException ファイルが読み込めない場合
    */
   @Before
   public void setUp() throws IOException {
-    this.data = MatxMatrix.readMatFormat("config/data2.mat"); //$NON-NLS-1$
+    final InputStream input = getClass().getClassLoader().getResourceAsStream("data2.mat"); //$NON-NLS-1$
+    this.data = MatxMatrix.readMatFormat(input);
+    input.close();
   }
 
   /**
    * 
    */
   @Test
-  public void testSetup() {
+  public void testGetParameter() {
     DataPicker picker = new ClosenessDataPicker(this.data);
     picker.pickup(DHParameterType.D, 2);
     DHParameter param = picker.getDHParameter(13.59);
@@ -52,6 +54,5 @@ public class DataPickerTest {
 
     picker.pickup(DHParameterType.ALPHA, 3);
     assertTrue(-0.010995 == param.getAlpha());
-
   }
 }
