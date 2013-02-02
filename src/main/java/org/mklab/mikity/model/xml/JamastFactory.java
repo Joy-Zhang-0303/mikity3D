@@ -13,7 +13,6 @@ import javax.xml.bind.JAXBException;
 import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.model.xml.model.XMLBox;
 import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLConnector;
 import org.mklab.mikity.model.xml.model.XMLCylinder;
 import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.model.XMLSphere;
@@ -47,7 +46,6 @@ public class JamastFactory {
       final XMLCone[] cones = newRootGroup.getXMLCone();
       final XMLCylinder[] cylinders = newRootGroup.getXMLCylinder();
       final XMLSphere[] spheres = newRootGroup.getXMLSphere();
-      final XMLConnector[] connectors = newRootGroup.getXMLConnector();
       final XMLTrianglePolygon[] trianglePolygons = newRootGroup.getXMLTrianglePolygon();
       final XMLQuadPolygon[] quadPolygons = newRootGroup.getXMLQuadPolygon();
       final Group[] groups = newRootGroup.getGroups();
@@ -70,11 +68,6 @@ public class JamastFactory {
       if (spheres != null) {
         for (int i = 0; i < spheres.length; i++) {
           rootGroup.addXMLSphere(spheres[i]);
-        }
-      }
-      if (connectors != null) {
-        for (int i = 0; i < connectors.length; i++) {
-          rootGroup.addXMLConnector(connectors[i]);
         }
       }
       if (trianglePolygons != null) {

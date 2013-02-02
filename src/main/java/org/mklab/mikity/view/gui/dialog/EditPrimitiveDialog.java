@@ -20,7 +20,6 @@ import org.mklab.mikity.model.xml.model.Location;
 import org.mklab.mikity.model.xml.model.Rotation;
 import org.mklab.mikity.model.xml.model.XMLBox;
 import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLConnector;
 import org.mklab.mikity.model.xml.model.XMLCylinder;
 import org.mklab.mikity.model.xml.model.XMLSphere;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -554,8 +553,6 @@ public class EditPrimitiveDialog {
       this.primLabel.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
       this.color.setText(cone.loadColor());
       this.colorCombo.getColorComboBox().setText(cone.loadColor());
-    } else if (this.primitive instanceof XMLConnector) {
-      //
     }
   }
 

@@ -23,7 +23,6 @@ import org.mklab.mikity.model.xml.model.Location;
 import org.mklab.mikity.model.xml.model.Rotation;
 import org.mklab.mikity.model.xml.model.XMLBox;
 import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLConnector;
 import org.mklab.mikity.model.xml.model.XMLCylinder;
 import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.model.XMLSphere;
@@ -177,33 +176,6 @@ public class Java3dPrimitiveFactory {
 
     final Location location = cone.loadLocation();
     final Rotation rotation = cone.loadRotation();
-
-    transform(location, rotation, tg);
-
-    return tg;
-  }
-
-  /**
-   * 与えられたconnectorインスタンスのプリミティブを作成する。
-   * 
-   * @param connector コネクタ
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLConnector クラス名 org.mklab.mikity.xml 変数名)
-   */
-  public static Java3dTransformGroup create(XMLConnector connector) {
-    final int flag = Primitive.GENERATE_NORMALS;
-    final Primitive primitive = new Cylinder(connector.loadR(), connector.loadHeight(), flag, connector.loadDiv(), connector.loadDiv(), null);
-    final Appearance appearance = new Appearance();
-    appearance.setMaterial(getMaterial(connector.loadColor()));
-    if (connector.hasTransparent()) {
-      if (connector.loadTransparent() == true) {
-        appearance.setTransparencyAttributes(transAttr);
-      }
-    }
-    primitive.setAppearance(appearance);
-    final Java3dTransformGroup tg = new Java3dTransformGroup();
-    tg.addChild(primitive);
-    final Location location = connector.loadLocation();
-    final Rotation rotation = connector.loadRotation();
 
     transform(location, rotation, tg);
 

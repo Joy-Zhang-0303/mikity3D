@@ -15,19 +15,15 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.mklab.mikity.model.connector.ConnectorManager;
-import org.mklab.mikity.model.connector.PrimitiveConnectorMediator;
 import org.mklab.mikity.model.xml.JamastModel;
 import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.model.xml.model.LinkData;
 import org.mklab.mikity.model.xml.model.XMLBox;
 import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLConnector;
 import org.mklab.mikity.model.xml.model.XMLCylinder;
 import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.model.XMLSphere;
 import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
-import org.mklab.mikity.view.gui.connector.ConnectorSelector;
 import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.AddQuadPolygonDialog;
@@ -68,11 +64,6 @@ public class SceneGraphTree {
   boolean editable = true;
   /** */
   AbstractModeler modeler;
-
-  /** */
-  ConnectorSelector select;
-  /** */
-  ConnectorManager connect;
   /** */
   boolean usedDHParameter = false;
   /** */
@@ -98,8 +89,6 @@ public class SceneGraphTree {
     // ファイルの読み込みを行う
     createTree(composite);
     this.comp = composite;
-    this.select = new ConnectorSelector(composite, this, modeler);
-    this.connect = new ConnectorManager();
   }
 
   /**
@@ -166,8 +155,6 @@ public class SceneGraphTree {
           final EditQuadPolygonDialog editPoly = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)doubleClickObj, SceneGraphTree.this.targetGroup);
           editPoly.open();
           setTree();
-        } else if (doubleClickObj instanceof XMLConnector) {
-          SceneGraphTree.this.select.select(SceneGraphTree.this.targetObj, SceneGraphTree.this.root, SceneGraphTree.this.xmlTree, SceneGraphTree.this.targetGroup);
         } else {
           final EditPrimitiveDialog editPrim = new EditPrimitiveDialog(composite.getShell(), doubleClickObj, SceneGraphTree.this.targetGroup);
           editPrim.open();
@@ -226,21 +213,6 @@ public class SceneGraphTree {
 
     final MenuItem addGroup = new MenuItem(popup, SWT.POP_UP);
     addGroup.setText(Messages.getString("SceneGraphTree.7")); //$NON-NLS-1$
-
-    final MenuItem connector = new MenuItem(popup, SWT.CASCADE);
-    connector.setText(Messages.getString("SceneGraphTree.8")); //$NON-NLS-1$
-
-    final Menu connectorSub = new Menu(popup);
-    connector.setMenu(connectorSub);
-
-    final MenuItem connectorAuto = new MenuItem(connectorSub, SWT.POP_UP);
-    connectorAuto.setText(Messages.getString("SceneGraphTree.9")); //$NON-NLS-1$
-
-    final MenuItem connectorSelect = new MenuItem(connectorSub, SWT.POP_UP);
-    connectorSelect.setText(Messages.getString("SceneGraphTree.10")); //$NON-NLS-1$
-
-    final MenuItem connectAction = new MenuItem(connectorSub, SWT.POP_UP);
-    connectAction.setText(Messages.getString("SceneGraphTree.11")); //$NON-NLS-1$
 
     final MenuItem edit = new MenuItem(popup, SWT.POP_UP);
     edit.setText(Messages.getString("SceneGraphTree.12")); //$NON-NLS-1$
@@ -372,62 +344,6 @@ public class SceneGraphTree {
         }
       }
     });
-
-    connectorAuto.addSelectionListener(new SelectionAdapter() {
-
-      @Override
-      public void widgetSelected(SelectionEvent e) {
-        if (SceneGraphTree.this.targetObj instanceof Group) {
-          final MessageBox mesBox = new MessageBox(composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
-          mesBox.setMessage(Messages.getString("SceneGraphTree.22")); //$NON-NLS-1$
-          mesBox.setText(Messages.getString("SceneGraphTree.23")); //$NON-NLS-1$
-          mesBox.open();
-        } else if (SceneGraphTree.this.targetObj instanceof XMLConnector) {
-          final MessageBox mesBox = new MessageBox(composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
-          mesBox.setMessage(Messages.getString("SceneGraphTree.24")); //$NON-NLS-1$
-          mesBox.setText(Messages.getString("SceneGraphTree.25")); //$NON-NLS-1$
-          mesBox.open();
-        } else {
-          SceneGraphTree.this.root = SceneGraphTree.this.targetGroup;
-          SceneGraphTree.this.connect.setPrimitiveNS(SceneGraphTree.this.targetObj, SceneGraphTree.this.select.getTreeConnectorFlag());
-          
-          final PrimitiveConnectorMediator pConnector = new PrimitiveConnectorMediator(SceneGraphTree.this.model);
-          pConnector.addConnectorsTo(SceneGraphTree.this.targetObj);
-          setTree();
-        }
-      }
-    });
-
-    connectorSelect.addSelectionListener(new SelectionAdapter() {
-
-      @Override
-      public void widgetSelected(SelectionEvent e) {
-        SceneGraphTree.this.select.select(SceneGraphTree.this.targetObj, SceneGraphTree.this.root, SceneGraphTree.this.xmlTree, SceneGraphTree.this.targetGroup);
-      }
-    });
-
-    connectAction.addSelectionListener(new SelectionAdapter() {
-
-      @Override
-      public void widgetSelected(SelectionEvent e) {
-        // コネクタN,Sの位置および回転情報を取得
-        SceneGraphTree.this.connect.connectorNS(SceneGraphTree.this.select.getConnectorN());
-        SceneGraphTree.this.connect.connectorNS(SceneGraphTree.this.select.getConnectorS());
-
-        // 移動させるコネクタの新しい座標と回転を設定。
-        SceneGraphTree.this.connect.setNewLocation();
-        SceneGraphTree.this.connect.setNewRotation();
-        // 接続実行。
-        final MessageBox mesBox = new MessageBox(composite.getShell(), SWT.OK | SWT.ICON_INFORMATION);
-        mesBox.setMessage(Messages.getString("SceneGraphTree.26")); //$NON-NLS-1$
-        mesBox.setText(Messages.getString("SceneGraphTree.27")); //$NON-NLS-1$
-        mesBox.open();
-        // 接続
-        SceneGraphTree.this.connect.connect();
-        // 必要のなくなったコネクタはグループごと消去。コネクタフラグもリセット
-        SceneGraphTree.this.select.reset(SceneGraphTree.this.root);
-      }
-    });
   }
 
   /**
@@ -481,8 +397,6 @@ public class SceneGraphTree {
       ((XMLBox)obj).setTransparent(false);
     } else if (obj instanceof XMLCone) {
       ((XMLCone)obj).setTransparent(false);
-    } else if (obj instanceof XMLConnector) {
-      ((XMLConnector)obj).setTransparent(false);
     } else if (obj instanceof XMLCylinder) {
       ((XMLCylinder)obj).setTransparent(false);
     } else if (obj instanceof XMLSphere) {
@@ -509,10 +423,6 @@ public class SceneGraphTree {
       for (int i = 0; i < xmlCone.length; i++) {
         xmlCone[i].setTransparent(false);
       }
-      final XMLConnector[] xmlConnector = group.getXMLConnector();
-      for (int i = 0; i < xmlConnector.length; i++) {
-        xmlConnector[i].setTransparent(false);
-      }
       final XMLTrianglePolygon[] xmlTriangle = group.getXMLTrianglePolygon();
       for (int i = 0; i < xmlTriangle.length; i++) {
         xmlTriangle[i].setTransparent(false);
@@ -535,7 +445,6 @@ public class SceneGraphTree {
     final XMLCylinder[] xmlCylinder = group.getXMLCylinder();
     final XMLSphere[] xmlSphere = group.getXMLSphere();
     final XMLCone[] xmlCone = group.getXMLCone();
-    final XMLConnector[] xmlConnector = group.getXMLConnector();
     final XMLTrianglePolygon[] xmlTriangle = group.getXMLTrianglePolygon();
     final XMLQuadPolygon[] xmlQuad = group.getXMLQuadPolygon();
 
@@ -565,13 +474,6 @@ public class SceneGraphTree {
         xmlCone[i].setTransparent(transparent);
       } else {
         xmlCone[i].deleteTransparent();
-      }
-    }
-    for (int i = 0; i < xmlConnector.length; i++) {
-      if (transparent) {
-        xmlConnector[i].setTransparent(transparent);
-      } else {
-        xmlConnector[i].deleteTransparent();
       }
     }
     for (int i = 0; i < xmlTriangle.length; i++) {
@@ -635,8 +537,6 @@ public class SceneGraphTree {
       g.removeXMLBox((XMLBox)prim);
     } else if (prim instanceof XMLCone) {
       g.removeXMLCone((XMLCone)prim);
-    } else if (prim instanceof XMLConnector) {
-      g.removeXMLConnector((XMLConnector)prim);
     } else if (prim instanceof XMLCylinder) {
       g.removeXMLCylinder((XMLCylinder)prim);
     } else if (prim instanceof XMLSphere) {
@@ -705,13 +605,6 @@ public class SceneGraphTree {
         boxChild.setData(cones[j]);
       }
       
-      final XMLConnector[] connectors = groups[i].getXMLConnector();
-      for (int j = 0; j < connectors.length; j++) {
-        final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Connector ( No." + connectors[j].loadNum() + ", " + connectors[j].loadFlag() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-        boxChild.setData(connectors[j]);
-      }
-
       final XMLTrianglePolygon[] trianglePolygons = groups[i].getXMLTrianglePolygon();
       for (int j = 0; j < trianglePolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);

@@ -9,7 +9,6 @@ import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.model.xml.model.LinkData;
 import org.mklab.mikity.model.xml.model.XMLBox;
 import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLConnector;
 import org.mklab.mikity.model.xml.model.XMLCylinder;
 import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.model.XMLSphere;
@@ -45,10 +44,6 @@ public class Java3dTransformGroupFactory {
 
     for (final XMLCone cone : group.getXMLCone()) {
       movableGroup.addChild(Java3dPrimitiveFactory.create(cone));
-    }
-
-    for (final XMLConnector connector : group.getXMLConnector()) {
-      movableGroup.addChild(Java3dPrimitiveFactory.create(connector));
     }
 
     for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygon()) {

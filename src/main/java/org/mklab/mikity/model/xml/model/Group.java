@@ -46,12 +46,6 @@ public class Group implements java.io.Serializable {
   private List<XMLCone> _XMLConeList;
 
   /**
-   * Field _XMLConnectorList
-   */
-  @XmlElement
-  private List<XMLConnector> _XMLConnectorList;
-
-  /**
    * Field _XMLTrianglePolygonList
    */
   @XmlElement
@@ -96,7 +90,6 @@ public class Group implements java.io.Serializable {
     this._XMLCylinderList = new ArrayList<XMLCylinder>();
     this._XMLSphereList = new ArrayList<XMLSphere>();
     this._XMLConeList = new ArrayList<XMLCone>();
-    this._XMLConnectorList = new ArrayList<XMLConnector>();
     this._XMLTrianglePolygonList = new ArrayList<XMLTrianglePolygon>();
     this._XMLQuadPolygonList = new ArrayList<XMLQuadPolygon>();
 
@@ -233,27 +226,6 @@ public class Group implements java.io.Serializable {
   } 
 
   /**
-   * Method addXMLConnector
-   * 
-   * @param vXMLConnector コネクター
-   * @throws java.lang.IndexOutOfBoundsException 例外
-   */
-  public void addXMLConnector(org.mklab.mikity.model.xml.model.XMLConnector vXMLConnector) throws java.lang.IndexOutOfBoundsException {
-    this._XMLConnectorList.add(vXMLConnector);
-  } 
-
-  /**
-   * Method addXMLConnector
-   * 
-   * @param index インデックス
-   * @param vXMLConnector コネクター
-   * @throws java.lang.IndexOutOfBoundsException 例外
-   */
-  public void addXMLConnector(int index, org.mklab.mikity.model.xml.model.XMLConnector vXMLConnector) throws java.lang.IndexOutOfBoundsException {
-    this._XMLConnectorList.add(index, vXMLConnector);
-  } 
-
-  /**
    * Method addXMLTrianglePolygon
    * 
    * @param vXMLTrianglePolygon 三角形のポリゴン
@@ -338,13 +310,6 @@ public class Group implements java.io.Serializable {
   } 
 
   /**
-   * Method clearXMLConnector
-   */
-  public void clearXMLConnector() {
-    this._XMLConnectorList.clear();
-  } 
-
-  /**
    * Method clearXMLTrianglePolygon
    */
   public void clearXMLTrianglePolygon() {
@@ -382,7 +347,6 @@ public class Group implements java.io.Serializable {
     int result = 1;
     result = prime * result + ((this._XMLBoxList == null) ? 0 : this._XMLBoxList.hashCode());
     result = prime * result + ((this._XMLConeList == null) ? 0 : this._XMLConeList.hashCode());
-    result = prime * result + ((this._XMLConnectorList == null) ? 0 : this._XMLConnectorList.hashCode());
     result = prime * result + ((this._XMLCylinderList == null) ? 0 : this._XMLCylinderList.hashCode());
     result = prime * result + ((this._XMLQuadPolygonList == null) ? 0 : this._XMLQuadPolygonList.hashCode());
     result = prime * result + ((this._XMLSphereList == null) ? 0 : this._XMLSphereList.hashCode());
@@ -422,13 +386,6 @@ public class Group implements java.io.Serializable {
         return false;
       }
     } else if (!this._XMLConeList.equals(other._XMLConeList)) {
-      return false;
-    }
-    if (this._XMLConnectorList == null) {
-      if (other._XMLConnectorList != null) {
-        return false;
-      }
-    } else if (!this._XMLConnectorList.equals(other._XMLConnectorList)) {
       return false;
     }
     if (this._XMLCylinderList == null) {
@@ -792,53 +749,6 @@ public class Group implements java.io.Serializable {
   } 
 
   /**
-   * Method getXMLConnector
-   * 
-   * @param index インデックス
-   * @return _XMLConeList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException 例外
-   */
-  public org.mklab.mikity.model.xml.model.XMLConnector getXMLConnector(int index) throws java.lang.IndexOutOfBoundsException {
-    if ((index < 0) || (index > this._XMLConnectorList.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-
-    return this._XMLConnectorList.get(index);
-  } 
-
-  /**
-   * Method getXMLConnector
-   * 
-   * @return mArray
-   */
-  public org.mklab.mikity.model.xml.model.XMLConnector[] getXMLConnector() {
-    final int size = this._XMLConnectorList.size();
-    final org.mklab.mikity.model.xml.model.XMLConnector[] connectors = new org.mklab.mikity.model.xml.model.XMLConnector[size];
-    for (int i = 0; i < size; i++) {
-      connectors[i] = this._XMLConnectorList.get(i);
-    }
-    return connectors;
-  } 
-
-  /**
-   * Method getXMLConnectorAsReferenceReturns a reference to 'XMLCone'. No type checking is performed on any modications to the Collection.
-   * 
-   * @return returns a reference to the Collection.
-   */
-  public List<XMLConnector> getXMLConnectorAsReference() {
-    return this._XMLConnectorList;
-  } 
-
-  /**
-   * Method getXMLConnectorCount
-   * 
-   * @return _XMLConnectorList.size()
-   */
-  public int getXMLConnectorCount() {
-    return this._XMLConnectorList.size();
-  } 
-
-  /**
    * Method getXMLTrianglePolygon
    * 
    * @param index インデックス
@@ -997,18 +907,6 @@ public class Group implements java.io.Serializable {
     boolean removed = this._XMLSphereList.remove(vXMLSphere);
     return removed;
   } 
-
-  /**
-   * Method removeXMLConnector
-   * 
-   * @param vXMLConnector コネクター
-   * @return removed
-   */
-  public boolean removeXMLConnector(org.mklab.mikity.model.xml.model.XMLConnector vXMLConnector) {
-    boolean removed = this._XMLConnectorList.remove(vXMLConnector);
-    return removed;
-  } 
-
   /**
    * Method removeXMLTrianglePolygon
    * 
@@ -1285,41 +1183,6 @@ public class Group implements java.io.Serializable {
    */
   public void setXMLSphereAsReference(List<XMLSphere> XMLSphereCollection) {
     this._XMLSphereList = XMLSphereCollection;
-  } 
-
-  /**
-   * Method setXMLConnector
-   * 
-   * @param index インデックス
-   * @param vXMLConnector コネクタ
-   * @throws java.lang.IndexOutOfBoundsException 例外
-   */
-  public void setXMLConnector(int index, org.mklab.mikity.model.xml.model.XMLConnector vXMLConnector) throws java.lang.IndexOutOfBoundsException {
-    if ((index < 0) || (index > this._XMLConnectorList.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-    this._XMLConnectorList.set(index, vXMLConnector);
-  } 
-
-  /**
-   * Method setXMLConnector
-   * 
-   * @param XMLConnectorArray コネクターの文字列
-   */
-  public void setXMLConnector(org.mklab.mikity.model.xml.model.XMLConnector[] XMLConnectorArray) {
-    this._XMLConnectorList.clear();
-    for (int i = 0; i < XMLConnectorArray.length; i++) {
-      this._XMLConnectorList.add(XMLConnectorArray[i]);
-    }
-  } 
-
-  /**
-   * Method setXMLConnectorAsReferenceSets the value of 'XMLConnector' by setting it to the given ArrayList. No type checking is performed.
-   * 
-   * @param XMLConnectorCollection the ArrayList to copy.
-   */
-  public void setXMLConnectorAsReference(List<XMLConnector> XMLConnectorCollection) {
-    this._XMLConnectorList = XMLConnectorCollection;
   } 
 
   /**
