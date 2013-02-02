@@ -98,7 +98,7 @@ public class AnimationWindow extends ApplicationWindow {
   ParameterInputBox playSpeed;
 
   /** ModelCanvas */
-  private ModelRenderer modelCanvas;
+  private ModelRenderer modelRenderer;
 
   /**
    * コンストラクター
@@ -112,8 +112,8 @@ public class AnimationWindow extends ApplicationWindow {
     this.manager = new MovableGroupManager(this.root);
 
     // TODO Java3d or JOGL
-    //this.modelCanvas = new Java3dModelCanvas(this.root);
-    this.modelCanvas = new JoglModelRenderer();
+    //this.modelRenderer = new Java3dModelRenderer(this.root);
+    this.modelRenderer = new JoglModelRenderer();
   }
 
   /**
@@ -192,13 +192,13 @@ public class AnimationWindow extends ApplicationWindow {
 
     // AWTのフレームを作る。
     final Frame frame = SWT_AWT.new_Frame(composite);
-    frame.add((Component)this.modelCanvas);
+    frame.add((Component)this.modelRenderer);
     
     final Group[] children = this.root.getModel(0).getGroups();
-    this.modelCanvas.setChildren(children);
+    this.modelRenderer.setChildren(children);
 
     final JamastConfig configuration = this.root.getConfig(0);
-    this.modelCanvas.setConfiguration(configuration);
+    this.modelRenderer.setConfiguration(configuration);
   }
 
   /**
@@ -473,7 +473,7 @@ public class AnimationWindow extends ApplicationWindow {
     playable = false;
 
     this.endTime = this.manager.getEndTime();
-    this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.modelCanvas);
+    this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.modelRenderer);
     this.animationTask.setSpeed(this.playSpeed.getDoubleValue());// スピードの設定
     this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
 

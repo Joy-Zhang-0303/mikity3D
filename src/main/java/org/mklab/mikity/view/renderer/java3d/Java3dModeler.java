@@ -13,7 +13,7 @@ import org.mklab.mikity.view.gui.AbstractModeler;
  */
 public class Java3dModeler extends AbstractModeler {
   /** キャンバス */
-  private Java3dModelRenderer canvas;
+  private Java3dModelRenderer renderer;
   
   /**
    * Initialize the generated object of {@link Java3dModeler}.
@@ -31,7 +31,7 @@ public class Java3dModeler extends AbstractModeler {
   @Override
   public void createViewer() {
     final org.mklab.mikity.model.xml.model.Group[] children = this.tree.getModel().getGroups();
-    this.canvas.setChildren(children); 
+    this.renderer.setChildren(children); 
   }
 
   /**
@@ -40,11 +40,11 @@ public class Java3dModeler extends AbstractModeler {
   @Override
   public void createModelCanvas(Composite viewerComp) {
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);
-    this.canvas = new Java3dModelRenderer();
+    this.renderer = new Java3dModelRenderer();
     
     final JamastConfig configuration = this.root.getConfig(0);
-    this.canvas.setConfiguration(configuration);
+    this.renderer.setConfiguration(configuration);
     
-    this.awtFrame.add(this.canvas);
+    this.awtFrame.add(this.renderer);
   }
 }

@@ -10,17 +10,18 @@ import org.mklab.mikity.model.xml.model.Group;
 
 
 /**
- * モデルのキャンバスを表すインターフェースです。
+ * モデルを描画するレンダラーを表すインターフェースです。
  * 
  * @author koga
  * @version $Revision$, 2012/02/19
  */
 public interface ModelRenderer {
   /**
-   * 一旦トップグループの全てを消してから書き込みます。
-   * @param groups グループ群 
+   * 描画対象となるグループ群を設定します。
+   * 
+   * @param children グループ群 
    */
-  void setChildren(Group[] groups);
+  void setChildren(Group[] children);
   
   /**
    * 環境データを設定します。
