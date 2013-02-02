@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.canvas.jogl;
+package org.mklab.mikity.view.renderer.jogl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.model.XMLSphere;
 import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Util;
-import org.mklab.mikity.view.canvas.jogl.primitive.JoglCoordinate;
+import org.mklab.mikity.view.renderer.jogl.primitive.JoglCoordinate;
 
 
 /**

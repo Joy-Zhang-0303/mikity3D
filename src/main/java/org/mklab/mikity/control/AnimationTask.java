@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.TimerTask;
 
 import org.mklab.mikity.model.MovableGroupManager;
-import org.mklab.mikity.view.canvas.ModelCanvas;
-import org.mklab.mikity.view.canvas.jogl.JoglModelCanvas;
 import org.mklab.mikity.view.gui.AnimationWindow;
+import org.mklab.mikity.view.renderer.ModelRenderer;
+import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 
 
 /**
@@ -36,7 +36,7 @@ public class AnimationTask extends TimerTask {
   private double endTime = 0.0;
   private long startTime = System.currentTimeMillis();
   /** モデルキャンバス　*/
-  private ModelCanvas canvas;
+  private ModelRenderer canvas;
   
   /**
    * コンストラクター
@@ -46,7 +46,7 @@ public class AnimationTask extends TimerTask {
    * @param manager グループマネージャー
    * @param canvas モデルキャンバス
    */
-  public AnimationTask(double initialTime, double endTime, MovableGroupManager manager, ModelCanvas canvas) {
+  public AnimationTask(double initialTime, double endTime, MovableGroupManager manager, ModelRenderer canvas) {
     this.endTime = endTime;
     this.currentTime = initialTime;
     this.manager = manager;
@@ -100,8 +100,8 @@ public class AnimationTask extends TimerTask {
       this.manager.updateMovableGroupsWithCoordinateParameter(this.currentTime);
     }
 
-    if (this.canvas instanceof JoglModelCanvas) {
-      ((JoglModelCanvas)this.canvas).display();
+    if (this.canvas instanceof JoglModelRenderer) {
+      ((JoglModelRenderer)this.canvas).display();
     }
 
     if (this.currentTime > this.endTime) {

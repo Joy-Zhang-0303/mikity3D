@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.canvas.jogl;
+package org.mklab.mikity.view.renderer.jogl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import javax.media.opengl.GL;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.MovableGroup;
-import org.mklab.mikity.view.canvas.jogl.primitive.JoglCoordinate;
+import org.mklab.mikity.view.renderer.jogl.primitive.JoglCoordinate;
 
 
 /**

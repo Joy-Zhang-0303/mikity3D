@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.canvas.java3d;
+package org.mklab.mikity.view.renderer.java3d;
 
 import javax.media.j3d.TransformGroup;
 

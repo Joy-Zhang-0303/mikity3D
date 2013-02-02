@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.canvas.java3d;
+package org.mklab.mikity.view.renderer.java3d;
 
 import javax.media.j3d.Background;
 import javax.media.j3d.BoundingSphere;
@@ -16,7 +16,7 @@ import org.mklab.mikity.model.xml.config.View;
 import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.util.Color3;
 import org.mklab.mikity.util.ColorConstant;
-import org.mklab.mikity.view.canvas.ModelCanvas;
+import org.mklab.mikity.view.renderer.ModelRenderer;
 
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
@@ -30,7 +30,7 @@ import com.sun.j3d.utils.universe.SimpleUniverse;
  * @author Miki Koga
  * @version $Revision: 1.6 $.2004/12/16
  */
-public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
+public class Java3dModelRenderer extends Canvas3D implements ModelRenderer {
   /** */
   private static final long serialVersionUID = 1L;
   /** マウス操作の状態の表す数値 */
@@ -53,7 +53,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   /**
    * 新しく生成された<code>Java3dModelCanvas</code>オブジェクトを初期化します。
    */
-  public Java3dModelCanvas() {
+  public Java3dModelRenderer() {
     super(SimpleUniverse.getPreferredConfiguration());
 
     this.universe = new SimpleUniverse(this);
@@ -61,9 +61,6 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     // ブランチグループを設定
     final BranchGroup bg = new BranchGroup();
     bg.setCapability(BranchGroup.ALLOW_DETACH);
-
-//    final JamastConfig configuration = this.root.getConfig(0);
-//    setConfiguration(configuration);
 
     // 平行光線の設定
     final Java3dDirectionalLight light = new Java3dDirectionalLight(new Color3f(1.0f, 1.0f, 1.0f), this.lightLocation);

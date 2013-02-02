@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.canvas.jogl;
+package org.mklab.mikity.view.renderer.jogl;
 
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
@@ -12,7 +12,7 @@ import org.mklab.mikity.view.gui.AbstractModeler;
  * @version $Revision$, 2012/01/12
  */
 public class JoglModeler extends AbstractModeler {
-  private JoglModelCanvas canvas;
+  private JoglModelRenderer canvas;
   
   /**
    * Initialize the generated object of {@link JoglModeler}.
@@ -40,7 +40,7 @@ public class JoglModeler extends AbstractModeler {
   @Override
   public void createModelCanvas(Composite viewerComposite) {
     this.awtFrame = SWT_AWT.new_Frame(viewerComposite);
-    this.canvas = new JoglModelCanvas();
+    this.canvas = new JoglModelRenderer();
     this.awtFrame.add(this.canvas); 
   }
 

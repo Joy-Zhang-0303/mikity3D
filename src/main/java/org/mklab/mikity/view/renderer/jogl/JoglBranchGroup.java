@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.canvas.jogl;
+package org.mklab.mikity.view.renderer.jogl;
 
 import java.util.ArrayList;
 import java.util.List;

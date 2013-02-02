@@ -39,8 +39,8 @@ import org.mklab.mikity.model.xml.JamastFactory;
 import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.model.xml.model.LinkData;
 import org.mklab.mikity.util.MessagegUtil;
-import org.mklab.mikity.view.canvas.ModelCanvas;
-import org.mklab.mikity.view.canvas.jogl.JoglModelCanvas;
+import org.mklab.mikity.view.renderer.ModelRenderer;
+import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
@@ -98,7 +98,7 @@ public class AnimationWindow extends ApplicationWindow {
   ParameterInputBox playSpeed;
 
   /** ModelCanvas */
-  private ModelCanvas modelCanvas;
+  private ModelRenderer modelCanvas;
 
   /**
    * コンストラクター
@@ -113,7 +113,7 @@ public class AnimationWindow extends ApplicationWindow {
 
     // TODO Java3d or JOGL
     //this.modelCanvas = new Java3dModelCanvas(this.root);
-    this.modelCanvas = new JoglModelCanvas();
+    this.modelCanvas = new JoglModelRenderer();
   }
 
   /**

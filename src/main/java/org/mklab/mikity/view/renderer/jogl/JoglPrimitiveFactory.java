@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.canvas.jogl;
+package org.mklab.mikity.view.renderer.jogl;
 
 import java.util.List;
 
@@ -14,13 +14,13 @@ import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.model.XMLSphere;
 import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Matrix4;
-import org.mklab.mikity.view.canvas.jogl.primitive.JoglBox;
-import org.mklab.mikity.view.canvas.jogl.primitive.JoglCone;
-import org.mklab.mikity.view.canvas.jogl.primitive.JoglCoordinate;
-import org.mklab.mikity.view.canvas.jogl.primitive.JoglCylinder;
-import org.mklab.mikity.view.canvas.jogl.primitive.JoglQuadPolygon;
-import org.mklab.mikity.view.canvas.jogl.primitive.JoglSphere;
-import org.mklab.mikity.view.canvas.jogl.primitive.JoglTrianglePolygon;
+import org.mklab.mikity.view.renderer.jogl.primitive.JoglBox;
+import org.mklab.mikity.view.renderer.jogl.primitive.JoglCone;
+import org.mklab.mikity.view.renderer.jogl.primitive.JoglCoordinate;
+import org.mklab.mikity.view.renderer.jogl.primitive.JoglCylinder;
+import org.mklab.mikity.view.renderer.jogl.primitive.JoglQuadPolygon;
+import org.mklab.mikity.view.renderer.jogl.primitive.JoglSphere;
+import org.mklab.mikity.view.renderer.jogl.primitive.JoglTrianglePolygon;
 
 
 /**

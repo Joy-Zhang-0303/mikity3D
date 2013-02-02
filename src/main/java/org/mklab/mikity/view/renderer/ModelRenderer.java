@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.canvas;
+package org.mklab.mikity.view.renderer;
 
 import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.model.Group;
@@ -15,7 +15,7 @@ import org.mklab.mikity.model.xml.model.Group;
  * @author koga
  * @version $Revision$, 2012/02/19
  */
-public interface ModelCanvas {
+public interface ModelRenderer {
   /**
    * 一旦トップグループの全てを消してから書き込みます。
    * @param groups グループ群 

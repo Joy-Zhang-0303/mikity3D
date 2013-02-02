@@ -1,4 +1,4 @@
-package org.mklab.mikity.view.canvas.jogl;
+package org.mklab.mikity.view.renderer.jogl;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
 
 import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.view.canvas.ModelCanvas;
+import org.mklab.mikity.view.renderer.ModelRenderer;
 
 /**
  * JOGL用のキャンバスを表すクラスです。
@@ -23,7 +23,7 @@ import org.mklab.mikity.view.canvas.ModelCanvas;
  * @author iwamoto
  * @version $Revision$, 2012/01/11
  */
-public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventListener, MouseListener, MouseMotionListener {
+public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEventListener, MouseListener, MouseMotionListener {
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
 
@@ -71,7 +71,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   /**
    * 新しく生成された<code>JoglModelCanvas</code>オブジェクトを初期化します。
    */
-  public JoglModelCanvas() {
+  public JoglModelRenderer() {
     super(new GLCapabilities());
     addGLEventListener(this);
     addMouseListener(this);
