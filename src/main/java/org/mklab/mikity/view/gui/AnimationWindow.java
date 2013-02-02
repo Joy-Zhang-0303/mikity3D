@@ -186,18 +186,16 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * 実際にシミュレーションを見る画面
    * 
-   * @param comp
+   * @param parent
    */
-  private void createViewer(final Composite comp) {
+  private void createViewer(final Composite parent) {
+    final Composite viewer = new Composite(parent, SWT.EMBEDDED);
     final GridData gridData = new GridData(GridData.FILL_BOTH);
-
-    final Composite viewer = new Composite(comp, SWT.EMBEDDED);
     viewer.setLayoutData(gridData);
 
     // AWTのフレームを作る。
-    final Frame awtFrame = SWT_AWT.new_Frame(viewer);
-
-    awtFrame.add((Component)this.modelCanvas);
+    final Frame frame = SWT_AWT.new_Frame(viewer);
+    frame.add((Component)this.modelCanvas);
     this.modelCanvas.load();
   }
 
@@ -215,30 +213,30 @@ public class AnimationWindow extends ApplicationWindow {
 
     createFileChooseComp(controllerComposite);
 
-    final Composite otherController = new Composite(controllerComposite, SWT.NONE);
-    otherController.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    otherController.setLayout(new GridLayout());
+    final Composite controller = new Composite(controllerComposite, SWT.NONE);
+    controller.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    controller.setLayout(new GridLayout());
 
-    final Composite playerComp = new Composite(otherController, SWT.NONE);
-    playerComp.setLayout(new GridLayout(4, false));
-    final Button playbackButton = new Button(playerComp, SWT.NONE);
+    final Composite playerComposite = new Composite(controller, SWT.NONE);
+    playerComposite.setLayout(new GridLayout(4, false));
+    final Button playbackButton = new Button(playerComposite, SWT.NONE);
     playbackButton.setImage(ImageManager.getImage(ImageManager.PLAYBACK));
-    final Button stopButton = new Button(playerComp, SWT.NONE);
+    final Button stopButton = new Button(playerComposite, SWT.NONE);
     stopButton.setImage(ImageManager.getImage(ImageManager.STOP));
-    final Button slowerButton = new Button(playerComp, SWT.NONE);
+    final Button slowerButton = new Button(playerComposite, SWT.NONE);
     slowerButton.setImage(ImageManager.getImage(ImageManager.SLOW));
-    final Button fasterButton = new Button(playerComp, SWT.NONE);
+    final Button fasterButton = new Button(playerComposite, SWT.NONE);
     fasterButton.setImage(ImageManager.getImage(ImageManager.FASTER));
 
     // timeLabel.setText("" + task.getCurrentTime());
 
-    final Composite speedComposite = new Composite(otherController, SWT.NONE);
+    final Composite speedComposite = new Composite(controller, SWT.NONE);
     final GridLayout speedLayout = new GridLayout();
     speedLayout.numColumns = 2;
     speedComposite.setLayout(speedLayout);
     this.playSpeed = new ParameterInputBox(speedComposite, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    createTimeBar(otherController);
+    createTimeBar(controller);
 
     final Composite composite2 = new Composite(controllerComposite, SWT.NONE);
     composite2.setLayout(new GridLayout(3, false));
@@ -250,9 +248,9 @@ public class AnimationWindow extends ApplicationWindow {
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setSpeed(AnimationWindow.this.speed);
         }
-        String stValue = String.valueOf(AnimationWindow.this.speed);
-        stValue = stValue.substring(0, stValue.indexOf(".") + 2); //$NON-NLS-1$
-        AnimationWindow.this.playSpeed.setText(stValue);
+        String value = String.valueOf(AnimationWindow.this.speed);
+        value = value.substring(0, value.indexOf(".") + 2); //$NON-NLS-1$
+        AnimationWindow.this.playSpeed.setText(value);
       }
     });
 
@@ -263,9 +261,9 @@ public class AnimationWindow extends ApplicationWindow {
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setSpeed(AnimationWindow.this.speed);
         }
-        String stValue = String.valueOf(AnimationWindow.this.speed);
-        stValue = stValue.substring(0, stValue.indexOf(".") + 2); //$NON-NLS-1$
-        AnimationWindow.this.playSpeed.setText(stValue);
+        String value = String.valueOf(AnimationWindow.this.speed);
+        value = value.substring(0, value.indexOf(".") + 2); //$NON-NLS-1$
+        AnimationWindow.this.playSpeed.setText(value);
       }
     });
 
@@ -315,7 +313,7 @@ public class AnimationWindow extends ApplicationWindow {
 
       @Override
       public void widgetSelected(SelectionEvent arg0) {
-        double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
+        final double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
         AnimationWindow.this.manager.updateMovableGroupsWithCoordinateParameter(t);
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setCurrentTime(t);
@@ -332,19 +330,19 @@ public class AnimationWindow extends ApplicationWindow {
   /**
    * ファイルを選択するボタン
    * 
-   * @param composite
+   * @param parent
    */
-  private void createFileChooseComp(final Composite composite) {
-    final Composite comp = new Composite(composite, SWT.NONE);
+  private void createFileChooseComp(final Composite parent) {
+    final Composite composite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
-    comp.setLayout(layout);
-    comp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    composite.setLayout(layout);
+    composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-    final Label label = new Label(comp, SWT.NONE);
+    final Label label = new Label(composite, SWT.NONE);
     label.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
 
-    this.filePathText = new Text(comp, SWT.BORDER);
+    this.filePathText = new Text(composite, SWT.BORDER);
     this.filePathText.setText(""); //$NON-NLS-1$
     this.filePathText.addTraverseListener(new TraverseListener() {
 
@@ -360,14 +358,14 @@ public class AnimationWindow extends ApplicationWindow {
     gridData.horizontalSpan = 4;
     this.filePathText.setLayoutData(gridData);
 
-    final Button refButton = new Button(comp, SWT.BORDER);
+    final Button refButton = new Button(composite, SWT.BORDER);
     refButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
 
     refButton.addSelectionListener(new SelectionAdapter() {
 
       @Override
       public void widgetSelected(SelectionEvent arg0) {
-        final FileDialog dialog = new FileDialog(composite.getShell());
+        final FileDialog dialog = new FileDialog(parent.getShell());
         // ファイルを選択させる
         final String filePath = dialog.open();
         if (filePath != null) {
@@ -377,18 +375,18 @@ public class AnimationWindow extends ApplicationWindow {
     });
   }
 
-  private void checkLinkParameterType(Group group) {
-    final Group[] groups = group.getGroups();
-    for (int i = 0; i < groups.length; i++) {
-      final LinkData[] links = groups[i].getLinkData();
-      for (int j = 0; j < links.length; j++) {
-        if (links[j].hasDHParameter()) {
+  private void checkLinkParameterType(Group parent) {
+    final Group[] groups = parent.getGroups();
+    for (final Group group : groups) {
+      final LinkData[] links = group.getLinkData();
+      for (final LinkData link : links) {
+        if (link.hasDHParameter()) {
           this.manager.setHasDHParameter(true);
-        } else if (links[j].hasCoordinateParameter()) {
+        } else if (link.hasCoordinateParameter()) {
           this.manager.setHasCoordinateParameter(true);
         }
       }
-      checkLinkParameterType(groups[i]);
+      checkLinkParameterType(group);
     }
   }
 
