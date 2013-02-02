@@ -140,20 +140,18 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * コンテンツ作成
-   * 
-   * @see org.eclipse.jface.window.Window#createContents(org.eclipse.swt.widgets.Composite)
+   * {@inheritDoc}
    */
   @Override
   protected Control createContents(final Composite parent) {
-    final SashForm sash = new SashForm(parent, SWT.NONE);
-    sash.setLayoutData(new GridData(GridData.FILL_BOTH));
-    sash.setLayout(new GridLayout());
+    final SashForm form = new SashForm(parent, SWT.NONE);
+    form.setLayoutData(new GridData(GridData.FILL_BOTH));
+    form.setLayout(new GridLayout());
 
-    createViewer(sash);
-    createController(sash);
+    createView(form);
+    createController(form);
 
-    sash.setWeights(new int[] {70, 30}); // 70%:30%に分割点を設定
+    form.setWeights(new int[] {70, 30}); // 70%:30%に分割点を設定
 
     if (this.root.loadConfig(0).loadData() != null) {
       setTimeData(new File(this.root.loadConfig(0).loadData()));
@@ -182,19 +180,17 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * This method initializes viewer
-   * 
-   * 実際にシミュレーションを見る画面
+   * アニメーションを描画するビューを生成します。
    * 
    * @param parent
    */
-  private void createViewer(final Composite parent) {
-    final Composite viewer = new Composite(parent, SWT.EMBEDDED);
+  private void createView(final Composite parent) {
+    final Composite composite = new Composite(parent, SWT.EMBEDDED);
     final GridData gridData = new GridData(GridData.FILL_BOTH);
-    viewer.setLayoutData(gridData);
+    composite.setLayoutData(gridData);
 
     // AWTのフレームを作る。
-    final Frame frame = SWT_AWT.new_Frame(viewer);
+    final Frame frame = SWT_AWT.new_Frame(composite);
     frame.add((Component)this.modelCanvas);
     this.modelCanvas.load();
   }
@@ -211,21 +207,21 @@ public class AnimationWindow extends ApplicationWindow {
     controllerComposite.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.VERTICAL_ALIGN_END));
     controllerComposite.setLayout(new GridLayout());
 
-    createFileChooseComp(controllerComposite);
+    createFileChooseComposite(controllerComposite);
 
     final Composite controller = new Composite(controllerComposite, SWT.NONE);
     controller.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     controller.setLayout(new GridLayout());
 
-    final Composite playerComposite = new Composite(controller, SWT.NONE);
-    playerComposite.setLayout(new GridLayout(4, false));
-    final Button playbackButton = new Button(playerComposite, SWT.NONE);
+    final Composite buttonComposite = new Composite(controller, SWT.NONE);
+    buttonComposite.setLayout(new GridLayout(4, false));
+    final Button playbackButton = new Button(buttonComposite, SWT.NONE);
     playbackButton.setImage(ImageManager.getImage(ImageManager.PLAYBACK));
-    final Button stopButton = new Button(playerComposite, SWT.NONE);
+    final Button stopButton = new Button(buttonComposite, SWT.NONE);
     stopButton.setImage(ImageManager.getImage(ImageManager.STOP));
-    final Button slowerButton = new Button(playerComposite, SWT.NONE);
+    final Button slowerButton = new Button(buttonComposite, SWT.NONE);
     slowerButton.setImage(ImageManager.getImage(ImageManager.SLOW));
-    final Button fasterButton = new Button(playerComposite, SWT.NONE);
+    final Button fasterButton = new Button(buttonComposite, SWT.NONE);
     fasterButton.setImage(ImageManager.getImage(ImageManager.FASTER));
 
     // timeLabel.setText("" + task.getCurrentTime());
@@ -238,8 +234,8 @@ public class AnimationWindow extends ApplicationWindow {
 
     createTimeBar(controller);
 
-    final Composite composite2 = new Composite(controllerComposite, SWT.NONE);
-    composite2.setLayout(new GridLayout(3, false));
+    //final Composite composite2 = new Composite(controllerComposite, SWT.NONE);
+    //composite2.setLayout(new GridLayout(3, false));
 
     fasterButton.addSelectionListener(new SelectionAdapter() {
       @Override
@@ -307,10 +303,8 @@ public class AnimationWindow extends ApplicationWindow {
     this.timeSlider.setLayoutData(gridData2);
     this.timeSlider.setMinimum(0);
     this.timeSlider.setMaximum(0);
-    // dataCount スライダーの最大値
 
     this.timeSlider.addSelectionListener(new SelectionAdapter() {
-
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         final double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
@@ -332,7 +326,7 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param parent
    */
-  private void createFileChooseComp(final Composite parent) {
+  private void createFileChooseComposite(final Composite parent) {
     final Composite composite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
