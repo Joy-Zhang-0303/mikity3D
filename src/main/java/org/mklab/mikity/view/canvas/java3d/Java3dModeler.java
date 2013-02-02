@@ -38,7 +38,6 @@ public class Java3dModeler extends AbstractModeler {
    */
   @Override
   public void createModelCanvas(Composite viewerComp) {
-    // 何もないキャンバスを作る
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);
     this.canvas = new Java3dModelCanvas(this.root);
     this.awtFrame.add(this.canvas);

@@ -35,7 +35,7 @@ import org.mklab.mikity.view.gui.dialog.GroupConfigWithDHParameterDialog;
  * @version $Revision: 1.22 $.2004/12/03
  */
 public abstract class AbstractModeler extends Composite {
-  /** */
+  /** シーングラフツリー */
   protected SceneGraphTree tree;
   /** ルート */
   protected Jamast root; 
@@ -61,8 +61,8 @@ public abstract class AbstractModeler extends Composite {
     sash.setLayoutData(new GridData(GridData.FILL_BOTH));
     sash.setLayout(new GridLayout());
 
-    createViewerComp(sash);
-    createTreeComp(sash);
+    createViewerComposite(sash);
+    createTreeComposite(sash);
   }
 
 
@@ -71,12 +71,12 @@ public abstract class AbstractModeler extends Composite {
    * 
    * @param composite
    */
-  private void createViewerComp(Composite composite) {
+  private void createViewerComposite(Composite composite) {
     final GridData gridData = new GridData(GridData.FILL_BOTH);
-    final Composite viewerComp = new Composite(composite, SWT.EMBEDDED);
-    viewerComp.setLayout(new GridLayout());
-    viewerComp.setLayoutData(gridData);
-    createModelCanvas(viewerComp);
+    final Composite viewerComposite = new Composite(composite, SWT.EMBEDDED);
+    viewerComposite.setLayout(new GridLayout());
+    viewerComposite.setLayoutData(gridData);
+    createModelCanvas(viewerComposite);
   }
 
   /**
@@ -84,7 +84,7 @@ public abstract class AbstractModeler extends Composite {
    * 
    * @param composite
    */
-  private void createTreeComp(Composite composite) {
+  private void createTreeComposite(Composite composite) {
     final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     this.treeViewerGroup = new Group(composite, SWT.NONE);
@@ -104,10 +104,10 @@ public abstract class AbstractModeler extends Composite {
    * 
    * @param composite コンポジット
    */
-  public void createEditComp(Composite composite) {
+  public void createEditComposite(Composite composite) {
     final GridData gridData = new GridData(GridData.FILL_BOTH);
-    final Composite editComp = new Composite(composite, SWT.EMBEDDED);
-    editComp.setLayoutData(gridData);
+    final Composite editComposite = new Composite(composite, SWT.EMBEDDED);
+    editComposite.setLayoutData(gridData);
   }
 
   /**
@@ -115,11 +115,11 @@ public abstract class AbstractModeler extends Composite {
    * 
    * @param composite コンポジット
    */
-  public void createEditGroupComp(Composite composite) {
+  public void createEditGroupComposite(Composite composite) {
     final GridData gridData = new GridData(GridData.FILL_BOTH);
-    final Composite editGroupComp = new Composite(composite, SWT.EMBEDDED);
-    editGroupComp.setLayout(new GridLayout());
-    editGroupComp.setLayoutData(gridData);
+    final Composite editGroupComposite = new Composite(composite, SWT.EMBEDDED);
+    editGroupComposite.setLayout(new GridLayout());
+    editGroupComposite.setLayoutData(gridData);
   }
 
   /**
@@ -127,7 +127,7 @@ public abstract class AbstractModeler extends Composite {
    * 
    * @param comp コンポジット
    */
-  public void createParmComp(Composite comp) {
+  public void createParmComposite(Composite comp) {
     final Composite composite = new Composite(comp, SWT.NONE);
     final GridLayout layout = new GridLayout(1, true);
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
@@ -154,13 +154,13 @@ public abstract class AbstractModeler extends Composite {
     dhButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     dhButton.setText(Messages.getString("Modeler.3")); //$NON-NLS-1$
 
-    final Button primAddButton = new Button(composite, SWT.NONE);
-    primAddButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    primAddButton.setText(Messages.getString("Modeler.4")); //$NON-NLS-1$
+    final Button primitiveAddButton = new Button(composite, SWT.NONE);
+    primitiveAddButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    primitiveAddButton.setText(Messages.getString("Modeler.4")); //$NON-NLS-1$
 
-    final Button primEditButton = new Button(composite, SWT.NONE);
-    primEditButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    primEditButton.setText(Messages.getString("Modeler.5")); //$NON-NLS-1$
+    final Button primitiveEditButton = new Button(composite, SWT.NONE);
+    primitiveEditButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    primitiveEditButton.setText(Messages.getString("Modeler.5")); //$NON-NLS-1$
 
     // 保存して終了ボタン
     final Button closeButton = new Button(composite, SWT.NONE);
@@ -209,12 +209,12 @@ public abstract class AbstractModeler extends Composite {
           return;
         }
         
-        final         org.mklab.mikity.model.xml.model.LinkData[] linkdata = group.getLinkData();
+        final org.mklab.mikity.model.xml.model.LinkData[] linkdata = group.getLinkData();
         if (linkdata.length == 0) {
-          final MessageBox mesBox = new MessageBox(getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          mesBox.setMessage(Messages.getString("Modeler.10")); //$NON-NLS-1$
-          mesBox.setText(Messages.getString("Modeler.11")); //$NON-NLS-1$
-          int result = mesBox.open();
+          final MessageBox messageBox = new MessageBox(getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+          messageBox.setMessage(Messages.getString("Modeler.10")); //$NON-NLS-1$
+          messageBox.setText(Messages.getString("Modeler.11")); //$NON-NLS-1$
+          int result = messageBox.open();
           if (result == SWT.YES) {
             final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
             groupConf.open();
@@ -241,17 +241,17 @@ public abstract class AbstractModeler extends Composite {
       }
     });
 
-    primAddButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    primitiveAddButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         final org.mklab.mikity.model.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
         if (group == null) {
-          final MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
-          box.setText(Messages.getString("Modeler.12")); //$NON-NLS-1$
-          box.setMessage(Messages.getString("Modeler.13")); //$NON-NLS-1$
-          box.open();
+          final MessageBox messageBox = new MessageBox(getShell(), SWT.ICON_WARNING);
+          messageBox.setText(Messages.getString("Modeler.12")); //$NON-NLS-1$
+          messageBox.setMessage(Messages.getString("Modeler.13")); //$NON-NLS-1$
+          messageBox.open();
           return;
         }
 
@@ -263,24 +263,24 @@ public abstract class AbstractModeler extends Composite {
       }
     });
 
-    primEditButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    primitiveEditButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final Object prim = AbstractModeler.this.tree.getSelectionData();
+        final Object primitive = AbstractModeler.this.tree.getSelectionData();
         final org.mklab.mikity.model.xml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
 
-        if (prim == null) {
-          final MessageBox box = new MessageBox(getShell(), SWT.ICON_WARNING);
-          box.setText(Messages.getString("Modeler.14")); //$NON-NLS-1$
-          box.setMessage(Messages.getString("Modeler.15")); //$NON-NLS-1$
-          box.open();
+        if (primitive == null) {
+          final MessageBox messageBox = new MessageBox(getShell(), SWT.ICON_WARNING);
+          messageBox.setText(Messages.getString("Modeler.14")); //$NON-NLS-1$
+          messageBox.setMessage(Messages.getString("Modeler.15")); //$NON-NLS-1$
+          messageBox.open();
           return;
         }
 
-        final EditPrimitiveDialog editPrim = new EditPrimitiveDialog(getShell(), prim, group);
-        editPrim.open();
+        final EditPrimitiveDialog dialog = new EditPrimitiveDialog(getShell(), primitive, group);
+        dialog.open();
 
         AbstractModeler.this.tree.fillTree();
         createViewer();

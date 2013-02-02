@@ -38,9 +38,8 @@ public class JoglModeler extends AbstractModeler {
    * {@inheritDoc}
    */
   @Override
-  public void createModelCanvas(Composite viewerComp) {
-    // 何もないキャンバスを作る
-    this.awtFrame = SWT_AWT.new_Frame(viewerComp);
+  public void createModelCanvas(Composite viewerComposite) {
+    this.awtFrame = SWT_AWT.new_Frame(viewerComposite);
     this.canvas = new JoglModelCanvas(this.root);
     this.awtFrame.add(this.canvas); 
   }
