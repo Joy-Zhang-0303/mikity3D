@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import javax.swing.SwingUtilities;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -12,8 +11,8 @@ import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLJPanel;
 import javax.media.opengl.glu.GLU;
+import javax.swing.SwingUtilities;
 
-import org.mklab.mikity.model.xml.Jamast;
 import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.view.canvas.ModelCanvas;
@@ -32,8 +31,6 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
 
   /** オブジェクトのグループ */
   private JoglBranchGroup[] topGroups;
-
-  private Jamast root;
   
   private double[] eye = {0.0,0.0, 5.0};
 
@@ -80,16 +77,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
     addMouseListener(this);
     addMouseMotionListener(this);
   }
-
-  /**
-   * Initialize the generated object of {@link JoglModelCanvas}.
-   * @param root ルート
-   */
-  public JoglModelCanvas(Jamast root){
-    this();
-    this.root = root;
-  }
-
+  
   /**
    * {@inheritDoc}
    */

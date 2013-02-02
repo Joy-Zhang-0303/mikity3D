@@ -113,7 +113,7 @@ public class AnimationWindow extends ApplicationWindow {
 
     // TODO Java3d or JOGL
     //this.modelCanvas = new Java3dModelCanvas(this.root);
-    this.modelCanvas = new JoglModelCanvas(this.root);
+    this.modelCanvas = new JoglModelCanvas();
   }
 
   /**

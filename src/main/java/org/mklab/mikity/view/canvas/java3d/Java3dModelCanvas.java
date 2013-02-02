@@ -10,7 +10,6 @@ import javax.vecmath.Color3f;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
-import org.mklab.mikity.model.xml.Jamast;
 import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.config.Light;
 import org.mklab.mikity.model.xml.config.View;
@@ -36,8 +35,6 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   private static final long serialVersionUID = 1L;
   /** マウス操作の状態の表す数値 */
   private int mouseOperationType = 0;
-  /** 読み込んだファイルのルート */
-  private Jamast root;
 
   /** トップブランチグループ */
   private BranchGroup topGroup;
@@ -54,13 +51,10 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   private Java3dViewpoint viewPoint;
 
   /**
-   * コンストラクター universe --> BranchGroup --> TransformGroup --> topGroup
-   * 
-   * @param root ルート
+   * 新しく生成された<code>Java3dModelCanvas</code>オブジェクトを初期化します。
    */
-  public Java3dModelCanvas(Jamast root) {
+  public Java3dModelCanvas() {
     super(SimpleUniverse.getPreferredConfiguration());
-    this.root = root;
 
     this.universe = new SimpleUniverse(this);
 
@@ -68,8 +62,8 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
     final BranchGroup bg = new BranchGroup();
     bg.setCapability(BranchGroup.ALLOW_DETACH);
 
-    final JamastConfig configuration = this.root.getConfig(0);
-    setConfiguration(configuration);
+//    final JamastConfig configuration = this.root.getConfig(0);
+//    setConfiguration(configuration);
 
     // 平行光線の設定
     final Java3dDirectionalLight light = new Java3dDirectionalLight(new Color3f(1.0f, 1.0f, 1.0f), this.lightLocation);

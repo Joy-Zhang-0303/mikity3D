@@ -3,6 +3,7 @@ package org.mklab.mikity.view.canvas.java3d;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
 import org.mklab.mikity.model.xml.Jamast;
+import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.view.gui.AbstractModeler;
 
 
@@ -39,7 +40,11 @@ public class Java3dModeler extends AbstractModeler {
   @Override
   public void createModelCanvas(Composite viewerComp) {
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);
-    this.canvas = new Java3dModelCanvas(this.root);
+    this.canvas = new Java3dModelCanvas();
+    
+    final JamastConfig configuration = this.root.getConfig(0);
+    this.canvas.setConfiguration(configuration);
+    
     this.awtFrame.add(this.canvas);
   }
 }
