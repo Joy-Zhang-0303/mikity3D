@@ -199,8 +199,6 @@ public class AnimationWindow extends ApplicationWindow {
 
     final JamastConfig configuration = this.root.getConfig(0);
     this.modelCanvas.setConfiguration(configuration);
-
-    //this.modelCanvas.load();
   }
 
   /**
