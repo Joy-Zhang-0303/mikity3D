@@ -85,10 +85,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    * @param root ルート
    */
   public JoglModelCanvas(Jamast root){
-    super(new GLCapabilities());
-    addGLEventListener(this);
-    addMouseListener(this);
-    addMouseMotionListener(this);
+    this();
     this.root = root;
   }
 
@@ -148,16 +145,16 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    * {@inheritDoc}
    */
   public void load(){
-    final Group[] group = this.root.loadModel(0).loadGroup();
-    setChild(group);
+    final Group[] groups = this.root.loadModel(0).loadGroup();
+    setChild(groups);
   }
 
   /**
    * {@inheritDoc}
    */
-  public void setChild(Group[] group) {
-    final JoglBranchGroup[] branchGroup = new JoglModelCreater().create(group);
-    this.groups = branchGroup;
+  public void setChild(Group[] groups) {
+    final JoglBranchGroup[] branchGroups = new JoglModelCreater().create(groups);
+    this.groups = branchGroups;
   }
 
   /**

@@ -172,19 +172,19 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
   public void setChild(Group[] groups) {
     this.topGroup.removeAllChildren();
 
-    final BranchGroup bg = new BranchGroup();
-    bg.setCapability(BranchGroup.ALLOW_DETACH);
+    final BranchGroup branchGroup = new BranchGroup();
+    branchGroup.setCapability(BranchGroup.ALLOW_DETACH);
 
     final TransformGroup tg = new TransformGroup();
     tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 
-    for (int i = 0; i < groups.length; i++) {
-      bg.addChild(tg);
-      final Java3dTransformGroup child = Java3dPrimitiveFactory.create(groups[i]);
+    for (final Group group : groups) {
+      branchGroup.addChild(tg);
+      final Java3dTransformGroup child = Java3dPrimitiveFactory.create(group);
       tg.addChild(child);
     }
 
-    this.topGroup.addChild(bg);
+    this.topGroup.addChild(branchGroup);
   }
   
   /**
