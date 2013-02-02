@@ -41,7 +41,7 @@ public class AnimationWindowOpenAction extends Action {
   public void run() {
     final AnimationWindow viewer = new AnimationWindow(this.window.getShell(), this.window.getRoot());
     final SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(this.window.getRoot().loadModel(0).loadGroup(0), false);
+    tree.setAllTransparent(this.window.getRoot().getModel(0).getGroup(0), false);
     viewer.open();
     this.window.setDirty(true);
   }

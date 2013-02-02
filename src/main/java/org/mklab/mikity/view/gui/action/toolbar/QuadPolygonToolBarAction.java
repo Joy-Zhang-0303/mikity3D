@@ -58,7 +58,7 @@ public class QuadPolygonToolBarAction extends Action {
     polygon.setColor("blue"); //$NON-NLS-1$
     
     final Jamast root = this.window.getRoot();
-    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    final Group rootGroup = root.getModel(0).getGroup(0);
     rootGroup.addXMLQuadPolygon(polygon);
 
     updateQuad();

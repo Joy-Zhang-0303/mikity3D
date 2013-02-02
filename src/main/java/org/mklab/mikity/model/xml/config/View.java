@@ -87,7 +87,7 @@ public class View implements java.io.Serializable {
   /**
    * Method deleteXrotate
    */
-  public void deleteXrotate() {
+  public void deleteXrotation() {
     this._has_xrotate = false;
   }
 
@@ -101,7 +101,7 @@ public class View implements java.io.Serializable {
   /**
    * Method deleteYrotate
    */
-  public void deleteYrotate() {
+  public void deleteYrotation() {
     this._has_yrotate = false;
   }
 
@@ -115,7 +115,7 @@ public class View implements java.io.Serializable {
   /**
    * Method deleteZrotate
    */
-  public void deleteZrotate() {
+  public void deleteZrotation() {
     this._has_zrotate = false;
   }
 
@@ -124,7 +124,7 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'x'.
    */
-  public float loadX() {
+  public float getX() {
     return this._x;
   }
 
@@ -213,7 +213,7 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'xrotate'.
    */
-  public double loadXrotate() {
+  public double getXrotation() {
     return this._xrotate;
   }
 
@@ -222,7 +222,7 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'y'.
    */
-  public float loadY() {
+  public float getY() {
     return this._y;
   }
 
@@ -231,7 +231,7 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'yrotate'.
    */
-  public double loadYrotate() {
+  public double getYrotation() {
     return this._yrotate;
   }
 
@@ -240,7 +240,7 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'z'.
    */
-  public float loadZ() {
+  public float getZ() {
     return this._z;
   }
 
@@ -249,7 +249,7 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'zrotate'.
    */
-  public double loadZrotate() {
+  public double getZrotation() {
     return this._zrotate;
   }
 
@@ -267,7 +267,7 @@ public class View implements java.io.Serializable {
    * 
    * @return has_xrotate
    */
-  public boolean hasXrotate() {
+  public boolean hasXrotation() {
     return this._has_xrotate;
   }
 
@@ -285,7 +285,7 @@ public class View implements java.io.Serializable {
    * 
    * @return has_yrotate
    */
-  public boolean hasYrotate() {
+  public boolean hasYrotation() {
     return this._has_yrotate;
   }
 
@@ -303,7 +303,7 @@ public class View implements java.io.Serializable {
    * 
    * @return has_zrotate
    */
-  public boolean hasZrotate() {
+  public boolean hasZrotation() {
     return this._has_zrotate;
   }
 
@@ -322,7 +322,7 @@ public class View implements java.io.Serializable {
    * 
    * @param xrotate the value of field 'xrotate'.
    */
-  public void setXrotate(double xrotate) {
+  public void setXrotation(double xrotate) {
     this._xrotate = xrotate;
     this._has_xrotate = true;
   }

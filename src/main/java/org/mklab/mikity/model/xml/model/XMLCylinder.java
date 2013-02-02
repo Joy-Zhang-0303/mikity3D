@@ -133,7 +133,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @return the value of field 'color'.
    */
-  public String loadColor() {
+  public String getColor() {
     return this._color;
   }
 
@@ -234,7 +234,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @return the value of field 'div'.
    */
-  public int loadDiv() {
+  public int getDiv() {
     return this._div;
   }
 
@@ -243,7 +243,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @return the value of field 'height'.
    */
-  public float loadHeight() {
+  public float getHeight() {
     return this._height;
   }
 
@@ -252,7 +252,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @return the value of field 'location'.
    */
-  public Location loadLocation() {
+  public Location getLocation() {
     return this._location;
   }
 
@@ -261,7 +261,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @return the value of field 'r'.
    */
-  public float loadR() {
+  public float getRadius() {
     return this._r;
   }
 
@@ -270,7 +270,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @return the value of field 'rotation'.
    */
-  public Rotation loadRotation() {
+  public Rotation getRotation() {
     return this._rotation;
   }
 
@@ -279,7 +279,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @return the value of field 'transparent'.
    */
-  public boolean loadTransparent() {
+  public boolean getTransparent() {
     return this._transparent;
   }
 
@@ -388,7 +388,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @param r the value of field 'r'.
    */
-  public void setR(float r) {
+  public void setRadius(float r) {
     this._r = r;
     this._has_r = true;
   }

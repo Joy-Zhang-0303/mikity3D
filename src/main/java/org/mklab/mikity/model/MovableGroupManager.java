@@ -124,8 +124,8 @@ public class MovableGroupManager {
     for (final LinkData link : links) {
       if (link.hasDHParameter()) {
         if (link.hasDataNumber()) {
-          final int dataNumber = link.loadDataNumber();
-          final String parameterName = link.loadTargetName();
+          final int dataNumber = link.getDataNumber();
+          final String parameterName = link.getTargetName();
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
@@ -143,8 +143,8 @@ public class MovableGroupManager {
         }
         
         if (link.hasInitialValue()) {
-          final double initialValue = link.loadInitialValue();
-          final String parameterName = link.loadTargetName();
+          final double initialValue = link.getInitialValue();
+          final String parameterName = link.getTargetName();
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
@@ -162,8 +162,8 @@ public class MovableGroupManager {
         }
       } else if (link.hasCoordinateParameter()) {
         if (link.hasDataNumber()) {
-          final int dataNumber = link.loadDataNumber();
-          final String parameterName = link.loadTargetName();
+          final int dataNumber = link.getDataNumber();
+          final String parameterName = link.getTargetName();
           final CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
@@ -185,8 +185,8 @@ public class MovableGroupManager {
         }
         
         if (link.hasInitialValue()) {
-          final double initialValue = link.loadInitialValue();
-          final String parameterName = link.loadTargetName();
+          final double initialValue = link.getInitialValue();
+          final String parameterName = link.getTargetName();
           final CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
@@ -250,7 +250,7 @@ public class MovableGroupManager {
     this.endTime = 0;
 
     this.movableGroups.clear();
-    registerMovableGroups(this.root.loadModel(0).loadGroups(), data);
+    registerMovableGroups(this.root.getModel(0).getGroups(), data);
   }
   
   /**

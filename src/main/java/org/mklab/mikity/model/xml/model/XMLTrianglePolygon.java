@@ -111,9 +111,9 @@ public class XMLTrianglePolygon {
    * @param loc 位置
    */
   public void setNormalVector(Location loc) {
-    this._normal[0] = new Vector3(loc.loadX(), loc.loadY(), loc.loadZ());
-    this._normal[1] = new Vector3(loc.loadX(), loc.loadY(), loc.loadZ());
-    this._normal[2] = new Vector3(loc.loadX(), loc.loadY(), loc.loadZ());
+    this._normal[0] = new Vector3(loc.getX(), loc.getY(), loc.loadZ());
+    this._normal[1] = new Vector3(loc.getX(), loc.getY(), loc.loadZ());
+    this._normal[2] = new Vector3(loc.getX(), loc.getY(), loc.loadZ());
   }
 
   /**
@@ -127,8 +127,8 @@ public class XMLTrianglePolygon {
    *  
    */
   public void setNormalVector() {
-    Vector3 v1 = new Vector3(this._point[1].loadX() - this._point[0].loadX(), this._point[1].loadY() - this._point[0].loadY(), this._point[1].loadZ() - this._point[0].loadZ());
-    Vector3 v2 = new Vector3(this._point[2].loadX() - this._point[1].loadX(), this._point[2].loadY() - this._point[1].loadY(), this._point[2].loadZ() - this._point[1].loadZ());
+    Vector3 v1 = new Vector3(this._point[1].getX() - this._point[0].getX(), this._point[1].getY() - this._point[0].getY(), this._point[1].loadZ() - this._point[0].loadZ());
+    Vector3 v2 = new Vector3(this._point[2].getX() - this._point[1].getX(), this._point[2].getY() - this._point[1].getY(), this._point[2].loadZ() - this._point[1].loadZ());
     Vector3 n = v1.cross(v2).normalize();
     this._normal[0] = n;
     this._normal[1] = n;
@@ -147,7 +147,7 @@ public class XMLTrianglePolygon {
    * @return x location
    */
   public float loadPointLocationX(int pointNum) {
-    return this._point[pointNum].loadX();
+    return this._point[pointNum].getX();
   }
 
   /**
@@ -155,7 +155,7 @@ public class XMLTrianglePolygon {
    * @return y location
    */
   public float loadPointLocationY(int pointNum) {
-    return this._point[pointNum].loadY();
+    return this._point[pointNum].getY();
   }
 
   /**

@@ -132,7 +132,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'color'.
    */
-  public java.lang.String loadColor() {
+  public java.lang.String getColor() {
     return this._color;
   }
 
@@ -233,7 +233,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'location'.
    */
-  public org.mklab.mikity.model.xml.model.Location loadLocation() {
+  public org.mklab.mikity.model.xml.model.Location getLocation() {
     return this._location;
   }
 
@@ -242,7 +242,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'rotation'.
    */
-  public org.mklab.mikity.model.xml.model.Rotation loadRotation() {
+  public org.mklab.mikity.model.xml.model.Rotation getRotation() {
     return this._rotation;
   }
 
@@ -251,7 +251,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'transparent'.
    */
-  public boolean loadTransparent() {
+  public boolean getTransparent() {
     return this._transparent;
   }
 
@@ -260,7 +260,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'xsize'.
    */
-  public float loadXsize() {
+  public float getXsize() {
     return this._xsize;
   }
 
@@ -269,7 +269,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'ysize'.
    */
-  public float loadYsize() {
+  public float getYsize() {
     return this._ysize;
   }
 
@@ -278,7 +278,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'zsize'.
    */
-  public float loadZsize() {
+  public float getZsize() {
     return this._zsize;
   }
 

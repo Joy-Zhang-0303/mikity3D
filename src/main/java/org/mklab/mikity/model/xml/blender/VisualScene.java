@@ -20,7 +20,7 @@ import org.mklab.mikity.util.Matrix4;
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/11/30
  */
-public class Visual_scene {
+public class VisualScene {
   @XmlElement
   private List<Node> nodes;
 
@@ -34,7 +34,7 @@ public class Visual_scene {
   /**
    * 新しく生成された<code>Visual_scene</code>オブジェクトを初期化します。
    */
-  public Visual_scene() {
+  public VisualScene() {
     this.nodes = new ArrayList<Node>();
     this.nodeNames = new ArrayList<String>();
     this.transformMatrices = new ArrayList<Matrix4>();

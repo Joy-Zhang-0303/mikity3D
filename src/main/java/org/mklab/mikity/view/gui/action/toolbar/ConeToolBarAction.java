@@ -43,13 +43,13 @@ public class ConeToolBarAction extends Action {
   @Override
   public void run() {
     final XMLCone cone = new XMLCone();
-    cone.setR(0.10f);
+    cone.setRadius(0.10f);
     cone.setHeight(0.10f);
     cone.setDiv(20);
     cone.setColor("green"); //$NON-NLS-1$
     
     final Jamast root = this.window.getRoot();
-    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    final Group rootGroup = root.getModel(0).getGroup(0);
     rootGroup.addXMLCone(cone);
     updateCone();
   }

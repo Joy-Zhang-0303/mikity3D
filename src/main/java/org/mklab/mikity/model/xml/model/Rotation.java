@@ -91,7 +91,7 @@ public class Rotation implements java.io.Serializable {
    * 
    * @return the value of field 'xrotate'.
    */
-  public float loadXrotate() {
+  public float getXrotation() {
     return this._xrotate;
   }
 
@@ -152,7 +152,7 @@ public class Rotation implements java.io.Serializable {
    * 
    * @return the value of field 'yrotate'.
    */
-  public float loadYrotate() {
+  public float getYrotation() {
     return this._yrotate;
   }
 

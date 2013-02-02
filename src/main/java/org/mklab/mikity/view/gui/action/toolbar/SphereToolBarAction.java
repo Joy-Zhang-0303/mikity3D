@@ -43,12 +43,12 @@ public class SphereToolBarAction extends Action {
   @Override
   public void run() {
     final XMLSphere sphere = new XMLSphere();
-    sphere.setR(0.10f);
+    sphere.setRadius(0.10f);
     sphere.setDiv(20);
     sphere.setColor("yellow"); //$NON-NLS-1$
     
     final Jamast root = this.window.getRoot();
-    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    final Group rootGroup = root.getModel(0).getGroup(0);
     rootGroup.addXMLSphere(sphere);
     
     updateSphere();

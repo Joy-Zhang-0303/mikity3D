@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @author koga
  * @version $Revision$, 2008/08/10
  */
-public class Instance_Geometry {
+public class InstanceGeometry {
 
   @XmlAttribute
   private String geometryURL;
@@ -20,7 +20,7 @@ public class Instance_Geometry {
   /**
    * 新しく生成された<code>Instance_Geometry</code>オブジェクトを初期化します。
    */
-  public Instance_Geometry() {
+  public InstanceGeometry() {
   //
   }
 

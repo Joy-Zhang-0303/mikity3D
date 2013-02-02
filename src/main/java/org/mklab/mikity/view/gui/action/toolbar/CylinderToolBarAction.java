@@ -43,13 +43,13 @@ public class CylinderToolBarAction extends Action {
   @Override
   public void run() {
     final XMLCylinder cylinder = new XMLCylinder();    
-    cylinder.setR(0.10f);
+    cylinder.setRadius(0.10f);
     cylinder.setHeight(0.10f);
     cylinder.setDiv(20);
     cylinder.setColor("blue"); //$NON-NLS-1$
     
     final Jamast root = this.window.getRoot();
-    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    final Group rootGroup = root.getModel(0).getGroup(0);
     rootGroup.addXMLCylinder(cylinder);
     
     updateCylinder();

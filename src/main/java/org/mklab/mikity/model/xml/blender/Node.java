@@ -31,7 +31,7 @@ public class Node {
   @XmlElement
   private String matrix;
   @XmlElement
-  private Instance_Geometry instance_geometry;
+  private InstanceGeometry instance_geometry;
   @XmlElement
   private List<Node> nodes;
   @XmlElement
@@ -70,7 +70,7 @@ public class Node {
    * 新しく生成された<code>Node</code>オブジェクトを初期化します。
    */
   public Node() {
-    this.instance_geometry = new Instance_Geometry();
+    this.instance_geometry = new InstanceGeometry();
     this.nodes = new ArrayList<Node>();
     this.vectors = new ArrayList<String>();
     this.matrix4f = new Matrix4();

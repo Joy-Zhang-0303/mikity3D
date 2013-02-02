@@ -123,7 +123,7 @@ public class SceneGraphTree {
             // 選択されたものがrootであるとき
             SceneGraphTree.this.editable = false;
           }
-          checkUsedLinkType(SceneGraphTree.this.model.loadGroups());
+          checkUsedLinkType(SceneGraphTree.this.model.getGroups());
 
           if (SceneGraphTree.this.usedDHParameter) {
             final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
@@ -266,7 +266,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         // if (targetObj == null) {
         if (SceneGraphTree.this.targetObj instanceof Group) {
-          checkUsedLinkType(SceneGraphTree.this.model.loadGroups());
+          checkUsedLinkType(SceneGraphTree.this.model.getGroups());
 
           if (SceneGraphTree.this.usedDHParameter) {
             final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
@@ -356,7 +356,7 @@ public class SceneGraphTree {
     this.targetParentGroup = null;
     if (this.xmlTree.getSelectionCount() == 0) {
       // 何も選択されていないとき
-      setAllTransparent(this.model.loadGroup(1), true);
+      setAllTransparent(this.model.getGroup(1), true);
       return;
     }
     
@@ -391,7 +391,7 @@ public class SceneGraphTree {
    * @param obj
    */
   private void setTarget(Object obj) {
-    setAllTransparent(this.model.loadGroup(0), true);
+    setAllTransparent(this.model.getGroup(0), true);
 
     if (obj instanceof XMLBox) {
       ((XMLBox)obj).setTransparent(false);
@@ -580,28 +580,28 @@ public class SceneGraphTree {
       final XMLBox[] boxes = groups[i].getXMLBox();
       for (int j = 0; j < boxes.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("box ( " + boxes[j].loadXsize() + ", " + boxes[j].loadYsize() + ", " + boxes[j].loadZsize() + ", " + boxes[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setText("box ( " + boxes[j].getXsize() + ", " + boxes[j].getYsize() + ", " + boxes[j].getZsize() + ", " + boxes[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(boxes[j]);
       }
 
       final XMLCylinder[] cylinders = groups[i].getXMLCylinder();
       for (int j = 0; j < cylinders.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cylinder ( " + cylinders[j].loadR() + ", " + cylinders[j].loadHeight() + ", " + cylinders[j].loadDiv() + ", " + cylinders[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setText("Cylinder ( " + cylinders[j].getRadius() + ", " + cylinders[j].getHeight() + ", " + cylinders[j].getDiv() + ", " + cylinders[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cylinders[j]);
       }
 
       final XMLSphere[] spheres = groups[i].getXMLSphere();
       for (int j = 0; j < spheres.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Sphere ( " + spheres[j].loadR() + ", " + spheres[j].loadDiv() + ", " + spheres[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        boxChild.setText("Sphere ( " + spheres[j].getRadius() + ", " + spheres[j].getDiv() + ", " + spheres[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         boxChild.setData(spheres[j]);
       }
 
       final XMLCone[] cones = groups[i].getXMLCone();
       for (int j = 0; j < cones.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cone ( " + cones[j].loadR() + ", " + cones[j].loadHeight() + ", " + cones[j].loadDiv() + ", " + cones[j].loadColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setText("Cone ( " + cones[j].getRadisu() + ", " + cones[j].getHeight() + ", " + cones[j].getDiv() + ", " + cones[j].getColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cones[j]);
       }
       
@@ -636,7 +636,7 @@ public class SceneGraphTree {
   public void fillTree() {
     clearTree();
     // addTreeItemメソッドに引数rootItemとgroupを渡す
-    addTreeItem(null, this.model.loadGroups());
+    addTreeItem(null, this.model.getGroups());
   }
 
   /**
@@ -666,7 +666,7 @@ public class SceneGraphTree {
    * グループを消去する。
    */
   public void clearGroups() {
-    this.model.clearGroup();
+    this.model.clearGroups();
     Group group = new Group();
     this.model.addGroup(group);
     fillTree();

@@ -98,11 +98,11 @@ public class JoglTransformGroupFactory {
     final Rotation groupRotation = group.getRotation();
     
     if (groupLocation != null && groupRotation != null) {
-      final float xLocation = groupLocation.loadX();
-      final float yLocation = groupLocation.loadY();
+      final float xLocation = groupLocation.getX();
+      final float yLocation = groupLocation.getY();
       final float zLocation = groupLocation.loadZ();
-      final float xRotation = groupRotation.loadXrotate();
-      final float yRotation = groupRotation.loadYrotate();
+      final float xRotation = groupRotation.getXrotation();
+      final float yRotation = groupRotation.getYrotation();
       final float zRotation = groupRotation.loadZrotate();
       final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setLocation(xLocation, yLocation, zLocation);
@@ -111,8 +111,8 @@ public class JoglTransformGroupFactory {
     } 
     
     if (groupLocation != null) {
-      final float xLocation = groupLocation.loadX();
-      final float yLocation = groupLocation.loadY();
+      final float xLocation = groupLocation.getX();
+      final float yLocation = groupLocation.getY();
       final float zLocation = groupLocation.loadZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setLocation(xLocation, yLocation, zLocation);
@@ -120,8 +120,8 @@ public class JoglTransformGroupFactory {
     }
     
     if (groupRotation != null) {
-      final float xRotation = groupRotation.loadXrotate();
-      final float yRotation = groupRotation.loadYrotate();
+      final float xRotation = groupRotation.getXrotation();
+      final float yRotation = groupRotation.getYrotation();
       final float zRotation = groupRotation.loadZrotate();
       final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setRotation(xRotation, yRotation, zRotation);

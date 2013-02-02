@@ -95,7 +95,7 @@ public abstract class AbstractModeler extends Composite {
     this.treeViewerGroup.setLayoutData(data);
     this.treeViewerGroup.setText(Messages.getString("Modeler.0")); //$NON-NLS-1$
 
-    this.tree = new SceneGraphTree(this.treeViewerGroup, this, this.root.loadModel(0));
+    this.tree = new SceneGraphTree(this.treeViewerGroup, this, this.root.getModel(0));
     createViewer();
   }
 
@@ -295,7 +295,7 @@ public abstract class AbstractModeler extends Composite {
    */
   public void setModel(Jamast root) {
     this.root = root;
-    this.tree.setModel(root.loadModel(0));
+    this.tree.setModel(root.getModel(0));
     createViewer();
   }
 

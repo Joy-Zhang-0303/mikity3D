@@ -97,7 +97,7 @@ public class Jamast implements java.io.Serializable {
    * @return _configList.get(index)
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.JamastConfig loadConfig(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.JamastConfig getConfig(int index) throws java.lang.IndexOutOfBoundsException {
     // -- check bounds for index
     if ((index < 0) || (index > this._configList.size())) {
       throw new IndexOutOfBoundsException();
@@ -156,7 +156,7 @@ public class Jamast implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.JamastConfig[] loadConfig() {
+  public org.mklab.mikity.model.xml.JamastConfig[] getConfig() {
     int size = this._configList.size();
     org.mklab.mikity.model.xml.JamastConfig[] mArray = new org.mklab.mikity.model.xml.JamastConfig[size];
     for (int index = 0; index < size; index++) {
@@ -170,7 +170,7 @@ public class Jamast implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<JamastConfig> loadConfigAsReference() {
+  public java.util.ArrayList<JamastConfig> getConfigAsReference() {
     return this._configList;
   }
 
@@ -179,7 +179,7 @@ public class Jamast implements java.io.Serializable {
    * 
    * @return _configList.size()
    */
-  public int loadConfigCount() {
+  public int getConfigSize() {
     return this._configList.size();
   }
 
@@ -190,7 +190,7 @@ public class Jamast implements java.io.Serializable {
    * @return (org.mklab.mikity.xml.Model) _modelList.get(index)
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.JamastModel loadModel(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.JamastModel getModel(int index) throws java.lang.IndexOutOfBoundsException {
     // -- check bounds for index
     if ((index < 0) || (index > this._modelList.size())) {
       throw new IndexOutOfBoundsException();
@@ -204,7 +204,7 @@ public class Jamast implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.JamastModel[] loadModel() {
+  public org.mklab.mikity.model.xml.JamastModel[] getModel() {
     int size = this._modelList.size();
     org.mklab.mikity.model.xml.JamastModel[] mArray = new org.mklab.mikity.model.xml.JamastModel[size];
     for (int index = 0; index < size; index++) {
@@ -330,7 +330,7 @@ public class Jamast implements java.io.Serializable {
   /**
    * @return XML data
    */
-  public Jamast loadJamastXMLData() {
+  public Jamast getJamastXMLData() {
     return this;
   }
 }

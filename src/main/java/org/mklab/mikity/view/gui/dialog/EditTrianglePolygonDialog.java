@@ -376,11 +376,11 @@ public class EditTrianglePolygonDialog {
     this.colorCombo.getColorComboBox().setText(this.triangle.loadColor());
 
     if (this.triangle.loadRotation() != null) {
-      this.paramR_X.setText("" + this.triangle.loadRotation().loadXrotate()); //$NON-NLS-1$
-      this.paramR_Y.setText("" + this.triangle.loadRotation().loadYrotate()); //$NON-NLS-1$
+      this.paramR_X.setText("" + this.triangle.loadRotation().getXrotation()); //$NON-NLS-1$
+      this.paramR_Y.setText("" + this.triangle.loadRotation().getYrotation()); //$NON-NLS-1$
       this.paramR_Z.setText("" + this.triangle.loadRotation().loadZrotate()); //$NON-NLS-1$
-      this.newParamR_X.setText("" + this.triangle.loadRotation().loadXrotate()); //$NON-NLS-1$
-      this.newParamR_Y.setText("" + this.triangle.loadRotation().loadYrotate()); //$NON-NLS-1$
+      this.newParamR_X.setText("" + this.triangle.loadRotation().getXrotation()); //$NON-NLS-1$
+      this.newParamR_Y.setText("" + this.triangle.loadRotation().getYrotation()); //$NON-NLS-1$
       this.newParamR_Z.setText("" + this.triangle.loadRotation().loadZrotate()); //$NON-NLS-1$
     } else {
       this.paramR_X.setText("" + 0.0); //$NON-NLS-1$
@@ -392,11 +392,11 @@ public class EditTrianglePolygonDialog {
     }
 
     if (this.triangle.loadLocation() != null) {
-      this.paramL_X.setText("" + this.triangle.loadLocation().loadX()); //$NON-NLS-1$
-      this.paramL_Y.setText("" + this.triangle.loadLocation().loadY()); //$NON-NLS-1$
+      this.paramL_X.setText("" + this.triangle.loadLocation().getX()); //$NON-NLS-1$
+      this.paramL_Y.setText("" + this.triangle.loadLocation().getY()); //$NON-NLS-1$
       this.paramL_Z.setText("" + this.triangle.loadLocation().loadZ()); //$NON-NLS-1$
-      this.newParamL_X.setText("" + this.triangle.loadLocation().loadX()); //$NON-NLS-1$
-      this.newParamL_Y.setText("" + this.triangle.loadLocation().loadY()); //$NON-NLS-1$
+      this.newParamL_X.setText("" + this.triangle.loadLocation().getX()); //$NON-NLS-1$
+      this.newParamL_Y.setText("" + this.triangle.loadLocation().getY()); //$NON-NLS-1$
       this.newParamL_Z.setText("" + this.triangle.loadLocation().loadZ()); //$NON-NLS-1$
     } else {
       this.paramL_X.setText("" + 0.0); //$NON-NLS-1$

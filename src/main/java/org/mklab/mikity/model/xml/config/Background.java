@@ -57,7 +57,7 @@ public class Background implements java.io.Serializable {
    * 
    * @return the value of field 'color'.
    */
-  public java.lang.String loadColor() {
+  public java.lang.String getColor() {
     return this._color;
   }
 

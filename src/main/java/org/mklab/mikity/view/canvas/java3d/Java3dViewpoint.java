@@ -53,17 +53,17 @@ public class Java3dViewpoint {
     if (type == 0) {
       // 視点方向の設定
       final Transform3D transform1 = new Transform3D();
-      transform1.setRotation(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(view.loadXrotate())));
+      transform1.setRotation(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(view.getXrotation())));
       
       final Transform3D transform2 = new Transform3D();
-      transform2.setRotation(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(view.loadYrotate())));
+      transform2.setRotation(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(view.getYrotation())));
       
       final Transform3D transform3 = new Transform3D();
-      transform3.setRotation(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(view.loadZrotate())));
+      transform3.setRotation(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(view.getZrotation())));
       
       // 視点位置の設定
       final Transform3D transform4 = new Transform3D();
-      transform4.setTranslation(new Vector3f(view.loadX(), view.loadY(), view.loadZ()));
+      transform4.setTranslation(new Vector3f(view.getX(), view.getY(), view.getZ()));
 
       // 変換行列の乗算
       transform1.mul(transform2);

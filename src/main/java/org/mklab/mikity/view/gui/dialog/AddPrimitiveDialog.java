@@ -269,7 +269,7 @@ public class AddPrimitiveDialog {
         break;
       case cylinderFlag:
         final XMLCylinder cylinder = new XMLCylinder();
-        cylinder.setR(this.parameter1.getFloatValue());
+        cylinder.setRadius(this.parameter1.getFloatValue());
         cylinder.setHeight(this.parameter2.getFloatValue());
         cylinder.setDiv(setDiv(this.parameter3));
         if (getRotation(rot) != null) {
@@ -286,7 +286,7 @@ public class AddPrimitiveDialog {
         break;
       case sphereFlag:
         final XMLSphere sphere = new XMLSphere();
-        sphere.setR(this.parameter1.getFloatValue());
+        sphere.setRadius(this.parameter1.getFloatValue());
         sphere.setDiv(setDiv(this.parameter2));
         if (getRotation(rot) != null) {
           sphere.setRotation(getRotation(rot));
@@ -302,7 +302,7 @@ public class AddPrimitiveDialog {
         break;
       case coneFlag:
         final XMLCone cone = new XMLCone();
-        cone.setR(this.parameter1.getFloatValue());
+        cone.setRadius(this.parameter1.getFloatValue());
         cone.setHeight(this.parameter2.getFloatValue());
         cone.setDiv(setDiv(this.parameter3));
         if (getRotation(rot) != null) {

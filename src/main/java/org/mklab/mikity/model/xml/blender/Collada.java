@@ -21,16 +21,16 @@ import org.mklab.mikity.model.xml.model.Group;
 public class Collada {
 
   @XmlElement
-  private Library_geometries library_geometries;
+  private LibraryGeometries library_geometries;
   @XmlElement
-  private Library_visual_scenes library_visual_scenes;
+  private LibraryVisualScenes library_visual_scenes;
 
   /**
    * コンストラクタ
    */
   public Collada() {
-    this.library_visual_scenes = new Library_visual_scenes();
-    this.library_geometries = new Library_geometries();
+    this.library_visual_scenes = new LibraryVisualScenes();
+    this.library_geometries = new LibraryGeometries();
   }
 
   /**

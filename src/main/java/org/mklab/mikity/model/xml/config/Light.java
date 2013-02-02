@@ -70,7 +70,7 @@ public class Light implements java.io.Serializable {
    * 
    * @return the value of field 'x'.
    */
-  public float loadX() {
+  public float getX() {
     return this._x;
   }
 
@@ -131,7 +131,7 @@ public class Light implements java.io.Serializable {
    * 
    * @return the value of field 'y'.
    */
-  public float loadY() {
+  public float getY() {
     return this._y;
   }
 
@@ -140,7 +140,7 @@ public class Light implements java.io.Serializable {
    * 
    * @return the value of field 'z'.
    */
-  public float loadZ() {
+  public float getZ() {
     return this._z;
   }
 

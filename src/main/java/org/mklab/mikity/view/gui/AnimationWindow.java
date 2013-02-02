@@ -153,8 +153,8 @@ public class AnimationWindow extends ApplicationWindow {
 
     form.setWeights(new int[] {70, 30}); // 70%:30%に分割点を設定
 
-    if (this.root.loadConfig(0).loadData() != null) {
-      setTimeData(new File(this.root.loadConfig(0).loadData()));
+    if (this.root.getConfig(0).getData() != null) {
+      setTimeData(new File(this.root.getConfig(0).getData()));
     }
     return parent;
   }
@@ -399,7 +399,7 @@ public class AnimationWindow extends ApplicationWindow {
       //this.manager.setData(this.data);
       this.manager.setData(this.data);
 
-      final Group rootGroup = this.root.loadModel(0).loadGroup(0);
+      final Group rootGroup = this.root.getModel(0).getGroup(0);
       checkLinkParameterType(rootGroup);
 
       final int dataSize = this.manager.getDataSize();
@@ -434,7 +434,7 @@ public class AnimationWindow extends ApplicationWindow {
     //this.manager.setData(this.data);
     this.manager.setData(this.data);
 
-    final Group rootGroup = this.root.loadModel(0).loadGroup(0);
+    final Group rootGroup = this.root.getModel(0).getGroup(0);
     checkLinkParameterType(rootGroup);
 
     final int dataSize = this.manager.getDataSize();

@@ -29,7 +29,7 @@ public class Java3dModeler extends AbstractModeler {
    */
   @Override
   public void createViewer() {
-    final org.mklab.mikity.model.xml.model.Group[] groups = this.tree.getModel().loadGroups();
+    final org.mklab.mikity.model.xml.model.Group[] groups = this.tree.getModel().getGroups();
     this.canvas.setChildren(groups); 
   }
 

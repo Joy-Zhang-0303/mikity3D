@@ -33,14 +33,14 @@ public class JamastFactory {
    * @throws IOException ファイルを読み込めない場合 
    */
   public void importJavaFile(File localFile, Jamast root) throws IOException, JAXBException {
-    final Group rootGroup = root.loadModel(0).loadGroup(0);
+    final Group rootGroup = root.getModel(0).getGroup(0);
     
     final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
     unmarshaller.unmarshal(localFile);
 
     final Jamast newRoot = unmarshaller.getRoot();
     if (newRoot != null) {
-      final Group newRootGroup = newRoot.loadModel(0).loadGroup(0);
+      final Group newRootGroup = newRoot.getModel(0).getGroup(0);
 
       final XMLBox[] boxes = newRootGroup.getXMLBox();
       final XMLCone[] cones = newRootGroup.getXMLCone();
@@ -111,7 +111,7 @@ public class JamastFactory {
     }
     
     final Jamast newRoot = createEmptyModel();
-    final Group newRootGroup = newRoot.loadModel(0).loadGroup(0);
+    final Group newRootGroup = newRoot.getModel(0).getGroup(0);
     final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
     for (int i = 0; i < groups.length; i++) {
       newRootGroup.addGroup(groups[i]);

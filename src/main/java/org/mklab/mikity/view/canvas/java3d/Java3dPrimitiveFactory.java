@@ -69,11 +69,11 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLBox box) {
     final int flag = Primitive.GENERATE_NORMALS;
-    final Primitive primitive = new Box(box.loadXsize() / (Util.scale * 2), box.loadYsize() / (Util.scale * 2), box.loadZsize() / (Util.scale * 2), flag, null);
+    final Primitive primitive = new Box(box.getXsize() / (Util.scale * 2), box.getYsize() / (Util.scale * 2), box.getZsize() / (Util.scale * 2), flag, null);
     final Appearance appearance = new Appearance();
-    appearance.setMaterial(getMaterial(box.loadColor()));
+    appearance.setMaterial(getMaterial(box.getColor()));
     if (box.hasTransparent()) {
-      if (box.loadTransparent() == true) {
+      if (box.getTransparent() == true) {
         appearance.setTransparencyAttributes(transAttr);
       }
     }
@@ -81,8 +81,8 @@ public class Java3dPrimitiveFactory {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    final Location location = box.loadLocation();
-    final Rotation rotation = box.loadRotation();
+    final Location location = box.getLocation();
+    final Rotation rotation = box.getRotation();
 
     transform(location, rotation, tg);
 
@@ -97,14 +97,14 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLCylinder cylinder) {
     final int flag = Primitive.GENERATE_NORMALS;
-    if (cylinder.loadDiv() < 3) {
+    if (cylinder.getDiv() < 3) {
       cylinder.setDiv(10);
     }
-    final Primitive primitive = new Cylinder(cylinder.loadR(), cylinder.loadHeight(), flag, cylinder.loadDiv(), cylinder.loadDiv(), null);
+    final Primitive primitive = new Cylinder(cylinder.getRadius(), cylinder.getHeight(), flag, cylinder.getDiv(), cylinder.getDiv(), null);
     final Appearance appearance = new Appearance();
-    appearance.setMaterial(getMaterial(cylinder.loadColor()));
+    appearance.setMaterial(getMaterial(cylinder.getColor()));
     if (cylinder.hasTransparent()) {
-      if (cylinder.loadTransparent() == true) {
+      if (cylinder.getTransparent() == true) {
         appearance.setTransparencyAttributes(transAttr);
       }
     }
@@ -112,8 +112,8 @@ public class Java3dPrimitiveFactory {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    final Location location = cylinder.loadLocation();
-    final Rotation rotation = cylinder.loadRotation();
+    final Location location = cylinder.getLocation();
+    final Rotation rotation = cylinder.getRotation();
 
     transform(location, rotation, tg);
 
@@ -128,14 +128,14 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLSphere sphere) {
     final int flag = Primitive.GENERATE_NORMALS;
-    if (sphere.loadDiv() < 3) {
+    if (sphere.getDiv() < 3) {
       sphere.setDiv(10);
     }
-    final Primitive primitive = new Sphere(sphere.loadR(), flag, sphere.loadDiv(), null);
+    final Primitive primitive = new Sphere(sphere.getRadius(), flag, sphere.getDiv(), null);
     final Appearance appearance = new Appearance();
-    appearance.setMaterial(getMaterial(sphere.loadColor()));
+    appearance.setMaterial(getMaterial(sphere.getColor()));
     if (sphere.hasTransparent()) {
-      if (sphere.loadTransparent() == true) {
+      if (sphere.getTransparent() == true) {
         appearance.setTransparencyAttributes(transAttr);
       }
     }
@@ -143,8 +143,8 @@ public class Java3dPrimitiveFactory {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    final Location location = sphere.loadLocation();
-    final Rotation rotation = sphere.loadRotation();
+    final Location location = sphere.getLocation();
+    final Rotation rotation = sphere.getRotation();
 
     transform(location, rotation, tg);
 
@@ -159,14 +159,14 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLCone cone) {
     final int flag = Primitive.GENERATE_NORMALS;
-    if (cone.loadDiv() < 3) {
+    if (cone.getDiv() < 3) {
       cone.setDiv(10);
     }
-    final Primitive primitive = new Cone(cone.loadR(), cone.loadHeight(), flag, cone.loadDiv(), cone.loadDiv(), null);
+    final Primitive primitive = new Cone(cone.getRadisu(), cone.getHeight(), flag, cone.getDiv(), cone.getDiv(), null);
     final Appearance appearance = new Appearance();
-    appearance.setMaterial(getMaterial(cone.loadColor()));
+    appearance.setMaterial(getMaterial(cone.getColor()));
     if (cone.hasTransparent()) {
-      if (cone.loadTransparent() == true) {
+      if (cone.getTransparent() == true) {
         appearance.setTransparencyAttributes(transAttr);
       }
     }
@@ -174,8 +174,8 @@ public class Java3dPrimitiveFactory {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    final Location location = cone.loadLocation();
-    final Rotation rotation = cone.loadRotation();
+    final Location location = cone.getLocation();
+    final Rotation rotation = cone.getRotation();
 
     transform(location, rotation, tg);
 
@@ -314,17 +314,17 @@ public class Java3dPrimitiveFactory {
   private static void transform(Location location, Rotation rotation, Java3dTransformGroup tg) {
     if (rotation != null) {
       if (Util.radian == false) {
-        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rotation.loadXrotate())));
-        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(rotation.loadYrotate())));
+        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rotation.getXrotation())));
+        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(rotation.getYrotation())));
         tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(rotation.loadZrotate())));
       } else {
-        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, rotation.loadXrotate()));
-        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, rotation.loadYrotate()));
+        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, rotation.getXrotation()));
+        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, rotation.getYrotation()));
         tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, rotation.loadZrotate()));
       }
     }
     if (location != null) {
-      tg.translate(new Vector3f(location.loadX() / Util.scale, location.loadY() / Util.scale, location.loadZ() / Util.scale));
+      tg.translate(new Vector3f(location.getX() / Util.scale, location.getY() / Util.scale, location.loadZ() / Util.scale));
     }
   }
 

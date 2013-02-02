@@ -52,7 +52,7 @@ public class JamastConfig implements java.io.Serializable {
    * 
    * @return the value of field 'background'.
    */
-  public org.mklab.mikity.model.xml.config.Background loadBackground() {
+  public org.mklab.mikity.model.xml.config.Background getBackground() {
     return this._background;
   }
 
@@ -137,7 +137,7 @@ public class JamastConfig implements java.io.Serializable {
    * 
    * @return the value of field 'data'.
    */
-  public java.lang.String loadData() {
+  public java.lang.String getData() {
     return this._data;
   }
 
@@ -146,7 +146,7 @@ public class JamastConfig implements java.io.Serializable {
    * 
    * @return the value of field 'dataUnit'.
    */
-  public org.mklab.mikity.model.xml.config.DataUnit loadDataUnit() {
+  public org.mklab.mikity.model.xml.config.DataUnit getDataUnit() {
     return this._dataUnit;
   }
 
@@ -155,7 +155,7 @@ public class JamastConfig implements java.io.Serializable {
    * 
    * @return the value of field 'light'.
    */
-  public org.mklab.mikity.model.xml.config.Light loadLight() {
+  public org.mklab.mikity.model.xml.config.Light getLight() {
     return this._light;
   }
 
@@ -164,7 +164,7 @@ public class JamastConfig implements java.io.Serializable {
    * 
    * @return the value of field 'modelUnit'.
    */
-  public org.mklab.mikity.model.xml.config.ModelUnit loadModelUnit() {
+  public org.mklab.mikity.model.xml.config.ModelUnit getModelUnit() {
     return this._modelUnit;
   }
 
@@ -173,7 +173,7 @@ public class JamastConfig implements java.io.Serializable {
    * 
    * @return the value of field 'view'.
    */
-  public org.mklab.mikity.model.xml.config.View loadView() {
+  public org.mklab.mikity.model.xml.config.View getView() {
     return this._view;
   }
 

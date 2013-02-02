@@ -51,7 +51,7 @@ public class JamastModel implements java.io.Serializable {
   /**
    * Method clearGroup
    */
-  public void clearGroup() {
+  public void clearGroups() {
     this._groupList.clear();
   } 
 
@@ -62,7 +62,7 @@ public class JamastModel implements java.io.Serializable {
    * @return (org.mklab.mikity.xml.Group) _groupList.get(index)
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.model.Group loadGroup(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.model.Group getGroup(int index) throws java.lang.IndexOutOfBoundsException {
     if ((index < 0) || (index > this._groupList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -111,7 +111,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.model.Group[] loadGroups() {
+  public org.mklab.mikity.model.xml.model.Group[] getGroups() {
     int size = this._groupList.size();
     org.mklab.mikity.model.xml.model.Group[] groups = new org.mklab.mikity.model.xml.model.Group[size];
     for (int index = 0; index < size; index++) {
@@ -125,7 +125,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<Group> loadGroupsAsReference() {
+  public java.util.ArrayList<Group> getGroupsAsReference() {
     return this._groupList;
   } 
 
@@ -134,7 +134,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @return _groupList.size()
    */
-  public int loadGroupCount() {
+  public int getGroupSize() {
     return this._groupList.size();
   } 
 
@@ -181,7 +181,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @param groupCollection the Vector to copy.
    */
-  public void setGroup(java.util.ArrayList<Group> groupCollection) {
+  public void setGroups(java.util.ArrayList<Group> groupCollection) {
     // -- copy collection
     this._groupList.clear();
     for (int i = 0; i < groupCollection.size(); i++) {

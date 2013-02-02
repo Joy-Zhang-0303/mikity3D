@@ -215,41 +215,41 @@ public class ConfigDialog {
    * XMLファイルから値を読み込む
    */
   private void getParameter() {
-    if (this.config.loadLight() != null) {
-      Light light = this.config.loadLight();
-      this.lightX.setText("" + light.loadX()); //$NON-NLS-1$
-      this.lightY.setText("" + light.loadY()); //$NON-NLS-1$
-      this.lightZ.setText("" + light.loadZ()); //$NON-NLS-1$
+    if (this.config.getLight() != null) {
+      Light light = this.config.getLight();
+      this.lightX.setText("" + light.getX()); //$NON-NLS-1$
+      this.lightY.setText("" + light.getY()); //$NON-NLS-1$
+      this.lightZ.setText("" + light.getZ()); //$NON-NLS-1$
     }
-    if (this.config.loadView() != null) {
-      View view = this.config.loadView();
-      this.viewX.setText("" + view.loadX()); //$NON-NLS-1$
-      this.viewY.setText("" + view.loadY()); //$NON-NLS-1$
-      this.viewZ.setText("" + view.loadZ()); //$NON-NLS-1$
-      this.viewXrotate.setText("" + view.loadXrotate()); //$NON-NLS-1$
-      this.viewYrotate.setText("" + view.loadYrotate()); //$NON-NLS-1$
-      this.viewZrotate.setText("" + view.loadZrotate()); //$NON-NLS-1$
+    if (this.config.getView() != null) {
+      View view = this.config.getView();
+      this.viewX.setText("" + view.getX()); //$NON-NLS-1$
+      this.viewY.setText("" + view.getY()); //$NON-NLS-1$
+      this.viewZ.setText("" + view.getZ()); //$NON-NLS-1$
+      this.viewXrotate.setText("" + view.getXrotation()); //$NON-NLS-1$
+      this.viewYrotate.setText("" + view.getYrotation()); //$NON-NLS-1$
+      this.viewZrotate.setText("" + view.getZrotation()); //$NON-NLS-1$
     }
-    if (this.config.loadModelUnit() != null) {
-      if (this.config.loadModelUnit().loadAngle() != null) {
-        this.modelAngleUnitCombo.setText(this.config.loadModelUnit().loadAngle());
+    if (this.config.getModelUnit() != null) {
+      if (this.config.getModelUnit().getAngle() != null) {
+        this.modelAngleUnitCombo.setText(this.config.getModelUnit().getAngle());
       }
-      if (this.config.loadModelUnit().loadLength() != null) {
-        this.modelLengthUnitCombo.setText(this.config.loadModelUnit().loadLength());
-      }
-    }
-    if (this.config.loadDataUnit() != null) {
-      if (this.config.loadDataUnit().loadAngle() != null) {
-        this.dataAngleUnitCombo.setText(this.config.loadDataUnit().loadAngle());
-      }
-      if (this.config.loadDataUnit().loadLength() != null) {
-        this.dataLengthUnitCombo.setText(this.config.loadDataUnit().loadLength());
+      if (this.config.getModelUnit().getLength() != null) {
+        this.modelLengthUnitCombo.setText(this.config.getModelUnit().getLength());
       }
     }
-    if (this.config.loadBackground() == null) {
+    if (this.config.getDataUnit() != null) {
+      if (this.config.getDataUnit().getAngle() != null) {
+        this.dataAngleUnitCombo.setText(this.config.getDataUnit().getAngle());
+      }
+      if (this.config.getDataUnit().getLength() != null) {
+        this.dataLengthUnitCombo.setText(this.config.getDataUnit().getLength());
+      }
+    }
+    if (this.config.getBackground() == null) {
       this.colorCombo.setText("white"); //$NON-NLS-1$
     } else {
-      this.colorCombo.setText(this.config.loadBackground().loadColor());
+      this.colorCombo.setText(this.config.getBackground().getColor());
     }
   }
 
@@ -326,22 +326,22 @@ public class ConfigDialog {
     view.setX(this.viewX.getFloatValue());
     view.setY(this.viewY.getFloatValue());
     view.setZ(this.viewZ.getFloatValue());
-    view.setXrotate(this.viewXrotate.getDoubleValue());
+    view.setXrotation(this.viewXrotate.getDoubleValue());
     view.setYrotate(this.viewYrotate.getDoubleValue());
     view.setZrotate(this.viewZrotate.getDoubleValue());
     this.config.setView(view);
 
-    if (this.config.loadBackground() == null) {
+    if (this.config.getBackground() == null) {
       if (this.colorCombo.getText() != "white") { //$NON-NLS-1$
         final Background background = new Background();
         background.setColor(this.colorCombo.getText());
         this.config.setBackground(background);
       }
     } else {
-      this.config.loadBackground().setColor(this.colorCombo.getText());
+      this.config.getBackground().setColor(this.colorCombo.getText());
     }
 
-    if (this.config.loadModelUnit() == null) {
+    if (this.config.getModelUnit() == null) {
       if (this.modelAngleUnitCombo.getText() != "radian") { //$NON-NLS-1$
         final ModelUnit modelUnit = new ModelUnit();
         modelUnit.setAngle(this.modelAngleUnitCombo.getText());
@@ -349,11 +349,11 @@ public class ConfigDialog {
         this.config.setModelUnit(modelUnit);
       }
     } else {
-      this.config.loadModelUnit().setAngle(this.modelAngleUnitCombo.getText());
-      this.config.loadModelUnit().setLength(this.modelLengthUnitCombo.getText());
+      this.config.getModelUnit().setAngle(this.modelAngleUnitCombo.getText());
+      this.config.getModelUnit().setLength(this.modelLengthUnitCombo.getText());
     }
 
-    if (this.config.loadDataUnit() == null) {
+    if (this.config.getDataUnit() == null) {
       if (this.dataAngleUnitCombo.getText() != "radian") { //$NON-NLS-1$
         final DataUnit dataUnit = new DataUnit();
         dataUnit.setAngle(this.dataAngleUnitCombo.getText());
@@ -361,8 +361,8 @@ public class ConfigDialog {
         this.config.setDataUnit(dataUnit);
       }
     } else {
-      this.config.loadDataUnit().setAngle(this.dataAngleUnitCombo.getText());
-      this.config.loadDataUnit().setLength(this.dataLengthUnitCombo.getText());
+      this.config.getDataUnit().setAngle(this.dataAngleUnitCombo.getText());
+      this.config.getDataUnit().setLength(this.dataLengthUnitCombo.getText());
     }
 
   }

@@ -62,7 +62,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @return the value of field 'column'.
    */
-  public int loadDataNumber() {
+  public int getDataNumber() {
     return this._column;
   }
 
@@ -133,7 +133,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @return the value of field 'const'.
    */
-  public double loadInitialValue() {
+  public double getInitialValue() {
     return this._const;
   }
 
@@ -142,7 +142,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @return the value of field 'target'.
    */
-  public java.lang.String loadTargetName() {
+  public java.lang.String getTargetName() {
     return this._target;
   }
 

@@ -239,14 +239,14 @@ public class GroupConfigWithDHParameterDialog {
     final LinkData[] linkdata = this.group.getLinkData();
 
     for (int i = 0; i < linkdata.length; i++) {
-      final String target = linkdata[i].loadTargetName();
+      final String target = linkdata[i].getTargetName();
       // if(linkdata[i].hasColumn()){
       // column = "" + linkdata[i].getColumn();
       // } else{
       // column = "0";
       // }
-      final String column = linkdata[i].hasDataNumber() ? "" + linkdata[i].loadDataNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      final String constant = linkdata[i].hasInitialValue() ? "" + linkdata[i].loadInitialValue() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String column = linkdata[i].hasDataNumber() ? "" + linkdata[i].getDataNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String constant = linkdata[i].hasInitialValue() ? "" + linkdata[i].getInitialValue() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       if (target.equals("a")) { //$NON-NLS-1$
         this.columnA.setText(column);
         this.a.setText(constant);

@@ -162,7 +162,7 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    */
   public void load() {
     loadConfigurationFromXML(this.root);
-    final Group[] groups = this.root.loadModel(0).loadGroups();
+    final Group[] groups = this.root.getModel(0).getGroups();
     setChildren(groups);
   }
 
@@ -193,28 +193,28 @@ public class Java3dModelCanvas extends Canvas3D implements ModelCanvas {
    * @param aRoot
    */
   private void loadConfigurationFromXML(Jamast aRoot) {
-    final JamastConfig configuration = aRoot.loadConfig(0);
+    final JamastConfig configuration = aRoot.getConfig(0);
     if (configuration == null) {
       return;
     }
 
     // 背景色をセット
-    final org.mklab.mikity.model.xml.config.Background loadedBackground = configuration.loadBackground();
+    final org.mklab.mikity.model.xml.config.Background loadedBackground = configuration.getBackground();
     if (loadedBackground != null) {
-      this.backgroundColor = ColorConstant.getColor(loadedBackground.loadColor());
+      this.backgroundColor = ColorConstant.getColor(loadedBackground.getColor());
     } else {
       this.backgroundColor = ColorConstant.getColor("white"); //$NON-NLS-1$
     }
 
     // 光源の位置をセット
-    final Light loadedLightLocation = configuration.loadLight();
+    final Light loadedLightLocation = configuration.getLight();
     if (loadedLightLocation != null) {
       final Light light = loadedLightLocation;
-      this.lightLocation = new Vector3f(light.loadX(), light.loadY(), light.loadZ());
+      this.lightLocation = new Vector3f(light.getX(), light.getY(), light.getZ());
     }
 
     // 視点の位置と方向をセット
-    final View loadedViewPoint = configuration.loadView();
+    final View loadedViewPoint = configuration.getView();
     if (loadedViewPoint != null) {
       this.viewPoint = new Java3dViewpoint(this.universe, loadedViewPoint, this.mouseOperationType);
     } else {

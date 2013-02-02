@@ -18,7 +18,7 @@ import org.mklab.mikity.model.xml.model.Group;
  * @author SHOGO
  * @version $Revision: 1.6 $. 2007/11/30
  */
-public class Library_geometries {
+public class LibraryGeometries {
 
   @XmlElement
   private ArrayList<Geometry> geometry;
@@ -30,7 +30,7 @@ public class Library_geometries {
   /**
    * コンストラクタ
    */
-  public Library_geometries() {
+  public LibraryGeometries() {
     this.geometry = new ArrayList<Geometry>();
     this.bsgc = new BlenderSceneGraphCreater();
   }
@@ -57,7 +57,7 @@ public class Library_geometries {
   /**
    * @param library_visual_scenes ノード関連
    */
-  public void setLibraryVisualScenes(Library_visual_scenes library_visual_scenes) {
+  public void setLibraryVisualScenes(LibraryVisualScenes library_visual_scenes) {
     this.scene = library_visual_scenes.getScene();
     for (int i = 0; i < this.geometry.size(); i++) {
       this.geometry.get(i).setLibraryVisualScenes(library_visual_scenes);

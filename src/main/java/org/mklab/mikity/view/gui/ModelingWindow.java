@@ -190,25 +190,25 @@ public class ModelingWindow extends ApplicationWindow {
    * 単位を設定します。
    */
   private void setUnit() {
-    final JamastConfig config = this.root.loadConfig(0);
+    final JamastConfig config = this.root.getConfig(0);
 
-    if (config.loadModelUnit() != null) {
-      final ModelUnit modelUnit = config.loadModelUnit();
-      if (modelUnit.loadAngle() != null) {
-        UnitLabel.setModelAngle(modelUnit.loadAngle());
+    if (config.getModelUnit() != null) {
+      final ModelUnit modelUnit = config.getModelUnit();
+      if (modelUnit.getAngle() != null) {
+        UnitLabel.setModelAngle(modelUnit.getAngle());
       }
-      if (modelUnit.loadLength() != null) {
-        UnitLabel.setModelLength(modelUnit.loadLength());
+      if (modelUnit.getLength() != null) {
+        UnitLabel.setModelLength(modelUnit.getLength());
       }
     }
     
-    if (config.loadDataUnit() != null) {
-      final DataUnit dataUnit = config.loadDataUnit();
-      if (dataUnit.loadAngle() != null) {
-        UnitLabel.setDataAngle(dataUnit.loadAngle());
+    if (config.getDataUnit() != null) {
+      final DataUnit dataUnit = config.getDataUnit();
+      if (dataUnit.getAngle() != null) {
+        UnitLabel.setDataAngle(dataUnit.getAngle());
       }
-      if (dataUnit.loadLength() != null) {
-        UnitLabel.setDataLength(dataUnit.loadLength());
+      if (dataUnit.getLength() != null) {
+        UnitLabel.setDataLength(dataUnit.getLength());
       }
     }
   }
@@ -231,7 +231,7 @@ public class ModelingWindow extends ApplicationWindow {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
-    this.root.loadJamastXMLData();
+    this.root.getJamastXMLData();
     final JAXBMarshaller marshaller = new JAXBMarshaller(this.root);
     marshaller.marshal(this.file);
     setFile(this.file.getPath());
@@ -251,7 +251,7 @@ public class ModelingWindow extends ApplicationWindow {
     this.root = new JamastFactory().loadJamastFile(this.file);
     
     final SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(this.root.loadModel(0).loadGroup(0), false);
+    tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
@@ -271,7 +271,7 @@ public class ModelingWindow extends ApplicationWindow {
     new JamastFactory().importJavaFile(this.file, this.root);
 
     final SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(this.root.loadModel(0).loadGroup(0), false);
+    tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     this.modeler.setModel(this.root);

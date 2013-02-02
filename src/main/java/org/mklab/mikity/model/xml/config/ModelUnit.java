@@ -28,7 +28,7 @@ public class ModelUnit implements java.io.Serializable {
    * 
    * @return the value of field 'angle'.
    */
-  public java.lang.String loadAngle() {
+  public java.lang.String getAngle() {
     return this._angle;
   }
 
@@ -81,7 +81,7 @@ public class ModelUnit implements java.io.Serializable {
    * 
    * @return the value of field 'length'.
    */
-  public java.lang.String loadLength() {
+  public java.lang.String getLength() {
     return this._length;
   }
 

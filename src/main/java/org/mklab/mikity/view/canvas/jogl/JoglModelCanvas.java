@@ -145,7 +145,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    * {@inheritDoc}
    */
   public void load(){
-    final Group[] groups = this.root.loadModel(0).loadGroups();
+    final Group[] groups = this.root.getModel(0).getGroups();
     setChildren(groups);
   }
 

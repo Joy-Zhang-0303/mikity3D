@@ -113,7 +113,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @return the value of field 'color'.
    */
-  public java.lang.String loadColor() {
+  public java.lang.String getColor() {
     return this._color;
   }
 
@@ -206,7 +206,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @return the value of field 'div'.
    */
-  public int loadDiv() {
+  public int getDiv() {
     return this._div;
   }
 
@@ -215,7 +215,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @return the value of field 'location'.
    */
-  public org.mklab.mikity.model.xml.model.Location loadLocation() {
+  public org.mklab.mikity.model.xml.model.Location getLocation() {
     return this._location;
   }
 
@@ -224,7 +224,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @return the value of field 'r'.
    */
-  public float loadR() {
+  public float getRadius() {
     return this._r;
   }
 
@@ -233,7 +233,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @return the value of field 'rotation'.
    */
-  public org.mklab.mikity.model.xml.model.Rotation loadRotation() {
+  public org.mklab.mikity.model.xml.model.Rotation getRotation() {
     return this._rotation;
   }
 
@@ -242,7 +242,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @return the value of field 'transparent'.
    */
-  public boolean loadTransparent() {
+  public boolean getTransparent() {
     return this._transparent;
   }
 
@@ -332,7 +332,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @param r the value of field 'r'.
    */
-  public void setR(float r) {
+  public void setRadius(float r) {
     this._r = r;
     this._has_r = true;
   }

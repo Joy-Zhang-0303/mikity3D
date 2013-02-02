@@ -19,16 +19,16 @@ import org.mklab.mikity.util.Matrix4;
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/11/30
  */
-public class Library_visual_scenes {
+public class LibraryVisualScenes {
 
   @XmlElement
-  private Visual_scene visual_scene;
+  private VisualScene visual_scene;
 
   /**
    * コンストラクタ
    */
-  public Library_visual_scenes() {
-    this.visual_scene = new Visual_scene();
+  public LibraryVisualScenes() {
+    this.visual_scene = new VisualScene();
   }
 
   /**
