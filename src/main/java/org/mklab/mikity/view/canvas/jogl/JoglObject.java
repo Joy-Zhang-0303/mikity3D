@@ -16,6 +16,6 @@ public interface JoglObject {
    * 
    * @param gl GL
    */
-  void apply(GL gl);
+  void display(GL gl);
 
 }

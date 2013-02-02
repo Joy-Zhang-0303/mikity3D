@@ -24,7 +24,7 @@ public class JoglCone extends AbstractJoglObject {
   /**
    * {@inheritDoc}
    */
-  public void apply(GL gl) {
+  public void display(GL gl) {
     //頂点配列の有効化
     gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
 

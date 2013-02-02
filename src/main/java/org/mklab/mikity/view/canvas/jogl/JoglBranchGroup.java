@@ -47,9 +47,9 @@ public class JoglBranchGroup implements JoglObject {
   /**
    * {@inheritDoc}
    */
-  public void apply(GL gl) {
+  public void display(GL gl) {
     for (final JoglObject object : this.objects) {
-      object.apply(gl);
+      object.display(gl);
     }
     
     for (final JoglTransformGroup group : this.groups) {

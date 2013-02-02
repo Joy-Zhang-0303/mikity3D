@@ -74,7 +74,7 @@ public class JoglTransformGroup implements MovableGroup {
     }
 
     for (final JoglObject object : this.objects) {
-      object.apply(gl);
+      object.display(gl);
     }
 
     for (final JoglTransformGroup group : this.groups) {

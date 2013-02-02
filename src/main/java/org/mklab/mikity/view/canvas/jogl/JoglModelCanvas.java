@@ -30,7 +30,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   private GLU glu;
 
   /** オブジェクトのグループ */
-  private JoglBranchGroup[] groups;
+  private JoglBranchGroup[] topGroups;
 
   private Jamast root;
   
@@ -136,8 +136,8 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
     gl.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
     gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
     
-    for (final JoglBranchGroup group : this.groups) {
-      group.apply(gl);
+    for (final JoglBranchGroup group : this.topGroups) {
+      group.display(gl);
     }
   }
 
@@ -154,7 +154,7 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
    */
   public void setChild(Group[] groups) {
     final JoglBranchGroup[] branchGroups = new JoglModelCreater().create(groups);
-    this.groups = branchGroups;
+    this.topGroups = branchGroups;
   }
 
   /**
@@ -167,13 +167,13 @@ public class JoglModelCanvas extends GLJPanel implements ModelCanvas, GLEventLis
   /**
    * {@inheritDoc}
    */
-  public void reshape(GLAutoDrawable drawable, int x, int y, int w, int h) {
+  public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
     final GL gl = drawable.getGL();
     //
-    gl.glViewport(0, 0, w, h);
+    gl.glViewport(0, 0, width, height);
     gl.glMatrixMode(GL.GL_PROJECTION);
     gl.glLoadIdentity();
-    this.glu.gluPerspective(10.0, (double)w / (double)h, 1.0, 100.0);
+    this.glu.gluPerspective(10.0, (double)width / (double)height, 1.0, 100.0);
     gl.glMatrixMode(GL.GL_MODELVIEW);
   }
 

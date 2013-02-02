@@ -17,7 +17,7 @@ public class JoglQuadPolygon extends AbstractJoglObject {
   /**
    * {@inheritDoc}
    */
-  public void apply(GL gl) {
+  public void display(GL gl) {
     applyColor(gl);
 
     //頂点配列の有効化
