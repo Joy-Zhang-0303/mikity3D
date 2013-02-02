@@ -250,7 +250,7 @@ public class MovableGroupManager {
     this.endTime = 0;
 
     this.movableGroups.clear();
-    registerMovableGroups(this.root.loadModel(0).loadGroup(), data);
+    registerMovableGroups(this.root.loadModel(0).loadGroups(), data);
   }
   
   /**

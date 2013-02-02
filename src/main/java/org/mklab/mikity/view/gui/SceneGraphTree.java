@@ -123,7 +123,7 @@ public class SceneGraphTree {
             // 選択されたものがrootであるとき
             SceneGraphTree.this.editable = false;
           }
-          checkUsedLinkType(SceneGraphTree.this.model.loadGroup());
+          checkUsedLinkType(SceneGraphTree.this.model.loadGroups());
 
           if (SceneGraphTree.this.usedDHParameter) {
             final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
@@ -266,7 +266,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         // if (targetObj == null) {
         if (SceneGraphTree.this.targetObj instanceof Group) {
-          checkUsedLinkType(SceneGraphTree.this.model.loadGroup());
+          checkUsedLinkType(SceneGraphTree.this.model.loadGroups());
 
           if (SceneGraphTree.this.usedDHParameter) {
             final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
@@ -636,7 +636,7 @@ public class SceneGraphTree {
   public void fillTree() {
     clearTree();
     // addTreeItemメソッドに引数rootItemとgroupを渡す
-    addTreeItem(null, this.model.loadGroup());
+    addTreeItem(null, this.model.loadGroups());
   }
 
   /**

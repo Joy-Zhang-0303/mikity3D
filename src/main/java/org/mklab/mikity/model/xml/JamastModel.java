@@ -111,7 +111,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.model.Group[] loadGroup() {
+  public org.mklab.mikity.model.xml.model.Group[] loadGroups() {
     int size = this._groupList.size();
     org.mklab.mikity.model.xml.model.Group[] groups = new org.mklab.mikity.model.xml.model.Group[size];
     for (int index = 0; index < size; index++) {
@@ -125,7 +125,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<Group> loadGroupAsReference() {
+  public java.util.ArrayList<Group> loadGroupsAsReference() {
     return this._groupList;
   } 
 
@@ -168,7 +168,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @param groupArray グループの文字列
    */
-  public void setGroup(org.mklab.mikity.model.xml.model.Group[] groupArray) {
+  public void setGroups(org.mklab.mikity.model.xml.model.Group[] groupArray) {
     // -- copy array
     this._groupList.clear();
     for (int i = 0; i < groupArray.length; i++) {
@@ -194,7 +194,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @param groupCollection the ArrayList to copy.
    */
-  public void setGroupAsReference(java.util.ArrayList<Group> groupCollection) {
+  public void setGroupsAsReference(java.util.ArrayList<Group> groupCollection) {
     this._groupList = groupCollection;
   } 
 

@@ -24,5 +24,5 @@ public interface ModelCanvas {
    * 一旦トップグループの全てを消してから書き込みます。
    * @param groups グループ群 
    */
-  void setChild(Group[] groups);
+  void setChildren(Group[] groups);
 }

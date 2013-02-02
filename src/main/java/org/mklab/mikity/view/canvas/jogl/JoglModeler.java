@@ -30,8 +30,8 @@ public class JoglModeler extends AbstractModeler {
    */
   @Override
   public void createViewer() {
-    org.mklab.mikity.model.xml.model.Group[] groups = this.tree.getModel().loadGroup();
-    this.canvas.setChild(groups);
+    org.mklab.mikity.model.xml.model.Group[] groups = this.tree.getModel().loadGroups();
+    this.canvas.setChildren(groups);
   }
 
   /**
