@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.control.AnimationTask;
+import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.model.resource.ImageManager;
 import org.mklab.mikity.model.xml.Jamast;
@@ -464,17 +465,33 @@ public class AnimationWindow extends ApplicationWindow {
     if (playable == false) {
       this.timer.cancel();
     }
+    
     if (this.data == null || this.timeTable == null) {
       MessagegUtil.show(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
       System.out.println(Messages.getString("SimulationViewer.5")); //$NON-NLS-1$
       return;
     }
+    
     playable = false;
 
     this.endTime = this.manager.getEndTime();
     this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.modelRenderer);
     this.animationTask.setSpeedScale(this.playSpeed.getDoubleValue());// スピードの設定
     this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
+    this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
+      /**
+       * {@inheritDoc}
+       */
+      public void tearDownAnimation() {
+        playable = true;
+      }
+      /**
+       * {@inheritDoc}
+       */
+      public void setUpAnimation() {
+        // nothing to do
+      }
+    });
 
     this.sliderTask = new SliderPositionMoveTask(this.animationTask, this.timeSlider);
 

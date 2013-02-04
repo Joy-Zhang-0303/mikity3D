@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.TimerTask;
 
 import org.mklab.mikity.model.MovableGroupManager;
-import org.mklab.mikity.view.gui.AnimationWindow;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
 
@@ -87,7 +86,7 @@ public class AnimationTask extends TimerTask {
   @Override
   public void run() {
     if (this.currentTime == this.initialTime) {
-      fireAnimationStart();
+      setUpAnimation();
     }
 
     final double diffTime = (scheduledExecutionTime() - this.lastUpdatedTimeMillis) / 1000.0;
@@ -105,9 +104,9 @@ public class AnimationTask extends TimerTask {
     }
 
     if (this.currentTime > this.endTime) {
-      AnimationWindow.playable = true;
+      //AnimationWindow.playable = true;
       cancel();
-      fireAnimationDone();
+      tearDownAnimation();
     }
   }
 
@@ -131,7 +130,7 @@ public class AnimationTask extends TimerTask {
   /**
    * アニメーションの完了を通知します。
    */
-  private void fireAnimationDone() {
+  private void tearDownAnimation() {
     for (final AnimationTaskListener listener : this.listeners) {
       listener.tearDownAnimation();
     }
@@ -140,7 +139,7 @@ public class AnimationTask extends TimerTask {
   /**
    * アニメーションの開始を通知します。
    */
-  private void fireAnimationStart() {
+  private void setUpAnimation() {
     for (final AnimationTaskListener listener : this.listeners) {
       listener.setUpAnimation();
     }
