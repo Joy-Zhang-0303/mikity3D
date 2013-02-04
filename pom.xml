@@ -17,15 +17,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
-			<artifactId>swt</artifactId>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse</groupId>
-			<artifactId>jface</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse</groupId>
 			<artifactId>core-commands</artifactId>
 		</dependency>
 		<dependency>
