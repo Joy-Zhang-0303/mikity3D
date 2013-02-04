@@ -16,14 +16,6 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse</groupId>
-			<artifactId>core-commands</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse</groupId>
-			<artifactId>equinox-common</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.mklab</groupId>
 			<artifactId>nfc</artifactId>
 		</dependency>
