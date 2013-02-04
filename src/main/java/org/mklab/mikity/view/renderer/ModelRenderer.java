@@ -29,4 +29,15 @@ public interface ModelRenderer {
    * @param configuration 環境データ
    */
   void setConfiguration(JamastConfig configuration);
+  
+  /**
+   * 画面の更新のためにdisplayメソッドの呼び出しを必要とするか判定します。
+   * @return 画面の更新のためにdisplayメソッドの呼び出しを必要と場合，true
+   */
+  boolean isRequiredToCallDisplay();
+  
+  /**
+   * 画面を更新します。
+   */
+  void updateDisplay();
 }
