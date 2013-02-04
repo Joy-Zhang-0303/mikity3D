@@ -33,7 +33,6 @@ import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
-import org.mklab.mikity.model.resource.ImageManager;
 import org.mklab.mikity.model.xml.Jamast;
 import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.JamastFactory;
