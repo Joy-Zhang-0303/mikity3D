@@ -12,7 +12,6 @@ import java.util.TimerTask;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.view.gui.AnimationWindow;
 import org.mklab.mikity.view.renderer.ModelRenderer;
-import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 
 
 /**
