@@ -39,7 +39,6 @@ import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.JamastFactory;
 import org.mklab.mikity.model.xml.model.Group;
 import org.mklab.mikity.model.xml.model.LinkData;
-import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 import org.mklab.nfc.matrix.Matrix;

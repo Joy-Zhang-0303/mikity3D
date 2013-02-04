@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.MessageBox;
 import org.mklab.mikity.model.xml.Jamast;
-import org.mklab.mikity.util.MessagegUtil;
 import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;

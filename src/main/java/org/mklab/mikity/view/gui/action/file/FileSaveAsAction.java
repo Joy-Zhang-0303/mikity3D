@@ -12,7 +12,7 @@ import javax.xml.bind.JAXBException;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
-import org.mklab.mikity.util.MessagegUtil;
+import org.mklab.mikity.view.gui.MessagegUtil;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
