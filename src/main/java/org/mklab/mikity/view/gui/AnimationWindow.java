@@ -248,7 +248,7 @@ public class AnimationWindow extends ApplicationWindow {
       public void widgetSelected(SelectionEvent arg0) {
         AnimationWindow.this.speed += 0.1;
         if (AnimationWindow.this.animationTask != null) {
-          AnimationWindow.this.animationTask.setSpeed(AnimationWindow.this.speed);
+          AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.speed);
         }
         String value = String.valueOf(AnimationWindow.this.speed);
         value = value.substring(0, value.indexOf(".") + 2); //$NON-NLS-1$
@@ -261,7 +261,7 @@ public class AnimationWindow extends ApplicationWindow {
       public void widgetSelected(SelectionEvent arg0) {
         AnimationWindow.this.speed -= 0.1;
         if (AnimationWindow.this.animationTask != null) {
-          AnimationWindow.this.animationTask.setSpeed(AnimationWindow.this.speed);
+          AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.speed);
         }
         String value = String.valueOf(AnimationWindow.this.speed);
         value = value.substring(0, value.indexOf(".") + 2); //$NON-NLS-1$
@@ -474,7 +474,7 @@ public class AnimationWindow extends ApplicationWindow {
 
     this.endTime = this.manager.getEndTime();
     this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.modelRenderer);
-    this.animationTask.setSpeed(this.playSpeed.getDoubleValue());// スピードの設定
+    this.animationTask.setSpeedScale(this.playSpeed.getDoubleValue());// スピードの設定
     this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
 
     this.sliderTask = new SliderPositionMoveTask(this.animationTask, this.timeSlider);

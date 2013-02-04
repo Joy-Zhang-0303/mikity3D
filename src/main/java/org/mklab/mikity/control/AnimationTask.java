@@ -22,8 +22,8 @@ import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
  * @version $Revision: 1.6 $.2005/01/24 
  */
 public class AnimationTask extends TimerTask {
-  /** アニメーションの速度(1.0のときに実時間で再生) */
-  private double speed = 1.0;
+  /** アニメーションの速度倍率(1.0のときに実時間で再生) */
+  private double speedScale = 1.0;
   /** グループマネージャ　*/
   private MovableGroupManager manager;
   /** リスナー　*/
@@ -34,9 +34,10 @@ public class AnimationTask extends TimerTask {
   private final double initialTime;
   /** 終了時間　*/
   private double endTime = 0.0;
-  private long startTime = System.currentTimeMillis();
+  /** 最後の更新時間 */
+  private long lastUpdatedTimeMillis = System.currentTimeMillis();
   /** モデルキャンバス　*/
-  private ModelRenderer canvas;
+  private ModelRenderer renderer;
   
   /**
    * コンストラクター
@@ -51,7 +52,7 @@ public class AnimationTask extends TimerTask {
     this.currentTime = initialTime;
     this.manager = manager;
     this.initialTime = initialTime;
-    this.canvas = canvas;
+    this.renderer = canvas;
   }
 
   /**
@@ -64,21 +65,21 @@ public class AnimationTask extends TimerTask {
   }
 
   /**
-   * アニメーションの速度を返します。 速度は1.0のときに実時間で再生します。
+   * アニメーションの速度倍率を返します。 速度は1.0のときに実時間で再生します。
    * 
-   * @return アニメーションの速度
+   * @return アニメーションの速度倍率
    */
-  public double getSpeed() {
-    return this.speed;
+  public double getSpeedScale() {
+    return this.speedScale;
   }
 
   /**
-   * アニメーションの速度を設定します。 速度が1.0のときに実時間で再生します。
+   * アニメーションの速度倍率を設定します。 速度が1.0のときに実時間で再生します。
    * 
-   * @param speed アニメーションの速度
+   * @param speedScale アニメーションの速度倍率
    */
-  public void setSpeed(double speed) {
-    this.speed = speed;
+  public void setSpeedScale(double speedScale) {
+    this.speedScale = speedScale;
   }
 
   /**
@@ -90,9 +91,9 @@ public class AnimationTask extends TimerTask {
       fireAnimationStart();
     }
 
-    final double diffTime = (scheduledExecutionTime() - this.startTime) / 1000.0;
-    this.startTime = System.currentTimeMillis();
-    this.currentTime += diffTime * this.speed;
+    final double diffTime = (scheduledExecutionTime() - this.lastUpdatedTimeMillis) / 1000.0;
+    this.lastUpdatedTimeMillis = System.currentTimeMillis();
+    this.currentTime += diffTime * this.speedScale;
 
     if (this.manager.hasDHParameter()) {
       this.manager.updateMovableGroupsWithDHParameter(this.currentTime);
@@ -100,8 +101,8 @@ public class AnimationTask extends TimerTask {
       this.manager.updateMovableGroupsWithCoordinateParameter(this.currentTime);
     }
 
-    if (this.canvas instanceof JoglModelRenderer) {
-      ((JoglModelRenderer)this.canvas).display();
+    if (this.renderer instanceof JoglModelRenderer) {
+      ((JoglModelRenderer)this.renderer).display();
     }
 
     if (this.currentTime > this.endTime) {
