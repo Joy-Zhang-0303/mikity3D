@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bdml version="0.9.2.2">
+    <system name="robotarm.jamox">
+        <parameters name="simulationParameter">
+            <param name="startTime">0.0</param>
+            <param name="endTime">30.0</param>
+            <param name="minimumSavingInterval">0.0010</param>
+            <param name="solverType">org.mklab.nfc.ode.RungeKuttaFehlberg</param>
+            <param name="tolerance">1.0E-6</param>
+            <param name="timeStep">0.04</param>
+            <param name="maximumTimeStep">0.1</param>
+            <param name="minimumTimeStep">2.220446049250313E-16</param>
+            <param name="saveAtSamplingPoint">true</param>
+        </parameters>
+        <parameters name="bodePlotParameter">
+            <param name="frequencyDataSize">0</param>
+            <param name="frequencyMaxPower">0.0</param>
+            <param name="frequencyMinPower">0.0</param>
+            <param name="gridOn">true</param>
+            <param name="fontSize">0</param>
+            <param name="needRecalc">true</param>
+            <param name="frequencyGridIntervalPower">0.0</param>
+            <param name="gainGridInterval">0.0</param>
+            <param name="gainMaximum">0.0</param>
+            <param name="gainMinimum">0.0</param>
+            <param name="phaseGridInterval">0.0</param>
+            <param name="phaseMaximum">0.0</param>
+            <param name="phaseMinimum">0.0</param>
+        </parameters>
+        <parameters name="nyquistPlotParameter">
+            <param name="frequencyDataSize">0</param>
+            <param name="frequencyMaxPower">0.0</param>
+            <param name="frequencyMinPower">0.0</param>
+            <param name="gridOn">true</param>
+            <param name="fontSize">0</param>
+            <param name="needRecalc">true</param>
+            <param name="realGridInterval">0.0</param>
+            <param name="realMaximum">0.0</param>
+            <param name="realMinimum">0.0</param>
+            <param name="imaginaryGridInterval">0.0</param>
+            <param name="imaginaryMaximum">0.0</param>
+            <param name="imaginaryMinimum">0.0</param>
+        </parameters>
+        <block id="128" name="">
+            <port type="input" name="u131" id="131">
+                <figure angle="0" y="153" x="309"/>
+            </port>
+            <port type="output" name="y129" id="129">
+                <figure angle="0" y="153" x="319"/>
+            </port>
+            <port type="output" name="y130" id="130">
+                <figure angle="90" y="158" x="314"/>
+            </port>
+            <param name="output_port_size">2</param>
+            <figure verticalReflect="false" horizontalReflect="false" angle="0" width="10" height="10" y="151" x="312">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[0, 0, 0]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>math_branch_point</class>
+        </block>
+        <block id="63" name="">
+            <port type="output" name="y64" id="64">
+                <figure angle="0" y="154" x="167"/>
+            </port>
+            <parameters>
+                <param expression="[0]" name="constant">[0]</param>
+            </parameters>
+            <figure verticalReflect="false" horizontalReflect="false" angle="0" width="30" height="30" y="142" x="140">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>sources_constant</class>
+        </block>
+        <block id="122" name="">
+            <port type="input" name="u93" id="123">
+                <figure angle="0" y="248" x="347"/>
+            </port>
+            <param name="matrix_file_name">C:\Documents and Settings\mine\workspace-3.5\3DMikity\sample\arm2.mat</param>
+            <param name="file_type">mat</param>
+            <parameters>
+                <param expression="true" name="exportable">true</param>
+            </parameters>
+            <figure verticalReflect="false" horizontalReflect="false" angle="0" width="56" height="40" y="231" x="350">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>sinks_file</class>
+        </block>
+        <block id="66" name="">
+            <port type="input" name="u67" id="67">
+                <figure angle="0" y="154" x="347"/>
+            </port>
+            <parameters>
+                <param expression="true" name="autoScale">true</param>
+                <param expression="1" name="axisLineWidth">1</param>
+                <param expression="true" name="exportable">true</param>
+                <param expression="11" name="fontSize">11</param>
+                <param expression="true" name="grid">true</param>
+                <param expression="false" name="isAnimation">false</param>
+                <param expression="y1" name="lineNames[1/2]">y1</param>
+                <param expression="y2" name="lineNames[2/2]">y2</param>
+                <param expression="1" name="lineWidth">1</param>
+                <param expression="0.0" name="xGridInterval">5.0</param>
+                <param expression="0.0" name="xMaximum">30.0</param>
+                <param expression="0.0" name="xMinimum">0.0</param>
+                <param expression="0.05" name="xScale">0.05</param>
+                <param expression="0.0" name="yGridInterval">0.5</param>
+                <param expression="0.0" name="yMaximum">1.0</param>
+                <param expression="0.0" name="yMinimum">-2.0</param>
+                <param expression="0.05" name="yScale">0.05</param>
+            </parameters>
+            <figure verticalReflect="false" horizontalReflect="false" angle="0" width="40" height="50" y="132" x="350">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>sinks_jpit2</class>
+        </block>
+        <block id="59" name="robotarm">
+            <port type="input" name="u60" id="60">
+                <figure angle="0" y="154" x="223"/>
+            </port>
+            <port type="output" name="y61" id="61">
+                <figure angle="0" y="154" x="286"/>
+            </port>
+            <param name="input_size">1</param>
+            <param name="output_size">2</param>
+            <param name="state_size">4</param>
+            <param name="time_variable">t</param>
+            <param name="input_variable">u</param>
+            <param name="output_variable">y</param>
+            <param name="state_variable">x</param>
+            <param name="initial_state">[-PI/2 PI/6 0 0]'</param>
+            <param name="has_direct_feedthrough">false</param>
+            <param name="parameters">Real l1,l2,l3,l2g,l3g,m2,m3,i2,i3,g,tau1,tau2;</param>
+            <param name="update_function">l1 = 1;%nl2 = 1;%nl3 = 1;%nl2g = 6;%nl3g = 6.5;%nm2 = 1;%nm3 = 1;%ni2 = 1;%ni3 = 1;%ng = 9.8;%ntau1 = 0;%ntau2 = 0;</param>
+            <param name="state_equation_function">Matrix A,B,C,D;%nMatrix A1, A2;%nReal th1,th2,dth1,dth2;%n%nth1 = x(1,1);%nth2 = x(2,1);%ndth1 = x(3,1);%ndth2 = x(4,1);%n%nA = [[m2*l2g*l2g + i2 + m3*(l2*l2 + l3g*l3g + 2*l2*l3g*cos(th2)) + i3 , m3*(l3g*l3g + l2*l3g*cos(th2)) + i3]%n	 [			m3*(l3g*l3g + l2*l3g*cos(th2)) + i3				  ,			m3*l3g*l3g + i3			   ]];%n	 %nA1 = inv(A);%n%nB = [[tau1][tau2]];%n%nC = [[-m3*l2*l3g*sin(th2)*(dth2*dth2 + 2*dth1*dth2)]%n	 [		  m3*l2*l3g*sin(th2)*dth1*dth1		   ]];%n%nD = [[g*(m2*cos(th1)*l2g + m3*(l3g*cos(th1 + th2) + l2*cos(th1)))]%n	 [					m3*g*cos(th1 + th2)*l3g				    ]];%n%nA2 = B-C-D;%n%ndx = [[x(3:4,1)][A1*A2]];</param>
+            <param name="output_equation_function">y = x(1:2,1);</param>
+            <param name="utility_functions"></param>
+            <param name="initialize_function"></param>
+            <figure verticalReflect="false" horizontalReflect="false" angle="0" width="63" height="42" y="136" x="226">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>continuous_matx_dynamic_system</class>
+        </block>
+        <link from="64" to="60">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link from="61" to="131">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link from="129" to="67">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link from="130" to="123">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+    </system>
+</bdml>
