@@ -270,4 +270,18 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   public void mouseMoved(MouseEvent e) {
     // nothing to do
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  public boolean isRequiredToCallDisplay() {
+    return true;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void updateDisplay() {
+    display();
+  }
 }

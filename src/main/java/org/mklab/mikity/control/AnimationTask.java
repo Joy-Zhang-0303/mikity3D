@@ -101,8 +101,8 @@ public class AnimationTask extends TimerTask {
       this.manager.updateMovableGroupsWithCoordinateParameter(this.currentTime);
     }
 
-    if (this.renderer instanceof JoglModelRenderer) {
-      ((JoglModelRenderer)this.renderer).display();
+    if (this.renderer.isRequiredToCallDisplay()) {
+      this.renderer.updateDisplay();
     }
 
     if (this.currentTime > this.endTime) {

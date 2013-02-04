@@ -203,4 +203,18 @@ public class Java3dModelRenderer extends Canvas3D implements ModelRenderer {
       this.viewPoint = new Java3dViewpoint(orientationAngle, position, this.universe);
     }
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  public boolean isRequiredToCallDisplay() {
+    return false;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void updateDisplay() {
+    // nothing to do;
+  }
 }
