@@ -75,5 +75,11 @@
 		</repository>
 	</repositories>
   
-  
+  	<pluginRepositories>
+		<pluginRepository>
+			<id>mklab-repository</id>
+			<url>http://maven.mk.ces.kyutech.ac.jp/content/groups/public/</url>
+			<layout>default</layout>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
