@@ -10,11 +10,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.mklab.mikity.model.xml.jaxb.Jamast;
-import org.mklab.mikity.model.xml.jaxb.blender.Collada;
-import org.mklab.mikity.model.xml.jaxb.model.Group;
-
-
 /**
  * @author koga
  * @version $Revision$, 2013/02/05
