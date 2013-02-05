@@ -1,4 +1,4 @@
-package org.mklab.mikity.model.xml;
+package org.mklab.mikity.model.jaxb;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -35,7 +35,7 @@ public class JAXBMarshaller {
    * @throws IllegalArgumentException 例外
    */
   public void marshal(File file) throws JAXBException, IOException {
-    final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.model.xml.Jamast.class);
+    final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.model.jaxb.Jamast.class);
     final Marshaller marshaller = context.createMarshaller();
     final FileWriter writer = new FileWriter(file);
     marshaller.marshal(this.root, writer);

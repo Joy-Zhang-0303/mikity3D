@@ -1,4 +1,4 @@
-package org.mklab.mikity.model.xml;
+package org.mklab.mikity.model.jaxb;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -64,7 +64,7 @@ public class JAXBUnmarshaller {
    * @throws IOException ファイルを読み込めない場合 
    */
   private void loadJamastFile(File file) throws JAXBException, IOException {
-    final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.model.xml.Jamast.class);
+    final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.model.jaxb.Jamast.class);
     final Unmarshaller unmarshaller = context.createUnmarshaller();
     final FileReader reader = new FileReader(file);
     final Jamast jamast = (Jamast)unmarshaller.unmarshal(reader);

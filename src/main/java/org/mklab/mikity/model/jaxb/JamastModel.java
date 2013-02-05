@@ -1,4 +1,4 @@
-package org.mklab.mikity.model.xml;
+package org.mklab.mikity.model.jaxb;
 
 import java.util.ArrayList;
 

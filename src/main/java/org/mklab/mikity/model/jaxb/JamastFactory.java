@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.model.xml;
+package org.mklab.mikity.model.jaxb;
 
 import java.io.File;
 import java.io.IOException;

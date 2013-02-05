@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.view.renderer;
 
-import org.mklab.mikity.model.xml.JamastConfig;
+import org.mklab.mikity.model.jaxb.JamastConfig;
 import org.mklab.mikity.model.xml.model.Group;
 
 
