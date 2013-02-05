@@ -15,71 +15,47 @@ import javax.xml.bind.annotation.XmlElement;
 public class XMLBox implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _xsize
-   */
+  /** _xsize */
   @XmlAttribute
   private float _xsize;
 
-  /**
-   * keeps track of state for field: _xsize
-   */
+  /** keeps track of state for field: _xsize */
   private boolean _has_xsize;
 
-  /**
-   * Field _ysize
-   */
+  /** _ysize */
   @XmlAttribute
   private float _ysize;
 
-  /**
-   * keeps track of state for field: _ysize
-   */
+  /** keeps track of state for field: _ysize */
   private boolean _has_ysize;
 
-  /**
-   * Field _zsize
-   */
+  /** _zsize */
   @XmlAttribute
   private float _zsize;
 
-  /**
-   * keeps track of state for field: _zsize
-   */
+  /** keeps track of state for field: _zsize */
   private boolean _has_zsize;
 
-  /**
-   * Field _color
-   */
+  /** _color */
   @XmlAttribute
   private java.lang.String _color;
 
-  /**
-   * Field _transparent
-   */
+  /** _transparent */
   @XmlAttribute
   private boolean _transparent;
 
-  /**
-   * keeps track of state for field: _transparent
-   */
+  /** keeps track of state for field: _transparent */
   private boolean _has_transparent;
 
-  /**
-   * Field _rotation
-   */
+  /** _rotation */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.model.Rotation _rotation;
 
-  /**
-   * Field _location
-   */
+  /** _location */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.model.Location _location;
 
-  /**
-   * Field propertyChangeListeners
-   */
+  /** propertyChangeListeners */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
 
   /**

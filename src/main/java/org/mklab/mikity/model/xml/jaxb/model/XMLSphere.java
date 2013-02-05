@@ -15,59 +15,39 @@ import javax.xml.bind.annotation.XmlElement;
 public class XMLSphere implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _r
-   */
+  /** _r */
   @XmlAttribute
   private float _r;
 
-  /**
-   * keeps track of state for field: _r
-   */
+  /** keeps track of state for field: _r */
   private boolean _has_r;
 
-  /**
-   * Field _div
-   */
+  /** _div */
   @XmlAttribute
   private int _div;
 
-  /**
-   * keeps track of state for field: _div
-   */
+  /** keeps track of state for field: _div */
   private boolean _has_div;
 
-  /**
-   * Field _color
-   */
+  /** _color */
   @XmlAttribute
   private java.lang.String _color;
 
-  /**
-   * Field _transparent
-   */
+  /**_transparent */
   private boolean _transparent;
 
-  /**
-   * keeps track of state for field: _transparent
-   */
+  /** keeps track of state for field: _transparent */
   private boolean _has_transparent;
 
-  /**
-   * Field _rotation
-   */
+  /** _rotation */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.model.Rotation _rotation;
 
-  /**
-   * Field _location
-   */
+  /** _location */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.model.Location _location;
 
-  /**
-   * Field propertyChangeListeners
-   */
+  /** propertyChangeListeners */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
 
   /**
@@ -260,7 +240,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @return has_r
    */
-  public boolean hasR() {
+  public boolean hasRadius() {
     return this._has_r;
   }
 
@@ -330,10 +310,10 @@ public class XMLSphere implements java.io.Serializable {
   /**
    * Sets the value of field 'r'.
    * 
-   * @param r the value of field 'r'.
+   * @param radius the value of field 'r'.
    */
-  public void setRadius(float r) {
-    this._r = r;
+  public void setRadius(float radius) {
+    this._r = radius;
     this._has_r = true;
   }
 

@@ -15,70 +15,46 @@ import javax.xml.bind.annotation.XmlElement;
 public class XMLCone implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _r
-   */
+  /** _r */
   @XmlAttribute
   private float _r;
 
-  /**
-   * keeps track of state for field: _r
-   */
+  /** keeps track of state for field: _r */
   private boolean _has_r;
 
-  /**
-   * Field _height
-   */
+  /** _height */
   @XmlAttribute
   private float _height;
 
-  /**
-   * keeps track of state for field: _height
-   */
+  /** keeps track of state for field: _height */
   private boolean _has_height;
 
-  /**
-   * Field _div
-   */
+  /** _div */
   @XmlAttribute
   private int _div;
 
-  /**
-   * keeps track of state for field: _div
-   */
+  /** Keeps track of state for field: _div */
   private boolean _has_div;
 
-  /**
-   * Field _color
-   */
+  /** _color */
   @XmlAttribute
   private java.lang.String _color;
 
-  /**
-   * Field _transparent
-   */
+  /**_transparent */
   private boolean _transparent;
 
-  /**
-   * keeps track of state for field: _transparent
-   */
+  /** keeps track of state for field: _transparent */
   private boolean _has_transparent;
 
-  /**
-   * Field _rotation
-   */
+  /** _rotation */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.model.Rotation _rotation;
 
-  /**
-   * Field _location
-   */
+  /** _location */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.model.Location _location;
 
-  /**
-   * Field propertyChangeListeners
-   */
+  /** propertyChangeListeners */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
 
   /**

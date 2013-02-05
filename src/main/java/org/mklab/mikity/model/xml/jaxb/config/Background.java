@@ -10,9 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  */
 public class Background implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
-  /**
-   * Field _color
-   */
+  /** _color */
   @XmlAttribute
   private java.lang.String _color;
   

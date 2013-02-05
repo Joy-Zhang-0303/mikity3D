@@ -11,32 +11,22 @@ import javax.xml.bind.annotation.XmlAttribute;
 public class LinkData implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _target
-   */
+  /** _target */
   @XmlAttribute
   private java.lang.String _target;
 
-  /**
-   * Field _const
-   */
+  /** _const */
   @XmlAttribute
   private double _const;
 
-  /**
-   * keeps track of state for field: _const
-   */
+  /** keeps track of state for field: _const */
   private boolean _has_const;
 
-  /**
-   * Field _column
-   */
+  /** _column */
   @XmlAttribute
   private int _column;
 
-  /**
-   * keeps track of state for field: _column
-   */
+  /** keeps track of state for field: _column */
   private boolean _has_column;
 
   private boolean _has_dh;

@@ -11,70 +11,46 @@ import javax.xml.bind.annotation.XmlAttribute;
 public class View implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _xrotate
-   */
+  /** _xrotate */
   @XmlAttribute
   private double _xrotate;
 
-  /**
-   * keeps track of state for field: _xrotate
-   */
+  /** Keep track of state for field: _xrotate */
   private boolean _has_xrotate;
 
-  /**
-   * Field _yrotate
-   */
+  /** _yrotate */
   @XmlAttribute
   private double _yrotate;
 
-  /**
-   * keeps track of state for field: _yrotate
-   */
+  /** keeps track of state for field: _yrotate */
   private boolean _has_yrotate;
 
-  /**
-   * Field _zrotate
-   */
+  /** _zrotate */
   @XmlAttribute
   private double _zrotate;
 
-  /**
-   * keeps track of state for field: _zrotate
-   */
+  /** keeps track of state for field: _zrotate */
   private boolean _has_zrotate;
 
-  /**
-   * Field _x
-   */
+  /** _x */
   @XmlAttribute
   private float _x;
 
-  /**
-   * keeps track of state for field: _x
-   */
+  /** keeps track of state for field: _x */
   private boolean _has_x;
 
-  /**
-   * Field _y
-   */
+  /** _y */
   @XmlAttribute
   private float _y;
 
-  /**
-   * keeps track of state for field: _y
-   */
+  /** keeps track of state for field: _y */
   private boolean _has_y;
 
-  /**
-   * Field _z
-   */
+  /** _z */
   @XmlAttribute
   private float _z;
 
-  /**
-   * keeps track of state for field: _z
-   */
+  /** keeps track of state for field: _z */
   private boolean _has_z;
 
   /**
@@ -320,10 +296,10 @@ public class View implements java.io.Serializable {
   /**
    * Sets the value of field 'xrotate'.
    * 
-   * @param xrotate the value of field 'xrotate'.
+   * @param xRotation the value of field 'xrotate'.
    */
-  public void setXrotation(double xrotate) {
-    this._xrotate = xrotate;
+  public void setXrotation(double xRotation) {
+    this._xrotate = xRotation;
     this._has_xrotate = true;
   }
 
@@ -340,10 +316,10 @@ public class View implements java.io.Serializable {
   /**
    * Sets the value of field 'yrotate'.
    * 
-   * @param yrotate the value of field 'yrotate'.
+   * @param yRotation the value of field 'yrotate'.
    */
-  public void setYrotate(double yrotate) {
-    this._yrotate = yrotate;
+  public void setYrotation(double yRotation) {
+    this._yrotate = yRotation;
     this._has_yrotate = true;
   }
 
@@ -360,10 +336,10 @@ public class View implements java.io.Serializable {
   /**
    * Sets the value of field 'zrotate'.
    * 
-   * @param zrotate the value of field 'zrotate'.
+   * @param zRotation the value of field 'zrotate'.
    */
-  public void setZrotate(double zrotate) {
-    this._zrotate = zrotate;
+  public void setZrotation(double zRotation) {
+    this._zrotate = zRotation;
     this._has_zrotate = true;
   }
 }

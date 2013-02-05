@@ -15,69 +15,47 @@ import javax.xml.bind.annotation.XmlElement;
 public class Group implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _name
-   */
+  /** _name */
   @XmlAttribute
   private String _name;
 
-  /**
-   * Field _XMLBoxList
-   */
+  /** _XMLBoxList */
   @XmlElement
   private List<XMLBox> _XMLBoxList;
 
-  /**
-   * Field _XMLCylinderList
-   */
+  /** _XMLCylinderList */
   @XmlElement
   private List<XMLCylinder> _XMLCylinderList;
 
-  /**
-   * Field _XMLSphereList
-   */
+  /** _XMLSphereList */
   @XmlElement
   private List<XMLSphere> _XMLSphereList;
 
-  /**
-   * Field _XMLConeList
-   */
+  /** _XMLConeList */
   @XmlElement
   private List<XMLCone> _XMLConeList;
 
-  /**
-   * Field _XMLTrianglePolygonList
-   */
+  /** _XMLTrianglePolygonList */
   @XmlElement
   private List<XMLTrianglePolygon> _XMLTrianglePolygonList;
 
-  /**
-   * Field _XMLQuadPolygonList
-   */
+  /** _XMLQuadPolygonList */
   @XmlElement
   private List<XMLQuadPolygon> _XMLQuadPolygonList;
 
-  /**
-   * Field _location
-   */
+  /** _location */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.model.Location _location;
 
-  /**
-   * Field _rotation
-   */
+  /** _rotation */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.model.Rotation _rotation;
 
-  /**
-   * Field _linkdataList
-   */
+  /** _linkdataList */
   @XmlElement
   private List<LinkData> _linkdataList;
 
-  /**
-   * Field _groupList
-   */
+  /** _groupList */
   @XmlElement
   private List<Group> _groupList;
 
@@ -103,9 +81,8 @@ public class Group implements java.io.Serializable {
    * Method addGroup
    * 
    * @param vGroup グループ
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addGroup(org.mklab.mikity.model.xml.jaxb.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
+  public void addGroup(org.mklab.mikity.model.xml.jaxb.model.Group vGroup) {
     this._groupList.add(vGroup);
   } 
 
@@ -114,9 +91,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vGroup グループ
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addGroup(int index, org.mklab.mikity.model.xml.jaxb.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
+  public void addGroup(int index, org.mklab.mikity.model.xml.jaxb.model.Group vGroup) {
     this._groupList.add(index, vGroup);
   } 
 
@@ -124,9 +100,8 @@ public class Group implements java.io.Serializable {
    * Method addLinkdata
    * 
    * @param vLinkdata リンクデータ
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addLinkdata(org.mklab.mikity.model.xml.jaxb.model.LinkData vLinkdata) throws java.lang.IndexOutOfBoundsException {
+  public void addLinkdata(org.mklab.mikity.model.xml.jaxb.model.LinkData vLinkdata) {
     this._linkdataList.add(vLinkdata);
   } 
 
@@ -135,9 +110,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vLinkdata リンクデータ
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addLinkdata(int index, org.mklab.mikity.model.xml.jaxb.model.LinkData vLinkdata) throws java.lang.IndexOutOfBoundsException {
+  public void addLinkdata(int index, org.mklab.mikity.model.xml.jaxb.model.LinkData vLinkdata) {
     this._linkdataList.add(index, vLinkdata);
   } 
 
@@ -145,9 +119,8 @@ public class Group implements java.io.Serializable {
    * Method addXMLBox
    * 
    * @param vXMLBox ボックス
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLBox(org.mklab.mikity.model.xml.jaxb.model.XMLBox vXMLBox) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLBox(org.mklab.mikity.model.xml.jaxb.model.XMLBox vXMLBox) {
     this._XMLBoxList.add(vXMLBox);
   } 
 
@@ -156,9 +129,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLBox ボックス
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLBox(int index, org.mklab.mikity.model.xml.jaxb.model.XMLBox vXMLBox) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLBox(int index, org.mklab.mikity.model.xml.jaxb.model.XMLBox vXMLBox) {
     this._XMLBoxList.add(index, vXMLBox);
   } 
 
@@ -166,9 +138,8 @@ public class Group implements java.io.Serializable {
    * Method addXMLCone
    * 
    * @param vXMLCone コーン
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLCone(org.mklab.mikity.model.xml.jaxb.model.XMLCone vXMLCone) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLCone(org.mklab.mikity.model.xml.jaxb.model.XMLCone vXMLCone) {
     this._XMLConeList.add(vXMLCone);
   } 
 
@@ -177,9 +148,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLCone コーン
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLCone(int index, org.mklab.mikity.model.xml.jaxb.model.XMLCone vXMLCone) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLCone(int index, org.mklab.mikity.model.xml.jaxb.model.XMLCone vXMLCone) {
     this._XMLConeList.add(index, vXMLCone);
   } 
   
@@ -187,9 +157,8 @@ public class Group implements java.io.Serializable {
    * Method addXMLCylinder
    * 
    * @param vXMLCylinder シリンダー
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLCylinder(org.mklab.mikity.model.xml.jaxb.model.XMLCylinder vXMLCylinder) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLCylinder(org.mklab.mikity.model.xml.jaxb.model.XMLCylinder vXMLCylinder) {
     this._XMLCylinderList.add(vXMLCylinder);
   } 
 
@@ -198,9 +167,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLCylinder シリンダー
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLCylinder(int index, org.mklab.mikity.model.xml.jaxb.model.XMLCylinder vXMLCylinder) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLCylinder(int index, org.mklab.mikity.model.xml.jaxb.model.XMLCylinder vXMLCylinder) {
     this._XMLCylinderList.add(index, vXMLCylinder);
   } 
 
@@ -208,9 +176,8 @@ public class Group implements java.io.Serializable {
    * Method addXMLSphere
    * 
    * @param vXMLSphere スフィア
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLSphere(org.mklab.mikity.model.xml.jaxb.model.XMLSphere vXMLSphere) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLSphere(org.mklab.mikity.model.xml.jaxb.model.XMLSphere vXMLSphere) {
     this._XMLSphereList.add(vXMLSphere);
   } 
 
@@ -219,9 +186,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLSphere スフィア
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLSphere(int index, org.mklab.mikity.model.xml.jaxb.model.XMLSphere vXMLSphere) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLSphere(int index, org.mklab.mikity.model.xml.jaxb.model.XMLSphere vXMLSphere) {
     this._XMLSphereList.add(index, vXMLSphere);
   } 
 
@@ -229,9 +195,8 @@ public class Group implements java.io.Serializable {
    * Method addXMLTrianglePolygon
    * 
    * @param vXMLTrianglePolygon 三角形のポリゴン
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLTrianglePolygon(org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon vXMLTrianglePolygon) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLTrianglePolygon(org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon vXMLTrianglePolygon) {
     this._XMLTrianglePolygonList.add(vXMLTrianglePolygon);
   } 
   
@@ -240,9 +205,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLTrianglePolygon 三角形のポリゴン
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLTrianglePolygon(int index, org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon vXMLTrianglePolygon) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLTrianglePolygon(int index, org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon vXMLTrianglePolygon) {
     this._XMLTrianglePolygonList.add(index, vXMLTrianglePolygon);
   } 
 
@@ -250,9 +214,8 @@ public class Group implements java.io.Serializable {
    * Method addXMLQuadPolygon
    * 
    * @param vXMLQuadPolygon 四角形のポリゴン
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLQuadPolygon(org.mklab.mikity.model.xml.jaxb.model.XMLQuadPolygon vXMLQuadPolygon) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLQuadPolygon(org.mklab.mikity.model.xml.jaxb.model.XMLQuadPolygon vXMLQuadPolygon) {
     this._XMLQuadPolygonList.add(vXMLQuadPolygon);
   } 
 
@@ -261,9 +224,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLQuadPolygon 四角形のポリゴン
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addXMLQuadPolygon(int index, org.mklab.mikity.model.xml.jaxb.model.XMLQuadPolygon vXMLQuadPolygon) throws java.lang.IndexOutOfBoundsException {
+  public void addXMLQuadPolygon(int index, org.mklab.mikity.model.xml.jaxb.model.XMLQuadPolygon vXMLQuadPolygon) {
     this._XMLQuadPolygonList.add(index, vXMLQuadPolygon);
   } 
 
@@ -328,9 +290,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @return _groupList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.model.Group getGroup(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.jaxb.model.Group getGroup(int index) {
     if ((index < 0) || (index > this._groupList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -491,9 +452,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @return _linkdataList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.model.LinkData getLinkData(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.jaxb.model.LinkData getLinkData(int index) {
     if ((index < 0) || (index > this._linkdataList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -565,9 +525,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @return _XMLBoxList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.model.XMLBox getXMLBox(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.jaxb.model.XMLBox getXMLBox(int index) {
     if ((index < 0) || (index > this._XMLBoxList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -612,9 +571,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @return _XMLConeList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.model.XMLCone getXMLCone(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.jaxb.model.XMLCone getXMLCone(int index) {
     if ((index < 0) || (index > this._XMLConeList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -659,9 +617,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @return _XMLCylinderList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.model.XMLCylinder getXMLCylinder(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.jaxb.model.XMLCylinder getXMLCylinder(int index) {
     if ((index < 0) || (index > this._XMLCylinderList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -706,9 +663,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @return _XMLSphereList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.model.XMLSphere getXMLSphere(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.jaxb.model.XMLSphere getXMLSphere(int index) {
     if ((index < 0) || (index > this._XMLSphereList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -753,9 +709,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @return _XMLTrianglePolygonList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon getXMLTrianglePolygon(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon getXMLTrianglePolygon(int index) {
     if ((index < 0) || (index > this._XMLTrianglePolygonList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -800,9 +755,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @return _XMLQuadPolygonList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.model.XMLQuadPolygon getXMLQuadPolygon(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.jaxb.model.XMLQuadPolygon getXMLQuadPolygon(int index) {
     if ((index < 0) || (index > this._XMLQuadPolygonList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -934,9 +888,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vGroup グループ
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setGroup(int index, org.mklab.mikity.model.xml.jaxb.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
+  public void setGroup(int index, org.mklab.mikity.model.xml.jaxb.model.Group vGroup) {
     if ((index < 0) || (index > this._groupList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -983,9 +936,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vLinkdata リンクデータ
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setLinkData(int index, org.mklab.mikity.model.xml.jaxb.model.LinkData vLinkdata) throws java.lang.IndexOutOfBoundsException {
+  public void setLinkData(int index, org.mklab.mikity.model.xml.jaxb.model.LinkData vLinkdata) {
     if ((index < 0) || (index > this._linkdataList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1046,9 +998,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLBox ボックス
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setXMLBox(int index, org.mklab.mikity.model.xml.jaxb.model.XMLBox vXMLBox) throws java.lang.IndexOutOfBoundsException {
+  public void setXMLBox(int index, org.mklab.mikity.model.xml.jaxb.model.XMLBox vXMLBox) {
     if ((index < 0) || (index > this._XMLBoxList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1082,9 +1033,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLCone コーン
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setXMLCone(int index, org.mklab.mikity.model.xml.jaxb.model.XMLCone vXMLCone) throws java.lang.IndexOutOfBoundsException {
+  public void setXMLCone(int index, org.mklab.mikity.model.xml.jaxb.model.XMLCone vXMLCone) {
     if ((index < 0) || (index > this._XMLConeList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1118,9 +1068,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLCylinder シリンダー
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setXMLCylinder(int index, org.mklab.mikity.model.xml.jaxb.model.XMLCylinder vXMLCylinder) throws java.lang.IndexOutOfBoundsException {
+  public void setXMLCylinder(int index, org.mklab.mikity.model.xml.jaxb.model.XMLCylinder vXMLCylinder) {
     if ((index < 0) || (index > this._XMLCylinderList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1154,9 +1103,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLSphere スフィア
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setXMLSphere(int index, org.mklab.mikity.model.xml.jaxb.model.XMLSphere vXMLSphere) throws java.lang.IndexOutOfBoundsException {
+  public void setXMLSphere(int index, org.mklab.mikity.model.xml.jaxb.model.XMLSphere vXMLSphere) {
     if ((index < 0) || (index > this._XMLSphereList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1190,9 +1138,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLTrianglePolygon 三角形のポリゴン
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setXMLTrianglePolygon(int index, org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon vXMLTrianglePolygon) throws java.lang.IndexOutOfBoundsException {
+  public void setXMLTrianglePolygon(int index, org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon vXMLTrianglePolygon) {
     if ((index < 0) || (index > this._XMLTrianglePolygonList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1226,9 +1173,8 @@ public class Group implements java.io.Serializable {
    * 
    * @param index インデックス
    * @param vXMLQuadPolygon 四角形のポリゴン
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setXMLQuadPolygon(int index, org.mklab.mikity.model.xml.jaxb.model.XMLQuadPolygon vXMLQuadPolygon) throws java.lang.IndexOutOfBoundsException {
+  public void setXMLQuadPolygon(int index, org.mklab.mikity.model.xml.jaxb.model.XMLQuadPolygon vXMLQuadPolygon) {
     if ((index < 0) || (index > this._XMLQuadPolygonList.size())) {
       throw new IndexOutOfBoundsException();
     }

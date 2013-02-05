@@ -11,37 +11,25 @@ import javax.xml.bind.annotation.XmlAttribute;
 public class Light implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _x
-   */
+  /** _x */
   @XmlAttribute
   private float _x;
 
-  /**
-   * keeps track of state for field: _x
-   */
+  /** keeps track of state for field: _x */
   private boolean _has_x;
 
-  /**
-   * Field _y
-   */
+  /** Field _y */
   @XmlAttribute
   private float _y;
 
-  /**
-   * keeps track of state for field: _y
-   */
+  /** keeps track of state for field: _y */
   private boolean _has_y;
 
-  /**
-   * Field _z
-   */
+  /** Field _z */
   @XmlAttribute
   private float _z;
 
-  /**
-   * keeps track of state for field: _z
-   */
+  /** keeps track of state for field: _z */
   private boolean _has_z;
 
   /**

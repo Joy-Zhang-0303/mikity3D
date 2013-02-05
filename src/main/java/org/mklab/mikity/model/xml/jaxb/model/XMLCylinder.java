@@ -17,70 +17,46 @@ import javax.xml.bind.annotation.XmlElement;
 public class XMLCylinder implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _r
-   */
+  /** _r */
   @XmlAttribute
   protected float _r;
 
-  /**
-   * keeps track of state for field: _r
-   */
+  /** keeps track of state for field: _r */
   protected boolean _has_r;
 
-  /**
-   * Field _height
-   */
+  /** _height */
   @XmlAttribute
   protected float _height;
 
-  /**
-   * keeps track of state for field: _height
-   */
+  /** keeps track of state for field: _height */
   protected boolean _has_height;
 
-  /**
-   * Field _div
-   */
+  /** _div */
   @XmlAttribute
   protected int _div;
 
-  /**
-   * keeps track of state for field: _div
-   */
+  /** keeps track of state for field: _div */
   protected boolean _has_div;
 
-  /**
-   * Field _color
-   */
+  /** _color */
   @XmlAttribute
   protected java.lang.String _color;
 
-  /**
-   * Field _transparent
-   */
+  /** _transparent */
   protected boolean _transparent;
 
-  /**
-   * keeps track of state for field: _transparent
-   */
+  /** keeps track of state for field: _transparent */
   protected boolean _has_transparent;
 
-  /**
-   * Field _rotation
-   */
+  /** _rotation */
   @XmlElement
   protected Rotation _rotation;
 
-  /**
-   * Field _location
-   */
+  /** _location */
   @XmlElement
   protected Location _location;
 
-  /**
-   * Field propertyChangeListeners
-   */
+  /** Field propertyChangeListeners */
   protected Vector<PropertyChangeListener> propertyChangeListeners;
 
   /**

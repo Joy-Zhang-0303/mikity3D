@@ -31,14 +31,10 @@ public class XMLQuadPolygon {
 
   private Matrix4 _matrix;
 
-  /**
-   * Field _transparent
-   */
+  /** _transparent */
   protected boolean _transparent;
 
-  /**
-   * keeps track of state for field: _transparent
-   */
+  /** keeps track of state for field: _transparent */
   protected boolean _has_transparent;
 
   /**
@@ -49,64 +45,63 @@ public class XMLQuadPolygon {
       this._point[i] = new Location();
     }
     this._color = "orange"; //$NON-NLS-1$
-//    this._color = "blue"; //$NON-NLS-1$
     this._matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 
   /**
-   * @param pointNum 座標番号
+   * @param number 座標番号
    * @param x X座標
    * @param y Y座標
    * @param z Z座標
    */
-  public void setPointLocation(int pointNum, float x, float y, float z) {
-    this._point[pointNum].setX(x);
-    this._point[pointNum].setY(y);
-    this._point[pointNum].setZ(z);
+  public void setPointLocation(int number, float x, float y, float z) {
+    this._point[number].setX(x);
+    this._point[number].setY(y);
+    this._point[number].setZ(z);
     setNormalVector();
   }
 
   /**
-   * @param loc1 座標1
-   * @param loc2 座標2
-   * @param loc3 座標3
-   * @param loc4 座標4
+   * @param location1 座標1
+   * @param location2 座標2
+   * @param location3 座標3
+   * @param location4 座標4
    */
-  public void setPointLocations(Location loc1, Location loc2, Location loc3, Location loc4) {
-    this._point[0] = loc1;
-    this._point[1] = loc2;
-    this._point[2] = loc3;
-    this._point[3] = loc4;
+  public void setPointLocations(Location location1, Location location2, Location location3, Location location4) {
+    this._point[0] = location1;
+    this._point[1] = location2;
+    this._point[2] = location3;
+    this._point[3] = location4;
     setNormalVector();
   }
 
   /**
-   * @param point 座標
+   * @param points 座標
    */
-  public void setPointLocations(Location[] point) {
-    this._point = point;
+  public void setPointLocations(Location[] points) {
+    this._point = points;
     setNormalVector();
   }
 
   /**
-   * @param c 色
+   * @param color 色
    */
-  public void setColor(String c) {
-    this._color = c;
+  public void setColor(String color) {
+    this._color = color;
   }
 
   /**
-   * @param loc 位置
+   * @param location 位置
    */
-  public void setLocation(Location loc) {
-    this._location = loc;
+  public void setLocation(Location location) {
+    this._location = location;
   }
 
   /**
-   * @param rot 回転
+   * @param rotation 回転
    */
-  public void setRotation(Rotation rot) {
-    this._rotation = rot;
+  public void setRotation(Rotation rotation) {
+    this._rotation = rotation;
   }
 
   /**
@@ -133,71 +128,71 @@ public class XMLQuadPolygon {
   }
 
   /**
-   * @param n 法線ベクトル
+   * @param normalVectors 法線ベクトル
    */
-  public void setNormalVector(Vector3[] n) {
-    this._normal = n;
+  public void setNormalVector(Vector3[] normalVectors) {
+    this._normal = normalVectors;
   }
 
   /**
-   * @param loc 位置
+   * @param location 位置
    */
-  public void setNormalVector(Location loc) {
-    this._normal[0] = new Vector3(loc.getX(), loc.getY(), loc.loadZ());
-    this._normal[1] = new Vector3(loc.getX(), loc.getY(), loc.loadZ());
-    this._normal[2] = new Vector3(loc.getX(), loc.getY(), loc.loadZ());
-    this._normal[3] = new Vector3(loc.getX(), loc.getY(), loc.loadZ());
+  public void setNormalVector(Location location) {
+    this._normal[0] = new Vector3(location.getX(), location.getY(), location.loadZ());
+    this._normal[1] = new Vector3(location.getX(), location.getY(), location.loadZ());
+    this._normal[2] = new Vector3(location.getX(), location.getY(), location.loadZ());
+    this._normal[3] = new Vector3(location.getX(), location.getY(), location.loadZ());
   }
 
   /**
-   * @param pointNum 座標番号
+   * @param number 座標番号
    * @return x location
    */
-  public float loadPointLocationX(int pointNum) {
-    return this._point[pointNum].getX();
+  public float getPointLocationX(int number) {
+    return this._point[number].getX();
   }
 
   /**
-   * @param pointNum 座標番号
+   * @param number 座標番号
    * @return y location
    */
-  public float loadPointLocationY(int pointNum) {
-    return this._point[pointNum].getY();
+  public float getPointLocationY(int number) {
+    return this._point[number].getY();
   }
 
   /**
-   * @param pointNum 座標番号
+   * @param number 座標番号
    * @return z location
    */
-  public float loadPointLocationZ(int pointNum) {
-    return this._point[pointNum].loadZ();
+  public float getPointLocationZ(int number) {
+    return this._point[number].loadZ();
   }
 
   /**
    * @return color
    */
-  public String loadColor() {
+  public String getColor() {
     return this._color;
   }
 
   /**
    * @return location
    */
-  public Location loadLocation() {
+  public Location getLocation() {
     return this._location;
   }
 
   /**
    * @return rotation
    */
-  public Rotation loadRotation() {
+  public Rotation getRotation() {
     return this._rotation;
   }
 
   /**
    * @return normal vector
    */
-  public Vector3[] loadNormalVector() {
+  public Vector3[] getNormalVector() {
     setNormalVector();
     return this._normal;
   }
@@ -205,7 +200,7 @@ public class XMLQuadPolygon {
   /**
    * @return matrix
    */
-  public Matrix4 loadMatrix() {
+  public Matrix4 getMatrix() {
     return this._matrix;
   }
 
@@ -214,7 +209,7 @@ public class XMLQuadPolygon {
    */
   public void deleteTransparent() {
     this._has_transparent = false;
-  } // -- void deleteTransparent()
+  }
 
   /**
    * Sets the value of field 'transparent'.
@@ -231,9 +226,9 @@ public class XMLQuadPolygon {
    * 
    * @return the value of field 'transparent'.
    */
-  public boolean loadTransparent() {
+  public boolean getTransparent() {
     return this._transparent;
-  } // -- boolean getTransparent()
+  }
 
   /**
    * Method hasTransparent
@@ -242,5 +237,5 @@ public class XMLQuadPolygon {
    */
   public boolean hasTransparent() {
     return this._has_transparent;
-  } // -- boolean hasTransparent()
+  }
 }

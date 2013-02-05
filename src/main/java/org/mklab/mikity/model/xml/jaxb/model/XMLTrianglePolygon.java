@@ -31,14 +31,10 @@ public class XMLTrianglePolygon {
 
   private Matrix4 _matrix;
 
-  /**
-   * Field _transparent
-   */
+  /** _transparent */
   protected boolean _transparent;
 
-  /**
-   * keeps track of state for field: _transparent
-   */
+  /** keeps track of state for field: _transparent */
   private boolean _has_transparent;
 
   /**
@@ -54,50 +50,50 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param pointNum 座標番号
+   * @param number 座標番号
    * @param x X座標
    * @param y Y座標
    * @param z Z座標
    */
-  public void setPointLocation(int pointNum, float x, float y, float z) {
-    this._point[pointNum].setX(x);
-    this._point[pointNum].setY(y);
-    this._point[pointNum].setZ(z);
+  public void setPointLocation(int number, float x, float y, float z) {
+    this._point[number].setX(x);
+    this._point[number].setY(y);
+    this._point[number].setZ(z);
     setNormalVector();
   }
 
   /**
-   * @param loc1 座標1
-   * @param loc2 座標2
-   * @param loc3 座標3
+   * @param location1 座標1
+   * @param location2 座標2
+   * @param location3 座標3
    */
-  public void setPointLocations(Location loc1, Location loc2, Location loc3) {
-    this._point[0] = loc1;
-    this._point[1] = loc2;
-    this._point[2] = loc3;
+  public void setPointLocations(Location location1, Location location2, Location location3) {
+    this._point[0] = location1;
+    this._point[1] = location2;
+    this._point[2] = location3;
     setNormalVector();
   }
 
   /**
-   * @param point 座標
+   * @param points 座標
    */
-  public void setPointLocations(Location[] point) {
-    this._point = point;
+  public void setPointLocations(Location[] points) {
+    this._point = points;
     setNormalVector();
   }
 
   /**
-   * @param c 色
+   * @param color 色
    */
-  public void setColor(String c) {
-    this._color = c;
+  public void setColor(String color) {
+    this._color = color;
   }
 
   /**
-   * @param loc 位置
+   * @param location 位置
    */
-  public void setLocation(Location loc) {
-    this._location = loc;
+  public void setLocation(Location location) {
+    this._location = location;
   }
 
   /**
@@ -108,19 +104,19 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param loc 位置
+   * @param nromalVector 法線ベクトル
    */
-  public void setNormalVector(Location loc) {
-    this._normal[0] = new Vector3(loc.getX(), loc.getY(), loc.loadZ());
-    this._normal[1] = new Vector3(loc.getX(), loc.getY(), loc.loadZ());
-    this._normal[2] = new Vector3(loc.getX(), loc.getY(), loc.loadZ());
+  public void setNormalVector(Location nromalVector) {
+    this._normal[0] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.loadZ());
+    this._normal[1] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.loadZ());
+    this._normal[2] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.loadZ());
   }
 
   /**
-   * @param nor 法線ベクトル
+   * @param normalVectors 法線ベクトル
    */
-  public void setNormalVector(Vector3[] nor) {
-    this._normal = nor;
+  public void setNormalVector(Vector3[] normalVectors) {
+    this._normal = normalVectors;
   }
 
   /**
@@ -143,54 +139,54 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param pointNum 座標番号
+   * @param number 座標番号
    * @return x location
    */
-  public float loadPointLocationX(int pointNum) {
-    return this._point[pointNum].getX();
+  public float getPointLocationX(int number) {
+    return this._point[number].getX();
   }
 
   /**
-   * @param pointNum 座標番号
+   * @param number 座標番号
    * @return y location
    */
-  public float loadPointLocationY(int pointNum) {
-    return this._point[pointNum].getY();
+  public float getPointLocationY(int number) {
+    return this._point[number].getY();
   }
 
   /**
-   * @param pointNum 座標番号
+   * @param number 座標番号
    * @return z location
    */
-  public float loadPointLocationZ(int pointNum) {
-    return this._point[pointNum].loadZ();
+  public float getPointLocationZ(int number) {
+    return this._point[number].loadZ();
   }
 
   /**
    * @return color
    */
-  public String loadColor() {
+  public String getColor() {
     return this._color;
   }
 
   /**
    * @return location
    */
-  public Location loadLocation() {
+  public Location getLocation() {
     return this._location;
   }
 
   /**
    * @return rotation
    */
-  public Rotation loadRotation() {
+  public Rotation getRotation() {
     return this._rotation;
   }
 
   /**
    * @return normal vector
    */
-  public Vector3[] loadNormalVector() {
+  public Vector3[] getNormalVectors() {
     setNormalVector();
     return this._normal;
   }
@@ -198,7 +194,7 @@ public class XMLTrianglePolygon {
   /**
    * @return matrix
    */
-  public Matrix4 loadMatrix() {
+  public Matrix4 getMatrix() {
     return this._matrix;
   }
 
@@ -224,7 +220,7 @@ public class XMLTrianglePolygon {
    * 
    * @return the value of field 'transparent'.
    */
-  public boolean loadTransparent() {
+  public boolean getTransparent() {
     return this._transparent;
   }
 

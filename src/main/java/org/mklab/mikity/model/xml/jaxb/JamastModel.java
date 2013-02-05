@@ -1,6 +1,7 @@
 package org.mklab.mikity.model.xml.jaxb;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 
@@ -13,11 +14,9 @@ import org.mklab.mikity.model.xml.jaxb.model.Group;
  */
 public class JamastModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
-  /**
-   * Field _groupList
-   */
+  /** _groupList */
   @XmlElement
-  private java.util.ArrayList<Group> _groupList;
+  private List<Group> _groupList;
 
   /**
    * コンストラクター
@@ -32,7 +31,7 @@ public class JamastModel implements java.io.Serializable {
    * @param vGroup グループ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addGroup(org.mklab.mikity.model.xml.jaxb.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
+  public void addGroup(org.mklab.mikity.model.xml.jaxb.model.Group vGroup) {
     this._groupList.add(vGroup);
   }
 
@@ -43,7 +42,7 @@ public class JamastModel implements java.io.Serializable {
    * @param vGroup グループ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addGroup(int index, org.mklab.mikity.model.xml.jaxb.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
+  public void addGroup(int index, org.mklab.mikity.model.xml.jaxb.model.Group vGroup) {
     this._groupList.add(index, vGroup);
   }
 
@@ -61,7 +60,7 @@ public class JamastModel implements java.io.Serializable {
    * @return (org.mklab.mikity.xml.Group) _groupList.get(index)
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.model.Group getGroup(int index) throws java.lang.IndexOutOfBoundsException {
+  public org.mklab.mikity.model.xml.jaxb.model.Group getGroup(int index) {
     if ((index < 0) || (index > this._groupList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -124,7 +123,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<Group> getGroupsAsReference() {
+  public List<Group> getGroupsAsReference() {
     return this._groupList;
   } 
 
@@ -155,7 +154,7 @@ public class JamastModel implements java.io.Serializable {
    * @param vGroup グループ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setGroup(int index, org.mklab.mikity.model.xml.jaxb.model.Group vGroup) throws java.lang.IndexOutOfBoundsException {
+  public void setGroup(int index, org.mklab.mikity.model.xml.jaxb.model.Group vGroup) {
     if ((index < 0) || (index > this._groupList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -168,7 +167,6 @@ public class JamastModel implements java.io.Serializable {
    * @param groupArray グループの文字列
    */
   public void setGroups(org.mklab.mikity.model.xml.jaxb.model.Group[] groupArray) {
-    // -- copy array
     this._groupList.clear();
     for (int i = 0; i < groupArray.length; i++) {
       this._groupList.add(groupArray[i]);
@@ -180,8 +178,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @param groupCollection the Vector to copy.
    */
-  public void setGroups(java.util.ArrayList<Group> groupCollection) {
-    // -- copy collection
+  public void setGroups(List<Group> groupCollection) {
     this._groupList.clear();
     for (int i = 0; i < groupCollection.size(); i++) {
       this._groupList.add(groupCollection.get(i));
@@ -193,7 +190,7 @@ public class JamastModel implements java.io.Serializable {
    * 
    * @param groupCollection the ArrayList to copy.
    */
-  public void setGroupsAsReference(java.util.ArrayList<Group> groupCollection) {
+  public void setGroupsAsReference(List<Group> groupCollection) {
     this._groupList = groupCollection;
   } 
 

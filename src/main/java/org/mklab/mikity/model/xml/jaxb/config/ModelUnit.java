@@ -11,15 +11,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 public class ModelUnit implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _angle
-   */
+  /** _angle */
   @XmlAttribute
   private java.lang.String _angle;
 
-  /**
-   * Field _length
-   */
+  /** _length */
   @XmlAttribute
   private java.lang.String _length;
 

@@ -1,5 +1,8 @@
 package org.mklab.mikity.model.xml.jaxb;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -13,24 +16,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Jamast implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _modelList
-   */
+  /** _modelList */
   @XmlElement
-  private java.util.ArrayList<JamastModel> _modelList;
+  private List<JamastModel> _modelList;
 
-  /**
-   * Field _configList
-   */
+  /** _configList */
   @XmlElement
-  private java.util.ArrayList<JamastConfig> _configList;
+  private List<JamastConfig> _configList;
 
   /**
    * コンストラクター
    */
   public Jamast() {
-    this._modelList = new java.util.ArrayList<JamastModel>();
-    this._configList = new java.util.ArrayList<JamastConfig>();
+    this._modelList = new ArrayList<JamastModel>();
+    this._configList = new ArrayList<JamastConfig>();
   }
 
   /**
@@ -39,7 +38,7 @@ public class Jamast implements java.io.Serializable {
    * @param vConfig コンフィグ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addConfig(org.mklab.mikity.model.xml.jaxb.JamastConfig vConfig) throws java.lang.IndexOutOfBoundsException {
+  public void addConfig(org.mklab.mikity.model.xml.jaxb.JamastConfig vConfig) {
     this._configList.add(vConfig);
   }
 
@@ -50,7 +49,7 @@ public class Jamast implements java.io.Serializable {
    * @param vConfig コンフィグ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addConfig(int index, org.mklab.mikity.model.xml.jaxb.JamastConfig vConfig) throws java.lang.IndexOutOfBoundsException {
+  public void addConfig(int index, org.mklab.mikity.model.xml.jaxb.JamastConfig vConfig) {
     this._configList.add(index, vConfig);
   }
 
@@ -60,7 +59,7 @@ public class Jamast implements java.io.Serializable {
    * @param vModel モデル
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addModel(org.mklab.mikity.model.xml.jaxb.JamastModel vModel) throws java.lang.IndexOutOfBoundsException {
+  public void addModel(org.mklab.mikity.model.xml.jaxb.JamastModel vModel) {
     this._modelList.add(vModel);
   }
 
@@ -71,7 +70,7 @@ public class Jamast implements java.io.Serializable {
    * @param vModel モデル
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void addModel(int index, org.mklab.mikity.model.xml.jaxb.JamastModel vModel) throws java.lang.IndexOutOfBoundsException {
+  public void addModel(int index, org.mklab.mikity.model.xml.jaxb.JamastModel vModel) {
     this._modelList.add(index, vModel);
   }
 
@@ -96,8 +95,7 @@ public class Jamast implements java.io.Serializable {
    * @return _configList.get(index)
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.JamastConfig getConfig(int index) throws java.lang.IndexOutOfBoundsException {
-    // -- check bounds for index
+  public org.mklab.mikity.model.xml.jaxb.JamastConfig getConfig(int index) {
     if ((index < 0) || (index > this._configList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -158,8 +156,8 @@ public class Jamast implements java.io.Serializable {
   public org.mklab.mikity.model.xml.jaxb.JamastConfig[] getConfig() {
     int size = this._configList.size();
     org.mklab.mikity.model.xml.jaxb.JamastConfig[] mArray = new org.mklab.mikity.model.xml.jaxb.JamastConfig[size];
-    for (int index = 0; index < size; index++) {
-      mArray[index] = this._configList.get(index);
+    for (int i = 0; i < size; i++) {
+      mArray[i] = this._configList.get(i);
     }
     return mArray;
   }
@@ -169,7 +167,7 @@ public class Jamast implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<JamastConfig> getConfigAsReference() {
+  public List<JamastConfig> getConfigAsReference() {
     return this._configList;
   }
 
@@ -189,8 +187,7 @@ public class Jamast implements java.io.Serializable {
    * @return (org.mklab.mikity.xml.Model) _modelList.get(index)
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.jaxb.JamastModel getModel(int index) throws java.lang.IndexOutOfBoundsException {
-    // -- check bounds for index
+  public org.mklab.mikity.model.xml.jaxb.JamastModel getModel(int index) {
     if ((index < 0) || (index > this._modelList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -206,8 +203,8 @@ public class Jamast implements java.io.Serializable {
   public org.mklab.mikity.model.xml.jaxb.JamastModel[] getModel() {
     int size = this._modelList.size();
     org.mklab.mikity.model.xml.jaxb.JamastModel[] mArray = new org.mklab.mikity.model.xml.jaxb.JamastModel[size];
-    for (int index = 0; index < size; index++) {
-      mArray[index] = this._modelList.get(index);
+    for (int i = 0; i < size; i++) {
+      mArray[i] = this._modelList.get(i);
     }
     return mArray;
   }
@@ -217,7 +214,7 @@ public class Jamast implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public java.util.ArrayList<JamastModel> loadModelAsReference() {
+  public List<JamastModel> loadModelAsReference() {
     return this._modelList;
   }
 
@@ -259,8 +256,7 @@ public class Jamast implements java.io.Serializable {
    * @param vConfig コンフィグ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setConfig(int index, org.mklab.mikity.model.xml.jaxb.JamastConfig vConfig) throws java.lang.IndexOutOfBoundsException {
-    // -- check bounds for index
+  public void setConfig(int index, org.mklab.mikity.model.xml.jaxb.JamastConfig vConfig) {
     if ((index < 0) || (index > this._configList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -273,7 +269,6 @@ public class Jamast implements java.io.Serializable {
    * @param configArray コンフィグの配列
    */
   public void setConfig(org.mklab.mikity.model.xml.jaxb.JamastConfig[] configArray) {
-    // -- copy array
     this._configList.clear();
     for (int i = 0; i < configArray.length; i++) {
       this._configList.add(configArray[i]);
@@ -285,7 +280,7 @@ public class Jamast implements java.io.Serializable {
    * 
    * @param configCollection the ArrayList to copy.
    */
-  public void setConfigAsReference(java.util.ArrayList<JamastConfig> configCollection) {
+  public void setConfigAsReference(List<JamastConfig> configCollection) {
     this._configList = configCollection;
   }
 
@@ -296,8 +291,7 @@ public class Jamast implements java.io.Serializable {
    * @param vModel モデル
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setModel(int index, org.mklab.mikity.model.xml.jaxb.JamastModel vModel) throws java.lang.IndexOutOfBoundsException {
-    // -- check bounds for index
+  public void setModel(int index, org.mklab.mikity.model.xml.jaxb.JamastModel vModel) {
     if ((index < 0) || (index > this._modelList.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -310,7 +304,6 @@ public class Jamast implements java.io.Serializable {
    * @param modelArray モデルの配列
    */
   public void setModel(org.mklab.mikity.model.xml.jaxb.JamastModel[] modelArray) {
-    // -- copy array
     this._modelList.clear();
     for (int i = 0; i < modelArray.length; i++) {
       this._modelList.add(modelArray[i]);
@@ -322,7 +315,7 @@ public class Jamast implements java.io.Serializable {
    * 
    * @param modelCollection the ArrayList to copy.
    */
-  public void setModelAsReference(java.util.ArrayList<JamastModel> modelCollection) {
+  public void setModelAsReference(List<JamastModel> modelCollection) {
     this._modelList = modelCollection;
   }
 

@@ -11,39 +11,27 @@ import javax.xml.bind.annotation.XmlElement;
 public class JamastConfig implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Field _data
-   */
+  /** _data */
   @XmlElement
   private java.lang.String _data;
 
-  /**
-   * Field _background
-   */
+  /** _background */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.config.Background _background;
 
-  /**
-   * Field _light
-   */
+  /** _light */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.config.Light _light;
 
-  /**
-   * Field _view
-   */
+  /** _view */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.config.View _view;
 
-  /**
-   * Field _modelUnit
-   */
+  /** _modelUnit */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.config.ModelUnit _modelUnit;
 
-  /**
-   * Field _dataUnit
-   */
+  /** _dataUnit */
   @XmlElement
   private org.mklab.mikity.model.xml.jaxb.config.DataUnit _dataUnit;
 
