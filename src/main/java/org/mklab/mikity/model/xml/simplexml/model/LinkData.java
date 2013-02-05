@@ -1,6 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml.model;
 
 import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Root;
 
 
 /**
@@ -8,22 +9,23 @@ import org.simpleframework.xml.Attribute;
  * 
  * @version $Revision: 1.3 $ $Date: 2008/02/03 04:25:09 $
  */
+@Root(name="_linkdataList")
 public class LinkData implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _target */
-  @Attribute
+  @Attribute(name="target")
   private java.lang.String _target;
 
   /** _const */
-  @Attribute
+  @Attribute(name="const")
   private double _const;
 
   /** keeps track of state for field: _const */
   private boolean _has_const;
 
   /** _column */
-  @Attribute
+  @Attribute(name="column")
   private int _column;
 
   /** keeps track of state for field: _column */

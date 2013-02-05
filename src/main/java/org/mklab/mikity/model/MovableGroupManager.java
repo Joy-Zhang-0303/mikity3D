@@ -12,9 +12,9 @@ import java.util.Map;
 
 import org.mklab.mikity.model.picker.ClosenessDataPicker;
 import org.mklab.mikity.model.picker.DataPicker;
-import org.mklab.mikity.model.xml.jaxb.Jamast;
-import org.mklab.mikity.model.xml.jaxb.model.Group;
-import org.mklab.mikity.model.xml.jaxb.model.LinkData;
+import org.mklab.mikity.model.xml.simplexml.Jamast;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
 
 

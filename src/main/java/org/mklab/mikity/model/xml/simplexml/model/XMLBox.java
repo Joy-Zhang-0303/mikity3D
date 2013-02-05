@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 
 /**
@@ -12,43 +13,44 @@ import org.simpleframework.xml.Element;
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
+@Root(name="_XMLBoxList")
 public class XMLBox implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _xsize */
-  @Attribute
+  @Attribute(name="xsize")
   private float _xsize;
 
   /** keeps track of state for field: _xsize */
   private boolean _has_xsize;
 
   /** _ysize */
-  @Attribute
+  @Attribute(name="ysize")
   private float _ysize;
 
   /** keeps track of state for field: _ysize */
   private boolean _has_ysize;
 
   /** _zsize */
-  @Attribute
+  @Attribute(name="zsize")
   private float _zsize;
 
   /** keeps track of state for field: _zsize */
   private boolean _has_zsize;
 
   /** _color */
-  @Attribute
+  @Attribute(name="color")
   private java.lang.String _color;
 
   /** _transparent */
-  @Attribute
+  @Attribute(name="transparent")
   private boolean _transparent;
 
   /** keeps track of state for field: _transparent */
   private boolean _has_transparent;
 
   /** _rotation */
-  @Element
+  @Element(required=false)
   private org.mklab.mikity.model.xml.simplexml.model.Rotation _rotation;
 
   /** _location */

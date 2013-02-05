@@ -12,11 +12,11 @@ public class DataUnit implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _angle */
-  @Attribute
+  @Attribute(name="angle")
   private java.lang.String _angle;
 
   /** _length */
-  @Attribute
+  @Attribute(name="length")
   private java.lang.String _length;
 
   /**

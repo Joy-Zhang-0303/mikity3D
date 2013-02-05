@@ -11,7 +11,7 @@ import org.simpleframework.xml.Attribute;
 public class Background implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
   /** _color */
-  @Attribute
+  @Attribute(name="color")
   private java.lang.String _color;
   
   /**

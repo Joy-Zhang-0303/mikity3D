@@ -12,21 +12,21 @@ public class Rotation implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _xrotate */
-  @Attribute
+  @Attribute(name="xrotate")
   private float _xrotate;
 
   /** keeps track of state for field: _xrotate */
   private boolean _has_xrotate;
 
   /** Field _yrotate */
-  @Attribute
+  @Attribute(name="yrotate")
   private float _yrotate;
 
   /** keeps track of state for field: _yrotate */
   private boolean _has_yrotate;
 
   /** _zrotate */
-  @Attribute
+  @Attribute(name="zrotate")
   private float _zrotate;
 
   /**
@@ -151,7 +151,7 @@ public class Rotation implements java.io.Serializable {
    * 
    * @return the value of field 'zrotate'.
    */
-  public float loadZrotation() {
+  public float getZrotation() {
     return this._zrotate;
   }
 

@@ -10,12 +10,14 @@ import org.mklab.mikity.util.Vector3;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementArray;
+import org.simpleframework.xml.Root;
 
 
 /**
  * @author koga
  * @version $Revision$, 2008/08/10
  */
+@Root(name="_XMLQuadPolygonList")
 public class XMLQuadPolygon {
 
   @ElementArray
@@ -116,8 +118,8 @@ public class XMLQuadPolygon {
    */
   public void setNormalVector() {
     // 修正
-    Vector3 v1 = new Vector3(this._point[1].getX() - this._point[0].getX(), this._point[1].getY() - this._point[0].getY(), this._point[1].loadZ() - this._point[0].loadZ());
-    Vector3 v2 = new Vector3(this._point[2].getX() - this._point[1].getX(), this._point[2].getY() - this._point[1].getY(), this._point[2].loadZ() - this._point[1].loadZ());
+    Vector3 v1 = new Vector3(this._point[1].getX() - this._point[0].getX(), this._point[1].getY() - this._point[0].getY(), this._point[1].getZ() - this._point[0].getZ());
+    Vector3 v2 = new Vector3(this._point[2].getX() - this._point[1].getX(), this._point[2].getY() - this._point[1].getY(), this._point[2].getZ() - this._point[1].getZ());
 
     Vector3 n = v1.cross(v2).normalize();
 
@@ -138,10 +140,10 @@ public class XMLQuadPolygon {
    * @param location 位置
    */
   public void setNormalVector(Location location) {
-    this._normal[0] = new Vector3(location.getX(), location.getY(), location.loadZ());
-    this._normal[1] = new Vector3(location.getX(), location.getY(), location.loadZ());
-    this._normal[2] = new Vector3(location.getX(), location.getY(), location.loadZ());
-    this._normal[3] = new Vector3(location.getX(), location.getY(), location.loadZ());
+    this._normal[0] = new Vector3(location.getX(), location.getY(), location.getZ());
+    this._normal[1] = new Vector3(location.getX(), location.getY(), location.getZ());
+    this._normal[2] = new Vector3(location.getX(), location.getY(), location.getZ());
+    this._normal[3] = new Vector3(location.getX(), location.getY(), location.getZ());
   }
 
   /**
@@ -165,7 +167,7 @@ public class XMLQuadPolygon {
    * @return z location
    */
   public float getPointLocationZ(int number) {
-    return this._point[number].loadZ();
+    return this._point[number].getZ();
   }
 
   /**

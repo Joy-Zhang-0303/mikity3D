@@ -5,9 +5,8 @@
  */
 package org.mklab.mikity.view.renderer;
 
-import org.mklab.mikity.model.xml.jaxb.JamastConfig;
-import org.mklab.mikity.model.xml.jaxb.model.Group;
-
+import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
 
 /**
  * モデルを描画するレンダラーを表すインターフェースです。

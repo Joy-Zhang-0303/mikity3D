@@ -80,7 +80,7 @@ public class VisualScene {
     }
     
     for (final Node node : this.nodes) {
-      if (node != null && node.getGroup().loadName() != null) {
+      if (node != null && node.getGroup().getName() != null) {
         this.rootGroup.addGroup(node.getGroup());
       }
     }

@@ -11,24 +11,25 @@ import org.simpleframework.xml.Attribute;
 public class Location implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
+  /** _z */
+  @Attribute(name="z")
+  private float _z;
+  
+  /** _y */
+  @Attribute(name="y")
+  private float _y;
+
   /** _x */
-  @Attribute
+  @Attribute(name="x")
   private float _x;
 
   /** keeps track of state for field: _x */
   private boolean _has_x;
 
-  /** _y */
-  @Attribute
-  private float _y;
 
   /** keeps track of state for field: _y */
   private boolean _has_y;
-
-  /** _z */
-  @Attribute
-  private float _z;
-
+  
   /** keeps track of state for field: _z */
   private boolean _has_z;
 
@@ -153,7 +154,7 @@ public class Location implements java.io.Serializable {
    * 
    * @return the value of field 'z'.
    */
-  public float loadZ() {
+  public float getZ() {
     return this._z;
   }
 

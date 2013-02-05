@@ -10,12 +10,14 @@ import org.mklab.mikity.util.Vector3;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementArray;
+import org.simpleframework.xml.Root;
 
 
 /**
  * @author koga
  * @version $Revision$, 2008/08/10
  */
+@Root(name="_XMLTrianglePolygonList")
 public class XMLTrianglePolygon {
 
   @ElementArray
@@ -107,9 +109,9 @@ public class XMLTrianglePolygon {
    * @param nromalVector 法線ベクトル
    */
   public void setNormalVector(Location nromalVector) {
-    this._normal[0] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.loadZ());
-    this._normal[1] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.loadZ());
-    this._normal[2] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.loadZ());
+    this._normal[0] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
+    this._normal[1] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
+    this._normal[2] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
   }
 
   /**
@@ -123,8 +125,8 @@ public class XMLTrianglePolygon {
    *  
    */
   public void setNormalVector() {
-    Vector3 v1 = new Vector3(this._point[1].getX() - this._point[0].getX(), this._point[1].getY() - this._point[0].getY(), this._point[1].loadZ() - this._point[0].loadZ());
-    Vector3 v2 = new Vector3(this._point[2].getX() - this._point[1].getX(), this._point[2].getY() - this._point[1].getY(), this._point[2].loadZ() - this._point[1].loadZ());
+    Vector3 v1 = new Vector3(this._point[1].getX() - this._point[0].getX(), this._point[1].getY() - this._point[0].getY(), this._point[1].getZ() - this._point[0].getZ());
+    Vector3 v2 = new Vector3(this._point[2].getX() - this._point[1].getX(), this._point[2].getY() - this._point[1].getY(), this._point[2].getZ() - this._point[1].getZ());
     Vector3 n = v1.cross(v2).normalize();
     this._normal[0] = n;
     this._normal[1] = n;
@@ -159,7 +161,7 @@ public class XMLTrianglePolygon {
    * @return z location
    */
   public float getPointLocationZ(int number) {
-    return this._point[number].loadZ();
+    return this._point[number].getZ();
   }
 
   /**

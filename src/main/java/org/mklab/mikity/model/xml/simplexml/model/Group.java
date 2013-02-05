@@ -6,65 +6,65 @@ import java.util.List;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
-
+import org.simpleframework.xml.Root;
 
 /**
  * Class Group.
  * 
  * @version $Revision: 1.4 $ $Date: 2007/12/13 10:01:55 $
  */
+@Root(name="group")
 public class Group implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
-
+  
   /** _name */
-  @Attribute
+  @Attribute(name="name")
   private String _name;
-
-  /** _XMLBoxList */
-  @ElementList
-  private List<XMLBox> _XMLBoxList;
-
-  /** _XMLCylinderList */
-  @ElementList
-  private List<XMLCylinder> _XMLCylinderList;
-
-  /** _XMLSphereList */
-  @ElementList
-  private List<XMLSphere> _XMLSphereList;
-
-  /** _XMLConeList */
-  @ElementList
-  private List<XMLCone> _XMLConeList;
-
-  /** _XMLTrianglePolygonList */
-  @ElementList
-  private List<XMLTrianglePolygon> _XMLTrianglePolygonList;
-
-  /** _XMLQuadPolygonList */
-  @ElementList
-  private List<XMLQuadPolygon> _XMLQuadPolygonList;
-
+  
   /** _location */
-  @Element
+  @Element(name="_location")
   private org.mklab.mikity.model.xml.simplexml.model.Location _location;
 
   /** _rotation */
-  @Element
+  @Element(name="_rotation")
   private org.mklab.mikity.model.xml.simplexml.model.Rotation _rotation;
+  
+  /** _XMLBoxList */
+  @ElementList(type=XMLBox.class, inline=true, required=false)
+  private List<XMLBox> _XMLBoxList;
+
+  /** _XMLCylinderList */
+  @ElementList(type=XMLCylinder.class, inline=true, required=false)
+  private List<XMLCylinder> _XMLCylinderList;
+
+  /** _XMLSphereList */
+  @ElementList(type=XMLSphere.class, inline=true, required=false)
+  private List<XMLSphere> _XMLSphereList;
+
+  /** _XMLConeList */
+  @ElementList(type=XMLCone.class, inline=true, required=false)
+  private List<XMLCone> _XMLConeList;
+
+  /** _XMLTrianglePolygonList */
+  @ElementList(type=XMLTrianglePolygon.class, inline=true,  required=false)
+  private List<XMLTrianglePolygon> _XMLTrianglePolygonList;
+
+  /** _XMLQuadPolygonList */
+  @ElementList(type=XMLQuadPolygon.class, inline=true, required=false)
+  private List<XMLQuadPolygon> _XMLQuadPolygonList;
 
   /** _linkdataList */
-  @Element
+  @ElementList(type=LinkData.class, inline=true, required=false)
   private List<LinkData> _linkdataList;
 
   /** _groupList */
-  @Element
+  @ElementList(type=Group.class, inline=true, required=false)
   private List<Group> _groupList;
 
   /**
    * コンストラクター
    */
   public Group() {
-    super();
     this._XMLBoxList = new ArrayList<XMLBox>();
     this._XMLCylinderList = new ArrayList<XMLCylinder>();
     this._XMLSphereList = new ArrayList<XMLSphere>();
@@ -508,7 +508,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return the value of field 'name'.
    */
-  public String loadName() {
+  public String getName() {
     return this._name;
   } 
 

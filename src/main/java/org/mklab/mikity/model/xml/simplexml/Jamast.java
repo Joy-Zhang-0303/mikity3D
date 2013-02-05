@@ -17,11 +17,11 @@ public class Jamast implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _modelList */
-  @ElementList
+  @ElementList(type=JamastModel.class, inline=true)
   private List<JamastModel> _modelList;
 
   /** _configList */
-  @ElementList
+  @ElementList(type=JamastConfig.class, inline=true)
   private List<JamastConfig> _configList;
 
   /**

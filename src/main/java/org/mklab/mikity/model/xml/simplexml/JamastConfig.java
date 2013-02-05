@@ -1,6 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 
 /**
@@ -8,11 +9,12 @@ import org.simpleframework.xml.Element;
  * 
  * @version $Revision: 1.9 $ $Date: 2007/08/03 03:30:27 $
  */
+@Root(name="config")
 public class JamastConfig implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _data */
-  @Element
+  @Element(required=false)
   private java.lang.String _data;
 
   /** _background */

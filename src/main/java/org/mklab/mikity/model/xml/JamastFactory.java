@@ -8,17 +8,17 @@ package org.mklab.mikity.model.xml;
 import java.io.File;
 import java.io.IOException;
 
-import org.mklab.mikity.model.xml.jaxb.JAXBUnmarshaller;
-import org.mklab.mikity.model.xml.jaxb.Jamast;
-import org.mklab.mikity.model.xml.jaxb.JamastConfig;
-import org.mklab.mikity.model.xml.jaxb.JamastModel;
-import org.mklab.mikity.model.xml.jaxb.model.Group;
-import org.mklab.mikity.model.xml.jaxb.model.XMLBox;
-import org.mklab.mikity.model.xml.jaxb.model.XMLCone;
-import org.mklab.mikity.model.xml.jaxb.model.XMLCylinder;
-import org.mklab.mikity.model.xml.jaxb.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.jaxb.model.XMLSphere;
-import org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.Jamast;
+import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.simplexml.JamastModel;
+import org.mklab.mikity.model.xml.simplexml.SimpleXmlUnmarshaller;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 
 
 /**
@@ -38,7 +38,8 @@ public class JamastFactory {
    * @throws JamastSerializeDeserializeException ファイルを読み込めない場合 
    */
   public void importFile(File file, Jamast parent) throws IOException, JamastSerializeDeserializeException {
-    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+    //final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+    final SimpleXmlUnmarshaller unmarshaller = new SimpleXmlUnmarshaller();
     unmarshaller.unmarshal(file);
     final Jamast root = unmarshaller.getRoot();
 
@@ -108,7 +109,8 @@ public class JamastFactory {
    * @throws JamastSerializeDeserializeException ファイルを読み込めない場合
    */
   public Jamast loadFile(final File file) throws IOException, JamastSerializeDeserializeException {
-    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+    //final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+    final SimpleXmlUnmarshaller unmarshaller = new SimpleXmlUnmarshaller();
     unmarshaller.unmarshal(file);
     final Jamast root = unmarshaller.getRoot();
 

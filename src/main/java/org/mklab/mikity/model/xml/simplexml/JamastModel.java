@@ -5,16 +5,18 @@ import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
 /**
  * Class Model.
  * 
  * @version $Revision: 1.15 $ $Date: 2007/08/03 03:30:27 $
  */
+@Root(name="model")
 public class JamastModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
   /** _groupList */
-  @ElementList
+  @ElementList(type=Group.class, inline=true)
   private List<Group> _groupList;
 
   /**

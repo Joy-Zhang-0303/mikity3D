@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 
 /**
@@ -14,32 +15,33 @@ import org.simpleframework.xml.Element;
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
+@Root(name="_XMLCylinderList")
 public class XMLCylinder implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _r */
-  @Attribute
+  @Attribute(name="r")
   protected float _r;
 
   /** keeps track of state for field: _r */
   protected boolean _has_r;
 
   /** _height */
-  @Attribute
+  @Attribute(name="height")
   protected float _height;
 
   /** keeps track of state for field: _height */
   protected boolean _has_height;
 
   /** _div */
-  @Attribute
+  @Attribute(name="div")
   protected int _div;
 
   /** keeps track of state for field: _div */
   protected boolean _has_div;
 
   /** _color */
-  @Attribute
+  @Attribute(name="color")
   protected java.lang.String _color;
 
   /** _transparent */
@@ -49,7 +51,7 @@ public class XMLCylinder implements Serializable {
   protected boolean _has_transparent;
 
   /** _rotation */
-  @Element
+  @Element(required=false)
   protected Rotation _rotation;
 
   /** _location */

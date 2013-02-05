@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 
 /**
@@ -12,6 +13,7 @@ import org.simpleframework.xml.Element;
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
+@Root(name="_XMLSphereList")
 public class XMLSphere implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 

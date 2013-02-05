@@ -12,21 +12,21 @@ public class Light implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _x */
-  @Attribute
+  @Attribute(name="x")
   private float _x;
 
   /** keeps track of state for field: _x */
   private boolean _has_x;
 
   /** Field _y */
-  @Attribute
+  @Attribute(name="y")
   private float _y;
 
   /** keeps track of state for field: _y */
   private boolean _has_y;
 
   /** Field _z */
-  @Attribute
+  @Attribute(name="z")
   private float _z;
 
   /** keeps track of state for field: _z */

@@ -34,7 +34,7 @@ public class BlenderSceneGraphCreater {
     final List<Group> groups = rootGroup.getGroupAsReference();
     
     for (int i = 0; i < groups.size(); i++) {
-      if (groups.get(i).loadName().equals(argScene.loadName())) {
+      if (groups.get(i).getName().equals(argScene.getName())) {
         final List<XMLTrianglePolygon> trianglePolygons = rootGroup.getGroups()[i].getXMLTrianglePolygonAsReference();
         final List<XMLQuadPolygon> quadPolygons = rootGroup.getGroups()[i].getXMLQuadPolygonAsReference();
         addTrianglePolygons(argScene, trianglePolygons);
