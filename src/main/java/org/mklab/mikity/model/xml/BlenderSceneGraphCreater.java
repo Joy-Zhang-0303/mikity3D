@@ -28,24 +28,25 @@ public class BlenderSceneGraphCreater {
   }
 
   /**
-   * @param group グループ
+   * @param rootGroup グループ
    * @param argScene シーン
    */
-  public void checkGroupName(Group group, Group argScene) {
-    final List<Group> groups = group.getGroupAsReference();
+  public void checkGroupName(Group rootGroup, Group argScene) {
+    final List<Group> groups = rootGroup.getGroupAsReference();
+    
     for (int i = 0; i < groups.size(); i++) {
       if (groups.get(i).loadName().equals(argScene.loadName())) {
-        final List<XMLTrianglePolygon> trianglePolygons = group.getGroups()[i].getXMLTrianglePolygonAsReference();
-        final List<XMLQuadPolygon> quadPolygons = group.getGroups()[i].getXMLQuadPolygonAsReference();
+        final List<XMLTrianglePolygon> trianglePolygons = rootGroup.getGroups()[i].getXMLTrianglePolygonAsReference();
+        final List<XMLQuadPolygon> quadPolygons = rootGroup.getGroups()[i].getXMLQuadPolygonAsReference();
         addTrianglePolygons(argScene, trianglePolygons);
         addQuadPolygons(argScene, quadPolygons);
       }
     }
 
-    final List<Group> child = argScene.getGroupAsReference();
-    if (child != null) {
-      for (int i = 0; i < child.size(); i++) {
-        checkGroupName(group, child.get(i));
+    final List<Group> children = argScene.getGroupAsReference();
+    if (children != null) {
+      for (final Group child : children) {
+        checkGroupName(rootGroup, child);
       }
     }
     this.scene = argScene;
@@ -53,21 +54,21 @@ public class BlenderSceneGraphCreater {
 
   /**
    * @param argScene
-   * @param trianglePolygons
+   * @param polygons
    */
-  private void addTrianglePolygons(Group argScene, List<XMLTrianglePolygon> trianglePolygons) {
-    for (int k = 0; k < trianglePolygons.size(); k++) {
-      argScene.addXMLTrianglePolygon(trianglePolygons.get(k));
+  private void addTrianglePolygons(Group argScene, List<XMLTrianglePolygon> polygons) {
+    for (final XMLTrianglePolygon polygon : polygons) {
+      argScene.addXMLTrianglePolygon(polygon);
     }
   }
 
   /**
    * @param argScene
-   * @param quadPolygons
+   * @param polygons
    */
-  private void addQuadPolygons(Group argScene, List<XMLQuadPolygon> quadPolygons) {
-    for (int k = 0; k < quadPolygons.size(); k++) {
-      argScene.addXMLQuadPolygon(quadPolygons.get(k));
+  private void addQuadPolygons(Group argScene, List<XMLQuadPolygon> polygons) {
+    for (final XMLQuadPolygon polygon : polygons) {
+      argScene.addXMLQuadPolygon(polygon);
     }
   }
 

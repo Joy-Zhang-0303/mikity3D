@@ -8,8 +8,6 @@ package org.mklab.mikity.model.xml;
 import java.io.File;
 import java.io.IOException;
 
-import javax.xml.bind.JAXBException;
-
 import org.mklab.mikity.model.xml.jaxb.JAXBUnmarshaller;
 import org.mklab.mikity.model.xml.jaxb.Jamast;
 import org.mklab.mikity.model.xml.jaxb.JamastConfig;
@@ -25,95 +23,99 @@ import org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon;
 
 /**
  * Jamastモデルを生成するクラスです。
+ * 
  * @author koga
  * @version $Revision$, 2012/12/01
  */
 public class JamastFactory {
+
   /**
    * ファイルを読み込み，データをrootに追加します。
+   * 
    * @param file ファイル
-   * @param root Jamastのroot
-   * @throws JAXBException ファイルを読み込めない場合 
-   * @throws IOException ファイルを読み込めない場合 
+   * @param parent Jamastのroot
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JamastUnmarshallerException ファイルを読み込めない場合 
    */
-  public void importFile(File file, Jamast root) throws IOException, JAXBException {
-    final Group rootGroup = root.getModel(0).getGroup(0);
-    
-    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
-    unmarshaller.unmarshal(file);
-    final Jamast newRoot = unmarshaller.getRoot();
-    
-    if (newRoot != null) {
-      final Group newRootGroup = newRoot.getModel(0).getGroup(0);
+  public void importFile(File file, Jamast parent) throws IOException, JamastUnmarshallerException {
+    final Group parentGroup = parent.getModel(0).getGroup(0);
 
-      final XMLBox[] boxes = newRootGroup.getXMLBox();
-      final XMLCone[] cones = newRootGroup.getXMLCone();
-      final XMLCylinder[] cylinders = newRootGroup.getXMLCylinder();
-      final XMLSphere[] spheres = newRootGroup.getXMLSphere();
-      final XMLTrianglePolygon[] trianglePolygons = newRootGroup.getXMLTrianglePolygon();
-      final XMLQuadPolygon[] quadPolygons = newRootGroup.getXMLQuadPolygon();
-      final Group[] groups = newRootGroup.getGroups();
-      
-      if (boxes != null) {
-        for (final XMLBox box : boxes) {
-          rootGroup.addXMLBox(box);
-        }
-      }
-      if (cones != null) {
-        for (final XMLCone cone : cones) {
-          rootGroup.addXMLCone(cone);
-        }
-      }
-      if (cylinders != null) {
-        for (final XMLCylinder cylinder : cylinders) {
-          rootGroup.addXMLCylinder(cylinder);
-        }
-      }
-      if (spheres != null) {
-        for (final XMLSphere sphere : spheres) {
-          rootGroup.addXMLSphere(sphere);
-        }
-      }
-      if (trianglePolygons != null) {
-        for (final XMLTrianglePolygon polygon : trianglePolygons) {
-          rootGroup.addXMLTrianglePolygon(polygon);
-        }
-      }
-      if (quadPolygons != null) {
-        for (final XMLQuadPolygon polygon : quadPolygons) {
-          rootGroup.addXMLQuadPolygon(polygon);
-        }
-      }
-      if (groups != null) {
-        for (final Group group : groups) {
-          rootGroup.addGroup(group);
-        }
-      }
-    } else {
+    final JamastUnmashaller unmarshaller = new JAXBUnmarshaller();
+    unmarshaller.unmarshal(file);
+    final Jamast root = unmarshaller.getRoot();
+
+    if (root == null) {
       final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
       for (final Group group : groups) {
-        rootGroup.addGroup(group);
+        parentGroup.addGroup(group);
+      }
+      return;
+    }
+
+    final Group rootGroup = root.getModel(0).getGroup(0);
+
+    final XMLBox[] boxes = rootGroup.getXMLBox();
+    final XMLCone[] cones = rootGroup.getXMLCone();
+    final XMLCylinder[] cylinders = rootGroup.getXMLCylinder();
+    final XMLSphere[] spheres = rootGroup.getXMLSphere();
+    final XMLTrianglePolygon[] trianglePolygons = rootGroup.getXMLTrianglePolygon();
+    final XMLQuadPolygon[] quadPolygons = rootGroup.getXMLQuadPolygon();
+    final Group[] groups = rootGroup.getGroups();
+
+    if (boxes != null) {
+      for (final XMLBox box : boxes) {
+        parentGroup.addXMLBox(box);
+      }
+    }
+    if (cones != null) {
+      for (final XMLCone cone : cones) {
+        parentGroup.addXMLCone(cone);
+      }
+    }
+    if (cylinders != null) {
+      for (final XMLCylinder cylinder : cylinders) {
+        parentGroup.addXMLCylinder(cylinder);
+      }
+    }
+    if (spheres != null) {
+      for (final XMLSphere sphere : spheres) {
+        parentGroup.addXMLSphere(sphere);
+      }
+    }
+    if (trianglePolygons != null) {
+      for (final XMLTrianglePolygon polygon : trianglePolygons) {
+        parentGroup.addXMLTrianglePolygon(polygon);
+      }
+    }
+    if (quadPolygons != null) {
+      for (final XMLQuadPolygon polygon : quadPolygons) {
+        parentGroup.addXMLQuadPolygon(polygon);
+      }
+    }
+    if (groups != null) {
+      for (final Group group : groups) {
+        parentGroup.addGroup(group);
       }
     }
   }
 
-  
   /**
    * Jamastファイルを読み込みます。
+   * 
    * @param file Jamastファイル
    * @return Jamastモデル
    * @throws IOException ファイルを読み込めない場合
-   * @throws JAXBException ファイルを読み込めない場合
+   * @throws JamastUnmarshallerException ファイルを読み込めない場合
    */
-  public Jamast loadFile(final File file) throws IOException, JAXBException {
-    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+  public Jamast loadFile(final File file) throws IOException, JamastUnmarshallerException {
+    final JamastUnmashaller unmarshaller = new JAXBUnmarshaller();
     unmarshaller.unmarshal(file);
     final Jamast root = unmarshaller.getRoot();
-    
+
     if (root != null) {
       return root;
     }
-    
+
     final Jamast newRoot = createEmptyModel();
     final Group newGroup = newRoot.getModel(0).getGroup(0);
     final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
@@ -123,20 +125,21 @@ public class JamastFactory {
 
     return newRoot;
   }
-  
+
   /**
    * 空のモデルを生成します。
+   * 
    * @return Jamastモデル
    */
   public Jamast createEmptyModel() {
     final JamastConfig config = new JamastConfig();
-    
+
     final Group group = new Group();
     group.setName("Group0"); //$NON-NLS-1$
-    
+
     final JamastModel model = new JamastModel();
     model.addGroup(group);
-    
+
     final Jamast root = new Jamast();
     root.addConfig(config);
     root.addModel(model);

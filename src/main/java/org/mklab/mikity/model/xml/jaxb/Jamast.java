@@ -29,7 +29,6 @@ public class Jamast implements java.io.Serializable {
    * コンストラクター
    */
   public Jamast() {
-    super();
     this._modelList = new java.util.ArrayList<JamastModel>();
     this._configList = new java.util.ArrayList<JamastConfig>();
   }

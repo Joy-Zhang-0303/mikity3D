@@ -23,7 +23,6 @@ public class JamastModel implements java.io.Serializable {
    * コンストラクター
    */
   public JamastModel() {
-    super();
     this._groupList = new ArrayList<Group>();
   }
 
