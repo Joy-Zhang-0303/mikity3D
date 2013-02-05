@@ -38,12 +38,12 @@ public class JamastFactory {
    * @throws JamastUnmarshallerException ファイルを読み込めない場合 
    */
   public void importFile(File file, Jamast parent) throws IOException, JamastUnmarshallerException {
-    final Group parentGroup = parent.getModel(0).getGroup(0);
-
     final JamastUnmashaller unmarshaller = new JAXBUnmarshaller();
     unmarshaller.unmarshal(file);
     final Jamast root = unmarshaller.getRoot();
 
+    final Group parentGroup = parent.getModel(0).getGroup(0);
+    
     if (root == null) {
       final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
       for (final Group group : groups) {
