@@ -1,6 +1,4 @@
-package apk;
-
-import com.example.dmikityandroid.R;
+package org.mklab.mikity.android;
 
 import android.app.Activity;
 import android.os.Bundle;
