@@ -35,10 +35,10 @@ public class JamastFactory {
    * @param file ファイル
    * @param parent Jamastのroot
    * @throws IOException ファイルを読み込めない場合
-   * @throws JamastUnmarshallerException ファイルを読み込めない場合 
+   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合 
    */
-  public void importFile(File file, Jamast parent) throws IOException, JamastUnmarshallerException {
-    final JamastUnmashaller unmarshaller = new JAXBUnmarshaller();
+  public void importFile(File file, Jamast parent) throws IOException, JamastSerializeDeserializeException {
+    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
     unmarshaller.unmarshal(file);
     final Jamast root = unmarshaller.getRoot();
 
@@ -105,10 +105,10 @@ public class JamastFactory {
    * @param file Jamastファイル
    * @return Jamastモデル
    * @throws IOException ファイルを読み込めない場合
-   * @throws JamastUnmarshallerException ファイルを読み込めない場合
+   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合
    */
-  public Jamast loadFile(final File file) throws IOException, JamastUnmarshallerException {
-    final JamastUnmashaller unmarshaller = new JAXBUnmarshaller();
+  public Jamast loadFile(final File file) throws IOException, JamastSerializeDeserializeException {
+    final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
     unmarshaller.unmarshal(file);
     final Jamast root = unmarshaller.getRoot();
 

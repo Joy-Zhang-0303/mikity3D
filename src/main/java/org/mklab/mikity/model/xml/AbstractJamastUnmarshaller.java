@@ -20,17 +20,12 @@ import org.mklab.mikity.model.xml.jaxb.model.Group;
  * @version $Revision$, 2013/02/05
  */
 public abstract class AbstractJamastUnmarshaller implements JamastUnmashaller {
-  /** モデルデータのルート */
-  protected Jamast root;
-  /** Colladaのグループ */
-  protected Collada collada;
-
   /**
    * {@inheritDoc}
    * 
-   * @throws JamastUnmarshallerException Unmarshalできない場合
+   * @throws JamastSerializeDeserializeException Unmarshalできない場合
    */
-  public void unmarshal(File file) throws IOException, JamastUnmarshallerException {
+  public void unmarshal(File file) throws IOException, JamastSerializeDeserializeException {
     final BufferedReader reader = new BufferedReader(new FileReader(file));
     final StringBuffer data = new StringBuffer();
 
@@ -52,19 +47,4 @@ public abstract class AbstractJamastUnmarshaller implements JamastUnmashaller {
 
     throw new IllegalArgumentException("Neither jamast nor collada data"); //$NON-NLS-1$
   }
-  
-  /**
-   * {@inheritDoc}
-   */
-  public Group getClolladaGroup() {
-    return this.collada.getColladaPolygonGroup();
-  }
-  
-  /**
-   * {@inheritDoc}
-   */
-  public Jamast getRoot() {
-    return this.root;
-  }
-
 }

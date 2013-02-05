@@ -3,14 +3,13 @@
  * Copyright (C) 2004-2005 Koga Laboratoy. All rights reserved.
  *
  */
-package org.mklab.mikity.model.xml;
+package org.mklab.mikity.model.xml.simplexml.blender;
 
 import java.util.List;
 
-import org.mklab.mikity.model.xml.jaxb.model.Group;
-import org.mklab.mikity.model.xml.jaxb.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.jaxb.model.XMLTrianglePolygon;
-
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 
 /**
  * @author koga

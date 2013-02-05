@@ -3,13 +3,13 @@
  * Copyright (C) 2004-2005 Koga Laboratoy. All rights reserved.
  *
  */
-package org.mklab.mikity.model.xml.jaxb.blender;
+package org.mklab.mikity.model.xml.simplexml.blender;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-
-import org.mklab.mikity.model.xml.jaxb.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.simpleframework.xml.ElementList;
 
 
 /**
@@ -20,8 +20,8 @@ import org.mklab.mikity.model.xml.jaxb.model.Group;
  */
 public class LibraryGeometries {
 
-  @XmlElement
-  private ArrayList<Geometry> geometry;
+  @ElementList
+  private List<Geometry> geometry;
 
   private Group scene;
 

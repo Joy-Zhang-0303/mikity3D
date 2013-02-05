@@ -10,8 +10,9 @@ import javax.xml.bind.Unmarshaller;
 
 import org.mklab.mikity.model.xml.AbstractJamastUnmarshaller;
 import org.mklab.mikity.model.xml.ColladaFileTransformer;
-import org.mklab.mikity.model.xml.JamastUnmarshallerException;
+import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
 import org.mklab.mikity.model.xml.jaxb.blender.Collada;
+import org.mklab.mikity.model.xml.jaxb.model.Group;
 
 
 /**
@@ -21,10 +22,15 @@ import org.mklab.mikity.model.xml.jaxb.blender.Collada;
  * @version $Revision: 1.4 $. 2007/07/10
  */
 public class JAXBUnmarshaller extends AbstractJamastUnmarshaller {
+  /** モデルデータのルート */
+  protected Jamast root;
+  /** Colladaのグループ */
+  protected Collada collada;
+  
   /**
    * {@inheritDoc}
    */
-  public void unmarshalFromJamastFile(File file) throws IOException, JamastUnmarshallerException {
+  public void unmarshalFromJamastFile(File file) throws IOException, JamastSerializeDeserializeException {
     try {
       final JAXBContext context = JAXBContext.newInstance(org.mklab.mikity.model.xml.jaxb.Jamast.class);
       final Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -33,14 +39,14 @@ public class JAXBUnmarshaller extends AbstractJamastUnmarshaller {
       reader.close();
       this.root = jamast;
     } catch (JAXBException e) {
-      throw new JamastUnmarshallerException(e);
+      throw new JamastSerializeDeserializeException(e);
     }
   }
 
   /**
    * {@inheritDoc}
    */
-  public void unmarshalFromColladaFile(File file) throws IOException, JamastUnmarshallerException {
+  public void unmarshalFromColladaFile(File file) throws IOException, JamastSerializeDeserializeException {
     try {
       final ColladaFileTransformer transformer = new ColladaFileTransformer(file);
       final File blender = transformer.getTransformedFile();
@@ -50,7 +56,24 @@ public class JAXBUnmarshaller extends AbstractJamastUnmarshaller {
       this.collada = (Collada)unmarshaller.unmarshal(reader);
       reader.close();
     } catch (JAXBException e) {
-      throw new JamastUnmarshallerException(e);
+      throw new JamastSerializeDeserializeException(e);
     }
+  }
+
+  /**
+   * Colladaのグループを返します。
+   * @return Colladaのグループ
+   */
+  public Group getClolladaGroup() {
+    return this.collada.getColladaPolygonGroup();
+  }
+
+  /**
+   * 現在のモデルデータのルートを返します。
+   * 
+   * @return 現在のモデルデータのルート
+   */
+  public Jamast getRoot() {
+    return this.root;
   }
 }
