@@ -10,11 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mklab.mikity.model.jaxb.Jamast;
 import org.mklab.mikity.model.picker.ClosenessDataPicker;
 import org.mklab.mikity.model.picker.DataPicker;
-import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.model.xml.model.LinkData;
+import org.mklab.mikity.model.xml.jaxb.Jamast;
+import org.mklab.mikity.model.xml.jaxb.model.Group;
+import org.mklab.mikity.model.xml.jaxb.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
 
 
