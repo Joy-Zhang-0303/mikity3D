@@ -16,12 +16,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.JamastConfig;
-import org.mklab.mikity.model.xml.config.Background;
-import org.mklab.mikity.model.xml.config.DataUnit;
-import org.mklab.mikity.model.xml.config.Light;
-import org.mklab.mikity.model.xml.config.ModelUnit;
-import org.mklab.mikity.model.xml.config.View;
+import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.simplexml.config.Background;
+import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
+import org.mklab.mikity.model.xml.simplexml.config.Light;
+import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
+import org.mklab.mikity.model.xml.simplexml.config.View;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
@@ -327,8 +327,8 @@ public class ConfigDialog {
     view.setY(this.viewY.getFloatValue());
     view.setZ(this.viewZ.getFloatValue());
     view.setXrotation(this.viewXrotate.getDoubleValue());
-    view.setYrotate(this.viewYrotate.getDoubleValue());
-    view.setZrotate(this.viewZrotate.getDoubleValue());
+    view.setYrotation(this.viewYrotate.getDoubleValue());
+    view.setZrotation(this.viewZrotate.getDoubleValue());
     this.config.setView(view);
 
     if (this.config.getBackground() == null) {

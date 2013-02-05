@@ -14,6 +14,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
+import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -73,7 +74,8 @@ public class FileNewAction extends Action {
       }
     } catch (IOException e1) {
       throw new RuntimeException(e1);
-    } catch (JAXBException e) {
+    } catch (JamastSerializeDeserializeException e) {
+      // TODO 自動生成された catch ブロック
       throw new RuntimeException(e);
     }
   }

@@ -6,16 +6,16 @@ import java.util.List;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.MovableGroupManager;
-import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.model.xml.model.LinkData;
-import org.mklab.mikity.model.xml.model.Location;
-import org.mklab.mikity.model.xml.model.Rotation;
-import org.mklab.mikity.model.xml.model.XMLBox;
-import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.model.XMLSphere;
-import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.LinkData;
+import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Util;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglCoordinate;
 
@@ -77,7 +77,7 @@ public class JoglTransformGroupFactory {
     final JoglCoordinate coordinate = createCoordinateOf(group);
     movableGroup.setCoordinate(coordinate);
     
-    final String name = group.loadName();
+    final String name = group.getName();
     if (name != null) {
       movableGroup.setName(name);
     }
@@ -100,10 +100,10 @@ public class JoglTransformGroupFactory {
     if (groupLocation != null && groupRotation != null) {
       final float xLocation = groupLocation.getX();
       final float yLocation = groupLocation.getY();
-      final float zLocation = groupLocation.loadZ();
+      final float zLocation = groupLocation.getZ();
       final float xRotation = groupRotation.getXrotation();
       final float yRotation = groupRotation.getYrotation();
-      final float zRotation = groupRotation.loadZrotate();
+      final float zRotation = groupRotation.getZrotation();
       final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setLocation(xLocation, yLocation, zLocation);
       coordinate.setRotation(xRotation, yRotation, zRotation);
@@ -113,7 +113,7 @@ public class JoglTransformGroupFactory {
     if (groupLocation != null) {
       final float xLocation = groupLocation.getX();
       final float yLocation = groupLocation.getY();
-      final float zLocation = groupLocation.loadZ();
+      final float zLocation = groupLocation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setLocation(xLocation, yLocation, zLocation);
       return coordinate;
@@ -122,7 +122,7 @@ public class JoglTransformGroupFactory {
     if (groupRotation != null) {
       final float xRotation = groupRotation.getXrotation();
       final float yRotation = groupRotation.getYrotation();
-      final float zRotation = groupRotation.loadZrotate();
+      final float zRotation = groupRotation.getZrotation();
       final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setRotation(xRotation, yRotation, zRotation);
       return coordinate;

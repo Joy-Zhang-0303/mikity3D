@@ -5,14 +5,14 @@ import javax.media.j3d.TransformGroup;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.MovableGroupManager;
-import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.model.xml.model.LinkData;
-import org.mklab.mikity.model.xml.model.XMLBox;
-import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.model.XMLSphere;
-import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.LinkData;
+import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Util;
 
 

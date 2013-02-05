@@ -15,15 +15,15 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.mklab.mikity.model.xml.JamastModel;
-import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.model.xml.model.LinkData;
-import org.mklab.mikity.model.xml.model.XMLBox;
-import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.model.XMLSphere;
-import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.JamastModel;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.LinkData;
+import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.AddQuadPolygonDialog;
@@ -570,10 +570,10 @@ public class SceneGraphTree {
       TreeItem child = null;
       if (item == null) {
         child = new TreeItem(this.xmlTree, SWT.NONE);
-        child.setText("rootGroup : " + groups[i].loadName()); //$NON-NLS-1$
+        child.setText("rootGroup : " + groups[i].getName()); //$NON-NLS-1$
       } else {
         child = new TreeItem(item, SWT.NONE);
-        child.setText("Group : " + groups[i].loadName()); //$NON-NLS-1$
+        child.setText("Group : " + groups[i].getName()); //$NON-NLS-1$
       }
       child.setData(groups[i]);
 
@@ -608,14 +608,14 @@ public class SceneGraphTree {
       final XMLTrianglePolygon[] trianglePolygons = groups[i].getXMLTrianglePolygon();
       for (int j = 0; j < trianglePolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Triangle ( " + trianglePolygons[j].loadColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$
+        boxChild.setText("Triangle ( " + trianglePolygons[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$
         boxChild.setData(trianglePolygons[j]);
       }
 
       final XMLQuadPolygon[] quadPolygons = groups[i].getXMLQuadPolygon();
       for (int j = 0; j < quadPolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Quad ( " + quadPolygons[j].loadColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$
+        boxChild.setText("Quad ( " + quadPolygons[j].getColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$
         boxChild.setData(quadPolygons[j]);
       }
 

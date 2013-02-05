@@ -11,6 +11,7 @@ import javax.xml.bind.JAXBException;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
+import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
 import org.mklab.mikity.view.gui.MessagegUtil;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -51,9 +52,7 @@ public class FileExitAction extends Action {
             final String path = dialog.getFileName();
             this.window.setFile(path);
             this.window.saveFile();
-          } catch (JAXBException e) {
-            throw new RuntimeException(e);
-          } catch (IOException e) {
+          } catch (JamastSerializeDeserializeException e) {
             throw new RuntimeException(e);
           }
           break;

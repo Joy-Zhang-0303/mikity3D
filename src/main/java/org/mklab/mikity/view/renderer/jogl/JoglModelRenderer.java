@@ -13,8 +13,8 @@ import javax.media.opengl.GLJPanel;
 import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
-import org.mklab.mikity.model.xml.JamastConfig;
-import org.mklab.mikity.model.xml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
 /**

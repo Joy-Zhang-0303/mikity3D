@@ -16,9 +16,9 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.model.Location;
-import org.mklab.mikity.model.xml.model.Rotation;
-import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
 
@@ -62,10 +62,10 @@ public class EditQuadPolygonDialog {
    * @param quad ポリゴン
    * @param group グループ
    */
-  public EditQuadPolygonDialog(Shell parentShell, XMLQuadPolygon quad, org.mklab.mikity.model.xml.model.Group group) {
+  public EditQuadPolygonDialog(Shell parentShell, XMLQuadPolygon quad, org.mklab.mikity.model.xml.simplexml.model.Group group) {
     this.parentShell = parentShell;
     this.quad = quad;
-    this.groupName = group.loadName();
+    this.groupName = group.getName();
     createSShell();
     detectPrim();
   }
@@ -381,43 +381,43 @@ public class EditQuadPolygonDialog {
    * 各頂点の座標値を色を入れる　変更後の欄にはデフォルトで変更前の値を入力
    */
   private void detectPrim() {
-    this.paramX_1.setText("" + this.quad.loadPointLocationX(0)); //$NON-NLS-1$
-    this.paramY_1.setText("" + this.quad.loadPointLocationY(0)); //$NON-NLS-1$
-    this.paramZ_1.setText("" + this.quad.loadPointLocationZ(0)); //$NON-NLS-1$
-    this.newParamX_1.setText("" + this.quad.loadPointLocationX(0)); //$NON-NLS-1$
-    this.newParamY_1.setText("" + this.quad.loadPointLocationY(0)); //$NON-NLS-1$
-    this.newParamZ_1.setText("" + this.quad.loadPointLocationZ(0)); //$NON-NLS-1$
+    this.paramX_1.setText("" + this.quad.getPointLocationX(0)); //$NON-NLS-1$
+    this.paramY_1.setText("" + this.quad.getPointLocationY(0)); //$NON-NLS-1$
+    this.paramZ_1.setText("" + this.quad.getPointLocationZ(0)); //$NON-NLS-1$
+    this.newParamX_1.setText("" + this.quad.getPointLocationX(0)); //$NON-NLS-1$
+    this.newParamY_1.setText("" + this.quad.getPointLocationY(0)); //$NON-NLS-1$
+    this.newParamZ_1.setText("" + this.quad.getPointLocationZ(0)); //$NON-NLS-1$
 
-    this.paramX_2.setText("" + this.quad.loadPointLocationX(1)); //$NON-NLS-1$
-    this.paramY_2.setText("" + this.quad.loadPointLocationY(1)); //$NON-NLS-1$
-    this.paramZ_2.setText("" + this.quad.loadPointLocationZ(1)); //$NON-NLS-1$
-    this.newParamX_2.setText("" + this.quad.loadPointLocationX(1)); //$NON-NLS-1$
-    this.newParamY_2.setText("" + this.quad.loadPointLocationY(1)); //$NON-NLS-1$
-    this.newParamZ_2.setText("" + this.quad.loadPointLocationZ(1)); //$NON-NLS-1$
+    this.paramX_2.setText("" + this.quad.getPointLocationX(1)); //$NON-NLS-1$
+    this.paramY_2.setText("" + this.quad.getPointLocationY(1)); //$NON-NLS-1$
+    this.paramZ_2.setText("" + this.quad.getPointLocationZ(1)); //$NON-NLS-1$
+    this.newParamX_2.setText("" + this.quad.getPointLocationX(1)); //$NON-NLS-1$
+    this.newParamY_2.setText("" + this.quad.getPointLocationY(1)); //$NON-NLS-1$
+    this.newParamZ_2.setText("" + this.quad.getPointLocationZ(1)); //$NON-NLS-1$
 
-    this.paramX_3.setText("" + this.quad.loadPointLocationX(2)); //$NON-NLS-1$
-    this.paramY_3.setText("" + this.quad.loadPointLocationY(2)); //$NON-NLS-1$
-    this.paramZ_3.setText("" + this.quad.loadPointLocationZ(2)); //$NON-NLS-1$
-    this.newParamX_3.setText("" + this.quad.loadPointLocationX(2)); //$NON-NLS-1$
-    this.newParamY_3.setText("" + this.quad.loadPointLocationY(2)); //$NON-NLS-1$
-    this.newParamZ_3.setText("" + this.quad.loadPointLocationZ(2)); //$NON-NLS-1$
+    this.paramX_3.setText("" + this.quad.getPointLocationX(2)); //$NON-NLS-1$
+    this.paramY_3.setText("" + this.quad.getPointLocationY(2)); //$NON-NLS-1$
+    this.paramZ_3.setText("" + this.quad.getPointLocationZ(2)); //$NON-NLS-1$
+    this.newParamX_3.setText("" + this.quad.getPointLocationX(2)); //$NON-NLS-1$
+    this.newParamY_3.setText("" + this.quad.getPointLocationY(2)); //$NON-NLS-1$
+    this.newParamZ_3.setText("" + this.quad.getPointLocationZ(2)); //$NON-NLS-1$
 
-    this.paramX_4.setText("" + this.quad.loadPointLocationX(3)); //$NON-NLS-1$
-    this.paramY_4.setText("" + this.quad.loadPointLocationY(3)); //$NON-NLS-1$
-    this.paramZ_4.setText("" + this.quad.loadPointLocationZ(3)); //$NON-NLS-1$
-    this.newParamX_4.setText("" + this.quad.loadPointLocationX(3)); //$NON-NLS-1$
-    this.newParamY_4.setText("" + this.quad.loadPointLocationY(3)); //$NON-NLS-1$
-    this.newParamZ_4.setText("" + this.quad.loadPointLocationZ(3)); //$NON-NLS-1$
-    this.color.setText(this.quad.loadColor());
-    this.colorCombo.getColorComboBox().setText(this.quad.loadColor());
+    this.paramX_4.setText("" + this.quad.getPointLocationX(3)); //$NON-NLS-1$
+    this.paramY_4.setText("" + this.quad.getPointLocationY(3)); //$NON-NLS-1$
+    this.paramZ_4.setText("" + this.quad.getPointLocationZ(3)); //$NON-NLS-1$
+    this.newParamX_4.setText("" + this.quad.getPointLocationX(3)); //$NON-NLS-1$
+    this.newParamY_4.setText("" + this.quad.getPointLocationY(3)); //$NON-NLS-1$
+    this.newParamZ_4.setText("" + this.quad.getPointLocationZ(3)); //$NON-NLS-1$
+    this.color.setText(this.quad.getColor());
+    this.colorCombo.getColorComboBox().setText(this.quad.getColor());
 
-    if (this.quad.loadRotation() != null) {
-      this.paramR_X.setText("" + this.quad.loadRotation().getXrotation()); //$NON-NLS-1$
-      this.paramR_Y.setText("" + this.quad.loadRotation().getYrotation()); //$NON-NLS-1$
-      this.paramR_Z.setText("" + this.quad.loadRotation().loadZrotate()); //$NON-NLS-1$
-      this.newParamR_X.setText("" + this.quad.loadRotation().getXrotation()); //$NON-NLS-1$
-      this.newParamR_Y.setText("" + this.quad.loadRotation().getYrotation()); //$NON-NLS-1$
-      this.newParamR_Z.setText("" + this.quad.loadRotation().loadZrotate()); //$NON-NLS-1$
+    if (this.quad.getRotation() != null) {
+      this.paramR_X.setText("" + this.quad.getRotation().getXrotation()); //$NON-NLS-1$
+      this.paramR_Y.setText("" + this.quad.getRotation().getYrotation()); //$NON-NLS-1$
+      this.paramR_Z.setText("" + this.quad.getRotation().getZrotation()); //$NON-NLS-1$
+      this.newParamR_X.setText("" + this.quad.getRotation().getXrotation()); //$NON-NLS-1$
+      this.newParamR_Y.setText("" + this.quad.getRotation().getYrotation()); //$NON-NLS-1$
+      this.newParamR_Z.setText("" + this.quad.getRotation().getZrotation()); //$NON-NLS-1$
     } else {
       this.paramR_X.setText("" + 0.0); //$NON-NLS-1$
       this.paramR_Y.setText("" + 0.0); //$NON-NLS-1$
@@ -427,13 +427,13 @@ public class EditQuadPolygonDialog {
       this.newParamR_Z.setText("" + 0.0); //$NON-NLS-1$
     }
 
-    if (this.quad.loadLocation() != null) {
-      this.paramL_X.setText("" + this.quad.loadLocation().getX()); //$NON-NLS-1$
-      this.paramL_Y.setText("" + this.quad.loadLocation().getY()); //$NON-NLS-1$
-      this.paramL_Z.setText("" + this.quad.loadLocation().loadZ()); //$NON-NLS-1$
-      this.newParamL_X.setText("" + this.quad.loadLocation().getX()); //$NON-NLS-1$
-      this.newParamL_Y.setText("" + this.quad.loadLocation().getY()); //$NON-NLS-1$
-      this.newParamL_Z.setText("" + this.quad.loadLocation().loadZ()); //$NON-NLS-1$
+    if (this.quad.getLocation() != null) {
+      this.paramL_X.setText("" + this.quad.getLocation().getX()); //$NON-NLS-1$
+      this.paramL_Y.setText("" + this.quad.getLocation().getY()); //$NON-NLS-1$
+      this.paramL_Z.setText("" + this.quad.getLocation().getZ()); //$NON-NLS-1$
+      this.newParamL_X.setText("" + this.quad.getLocation().getX()); //$NON-NLS-1$
+      this.newParamL_Y.setText("" + this.quad.getLocation().getY()); //$NON-NLS-1$
+      this.newParamL_Z.setText("" + this.quad.getLocation().getZ()); //$NON-NLS-1$
     } else {
       this.paramL_X.setText("" + 0.0); //$NON-NLS-1$
       this.paramL_Y.setText("" + 0.0); //$NON-NLS-1$

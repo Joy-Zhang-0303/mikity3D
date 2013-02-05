@@ -1,9 +1,9 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.model.xml.Jamast;
-import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.model.xml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.Jamast;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 

@@ -16,12 +16,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.model.Location;
-import org.mklab.mikity.model.xml.model.Rotation;
-import org.mklab.mikity.model.xml.model.XMLBox;
-import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
 
@@ -79,10 +79,10 @@ public class EditPrimitiveDialog {
    * @param primitive プリミティブ
    * @param group グループ
    */
-  public EditPrimitiveDialog(Shell parent, Object primitive, org.mklab.mikity.model.xml.model.Group group) {
+  public EditPrimitiveDialog(Shell parent, Object primitive, org.mklab.mikity.model.xml.simplexml.model.Group group) {
     this.parentShell = parent;
     this.primitive = primitive;
-    this.groupName = group.loadName();
+    this.groupName = group.getName();
     createSShell();
     detectPrim();
   }
@@ -417,9 +417,9 @@ public class EditPrimitiveDialog {
    * @return rot
    */
   private Rotation setRot(Rotation rot) {
-    rot.setXrotate(this.newRotX.getFloatValue());
-    rot.setYrotate(this.newRotY.getFloatValue());
-    rot.setZrotate(this.newRotZ.getFloatValue());
+    rot.setXrotation(this.newRotX.getFloatValue());
+    rot.setYrotation(this.newRotY.getFloatValue());
+    rot.setZrotation(this.newRotZ.getFloatValue());
     return rot;
 
   }
@@ -637,17 +637,17 @@ public class EditPrimitiveDialog {
    * @param rot
    */
   private void getRot(Rotation rot) {
-    if (rot.hasXrotate() || rot.getXrotation() != 0.0f) {
+    if (rot.hasXrotation() || rot.getXrotation() != 0.0f) {
       this.rotX.setText("" + rot.getXrotation()); //$NON-NLS-1$
       this.newRotX.setText("" + rot.getXrotation()); //$NON-NLS-1$
     }
-    if (rot.hasYrotate() || rot.getYrotation() != 0.0f) {
+    if (rot.hasYrotation() || rot.getYrotation() != 0.0f) {
       this.rotY.setText("" + rot.getYrotation()); //$NON-NLS-1$
       this.newRotY.setText("" + rot.getYrotation()); //$NON-NLS-1$
     }
-    if (rot.hasZrotate() || rot.getXrotation() != 0.0f) {
-      this.rotZ.setText("" + rot.loadZrotate()); //$NON-NLS-1$
-      this.newRotZ.setText("" + rot.loadZrotate()); //$NON-NLS-1$
+    if (rot.hasZrotation() || rot.getXrotation() != 0.0f) {
+      this.rotZ.setText("" + rot.getZrotation()); //$NON-NLS-1$
+      this.newRotZ.setText("" + rot.getZrotation()); //$NON-NLS-1$
     }
   }
 
@@ -660,9 +660,9 @@ public class EditPrimitiveDialog {
       this.locY.setText("" + loc.getY()); //$NON-NLS-1$
       this.newLocY.setText("" + loc.getY()); //$NON-NLS-1$
     }
-    if (loc.hasZ() || loc.loadZ() != 0.0f) {
-      this.locZ.setText("" + loc.loadZ()); //$NON-NLS-1$
-      this.newLocZ.setText("" + loc.loadZ()); //$NON-NLS-1$
+    if (loc.hasZ() || loc.getZ() != 0.0f) {
+      this.locZ.setText("" + loc.getZ()); //$NON-NLS-1$
+      this.newLocZ.setText("" + loc.getZ()); //$NON-NLS-1$
     }
   }
 }

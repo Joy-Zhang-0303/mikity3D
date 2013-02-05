@@ -15,10 +15,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.model.xml.model.Location;
-import org.mklab.mikity.model.xml.model.Rotation;
-import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
 
@@ -84,7 +84,7 @@ public class AddQuadPolygonDialog {
     this.sShell.setLayout(layout1);
 
     final Label groupLabel = new Label(this.sShell, SWT.LEFT);
-    groupLabel.setText(Messages.getString("AddQuadPolygonDialog.1") + this.group.loadName()); //$NON-NLS-1$
+    groupLabel.setText(Messages.getString("AddQuadPolygonDialog.1") + this.group.getName()); //$NON-NLS-1$
     final GridData gLabelData = new GridData(GridData.FILL_HORIZONTAL);
     gLabelData.horizontalSpan = 3;
     groupLabel.setLayoutData(gLabelData);
@@ -259,9 +259,9 @@ public class AddQuadPolygonDialog {
     if (this.rotX.getFloatValue() == 0 && this.rotY.getFloatValue() == 0 && this.rotZ.getFloatValue() == 0) {
       return null;
     }
-    rot.setXrotate(this.rotX.getFloatValue());
-    rot.setYrotate(this.rotY.getFloatValue());
-    rot.setZrotate(this.rotZ.getFloatValue());
+    rot.setXrotation(this.rotX.getFloatValue());
+    rot.setYrotation(this.rotY.getFloatValue());
+    rot.setZrotation(this.rotZ.getFloatValue());
     return rot;
 
   }

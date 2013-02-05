@@ -33,11 +33,12 @@ import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
-import org.mklab.mikity.model.xml.Jamast;
-import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.JamastFactory;
-import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.model.xml.model.LinkData;
+import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
+import org.mklab.mikity.model.xml.simplexml.Jamast;
+import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 import org.mklab.nfc.matrix.Matrix;
@@ -121,10 +122,10 @@ public class AnimationWindow extends ApplicationWindow {
    * @param parentShell 親シェル
    * @param modelFile モデルファイル
    * @throws IOException ファイルを読み込めない場合
-   * @throws JAXBException ファイルを読み込めない場合
+   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合 
    */
-  public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, JAXBException {
-    this(parentShell, new JamastFactory().loadJamastFile(modelFile));
+  public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, JamastSerializeDeserializeException {
+    this(parentShell, new JamastFactory().loadFile(modelFile));
   }
 
   /**

@@ -16,9 +16,9 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.model.Location;
-import org.mklab.mikity.model.xml.model.Rotation;
-import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
 
@@ -60,10 +60,10 @@ public class EditTrianglePolygonDialog {
    * @param triangle ポリゴン
    * @param group グループ
    */
-  public EditTrianglePolygonDialog(Shell parentShell, XMLTrianglePolygon triangle, org.mklab.mikity.model.xml.model.Group group) {
+  public EditTrianglePolygonDialog(Shell parentShell, XMLTrianglePolygon triangle, org.mklab.mikity.model.xml.simplexml.model.Group group) {
     this.parentShell = parentShell;
     this.triangle = triangle;
-    this.groupName = group.loadName();
+    this.groupName = group.getName();
     createSShell();
     detectPrim();
   }
@@ -352,36 +352,36 @@ public class EditTrianglePolygonDialog {
    * 各頂点の座標値を色を入れる　変更後の欄にはデフォルトで変更前の値を入力
    */
   private void detectPrim() {
-    this.paramX_1.setText("" + this.triangle.loadPointLocationX(0)); //$NON-NLS-1$
-    this.paramY_1.setText("" + this.triangle.loadPointLocationY(0)); //$NON-NLS-1$
-    this.paramZ_1.setText("" + this.triangle.loadPointLocationZ(0)); //$NON-NLS-1$
-    this.newParamX_1.setText("" + this.triangle.loadPointLocationX(0)); //$NON-NLS-1$
-    this.newParamY_1.setText("" + this.triangle.loadPointLocationY(0)); //$NON-NLS-1$
-    this.newParamZ_1.setText("" + this.triangle.loadPointLocationZ(0)); //$NON-NLS-1$
+    this.paramX_1.setText("" + this.triangle.getPointLocationX(0)); //$NON-NLS-1$
+    this.paramY_1.setText("" + this.triangle.getPointLocationY(0)); //$NON-NLS-1$
+    this.paramZ_1.setText("" + this.triangle.getPointLocationZ(0)); //$NON-NLS-1$
+    this.newParamX_1.setText("" + this.triangle.getPointLocationX(0)); //$NON-NLS-1$
+    this.newParamY_1.setText("" + this.triangle.getPointLocationY(0)); //$NON-NLS-1$
+    this.newParamZ_1.setText("" + this.triangle.getPointLocationZ(0)); //$NON-NLS-1$
 
-    this.paramX_2.setText("" + this.triangle.loadPointLocationX(1)); //$NON-NLS-1$
-    this.paramY_2.setText("" + this.triangle.loadPointLocationY(1)); //$NON-NLS-1$
-    this.paramZ_2.setText("" + this.triangle.loadPointLocationZ(1)); //$NON-NLS-1$
-    this.newParamX_2.setText("" + this.triangle.loadPointLocationX(1)); //$NON-NLS-1$
-    this.newParamY_2.setText("" + this.triangle.loadPointLocationY(1)); //$NON-NLS-1$
-    this.newParamZ_2.setText("" + this.triangle.loadPointLocationZ(1)); //$NON-NLS-1$
+    this.paramX_2.setText("" + this.triangle.getPointLocationX(1)); //$NON-NLS-1$
+    this.paramY_2.setText("" + this.triangle.getPointLocationY(1)); //$NON-NLS-1$
+    this.paramZ_2.setText("" + this.triangle.getPointLocationZ(1)); //$NON-NLS-1$
+    this.newParamX_2.setText("" + this.triangle.getPointLocationX(1)); //$NON-NLS-1$
+    this.newParamY_2.setText("" + this.triangle.getPointLocationY(1)); //$NON-NLS-1$
+    this.newParamZ_2.setText("" + this.triangle.getPointLocationZ(1)); //$NON-NLS-1$
 
-    this.paramX_3.setText("" + this.triangle.loadPointLocationX(2)); //$NON-NLS-1$
-    this.paramY_3.setText("" + this.triangle.loadPointLocationY(2)); //$NON-NLS-1$
-    this.paramZ_3.setText("" + this.triangle.loadPointLocationZ(2)); //$NON-NLS-1$
-    this.newParamX_3.setText("" + this.triangle.loadPointLocationX(2)); //$NON-NLS-1$
-    this.newParamY_3.setText("" + this.triangle.loadPointLocationY(2)); //$NON-NLS-1$
-    this.newParamZ_3.setText("" + this.triangle.loadPointLocationZ(2)); //$NON-NLS-1$
-    this.color.setText(this.triangle.loadColor());
-    this.colorCombo.getColorComboBox().setText(this.triangle.loadColor());
+    this.paramX_3.setText("" + this.triangle.getPointLocationX(2)); //$NON-NLS-1$
+    this.paramY_3.setText("" + this.triangle.getPointLocationY(2)); //$NON-NLS-1$
+    this.paramZ_3.setText("" + this.triangle.getPointLocationZ(2)); //$NON-NLS-1$
+    this.newParamX_3.setText("" + this.triangle.getPointLocationX(2)); //$NON-NLS-1$
+    this.newParamY_3.setText("" + this.triangle.getPointLocationY(2)); //$NON-NLS-1$
+    this.newParamZ_3.setText("" + this.triangle.getPointLocationZ(2)); //$NON-NLS-1$
+    this.color.setText(this.triangle.getColor());
+    this.colorCombo.getColorComboBox().setText(this.triangle.getColor());
 
-    if (this.triangle.loadRotation() != null) {
-      this.paramR_X.setText("" + this.triangle.loadRotation().getXrotation()); //$NON-NLS-1$
-      this.paramR_Y.setText("" + this.triangle.loadRotation().getYrotation()); //$NON-NLS-1$
-      this.paramR_Z.setText("" + this.triangle.loadRotation().loadZrotate()); //$NON-NLS-1$
-      this.newParamR_X.setText("" + this.triangle.loadRotation().getXrotation()); //$NON-NLS-1$
-      this.newParamR_Y.setText("" + this.triangle.loadRotation().getYrotation()); //$NON-NLS-1$
-      this.newParamR_Z.setText("" + this.triangle.loadRotation().loadZrotate()); //$NON-NLS-1$
+    if (this.triangle.getRotation() != null) {
+      this.paramR_X.setText("" + this.triangle.getRotation().getXrotation()); //$NON-NLS-1$
+      this.paramR_Y.setText("" + this.triangle.getRotation().getYrotation()); //$NON-NLS-1$
+      this.paramR_Z.setText("" + this.triangle.getRotation().getZrotation()); //$NON-NLS-1$
+      this.newParamR_X.setText("" + this.triangle.getRotation().getXrotation()); //$NON-NLS-1$
+      this.newParamR_Y.setText("" + this.triangle.getRotation().getYrotation()); //$NON-NLS-1$
+      this.newParamR_Z.setText("" + this.triangle.getRotation().getZrotation()); //$NON-NLS-1$
     } else {
       this.paramR_X.setText("" + 0.0); //$NON-NLS-1$
       this.paramR_Y.setText("" + 0.0); //$NON-NLS-1$
@@ -391,13 +391,13 @@ public class EditTrianglePolygonDialog {
       this.newParamR_Z.setText("" + 0.0); //$NON-NLS-1$
     }
 
-    if (this.triangle.loadLocation() != null) {
-      this.paramL_X.setText("" + this.triangle.loadLocation().getX()); //$NON-NLS-1$
-      this.paramL_Y.setText("" + this.triangle.loadLocation().getY()); //$NON-NLS-1$
-      this.paramL_Z.setText("" + this.triangle.loadLocation().loadZ()); //$NON-NLS-1$
-      this.newParamL_X.setText("" + this.triangle.loadLocation().getX()); //$NON-NLS-1$
-      this.newParamL_Y.setText("" + this.triangle.loadLocation().getY()); //$NON-NLS-1$
-      this.newParamL_Z.setText("" + this.triangle.loadLocation().loadZ()); //$NON-NLS-1$
+    if (this.triangle.getLocation() != null) {
+      this.paramL_X.setText("" + this.triangle.getLocation().getX()); //$NON-NLS-1$
+      this.paramL_Y.setText("" + this.triangle.getLocation().getY()); //$NON-NLS-1$
+      this.paramL_Z.setText("" + this.triangle.getLocation().getZ()); //$NON-NLS-1$
+      this.newParamL_X.setText("" + this.triangle.getLocation().getX()); //$NON-NLS-1$
+      this.newParamL_Y.setText("" + this.triangle.getLocation().getY()); //$NON-NLS-1$
+      this.newParamL_Z.setText("" + this.triangle.getLocation().getZ()); //$NON-NLS-1$
     } else {
       this.paramL_X.setText("" + 0.0); //$NON-NLS-1$
       this.paramL_Y.setText("" + 0.0); //$NON-NLS-1$

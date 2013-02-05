@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.xml.bind.JAXBException;
 
 import org.eclipse.jface.action.Action;
+import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -40,9 +41,7 @@ public class FileSaveAction extends Action {
     try {
       this.window.saveFile();
       new FileSaveAsAction(this.window).run();
-    } catch (JAXBException e) {
-      throw new RuntimeException(e);
-    } catch (IOException e) {
+    } catch (JamastSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
   }

@@ -17,12 +17,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.mklab.mikity.model.xml.JAXBMarshaller;
-import org.mklab.mikity.model.xml.Jamast;
-import org.mklab.mikity.model.xml.JamastConfig;
 import org.mklab.mikity.model.xml.JamastFactory;
-import org.mklab.mikity.model.xml.config.DataUnit;
-import org.mklab.mikity.model.xml.config.ModelUnit;
+import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
+import org.mklab.mikity.model.xml.simplexml.Jamast;
+import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.simplexml.SimpleXmlMarshaller;
+import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
+import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
 import org.mklab.mikity.view.gui.action.AnimationWindowOpenAction;
 import org.mklab.mikity.view.gui.action.ConfigDialogOpenAction;
 import org.mklab.mikity.view.gui.action.file.FileExitAction;
@@ -224,15 +225,14 @@ public class ModelingWindow extends ApplicationWindow {
 
   /**
    * ファイルに保存します。
-   * @throws IOException ファイルに保存できない場合 
-   * @throws JAXBException ファイルに保存できない場合 
+   * @throws JamastSerializeDeserializeException ファイルに保存できない場合  
    */
-  public void saveFile() throws JAXBException, IOException {
+  public void saveFile() throws JamastSerializeDeserializeException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
     this.root.getJamastXMLData();
-    final JAXBMarshaller marshaller = new JAXBMarshaller(this.root);
+    final SimpleXmlMarshaller marshaller = new SimpleXmlMarshaller(this.root);
     marshaller.marshal(this.file);
     setFile(this.file.getPath());
     this.dirty = false;
@@ -240,15 +240,15 @@ public class ModelingWindow extends ApplicationWindow {
 
   /**
    * ファイルを読み込みます。
-   * @throws IOException ファイルを読み込めない場合
-   * @throws JAXBException ファイルを読み込めない場合
+   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合 
+   * @throws IOException ファイルを読み込めない場合 
    */
-  public void loadFile() throws IOException, JAXBException {
+  public void loadFile() throws JamastSerializeDeserializeException, IOException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     
-    this.root = new JamastFactory().loadJamastFile(this.file);
+    this.root = new JamastFactory().loadFile(this.file);
     
     final SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);
@@ -260,15 +260,15 @@ public class ModelingWindow extends ApplicationWindow {
 
   /**
    * ファイルを読み込み，データをモデルに追加します。
-   * @throws JAXBException ファイルを読み込めない場合 
    * @throws IOException ファイルを読み込めない場合 
+   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合  
    */
-  public void importFile() throws IOException, JAXBException {
+  public void importFile() throws IOException, JamastSerializeDeserializeException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     
-    new JamastFactory().importJavaFile(this.file, this.root);
+    new JamastFactory().importFile(this.file, this.root);
 
     final SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);

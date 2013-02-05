@@ -18,15 +18,15 @@ import javax.vecmath.Matrix3f;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
-import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.model.xml.model.Location;
-import org.mklab.mikity.model.xml.model.Rotation;
-import org.mklab.mikity.model.xml.model.XMLBox;
-import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.model.XMLSphere;
-import org.mklab.mikity.model.xml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Color3;
 import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.util.Matrix4;
@@ -192,10 +192,10 @@ public class Java3dPrimitiveFactory {
     final Point3f[] vertices = new Point3f[3];
 
     for (int i = 0; i < vertices.length; i++) {
-      vertices[i] = new Point3f(triangle.loadPointLocationX(i), triangle.loadPointLocationY(i), triangle.loadPointLocationZ(i));
+      vertices[i] = new Point3f(triangle.getPointLocationX(i), triangle.getPointLocationY(i), triangle.getPointLocationZ(i));
     }
 
-    final Vector3[] normals = triangle.loadNormalVector();
+    final Vector3[] normals = triangle.getNormalVectors();
     final Vector3f[] normalsF = new Vector3f[3];
     normalsF[0] = new Vector3f(normals[0].getX(), normals[0].getY(), normals[0].getZ());
     normalsF[1] = new Vector3f(normals[1].getX(), normals[1].getY(), normals[1].getZ());
@@ -203,9 +203,9 @@ public class Java3dPrimitiveFactory {
 
     final int[] indices = {0, 1, 2};
     final Color3[] colors = new Color3[3];
-    colors[0] = ColorConstant.getColor(triangle.loadColor());
-    colors[1] = ColorConstant.getColor(triangle.loadColor());
-    colors[2] = ColorConstant.getColor(triangle.loadColor());
+    colors[0] = ColorConstant.getColor(triangle.getColor());
+    colors[1] = ColorConstant.getColor(triangle.getColor());
+    colors[2] = ColorConstant.getColor(triangle.getColor());
     final Color3f[] colorsF = new Color3f[4];
     colorsF[0] = new Color3f(colors[0].getR(), colors[0].getG(), colors[0].getB());
     colorsF[1] = new Color3f(colors[1].getR(), colors[1].getG(), colors[1].getB());
@@ -225,18 +225,18 @@ public class Java3dPrimitiveFactory {
     final Shape3D shape = new Shape3D(geometry);
 
     final Appearance appearance = new Appearance();
-    appearance.setMaterial(getMaterial(triangle.loadColor()));
+    appearance.setMaterial(getMaterial(triangle.getColor()));
     if (triangle.hasTransparent()) {
-      if (triangle.loadTransparent() == true) {
+      if (triangle.getTransparent() == true) {
         appearance.setTransparencyAttributes(transAttr);
       }
     }
     shape.setAppearance(appearance);
 
     tg.addChild(shape);
-    final Location location = triangle.loadLocation();
-    final Rotation rotation = triangle.loadRotation();
-    final Matrix4 matrix = triangle.loadMatrix();
+    final Location location = triangle.getLocation();
+    final Rotation rotation = triangle.getRotation();
+    final Matrix4 matrix = triangle.getMatrix();
     transform(matrix, tg);
     transform(location, rotation, tg);
     return tg;
@@ -252,10 +252,10 @@ public class Java3dPrimitiveFactory {
     final Point3f[] vertices = new Point3f[4];
 
     for (int i = 0; i < vertices.length; i++) {
-      vertices[i] = new Point3f(quad.loadPointLocationX(i), quad.loadPointLocationY(i), quad.loadPointLocationZ(i));
+      vertices[i] = new Point3f(quad.getPointLocationX(i), quad.getPointLocationY(i), quad.getPointLocationZ(i));
     }
 
-    final Vector3[] normals = quad.loadNormalVector();
+    final Vector3[] normals = quad.getNormalVector();
     final Vector3f[] normalsF = new Vector3f[4];
     normalsF[0] = new Vector3f(normals[0].getX(), normals[0].getY(), normals[0].getZ());
     normalsF[1] = new Vector3f(normals[1].getX(), normals[1].getY(), normals[1].getZ());
@@ -264,10 +264,10 @@ public class Java3dPrimitiveFactory {
 
     final int[] indices = {0, 1, 2, 3};
     final Color3[] colors = new Color3[4];
-    colors[0] = ColorConstant.getColor(quad.loadColor());
-    colors[1] = ColorConstant.getColor(quad.loadColor());
-    colors[2] = ColorConstant.getColor(quad.loadColor());
-    colors[3] = ColorConstant.getColor(quad.loadColor());
+    colors[0] = ColorConstant.getColor(quad.getColor());
+    colors[1] = ColorConstant.getColor(quad.getColor());
+    colors[2] = ColorConstant.getColor(quad.getColor());
+    colors[3] = ColorConstant.getColor(quad.getColor());
     final Color3f[] colorsF = new Color3f[4];
     colorsF[0] = new Color3f(colors[0].getR(), colors[0].getG(), colors[0].getB());
     colorsF[1] = new Color3f(colors[1].getR(), colors[1].getG(), colors[1].getB());
@@ -287,18 +287,18 @@ public class Java3dPrimitiveFactory {
     final Shape3D shape = new Shape3D(geometry);
 
     final Appearance appearance = new Appearance();
-    appearance.setMaterial(getMaterial(quad.loadColor()));
+    appearance.setMaterial(getMaterial(quad.getColor()));
     if (quad.hasTransparent()) {
-      if (quad.loadTransparent() == true) {
+      if (quad.getTransparent() == true) {
         appearance.setTransparencyAttributes(transAttr);
       }
     }
     shape.setAppearance(appearance);
 
     tg.addChild(shape);
-    final Location location = quad.loadLocation();
-    final Rotation rotation = quad.loadRotation();
-    final Matrix4 matrix = quad.loadMatrix();
+    final Location location = quad.getLocation();
+    final Rotation rotation = quad.getRotation();
+    final Matrix4 matrix = quad.getMatrix();
     transform(matrix, tg);
     transform(location, rotation, tg);
     return tg;
@@ -316,15 +316,15 @@ public class Java3dPrimitiveFactory {
       if (Util.radian == false) {
         tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rotation.getXrotation())));
         tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(rotation.getYrotation())));
-        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(rotation.loadZrotate())));
+        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(rotation.getZrotation())));
       } else {
         tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, rotation.getXrotation()));
         tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, rotation.getYrotation()));
-        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, rotation.loadZrotate()));
+        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, rotation.getZrotation()));
       }
     }
     if (location != null) {
-      tg.translate(new Vector3f(location.getX() / Util.scale, location.getY() / Util.scale, location.loadZ() / Util.scale));
+      tg.translate(new Vector3f(location.getX() / Util.scale, location.getY() / Util.scale, location.getZ() / Util.scale));
     }
   }
 

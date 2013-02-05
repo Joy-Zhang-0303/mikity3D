@@ -11,6 +11,7 @@ import javax.xml.bind.JAXBException;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
+import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -51,7 +52,7 @@ public class FileOpenAction extends Action {
       this.window.loadFile();
     } catch (IOException e) {
       throw new RuntimeException(e);
-    } catch (JAXBException e) {
+    } catch (JamastSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
   }

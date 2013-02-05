@@ -16,13 +16,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.model.Group;
-import org.mklab.mikity.model.xml.model.Location;
-import org.mklab.mikity.model.xml.model.Rotation;
-import org.mklab.mikity.model.xml.model.XMLBox;
-import org.mklab.mikity.model.xml.model.XMLCone;
-import org.mklab.mikity.model.xml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
+import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
 
@@ -90,7 +90,7 @@ public class AddPrimitiveDialog {
     this.sShell.setLayout(layout1);
 
     final Label groupLabel = new Label(this.sShell, SWT.LEFT);
-    groupLabel.setText(Messages.getString("AddPrimitiveDialog.1") + this.group.loadName()); //$NON-NLS-1$
+    groupLabel.setText(Messages.getString("AddPrimitiveDialog.1") + this.group.getName()); //$NON-NLS-1$
     final GridData gLabelData = new GridData(GridData.FILL_HORIZONTAL);
     gLabelData.horizontalSpan = 3;
     groupLabel.setLayoutData(gLabelData);
@@ -332,9 +332,9 @@ public class AddPrimitiveDialog {
     if (this.rotX.getFloatValue() == 0 && this.rotY.getFloatValue() == 0 && this.rotZ.getFloatValue() == 0) {
       return null;
     }
-    rotation.setXrotate(this.rotX.getFloatValue());
-    rotation.setYrotate(this.rotY.getFloatValue());
-    rotation.setZrotate(this.rotZ.getFloatValue());
+    rotation.setXrotation(this.rotX.getFloatValue());
+    rotation.setYrotation(this.rotY.getFloatValue());
+    rotation.setZrotation(this.rotZ.getFloatValue());
     return rotation;
   }
 

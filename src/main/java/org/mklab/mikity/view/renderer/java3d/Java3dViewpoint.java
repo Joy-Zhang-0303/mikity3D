@@ -8,7 +8,7 @@ import javax.media.j3d.TransformGroup;
 import javax.vecmath.AxisAngle4f;
 import javax.vecmath.Vector3f;
 
-import org.mklab.mikity.model.xml.config.View;
+import org.mklab.mikity.model.xml.simplexml.config.View;
 
 import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.universe.ViewingPlatform;

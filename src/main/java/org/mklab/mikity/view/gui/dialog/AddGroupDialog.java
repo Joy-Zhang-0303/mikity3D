@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
@@ -53,7 +53,7 @@ public class AddGroupDialog extends ApplicationWindow {
     final GridLayout layout = new GridLayout(2, false);
     composite.setLayout(layout);
 
-    new ParameterInputBox(composite, SWT.READ_ONLY, Messages.getString("AddGroupDialog.0"), this.group.loadName()); //$NON-NLS-1$
+    new ParameterInputBox(composite, SWT.READ_ONLY, Messages.getString("AddGroupDialog.0"), this.group.getName()); //$NON-NLS-1$
     final ParameterInputBox groupParam = new ParameterInputBox(composite, SWT.NONE, Messages.getString("AddGroupDialog.1"), Messages.getString("AddGroupDialog.2")); //$NON-NLS-1$ //$NON-NLS-2$
 
     final Button okButton = new Button(composite, SWT.NONE);

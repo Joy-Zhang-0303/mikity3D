@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.model.LinkData;
+import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
@@ -29,7 +29,7 @@ public class GroupConfigWithDHParameterDialog {
   /** */
   Shell sShell = null;
   private Shell parentShell = null;
-  org.mklab.mikity.model.xml.model.Group group;
+  org.mklab.mikity.model.xml.simplexml.model.Group group;
 
   /** */
   ParameterInputBox groupName;
@@ -60,7 +60,7 @@ public class GroupConfigWithDHParameterDialog {
    * @param group グループ
    * @param editable 編集可能性
    */
-  public GroupConfigWithDHParameterDialog(Shell parentShell, org.mklab.mikity.model.xml.model.Group group, boolean editable) {
+  public GroupConfigWithDHParameterDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.Group group, boolean editable) {
     this.parentShell = parentShell;
     this.group = group;
     this.editable = editable;
@@ -83,8 +83,8 @@ public class GroupConfigWithDHParameterDialog {
     this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("GroupConfigDialogDH.1"), "root");  //$NON-NLS-1$//$NON-NLS-2$
 
     System.out.println("group : " + this.group); //$NON-NLS-1$
-    if (this.group.loadName() != null) {
-      this.groupName.setText(this.group.loadName());
+    if (this.group.getName() != null) {
+      this.groupName.setText(this.group.getName());
     }
     createGroup();
 
