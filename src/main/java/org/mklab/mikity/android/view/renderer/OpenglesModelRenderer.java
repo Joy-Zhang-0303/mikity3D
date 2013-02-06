@@ -1,30 +1,32 @@
 package org.mklab.mikity.android.view.renderer;
 
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import org.mklab.mikity.view.renderer.ModelRenderer;
+
 import android.R.drawable;
+import android.content.Context;
 import android.graphics.Point;
 import android.opengl.GLSurfaceView;
 
 
-
 /**
  * OpenGL用のキャンバスを表すクラスです。
+ * 
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */
-public class OpenglesModelRenderer implements GLSurfaceView.Renderer, ModelRenderer{
+public class OpenglesModelRenderer extends GLSurfaceView implements ModelRenderer {
 
-  private float aspect;
 
+  //private static final long serialVersionUID = 5653656698891675370L;
+
+  //private GLU glu;
+  
+  
   /** オブジェクトのグループ */
-  private JoglBranchGroup[] topGroups;
+  private OpenglesBranchGroup[] topGroups;
 
   private double[] eye = {0.0, 0.0, 5.0};
 
@@ -62,15 +64,22 @@ public class OpenglesModelRenderer implements GLSurfaceView.Renderer, ModelRende
   private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f}; // 拡散光の強さです 
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
 
+  /**
+   * 新しく生成された<code>OpenglesModelCanvas</code>オブジェクトを初期化します。
+   */
   public OpenglesModelRenderer() {
-
+    super(new GLCapabilities());
+    //addGLEventListener(this);
+    //addMouseListener(this);
+    //addMouseMotionListener(this);
   }
 
   /**
    * {@inheritDoc}
    */
-  public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-    final GL10 gl10 = drawable.getGL();
+  public void onSurfaceCreated(GL10 gl10, EGLConfig config) {
+    //final GL10 gl10 = drawable.getGL();
+    gl10 = drawable.getGL();
     //this.glu = new GLU();
 
     gl10.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -96,6 +105,7 @@ public class OpenglesModelRenderer implements GLSurfaceView.Renderer, ModelRende
    * {@inheritDoc}
    */
   public void onDrawFrame(GL10 gl10) {
+    //final GL gl = drawable.getGL();
     gl10 = drawable.getGL();
 
     gl10.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
@@ -111,10 +121,13 @@ public class OpenglesModelRenderer implements GLSurfaceView.Renderer, ModelRende
     gl10.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
     gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
 
-    for (final JoglBranchGroup group : this.topGroups) {
+    for (final OpenglesBranchGroup group : this.topGroups) {
       group.display(gl10);
     }
   }
+  
+  
+  
 
   /**
    * 画面サイズ変更時に呼ばれる
@@ -123,12 +136,6 @@ public class OpenglesModelRenderer implements GLSurfaceView.Renderer, ModelRende
     // TODO 自動生成されたメソッド・スタブ
     //ビューポート変換
     gl10.glViewport(0, 0, w, h);
-    this.aspect = (float)w / (float)h;
-  }  
-  
-  
-  
-  
-  
-  
+  }
+
 }
