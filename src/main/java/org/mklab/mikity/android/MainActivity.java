@@ -1,5 +1,7 @@
 package org.mklab.mikity.android;
 
+import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
+
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,7 +34,7 @@ public class MainActivity extends Activity {
     this.glView = (GLSurfaceView)this.findViewById(R.id.glview1);
 
     //描画のクラスを登録する
-    this.glView.setRenderer(new GLRenderer());
+    this.glView.setRenderer(new OpenglesModelRenderer());
     this.mIsInitScreenSize = false;
 
     //任意のタイミングで再描画する設定

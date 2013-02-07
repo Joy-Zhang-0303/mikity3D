@@ -3,12 +3,12 @@ package org.mklab.mikity.android.view.renderer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
-import android.R.drawable;
-import android.content.Context;
-import android.graphics.Point;
-import android.opengl.GLSurfaceView;
+import android.opengl.GLSurfaceView.Renderer;
+import android.opengl.GLU;
 
 
 /**
@@ -17,19 +17,17 @@ import android.opengl.GLSurfaceView;
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */
-public class OpenglesModelRenderer extends GLSurfaceView implements ModelRenderer {
+public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
 
+  private static final long serialVersionUID = 5653656698891675370L;
 
-  //private static final long serialVersionUID = 5653656698891675370L;
+  private GLU glu;
 
-  //private GLU glu;
-  
-  
   /** オブジェクトのグループ */
   private OpenglesBranchGroup[] topGroups;
 
   private double[] eye = {0.0, 0.0, 5.0};
-
+  
   /** X軸に関する回転角度 */
   private float rotationX = 0.0f;
   /** Y軸に関する回転角度 */
@@ -41,22 +39,23 @@ public class OpenglesModelRenderer extends GLSurfaceView implements ModelRendere
   /** 拡大縮小率 */
   private float scale = 0.0f;
 
+  
   /** マウスボタンを押した点 */
-  private Point startPoint;
+  //private Point startPoint;
   /** マウスボタンを離した点 */
-  private Point endPoint;
+  //private Point endPoint;
 
   /** X軸に関する開始回転角度 */
-  private float startRotationX;
+  //private float startRotationX;
   /** Y軸に関する終了回転角度 */
-  private float startRotationY;
+  //private float startRotationY;
   /** X軸方向への移動開始距離 */
-  private float startTranslationX;
+  //private float startTranslationX;
   /** Y軸方向への移動開始距離 */
-  private float startTranslationY;
+  //private float startTranslationY;
   /** 開始拡大縮小率 */
-  private float startScale;
-
+  //private float startScale;
+  
   //光源の設定です 
   private float[] lightLocation0 = {0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源1です 
   private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源2です 
@@ -64,23 +63,17 @@ public class OpenglesModelRenderer extends GLSurfaceView implements ModelRendere
   private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f}; // 拡散光の強さです 
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
 
-  /**
-   * 新しく生成された<code>OpenglesModelCanvas</code>オブジェクトを初期化します。
-   */
-  public OpenglesModelRenderer() {
-    super(new GLCapabilities());
-    //addGLEventListener(this);
-    //addMouseListener(this);
-    //addMouseMotionListener(this);
-  }
+
 
   /**
    * {@inheritDoc}
    */
   public void onSurfaceCreated(GL10 gl10, EGLConfig config) {
+
     //final GL10 gl10 = drawable.getGL();
-    gl10 = drawable.getGL();
-    //this.glu = new GLU();
+
+    
+    this.glu = new GLU();
 
     gl10.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -101,13 +94,19 @@ public class OpenglesModelRenderer extends GLSurfaceView implements ModelRendere
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
   }
 
+
+
   /**
    * {@inheritDoc}
    */
   public void onDrawFrame(GL10 gl10) {
-    //final GL gl = drawable.getGL();
-    gl10 = drawable.getGL();
 
+    //画面のクリア　追加した
+    gl10.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    gl10.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+
+    //final GL10 gl10 = drawable.getGL;
+   
     gl10.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
     gl10.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
@@ -125,17 +124,36 @@ public class OpenglesModelRenderer extends GLSurfaceView implements ModelRendere
       group.display(gl10);
     }
   }
-  
-  
-  
 
   /**
    * 画面サイズ変更時に呼ばれる
    */
   public void onSurfaceChanged(GL10 gl10, int w, int h) {
-    // TODO 自動生成されたメソッド・スタブ
     //ビューポート変換
     gl10.glViewport(0, 0, w, h);
+
+  }
+
+  public void setChildren(Group[] children) {
+    // TODO 自動生成されたメソッド・スタブ
+    
+  }
+
+  public void setConfiguration(JamastConfig configuration) {
+    // TODO 自動生成されたメソッド・スタブ
+    
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public boolean isRequiredToCallDisplay() {
+    return true;
+  }
+
+  public void updateDisplay() {
+    // TODO 自動生成されたメソッド・スタブ
+    
   }
 
 }
