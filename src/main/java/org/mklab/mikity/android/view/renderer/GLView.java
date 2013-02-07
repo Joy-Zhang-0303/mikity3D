@@ -10,7 +10,7 @@ import android.opengl.GLSurfaceView;
  */
 public class GLView extends GLSurfaceView {
 
-  OpenglesModelRenderer OMRenderer;
+  OpenglesModelRenderer myRenderer;
 
   /**
    * 新しく生成された<code>GLView</code>オブジェクトを初期化します。
@@ -18,7 +18,7 @@ public class GLView extends GLSurfaceView {
    */
   public GLView(Context context) {
     super(context);
-    this.OMRenderer = new OpenglesModelRenderer();
-    setRenderer(this.OMRenderer);
+    this.myRenderer = new OpenglesModelRenderer();
+    setRenderer(this.myRenderer);
   }
 }
