@@ -1,6 +1,11 @@
 package org.mklab.mikity.android;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.mklab.mikity.android.view.gui.AnimationWindow;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
+import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
 
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
@@ -17,7 +22,7 @@ import android.widget.LinearLayout;
  * @author ohashi
  * @version $Revision$, 2013/02/05
  */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 
   //private static String TAG = "3Dmikity-android";
 
@@ -29,6 +34,26 @@ public class MainActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
 
+    
+    //xmlファイルを指定する
+    final String modelFileName = "../3Dmikity-sample/src/main/resources/pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
+    //final AnimationWindow main = new AnimationWindow(null, new File(modelFileName));
+   try {
+    AnimationWindow animationWindow = new AnimationWindow(new File(modelFileName));
+  } catch (IOException e) {
+    // TODO 自動生成された catch ブロック
+    throw new RuntimeException(e);
+  } catch (JamastSerializeDeserializeException e) {
+    // TODO 自動生成された catch ブロック
+    throw new RuntimeException(e);
+  }
+    
+    
+    //main.setBlockOnOpen(true);
+    //main.open();
+    //Display.getCurrent().dispose();
+  
+    
     //GLViewを取り出す
     this.glView = new GLSurfaceView(this);
     this.glView = (GLSurfaceView)this.findViewById(R.id.glview1);
