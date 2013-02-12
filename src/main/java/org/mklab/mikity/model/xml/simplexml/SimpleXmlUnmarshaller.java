@@ -1,6 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml;
 
 import java.io.File;
+import java.io.InputStream;
 
 import org.mklab.mikity.model.xml.AbstractJamastUnmarshaller;
 import org.mklab.mikity.model.xml.ColladaFileTransformer;
@@ -70,5 +71,17 @@ public class SimpleXmlUnmarshaller extends AbstractJamastUnmarshaller {
    */
   public Jamast getRoot() {
     return this.root;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void unmarshalFromJamastFile(InputStream input) throws JamastSerializeDeserializeException {
+    try {
+      final Serializer serializer = new Persister();
+      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Jamast.class, input);
+    } catch (Exception e) {
+      throw new JamastSerializeDeserializeException(e);
+    }
   }
 }

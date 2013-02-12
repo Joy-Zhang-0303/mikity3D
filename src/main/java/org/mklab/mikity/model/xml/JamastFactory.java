@@ -7,6 +7,7 @@ package org.mklab.mikity.model.xml;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.mklab.mikity.model.xml.simplexml.Jamast;
 import org.mklab.mikity.model.xml.simplexml.JamastConfig;
@@ -128,6 +129,36 @@ public class JamastFactory {
     return newRoot;
   }
 
+
+  /**
+   * Jamastファイルを読み込みます。
+   * 
+   * @param file Jamastファイル
+   * @return Jamastモデル
+   * @throws IOException ファイルを読み込めない場合
+   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合
+   */
+  public Jamast loadFile(final InputStream input) throws IOException, JamastSerializeDeserializeException {
+    //final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+    final SimpleXmlUnmarshaller unmarshaller = new SimpleXmlUnmarshaller();
+    unmarshaller.unmarshalFromJamastFile(input);
+    final Jamast root = unmarshaller.getRoot();
+
+    if (root != null) {
+      return root;
+    }
+
+    final Jamast newRoot = createEmptyModel();
+    final Group newGroup = newRoot.getModel(0).getGroup(0);
+    final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
+    for (final Group group : groups) {
+      newGroup.addGroup(group);
+    }
+
+    return newRoot;
+  }
+
+  
   /**
    * 空のモデルを生成します。
    * 
