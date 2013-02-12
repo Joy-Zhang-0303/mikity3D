@@ -3,11 +3,13 @@ package org.mklab.mikity.android.view.renderer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import org.mklab.mikity.android.MainActivity;
 import org.mklab.mikity.model.xml.simplexml.JamastConfig;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
 import android.opengl.GLSurfaceView.Renderer;
+import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 
 
@@ -17,7 +19,7 @@ import android.opengl.GLU;
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */
-public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
+public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
   private static final long serialVersionUID = 5653656698891675370L;
 
@@ -27,7 +29,7 @@ public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
   private OpenglesBranchGroup[] topGroups;
 
   private double[] eye = {0.0, 0.0, 5.0};
-  
+
   /** X軸に関する回転角度 */
   private float rotationX = 0.0f;
   /** Y軸に関する回転角度 */
@@ -39,7 +41,6 @@ public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
   /** 拡大縮小率 */
   private float scale = 0.0f;
 
-  
   /** マウスボタンを押した点 */
   //private Point startPoint;
   /** マウスボタンを離した点 */
@@ -56,6 +57,8 @@ public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
   /** 開始拡大縮小率 */
   //private float startScale;
   
+  GLSurfaceView glView;
+
   //光源の設定です 
   private float[] lightLocation0 = {0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源1です 
   private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源2です 
@@ -63,8 +66,11 @@ public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
   private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f}; // 拡散光の強さです 
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
 
-
-
+  
+  public OpenglesModelRenderer(GLSurfaceView glView){
+    this.glView = glView;
+  }
+  
   /**
    * {@inheritDoc}
    */
@@ -72,7 +78,6 @@ public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
 
     //final GL10 gl10 = drawable.getGL();
 
-    
     this.glu = new GLU();
 
     gl10.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -92,9 +97,8 @@ public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
+
   }
-
-
 
   /**
    * {@inheritDoc}
@@ -106,7 +110,7 @@ public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
     gl10.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
     //final GL10 gl10 = drawable.getGL;
-   
+
     gl10.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
     gl10.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
@@ -135,13 +139,14 @@ public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
   }
 
   public void setChildren(Group[] children) {
-    // TODO 自動生成されたメソッド・スタブ
-    
+
+    this.topGroups = new OpenglesModelCreater().create(children);
   }
 
   public void setConfiguration(JamastConfig configuration) {
-    // TODO 自動生成されたメソッド・スタブ
-    
+    if (configuration == null) {
+      return;
+    }
   }
 
   /**
@@ -152,8 +157,8 @@ public class OpenglesModelRenderer  implements ModelRenderer, Renderer {
   }
 
   public void updateDisplay() {
-    // TODO 自動生成されたメソッド・スタブ
-    
+ this.glView.requestRender();//再描画
+
   }
 
 }

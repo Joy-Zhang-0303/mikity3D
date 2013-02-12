@@ -18,7 +18,7 @@ public class GLView extends GLSurfaceView {
    */
   public GLView(Context context) {
     super(context);
-    this.myRenderer = new OpenglesModelRenderer();
+   // this.myRenderer = new OpenglesModelRenderer();
     setRenderer(this.myRenderer);
   }
 }
