@@ -1,18 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-  <artifactId>3Dmikity-swt</artifactId>
-  
-  	<scm>
-		<connection>scm:git:git@birdcage.mk.ces.kyutech.ac.jp:3Dmikity-swt.git</connection>
-	</scm>
-  
-  <parent>
-  	<groupId>org.mklab</groupId>
-  	<artifactId>mklab-base-pom</artifactId>
-  	<version>1.0.19</version>
-  </parent>
-  
-  <dependencies>
+	<artifactId>3Dmikity-swt</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<parent>
+		<groupId>org.mklab</groupId>
+		<artifactId>mklab-base-pom</artifactId>
+		<version>1.0.19</version>
+	</parent>
+
+	<dependencies>
 		<dependency>
 			<groupId>java3d</groupId>
 			<artifactId>j3d-core</artifactId>
@@ -62,7 +60,11 @@
 			<groupId>org.mklab</groupId>
 			<artifactId>3Dmikity</artifactId>
 		</dependency>
-  	</dependencies>
+	</dependencies>
+
+	<scm>
+		<connection>scm:git:git@birdcage.mk.ces.kyutech.ac.jp:3Dmikity-swt.git</connection>
+	</scm>
 
 	<repositories>
 		<repository>
@@ -71,8 +73,8 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
-  
-  	<pluginRepositories>
+
+	<pluginRepositories>
 		<pluginRepository>
 			<id>mklab-repository</id>
 			<url>http://maven.mk.ces.kyutech.ac.jp/content/groups/public/</url>
