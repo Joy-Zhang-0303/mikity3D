@@ -138,6 +138,9 @@ public class MainActivity extends Activity {
 
     //任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+    
+    
+ 
 
     Button playButton = (Button)findViewById(R.id.button1);
     Button stopButton = (Button)findViewById(R.id.button2);
@@ -209,35 +212,7 @@ public class MainActivity extends Activity {
     return true;
   }
 
-  /** 画面を再描画するハンドラー */
-  class RedrawHandler extends Handler {
-
-    private int delayTime;
-    private int frameRate;
-
-    public RedrawHandler(int frameRate) {
-      this.frameRate = frameRate;
-    }
-
-    public void start() {
-      this.delayTime = 100 / this.frameRate;
-      this.sendMessageDelayed(obtainMessage(0), this.delayTime);
-    }
-
-    public void stop() {
-      this.delayTime = 0;
-    }
-
-    @Override
-    public void handleMessage(Message msg) {
-
-      MainActivity.this.glView.requestRender();//再描画
-
-      if (this.delayTime == 0) return; // stop
-      sendMessageDelayed(obtainMessage(0), this.delayTime);
-    }
-  }
-
+  
   /**
    * 実行時間バーを設定する。
    * 
@@ -301,7 +276,7 @@ public class MainActivity extends Activity {
 
     this.endTime = this.manager.getEndTime();
     this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.modelRenderer);
-    this.animationTask.setSpeedScale(2);
+    this.animationTask.setSpeedScale(6); 
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**

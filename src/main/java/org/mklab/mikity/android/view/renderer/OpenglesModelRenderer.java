@@ -93,10 +93,8 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
 
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, this.lightLocation1, 0); // 平行光源を設定します 
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
+   
+    
 
   }
 
@@ -109,21 +107,27 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     gl10.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
-    //final GL10 gl10 = drawable.getGL;
+    ////final GL10 gl10 = drawable.getGL;
 
     gl10.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
     gl10.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
-    gl10.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
+    //gl10.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
     gl10.glLoadIdentity();
 
-    //this.glu.gluLookAt(this.eye[0], this.eye[1], this.eye[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    ////this.glu.gluLookAt(this.eye[0], this.eye[1], this.eye[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
     gl10.glTranslatef(this.translationY, -this.translationX, 0.0f);
     gl10.glTranslatef(0.0f, 0.0f, -this.scale);
     gl10.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
     gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
-
+    
+    //ここで微調整してます
+  
+    gl10.glRotatef(-180f, 0f, 1f, 0f);                                               
+    gl10.glScalef(2.3f, 2.3f, 2.3f);
+    
+    
     for (final OpenglesBranchGroup group : this.topGroups) {
       group.display(gl10);
     }
