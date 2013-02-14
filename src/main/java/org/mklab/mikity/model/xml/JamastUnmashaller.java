@@ -7,6 +7,7 @@ package org.mklab.mikity.model.xml;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 
 /**
@@ -34,6 +35,14 @@ public interface JamastUnmashaller {
    * @throws JamastSerializeDeserializeException Unmarshalできない場合
    */
   void unmarshalFromJamastFile(File file) throws IOException, JamastSerializeDeserializeException;
+  
+  /**
+   * 指定した入力ストリームからJAMASTデータを読み込みます。
+   * 
+   * @param input 入力ストリーム
+   * @throws JamastSerializeDeserializeException Unmarshalできない場合
+   */
+  void unmarshalFromJamastFile(InputStream input) throws JamastSerializeDeserializeException;
   
   /**
    * 指定したColladaファイルを読み込みます。

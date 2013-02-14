@@ -49,28 +49,6 @@ public class SimpleXmlUnmarshaller extends AbstractJamastUnmarshaller {
     } catch (Exception e) {
       throw new JamastSerializeDeserializeException(e);
     }
-
-  }
-
-  /**
-   * Colladaのグループを返します。
-   * 
-   * @return Colladaのグループ
-   */
-  public Group getClolladaGroup() {
-    return this.collada.getColladaPolygonGroup();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  /**
-   * 現在のモデルデータのルートを返します。
-   * 
-   * @return 現在のモデルデータのルート
-   */
-  public Jamast getRoot() {
-    return this.root;
   }
 
   /**
@@ -83,5 +61,23 @@ public class SimpleXmlUnmarshaller extends AbstractJamastUnmarshaller {
     } catch (Exception e) {
       throw new JamastSerializeDeserializeException(e);
     }
+  }
+  
+  /**
+   * Colladaのグループを返します。
+   * 
+   * @return Colladaのグループ
+   */
+  public Group getClolladaGroup() {
+    return this.collada.getColladaPolygonGroup();
+  }
+
+  /**
+   * 現在のモデルデータのルートを返します。
+   * 
+   * @return 現在のモデルデータのルート
+   */
+  public Jamast getRoot() {
+    return this.root;
   }
 }

@@ -39,7 +39,6 @@ public class JamastFactory {
    * @throws JamastSerializeDeserializeException ファイルを読み込めない場合 
    */
   public void importFile(File file, Jamast parent) throws IOException, JamastSerializeDeserializeException {
-    //final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
     final SimpleXmlUnmarshaller unmarshaller = new SimpleXmlUnmarshaller();
     unmarshaller.unmarshal(file);
     final Jamast root = unmarshaller.getRoot();
@@ -110,7 +109,6 @@ public class JamastFactory {
    * @throws JamastSerializeDeserializeException ファイルを読み込めない場合
    */
   public Jamast loadFile(final File file) throws IOException, JamastSerializeDeserializeException {
-    //final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
     final SimpleXmlUnmarshaller unmarshaller = new SimpleXmlUnmarshaller();
     unmarshaller.unmarshal(file);
     final Jamast root = unmarshaller.getRoot();
@@ -131,15 +129,13 @@ public class JamastFactory {
 
 
   /**
-   * Jamastファイルを読み込みます。
+   * 入力ストリームからJamastデータを読み込みます。
    * 
-   * @param file Jamastファイル
+   * @param input 入力ストリーム
    * @return Jamastモデル
-   * @throws IOException ファイルを読み込めない場合
    * @throws JamastSerializeDeserializeException ファイルを読み込めない場合
    */
-  public Jamast loadFile(final InputStream input) throws IOException, JamastSerializeDeserializeException {
-    //final JAXBUnmarshaller unmarshaller = new JAXBUnmarshaller();
+  public Jamast loadFile(final InputStream input) throws JamastSerializeDeserializeException {
     final SimpleXmlUnmarshaller unmarshaller = new SimpleXmlUnmarshaller();
     unmarshaller.unmarshalFromJamastFile(input);
     final Jamast root = unmarshaller.getRoot();
