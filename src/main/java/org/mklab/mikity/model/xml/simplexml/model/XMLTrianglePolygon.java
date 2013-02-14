@@ -20,13 +20,13 @@ import org.simpleframework.xml.Root;
 @Root(name="_XMLTrianglePolygonList")
 public class XMLTrianglePolygon {
 
-  @ElementArray
+  @ElementArray(name="array", entry="_point")
   private Location[] _point = new Location[3];
-  @Attribute
+  @Attribute(name="color")
   private String _color;
-  @Element
+  @Element(required=false)
   private Location _location;
-  @Element
+  @Element(required=false)
   private Rotation _rotation;
 
   private Vector3[] _normal = new Vector3[3];
