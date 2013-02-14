@@ -11,21 +11,21 @@ import org.simpleframework.xml.Attribute;
 public class Rotation implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** _xrotate */
+  /** xrotate */
   @Attribute(name="xrotate")
   private float _xrotate;
 
   /** keeps track of state for field: _xrotate */
   private boolean _has_xrotate;
 
-  /** Field _yrotate */
+  /** yrotate */
   @Attribute(name="yrotate")
   private float _yrotate;
 
   /** keeps track of state for field: _yrotate */
   private boolean _has_yrotate;
 
-  /** _zrotate */
+  /** zrotate */
   @Attribute(name="zrotate")
   private float _zrotate;
 
@@ -49,10 +49,12 @@ public class Rotation implements java.io.Serializable {
    * @param zRotation z座標
    */
   public Rotation(float xRotation, float yRotation, float zRotation) {
-    super();
     this._xrotate = xRotation;
     this._yrotate = yRotation;
     this._zrotate = zRotation;
+    this._has_xrotate = true;
+    this._has_yrotate = true;
+    this._has_zrotate = true;
   }
 
   /**
