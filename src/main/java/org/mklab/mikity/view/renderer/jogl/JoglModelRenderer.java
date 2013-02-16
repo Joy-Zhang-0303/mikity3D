@@ -27,7 +27,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
 
-  private GLU glu;
+  private GLU glu = new GLU();
 
   /** オブジェクトのグループ */
   private JoglBranchGroup[] topGroups;
@@ -63,7 +63,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
 
   //光源の設定です 
   private float[] lightLocation0 = {0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源1です 
-  private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源2です 
+  //private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源2です 
   private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f}; // 反射光の強さです 
   private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f}; // 拡散光の強さです 
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
@@ -83,7 +83,6 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    */
   public void init(GLAutoDrawable drawable) {
     final GL gl = drawable.getGL();
-    this.glu = new GLU();
 
     gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -133,6 +132,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    */
   public void setChildren(Group[] children) {
     this.topGroups = new JoglModelCreater().create(children);
+    display();
   }
 
   /**
@@ -142,6 +142,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     if (configuration == null) {
       return;
     }
+    display();
     // TODO
   }
   
@@ -176,6 +177,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
       if (this.endPoint == null) {
         this.endPoint = new Point(this.startPoint);
       }
+      display();
+      return;
     }
     
     if (SwingUtilities.isMiddleMouseButton(e) == true) {
@@ -184,6 +187,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
       if (this.endPoint == null) {
         this.endPoint = new Point(this.startPoint);
       }
+      display();
+      return;
     }
     
     if (SwingUtilities.isRightMouseButton(e) == true) {
@@ -193,6 +198,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
       if (this.endPoint == null) {
         this.endPoint = new Point(this.startPoint);
       }
+      display();
+      return;
     }
 
   }
@@ -236,7 +243,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
       }
       this.rotationX = this.startRotationX + (this.endPoint.y - this.startPoint.y);
       this.rotationY = this.startRotationY + (this.endPoint.x - this.startPoint.x);
-      this.display();
+      display();
+      return;
     }
     
     if (SwingUtilities.isMiddleMouseButton(e)) {
@@ -250,7 +258,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
       } else {
         this.scale = this.startScale + z / 25.0f;
       }
-      this.display();
+      display();
+      return;
     }
     
     if (SwingUtilities.isRightMouseButton(e) == true) {
@@ -260,7 +269,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
       }
       this.translationX = this.startTranslationX + (this.endPoint.y - this.startPoint.y) / 100.0f;
       this.translationY = this.startTranslationY + (this.endPoint.x - this.startPoint.x) / 100.0f;
-      this.display();
+      display();
+      return;
     }
   }
 
