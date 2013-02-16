@@ -113,10 +113,11 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
 
     gl.glEnable(GL.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     gl.glEnable(GL.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
+    
     gl.glLoadIdentity();
 
     this.glu.gluLookAt(this.eye[0], this.eye[1], this.eye[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-
+    
     gl.glTranslatef(this.translationY, -this.translationX, 0.0f);
     gl.glTranslatef(0.0f, 0.0f, -this.scale);
     gl.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
