@@ -8,7 +8,6 @@ import javax.media.opengl.GL;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.MovableGroup;
-import org.mklab.mikity.view.renderer.jogl.primitive.JoglCoordinate;
 
 
 /**
@@ -66,7 +65,7 @@ public class JoglTransformGroup implements MovableGroup {
    * GLによる操作(座標変換・描画)を適用します。
    * @param gl GL
    */
-  public void apply(GL gl) {
+  public void display(GL gl) {
     gl.glPushMatrix();
     
     if (this.coordinate != null) {
@@ -78,7 +77,7 @@ public class JoglTransformGroup implements MovableGroup {
     }
 
     for (final JoglTransformGroup group : this.groups) {
-      group.apply(gl);
+      group.display(gl);
     }
     
     gl.glPopMatrix();

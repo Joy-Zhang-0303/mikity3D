@@ -5,6 +5,8 @@ import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
 
+import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
+
 
 /**
  * @author iwamoto

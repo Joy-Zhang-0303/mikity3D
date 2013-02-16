@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.renderer.jogl.primitive;
+package org.mklab.mikity.view.renderer.jogl;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -11,7 +11,6 @@ import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
 
-import org.mklab.mikity.view.renderer.jogl.JoglObject;
 
 
 /**
@@ -77,7 +76,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * @param array 変換元
    * @return 変換結果
    */
-  FloatBuffer makeFloatBuffer(float[] array) {
+  protected FloatBuffer makeFloatBuffer(float[] array) {
     final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     buffer.put(array).position(0);
     return buffer;
@@ -89,7 +88,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * @param array 変換元
    * @return 変換結果
    */
-  ByteBuffer makeByteBuffer(byte[] array) {
+  protected ByteBuffer makeByteBuffer(byte[] array) {
     final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     buffer.put(array).position(0);
     return buffer;

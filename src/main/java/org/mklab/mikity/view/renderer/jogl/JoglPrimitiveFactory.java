@@ -16,7 +16,6 @@ import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglBox;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglCone;
-import org.mklab.mikity.view.renderer.jogl.primitive.JoglCoordinate;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglCylinder;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglQuadPolygon;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglSphere;

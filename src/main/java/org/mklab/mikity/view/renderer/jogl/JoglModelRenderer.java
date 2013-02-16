@@ -89,19 +89,19 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
 
     gl.glEnable(GL.GL_LIGHTING); //光源を有効にします 
     gl.glEnable(GL.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします 
-    gl.glEnable(GL.GL_LIGHT0); //0番のライトを有効にします
-    gl.glEnable(GL.GL_LIGHT1);
     gl.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, 90.0f);
-    
+
+    gl.glEnable(GL.GL_LIGHT0); //0番のライトを有効にします
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, this.lightLocation1, 0); // 平行光源を設定します 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
+//    gl.glEnable(GL.GL_LIGHT1); //1番のライトを有効にします
+//    gl.glLightfv(GL.GL_LIGHT1, GL.GL_POSITION, this.lightLocation1, 0); // 平行光源を設定します 
+//    gl.glLightfv(GL.GL_LIGHT1, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
+//    gl.glLightfv(GL.GL_LIGHT1, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
+//    gl.glLightfv(GL.GL_LIGHT1, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
   }
 
   /**

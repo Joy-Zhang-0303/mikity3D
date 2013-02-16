@@ -53,7 +53,7 @@ public class JoglBranchGroup implements JoglObject {
     }
     
     for (final JoglTransformGroup group : this.groups) {
-      group.apply(gl);
+      group.display(gl);
     }
 
   }
