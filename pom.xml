@@ -12,6 +12,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<parent>
+		<groupId>org.mklab</groupId>
+		<artifactId>mklab-base-pom</artifactId>
+		<version>1.0.19</version>
+	</parent>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.google.android</groupId>
@@ -77,6 +83,10 @@
 		</repository>
 	</repositories>
 
+	<scm>
+		<connection>scm:git:git@birdcage.mk.ces.kyutech.ac.jp:3Dmikity-android.git</connection>
+	</scm>
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>mklab-repository</id>
@@ -84,9 +94,4 @@
 			<layout>default</layout>
 		</pluginRepository>
 	</pluginRepositories>
-	<parent>
-		<groupId>org.mklab</groupId>
-		<artifactId>mklab-base-pom</artifactId>
-		<version>1.0.19</version>
-	</parent>
 </project>
