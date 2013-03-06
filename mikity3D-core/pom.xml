@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>3Dmikity</artifactId>
+	<version>0.0.4-SNAPSHOT</version>
+
+	<parent>
+		<groupId>org.mklab</groupId>
+		<artifactId>mklab-base-pom</artifactId>
+		<version>1.0.19</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mklab</groupId>
+			<artifactId>nfc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.simpleframework</groupId>
+			<artifactId>simple-xml</artifactId>
+			<version>2.6.9</version>
+		</dependency>
+	</dependencies>
+
+	<scm>
+		<connection>scm:git:git@birdcage.mk.ces.kyutech.ac.jp:3Dmikity.git</connection>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>mklab-repository</id>
+			<url>http://maven.mk.ces.kyutech.ac.jp/content/groups/public/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>mklab-repository</id>
+			<url>http://maven.mk.ces.kyutech.ac.jp/content/groups/public/</url>
+			<layout>default</layout>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>
