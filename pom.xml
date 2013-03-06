@@ -6,5 +6,8 @@
   <packaging>pom</packaging>
   <modules>
   	<module>mikity3D-core</module>
+  	<module>mikity3D-android</module>
+  	<module>mikity3D-sample</module>
+  	<module>mikity3D-swt</module>
   </modules>
 </project>
