@@ -1,13 +1,25 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.mklab</groupId>
-  <artifactId>mikity3D</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>mikity3D-core</module>
-  	<module>mikity3D-android</module>
-  	<module>mikity3D-sample</module>
-  	<module>mikity3D-swt</module>
-  </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>mikity3D</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>mikity3D-core</module>
+		<module>mikity3D-android</module>
+		<module>mikity3D-sample</module>
+		<module>mikity3D-swt</module>
+	</modules>
+	<parent>
+		<groupId>org.mklab</groupId>
+		<artifactId>mklab-base-pom</artifactId>
+		<version>1.0.22</version>
+	</parent>
+	<repositories>
+		<repository>
+			<id>mklab-repository</id>
+			<url>http://maven.mk.ces.kyutech.ac.jp/content/groups/public/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 </project>
