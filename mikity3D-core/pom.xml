@@ -25,9 +25,6 @@
 		</dependency>
 	</dependencies>
 
-	<scm>
-		<connection>scm:git:git@birdcage.mk.ces.kyutech.ac.jp:3Dmikity.git</connection>
-	</scm>
 
 	<repositories>
 		<repository>
