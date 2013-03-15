@@ -57,13 +57,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.mklab</groupId>
-			<artifactId>3Dmikity</artifactId>
+			<artifactId>mikity3D-core</artifactId>
 		</dependency>
 	</dependencies>
 
-	<scm>
-		<connection>scm:git:git@birdcage.mk.ces.kyutech.ac.jp:3Dmikity-swt.git</connection>
-	</scm>
 
 	<repositories>
 		<repository>
