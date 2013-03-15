@@ -27,7 +27,7 @@ public class MikityAnimation {
    * @throws JamastSerializeDeserializeException ファイルを読み込めない場合 
    */
   public static void main(String[] args) throws IOException, JamastSerializeDeserializeException {
-    final String modelFileName = "../3Dmikity-sample/src/main/resources/pendulum/pendulum/pendulum.xml";  //$NON-NLS-1$
+    final String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml";  //$NON-NLS-1$
     final AnimationWindow main = new AnimationWindow(null, new File(modelFileName));
     main.setBlockOnOpen(true);
     main.open();
