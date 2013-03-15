@@ -22,4 +22,7 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
+	<scm>
+		<connection>scm:git:git@birdcage.mk.ces.kyutech.ac.jp:mikity3D.git</connection>
+	</scm>
 </project>
