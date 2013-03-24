@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mikity>
+<jamast>
     <model>
         <group name="Group0">
             <box xsize="0.8" ysize="0.01" zsize="0.8" color="green">
@@ -38,4 +38,4 @@
         <modelUnit angle="degree" length="m"/>
         <dataUnit angle="radian" length="m"/>
     </config>
-</mikity>
+</jamast>
