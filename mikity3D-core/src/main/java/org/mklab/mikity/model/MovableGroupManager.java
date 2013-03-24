@@ -12,7 +12,7 @@ import java.util.Map;
 
 import org.mklab.mikity.model.picker.ClosenessDataPicker;
 import org.mklab.mikity.model.picker.DataPicker;
-import org.mklab.mikity.model.xml.simplexml.Jamast;
+import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
@@ -40,7 +40,7 @@ public class MovableGroupManager {
   private double endTime;
 
   /** ルートグループ */
-  private Jamast root;
+  private Mikity3d root;
 
   /** DHパラメータを使用するならばtrue */
   private boolean hasDHParameter = false;
@@ -51,7 +51,7 @@ public class MovableGroupManager {
    * 新しく生成された<code>MovableGroupManager</code>オブジェクトを初期化します。
    * @param root ルート
    */
-  public MovableGroupManager(final Jamast root) {
+  public MovableGroupManager(final Mikity3d root) {
     this.root = root;
   }
 

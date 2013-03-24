@@ -2,7 +2,7 @@ package org.mklab.mikity.view.renderer.jogl;
 
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
-import org.mklab.mikity.model.xml.simplexml.Jamast;
+import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.view.gui.AbstractModeler;
 
 
@@ -20,7 +20,7 @@ public class JoglModeler extends AbstractModeler {
    * @param style スタイル
    * @param root ツリーのルート
    */
-  public JoglModeler(Composite parent, int style, Jamast root) {
+  public JoglModeler(Composite parent, int style, Mikity3d root) {
     super(parent, style, root);
   }
 

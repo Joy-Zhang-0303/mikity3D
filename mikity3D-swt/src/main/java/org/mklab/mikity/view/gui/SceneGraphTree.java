@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.mklab.mikity.model.xml.simplexml.JamastModel;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
@@ -47,7 +47,7 @@ public class SceneGraphTree {
   /** */
   Tree xmlTree;
   /** */
-  JamastModel model;
+  Mikity3dModel model;
   /** */
   Composite comp;
   /** */
@@ -83,7 +83,7 @@ public class SceneGraphTree {
    * @param modeler モデラー
    * @param model モデル
    */
-  public SceneGraphTree(final Composite composite, final AbstractModeler modeler, final JamastModel model) {
+  public SceneGraphTree(final Composite composite, final AbstractModeler modeler, final Mikity3dModel model) {
     this.model = model;
     this.modeler = modeler;
     // ファイルの読み込みを行う
@@ -658,7 +658,7 @@ public class SceneGraphTree {
    * 
    * @return XMLのモデルデータ
    */
-  public JamastModel getModel() {
+  public Mikity3dModel getModel() {
     return this.model;
   }
 
@@ -694,7 +694,7 @@ public class SceneGraphTree {
    * 
    * @param model モデル
    */
-  public void setModel(JamastModel model) {
+  public void setModel(Mikity3dModel model) {
     this.model = model;
     fillTree();
   }

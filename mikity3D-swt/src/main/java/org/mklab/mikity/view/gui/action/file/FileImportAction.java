@@ -11,7 +11,7 @@ import javax.xml.bind.JAXBException;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
-import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
+import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 /**
@@ -49,7 +49,7 @@ public class FileImportAction extends Action {
     try {
       this.window.setFile(fileName);
       this.window.importFile();
-    } catch (JamastSerializeDeserializeException e) {
+    } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
       throw new RuntimeException(e);

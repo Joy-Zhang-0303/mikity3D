@@ -13,7 +13,7 @@ import javax.media.opengl.GLJPanel;
 import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
-import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
@@ -139,7 +139,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /**
    * {@inheritDoc}
    */
-  public void setConfiguration(JamastConfig configuration) {
+  public void setConfiguration(Mikity3dConfig configuration) {
     if (configuration == null) {
       return;
     }

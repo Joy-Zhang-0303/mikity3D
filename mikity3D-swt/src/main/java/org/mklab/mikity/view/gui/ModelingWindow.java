@@ -15,10 +15,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.mklab.mikity.model.xml.JamastFactory;
-import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.Jamast;
-import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.Mikity3dFactory;
+import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
+import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
 import org.mklab.mikity.model.xml.simplexml.SimpleXmlMarshaller;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
@@ -71,7 +71,7 @@ public class ModelingWindow extends ApplicationWindow {
 
   private File file;
   
-  private Jamast root;
+  private Mikity3d root;
   
   /** */
   Text filePathText;
@@ -94,7 +94,7 @@ public class ModelingWindow extends ApplicationWindow {
    */
   public ModelingWindow(final Shell shell) {
     super(shell);
-    this.root = new JamastFactory().createEmptyModel();
+    this.root = new Mikity3dFactory().createEmptyModel();
     addMenuBar();
     addToolBar(SWT.FLAT);
     addStatusLine();
@@ -189,7 +189,7 @@ public class ModelingWindow extends ApplicationWindow {
    * 単位を設定します。
    */
   private void setUnit() {
-    final JamastConfig config = this.root.getConfig(0);
+    final Mikity3dConfig config = this.root.getConfig(0);
 
     if (config.getModelUnit() != null) {
       final ModelUnit modelUnit = config.getModelUnit();
@@ -217,15 +217,15 @@ public class ModelingWindow extends ApplicationWindow {
    * 
    * @return root
    */
-  public Jamast getRoot() {
+  public Mikity3d getRoot() {
     return this.root;
   }
 
   /**
    * ファイルに保存します。
-   * @throws JamastSerializeDeserializeException ファイルに保存できない場合  
+   * @throws Mikity3dSerializeDeserializeException ファイルに保存できない場合  
    */
-  public void saveFile() throws JamastSerializeDeserializeException {
+  public void saveFile() throws Mikity3dSerializeDeserializeException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
@@ -238,15 +238,15 @@ public class ModelingWindow extends ApplicationWindow {
 
   /**
    * ファイルを読み込みます。
-   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合 
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
    * @throws IOException ファイルを読み込めない場合 
    */
-  public void loadFile() throws JamastSerializeDeserializeException, IOException {
+  public void loadFile() throws Mikity3dSerializeDeserializeException, IOException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     
-    this.root = new JamastFactory().loadFile(this.file);
+    this.root = new Mikity3dFactory().loadFile(this.file);
     
     final SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);
@@ -259,14 +259,14 @@ public class ModelingWindow extends ApplicationWindow {
   /**
    * ファイルを読み込み，データをモデルに追加します。
    * @throws IOException ファイルを読み込めない場合 
-   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合  
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合  
    */
-  public void importFile() throws IOException, JamastSerializeDeserializeException {
+  public void importFile() throws IOException, Mikity3dSerializeDeserializeException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     
-    new JamastFactory().importFile(this.file, this.root);
+    new Mikity3dFactory().importFile(this.file, this.root);
 
     final SceneGraphTree tree = new SceneGraphTree();
     tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);

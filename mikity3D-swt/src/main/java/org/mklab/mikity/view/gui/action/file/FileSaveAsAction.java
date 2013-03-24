@@ -12,7 +12,7 @@ import javax.xml.bind.JAXBException;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
-import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
+import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.view.gui.MessagegUtil;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -64,7 +64,7 @@ public class FileSaveAsAction extends Action {
     try {
       this.window.setFile(filePath);
       this.window.saveFile();
-    } catch (JamastSerializeDeserializeException e) {
+    } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
   }

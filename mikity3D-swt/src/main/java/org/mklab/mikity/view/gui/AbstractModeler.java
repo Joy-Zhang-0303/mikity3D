@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.MessageBox;
-import org.mklab.mikity.model.xml.simplexml.Jamast;
+import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
@@ -37,7 +37,7 @@ public abstract class AbstractModeler extends Composite {
   /** シーングラフツリー */
   protected SceneGraphTree tree;
   /** ルート */
-  protected Jamast root; 
+  protected Mikity3d root; 
   /** */
   protected Frame awtFrame;
   private Group treeViewerGroup;
@@ -49,7 +49,7 @@ public abstract class AbstractModeler extends Composite {
    * @param style スタイル
    * @param root ルート
    */
-  public AbstractModeler(Composite parent, int style, final Jamast root) {
+  public AbstractModeler(Composite parent, int style, final Mikity3d root) {
     super(parent, style);
     this.root = root;
     this.setLayout(new GridLayout());
@@ -292,7 +292,7 @@ public abstract class AbstractModeler extends Composite {
    * ツリーのルートを設定します。
    * @param root ツリーのルート
    */
-  public void setModel(Jamast root) {
+  public void setModel(Mikity3d root) {
     this.root = root;
     this.tree.setModel(root.getModel(0));
     createViewer();

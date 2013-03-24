@@ -14,13 +14,13 @@ import java.io.IOException;
  * @author koga
  * @version $Revision$, 2013/02/05
  */
-public abstract class AbstractJamastUnmarshaller implements JamastUnmashaller {
+public abstract class AbstractJamastUnmarshaller implements Mikity3dUnmashaller {
   /**
    * {@inheritDoc}
    * 
-   * @throws JamastSerializeDeserializeException Unmarshalできない場合
+   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
    */
-  public void unmarshal(File file) throws IOException, JamastSerializeDeserializeException {
+  public void unmarshal(File file) throws IOException, Mikity3dSerializeDeserializeException {
     final BufferedReader reader = new BufferedReader(new FileReader(file));
     final StringBuffer data = new StringBuffer();
 

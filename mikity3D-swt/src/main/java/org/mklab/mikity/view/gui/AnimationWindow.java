@@ -31,10 +31,10 @@ import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
-import org.mklab.mikity.model.xml.JamastFactory;
-import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.Jamast;
-import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.Mikity3dFactory;
+import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
+import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.mikity.view.renderer.ModelRenderer;
@@ -63,7 +63,7 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   private double endTime;
 
-  private Jamast root;
+  private Mikity3d root;
 
   /** */
   double speed = 1.0;
@@ -104,7 +104,7 @@ public class AnimationWindow extends ApplicationWindow {
    * @param parentShell 親シェル
    * @param root ルート
    */
-  public AnimationWindow(final Shell parentShell, final Jamast root) {
+  public AnimationWindow(final Shell parentShell, final Mikity3d root) {
     super(parentShell);
     this.root = root;
     this.manager = new MovableGroupManager(this.root);
@@ -120,10 +120,10 @@ public class AnimationWindow extends ApplicationWindow {
    * @param parentShell 親シェル
    * @param modelFile モデルファイル
    * @throws IOException ファイルを読み込めない場合
-   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合 
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
    */
-  public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, JamastSerializeDeserializeException {
-    this(parentShell, new JamastFactory().loadFile(modelFile));
+  public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
+    this(parentShell, new Mikity3dFactory().loadFile(modelFile));
   }
 
   /**
@@ -195,7 +195,7 @@ public class AnimationWindow extends ApplicationWindow {
     final Group[] children = this.root.getModel(0).getGroups();
     this.modelRenderer.setChildren(children);
 
-    final JamastConfig configuration = this.root.getConfig(0);
+    final Mikity3dConfig configuration = this.root.getConfig(0);
     this.modelRenderer.setConfiguration(configuration);
   }
 

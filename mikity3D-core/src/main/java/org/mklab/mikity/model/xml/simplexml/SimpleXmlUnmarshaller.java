@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 import org.mklab.mikity.model.xml.AbstractJamastUnmarshaller;
 import org.mklab.mikity.model.xml.ColladaFileTransformer;
-import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
+import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.blender.Collada;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.simpleframework.xml.Serializer;
@@ -21,45 +21,45 @@ import org.simpleframework.xml.core.Persister;
 public class SimpleXmlUnmarshaller extends AbstractJamastUnmarshaller {
 
   /** モデルデータのルート */
-  protected Jamast root;
+  protected Mikity3d root;
   /** Colladaのグループ */
   protected Collada collada;
 
   /**
    * {@inheritDoc}
    */
-  public void unmarshalFromJamastFile(File file) throws JamastSerializeDeserializeException {
+  public void unmarshalFromJamastFile(File file) throws Mikity3dSerializeDeserializeException {
     try {
       final Serializer serializer = new Persister();
-      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Jamast.class, file);
+      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3d.class, file);
     } catch (Exception e) {
-      throw new JamastSerializeDeserializeException(e);
+      throw new Mikity3dSerializeDeserializeException(e);
     }
   }
 
   /**
    * {@inheritDoc}
    */
-  public void unmarshalFromColladaFile(File file) throws JamastSerializeDeserializeException {
+  public void unmarshalFromColladaFile(File file) throws Mikity3dSerializeDeserializeException {
     try {
       final ColladaFileTransformer transformer = new ColladaFileTransformer(file);
       final File blender = transformer.getTransformedFile();
       final Serializer serializer = new Persister();
       this.collada = serializer.read(org.mklab.mikity.model.xml.simplexml.blender.Collada.class, blender);
     } catch (Exception e) {
-      throw new JamastSerializeDeserializeException(e);
+      throw new Mikity3dSerializeDeserializeException(e);
     }
   }
 
   /**
    * {@inheritDoc}
    */
-  public void unmarshalFromJamastFile(InputStream input) throws JamastSerializeDeserializeException {
+  public void unmarshalFromJamastFile(InputStream input) throws Mikity3dSerializeDeserializeException {
     try {
       final Serializer serializer = new Persister();
-      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Jamast.class, input);
+      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3d.class, input);
     } catch (Exception e) {
-      throw new JamastSerializeDeserializeException(e);
+      throw new Mikity3dSerializeDeserializeException(e);
     }
   }
   
@@ -77,7 +77,7 @@ public class SimpleXmlUnmarshaller extends AbstractJamastUnmarshaller {
    * 
    * @return 現在のモデルデータのルート
    */
-  public Jamast getRoot() {
+  public Mikity3d getRoot() {
     return this.root;
   }
 }

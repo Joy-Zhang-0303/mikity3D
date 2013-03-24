@@ -2,8 +2,8 @@ package org.mklab.mikity.view.renderer.java3d;
 
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
-import org.mklab.mikity.model.xml.simplexml.Jamast;
-import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
 import org.mklab.mikity.view.gui.AbstractModeler;
 
 
@@ -21,7 +21,7 @@ public class Java3dModeler extends AbstractModeler {
    * @param style スタイル
    * @param root ルート
    */
-  public Java3dModeler(Composite parent, int style, Jamast root) {
+  public Java3dModeler(Composite parent, int style, Mikity3d root) {
     super(parent, style, root);
   }
 
@@ -42,7 +42,7 @@ public class Java3dModeler extends AbstractModeler {
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);
     this.renderer = new Java3dModelRenderer();
     
-    final JamastConfig configuration = this.root.getConfig(0);
+    final Mikity3dConfig configuration = this.root.getConfig(0);
     this.renderer.setConfiguration(configuration);
     
     this.awtFrame.add(this.renderer);

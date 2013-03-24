@@ -1,7 +1,7 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
 import org.eclipse.jface.action.Action;
-import org.mklab.mikity.model.xml.simplexml.Jamast;
+import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
 import org.mklab.mikity.view.gui.ModelingWindow;
@@ -47,7 +47,7 @@ public class SphereToolBarAction extends Action {
     sphere.setDiv(20);
     sphere.setColor("yellow"); //$NON-NLS-1$
     
-    final Jamast root = this.window.getRoot();
+    final Mikity3d root = this.window.getRoot();
     final Group rootGroup = root.getModel(0).getGroup(0);
     rootGroup.addXMLSphere(sphere);
     
