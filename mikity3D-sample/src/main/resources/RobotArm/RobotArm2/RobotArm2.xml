@@ -2,44 +2,44 @@
 	<model>
 		<group name="Group0">
 			<location z="0.0" y="0.0" x="0.0" />
-			<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+			<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
 			<group name="dodai">
-				<_XMLCylinderList color="yellow" div="30" height="0.2" r="0.2">
-					<location z="0.0" y="0.0" x="0.0" />
-				</_XMLCylinderList>
 				<location z="0.0" y="0.0" x="0.0" />
-				<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
-				<group name="arm1">
-					<_XMLCylinderList color="red" div="30" height="0.4" r="0.02">
-						<location z="0.0" y="0.2" x="0.0" />
-					</_XMLCylinderList>
-					<_XMLCylinderList color="orange" div="30" height="0.04" r="0.02">
-						<rotation zrotate="0.0" yrotate="0.0" xrotate="1.5708" />
-						<location z="0.0" y="0.42" x="0.0" />
-					</_XMLCylinderList>
+				<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+				<cylinder color="yellow" div="30" height="0.2" r="0.2">
 					<location z="0.0" y="0.0" x="0.0" />
-					<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
-					<_linkdataList column="0" const="0.10000000149011612" target="locationY" />
-					<_linkdataList column="2" const="0.0" target="rotationZ" />
+				</cylinder>
+				<group name="arm1">
+					<location z="0.0" y="0.0" x="0.0" />
+					<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+					<linkData column="0" const="0.10000000149011612" target="locationY" />
+					<linkData column="2" const="0.0" target="rotationZ" />
+					<cylinder color="red" div="30" height="0.4" r="0.02">
+						<location z="0.0" y="0.2" x="0.0" />
+					</cylinder>
+					<cylinder color="orange" div="30" height="0.04" r="0.02">
+						<rotation zrotation="0.0" yrotation="0.0" xrotation="1.5708" />
+						<location z="0.0" y="0.42" x="0.0" />
+					</cylinder>
 					<group name="arm2">
-						<_XMLCylinderList color="red" div="30" height="0.4" r="0.02">
-							<location z="0.0" y="0.2" x="0.0" />
-						</_XMLCylinderList>
 						<location z="0.0" y="0.0" x="0.0" />
-						<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
-						<_linkdataList column="0" const="0.4400000274181366" target="locationY" />
-						<_linkdataList column="3" const="0.0" target="rotationZ" />
+						<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+						<linkData column="0" const="0.4400000274181366" target="locationY" />
+						<linkData column="3" const="0.0" target="rotationZ" />
+						<cylinder color="red" div="30" height="0.4" r="0.02">
+							<location z="0.0" y="0.2" x="0.0" />
+						</cylinder>
 					</group>
 				</group>
 			</group>
 		</group>
 	</model>
 	<config>
-		<_background color="white"></_background>
-		<_light z="-0.8" y="-0.8" x="0.2"></_light>
-		<_view z="1.0" y="0.0" x="0.0" zrotate="0.0" yrotate="0.0" xrotate="-0.2"></_view>
-		<_modelUnit length="m" angle="radian"></_modelUnit>
-		<_dataUnit length="m" angle="radian"></_dataUnit>
+		<background color="white"></background>
+		<light z="-0.8" y="-0.8" x="0.2"></light>
+		<view z="1.0" y="0.0" x="0.0" zrotation="0.0" yrotation="0.0" xrotation="-0.2"></view>
+		<modelUnit length="m" angle="radian"></modelUnit>
+		<dataUnit length="m" angle="radian"></dataUnit>
 	</config>
 
 </jamast>

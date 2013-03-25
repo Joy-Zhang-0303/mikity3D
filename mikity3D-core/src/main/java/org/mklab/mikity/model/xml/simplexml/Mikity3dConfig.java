@@ -14,27 +14,27 @@ public class Mikity3dConfig implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _data */
-  @Element(required=false)
+  @Element(name="data", required=false)
   private java.lang.String _data;
 
   /** _background */
-  @Element
+  @Element(name="background")
   private org.mklab.mikity.model.xml.simplexml.config.Background _background;
 
   /** _light */
-  @Element
+  @Element(name="light")
   private org.mklab.mikity.model.xml.simplexml.config.Light _light;
 
   /** _view */
-  @Element
+  @Element(name="view")
   private org.mklab.mikity.model.xml.simplexml.config.View _view;
 
   /** _modelUnit */
-  @Element
+  @Element(name="modelUnit")
   private org.mklab.mikity.model.xml.simplexml.config.ModelUnit _modelUnit;
 
   /** _dataUnit */
-  @Element
+  @Element(name="dataUnit")
   private org.mklab.mikity.model.xml.simplexml.config.DataUnit _dataUnit;
 
   /**

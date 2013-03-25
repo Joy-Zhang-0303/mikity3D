@@ -15,7 +15,7 @@ import org.simpleframework.xml.Root;
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
-@Root(name="_XMLCylinderList")
+@Root(name="cylinder")
 public class XMLCylinder implements Serializable {
   private static final long serialVersionUID = 1L;
 

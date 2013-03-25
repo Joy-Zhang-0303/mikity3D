@@ -9,7 +9,7 @@ import org.simpleframework.xml.Root;
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
  */
-@Root(name="_point")
+@Root(name="point")
 public class Location implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 

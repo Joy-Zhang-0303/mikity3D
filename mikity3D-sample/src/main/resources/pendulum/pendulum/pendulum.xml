@@ -2,58 +2,50 @@
 	<model>
 		<group name="Group0">
 			<location z="0.0" y="0.0" x="0.0"></location>
-			<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"></rotation>
+			<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"></rotation>
 			<group name="dodai">
 				<location z="0.0" y="0.0" x="0.0"></location>
-				<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"></rotation>
-				<_XMLBoxList transparent="true" color="lightGray" zsize="0.02"
-					ysize="0.27" xsize="0.02">
+				<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"></rotation>
+				<box transparent="true" color="lightGray" zsize="0.02" ysize="0.27" xsize="0.02">
 					<location z="0.0" y="-0.21" x="-0.05"></location>
-				</_XMLBoxList>
-				<_XMLBoxList transparent="true" color="lightGray" zsize="0.1"
-					ysize="0.0050" xsize="0.3">
+				</box>
+				<box transparent="true" color="lightGray" zsize="0.1" ysize="0.0050" xsize="0.3">
 					<location z="0.0" y="-0.3475" x="0.0"></location>
-				</_XMLBoxList>
-				<_XMLBoxList transparent="true" color="lightGray" zsize="0.02"
-					ysize="0.27" xsize="0.02">
+				</box>
+				<box transparent="true" color="lightGray" zsize="0.02" ysize="0.27" xsize="0.02">
 					<location z="0.0" y="-0.21" x="0.05"></location>
-				</_XMLBoxList>
-				<_XMLBoxList transparent="true" color="lightGray" zsize="0.07"
-					ysize="0.05" xsize="0.54">
+				</box>
+				<box transparent="true" color="lightGray" zsize="0.07" ysize="0.05" xsize="0.54">
 					<location z="0.0" y="-0.05" x="0.0"></location>
-				</_XMLBoxList>
+				</box>
 				<group name="daisha">
 					<location z="0.0" y="0.0" x="0.0"></location>
-					<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"></rotation>
-					<_linkdataList column="2" const="0.0" target="a"></_linkdataList>
-					<_XMLBoxList transparent="true" color="yellow" zsize="0.0050"
-						ysize="0.05" xsize="0.07">
+					<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"></rotation>
+					<linkData column="2" const="0.0" target="a"></linkData>
+					<box transparent="true" color="yellow" zsize="0.0050" ysize="0.05" xsize="0.07">
 						<location z="0.02" y="0.0" x="0.0"></location>
-					</_XMLBoxList>
+					</box>
 					<group name="sinsi">
 						<location z="0.0" y="0.0" x="0.0"></location>
-						<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"></rotation>
-						<_linkdataList column="3" const="0.0" target="theta"></_linkdataList>
-						<_XMLCylinderList color="red" div="10" height="0.018"
-							r="0.01">
-							<rotation zrotate="0.0" yrotate="0.0" xrotate="1.5708"></rotation>
+						<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"></rotation>
+						<linkData column="3" const="0.0" target="theta"></linkData>
+						<cylinder color="red" div="10" height="0.018" r="0.01">
+							<rotation zrotation="0.0" yrotation="0.0" xrotation="1.5708"></rotation>
 							<location z="0.0325" y="0.0" x="0.0"></location>
-						</_XMLCylinderList>
-						<_XMLCylinderList color="black" div="10" height="0.3"
-							r="0.0025">
+						</cylinder>
+						<cylinder color="black" div="10" height="0.3" r="0.0025">
 							<location z="0.037" y="0.15" x="0.0"></location>
-						</_XMLCylinderList>
+						</cylinder>
 					</group>
 				</group>
 			</group>
 		</group>
 	</model>
 	<config>
-		<_background color="white"></_background>
-		<_light z="-0.8" y="-0.8" x="0.2"></_light>
-		<_view z="1.0" y="0.0" x="0.0" zrotate="0.0" yrotate="0.0"
-			xrotate="-0.2"></_view>
-		<_modelUnit length="m" angle="radian"></_modelUnit>
-		<_dataUnit length="m" angle="radian"></_dataUnit>
+		<background color="white"></background>
+		<light z="-0.8" y="-0.8" x="0.2"></light>
+		<view z="1.0" y="0.0" x="0.0" zrotation="0.0" yrotation="0.0" xrotation="-0.2"></view>
+		<modelUnit length="m" angle="radian"></modelUnit>
+		<dataUnit length="m" angle="radian"></dataUnit>
 	</config>
 </jamast>

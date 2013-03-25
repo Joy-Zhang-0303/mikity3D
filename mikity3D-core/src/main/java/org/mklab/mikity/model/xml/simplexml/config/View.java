@@ -12,21 +12,21 @@ public class View implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _xrotate */
-  @Attribute(name="xrotate")
+  @Attribute(name="xrotation")
   private double _xrotate;
 
   /** Keep track of state for field: _xrotate */
   private boolean _has_xrotate;
 
   /** _yrotate */
-  @Attribute(name="yrotate")
+  @Attribute(name="yrotation")
   private double _yrotate;
 
   /** keeps track of state for field: _yrotate */
   private boolean _has_yrotate;
 
   /** _zrotate */
-  @Attribute(name="zrotate")
+  @Attribute(name="zrotation")
   private double _zrotate;
 
   /** keeps track of state for field: _zrotate */

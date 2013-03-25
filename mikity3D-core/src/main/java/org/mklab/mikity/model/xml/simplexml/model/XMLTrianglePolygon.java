@@ -20,10 +20,8 @@ import org.simpleframework.xml.Root;
  * @author koga
  * @version $Revision$, 2008/08/10
  */
-@Root(name="_XMLTrianglePolygonList")
+@Root(name="trianglePolygon")
 public class XMLTrianglePolygon {
-
-  //@ElementArray(name="array", entry="_point")
   @ElementList(type=Location.class, inline=true, required=true)
   private List<Location> _point;
   
