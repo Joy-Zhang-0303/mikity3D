@@ -5,6 +5,9 @@
  */
 package org.mklab.mikity.view.gui.dialog;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -342,7 +345,7 @@ public class EditTrianglePolygonDialog {
 
     String newColor = this.colorCombo.getColorComboBox().getText();
 
-    this.triangle.setPointLocations(newLoc);
+    this.triangle.setPointLocations(Arrays.asList(newLoc[0], newLoc[1], newLoc[2]));
     this.triangle.setColor(newColor);
     this.triangle.setRotation(new Rotation(this.newParamR_X.getFloatValue(), this.newParamR_Y.getFloatValue(), this.newParamR_Z.getFloatValue()));
     this.triangle.setLocation(new Location(this.newParamL_X.getFloatValue(), this.newParamL_Y.getFloatValue(), this.newParamL_Z.getFloatValue()));

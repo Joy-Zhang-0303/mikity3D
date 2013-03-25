@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.view.gui.action.toolbar;
 
+import java.util.Arrays;
+
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
@@ -53,8 +55,8 @@ public class QuadPolygonToolBarAction extends Action {
     final Location p2 = new Location(-0.3f, 0.3f, 0.0f);
     final Location p3 = new Location(-0.3f, -0.3f, 0.0f);
     final Location p4 = new Location(0.3f, -0.3f, 0.0f);
-    final Location[] locations = {p1, p2, p3, p4};
-    polygon.setPointLocations(locations);
+    //final Location[] locations = {p1, p2, p3, p4};
+    polygon.setPointLocations(Arrays.asList(p1, p2, p3, p4));
     polygon.setColor("blue"); //$NON-NLS-1$
     
     final Mikity3d root = this.window.getRoot();

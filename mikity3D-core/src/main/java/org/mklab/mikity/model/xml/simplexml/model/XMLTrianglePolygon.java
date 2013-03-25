@@ -5,11 +5,14 @@
  */
 package org.mklab.mikity.model.xml.simplexml.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.util.Vector3;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementArray;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 
@@ -20,12 +23,16 @@ import org.simpleframework.xml.Root;
 @Root(name="_XMLTrianglePolygonList")
 public class XMLTrianglePolygon {
 
-  @ElementArray(name="array", entry="_point")
-  private Location[] _point = new Location[3];
+  //@ElementArray(name="array", entry="_point")
+  @ElementList(type=Location.class, inline=true, required=true)
+  private List<Location> _point;
+  
   @Attribute(name="color")
   private String _color;
+  
   @Element(required=false)
   private Location _location;
+  
   @Element(required=false)
   private Rotation _rotation;
 
@@ -43,12 +50,10 @@ public class XMLTrianglePolygon {
    * 新しく生成された<code>XMLTrianglePolygon</code>オブジェクトを初期化します。
    */
   public XMLTrianglePolygon() {
-    for (int i = 0; i < this._point.length; i++) {
-      this._point[i] = new Location();
-    }
+    this._point = new ArrayList<Location>(3);
     this._color = "orange"; //$NON-NLS-1$
     this._matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-    setNormalVector();
+    //setNormalVector();
   }
 
   /**
@@ -58,9 +63,9 @@ public class XMLTrianglePolygon {
    * @param z Z座標
    */
   public void setPointLocation(int number, float x, float y, float z) {
-    this._point[number].setX(x);
-    this._point[number].setY(y);
-    this._point[number].setZ(z);
+    this._point.get(number).setX(x);
+    this._point.get(number).setY(y);
+    this._point.get(number).setZ(z);
     setNormalVector();
   }
 
@@ -70,16 +75,16 @@ public class XMLTrianglePolygon {
    * @param location3 座標3
    */
   public void setPointLocations(Location location1, Location location2, Location location3) {
-    this._point[0] = location1;
-    this._point[1] = location2;
-    this._point[2] = location3;
+    this._point.set(0, location1);
+    this._point.set(1, location2);
+    this._point.set(2, location3);
     setNormalVector();
   }
 
   /**
    * @param points 座標
    */
-  public void setPointLocations(Location[] points) {
+  public void setPointLocations(List<Location> points) {
     this._point = points;
     setNormalVector();
   }
@@ -124,9 +129,9 @@ public class XMLTrianglePolygon {
   /**
    *  
    */
-  public void setNormalVector() {
-    Vector3 v1 = new Vector3(this._point[1].getX() - this._point[0].getX(), this._point[1].getY() - this._point[0].getY(), this._point[1].getZ() - this._point[0].getZ());
-    Vector3 v2 = new Vector3(this._point[2].getX() - this._point[1].getX(), this._point[2].getY() - this._point[1].getY(), this._point[2].getZ() - this._point[1].getZ());
+  private void setNormalVector() {
+    Vector3 v1 = new Vector3(this._point.get(1).getX() - this._point.get(0).getX(), this._point.get(1).getY() - this._point.get(0).getY(), this._point.get(1).getZ() - this._point.get(0).getZ());
+    Vector3 v2 = new Vector3(this._point.get(2).getX() - this._point.get(1).getX(), this._point.get(2).getY() - this._point.get(1).getY(), this._point.get(2).getZ() - this._point.get(1).getZ());
     Vector3 n = v1.cross(v2).normalize();
     this._normal[0] = n;
     this._normal[1] = n;
@@ -145,7 +150,7 @@ public class XMLTrianglePolygon {
    * @return x location
    */
   public float getPointLocationX(int number) {
-    return this._point[number].getX();
+    return this._point.get(number).getX();
   }
 
   /**
@@ -153,7 +158,7 @@ public class XMLTrianglePolygon {
    * @return y location
    */
   public float getPointLocationY(int number) {
-    return this._point[number].getY();
+    return this._point.get(number).getY();
   }
 
   /**
@@ -161,7 +166,7 @@ public class XMLTrianglePolygon {
    * @return z location
    */
   public float getPointLocationZ(int number) {
-    return this._point[number].getZ();
+    return this._point.get(number).getZ();
   }
 
   /**

@@ -5,6 +5,9 @@
  */
 package org.mklab.mikity.view.gui.action.toolbar;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
@@ -52,7 +55,7 @@ public class TrianglePolygonToolBarAction extends Action {
     final Location p1 = new Location(0.3f, 0.3f, 0.0f);
     final Location p2 = new Location(-0.3f, 0.3f, 0.0f);
     final Location p3 = new Location(-0.3f, -0.3f, 0.0f);
-    final Location[] locations = {p1, p2, p3};
+    final List<Location> locations = Arrays.asList(p1, p2, p3);
     polygon.setPointLocations(locations);
     polygon.setColor("red"); //$NON-NLS-1$
     

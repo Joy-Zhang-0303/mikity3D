@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.view.gui.dialog;
 
+import java.util.Arrays;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -371,7 +373,7 @@ public class EditQuadPolygonDialog {
 
     String newColor = this.colorCombo.getColorComboBox().getText();
 
-    this.quad.setPointLocations(newLoc);
+    this.quad.setPointLocations(Arrays.asList(newLoc[0], newLoc[1], newLoc[2], newLoc[3]));
     this.quad.setColor(newColor);
     this.quad.setRotation(new Rotation(this.newParamR_X.getFloatValue(), this.newParamR_Y.getFloatValue(), this.newParamR_Z.getFloatValue()));
     this.quad.setLocation(new Location(this.newParamL_X.getFloatValue(), this.newParamL_Y.getFloatValue(), this.newParamL_Z.getFloatValue()));
