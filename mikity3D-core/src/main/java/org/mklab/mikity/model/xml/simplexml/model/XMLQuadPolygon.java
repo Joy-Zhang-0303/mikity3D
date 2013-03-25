@@ -22,14 +22,15 @@ import org.simpleframework.xml.Root;
  */
 @Root(name="_XMLQuadPolygonList")
 public class XMLQuadPolygon {
-
-  //@ElementArray(name="array", entry="_point")
   @ElementList(type=Location.class, inline=true, required=true)
   private List<Location> _point;
+  
   @Attribute(name="color")
   private String _color;
+  
   @Element(required=false)
   private Location _location;
+  
   @Element(required=false)
   private Rotation _rotation;
 

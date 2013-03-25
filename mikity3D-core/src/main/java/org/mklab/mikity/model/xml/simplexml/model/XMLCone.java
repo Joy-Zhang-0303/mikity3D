@@ -49,11 +49,11 @@ public class XMLCone implements java.io.Serializable {
   private boolean _has_transparent;
 
   /** _rotation */
-  @Element
+  @Element(name="rotation")
   private org.mklab.mikity.model.xml.simplexml.model.Rotation _rotation;
 
   /** _location */
-  @Element
+  @Element(name="location")
   private org.mklab.mikity.model.xml.simplexml.model.Location _location;
 
   /** propertyChangeListeners */

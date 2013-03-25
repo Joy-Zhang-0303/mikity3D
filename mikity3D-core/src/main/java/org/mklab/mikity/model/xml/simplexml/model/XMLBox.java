@@ -50,11 +50,11 @@ public class XMLBox implements java.io.Serializable {
   private boolean _has_transparent;
 
   /** _rotation */
-  @Element(required=false)
+  @Element(name="rotation", required=false)
   private org.mklab.mikity.model.xml.simplexml.model.Rotation _rotation;
 
   /** _location */
-  @Element
+  @Element(name="location")
   private org.mklab.mikity.model.xml.simplexml.model.Location _location;
 
   /** propertyChangeListeners */

@@ -1,11 +1,11 @@
 <jamast>
 	<model>
 		<group name="Group0">
-			<_location z="0.0" y="0.0" x="0.0" />
-			<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+			<location z="0.0" y="0.0" x="0.0" />
+			<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
 			<group name="dodai1">
-				<_location z="0.0" y="0.0" x="0.0" />
-				<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+				<location z="0.0" y="0.0" x="0.0" />
+				<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
 				<_linkdataList column="0" const="0.0" target="locationX" />
 				<_linkdataList column="0" const="-0.15000000596046448" target="locationY" />
 				<_linkdataList column="0" const="0.0" target="locationZ" />
@@ -170,8 +170,8 @@
 					<_point z="0.1" y="0.09877" x="0.01564" />
 				</_XMLQuadPolygonList>
 				<group name="dodai2">
-					<_location z="0.0" y="0.0" x="0.0" />
-					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+					<location z="0.0" y="0.0" x="0.0" />
+					<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
 					<_linkdataList column="0" const="0.0" target="locationX" />
 					<_linkdataList column="0" const="0.15000000596046448" target="locationY" />
 					<_linkdataList column="0" const="0.0" target="locationZ" />
@@ -212,8 +212,8 @@
 						<_point z="0.05" y="0.05" x="-0.29" />
 					</_XMLQuadPolygonList>
 					<group name="sinsi2">
-						<_location z="0.0" y="0.0" x="0.0" />
-						<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+						<location z="0.0" y="0.0" x="0.0" />
+						<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
 						<_linkdataList column="0" const="0.30000001192092896" target="locationX" />
 						<_linkdataList column="0" const="0.0" target="locationY" />
 						<_linkdataList column="0" const="0.0" target="locationZ" />
@@ -540,14 +540,14 @@
 					</group>
 				</group>
 				<group name="dodai2_001">
-					<_location z="0.0" y="0.0" x="0.0" />
-					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+					<location z="0.0" y="0.0" x="0.0" />
+					<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
 					<_linkdataList column="0" const="0.0" target="locationX" />
 					<_linkdataList column="0" const="0.15000000596046448" target="locationY" />
 					<_linkdataList column="0" const="0.0" target="locationZ" />
 					<group name="sinsi1">
-						<_location z="0.0" y="0.0" x="0.0" />
-						<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+						<location z="0.0" y="0.0" x="0.0" />
+						<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
 						<_linkdataList column="0" const="-0.30000001192092896" target="locationX" />
 						<_linkdataList column="0" const="0.0" target="locationY" />
 						<_linkdataList column="0" const="0.0" target="locationZ" />

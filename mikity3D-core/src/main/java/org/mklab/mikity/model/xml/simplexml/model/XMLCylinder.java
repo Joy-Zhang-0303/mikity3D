@@ -51,11 +51,11 @@ public class XMLCylinder implements Serializable {
   protected boolean _has_transparent;
 
   /** _rotation */
-  @Element(required=false)
+  @Element(name="rotation", required=false)
   protected Rotation _rotation;
 
   /** _location */
-  @Element
+  @Element(name="location")
   protected Location _location;
 
   /** Field propertyChangeListeners */

@@ -18,21 +18,21 @@ public class XMLSphere implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _r */
-  @Attribute
+  @Attribute(name="r")
   private float _r;
 
   /** keeps track of state for field: _r */
   private boolean _has_r;
 
   /** _div */
-  @Attribute
+  @Attribute(name="div")
   private int _div;
 
   /** keeps track of state for field: _div */
   private boolean _has_div;
 
   /** _color */
-  @Attribute
+  @Attribute(name="color")
   private java.lang.String _color;
 
   /**_transparent */
@@ -42,11 +42,11 @@ public class XMLSphere implements java.io.Serializable {
   private boolean _has_transparent;
 
   /** _rotation */
-  @Element
+  @Element(name="rotation")
   private org.mklab.mikity.model.xml.simplexml.model.Rotation _rotation;
 
   /** _location */
-  @Element
+  @Element(name="location")
   private org.mklab.mikity.model.xml.simplexml.model.Location _location;
 
   /** propertyChangeListeners */

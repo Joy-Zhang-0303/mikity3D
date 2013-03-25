@@ -22,11 +22,11 @@ public class Group implements java.io.Serializable {
   private String _name;
   
   /** _location */
-  @Element(name="_location")
+  @Element(name="location")
   private org.mklab.mikity.model.xml.simplexml.model.Location _location;
 
   /** _rotation */
-  @Element(name="_rotation")
+  @Element(name="rotation")
   private org.mklab.mikity.model.xml.simplexml.model.Rotation _rotation;
   
   /** _XMLBoxList */

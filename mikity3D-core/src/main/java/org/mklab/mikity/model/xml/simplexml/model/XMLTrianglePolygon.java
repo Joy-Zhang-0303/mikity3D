@@ -30,10 +30,10 @@ public class XMLTrianglePolygon {
   @Attribute(name="color")
   private String _color;
   
-  @Element(required=false)
+  @Element(name="location", required=false)
   private Location _location;
   
-  @Element(required=false)
+  @Element(name="rotation", required=false)
   private Rotation _rotation;
 
   private Vector3[] _normal = new Vector3[3];

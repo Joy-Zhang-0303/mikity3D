@@ -1,35 +1,35 @@
 <jamast>
 	<model>
 		<group name="Group0">
-			<_location z="0.0" y="0.0" x="0.0"></_location>
-			<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"></_rotation>
+			<location z="0.0" y="0.0" x="0.0"></location>
+			<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"></rotation>
 			<_XMLBoxList transparent="true" xsize="0.8" ysize="0.01"
 				zsize="0.8" color="green">
-				<_location x="0.0" y="0.0" z="0.0" />
+				<location x="0.0" y="0.0" z="0.0" />
 			</_XMLBoxList>
 			<_XMLBoxList transparent="true" xsize="0.4" ysize="0.12"
 				zsize="0.4" color="blue">
-				<_location x="0.0" y="0.065" z="0.0" />
+				<location x="0.0" y="0.065" z="0.0" />
 			</_XMLBoxList>
 			<_XMLCylinderList r="0.2" height="0.2" div="30"
 				color="cyan">
-				<_location x="0.0" y="0.22" z="0.0" />
+				<location x="0.0" y="0.22" z="0.0" />
 			</_XMLCylinderList>
 			<group name="link1">
-				<_location z="0.0" y="0.0" x="0.0"></_location>
-				<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"></_rotation>
+				<location z="0.0" y="0.0" x="0.0"></location>
+				<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"></rotation>
 				<_XMLCylinderList r="0.02" height="0.3" div="30"
 					color="yellow">
-					<_rotation xrotate="0.0" yrotate="0.0" zrotate="0.0" />
-					<_location x="0.0" y="0.15" z="0.0" />
+					<rotation xrotate="0.0" yrotate="0.0" zrotate="0.0" />
+					<location x="0.0" y="0.15" z="0.0" />
 				</_XMLCylinderList>
 				<_linkdataList target="theta" column="2" const="0" />
 				<group name="link2">
-					<_location z="0.0" y="0.0" x="0.0"></_location>
-					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"></_rotation>
+					<location z="0.0" y="0.0" x="0.0"></location>
+					<rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"></rotation>
 					<_XMLCylinderList r="0.02" height="0.3" div="30"
 						color="yellow">
-						<_location x="0.0" y="0.15" z="0.0" />
+						<location x="0.0" y="0.15" z="0.0" />
 					</_XMLCylinderList>
 					<_linkdataList target="theta" column="3" const="0" />
 				</group>
