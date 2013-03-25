@@ -15,38 +15,38 @@ public class LinkData implements java.io.Serializable {
 
   /** _target */
   @Attribute(name="target")
-  private java.lang.String _target;
+  private java.lang.String target;
 
   /** _const */
   @Attribute(name="const")
-  private double _const;
+  private double constant;
 
   /** keeps track of state for field: _const */
-  private boolean _has_const;
+  private boolean hasConstant;
 
   /** _column */
   @Attribute(name="column")
-  private int _column;
+  private int column;
 
   /** keeps track of state for field: _column */
-  private boolean _has_column;
+  private boolean hasColumn;
 
-  private boolean _has_dh;
+  private boolean hasDh;
 
-  private boolean _has_link;
+  private boolean hasLink;
 
   /**
    * Method deleteColumn
    */
   public void deleteDataNumber() {
-    this._has_column = false;
+    this.hasColumn = false;
   }
 
   /**
    * Method deleteConst
    */
   public void deleteInitialValue() {
-    this._has_const = false;
+    this.hasConstant = false;
   }
 
   /**
@@ -55,7 +55,7 @@ public class LinkData implements java.io.Serializable {
    * @return the value of field 'column'.
    */
   public int getDataNumber() {
-    return this._column;
+    return this.column;
   }
 
   /**
@@ -65,15 +65,15 @@ public class LinkData implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + this._column;
+    result = prime * result + this.column;
     long temp;
-    temp = Double.doubleToLongBits(this._const);
+    temp = Double.doubleToLongBits(this.constant);
     result = prime * result + (int)(temp ^ (temp >>> 32));
-    result = prime * result + (this._has_column ? 1231 : 1237);
-    result = prime * result + (this._has_const ? 1231 : 1237);
-    result = prime * result + (this._has_dh ? 1231 : 1237);
-    result = prime * result + (this._has_link ? 1231 : 1237);
-    result = prime * result + ((this._target == null) ? 0 : this._target.hashCode());
+    result = prime * result + (this.hasColumn ? 1231 : 1237);
+    result = prime * result + (this.hasConstant ? 1231 : 1237);
+    result = prime * result + (this.hasDh ? 1231 : 1237);
+    result = prime * result + (this.hasLink ? 1231 : 1237);
+    result = prime * result + ((this.target == null) ? 0 : this.target.hashCode());
     return result;
   }
 
@@ -92,29 +92,29 @@ public class LinkData implements java.io.Serializable {
       return false;
     }
     LinkData other = (LinkData)obj;
-    if (this._column != other._column) {
+    if (this.column != other.column) {
       return false;
     }
-    if (Double.doubleToLongBits(this._const) != Double.doubleToLongBits(other._const)) {
+    if (Double.doubleToLongBits(this.constant) != Double.doubleToLongBits(other.constant)) {
       return false;
     }
-    if (this._has_column != other._has_column) {
+    if (this.hasColumn != other.hasColumn) {
       return false;
     }
-    if (this._has_const != other._has_const) {
+    if (this.hasConstant != other.hasConstant) {
       return false;
     }
-    if (this._has_dh != other._has_dh) {
+    if (this.hasDh != other.hasDh) {
       return false;
     }
-    if (this._has_link != other._has_link) {
+    if (this.hasLink != other.hasLink) {
       return false;
     }
-    if (this._target == null) {
-      if (other._target != null) {
+    if (this.target == null) {
+      if (other.target != null) {
         return false;
       }
-    } else if (!this._target.equals(other._target)) {
+    } else if (!this.target.equals(other.target)) {
       return false;
     }
     return true;
@@ -126,7 +126,7 @@ public class LinkData implements java.io.Serializable {
    * @return the value of field 'const'.
    */
   public double getInitialValue() {
-    return this._const;
+    return this.constant;
   }
 
   /**
@@ -135,7 +135,7 @@ public class LinkData implements java.io.Serializable {
    * @return the value of field 'target'.
    */
   public java.lang.String getTargetName() {
-    return this._target;
+    return this.target;
   }
 
   /**
@@ -144,10 +144,10 @@ public class LinkData implements java.io.Serializable {
    * @return has_colimn
    */
   public boolean hasDataNumber() {
-    if (this._column != 0) {
-      this._has_column = true;
+    if (this.column != 0) {
+      this.hasColumn = true;
     }
-    return this._has_column;
+    return this.hasColumn;
   }
 
   /**
@@ -156,10 +156,10 @@ public class LinkData implements java.io.Serializable {
    * @return has_const
    */
   public boolean hasInitialValue() {
-    if (this._const != 0.0) {
-      this._has_const = true;
+    if (this.constant != 0.0) {
+      this.hasConstant = true;
     }
-    return this._has_const;
+    return this.hasConstant;
   }
 
   /**
@@ -168,8 +168,8 @@ public class LinkData implements java.io.Serializable {
    * @param column the value of field 'column'.
    */
   public void setDataNumber(int column) {
-    this._column = column;
-    this._has_column = true;
+    this.column = column;
+    this.hasColumn = true;
   }
 
   /**
@@ -178,8 +178,8 @@ public class LinkData implements java.io.Serializable {
    * @param _const コンスト
    */
   public void setInitialValue(double _const) {
-    this._const = _const;
-    this._has_const = true;
+    this.constant = _const;
+    this.hasConstant = true;
   }
 
   /**
@@ -188,27 +188,27 @@ public class LinkData implements java.io.Serializable {
    * @param target the value of field 'target'.
    */
   public void setTargetName(java.lang.String target) {
-    this._target = target;
+    this.target = target;
   }
 
   /**
    * @return DHを持つならばtrue
    */
   public boolean hasDHParameter() {
-    if (this._target.equals("a") || this._target.equals("alpha") || this._target.equals("d") || this._target.equals("theta")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-      this._has_dh = true;
+    if (this.target.equals("a") || this.target.equals("alpha") || this.target.equals("d") || this.target.equals("theta")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+      this.hasDh = true;
     }
-    return this._has_dh;
+    return this.hasDh;
   }
 
   /**
    * @return linkをもつならばtrue
    */
   public boolean hasCoordinateParameter() {
-    if (this._target.equals("locationX") || this._target.equals("locationY") || this._target.equals("locationZ") || this._target.equals("rotationX") || this._target.equals("rotationY") //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-        || this._target.equals("rotationZ")) { //$NON-NLS-1$
-      this._has_link = true;
+    if (this.target.equals("locationX") || this.target.equals("locationY") || this.target.equals("locationZ") || this.target.equals("rotationX") || this.target.equals("rotationY") //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        || this.target.equals("rotationZ")) { //$NON-NLS-1$
+      this.hasLink = true;
     }
-    return this._has_link;
+    return this.hasLink;
   }
 }

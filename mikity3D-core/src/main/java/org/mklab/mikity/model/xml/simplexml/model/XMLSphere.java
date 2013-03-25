@@ -19,35 +19,35 @@ public class XMLSphere implements java.io.Serializable {
 
   /** _r */
   @Attribute(name="r")
-  private float _r;
+  private float radius;
 
   /** keeps track of state for field: _r */
-  private boolean _has_r;
+  private boolean hasRadius;
 
   /** _div */
   @Attribute(name="div")
-  private int _div;
+  private int div;
 
   /** keeps track of state for field: _div */
-  private boolean _has_div;
+  private boolean hasDiv;
 
   /** _color */
   @Attribute(name="color")
-  private java.lang.String _color;
+  private java.lang.String color;
 
   /**_transparent */
-  private boolean _transparent;
+  private boolean transparent;
 
   /** keeps track of state for field: _transparent */
-  private boolean _has_transparent;
+  private boolean hasTransparent;
 
   /** _rotation */
   @Element(name="rotation")
-  private org.mklab.mikity.model.xml.simplexml.model.Rotation _rotation;
+  private org.mklab.mikity.model.xml.simplexml.model.Rotation rotation;
 
   /** _location */
   @Element(name="location")
-  private org.mklab.mikity.model.xml.simplexml.model.Location _location;
+  private org.mklab.mikity.model.xml.simplexml.model.Location location;
 
   /** propertyChangeListeners */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
@@ -73,21 +73,21 @@ public class XMLSphere implements java.io.Serializable {
    * Method deleteDiv
    */
   public void deleteDiv() {
-    this._has_div = false;
+    this.hasDiv = false;
   }
 
   /**
    * Method deleteR
    */
   public void deleteR() {
-    this._has_r = false;
+    this.hasRadius = false;
   }
 
   /**
    * Method deleteTransparent
    */
   public void deleteTransparent() {
-    this._has_transparent = false;
+    this.hasTransparent = false;
   }
 
   /**
@@ -96,7 +96,7 @@ public class XMLSphere implements java.io.Serializable {
    * @return the value of field 'color'.
    */
   public java.lang.String getColor() {
-    return this._color;
+    return this.color;
   }
 
   /**
@@ -106,15 +106,15 @@ public class XMLSphere implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((this._color == null) ? 0 : this._color.hashCode());
-    result = prime * result + this._div;
-    result = prime * result + (this._has_div ? 1231 : 1237);
-    result = prime * result + (this._has_r ? 1231 : 1237);
-    result = prime * result + (this._has_transparent ? 1231 : 1237);
-    result = prime * result + ((this._location == null) ? 0 : this._location.hashCode());
-    result = prime * result + Float.floatToIntBits(this._r);
-    result = prime * result + ((this._rotation == null) ? 0 : this._rotation.hashCode());
-    result = prime * result + (this._transparent ? 1231 : 1237);
+    result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
+    result = prime * result + this.div;
+    result = prime * result + (this.hasDiv ? 1231 : 1237);
+    result = prime * result + (this.hasRadius ? 1231 : 1237);
+    result = prime * result + (this.hasTransparent ? 1231 : 1237);
+    result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
+    result = prime * result + Float.floatToIntBits(this.radius);
+    result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
+    result = prime * result + (this.transparent ? 1231 : 1237);
     result = prime * result + ((this.propertyChangeListeners == null) ? 0 : this.propertyChangeListeners.hashCode());
     return result;
   }
@@ -134,43 +134,43 @@ public class XMLSphere implements java.io.Serializable {
       return false;
     }
     XMLSphere other = (XMLSphere)obj;
-    if (this._color == null) {
-      if (other._color != null) {
+    if (this.color == null) {
+      if (other.color != null) {
         return false;
       }
-    } else if (!this._color.equals(other._color)) {
+    } else if (!this.color.equals(other.color)) {
       return false;
     }
-    if (this._div != other._div) {
+    if (this.div != other.div) {
       return false;
     }
-    if (this._has_div != other._has_div) {
+    if (this.hasDiv != other.hasDiv) {
       return false;
     }
-    if (this._has_r != other._has_r) {
+    if (this.hasRadius != other.hasRadius) {
       return false;
     }
-    if (this._has_transparent != other._has_transparent) {
+    if (this.hasTransparent != other.hasTransparent) {
       return false;
     }
-    if (this._location == null) {
-      if (other._location != null) {
+    if (this.location == null) {
+      if (other.location != null) {
         return false;
       }
-    } else if (!this._location.equals(other._location)) {
+    } else if (!this.location.equals(other.location)) {
       return false;
     }
-    if (Float.floatToIntBits(this._r) != Float.floatToIntBits(other._r)) {
+    if (Float.floatToIntBits(this.radius) != Float.floatToIntBits(other.radius)) {
       return false;
     }
-    if (this._rotation == null) {
-      if (other._rotation != null) {
+    if (this.rotation == null) {
+      if (other.rotation != null) {
         return false;
       }
-    } else if (!this._rotation.equals(other._rotation)) {
+    } else if (!this.rotation.equals(other.rotation)) {
       return false;
     }
-    if (this._transparent != other._transparent) {
+    if (this.transparent != other.transparent) {
       return false;
     }
     if (this.propertyChangeListeners == null) {
@@ -189,7 +189,7 @@ public class XMLSphere implements java.io.Serializable {
    * @return the value of field 'div'.
    */
   public int getDiv() {
-    return this._div;
+    return this.div;
   }
 
   /**
@@ -198,7 +198,7 @@ public class XMLSphere implements java.io.Serializable {
    * @return the value of field 'location'.
    */
   public org.mklab.mikity.model.xml.simplexml.model.Location getLocation() {
-    return this._location;
+    return this.location;
   }
 
   /**
@@ -207,7 +207,7 @@ public class XMLSphere implements java.io.Serializable {
    * @return the value of field 'r'.
    */
   public float getRadius() {
-    return this._r;
+    return this.radius;
   }
 
   /**
@@ -216,7 +216,7 @@ public class XMLSphere implements java.io.Serializable {
    * @return the value of field 'rotation'.
    */
   public org.mklab.mikity.model.xml.simplexml.model.Rotation getRotation() {
-    return this._rotation;
+    return this.rotation;
   }
 
   /**
@@ -225,7 +225,7 @@ public class XMLSphere implements java.io.Serializable {
    * @return the value of field 'transparent'.
    */
   public boolean getTransparent() {
-    return this._transparent;
+    return this.transparent;
   }
 
   /**
@@ -234,7 +234,7 @@ public class XMLSphere implements java.io.Serializable {
    * @return has_div
    */
   public boolean hasDiv() {
-    return this._has_div;
+    return this.hasDiv;
   }
 
   /**
@@ -243,7 +243,7 @@ public class XMLSphere implements java.io.Serializable {
    * @return has_r
    */
   public boolean hasRadius() {
-    return this._has_r;
+    return this.hasRadius;
   }
 
   /**
@@ -252,7 +252,7 @@ public class XMLSphere implements java.io.Serializable {
    * @return has_transparent
    */
   public boolean hasTransparent() {
-    return this._has_transparent;
+    return this.hasTransparent;
   }
 
   /**
@@ -287,7 +287,7 @@ public class XMLSphere implements java.io.Serializable {
    * @param color the value of field 'color'.
    */
   public void setColor(java.lang.String color) {
-    this._color = color;
+    this.color = color;
   }
 
   /**
@@ -296,8 +296,8 @@ public class XMLSphere implements java.io.Serializable {
    * @param div the value of field 'div'.
    */
   public void setDiv(int div) {
-    this._div = div;
-    this._has_div = true;
+    this.div = div;
+    this.hasDiv = true;
   }
 
   /**
@@ -306,7 +306,7 @@ public class XMLSphere implements java.io.Serializable {
    * @param location the value of field 'location'.
    */
   public void setLocation(org.mklab.mikity.model.xml.simplexml.model.Location location) {
-    this._location = location;
+    this.location = location;
   }
 
   /**
@@ -315,8 +315,8 @@ public class XMLSphere implements java.io.Serializable {
    * @param radius the value of field 'r'.
    */
   public void setRadius(float radius) {
-    this._r = radius;
-    this._has_r = true;
+    this.radius = radius;
+    this.hasRadius = true;
   }
 
   /**
@@ -325,7 +325,7 @@ public class XMLSphere implements java.io.Serializable {
    * @param rotation the value of field 'rotation'.
    */
   public void setRotation(org.mklab.mikity.model.xml.simplexml.model.Rotation rotation) {
-    this._rotation = rotation;
+    this.rotation = rotation;
   }
 
   /**
@@ -334,8 +334,8 @@ public class XMLSphere implements java.io.Serializable {
    * @param transparent the value of field 'transparent'.
    */
   public void setTransparent(boolean transparent) {
-    this._transparent = transparent;
-    this._has_transparent = true;
+    this.transparent = transparent;
+    this.hasTransparent = true;
   }
 
 }

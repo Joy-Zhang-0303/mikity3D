@@ -1,8 +1,8 @@
 <jamast>
 	<model>
 		<group name="Group0">
-			<location z="0.0" y="0.0" x="0.0"></location>
-			<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"></rotation>
+			<location z="0.0" y="0.0" x="0.0"/>
+			<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"/>
 			<box transparent="true" xsize="0.8" ysize="0.01" zsize="0.8" color="green">
 				<location x="0.0" y="0.0" z="0.0" />
 			</box>
@@ -13,16 +13,16 @@
 				<location x="0.0" y="0.22" z="0.0" />
 			</cylinder>
 			<group name="link1">
-				<location z="0.0" y="0.0" x="0.0"></location>
-				<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"></rotation>
+				<location z="0.0" y="0.0" x="0.0"/>
+				<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"/>
 				<cylinder r="0.02" height="0.3" div="30" color="yellow">
 					<rotation xrotation="0.0" yrotation="0.0" zrotation="0.0" />
 					<location x="0.0" y="0.15" z="0.0" />
 				</cylinder>
 				<linkData target="theta" column="2" const="0" />
 				<group name="link2">
-					<location z="0.0" y="0.0" x="0.0"></location>
-					<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"></rotation>
+					<location z="0.0" y="0.0" x="0.0"/>
+					<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"/>
 					<cylinder r="0.02" height="0.3" div="30" color="yellow">
 						<location x="0.0" y="0.15" z="0.0" />
 					</cylinder>

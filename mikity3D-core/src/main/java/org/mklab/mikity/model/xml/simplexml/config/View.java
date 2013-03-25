@@ -11,88 +11,88 @@ import org.simpleframework.xml.Attribute;
 public class View implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** _xrotate */
+  /** xRotation */
   @Attribute(name="xrotation")
-  private double _xrotate;
+  private double xRotation;
 
   /** Keep track of state for field: _xrotate */
-  private boolean _has_xrotate;
+  private boolean hasXrotation;
 
-  /** _yrotate */
+  /** yRotation */
   @Attribute(name="yrotation")
-  private double _yrotate;
+  private double yRotation;
 
   /** keeps track of state for field: _yrotate */
-  private boolean _has_yrotate;
+  private boolean hasYrotation;
 
-  /** _zrotate */
+  /** zRotation */
   @Attribute(name="zrotation")
-  private double _zrotate;
+  private double zRotation;
 
   /** keeps track of state for field: _zrotate */
-  private boolean _has_zrotate;
+  private boolean hasZrotation;
 
-  /** _x */
+  /** x */
   @Attribute(name="x")
-  private float _x;
+  private float x;
 
   /** keeps track of state for field: _x */
-  private boolean _has_x;
+  private boolean hasX;
 
-  /** _y */
+  /** y */
   @Attribute(name="y")
-  private float _y;
+  private float y;
 
   /** keeps track of state for field: _y */
-  private boolean _has_y;
+  private boolean hasY;
 
-  /** _z */
+  /** z */
   @Attribute(name="z")
-  private float _z;
+  private float z;
 
   /** keeps track of state for field: _z */
-  private boolean _has_z;
+  private boolean hasZ;
 
   /**
    * Method deleteX
    */
   public void deleteX() {
-    this._has_x = false;
+    this.hasX = false;
   }
 
   /**
    * Method deleteXrotate
    */
   public void deleteXrotation() {
-    this._has_xrotate = false;
+    this.hasXrotation = false;
   }
 
   /**
    * Method deleteY
    */
   public void deleteY() {
-    this._has_y = false;
+    this.hasY = false;
   }
 
   /**
    * Method deleteYrotate
    */
   public void deleteYrotation() {
-    this._has_yrotate = false;
+    this.hasYrotation = false;
   }
 
   /**
    * Method deleteZ
    */
   public void deleteZ() {
-    this._has_z = false;
+    this.hasZ = false;
   }
 
   /**
    * Method deleteZrotate
    */
   public void deleteZrotation() {
-    this._has_zrotate = false;
+    this.hasZrotation = false;
   }
 
   /**
@@ -101,7 +101,7 @@ public class View implements java.io.Serializable {
    * @return the value of field 'x'.
    */
   public float getX() {
-    return this._x;
+    return this.x;
   }
 
   /**
@@ -111,21 +111,21 @@ public class View implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + (this._has_x ? 1231 : 1237);
-    result = prime * result + (this._has_xrotate ? 1231 : 1237);
-    result = prime * result + (this._has_y ? 1231 : 1237);
-    result = prime * result + (this._has_yrotate ? 1231 : 1237);
-    result = prime * result + (this._has_z ? 1231 : 1237);
-    result = prime * result + (this._has_zrotate ? 1231 : 1237);
-    result = prime * result + Float.floatToIntBits(this._x);
+    result = prime * result + (this.hasX ? 1231 : 1237);
+    result = prime * result + (this.hasXrotation ? 1231 : 1237);
+    result = prime * result + (this.hasY ? 1231 : 1237);
+    result = prime * result + (this.hasYrotation ? 1231 : 1237);
+    result = prime * result + (this.hasZ ? 1231 : 1237);
+    result = prime * result + (this.hasZrotation ? 1231 : 1237);
+    result = prime * result + Float.floatToIntBits(this.x);
     long temp;
-    temp = Double.doubleToLongBits(this._xrotate);
+    temp = Double.doubleToLongBits(this.xRotation);
     result = prime * result + (int)(temp ^ (temp >>> 32));
-    result = prime * result + Float.floatToIntBits(this._y);
-    temp = Double.doubleToLongBits(this._yrotate);
+    result = prime * result + Float.floatToIntBits(this.y);
+    temp = Double.doubleToLongBits(this.yRotation);
     result = prime * result + (int)(temp ^ (temp >>> 32));
-    result = prime * result + Float.floatToIntBits(this._z);
-    temp = Double.doubleToLongBits(this._zrotate);
+    result = prime * result + Float.floatToIntBits(this.z);
+    temp = Double.doubleToLongBits(this.zRotation);
     result = prime * result + (int)(temp ^ (temp >>> 32));
     return result;
   }
@@ -145,40 +145,40 @@ public class View implements java.io.Serializable {
       return false;
     }
     View other = (View)obj;
-    if (this._has_x != other._has_x) {
+    if (this.hasX != other.hasX) {
       return false;
     }
-    if (this._has_xrotate != other._has_xrotate) {
+    if (this.hasXrotation != other.hasXrotation) {
       return false;
     }
-    if (this._has_y != other._has_y) {
+    if (this.hasY != other.hasY) {
       return false;
     }
-    if (this._has_yrotate != other._has_yrotate) {
+    if (this.hasYrotation != other.hasYrotation) {
       return false;
     }
-    if (this._has_z != other._has_z) {
+    if (this.hasZ != other.hasZ) {
       return false;
     }
-    if (this._has_zrotate != other._has_zrotate) {
+    if (this.hasZrotation != other.hasZrotation) {
       return false;
     }
-    if (Float.floatToIntBits(this._x) != Float.floatToIntBits(other._x)) {
+    if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
-    if (Double.doubleToLongBits(this._xrotate) != Double.doubleToLongBits(other._xrotate)) {
+    if (Double.doubleToLongBits(this.xRotation) != Double.doubleToLongBits(other.xRotation)) {
       return false;
     }
-    if (Float.floatToIntBits(this._y) != Float.floatToIntBits(other._y)) {
+    if (Float.floatToIntBits(this.y) != Float.floatToIntBits(other.y)) {
       return false;
     }
-    if (Double.doubleToLongBits(this._yrotate) != Double.doubleToLongBits(other._yrotate)) {
+    if (Double.doubleToLongBits(this.yRotation) != Double.doubleToLongBits(other.yRotation)) {
       return false;
     }
-    if (Float.floatToIntBits(this._z) != Float.floatToIntBits(other._z)) {
+    if (Float.floatToIntBits(this.z) != Float.floatToIntBits(other.z)) {
       return false;
     }
-    if (Double.doubleToLongBits(this._zrotate) != Double.doubleToLongBits(other._zrotate)) {
+    if (Double.doubleToLongBits(this.zRotation) != Double.doubleToLongBits(other.zRotation)) {
       return false;
     }
     return true;
@@ -190,7 +190,7 @@ public class View implements java.io.Serializable {
    * @return the value of field 'xrotate'.
    */
   public double getXrotation() {
-    return this._xrotate;
+    return this.xRotation;
   }
 
   /**
@@ -199,7 +199,7 @@ public class View implements java.io.Serializable {
    * @return the value of field 'y'.
    */
   public float getY() {
-    return this._y;
+    return this.y;
   }
 
   /**
@@ -208,7 +208,7 @@ public class View implements java.io.Serializable {
    * @return the value of field 'yrotate'.
    */
   public double getYrotation() {
-    return this._yrotate;
+    return this.yRotation;
   }
 
   /**
@@ -217,7 +217,7 @@ public class View implements java.io.Serializable {
    * @return the value of field 'z'.
    */
   public float getZ() {
-    return this._z;
+    return this.z;
   }
 
   /**
@@ -226,7 +226,7 @@ public class View implements java.io.Serializable {
    * @return the value of field 'zrotate'.
    */
   public double getZrotation() {
-    return this._zrotate;
+    return this.zRotation;
   }
 
   /**
@@ -235,7 +235,7 @@ public class View implements java.io.Serializable {
    * @return has_x
    */
   public boolean hasX() {
-    return this._has_x;
+    return this.hasX;
   }
 
   /**
@@ -244,7 +244,7 @@ public class View implements java.io.Serializable {
    * @return has_xrotate
    */
   public boolean hasXrotation() {
-    return this._has_xrotate;
+    return this.hasXrotation;
   }
 
   /**
@@ -253,7 +253,7 @@ public class View implements java.io.Serializable {
    * @return has_y
    */
   public boolean hasY() {
-    return this._has_y;
+    return this.hasY;
   }
 
   /**
@@ -262,7 +262,7 @@ public class View implements java.io.Serializable {
    * @return has_yrotate
    */
   public boolean hasYrotation() {
-    return this._has_yrotate;
+    return this.hasYrotation;
   }
 
   /**
@@ -271,7 +271,7 @@ public class View implements java.io.Serializable {
    * @return has_z
    */
   public boolean hasZ() {
-    return this._has_z;
+    return this.hasZ;
   }
 
   /**
@@ -280,7 +280,7 @@ public class View implements java.io.Serializable {
    * @return has_zrotate
    */
   public boolean hasZrotation() {
-    return this._has_zrotate;
+    return this.hasZrotation;
   }
 
   /**
@@ -289,8 +289,8 @@ public class View implements java.io.Serializable {
    * @param x the value of field 'x'.
    */
   public void setX(float x) {
-    this._x = x;
-    this._has_x = true;
+    this.x = x;
+    this.hasX = true;
   }
 
   /**
@@ -299,8 +299,8 @@ public class View implements java.io.Serializable {
    * @param xRotation the value of field 'xrotate'.
    */
   public void setXrotation(double xRotation) {
-    this._xrotate = xRotation;
-    this._has_xrotate = true;
+    this.xRotation = xRotation;
+    this.hasXrotation = true;
   }
 
   /**
@@ -309,8 +309,8 @@ public class View implements java.io.Serializable {
    * @param y the value of field 'y'.
    */
   public void setY(float y) {
-    this._y = y;
-    this._has_y = true;
+    this.y = y;
+    this.hasY = true;
   }
 
   /**
@@ -319,8 +319,8 @@ public class View implements java.io.Serializable {
    * @param yRotation the value of field 'yrotate'.
    */
   public void setYrotation(double yRotation) {
-    this._yrotate = yRotation;
-    this._has_yrotate = true;
+    this.yRotation = yRotation;
+    this.hasYrotation = true;
   }
 
   /**
@@ -329,8 +329,8 @@ public class View implements java.io.Serializable {
    * @param z the value of field 'z'.
    */
   public void setZ(float z) {
-    this._z = z;
-    this._has_z = true;
+    this.z = z;
+    this.hasZ = true;
   }
 
   /**
@@ -339,7 +339,7 @@ public class View implements java.io.Serializable {
    * @param zRotation the value of field 'zrotate'.
    */
   public void setZrotation(double zRotation) {
-    this._zrotate = zRotation;
-    this._has_zrotate = true;
+    this.zRotation = zRotation;
+    this.hasZrotation = true;
   }
 }

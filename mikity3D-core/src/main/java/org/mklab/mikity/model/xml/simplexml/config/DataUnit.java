@@ -13,11 +13,11 @@ public class DataUnit implements java.io.Serializable {
 
   /** _angle */
   @Attribute(name="angle")
-  private java.lang.String _angle;
+  private java.lang.String angle;
 
   /** _length */
   @Attribute(name="length")
-  private java.lang.String _length;
+  private java.lang.String length;
 
   /**
    * Returns the value of field 'angle'.
@@ -25,7 +25,7 @@ public class DataUnit implements java.io.Serializable {
    * @return the value of field 'angle'.
    */
   public java.lang.String getAngle() {
-    return this._angle;
+    return this.angle;
   }
 
   /**
@@ -35,8 +35,8 @@ public class DataUnit implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((this._angle == null) ? 0 : this._angle.hashCode());
-    result = prime * result + ((this._length == null) ? 0 : this._length.hashCode());
+    result = prime * result + ((this.angle == null) ? 0 : this.angle.hashCode());
+    result = prime * result + ((this.length == null) ? 0 : this.length.hashCode());
     return result;
   }
 
@@ -55,18 +55,18 @@ public class DataUnit implements java.io.Serializable {
       return false;
     }
     DataUnit other = (DataUnit)obj;
-    if (this._angle == null) {
-      if (other._angle != null) {
+    if (this.angle == null) {
+      if (other.angle != null) {
         return false;
       }
-    } else if (!this._angle.equals(other._angle)) {
+    } else if (!this.angle.equals(other.angle)) {
       return false;
     }
-    if (this._length == null) {
-      if (other._length != null) {
+    if (this.length == null) {
+      if (other.length != null) {
         return false;
       }
-    } else if (!this._length.equals(other._length)) {
+    } else if (!this.length.equals(other.length)) {
       return false;
     }
     return true;
@@ -78,7 +78,7 @@ public class DataUnit implements java.io.Serializable {
    * @return the value of field 'length'.
    */
   public java.lang.String getLength() {
-    return this._length;
+    return this.length;
   }
 
   /**
@@ -87,7 +87,7 @@ public class DataUnit implements java.io.Serializable {
    * @param angle the value of field 'angle'.
    */
   public void setAngle(java.lang.String angle) {
-    this._angle = angle;
+    this.angle = angle;
   }
 
   /**
@@ -96,6 +96,6 @@ public class DataUnit implements java.io.Serializable {
    * @param length the value of field 'length'.
    */
   public void setLength(java.lang.String length) {
-    this._length = length;
+    this.length = length;
   }
 }

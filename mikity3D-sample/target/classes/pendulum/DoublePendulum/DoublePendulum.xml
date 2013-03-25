@@ -740,10 +740,10 @@
 		</group>
 	</model>
 	<config>
-		<background color="white"></background>
-		<light z="-0.8" y="-0.8" x="0.2"></light>
-		<view z="1.0" y="0.0" x="0.0" zrotation="0.0" yrotation="0.0" xrotation="-0.2"></view>
-		<modelUnit length="m" angle="radian"></modelUnit>
-		<dataUnit length="m" angle="radian"></dataUnit>
+		<background color="white"/>
+		<light z="-0.8" y="-0.8" x="0.2"/>
+		<view z="1.0" y="0.0" x="0.0" zrotation="0.0" yrotation="0.0" xrotation="-0.2"/>
+		<modelUnit length="m" angle="radian"/>
+		<dataUnit length="m" angle="radian"/>
 	</config>
 </jamast>

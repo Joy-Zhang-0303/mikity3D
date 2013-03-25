@@ -12,7 +12,7 @@ public class Background implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
   /** _color */
   @Attribute(name="color")
-  private java.lang.String _color;
+  private java.lang.String color;
   
   /**
    * {@inheritDoc}
@@ -21,7 +21,7 @@ public class Background implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((this._color == null) ? 0 : this._color.hashCode());
+    result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
     return result;
   }
 
@@ -40,11 +40,11 @@ public class Background implements java.io.Serializable {
       return false;
     }
     Background other = (Background)obj;
-    if (this._color == null) {
-      if (other._color != null) {
+    if (this.color == null) {
+      if (other.color != null) {
         return false;
       }
-    } else if (!this._color.equals(other._color)) {
+    } else if (!this.color.equals(other.color)) {
       return false;
     }
     return true;
@@ -56,7 +56,7 @@ public class Background implements java.io.Serializable {
    * @return the value of field 'color'.
    */
   public java.lang.String getColor() {
-    return this._color;
+    return this.color;
   }
 
   /**
@@ -65,6 +65,6 @@ public class Background implements java.io.Serializable {
    * @param color the value of field 'color'.
    */
   public void setColor(java.lang.String color) {
-    this._color = color;
+    this.color = color;
   }
 }

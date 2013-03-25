@@ -15,24 +15,24 @@ public class Location implements java.io.Serializable {
 
   /** z */
   @Attribute(name="z")
-  private float _z;
+  private float z;
   
   /** y */
   @Attribute(name="y")
-  private float _y;
+  private float y;
 
   /** x */
   @Attribute(name="x")
-  private float _x;
+  private float x;
 
   /** keeps track of state for field: _x */
-  private boolean _has_x;
+  private boolean hasX;
 
   /** keeps track of state for field: _y */
-  private boolean _has_y;
+  private boolean hasY;
   
   /** keeps track of state for field: _z */
-  private boolean _has_z;
+  private boolean hasZ;
 
   /**
    * 新しく生成された<code>Location</code>オブジェクトを初期化します。
@@ -49,33 +49,33 @@ public class Location implements java.io.Serializable {
    * @param z z座標
    */
   public Location(float x, float y, float z) {
-    this._has_x = true;
-    this._has_y = true;
-    this._has_z = true;
-    this._x = x;
-    this._y = y;
-    this._z = z;
+    this.hasX = true;
+    this.hasY = true;
+    this.hasZ = true;
+    this.x = x;
+    this.y = y;
+    this.z = z;
   }
 
   /**
    * Method deleteX
    */
   public void deleteX() {
-    this._has_x = false;
+    this.hasX = false;
   } 
 
   /**
    * Method deleteY
    */
   public void deleteY() {
-    this._has_y = false;
+    this.hasY = false;
   }
 
   /**
    * Method deleteZ
    */
   public void deleteZ() {
-    this._has_z = false;
+    this.hasZ = false;
   }
 
   /**
@@ -84,7 +84,7 @@ public class Location implements java.io.Serializable {
    * @return the value of field 'x'.
    */
   public float getX() {
-    return this._x;
+    return this.x;
   }
 
   /**
@@ -95,12 +95,12 @@ public class Location implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + (_has_x ? 1231 : 1237);
-    result = prime * result + (_has_y ? 1231 : 1237);
-    result = prime * result + (_has_z ? 1231 : 1237);
-    result = prime * result + Float.floatToIntBits(_x);
-    result = prime * result + Float.floatToIntBits(_y);
-    result = prime * result + Float.floatToIntBits(_z);
+    result = prime * result + (hasX ? 1231 : 1237);
+    result = prime * result + (hasY ? 1231 : 1237);
+    result = prime * result + (hasZ ? 1231 : 1237);
+    result = prime * result + Float.floatToIntBits(x);
+    result = prime * result + Float.floatToIntBits(y);
+    result = prime * result + Float.floatToIntBits(z);
     return result;
   }
 
@@ -119,22 +119,22 @@ public class Location implements java.io.Serializable {
       return false;
     }
     Location other = (Location)obj;
-    if (this._has_x != other._has_x) {
+    if (this.hasX != other.hasX) {
       return false;
     }
-    if (this._has_y != other._has_y) {
+    if (this.hasY != other.hasY) {
       return false;
     }
-    if (this._has_z != other._has_z) {
+    if (this.hasZ != other.hasZ) {
       return false;
     }
-    if (Float.floatToIntBits(this._x) != Float.floatToIntBits(other._x)) {
+    if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
-    if (Float.floatToIntBits(this._y) != Float.floatToIntBits(other._y)) {
+    if (Float.floatToIntBits(this.y) != Float.floatToIntBits(other.y)) {
       return false;
     }
-    if (Float.floatToIntBits(this._z) != Float.floatToIntBits(other._z)) {
+    if (Float.floatToIntBits(this.z) != Float.floatToIntBits(other.z)) {
       return false;
     }
     return true;
@@ -146,7 +146,7 @@ public class Location implements java.io.Serializable {
    * @return the value of field 'y'.
    */
   public float getY() {
-    return this._y;
+    return this.y;
   }
 
   /**
@@ -155,7 +155,7 @@ public class Location implements java.io.Serializable {
    * @return the value of field 'z'.
    */
   public float getZ() {
-    return this._z;
+    return this.z;
   }
 
   /**
@@ -164,7 +164,7 @@ public class Location implements java.io.Serializable {
    * @return has_x
    */
   public boolean hasX() {
-    return this._has_x;
+    return this.hasX;
   }
 
   /**
@@ -173,7 +173,7 @@ public class Location implements java.io.Serializable {
    * @return has_y
    */
   public boolean hasY() {
-    return this._has_y;
+    return this.hasY;
   }
 
   /**
@@ -182,7 +182,7 @@ public class Location implements java.io.Serializable {
    * @return has_z
    */
   public boolean hasZ() {
-    return this._has_z;
+    return this.hasZ;
   }
 
   /**
@@ -191,8 +191,8 @@ public class Location implements java.io.Serializable {
    * @param x the value of field 'x'.
    */
   public void setX(float x) {
-    this._x = x;
-    this._has_x = true;
+    this.x = x;
+    this.hasX = true;
   }
 
   /**
@@ -201,8 +201,8 @@ public class Location implements java.io.Serializable {
    * @param y the value of field 'y'.
    */
   public void setY(float y) {
-    this._y = y;
-    this._has_y = true;
+    this.y = y;
+    this.hasY = true;
   }
 
   /**
@@ -211,7 +211,7 @@ public class Location implements java.io.Serializable {
    * @param z the value of field 'z'.
    */
   public void setZ(float z) {
-    this._z = z;
-    this._has_z = true;
+    this.z = z;
+    this.hasZ = true;
   }
 }
