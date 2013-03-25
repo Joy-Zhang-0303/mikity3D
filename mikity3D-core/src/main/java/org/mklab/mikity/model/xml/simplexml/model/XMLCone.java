@@ -18,28 +18,28 @@ public class XMLCone implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** _r */
-  @Attribute
+  @Attribute(name="r")
   private float _r;
 
   /** keeps track of state for field: _r */
   private boolean _has_r;
 
   /** _height */
-  @Attribute
+  @Attribute(name="height")
   private float _height;
 
   /** keeps track of state for field: _height */
   private boolean _has_height;
 
   /** _div */
-  @Attribute
+  @Attribute(name="div")
   private int _div;
 
   /** Keeps track of state for field: _div */
   private boolean _has_div;
 
   /** _color */
-  @Attribute
+  @Attribute(name="color")
   private java.lang.String _color;
 
   /**_transparent */

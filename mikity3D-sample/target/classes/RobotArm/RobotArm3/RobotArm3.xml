@@ -1,1 +1,75 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><jamast><_modelList><_groupList name="Group0"><_location z="0.0" y="0.0" x="0.0"/><_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/><_groupList name="dodai"><_XMLCylinderList color="red" div="30" height="0.02" r="0.1"><_location z="0.0" y="0.0" x="0.0"/></_XMLCylinderList><_location z="0.0" y="0.0" x="0.0"/><_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/><_groupList name="arm1"><_XMLCylinderList color="red" div="30" height="0.2" r="0.02"><_location z="0.0" y="0.0" x="0.0"/></_XMLCylinderList><_XMLCylinderList color="orange" div="30" height="0.08" r="0.02"><_rotation zrotate="0.0" yrotate="0.0" xrotate="90.0"/><_location z="0.02" y="0.1" x="0.0"/></_XMLCylinderList><_location z="0.0" y="0.0" x="0.0"/><_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/><_linkdataList column="0" const="0.10000029951334" target="locationY"/><_linkdataList column="2" const="0.0" target="rotationY"/><_groupList name="arm2"><_XMLCylinderList color="red" div="30" height="0.1" r="0.02"><_location z="0.0" y="0.05" x="0.0"/></_XMLCylinderList><_XMLCylinderList color="orange" div="30" height="0.08" r="0.02"><_rotation zrotate="0.0" yrotate="0.0" xrotate="90.0"/><_location z="0.02" y="0.1" x="0.0"/></_XMLCylinderList><_location z="0.0" y="0.0" x="0.0"/><_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/><_linkdataList column="0" const="0.10000029951334" target="locationY"/><_linkdataList column="0" const="0.03999999910593033" target="locationZ"/><_linkdataList column="3" const="0.0" target="rotationZ"/><_groupList name="arm3"><_XMLCylinderList color="red" div="30" height="0.1" r="0.02"><_location z="0.0" y="0.05" x="0.0"/></_XMLCylinderList><_XMLCylinderList color="red" div="30" height="0.02" r="0.01"><_location z="0.0" y="0.135" x="0.04"/></_XMLCylinderList><_XMLCylinderList color="red" div="30" height="0.02" r="0.01"><_location z="0.0" y="0.135" x="-0.04"/></_XMLCylinderList><_XMLCylinderList color="red" div="30" height="0.02" r="0.01"><_location z="0.04" y="0.135" x="0.0"/></_XMLCylinderList><_XMLCylinderList color="red" div="30" height="0.02" r="0.01"><_location z="-0.04" y="0.135" x="0.0"/></_XMLCylinderList><_XMLConeList color="yellow" div="30" height="0.05" r="0.05"><_rotation zrotate="0.0" yrotate="0.0" xrotate="180.0"/><_location z="0.0" y="0.1" x="0.0"/></_XMLConeList><_location z="0.0" y="0.0" x="0.0"/><_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0"/><_linkdataList column="0" const="0.10000000149011612" target="locationY"/><_linkdataList column="0" const="0.03999999910593033" target="locationZ"/><_linkdataList column="4" const="0.0" target="rotationZ"/></_groupList></_groupList></_groupList></_groupList></_groupList></_modelList><_configList/></jamast>
+<jamast>
+	<model>
+		<group name="Group0">
+			<_location z="0.0" y="0.0" x="0.0" />
+			<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+			<group name="dodai">
+				<_XMLCylinderList color="red" div="30" height="0.02" r="0.1">
+					<_location z="0.0" y="0.0" x="0.0" />
+				</_XMLCylinderList>
+				<_location z="0.0" y="0.0" x="0.0" />
+				<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+				<group name="arm1">
+					<_XMLCylinderList color="red" div="30" height="0.2" r="0.02">
+						<_location z="0.0" y="0.0" x="0.0" />
+					</_XMLCylinderList>
+					<_XMLCylinderList color="orange" div="30" height="0.08" r="0.02">
+						<_rotation zrotate="0.0" yrotate="0.0" xrotate="1.5708" />
+						<_location z="0.02" y="0.1" x="0.0" />
+					</_XMLCylinderList>
+					<_location z="0.0" y="0.0" x="0.0" />
+					<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+					<_linkdataList column="0" const="0.10000029951334" target="locationY" />
+					<_linkdataList column="2" const="0.0" target="rotationY" />
+					<group name="arm2">
+						<_XMLCylinderList color="red" div="30" height="0.1" r="0.02">
+							<_location z="0.0" y="0.05" x="0.0" />
+						</_XMLCylinderList>
+						<_XMLCylinderList color="orange" div="30" height="0.08" r="0.02">
+							<_rotation zrotate="0.0" yrotate="0.0" xrotate="1.5708" />
+							<_location z="0.02" y="0.1" x="0.0" />
+						</_XMLCylinderList>
+						<_location z="0.0" y="0.0" x="0.0" />
+						<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+						<_linkdataList column="0" const="0.10000029951334" target="locationY" />
+						<_linkdataList column="0" const="0.03999999910593033" target="locationZ" />
+						<_linkdataList column="3" const="0.0" target="rotationZ" />
+						<group name="arm3">
+							<_XMLCylinderList color="red" div="30" height="0.1" r="0.02">
+								<_location z="0.0" y="0.05" x="0.0" />
+							</_XMLCylinderList>
+							<_XMLCylinderList color="red" div="30" height="0.02" r="0.01">
+								<_location z="0.0" y="0.135" x="0.04" />
+							</_XMLCylinderList>
+							<_XMLCylinderList color="red" div="30" height="0.02" r="0.01">
+								<_location z="0.0" y="0.135" x="-0.04" />
+							</_XMLCylinderList>
+							<_XMLCylinderList color="red" div="30" height="0.02" r="0.01">
+								<_location z="0.04" y="0.135" x="0.0" />
+							</_XMLCylinderList>
+							<_XMLCylinderList color="red" div="30" height="0.02" r="0.01">
+								<_location z="-0.04" y="0.135" x="0.0" />
+							</_XMLCylinderList>
+							<_XMLConeList color="yellow" div="30" height="0.05" r="0.05">
+								<_rotation zrotate="0.0" yrotate="0.0" xrotate="3.1415" />
+								<_location z="0.0" y="0.1" x="0.0" />
+							</_XMLConeList>
+							<_location z="0.0" y="0.0" x="0.0" />
+							<_rotation zrotate="0.0" yrotate="0.0" xrotate="0.0" />
+							<_linkdataList column="0" const="0.10000000149011612" target="locationY" />
+							<_linkdataList column="0" const="0.03999999910593033" target="locationZ" />
+							<_linkdataList column="4" const="0.0" target="rotationZ" />
+						</group>
+					</group>
+				</group>
+			</group>
+		</group>
+	</model>
+	<config>
+		<_background color="white"></_background>
+		<_light z="-0.8" y="-0.8" x="0.2"></_light>
+		<_view z="1.0" y="0.0" x="0.0" zrotate="0.0" yrotate="0.0" xrotate="-0.2"></_view>
+		<_modelUnit length="m" angle="radian"></_modelUnit>
+		<_dataUnit length="m" angle="radian"></_dataUnit>
+	</config>
+</jamast>
