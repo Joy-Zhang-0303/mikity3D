@@ -423,11 +423,11 @@ public class Group implements java.io.Serializable {
    */
   public org.mklab.mikity.model.xml.simplexml.model.Group[] getGroups() {
     final int size = this.groups.size();
-    final org.mklab.mikity.model.xml.simplexml.model.Group[] groups = new org.mklab.mikity.model.xml.simplexml.model.Group[size];
+    final org.mklab.mikity.model.xml.simplexml.model.Group[] localGroups = new org.mklab.mikity.model.xml.simplexml.model.Group[size];
     for (int i = 0; i < size; i++) {
-      groups[i] = this.groups.get(i);
+      localGroups[i] = this.groups.get(i);
     }
-    return groups;
+    return localGroups;
   } 
 
   /**
@@ -542,11 +542,11 @@ public class Group implements java.io.Serializable {
    */
   public org.mklab.mikity.model.xml.simplexml.model.XMLBox[] getXMLBox() {
     final int size = this.boxes.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLBox[] boxes = new org.mklab.mikity.model.xml.simplexml.model.XMLBox[size];
+    final org.mklab.mikity.model.xml.simplexml.model.XMLBox[] localBoxes = new org.mklab.mikity.model.xml.simplexml.model.XMLBox[size];
     for (int i = 0; i < size; i++) {
-      boxes[i] = this.boxes.get(i);
+      localBoxes[i] = this.boxes.get(i);
     }
-    return boxes;
+    return localBoxes;
   } 
 
   /**
@@ -588,11 +588,11 @@ public class Group implements java.io.Serializable {
    */
   public org.mklab.mikity.model.xml.simplexml.model.XMLCone[] getXMLCone() {
     final int size = this.cones.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLCone[] cones = new org.mklab.mikity.model.xml.simplexml.model.XMLCone[size];
+    final org.mklab.mikity.model.xml.simplexml.model.XMLCone[] localCones = new org.mklab.mikity.model.xml.simplexml.model.XMLCone[size];
     for (int i = 0; i < size; i++) {
-      cones[i] = this.cones.get(i);
+      localCones[i] = this.cones.get(i);
     }
-    return cones;
+    return localCones;
   } 
 
   /**
@@ -634,11 +634,11 @@ public class Group implements java.io.Serializable {
    */
   public org.mklab.mikity.model.xml.simplexml.model.XMLCylinder[] getXMLCylinder() {
     final int size = this.cylinders.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLCylinder[] cylinders = new org.mklab.mikity.model.xml.simplexml.model.XMLCylinder[size];
+    final org.mklab.mikity.model.xml.simplexml.model.XMLCylinder[] localCylinders = new org.mklab.mikity.model.xml.simplexml.model.XMLCylinder[size];
     for (int i = 0; i < size; i++) {
-      cylinders[i] = this.cylinders.get(i);
+      localCylinders[i] = this.cylinders.get(i);
     }
-    return cylinders;
+    return localCylinders;
   } 
 
   /**
@@ -680,11 +680,11 @@ public class Group implements java.io.Serializable {
    */
   public org.mklab.mikity.model.xml.simplexml.model.XMLSphere[] getXMLSphere() {
     final int size = this.spheres.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLSphere[] spheres = new org.mklab.mikity.model.xml.simplexml.model.XMLSphere[size];
+    final org.mklab.mikity.model.xml.simplexml.model.XMLSphere[] localSpheres = new org.mklab.mikity.model.xml.simplexml.model.XMLSphere[size];
     for (int i = 0; i < size; i++) {
-      spheres[i] = this.spheres.get(i);
+      localSpheres[i] = this.spheres.get(i);
     }
-    return spheres;
+    return localSpheres;
   } 
 
   /**
@@ -726,11 +726,11 @@ public class Group implements java.io.Serializable {
    */
   public org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon[] getXMLTrianglePolygon() {
     final int size = this.trianglePolygons.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon[] trianglePolygons = new org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon[size];
+    final org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon[] localTrianglePolygons = new org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon[size];
     for (int i = 0; i < size; i++) {
-      trianglePolygons[i] = this.trianglePolygons.get(i);
+      localTrianglePolygons[i] = this.trianglePolygons.get(i);
     }
-    return trianglePolygons;
+    return localTrianglePolygons;
   } 
 
   /**
@@ -772,11 +772,11 @@ public class Group implements java.io.Serializable {
    */
   public org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon[] getXMLQuadPolygon() {
     final int size = this.quadPolygons.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon[] quadPolygons = new org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon[size];
+    final org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon[] localQuadPolygons = new org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon[size];
     for (int i = 0; i < size; i++) {
-      quadPolygons[i] = this.quadPolygons.get(i);
+      localQuadPolygons[i] = this.quadPolygons.get(i);
     }
-    return quadPolygons;
+    return localQuadPolygons;
   } 
 
   /**
@@ -948,13 +948,12 @@ public class Group implements java.io.Serializable {
   /**
    * Method setLinkdata
    * 
-   * @param linkdataArray リンクデータの文字列
+   * @param links リンクデータの文字列
    */
-  public void setLinkData(org.mklab.mikity.model.xml.simplexml.model.LinkData[] linkdataArray) {
-    // -- copy array
+  public void setLinks(org.mklab.mikity.model.xml.simplexml.model.LinkData[] links) {
     this.links.clear();
-    for (int i = 0; i < linkdataArray.length; i++) {
-      this.links.add(linkdataArray[i]);
+    for (int i = 0; i < links.length; i++) {
+      this.links.add(links[i]);
     }
   } 
   

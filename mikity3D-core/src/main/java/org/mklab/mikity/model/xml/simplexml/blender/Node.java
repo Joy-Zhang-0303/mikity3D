@@ -365,7 +365,7 @@ public class Node {
         linkdata[2] = new LinkData();
         linkdata[2].setTargetName("locationZ"); //$NON-NLS-1$
         linkdata[2].setInitialValue(this.matrix4f.getElement(2,3)); // m23
-        this.group.setLinkData(linkdata);
+        this.group.setLinks(linkdata);
       }
     }
   }
