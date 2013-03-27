@@ -4,10 +4,6 @@
  */
 package org.mklab.mikity.view.gui.action.file;
 
-import java.io.IOException;
-
-import javax.xml.bind.JAXBException;
-
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.view.gui.ModelingWindow;

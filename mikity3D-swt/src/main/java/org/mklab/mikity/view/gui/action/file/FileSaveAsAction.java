@@ -5,9 +5,6 @@
 package org.mklab.mikity.view.gui.action.file;
 
 import java.io.File;
-import java.io.IOException;
-
-import javax.xml.bind.JAXBException;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;

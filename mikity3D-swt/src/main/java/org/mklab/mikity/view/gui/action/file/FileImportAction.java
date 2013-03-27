@@ -7,8 +7,6 @@ package org.mklab.mikity.view.gui.action.file;
 
 import java.io.IOException;
 
-import javax.xml.bind.JAXBException;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
