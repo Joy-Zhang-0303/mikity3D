@@ -13,30 +13,22 @@ import org.simpleframework.xml.Root;
 public class LinkData implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** target */
+  /** 対象となるパラメータの名前 */
   @Attribute(name="target")
   private String targetName;
 
-  /** constant value */
+  /** 定数の値 */
   @Attribute(name="const")
   private double constantValue;
 
-  /** column number */
+  /** データの列番号 */
   @Attribute(name="column")
   private int columnNumber;
 
-  //private boolean hasConstant;
-
-  //private boolean hasColumnNumber;
-
-  //private boolean hasDhParameter;
-
-  //private boolean hasCoordinateParameter;
-
   /**
-   * Returns the value of field 'column'.
+   * データの列番号を返します。
    * 
-   * @return the value of field 'column'.
+   * @return データの列番号
    */
   public int getColumnNumber() {
     return this.columnNumber;
@@ -53,10 +45,6 @@ public class LinkData implements java.io.Serializable {
     long temp;
     temp = Double.doubleToLongBits(this.constantValue);
     result = prime * result + (int)(temp ^ (temp >>> 32));
-    //result = prime * result + (this.hasColumnNumber ? 1231 : 1237);
-    //result = prime * result + (this.hasConstant ? 1231 : 1237);
-    //result = prime * result + (this.hasDhParameter ? 1231 : 1237);
-    //result = prime * result + (this.hasCoordinateParameter ? 1231 : 1237);
     result = prime * result + ((this.targetName == null) ? 0 : this.targetName.hashCode());
     return result;
   }
@@ -82,18 +70,6 @@ public class LinkData implements java.io.Serializable {
     if (Double.doubleToLongBits(this.constantValue) != Double.doubleToLongBits(other.constantValue)) {
       return false;
     }
-//    if (this.hasColumnNumber != other.hasColumnNumber) {
-//      return false;
-//    }
-//    if (this.hasConstant != other.hasConstant) {
-//      return false;
-//    }
-//    if (this.hasDhParameter != other.hasDhParameter) {
-//      return false;
-//    }
-//    if (this.hasCoordinateParameter != other.hasCoordinateParameter) {
-//      return false;
-//    }
     if (this.targetName == null) {
       if (other.targetName != null) {
         return false;
@@ -105,27 +81,27 @@ public class LinkData implements java.io.Serializable {
   }
 
   /**
-   * Returns the value of field 'const'.
+   * 定数の値を返します。
    * 
-   * @return the value of field 'const'.
+   * @return 定数の値
    */
   public double getConstantValue() {
     return this.constantValue;
   }
 
   /**
-   * Returns the value of field 'target'.
+   * 対象となるパラメータの名前を返します。
    * 
-   * @return the value of field 'target'.
+   * @return 対象となるパラメータの名前
    */
   public String getTargetName() {
     return this.targetName;
   }
 
   /**
-   * Method hasColumn
+   * データの列番号をもつか判別します。
    * 
-   * @return has_colimn
+   * @return データの列番号をもつならばtrue
    */
   public boolean hasColumnNumber() {
     if (this.columnNumber != 0) {
@@ -135,9 +111,9 @@ public class LinkData implements java.io.Serializable {
   }
 
   /**
-   * Method hasConst
+   * 定数をもつか判別します。
    * 
-   * @return has_const
+   * @return 定数をもつならばtrue
    */
   public boolean hasConstantValue() {
     if (this.constantValue != 0.0) {
@@ -147,16 +123,16 @@ public class LinkData implements java.io.Serializable {
   }
 
   /**
-   * Sets the value of field 'column'.
+   * データの列番号を設定します。
    * 
-   * @param column the value of field 'column'.
+   * @param column データの列番号
    */
   public void setColumnNumber(int column) {
     this.columnNumber = column;
   }
 
   /**
-   * Sets the value of field 'const'.
+   * 定数を設定します。
    * 
    * @param constantValue 定数
    */
@@ -165,9 +141,9 @@ public class LinkData implements java.io.Serializable {
   }
 
   /**
-   * Sets the value of field 'target'.
+   * 対象となるパラメータの名前を設定します。
    * 
-   * @param target the value of field 'target'.
+   * @param target 対象となるパラメータの名前
    */
   public void setTargetName(String target) {
     this.targetName = target;
