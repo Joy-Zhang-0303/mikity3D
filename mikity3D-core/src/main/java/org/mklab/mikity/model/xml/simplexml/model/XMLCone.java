@@ -50,11 +50,11 @@ public class XMLCone implements java.io.Serializable {
 
   /** _rotation */
   @Element(name="rotation")
-  private org.mklab.mikity.model.xml.simplexml.model.Rotation rotation;
+  private Rotation rotation;
 
   /** _location */
   @Element(name="location")
-  private org.mklab.mikity.model.xml.simplexml.model.Location location;
+  private Location location;
 
   /** propertyChangeListeners */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
@@ -228,7 +228,7 @@ public class XMLCone implements java.io.Serializable {
    * 
    * @return the value of field 'location'.
    */
-  public org.mklab.mikity.model.xml.simplexml.model.Location getLocation() {
+  public Location getLocation() {
     return this.location;
   }
 
@@ -246,7 +246,7 @@ public class XMLCone implements java.io.Serializable {
    * 
    * @return the value of field 'rotation'.
    */
-  public org.mklab.mikity.model.xml.simplexml.model.Rotation getRotation() {
+  public Rotation getRotation() {
     return this.rotation;
   }
 
@@ -355,7 +355,7 @@ public class XMLCone implements java.io.Serializable {
    * 
    * @param location the value of field 'location'.
    */
-  public void setLocation(org.mklab.mikity.model.xml.simplexml.model.Location location) {
+  public void setLocation(Location location) {
     this.location = location;
   }
 
@@ -374,7 +374,7 @@ public class XMLCone implements java.io.Serializable {
    * 
    * @param rotation the value of field 'rotation'.
    */
-  public void setRotation(org.mklab.mikity.model.xml.simplexml.model.Rotation rotation) {
+  public void setRotation(Rotation rotation) {
     this.rotation = rotation;
   }
 

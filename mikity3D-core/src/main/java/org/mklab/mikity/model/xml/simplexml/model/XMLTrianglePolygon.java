@@ -23,7 +23,7 @@ import org.simpleframework.xml.Root;
 @Root(name="trianglePolygon")
 public class XMLTrianglePolygon {
   @ElementList(type=Location.class, inline=true, required=true)
-  private List<Location> point;
+  private List<Location> points;
   
   @Attribute(name="color")
   private String color;
@@ -48,7 +48,7 @@ public class XMLTrianglePolygon {
    * 新しく生成された<code>XMLTrianglePolygon</code>オブジェクトを初期化します。
    */
   public XMLTrianglePolygon() {
-    this.point = new ArrayList<Location>(3);
+    this.points = new ArrayList<Location>(3);
     this.color = "orange"; //$NON-NLS-1$
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
     //setNormalVector();
@@ -61,9 +61,9 @@ public class XMLTrianglePolygon {
    * @param z Z座標
    */
   public void setPointLocation(int number, float x, float y, float z) {
-    this.point.get(number).setX(x);
-    this.point.get(number).setY(y);
-    this.point.get(number).setZ(z);
+    this.points.get(number).setX(x);
+    this.points.get(number).setY(y);
+    this.points.get(number).setZ(z);
     setNormalVector();
   }
 
@@ -73,9 +73,9 @@ public class XMLTrianglePolygon {
    * @param location3 座標3
    */
   public void setPointLocations(Location location1, Location location2, Location location3) {
-    this.point.set(0, location1);
-    this.point.set(1, location2);
-    this.point.set(2, location3);
+    this.points.set(0, location1);
+    this.points.set(1, location2);
+    this.points.set(2, location3);
     setNormalVector();
   }
 
@@ -83,7 +83,7 @@ public class XMLTrianglePolygon {
    * @param points 座標
    */
   public void setPointLocations(List<Location> points) {
-    this.point = points;
+    this.points = points;
     setNormalVector();
   }
 
@@ -102,10 +102,10 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param rot 回転
+   * @param rotation 回転
    */
-  public void setRotation(Rotation rot) {
-    this.rotation = rot;
+  public void setRotation(Rotation rotation) {
+    this.rotation = rotation;
   }
 
   /**
@@ -128,12 +128,12 @@ public class XMLTrianglePolygon {
    *  
    */
   private void setNormalVector() {
-    Vector3 v1 = new Vector3(this.point.get(1).getX() - this.point.get(0).getX(), this.point.get(1).getY() - this.point.get(0).getY(), this.point.get(1).getZ() - this.point.get(0).getZ());
-    Vector3 v2 = new Vector3(this.point.get(2).getX() - this.point.get(1).getX(), this.point.get(2).getY() - this.point.get(1).getY(), this.point.get(2).getZ() - this.point.get(1).getZ());
-    Vector3 n = v1.cross(v2).normalize();
-    this.normal[0] = n;
-    this.normal[1] = n;
-    this.normal[2] = n;
+    Vector3 v1 = new Vector3(this.points.get(1).getX() - this.points.get(0).getX(), this.points.get(1).getY() - this.points.get(0).getY(), this.points.get(1).getZ() - this.points.get(0).getZ());
+    Vector3 v2 = new Vector3(this.points.get(2).getX() - this.points.get(1).getX(), this.points.get(2).getY() - this.points.get(1).getY(), this.points.get(2).getZ() - this.points.get(1).getZ());
+    Vector3 normalVector = v1.cross(v2).normalize();
+    this.normal[0] = normalVector;
+    this.normal[1] = normalVector;
+    this.normal[2] = normalVector;
   }
 
   /**
@@ -148,7 +148,7 @@ public class XMLTrianglePolygon {
    * @return x location
    */
   public float getPointLocationX(int number) {
-    return this.point.get(number).getX();
+    return this.points.get(number).getX();
   }
 
   /**
@@ -156,7 +156,7 @@ public class XMLTrianglePolygon {
    * @return y location
    */
   public float getPointLocationY(int number) {
-    return this.point.get(number).getY();
+    return this.points.get(number).getY();
   }
 
   /**
@@ -164,7 +164,7 @@ public class XMLTrianglePolygon {
    * @return z location
    */
   public float getPointLocationZ(int number) {
-    return this.point.get(number).getZ();
+    return this.points.get(number).getZ();
   }
 
   /**
