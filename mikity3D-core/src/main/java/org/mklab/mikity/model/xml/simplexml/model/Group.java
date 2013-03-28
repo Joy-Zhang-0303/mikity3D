@@ -23,11 +23,11 @@ public class Group implements java.io.Serializable {
   
   /** location */
   @Element(name="location")
-  private org.mklab.mikity.model.xml.simplexml.model.Location location;
+  private Location location;
 
   /** rotation */
   @Element(name="rotation")
-  private org.mklab.mikity.model.xml.simplexml.model.Rotation rotation;
+  private Rotation rotation;
   
   /** Boxes */
   @ElementList(type=XMLBox.class, inline=true, required=false)
@@ -83,7 +83,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param vGroup グループ
    */
-  public void addGroup(org.mklab.mikity.model.xml.simplexml.model.Group vGroup) {
+  public void addGroup(Group vGroup) {
     this.groups.add(vGroup);
   } 
 
@@ -93,7 +93,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vGroup グループ
    */
-  public void addGroup(int index, org.mklab.mikity.model.xml.simplexml.model.Group vGroup) {
+  public void addGroup(int index, Group vGroup) {
     this.groups.add(index, vGroup);
   } 
 
@@ -102,7 +102,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param vLinkdata リンクデータ
    */
-  public void addLinkdata(org.mklab.mikity.model.xml.simplexml.model.LinkData vLinkdata) {
+  public void addLinkdata(LinkData vLinkdata) {
     this.links.add(vLinkdata);
   } 
 
@@ -112,7 +112,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vLinkdata リンクデータ
    */
-  public void addLinkdata(int index, org.mklab.mikity.model.xml.simplexml.model.LinkData vLinkdata) {
+  public void addLinkdata(int index, LinkData vLinkdata) {
     this.links.add(index, vLinkdata);
   } 
 
@@ -121,7 +121,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param vXMLBox ボックス
    */
-  public void addXMLBox(org.mklab.mikity.model.xml.simplexml.model.XMLBox vXMLBox) {
+  public void addXMLBox(XMLBox vXMLBox) {
     this.boxes.add(vXMLBox);
   } 
 
@@ -131,7 +131,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLBox ボックス
    */
-  public void addXMLBox(int index, org.mklab.mikity.model.xml.simplexml.model.XMLBox vXMLBox) {
+  public void addXMLBox(int index, XMLBox vXMLBox) {
     this.boxes.add(index, vXMLBox);
   } 
 
@@ -140,7 +140,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param vXMLCone コーン
    */
-  public void addXMLCone(org.mklab.mikity.model.xml.simplexml.model.XMLCone vXMLCone) {
+  public void addXMLCone(XMLCone vXMLCone) {
     this.cones.add(vXMLCone);
   } 
 
@@ -150,7 +150,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLCone コーン
    */
-  public void addXMLCone(int index, org.mklab.mikity.model.xml.simplexml.model.XMLCone vXMLCone) {
+  public void addXMLCone(int index, XMLCone vXMLCone) {
     this.cones.add(index, vXMLCone);
   } 
   
@@ -159,7 +159,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param vXMLCylinder シリンダー
    */
-  public void addXMLCylinder(org.mklab.mikity.model.xml.simplexml.model.XMLCylinder vXMLCylinder) {
+  public void addXMLCylinder(XMLCylinder vXMLCylinder) {
     this.cylinders.add(vXMLCylinder);
   } 
 
@@ -169,7 +169,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLCylinder シリンダー
    */
-  public void addXMLCylinder(int index, org.mklab.mikity.model.xml.simplexml.model.XMLCylinder vXMLCylinder) {
+  public void addXMLCylinder(int index, XMLCylinder vXMLCylinder) {
     this.cylinders.add(index, vXMLCylinder);
   } 
 
@@ -178,7 +178,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param vXMLSphere スフィア
    */
-  public void addXMLSphere(org.mklab.mikity.model.xml.simplexml.model.XMLSphere vXMLSphere) {
+  public void addXMLSphere(XMLSphere vXMLSphere) {
     this.spheres.add(vXMLSphere);
   } 
 
@@ -188,7 +188,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLSphere スフィア
    */
-  public void addXMLSphere(int index, org.mklab.mikity.model.xml.simplexml.model.XMLSphere vXMLSphere) {
+  public void addXMLSphere(int index, XMLSphere vXMLSphere) {
     this.spheres.add(index, vXMLSphere);
   } 
 
@@ -197,7 +197,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param vXMLTrianglePolygon 三角形のポリゴン
    */
-  public void addXMLTrianglePolygon(org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon vXMLTrianglePolygon) {
+  public void addXMLTrianglePolygon(XMLTrianglePolygon vXMLTrianglePolygon) {
     this.trianglePolygons.add(vXMLTrianglePolygon);
   } 
   
@@ -207,7 +207,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLTrianglePolygon 三角形のポリゴン
    */
-  public void addXMLTrianglePolygon(int index, org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon vXMLTrianglePolygon) {
+  public void addXMLTrianglePolygon(int index, XMLTrianglePolygon vXMLTrianglePolygon) {
     this.trianglePolygons.add(index, vXMLTrianglePolygon);
   } 
 
@@ -216,7 +216,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param vXMLQuadPolygon 四角形のポリゴン
    */
-  public void addXMLQuadPolygon(org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon vXMLQuadPolygon) {
+  public void addXMLQuadPolygon(XMLQuadPolygon vXMLQuadPolygon) {
     this.quadPolygons.add(vXMLQuadPolygon);
   } 
 
@@ -226,7 +226,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLQuadPolygon 四角形のポリゴン
    */
-  public void addXMLQuadPolygon(int index, org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon vXMLQuadPolygon) {
+  public void addXMLQuadPolygon(int index, XMLQuadPolygon vXMLQuadPolygon) {
     this.quadPolygons.add(index, vXMLQuadPolygon);
   } 
 
@@ -290,9 +290,9 @@ public class Group implements java.io.Serializable {
    * Method getGroup
    * 
    * @param index インデックス
-   * @return _groupList.get(index)
+   * @return グループ
    */
-  public org.mklab.mikity.model.xml.simplexml.model.Group getGroup(int index) {
+  public Group getGroup(int index) {
     if ((index < 0) || (index > this.groups.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -421,9 +421,9 @@ public class Group implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.simplexml.model.Group[] getGroups() {
+  public Group[] getGroups() {
     final int size = this.groups.size();
-    final org.mklab.mikity.model.xml.simplexml.model.Group[] localGroups = new org.mklab.mikity.model.xml.simplexml.model.Group[size];
+    final Group[] localGroups = new Group[size];
     for (int i = 0; i < size; i++) {
       localGroups[i] = this.groups.get(i);
     }
@@ -454,7 +454,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @return _linkdataList.get(index)
    */
-  public org.mklab.mikity.model.xml.simplexml.model.LinkData getLinkData(int index) {
+  public LinkData getLinkData(int index) {
     if ((index < 0) || (index > this.links.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -467,9 +467,9 @@ public class Group implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.simplexml.model.LinkData[] getLinkData() {
+  public LinkData[] getLinkData() {
     final int size = this.links.size();
-    final org.mklab.mikity.model.xml.simplexml.model.LinkData[] linkDatas = new org.mklab.mikity.model.xml.simplexml.model.LinkData[size];
+    final LinkData[] linkDatas = new LinkData[size];
     for (int i = 0; i < size; i++) {
       linkDatas[i] = this.links.get(i);
     }
@@ -499,7 +499,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return the value of field 'location'.
    */
-  public org.mklab.mikity.model.xml.simplexml.model.Location getLocation() {
+  public Location getLocation() {
     return this.location;
   } 
 
@@ -517,7 +517,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return the value of field 'rotation'.
    */
-  public org.mklab.mikity.model.xml.simplexml.model.Rotation getRotation() {
+  public Rotation getRotation() {
     return this.rotation;
   } 
 
@@ -527,7 +527,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLBoxList.get(index)
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLBox getXMLBox(int index) {
+  public XMLBox getXMLBox(int index) {
     if ((index < 0) || (index > this.boxes.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -540,9 +540,9 @@ public class Group implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLBox[] getXMLBox() {
+  public XMLBox[] getXMLBox() {
     final int size = this.boxes.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLBox[] localBoxes = new org.mklab.mikity.model.xml.simplexml.model.XMLBox[size];
+    final XMLBox[] localBoxes = new XMLBox[size];
     for (int i = 0; i < size; i++) {
       localBoxes[i] = this.boxes.get(i);
     }
@@ -573,7 +573,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLConeList.get(index)
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLCone getXMLCone(int index) {
+  public XMLCone getXMLCone(int index) {
     if ((index < 0) || (index > this.cones.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -586,9 +586,9 @@ public class Group implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLCone[] getXMLCone() {
+  public XMLCone[] getXMLCone() {
     final int size = this.cones.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLCone[] localCones = new org.mklab.mikity.model.xml.simplexml.model.XMLCone[size];
+    final XMLCone[] localCones = new XMLCone[size];
     for (int i = 0; i < size; i++) {
       localCones[i] = this.cones.get(i);
     }
@@ -619,7 +619,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLCylinderList.get(index)
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLCylinder getXMLCylinder(int index) {
+  public XMLCylinder getXMLCylinder(int index) {
     if ((index < 0) || (index > this.cylinders.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -632,9 +632,9 @@ public class Group implements java.io.Serializable {
    * 
    * @return _XMLCylinderList.get(index)
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLCylinder[] getXMLCylinder() {
+  public XMLCylinder[] getXMLCylinder() {
     final int size = this.cylinders.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLCylinder[] localCylinders = new org.mklab.mikity.model.xml.simplexml.model.XMLCylinder[size];
+    final XMLCylinder[] localCylinders = new XMLCylinder[size];
     for (int i = 0; i < size; i++) {
       localCylinders[i] = this.cylinders.get(i);
     }
@@ -665,7 +665,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLSphereList.get(index)
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLSphere getXMLSphere(int index) {
+  public XMLSphere getXMLSphere(int index) {
     if ((index < 0) || (index > this.spheres.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -678,9 +678,9 @@ public class Group implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLSphere[] getXMLSphere() {
+  public XMLSphere[] getXMLSphere() {
     final int size = this.spheres.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLSphere[] localSpheres = new org.mklab.mikity.model.xml.simplexml.model.XMLSphere[size];
+    final XMLSphere[] localSpheres = new XMLSphere[size];
     for (int i = 0; i < size; i++) {
       localSpheres[i] = this.spheres.get(i);
     }
@@ -711,7 +711,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLTrianglePolygonList.get(index)
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon getXMLTrianglePolygon(int index) {
+  public XMLTrianglePolygon getXMLTrianglePolygon(int index) {
     if ((index < 0) || (index > this.trianglePolygons.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -724,9 +724,9 @@ public class Group implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon[] getXMLTrianglePolygon() {
+  public XMLTrianglePolygon[] getXMLTrianglePolygon() {
     final int size = this.trianglePolygons.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon[] localTrianglePolygons = new org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon[size];
+    final XMLTrianglePolygon[] localTrianglePolygons = new XMLTrianglePolygon[size];
     for (int i = 0; i < size; i++) {
       localTrianglePolygons[i] = this.trianglePolygons.get(i);
     }
@@ -757,7 +757,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLQuadPolygonList.get(index)
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon getXMLQuadPolygon(int index) {
+  public XMLQuadPolygon getXMLQuadPolygon(int index) {
     if ((index < 0) || (index > this.quadPolygons.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -770,9 +770,9 @@ public class Group implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon[] getXMLQuadPolygon() {
+  public XMLQuadPolygon[] getXMLQuadPolygon() {
     final int size = this.quadPolygons.size();
-    final org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon[] localQuadPolygons = new org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon[size];
+    final XMLQuadPolygon[] localQuadPolygons = new XMLQuadPolygon[size];
     for (int i = 0; i < size; i++) {
       localQuadPolygons[i] = this.quadPolygons.get(i);
     }
@@ -803,7 +803,7 @@ public class Group implements java.io.Serializable {
    * @param vGroup グループ
    * @return removed
    */
-  public boolean removeGroup(org.mklab.mikity.model.xml.simplexml.model.Group vGroup) {
+  public boolean removeGroup(Group vGroup) {
     boolean removed = this.groups.remove(vGroup);
     return removed;
   } 
@@ -814,7 +814,7 @@ public class Group implements java.io.Serializable {
    * @param vLinkdata リンクデータ
    * @return removed
    */
-  public boolean removeLinkdata(org.mklab.mikity.model.xml.simplexml.model.LinkData vLinkdata) {
+  public boolean removeLinkdata(LinkData vLinkdata) {
     boolean removed = this.links.remove(vLinkdata);
     return removed;
   } 
@@ -825,7 +825,7 @@ public class Group implements java.io.Serializable {
    * @param vXMLBox ボックス
    * @return removed
    */
-  public boolean removeXMLBox(org.mklab.mikity.model.xml.simplexml.model.XMLBox vXMLBox) {
+  public boolean removeXMLBox(XMLBox vXMLBox) {
     boolean removed = this.boxes.remove(vXMLBox);
     return removed;
   } 
@@ -836,7 +836,7 @@ public class Group implements java.io.Serializable {
    * @param vXMLCone コーン
    * @return removed
    */
-  public boolean removeXMLCone(org.mklab.mikity.model.xml.simplexml.model.XMLCone vXMLCone) {
+  public boolean removeXMLCone(XMLCone vXMLCone) {
     boolean removed = this.cones.remove(vXMLCone);
     return removed;
   } 
@@ -847,7 +847,7 @@ public class Group implements java.io.Serializable {
    * @param vXMLCylinder シリンダー
    * @return removed
    */
-  public boolean removeXMLCylinder(org.mklab.mikity.model.xml.simplexml.model.XMLCylinder vXMLCylinder) {
+  public boolean removeXMLCylinder(XMLCylinder vXMLCylinder) {
     boolean removed = this.cylinders.remove(vXMLCylinder);
     return removed;
   } 
@@ -858,7 +858,7 @@ public class Group implements java.io.Serializable {
    * @param vXMLSphere スフィア
    * @return removed
    */
-  public boolean removeXMLSphere(org.mklab.mikity.model.xml.simplexml.model.XMLSphere vXMLSphere) {
+  public boolean removeXMLSphere(XMLSphere vXMLSphere) {
     boolean removed = this.spheres.remove(vXMLSphere);
     return removed;
   } 
@@ -868,7 +868,7 @@ public class Group implements java.io.Serializable {
    * @param vXMLTrianglePolygon 三角形のポリゴン
    * @return removed
    */
-  public boolean removeXMLTrianglePolygon(org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon vXMLTrianglePolygon) {
+  public boolean removeXMLTrianglePolygon(XMLTrianglePolygon vXMLTrianglePolygon) {
     boolean removed = this.trianglePolygons.remove(vXMLTrianglePolygon);
     return removed;
   } 
@@ -879,7 +879,7 @@ public class Group implements java.io.Serializable {
    * @param vXMLQuadPolygon 四角形のポリゴン
    * @return removed
    */
-  public boolean removeXMLQuadPolygon(org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon vXMLQuadPolygon) {
+  public boolean removeXMLQuadPolygon(XMLQuadPolygon vXMLQuadPolygon) {
     boolean removed = this.quadPolygons.remove(vXMLQuadPolygon);
     return removed;
   } 
@@ -890,7 +890,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vGroup グループ
    */
-  public void setGroup(int index, org.mklab.mikity.model.xml.simplexml.model.Group vGroup) {
+  public void setGroup(int index, Group vGroup) {
     if ((index < 0) || (index > this.groups.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -902,7 +902,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param groupArray グループの文字列
    */
-  public void setGroup(org.mklab.mikity.model.xml.simplexml.model.Group[] groupArray) {
+  public void setGroup(Group[] groupArray) {
     // -- copy array
     this.groups.clear();
     for (int i = 0; i < groupArray.length; i++) {
@@ -938,7 +938,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vLinkdata リンクデータ
    */
-  public void setLinkData(int index, org.mklab.mikity.model.xml.simplexml.model.LinkData vLinkdata) {
+  public void setLinkData(int index, LinkData vLinkdata) {
     if ((index < 0) || (index > this.links.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -950,7 +950,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param links リンクデータの文字列
    */
-  public void setLinks(org.mklab.mikity.model.xml.simplexml.model.LinkData[] links) {
+  public void setLinks(LinkData[] links) {
     this.links.clear();
     for (int i = 0; i < links.length; i++) {
       this.links.add(links[i]);
@@ -971,7 +971,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param location the value of field 'location'.
    */
-  public void setLocation(org.mklab.mikity.model.xml.simplexml.model.Location location) {
+  public void setLocation(Location location) {
     this.location = location;
   } 
 
@@ -989,7 +989,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param rotation the value of field 'rotation'.
    */
-  public void setRotation(org.mklab.mikity.model.xml.simplexml.model.Rotation rotation) {
+  public void setRotation(Rotation rotation) {
     this.rotation = rotation;
   } 
 
@@ -999,7 +999,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLBox ボックス
    */
-  public void setXMLBox(int index, org.mklab.mikity.model.xml.simplexml.model.XMLBox vXMLBox) {
+  public void setXMLBox(int index, XMLBox vXMLBox) {
     if ((index < 0) || (index > this.boxes.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1011,7 +1011,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLBoxArray ボックスの文字列
    */
-  public void setXMLBox(org.mklab.mikity.model.xml.simplexml.model.XMLBox[] XMLBoxArray) {
+  public void setXMLBox(XMLBox[] XMLBoxArray) {
     // -- copy array
     this.boxes.clear();
     for (int i = 0; i < XMLBoxArray.length; i++) {
@@ -1034,7 +1034,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLCone コーン
    */
-  public void setXMLCone(int index, org.mklab.mikity.model.xml.simplexml.model.XMLCone vXMLCone) {
+  public void setXMLCone(int index, XMLCone vXMLCone) {
     if ((index < 0) || (index > this.cones.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1046,7 +1046,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLConeArray コーンの文字列
    */
-  public void setXMLCone(org.mklab.mikity.model.xml.simplexml.model.XMLCone[] XMLConeArray) {
+  public void setXMLCone(XMLCone[] XMLConeArray) {
     // -- copy array
     this.cones.clear();
     for (int i = 0; i < XMLConeArray.length; i++) {
@@ -1069,7 +1069,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLCylinder シリンダー
    */
-  public void setXMLCylinder(int index, org.mklab.mikity.model.xml.simplexml.model.XMLCylinder vXMLCylinder) {
+  public void setXMLCylinder(int index, XMLCylinder vXMLCylinder) {
     if ((index < 0) || (index > this.cylinders.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1081,7 +1081,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLCylinderArray シリンダーの文字列
    */
-  public void setXMLCylinder(org.mklab.mikity.model.xml.simplexml.model.XMLCylinder[] XMLCylinderArray) {
+  public void setXMLCylinder(XMLCylinder[] XMLCylinderArray) {
     // -- copy array
     this.cylinders.clear();
     for (int i = 0; i < XMLCylinderArray.length; i++) {
@@ -1104,7 +1104,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLSphere スフィア
    */
-  public void setXMLSphere(int index, org.mklab.mikity.model.xml.simplexml.model.XMLSphere vXMLSphere) {
+  public void setXMLSphere(int index, XMLSphere vXMLSphere) {
     if ((index < 0) || (index > this.spheres.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1116,7 +1116,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLSphereArray スフィアの文字列
    */
-  public void setXMLSphere(org.mklab.mikity.model.xml.simplexml.model.XMLSphere[] XMLSphereArray) {
+  public void setXMLSphere(XMLSphere[] XMLSphereArray) {
     // -- copy array
     this.spheres.clear();
     for (int i = 0; i < XMLSphereArray.length; i++) {
@@ -1139,7 +1139,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLTrianglePolygon 三角形のポリゴン
    */
-  public void setXMLTrianglePolygon(int index, org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon vXMLTrianglePolygon) {
+  public void setXMLTrianglePolygon(int index, XMLTrianglePolygon vXMLTrianglePolygon) {
     if ((index < 0) || (index > this.trianglePolygons.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1151,7 +1151,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLTrianglePolygonArray 三角形のポリゴンの文字列
    */
-  public void setXMLTrianglePolygon(org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon[] XMLTrianglePolygonArray) {
+  public void setXMLTrianglePolygon(XMLTrianglePolygon[] XMLTrianglePolygonArray) {
     // -- copy array
     this.trianglePolygons.clear();
     for (int i = 0; i < XMLTrianglePolygonArray.length; i++) {
@@ -1174,7 +1174,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param vXMLQuadPolygon 四角形のポリゴン
    */
-  public void setXMLQuadPolygon(int index, org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon vXMLQuadPolygon) {
+  public void setXMLQuadPolygon(int index, XMLQuadPolygon vXMLQuadPolygon) {
     if ((index < 0) || (index > this.quadPolygons.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1186,7 +1186,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param XMLQuadPolygonArray 四角形ポリゴンの文字列
    */
-  public void setXMLQuadPolygon(org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon[] XMLQuadPolygonArray) {
+  public void setXMLQuadPolygon(XMLQuadPolygon[] XMLQuadPolygonArray) {
     // -- copy array
     this.quadPolygons.clear();
     for (int i = 0; i < XMLQuadPolygonArray.length; i++) {
