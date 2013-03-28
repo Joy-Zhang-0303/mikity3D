@@ -58,27 +58,6 @@ public class Location implements java.io.Serializable {
   }
 
   /**
-   * Method deleteX
-   */
-  public void deleteX() {
-    this.hasX = false;
-  } 
-
-  /**
-   * Method deleteY
-   */
-  public void deleteY() {
-    this.hasY = false;
-  }
-
-  /**
-   * Method deleteZ
-   */
-  public void deleteZ() {
-    this.hasZ = false;
-  }
-
-  /**
    * Returns the value of field 'x'.
    * 
    * @return the value of field 'x'.
