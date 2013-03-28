@@ -67,10 +67,10 @@ public class EditPrimitiveDialog {
   private ParameterInputBox newLocY;
   private ParameterInputBox newLocZ;
 
-  private boolean rotB = true;
-  private boolean locB = true;
-  private boolean rotA = true;
-  private boolean locA = true;
+  private boolean rotationB = true;
+  private boolean locationB = true;
+  private boolean rotationA = true;
+  private boolean locationA = true;
 
   /**
    * コンストラクター
@@ -320,10 +320,10 @@ public class EditPrimitiveDialog {
     final Location loc = new Location();
 
     if (this.newRotX.getFloatValue() == 0 && this.newRotY.getFloatValue() == 0 && this.newRotZ.getFloatValue() == 0) {
-      this.rotA = false;
+      this.rotationA = false;
     }
     if (this.newLocX.getFloatValue() == 0 && this.newLocY.getFloatValue() == 0 && this.newLocZ.getFloatValue() == 0) {
-      this.locA = false;
+      this.locationA = false;
     }
 
     if (this.primitive instanceof XMLBox) {
@@ -331,19 +331,19 @@ public class EditPrimitiveDialog {
       box.setXsize(this.newParam1.getFloatValue());
       box.setYsize(this.newParam2.getFloatValue());
       box.setZsize(this.newParam3.getFloatValue());
-      if (this.rotB == false) {
-        if (this.rotA == true) {
-          box.setRotation(setRot(rot));
+      if (this.rotationB == false) {
+        if (this.rotationA == true) {
+          box.setRotation(setRotation(rot));
         }
       } else {
-        setRot(box.getRotation());
+        setRotation(box.getRotation());
       }
-      if (this.locB == false) {
-        if (this.locA == true) {
-          box.setLocation(setLoc(loc));
+      if (this.locationB == false) {
+        if (this.locationA == true) {
+          box.setLocation(setLocation(loc));
         }
       } else {
-        setLoc(box.getLocation());
+        setLocation(box.getLocation());
       }
       box.setColor(this.colorCombo.getColorComboBox().getText());
     } else if (this.primitive instanceof XMLCylinder) {
@@ -352,38 +352,38 @@ public class EditPrimitiveDialog {
       cyl.setHeight(this.newParam2.getFloatValue());
       cyl.setDiv(setDiv(this.newParam3));
 
-      if (this.rotB == false) {
-        if (this.rotA == true) {
-          cyl.setRotation(setRot(rot));
+      if (this.rotationB == false) {
+        if (this.rotationA == true) {
+          cyl.setRotation(setRotation(rot));
         }
       } else {
-        setRot(cyl.getRotation());
+        setRotation(cyl.getRotation());
       }
-      if (this.locB == false) {
-        if (this.locA == true) {
-          cyl.setLocation(setLoc(loc));
+      if (this.locationB == false) {
+        if (this.locationA == true) {
+          cyl.setLocation(setLocation(loc));
         }
       } else {
-        setLoc(cyl.getLocation());
+        setLocation(cyl.getLocation());
       }
       cyl.setColor(this.colorCombo.getColorComboBox().getText());
     } else if (this.primitive instanceof XMLSphere) {
       final XMLSphere sph = (XMLSphere)this.primitive;
       sph.setRadius(this.newParam1.getFloatValue());
       sph.setDiv(setDiv(this.newParam2));
-      if (this.rotB == false) {
-        if (this.rotA == true) {
-          sph.setRotation(setRot(rot));
+      if (this.rotationB == false) {
+        if (this.rotationA == true) {
+          sph.setRotation(setRotation(rot));
         }
       } else {
-        setRot(sph.getRotation());
+        setRotation(sph.getRotation());
       }
-      if (this.locB == false) {
-        if (this.locA == true) {
-          sph.setLocation(setLoc(loc));
+      if (this.locationB == false) {
+        if (this.locationA == true) {
+          sph.setLocation(setLocation(loc));
         }
       } else {
-        setLoc(sph.getLocation());
+        setLocation(sph.getLocation());
       }
       sph.setColor(this.colorCombo.getColorComboBox().getText());
     } else if (this.primitive instanceof XMLCone) {
@@ -391,19 +391,19 @@ public class EditPrimitiveDialog {
       cone.setRadius(this.newParam1.getFloatValue());
       cone.setHeight(this.newParam2.getFloatValue());
       cone.setDiv(setDiv(this.newParam3));
-      if (this.rotB == false) {
-        if (this.rotA == true) {
-          cone.setRotation(setRot(rot));
+      if (this.rotationB == false) {
+        if (this.rotationA == true) {
+          cone.setRotation(setRotation(rot));
         }
       } else {
-        setRot(cone.getRotation());
+        setRotation(cone.getRotation());
       }
-      if (this.locB == false) {
-        if (this.locA == true) {
-          cone.setLocation(setLoc(loc));
+      if (this.locationB == false) {
+        if (this.locationA == true) {
+          cone.setLocation(setLocation(loc));
         }
       } else {
-        setLoc(cone.getLocation());
+        setLocation(cone.getLocation());
       }
       cone.setColor(this.colorCombo.getColorComboBox().getText());
     }
@@ -413,28 +413,28 @@ public class EditPrimitiveDialog {
   /**
    * Rotationを設定 受け取ったRotationを変更に応じて設定
    * 
-   * @param rot
+   * @param rotation
    * @return rot
    */
-  private Rotation setRot(Rotation rot) {
-    rot.setXrotation(this.newRotX.getFloatValue());
-    rot.setYrotation(this.newRotY.getFloatValue());
-    rot.setZrotation(this.newRotZ.getFloatValue());
-    return rot;
+  private Rotation setRotation(Rotation rotation) {
+    rotation.setXrotation(this.newRotX.getFloatValue());
+    rotation.setYrotation(this.newRotY.getFloatValue());
+    rotation.setZrotation(this.newRotZ.getFloatValue());
+    return rotation;
 
   }
 
   /**
    * Locationを設定 受け取ったLocationを変更に応じて設定
    * 
-   * @param loc
+   * @param location
    * @return loc
    */
-  private Location setLoc(Location loc) {
-    loc.setX(this.newLocX.getFloatValue());
-    loc.setY(this.newLocY.getFloatValue());
-    loc.setZ(this.newLocZ.getFloatValue());
-    return loc;
+  private Location setLocation(Location location) {
+    location.setX(this.newLocX.getFloatValue());
+    location.setY(this.newLocY.getFloatValue());
+    location.setZ(this.newLocZ.getFloatValue());
+    return location;
 
   }
 
@@ -469,15 +469,15 @@ public class EditPrimitiveDialog {
       final Location loc = box.getLocation();
       if (rot == null) {
         // 変換前にRotationが存在しなかったことを示す
-        this.rotB = false;
+        this.rotationB = false;
       } else {
-        getRot(rot);
+        getRotation(rot);
       }
       if (loc == null) {
         // 変換前にLocationが存在しなかったことを示す
-        this.locB = false;
+        this.locationB = false;
       } else {
-        getLoc(loc);
+        getLocation(loc);
       }
       boxLabel();
       this.primLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
@@ -494,14 +494,14 @@ public class EditPrimitiveDialog {
       final Rotation rot = cyl.getRotation();
       final Location loc = cyl.getLocation();
       if (rot == null) {
-        this.rotB = false;
+        this.rotationB = false;
       } else {
-        getRot(rot);
+        getRotation(rot);
       }
       if (loc == null) {
-        this.locB = false;
+        this.locationB = false;
       } else {
-        getLoc(loc);
+        getLocation(loc);
       }
       cylLabel();
       this.primLabel.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
@@ -516,14 +516,14 @@ public class EditPrimitiveDialog {
       final Rotation rot = sph.getRotation();
       final Location loc = sph.getLocation();
       if (rot == null) {
-        this.rotB = false;
+        this.rotationB = false;
       } else {
-        getRot(rot);
+        getRotation(rot);
       }
       if (loc == null) {
-        this.locB = false;
+        this.locationB = false;
       } else {
-        getLoc(loc);
+        getLocation(loc);
       }
       sphLabel();
       this.primLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
@@ -540,14 +540,14 @@ public class EditPrimitiveDialog {
       final Rotation rot = cone.getRotation();
       final Location loc = cone.getLocation();
       if (rot == null) {
-        this.rotB = false;
+        this.rotationB = false;
       } else {
-        getRot(rot);
+        getRotation(rot);
       }
       if (loc == null) {
-        this.locB = false;
+        this.locationB = false;
       } else {
-        getLoc(loc);
+        getLocation(loc);
       }
       coneLabel();
       this.primLabel.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
@@ -634,35 +634,35 @@ public class EditPrimitiveDialog {
   /**
    * 平行移動、回転移動の値を読み取る 空の場合はゼロを入れる
    * 
-   * @param rot
+   * @param rotation
    */
-  private void getRot(Rotation rot) {
-    if (rot.hasXrotation() || rot.getXrotation() != 0.0f) {
-      this.rotX.setText("" + rot.getXrotation()); //$NON-NLS-1$
-      this.newRotX.setText("" + rot.getXrotation()); //$NON-NLS-1$
+  private void getRotation(Rotation rotation) {
+    if (rotation.hasXrotation() || rotation.getXrotation() != 0.0f) {
+      this.rotX.setText("" + rotation.getXrotation()); //$NON-NLS-1$
+      this.newRotX.setText("" + rotation.getXrotation()); //$NON-NLS-1$
     }
-    if (rot.hasYrotation() || rot.getYrotation() != 0.0f) {
-      this.rotY.setText("" + rot.getYrotation()); //$NON-NLS-1$
-      this.newRotY.setText("" + rot.getYrotation()); //$NON-NLS-1$
+    if (rotation.hasYrotation() || rotation.getYrotation() != 0.0f) {
+      this.rotY.setText("" + rotation.getYrotation()); //$NON-NLS-1$
+      this.newRotY.setText("" + rotation.getYrotation()); //$NON-NLS-1$
     }
-    if (rot.hasZrotation() || rot.getXrotation() != 0.0f) {
-      this.rotZ.setText("" + rot.getZrotation()); //$NON-NLS-1$
-      this.newRotZ.setText("" + rot.getZrotation()); //$NON-NLS-1$
+    if (rotation.hasZrotation() || rotation.getXrotation() != 0.0f) {
+      this.rotZ.setText("" + rotation.getZrotation()); //$NON-NLS-1$
+      this.newRotZ.setText("" + rotation.getZrotation()); //$NON-NLS-1$
     }
   }
 
-  private void getLoc(Location loc) {
-    if (loc.hasX() || loc.getX() != 0.0f) {
-      this.locX.setText("" + loc.getX()); //$NON-NLS-1$
-      this.newLocX.setText("" + loc.getX()); //$NON-NLS-1$
+  private void getLocation(Location location) {
+    if (location.hasX() || location.getX() != 0.0f) {
+      this.locX.setText("" + location.getX()); //$NON-NLS-1$
+      this.newLocX.setText("" + location.getX()); //$NON-NLS-1$
     }
-    if (loc.hasY() || loc.getY() != 0.0f) {
-      this.locY.setText("" + loc.getY()); //$NON-NLS-1$
-      this.newLocY.setText("" + loc.getY()); //$NON-NLS-1$
+    if (location.hasY() || location.getY() != 0.0f) {
+      this.locY.setText("" + location.getY()); //$NON-NLS-1$
+      this.newLocY.setText("" + location.getY()); //$NON-NLS-1$
     }
-    if (loc.hasZ() || loc.getZ() != 0.0f) {
-      this.locZ.setText("" + loc.getZ()); //$NON-NLS-1$
-      this.newLocZ.setText("" + loc.getZ()); //$NON-NLS-1$
+    if (location.hasZ() || location.getZ() != 0.0f) {
+      this.locZ.setText("" + location.getZ()); //$NON-NLS-1$
+      this.newLocZ.setText("" + location.getZ()); //$NON-NLS-1$
     }
   }
 }

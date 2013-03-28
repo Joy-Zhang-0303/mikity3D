@@ -388,48 +388,48 @@ public class SceneGraphTree {
   /**
    * ターゲットを指定
    * 
-   * @param obj
+   * @param object
    */
-  private void setTarget(Object obj) {
+  private void setTarget(Object object) {
     setAllTransparent(this.model.getGroup(0), true);
 
-    if (obj instanceof XMLBox) {
-      ((XMLBox)obj).setTransparent(false);
-    } else if (obj instanceof XMLCone) {
-      ((XMLCone)obj).setTransparent(false);
-    } else if (obj instanceof XMLCylinder) {
-      ((XMLCylinder)obj).setTransparent(false);
-    } else if (obj instanceof XMLSphere) {
-      ((XMLSphere)obj).setTransparent(false);
-    } else if (obj instanceof XMLTrianglePolygon) {
-      ((XMLTrianglePolygon)obj).setTransparent(false);
-    } else if (obj instanceof XMLQuadPolygon) {
-      ((XMLQuadPolygon)obj).setTransparent(false);
-    } else if (obj instanceof Group) {
-      Group group = (Group)obj;
-      final XMLBox[] xmlBox = group.getXMLBox();
-      for (int i = 0; i < xmlBox.length; i++) {
-        xmlBox[i].setTransparent(false);
+    if (object instanceof XMLBox) {
+      ((XMLBox)object).setTransparent(false);
+    } else if (object instanceof XMLCone) {
+      ((XMLCone)object).setTransparent(false);
+    } else if (object instanceof XMLCylinder) {
+      ((XMLCylinder)object).setTransparent(false);
+    } else if (object instanceof XMLSphere) {
+      ((XMLSphere)object).setTransparent(false);
+    } else if (object instanceof XMLTrianglePolygon) {
+      ((XMLTrianglePolygon)object).setTransparent(false);
+    } else if (object instanceof XMLQuadPolygon) {
+      ((XMLQuadPolygon)object).setTransparent(false);
+    } else if (object instanceof Group) {
+      Group group = (Group)object;
+      final XMLBox[] boxes = group.getXMLBox();
+      for (int i = 0; i < boxes.length; i++) {
+        boxes[i].setTransparent(false);
       }
-      final XMLCylinder[] xmlCylinder = group.getXMLCylinder();
-      for (int i = 0; i < xmlCylinder.length; i++) {
-        xmlCylinder[i].setTransparent(false);
+      final XMLCylinder[] cylinders = group.getXMLCylinder();
+      for (int i = 0; i < cylinders.length; i++) {
+        cylinders[i].setTransparent(false);
       }
-      final XMLSphere[] xmlSphere = group.getXMLSphere();
-      for (int i = 0; i < xmlSphere.length; i++) {
-        xmlSphere[i].setTransparent(false);
+      final XMLSphere[] spheres = group.getXMLSphere();
+      for (int i = 0; i < spheres.length; i++) {
+        spheres[i].setTransparent(false);
       }
-      final XMLCone[] xmlCone = group.getXMLCone();
-      for (int i = 0; i < xmlCone.length; i++) {
-        xmlCone[i].setTransparent(false);
+      final XMLCone[] cones = group.getXMLCone();
+      for (int i = 0; i < cones.length; i++) {
+        cones[i].setTransparent(false);
       }
-      final XMLTrianglePolygon[] xmlTriangle = group.getXMLTrianglePolygon();
-      for (int i = 0; i < xmlTriangle.length; i++) {
-        xmlTriangle[i].setTransparent(false);
+      final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygon();
+      for (int i = 0; i < trianglePolygons.length; i++) {
+        trianglePolygons[i].setTransparent(false);
       }
-      final XMLQuadPolygon[] xmlQuad = group.getXMLQuadPolygon();
-      for (int i = 0; i < xmlQuad.length; i++) {
-        xmlQuad[i].setTransparent(false);
+      final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygon();
+      for (int i = 0; i < quadPolygons.length; i++) {
+        quadPolygons[i].setTransparent(false);
       }
     }
   }
@@ -441,53 +441,53 @@ public class SceneGraphTree {
    * @param transparent トランスピアレント
    */
   public void setAllTransparent(final Group group, boolean transparent) {
-    final XMLBox[] xmlBox = group.getXMLBox();
-    final XMLCylinder[] xmlCylinder = group.getXMLCylinder();
-    final XMLSphere[] xmlSphere = group.getXMLSphere();
-    final XMLCone[] xmlCone = group.getXMLCone();
-    final XMLTrianglePolygon[] xmlTriangle = group.getXMLTrianglePolygon();
-    final XMLQuadPolygon[] xmlQuad = group.getXMLQuadPolygon();
+    final XMLBox[] boxes = group.getXMLBox();
+    final XMLCylinder[] cylinders = group.getXMLCylinder();
+    final XMLSphere[] spheres = group.getXMLSphere();
+    final XMLCone[] cones = group.getXMLCone();
+    final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygon();
+    final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygon();
 
-    for (int i = 0; i < xmlBox.length; i++) {
+    for (int i = 0; i < boxes.length; i++) {
       if (transparent) {
-        xmlBox[i].setTransparent(transparent);
+        boxes[i].setTransparent(transparent);
       } else {
-        xmlBox[i].deleteTransparent();
+        boxes[i].deleteTransparent();
       }
     }
-    for (int i = 0; i < xmlCylinder.length; i++) {
+    for (int i = 0; i < cylinders.length; i++) {
       if (transparent) {
-        xmlCylinder[i].setTransparent(transparent);
+        cylinders[i].setTransparent(transparent);
       } else {
-        xmlCylinder[i].deleteTransparent();
+        cylinders[i].deleteTransparent();
       }
     }
-    for (int i = 0; i < xmlSphere.length; i++) {
+    for (int i = 0; i < spheres.length; i++) {
       if (transparent) {
-        xmlSphere[i].setTransparent(transparent);
+        spheres[i].setTransparent(transparent);
       } else {
-        xmlSphere[i].deleteTransparent();
+        spheres[i].deleteTransparent();
       }
     }
-    for (int i = 0; i < xmlCone.length; i++) {
+    for (int i = 0; i < cones.length; i++) {
       if (transparent) {
-        xmlCone[i].setTransparent(transparent);
+        cones[i].setTransparent(transparent);
       } else {
-        xmlCone[i].deleteTransparent();
+        cones[i].deleteTransparent();
       }
     }
-    for (int i = 0; i < xmlTriangle.length; i++) {
+    for (int i = 0; i < trianglePolygons.length; i++) {
       if (transparent) {
-        xmlTriangle[i].setTransparent(transparent);
+        trianglePolygons[i].setTransparent(transparent);
       } else {
-        xmlTriangle[i].deleteTransparent();
+        trianglePolygons[i].deleteTransparent();
       }
     }
-    for (int i = 0; i < xmlQuad.length; i++) {
+    for (int i = 0; i < quadPolygons.length; i++) {
       if (transparent) {
-        xmlQuad[i].setTransparent(transparent);
+        quadPolygons[i].setTransparent(transparent);
       } else {
-        xmlQuad[i].deleteTransparent();
+        quadPolygons[i].deleteTransparent();
       }
     }
 
@@ -527,25 +527,25 @@ public class SceneGraphTree {
   /**
    * グループgからPrimitive primを消す。
    * 
-   * @param g グループ
-   * @param prim プリミティブ
+   * @param group グループ
+   * @param primitive プリミティブ
    * 
    * @return ノードを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
    */
-  protected boolean removeObj(Group g, Object prim) {
-    if (prim instanceof XMLBox) {
-      g.removeXMLBox((XMLBox)prim);
-    } else if (prim instanceof XMLCone) {
-      g.removeXMLCone((XMLCone)prim);
-    } else if (prim instanceof XMLCylinder) {
-      g.removeXMLCylinder((XMLCylinder)prim);
-    } else if (prim instanceof XMLSphere) {
-      g.removeXMLSphere((XMLSphere)prim);
-    } else if (prim instanceof XMLTrianglePolygon) {
-      g.removeXMLTrianglePolygon((XMLTrianglePolygon)prim);
-    } else if (prim instanceof XMLQuadPolygon) {
-      g.removeXMLQuadPolygon((XMLQuadPolygon)prim);
-    } else if (prim instanceof Group) {
+  protected boolean removeObj(Group group, Object primitive) {
+    if (primitive instanceof XMLBox) {
+      group.removeXMLBox((XMLBox)primitive);
+    } else if (primitive instanceof XMLCone) {
+      group.removeXMLCone((XMLCone)primitive);
+    } else if (primitive instanceof XMLCylinder) {
+      group.removeXMLCylinder((XMLCylinder)primitive);
+    } else if (primitive instanceof XMLSphere) {
+      group.removeXMLSphere((XMLSphere)primitive);
+    } else if (primitive instanceof XMLTrianglePolygon) {
+      group.removeXMLTrianglePolygon((XMLTrianglePolygon)primitive);
+    } else if (primitive instanceof XMLQuadPolygon) {
+      group.removeXMLQuadPolygon((XMLQuadPolygon)primitive);
+    } else if (primitive instanceof Group) {
       MessageBox box = new MessageBox(this.comp.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
       box.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
       box.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
@@ -553,7 +553,7 @@ public class SceneGraphTree {
       if (result == SWT.NO) {
         return false;
       }
-      g.removeGroup((Group)prim);
+      group.removeGroup((Group)primitive);
     }
     return true;
   }
