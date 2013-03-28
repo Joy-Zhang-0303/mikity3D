@@ -25,13 +25,13 @@ public class LinkData implements java.io.Serializable {
   @Attribute(name="column")
   private int columnNumber;
 
-  private boolean hasConstant;
+  //private boolean hasConstant;
 
-  private boolean hasColumnNumber;
+  //private boolean hasColumnNumber;
 
-  private boolean hasDhParameter;
+  //private boolean hasDhParameter;
 
-  private boolean hasCoordinateParameter;
+  //private boolean hasCoordinateParameter;
 
   /**
    * Returns the value of field 'column'.
@@ -53,10 +53,10 @@ public class LinkData implements java.io.Serializable {
     long temp;
     temp = Double.doubleToLongBits(this.constantValue);
     result = prime * result + (int)(temp ^ (temp >>> 32));
-    result = prime * result + (this.hasColumnNumber ? 1231 : 1237);
-    result = prime * result + (this.hasConstant ? 1231 : 1237);
-    result = prime * result + (this.hasDhParameter ? 1231 : 1237);
-    result = prime * result + (this.hasCoordinateParameter ? 1231 : 1237);
+    //result = prime * result + (this.hasColumnNumber ? 1231 : 1237);
+    //result = prime * result + (this.hasConstant ? 1231 : 1237);
+    //result = prime * result + (this.hasDhParameter ? 1231 : 1237);
+    //result = prime * result + (this.hasCoordinateParameter ? 1231 : 1237);
     result = prime * result + ((this.targetName == null) ? 0 : this.targetName.hashCode());
     return result;
   }
@@ -82,18 +82,18 @@ public class LinkData implements java.io.Serializable {
     if (Double.doubleToLongBits(this.constantValue) != Double.doubleToLongBits(other.constantValue)) {
       return false;
     }
-    if (this.hasColumnNumber != other.hasColumnNumber) {
-      return false;
-    }
-    if (this.hasConstant != other.hasConstant) {
-      return false;
-    }
-    if (this.hasDhParameter != other.hasDhParameter) {
-      return false;
-    }
-    if (this.hasCoordinateParameter != other.hasCoordinateParameter) {
-      return false;
-    }
+//    if (this.hasColumnNumber != other.hasColumnNumber) {
+//      return false;
+//    }
+//    if (this.hasConstant != other.hasConstant) {
+//      return false;
+//    }
+//    if (this.hasDhParameter != other.hasDhParameter) {
+//      return false;
+//    }
+//    if (this.hasCoordinateParameter != other.hasCoordinateParameter) {
+//      return false;
+//    }
     if (this.targetName == null) {
       if (other.targetName != null) {
         return false;
