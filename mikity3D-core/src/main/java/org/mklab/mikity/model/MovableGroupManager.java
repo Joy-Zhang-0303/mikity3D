@@ -123,8 +123,8 @@ public class MovableGroupManager {
 
     for (final LinkData link : links) {
       if (link.hasDHParameter()) {
-        if (link.hasDataNumber()) {
-          final int dataNumber = link.getDataNumber();
+        if (link.hasColumnNumber()) {
+          final int dataNumber = link.getColumnNumber();
           final String parameterName = link.getTargetName();
           final DHParameterType type;
 
@@ -142,8 +142,8 @@ public class MovableGroupManager {
           picker.pickup(type, dataNumber);
         }
         
-        if (link.hasInitialValue()) {
-          final double initialValue = link.getInitialValue();
+        if (link.hasConstantValue()) {
+          final double initialValue = link.getConstantValue();
           final String parameterName = link.getTargetName();
           final DHParameterType type;
 
@@ -161,8 +161,8 @@ public class MovableGroupManager {
           picker.setParameter(type, initialValue);
         }
       } else if (link.hasCoordinateParameter()) {
-        if (link.hasDataNumber()) {
-          final int dataNumber = link.getDataNumber();
+        if (link.hasColumnNumber()) {
+          final int dataNumber = link.getColumnNumber();
           final String parameterName = link.getTargetName();
           final CoordinateParameterType type;
 
@@ -184,8 +184,8 @@ public class MovableGroupManager {
           picker.pickup(type, dataNumber);
         }
         
-        if (link.hasInitialValue()) {
-          final double initialValue = link.getInitialValue();
+        if (link.hasConstantValue()) {
+          final double initialValue = link.getConstantValue();
           final String parameterName = link.getTargetName();
           final CoordinateParameterType type;
 

@@ -146,10 +146,10 @@ public class GroupConfigWithCoordinateParameterDialog {
       final LinkData linkdata = new LinkData();
       linkdata.setTargetName(dh.getLabelText());
       if (dh.getFloatValue() != 0.0) {
-        linkdata.setInitialValue(dh.getFloatValue());
+        linkdata.setConstantValue(dh.getFloatValue());
       }
       if (col.getIntValue() != 0) {
-        linkdata.setDataNumber(col.getIntValue());
+        linkdata.setColumnNumber(col.getIntValue());
       }
       this.group.addLinkdata(linkdata);
     }
@@ -247,8 +247,8 @@ public class GroupConfigWithCoordinateParameterDialog {
       // } else{
       // column = "0";
       // }
-      final String column = linkdata[i].hasDataNumber() ? "" + linkdata[i].getDataNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      final String constant = linkdata[i].hasInitialValue() ? "" + linkdata[i].getInitialValue() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String column = linkdata[i].hasColumnNumber() ? "" + linkdata[i].getColumnNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String constant = linkdata[i].hasConstantValue() ? "" + linkdata[i].getConstantValue() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       if (target.equals("locationX")) { //$NON-NLS-1$
         this.columnLocX.setText(column);
         this.locX.setText(constant);
