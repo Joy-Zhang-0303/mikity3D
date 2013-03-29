@@ -229,59 +229,59 @@ public class View implements java.io.Serializable {
     return this.zRotation;
   }
 
-  /**
-   * Method hasX
-   * 
-   * @return has_x
-   */
-  public boolean hasX() {
-    return this.hasX;
-  }
-
-  /**
-   * Method hasXrotate
-   * 
-   * @return has_xrotate
-   */
-  public boolean hasXrotation() {
-    return this.hasXrotation;
-  }
-
-  /**
-   * Method hasY
-   * 
-   * @return has_y
-   */
-  public boolean hasY() {
-    return this.hasY;
-  }
-
-  /**
-   * Method hasYrotate
-   * 
-   * @return has_yrotate
-   */
-  public boolean hasYrotation() {
-    return this.hasYrotation;
-  }
-
-  /**
-   * Method hasZ
-   * 
-   * @return has_z
-   */
-  public boolean hasZ() {
-    return this.hasZ;
-  }
-
-  /**
-   * Method hasZrotate
-   * 
-   * @return has_zrotate
-   */
-  public boolean hasZrotation() {
-    return this.hasZrotation;
-  }
+//  /**
+//   * Method hasX
+//   * 
+//   * @return has_x
+//   */
+//  public boolean hasX() {
+//    return this.hasX;
+//  }
+//
+//  /**
+//   * Method hasXrotate
+//   * 
+//   * @return has_xrotate
+//   */
+//  public boolean hasXrotation() {
+//    return this.hasXrotation;
+//  }
+//
+//  /**
+//   * Method hasY
+//   * 
+//   * @return has_y
+//   */
+//  public boolean hasY() {
+//    return this.hasY;
+//  }
+//
+//  /**
+//   * Method hasYrotate
+//   * 
+//   * @return has_yrotate
+//   */
+//  public boolean hasYrotation() {
+//    return this.hasYrotation;
+//  }
+//
+//  /**
+//   * Method hasZ
+//   * 
+//   * @return has_z
+//   */
+//  public boolean hasZ() {
+//    return this.hasZ;
+//  }
+//
+//  /**
+//   * Method hasZrotate
+//   * 
+//   * @return has_zrotate
+//   */
+//  public boolean hasZrotation() {
+//    return this.hasZrotation;
+//  }
 
   /**
    * Sets the value of field 'x'.

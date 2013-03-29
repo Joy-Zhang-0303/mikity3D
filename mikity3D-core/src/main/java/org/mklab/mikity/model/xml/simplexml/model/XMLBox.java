@@ -40,7 +40,7 @@ public class XMLBox implements java.io.Serializable {
 
   /** _color */
   @Attribute(name="color")
-  private java.lang.String color;
+  private String color;
 
   /** _transparent */
   @Attribute(name="transparent")
@@ -58,7 +58,7 @@ public class XMLBox implements java.io.Serializable {
   private Location location;
 
   /** propertyChangeListeners */
-  private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
+  private Vector<PropertyChangeListener> propertyChangeListeners;
 
   /**
    * コンストラクター
@@ -110,7 +110,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'color'.
    */
-  public java.lang.String getColor() {
+  public String getColor() {
     return this.color;
   }
 

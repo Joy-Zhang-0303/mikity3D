@@ -449,46 +449,22 @@ public class SceneGraphTree {
     final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygon();
 
     for (int i = 0; i < boxes.length; i++) {
-      if (transparent) {
-        boxes[i].setTransparent(transparent);
-      } else {
-        boxes[i].deleteTransparent();
-      }
+      boxes[i].setTransparent(transparent);
     }
     for (int i = 0; i < cylinders.length; i++) {
-      if (transparent) {
-        cylinders[i].setTransparent(transparent);
-      } else {
-        cylinders[i].deleteTransparent();
-      }
+      cylinders[i].setTransparent(transparent);
     }
     for (int i = 0; i < spheres.length; i++) {
-      if (transparent) {
-        spheres[i].setTransparent(transparent);
-      } else {
-        spheres[i].deleteTransparent();
-      }
+      spheres[i].setTransparent(transparent);
     }
     for (int i = 0; i < cones.length; i++) {
-      if (transparent) {
-        cones[i].setTransparent(transparent);
-      } else {
-        cones[i].deleteTransparent();
-      }
+      cones[i].setTransparent(transparent);
     }
     for (int i = 0; i < trianglePolygons.length; i++) {
-      if (transparent) {
-        trianglePolygons[i].setTransparent(transparent);
-      } else {
-        trianglePolygons[i].deleteTransparent();
-      }
+      trianglePolygons[i].setTransparent(transparent);
     }
     for (int i = 0; i < quadPolygons.length; i++) {
-      if (transparent) {
-        quadPolygons[i].setTransparent(transparent);
-      } else {
-        quadPolygons[i].deleteTransparent();
-      }
+      quadPolygons[i].setTransparent(transparent);
     }
 
     Group[] groups = group.getGroups();

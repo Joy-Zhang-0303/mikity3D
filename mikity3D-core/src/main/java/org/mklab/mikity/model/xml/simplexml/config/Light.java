@@ -132,32 +132,32 @@ public class Light implements java.io.Serializable {
     return this.z;
   }
 
-  /**
-   * Method hasX
-   * 
-   * @return hasX
-   */
-  public boolean hasX() {
-    return this.hasX;
-  }
-
-  /**
-   * Method hasY
-   * 
-   * @return hasY
-   */
-  public boolean hasY() {
-    return this.hasY;
-  }
-
-  /**
-   * Method hasZ
-   * 
-   * @return hasZ
-   */
-  public boolean hasZ() {
-    return this.hasZ;
-  }
+//  /**
+//   * Method hasX
+//   * 
+//   * @return hasX
+//   */
+//  public boolean hasX() {
+//    return this.hasX;
+//  }
+//
+//  /**
+//   * Method hasY
+//   * 
+//   * @return hasY
+//   */
+//  public boolean hasY() {
+//    return this.hasY;
+//  }
+//
+//  /**
+//   * Method hasZ
+//   * 
+//   * @return hasZ
+//   */
+//  public boolean hasZ() {
+//    return this.hasZ;
+//  }
 
   /**
    * Sets the value of field 'x'.
