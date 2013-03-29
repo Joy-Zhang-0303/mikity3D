@@ -13,7 +13,7 @@ import org.simpleframework.xml.Element;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(Library_visual_scene要素)
+ * Blenderから出力したCOLLADAデータを読み込むためのクラス(LibraryVisualScene要素)
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/11/30
@@ -21,13 +21,13 @@ import org.simpleframework.xml.Element;
 public class LibraryVisualScenes {
 
   @Element
-  private VisualScene visual_scene;
+  private VisualScene visualScene;
 
   /**
-   * コンストラクタ
+   * 新しく生成された<code>LibraryVisualScenes</code>オブジェクトを初期化します。
    */
   public LibraryVisualScenes() {
-    this.visual_scene = new VisualScene();
+    this.visualScene = new VisualScene();
   }
 
   /**
@@ -36,7 +36,7 @@ public class LibraryVisualScenes {
    * @return　visual_scene.getNodeNameList()　各ノードの名前が追加されているリスト
    */
   public List<String> getNodeNames() {
-    return this.visual_scene.getNodeNames();
+    return this.visualScene.getNodeNames();
   }
 
   /**
@@ -45,20 +45,20 @@ public class LibraryVisualScenes {
    * @return　visual_scene.getMatrixList()　変換行列が追加されているリスト
    */
   public List<Matrix4> getMatrices() {
-    return this.visual_scene.getTransformMatrices();
+    return this.visualScene.getTransformMatrices();
   }
 
   /**
-   * 変換行列をせいせいします。
+   * 変換行列を生成します。
    */
   public void createMatrix() {
-    this.visual_scene.createTransformMatrix();
+    this.visualScene.createTransformMatrix();
   }
 
   /**
    * @return scene
    */
   public Group getScene() {
-    return this.visual_scene.getScene();
+    return this.visualScene.getScene();
   }
 }

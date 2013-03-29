@@ -20,26 +20,26 @@ import org.simpleframework.xml.Root;
 public class Collada {
 
   @Element
-  private LibraryGeometries library_geometries;
+  private LibraryGeometries libraryGeometries;
   @Element
-  private LibraryVisualScenes library_visual_scenes;
+  private LibraryVisualScenes libraryVisualScenes;
 
   /**
    * コンストラクタ
    */
   public Collada() {
-    this.library_visual_scenes = new LibraryVisualScenes();
-    this.library_geometries = new LibraryGeometries();
+    this.libraryVisualScenes = new LibraryVisualScenes();
+    this.libraryGeometries = new LibraryGeometries();
   }
 
   /**
    * Colladaデータから作成したシーングラフのグループを返します。
    * 
-   * @return　g　のポリゴンをまとめたグループ
+   * @return　ポリゴンをまとめたグループ
    */
   public Group getColladaPolygonGroup() {
-    this.library_visual_scenes.createMatrix();
-    this.library_geometries.setLibraryVisualScenes(this.library_visual_scenes);
-    return this.library_geometries.getBlenderPolygonGroup();
+    this.libraryVisualScenes.createMatrix();
+    this.libraryGeometries.setLibraryVisualScenes(this.libraryVisualScenes);
+    return this.libraryGeometries.getBlenderPolygonGroup();
   }
 }

@@ -6,6 +6,7 @@
 package org.mklab.mikity.model.xml.simplexml.blender;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.model.Location;
 import org.simpleframework.xml.Element;
@@ -20,99 +21,91 @@ import org.simpleframework.xml.Element;
 public class Source {
 
   @Element
-  private String float_array;
+  private String floatArray;
 
-  /**
-   * 文字列の空白の位置を記したリスト
-   */
-  private ArrayList<Integer> space;
-  /**
-   * 座標の値を記したリスト
-   */
-  private ArrayList<Float> locationValue;
-  /**
-   * 頂点座標をまとめたリスト
-   */
-  private ArrayList<Location> vertexLocation;
-  /**
-   * 法線ベクトルをまとめたリスト
-   */
-  private ArrayList<Location> normalLocation;
+  /** 文字列の空白の位置を記したリスト  */
+  private List<Integer> spaces;
+  /** 座標の値を記したリスト */
+  private List<Float> locations;
+  /** 頂点座標をまとめたリスト  */
+  private List<Location> vertexLocations;
+  /** 法線ベクトルをまとめたリスト  */
+  private List<Location> normalVectors;
 
   /**
    * コンストラクタ
    */
   public Source() {
-    this.space = new ArrayList<Integer>();
-    this.locationValue = new ArrayList<Float>();
-    this.vertexLocation = new ArrayList<Location>();
-    this.normalLocation = new ArrayList<Location>();
+    this.spaces = new ArrayList<Integer>();
+    this.locations = new ArrayList<Float>();
+    this.vertexLocations = new ArrayList<Location>();
+    this.normalVectors = new ArrayList<Location>();
   }
 
   /**
-   * 頂点座標をまとめたリストを返す
+   * 頂点座標をまとめたリストを返します。
    * 
-   * @return　vertexLocation 頂点座標をまとめたリスト
+   * @return　頂点座標をまとめたリスト
    */
-  public ArrayList<Location> getVertexLocation() {
-    setVertexLocation();
-    return this.vertexLocation;
+  public List<Location> getVertexLocation() {
+    setVertexLocations();
+    return this.vertexLocations;
   }
 
   /**
-   * 法線ベクトルをまとめたリストを返す
+   * 法線ベクトルをまとめたリストを返します。
    * 
-   * @return　vertexLocation 法線ベクトルをまとめたリスト
+   * @return　法線ベクトルをまとめたリスト
    */
-  public ArrayList<Location> getNormalLocation() {
-    setNormalLocation();
-    return this.normalLocation;
+  public List<Location> getNormalLocation() {
+    setNormalLocations();
+    return this.normalVectors;
   }
 
   /**
-   * 頂点座標一覧を記述した文字列から空白を除外し、 前から3つずつ頂点座標からLocationオブジェクトを作成してリストに加えていく。
+   * 頂点座標一覧を記述した文字列から空白を除外し、 前から3つずつ頂点座標からLocationオブジェクトを作成してリストに加えます。
    */
   @SuppressWarnings("boxing")
-  private void setVertexLocation() {
+  private void setVertexLocations() {
     divideString();
 
-    for (int i = 0; i < this.locationValue.size(); i += 3) {
-      this.vertexLocation.add(new Location(this.locationValue.get(i), this.locationValue.get(i + 1), this.locationValue.get(i + 2)));
+    for (int i = 0; i < this.locations.size(); i += 3) {
+      this.vertexLocations.add(new Location(this.locations.get(i), this.locations.get(i + 1), this.locations.get(i + 2)));
     }
 
   }
 
   /**
-   * 頂法線ベクトル一覧を記述した文字列から空白を除外し、 前から3つずつ法線ベクトルからLocationオブジェクトを作成してリストに加えていく。
+   * 頂法線ベクトル一覧を記述した文字列から空白を除外し、 前から3つずつ法線ベクトルからLocationオブジェクトを作成してリストに加えます。
    */
   @SuppressWarnings("boxing")
-  private void setNormalLocation() {
+  private void setNormalLocations() {
     divideString();
 
-    for (int i = 0; i < this.locationValue.size(); i += 3) {
-      this.normalLocation.add(new Location(this.locationValue.get(i), this.locationValue.get(i + 1), this.locationValue.get(i + 2)));
+    for (int i = 0; i < this.locations.size(); i += 3) {
+      this.normalVectors.add(new Location(this.locations.get(i), this.locations.get(i + 1), this.locations.get(i + 2)));
     }
 
   }
 
   /**
-   * 数値の文字列をスペースの場所で分割し、数値として格納する
+   * 数値の文字列をスペースの場所で分割し、数値として格納します。
    */
   @SuppressWarnings("boxing")
   private void divideString() {
-    for (int j = 0; j < this.float_array.length(); j++) {
-      if (this.float_array.charAt(j) == ' ') {
-        this.space.add(j);
+    for (int j = 0; j < this.floatArray.length(); j++) {
+      if (this.floatArray.charAt(j) == ' ') {
+        this.spaces.add(j);
       }
     }
 
-    for (int j = 0; j < this.space.size() + 1; j++) {
+    for (int j = 0; j < this.spaces.size() + 1; j++) {
       if (j == 0) {
-        this.locationValue.add(Float.parseFloat(this.float_array.substring(0, this.space.get(0))));
-      } else if (j == this.space.size()) {
-        this.locationValue.add(Float.parseFloat(this.float_array.substring(this.space.get(this.space.size() - 1) + 1)));
+        this.locations.add(Float.parseFloat(this.floatArray.substring(0, this.spaces.get(0))));
+      } else if (j == this.spaces.size()) {
+        this.locations.add(Float.parseFloat(this.floatArray.substring(this.spaces.get(this.spaces.size() - 1) + 1)));
       } else {
-        this.locationValue.add(Float.parseFloat(this.float_array.substring(this.space.get(j - 1) + 1, this.space.get(j))));
+        this.locations.add(Float.parseFloat(this.floatArray.substring(this.spaces.get(j - 1) + 1, this.spaces.get(j))));
       }
     }
   }

@@ -38,7 +38,7 @@ public class Geometry {
    * @return　group　Blenderデータからのポリゴンをまとめたグループ
    */
   public Group getBlenderPolygonGroup() {
-    Group group = this.mesh.getBlenderPolygonGroup();
+    final Group group = this.mesh.getBlenderPolygonGroup();
     if (this.name.indexOf("-G") != -1) { //$NON-NLS-1$
       this.name = this.name.substring(0, this.name.indexOf("-G")); //$NON-NLS-1$
     }

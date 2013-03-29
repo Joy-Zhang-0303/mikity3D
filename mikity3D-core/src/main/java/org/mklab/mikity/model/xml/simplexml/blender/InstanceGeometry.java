@@ -18,7 +18,7 @@ public class InstanceGeometry {
   private String geometryURL;
 
   /**
-   * 新しく生成された<code>Instance_Geometry</code>オブジェクトを初期化します。
+   * 新しく生成された<code>InstanceGeometry</code>オブジェクトを初期化します。
    */
   public InstanceGeometry() {
   //

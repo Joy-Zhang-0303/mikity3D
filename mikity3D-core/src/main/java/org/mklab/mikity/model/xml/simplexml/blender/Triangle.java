@@ -22,54 +22,48 @@ public class Triangle {
   @Element
   private String p;
 
-  /**
-   * 文字列の空白の位置を記したリスト
-   */
-  private List<Integer> space = new ArrayList<Integer>();
-  /**
-   * 使用する頂点の番号を記したリスト
-   */
-  private List<Integer> num = new ArrayList<Integer>();
-  /**
-   * 使用する頂点の組み合わせをまとめた配列リスト
-   */
-  private List<int[]> index = new ArrayList<int[]>();
+  /** 文字列の空白の位置を記したリスト */
+  private List<Integer> spaces = new ArrayList<Integer>();
+  /** 使用する頂点の番号を記したリスト */
+  private List<Integer> numbers = new ArrayList<Integer>();
+  /** 使用する頂点の組み合わせをまとめた配列リスト */
+  private List<int[]> indices = new ArrayList<int[]>();
 
   /**
    * コンストラクタ
    */
   public Triangle() {
-    this.space = new ArrayList<Integer>();
-    this.num = new ArrayList<Integer>();
-    this.index = new ArrayList<int[]>();
+    this.spaces = new ArrayList<Integer>();
+    this.numbers = new ArrayList<Integer>();
+    this.indices = new ArrayList<int[]>();
   }
 
   /**
-   * 使用する頂点番号一覧を記述した文字列から使用しない値や空白を除外し、 前から3つずつ頂点の組み合わせをまとめる配列リストに加えていく。
+   * 使用する頂点番号一覧を記述した文字列から使用しない値や空白を除外し、 前から3つずつ頂点の組み合わせをまとめる配列リストに加えます。
    */
   @SuppressWarnings("boxing")
   private void createTriangleIndex() {
     getSpaceindexFromPToSpace(); //pからthis.spaceにスペースの位置を記録
-    for (int i = 0; i < this.space.size() + 1; i += 2) {
+    for (int i = 0; i < this.spaces.size() + 1; i += 2) {
       getNumberFromPToNum(i);
     }
-    for (int i = 0; i < this.num.size(); i += 3) {
+    for (int i = 0; i < this.numbers.size(); i += 3) {
       int[] n = new int[3];
-      n[0] = this.num.get(i);
-      n[1] = this.num.get(i + 1);
-      n[2] = this.num.get(i + 2);
-      this.index.add(n);
+      n[0] = this.numbers.get(i);
+      n[1] = this.numbers.get(i + 1);
+      n[2] = this.numbers.get(i + 2);
+      this.indices.add(n);
     }
   }
 
   @SuppressWarnings("boxing")
   private void getNumberFromPToNum(int i) {
     if (i == 0) {
-      this.num.add(Integer.parseInt(this.p.substring(0, this.space.get(0))));
-    } else if (i == this.space.size()) {
-      this.num.add(Integer.parseInt(this.p.substring(this.space.get(this.space.size() - 1) + 1)));
+      this.numbers.add(Integer.parseInt(this.p.substring(0, this.spaces.get(0))));
+    } else if (i == this.spaces.size()) {
+      this.numbers.add(Integer.parseInt(this.p.substring(this.spaces.get(this.spaces.size() - 1) + 1)));
     } else {
-      this.num.add(Integer.parseInt(this.p.substring(this.space.get(i - 1) + 1, this.space.get(i))));
+      this.numbers.add(Integer.parseInt(this.p.substring(this.spaces.get(i - 1) + 1, this.spaces.get(i))));
     }
   }
 
@@ -77,27 +71,27 @@ public class Triangle {
   private void getSpaceindexFromPToSpace() {
     for (int j = 0; j < this.p.length(); j++) {
       if (this.p.charAt(j) == ' ') {
-        this.space.add(j);
+        this.spaces.add(j);
       }
     }
   }
 
   /**
-   * 使用する頂点番号一覧を記述した文字列を返す
+   * 使用する頂点番号一覧を記述した文字列を返します。
    * 
-   * @return　p　使用する頂点番号一覧を記述した文字列
+   * @return　使用する頂点番号一覧を記述した文字列
    */
   public String loadP() {
     return this.p;
   }
 
   /**
-   * 使用する頂点の組み合わせをまとめた配列リストを返す
+   * 使用する頂点の組み合わせをまとめた配列リストを返します。
    * 
-   * @return　index　使用する頂点の組み合わせをまとめた配列リスト
+   * @return　使用する頂点の組み合わせをまとめた配列リスト
    */
   public List<int[]> getTriangleIndex() {
     createTriangleIndex();
-    return this.index;
+    return this.indices;
   }
 }

@@ -38,7 +38,7 @@ public class LibraryGeometries {
   /**
    * Blenderデータから作成したポリゴンをまとめたグループをまとめて返す
    * 
-   * @return　group　Blenderデータによるポリゴンをまとめたグループ一覧
+   * @return　Blenderデータによるポリゴンをまとめたグループ一覧
    */
   public Group getBlenderPolygonGroup() {
     Group group = new Group();
@@ -55,12 +55,12 @@ public class LibraryGeometries {
   }
 
   /**
-   * @param library_visual_scenes ノード関連
+   * @param libraryVisualScenes ノード関連
    */
-  public void setLibraryVisualScenes(LibraryVisualScenes library_visual_scenes) {
-    this.scene = library_visual_scenes.getScene();
+  public void setLibraryVisualScenes(LibraryVisualScenes libraryVisualScenes) {
+    this.scene = libraryVisualScenes.getScene();
     for (int i = 0; i < this.geometry.size(); i++) {
-      this.geometry.get(i).setLibraryVisualScenes(library_visual_scenes);
+      this.geometry.get(i).setLibraryVisualScenes(libraryVisualScenes);
     }
   }
 }
