@@ -19,42 +19,30 @@ import org.simpleframework.xml.Root;
 public class XMLCylinder implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** _r */
+  /** radius */
   @Attribute(name="r")
   protected float radius;
 
-  /** keeps track of state for field: _r */
-  protected boolean hasRadisu;
-
-  /** _height */
+  /** height */
   @Attribute(name="height")
   protected float height;
 
-  /** keeps track of state for field: _height */
-  protected boolean hasHeight;
-
-  /** _div */
+  /** div */
   @Attribute(name="div")
   protected int div;
 
-  /** keeps track of state for field: _div */
-  protected boolean hasDiv;
-
-  /** _color */
+  /** color */
   @Attribute(name="color")
-  protected java.lang.String color;
+  protected String color;
 
-  /** _transparent */
+  /** transparent */
   protected boolean transparent;
 
-  /** keeps track of state for field: _transparent */
-  protected boolean hasTransparent;
-
-  /** _rotation */
+  /** rotation */
   @Element(name="rotation", required=false)
   protected Rotation rotation;
 
-  /** _location */
+  /** location */
   @Element(name="location")
   protected Location location;
 
@@ -78,34 +66,6 @@ public class XMLCylinder implements Serializable {
     this.propertyChangeListeners.addElement(pcl);
   }
 
-//  /**
-//   * Method deleteDiv
-//   */
-//  public void deleteDiv() {
-//    this.hasDiv = false;
-//  }
-//
-//  /**
-//   * Method deleteHeight
-//   */
-//  public void deleteHeight() {
-//    this.hasHeight = false;
-//  }
-//
-//  /**
-//   * Method deleteR
-//   */
-//  public void deleteR() {
-//    this.hasRadisu = false;
-//  }
-//
-//  /**
-//   * Method deleteTransparent
-//   */
-//  public void deleteTransparent() {
-//    this.hasTransparent = false;
-//  }
-
   /**
    * Returns the value of field 'color'.
    * 
@@ -124,10 +84,6 @@ public class XMLCylinder implements Serializable {
     int result = 1;
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
     result = prime * result + this.div;
-    result = prime * result + (this.hasDiv ? 1231 : 1237);
-    result = prime * result + (this.hasHeight ? 1231 : 1237);
-    result = prime * result + (this.hasRadisu ? 1231 : 1237);
-    result = prime * result + (this.hasTransparent ? 1231 : 1237);
     result = prime * result + Float.floatToIntBits(this.height);
     result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
     result = prime * result + Float.floatToIntBits(this.radius);
@@ -160,18 +116,6 @@ public class XMLCylinder implements Serializable {
       return false;
     }
     if (this.div != other.div) {
-      return false;
-    }
-    if (this.hasDiv != other.hasDiv) {
-      return false;
-    }
-    if (this.hasHeight != other.hasHeight) {
-      return false;
-    }
-    if (this.hasRadisu != other.hasRadisu) {
-      return false;
-    }
-    if (this.hasTransparent != other.hasTransparent) {
       return false;
     }
     if (Float.floatToIntBits(this.height) != Float.floatToIntBits(other.height)) {
@@ -262,42 +206,6 @@ public class XMLCylinder implements Serializable {
   }
 
   /**
-   * Method hasDiv
-   * 
-   * @return has_div
-   */
-  public boolean hasDiv() {
-    return this.hasDiv;
-  }
-
-  /**
-   * Method hasHeight
-   * 
-   * @return has_height
-   */
-  public boolean hasHeight() {
-    return this.hasHeight;
-  }
-
-  /**
-   * Method hasR
-   * 
-   * @return has_r
-   */
-  public boolean hasR() {
-    return this.hasRadisu;
-  }
-
-  /**
-   * Method hasTransparent
-   * 
-   * @return has_transparent
-   */
-  public boolean hasTransparent() {
-    return this.hasTransparent;
-  }
-
-  /**
    * Method notifyPropertyChangeListenersNotifies all registered PropertyChangeListeners when a bound property's value changes.
    * 
    * @param fieldName the name of the property that has changed.
@@ -339,7 +247,6 @@ public class XMLCylinder implements Serializable {
    */
   public void setDiv(int div) {
     this.div = div;
-    this.hasDiv = true;
   }
 
   /**
@@ -349,7 +256,6 @@ public class XMLCylinder implements Serializable {
    */
   public void setHeight(float height) {
     this.height = height;
-    this.hasHeight = true;
   }
 
   /**
@@ -364,11 +270,10 @@ public class XMLCylinder implements Serializable {
   /**
    * Sets the value of field 'r'.
    * 
-   * @param r the value of field 'r'.
+   * @param radius the value of field 'r'.
    */
-  public void setRadius(float r) {
-    this.radius = r;
-    this.hasRadisu = true;
+  public void setRadius(float radius) {
+    this.radius = radius;
   }
 
   /**
@@ -387,6 +292,5 @@ public class XMLCylinder implements Serializable {
    */
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
-    this.hasTransparent = true;
   }
 }

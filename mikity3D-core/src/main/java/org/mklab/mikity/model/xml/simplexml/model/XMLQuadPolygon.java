@@ -38,11 +38,8 @@ public class XMLQuadPolygon {
 
   private Matrix4 matrix;
 
-  /** _transparent */
+  /** transparent */
   protected boolean transparent;
-
-  /** keeps track of state for field: _transparent */
-  protected boolean hasTransparent;
 
   /**
    * 新しく生成された<code>XMLQuadPolygon</code>オブジェクトを初期化します。
@@ -209,13 +206,6 @@ public class XMLQuadPolygon {
     return this.matrix;
   }
 
-//  /**
-//   * Method deleteTransparent
-//   */
-//  public void deleteTransparent() {
-//    this.hasTransparent = false;
-//  }
-
   /**
    * Sets the value of field 'transparent'.
    * 
@@ -223,7 +213,6 @@ public class XMLQuadPolygon {
    */
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
-    this.hasTransparent = true;
   }
 
   /**
@@ -233,14 +222,5 @@ public class XMLQuadPolygon {
    */
   public boolean getTransparent() {
     return this.transparent;
-  }
-
-  /**
-   * Method hasTransparent
-   * 
-   * @return has_tranparent
-   */
-  public boolean hasTransparent() {
-    return this.hasTransparent;
   }
 }

@@ -9,29 +9,21 @@ import org.simpleframework.xml.Attribute;
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
 public class Rotation implements java.io.Serializable {
+
   private static final long serialVersionUID = 1L;
 
   /** xrotate */
-  @Attribute(name="xrotation")
+  @Attribute(name = "xrotation")
   private float xRotation;
 
-  /** keeps track of state for field: _xrotate */
-  private boolean hasXrotation;
-
   /** yrotate */
-  @Attribute(name="yrotation")
+  @Attribute(name = "yrotation")
   private float yRotation;
 
-  /** keeps track of state for field: _yrotate */
-  private boolean hasYrotation;
-
   /** zrotate */
-  @Attribute(name="zrotation")
+  @Attribute(name = "zrotation")
   private float zRotation;
 
-  /** keeps track of state for field: _zrotate */
-  private boolean hasZrotation;
-   
   /**
    * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
    */
@@ -50,31 +42,7 @@ public class Rotation implements java.io.Serializable {
     this.xRotation = xRotation;
     this.yRotation = yRotation;
     this.zRotation = zRotation;
-    this.hasXrotation = true;
-    this.hasYrotation = true;
-    this.hasZrotation = true;
   }
-
-//  /**
-//   * Method deleteXrotate
-//   */
-//  public void deleteXrotation() {
-//    this.hasXrotation = false;
-//  }
-//
-//  /**
-//   * Method deleteYrotate
-//   */
-//  public void deleteYrotation() {
-//    this.hasYrotation = false;
-//  }
-//
-//  /**
-//   * Method deleteZrotate
-//   */
-//  public void deleteZrotation() {
-//    this.hasZrotation = false;
-//  }
 
   /**
    * Returns the value of field 'xrotate'.
@@ -92,9 +60,6 @@ public class Rotation implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + (this.hasXrotation ? 1231 : 1237);
-    result = prime * result + (this.hasYrotation ? 1231 : 1237);
-    result = prime * result + (this.hasZrotation ? 1231 : 1237);
     result = prime * result + Float.floatToIntBits(this.xRotation);
     result = prime * result + Float.floatToIntBits(this.yRotation);
     result = prime * result + Float.floatToIntBits(this.zRotation);
@@ -116,15 +81,6 @@ public class Rotation implements java.io.Serializable {
       return false;
     }
     Rotation other = (Rotation)obj;
-    if (this.hasXrotation != other.hasXrotation) {
-      return false;
-    }
-    if (this.hasYrotation != other.hasYrotation) {
-      return false;
-    }
-    if (this.hasZrotation != other.hasZrotation) {
-      return false;
-    }
     if (Float.floatToIntBits(this.xRotation) != Float.floatToIntBits(other.xRotation)) {
       return false;
     }
@@ -155,33 +111,6 @@ public class Rotation implements java.io.Serializable {
     return this.zRotation;
   }
 
-//  /**
-//   * Method hasXrotate
-//   * 
-//   * @return has_xrotate
-//   */
-//  public boolean hasXrotation() {
-//    return this.hasXrotation;
-//  }
-//
-//  /**
-//   * Method hasYrotate
-//   * 
-//   * @return has_yrotate
-//   */
-//  public boolean hasYrotation() {
-//    return this.hasYrotation;
-//  }
-//
-//  /**
-//   * Method hasZrotate
-//   * 
-//   * @return has_zrotate
-//   */
-//  public boolean hasZrotation() {
-//    return this.hasZrotation;
-//  }
-
   /**
    * Sets the value of field 'xrotate'.
    * 
@@ -189,7 +118,6 @@ public class Rotation implements java.io.Serializable {
    */
   public void setXrotation(float xRotation) {
     this.xRotation = xRotation;
-    this.hasXrotation = true;
   }
 
   /**
@@ -199,7 +127,6 @@ public class Rotation implements java.io.Serializable {
    */
   public void setYrotation(float yRotation) {
     this.yRotation = yRotation;
-    this.hasYrotation = true;
   }
 
   /**
@@ -209,6 +136,5 @@ public class Rotation implements java.io.Serializable {
    */
   public void setZrotation(float zrotation) {
     this.zRotation = zrotation;
-    this.hasZrotation = true;
   }
 }

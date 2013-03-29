@@ -21,25 +21,16 @@ public class XMLSphere implements java.io.Serializable {
   @Attribute(name="r")
   private float radius;
 
-  /** keeps track of state for field: _r */
-  private boolean hasRadius;
-
   /** _div */
   @Attribute(name="div")
   private int div;
 
-  /** keeps track of state for field: _div */
-  private boolean hasDiv;
-
   /** _color */
   @Attribute(name="color")
-  private java.lang.String color;
+  private String color;
 
   /**_transparent */
   private boolean transparent;
-
-  /** keeps track of state for field: _transparent */
-  private boolean hasTransparent;
 
   /** _rotation */
   @Element(name="rotation")
@@ -69,27 +60,6 @@ public class XMLSphere implements java.io.Serializable {
     this.propertyChangeListeners.addElement(pcl);
   }
 
-//  /**
-//   * Method deleteDiv
-//   */
-//  public void deleteDiv() {
-//    this.hasDiv = false;
-//  }
-//
-//  /**
-//   * Method deleteR
-//   */
-//  public void deleteR() {
-//    this.hasRadius = false;
-//  }
-//
-//  /**
-//   * Method deleteTransparent
-//   */
-//  public void deleteTransparent() {
-//    this.hasTransparent = false;
-//  }
-
   /**
    * Returns the value of field 'color'.
    * 
@@ -108,9 +78,6 @@ public class XMLSphere implements java.io.Serializable {
     int result = 1;
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
     result = prime * result + this.div;
-    result = prime * result + (this.hasDiv ? 1231 : 1237);
-    result = prime * result + (this.hasRadius ? 1231 : 1237);
-    result = prime * result + (this.hasTransparent ? 1231 : 1237);
     result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
     result = prime * result + Float.floatToIntBits(this.radius);
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
@@ -142,15 +109,6 @@ public class XMLSphere implements java.io.Serializable {
       return false;
     }
     if (this.div != other.div) {
-      return false;
-    }
-    if (this.hasDiv != other.hasDiv) {
-      return false;
-    }
-    if (this.hasRadius != other.hasRadius) {
-      return false;
-    }
-    if (this.hasTransparent != other.hasTransparent) {
       return false;
     }
     if (this.location == null) {
@@ -229,33 +187,6 @@ public class XMLSphere implements java.io.Serializable {
   }
 
   /**
-   * Method hasDiv
-   * 
-   * @return has_div
-   */
-  public boolean hasDiv() {
-    return this.hasDiv;
-  }
-
-  /**
-   * Method hasR
-   * 
-   * @return has_r
-   */
-  public boolean hasRadius() {
-    return this.hasRadius;
-  }
-
-  /**
-   * Method hasTransparent
-   * 
-   * @return has_transparent
-   */
-  public boolean hasTransparent() {
-    return this.hasTransparent;
-  }
-
-  /**
    * Method notifyPropertyChangeListenersNotifies all registered PropertyChangeListeners when a bound property's value changes.
    * 
    * @param fieldName the name of the property that has changed.
@@ -297,7 +228,6 @@ public class XMLSphere implements java.io.Serializable {
    */
   public void setDiv(int div) {
     this.div = div;
-    this.hasDiv = true;
   }
 
   /**
@@ -316,7 +246,6 @@ public class XMLSphere implements java.io.Serializable {
    */
   public void setRadius(float radius) {
     this.radius = radius;
-    this.hasRadius = true;
   }
 
   /**
@@ -335,7 +264,6 @@ public class XMLSphere implements java.io.Serializable {
    */
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
-    this.hasTransparent = true;
   }
 
 }

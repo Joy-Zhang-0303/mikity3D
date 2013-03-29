@@ -25,15 +25,6 @@ public class Location implements java.io.Serializable {
   @Attribute(name="x")
   private float x;
 
-  /** keeps track of state for field: _x */
-  private boolean hasX;
-
-  /** keeps track of state for field: _y */
-  private boolean hasY;
-  
-  /** keeps track of state for field: _z */
-  private boolean hasZ;
-
   /**
    * 新しく生成された<code>Location</code>オブジェクトを初期化します。
    */
@@ -49,9 +40,6 @@ public class Location implements java.io.Serializable {
    * @param z z座標
    */
   public Location(float x, float y, float z) {
-    this.hasX = true;
-    this.hasY = true;
-    this.hasZ = true;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -74,9 +62,6 @@ public class Location implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + (hasX ? 1231 : 1237);
-    result = prime * result + (hasY ? 1231 : 1237);
-    result = prime * result + (hasZ ? 1231 : 1237);
     result = prime * result + Float.floatToIntBits(x);
     result = prime * result + Float.floatToIntBits(y);
     result = prime * result + Float.floatToIntBits(z);
@@ -98,15 +83,6 @@ public class Location implements java.io.Serializable {
       return false;
     }
     Location other = (Location)obj;
-    if (this.hasX != other.hasX) {
-      return false;
-    }
-    if (this.hasY != other.hasY) {
-      return false;
-    }
-    if (this.hasZ != other.hasZ) {
-      return false;
-    }
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
@@ -137,33 +113,6 @@ public class Location implements java.io.Serializable {
     return this.z;
   }
 
-//  /**
-//   * Method hasX
-//   * 
-//   * @return has_x
-//   */
-//  public boolean hasX() {
-//    return this.hasX;
-//  }
-//
-//  /**
-//   * Method hasY
-//   * 
-//   * @return has_y
-//   */
-//  public boolean hasY() {
-//    return this.hasY;
-//  }
-//
-//  /**
-//   * Method hasZ
-//   * 
-//   * @return has_z
-//   */
-//  public boolean hasZ() {
-//    return this.hasZ;
-//  }
-
   /**
    * Sets the value of field 'x'.
    * 
@@ -171,7 +120,6 @@ public class Location implements java.io.Serializable {
    */
   public void setX(float x) {
     this.x = x;
-    this.hasX = true;
   }
 
   /**
@@ -181,7 +129,6 @@ public class Location implements java.io.Serializable {
    */
   public void setY(float y) {
     this.y = y;
-    this.hasY = true;
   }
 
   /**
@@ -191,6 +138,5 @@ public class Location implements java.io.Serializable {
    */
   public void setZ(float z) {
     this.z = z;
-    this.hasZ = true;
   }
 }

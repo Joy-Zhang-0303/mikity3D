@@ -46,9 +46,6 @@ public class XMLBox implements java.io.Serializable {
   @Attribute(name="transparent")
   private boolean transparent;
 
-  /** keeps track of state for field: _transparent */
-  private boolean hasTransparent;
-
   /** _rotation */
   @Element(name="rotation", required=false)
   private Rotation rotation;
@@ -77,34 +74,6 @@ public class XMLBox implements java.io.Serializable {
     this.propertyChangeListeners.addElement(pcl);
   } 
 
-//  /**
-//   * Method deleteTransparent
-//   */
-//  public void deleteTransparent() {
-//    this.hasTransparent = false;
-//  }
-//
-//  /**
-//   * Method deleteXsize
-//   */
-//  public void deleteXsize() {
-//    this.hasXsize = false;
-//  }
-//
-//  /**
-//   * Method deleteYsize
-//   */
-//  public void deleteYsize() {
-//    this.hasYsize = false;
-//  }
-//
-//  /**
-//   * Method deleteZsize
-//   */
-//  public void deleteZsize() {
-//    this.hasZsize = false;
-//  }
-
   /**
    * Returns the value of field 'color'.
    * 
@@ -122,7 +91,6 @@ public class XMLBox implements java.io.Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
-    result = prime * result + (this.hasTransparent ? 1231 : 1237);
     result = prime * result + (this.hasXsize ? 1231 : 1237);
     result = prime * result + (this.hasYsize ? 1231 : 1237);
     result = prime * result + (this.hasZsize ? 1231 : 1237);
@@ -156,9 +124,6 @@ public class XMLBox implements java.io.Serializable {
         return false;
       }
     } else if (!this.color.equals(other.color)) {
-      return false;
-    }
-    if (this.hasTransparent != other.hasTransparent) {
       return false;
     }
     if (this.hasXsize != other.hasXsize) {
@@ -261,42 +226,6 @@ public class XMLBox implements java.io.Serializable {
   }
 
   /**
-   * Method hasTransparent
-   * 
-   * @return has_transparent
-   */
-  public boolean hasTransparent() {
-    return this.hasTransparent;
-  }
-
-  /**
-   * Method hasXsize
-   * 
-   * @return has_xsize
-   */
-  public boolean hasXsize() {
-    return this.hasXsize;
-  }
-
-  /**
-   * Method hasYsize
-   * 
-   * @return has_ysize
-   */
-  public boolean hasYsize() {
-    return this.hasYsize;
-  }
-
-  /**
-   * Method hasZsize
-   * 
-   * @return has_zsize
-   */
-  public boolean hasZsize() {
-    return this.hasZsize;
-  }
-
-  /**
    * Method notifyPropertyChangeListenersNotifies all registered PropertyChangeListeners when a bound property's value changes.
    * 
    * @param fieldName the name of the property that has changed.
@@ -356,7 +285,6 @@ public class XMLBox implements java.io.Serializable {
    */
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
-    this.hasTransparent = true;
   }
 
   /**

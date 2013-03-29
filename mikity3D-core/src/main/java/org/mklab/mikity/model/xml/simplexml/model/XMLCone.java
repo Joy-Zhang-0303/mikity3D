@@ -17,42 +17,30 @@ import org.simpleframework.xml.Root;
 public class XMLCone implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** _r */
+  /** radius */
   @Attribute(name="r")
   private float radisu;
 
-  /** keeps track of state for field: _r */
-  private boolean hasRadisu;
-
-  /** _height */
+  /** height */
   @Attribute(name="height")
   private float hheight;
 
-  /** keeps track of state for field: _height */
-  private boolean hasHeight;
-
-  /** _div */
+  /** div */
   @Attribute(name="div")
   private int div;
 
-  /** Keeps track of state for field: _div */
-  private boolean hasDiv;
-
-  /** _color */
+  /** color */
   @Attribute(name="color")
   private java.lang.String color;
 
-  /**_transparent */
+  /**transparent */
   private boolean transparent;
 
-  /** keeps track of state for field: _transparent */
-  private boolean hasTransparent;
-
-  /** _rotation */
+  /** rotation */
   @Element(name="rotation")
   private Rotation rotation;
 
-  /** _location */
+  /** location */
   @Element(name="location")
   private Location location;
 
@@ -76,34 +64,6 @@ public class XMLCone implements java.io.Serializable {
     this.propertyChangeListeners.addElement(pcl);
   }
 
-//  /**
-//   * Method deleteDiv
-//   */
-//  public void deleteDiv() {
-//    this.hasDiv = false;
-//  }
-//
-//  /**
-//   * Method deleteHeight
-//   */
-//  public void deleteHeight() {
-//    this.hasHeight = false;
-//  }
-//
-//  /**
-//   * Method deleteR
-//   */
-//  public void deleteR() {
-//    this.hasRadisu = false;
-//  }
-//
-//  /**
-//   * Method deleteTransparent
-//   */
-//  public void deleteTransparent() {
-//    this.hasTransparent = false;
-//  }
-
   /**
    * Returns the value of field 'color'.
    * 
@@ -122,10 +82,6 @@ public class XMLCone implements java.io.Serializable {
     int result = 1;
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
     result = prime * result + this.div;
-    result = prime * result + (this.hasDiv ? 1231 : 1237);
-    result = prime * result + (this.hasHeight ? 1231 : 1237);
-    result = prime * result + (this.hasRadisu ? 1231 : 1237);
-    result = prime * result + (this.hasTransparent ? 1231 : 1237);
     result = prime * result + Float.floatToIntBits(this.hheight);
     result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
     result = prime * result + Float.floatToIntBits(this.radisu);
@@ -158,18 +114,6 @@ public class XMLCone implements java.io.Serializable {
       return false;
     }
     if (this.div != other.div) {
-      return false;
-    }
-    if (this.hasDiv != other.hasDiv) {
-      return false;
-    }
-    if (this.hasHeight != other.hasHeight) {
-      return false;
-    }
-    if (this.hasRadisu != other.hasRadisu) {
-      return false;
-    }
-    if (this.hasTransparent != other.hasTransparent) {
       return false;
     }
     if (Float.floatToIntBits(this.hheight) != Float.floatToIntBits(other.hheight)) {
@@ -260,42 +204,6 @@ public class XMLCone implements java.io.Serializable {
   }
 
   /**
-   * Method hasDiv
-   * 
-   * @return has_div
-   */
-  public boolean hasDiv() {
-    return this.hasDiv;
-  }
-
-  /**
-   * Method hasHeight
-   * 
-   * @return has_height
-   */
-  public boolean hasHeight() {
-    return this.hasHeight;
-  }
-
-  /**
-   * Method hasR
-   * 
-   * @return has_r
-   */
-  public boolean hasRadisu() {
-    return this.hasRadisu;
-  }
-
-  /**
-   * Method hasTransparent
-   * 
-   * @return has_tranparent
-   */
-  public boolean hasTransparent() {
-    return this.hasTransparent;
-  }
-
-  /**
    * Method notifyPropertyChangeListenersNotifies all registered PropertyChangeListeners when a bound property's value changes.
    * 
    * @param fieldName the name of the property that has changed.
@@ -337,7 +245,6 @@ public class XMLCone implements java.io.Serializable {
    */
   public void setDiv(int div) {
     this.div = div;
-    this.hasDiv = true;
   }
 
   /**
@@ -347,7 +254,6 @@ public class XMLCone implements java.io.Serializable {
    */
   public void setHeight(float height) {
     this.hheight = height;
-    this.hasHeight = true;
   }
 
   /**
@@ -362,11 +268,10 @@ public class XMLCone implements java.io.Serializable {
   /**
    * Sets the value of field 'r'.
    * 
-   * @param r the value of field 'r'.
+   * @param radius the value of field 'r'.
    */
-  public void setRadius(float r) {
-    this.radisu = r;
-    this.hasRadisu = true;
+  public void setRadius(float radius) {
+    this.radisu = radius;
   }
 
   /**
@@ -385,6 +290,5 @@ public class XMLCone implements java.io.Serializable {
    */
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
-    this.hasTransparent = true;
   }
 }

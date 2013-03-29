@@ -41,9 +41,6 @@ public class XMLTrianglePolygon {
   /** _transparent */
   protected boolean transparent;
 
-  /** keeps track of state for field: _transparent */
-  private boolean hasTransparent;
-
   /**
    * 新しく生成された<code>XMLTrianglePolygon</code>オブジェクトを初期化します。
    */
@@ -203,13 +200,6 @@ public class XMLTrianglePolygon {
     return this.matrix;
   }
 
-//  /**
-//   * Method deleteTransparent
-//   */
-//  public void deleteTransparent() {
-//    this.hasTransparent = false;
-//  }
-
   /**
    * Sets the value of field 'transparent'.
    * 
@@ -217,7 +207,6 @@ public class XMLTrianglePolygon {
    */
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
-    this.hasTransparent = true;
   }
 
   /**
@@ -227,14 +216,5 @@ public class XMLTrianglePolygon {
    */
   public boolean getTransparent() {
     return this.transparent;
-  }
-
-  /**
-   * Method hasTransparent
-   * 
-   * @return has_tranparent
-   */
-  public boolean hasTransparent() {
-    return this.hasTransparent;
   }
 }

@@ -72,10 +72,8 @@ public class Java3dPrimitiveFactory {
     final Primitive primitive = new Box(box.getXsize() / (Util.scale * 2), box.getYsize() / (Util.scale * 2), box.getZsize() / (Util.scale * 2), flag, null);
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(box.getColor()));
-    if (box.hasTransparent()) {
-      if (box.getTransparent() == true) {
-        appearance.setTransparencyAttributes(transAttr);
-      }
+    if (box.getTransparent() == true) {
+      appearance.setTransparencyAttributes(transAttr);
     }
     primitive.setAppearance(appearance);
     final Java3dTransformGroup tg = new Java3dTransformGroup();
@@ -103,10 +101,8 @@ public class Java3dPrimitiveFactory {
     final Primitive primitive = new Cylinder(cylinder.getRadius(), cylinder.getHeight(), flag, cylinder.getDiv(), cylinder.getDiv(), null);
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(cylinder.getColor()));
-    if (cylinder.hasTransparent()) {
-      if (cylinder.getTransparent() == true) {
-        appearance.setTransparencyAttributes(transAttr);
-      }
+    if (cylinder.getTransparent() == true) {
+      appearance.setTransparencyAttributes(transAttr);
     }
     primitive.setAppearance(appearance);
     final Java3dTransformGroup tg = new Java3dTransformGroup();
@@ -134,10 +130,8 @@ public class Java3dPrimitiveFactory {
     final Primitive primitive = new Sphere(sphere.getRadius(), flag, sphere.getDiv(), null);
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(sphere.getColor()));
-    if (sphere.hasTransparent()) {
-      if (sphere.getTransparent() == true) {
-        appearance.setTransparencyAttributes(transAttr);
-      }
+    if (sphere.getTransparent() == true) {
+      appearance.setTransparencyAttributes(transAttr);
     }
     primitive.setAppearance(appearance);
     final Java3dTransformGroup tg = new Java3dTransformGroup();
@@ -165,11 +159,10 @@ public class Java3dPrimitiveFactory {
     final Primitive primitive = new Cone(cone.getRadisu(), cone.getHeight(), flag, cone.getDiv(), cone.getDiv(), null);
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(cone.getColor()));
-    if (cone.hasTransparent()) {
-      if (cone.getTransparent() == true) {
-        appearance.setTransparencyAttributes(transAttr);
-      }
+    if (cone.getTransparent() == true) {
+      appearance.setTransparencyAttributes(transAttr);
     }
+    
     primitive.setAppearance(appearance);
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
@@ -226,10 +219,8 @@ public class Java3dPrimitiveFactory {
 
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(triangle.getColor()));
-    if (triangle.hasTransparent()) {
-      if (triangle.getTransparent() == true) {
-        appearance.setTransparencyAttributes(transAttr);
-      }
+    if (triangle.getTransparent() == true) {
+      appearance.setTransparencyAttributes(transAttr);
     }
     shape.setAppearance(appearance);
 
@@ -288,10 +279,8 @@ public class Java3dPrimitiveFactory {
 
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(quad.getColor()));
-    if (quad.hasTransparent()) {
-      if (quad.getTransparent() == true) {
-        appearance.setTransparencyAttributes(transAttr);
-      }
+    if (quad.getTransparent() == true) {
+      appearance.setTransparencyAttributes(transAttr);
     }
     shape.setAppearance(appearance);
 
