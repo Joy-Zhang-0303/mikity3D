@@ -15,43 +15,13 @@ public class Light implements java.io.Serializable {
   @Attribute(name="x")
   private float x;
 
-  /** keeps track of state for field: _x */
-  private boolean hasX;
-
   /** y */
   @Attribute(name="y")
   private float y;
 
-  /** keeps track of state for field: _y */
-  private boolean hasY;
-
   /** z */
   @Attribute(name="z")
   private float z;
-
-  /** keeps track of state for field: _z */
-  private boolean hasZ;
-
-//  /**
-//   * Method deleteX
-//   */
-//  public void deleteX() {
-//    this.hasX = false;
-//  }
-//
-//  /**
-//   * Method deleteY
-//   */
-//  public void deleteY() {
-//    this.hasY = false;
-//  }
-//
-//  /**
-//   * Method deleteZ
-//   */
-//  public void deleteZ() {
-//    this.hasZ = false;
-//  }
 
   /**
    * Returns the value of field 'x'.
@@ -69,9 +39,6 @@ public class Light implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + (this.hasX ? 1231 : 1237);
-    result = prime * result + (this.hasY ? 1231 : 1237);
-    result = prime * result + (this.hasZ ? 1231 : 1237);
     result = prime * result + Float.floatToIntBits(this.x);
     result = prime * result + Float.floatToIntBits(this.y);
     result = prime * result + Float.floatToIntBits(this.z);
@@ -93,15 +60,6 @@ public class Light implements java.io.Serializable {
       return false;
     }
     Light other = (Light)obj;
-    if (this.hasX != other.hasX) {
-      return false;
-    }
-    if (this.hasY != other.hasY) {
-      return false;
-    }
-    if (this.hasZ != other.hasZ) {
-      return false;
-    }
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
@@ -132,33 +90,6 @@ public class Light implements java.io.Serializable {
     return this.z;
   }
 
-//  /**
-//   * Method hasX
-//   * 
-//   * @return hasX
-//   */
-//  public boolean hasX() {
-//    return this.hasX;
-//  }
-//
-//  /**
-//   * Method hasY
-//   * 
-//   * @return hasY
-//   */
-//  public boolean hasY() {
-//    return this.hasY;
-//  }
-//
-//  /**
-//   * Method hasZ
-//   * 
-//   * @return hasZ
-//   */
-//  public boolean hasZ() {
-//    return this.hasZ;
-//  }
-
   /**
    * Sets the value of field 'x'.
    * 
@@ -166,7 +97,6 @@ public class Light implements java.io.Serializable {
    */
   public void setX(float x) {
     this.x = x;
-    this.hasX = true;
   }
 
   /**
@@ -176,7 +106,6 @@ public class Light implements java.io.Serializable {
    */
   public void setY(float y) {
     this.y = y;
-    this.hasY = true;
   }
 
   /**
@@ -186,6 +115,5 @@ public class Light implements java.io.Serializable {
    */
   public void setZ(float z) {
     this.z = z;
-    this.hasZ = true;
   }
 }

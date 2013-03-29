@@ -137,32 +137,32 @@ public class Location implements java.io.Serializable {
     return this.z;
   }
 
-  /**
-   * Method hasX
-   * 
-   * @return has_x
-   */
-  public boolean hasX() {
-    return this.hasX;
-  }
-
-  /**
-   * Method hasY
-   * 
-   * @return has_y
-   */
-  public boolean hasY() {
-    return this.hasY;
-  }
-
-  /**
-   * Method hasZ
-   * 
-   * @return has_z
-   */
-  public boolean hasZ() {
-    return this.hasZ;
-  }
+//  /**
+//   * Method hasX
+//   * 
+//   * @return has_x
+//   */
+//  public boolean hasX() {
+//    return this.hasX;
+//  }
+//
+//  /**
+//   * Method hasY
+//   * 
+//   * @return has_y
+//   */
+//  public boolean hasY() {
+//    return this.hasY;
+//  }
+//
+//  /**
+//   * Method hasZ
+//   * 
+//   * @return has_z
+//   */
+//  public boolean hasZ() {
+//    return this.hasZ;
+//  }
 
   /**
    * Sets the value of field 'x'.

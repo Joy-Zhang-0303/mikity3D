@@ -15,85 +15,25 @@ public class View implements java.io.Serializable {
   @Attribute(name="xrotation")
   private double xRotation;
 
-  /** Keep track of state for field: _xrotate */
-  private boolean hasXrotation;
-
   /** yRotation */
   @Attribute(name="yrotation")
   private double yRotation;
-
-  /** keeps track of state for field: _yrotate */
-  private boolean hasYrotation;
-
+  
   /** zRotation */
   @Attribute(name="zrotation")
   private double zRotation;
-
-  /** keeps track of state for field: _zrotate */
-  private boolean hasZrotation;
 
   /** x */
   @Attribute(name="x")
   private float x;
 
-  /** keeps track of state for field: _x */
-  private boolean hasX;
-
   /** y */
   @Attribute(name="y")
   private float y;
 
-  /** keeps track of state for field: _y */
-  private boolean hasY;
-
   /** z */
   @Attribute(name="z")
   private float z;
-
-  /** keeps track of state for field: _z */
-  private boolean hasZ;
-
-//  /**
-//   * Method deleteX
-//   */
-//  public void deleteX() {
-//    this.hasX = false;
-//  }
-//
-//  /**
-//   * Method deleteXrotate
-//   */
-//  public void deleteXrotation() {
-//    this.hasXrotation = false;
-//  }
-//
-//  /**
-//   * Method deleteY
-//   */
-//  public void deleteY() {
-//    this.hasY = false;
-//  }
-//
-//  /**
-//   * Method deleteYrotate
-//   */
-//  public void deleteYrotation() {
-//    this.hasYrotation = false;
-//  }
-//
-//  /**
-//   * Method deleteZ
-//   */
-//  public void deleteZ() {
-//    this.hasZ = false;
-//  }
-//
-//  /**
-//   * Method deleteZrotate
-//   */
-//  public void deleteZrotation() {
-//    this.hasZrotation = false;
-//  }
 
   /**
    * Returns the value of field 'x'.
@@ -111,15 +51,8 @@ public class View implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + (this.hasX ? 1231 : 1237);
-    result = prime * result + (this.hasXrotation ? 1231 : 1237);
-    result = prime * result + (this.hasY ? 1231 : 1237);
-    result = prime * result + (this.hasYrotation ? 1231 : 1237);
-    result = prime * result + (this.hasZ ? 1231 : 1237);
-    result = prime * result + (this.hasZrotation ? 1231 : 1237);
     result = prime * result + Float.floatToIntBits(this.x);
-    long temp;
-    temp = Double.doubleToLongBits(this.xRotation);
+    long temp = Double.doubleToLongBits(this.xRotation);
     result = prime * result + (int)(temp ^ (temp >>> 32));
     result = prime * result + Float.floatToIntBits(this.y);
     temp = Double.doubleToLongBits(this.yRotation);
@@ -145,24 +78,6 @@ public class View implements java.io.Serializable {
       return false;
     }
     View other = (View)obj;
-    if (this.hasX != other.hasX) {
-      return false;
-    }
-    if (this.hasXrotation != other.hasXrotation) {
-      return false;
-    }
-    if (this.hasY != other.hasY) {
-      return false;
-    }
-    if (this.hasYrotation != other.hasYrotation) {
-      return false;
-    }
-    if (this.hasZ != other.hasZ) {
-      return false;
-    }
-    if (this.hasZrotation != other.hasZrotation) {
-      return false;
-    }
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
@@ -229,60 +144,6 @@ public class View implements java.io.Serializable {
     return this.zRotation;
   }
 
-//  /**
-//   * Method hasX
-//   * 
-//   * @return has_x
-//   */
-//  public boolean hasX() {
-//    return this.hasX;
-//  }
-//
-//  /**
-//   * Method hasXrotate
-//   * 
-//   * @return has_xrotate
-//   */
-//  public boolean hasXrotation() {
-//    return this.hasXrotation;
-//  }
-//
-//  /**
-//   * Method hasY
-//   * 
-//   * @return has_y
-//   */
-//  public boolean hasY() {
-//    return this.hasY;
-//  }
-//
-//  /**
-//   * Method hasYrotate
-//   * 
-//   * @return has_yrotate
-//   */
-//  public boolean hasYrotation() {
-//    return this.hasYrotation;
-//  }
-//
-//  /**
-//   * Method hasZ
-//   * 
-//   * @return has_z
-//   */
-//  public boolean hasZ() {
-//    return this.hasZ;
-//  }
-//
-//  /**
-//   * Method hasZrotate
-//   * 
-//   * @return has_zrotate
-//   */
-//  public boolean hasZrotation() {
-//    return this.hasZrotation;
-//  }
-
   /**
    * Sets the value of field 'x'.
    * 
@@ -290,7 +151,6 @@ public class View implements java.io.Serializable {
    */
   public void setX(float x) {
     this.x = x;
-    this.hasX = true;
   }
 
   /**
@@ -300,7 +160,6 @@ public class View implements java.io.Serializable {
    */
   public void setXrotation(double xRotation) {
     this.xRotation = xRotation;
-    this.hasXrotation = true;
   }
 
   /**
@@ -310,7 +169,6 @@ public class View implements java.io.Serializable {
    */
   public void setY(float y) {
     this.y = y;
-    this.hasY = true;
   }
 
   /**
@@ -320,7 +178,6 @@ public class View implements java.io.Serializable {
    */
   public void setYrotation(double yRotation) {
     this.yRotation = yRotation;
-    this.hasYrotation = true;
   }
 
   /**
@@ -330,7 +187,6 @@ public class View implements java.io.Serializable {
    */
   public void setZ(float z) {
     this.z = z;
-    this.hasZ = true;
   }
 
   /**
@@ -340,6 +196,5 @@ public class View implements java.io.Serializable {
    */
   public void setZrotation(double zRotation) {
     this.zRotation = zRotation;
-    this.hasZrotation = true;
   }
 }

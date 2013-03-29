@@ -55,7 +55,7 @@ public class Background implements java.io.Serializable {
    * 
    * @return the value of field 'color'.
    */
-  public java.lang.String getColor() {
+  public String getColor() {
     return this.color;
   }
 
@@ -64,7 +64,7 @@ public class Background implements java.io.Serializable {
    * 
    * @param color the value of field 'color'.
    */
-  public void setColor(java.lang.String color) {
+  public void setColor(String color) {
     this.color = color;
   }
 }

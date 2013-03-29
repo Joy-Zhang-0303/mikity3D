@@ -125,10 +125,10 @@ public class LinkData implements java.io.Serializable {
   /**
    * データの列番号を設定します。
    * 
-   * @param column データの列番号
+   * @param columnNumber データの列番号
    */
-  public void setColumnNumber(int column) {
-    this.columnNumber = column;
+  public void setColumnNumber(int columnNumber) {
+    this.columnNumber = columnNumber;
   }
 
   /**

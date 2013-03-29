@@ -42,30 +42,30 @@ public class EditPrimitiveDialog {
   private String[] colors = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
   private ColorComboBox colorCombo;
   private Group afterGroup;
-  private Label primLabel;
-  private ParameterInputBox param1;
-  private ParameterInputBox param2;
-  private ParameterInputBox param3;
+  private Label primitiveLabel;
+  private ParameterInputBox parameter1;
+  private ParameterInputBox parameter2;
+  private ParameterInputBox parameter3;
   private Label uLabel1;
   private Label uLabel2;
   private Label uLabel3;
-  private ParameterInputBox rotX;
-  private ParameterInputBox rotY;
-  private ParameterInputBox rotZ;
-  private ParameterInputBox locX;
-  private ParameterInputBox locY;
-  private ParameterInputBox locZ;
+  private ParameterInputBox rotationX;
+  private ParameterInputBox rotationY;
+  private ParameterInputBox rotationZ;
+  private ParameterInputBox locationX;
+  private ParameterInputBox locationY;
+  private ParameterInputBox locationZ;
   private ParameterInputBox color;
 
   private ParameterInputBox newParam1;
   private ParameterInputBox newParam2;
   private ParameterInputBox newParam3;
-  private ParameterInputBox newRotX;
-  private ParameterInputBox newRotY;
-  private ParameterInputBox newRotZ;
-  private ParameterInputBox newLocX;
-  private ParameterInputBox newLocY;
-  private ParameterInputBox newLocZ;
+  private ParameterInputBox newRotationX;
+  private ParameterInputBox newRotationY;
+  private ParameterInputBox newRotationZ;
+  private ParameterInputBox newLocationX;
+  private ParameterInputBox newLocationY;
+  private ParameterInputBox newLocationZ;
 
   private boolean rotationB = true;
   private boolean locationB = true;
@@ -84,14 +84,14 @@ public class EditPrimitiveDialog {
     this.primitive = primitive;
     this.groupName = group.getName();
     createSShell();
-    detectPrim();
+    detectPrimitve();
   }
 
   /**
    * コンストラクター
    */
   public EditPrimitiveDialog() {
-  // nothing to do
+    // nothing to do
   }
 
   /**
@@ -122,8 +122,8 @@ public class EditPrimitiveDialog {
     groupLabel.setText(Messages.getString("EditPrimitiveDialog.1") + this.groupName); //$NON-NLS-1$
     setGridLayout(groupLabel, 2);
 
-    this.primLabel = new Label(this.sShell, SWT.NONE);
-    setGridLayout(this.primLabel, 2);
+    this.primitiveLabel = new Label(this.sShell, SWT.NONE);
+    setGridLayout(this.primitiveLabel, 2);
 
     final Group beforeGroup = new Group(this.sShell, SWT.NONE);
     beforeGroup.setText(Messages.getString("EditPrimitiveDialog.2")); //$NON-NLS-1$
@@ -131,22 +131,22 @@ public class EditPrimitiveDialog {
     final GridLayout beforeLayout = new GridLayout(2, true);
     beforeGroup.setLayout(beforeLayout);
 
-    this.param1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
-    this.param2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
-    this.param3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
+    this.parameter1 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
+    this.parameter2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
+    this.parameter3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
     final Label label = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
 
     setGridLayout(label, 2);
 
-    this.rotX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.rotY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.rotZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.3"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.4"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.5"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label label2 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
 
     setGridLayout(label2, 2);
-    this.locX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.locY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.7"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.locZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.locationX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.6"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.locationY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.7"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.locationZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.8"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label label3 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
 
     setGridLayout(label3, 2);
@@ -159,35 +159,35 @@ public class EditPrimitiveDialog {
 
     final GridLayout afterLayout = new GridLayout(3, false);
     this.afterGroup.setLayout(afterLayout);
-    this.newParam1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "");  //$NON-NLS-1$//$NON-NLS-2$
+    this.newParam1 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", ""); //$NON-NLS-1$//$NON-NLS-2$
     this.uLabel1 = new Label(this.afterGroup, SWT.NONE);
     this.uLabel1.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.uLabel1, 1);
 
-    this.newParam2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "");  //$NON-NLS-1$//$NON-NLS-2$
+    this.newParam2 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", ""); //$NON-NLS-1$//$NON-NLS-2$
     this.uLabel2 = new Label(this.afterGroup, SWT.NONE);
     this.uLabel2.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.uLabel2, 1);
 
-    this.newParam3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "");  //$NON-NLS-1$//$NON-NLS-2$
+    this.newParam3 = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", ""); //$NON-NLS-1$//$NON-NLS-2$
     this.uLabel3 = new Label(this.afterGroup, SWT.NONE);
     this.uLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.uLabel3, 1);
 
-    this.newRotX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.newRotationX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.newRotY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.newRotationY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.newRotZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.newRotationZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
     final Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
 
-    this.newLocX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.newLocationX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newLocY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.newLocationY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newLocZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.newLocationZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
     final Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label6, 3);
@@ -288,25 +288,25 @@ public class EditPrimitiveDialog {
     if (this.newParam2.checkParam() == false) {
       return false;
     }
-    if (this.param3.isVisible() && this.newParam3.isVisible() && this.newParam3.checkParam() == false) {
+    if (this.parameter3.isVisible() && this.newParam3.isVisible() && this.newParam3.checkParam() == false) {
       return false;
     }
-    if (this.newRotX.checkParam() == false) {
+    if (this.newRotationX.checkParam() == false) {
       return false;
     }
-    if (this.newRotY.checkParam() == false) {
+    if (this.newRotationY.checkParam() == false) {
       return false;
     }
-    if (this.newRotZ.checkParam() == false) {
+    if (this.newRotationZ.checkParam() == false) {
       return false;
     }
-    if (this.newLocX.checkParam() == false) {
+    if (this.newLocationX.checkParam() == false) {
       return false;
     }
-    if (this.newLocY.checkParam() == false) {
+    if (this.newLocationY.checkParam() == false) {
       return false;
     }
-    if (this.newLocZ.checkParam() == false) {
+    if (this.newLocationZ.checkParam() == false) {
       return false;
     }
     return true;
@@ -319,10 +319,10 @@ public class EditPrimitiveDialog {
     final Rotation rot = new Rotation();
     final Location loc = new Location();
 
-    if (this.newRotX.getFloatValue() == 0 && this.newRotY.getFloatValue() == 0 && this.newRotZ.getFloatValue() == 0) {
+    if (this.newRotationX.getFloatValue() == 0 && this.newRotationY.getFloatValue() == 0 && this.newRotationZ.getFloatValue() == 0) {
       this.rotationA = false;
     }
-    if (this.newLocX.getFloatValue() == 0 && this.newLocY.getFloatValue() == 0 && this.newLocZ.getFloatValue() == 0) {
+    if (this.newLocationX.getFloatValue() == 0 && this.newLocationY.getFloatValue() == 0 && this.newLocationZ.getFloatValue() == 0) {
       this.locationA = false;
     }
 
@@ -417,9 +417,9 @@ public class EditPrimitiveDialog {
    * @return rot
    */
   private Rotation setRotation(Rotation rotation) {
-    rotation.setXrotation(this.newRotX.getFloatValue());
-    rotation.setYrotation(this.newRotY.getFloatValue());
-    rotation.setZrotation(this.newRotZ.getFloatValue());
+    rotation.setXrotation(this.newRotationX.getFloatValue());
+    rotation.setYrotation(this.newRotationY.getFloatValue());
+    rotation.setZrotation(this.newRotationZ.getFloatValue());
     return rotation;
 
   }
@@ -431,9 +431,9 @@ public class EditPrimitiveDialog {
    * @return loc
    */
   private Location setLocation(Location location) {
-    location.setX(this.newLocX.getFloatValue());
-    location.setY(this.newLocY.getFloatValue());
-    location.setZ(this.newLocZ.getFloatValue());
+    location.setX(this.newLocationX.getFloatValue());
+    location.setY(this.newLocationY.getFloatValue());
+    location.setZ(this.newLocationZ.getFloatValue());
     return location;
 
   }
@@ -456,101 +456,101 @@ public class EditPrimitiveDialog {
   /**
    * primitiveの型を判断し、値を入れる
    */
-  private void detectPrim() {
+  private void detectPrimitve() {
     if (this.primitive instanceof XMLBox) {
       final XMLBox box = (XMLBox)this.primitive;
-      this.param1.setText("" + box.getXsize()); //$NON-NLS-1$
-      this.param2.setText("" + box.getYsize()); //$NON-NLS-1$
-      this.param3.setText("" + box.getZsize()); //$NON-NLS-1$
+      this.parameter1.setText("" + box.getXsize()); //$NON-NLS-1$
+      this.parameter2.setText("" + box.getYsize()); //$NON-NLS-1$
+      this.parameter3.setText("" + box.getZsize()); //$NON-NLS-1$
       this.newParam1.setText("" + box.getXsize()); //$NON-NLS-1$
       this.newParam2.setText("" + box.getYsize()); //$NON-NLS-1$
       this.newParam3.setText("" + box.getZsize()); //$NON-NLS-1$
-      final Rotation rot = box.getRotation();
-      final Location loc = box.getLocation();
-      if (rot == null) {
+      final Rotation rotation = box.getRotation();
+      final Location location = box.getLocation();
+      if (rotation == null) {
         // 変換前にRotationが存在しなかったことを示す
         this.rotationB = false;
       } else {
-        getRotation(rot);
+        getRotation(rotation);
       }
-      if (loc == null) {
+      if (location == null) {
         // 変換前にLocationが存在しなかったことを示す
         this.locationB = false;
       } else {
-        getLocation(loc);
+        getLocation(location);
       }
-      boxLabel();
-      this.primLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
+      setBoxLabel();
+      this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
       this.color.setText(box.getColor());
       this.colorCombo.getColorComboBox().setText(box.getColor());
     } else if (this.primitive instanceof XMLCylinder) {
-      final XMLCylinder cyl = (XMLCylinder)this.primitive;
-      this.param1.setText("" + cyl.getRadius()); //$NON-NLS-1$
-      this.param2.setText("" + cyl.getHeight()); //$NON-NLS-1$
-      this.param3.setText("" + cyl.getDiv()); //$NON-NLS-1$
-      this.newParam1.setText("" + cyl.getRadius()); //$NON-NLS-1$
-      this.newParam2.setText("" + cyl.getHeight()); //$NON-NLS-1$
-      this.newParam3.setText("" + cyl.getDiv()); //$NON-NLS-1$
-      final Rotation rot = cyl.getRotation();
-      final Location loc = cyl.getLocation();
-      if (rot == null) {
+      final XMLCylinder cylinder = (XMLCylinder)this.primitive;
+      this.parameter1.setText("" + cylinder.getRadius()); //$NON-NLS-1$
+      this.parameter2.setText("" + cylinder.getHeight()); //$NON-NLS-1$
+      this.parameter3.setText("" + cylinder.getDiv()); //$NON-NLS-1$
+      this.newParam1.setText("" + cylinder.getRadius()); //$NON-NLS-1$
+      this.newParam2.setText("" + cylinder.getHeight()); //$NON-NLS-1$
+      this.newParam3.setText("" + cylinder.getDiv()); //$NON-NLS-1$
+      final Rotation rotation = cylinder.getRotation();
+      final Location location = cylinder.getLocation();
+      if (rotation == null) {
         this.rotationB = false;
       } else {
-        getRotation(rot);
+        getRotation(rotation);
       }
-      if (loc == null) {
+      if (location == null) {
         this.locationB = false;
       } else {
-        getLocation(loc);
+        getLocation(location);
       }
-      cylLabel();
-      this.primLabel.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
-      this.color.setText(cyl.getColor());
-      this.colorCombo.getColorComboBox().setText(cyl.getColor());
+      setCylinderLabel();
+      this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
+      this.color.setText(cylinder.getColor());
+      this.colorCombo.getColorComboBox().setText(cylinder.getColor());
     } else if (this.primitive instanceof XMLSphere) {
-      final XMLSphere sph = (XMLSphere)this.primitive;
-      this.param1.setText("" + sph.getRadius()); //$NON-NLS-1$
-      this.param2.setText("" + sph.getDiv()); //$NON-NLS-1$
-      this.newParam1.setText("" + sph.getRadius()); //$NON-NLS-1$
-      this.newParam2.setText("" + sph.getDiv()); //$NON-NLS-1$
-      final Rotation rot = sph.getRotation();
-      final Location loc = sph.getLocation();
-      if (rot == null) {
+      final XMLSphere sphere = (XMLSphere)this.primitive;
+      this.parameter1.setText("" + sphere.getRadius()); //$NON-NLS-1$
+      this.parameter2.setText("" + sphere.getDiv()); //$NON-NLS-1$
+      this.newParam1.setText("" + sphere.getRadius()); //$NON-NLS-1$
+      this.newParam2.setText("" + sphere.getDiv()); //$NON-NLS-1$
+      final Rotation rotation = sphere.getRotation();
+      final Location location = sphere.getLocation();
+      if (rotation == null) {
         this.rotationB = false;
       } else {
-        getRotation(rot);
+        getRotation(rotation);
       }
-      if (loc == null) {
+      if (location == null) {
         this.locationB = false;
       } else {
-        getLocation(loc);
+        getLocation(location);
       }
-      sphLabel();
-      this.primLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
-      this.color.setText(sph.getColor());
-      this.colorCombo.getColorComboBox().setText(sph.getColor());
+      setSphereLabel();
+      this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
+      this.color.setText(sphere.getColor());
+      this.colorCombo.getColorComboBox().setText(sphere.getColor());
     } else if (this.primitive instanceof XMLCone) {
       final XMLCone cone = (XMLCone)this.primitive;
-      this.param1.setText("" + cone.getRadisu()); //$NON-NLS-1$
-      this.param2.setText("" + cone.getHeight()); //$NON-NLS-1$
-      this.param3.setText("" + cone.getDiv()); //$NON-NLS-1$
+      this.parameter1.setText("" + cone.getRadisu()); //$NON-NLS-1$
+      this.parameter2.setText("" + cone.getHeight()); //$NON-NLS-1$
+      this.parameter3.setText("" + cone.getDiv()); //$NON-NLS-1$
       this.newParam1.setText("" + cone.getRadisu()); //$NON-NLS-1$
       this.newParam2.setText("" + cone.getHeight()); //$NON-NLS-1$
       this.newParam3.setText("" + cone.getDiv()); //$NON-NLS-1$
-      final Rotation rot = cone.getRotation();
-      final Location loc = cone.getLocation();
-      if (rot == null) {
+      final Rotation rotation = cone.getRotation();
+      final Location location = cone.getLocation();
+      if (rotation == null) {
         this.rotationB = false;
       } else {
-        getRotation(rot);
+        getRotation(rotation);
       }
-      if (loc == null) {
+      if (location == null) {
         this.locationB = false;
       } else {
-        getLocation(loc);
+        getLocation(location);
       }
-      coneLabel();
-      this.primLabel.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
+      setConeLabel();
+      this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
       this.color.setText(cone.getColor());
       this.colorCombo.getColorComboBox().setText(cone.getColor());
     }
@@ -559,11 +559,11 @@ public class EditPrimitiveDialog {
   /**
    * primitiveがBoxのとき
    */
-  public void boxLabel() {
-    this.param1.setLabelText(Messages.getString("EditPrimitiveDialog.32")); //$NON-NLS-1$
-    this.param2.setLabelText(Messages.getString("EditPrimitiveDialog.33")); //$NON-NLS-1$
-    this.param3.setLabelText(Messages.getString("EditPrimitiveDialog.34")); //$NON-NLS-1$
-    this.param3.setVisible(true);
+  public void setBoxLabel() {
+    this.parameter1.setLabelText(Messages.getString("EditPrimitiveDialog.32")); //$NON-NLS-1$
+    this.parameter2.setLabelText(Messages.getString("EditPrimitiveDialog.33")); //$NON-NLS-1$
+    this.parameter3.setLabelText(Messages.getString("EditPrimitiveDialog.34")); //$NON-NLS-1$
+    this.parameter3.setVisible(true);
     this.newParam3.setVisible(true);
     this.uLabel2.setVisible(true);
     this.uLabel3.setVisible(true);
@@ -572,18 +572,18 @@ public class EditPrimitiveDialog {
   /**
    * primitiveがCylinderのとき
    */
-  public void cylLabel() {
-    this.param1.setLabelText(Messages.getString("EditPrimitiveDialog.35")); //$NON-NLS-1$
-    this.param2.setLabelText(Messages.getString("EditPrimitiveDialog.36")); //$NON-NLS-1$
-    this.param3.setLabelText(Messages.getString("EditPrimitiveDialog.37")); //$NON-NLS-1$
-    this.param3.setVisible(true);
+  public void setCylinderLabel() {
+    this.parameter1.setLabelText(Messages.getString("EditPrimitiveDialog.35")); //$NON-NLS-1$
+    this.parameter2.setLabelText(Messages.getString("EditPrimitiveDialog.36")); //$NON-NLS-1$
+    this.parameter3.setLabelText(Messages.getString("EditPrimitiveDialog.37")); //$NON-NLS-1$
+    this.parameter3.setVisible(true);
     int div = 0;
-    if (this.param3.getIntValue() < 3) {
+    if (this.parameter3.getIntValue() < 3) {
       div = 30;
     } else {
-      div = this.param3.getIntValue();
+      div = this.parameter3.getIntValue();
     }
-    this.param3.setText("" + div); //$NON-NLS-1$
+    this.parameter3.setText("" + div); //$NON-NLS-1$
     this.newParam3.setVisible(true);
     this.newParam3.setText("" + div); //$NON-NLS-1$
     this.uLabel2.setVisible(true);
@@ -593,17 +593,17 @@ public class EditPrimitiveDialog {
   /**
    * primitiveがSphereのとき
    */
-  public void sphLabel() {
-    this.param1.setLabelText(Messages.getString("EditPrimitiveDialog.38")); //$NON-NLS-1$
-    this.param2.setLabelText(Messages.getString("EditPrimitiveDialog.39")); //$NON-NLS-1$
-    this.param3.setVisible(false);
+  public void setSphereLabel() {
+    this.parameter1.setLabelText(Messages.getString("EditPrimitiveDialog.38")); //$NON-NLS-1$
+    this.parameter2.setLabelText(Messages.getString("EditPrimitiveDialog.39")); //$NON-NLS-1$
+    this.parameter3.setVisible(false);
     int div = 0;
-    if (this.param2.getIntValue() < 3) {
+    if (this.parameter2.getIntValue() < 3) {
       div = 30;
     } else {
-      div = this.param2.getIntValue();
+      div = this.parameter2.getIntValue();
     }
-    this.param2.setText("" + div); //$NON-NLS-1$
+    this.parameter2.setText("" + div); //$NON-NLS-1$
     this.newParam2.setText("" + div); //$NON-NLS-1$
     this.newParam3.setVisible(false);
     this.uLabel2.setVisible(false);
@@ -613,18 +613,18 @@ public class EditPrimitiveDialog {
   /**
    * primitiveがConeのとき
    */
-  public void coneLabel() {
-    this.param1.setLabelText(Messages.getString("EditPrimitiveDialog.40")); //$NON-NLS-1$
-    this.param2.setLabelText(Messages.getString("EditPrimitiveDialog.41")); //$NON-NLS-1$
-    this.param3.setLabelText(Messages.getString("EditPrimitiveDialog.42")); //$NON-NLS-1$
-    this.param3.setVisible(true);
+  public void setConeLabel() {
+    this.parameter1.setLabelText(Messages.getString("EditPrimitiveDialog.40")); //$NON-NLS-1$
+    this.parameter2.setLabelText(Messages.getString("EditPrimitiveDialog.41")); //$NON-NLS-1$
+    this.parameter3.setLabelText(Messages.getString("EditPrimitiveDialog.42")); //$NON-NLS-1$
+    this.parameter3.setVisible(true);
     int div = 0;
-    if (this.param3.getIntValue() < 3) {
+    if (this.parameter3.getIntValue() < 3) {
       div = 30;
     } else {
-      div = this.param3.getIntValue();
+      div = this.parameter3.getIntValue();
     }
-    this.param3.setText("" + div); //$NON-NLS-1$
+    this.parameter3.setText("" + div); //$NON-NLS-1$
     this.newParam3.setVisible(true);
     this.newParam3.setText("" + div); //$NON-NLS-1$
     this.uLabel2.setVisible(true);
@@ -637,32 +637,20 @@ public class EditPrimitiveDialog {
    * @param rotation
    */
   private void getRotation(Rotation rotation) {
-    if (rotation.hasXrotation() || rotation.getXrotation() != 0.0f) {
-      this.rotX.setText("" + rotation.getXrotation()); //$NON-NLS-1$
-      this.newRotX.setText("" + rotation.getXrotation()); //$NON-NLS-1$
-    }
-    if (rotation.hasYrotation() || rotation.getYrotation() != 0.0f) {
-      this.rotY.setText("" + rotation.getYrotation()); //$NON-NLS-1$
-      this.newRotY.setText("" + rotation.getYrotation()); //$NON-NLS-1$
-    }
-    if (rotation.hasZrotation() || rotation.getXrotation() != 0.0f) {
-      this.rotZ.setText("" + rotation.getZrotation()); //$NON-NLS-1$
-      this.newRotZ.setText("" + rotation.getZrotation()); //$NON-NLS-1$
-    }
+    this.rotationX.setText("" + rotation.getXrotation()); //$NON-NLS-1$
+    this.newRotationX.setText("" + rotation.getXrotation()); //$NON-NLS-1$
+    this.rotationY.setText("" + rotation.getYrotation()); //$NON-NLS-1$
+    this.newRotationY.setText("" + rotation.getYrotation()); //$NON-NLS-1$
+    this.rotationZ.setText("" + rotation.getZrotation()); //$NON-NLS-1$
+    this.newRotationZ.setText("" + rotation.getZrotation()); //$NON-NLS-1$
   }
 
   private void getLocation(Location location) {
-    if (location.hasX() || location.getX() != 0.0f) {
-      this.locX.setText("" + location.getX()); //$NON-NLS-1$
-      this.newLocX.setText("" + location.getX()); //$NON-NLS-1$
-    }
-    if (location.hasY() || location.getY() != 0.0f) {
-      this.locY.setText("" + location.getY()); //$NON-NLS-1$
-      this.newLocY.setText("" + location.getY()); //$NON-NLS-1$
-    }
-    if (location.hasZ() || location.getZ() != 0.0f) {
-      this.locZ.setText("" + location.getZ()); //$NON-NLS-1$
-      this.newLocZ.setText("" + location.getZ()); //$NON-NLS-1$
-    }
+    this.locationX.setText("" + location.getX()); //$NON-NLS-1$
+    this.newLocationX.setText("" + location.getX()); //$NON-NLS-1$
+    this.locationY.setText("" + location.getY()); //$NON-NLS-1$
+    this.newLocationY.setText("" + location.getY()); //$NON-NLS-1$
+    this.locationZ.setText("" + location.getZ()); //$NON-NLS-1$
+    this.newLocationZ.setText("" + location.getZ()); //$NON-NLS-1$
   }
 }
