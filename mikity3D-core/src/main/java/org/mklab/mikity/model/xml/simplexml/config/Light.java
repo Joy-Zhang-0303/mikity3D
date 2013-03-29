@@ -32,26 +32,26 @@ public class Light implements java.io.Serializable {
   /** keeps track of state for field: _z */
   private boolean hasZ;
 
-  /**
-   * Method deleteX
-   */
-  public void deleteX() {
-    this.hasX = false;
-  }
-
-  /**
-   * Method deleteY
-   */
-  public void deleteY() {
-    this.hasY = false;
-  }
-
-  /**
-   * Method deleteZ
-   */
-  public void deleteZ() {
-    this.hasZ = false;
-  }
+//  /**
+//   * Method deleteX
+//   */
+//  public void deleteX() {
+//    this.hasX = false;
+//  }
+//
+//  /**
+//   * Method deleteY
+//   */
+//  public void deleteY() {
+//    this.hasY = false;
+//  }
+//
+//  /**
+//   * Method deleteZ
+//   */
+//  public void deleteZ() {
+//    this.hasZ = false;
+//  }
 
   /**
    * Returns the value of field 'x'.

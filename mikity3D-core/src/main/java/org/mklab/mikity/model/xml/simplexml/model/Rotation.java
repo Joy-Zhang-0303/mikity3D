@@ -4,7 +4,7 @@ import org.simpleframework.xml.Attribute;
 
 
 /**
- * Class Rotation.
+ * 回転を表すクラスです。
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
@@ -55,26 +55,26 @@ public class Rotation implements java.io.Serializable {
     this.hasZrotation = true;
   }
 
-  /**
-   * Method deleteXrotate
-   */
-  public void deleteXrotation() {
-    this.hasXrotation = false;
-  }
-
-  /**
-   * Method deleteYrotate
-   */
-  public void deleteYrotation() {
-    this.hasYrotation = false;
-  }
-
-  /**
-   * Method deleteZrotate
-   */
-  public void deleteZrotation() {
-    this.hasZrotation = false;
-  }
+//  /**
+//   * Method deleteXrotate
+//   */
+//  public void deleteXrotation() {
+//    this.hasXrotation = false;
+//  }
+//
+//  /**
+//   * Method deleteYrotate
+//   */
+//  public void deleteYrotation() {
+//    this.hasYrotation = false;
+//  }
+//
+//  /**
+//   * Method deleteZrotate
+//   */
+//  public void deleteZrotation() {
+//    this.hasZrotation = false;
+//  }
 
   /**
    * Returns the value of field 'xrotate'.

@@ -76,33 +76,33 @@ public class XMLCone implements java.io.Serializable {
     this.propertyChangeListeners.addElement(pcl);
   }
 
-  /**
-   * Method deleteDiv
-   */
-  public void deleteDiv() {
-    this.hasDiv = false;
-  }
-
-  /**
-   * Method deleteHeight
-   */
-  public void deleteHeight() {
-    this.hasHeight = false;
-  }
-
-  /**
-   * Method deleteR
-   */
-  public void deleteR() {
-    this.hasRadisu = false;
-  }
-
-  /**
-   * Method deleteTransparent
-   */
-  public void deleteTransparent() {
-    this.hasTransparent = false;
-  }
+//  /**
+//   * Method deleteDiv
+//   */
+//  public void deleteDiv() {
+//    this.hasDiv = false;
+//  }
+//
+//  /**
+//   * Method deleteHeight
+//   */
+//  public void deleteHeight() {
+//    this.hasHeight = false;
+//  }
+//
+//  /**
+//   * Method deleteR
+//   */
+//  public void deleteR() {
+//    this.hasRadisu = false;
+//  }
+//
+//  /**
+//   * Method deleteTransparent
+//   */
+//  public void deleteTransparent() {
+//    this.hasTransparent = false;
+//  }
 
   /**
    * Returns the value of field 'color'.

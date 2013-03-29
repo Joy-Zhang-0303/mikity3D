@@ -8,50 +8,48 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 /**
- * Class Model.
+ * モデルを表すクラスです。
  * 
  * @version $Revision: 1.15 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="model")
 public class Mikity3dModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
-  /** _groupList */
+  /** groups */
   @ElementList(type=Group.class, inline=true)
-  private List<Group> _groupList;
+  private List<Group> groups;
 
   /**
    * コンストラクター
    */
   public Mikity3dModel() {
-    this._groupList = new ArrayList<Group>();
+    this.groups = new ArrayList<Group>();
   }
 
   /**
    * Method addGroup
    * 
-   * @param vGroup グループ
-   * @throws java.lang.IndexOutOfBoundsException 例外
+   * @param argGroup グループ
    */
-  public void addGroup(org.mklab.mikity.model.xml.simplexml.model.Group vGroup) {
-    this._groupList.add(vGroup);
+  public void addGroup(Group argGroup) {
+    this.groups.add(argGroup);
   }
 
   /**
    * Method addGroup
    * 
    * @param index インデックス
-   * @param vGroup グループ
-   * @throws java.lang.IndexOutOfBoundsException 例外
+   * @param argGroup グループ
    */
-  public void addGroup(int index, org.mklab.mikity.model.xml.simplexml.model.Group vGroup) {
-    this._groupList.add(index, vGroup);
+  public void addGroup(int index, Group argGroup) {
+    this.groups.add(index, argGroup);
   }
 
   /**
    * Method clearGroup
    */
   public void clearGroups() {
-    this._groupList.clear();
+    this.groups.clear();
   } 
 
   /**
@@ -59,14 +57,13 @@ public class Mikity3dModel implements java.io.Serializable {
    * 
    * @param index グループのインデックス
    * @return (org.mklab.mikity.xml.Group) _groupList.get(index)
-   * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.simplexml.model.Group getGroup(int index) {
-    if ((index < 0) || (index > this._groupList.size())) {
+  public Group getGroup(int index) {
+    if ((index < 0) || (index > this.groups.size())) {
       throw new IndexOutOfBoundsException();
     }
 
-    return this._groupList.get(index);
+    return this.groups.get(index);
   } 
 
   /**
@@ -76,7 +73,7 @@ public class Mikity3dModel implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((this._groupList == null) ? 0 : this._groupList.hashCode());
+    result = prime * result + ((this.groups == null) ? 0 : this.groups.hashCode());
     return result;
   }
 
@@ -95,11 +92,11 @@ public class Mikity3dModel implements java.io.Serializable {
       return false;
     }
     Mikity3dModel other = (Mikity3dModel)obj;
-    if (this._groupList == null) {
-      if (other._groupList != null) {
+    if (this.groups == null) {
+      if (other.groups != null) {
         return false;
       }
-    } else if (!this._groupList.equals(other._groupList)) {
+    } else if (!this.groups.equals(other.groups)) {
       return false;
     }
     return true;
@@ -110,13 +107,13 @@ public class Mikity3dModel implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.simplexml.model.Group[] getGroups() {
-    int size = this._groupList.size();
-    org.mklab.mikity.model.xml.simplexml.model.Group[] groups = new org.mklab.mikity.model.xml.simplexml.model.Group[size];
-    for (int index = 0; index < size; index++) {
-      groups[index] = this._groupList.get(index);
+  public Group[] getGroups() {
+    final int size = this.groups.size();
+    final Group[] localGroups = new Group[size];
+    for (int i = 0; i < size; i++) {
+      localGroups[i] = this.groups.get(i);
     }
-    return groups;
+    return localGroups;
   } 
 
   /**
@@ -125,7 +122,7 @@ public class Mikity3dModel implements java.io.Serializable {
    * @return returns a reference to the Collection.
    */
   public List<Group> getGroupsAsReference() {
-    return this._groupList;
+    return this.groups;
   } 
 
   /**
@@ -134,17 +131,17 @@ public class Mikity3dModel implements java.io.Serializable {
    * @return _groupList.size()
    */
   public int getGroupSize() {
-    return this._groupList.size();
+    return this.groups.size();
   } 
 
   /**
    * Method removeGroup
    * 
-   * @param vGroup グループ
+   * @param argGroup グループ
    * @return removed
    */
-  public boolean removeGroup(org.mklab.mikity.model.xml.simplexml.model.Group vGroup) {
-    boolean removed = this._groupList.remove(vGroup);
+  public boolean removeGroup(Group argGroup) {
+    boolean removed = this.groups.remove(argGroup);
     return removed;
   }
 
@@ -152,47 +149,47 @@ public class Mikity3dModel implements java.io.Serializable {
    * Method setGroup
    * 
    * @param index インデックス
-   * @param vGroup グループ
+   * @param argGroup グループ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setGroup(int index, org.mklab.mikity.model.xml.simplexml.model.Group vGroup) {
-    if ((index < 0) || (index > this._groupList.size())) {
+  public void setGroup(int index, Group argGroup) {
+    if ((index < 0) || (index > this.groups.size())) {
       throw new IndexOutOfBoundsException();
     }
-    this._groupList.set(index, vGroup);
+    this.groups.set(index, argGroup);
   } 
 
   /**
    * Method setGroup
    * 
-   * @param groupArray グループの文字列
+   * @param argGroups グループの文字列
    */
-  public void setGroups(org.mklab.mikity.model.xml.simplexml.model.Group[] groupArray) {
-    this._groupList.clear();
-    for (int i = 0; i < groupArray.length; i++) {
-      this._groupList.add(groupArray[i]);
+  public void setGroups(Group[] argGroups) {
+    this.groups.clear();
+    for (int i = 0; i < argGroups.length; i++) {
+      this.groups.add(argGroups[i]);
     }
   } 
 
   /**
    * Method setGroupSets the value of 'group' by copying the given ArrayList.
    * 
-   * @param groupCollection the Vector to copy.
+   * @param argGroups the Vector to copy.
    */
-  public void setGroups(List<Group> groupCollection) {
-    this._groupList.clear();
-    for (int i = 0; i < groupCollection.size(); i++) {
-      this._groupList.add(groupCollection.get(i));
+  public void setGroups(List<Group> argGroups) {
+    this.groups.clear();
+    for (int i = 0; i < argGroups.size(); i++) {
+      this.groups.add(argGroups.get(i));
     }
   } 
 
   /**
    * Method setGroupAsReferenceSets the value of 'group' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param groupCollection the ArrayList to copy.
+   * @param argGroups the ArrayList to copy.
    */
-  public void setGroupsAsReference(List<Group> groupCollection) {
-    this._groupList = groupCollection;
+  public void setGroupsAsReference(List<Group> argGroups) {
+    this.groups = argGroups;
   } 
 
 }

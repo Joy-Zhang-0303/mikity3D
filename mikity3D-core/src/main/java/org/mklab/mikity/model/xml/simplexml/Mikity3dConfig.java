@@ -1,11 +1,16 @@
 package org.mklab.mikity.model.xml.simplexml;
 
+import org.mklab.mikity.model.xml.simplexml.config.Background;
+import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
+import org.mklab.mikity.model.xml.simplexml.config.Light;
+import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
+import org.mklab.mikity.model.xml.simplexml.config.View;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 
 /**
- * Class Config.
+ * 環境を表すクラスです。
  * 
  * @version $Revision: 1.9 $ $Date: 2007/08/03 03:30:27 $
  */
@@ -13,37 +18,37 @@ import org.simpleframework.xml.Root;
 public class Mikity3dConfig implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** _data */
+  /** data */
   @Element(name="data", required=false)
-  private java.lang.String _data;
+  private java.lang.String data;
 
-  /** _background */
+  /** background */
   @Element(name="background")
-  private org.mklab.mikity.model.xml.simplexml.config.Background _background;
+  private Background background;
 
-  /** _light */
+  /** light */
   @Element(name="light")
-  private org.mklab.mikity.model.xml.simplexml.config.Light _light;
+  private Light light;
 
-  /** _view */
+  /** view */
   @Element(name="view")
-  private org.mklab.mikity.model.xml.simplexml.config.View _view;
+  private View view;
 
-  /** _modelUnit */
+  /** modelUnit */
   @Element(name="modelUnit")
-  private org.mklab.mikity.model.xml.simplexml.config.ModelUnit _modelUnit;
+  private ModelUnit modelUnit;
 
-  /** _dataUnit */
+  /** dataUnit */
   @Element(name="dataUnit")
-  private org.mklab.mikity.model.xml.simplexml.config.DataUnit _dataUnit;
+  private DataUnit dataUnit;
 
   /**
    * Returns the value of field 'background'.
    * 
    * @return the value of field 'background'.
    */
-  public org.mklab.mikity.model.xml.simplexml.config.Background getBackground() {
-    return this._background;
+  public Background getBackground() {
+    return this.background;
   }
 
   /**
@@ -53,12 +58,12 @@ public class Mikity3dConfig implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((this._background == null) ? 0 : this._background.hashCode());
-    result = prime * result + ((this._data == null) ? 0 : this._data.hashCode());
-    result = prime * result + ((this._dataUnit == null) ? 0 : this._dataUnit.hashCode());
-    result = prime * result + ((this._light == null) ? 0 : this._light.hashCode());
-    result = prime * result + ((this._modelUnit == null) ? 0 : this._modelUnit.hashCode());
-    result = prime * result + ((this._view == null) ? 0 : this._view.hashCode());
+    result = prime * result + ((this.background == null) ? 0 : this.background.hashCode());
+    result = prime * result + ((this.data == null) ? 0 : this.data.hashCode());
+    result = prime * result + ((this.dataUnit == null) ? 0 : this.dataUnit.hashCode());
+    result = prime * result + ((this.light == null) ? 0 : this.light.hashCode());
+    result = prime * result + ((this.modelUnit == null) ? 0 : this.modelUnit.hashCode());
+    result = prime * result + ((this.view == null) ? 0 : this.view.hashCode());
     return result;
   }
 
@@ -77,46 +82,46 @@ public class Mikity3dConfig implements java.io.Serializable {
       return false;
     }
     Mikity3dConfig other = (Mikity3dConfig)obj;
-    if (this._background == null) {
-      if (other._background != null) {
+    if (this.background == null) {
+      if (other.background != null) {
         return false;
       }
-    } else if (!this._background.equals(other._background)) {
+    } else if (!this.background.equals(other.background)) {
       return false;
     }
-    if (this._data == null) {
-      if (other._data != null) {
+    if (this.data == null) {
+      if (other.data != null) {
         return false;
       }
-    } else if (!this._data.equals(other._data)) {
+    } else if (!this.data.equals(other.data)) {
       return false;
     }
-    if (this._dataUnit == null) {
-      if (other._dataUnit != null) {
+    if (this.dataUnit == null) {
+      if (other.dataUnit != null) {
         return false;
       }
-    } else if (!this._dataUnit.equals(other._dataUnit)) {
+    } else if (!this.dataUnit.equals(other.dataUnit)) {
       return false;
     }
-    if (this._light == null) {
-      if (other._light != null) {
+    if (this.light == null) {
+      if (other.light != null) {
         return false;
       }
-    } else if (!this._light.equals(other._light)) {
+    } else if (!this.light.equals(other.light)) {
       return false;
     }
-    if (this._modelUnit == null) {
-      if (other._modelUnit != null) {
+    if (this.modelUnit == null) {
+      if (other.modelUnit != null) {
         return false;
       }
-    } else if (!this._modelUnit.equals(other._modelUnit)) {
+    } else if (!this.modelUnit.equals(other.modelUnit)) {
       return false;
     }
-    if (this._view == null) {
-      if (other._view != null) {
+    if (this.view == null) {
+      if (other.view != null) {
         return false;
       }
-    } else if (!this._view.equals(other._view)) {
+    } else if (!this.view.equals(other.view)) {
       return false;
     }
     return true;
@@ -128,7 +133,7 @@ public class Mikity3dConfig implements java.io.Serializable {
    * @return the value of field 'data'.
    */
   public java.lang.String getData() {
-    return this._data;
+    return this.data;
   }
 
   /**
@@ -136,8 +141,8 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @return the value of field 'dataUnit'.
    */
-  public org.mklab.mikity.model.xml.simplexml.config.DataUnit getDataUnit() {
-    return this._dataUnit;
+  public DataUnit getDataUnit() {
+    return this.dataUnit;
   }
 
   /**
@@ -145,8 +150,8 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @return the value of field 'light'.
    */
-  public org.mklab.mikity.model.xml.simplexml.config.Light getLight() {
-    return this._light;
+  public Light getLight() {
+    return this.light;
   }
 
   /**
@@ -154,8 +159,8 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @return the value of field 'modelUnit'.
    */
-  public org.mklab.mikity.model.xml.simplexml.config.ModelUnit getModelUnit() {
-    return this._modelUnit;
+  public ModelUnit getModelUnit() {
+    return this.modelUnit;
   }
 
   /**
@@ -163,8 +168,8 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @return the value of field 'view'.
    */
-  public org.mklab.mikity.model.xml.simplexml.config.View getView() {
-    return this._view;
+  public View getView() {
+    return this.view;
   }
 
   /**
@@ -172,8 +177,8 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @param background the value of field 'background'.
    */
-  public void setBackground(org.mklab.mikity.model.xml.simplexml.config.Background background) {
-    this._background = background;
+  public void setBackground(Background background) {
+    this.background = background;
   }
 
   /**
@@ -182,7 +187,7 @@ public class Mikity3dConfig implements java.io.Serializable {
    * @param data the value of field 'data'.
    */
   public void setData(java.lang.String data) {
-    this._data = data;
+    this.data = data;
   }
 
   /**
@@ -190,8 +195,8 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @param dataUnit the value of field 'dataUnit'.
    */
-  public void setDataUnit(org.mklab.mikity.model.xml.simplexml.config.DataUnit dataUnit) {
-    this._dataUnit = dataUnit;
+  public void setDataUnit(DataUnit dataUnit) {
+    this.dataUnit = dataUnit;
   }
 
   /**
@@ -199,8 +204,8 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @param light the value of field 'light'.
    */
-  public void setLight(org.mklab.mikity.model.xml.simplexml.config.Light light) {
-    this._light = light;
+  public void setLight(Light light) {
+    this.light = light;
   }
 
   /**
@@ -208,8 +213,8 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @param modelUnit the value of field 'modelUnit'.
    */
-  public void setModelUnit(org.mklab.mikity.model.xml.simplexml.config.ModelUnit modelUnit) {
-    this._modelUnit = modelUnit;
+  public void setModelUnit(ModelUnit modelUnit) {
+    this.modelUnit = modelUnit;
   }
 
   /**
@@ -217,7 +222,7 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @param view the value of field 'view'.
    */
-  public void setView(org.mklab.mikity.model.xml.simplexml.config.View view) {
-    this._view = view;
+  public void setView(View view) {
+    this.view = view;
   }
 }

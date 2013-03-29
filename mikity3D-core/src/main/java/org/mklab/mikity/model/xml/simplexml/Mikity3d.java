@@ -16,76 +16,72 @@ import org.simpleframework.xml.Root;
 public class Mikity3d implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** _modelList */
+  /** models */
   @ElementList(type=Mikity3dModel.class, inline=true)
-  private List<Mikity3dModel> _modelList;
+  private List<Mikity3dModel> models;
 
-  /** _configList */
+  /** configurations */
   @ElementList(type=Mikity3dConfig.class, inline=true)
-  private List<Mikity3dConfig> _configList;
+  private List<Mikity3dConfig> configurations;
 
   /**
    * コンストラクター
    */
   public Mikity3d() {
-    this._modelList = new ArrayList<Mikity3dModel>();
-    this._configList = new ArrayList<Mikity3dConfig>();
+    this.models = new ArrayList<Mikity3dModel>();
+    this.configurations = new ArrayList<Mikity3dConfig>();
   }
 
   /**
    * Method addConfig
    * 
-   * @param vConfig コンフィグ
-   * @throws java.lang.IndexOutOfBoundsException 例外
+   * @param config コンフィグ
    */
-  public void addConfig(org.mklab.mikity.model.xml.simplexml.Mikity3dConfig vConfig) {
-    this._configList.add(vConfig);
+  public void addConfig(Mikity3dConfig config) {
+    this.configurations.add(config);
   }
 
   /**
    * Method addConfig
    * 
    * @param index インデックス
-   * @param vConfig コンフィグ
-   * @throws java.lang.IndexOutOfBoundsException 例外
+   * @param config コンフィグ
    */
-  public void addConfig(int index, org.mklab.mikity.model.xml.simplexml.Mikity3dConfig vConfig) {
-    this._configList.add(index, vConfig);
+  public void addConfig(int index, Mikity3dConfig config) {
+    this.configurations.add(index, config);
   }
 
   /**
    * Method addModel
    * 
-   * @param vModel モデル
-   * @throws java.lang.IndexOutOfBoundsException 例外
+   * @param model モデル
    */
-  public void addModel(org.mklab.mikity.model.xml.simplexml.Mikity3dModel vModel) {
-    this._modelList.add(vModel);
+  public void addModel(Mikity3dModel model) {
+    this.models.add(model);
   }
 
   /**
    * Method addModel
    * 
    * @param index インデックス
-   * @param vModel モデル
-   * @throws java.lang.IndexOutOfBoundsException 例外
+   * @param model モデル
    */
-  public void addModel(int index, org.mklab.mikity.model.xml.simplexml.Mikity3dModel vModel) {
-    this._modelList.add(index, vModel);
+  public void addModel(int index, Mikity3dModel model) {
+    this.models.add(index, model);
   }
 
   /**
    * Method clearConfig
    */
   public void clearConfig() {
-    this._configList.clear();
+    this.configurations.clear();
   }
 
   /**
    * Method clearModel
    */
   public void clearModel() {
-    this._modelList.clear();
+    this.models.clear();
   }
 
   /**
@@ -95,12 +91,12 @@ public class Mikity3d implements java.io.Serializable {
    * @return _configList.get(index)
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.simplexml.Mikity3dConfig getConfig(int index) {
-    if ((index < 0) || (index > this._configList.size())) {
+  public Mikity3dConfig getConfig(int index) {
+    if ((index < 0) || (index > this.configurations.size())) {
       throw new IndexOutOfBoundsException();
     }
 
-    return this._configList.get(index);
+    return this.configurations.get(index);
   }
 
   /**
@@ -111,8 +107,8 @@ public class Mikity3d implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((_configList == null) ? 0 : _configList.hashCode());
-    result = prime * result + ((_modelList == null) ? 0 : _modelList.hashCode());
+    result = prime * result + ((configurations == null) ? 0 : configurations.hashCode());
+    result = prime * result + ((models == null) ? 0 : models.hashCode());
     return result;
   }
 
@@ -131,18 +127,18 @@ public class Mikity3d implements java.io.Serializable {
       return false;
     }
     Mikity3d other = (Mikity3d)obj;
-    if (this._configList == null) {
-      if (other._configList != null) {
+    if (this.configurations == null) {
+      if (other.configurations != null) {
         return false;
       }
-    } else if (!this._configList.equals(other._configList)) {
+    } else if (!this.configurations.equals(other.configurations)) {
       return false;
     }
-    if (this._modelList == null) {
-      if (other._modelList != null) {
+    if (this.models == null) {
+      if (other.models != null) {
         return false;
       }
-    } else if (!this._modelList.equals(other._modelList)) {
+    } else if (!this.models.equals(other.models)) {
       return false;
     }
     return true;
@@ -153,13 +149,13 @@ public class Mikity3d implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.simplexml.Mikity3dConfig[] getConfig() {
-    int size = this._configList.size();
-    org.mklab.mikity.model.xml.simplexml.Mikity3dConfig[] mArray = new org.mklab.mikity.model.xml.simplexml.Mikity3dConfig[size];
+  public Mikity3dConfig[] getConfigurations() {
+    int size = this.configurations.size();
+    Mikity3dConfig[] localConfigurations = new Mikity3dConfig[size];
     for (int i = 0; i < size; i++) {
-      mArray[i] = this._configList.get(i);
+      localConfigurations[i] = this.configurations.get(i);
     }
-    return mArray;
+    return localConfigurations;
   }
 
   /**
@@ -168,7 +164,7 @@ public class Mikity3d implements java.io.Serializable {
    * @return returns a reference to the Collection.
    */
   public List<Mikity3dConfig> getConfigAsReference() {
-    return this._configList;
+    return this.configurations;
   }
 
   /**
@@ -177,7 +173,7 @@ public class Mikity3d implements java.io.Serializable {
    * @return _configList.size()
    */
   public int getConfigSize() {
-    return this._configList.size();
+    return this.configurations.size();
   }
 
   /**
@@ -187,12 +183,12 @@ public class Mikity3d implements java.io.Serializable {
    * @return (org.mklab.mikity.xml.Model) _modelList.get(index)
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public org.mklab.mikity.model.xml.simplexml.Mikity3dModel getModel(int index) {
-    if ((index < 0) || (index > this._modelList.size())) {
+  public Mikity3dModel getModel(int index) {
+    if ((index < 0) || (index > this.models.size())) {
       throw new IndexOutOfBoundsException();
     }
 
-    return this._modelList.get(index);
+    return this.models.get(index);
   }
 
   /**
@@ -200,13 +196,13 @@ public class Mikity3d implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public org.mklab.mikity.model.xml.simplexml.Mikity3dModel[] getModel() {
-    int size = this._modelList.size();
-    org.mklab.mikity.model.xml.simplexml.Mikity3dModel[] mArray = new org.mklab.mikity.model.xml.simplexml.Mikity3dModel[size];
+  public Mikity3dModel[] getModel() {
+    int size = this.models.size();
+    Mikity3dModel[] localModels = new Mikity3dModel[size];
     for (int i = 0; i < size; i++) {
-      mArray[i] = this._modelList.get(i);
+      localModels[i] = this.models.get(i);
     }
-    return mArray;
+    return localModels;
   }
 
   /**
@@ -215,7 +211,7 @@ public class Mikity3d implements java.io.Serializable {
    * @return returns a reference to the Collection.
    */
   public List<Mikity3dModel> loadModelAsReference() {
-    return this._modelList;
+    return this.models;
   }
 
   /**
@@ -223,29 +219,29 @@ public class Mikity3d implements java.io.Serializable {
    * 
    * @return _modelList.size()
    */
-  public int loadModelCount() {
-    return this._modelList.size();
+  public int loadModelSize() {
+    return this.models.size();
   }
 
   /**
    * Method removeConfig
    * 
-   * @param vConfig コンフィグ
+   * @param config コンフィグ
    * @return removed
    */
-  public boolean removeConfig(org.mklab.mikity.model.xml.simplexml.Mikity3dConfig vConfig) {
-    boolean removed = this._configList.remove(vConfig);
+  public boolean removeConfig(Mikity3dConfig config) {
+    boolean removed = this.configurations.remove(config);
     return removed;
   }
 
   /**
    * Method removeModel
    * 
-   * @param vModel モデル
+   * @param model モデル
    * @return removed
    */
-  public boolean removeModel(org.mklab.mikity.model.xml.simplexml.Mikity3dModel vModel) {
-    boolean removed = this._modelList.remove(vModel);
+  public boolean removeModel(Mikity3dModel model) {
+    boolean removed = this.models.remove(model);
     return removed;
   }
 
@@ -253,76 +249,76 @@ public class Mikity3d implements java.io.Serializable {
    * Method setConfig
    * 
    * @param index インデックス
-   * @param vConfig コンフィグ
+   * @param config コンフィグ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setConfig(int index, org.mklab.mikity.model.xml.simplexml.Mikity3dConfig vConfig) {
-    if ((index < 0) || (index > this._configList.size())) {
+  public void setConfig(int index, Mikity3dConfig config) {
+    if ((index < 0) || (index > this.configurations.size())) {
       throw new IndexOutOfBoundsException();
     }
-    this._configList.set(index, vConfig);
+    this.configurations.set(index, config);
   }
 
   /**
    * Method setConfig
    * 
-   * @param configArray コンフィグの配列
+   * @param argConfigurations コンフィグの配列
    */
-  public void setConfig(org.mklab.mikity.model.xml.simplexml.Mikity3dConfig[] configArray) {
-    this._configList.clear();
-    for (int i = 0; i < configArray.length; i++) {
-      this._configList.add(configArray[i]);
+  public void setConfig(Mikity3dConfig[] argConfigurations) {
+    this.configurations.clear();
+    for (int i = 0; i < argConfigurations.length; i++) {
+      this.configurations.add(argConfigurations[i]);
     }
   }
   
   /**
    * Method setConfigAsReferenceSets the value of 'config' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param configCollection the ArrayList to copy.
+   * @param argConfigurations the ArrayList to copy.
    */
-  public void setConfigAsReference(List<Mikity3dConfig> configCollection) {
-    this._configList = configCollection;
+  public void setConfigAsReference(List<Mikity3dConfig> argConfigurations) {
+    this.configurations = argConfigurations;
   }
 
   /**
    * Method setModel
    * 
    * @param index インデックス
-   * @param vModel モデル
+   * @param model モデル
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setModel(int index, org.mklab.mikity.model.xml.simplexml.Mikity3dModel vModel) {
-    if ((index < 0) || (index > this._modelList.size())) {
+  public void setModel(int index, Mikity3dModel model) {
+    if ((index < 0) || (index > this.models.size())) {
       throw new IndexOutOfBoundsException();
     }
-    this._modelList.set(index, vModel);
+    this.models.set(index, model);
   }
 
   /**
    * Method setModel
    * 
-   * @param modelArray モデルの配列
+   * @param argModels モデルの配列
    */
-  public void setModel(org.mklab.mikity.model.xml.simplexml.Mikity3dModel[] modelArray) {
-    this._modelList.clear();
-    for (int i = 0; i < modelArray.length; i++) {
-      this._modelList.add(modelArray[i]);
+  public void setModel(Mikity3dModel[] argModels) {
+    this.models.clear();
+    for (int i = 0; i < argModels.length; i++) {
+      this.models.add(argModels[i]);
     }
   }
 
   /**
    * Method setModelAsReferenceSets the value of 'model' by setting it to the given ArrayList. No type checking is performed.
    * 
-   * @param modelCollection the ArrayList to copy.
+   * @param argModels the ArrayList to copy.
    */
-  public void setModelAsReference(List<Mikity3dModel> modelCollection) {
-    this._modelList = modelCollection;
+  public void setModelAsReference(List<Mikity3dModel> argModels) {
+    this.models = argModels;
   }
 
   /**
    * @return XML data
    */
-  public Mikity3d getJamastXMLData() {
+  public Mikity3d getMikity3dData() {
     return this;
   }
 }

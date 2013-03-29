@@ -229,7 +229,7 @@ public class ModelingWindow extends ApplicationWindow {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
-    this.root.getJamastXMLData();
+    this.root.getMikity3dData();
     final SimpleXmlMarshaller marshaller = new SimpleXmlMarshaller(this.root);
     marshaller.marshal(this.file);
     setFile(this.file.getPath());

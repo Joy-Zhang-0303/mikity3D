@@ -53,47 +53,47 @@ public class View implements java.io.Serializable {
   /** keeps track of state for field: _z */
   private boolean hasZ;
 
-  /**
-   * Method deleteX
-   */
-  public void deleteX() {
-    this.hasX = false;
-  }
-
-  /**
-   * Method deleteXrotate
-   */
-  public void deleteXrotation() {
-    this.hasXrotation = false;
-  }
-
-  /**
-   * Method deleteY
-   */
-  public void deleteY() {
-    this.hasY = false;
-  }
-
-  /**
-   * Method deleteYrotate
-   */
-  public void deleteYrotation() {
-    this.hasYrotation = false;
-  }
-
-  /**
-   * Method deleteZ
-   */
-  public void deleteZ() {
-    this.hasZ = false;
-  }
-
-  /**
-   * Method deleteZrotate
-   */
-  public void deleteZrotation() {
-    this.hasZrotation = false;
-  }
+//  /**
+//   * Method deleteX
+//   */
+//  public void deleteX() {
+//    this.hasX = false;
+//  }
+//
+//  /**
+//   * Method deleteXrotate
+//   */
+//  public void deleteXrotation() {
+//    this.hasXrotation = false;
+//  }
+//
+//  /**
+//   * Method deleteY
+//   */
+//  public void deleteY() {
+//    this.hasY = false;
+//  }
+//
+//  /**
+//   * Method deleteYrotate
+//   */
+//  public void deleteYrotation() {
+//    this.hasYrotation = false;
+//  }
+//
+//  /**
+//   * Method deleteZ
+//   */
+//  public void deleteZ() {
+//    this.hasZ = false;
+//  }
+//
+//  /**
+//   * Method deleteZrotate
+//   */
+//  public void deleteZrotation() {
+//    this.hasZrotation = false;
+//  }
 
   /**
    * Returns the value of field 'x'.

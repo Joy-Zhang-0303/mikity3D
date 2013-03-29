@@ -209,12 +209,12 @@ public class XMLQuadPolygon {
     return this.matrix;
   }
 
-  /**
-   * Method deleteTransparent
-   */
-  public void deleteTransparent() {
-    this.hasTransparent = false;
-  }
+//  /**
+//   * Method deleteTransparent
+//   */
+//  public void deleteTransparent() {
+//    this.hasTransparent = false;
+//  }
 
   /**
    * Sets the value of field 'transparent'.

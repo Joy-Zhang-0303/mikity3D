@@ -77,33 +77,33 @@ public class XMLBox implements java.io.Serializable {
     this.propertyChangeListeners.addElement(pcl);
   } 
 
-  /**
-   * Method deleteTransparent
-   */
-  public void deleteTransparent() {
-    this.hasTransparent = false;
-  }
-
-  /**
-   * Method deleteXsize
-   */
-  public void deleteXsize() {
-    this.hasXsize = false;
-  }
-
-  /**
-   * Method deleteYsize
-   */
-  public void deleteYsize() {
-    this.hasYsize = false;
-  }
-
-  /**
-   * Method deleteZsize
-   */
-  public void deleteZsize() {
-    this.hasZsize = false;
-  }
+//  /**
+//   * Method deleteTransparent
+//   */
+//  public void deleteTransparent() {
+//    this.hasTransparent = false;
+//  }
+//
+//  /**
+//   * Method deleteXsize
+//   */
+//  public void deleteXsize() {
+//    this.hasXsize = false;
+//  }
+//
+//  /**
+//   * Method deleteYsize
+//   */
+//  public void deleteYsize() {
+//    this.hasYsize = false;
+//  }
+//
+//  /**
+//   * Method deleteZsize
+//   */
+//  public void deleteZsize() {
+//    this.hasZsize = false;
+//  }
 
   /**
    * Returns the value of field 'color'.

@@ -11,20 +11,20 @@ import org.simpleframework.xml.Attribute;
 public class ModelUnit implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** _angle */
+  /** angle */
   @Attribute(name="angle")
-  private java.lang.String angle;
+  private String angle;
 
-  /** _length */
+  /** length */
   @Attribute(name="length")
-  private java.lang.String length;
+  private String length;
 
   /**
    * Returns the value of field 'angle'.
    * 
    * @return the value of field 'angle'.
    */
-  public java.lang.String getAngle() {
+  public String getAngle() {
     return this.angle;
   }
 
@@ -77,7 +77,7 @@ public class ModelUnit implements java.io.Serializable {
    * 
    * @return the value of field 'length'.
    */
-  public java.lang.String getLength() {
+  public String getLength() {
     return this.length;
   }
 
@@ -86,7 +86,7 @@ public class ModelUnit implements java.io.Serializable {
    * 
    * @param angle the value of field 'angle'.
    */
-  public void setAngle(java.lang.String angle) {
+  public void setAngle(String angle) {
     this.angle = angle;
   }
 
@@ -95,7 +95,7 @@ public class ModelUnit implements java.io.Serializable {
    * 
    * @param length the value of field 'length'.
    */
-  public void setLength(java.lang.String length) {
+  public void setLength(String length) {
     this.length = length;
   }
 }

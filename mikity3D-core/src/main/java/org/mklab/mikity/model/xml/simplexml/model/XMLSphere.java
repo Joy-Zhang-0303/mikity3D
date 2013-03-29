@@ -69,26 +69,26 @@ public class XMLSphere implements java.io.Serializable {
     this.propertyChangeListeners.addElement(pcl);
   }
 
-  /**
-   * Method deleteDiv
-   */
-  public void deleteDiv() {
-    this.hasDiv = false;
-  }
-
-  /**
-   * Method deleteR
-   */
-  public void deleteR() {
-    this.hasRadius = false;
-  }
-
-  /**
-   * Method deleteTransparent
-   */
-  public void deleteTransparent() {
-    this.hasTransparent = false;
-  }
+//  /**
+//   * Method deleteDiv
+//   */
+//  public void deleteDiv() {
+//    this.hasDiv = false;
+//  }
+//
+//  /**
+//   * Method deleteR
+//   */
+//  public void deleteR() {
+//    this.hasRadius = false;
+//  }
+//
+//  /**
+//   * Method deleteTransparent
+//   */
+//  public void deleteTransparent() {
+//    this.hasTransparent = false;
+//  }
 
   /**
    * Returns the value of field 'color'.
