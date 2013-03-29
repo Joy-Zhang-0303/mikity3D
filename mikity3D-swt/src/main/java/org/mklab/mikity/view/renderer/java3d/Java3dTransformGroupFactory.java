@@ -30,27 +30,27 @@ public class Java3dTransformGroupFactory {
   public Java3dTransformGroup create(final Group group) {
     final Java3dTransformGroup movableGroup = new Java3dTransformGroup();
     
-    for (final XMLBox box : group.getXMLBox()) {
+    for (final XMLBox box : group.getXMLBoxes()) {
       movableGroup.addChild(Java3dPrimitiveFactory.create(box));
     }
 
-    for (final XMLCylinder cylinder : group.getXMLCylinder()) {
+    for (final XMLCylinder cylinder : group.getXMLCylinders()) {
       movableGroup.addChild(Java3dPrimitiveFactory.create(cylinder));
     }
 
-    for (final XMLSphere sphere : group.getXMLSphere()) {
+    for (final XMLSphere sphere : group.getXMLSpheres()) {
       movableGroup.addChild(Java3dPrimitiveFactory.create(sphere));
     }
 
-    for (final XMLCone cone : group.getXMLCone()) {
+    for (final XMLCone cone : group.getXMLCones()) {
       movableGroup.addChild(Java3dPrimitiveFactory.create(cone));
     }
 
-    for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygon()) {
+    for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygons()) {
       movableGroup.addChild(Java3dPrimitiveFactory.create(polygon));
     }
 
-    for (final XMLQuadPolygon polygon : group.getXMLQuadPolygon()) {
+    for (final XMLQuadPolygon polygon : group.getXMLQuadPolygons()) {
       movableGroup.addChild(Java3dPrimitiveFactory.create(polygon));
     }
 

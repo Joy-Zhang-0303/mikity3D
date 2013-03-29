@@ -31,18 +31,18 @@ public class BlenderSceneGraphCreater {
    * @param argScene シーン
    */
   public void checkGroupName(Group rootGroup, Group argScene) {
-    final List<Group> groups = rootGroup.getGroupAsReference();
+    final List<Group> groups = rootGroup.getGroupsAsReference();
     
     for (int i = 0; i < groups.size(); i++) {
       if (groups.get(i).getName().equals(argScene.getName())) {
-        final List<XMLTrianglePolygon> trianglePolygons = rootGroup.getGroups()[i].getXMLTrianglePolygonAsReference();
-        final List<XMLQuadPolygon> quadPolygons = rootGroup.getGroups()[i].getXMLQuadPolygonAsReference();
+        final List<XMLTrianglePolygon> trianglePolygons = rootGroup.getGroups()[i].getXMLTrianglePolygonsAsReference();
+        final List<XMLQuadPolygon> quadPolygons = rootGroup.getGroups()[i].getXMLQuadPolygonsAsReference();
         addTrianglePolygons(argScene, trianglePolygons);
         addQuadPolygons(argScene, quadPolygons);
       }
     }
 
-    final List<Group> children = argScene.getGroupAsReference();
+    final List<Group> children = argScene.getGroupsAsReference();
     if (children != null) {
       for (final Group child : children) {
         checkGroupName(rootGroup, child);

@@ -21,34 +21,34 @@ public class Mikity3d implements java.io.Serializable {
   private List<Mikity3dModel> models;
 
   /** configurations */
-  @ElementList(type=Mikity3dConfig.class, inline=true)
-  private List<Mikity3dConfig> configurations;
+  @ElementList(type=Mikity3dConfiguration.class, inline=true)
+  private List<Mikity3dConfiguration> configurations;
 
   /**
    * コンストラクター
    */
   public Mikity3d() {
     this.models = new ArrayList<Mikity3dModel>();
-    this.configurations = new ArrayList<Mikity3dConfig>();
+    this.configurations = new ArrayList<Mikity3dConfiguration>();
   }
 
   /**
    * Method addConfig
    * 
-   * @param config コンフィグ
+   * @param configuration コンフィグ
    */
-  public void addConfig(Mikity3dConfig config) {
-    this.configurations.add(config);
+  public void addConfiguration(Mikity3dConfiguration configuration) {
+    this.configurations.add(configuration);
   }
 
   /**
    * Method addConfig
    * 
    * @param index インデックス
-   * @param config コンフィグ
+   * @param configuration コンフィグ
    */
-  public void addConfig(int index, Mikity3dConfig config) {
-    this.configurations.add(index, config);
+  public void addConfiguration(int index, Mikity3dConfiguration configuration) {
+    this.configurations.add(index, configuration);
   }
 
   /**
@@ -73,7 +73,7 @@ public class Mikity3d implements java.io.Serializable {
   /**
    * Method clearConfig
    */
-  public void clearConfig() {
+  public void clearConfiguration() {
     this.configurations.clear();
   }
 
@@ -91,7 +91,7 @@ public class Mikity3d implements java.io.Serializable {
    * @return _configList.get(index)
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public Mikity3dConfig getConfig(int index) {
+  public Mikity3dConfiguration getConfiguration(int index) {
     if ((index < 0) || (index > this.configurations.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -149,9 +149,9 @@ public class Mikity3d implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public Mikity3dConfig[] getConfigurations() {
+  public Mikity3dConfiguration[] getConfigurations() {
     int size = this.configurations.size();
-    Mikity3dConfig[] localConfigurations = new Mikity3dConfig[size];
+    Mikity3dConfiguration[] localConfigurations = new Mikity3dConfiguration[size];
     for (int i = 0; i < size; i++) {
       localConfigurations[i] = this.configurations.get(i);
     }
@@ -163,16 +163,16 @@ public class Mikity3d implements java.io.Serializable {
    * 
    * @return returns a reference to the Collection.
    */
-  public List<Mikity3dConfig> getConfigAsReference() {
+  public List<Mikity3dConfiguration> getConfigurationAsReference() {
     return this.configurations;
   }
 
   /**
    * Method getConfigCount
    * 
-   * @return _configList.size()
+   * @return 大きさ
    */
-  public int getConfigSize() {
+  public int getConfigurationSize() {
     return this.configurations.size();
   }
 
@@ -217,7 +217,7 @@ public class Mikity3d implements java.io.Serializable {
   /**
    * Method getModelCount
    * 
-   * @return _modelList.size()
+   * @return モデルの数
    */
   public int loadModelSize() {
     return this.models.size();
@@ -226,11 +226,11 @@ public class Mikity3d implements java.io.Serializable {
   /**
    * Method removeConfig
    * 
-   * @param config コンフィグ
+   * @param configuration コンフィグ
    * @return removed
    */
-  public boolean removeConfig(Mikity3dConfig config) {
-    boolean removed = this.configurations.remove(config);
+  public boolean removeConfiguration(Mikity3dConfiguration configuration) {
+    boolean removed = this.configurations.remove(configuration);
     return removed;
   }
 
@@ -249,14 +249,14 @@ public class Mikity3d implements java.io.Serializable {
    * Method setConfig
    * 
    * @param index インデックス
-   * @param config コンフィグ
+   * @param configuration コンフィグ
    * @throws java.lang.IndexOutOfBoundsException 例外
    */
-  public void setConfig(int index, Mikity3dConfig config) {
+  public void setConfiguration(int index, Mikity3dConfiguration configuration) {
     if ((index < 0) || (index > this.configurations.size())) {
       throw new IndexOutOfBoundsException();
     }
-    this.configurations.set(index, config);
+    this.configurations.set(index, configuration);
   }
 
   /**
@@ -264,7 +264,7 @@ public class Mikity3d implements java.io.Serializable {
    * 
    * @param argConfigurations コンフィグの配列
    */
-  public void setConfig(Mikity3dConfig[] argConfigurations) {
+  public void setConfigurations(Mikity3dConfiguration[] argConfigurations) {
     this.configurations.clear();
     for (int i = 0; i < argConfigurations.length; i++) {
       this.configurations.add(argConfigurations[i]);
@@ -276,7 +276,7 @@ public class Mikity3d implements java.io.Serializable {
    * 
    * @param argConfigurations the ArrayList to copy.
    */
-  public void setConfigAsReference(List<Mikity3dConfig> argConfigurations) {
+  public void setConfigurationsAsReference(List<Mikity3dConfiguration> argConfigurations) {
     this.configurations = argConfigurations;
   }
 

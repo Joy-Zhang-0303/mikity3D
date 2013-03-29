@@ -34,7 +34,7 @@ import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.mikity.view.renderer.ModelRenderer;
@@ -152,8 +152,8 @@ public class AnimationWindow extends ApplicationWindow {
 
     form.setWeights(new int[] {70, 30}); // 70%:30%に分割点を設定
 
-    if (this.root.getConfig(0).getData() != null) {
-      setTimeData(new File(this.root.getConfig(0).getData()));
+    if (this.root.getConfiguration(0).getData() != null) {
+      setTimeData(new File(this.root.getConfiguration(0).getData()));
     }
     return parent;
   }
@@ -195,7 +195,7 @@ public class AnimationWindow extends ApplicationWindow {
     final Group[] children = this.root.getModel(0).getGroups();
     this.modelRenderer.setChildren(children);
 
-    final Mikity3dConfig configuration = this.root.getConfig(0);
+    final Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
   }
 

@@ -31,19 +31,19 @@ public class JoglTransformGroupFactory {
   public JoglTransformGroup create(final Group group) {
     final JoglTransformGroup movableGroup = new JoglTransformGroup();
     
-    for (final XMLBox box : group.getXMLBox()) {
+    for (final XMLBox box : group.getXMLBoxes()) {
       movableGroup.addChild(JoglPrimitiveFactory.create(box));
     }
 
-    for (final XMLCylinder cylinder : group.getXMLCylinder()) {
+    for (final XMLCylinder cylinder : group.getXMLCylinders()) {
       movableGroup.addChild(JoglPrimitiveFactory.create(cylinder));
     }
 
-    for (final XMLSphere sphere : group.getXMLSphere()) {
+    for (final XMLSphere sphere : group.getXMLSpheres()) {
       movableGroup.addChild(JoglPrimitiveFactory.create(sphere));
     }
 
-    for (final XMLCone cone : group.getXMLCone()) {
+    for (final XMLCone cone : group.getXMLCones()) {
       movableGroup.addChild(JoglPrimitiveFactory.create(cone));
     }
 
@@ -61,11 +61,11 @@ public class JoglTransformGroupFactory {
       }
     }
     
-    for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygon()) {
+    for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygons()) {
       movableGroup.addChild(JoglPrimitiveFactory.create(polygon, dhParameters, coordinateParameters));
     }
 
-    for (final XMLQuadPolygon polygon : group.getXMLQuadPolygon()) {
+    for (final XMLQuadPolygon polygon : group.getXMLQuadPolygons()) {
       movableGroup.addChild(JoglPrimitiveFactory.create(polygon, dhParameters, coordinateParameters));
     }
 

@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.config.Background;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.Light;
@@ -54,7 +54,7 @@ public class ConfigDialog {
   private ParameterInputBox viewYrotate;
   private ParameterInputBox viewZrotate;
 
-  private Mikity3dConfig config;
+  private Mikity3dConfiguration config;
 
   /**
    * コンストラクター
@@ -62,7 +62,7 @@ public class ConfigDialog {
    * @param parentShell 親シェル
    * @param config 設定
    */
-  public ConfigDialog(Shell parentShell, Mikity3dConfig config) {
+  public ConfigDialog(Shell parentShell, Mikity3dConfiguration config) {
     this.parentShell = parentShell;
     this.config = config;
     createSShell();

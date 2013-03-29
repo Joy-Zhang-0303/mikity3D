@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.SimpleXmlMarshaller;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
@@ -189,7 +189,7 @@ public class ModelingWindow extends ApplicationWindow {
    * 単位を設定します。
    */
   private void setUnit() {
-    final Mikity3dConfig config = this.root.getConfig(0);
+    final Mikity3dConfiguration config = this.root.getConfiguration(0);
 
     if (config.getModelUnit() != null) {
       final ModelUnit modelUnit = config.getModelUnit();

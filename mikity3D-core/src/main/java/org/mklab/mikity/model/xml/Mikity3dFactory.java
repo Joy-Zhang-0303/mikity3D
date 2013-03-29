@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.SimpleXmlUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
@@ -55,12 +55,12 @@ public class Mikity3dFactory {
 
     final Group rootGroup = root.getModel(0).getGroup(0);
 
-    final XMLBox[] boxes = rootGroup.getXMLBox();
-    final XMLCone[] cones = rootGroup.getXMLCone();
-    final XMLCylinder[] cylinders = rootGroup.getXMLCylinder();
-    final XMLSphere[] spheres = rootGroup.getXMLSphere();
-    final XMLTrianglePolygon[] trianglePolygons = rootGroup.getXMLTrianglePolygon();
-    final XMLQuadPolygon[] quadPolygons = rootGroup.getXMLQuadPolygon();
+    final XMLBox[] boxes = rootGroup.getXMLBoxes();
+    final XMLCone[] cones = rootGroup.getXMLCones();
+    final XMLCylinder[] cylinders = rootGroup.getXMLCylinders();
+    final XMLSphere[] spheres = rootGroup.getXMLSpheres();
+    final XMLTrianglePolygon[] trianglePolygons = rootGroup.getXMLTrianglePolygons();
+    final XMLQuadPolygon[] quadPolygons = rootGroup.getXMLQuadPolygons();
     final Group[] groups = rootGroup.getGroups();
 
     if (boxes != null) {
@@ -161,7 +161,7 @@ public class Mikity3dFactory {
    * @return Jamastモデル
    */
   public Mikity3d createEmptyModel() {
-    final Mikity3dConfig config = new Mikity3dConfig();
+    final Mikity3dConfiguration config = new Mikity3dConfiguration();
 
     final Group group = new Group();
     group.setName("Group0"); //$NON-NLS-1$
@@ -170,7 +170,7 @@ public class Mikity3dFactory {
     model.addGroup(group);
 
     final Mikity3d root = new Mikity3d();
-    root.addConfig(config);
+    root.addConfiguration(config);
     root.addModel(model);
     return root;
   }

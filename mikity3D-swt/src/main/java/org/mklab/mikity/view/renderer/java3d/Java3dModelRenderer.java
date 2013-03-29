@@ -10,7 +10,7 @@ import javax.vecmath.Color3f;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.config.Light;
 import org.mklab.mikity.model.xml.simplexml.config.View;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
@@ -173,7 +173,7 @@ public class Java3dModelRenderer extends Canvas3D implements ModelRenderer {
   /**
    * {@inheritDoc}
    */
-  public void setConfiguration(Mikity3dConfig configuration) {
+  public void setConfiguration(Mikity3dConfiguration configuration) {
     if (configuration == null) {
       return;
     }

@@ -3,7 +3,7 @@ package org.mklab.mikity.view.renderer.java3d;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.view.gui.AbstractModeler;
 
 
@@ -42,7 +42,7 @@ public class Java3dModeler extends AbstractModeler {
     this.awtFrame = SWT_AWT.new_Frame(viewerComp);
     this.renderer = new Java3dModelRenderer();
     
-    final Mikity3dConfig configuration = this.root.getConfig(0);
+    final Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.renderer.setConfiguration(configuration);
     
     this.awtFrame.add(this.renderer);

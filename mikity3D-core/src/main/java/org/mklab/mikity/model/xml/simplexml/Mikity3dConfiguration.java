@@ -15,7 +15,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.9 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="config")
-public class Mikity3dConfig implements java.io.Serializable {
+public class Mikity3dConfiguration implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** data */
@@ -81,7 +81,7 @@ public class Mikity3dConfig implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Mikity3dConfig other = (Mikity3dConfig)obj;
+    Mikity3dConfiguration other = (Mikity3dConfiguration)obj;
     if (this.background == null) {
       if (other.background != null) {
         return false;
@@ -132,7 +132,7 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @return the value of field 'data'.
    */
-  public java.lang.String getData() {
+  public String getData() {
     return this.data;
   }
 
@@ -186,7 +186,7 @@ public class Mikity3dConfig implements java.io.Serializable {
    * 
    * @param data the value of field 'data'.
    */
-  public void setData(java.lang.String data) {
+  public void setData(String data) {
     this.data = data;
   }
 

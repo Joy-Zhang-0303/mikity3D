@@ -407,27 +407,27 @@ public class SceneGraphTree {
       ((XMLQuadPolygon)object).setTransparent(false);
     } else if (object instanceof Group) {
       Group group = (Group)object;
-      final XMLBox[] boxes = group.getXMLBox();
+      final XMLBox[] boxes = group.getXMLBoxes();
       for (int i = 0; i < boxes.length; i++) {
         boxes[i].setTransparent(false);
       }
-      final XMLCylinder[] cylinders = group.getXMLCylinder();
+      final XMLCylinder[] cylinders = group.getXMLCylinders();
       for (int i = 0; i < cylinders.length; i++) {
         cylinders[i].setTransparent(false);
       }
-      final XMLSphere[] spheres = group.getXMLSphere();
+      final XMLSphere[] spheres = group.getXMLSpheres();
       for (int i = 0; i < spheres.length; i++) {
         spheres[i].setTransparent(false);
       }
-      final XMLCone[] cones = group.getXMLCone();
+      final XMLCone[] cones = group.getXMLCones();
       for (int i = 0; i < cones.length; i++) {
         cones[i].setTransparent(false);
       }
-      final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygon();
+      final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygons();
       for (int i = 0; i < trianglePolygons.length; i++) {
         trianglePolygons[i].setTransparent(false);
       }
-      final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygon();
+      final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygons();
       for (int i = 0; i < quadPolygons.length; i++) {
         quadPolygons[i].setTransparent(false);
       }
@@ -441,12 +441,12 @@ public class SceneGraphTree {
    * @param transparent トランスピアレント
    */
   public void setAllTransparent(final Group group, boolean transparent) {
-    final XMLBox[] boxes = group.getXMLBox();
-    final XMLCylinder[] cylinders = group.getXMLCylinder();
-    final XMLSphere[] spheres = group.getXMLSphere();
-    final XMLCone[] cones = group.getXMLCone();
-    final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygon();
-    final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygon();
+    final XMLBox[] boxes = group.getXMLBoxes();
+    final XMLCylinder[] cylinders = group.getXMLCylinders();
+    final XMLSphere[] spheres = group.getXMLSpheres();
+    final XMLCone[] cones = group.getXMLCones();
+    final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygons();
+    final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygons();
 
     for (int i = 0; i < boxes.length; i++) {
       boxes[i].setTransparent(transparent);
@@ -553,42 +553,42 @@ public class SceneGraphTree {
       }
       child.setData(groups[i]);
 
-      final XMLBox[] boxes = groups[i].getXMLBox();
+      final XMLBox[] boxes = groups[i].getXMLBoxes();
       for (int j = 0; j < boxes.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("box ( " + boxes[j].getXsize() + ", " + boxes[j].getYsize() + ", " + boxes[j].getZsize() + ", " + boxes[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(boxes[j]);
       }
 
-      final XMLCylinder[] cylinders = groups[i].getXMLCylinder();
+      final XMLCylinder[] cylinders = groups[i].getXMLCylinders();
       for (int j = 0; j < cylinders.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("Cylinder ( " + cylinders[j].getRadius() + ", " + cylinders[j].getHeight() + ", " + cylinders[j].getDiv() + ", " + cylinders[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cylinders[j]);
       }
 
-      final XMLSphere[] spheres = groups[i].getXMLSphere();
+      final XMLSphere[] spheres = groups[i].getXMLSpheres();
       for (int j = 0; j < spheres.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("Sphere ( " + spheres[j].getRadius() + ", " + spheres[j].getDiv() + ", " + spheres[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         boxChild.setData(spheres[j]);
       }
 
-      final XMLCone[] cones = groups[i].getXMLCone();
+      final XMLCone[] cones = groups[i].getXMLCones();
       for (int j = 0; j < cones.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("Cone ( " + cones[j].getRadisu() + ", " + cones[j].getHeight() + ", " + cones[j].getDiv() + ", " + cones[j].getColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cones[j]);
       }
       
-      final XMLTrianglePolygon[] trianglePolygons = groups[i].getXMLTrianglePolygon();
+      final XMLTrianglePolygon[] trianglePolygons = groups[i].getXMLTrianglePolygons();
       for (int j = 0; j < trianglePolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("Triangle ( " + trianglePolygons[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$
         boxChild.setData(trianglePolygons[j]);
       }
 
-      final XMLQuadPolygon[] quadPolygons = groups[i].getXMLQuadPolygon();
+      final XMLQuadPolygon[] quadPolygons = groups[i].getXMLQuadPolygons();
       for (int j = 0; j < quadPolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("Quad ( " + quadPolygons[j].getColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$

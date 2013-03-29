@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.view.renderer;
 
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfig;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 
 /**
@@ -27,7 +27,7 @@ public interface ModelRenderer {
    * 
    * @param configuration 環境データ
    */
-  void setConfiguration(Mikity3dConfig configuration);
+  void setConfiguration(Mikity3dConfiguration configuration);
   
   /**
    * 画面の更新のためにdisplayメソッドの呼び出しを必要とするか判定します。
