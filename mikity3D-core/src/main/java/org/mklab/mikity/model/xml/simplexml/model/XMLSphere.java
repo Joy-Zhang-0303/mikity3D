@@ -17,26 +17,26 @@ import org.simpleframework.xml.Root;
 public class XMLSphere implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** _r */
+  /** r */
   @Attribute(name="r")
   private float radius;
 
-  /** _div */
+  /** div */
   @Attribute(name="div")
   private int div;
 
-  /** _color */
+  /** color */
   @Attribute(name="color")
   private String color;
 
-  /**_transparent */
+  /**_ransparent */
   private boolean transparent;
 
-  /** _rotation */
+  /** rotation */
   @Element(name="rotation")
   private Rotation rotation;
 
-  /** _location */
+  /** location */
   @Element(name="location")
   private Location location;
 

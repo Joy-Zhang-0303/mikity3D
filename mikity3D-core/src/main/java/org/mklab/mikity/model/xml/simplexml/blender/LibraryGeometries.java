@@ -25,14 +25,14 @@ public class LibraryGeometries {
 
   private Group scene;
 
-  private BlenderSceneGraphCreater bsgc;
+  private BlenderSceneGraphCreater creater;
 
   /**
    * コンストラクタ
    */
   public LibraryGeometries() {
     this.geometry = new ArrayList<Geometry>();
-    this.bsgc = new BlenderSceneGraphCreater();
+    this.creater = new BlenderSceneGraphCreater();
   }
 
   /**
@@ -47,8 +47,8 @@ public class LibraryGeometries {
     }
 
     if (this.scene.getGroupSize() != 0) {
-      this.bsgc.checkGroupName(group, this.scene);
-      group = this.bsgc.getScene();
+      this.creater.checkGroupName(group, this.scene);
+      group = this.creater.getScene();
     }
 
     return group;

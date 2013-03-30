@@ -31,7 +31,7 @@ public class Node {
   @Element
   private String matrix;
   @Element
-  private InstanceGeometry instance_geometry;
+  private InstanceGeometry instanceGeometry;
   @ElementList
   private List<Node> nodes;
   @Element
@@ -70,7 +70,7 @@ public class Node {
    * 新しく生成された<code>Node</code>オブジェクトを初期化します。
    */
   public Node() {
-    this.instance_geometry = new InstanceGeometry();
+    this.instanceGeometry = new InstanceGeometry();
     this.nodes = new ArrayList<Node>();
     this.vectors = new ArrayList<String>();
     this.matrix4f = new Matrix4();
@@ -319,7 +319,7 @@ public class Node {
   }
 
   private void setURL() {
-    this.geometryURL = this.instance_geometry.getGeometryURL();
+    this.geometryURL = this.instanceGeometry.getGeometryURL();
     if (this.geometryURL != null) {
       if (this.geometryURL.indexOf("-G") != -1) { //$NON-NLS-1$
         this.geometryURL = this.geometryURL.substring(1, this.geometryURL.indexOf("-G")); //$NON-NLS-1$

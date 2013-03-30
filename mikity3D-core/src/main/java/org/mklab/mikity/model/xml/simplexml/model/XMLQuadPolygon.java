@@ -23,7 +23,7 @@ import org.simpleframework.xml.Root;
 @Root(name="quadPolygon")
 public class XMLQuadPolygon {
   @ElementList(type=Location.class, inline=true, required=true)
-  private List<Location> point;
+  private List<Location> points;
   
   @Attribute(name="color")
   private String color;
@@ -45,7 +45,7 @@ public class XMLQuadPolygon {
    * 新しく生成された<code>XMLQuadPolygon</code>オブジェクトを初期化します。
    */
   public XMLQuadPolygon() {
-    this.point = new ArrayList<Location>(4);
+    this.points = new ArrayList<Location>(4);
     this.color = "orange"; //$NON-NLS-1$
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
@@ -57,9 +57,9 @@ public class XMLQuadPolygon {
    * @param z Z座標
    */
   public void setPointLocation(int number, float x, float y, float z) {
-    this.point.get(number).setX(x);
-    this.point.get(number).setY(y);
-    this.point.get(number).setZ(z);
+    this.points.get(number).setX(x);
+    this.points.get(number).setY(y);
+    this.points.get(number).setZ(z);
     setNormalVector();
   }
 
@@ -70,10 +70,10 @@ public class XMLQuadPolygon {
    * @param location4 座標4
    */
   public void setPointLocations(Location location1, Location location2, Location location3, Location location4) {
-    this.point.set(0, location1);
-    this.point.set(1, location2);
-    this.point.set(2, location3);
-    this.point.set(3, location4);
+    this.points.set(0, location1);
+    this.points.set(1, location2);
+    this.points.set(2, location3);
+    this.points.set(3, location4);
     setNormalVector();
   }
 
@@ -81,7 +81,7 @@ public class XMLQuadPolygon {
    * @param points 座標
    */
   public void setPointLocations(List<Location> points) {
-    this.point = points;
+    this.points = points;
     setNormalVector();
   }
 
@@ -118,8 +118,8 @@ public class XMLQuadPolygon {
    */
   public void setNormalVector() {
     // 修正
-    Vector3 v1 = new Vector3(this.point.get(1).getX() - this.point.get(0).getX(), this.point.get(1).getY() - this.point.get(0).getY(), this.point.get(1).getZ() - this.point.get(0).getZ());
-    Vector3 v2 = new Vector3(this.point.get(2).getX() - this.point.get(1).getX(), this.point.get(2).getY() - this.point.get(1).getY(), this.point.get(2).getZ() - this.point.get(1).getZ());
+    Vector3 v1 = new Vector3(this.points.get(1).getX() - this.points.get(0).getX(), this.points.get(1).getY() - this.points.get(0).getY(), this.points.get(1).getZ() - this.points.get(0).getZ());
+    Vector3 v2 = new Vector3(this.points.get(2).getX() - this.points.get(1).getX(), this.points.get(2).getY() - this.points.get(1).getY(), this.points.get(2).getZ() - this.points.get(1).getZ());
 
     Vector3 n = v1.cross(v2).normalize();
 
@@ -151,7 +151,7 @@ public class XMLQuadPolygon {
    * @return x location
    */
   public float getPointLocationX(int number) {
-    return this.point.get(number).getX();
+    return this.points.get(number).getX();
   }
 
   /**
@@ -159,7 +159,7 @@ public class XMLQuadPolygon {
    * @return y location
    */
   public float getPointLocationY(int number) {
-    return this.point.get(number).getY();
+    return this.points.get(number).getY();
   }
 
   /**
@@ -167,7 +167,7 @@ public class XMLQuadPolygon {
    * @return z location
    */
   public float getPointLocationZ(int number) {
-    return this.point.get(number).getZ();
+    return this.points.get(number).getZ();
   }
 
   /**

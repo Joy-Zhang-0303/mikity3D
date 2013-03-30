@@ -17,40 +17,31 @@ import org.simpleframework.xml.Root;
 public class XMLBox implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** _xsize */
+  /** xsize */
   @Attribute(name="xsize")
   private float xSize;
 
-  /** keeps track of state for field: _xsize */
-  private boolean hasXsize;
-
-  /** _ysize */
+  /** ysize */
   @Attribute(name="ysize")
   private float ySize;
 
-  /** keeps track of state for field: _ysize */
-  private boolean hasYsize;
-
-  /** _zsize */
+  /** zsize */
   @Attribute(name="zsize")
   private float zSize;
 
-  /** keeps track of state for field: _zsize */
-  private boolean hasZsize;
-
-  /** _color */
+  /** color */
   @Attribute(name="color")
   private String color;
 
-  /** _transparent */
+  /** transparent */
   @Attribute(name="transparent")
   private boolean transparent;
 
-  /** _rotation */
+  /** rotation */
   @Element(name="rotation", required=false)
   private Rotation rotation;
 
-  /** _location */
+  /** location */
   @Element(name="location")
   private Location location;
 
@@ -91,9 +82,6 @@ public class XMLBox implements java.io.Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
-    result = prime * result + (this.hasXsize ? 1231 : 1237);
-    result = prime * result + (this.hasYsize ? 1231 : 1237);
-    result = prime * result + (this.hasZsize ? 1231 : 1237);
     result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
     result = prime * result + (this.transparent ? 1231 : 1237);
@@ -124,15 +112,6 @@ public class XMLBox implements java.io.Serializable {
         return false;
       }
     } else if (!this.color.equals(other.color)) {
-      return false;
-    }
-    if (this.hasXsize != other.hasXsize) {
-      return false;
-    }
-    if (this.hasYsize != other.hasYsize) {
-      return false;
-    }
-    if (this.hasZsize != other.hasZsize) {
       return false;
     }
     if (this.location == null) {
@@ -294,7 +273,6 @@ public class XMLBox implements java.io.Serializable {
    */
   public void setXsize(float xsize) {
     this.xSize = xsize;
-    this.hasXsize = true;
   }
 
   /**
@@ -304,7 +282,6 @@ public class XMLBox implements java.io.Serializable {
    */
   public void setYsize(float ysize) {
     this.ySize = ysize;
-    this.hasYsize = true;
   }
 
   /**
@@ -314,7 +291,6 @@ public class XMLBox implements java.io.Serializable {
    */
   public void setZsize(float zsize) {
     this.zSize = zsize;
-    this.hasZsize = true;
   }
 
 }
