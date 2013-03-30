@@ -71,7 +71,7 @@ public class Mesh {
     final List<Location> normalVector = this.sources.get(1).getNormalLocation();
     List<int[]> indexNumber = this.polygons.getIndexNumber();
 
-    if (this.polylist.loadP() == null) {
+    if (this.polylist.getP() == null) {
       this.matrix.setElement(0, 3, 0.0f);
       this.matrix.setElement(1, 3, 0.0f);
       this.matrix.setElement(2, 3, 0.0f);
@@ -92,8 +92,8 @@ public class Mesh {
         this.blenderGroup.addXMLQuadPolygon(quad);
       }
     }
-    if (this.polylist.loadP() != null) {
-      indexNumber = this.polylist.getPolylistIndex();
+    if (this.polylist.getP() != null) {
+      indexNumber = this.polylist.getPolylistIndices();
       for (int i = 0; i < indexNumber.size(); i++) {
         if (indexNumber.get(i).length == 3) {
           XMLTrianglePolygon triangle = new XMLTrianglePolygon();
@@ -111,8 +111,8 @@ public class Mesh {
         }
       }
     }
-    if (this.triangles.loadP() != null) {
-      indexNumber = this.triangles.getTriangleIndex();
+    if (this.triangles.getP() != null) {
+      indexNumber = this.triangles.getTriangleIndices();
       for (int i = 0; i < indexNumber.size(); i++) {
         XMLTrianglePolygon triangle = new XMLTrianglePolygon();
         triangle.setPointLocations(vertexLocations.get(indexNumber.get(i)[0]), vertexLocations.get(indexNumber.get(i)[1]), vertexLocations.get(indexNumber.get(i)[2]));

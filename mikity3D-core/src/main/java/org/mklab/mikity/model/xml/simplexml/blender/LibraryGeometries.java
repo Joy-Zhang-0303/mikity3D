@@ -13,7 +13,7 @@ import org.simpleframework.xml.ElementList;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(Library_geometries要素)
+ * Blenderから出力したCOLLADAデータを読み込むためのクラス(Library_geometries要素)です。
  * 
  * @author SHOGO
  * @version $Revision: 1.6 $. 2007/11/30
@@ -21,7 +21,7 @@ import org.simpleframework.xml.ElementList;
 public class LibraryGeometries {
 
   @ElementList
-  private List<Geometry> geometry;
+  private List<Geometry> geometries;
 
   private Group scene;
 
@@ -31,7 +31,7 @@ public class LibraryGeometries {
    * コンストラクタ
    */
   public LibraryGeometries() {
-    this.geometry = new ArrayList<Geometry>();
+    this.geometries = new ArrayList<Geometry>();
     this.creater = new BlenderSceneGraphCreater();
   }
 
@@ -42,8 +42,8 @@ public class LibraryGeometries {
    */
   public Group getBlenderPolygonGroup() {
     Group group = new Group();
-    for (int i = 0; i < this.geometry.size(); i++) {
-      group.addGroup(this.geometry.get(i).getBlenderPolygonGroup());
+    for (int i = 0; i < this.geometries.size(); i++) {
+      group.addGroup(this.geometries.get(i).getBlenderPolygonGroup());
     }
 
     if (this.scene.getGroupSize() != 0) {
@@ -59,8 +59,8 @@ public class LibraryGeometries {
    */
   public void setLibraryVisualScenes(LibraryVisualScenes libraryVisualScenes) {
     this.scene = libraryVisualScenes.getScene();
-    for (int i = 0; i < this.geometry.size(); i++) {
-      this.geometry.get(i).setLibraryVisualScenes(libraryVisualScenes);
+    for (int i = 0; i < this.geometries.size(); i++) {
+      this.geometries.get(i).setLibraryVisualScenes(libraryVisualScenes);
     }
   }
 }

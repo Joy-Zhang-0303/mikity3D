@@ -22,73 +22,67 @@ public class Polygons {
   @ElementList
   private List<String> p;
 
-  /**
-   * 使用する頂点の組み合わせをまとめた配列リスト
-   */
-  private List<int[]> indexNumber;
-  /**
-   * 文字列の空白の位置を記したリスト
-   */
-  List<int[]> spaceList;
-  /**
-   * 使用する頂点の番号を記したリスト
-   */
-  List<int[]> numList;
+  /** 使用する頂点の組み合わせをまとめた配列リスト */
+  private List<int[]> vertices;
+  /** 文字列の空白の位置を記したリスト */
+  List<int[]> spaceIndices;
+  /** 使用する頂点の番号を記したリスト  */
+  List<int[]> vertexNumbers;
 
   /**
-   * コンストラクタ
+   * 新しく生成された<code>Polygons</code>オブジェクトを初期化します。
    */
   public Polygons() {
     this.p = new ArrayList<String>();
-    this.indexNumber = new ArrayList<int[]>();
-    this.spaceList = new ArrayList<int[]>();
-    this.numList = new ArrayList<int[]>();
+    this.vertices = new ArrayList<int[]>();
+    this.spaceIndices = new ArrayList<int[]>();
+    this.vertexNumbers = new ArrayList<int[]>();
   }
 
   /**
-   * 使用する頂点の組み合わせをまとめた配列リストを返す
+   * 使用する頂点の組み合わせをまとめた配列リストを返します。
    * 
    * @return　indexNumber　使用する頂点の組み合わせをまとめた配列リスト
    */
   public List<int[]> getIndexNumber() {
     setIndex();
-    return this.indexNumber;
+    return this.vertices;
   }
 
   /**
-   * 頂点座標一覧を記述した文字列から空白を除外し、 前から3つずつ頂点の組み合わせをまとめる配列リストに加えていく。
+   * 頂点座標一覧を記述した文字列から空白を除外し、 前から3つずつ頂点の組み合わせをまとめる配列リストに加えます。
    */
   @SuppressWarnings("boxing")
   private void setIndex() {
     for (int i = 0; i < this.p.size(); i++) {
-      ArrayList<Integer> space = new ArrayList<Integer>();
+      final List<Integer> spaces = new ArrayList<Integer>();
       for (int j = 0; j < this.p.get(i).length(); j++) {
         if (this.p.get(i).charAt(j) == ' ') {
-          space.add(j);
+          spaces.add(j);
         }
       }
-      int[] spaceNum = new int[space.size()];
-      for (int k = 0; k < spaceNum.length; k++) {
-        spaceNum[k] = space.get(k);
+      final int[] spaceNumbers = new int[spaces.size()];
+      for (int j = 0; j < spaceNumbers.length; j++) {
+        spaceNumbers[j] = spaces.get(j);
       }
-      this.spaceList.add(spaceNum);
+      this.spaceIndices.add(spaceNumbers);
 
-      ArrayList<Integer> num = new ArrayList<Integer>();
-      for (int j = 0; j < this.spaceList.get(i).length + 1; j += 2) {
+      final List<Integer> numbers = new ArrayList<Integer>();
+      for (int j = 0; j < this.spaceIndices.get(i).length + 1; j += 2) {
         if (j == 0) {
-          num.add(Integer.parseInt(this.p.get(i).substring(0, this.spaceList.get(i)[0])));
-        } else if (j == this.spaceList.get(i).length) {
-          num.add(Integer.parseInt(this.p.get(i).substring(this.spaceList.get(i)[this.spaceList.get(i).length - 1] + 1)));
+          numbers.add(Integer.parseInt(this.p.get(i).substring(0, this.spaceIndices.get(i)[0])));
+        } else if (j == this.spaceIndices.get(i).length) {
+          numbers.add(Integer.parseInt(this.p.get(i).substring(this.spaceIndices.get(i)[this.spaceIndices.get(i).length - 1] + 1)));
         } else {
-          num.add(Integer.parseInt(this.p.get(i).substring(this.spaceList.get(i)[j - 1] + 1, this.spaceList.get(i)[j])));
+          numbers.add(Integer.parseInt(this.p.get(i).substring(this.spaceIndices.get(i)[j - 1] + 1, this.spaceIndices.get(i)[j])));
         }
       }
 
-      int[] n = new int[num.size()];
-      for (int l = 0; l < num.size(); l++) {
-        n[l] = num.get(l);
+      int[] n = new int[numbers.size()];
+      for (int j = 0; j < numbers.size(); j++) {
+        n[j] = numbers.get(j);
       }
-      this.indexNumber.add(n);
+      this.vertices.add(n);
     }
   }
 }

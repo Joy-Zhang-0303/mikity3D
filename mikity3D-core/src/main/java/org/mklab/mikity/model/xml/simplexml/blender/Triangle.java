@@ -69,9 +69,9 @@ public class Triangle {
 
   @SuppressWarnings("boxing")
   private void getSpaceindexFromPToSpace() {
-    for (int j = 0; j < this.p.length(); j++) {
-      if (this.p.charAt(j) == ' ') {
-        this.spaces.add(j);
+    for (int i = 0; i < this.p.length(); i++) {
+      if (this.p.charAt(i) == ' ') {
+        this.spaces.add(i);
       }
     }
   }
@@ -81,7 +81,7 @@ public class Triangle {
    * 
    * @return　使用する頂点番号一覧を記述した文字列
    */
-  public String loadP() {
+  public String getP() {
     return this.p;
   }
 
@@ -90,7 +90,7 @@ public class Triangle {
    * 
    * @return　使用する頂点の組み合わせをまとめた配列リスト
    */
-  public List<int[]> getTriangleIndex() {
+  public List<int[]> getTriangleIndices() {
     createTriangleIndex();
     return this.indices;
   }

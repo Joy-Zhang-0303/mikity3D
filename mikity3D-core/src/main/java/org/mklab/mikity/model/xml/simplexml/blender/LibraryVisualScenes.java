@@ -13,7 +13,7 @@ import org.simpleframework.xml.Element;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(LibraryVisualScene要素)
+ * Blenderから出力したCOLLADAデータを読み込むためのクラス(LibraryVisualScene要素)です。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/11/30
@@ -31,18 +31,18 @@ public class LibraryVisualScenes {
   }
 
   /**
-   * 各ノードの名前が追加されているリストを返す
+   * 各ノードの名前が追加されているリストを返します。
    * 
-   * @return　visual_scene.getNodeNameList()　各ノードの名前が追加されているリスト
+   * @return　各ノードの名前が追加されているリスト
    */
   public List<String> getNodeNames() {
     return this.visualScene.getNodeNames();
   }
 
   /**
-   * 変換行列が追加されているリストを返す
+   * 変換行列が追加されているリストを返します。
    * 
-   * @return　visual_scene.getMatrixList()　変換行列が追加されているリスト
+   * @return　変換行列が追加されているリスト
    */
   public List<Matrix4> getMatrices() {
     return this.visualScene.getTransformMatrices();

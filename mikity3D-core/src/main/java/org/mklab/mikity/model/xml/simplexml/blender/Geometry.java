@@ -51,9 +51,9 @@ public class Geometry {
   }
 
   /**
-   * @param library_visual_scenes ノード
+   * @param libraryVisualScenes ノード
    */
-  public void setLibraryVisualScenes(LibraryVisualScenes library_visual_scenes) {
+  public void setLibraryVisualScenes(LibraryVisualScenes libraryVisualScenes) {
     if(this.name == null){
       this.name = this.id;
     }
@@ -67,7 +67,7 @@ public class Geometry {
     if (this.name.indexOf("_00") != -1) { //$NON-NLS-1$
       this.name = this.name.substring(0, this.name.indexOf("_00")); //$NON-NLS-1$
     }
-    this.mesh.setLibraryVisualScenes(library_visual_scenes, this.name);
+    this.mesh.setLibraryVisualScenes(libraryVisualScenes, this.name);
   }
 
 }

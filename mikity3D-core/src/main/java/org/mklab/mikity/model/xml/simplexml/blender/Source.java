@@ -85,7 +85,6 @@ public class Source {
     for (int i = 0; i < this.locations.size(); i += 3) {
       this.normalVectors.add(new Location(this.locations.get(i), this.locations.get(i + 1), this.locations.get(i + 2)));
     }
-
   }
 
   /**
@@ -93,19 +92,19 @@ public class Source {
    */
   @SuppressWarnings("boxing")
   private void divideString() {
-    for (int j = 0; j < this.floatArray.length(); j++) {
-      if (this.floatArray.charAt(j) == ' ') {
-        this.spaces.add(j);
+    for (int i = 0; i < this.floatArray.length(); i++) {
+      if (this.floatArray.charAt(i) == ' ') {
+        this.spaces.add(i);
       }
     }
 
-    for (int j = 0; j < this.spaces.size() + 1; j++) {
-      if (j == 0) {
+    for (int i = 0; i < this.spaces.size() + 1; i++) {
+      if (i == 0) {
         this.locations.add(Float.parseFloat(this.floatArray.substring(0, this.spaces.get(0))));
-      } else if (j == this.spaces.size()) {
+      } else if (i == this.spaces.size()) {
         this.locations.add(Float.parseFloat(this.floatArray.substring(this.spaces.get(this.spaces.size() - 1) + 1)));
       } else {
-        this.locations.add(Float.parseFloat(this.floatArray.substring(this.spaces.get(j - 1) + 1, this.spaces.get(j))));
+        this.locations.add(Float.parseFloat(this.floatArray.substring(this.spaces.get(i - 1) + 1, this.spaces.get(i))));
       }
     }
   }
