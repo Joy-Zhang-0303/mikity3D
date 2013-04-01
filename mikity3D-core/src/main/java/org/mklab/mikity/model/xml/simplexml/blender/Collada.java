@@ -25,7 +25,7 @@ public class Collada {
   private LibraryVisualScenes libraryVisualScenes;
 
   /**
-   * コンストラクタ
+   * 新しく生成された<code>Collada</code>オブジェクトを初期化します。
    */
   public Collada() {
     this.libraryVisualScenes = new LibraryVisualScenes();

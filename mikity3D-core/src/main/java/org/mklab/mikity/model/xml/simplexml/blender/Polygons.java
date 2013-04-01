@@ -25,9 +25,9 @@ public class Polygons {
   /** 使用する頂点の組み合わせをまとめた配列リスト */
   private List<int[]> vertices;
   /** 文字列の空白の位置を記したリスト */
-  List<int[]> spaceIndices;
+  private List<int[]> spaceIndices;
   /** 使用する頂点の番号を記したリスト  */
-  List<int[]> vertexNumbers;
+  private List<int[]> vertexNumbers;
 
   /**
    * 新しく生成された<code>Polygons</code>オブジェクトを初期化します。

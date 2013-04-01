@@ -117,12 +117,14 @@ public class Node {
       if (this.name.indexOf("-J") != -1) { //$NON-NLS-1$
         this.name = this.name.substring(0, this.name.indexOf("-J")); //$NON-NLS-1$
       }
+      
       List<Integer> tab = new ArrayList<Integer>();
       for (int i = 0; i < this.matrix.length(); i++) {
         if (this.matrix.indexOf("\n\t\t\t\t", i) == i) { //$NON-NLS-1$
           tab.add(i);
         }
       }
+      
       for (int i = 0; i < tab.size() - 1; i++) {
         if (i == tab.size() - 2) {
           this.vectors.add(this.matrix.substring(tab.get(i) + 6, tab.get(tab.size() - 1) - 1));
@@ -130,6 +132,7 @@ public class Node {
           this.vectors.add(this.matrix.substring(tab.get(i) + 6, tab.get(i + 1) - 1));
         }
       }
+      
       for (int i = 0; i < this.vectors.size(); i++) {
         List<Integer> space = new ArrayList<Integer>();
         for (int j = 0; j < this.vectors.get(i).length(); j++) {
@@ -144,6 +147,7 @@ public class Node {
         elements[3] = Float.parseFloat(this.vectors.get(i).substring(space.get(2) + 1));
         this.matrix4f.setRow(i, elements);
       }
+      
       if (this.nodes.size() != 0) {
         for (int i = 0; i < this.nodes.size(); i++) {
           this.nodes.get(i).createTransformMatrix();

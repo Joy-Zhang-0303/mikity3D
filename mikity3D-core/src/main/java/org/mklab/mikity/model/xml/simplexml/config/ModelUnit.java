@@ -4,25 +4,25 @@ import org.simpleframework.xml.Attribute;
 
 
 /**
- * Class ModelUnit.
+ * モデルの単位を表すクラスです。
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
 public class ModelUnit implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** angle */
+  /** 角度の単位 */
   @Attribute(name="angle")
   private String angle;
 
-  /** length */
+  /** 長さの単位 */
   @Attribute(name="length")
   private String length;
 
   /**
-   * Returns the value of field 'angle'.
+   * 角度の単位を返します。
    * 
-   * @return the value of field 'angle'.
+   * @return 角度の単位
    */
   public String getAngle() {
     return this.angle;
@@ -73,27 +73,27 @@ public class ModelUnit implements java.io.Serializable {
   }
 
   /**
-   * Returns the value of field 'length'.
+   * 長さの単位を返します。
    * 
-   * @return the value of field 'length'.
+   * @return 長さの単位
    */
   public String getLength() {
     return this.length;
   }
 
   /**
-   * Sets the value of field 'angle'.
+   * 角度の単位を設定します。
    * 
-   * @param angle the value of field 'angle'.
+   * @param angle 角度の単位
    */
   public void setAngle(String angle) {
     this.angle = angle;
   }
 
   /**
-   * Sets the value of field 'length'.
+   * 長さの単位を設定します。
    * 
-   * @param length the value of field 'length'.
+   * @param length 長さの単位
    */
   public void setLength(String length) {
     this.length = length;

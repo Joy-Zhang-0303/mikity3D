@@ -26,16 +26,16 @@ public class Geometry {
   private Mesh mesh;
 
   /**
-   * コンストラクタ
+   * 新しく生成された<code>Geometry</code>オブジェクトを初期化します。
    */
   public Geometry() {
     this.mesh = new Mesh();
   }
 
   /**
-   * Blenderデータから作成したポリゴンをまとめたグループ
+   * Blenderデータから作成したポリゴンをまとめたグループを返します。
    * 
-   * @return　group　Blenderデータからのポリゴンをまとめたグループ
+   * @return　Blenderデータからのポリゴンをまとめたグループ
    */
   public Group getBlenderPolygonGroup() {
     final Group group = this.mesh.getBlenderPolygonGroup();

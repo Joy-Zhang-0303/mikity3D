@@ -4,7 +4,7 @@ import org.simpleframework.xml.Attribute;
 
 
 /**
- * Class Background.
+ * 背景を表すクラスです。
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
@@ -51,18 +51,18 @@ public class Background implements java.io.Serializable {
   }
 
   /**
-   * Returns the value of field 'color'.
+   * 色を返します。
    * 
-   * @return the value of field 'color'.
+   * @return 色
    */
   public String getColor() {
     return this.color;
   }
 
   /**
-   * Sets the value of field 'color'.
+   * 色を設定します。
    * 
-   * @param color the value of field 'color'.
+   * @param color 色
    */
   public void setColor(String color) {
     this.color = color;

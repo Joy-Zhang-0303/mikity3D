@@ -12,69 +12,70 @@ import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 
 /**
+ * Blenderのシーングラフの生成器です。
  * @author koga
  * @version $Revision$, 2008/08/10
  */
 public class BlenderSceneGraphCreater {
 
-  private Group scene;
+  private Group sceneGraph;
 
   /**
    * 新しく生成された<code>BlenderSceneGraphCreater</code>オブジェクトを初期化します。
    */
   public BlenderSceneGraphCreater() {
-    this.scene = new Group();
+    this.sceneGraph = new Group();
   }
 
   /**
    * @param rootGroup グループ
-   * @param argScene シーン
+   * @param scene シーン
    */
-  public void checkGroupName(Group rootGroup, Group argScene) {
+  public void checkGroupName(Group rootGroup, Group scene) {
     final List<Group> groups = rootGroup.getGroupsAsReference();
     
     for (int i = 0; i < groups.size(); i++) {
-      if (groups.get(i).getName().equals(argScene.getName())) {
+      if (groups.get(i).getName().equals(scene.getName())) {
         final List<XMLTrianglePolygon> trianglePolygons = rootGroup.getGroups()[i].getXMLTrianglePolygonsAsReference();
         final List<XMLQuadPolygon> quadPolygons = rootGroup.getGroups()[i].getXMLQuadPolygonsAsReference();
-        addTrianglePolygons(argScene, trianglePolygons);
-        addQuadPolygons(argScene, quadPolygons);
+        addTrianglePolygons(scene, trianglePolygons);
+        addQuadPolygons(scene, quadPolygons);
       }
     }
 
-    final List<Group> children = argScene.getGroupsAsReference();
+    final List<Group> children = scene.getGroupsAsReference();
     if (children != null) {
       for (final Group child : children) {
         checkGroupName(rootGroup, child);
       }
     }
-    this.scene = argScene;
+    this.sceneGraph = scene;
   }
 
   /**
-   * @param argScene
+   * @param scene
    * @param polygons
    */
-  private void addTrianglePolygons(Group argScene, List<XMLTrianglePolygon> polygons) {
+  private void addTrianglePolygons(Group scene, List<XMLTrianglePolygon> polygons) {
     for (final XMLTrianglePolygon polygon : polygons) {
-      argScene.addXMLTrianglePolygon(polygon);
+      scene.addXMLTrianglePolygon(polygon);
     }
   }
 
   /**
-   * @param argScene
+   * @param scene
    * @param polygons
    */
-  private void addQuadPolygons(Group argScene, List<XMLQuadPolygon> polygons) {
+  private void addQuadPolygons(Group scene, List<XMLQuadPolygon> polygons) {
     for (final XMLQuadPolygon polygon : polygons) {
-      argScene.addXMLQuadPolygon(polygon);
+      scene.addXMLQuadPolygon(polygon);
     }
   }
 
   /**
    * @return scene
    */
-  public Group getScene() {
-    return this.scene;
+  public Group getSceneGraph() {
+    return this.sceneGraph;
   }
 }

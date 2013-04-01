@@ -4,7 +4,7 @@ import org.simpleframework.xml.Attribute;
 
 
 /**
- * Class Light.
+ * 光を表すクラスです。
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */

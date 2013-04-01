@@ -18,7 +18,9 @@ import org.simpleframework.xml.ElementList;
 
 
 /**
- * Blenderから出力したCOLLADAデータを読み込むためのクラス(Mesh要素) モデルの頂点座標やどの頂点を使用してポリゴンを作成しているかを取得する。
+ * Blenderから出力したCOLLADAデータを読み込むためのクラス(Mesh要素)です。
+ * 
+ * モデルの頂点座標やどの頂点を使用してポリゴンを作成しているかを取得します。
  * 
  * @author SHOGO
  * @version $Revision: 1.7 $. 2007/11/30
@@ -34,9 +36,7 @@ public class Mesh {
   @Element
   private Polylist polylist;
 
-  /**
-   * ポリゴンをまとめるためのグループ
-   */
+  /** ポリゴンをまとめるためのグループ */
   private Group blenderGroup;
 
   private Matrix4 matrix;
@@ -54,7 +54,7 @@ public class Mesh {
   }
 
   /**
-   * Blenderデータから作成したポリゴンをまとめたグループ
+   * Blenderデータから作成したポリゴンをまとめたグループを返します。
    * 
    * @return　Blenderデータから作成したポリゴンをまとめたグループ
    */
@@ -64,7 +64,7 @@ public class Mesh {
   }
 
   /**
-   * 頂点座標を頂点の組み合わせからポリゴンを作成する。 作成したポリゴンはグループに追加する。
+   * 頂点座標を頂点の組み合わせからポリゴンを作成する。 作成したポリゴンはグループに追加します。
    */
   private void createBlenderPolygon() {
     final List<Location> vertexLocations = this.sources.get(0).getVertexLocation();

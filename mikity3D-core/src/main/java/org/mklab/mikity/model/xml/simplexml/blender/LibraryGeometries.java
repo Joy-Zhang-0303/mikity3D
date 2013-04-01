@@ -48,7 +48,7 @@ public class LibraryGeometries {
 
     if (this.scene.getGroupSize() != 0) {
       this.creater.checkGroupName(group, this.scene);
-      group = this.creater.getScene();
+      group = this.creater.getSceneGraph();
     }
 
     return group;
