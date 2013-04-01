@@ -12,7 +12,7 @@ import org.simpleframework.xml.Root;
  * 
  * @version $Revision: 1.2 $ $Date: 2007/08/03 03:30:27 $
  */
-@Root(name="jamast")
+@Root(name="mikity3d")
 public class Mikity3d implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class Mikity3d implements java.io.Serializable {
   private List<Mikity3dConfiguration> configurations;
 
   /**
-   * コンストラクター
+   * 新しく生成された<code>Mikity3d</code>オブジェクトを初期化します。
    */
   public Mikity3d() {
     this.models = new ArrayList<Mikity3dModel>();

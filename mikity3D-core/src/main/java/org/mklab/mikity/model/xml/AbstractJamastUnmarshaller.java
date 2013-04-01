@@ -30,7 +30,7 @@ public abstract class AbstractJamastUnmarshaller implements Mikity3dUnmashaller 
     }
     reader.close();
 
-    if (data.indexOf("<jamast") != -1) { //$NON-NLS-1$
+    if (data.indexOf("<mikity3d") != -1) { //$NON-NLS-1$
       unmarshalFromJamastFile(file);
       return;
     }
@@ -40,6 +40,6 @@ public abstract class AbstractJamastUnmarshaller implements Mikity3dUnmashaller 
       return;
     }
 
-    throw new IllegalArgumentException("Neither jamast nor collada data"); //$NON-NLS-1$
+    throw new IllegalArgumentException("Neither mikity3d nor collada data"); //$NON-NLS-1$
   }
 }

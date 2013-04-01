@@ -1,4 +1,4 @@
-<jamast>
+<mikity3d>
 	<model>
 		<group name="Group0">
 			<location z="0.0" y="0.0" x="0.0" />
@@ -41,5 +41,4 @@
 		<modelUnit length="m" angle="radian"/>
 		<dataUnit length="m" angle="radian"/>
 	</config>
-
-</jamast>
+</mikity3d>
