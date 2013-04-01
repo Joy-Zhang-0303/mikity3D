@@ -638,15 +638,15 @@ public class SceneGraphTree {
     return this.model;
   }
 
-  /**
-   * グループを消去する。
-   */
-  public void clearGroups() {
-    this.model.clearGroups();
-    Group group = new Group();
-    this.model.addGroup(group);
-    fillTree();
-  }
+//  /**
+//   * グループを消去する。
+//   */
+//  public void clearGroups() {
+//    this.model.clearGroups();
+//    Group group = new Group();
+//    this.model.addGroup(group);
+//    fillTree();
+//  }
 
   /**
    * ツリーを消去する。

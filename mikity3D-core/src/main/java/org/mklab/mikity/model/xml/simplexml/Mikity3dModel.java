@@ -35,22 +35,22 @@ public class Mikity3dModel implements java.io.Serializable {
     this.groups.add(argGroup);
   }
 
-  /**
-   * Method addGroup
-   * 
-   * @param index インデックス
-   * @param argGroup グループ
-   */
-  public void addGroup(int index, Group argGroup) {
-    this.groups.add(index, argGroup);
-  }
+//  /**
+//   * Method addGroup
+//   * 
+//   * @param index インデックス
+//   * @param argGroup グループ
+//   */
+//  public void addGroup(int index, Group argGroup) {
+//    this.groups.add(index, argGroup);
+//  }
 
-  /**
-   * Method clearGroup
-   */
-  public void clearGroups() {
-    this.groups.clear();
-  } 
+//  /**
+//   * Method clearGroup
+//   */
+//  public void clearGroups() {
+//    this.groups.clear();
+//  } 
 
   /**
    * Method getGroup
@@ -116,80 +116,80 @@ public class Mikity3dModel implements java.io.Serializable {
     return localGroups;
   } 
 
-  /**
-   * Method getGroupAsReferenceReturns a reference to 'group'. No type checking is performed on any modications to the Collection.
-   * 
-   * @return returns a reference to the Collection.
-   */
-  public List<Group> getGroupsAsReference() {
-    return this.groups;
-  } 
+//  /**
+//   * Method getGroupAsReferenceReturns a reference to 'group'. No type checking is performed on any modications to the Collection.
+//   * 
+//   * @return returns a reference to the Collection.
+//   */
+//  public List<Group> getGroupsAsReference() {
+//    return this.groups;
+//  } 
 
-  /**
-   * Method getGroupCount
-   * 
-   * @return _groupList.size()
-   */
-  public int getGroupSize() {
-    return this.groups.size();
-  } 
+//  /**
+//   * Method getGroupCount
+//   * 
+//   * @return _groupList.size()
+//   */
+//  public int getGroupSize() {
+//    return this.groups.size();
+//  } 
 
-  /**
-   * Method removeGroup
-   * 
-   * @param argGroup グループ
-   * @return removed
-   */
-  public boolean removeGroup(Group argGroup) {
-    boolean removed = this.groups.remove(argGroup);
-    return removed;
-  }
+//  /**
+//   * Method removeGroup
+//   * 
+//   * @param argGroup グループ
+//   * @return removed
+//   */
+//  public boolean removeGroup(Group argGroup) {
+//    boolean removed = this.groups.remove(argGroup);
+//    return removed;
+//  }
 
-  /**
-   * Method setGroup
-   * 
-   * @param index インデックス
-   * @param argGroup グループ
-   * @throws java.lang.IndexOutOfBoundsException 例外
-   */
-  public void setGroup(int index, Group argGroup) {
-    if ((index < 0) || (index > this.groups.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-    this.groups.set(index, argGroup);
-  } 
+//  /**
+//   * Method setGroup
+//   * 
+//   * @param index インデックス
+//   * @param argGroup グループ
+//   * @throws java.lang.IndexOutOfBoundsException 例外
+//   */
+//  public void setGroup(int index, Group argGroup) {
+//    if ((index < 0) || (index > this.groups.size())) {
+//      throw new IndexOutOfBoundsException();
+//    }
+//    this.groups.set(index, argGroup);
+//  } 
 
-  /**
-   * Method setGroup
-   * 
-   * @param argGroups グループの文字列
-   */
-  public void setGroups(Group[] argGroups) {
-    this.groups.clear();
-    for (int i = 0; i < argGroups.length; i++) {
-      this.groups.add(argGroups[i]);
-    }
-  } 
+//  /**
+//   * Method setGroup
+//   * 
+//   * @param argGroups グループの文字列
+//   */
+//  public void setGroups(Group[] argGroups) {
+//    this.groups.clear();
+//    for (int i = 0; i < argGroups.length; i++) {
+//      this.groups.add(argGroups[i]);
+//    }
+//  } 
 
-  /**
-   * Method setGroupSets the value of 'group' by copying the given ArrayList.
-   * 
-   * @param argGroups the Vector to copy.
-   */
-  public void setGroups(List<Group> argGroups) {
-    this.groups.clear();
-    for (int i = 0; i < argGroups.size(); i++) {
-      this.groups.add(argGroups.get(i));
-    }
-  } 
+//  /**
+//   * Method setGroupSets the value of 'group' by copying the given ArrayList.
+//   * 
+//   * @param argGroups the Vector to copy.
+//   */
+//  public void setGroups(List<Group> argGroups) {
+//    this.groups.clear();
+//    for (int i = 0; i < argGroups.size(); i++) {
+//      this.groups.add(argGroups.get(i));
+//    }
+//  } 
 
-  /**
-   * Method setGroupAsReferenceSets the value of 'group' by setting it to the given ArrayList. No type checking is performed.
-   * 
-   * @param argGroups the ArrayList to copy.
-   */
-  public void setGroupsAsReference(List<Group> argGroups) {
-    this.groups = argGroups;
-  } 
+//  /**
+//   * Method setGroupAsReferenceSets the value of 'group' by setting it to the given ArrayList. No type checking is performed.
+//   * 
+//   * @param argGroups the ArrayList to copy.
+//   */
+//  public void setGroupsAsReference(List<Group> argGroups) {
+//    this.groups = argGroups;
+//  } 
 
 }
