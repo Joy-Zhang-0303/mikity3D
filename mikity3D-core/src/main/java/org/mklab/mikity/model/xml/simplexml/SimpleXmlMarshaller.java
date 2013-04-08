@@ -7,7 +7,7 @@ import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 /**
- * JAXBを用いてモデルデータを保存するクラスです。
+ * Simpleを用いてモデルデータを保存するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/07/10

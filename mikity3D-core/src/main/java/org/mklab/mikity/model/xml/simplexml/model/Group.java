@@ -81,153 +81,153 @@ public class Group implements java.io.Serializable {
   /**
    * Method addGroup
    * 
-   * @param vGroup グループ
+   * @param group グループ
    */
-  public void addGroup(Group vGroup) {
-    this.groups.add(vGroup);
+  public void addGroup(Group group) {
+    this.groups.add(group);
   } 
 
   /**
    * Method addGroup
    * 
    * @param index インデックス
-   * @param vGroup グループ
+   * @param group グループ
    */
-  public void addGroup(int index, Group vGroup) {
-    this.groups.add(index, vGroup);
+  public void addGroup(int index, Group group) {
+    this.groups.add(index, group);
   } 
 
   /**
    * Method addLinkdata
    * 
-   * @param vLinkdata リンクデータ
+   * @param linkdata リンクデータ
    */
-  public void addLinkdata(LinkData vLinkdata) {
-    this.links.add(vLinkdata);
+  public void addLinkdata(LinkData linkdata) {
+    this.links.add(linkdata);
   } 
 
   /**
    * Method addLinkdata
    * 
    * @param index インデックス
-   * @param vLinkdata リンクデータ
+   * @param linkdata リンクデータ
    */
-  public void addLinkdata(int index, LinkData vLinkdata) {
-    this.links.add(index, vLinkdata);
+  public void addLinkdata(int index, LinkData linkdata) {
+    this.links.add(index, linkdata);
   } 
 
   /**
    * Method addXMLBox
    * 
-   * @param vXMLBox ボックス
+   * @param box ボックス
    */
-  public void addXMLBox(XMLBox vXMLBox) {
-    this.boxes.add(vXMLBox);
+  public void addXMLBox(XMLBox box) {
+    this.boxes.add(box);
   } 
 
   /**
    * Method addXMLBox
    * 
    * @param index インデックス
-   * @param vXMLBox ボックス
+   * @param box ボックス
    */
-  public void addXMLBox(int index, XMLBox vXMLBox) {
-    this.boxes.add(index, vXMLBox);
+  public void addXMLBox(int index, XMLBox box) {
+    this.boxes.add(index, box);
   } 
 
   /**
    * Method addXMLCone
    * 
-   * @param vXMLCone コーン
+   * @param cone コーン
    */
-  public void addXMLCone(XMLCone vXMLCone) {
-    this.cones.add(vXMLCone);
+  public void addXMLCone(XMLCone cone) {
+    this.cones.add(cone);
   } 
 
   /**
    * Method addXMLCone
    * 
    * @param index インデックス
-   * @param vXMLCone コーン
+   * @param cone コーン
    */
-  public void addXMLCone(int index, XMLCone vXMLCone) {
-    this.cones.add(index, vXMLCone);
+  public void addXMLCone(int index, XMLCone cone) {
+    this.cones.add(index, cone);
   } 
   
   /**
    * Method addXMLCylinder
    * 
-   * @param vXMLCylinder シリンダー
+   * @param cylinder シリンダー
    */
-  public void addXMLCylinder(XMLCylinder vXMLCylinder) {
-    this.cylinders.add(vXMLCylinder);
+  public void addXMLCylinder(XMLCylinder cylinder) {
+    this.cylinders.add(cylinder);
   } 
 
   /**
    * Method addXMLCylinder
    * 
    * @param index インデックス
-   * @param vXMLCylinder シリンダー
+   * @param cylinder シリンダー
    */
-  public void addXMLCylinder(int index, XMLCylinder vXMLCylinder) {
-    this.cylinders.add(index, vXMLCylinder);
+  public void addXMLCylinder(int index, XMLCylinder cylinder) {
+    this.cylinders.add(index, cylinder);
   } 
 
   /**
    * Method addXMLSphere
    * 
-   * @param vXMLSphere スフィア
+   * @param sphere スフィア
    */
-  public void addXMLSphere(XMLSphere vXMLSphere) {
-    this.spheres.add(vXMLSphere);
+  public void addXMLSphere(XMLSphere sphere) {
+    this.spheres.add(sphere);
   } 
 
   /**
    * Method addXMLSphere
    * 
    * @param index インデックス
-   * @param vXMLSphere スフィア
+   * @param sphere スフィア
    */
-  public void addXMLSphere(int index, XMLSphere vXMLSphere) {
-    this.spheres.add(index, vXMLSphere);
+  public void addXMLSphere(int index, XMLSphere sphere) {
+    this.spheres.add(index, sphere);
   } 
 
   /**
    * Method addXMLTrianglePolygon
    * 
-   * @param vXMLTrianglePolygon 三角形のポリゴン
+   * @param trianglePolygon 三角形のポリゴン
    */
-  public void addXMLTrianglePolygon(XMLTrianglePolygon vXMLTrianglePolygon) {
-    this.trianglePolygons.add(vXMLTrianglePolygon);
+  public void addXMLTrianglePolygon(XMLTrianglePolygon trianglePolygon) {
+    this.trianglePolygons.add(trianglePolygon);
   } 
   
   /**
    * Method addXMLTrianglePolygon
    * 
    * @param index インデックス
-   * @param vXMLTrianglePolygon 三角形のポリゴン
+   * @param trianglePolygon 三角形のポリゴン
    */
-  public void addXMLTrianglePolygon(int index, XMLTrianglePolygon vXMLTrianglePolygon) {
-    this.trianglePolygons.add(index, vXMLTrianglePolygon);
+  public void addXMLTrianglePolygon(int index, XMLTrianglePolygon trianglePolygon) {
+    this.trianglePolygons.add(index, trianglePolygon);
   } 
 
   /**
    * Method addXMLQuadPolygon
    * 
-   * @param vXMLQuadPolygon 四角形のポリゴン
+   * @param quadPolygon 四角形のポリゴン
    */
-  public void addXMLQuadPolygon(XMLQuadPolygon vXMLQuadPolygon) {
-    this.quadPolygons.add(vXMLQuadPolygon);
+  public void addXMLQuadPolygon(XMLQuadPolygon quadPolygon) {
+    this.quadPolygons.add(quadPolygon);
   } 
 
   /**
    * Method addXMLQuadPolygon
    * 
    * @param index インデックス
-   * @param vXMLQuadPolygon 四角形のポリゴン
+   * @param quadPolygon 四角形のポリゴン
    */
-  public void addXMLQuadPolygon(int index, XMLQuadPolygon vXMLQuadPolygon) {
-    this.quadPolygons.add(index, vXMLQuadPolygon);
+  public void addXMLQuadPolygon(int index, XMLQuadPolygon quadPolygon) {
+    this.quadPolygons.add(index, quadPolygon);
   } 
 
   /**
@@ -476,14 +476,14 @@ public class Group implements java.io.Serializable {
     return linkDatas;
   } 
 
-  /**
-   * Method getLinkdataAsReferenceReturns a reference to 'linkdata'. No type checking is performed on any modications to the Collection.
-   * 
-   * @return returns a reference to the Collection.
-   */
-  public List<LinkData> getLinkDataAsReference() {
-    return this.links;
-  } 
+//  /**
+//   * Method getLinkdataAsReferenceReturns a reference to 'linkdata'. No type checking is performed on any modications to the Collection.
+//   * 
+//   * @return returns a reference to the Collection.
+//   */
+//  public List<LinkData> getLinkDataAsReference() {
+//    return this.links;
+//  } 
 
   /**
    * Method getLinkdataCount
@@ -549,14 +549,14 @@ public class Group implements java.io.Serializable {
     return localBoxes;
   } 
 
-  /**
-   * Method getXMLBoxAsReferenceReturns a reference to 'XMLBox'. No type checking is performed on any modications to the Collection.
-   * 
-   * @return returns a reference to the Collection.
-   */
-  public List<XMLBox> getXMLBoxesAsReference() {
-    return this.boxes;
-  } 
+//  /**
+//   * Method getXMLBoxAsReferenceReturns a reference to 'XMLBox'. No type checking is performed on any modications to the Collection.
+//   * 
+//   * @return returns a reference to the Collection.
+//   */
+//  public List<XMLBox> getXMLBoxesAsReference() {
+//    return this.boxes;
+//  } 
 
   /**
    * Method getXMLBoxCount
@@ -595,14 +595,14 @@ public class Group implements java.io.Serializable {
     return localCones;
   } 
 
-  /**
-   * Method getXMLConeAsReferenceReturns a reference to 'XMLCone'. No type checking is performed on any modications to the Collection.
-   * 
-   * @return returns a reference to the Collection.
-   */
-  public List<XMLCone> getXMLConesAsReference() {
-    return this.cones;
-  } 
+//  /**
+//   * Method getXMLConeAsReferenceReturns a reference to 'XMLCone'. No type checking is performed on any modications to the Collection.
+//   * 
+//   * @return returns a reference to the Collection.
+//   */
+//  public List<XMLCone> getXMLConesAsReference() {
+//    return this.cones;
+//  } 
 
   /**
    * Method getXMLConeCount
@@ -641,14 +641,14 @@ public class Group implements java.io.Serializable {
     return localCylinders;
   } 
 
-  /**
-   * Method getXMLCylinderAsReferenceReturns a reference to 'XMLCylinder'. No type checking is performed on any modications to the Collection.
-   * 
-   * @return returns a reference to the Collection.
-   */
-  public List<XMLCylinder> getXMLCylindersAsReference() {
-    return this.cylinders;
-  } 
+//  /**
+//   * Method getXMLCylinderAsReferenceReturns a reference to 'XMLCylinder'. No type checking is performed on any modications to the Collection.
+//   * 
+//   * @return returns a reference to the Collection.
+//   */
+//  public List<XMLCylinder> getXMLCylindersAsReference() {
+//    return this.cylinders;
+//  } 
 
   /**
    * Method getXMLCylinderCount
@@ -808,16 +808,16 @@ public class Group implements java.io.Serializable {
     return removed;
   } 
 
-  /**
-   * Method removeLinkdata
-   * 
-   * @param link リンクデータ
-   * @return removed
-   */
-  public boolean removeLinkdata(LinkData link) {
-    boolean removed = this.links.remove(link);
-    return removed;
-  } 
+//  /**
+//   * Method removeLinkdata
+//   * 
+//   * @param link リンクデータ
+//   * @return removed
+//   */
+//  public boolean removeLinkdata(LinkData link) {
+//    boolean removed = this.links.remove(link);
+//    return removed;
+//  } 
 
   /**
    * Method removeXMLBox
@@ -922,15 +922,15 @@ public class Group implements java.io.Serializable {
       this.groups.add(argGroups.get(i));
     }
   } 
-
-  /**
-   * Method setGroupAsReferenceSets the value of 'group' by setting it to the given ArrayList. No type checking is performed.
-   * 
-   * @param argGroups the ArrayList to copy.
-   */
-  public void setGroupsAsReference(List<Group> argGroups) {
-    this.groups = argGroups;
-  } 
+//
+//  /**
+//   * Method setGroupAsReferenceSets the value of 'group' by setting it to the given ArrayList. No type checking is performed.
+//   * 
+//   * @param argGroups the ArrayList to copy.
+//   */
+//  public void setGroupsAsReference(List<Group> argGroups) {
+//    this.groups = argGroups;
+//  } 
 
   /**
    * Method setLinkdata
@@ -957,14 +957,14 @@ public class Group implements java.io.Serializable {
     }
   } 
   
-  /**
-   * Method setLinkdataAsReferenceSets the value of 'linkdata' by setting it to the given ArrayList. No type checking is performed.
-   * 
-   * @param argLinks the ArrayList to copy.
-   */
-  public void setLinksAsReference(List<LinkData> argLinks) {
-    this.links = argLinks;
-  } 
+//  /**
+//   * Method setLinkdataAsReferenceSets the value of 'linkdata' by setting it to the given ArrayList. No type checking is performed.
+//   * 
+//   * @param argLinks the ArrayList to copy.
+//   */
+//  public void setLinksAsReference(List<LinkData> argLinks) {
+//    this.links = argLinks;
+//  } 
 
   /**
    * Sets the value of field 'location'.
@@ -1019,14 +1019,14 @@ public class Group implements java.io.Serializable {
     }
   } 
 
-  /**
-   * Method setXMLBoxAsReferenceSets the value of 'XMLBox' by setting it to the given ArrayList. No type checking is performed.
-   * 
-   * @param argBoxes the ArrayList to copy.
-   */
-  public void setXMLBoxesAsReference(List<XMLBox> argBoxes) {
-    this.boxes = argBoxes;
-  } 
+//  /**
+//   * Method setXMLBoxAsReferenceSets the value of 'XMLBox' by setting it to the given ArrayList. No type checking is performed.
+//   * 
+//   * @param argBoxes the ArrayList to copy.
+//   */
+//  public void setXMLBoxesAsReference(List<XMLBox> argBoxes) {
+//    this.boxes = argBoxes;
+//  } 
 
   /**
    * Method setXMLCone
@@ -1054,14 +1054,14 @@ public class Group implements java.io.Serializable {
     }
   } 
 
-  /**
-   * Method setXMLConeAsReferenceSets the value of 'XMLCone' by setting it to the given ArrayList. No type checking is performed.
-   * 
-   * @param argCones the ArrayList to copy.
-   */
-  public void setXMLConesAsReference(List<XMLCone> argCones) {
-    this.cones = argCones;
-  } 
+//  /**
+//   * Method setXMLConeAsReferenceSets the value of 'XMLCone' by setting it to the given ArrayList. No type checking is performed.
+//   * 
+//   * @param argCones the ArrayList to copy.
+//   */
+//  public void setXMLConesAsReference(List<XMLCone> argCones) {
+//    this.cones = argCones;
+//  } 
 
   /**
    * Method setXMLCylinder
@@ -1089,14 +1089,14 @@ public class Group implements java.io.Serializable {
     }
   } 
 
-  /**
-   * Method setXMLCylinderAsReferenceSets the value of 'XMLCylinder' by setting it to the given ArrayList. No type checking is performed.
-   * 
-   * @param argCylinders the ArrayList to copy.
-   */
-  public void setXMLCylindersAsReference(List<XMLCylinder> argCylinders) {
-    this.cylinders = argCylinders;
-  } 
+//  /**
+//   * Method setXMLCylinderAsReferenceSets the value of 'XMLCylinder' by setting it to the given ArrayList. No type checking is performed.
+//   * 
+//   * @param argCylinders the ArrayList to copy.
+//   */
+//  public void setXMLCylindersAsReference(List<XMLCylinder> argCylinders) {
+//    this.cylinders = argCylinders;
+//  } 
 
   /**
    * Method setXMLSphere
@@ -1124,14 +1124,14 @@ public class Group implements java.io.Serializable {
     }
   } 
 
-  /**
-   * Method setXMLSphereAsReferenceSets the value of 'XMLSphere' by setting it to the given ArrayList. No type checking is performed.
-   * 
-   * @param argSpheres the ArrayList to copy.
-   */
-  public void setXMLSpheresAsReference(List<XMLSphere> argSpheres) {
-    this.spheres = argSpheres;
-  } 
+//  /**
+//   * Method setXMLSphereAsReferenceSets the value of 'XMLSphere' by setting it to the given ArrayList. No type checking is performed.
+//   * 
+//   * @param argSpheres the ArrayList to copy.
+//   */
+//  public void setXMLSpheresAsReference(List<XMLSphere> argSpheres) {
+//    this.spheres = argSpheres;
+//  } 
 
   /**
    * Method setXMLTrianglePolygon
@@ -1159,14 +1159,14 @@ public class Group implements java.io.Serializable {
     }
   } 
 
-  /**
-   * Method setXMLTrianglePolygonAsReferenceSets the value of 'XMLTrianglePolygon' by setting it to the given ArrayList. No type checking is performed.
-   * 
-   * @param argTrianglePolygons the ArrayList to copy.
-   */
-  public void setXMLTrianglePolygonsAsReference(List<XMLTrianglePolygon> argTrianglePolygons) {
-    this.trianglePolygons = argTrianglePolygons;
-  } 
+//  /**
+//   * Method setXMLTrianglePolygonAsReferenceSets the value of 'XMLTrianglePolygon' by setting it to the given ArrayList. No type checking is performed.
+//   * 
+//   * @param argTrianglePolygons the ArrayList to copy.
+//   */
+//  public void setXMLTrianglePolygonsAsReference(List<XMLTrianglePolygon> argTrianglePolygons) {
+//    this.trianglePolygons = argTrianglePolygons;
+//  } 
 
   /**
    * Method setXMLQuadPolygon
@@ -1194,12 +1194,12 @@ public class Group implements java.io.Serializable {
     }
   } 
 
-  /**
-   * Method setXMLQuadPolygonAsReference the value of 'XMLQuadPolygon' by setting it to the given ArrayList. No type checking is performed.
-   * 
-   * @param argQuadPolygons the ArrayList to copy.
-   */
-  public void setXMLQuadPolygonsAsReference(List<XMLQuadPolygon> argQuadPolygons) {
-    this.quadPolygons = argQuadPolygons;
-  } 
+//  /**
+//   * Method setXMLQuadPolygonAsReference the value of 'XMLQuadPolygon' by setting it to the given ArrayList. No type checking is performed.
+//   * 
+//   * @param argQuadPolygons the ArrayList to copy.
+//   */
+//  public void setXMLQuadPolygonsAsReference(List<XMLQuadPolygon> argQuadPolygons) {
+//    this.quadPolygons = argQuadPolygons;
+//  } 
 }

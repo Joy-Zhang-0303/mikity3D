@@ -20,14 +20,14 @@ public class Mikity3dModel implements java.io.Serializable {
   private List<Group> groups;
 
   /**
-   * コンストラクター
+   * 新しく生成された<code>Mikity3dModel</code>オブジェクトを初期化します。
    */
   public Mikity3dModel() {
     this.groups = new ArrayList<Group>();
   }
 
   /**
-   * Method addGroup
+   * グループを追加します。
    * 
    * @param argGroup グループ
    */
@@ -36,7 +36,7 @@ public class Mikity3dModel implements java.io.Serializable {
   }
 
   /**
-   * Method getGroup
+   * 指定されたグループを返します。
    * 
    * @param index グループのインデックス
    * @return (org.mklab.mikity.xml.Group) _groupList.get(index)

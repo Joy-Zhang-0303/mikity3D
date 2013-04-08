@@ -18,34 +18,34 @@ import org.simpleframework.xml.Root;
 public class Mikity3dConfiguration implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** data */
+  /** データ */
   @Element(name="data", required=false)
   private java.lang.String data;
 
-  /** background */
+  /** 背景 */
   @Element(name="background")
   private Background background;
 
-  /** light */
+  /** 光源 */
   @Element(name="light")
   private Light light;
 
-  /** view */
+  /** ビュー */
   @Element(name="view")
   private View view;
 
-  /** modelUnit */
+  /** モデルの単位 */
   @Element(name="modelUnit")
   private ModelUnit modelUnit;
 
-  /** dataUnit */
+  /** データの単位 */
   @Element(name="dataUnit")
   private DataUnit dataUnit;
 
   /**
-   * Returns the value of field 'background'.
+   * 背景を返します。
    * 
-   * @return the value of field 'background'.
+   * @return 背景
    */
   public Background getBackground() {
     return this.background;
@@ -128,99 +128,99 @@ public class Mikity3dConfiguration implements java.io.Serializable {
   }
 
   /**
-   * Returns the value of field 'data'.
+   * データを返します。
    * 
-   * @return the value of field 'data'.
+   * @return データ
    */
   public String getData() {
     return this.data;
   }
 
   /**
-   * Returns the value of field 'dataUnit'.
+   * データの単位を返します。
    * 
-   * @return the value of field 'dataUnit'.
+   * @return データの単位
    */
   public DataUnit getDataUnit() {
     return this.dataUnit;
   }
 
   /**
-   * Returns the value of field 'light'.
+   * 光源を返します。
    * 
-   * @return the value of field 'light'.
+   * @return 光源
    */
   public Light getLight() {
     return this.light;
   }
 
   /**
-   * Returns the value of field 'modelUnit'.
+   * モデルの単位を返します。
    * 
-   * @return the value of field 'modelUnit'.
+   * @return モデルの単位
    */
   public ModelUnit getModelUnit() {
     return this.modelUnit;
   }
 
   /**
-   * Returns the value of field 'view'.
+   * ビューを返します。
    * 
-   * @return the value of field 'view'.
+   * @return ビュー
    */
   public View getView() {
     return this.view;
   }
 
   /**
-   * Sets the value of field 'background'.
+   * 背景を設定します。
    * 
-   * @param background the value of field 'background'.
+   * @param background 背景
    */
   public void setBackground(Background background) {
     this.background = background;
   }
 
   /**
-   * Sets the value of field 'data'.
+   * データを設定します。
    * 
-   * @param data the value of field 'data'.
+   * @param data データ
    */
   public void setData(String data) {
     this.data = data;
   }
 
   /**
-   * Sets the value of field 'dataUnit'.
+   * データの単位を設定します。
    * 
-   * @param dataUnit the value of field 'dataUnit'.
+   * @param dataUnit データの単位
    */
   public void setDataUnit(DataUnit dataUnit) {
     this.dataUnit = dataUnit;
   }
 
   /**
-   * Sets the value of field 'light'.
+   * 光源を設定します。
    * 
-   * @param light the value of field 'light'.
+   * @param light 光源
    */
   public void setLight(Light light) {
     this.light = light;
   }
 
   /**
-   * Sets the value of field 'modelUnit'.
+   * モデルの単位を設定します。
    * 
-   * @param modelUnit the value of field 'modelUnit'.
+   * @param modelUnit モデル単位
    */
   public void setModelUnit(ModelUnit modelUnit) {
     this.modelUnit = modelUnit;
   }
 
   /**
-   * Sets the value of field 'view'.
+   * ビューを設定します。
    * 
-   * @param view the value of field 'view'.
+   * @param view ビュー
    */
   public void setView(View view) {
     this.view = view;

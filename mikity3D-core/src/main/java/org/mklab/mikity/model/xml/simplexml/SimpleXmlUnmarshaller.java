@@ -13,7 +13,7 @@ import org.simpleframework.xml.core.Persister;
 
 
 /**
- * Simple-XMLを用いてモデルデータを読み込むクラスです。
+ * Simpleを用いてモデルデータを読み込むクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/07/10
