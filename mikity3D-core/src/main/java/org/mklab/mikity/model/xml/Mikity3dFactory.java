@@ -137,7 +137,7 @@ public class Mikity3dFactory {
    */
   public Mikity3d loadFile(final InputStream input) throws Mikity3dSerializeDeserializeException {
     final SimpleXmlUnmarshaller unmarshaller = new SimpleXmlUnmarshaller();
-    unmarshaller.unmarshalFromJamastFile(input);
+    unmarshaller.unmarshalFromMikity3DFile(input);
     final Mikity3d root = unmarshaller.getRoot();
 
     if (root != null) {

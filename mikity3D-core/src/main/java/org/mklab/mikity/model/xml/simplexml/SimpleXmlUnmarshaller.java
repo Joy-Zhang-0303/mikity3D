@@ -54,7 +54,7 @@ public class SimpleXmlUnmarshaller extends AbstractMikity3DUnmarshaller {
   /**
    * {@inheritDoc}
    */
-  public void unmarshalFromJamastFile(InputStream input) throws Mikity3dSerializeDeserializeException {
+  public void unmarshalFromMikity3DFile(InputStream input) throws Mikity3dSerializeDeserializeException {
     try {
       final Serializer serializer = new Persister();
       this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3d.class, input);

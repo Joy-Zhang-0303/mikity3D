@@ -42,7 +42,7 @@ public interface Mikity3dUnmashaller {
    * @param input 入力ストリーム
    * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
    */
-  void unmarshalFromJamastFile(InputStream input) throws Mikity3dSerializeDeserializeException;
+  void unmarshalFromMikity3DFile(InputStream input) throws Mikity3dSerializeDeserializeException;
   
   /**
    * 指定したColladaファイルを読み込みます。
