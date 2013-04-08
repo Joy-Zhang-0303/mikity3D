@@ -11,14 +11,14 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
+ * Mikity3DのUnmarshallerの抽象クラスです。１
+ * 
  * @author koga
  * @version $Revision$, 2013/02/05
  */
-public abstract class AbstractJamastUnmarshaller implements Mikity3dUnmashaller {
+public abstract class AbstractMikity3DUnmarshaller implements Mikity3dUnmashaller {
   /**
    * {@inheritDoc}
-   * 
-   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
    */
   public void unmarshal(File file) throws IOException, Mikity3dSerializeDeserializeException {
     final BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -31,7 +31,7 @@ public abstract class AbstractJamastUnmarshaller implements Mikity3dUnmashaller 
     reader.close();
 
     if (data.indexOf("<mikity3d") != -1) { //$NON-NLS-1$
-      unmarshalFromJamastFile(file);
+      unmarshalFromMikity3DFile(file);
       return;
     }
 

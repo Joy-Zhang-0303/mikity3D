@@ -28,16 +28,16 @@ public interface Mikity3dUnmashaller {
   void unmarshal(File file) throws IOException, Mikity3dSerializeDeserializeException;
 
   /**
-   * 指定したJAMASTファイルを読み込みます。
+   * 指定したMikity3DTファイルを読み込みます。
    * 
-   * @param file JAMASTファイル
+   * @param file Mikity3DTファイル
    * @throws IOException ファイルを読み込めない場合
    * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
    */
-  void unmarshalFromJamastFile(File file) throws IOException, Mikity3dSerializeDeserializeException;
+  void unmarshalFromMikity3DFile(File file) throws IOException, Mikity3dSerializeDeserializeException;
   
   /**
-   * 指定した入力ストリームからJAMASTデータを読み込みます。
+   * 指定した入力ストリームからMikity3Dデータを読み込みます。
    * 
    * @param input 入力ストリーム
    * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合

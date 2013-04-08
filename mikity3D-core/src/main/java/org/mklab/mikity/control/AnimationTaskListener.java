@@ -13,7 +13,7 @@ package org.mklab.mikity.control;
  */
 public interface AnimationTaskListener {
   
-  // TODO キャンセルや、安全に終了したときのリスナも追加
+  // TODO キャンセルや、安全に終了したときのリスナも追加予定です。
   
   /**
    * アニメーションの開始時に必ず呼び出されます。<p>

@@ -3,7 +3,7 @@ package org.mklab.mikity.model.xml.simplexml;
 import java.io.File;
 import java.io.InputStream;
 
-import org.mklab.mikity.model.xml.AbstractJamastUnmarshaller;
+import org.mklab.mikity.model.xml.AbstractMikity3DUnmarshaller;
 import org.mklab.mikity.model.xml.ColladaFileTransformer;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.blender.Collada;
@@ -18,7 +18,7 @@ import org.simpleframework.xml.core.Persister;
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/07/10
  */
-public class SimpleXmlUnmarshaller extends AbstractJamastUnmarshaller {
+public class SimpleXmlUnmarshaller extends AbstractMikity3DUnmarshaller {
 
   /** モデルデータのルート */
   protected Mikity3d root;
@@ -28,7 +28,7 @@ public class SimpleXmlUnmarshaller extends AbstractJamastUnmarshaller {
   /**
    * {@inheritDoc}
    */
-  public void unmarshalFromJamastFile(File file) throws Mikity3dSerializeDeserializeException {
+  public void unmarshalFromMikity3DFile(File file) throws Mikity3dSerializeDeserializeException {
     try {
       final Serializer serializer = new Persister();
       this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3d.class, file);

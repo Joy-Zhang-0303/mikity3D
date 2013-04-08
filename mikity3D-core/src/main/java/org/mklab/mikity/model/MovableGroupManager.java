@@ -33,7 +33,7 @@ public class MovableGroupManager {
   private Map<MovableGroup, DataPicker> pickers = new HashMap<MovableGroup, DataPicker>();
   
   /** データの個数 */
-  private int dataCount;
+  private int dataSize;
   /** 開始時間 */
   private double startTime;
   /** 終了時間 */
@@ -64,7 +64,7 @@ public class MovableGroupManager {
   private void addMovableGroup(final MovableGroup movableGroup, final DataPicker picker) {
     this.movableGroups.add(movableGroup);
     this.pickers.put(movableGroup, picker);
-    this.dataCount = Math.max(this.dataCount, picker.getDataSize());
+    this.dataSize = Math.max(this.dataSize, picker.getDataSize());
     this.startTime = Math.min(this.startTime, picker.getStartTime());
     this.endTime = Math.max(this.endTime, picker.getEndTime());
   }
@@ -173,11 +173,11 @@ public class MovableGroupManager {
           } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
             type = CoordinateParameterType.Z;
           } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ANGLE_X;
+            type = CoordinateParameterType.ROTATION_X;
           } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ANGLE_Y;
+            type = CoordinateParameterType.ROTATION_Y;
           } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ANGLE_Z;
+            type = CoordinateParameterType.ROTATIONE_Z;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
@@ -196,11 +196,11 @@ public class MovableGroupManager {
           } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
             type = CoordinateParameterType.Z;
           } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ANGLE_X;
+            type = CoordinateParameterType.ROTATION_X;
           } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ANGLE_Y;
+            type = CoordinateParameterType.ROTATION_Y;
           } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ANGLE_Z;
+            type = CoordinateParameterType.ROTATIONE_Z;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.3")); //$NON-NLS-1$
           }
@@ -218,7 +218,7 @@ public class MovableGroupManager {
    * @return データの個数
    */
   public int getDataSize() {
-    return this.dataCount;
+    return this.dataSize;
   }
 
   /**
@@ -245,7 +245,7 @@ public class MovableGroupManager {
    * @param data 時系列データ
    */
   public void setData(final Matrix data) {
-    this.dataCount = 0;
+    this.dataSize = 0;
     this.startTime = 0;
     this.endTime = 0;
 

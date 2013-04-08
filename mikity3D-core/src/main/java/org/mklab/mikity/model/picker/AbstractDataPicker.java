@@ -124,7 +124,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           this.coordinateParameters[i].setZ(value / dataScale);
         }
         break;
-      case ANGLE_X:
+      case ROTATION_X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
           if (dataIsRadian) {
@@ -134,7 +134,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case ANGLE_Y:
+      case ROTATION_Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
           if (dataIsRadian) {
@@ -144,7 +144,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case ANGLE_Z:
+      case ROTATIONE_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
           if (dataIsRadian) {
@@ -225,7 +225,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           this.coordinateParameters[i].setZ(z + value / modelScale);
         }
         break;
-      case ANGLE_X:
+      case ROTATION_X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double angleX = this.coordinateParameters[i].getAngleX();
           if (Util.radian) {
@@ -235,7 +235,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case ANGLE_Y:
+      case ROTATION_Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           double angleY = this.coordinateParameters[i].getAngleY();
           if (Util.radian) {
@@ -245,7 +245,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case ANGLE_Z:
+      case ROTATIONE_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           double angleZ = this.coordinateParameters[i].getAngleZ();
           if (Util.radian) {

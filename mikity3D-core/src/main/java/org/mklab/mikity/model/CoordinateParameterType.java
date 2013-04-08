@@ -18,10 +18,10 @@ public enum CoordinateParameterType {
   Y,
   /** Z */
   Z,
-  /** Angle X */
-  ANGLE_X,
-  /** ANgle Y */
-  ANGLE_Y,
-  /** ANgle Z */
-  ANGLE_Z;
+  /** Rotation X */
+  ROTATION_X,
+  /** Rotation Y */
+  ROTATION_Y,
+  /** Rotation Z */
+  ROTATIONE_Z;
 }

@@ -12,12 +12,18 @@ package org.mklab.mikity.model;
  * @version $Revision: 1.2 $. 2008/02/29
  */
 public class CoordinateParameter {
+  /** X座標 */
   private double x;
+  /** Y座標 */
   private double y;
+  /** Y座標 */
   private double z;
-  private double angleX;
-  private double angleY;
-  private double angleZ;
+  /** X軸周りの回転 */
+  private double rotationX;
+  /** Y軸周りの回転 */
+  private double rotationeY;
+  /** Z軸ｋ周りの回転 */
+  private double rotationeZ;
 
   /**
    * 新しく生成された<code>CoordinateParameter</code>オブジェクトを初期化します。
@@ -28,33 +34,33 @@ public class CoordinateParameter {
 
   /**
    * 新しく生成された<code>CoordinateParameter</code>オブジェクトを初期化します。
-   * @param x X座標並進
-   * @param y Y座標並進
-   * @param z Z座標並進
-   * @param angleX X座標回転
-   * @param angleY Y座標回転
-   * @param angleZ Z座標回転
+   * @param x X座標
+   * @param y Y座標
+   * @param z Z座標
+   * @param angleX X軸周りの回転
+   * @param angleY Y軸周りの回転
+   * @param angleZ Z軸周りの回転
    */
   public CoordinateParameter(double x, double y, double z, double angleX, double angleY, double angleZ) {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.angleX = angleX;
-    this.angleY = angleY;
-    this.angleZ = angleZ;
+    this.rotationX = angleX;
+    this.rotationeY = angleY;
+    this.rotationeZ = angleZ;
   }
 
   /**
-   * X座標並進の値を返します。
+   * X座標の値を返します。
    * 
-   * @return X座標並進の値
+   * @return X座標の値
    */
   public double getX() {
     return this.x;
   }
 
   /**
-   * X座標並進の値を設定します。
+   * X座標の値を設定します。
    * 
    * @param x X座標
    */
@@ -63,16 +69,16 @@ public class CoordinateParameter {
   }
 
   /**
-   * Y座標並進の値を返します。
+   * Y座標の値を返します。
    * 
-   * @return Y座標並進の値
+   * @return Y座標の値
    */
   public double getY() {
     return this.y;
   }
 
   /**
-   * Y座標並進の値を設定します。
+   * Y座標の値を設定します。
    * 
    * @param y Y座標
    */
@@ -81,16 +87,16 @@ public class CoordinateParameter {
   }
 
   /**
-   * Z座標並進の値を返します。
+   * Z座標の値を返します。
    * 
-   * @return Z座標並進の値
+   * @return Z座標の値
    */
   public double getZ() {
     return this.z;
   }
 
   /**
-   * Z座標並進の値を設定します。
+   * Z座標の値を設定します。
    * 
    * @param z Z座標
    */
@@ -99,56 +105,56 @@ public class CoordinateParameter {
   }
 
   /**
-   * X座標回転の値を返します。
+   * X軸周りの回転の値を返します。
    * 
-   * @return X座標回転の値
+   * @return X軸周りの回転の値
    */
   public double getAngleX() {
-    return this.angleX;
+    return this.rotationX;
   }
 
   /**
-   * X座標回転の値を設定します。
+   * X軸周りの回転の値を設定します。
    * 
-   * @param angleX X座標回転の値
+   * @param angleX X軸周りの回転の値
    */
   public void setAngleX(double angleX) {
-    this.angleX = angleX;
+    this.rotationX = angleX;
   }
 
   /**
-   * Y座標回転の値を返します。
+   * Y軸周りの回転の値を返します。
    * 
-   * @return Y座標回転の値
+   * @return Y軸周りの回転の値
    */
   public double getAngleY() {
-    return this.angleY;
+    return this.rotationeY;
   }
 
   /**
-   * Y座標回転の値を設定します。
+   * Y軸周りの回転の値を設定します。
    * 
-   * @param angleY Y座標回転の値
+   * @param angleY Y軸周りの回転の値
    */
   public void setAngleY(double angleY) {
-    this.angleY = angleY;
+    this.rotationeY = angleY;
   }
 
   /**
-   * Z座標回転の値を返します。
+   * Z軸周りの回転の値を返します。
    * 
-   * @return Z座標回転の値
+   * @return Z軸周りの回転の値
    */
   public double getAngleZ() {
-    return this.angleZ;
+    return this.rotationeZ;
   }
 
   /**
-   * Z座標回転の値を設定します。
+   * Z軸周りの転の値を設定します。
    * 
-   * @param angleZ Z座標回転の値
+   * @param angleZ Z軸周りの回転の値
    */
   public void setAngleZ(double angleZ) {
-    this.angleZ = angleZ;
+    this.rotationeZ = angleZ;
   }
 }

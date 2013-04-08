@@ -81,7 +81,8 @@ public class AnimationTask extends TimerTask {
   }
 
   /**
-   * @see java.lang.Runnable#run() 再生ボタンが押されると実行する
+   * 再生ボタンが押されるとされます。
+   * {@inheritDoc}
    */
   @Override
   public void run() {

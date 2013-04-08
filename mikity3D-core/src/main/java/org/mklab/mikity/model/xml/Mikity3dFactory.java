@@ -101,10 +101,10 @@ public class Mikity3dFactory {
   }
 
   /**
-   * Jamastファイルを読み込みます。
+   * Mikity3Dファイルを読み込みます。
    * 
-   * @param file Jamastファイル
-   * @return Jamastモデル
+   * @param file Mikity3Dファイル
+   * @return Mikity3Dモデル
    * @throws IOException ファイルを読み込めない場合
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
@@ -129,10 +129,10 @@ public class Mikity3dFactory {
 
 
   /**
-   * 入力ストリームからJamastデータを読み込みます。
+   * 入力ストリームからMikity3Dデータを読み込みます。
    * 
    * @param input 入力ストリーム
-   * @return Jamastモデル
+   * @return Mikity3Dモデル
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
   public Mikity3d loadFile(final InputStream input) throws Mikity3dSerializeDeserializeException {
@@ -158,7 +158,7 @@ public class Mikity3dFactory {
   /**
    * 空のモデルを生成します。
    * 
-   * @return Jamastモデル
+   * @return Mikity3Dモデル
    */
   public Mikity3d createEmptyModel() {
     final Mikity3dConfiguration config = new Mikity3dConfiguration();
