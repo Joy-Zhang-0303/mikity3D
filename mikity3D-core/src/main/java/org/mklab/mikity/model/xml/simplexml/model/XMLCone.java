@@ -9,7 +9,7 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * Class XMLCone.
+ * Coneを表すクラスです。
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
@@ -33,7 +33,7 @@ public class XMLCone implements java.io.Serializable {
   @Attribute(name="color")
   private java.lang.String color;
 
-  /**transparent */
+  /** transparent */
   private boolean transparent;
 
   /** rotation */

@@ -12,15 +12,15 @@ public class Rotation implements java.io.Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  /** xrotate */
+  /** X軸周りの回転 */
   @Attribute(name = "xrotation")
   private float xRotation;
 
-  /** yrotate */
+  /** Y軸周りの回転 */
   @Attribute(name = "yrotation")
   private float yRotation;
 
-  /** zrotate */
+  /** Z軸周りの回転 */
   @Attribute(name = "zrotation")
   private float zRotation;
 
@@ -34,9 +34,9 @@ public class Rotation implements java.io.Serializable {
   /**
    * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
    * 
-   * @param xRotation x座標
-   * @param yRotation y座標
-   * @param zRotation z座標
+   * @param xRotation Ｘ軸周りの回転
+   * @param yRotation Y軸周りの回転
+   * @param zRotation Z軸周りの回転
    */
   public Rotation(float xRotation, float yRotation, float zRotation) {
     this.xRotation = xRotation;
@@ -45,9 +45,9 @@ public class Rotation implements java.io.Serializable {
   }
 
   /**
-   * Returns the value of field 'xrotate'.
+   * X軸周りの回転を返します。
    * 
-   * @return the value of field 'xrotate'.
+   * @return X軸周りの回転
    */
   public float getXrotation() {
     return this.xRotation;
@@ -94,45 +94,45 @@ public class Rotation implements java.io.Serializable {
   }
 
   /**
-   * Returns the value of field 'yrotate'.
+   * Y軸周りの回転を返します。
    * 
-   * @return the value of field 'yrotate'.
+   * @return Y軸周りの回転
    */
   public float getYrotation() {
     return this.yRotation;
   }
 
   /**
-   * Returns the value of field 'zrotate'.
+   * Z軸周りの回転を返します。
    * 
-   * @return the value of field 'zrotate'.
+   * @return Z軸周りの回転
    */
   public float getZrotation() {
     return this.zRotation;
   }
 
   /**
-   * Sets the value of field 'xrotate'.
+   * X軸周りの回転を設定します。
    * 
-   * @param xRotation the value of field 'xrotate'.
+   * @param xRotation X軸周りの回転
    */
   public void setXrotation(float xRotation) {
     this.xRotation = xRotation;
   }
 
   /**
-   * Sets the value of field 'yrotate'.
+   * Y軸周りの回転を設定します。
    * 
-   * @param yRotation the value of field 'yrotate'.
+   * @param yRotation Y軸ｋ周りの回転
    */
   public void setYrotation(float yRotation) {
     this.yRotation = yRotation;
   }
 
   /**
-   * Sets the value of field 'zrotate'.
+   * Z軸周りの回転を設定します。
    * 
-   * @param zrotation the value of field 'zrotate'.
+   * @param zrotation Z軸周りの回転
    */
   public void setZrotation(float zrotation) {
     this.zRotation = zrotation;

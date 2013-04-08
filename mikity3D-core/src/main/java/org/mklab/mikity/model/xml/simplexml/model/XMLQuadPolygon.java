@@ -17,6 +17,8 @@ import org.simpleframework.xml.Root;
 
 
 /**
+ * 四角形ポリゴンを表すクラスです。
+ * 
  * @author koga
  * @version $Revision$, 2008/08/10
  */
