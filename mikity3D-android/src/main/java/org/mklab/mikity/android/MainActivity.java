@@ -20,11 +20,10 @@ import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -174,9 +173,19 @@ public class MainActivity extends Activity {
 
     //スクリーンサイズ調整が済んでいない場合は調整する
     if (this.mIsInitScreenSize == false) {
-      int width = this.glView.getWidth();
-
-      LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, width);
+      Resources resources = getResources();
+      Configuration config = resources.getConfiguration();
+      int size;
+      switch(config.orientation){
+        case Configuration.ORIENTATION_PORTRAIT:
+          size = this.glView.getWidth();
+          break;
+        case Configuration.ORIENTATION_LANDSCAPE:
+          size = this.glView.getHeight();
+          break;
+        default: throw new IllegalStateException("It is not a portrait or landscape"); //$NON-NLS-1$
+      }
+      LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
       this.glView.setLayoutParams(params);
     }
     super.onWindowFocusChanged(hasFocus);
