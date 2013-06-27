@@ -3,8 +3,8 @@ package org.mklab.mikity.view.gui;
 import java.awt.Component;
 import java.awt.Frame;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -394,7 +394,7 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public void setTimeData(final File file) {
     try {
-      final FileInputStream input = new FileInputStream(file);
+      final FileReader input = new FileReader(file);
       this.data = MatxMatrix.readMatFormat(input);
       input.close();
 

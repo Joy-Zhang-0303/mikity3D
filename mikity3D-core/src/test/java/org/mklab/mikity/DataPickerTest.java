@@ -5,10 +5,10 @@
  */
 package org.mklab.mikity;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +32,7 @@ public class DataPickerTest {
    */
   @Before
   public void setUp() throws IOException {
-    final InputStream input = getClass().getClassLoader().getResourceAsStream("data2.mat"); //$NON-NLS-1$
+    final InputStreamReader input = new InputStreamReader(getClass().getClassLoader().getResourceAsStream("data2.mat")); //$NON-NLS-1$
     this.data = MatxMatrix.readMatFormat(input);
     input.close();
   }
