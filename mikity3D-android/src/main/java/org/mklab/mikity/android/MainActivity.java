@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputstreamReader;
+import java.io.InputStreamReader;
 import java.util.Timer;
 
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
