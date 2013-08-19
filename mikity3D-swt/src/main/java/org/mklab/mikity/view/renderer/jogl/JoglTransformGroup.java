@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
@@ -65,7 +66,7 @@ public class JoglTransformGroup implements MovableGroup {
    * GLによる操作(座標変換・描画)を適用します。
    * @param gl GL
    */
-  public void display(GL gl) {
+  public void display(GL2 gl) {
     gl.glPushMatrix();
     
     if (this.coordinate != null) {

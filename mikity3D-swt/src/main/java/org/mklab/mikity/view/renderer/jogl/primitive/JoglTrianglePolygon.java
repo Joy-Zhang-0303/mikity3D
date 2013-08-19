@@ -3,6 +3,7 @@ package org.mklab.mikity.view.renderer.jogl.primitive;
 import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
@@ -18,21 +19,21 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
   /**
    * {@inheritDoc}
    */
-  public void display(GL gl) {
+  public void display(GL2 gl) {
     applyColor(gl);
 
     //頂点配列の有効化
-    gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
+    gl.glEnableClientState(GL2.GL_VERTEX_ARRAY);
 
-    gl.glDisable(GL.GL_CULL_FACE);
+    gl.glDisable(GL2.GL_CULL_FACE);
 
     //頂点バッファの生成
     final float[] vertices = {this.points[0][0], this.points[0][1], this.points[0][2], this.points[1][0], this.points[1][1], this.points[1][2], this.points[2][0], this.points[2][1], this.points[2][2],};
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
-    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
-    gl.glDrawArrays(GL.GL_TRIANGLES, 0, 3); //プリミティブの描画
+    gl.glVertexPointer(3, GL2.GL_FLOAT, 0, vertexBuffer);
+    gl.glDrawArrays(GL2.GL_TRIANGLES, 0, 3); //プリミティブの描画
   }
 
   /**
@@ -41,5 +42,10 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
    */
   public void setPoints(float[][] points) {
     this.points = points;
+  }
+
+  public void display(GL gl) {
+    // TODO 自動生成されたメソッド・スタブ
+    
   }
 }

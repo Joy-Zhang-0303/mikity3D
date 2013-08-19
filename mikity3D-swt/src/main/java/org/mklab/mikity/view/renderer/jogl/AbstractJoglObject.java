@@ -9,7 +9,9 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
+
+
 
 
 
@@ -36,7 +38,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * 
    * @param gl GL　
    */
-  public void applyColor(GL gl) {
+  public void applyColor(GL2 gl) {
     if (this.color == null) {
       return;
     }

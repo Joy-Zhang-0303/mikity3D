@@ -6,10 +6,14 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
-import javax.media.opengl.GLJPanel;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLJPanel;
+import javax.media.opengl.fixedfunc.GLLightingFunc;
+import javax.media.opengl.fixedfunc.GLMatrixFunc;
 import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
@@ -72,7 +76,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    * 新しく生成された<code>JoglModelCanvas</code>オブジェクトを初期化します。
    */
   public JoglModelRenderer() {
-    super(new GLCapabilities());
+    super(new GLCapabilities(null));
     addGLEventListener(this);
     addMouseListener(this);
     addMouseMotionListener(this);
@@ -82,19 +86,19 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    * {@inheritDoc}
    */
   public void init(GLAutoDrawable drawable) {
-    final GL gl = drawable.getGL();
+    final GL2 gl = (GL2)drawable.getGL();
 
     gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-    gl.glEnable(GL.GL_LIGHTING); //光源を有効にします 
-    gl.glEnable(GL.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします 
-    gl.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, 90.0f);
+    gl.glEnable(GLLightingFunc.GL_LIGHTING); //光源を有効にします 
+    gl.glEnable(GLLightingFunc.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします 
+    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 90.0f);
 
-    gl.glEnable(GL.GL_LIGHT0); //0番のライトを有効にします
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
-    gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
+    gl.glEnable(GLLightingFunc.GL_LIGHT0); //0番のライトを有効にします
+    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
+    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
+    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
+    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
 
 //    gl.glEnable(GL.GL_LIGHT1); //1番のライトを有効にします
 //    gl.glLightfv(GL.GL_LIGHT1, GL.GL_POSITION, this.lightLocation1, 0); // 平行光源を設定します 
@@ -107,7 +111,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    * {@inheritDoc}
    */
   public void display(GLAutoDrawable drawable) {
-    final GL gl = drawable.getGL();
+    final GL2 gl = (GL2)drawable.getGL();
 
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
@@ -122,6 +126,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glTranslatef(0.0f, 0.0f, -this.scale);
     gl.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
     gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
+    
     
     for (final JoglBranchGroup group : this.topGroups) {
       group.display(gl);
@@ -158,17 +163,17 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    * {@inheritDoc}
    */
   public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-    final GL gl = drawable.getGL();
+    final GL2 gl = (GL2)drawable.getGL();
     //
     gl.glViewport(0, 0, width, height);
-    gl.glMatrixMode(GL.GL_PROJECTION);
+    gl.glMatrixMode(GLMatrixFunc.GL_PROJECTION);
     gl.glLoadIdentity();
     this.glu.gluPerspective(10.0, (double)width / (double)height, 1.0, 100.0);
-    gl.glMatrixMode(GL.GL_MODELVIEW);
+    gl.glMatrixMode(GLMatrixFunc.GL_MODELVIEW);
   }
 
   /**
-   * {@inheritDoc}
+   * マウス左クリック時の処理　カメラを移動させます。
    */
   public void mousePressed(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e) == true) {
@@ -234,7 +239,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   }
 
   /**
-   * {@inheritDoc}
+   * マウスをドラッグさせるとカメラ座標が移動させます。
    */
   public void mouseDragged(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e)) {
@@ -294,5 +299,10 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    */
   public void updateDisplay() {
     display();
+  }
+
+  public void dispose(GLAutoDrawable arg0) {
+    // TODO 自動生成されたメソッド・スタブ
+    
   }
 }

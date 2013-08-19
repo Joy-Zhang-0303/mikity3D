@@ -1,6 +1,6 @@
 package org.mklab.mikity.view.renderer.jogl;
 
-import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 
 
 /**
@@ -16,6 +16,6 @@ public interface JoglObject {
    * 
    * @param gl GL
    */
-  void display(GL gl);
+  void display(GL2 gl);
 
 }

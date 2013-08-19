@@ -3,7 +3,7 @@ package org.mklab.mikity.view.renderer.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 
 
 /**
@@ -13,6 +13,7 @@ import javax.media.opengl.GL;
  * @version $Revision$, 2012/01/20
  */
 public class JoglBranchGroup implements JoglObject {
+
   /** オブジェクトのリスト */
   private List<JoglObject> objects;
   /** 座標系 */
@@ -47,14 +48,16 @@ public class JoglBranchGroup implements JoglObject {
   /**
    * {@inheritDoc}
    */
-  public void display(GL gl) {
+  public void display(GL2 gl) {
     for (final JoglObject object : this.objects) {
       object.display(gl);
+
     }
-    
+
     for (final JoglTransformGroup group : this.groups) {
       group.display(gl);
     }
 
   }
+
 }

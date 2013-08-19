@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
@@ -19,11 +20,11 @@ public class JoglQuadPolygon extends AbstractJoglObject {
   /**
    * {@inheritDoc}
    */
-  public void display(GL gl) {
+  public void display(GL2 gl) {
     applyColor(gl);
 
     //頂点配列の有効化
-    gl.glEnableClientState(GL.GL_VERTEX_ARRAY);
+    gl.glEnableClientState(GL2.GL_VERTEX_ARRAY);
 
     gl.glDisable(GL.GL_CULL_FACE);
 
@@ -49,5 +50,10 @@ public class JoglQuadPolygon extends AbstractJoglObject {
    */
   public void setPoints(float[][] points) {
     this.points = points;
+  }
+
+  public void display(GL gl) {
+    // TODO 自動生成されたメソッド・スタブ
+    
   }
 }

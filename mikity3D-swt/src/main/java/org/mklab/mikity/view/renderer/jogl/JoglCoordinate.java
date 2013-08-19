@@ -1,6 +1,6 @@
 package org.mklab.mikity.view.renderer.jogl;
 
-import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 
 
 /**
@@ -32,7 +32,7 @@ public class JoglCoordinate {
    * GLによる座標変換を適用します。
    * @param gl GL
    */
-  public void apply(GL gl) {
+  public void apply(GL2 gl) {
     gl.glTranslatef(this.x, this.y, this.z);
     gl.glRotatef((float)Math.toDegrees(this.rotationX), 1.0f, 0.0f, 0.0f);
     gl.glRotatef((float)Math.toDegrees(this.rotationY), 0.0f, 1.0f, 0.0f);
