@@ -46,8 +46,6 @@ public class OpenglesBranchGroup implements OpenglesObject {
     this.groups.add(group);
   }
 
-  
-  
 
   /**
    * {@inheritDoc}

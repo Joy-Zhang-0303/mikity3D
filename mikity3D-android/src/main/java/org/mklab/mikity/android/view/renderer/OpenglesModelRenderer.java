@@ -92,10 +92,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
-
-   
-    
-
   }
 
   /**
@@ -114,8 +110,10 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     //gl10.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
     gl10.glLoadIdentity();
-
-    ////this.glu.gluLookAt(this.eye[0], this.eye[1], this.eye[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    
+    gl10.glMatrixMode(GL10.GL_PROJECTION);
+    gl10.glLoadIdentity();
+    //this.glu.gluLookAt(this.eye[0], this.eye[1], this.eye[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
     gl10.glTranslatef(this.translationY, -this.translationX, 0.0f);
     gl10.glTranslatef(0.0f, 0.0f, -this.scale);

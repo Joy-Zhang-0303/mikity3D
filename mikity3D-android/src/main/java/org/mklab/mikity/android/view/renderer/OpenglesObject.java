@@ -11,7 +11,6 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public interface OpenglesObject {
 
-  
   /**
    * オブジェクトを表示します。
    * @param gl10
