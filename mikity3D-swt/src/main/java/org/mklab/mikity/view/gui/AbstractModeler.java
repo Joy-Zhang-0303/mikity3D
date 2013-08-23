@@ -34,10 +34,11 @@ import org.mklab.mikity.view.gui.dialog.GroupConfigWithDHParameterDialog;
  * @version $Revision: 1.22 $.2004/12/03
  */
 public abstract class AbstractModeler extends Composite {
+
   /** シーングラフツリー */
   protected SceneGraphTree tree;
   /** ルート */
-  protected Mikity3d root; 
+  protected Mikity3d root;
   /** */
   protected Frame awtFrame;
   private Group treeViewerGroup;
@@ -63,7 +64,6 @@ public abstract class AbstractModeler extends Composite {
     createViewerComposite(sash);
     createTreeComposite(sash);
   }
-
 
   /**
    * 3Dグラフィックスを表示するcompositeを作成します。
@@ -175,7 +175,7 @@ public abstract class AbstractModeler extends Composite {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-      // nothing to do
+        // nothing to do
       }
     });
 
@@ -207,7 +207,7 @@ public abstract class AbstractModeler extends Composite {
           MessagegUtil.show(getShell(), Messages.getString("Modeler.9")); //$NON-NLS-1$
           return;
         }
-        
+
         final org.mklab.mikity.model.xml.simplexml.model.LinkData[] linkdata = group.getLinkData();
         if (linkdata.length == 0) {
           final MessageBox messageBox = new MessageBox(getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
@@ -290,6 +290,7 @@ public abstract class AbstractModeler extends Composite {
 
   /**
    * ツリーのルートを設定します。
+   * 
    * @param root ツリーのルート
    */
   public void setModel(Mikity3d root) {
@@ -304,7 +305,7 @@ public abstract class AbstractModeler extends Composite {
   public void fillTree() {
     this.tree.fillTree();
   }
-  
+
   /**
    * GroupをsinsiCanvasに読み込ませ、Frameにaddします。
    */

@@ -56,7 +56,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   //private float startTranslationY;
   /** 開始拡大縮小率 */
   //private float startScale;
-  
+
   GLSurfaceView glView;
 
   //光源の設定です 
@@ -66,11 +66,10 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f}; // 拡散光の強さです 
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
 
-  
-  public OpenglesModelRenderer(GLSurfaceView glView){
+  public OpenglesModelRenderer(GLSurfaceView glView) {
     this.glView = glView;
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -110,22 +109,19 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     //gl10.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
     gl10.glLoadIdentity();
-    
-    gl10.glMatrixMode(GL10.GL_PROJECTION);
-    gl10.glLoadIdentity();
+
     //this.glu.gluLookAt(this.eye[0], this.eye[1], this.eye[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
     gl10.glTranslatef(this.translationY, -this.translationX, 0.0f);
     gl10.glTranslatef(0.0f, 0.0f, -this.scale);
     gl10.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
     gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
-    
+
     //ここで微調整してます
-  
-    gl10.glRotatef(-180f, 0f, 1f, 0f);                                               
+
+    gl10.glRotatef(-180f, 0f, 1f, 0f);
     gl10.glScalef(2.3f, 2.3f, 2.3f);
-    
-    
+
     for (final OpenglesBranchGroup group : this.topGroups) {
       group.display(gl10);
     }
@@ -158,9 +154,22 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     return true;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public void updateDisplay() {
- this.glView.requestRender();//再描画
+    this.glView.requestRender();//再描画
 
   }
 
-}
+  /**
+   * 回転角度のセッター
+   * 
+   * @param rotationX X方向の回転角度
+   * @param rotationY y方向の回転角度
+   */
+  public void setRotation(float rotationX, float rotationY) {
+      this.rotationY -= rotationX/5;
+      this.rotationX -= rotationY/5;
+    }
+  }

@@ -78,7 +78,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * @param array 変換元
    * @return 変換結果
    */
-  protected FloatBuffer makeFloatBuffer(float[] array) {
+  protected static FloatBuffer makeFloatBuffer(float[] array) {
     final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     buffer.put(array).position(0);
     return buffer;
@@ -90,7 +90,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * @param array 変換元
    * @return 変換結果
    */
-  protected ByteBuffer makeByteBuffer(byte[] array) {
+  protected static ByteBuffer makeByteBuffer(byte[] array) {
     final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     buffer.put(array).position(0);
     return buffer;

@@ -5,6 +5,7 @@ import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
+import javax.media.opengl.fixedfunc.GLPointerFunc;
 
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
@@ -24,7 +25,7 @@ public class JoglSphere extends AbstractJoglObject {
    */
   public void display(GL2 gl) {
     //頂点配列の有効化
-    gl.glEnableClientState(GL2.GL_VERTEX_ARRAY);
+    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
@@ -130,8 +131,4 @@ public class JoglSphere extends AbstractJoglObject {
     this.div = div;
   }
 
-  public void display(GL gl) {
-    // TODO 自動生成されたメソッド・スタブ
-    
-  }
 }

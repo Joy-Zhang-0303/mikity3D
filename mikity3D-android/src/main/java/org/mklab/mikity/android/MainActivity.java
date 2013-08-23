@@ -26,9 +26,11 @@ import android.content.res.Resources;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -67,6 +69,15 @@ public class MainActivity extends Activity {
   /** ModelCanvas */
   private OpenglesModelRenderer modelRenderer;
 
+  ///////////////AndroidLesson///////////////
+  TextView testTextView;
+  int i;
+  float transferAmountX;
+  float transferAmountY;
+  float prevX = 0;
+  float prevY = 0;
+
+  //////////////
   /**
    * 
    * @param modelFile モデルファイル
@@ -130,7 +141,6 @@ public class MainActivity extends Activity {
       throw new RuntimeException(e);
     }
 
-    
     //描画のクラスを登録する
     this.glView.setRenderer(this.modelRenderer);
     //this.glView.setRenderer(new GLRenderer());
@@ -138,14 +148,17 @@ public class MainActivity extends Activity {
 
     //任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
-    
-    
- 
 
     Button playButton = (Button)findViewById(R.id.button1);
     Button stopButton = (Button)findViewById(R.id.button2);
     //final RedrawHandler handler = new RedrawHandler(100);
 
+    //////////
+    this.testTextView = new TextView(this);
+    this.testTextView = (TextView)findViewById(R.id.textView1);
+    //glView.setOnClickListener(new ClickListener());
+
+    /////////////////
 
     //イベントリスナー
     playButton.setOnClickListener(new View.OnClickListener() {
@@ -177,14 +190,15 @@ public class MainActivity extends Activity {
       Resources resources = getResources();
       Configuration config = resources.getConfiguration();
       int size;
-      switch(config.orientation){
+      switch (config.orientation) {
         case Configuration.ORIENTATION_PORTRAIT:
           size = this.glView.getWidth();
           break;
         case Configuration.ORIENTATION_LANDSCAPE:
           size = this.glView.getHeight();
           break;
-        default: throw new IllegalStateException("It is not a portrait or landscape"); //$NON-NLS-1$
+        default:
+          throw new IllegalStateException("It is not a portrait or landscape"); //$NON-NLS-1$
       }
       LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
       this.glView.setLayoutParams(params);
@@ -222,7 +236,6 @@ public class MainActivity extends Activity {
     return true;
   }
 
-  
   /**
    * 実行時間バーを設定する。
    * 
@@ -286,7 +299,7 @@ public class MainActivity extends Activity {
 
     this.endTime = this.manager.getEndTime();
     this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.modelRenderer);
-    this.animationTask.setSpeedScale(6); 
+    this.animationTask.setSpeedScale(6);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**
@@ -306,6 +319,64 @@ public class MainActivity extends Activity {
 
     this.timer = new Timer();
     this.timer.schedule(this.animationTask, 0, 10);
+  }
+
+  /*
+  class ClickListener implements View.OnClickListener{
+    public void onClick(View v) {
+      i++;
+      testTextView.setText("touched!  x:" + v.getX()+" y:"+v.getY());
+    }
+  }
+  */
+
+  /**
+   * {@inheritDoc}
+   */
+  //タッチ操作の種類によってイベントを取得する
+  @Override
+  public boolean onTouchEvent(MotionEvent event) {
+
+    switch (event.getAction()) {
+    //タッチした
+      case MotionEvent.ACTION_DOWN:
+        this.testTextView.setText("touched!  x:" + event.getX() + " y:" + event.getY()); //$NON-NLS-1$//$NON-NLS-2$
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+        break;
+
+      //タッチしたまま移動
+      case MotionEvent.ACTION_MOVE:
+        this.transferAmountX = event.getX() - this.prevX;
+        this.transferAmountY = event.getY() - this.prevY;
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+
+        if (transferAmountX > 300) transferAmountX = 300;
+        if (transferAmountX < -300) transferAmountX = -300;
+
+        if (transferAmountY > 300) transferAmountY = 300;
+        if (transferAmountY < -300) transferAmountY = -300;
+
+        this.testTextView.setText("touched and move  x_amount:" + this.transferAmountX + " y_amount:" + this.transferAmountY); //$NON-NLS-1$//$NON-NLS-2$
+        
+        this.modelRenderer.setRotation(this.transferAmountX, this.transferAmountY);
+        break;
+
+      //タッチが離れた
+      case MotionEvent.ACTION_UP:
+        break;
+
+      //タッチがキャンセルされた
+      case MotionEvent.ACTION_CANCEL:
+        break;
+
+      default:
+        break;
+    }
+
+    this.modelRenderer.updateDisplay();
+    return super.onTouchEvent(event);
   }
 
 }
