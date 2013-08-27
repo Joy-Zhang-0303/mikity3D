@@ -175,6 +175,7 @@ public class MainActivity extends Activity {
 		varseekBar = (SeekBar) findViewById(R.id.seekBar1);
 		varseekBar.setMax(20);
 		varseekBar.setProgress(5);
+		// animationTask.setSpeedScale(animationSpeed);
 		varseekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
 			public void onStopTrackingTouch(SeekBar seekBar) {
@@ -190,7 +191,8 @@ public class MainActivity extends Activity {
 				testTextView.setText("SeekBar value:" + progress + "speed:"
 						+ animationSpeed);
 				animationSpeed = progress + 1;
-				animationTask.setSpeedScale(animationSpeed);
+				if (animationTask != null) 
+					animationTask.setSpeedScale(animationSpeed);
 			}
 		});
 
