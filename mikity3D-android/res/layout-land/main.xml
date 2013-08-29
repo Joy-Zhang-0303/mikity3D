@@ -39,6 +39,23 @@
             android:layout_width="400dp"
             android:layout_height="wrap_content" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/selectButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="参照" />
+
+            <TextView
+                android:id="@+id/filePathView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="..." />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
