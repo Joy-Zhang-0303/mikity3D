@@ -14,13 +14,18 @@ import android.widget.Toast;
 import android.app.Activity;
 import android.app.ProgressDialog;
 
-public class FileManager extends Activity{
+public class FileManager{
 
   private int  REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
   private Activity activity;
 
-  public FileManager(MainActivity mainActivity) {
-    this.activity = mainActivity;
+  /**
+   * 新しく生成された<code>FileManager</code>オブジェクトを初期化します。
+   * OIファイルマネージャーが見つからないとトーストを表示するので表示するアクティビティのインスタンスを渡してください。
+   * @param activity アクティビティのインスタンス。
+   */
+  public FileManager(Activity activity) {
+    this.activity = activity;
   }
 
   /**
@@ -34,7 +39,7 @@ public class FileManager extends Activity{
       activity.startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY );
     } catch (ActivityNotFoundException e) {
       // No compatible file manager was found.
-      Toast.makeText(this, "TEST", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this.activity, "IOファイルマネージャーをインストールしてください。", Toast.LENGTH_SHORT).show();
     }
 
   }

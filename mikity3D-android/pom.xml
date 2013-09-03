@@ -25,7 +25,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.mklab</groupId>
-			<artifactId>3Dmikity</artifactId>
+			<artifactId>mikity3D-core</artifactId>
 			<exclusions>
 				<exclusion>
 					<artifactId>xpp3</artifactId>

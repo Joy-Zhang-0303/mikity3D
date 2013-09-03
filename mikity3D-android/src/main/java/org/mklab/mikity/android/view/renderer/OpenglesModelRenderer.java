@@ -4,7 +4,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.android.MainActivity;
-import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
@@ -141,7 +141,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     this.topGroups = new OpenglesModelCreater().create(children);
   }
 
-  public void setConfiguration(JamastConfig configuration) {
+  public void setConfiguration(Mikity3dConfiguration configuration) {
     if (configuration == null) {
       return;
     }

@@ -13,10 +13,10 @@ import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
-import org.mklab.mikity.model.xml.JamastFactory;
-import org.mklab.mikity.model.xml.JamastSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.Jamast;
-import org.mklab.mikity.model.xml.simplexml.JamastConfig;
+import org.mklab.mikity.model.xml.Mikity3dFactory;
+import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
+import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
@@ -24,7 +24,6 @@ import org.mklab.nfc.matx.MatxMatrix;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -33,12 +32,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import org.openintents.intents.*;
@@ -68,7 +67,7 @@ public class MainActivity extends Activity {
   /** */
   private double endTime;
 
-  private Jamast root;
+  private Mikity3d root;
 
   /** 等間隔の時間を保存しとく配列 */
   double[] timeTable;
@@ -96,16 +95,20 @@ public class MainActivity extends Activity {
 
   private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
 
+  /** 時系列データのファイルパス*/
   private String filePath;
+  
+  /**　ピンチイン、ピンチアウト用のジェスチャー*/
+  private ScaleGestureDetector gesDetect = null;
 
   /**
    * 
    * @param modelFile モデルファイル
    * @throws IOException ファイルを読み込めない場合
-   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  private void loadModelFile(File modelFile) throws IOException, JamastSerializeDeserializeException {
-    this.root = new JamastFactory().loadFile(modelFile);
+  private void loadModelFile(File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
+    this.root = new Mikity3dFactory().loadFile(modelFile);
     this.manager = new MovableGroupManager(this.root);
     this.modelRenderer = new OpenglesModelRenderer(this.glView);
   }
@@ -114,17 +117,17 @@ public class MainActivity extends Activity {
    * 
    * @param modelFile モデルファイル
    * @throws IOException ファイルを読み込めない場合
-   * @throws JamastSerializeDeserializeException ファイルを読み込めない場合
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  private void loadModelFile(InputStream input) throws IOException, JamastSerializeDeserializeException {
-    this.root = new JamastFactory().loadFile(input);
+  private void loadModelFile(InputStream input) throws IOException, Mikity3dSerializeDeserializeException {
+    this.root = new Mikity3dFactory().loadFile(input);
     this.manager = new MovableGroupManager(this.root);
     this.modelRenderer = new OpenglesModelRenderer(this.glView);
 
     final Group[] children = this.root.getModel(0).getGroups();
     this.modelRenderer.setChildren(children);
 
-    final JamastConfig configuration = this.root.getConfig(0);
+    final Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
     
     /*
@@ -168,7 +171,7 @@ public class MainActivity extends Activity {
       loadModelFile(input);
     } catch (IOException e) {
       throw new RuntimeException(e);
-    } catch (JamastSerializeDeserializeException e) {
+    } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
 
@@ -222,6 +225,8 @@ public class MainActivity extends Activity {
     filePathView = new TextView(this);
     filePathView = (TextView)findViewById(R.id.filePathView);
 
+
+
     // イベントリスナー
     playButton.setOnClickListener(new View.OnClickListener() {
 
@@ -239,11 +244,14 @@ public class MainActivity extends Activity {
         playable = true;
       }
     });
-    Toast.makeText(this, "onCreate", Toast.LENGTH_LONG).show();
+    //Toast.makeText(this, "onCreate", Toast.LENGTH_LONG).show();
+    
+   
   }
 
+  
+  
   /** 表示されるときに呼ばれる */
-
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
 
@@ -275,7 +283,7 @@ public class MainActivity extends Activity {
   public void onResume() {
     super.onResume();
     this.glView.onResume();
-    Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show();
+    //Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show();
   }
 
   /**
@@ -285,7 +293,7 @@ public class MainActivity extends Activity {
   public void onPause() {
     super.onPause();
     this.glView.onPause();
-    Toast.makeText(this, "onPause", Toast.LENGTH_LONG).show();
+    //Toast.makeText(this, "onPause", Toast.LENGTH_LONG).show();
   }
 
   /**
@@ -454,6 +462,9 @@ public class MainActivity extends Activity {
         break;
     }
   }
+  
+  
+  
   
   private void loadtimeSeriesData() {
     AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
