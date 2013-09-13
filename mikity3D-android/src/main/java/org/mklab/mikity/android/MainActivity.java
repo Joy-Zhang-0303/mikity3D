@@ -34,6 +34,7 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -95,11 +96,16 @@ public class MainActivity extends Activity {
 
   private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
 
-  /** 時系列データのファイルパス*/
+  /** 時系列データのファイルパス */
   private String filePath;
-  
-  /**　ピンチイン、ピンチアウト用のジェスチャー*/
+
+  /** 　ピンチイン、ピンチアウト用のジェスチャー */
   private ScaleGestureDetector gesDetect = null;
+
+  /** スケーリング中かどうかのフラグ */
+  private boolean scaling;
+
+  private double scaleValue = 0;
 
   /**
    * 
@@ -129,7 +135,7 @@ public class MainActivity extends Activity {
 
     final Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
-    
+
     /*
     Resources res = this.getResources();
     InputStream mat = res.openRawResource(R.raw.swingupsimulation);
@@ -149,6 +155,9 @@ public class MainActivity extends Activity {
     mat1.close();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -190,6 +199,10 @@ public class MainActivity extends Activity {
     this.testTextView = new TextView(this);
     this.testTextView = (TextView)findViewById(R.id.textView1);
 
+    // ScaleGestureDetecotorクラスのインスタンス生成
+    gesDetect = new ScaleGestureDetector(this, onScaleGestureListener);
+
+    //再生速度の設定
     SeekBar varseekBar;
     varseekBar = (SeekBar)findViewById(R.id.seekBar1);
     varseekBar.setMax(20);
@@ -216,6 +229,7 @@ public class MainActivity extends Activity {
     //時系列選択ボタンの配置
     Button selectButton = (Button)findViewById(R.id.selectButton);
     selectButton.setOnClickListener(new View.OnClickListener() {
+
       public void onClick(View v) {
         fileManager.getFilePath();
       }
@@ -224,8 +238,6 @@ public class MainActivity extends Activity {
     //ファイルパスビューの配置
     filePathView = new TextView(this);
     filePathView = (TextView)findViewById(R.id.filePathView);
-
-
 
     // イベントリスナー
     playButton.setOnClickListener(new View.OnClickListener() {
@@ -245,12 +257,9 @@ public class MainActivity extends Activity {
       }
     });
     //Toast.makeText(this, "onCreate", Toast.LENGTH_LONG).show();
-    
-   
+
   }
 
-  
-  
   /** 表示されるときに呼ばれる */
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
@@ -400,7 +409,11 @@ public class MainActivity extends Activity {
     float transferAmountX;
     float transferAmountY;
 
-    switch (event.getAction()) {
+    // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
+    gesDetect.onTouchEvent(event);
+
+
+    if (!scaling) switch (event.getAction()) {
     // タッチした
       case MotionEvent.ACTION_DOWN:
         this.testTextView.setText("touched!  x:" + event.getX() + " y:" + event.getY()); //$NON-NLS-1$//$NON-NLS-2$
@@ -462,22 +475,21 @@ public class MainActivity extends Activity {
         break;
     }
   }
-  
-  
-  
-  
+
   private void loadtimeSeriesData() {
     AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
+
       ProgressDialog progressDialog;
+
       @Override
-      protected void onPreExecute(){
+      protected void onPreExecute() {
         this.progressDialog = new ProgressDialog(MainActivity.this);
         this.progressDialog.setCanceledOnTouchOutside(false);
         this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         this.progressDialog.setMessage("Now Loading..."); //$NON-NLS-1$
         this.progressDialog.show();
       }
-      
+
       @Override
       protected Void doInBackground(String... arg0) {
         InputStream mat1;
@@ -491,18 +503,50 @@ public class MainActivity extends Activity {
           mat1.close();
         } catch (IOException e) {
           throw new RuntimeException(e);
-        } 
+        }
         return null;
       }
-      
+
       @Override
-      protected void onPostExecute(Void result){
+      protected void onPostExecute(Void result) {
         this.progressDialog.dismiss();
-        
+
       }
-      
+
     };
     task.execute();
   }
-  
+
+  // スケールジェスチャーイベントを取得
+  private final SimpleOnScaleGestureListener onScaleGestureListener = new SimpleOnScaleGestureListener() {
+
+    @Override
+    public boolean onScale(ScaleGestureDetector detector) {
+      // TODO Auto-generated method stub
+      scaleValue = gesDetect.getScaleFactor() + 1.3;
+      modelRenderer.setScale((float)scaleValue);
+
+      
+      if (scaleValue < 10) scaleValue = 10;
+      testTextView.setText(Double.toString(scaleValue));
+      return super.onScale(detector);
+    }
+
+    @Override
+    public boolean onScaleBegin(ScaleGestureDetector detector) {
+      // TODO Auto-generated method stub
+      scaling = true;
+      testTextView.setText(Double.toString(scaleValue));
+      return super.onScaleBegin(detector);
+    }
+
+    @Override
+    public void onScaleEnd(ScaleGestureDetector detector) {
+      // TODO Auto-generated method stub
+      scaling = false;
+      testTextView.setText(Double.toString(scaleValue));
+      super.onScaleEnd(detector);
+    }
+  };
+
 }
