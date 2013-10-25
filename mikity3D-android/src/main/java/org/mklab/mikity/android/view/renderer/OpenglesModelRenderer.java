@@ -20,9 +20,10 @@ import android.opengl.GLU;
  * @version $Revision$, 2013/02/06
  */
 public class OpenglesModelRenderer implements ModelRenderer, Renderer {
+
   //システム
   private float aspect;//アスペクト比
-  private int   angle; //回転角度
+  private int angle; //回転角度
 
   private static final long serialVersionUID = 5653656698891675370L;
 
@@ -42,12 +43,11 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /** Y軸方向への移動距離 */
   private float translationY = 0.0f;
   /** 拡大縮小率 */
-  private float scale = 0.0f;
+  private float scale = 1.0f;
 
-  private float scaleX = 2.3f;
-  private float scaleY = 2.3f;
-  private float scaleZ = 2.3f;
-
+  private float scaleX = 1.0F;
+  private float scaleY = 1.0F;
+  private float scaleZ = 1.0F;
   /** マウスボタンを押した点 */
   //private Point startPoint;
   /** マウスボタンを離した点 */
@@ -72,10 +72,11 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f}; // 反射光の強さです 
   private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f}; // 拡散光の強さです 
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
-  
-  
-  /** カメラの位置ｚ*/
-  private float eyeZ = 0.5f;
+
+  /** カメラの位置ｚ */
+  private float eyeZ = -2.0f;
+  private float eyeY = 0.0f;
+  private float eyeX = 0.0f;
 
   public OpenglesModelRenderer(GLSurfaceView glView) {
     this.glView = glView;
@@ -102,8 +103,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
-  
-    
+
   }
 
   /**
@@ -115,40 +115,34 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     gl10.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
-    ////final GL10 gl10 = drawable.getGL;
-    
     gl10.glMatrixMode(GL10.GL_PROJECTION);
     gl10.glLoadIdentity();
-    GLU.gluPerspective(gl10,
-        45.0f,  //Y方向の画角
+    GLU.gluPerspective(gl10, 45.0f, //Y方向の画角
         this.aspect, //アスペクト比
-        0.1f,  //ニアクリップ
-        1000.0f);//ファークリップ
-    
+        0.01f, //ニアクリップ
+        100.0f);//ファークリップ
+
     gl10.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     //gl10.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
-    gl10.glLoadIdentity();
-    
+
+
     //光源位置の指定
     gl10.glMatrixMode(GL10.GL_MODELVIEW);
     gl10.glLoadIdentity();
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[]{2.5f,2.5f,0.0f,1.0f},0);
-    
-    GLU.gluLookAt(gl10,
-        0.0f,0.0f,eyeZ, //カメラの視点
-        0.0f,0.0f,-1.0f, //カメラの焦点
-        0.0f,1.0f,0.0f);//カメラの上方向
-
+    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[] {2.5f, 2.5f, 0.0f, 1.0f}, 0);
+    GLU.gluLookAt(gl10, this.eyeX, this.eyeY, this.eyeZ, //カメラの視点
+        0.0F, 0.0F, -1.0F, //カメラの焦点
+        0.0F, 1.0F, 1.0F);//カメラの上方向
+  
     gl10.glTranslatef(this.translationY, -this.translationX, 0.0f);
     gl10.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
     gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
 
     //ここで微調整してます
     gl10.glRotatef(-180f, 0f, 1f, 0f);
-    
+
     gl10.glScalef(this.scaleX, this.scaleY, this.scaleZ);
-    gl10.glScalef(0.7f,0.7f,0.7f);    
-    
+
     for (final OpenglesBranchGroup group : this.topGroups) {
       group.display(gl10);
     }
@@ -161,7 +155,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     //ビューポート変換
     gl10.glViewport(0, 0, w, h);
     //アスペクト比の設定
-    this.aspect=(float)w/(float)h;
+    this.aspect = (float)w / (float)h;
 
   }
 
@@ -204,6 +198,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
   /**
    * 拡大縮小倍率のセッター　x方向、ｙ方向、ｚ方向全て同じ倍率に設定。
+   * 
    * @param scale　スケール
    */
   public void setScale(float scale) {
@@ -214,6 +209,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
   /**
    * スケールのセッター
+   * 
    * @param scaleY y方向のスケール
    * @param scaleX　x方向のスケール
    * @param scaleZ　ｚ方向のスケール
@@ -226,10 +222,19 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
   /**
    * スケールのゲッター
+   * 
    * @return　スケール
    */
   public float getscale() {
-    return this.scale;
+    return this.scaleX;
+  }
+
+  public void setTranslationX(float translateX) {
+    this.translationX = (translateX + this.translationX);
+  }
+
+  public void setTranslationY(float translateY) {
+    this.translationY = (translateY + this.translationY);
   }
 
 }

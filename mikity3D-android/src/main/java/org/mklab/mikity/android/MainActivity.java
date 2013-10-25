@@ -104,9 +104,12 @@ public class MainActivity extends Activity {
 
   /** スケーリング中かどうかのフラグ */
   private boolean scaling;
+  private boolean rotationing;
 
-  private double scaleValue = 0;
+  private double scaleValue = 1;
 
+  
+  
   /**
    * 
    * @param modelFile モデルファイル
@@ -401,59 +404,6 @@ public class MainActivity extends Activity {
   }
 
   /**
-   * {@inheritDoc}
-   */
-  // タッチ操作の種類によってイベントを取得する
-  @Override
-  public boolean onTouchEvent(MotionEvent event) {
-    float transferAmountX;
-    float transferAmountY;
-
-    // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
-    gesDetect.onTouchEvent(event);
-
-
-    if (!scaling) switch (event.getAction()) {
-    // タッチした
-      case MotionEvent.ACTION_DOWN:
-        this.testTextView.setText("touched!  x:" + event.getX() + " y:" + event.getY()); //$NON-NLS-1$//$NON-NLS-2$
-        this.prevX = event.getX();
-        this.prevY = event.getY();
-        break;
-
-      // タッチしたまま移動
-      case MotionEvent.ACTION_MOVE:
-        transferAmountX = event.getX() - this.prevX;
-        transferAmountY = event.getY() - this.prevY;
-        this.prevX = event.getX();
-        this.prevY = event.getY();
-
-        if (transferAmountX > 300) transferAmountX = 300;
-        if (transferAmountX < -300) transferAmountX = -300;
-
-        if (transferAmountY > 300) transferAmountY = 300;
-        if (transferAmountY < -300) transferAmountY = -300;
-
-        this.modelRenderer.setRotation(transferAmountX, transferAmountY);
-        break;
-
-      // タッチが離れた
-      case MotionEvent.ACTION_UP:
-        break;
-
-      // タッチがキャンセルされた
-      case MotionEvent.ACTION_CANCEL:
-        break;
-
-      default:
-        break;
-    }
-
-    this.modelRenderer.updateDisplay();
-    return super.onTouchEvent(event);
-  }
-
-  /**
    * This is called after the file manager finished.
    */
   @Override
@@ -522,20 +472,22 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
-      // TODO Auto-generated method stub
-      scaleValue = gesDetect.getScaleFactor() + 1.3;
-      modelRenderer.setScale((float)scaleValue);
-
-      
-      if (scaleValue < 10) scaleValue = 10;
-      testTextView.setText(Double.toString(scaleValue));
+      rotationing = false;
+      scaling = true;
+      if (scaleValue - (1.0 - MainActivity.this.gesDetect.getScaleFactor()) > 0.2) {
+        modelRenderer.setScale((float)(scaleValue - (1.0f - MainActivity.this.gesDetect.getScaleFactor())));
+      }
+      MainActivity.this.prevX = MainActivity.this.gesDetect.getFocusX();
+      MainActivity.this.prevY = MainActivity.this.gesDetect.getFocusY();
+      //MainActivity.testTextView.setText("Scalling");
       return super.onScale(detector);
     }
 
     @Override
     public boolean onScaleBegin(ScaleGestureDetector detector) {
       // TODO Auto-generated method stub
-      scaling = true;
+      MainActivity.this.scaling = true;
+
       testTextView.setText(Double.toString(scaleValue));
       return super.onScaleBegin(detector);
     }
@@ -544,9 +496,81 @@ public class MainActivity extends Activity {
     public void onScaleEnd(ScaleGestureDetector detector) {
       // TODO Auto-generated method stub
       scaling = false;
-      testTextView.setText(Double.toString(scaleValue));
+      setScaleValue(scaleValue - (1.0 - gesDetect.getScaleFactor()));
+      prevX = MainActivity.this.gesDetect.getFocusX();
+      prevY = MainActivity.this.gesDetect.getFocusY();
+     // testTextView.setText(Double.toString(scaleValue));
       super.onScaleEnd(detector);
     }
   };
+
+  /**
+   * {@inheritDoc}
+   */
+  // タッチ操作の種類によってイベントを取得する
+  @Override
+  public boolean onTouchEvent(MotionEvent event) {
+    float transferAmountX;
+    float transferAmountY;
+    int touchCount = event.getPointerCount();
+    // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
+    gesDetect.onTouchEvent(event);
+
+    switch (event.getAction()) {
+    // タッチした
+      case MotionEvent.ACTION_DOWN:
+        this.testTextView.setText("touched!  x:" + event.getX() + " y:" + event.getY()); //$NON-NLS-1$//$NON-NLS-2$
+        this.rotationing = true;
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+        break;
+
+      // タッチしたまま移動
+      case MotionEvent.ACTION_MOVE:
+        transferAmountX = event.getX() - this.prevX;
+        transferAmountY = event.getY() - this.prevY;
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+
+        if (transferAmountX > 300) transferAmountX = 300;
+        if (transferAmountX < -300) transferAmountX = -300;
+
+        if (transferAmountY > 300) transferAmountY = 300;
+        if (transferAmountY < -300) transferAmountY = -300;
+
+        if ((this.rotationing) && (touchCount == 1)) {
+          this.modelRenderer.setRotation(transferAmountX, transferAmountY);
+        }
+        if ((touchCount == 2) && (!this.scaling)) {
+          this.modelRenderer.setTranslationY(-transferAmountX / 1000.0f);
+          this.modelRenderer.setTranslationX(transferAmountY / 1000.0f);
+          this.rotationing = false;
+        }
+        rotationing = true;
+        break;
+
+      // タッチが離れた
+      case MotionEvent.ACTION_UP:
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+        break;
+
+      // タッチがキャンセルされた
+      case MotionEvent.ACTION_CANCEL:
+        break;
+
+      default:
+        break;
+    }
+
+    this.modelRenderer.updateDisplay();
+    return super.onTouchEvent(event);
+  }
+
+  protected  void setScaleValue(double d) {
+    scaleValue = d;
+  }
+
+
 
 }
