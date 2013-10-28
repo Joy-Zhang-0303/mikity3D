@@ -10,8 +10,9 @@ import java.net.MalformedURLException;
 import java.util.Timer;
 
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
-import org.mklab.mikity.control.AnimationTask;
+//import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
+import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
@@ -30,6 +31,7 @@ import android.content.res.Resources;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -369,6 +371,7 @@ public class MainActivity extends Activity {
    * アニメーションを開始します。
    */
   public void runAnimation() {
+    long startTime = SystemClock.uptimeMillis();
     if (playable == false) {
       this.timer.cancel();
     }
@@ -380,8 +383,8 @@ public class MainActivity extends Activity {
     playable = false;
 
     this.endTime = this.manager.getEndTime();
-    this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.modelRenderer);
-    this.animationTask.setSpeedScale(animationSpeed);
+    this.animationTask = new AnimationTask(startTime, this.endTime, this.manager, this.modelRenderer);
+    this.animationTask.setSpeedScale(this.animationSpeed);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**
@@ -400,7 +403,7 @@ public class MainActivity extends Activity {
     });
 
     this.timer = new Timer();
-    this.timer.schedule(this.animationTask, 0, 10);
+    this.timer.schedule(this.animationTask, 0, 30);
   }
 
   /**
