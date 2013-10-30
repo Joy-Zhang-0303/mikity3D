@@ -38,6 +38,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -47,11 +48,7 @@ import org.openintents.intents.*;
 
 
 /**
- * @author ohashi
- * @version $Revision$, 2013/02/05
- */
-/**
- * @author Takuya
+ * @author ohashi,Takuya
  * @version $Revision$, 2013/08/23
  */
 public class MainActivity extends Activity {
@@ -93,8 +90,8 @@ public class MainActivity extends Activity {
   float prevX = 0;
   /** 前回のタッチのｙ座標 */
   float prevY = 0;
-  /** アニメーションの再生速度 */
-  private double animationSpeed = 5;
+  /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。*/
+  private int animationSpeed = 10;
 
   private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
 
@@ -109,9 +106,8 @@ public class MainActivity extends Activity {
   private boolean rotationing;
 
   private double scaleValue = 1;
+  private EditText animationSpeedTextEdit;
 
-  
-  
   /**
    * 
    * @param modelFile モデルファイル
@@ -155,7 +151,7 @@ public class MainActivity extends Activity {
 
   private void loadTimeData() throws FileNotFoundException, IOException {
 
-    InputStream mat1 = new FileInputStream(filePath);
+    InputStream mat1 = new FileInputStream(this.filePath);
     setTimeData(mat1);
     mat1.close();
   }
@@ -197,6 +193,21 @@ public class MainActivity extends Activity {
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
+    this.animationSpeedTextEdit = (EditText)findViewById(R.id.editText1);
+    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed/10));
+    this.animationSpeedTextEdit.clearFocus();
+    /*animationSpeedTextEdit.setOnClickListener(new View.OnClickListener() {
+
+      public void onClick(View v) {
+        animationSpeedTextEdit.setFocusableInTouchMode(true);
+        animationSpeedTextEdit.setFocusable(true);
+        animationSpeedTextEdit.setEnabled(true);
+      }
+    });*/
+
+    Button quickButton = (Button)findViewById(R.id.quickButton);
+    Button slowButton = (Button)findViewById(R.id.slowButton);
+
     Button playButton = (Button)findViewById(R.id.button1);
     Button stopButton = (Button)findViewById(R.id.button2);
     // final RedrawHandler handler = new RedrawHandler(100);
@@ -205,31 +216,52 @@ public class MainActivity extends Activity {
     this.testTextView = (TextView)findViewById(R.id.textView1);
 
     // ScaleGestureDetecotorクラスのインスタンス生成
-    gesDetect = new ScaleGestureDetector(this, onScaleGestureListener);
+    this.gesDetect = new ScaleGestureDetector(this, this.onScaleGestureListener);
 
     //再生速度の設定
-    SeekBar varseekBar;
-    varseekBar = (SeekBar)findViewById(R.id.seekBar1);
-    varseekBar.setMax(20);
-    varseekBar.setProgress(5);
+    quickButton.setOnClickListener(new View.OnClickListener() {
 
-    varseekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-      public void onStopTrackingTouch(SeekBar seekBar) {
-        testTextView.setText("Release SeekBar");
-      }
-
-      public void onStartTrackingTouch(SeekBar seekBar) {
-        testTextView.setText("Touch SeekBar");
-
-      }
-
-      public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        testTextView.setText("SeekBar value:" + progress + "speed:" + animationSpeed);
-        animationSpeed = progress + 1;
-        if (animationTask != null) animationTask.setSpeedScale(animationSpeed);
+      public void onClick(View v) {
+        MainActivity.this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString())*10);
+        MainActivity.this.animationSpeed += 1;
+        MainActivity.this.animationSpeedTextEdit.setText(""+(double )MainActivity.this.animationSpeed/10);
+        if (MainActivity.this.animationTask != null) MainActivity.this.animationTask.setSpeedScale(MainActivity.this.animationSpeed/10);
       }
     });
+    slowButton.setOnClickListener(new View.OnClickListener() {
+
+      public void onClick(View v) {
+        MainActivity.this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString())*10);
+        MainActivity.this.animationSpeed -= 1;
+        if(MainActivity.this.animationSpeed < 0 )
+          MainActivity.this.animationSpeed = 0;
+        MainActivity.this.animationSpeedTextEdit.setText(Double.toString((double)MainActivity.this.animationSpeed/10));
+        if (MainActivity.this.animationTask != null) MainActivity.this.animationTask.setSpeedScale(MainActivity.this.animationSpeed/10);
+      }
+    });
+
+    /* SeekBar varseekBar;
+     varseekBar = (SeekBar)findViewById(R.id.seekBar1);
+     varseekBar.setMax(20);
+     varseekBar.setProgress(5);
+
+     varseekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+       public void onStopTrackingTouch(SeekBar seekBar) {
+         testTextView.setText("Release SeekBar");
+       }
+
+       public void onStartTrackingTouch(SeekBar seekBar) {
+         testTextView.setText("Touch SeekBar");
+
+       }
+
+       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+         testTextView.setText("SeekBar value:" + progress + "speed:" + animationSpeed);
+         animationSpeed = progress + 1;
+         if (animationTask != null) animationTask.setSpeedScale(animationSpeed);
+       }
+     });*/
 
     //時系列選択ボタンの配置
     Button selectButton = (Button)findViewById(R.id.selectButton);
@@ -241,8 +273,8 @@ public class MainActivity extends Activity {
     });
 
     //ファイルパスビューの配置
-    filePathView = new TextView(this);
-    filePathView = (TextView)findViewById(R.id.filePathView);
+    this.filePathView = new TextView(this);
+    this.filePathView = (TextView)findViewById(R.id.filePathView);
 
     // イベントリスナー
     playButton.setOnClickListener(new View.OnClickListener() {
@@ -370,8 +402,12 @@ public class MainActivity extends Activity {
   /**
    * アニメーションを開始します。
    */
+  /**
+   * 
+   */
   public void runAnimation() {
     long startTime = SystemClock.uptimeMillis();
+    this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString())*10);
     if (playable == false) {
       this.timer.cancel();
     }
@@ -384,7 +420,7 @@ public class MainActivity extends Activity {
 
     this.endTime = this.manager.getEndTime();
     this.animationTask = new AnimationTask(startTime, this.endTime, this.manager, this.modelRenderer);
-    this.animationTask.setSpeedScale(this.animationSpeed);
+    this.animationTask.setSpeedScale((double)this.animationSpeed/10);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**
@@ -417,9 +453,9 @@ public class MainActivity extends Activity {
       case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
         if (resultCode == RESULT_OK && data != null) {
           // obtain the filename
-          filePath = data.getData().getPath();
+          this.filePath = data.getData().getPath();
 
-          filePathView.setText(filePath);
+          this.filePathView.setText(this.filePath);
           //loadTimeData();
           loadtimeSeriesData();
 
@@ -447,7 +483,7 @@ public class MainActivity extends Activity {
       protected Void doInBackground(String... arg0) {
         InputStream mat1;
         try {
-          mat1 = new FileInputStream(filePath);
+          mat1 = new FileInputStream(MainActivity.this.filePath);
         } catch (FileNotFoundException e) {
           throw new RuntimeException(e);
         }
@@ -475,10 +511,10 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
-      rotationing = false;
-      scaling = true;
-      if (scaleValue - (1.0 - MainActivity.this.gesDetect.getScaleFactor()) > 0.2) {
-        modelRenderer.setScale((float)(scaleValue - (1.0f - MainActivity.this.gesDetect.getScaleFactor())));
+      MainActivity.this.rotationing = false;
+      MainActivity.this.scaling = true;
+      if (MainActivity.this.scaleValue - (1.0 - MainActivity.this.gesDetect.getScaleFactor()) > 0.2) {
+        MainActivity.this.modelRenderer.setScale((float)(MainActivity.this.scaleValue - (1.0f - MainActivity.this.gesDetect.getScaleFactor())));
       }
       MainActivity.this.prevX = MainActivity.this.gesDetect.getFocusX();
       MainActivity.this.prevY = MainActivity.this.gesDetect.getFocusY();
@@ -491,18 +527,18 @@ public class MainActivity extends Activity {
       // TODO Auto-generated method stub
       MainActivity.this.scaling = true;
 
-      testTextView.setText(Double.toString(scaleValue));
+      MainActivity.this.testTextView.setText(Double.toString(MainActivity.this.scaleValue));
       return super.onScaleBegin(detector);
     }
 
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
       // TODO Auto-generated method stub
-      scaling = false;
-      setScaleValue(scaleValue - (1.0 - gesDetect.getScaleFactor()));
-      prevX = MainActivity.this.gesDetect.getFocusX();
-      prevY = MainActivity.this.gesDetect.getFocusY();
-     // testTextView.setText(Double.toString(scaleValue));
+      MainActivity.this.scaling = false;
+      setScaleValue(MainActivity.this.scaleValue - (1.0 - MainActivity.this.gesDetect.getScaleFactor()));
+      MainActivity.this.prevX = MainActivity.this.gesDetect.getFocusX();
+      MainActivity.this.prevY = MainActivity.this.gesDetect.getFocusY();
+      // testTextView.setText(Double.toString(scaleValue));
       super.onScaleEnd(detector);
     }
   };
@@ -517,7 +553,7 @@ public class MainActivity extends Activity {
     float transferAmountY;
     int touchCount = event.getPointerCount();
     // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
-    gesDetect.onTouchEvent(event);
+    this.gesDetect.onTouchEvent(event);
 
     switch (event.getAction()) {
     // タッチした
@@ -549,7 +585,7 @@ public class MainActivity extends Activity {
           this.modelRenderer.setTranslationX(transferAmountY / 1000.0f);
           this.rotationing = false;
         }
-        rotationing = true;
+        this.rotationing = true;
         break;
 
       // タッチが離れた
@@ -570,8 +606,8 @@ public class MainActivity extends Activity {
     return super.onTouchEvent(event);
   }
 
-  protected  void setScaleValue(double d) {
-    scaleValue = d;
+  protected void setScaleValue(double d) {
+    this.scaleValue = d;
   }
 
 

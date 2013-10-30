@@ -94,11 +94,8 @@ public class AnimationTask extends TimerTask {
     if (this.currentTime == this.initialTime) {
       setUpAnimation();
     }
-    //final double diffTime = (scheduledExecutionTime() - this.lastUpdatedTimeMillis) / 1000.0;
-    //this.lastUpdatedTimeMillis = System.currentTimeMillis();
-    //this.currentTime += diffTime * this.speedScale;
     final long ctime = SystemClock.uptimeMillis();
-    this.currentTime = (ctime- this.initialTime)/1000;
+    this.currentTime = speedScale*(ctime- this.initialTime)/1000;
     if (this.manager.hasDHParameter()) {
       this.manager.updateMovableGroupsWithDHParameter(this.currentTime);
     } else if (this.manager.hasCoordinateParameter()) {

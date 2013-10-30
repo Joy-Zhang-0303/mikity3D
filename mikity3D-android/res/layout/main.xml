@@ -30,7 +30,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
@@ -39,11 +39,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="再生速度" />
+<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
-        <SeekBar
-            android:id="@+id/seekBar1"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/slowButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxWidth="2dp"
+                android:text="&lt;&lt;" />
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+         
+                android:inputType="numberDecimal"
+                android:maxLength="4" >
+
+                <requestFocus />
+            </EditText>
+
+            <Button
+                android:id="@+id/quickButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxWidth="2dp"
+                android:text=">>" />
+        </LinearLayout>
+        
+       
     </LinearLayout>
 	 <LinearLayout
             android:layout_width="match_parent"
