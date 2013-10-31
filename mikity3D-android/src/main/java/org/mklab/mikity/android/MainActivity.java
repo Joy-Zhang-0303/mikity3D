@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.Timer;
 
+import org.mklab.mikity.LogCatPrinter;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 //import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
@@ -32,6 +33,7 @@ import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -362,7 +364,7 @@ public class MainActivity extends Activity {
       // final FileInputStream input = new FileInputStream(file);
       this.data = MatxMatrix.readMatFormat(new InputStreamReader(input));
       input.close();
-
+      
       this.manager.setData(this.data);
 
       final Group rootGroup = this.root.getModel(0).getGroup(0);
@@ -407,6 +409,7 @@ public class MainActivity extends Activity {
    */
   public void runAnimation() {
     long startTime = SystemClock.uptimeMillis();
+    this.manager.setLogCat(new LogCatImpl());
     this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString())*10);
     if (playable == false) {
       this.timer.cancel();
@@ -610,6 +613,6 @@ public class MainActivity extends Activity {
     this.scaleValue = d;
   }
 
-
-
 }
+
+

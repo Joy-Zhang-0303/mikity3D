@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.mklab.mikity.LogCatPrinter;
 import org.mklab.mikity.model.picker.ClosenessDataPicker;
 import org.mklab.mikity.model.picker.DataPicker;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
@@ -46,6 +47,8 @@ public class MovableGroupManager {
   private boolean hasDHParameter = false;
   /** 座標パラメータを使用するならばtrue */
   private boolean hasCoordinateParameter = false;
+  
+  private LogCatPrinter logCat;
 
   /**
    * 新しく生成された<code>MovableGroupManager</code>オブジェクトを初期化します。
@@ -78,6 +81,8 @@ public class MovableGroupManager {
     for (final MovableGroup movableGroup : this.movableGroups) {
       final DataPicker picker = this.pickers.get(movableGroup);
       movableGroup.setDHParameter(picker.getDHParameter(t));
+      this.logCat.printLog("t:"+t+",DHpram A:"+picker.getDHParameter(t).getA()+" Alpha"+picker.getDHParameter(t).getAlpha()
+          +" D"+picker.getDHParameter(t).getD()+" Theta"+picker.getDHParameter(t).getTheta()); //$NON-NLS-1$
     }
   }
 
@@ -90,6 +95,8 @@ public class MovableGroupManager {
     for (final MovableGroup movableGroup : this.movableGroups) {
       final DataPicker picker = this.pickers.get(movableGroup);
       movableGroup.setCoordinateParameter(picker.getCoordinateParameter(t));
+      //this.logCat.printLog(""+picker.getDHParameter(t));
+ 
     }
   }
 
@@ -115,7 +122,7 @@ public class MovableGroupManager {
   /**
    * データ抽出器を生成します。
    * 
-   * @param data 時系列デー
+   * @param data 時系列データ
    * @param links リンクデータ
    */
   private DataPicker createPicker(final Matrix data, final LinkData[] links) {
@@ -297,4 +304,13 @@ public class MovableGroupManager {
   public static void assignGroup(final Group group, final MovableGroup movableGroup) {
     MOVABLE_GROUPS.put(group, movableGroup);
   }
+  
+  
+  /**
+   * @param logCat
+   */
+  public void setLogCat(LogCatPrinter logCat){
+    this.logCat = logCat;
+  }
+  
 }
