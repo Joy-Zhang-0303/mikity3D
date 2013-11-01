@@ -6,10 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.util.Timer;
 
-import org.mklab.mikity.LogCatPrinter;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 //import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
@@ -25,7 +23,9 @@ import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -42,10 +42,7 @@ import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.SeekBar.OnSeekBarChangeListener;
-
 import org.openintents.intents.*;
 
 
@@ -92,7 +89,7 @@ public class MainActivity extends Activity {
   float prevX = 0;
   /** 前回のタッチのｙ座標 */
   float prevY = 0;
-  /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。*/
+  /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。 */
   private int animationSpeed = 10;
 
   private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
@@ -139,16 +136,6 @@ public class MainActivity extends Activity {
     final Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
 
-    /*
-    Resources res = this.getResources();
-    InputStream mat = res.openRawResource(R.raw.swingupsimulation);
-    setTimeData(mat);
-    mat.close();
-    */
-    // if (this.root.getConfig(0).getData() != null) {
-    // setTimeData(new FileInputStream(this.root.getConfig(0).getData()));
-    // }
-
   }
 
   private void loadTimeData() throws FileNotFoundException, IOException {
@@ -166,8 +153,9 @@ public class MainActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
 
+    //showModelSelectDialog(this);
+
     // GLViewを取り出す
-    // this.glView = new GLSurfaceView(this);
     this.glView = (GLSurfaceView)this.findViewById(R.id.glview1);
 
     // xmlファイルを指定する
@@ -179,13 +167,13 @@ public class MainActivity extends Activity {
 
     final FileManager fileManager = new FileManager(this);
 
-    try {
-      loadModelFile(input);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    } catch (Mikity3dSerializeDeserializeException e) {
-      throw new RuntimeException(e);
-    }
+    /*    try {
+          loadModelFile(input);
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        } catch (Mikity3dSerializeDeserializeException e) {
+          throw new RuntimeException(e);
+        }*/
 
     // 描画のクラスを登録する
     this.glView.setRenderer(this.modelRenderer);
@@ -196,23 +184,14 @@ public class MainActivity extends Activity {
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
     this.animationSpeedTextEdit = (EditText)findViewById(R.id.editText1);
-    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed/10));
+    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
     this.animationSpeedTextEdit.clearFocus();
-    /*animationSpeedTextEdit.setOnClickListener(new View.OnClickListener() {
-
-      public void onClick(View v) {
-        animationSpeedTextEdit.setFocusableInTouchMode(true);
-        animationSpeedTextEdit.setFocusable(true);
-        animationSpeedTextEdit.setEnabled(true);
-      }
-    });*/
 
     Button quickButton = (Button)findViewById(R.id.quickButton);
     Button slowButton = (Button)findViewById(R.id.slowButton);
 
     Button playButton = (Button)findViewById(R.id.button1);
     Button stopButton = (Button)findViewById(R.id.button2);
-    // final RedrawHandler handler = new RedrawHandler(100);
 
     this.testTextView = new TextView(this);
     this.testTextView = (TextView)findViewById(R.id.textView1);
@@ -224,46 +203,22 @@ public class MainActivity extends Activity {
     quickButton.setOnClickListener(new View.OnClickListener() {
 
       public void onClick(View v) {
-        MainActivity.this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString())*10);
+        MainActivity.this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
         MainActivity.this.animationSpeed += 1;
-        MainActivity.this.animationSpeedTextEdit.setText(""+(double )MainActivity.this.animationSpeed/10);
-        if (MainActivity.this.animationTask != null) MainActivity.this.animationTask.setSpeedScale(MainActivity.this.animationSpeed/10);
+        MainActivity.this.animationSpeedTextEdit.setText("" + (double)MainActivity.this.animationSpeed / 10);
+        if (MainActivity.this.animationTask != null) MainActivity.this.animationTask.setSpeedScale(MainActivity.this.animationSpeed / 10);
       }
     });
     slowButton.setOnClickListener(new View.OnClickListener() {
 
       public void onClick(View v) {
-        MainActivity.this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString())*10);
+        MainActivity.this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
         MainActivity.this.animationSpeed -= 1;
-        if(MainActivity.this.animationSpeed < 0 )
-          MainActivity.this.animationSpeed = 0;
-        MainActivity.this.animationSpeedTextEdit.setText(Double.toString((double)MainActivity.this.animationSpeed/10));
-        if (MainActivity.this.animationTask != null) MainActivity.this.animationTask.setSpeedScale(MainActivity.this.animationSpeed/10);
+        if (MainActivity.this.animationSpeed < 0) MainActivity.this.animationSpeed = 0;
+        MainActivity.this.animationSpeedTextEdit.setText(Double.toString((double)MainActivity.this.animationSpeed / 10));
+        if (MainActivity.this.animationTask != null) MainActivity.this.animationTask.setSpeedScale(MainActivity.this.animationSpeed / 10);
       }
     });
-
-    /* SeekBar varseekBar;
-     varseekBar = (SeekBar)findViewById(R.id.seekBar1);
-     varseekBar.setMax(20);
-     varseekBar.setProgress(5);
-
-     varseekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-       public void onStopTrackingTouch(SeekBar seekBar) {
-         testTextView.setText("Release SeekBar");
-       }
-
-       public void onStartTrackingTouch(SeekBar seekBar) {
-         testTextView.setText("Touch SeekBar");
-
-       }
-
-       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-         testTextView.setText("SeekBar value:" + progress + "speed:" + animationSpeed);
-         animationSpeed = progress + 1;
-         if (animationTask != null) animationTask.setSpeedScale(animationSpeed);
-       }
-     });*/
 
     //時系列選択ボタンの配置
     Button selectButton = (Button)findViewById(R.id.selectButton);
@@ -364,7 +319,7 @@ public class MainActivity extends Activity {
       // final FileInputStream input = new FileInputStream(file);
       this.data = MatxMatrix.readMatFormat(new InputStreamReader(input));
       input.close();
-      
+
       this.manager.setData(this.data);
 
       final Group rootGroup = this.root.getModel(0).getGroup(0);
@@ -410,7 +365,7 @@ public class MainActivity extends Activity {
   public void runAnimation() {
     long startTime = SystemClock.uptimeMillis();
     this.manager.setLogCat(new LogCatImpl());
-    this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString())*10);
+    this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
     if (playable == false) {
       this.timer.cancel();
     }
@@ -423,7 +378,7 @@ public class MainActivity extends Activity {
 
     this.endTime = this.manager.getEndTime();
     this.animationTask = new AnimationTask(startTime, this.endTime, this.manager, this.modelRenderer);
-    this.animationTask.setSpeedScale((double)this.animationSpeed/10);
+    this.animationTask.setSpeedScale((double)this.animationSpeed / 10);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**
@@ -613,6 +568,29 @@ public class MainActivity extends Activity {
     this.scaleValue = d;
   }
 
+  private void showModelSelectDialog(MainActivity main) {
+    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(main);
+    // アラートダイアログのタイトルを設定します
+    alertDialogBuilder.setTitle("Mikity3D"); //$NON-NLS-1$
+    // アラートダイアログのメッセージを設定します
+    alertDialogBuilder.setMessage("モデルファイルを選択してください"); //$NON-NLS-1$
+
+    // アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
+    alertDialogBuilder.setPositiveButton("参照", //$NON-NLS-1$
+
+        new DialogInterface.OnClickListener() {
+
+          public void onClick(DialogInterface dialog, int which) {
+            //System.out.println();
+          }
+        });
+
+    // アラートダイアログのキャンセルが可能かどうかを設定します
+    alertDialogBuilder.setCancelable(false);
+    AlertDialog alertDialog = alertDialogBuilder.create();
+    // アラートダイアログを表示します
+    alertDialog.show();
+
+  }
+
 }
-
-
