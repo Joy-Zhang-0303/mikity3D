@@ -43,6 +43,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import org.openintents.intents.*;
 
 
@@ -84,6 +85,7 @@ public class MainActivity extends Activity {
   // DEBUG textview
   TextView testTextView;
   TextView filePathView;
+  TextView modelFilePathView;
 
   /** 前回のタッチのｘ座標 */
   float prevX = 0;
@@ -106,6 +108,8 @@ public class MainActivity extends Activity {
 
   private double scaleValue = 1;
   private EditText animationSpeedTextEdit;
+  private InputStream inputModelFile;
+  protected boolean isSelectedModelFile;
 
   /**
    * 
@@ -128,11 +132,8 @@ public class MainActivity extends Activity {
   private void loadModelFile(InputStream input) throws IOException, Mikity3dSerializeDeserializeException {
     this.root = new Mikity3dFactory().loadFile(input);
     this.manager = new MovableGroupManager(this.root);
-    this.modelRenderer = new OpenglesModelRenderer(this.glView);
-
     final Group[] children = this.root.getModel(0).getGroups();
     this.modelRenderer.setChildren(children);
-
     final Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
 
@@ -152,32 +153,25 @@ public class MainActivity extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
-
-    //showModelSelectDialog(this);
-
     // GLViewを取り出す
     this.glView = (GLSurfaceView)this.findViewById(R.id.glview1);
 
-    // xmlファイルを指定する
-    final String modelFileName = "pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
-
     Resources res = this.getResources();
 
-    InputStream input = res.openRawResource(R.raw.pendulum);
+    this.inputModelFile = res.openRawResource(R.raw.pendulum);
+    final OIFileManager fileManager = new OIFileManager(this);
+    this.modelRenderer = new OpenglesModelRenderer(this.glView);
 
-    final FileManager fileManager = new FileManager(this);
+    Button loadModelButton = (Button)findViewById(R.id.modelSelectButton);
+    loadModelButton.setOnClickListener(new View.OnClickListener() {
 
-    /*    try {
-          loadModelFile(input);
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        } catch (Mikity3dSerializeDeserializeException e) {
-          throw new RuntimeException(e);
-        }*/
+      public void onClick(View v) {
+        fileManager.getFilePath();
+      }
+    });
 
     // 描画のクラスを登録する
     this.glView.setRenderer(this.modelRenderer);
-    // this.glView.setRenderer(new GLRenderer());
     this.mIsInitScreenSize = false;
 
     // 任意のタイミングで再描画する設定
@@ -189,9 +183,14 @@ public class MainActivity extends Activity {
 
     Button quickButton = (Button)findViewById(R.id.quickButton);
     Button slowButton = (Button)findViewById(R.id.slowButton);
-
     Button playButton = (Button)findViewById(R.id.button1);
     Button stopButton = (Button)findViewById(R.id.button2);
+
+    //ファイルパスビューの配置
+    this.filePathView = new TextView(this);
+    this.modelFilePathView = new TextView(this);
+    this.filePathView = (TextView)findViewById(R.id.filePathView);
+    this.modelFilePathView = (TextView)findViewById(R.id.modelPathView);
 
     this.testTextView = new TextView(this);
     this.testTextView = (TextView)findViewById(R.id.textView1);
@@ -221,17 +220,13 @@ public class MainActivity extends Activity {
     });
 
     //時系列選択ボタンの配置
-    Button selectButton = (Button)findViewById(R.id.selectButton);
+    Button selectButton = (Button)findViewById(R.id.timeSelectButton);
     selectButton.setOnClickListener(new View.OnClickListener() {
 
       public void onClick(View v) {
         fileManager.getFilePath();
       }
     });
-
-    //ファイルパスビューの配置
-    this.filePathView = new TextView(this);
-    this.filePathView = (TextView)findViewById(R.id.filePathView);
 
     // イベントリスナー
     playButton.setOnClickListener(new View.OnClickListener() {
@@ -250,8 +245,6 @@ public class MainActivity extends Activity {
         playable = true;
       }
     });
-    //Toast.makeText(this, "onCreate", Toast.LENGTH_LONG).show();
-
   }
 
   /** 表示されるときに呼ばれる */
@@ -316,7 +309,6 @@ public class MainActivity extends Activity {
    */
   public void setTimeData(final InputStream input) {
     try {
-      // final FileInputStream input = new FileInputStream(file);
       this.data = MatxMatrix.readMatFormat(new InputStreamReader(input));
       input.close();
 
@@ -411,19 +403,39 @@ public class MainActivity extends Activity {
       case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
         if (resultCode == RESULT_OK && data != null) {
           // obtain the filename
-          this.filePath = data.getData().getPath();
-
-          this.filePathView.setText(this.filePath);
-          //loadTimeData();
-          loadtimeSeriesData();
-
+          if (this.isSelectedModelFile) {
+            String timeDataPath = data.getData().getPath();
+            this.filePathView.setText(new File(timeDataPath).getName());
+            loadtimeSeriesData(timeDataPath);
+            
+          } else {
+            String modelFilePath = data.getData().getPath();
+            try {
+              this.inputModelFile = new FileInputStream(modelFilePath);
+              this.modelFilePathView.setText(new File(modelFilePath).getName());
+            } catch (FileNotFoundException e) {
+              throw new RuntimeException(e);
+            }
+            
+            try {
+              loadModelFile(this.inputModelFile);
+            } catch (IOException e) {
+              // TODO 自動生成された catch ブロック
+              throw new RuntimeException(e);
+            } catch (Mikity3dSerializeDeserializeException e) {
+              // TODO 自動生成された catch ブロック
+              throw new RuntimeException(e);
+            }
+            this.isSelectedModelFile = true;
+            modelRenderer.updateDisplay();
+          }
         }
 
         break;
     }
   }
 
-  private void loadtimeSeriesData() {
+  private void loadtimeSeriesData(final String filePath) {
     AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
 
       ProgressDialog progressDialog;
@@ -441,7 +453,7 @@ public class MainActivity extends Activity {
       protected Void doInBackground(String... arg0) {
         InputStream mat1;
         try {
-          mat1 = new FileInputStream(MainActivity.this.filePath);
+          mat1 = new FileInputStream(filePath);
         } catch (FileNotFoundException e) {
           throw new RuntimeException(e);
         }
@@ -476,13 +488,13 @@ public class MainActivity extends Activity {
       }
       MainActivity.this.prevX = MainActivity.this.gesDetect.getFocusX();
       MainActivity.this.prevY = MainActivity.this.gesDetect.getFocusY();
-      //MainActivity.testTextView.setText("Scalling");
+
       return super.onScale(detector);
     }
 
     @Override
     public boolean onScaleBegin(ScaleGestureDetector detector) {
-      // TODO Auto-generated method stub
+
       MainActivity.this.scaling = true;
 
       MainActivity.this.testTextView.setText(Double.toString(MainActivity.this.scaleValue));
@@ -491,12 +503,12 @@ public class MainActivity extends Activity {
 
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
-      // TODO Auto-generated method stub
+
       MainActivity.this.scaling = false;
       setScaleValue(MainActivity.this.scaleValue - (1.0 - MainActivity.this.gesDetect.getScaleFactor()));
       MainActivity.this.prevX = MainActivity.this.gesDetect.getFocusX();
       MainActivity.this.prevY = MainActivity.this.gesDetect.getFocusY();
-      // testTextView.setText(Double.toString(scaleValue));
+
       super.onScaleEnd(detector);
     }
   };
@@ -516,7 +528,7 @@ public class MainActivity extends Activity {
     switch (event.getAction()) {
     // タッチした
       case MotionEvent.ACTION_DOWN:
-        this.testTextView.setText("touched!  x:" + event.getX() + " y:" + event.getY()); //$NON-NLS-1$//$NON-NLS-2$
+        // this.testTextView.setText("touched!  x:" + event.getX() + " y:" + event.getY()); //$NON-NLS-1$//$NON-NLS-2$
         this.rotationing = true;
         this.prevX = event.getX();
         this.prevY = event.getY();
@@ -566,31 +578,6 @@ public class MainActivity extends Activity {
 
   protected void setScaleValue(double d) {
     this.scaleValue = d;
-  }
-
-  private void showModelSelectDialog(MainActivity main) {
-    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(main);
-    // アラートダイアログのタイトルを設定します
-    alertDialogBuilder.setTitle("Mikity3D"); //$NON-NLS-1$
-    // アラートダイアログのメッセージを設定します
-    alertDialogBuilder.setMessage("モデルファイルを選択してください"); //$NON-NLS-1$
-
-    // アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
-    alertDialogBuilder.setPositiveButton("参照", //$NON-NLS-1$
-
-        new DialogInterface.OnClickListener() {
-
-          public void onClick(DialogInterface dialog, int which) {
-            //System.out.println();
-          }
-        });
-
-    // アラートダイアログのキャンセルが可能かどうかを設定します
-    alertDialogBuilder.setCancelable(false);
-    AlertDialog alertDialog = alertDialogBuilder.create();
-    // アラートダイアログを表示します
-    alertDialog.show();
-
   }
 
 }

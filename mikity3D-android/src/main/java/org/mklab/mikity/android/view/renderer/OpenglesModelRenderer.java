@@ -143,6 +143,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
     gl10.glScalef(this.scaleX, this.scaleY, this.scaleZ);
 
+    if(this.topGroups != null)
     for (final OpenglesBranchGroup group : this.topGroups) {
       group.display(gl10);
     }
