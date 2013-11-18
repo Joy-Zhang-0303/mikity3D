@@ -110,6 +110,13 @@ public class MainActivity extends Activity {
   private EditText animationSpeedTextEdit;
   private InputStream inputModelFile;
   protected boolean isSelectedModelFile;
+  
+  private Button selectButton;
+  private Button quickButton;
+  private Button slowButton;
+  private Button stopButton;
+  private Button loadModelButton;
+  private Button playButton;
 
   /**
    * 
@@ -132,9 +139,9 @@ public class MainActivity extends Activity {
   private void loadModelFile(InputStream input) throws IOException, Mikity3dSerializeDeserializeException {
     this.root = new Mikity3dFactory().loadFile(input);
     this.manager = new MovableGroupManager(this.root);
-    final Group[] children = this.root.getModel(0).getGroups();
+    Group[] children = this.root.getModel(0).getGroups();
     this.modelRenderer.setChildren(children);
-    final Mikity3dConfiguration configuration = this.root.getConfiguration(0);
+    Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
 
   }
@@ -144,7 +151,9 @@ public class MainActivity extends Activity {
     InputStream mat1 = new FileInputStream(this.filePath);
     setTimeData(mat1);
     mat1.close();
-  }
+  }   
+  
+
 
   /**
    * {@inheritDoc}
@@ -158,18 +167,33 @@ public class MainActivity extends Activity {
 
     Resources res = this.getResources();
 
-    this.inputModelFile = res.openRawResource(R.raw.pendulum);
+    //this.inputModelFile = res.openRawResource(R.raw.pendulum);
     final OIFileManager fileManager = new OIFileManager(this);
     this.modelRenderer = new OpenglesModelRenderer(this.glView);
 
-    Button loadModelButton = (Button)findViewById(R.id.modelSelectButton);
-    loadModelButton.setOnClickListener(new View.OnClickListener() {
+    //モデルデータ選択ボタンの表示
+     this.loadModelButton = (Button)findViewById(R.id.modelSelectButton);
+    //時系列選択ボタンの配置
+    this.selectButton = (Button)findViewById(R.id.timeSelectButton);
+    this.quickButton = (Button)findViewById(R.id.quickButton);
+    this.slowButton = (Button)findViewById(R.id.slowButton);
+    this.playButton = (Button)findViewById(R.id.button1);
+    this.stopButton = (Button)findViewById(R.id.button2);
 
+    this.selectButton.setEnabled(false);
+    this.quickButton.setEnabled(false);
+    this.slowButton.setEnabled(false);
+    this.playButton.setEnabled(false);
+    this.stopButton.setEnabled(false);
+
+    this.loadModelButton.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
+        MainActivity.this.isSelectedModelFile = false;
         fileManager.getFilePath();
       }
     });
-
+    
+ 
     // 描画のクラスを登録する
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
@@ -181,12 +205,8 @@ public class MainActivity extends Activity {
     this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
     this.animationSpeedTextEdit.clearFocus();
 
-    Button quickButton = (Button)findViewById(R.id.quickButton);
-    Button slowButton = (Button)findViewById(R.id.slowButton);
-    Button playButton = (Button)findViewById(R.id.button1);
-    Button stopButton = (Button)findViewById(R.id.button2);
-
     //ファイルパスビューの配置
+
     this.filePathView = new TextView(this);
     this.modelFilePathView = new TextView(this);
     this.filePathView = (TextView)findViewById(R.id.filePathView);
@@ -219,8 +239,6 @@ public class MainActivity extends Activity {
       }
     });
 
-    //時系列選択ボタンの配置
-    Button selectButton = (Button)findViewById(R.id.timeSelectButton);
     selectButton.setOnClickListener(new View.OnClickListener() {
 
       public void onClick(View v) {
@@ -327,6 +345,7 @@ public class MainActivity extends Activity {
       }
 
     } catch (FileNotFoundException e) {
+      
       throw new RuntimeException(e);
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -407,7 +426,7 @@ public class MainActivity extends Activity {
             String timeDataPath = data.getData().getPath();
             this.filePathView.setText(new File(timeDataPath).getName());
             loadtimeSeriesData(timeDataPath);
-            
+
           } else {
             String modelFilePath = data.getData().getPath();
             try {
@@ -416,7 +435,7 @@ public class MainActivity extends Activity {
             } catch (FileNotFoundException e) {
               throw new RuntimeException(e);
             }
-            
+
             try {
               loadModelFile(this.inputModelFile);
             } catch (IOException e) {
@@ -427,7 +446,13 @@ public class MainActivity extends Activity {
               throw new RuntimeException(e);
             }
             this.isSelectedModelFile = true;
-            modelRenderer.updateDisplay();
+            
+              selectButton.setEnabled(true);
+              quickButton.setEnabled(true);
+              slowButton.setEnabled(true);
+              playButton.setEnabled(true);
+              stopButton.setEnabled(true);
+            this.modelRenderer.updateDisplay();
           }
         }
 

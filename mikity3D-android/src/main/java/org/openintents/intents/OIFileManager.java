@@ -32,9 +32,7 @@ public class OIFileManager{
    * Opens the file manager to pick a file.
    */
   public void getFilePath() {
-
     Intent intent = new Intent(OIFileManagerIntents.ACTION_PICK_FILE);
-
     try {
       activity.startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY );
     } catch (ActivityNotFoundException e) {
