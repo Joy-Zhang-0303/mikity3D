@@ -161,6 +161,9 @@ public class MainActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    
+    setContentView(R.layout.main);  
+
     setContentView(R.layout.main);
     // GLViewを取り出す
     this.glView = (GLSurfaceView)this.findViewById(R.id.glview1);
@@ -202,6 +205,7 @@ public class MainActivity extends Activity {
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
     this.animationSpeedTextEdit = (EditText)findViewById(R.id.editText1);
+    this.animationSpeedTextEdit.clearFocus();
     this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
     this.animationSpeedTextEdit.clearFocus();
 
@@ -522,7 +526,7 @@ public class MainActivity extends Activity {
 
       MainActivity.this.scaling = true;
 
-      MainActivity.this.testTextView.setText(Double.toString(MainActivity.this.scaleValue));
+     // MainActivity.this.testTextView.setText(Double.toString(MainActivity.this.scaleValue));
       return super.onScaleBegin(detector);
     }
 

@@ -36,7 +36,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
 
         </LinearLayout>
 
@@ -49,6 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:focusable="true"
+    android:focusableInTouchMode="true"
                 android:text="再生速度" />
 
             <Button
@@ -63,7 +65,7 @@
                 android:id="@+id/editText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1" 
          
                 android:inputType="numberDecimal"
                 android:maxLength="4" >
@@ -89,7 +91,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="モデル" />
+                
+                android:text="モデル" 
+                />
 
             <Button
                 android:id="@+id/modelSelectButton"

@@ -81,8 +81,8 @@ public class MovableGroupManager {
     for (final MovableGroup movableGroup : this.movableGroups) {
       final DataPicker picker = this.pickers.get(movableGroup);
       movableGroup.setDHParameter(picker.getDHParameter(t));
-      this.logCat.printLog("t:"+t+",DHpram A:"+picker.getDHParameter(t).getA()+" Alpha"+picker.getDHParameter(t).getAlpha()
-          +" D"+picker.getDHParameter(t).getD()+" Theta"+picker.getDHParameter(t).getTheta()); //$NON-NLS-1$
+      this.logCat.printLog(" t:"+t+" A:"+picker.getDHParameter(t).getA()+" Alpha:"+picker.getDHParameter(t).getAlpha()
+          +" D:"+picker.getDHParameter(t).getD()+" Theta:"+picker.getDHParameter(t).getTheta()); //$NON-NLS-1$
     }
   }
 
@@ -95,7 +95,7 @@ public class MovableGroupManager {
     for (final MovableGroup movableGroup : this.movableGroups) {
       final DataPicker picker = this.pickers.get(movableGroup);
       movableGroup.setCoordinateParameter(picker.getCoordinateParameter(t));
-      //this.logCat.printLog(""+picker.getDHParameter(t));
+     // this.logCat.printLog(""+picker.getDHParameter(t));
  
     }
   }
