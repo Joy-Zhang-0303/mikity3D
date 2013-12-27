@@ -45,6 +45,33 @@
 
 	<build>
 		<plugins>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<executions>
+					<execution>
+						<id>zipalign</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>install</phase>
+						<configuration>
+							<executable>${ANDROID_HOME}/tools/zipalign</executable>
+							<arguments>
+								<argument>-f</argument>
+								<argument>-v</argument>
+								<argument>4</argument>
+								<argument>target/${project.build.finalName}.apk</argument>
+								<argument>target/${project.build.finalName}-zipped.apk</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>

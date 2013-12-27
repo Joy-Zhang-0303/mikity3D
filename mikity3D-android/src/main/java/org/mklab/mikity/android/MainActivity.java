@@ -110,7 +110,7 @@ public class MainActivity extends Activity {
   private EditText animationSpeedTextEdit;
   private InputStream inputModelFile;
   protected boolean isSelectedModelFile;
-  
+
   private Button selectButton;
   private Button quickButton;
   private Button slowButton;
@@ -144,16 +144,15 @@ public class MainActivity extends Activity {
     Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
 
+    this.manager.setLogCat(new LogCatImpl()); //LogCatのセット
+
   }
 
   private void loadTimeData() throws FileNotFoundException, IOException {
-
     InputStream mat1 = new FileInputStream(this.filePath);
     setTimeData(mat1);
     mat1.close();
-  }   
-  
-
+  }
 
   /**
    * {@inheritDoc}
@@ -161,10 +160,8 @@ public class MainActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    
-    setContentView(R.layout.main);  
-
     setContentView(R.layout.main);
+
     // GLViewを取り出す
     this.glView = (GLSurfaceView)this.findViewById(R.id.glview1);
 
@@ -175,7 +172,7 @@ public class MainActivity extends Activity {
     this.modelRenderer = new OpenglesModelRenderer(this.glView);
 
     //モデルデータ選択ボタンの表示
-     this.loadModelButton = (Button)findViewById(R.id.modelSelectButton);
+    this.loadModelButton = (Button)findViewById(R.id.modelSelectButton);
     //時系列選択ボタンの配置
     this.selectButton = (Button)findViewById(R.id.timeSelectButton);
     this.quickButton = (Button)findViewById(R.id.quickButton);
@@ -190,13 +187,13 @@ public class MainActivity extends Activity {
     this.stopButton.setEnabled(false);
 
     this.loadModelButton.setOnClickListener(new View.OnClickListener() {
+
       public void onClick(View v) {
         MainActivity.this.isSelectedModelFile = false;
         fileManager.getFilePath();
       }
     });
-    
- 
+
     // 描画のクラスを登録する
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
@@ -247,6 +244,7 @@ public class MainActivity extends Activity {
 
       public void onClick(View v) {
         fileManager.getFilePath();
+
       }
     });
 
@@ -327,7 +325,8 @@ public class MainActivity extends Activity {
   /**
    * 実行時間バーを設定する。
    * 
-   * @param file ファイル
+   * @param input 時系列データのインプットストリーム
+   * 
    */
   public void setTimeData(final InputStream input) {
     try {
@@ -349,11 +348,12 @@ public class MainActivity extends Activity {
       }
 
     } catch (FileNotFoundException e) {
-      
+
       throw new RuntimeException(e);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+
   }
 
   private void checkLinkParameterType(Group parent) {
@@ -367,6 +367,7 @@ public class MainActivity extends Activity {
           this.manager.setHasCoordinateParameter(true);
         }
       }
+
       checkLinkParameterType(group);
     }
   }
@@ -379,7 +380,7 @@ public class MainActivity extends Activity {
    */
   public void runAnimation() {
     long startTime = SystemClock.uptimeMillis();
-    this.manager.setLogCat(new LogCatImpl());
+
     this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
     if (playable == false) {
       this.timer.cancel();
@@ -450,12 +451,12 @@ public class MainActivity extends Activity {
               throw new RuntimeException(e);
             }
             this.isSelectedModelFile = true;
-            
-              selectButton.setEnabled(true);
-              quickButton.setEnabled(true);
-              slowButton.setEnabled(true);
-              playButton.setEnabled(true);
-              stopButton.setEnabled(true);
+
+            selectButton.setEnabled(true);
+            quickButton.setEnabled(true);
+            slowButton.setEnabled(true);
+            playButton.setEnabled(true);
+            stopButton.setEnabled(true);
             this.modelRenderer.updateDisplay();
           }
         }
@@ -526,7 +527,7 @@ public class MainActivity extends Activity {
 
       MainActivity.this.scaling = true;
 
-     // MainActivity.this.testTextView.setText(Double.toString(MainActivity.this.scaleValue));
+      // MainActivity.this.testTextView.setText(Double.toString(MainActivity.this.scaleValue));
       return super.onScaleBegin(detector);
     }
 

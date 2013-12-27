@@ -81,8 +81,8 @@ public class MovableGroupManager {
     for (final MovableGroup movableGroup : this.movableGroups) {
       final DataPicker picker = this.pickers.get(movableGroup);
       movableGroup.setDHParameter(picker.getDHParameter(t));
-      this.logCat.printLog(" t:"+t+" A:"+picker.getDHParameter(t).getA()+" Alpha:"+picker.getDHParameter(t).getAlpha()
-          +" D:"+picker.getDHParameter(t).getD()+" Theta:"+picker.getDHParameter(t).getTheta()); //$NON-NLS-1$
+     // this.logCat.printLog(" t:"+t+" A:"+picker.getDHParameter(t).getA()+" Alpha:"+picker.getDHParameter(t).getAlpha()
+          //+" D:"+picker.getDHParameter(t).getD()+" Theta:"+picker.getDHParameter(t).getTheta()); //$NON-NLS-1$
     }
   }
 
@@ -107,6 +107,7 @@ public class MovableGroupManager {
    * @param data 時系列データ
    */
   private void registerMovableGroups(final Group[] groups, final Matrix data) {
+    logCat.printLog("registerMovableGroups");
     for (final Group group : groups) {
       final MovableGroup movableGroup = MOVABLE_GROUPS.get(group);
       final LinkData[] links = group.getLinkData();
@@ -126,13 +127,16 @@ public class MovableGroupManager {
    * @param links リンクデータ
    */
   private DataPicker createPicker(final Matrix data, final LinkData[] links) {
+    logCat.printLog("createPicker");
     final DataPicker picker = new ClosenessDataPicker(data);
-
     for (final LinkData link : links) {
       if (link.hasDHParameter()) {
+        logCat.printLog("hasDHParameter");
         if (link.hasColumnNumber()) {
+          logCat.printLog("hasColumNumber");
           final int dataNumber = link.getColumnNumber();
           final String parameterName = link.getTargetName();
+          logCat.printLog(parameterName);
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
