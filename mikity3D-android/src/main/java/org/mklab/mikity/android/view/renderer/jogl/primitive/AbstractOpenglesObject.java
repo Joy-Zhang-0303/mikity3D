@@ -48,13 +48,13 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
     } else if (this.color.equals("gray")) { //$NON-NLS-1$
       gl10.glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
     } else if (this.color.equals("darkGray")) { //$NON-NLS-1$
-      gl10.glColor4f(0.25f, 0.25f, 0.25f, 1.0f);
+      gl10.glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
     } else if (this.color.equals("black")) { //$NON-NLS-1$
       gl10.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
     } else if (this.color.equals("red")) { //$NON-NLS-1$
-      gl10.glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+      gl10.glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
     } else if (this.color.equals("pink")) { //$NON-NLS-1$
-      gl10.glColor4f(1.0f, 0.69f, 0.69f, 1.0f);
+      gl10.glColor4f(1.0f, 0.69f, 0.69f, 0.5f);
     } else if (this.color.equals("orange")) { //$NON-NLS-1$
       gl10.glColor4f(1.0f, 0.78f, 0.0f, 1.0f);
     } else if (this.color.equals("yellow")) { //$NON-NLS-1$
@@ -66,7 +66,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
     } else if (this.color.equals("cyan")) { //$NON-NLS-1$
       gl10.glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
     } else if (this.color.equals("blue")) { //$NON-NLS-1$
-      gl10.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
+      gl10.glColor4f(0.0f, 0.0f, 1.0f, 0.0f);
     }
   }
 

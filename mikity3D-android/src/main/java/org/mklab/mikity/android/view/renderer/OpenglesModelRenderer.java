@@ -129,7 +129,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     //光源位置の指定
     gl10.glMatrixMode(GL10.GL_MODELVIEW);
     gl10.glLoadIdentity();
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[] {2.5f, 2.5f, 0.0f, 1.0f}, 0);
+    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[] {-10.0f, 10.0f, -10.0f, 1.0f}, 0);
     GLU.gluLookAt(gl10, this.eyeX, this.eyeY, this.eyeZ, //カメラの視点
         0.0F, 0.0F, -1.0F, //カメラの焦点
         0.0F, 1.0F, 1.0F);//カメラの上方向

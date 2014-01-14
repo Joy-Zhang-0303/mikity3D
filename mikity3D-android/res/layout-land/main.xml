@@ -23,6 +23,7 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:text="@string/button1" />
 
             <Button
@@ -30,14 +31,8 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:text="@string/button2" />
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -50,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:focusable="true"
-    android:focusableInTouchMode="true"
+                android:focusableInTouchMode="true"
                 android:text="再生速度" />
 
             <Button
@@ -65,8 +60,7 @@
                 android:id="@+id/editText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" 
-         
+                android:layout_weight="1"
                 android:inputType="numberDecimal"
                 android:maxLength="4" >
 
@@ -91,9 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                
-                android:text="モデル" 
-                />
+                android:text="モデル" />
 
             <Button
                 android:id="@+id/modelSelectButton"
@@ -107,7 +99,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="..." />
-
         </LinearLayout>
 
         <LinearLayout
@@ -133,8 +124,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="..." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="UseGyro" />
+
+            <ToggleButton
+                android:id="@+id/gyroToggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="gyroToggleButton" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

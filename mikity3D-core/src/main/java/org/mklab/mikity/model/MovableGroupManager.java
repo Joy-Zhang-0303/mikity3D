@@ -134,9 +134,9 @@ public class MovableGroupManager {
         logCat.printLog("hasDHParameter");
         if (link.hasColumnNumber()) {
           logCat.printLog("hasColumNumber");
-          final int dataNumber = link.getColumnNumber();
+          final int dataNumber = link.getColumnNumber();;
           final String parameterName = link.getTargetName();
-          logCat.printLog(parameterName);
+          logCat.printLog("Number of link:"+links.length+" dataNumber:"+dataNumber  +"parameterName:"+parameterName);
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
@@ -262,6 +262,7 @@ public class MovableGroupManager {
 
     this.movableGroups.clear();
     registerMovableGroups(this.root.getModel(0).getGroups(), data);
+    logCat.printLog("setData");
   }
   
   /**

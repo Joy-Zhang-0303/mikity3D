@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>mikity3D-android</artifactId>
 	<packaging>apk</packaging>
@@ -106,7 +107,7 @@
 						<id>signing</id>
 						<goals>
 							<goal>sign</goal>
-							<goal>verify</goal>
+
 						</goals>
 						<phase>package</phase>
 						<inherited>true</inherited>
@@ -114,12 +115,18 @@
 							<removeExistingSignatures>true</removeExistingSignatures>
 							<archiveDirectory />
 							<includes>
-								<include>${project.build.directory}/${project.artifactId}.jar</include>
+								<include>${project.build.directory}/*.apk</include>
 							</includes>
 							<keystore>./mikity3d.keystore</keystore>
 							<storepass>mikity</storepass>
 							<keypass>mikity</keypass>
 							<alias>mikity3d-android</alias>
+							<arguments>
+								<argument>-sigalg</argument>
+								<argument>MD5withRSA</argument>
+								<argument>-digestalg</argument>
+								<argument>SHA1</argument>
+							</arguments>
 							<verbose>true</verbose>
 						</configuration>
 					</execution>
