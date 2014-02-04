@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
@@ -37,6 +38,7 @@ import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -47,6 +49,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import org.openintents.intents.*;
@@ -301,6 +304,60 @@ public class MainActivity extends Activity implements SensorEventListener {
 
       }
     });
+
+    Intent intent = getIntent();
+    if (intent.getStringArrayListExtra("aaa") != null) {
+      Log.d("mikity", "Path if");
+      ArrayList<String> data = intent.getStringArrayListExtra("aaa");
+      Toast.makeText(this, "Launch ounter application", Toast.LENGTH_LONG).show();
+
+      String modelFilePath = data.get(0);
+      String timeDataPath = data.get(1);
+
+      try {
+        this.inputModelFile = new FileInputStream(modelFilePath);
+        this.modelFilePathView.setText(new File(modelFilePath).getName());
+
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+
+      try {
+        loadModelFile(this.inputModelFile);
+      } catch (IOException e) {
+        // TODO 自動生成された catch ブロック
+        throw new RuntimeException(e);
+      } catch (Mikity3dSerializeDeserializeException e) {
+        // TODO 自動生成された catch ブロック
+        throw new RuntimeException(e);
+      }
+
+      this.isSelectedModelFile = true;
+
+      this.selectButton.setEnabled(true);
+      this.quickButton.setEnabled(true);
+      this.slowButton.setEnabled(true);
+      this.playButton.setEnabled(true);
+      this.stopButton.setEnabled(true);
+      this.modelRenderer.updateDisplay();
+
+      this.filePathView.setText(new File(timeDataPath).getName());
+
+      InputStream mat;
+      try {
+        mat = new FileInputStream(timeDataPath);
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+      setTimeData(mat);
+
+      try {
+        mat.close();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
+
   }
 
   /** 表示されるときに呼ばれる */
@@ -486,14 +543,18 @@ public class MainActivity extends Activity implements SensorEventListener {
           // obtain the filename
           if (this.isSelectedModelFile) {
             String timeDataPath = data.getData().getPath();
-            this.filePathView.setText(new File(timeDataPath).getName());
+            // this.filePathView.setText(new File(timeDataPath).getName());
+            this.filePathView.setText(timeDataPath);
+
             loadtimeSeriesData(timeDataPath);
 
           } else {
             String modelFilePath = data.getData().getPath();
             try {
               this.inputModelFile = new FileInputStream(modelFilePath);
-              this.modelFilePathView.setText(new File(modelFilePath).getName());
+              //this.modelFilePathView.setText(new File(modelFilePath).getName());
+              this.modelFilePathView.setText(modelFilePath);
+
             } catch (FileNotFoundException e) {
               throw new RuntimeException(e);
             }
@@ -501,10 +562,8 @@ public class MainActivity extends Activity implements SensorEventListener {
             try {
               loadModelFile(this.inputModelFile);
             } catch (IOException e) {
-              // TODO 自動生成された catch ブロック
               throw new RuntimeException(e);
             } catch (Mikity3dSerializeDeserializeException e) {
-              // TODO 自動生成された catch ブロック
               throw new RuntimeException(e);
             }
             this.isSelectedModelFile = true;
@@ -675,6 +734,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public void onSensorChanged(SensorEvent event) {
     if (this.useGyroScope) {
 
@@ -699,30 +761,26 @@ public class MainActivity extends Activity implements SensorEventListener {
 
       for (int i = 0; i < this.orientations.length; i++) {
 
-        
         if ((prevOrientations[i] > 0 && orientations[i] < 0) || (prevOrientations[i] < 0 && orientations[i] > 0)) diffOrientations[i] = this.orientations[i] + this.prevOrientations[i];
         else diffOrientations[i] = this.orientations[i] - this.prevOrientations[i];
 
-        
-        
-        if (Math.abs(diffOrientations[i] )< 0.05) diffOrientations[i] = (float)0.0;
-        
+        if (Math.abs(diffOrientations[i]) < 0.05) diffOrientations[i] = (float)0.0;
+
       }
 
-
-        for (int i = 0; i < this.orientations.length; i++) {
-          this.prevOrientations[i] = this.orientations[i];
-        }
-
-        this.testTextView.setText("Azimuth:" + Math.toDegrees(orientations[0]) + " \nPitch:" + Math.toDegrees(orientations[1]) + "\nRoll:" + Math.toDegrees(orientations[2]));
-
-        this.modelRenderer.setRotation(0, (float)Math.toDegrees(diffOrientations[2]*3.0));
-        // this.modelRenderer.setRotation((float)Math.toDegrees(-(diffOrientations[1] +diffOrientations[0]* (float)3.0, 0);
-        //if (orientations[2] > -90 && orientations[2] < 10)
-        this.modelRenderer.setRotation((float)Math.toDegrees(-diffOrientations[0] * 3.0), 0);
-
-        this.modelRenderer.updateDisplay();
+      for (int i = 0; i < this.orientations.length; i++) {
+        this.prevOrientations[i] = this.orientations[i];
       }
+
+      this.testTextView.setText("Azimuth:" + Math.toDegrees(orientations[0]) + " \nPitch:" + Math.toDegrees(orientations[1]) + "\nRoll:" + Math.toDegrees(orientations[2]));
+
+      this.modelRenderer.setRotation(0, (float)Math.toDegrees(diffOrientations[2] * 3.0));
+      // this.modelRenderer.setRotation((float)Math.toDegrees(-(diffOrientations[1] +diffOrientations[0]* (float)3.0, 0);
+      //if (orientations[2] > -90 && orientations[2] < 10)
+      this.modelRenderer.setRotation((float)Math.toDegrees(-diffOrientations[0] * 3.0), 0);
+
+      this.modelRenderer.updateDisplay();
     }
-  
+  }
+
 }
