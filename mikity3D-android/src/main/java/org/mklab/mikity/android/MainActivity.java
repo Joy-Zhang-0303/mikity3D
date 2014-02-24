@@ -6,13 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
-//import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.model.MovableGroupManager;
@@ -38,7 +36,6 @@ import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -103,41 +100,68 @@ public class MainActivity extends Activity implements SensorEventListener {
   private int animationSpeed = 10;
 
   private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
-
   /** 時系列データのファイルパス */
   private String filePath;
-
   /** 　ピンチイン、ピンチアウト用のジェスチャー */
   private ScaleGestureDetector gesDetect = null;
-
   /** スケーリング中かどうかのフラグ */
   private boolean scaling;
+  /** 回転中かどうかのフラグ */
   private boolean rotationing;
-
+  /** 3Dオブジェクトの大きさの値 */
   private double scaleValue = 1;
+  /** アニメーションスピードを表示するエディットテキスト */
   private EditText animationSpeedTextEdit;
+  /** 3Dモデルのインプットストリーム */
   private InputStream inputModelFile;
+  /** 3Dモデルが選ばれて表示されたかどうかのフラグ */
   protected boolean isSelectedModelFile;
-
+  /** モデルを参照するときに押されるボタン */
   private Button selectButton;
+  /** アニメーションスピードを早くするときに押されるボタン */
   private Button quickButton;
+  /** アニメーションスピードを遅くするときに押されるボタン */
   private Button slowButton;
+  /** アニメーションを停止するときに押されるボタン */
   private Button stopButton;
+  /** モデルファイル読み込むときに押されるボタン */
   private Button loadModelButton;
+  /** アニメーションを再生するボタン */
   private Button playButton;
-
+  /** センサーマネージャー */
   private SensorManager sensorManager;
   private boolean registerAccerlerometer;
   private boolean registerMagneticFieldSensor;
+  /** センサーからの加速度を格納する配列 */
   private float[] accels = new float[3];
+  /** センサーからの地磁気を格納する配列 */
   private float[] magneticFields = new float[3];
+  /** センサーから算出した端末の角度を格納する配列 */
   private float[] orientations = new float[3];
+  /** 角度の基準値 */
   private float[] prevOrientations = new float[3];
+  /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
   private ToggleButton gyroToggleButton;
-  private boolean useGyroScope = false;
+  /** 端末の角度を3Dオブジェクトに反映させるかどうかのフラグ */
+  private boolean useOrientationSensor = false;
+  /** */
+  private float[] prevAccerlerometer = new float[3];
+  /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
+  private ToggleButton accelerToggleButton;
+  /** 加速度のローパスフィルターのxの値 */
+  private double lowPassX;
+  /** 加速度のローパスフィルターのｙの値 */
+  private double lowPassY;
+  /** 加速度のローパスフィルターのzの値 */
+  private double lowPassZ = 9.45;
+  /** 加速度のハイパスフィルターのZの値 */
+  private double rawAz;
+  /** 前回加速度センサーを3Dオブジェクトに使用したときの時間 */
+  private long useAccelerOldTime = 0L;
+  /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか*/
+  private boolean useAccelerSensor = false;
 
   /**
-   * 
    * @param modelFile モデルファイル
    * @throws IOException ファイルを読み込めない場合
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
@@ -183,7 +207,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     // GLViewを取り出す
     this.glView = (GLSurfaceView)this.findViewById(R.id.glview1);
 
-    Resources res = this.getResources();
+    this.getResources();
 
     this.sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
     this.registerAccerlerometer = false;
@@ -193,6 +217,7 @@ public class MainActivity extends Activity implements SensorEventListener {
       this.magneticFields[i] = 0.0f;
       this.orientations[i] = 0.0f;
       this.prevOrientations[i] = 0.0f;
+      this.prevAccerlerometer[i] = 0.0f;
 
     }
 
@@ -230,7 +255,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
-    this.animationSpeedTextEdit = (EditText)findViewById(R.id.editText1);
+    this.animationSpeedTextEdit = (EditText)findViewById(R.id.animationSpeedEditText);
     this.animationSpeedTextEdit.clearFocus();
     this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
     this.animationSpeedTextEdit.clearFocus();
@@ -299,16 +324,33 @@ public class MainActivity extends Activity implements SensorEventListener {
     this.gyroToggleButton.setOnClickListener(new OnClickListener() {
 
       public void onClick(View v) {
-        if (MainActivity.this.gyroToggleButton.isChecked()) useGyroScope = true;
-        else useGyroScope = false;
+        if (MainActivity.this.gyroToggleButton.isChecked()) {
+          MainActivity.this.useOrientationSensor = true;
+        } else MainActivity.this.useOrientationSensor = false;
 
       }
     });
 
+    this.accelerToggleButton = (ToggleButton)findViewById(R.id.accelerToggleButton);
+    this.accelerToggleButton.setOnClickListener(new OnClickListener() {
+
+      public void onClick(View v) {
+        if (MainActivity.this.accelerToggleButton.isChecked()) {
+          MainActivity.this.useAccelerSensor = true;
+          
+        } else {
+          MainActivity.this.useAccelerSensor = false;
+          
+
+        }
+      }
+
+    });
+
+    //外部アプリからの起動
     Intent intent = getIntent();
-    if (intent.getStringArrayListExtra("aaa") != null) {
-      Log.d("mikity", "Path if");
-      ArrayList<String> data = intent.getStringArrayListExtra("aaa");
+    if (intent.getStringArrayListExtra("org.mklab.mikity.android.ModelDataPathAndTimeDataPath") != null) {
+      ArrayList<String> data = intent.getStringArrayListExtra("org.mklab.mikity.android.ModelDataPathAndTimeDataPath");
       Toast.makeText(this, "Launch ounter application", Toast.LENGTH_LONG).show();
 
       String modelFilePath = data.get(0);
@@ -325,10 +367,9 @@ public class MainActivity extends Activity implements SensorEventListener {
       try {
         loadModelFile(this.inputModelFile);
       } catch (IOException e) {
-        // TODO 自動生成された catch ブロック
         throw new RuntimeException(e);
       } catch (Mikity3dSerializeDeserializeException e) {
-        // TODO 自動生成された catch ブロック
+
         throw new RuntimeException(e);
       }
 
@@ -543,8 +584,7 @@ public class MainActivity extends Activity implements SensorEventListener {
           // obtain the filename
           if (this.isSelectedModelFile) {
             String timeDataPath = data.getData().getPath();
-            // this.filePathView.setText(new File(timeDataPath).getName());
-            this.filePathView.setText(timeDataPath);
+            this.filePathView.setText(new File(timeDataPath).getName());
 
             loadtimeSeriesData(timeDataPath);
 
@@ -552,8 +592,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             String modelFilePath = data.getData().getPath();
             try {
               this.inputModelFile = new FileInputStream(modelFilePath);
-              //this.modelFilePathView.setText(new File(modelFilePath).getName());
-              this.modelFilePathView.setText(modelFilePath);
+              this.modelFilePathView.setText(new File(modelFilePath).getName());
 
             } catch (FileNotFoundException e) {
               throw new RuntimeException(e);
@@ -674,7 +713,6 @@ public class MainActivity extends Activity implements SensorEventListener {
     switch (event.getAction()) {
     // タッチした
       case MotionEvent.ACTION_DOWN:
-        // this.testTextView.setText("touched!  x:" + event.getX() + " y:" + event.getY()); //$NON-NLS-1$//$NON-NLS-2$
         this.rotationing = true;
         this.prevX = event.getX();
         this.prevY = event.getY();
@@ -687,18 +725,15 @@ public class MainActivity extends Activity implements SensorEventListener {
         this.prevX = event.getX();
         this.prevY = event.getY();
 
-        if (transferAmountX > 300) transferAmountX = 300;
-        if (transferAmountX < -300) transferAmountX = -300;
-
-        if (transferAmountY > 300) transferAmountY = 300;
-        if (transferAmountY < -300) transferAmountY = -300;
+       
 
         if ((this.rotationing) && (touchCount == 1)) {
           this.modelRenderer.setRotation(transferAmountX, transferAmountY);
         }
         if ((touchCount == 2) && (!this.scaling)) {
-          this.modelRenderer.setTranslationY(-transferAmountX / 1000.0f);
-          this.modelRenderer.setTranslationX(transferAmountY / 1000.0f);
+          final float Touch3DModelProportion = 1000.0f;
+          this.modelRenderer.setTranslationY(-transferAmountX / Touch3DModelProportion);
+          this.modelRenderer.setTranslationX(transferAmountY / Touch3DModelProportion);
           this.rotationing = false;
         }
         this.rotationing = true;
@@ -737,50 +772,85 @@ public class MainActivity extends Activity implements SensorEventListener {
   /**
    * {@inheritDoc}
    */
+  /**
+   * {@inheritDoc}
+   */
   public void onSensorChanged(SensorEvent event) {
-    if (this.useGyroScope) {
 
-      if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-        for (int i = 0; i < 3; i++)
-          this.accels[i] = event.values[i];
-      } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-        for (int i = 0; i < 3; i++)
-          this.magneticFields[i] = event.values[i];
+    if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+      for (int i = 0; i < 3; i++)
+        this.accels[i] = event.values[i];
+
+      if (this.useAccelerSensor) {
+
+        // Low Pass Filter
+        this.lowPassX = lowPassX + event.values[0];
+        this.lowPassY = lowPassY + event.values[1];
+        this.lowPassZ = (0.1 * event.values[2] + 0.9 * lowPassZ);
+
+        this.rawAz = event.values[2] - this.lowPassZ;
+
+        long nowTime = SystemClock.uptimeMillis();
+        long interval = nowTime - this.useAccelerOldTime;
+
+        if (interval > 300) {
+          final int accelerSensorThreshold = 5;
+          if (this.rawAz > accelerSensorThreshold) {
+            for (int i = 0; i < 10000; i++) {
+              if (this.scaleValue < 20.0) {
+                this.scaleValue += 0.00002;
+                this.modelRenderer.setScale((float)this.scaleValue);
+                this.modelRenderer.updateDisplay();
+              }
+            }
+            this.useAccelerOldTime = nowTime;
+          }
+          if (this.rawAz < -accelerSensorThreshold) {
+            for (int i = 0; i < 10000; i++) {
+              if (this.scaleValue > 0.05) {
+                this.scaleValue -= 0.00002;
+                this.modelRenderer.setScale((float)this.scaleValue);
+                this.modelRenderer.updateDisplay();
+              }
+            }
+            this.useAccelerOldTime = nowTime;
+          }
+        }
+
+        this.modelRenderer.setScale((float)this.scaleValue);
+
       }
 
-      NumberFormat numberFormat = NumberFormat.getInstance();
-      numberFormat.setMaximumFractionDigits(2);
+    } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+      for (int i = 0; i < 3; i++)
+        this.magneticFields[i] = event.values[i];
+    }
 
+    if (this.useOrientationSensor) {
       float[] R = new float[9];
       float[] I = new float[9];
-
       SensorManager.getRotationMatrix(R, I, this.accels, this.magneticFields);
+
       SensorManager.getOrientation(R, this.orientations);
 
       float[] diffOrientations = new float[3];
 
       for (int i = 0; i < this.orientations.length; i++) {
 
-        if ((prevOrientations[i] > 0 && orientations[i] < 0) || (prevOrientations[i] < 0 && orientations[i] > 0)) diffOrientations[i] = this.orientations[i] + this.prevOrientations[i];
-        else diffOrientations[i] = this.orientations[i] - this.prevOrientations[i];
-
+        diffOrientations[i] = this.orientations[i] - this.prevOrientations[i];
         if (Math.abs(diffOrientations[i]) < 0.05) diffOrientations[i] = (float)0.0;
-
       }
 
       for (int i = 0; i < this.orientations.length; i++) {
         this.prevOrientations[i] = this.orientations[i];
+
       }
 
-      this.testTextView.setText("Azimuth:" + Math.toDegrees(orientations[0]) + " \nPitch:" + Math.toDegrees(orientations[1]) + "\nRoll:" + Math.toDegrees(orientations[2]));
-
-      this.modelRenderer.setRotation(0, (float)Math.toDegrees(diffOrientations[2] * 3.0));
-      // this.modelRenderer.setRotation((float)Math.toDegrees(-(diffOrientations[1] +diffOrientations[0]* (float)3.0, 0);
-      //if (orientations[2] > -90 && orientations[2] < 10)
-      this.modelRenderer.setRotation((float)Math.toDegrees(-diffOrientations[0] * 3.0), 0);
-
-      this.modelRenderer.updateDisplay();
+      this.modelRenderer.setRotation(0.0f, (float)Math.toDegrees(diffOrientations[2] * 3.5));
+      //this.modelRenderer.setRotation((float)Math.toDegrees(diffOrientations[0] * 5.5), 0.0f);
     }
+
+    this.modelRenderer.updateDisplay();
   }
 
 }
