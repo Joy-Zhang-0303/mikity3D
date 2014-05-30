@@ -23,7 +23,7 @@ public class Mikity3dModel implements java.io.Serializable {
    * 新しく生成された<code>Mikity3dModel</code>オブジェクトを初期化します。
    */
   public Mikity3dModel() {
-    this.groups = new ArrayList<Group>();
+    this.groups = new ArrayList<>();
   }
 
   /**

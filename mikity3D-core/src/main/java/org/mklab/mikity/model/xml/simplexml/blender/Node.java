@@ -73,10 +73,10 @@ public class Node {
    */
   public Node() {
     this.instanceGeometry = new InstanceGeometry();
-    this.nodes = new ArrayList<Node>();
-    this.vectors = new ArrayList<String>();
+    this.nodes = new ArrayList<>();
+    this.vectors = new ArrayList<>();
     this.matrix4f = new Matrix4();
-    this.matrixNodes = new ArrayList<Matrix4>();
+    this.matrixNodes = new ArrayList<>();
     this.group = new Group();
   }
 
@@ -118,7 +118,7 @@ public class Node {
         this.name = this.name.substring(0, this.name.indexOf("-J")); //$NON-NLS-1$
       }
       
-      List<Integer> tab = new ArrayList<Integer>();
+      List<Integer> tab = new ArrayList<>();
       for (int i = 0; i < this.matrix.length(); i++) {
         if (this.matrix.indexOf("\n\t\t\t\t", i) == i) { //$NON-NLS-1$
           tab.add(i);
@@ -134,7 +134,7 @@ public class Node {
       }
       
       for (int i = 0; i < this.vectors.size(); i++) {
-        List<Integer> space = new ArrayList<Integer>();
+        List<Integer> space = new ArrayList<>();
         for (int j = 0; j < this.vectors.get(i).length(); j++) {
           if (this.vectors.get(i).indexOf(" ", j) == j) { //$NON-NLS-1$
             space.add(j);
@@ -187,7 +187,7 @@ public class Node {
        * rotate
        */
       for (int i = 0; i < this.rotate.size(); i++) {
-        List<Integer> space = new ArrayList<Integer>();
+        List<Integer> space = new ArrayList<>();
         for (int j = 0; j < this.rotate.get(i).length(); j++) {
           if (this.rotate.get(i).charAt(j) == ' ') {
             space.add(j);

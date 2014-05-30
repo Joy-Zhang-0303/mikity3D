@@ -34,9 +34,9 @@ public class VisualScene {
    * 新しく生成された<code>Visual_scene</code>オブジェクトを初期化します。
    */
   public VisualScene() {
-    this.nodes = new ArrayList<Node>();
-    this.nodeNames = new ArrayList<String>();
-    this.transformMatrices = new ArrayList<Matrix4>();
+    this.nodes = new ArrayList<>();
+    this.nodeNames = new ArrayList<>();
+    this.transformMatrices = new ArrayList<>();
     this.rootGroup = new Group();
   }
 

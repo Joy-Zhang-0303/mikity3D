@@ -20,23 +20,23 @@ public class Polylist {
   @Element
   private String p;
 
-  private List<Integer> vcountValue = new ArrayList<Integer>();
+  private List<Integer> vcountValue = new ArrayList<>();
   
   /** 文字列の空白の位置を記したリスト */
-  private List<Integer> spaces = new ArrayList<Integer>();
+  private List<Integer> spaces = new ArrayList<>();
   /** 使用する頂点の番号を記したリスト */
-  private List<Integer> numbers = new ArrayList<Integer>();
+  private List<Integer> numbers = new ArrayList<>();
   /** 使用する頂点の組み合わせをまとめた配列リスト */
-  private List<int[]> indices = new ArrayList<int[]>();
+  private List<int[]> indices = new ArrayList<>();
 
   /**
    * 新しく生成された<code>Polylist</code>オブジェクトを初期化します。
    */
   public Polylist() {
-    this.spaces = new ArrayList<Integer>();
-    this.numbers = new ArrayList<Integer>();
-    this.indices = new ArrayList<int[]>();
-    this.vcountValue = new ArrayList<Integer>();
+    this.spaces = new ArrayList<>();
+    this.numbers = new ArrayList<>();
+    this.indices = new ArrayList<>();
+    this.vcountValue = new ArrayList<>();
   }
 
   /**
@@ -46,7 +46,7 @@ public class Polylist {
   private void createPolylistIndex() {
     //要チェック
     getSpaceindex(this.p, this.spaces); //pからthis.spaceにスペースの位置を記録
-    final List<Integer> vcountSpaceIndex = new ArrayList<Integer>();
+    final List<Integer> vcountSpaceIndex = new ArrayList<>();
     getSpaceindex(this.vcount, vcountSpaceIndex);
 
     getOddIndexNumberFromP(this.numbers, this.spaces);

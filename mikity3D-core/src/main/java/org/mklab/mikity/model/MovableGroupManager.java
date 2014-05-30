@@ -27,11 +27,11 @@ import org.mklab.nfc.matrix.Matrix;
  */
 public class MovableGroupManager {
   /** グループとと可動グループのマップ */
-  private static Map<Group, MovableGroup> MOVABLE_GROUPS = new HashMap<Group, MovableGroup>();
+  private static Map<Group, MovableGroup> MOVABLE_GROUPS = new HashMap<>();
   /** 可動グループ */
-  private List<MovableGroup> movableGroups = new ArrayList<MovableGroup>();
+  private List<MovableGroup> movableGroups = new ArrayList<>();
   /** データ抽出器 */
-  private Map<MovableGroup, DataPicker> pickers = new HashMap<MovableGroup, DataPicker>();
+  private Map<MovableGroup, DataPicker> pickers = new HashMap<>();
   
   /** データの個数 */
   private int dataSize;
@@ -107,7 +107,7 @@ public class MovableGroupManager {
    * @param data 時系列データ
    */
   private void registerMovableGroups(final Group[] groups, final Matrix data) {
-    logCat.printLog("registerMovableGroups");
+    logCat.printLog("registerMovableGroups"); //$NON-NLS-1$
     for (final Group group : groups) {
       final MovableGroup movableGroup = MOVABLE_GROUPS.get(group);
       final LinkData[] links = group.getLinkData();
@@ -127,16 +127,16 @@ public class MovableGroupManager {
    * @param links リンクデータ
    */
   private DataPicker createPicker(final Matrix data, final LinkData[] links) {
-    logCat.printLog("createPicker");
+    logCat.printLog("createPicker"); //$NON-NLS-1$
     final DataPicker picker = new ClosenessDataPicker(data);
     for (final LinkData link : links) {
       if (link.hasDHParameter()) {
-        logCat.printLog("hasDHParameter");
+        logCat.printLog("hasDHParameter"); //$NON-NLS-1$
         if (link.hasColumnNumber()) {
-          logCat.printLog("hasColumNumber");
-          final int dataNumber = link.getColumnNumber();;
+          logCat.printLog("hasColumNumber"); //$NON-NLS-1$
+          final int dataNumber = link.getColumnNumber();
           final String parameterName = link.getTargetName();
-          logCat.printLog("Number of link:"+links.length+" dataNumber:"+dataNumber  +"parameterName:"+parameterName);
+          logCat.printLog("Number of link:"+links.length+" dataNumber:"+dataNumber  +"parameterName:"+parameterName); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
@@ -262,7 +262,7 @@ public class MovableGroupManager {
 
     this.movableGroups.clear();
     registerMovableGroups(this.root.getModel(0).getGroups(), data);
-    logCat.printLog("setData");
+    logCat.printLog("setData"); //$NON-NLS-1$
   }
   
   /**

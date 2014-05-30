@@ -24,9 +24,9 @@ public class GLRenderer implements GLSurfaceView.Renderer{
   private FloatBuffer vertexBuffer;//頂点バッファ
   private ByteBuffer  indexBuffer; //インデックスバッファ
   private FloatBuffer normalBuffer;//法線バッファ
-  
+
   /**
-   *　サーフェイス生成時に呼ばれる 
+   * {@inheritDoc}
    */
   public void onSurfaceCreated(GL10 gl10,EGLConfig eglConfig) {
       //頂点配列の有効化
@@ -85,9 +85,9 @@ public class GLRenderer implements GLSurfaceView.Renderer{
       for (int i=0;i<normals.length;i++) normals[i]/=div;
       this.normalBuffer=makeFloatBuffer(normals);
   }
-  
+
   /**
-   *　画面サイズ変更時に呼ばれる
+   * {@inheritDoc}
    */
   public void onSurfaceChanged(GL10 gl10,int w,int h) {
       //ビューポート変換
@@ -95,9 +95,8 @@ public class GLRenderer implements GLSurfaceView.Renderer{
       this.aspect=(float)w/(float)h;
   }
 
-
   /**
-   * 毎フレーム描画時に呼ばれる
+   * {@inheritDoc}
    */
   public void onDrawFrame(GL10 gl10) {
       //画面のクリア

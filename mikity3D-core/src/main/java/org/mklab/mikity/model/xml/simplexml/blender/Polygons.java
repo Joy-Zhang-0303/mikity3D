@@ -33,10 +33,10 @@ public class Polygons {
    * 新しく生成された<code>Polygons</code>オブジェクトを初期化します。
    */
   public Polygons() {
-    this.p = new ArrayList<String>();
-    this.vertices = new ArrayList<int[]>();
-    this.spaceIndices = new ArrayList<int[]>();
-    this.vertexNumbers = new ArrayList<int[]>();
+    this.p = new ArrayList<>();
+    this.vertices = new ArrayList<>();
+    this.spaceIndices = new ArrayList<>();
+    this.vertexNumbers = new ArrayList<>();
   }
 
   /**
@@ -55,7 +55,7 @@ public class Polygons {
   @SuppressWarnings("boxing")
   private void setIndex() {
     for (int i = 0; i < this.p.size(); i++) {
-      final List<Integer> spaces = new ArrayList<Integer>();
+      final List<Integer> spaces = new ArrayList<>();
       for (int j = 0; j < this.p.get(i).length(); j++) {
         if (this.p.get(i).charAt(j) == ' ') {
           spaces.add(j);
@@ -67,7 +67,7 @@ public class Polygons {
       }
       this.spaceIndices.add(spaceNumbers);
 
-      final List<Integer> numbers = new ArrayList<Integer>();
+      final List<Integer> numbers = new ArrayList<>();
       for (int j = 0; j < this.spaceIndices.get(i).length + 1; j += 2) {
         if (j == 0) {
           numbers.add(Integer.parseInt(this.p.get(i).substring(0, this.spaceIndices.get(i)[0])));

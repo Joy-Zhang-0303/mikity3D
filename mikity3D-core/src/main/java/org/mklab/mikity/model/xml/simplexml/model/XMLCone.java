@@ -52,7 +52,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public XMLCone() {
     super();
-    this.propertyChangeListeners = new Vector<PropertyChangeListener>();
+    this.propertyChangeListeners = new Vector<>();
   }
   
   /**

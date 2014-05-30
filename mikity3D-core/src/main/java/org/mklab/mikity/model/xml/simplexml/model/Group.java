@@ -65,15 +65,15 @@ public class Group implements java.io.Serializable {
    * コンストラクター
    */
   public Group() {
-    this.boxes = new ArrayList<XMLBox>();
-    this.cylinders = new ArrayList<XMLCylinder>();
-    this.spheres = new ArrayList<XMLSphere>();
-    this.cones = new ArrayList<XMLCone>();
-    this.trianglePolygons = new ArrayList<XMLTrianglePolygon>();
-    this.quadPolygons = new ArrayList<XMLQuadPolygon>();
+    this.boxes = new ArrayList<>();
+    this.cylinders = new ArrayList<>();
+    this.spheres = new ArrayList<>();
+    this.cones = new ArrayList<>();
+    this.trianglePolygons = new ArrayList<>();
+    this.quadPolygons = new ArrayList<>();
 
-    this.links = new ArrayList<LinkData>();
-    this.groups = new ArrayList<Group>();
+    this.links = new ArrayList<>();
+    this.groups = new ArrayList<>();
     this.location = new Location();
     this.rotation = new Rotation();
   } 

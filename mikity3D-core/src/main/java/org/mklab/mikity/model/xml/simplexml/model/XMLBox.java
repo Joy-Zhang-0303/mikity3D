@@ -53,7 +53,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public XMLBox() {
     super();
-    this.propertyChangeListeners = new Vector<PropertyChangeListener>();
+    this.propertyChangeListeners = new Vector<>();
   } 
 
   /**

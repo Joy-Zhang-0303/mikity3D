@@ -36,10 +36,10 @@ public class Source {
    * コンストラクタ
    */
   public Source() {
-    this.spaces = new ArrayList<Integer>();
-    this.locations = new ArrayList<Float>();
-    this.vertexLocations = new ArrayList<Location>();
-    this.normalVectors = new ArrayList<Location>();
+    this.spaces = new ArrayList<>();
+    this.locations = new ArrayList<>();
+    this.vertexLocations = new ArrayList<>();
+    this.normalVectors = new ArrayList<>();
   }
 
   /**

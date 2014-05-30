@@ -23,19 +23,19 @@ public class Triangle {
   private String p;
 
   /** 文字列の空白の位置を記したリスト */
-  private List<Integer> spaces = new ArrayList<Integer>();
+  private List<Integer> spaces = new ArrayList<>();
   /** 使用する頂点の番号を記したリスト */
-  private List<Integer> numbers = new ArrayList<Integer>();
+  private List<Integer> numbers = new ArrayList<>();
   /** 使用する頂点の組み合わせをまとめた配列リスト */
-  private List<int[]> indices = new ArrayList<int[]>();
+  private List<int[]> indices = new ArrayList<>();
 
   /**
    * コンストラクタ
    */
   public Triangle() {
-    this.spaces = new ArrayList<Integer>();
-    this.numbers = new ArrayList<Integer>();
-    this.indices = new ArrayList<int[]>();
+    this.spaces = new ArrayList<>();
+    this.numbers = new ArrayList<>();
+    this.indices = new ArrayList<>();
   }
 
   /**

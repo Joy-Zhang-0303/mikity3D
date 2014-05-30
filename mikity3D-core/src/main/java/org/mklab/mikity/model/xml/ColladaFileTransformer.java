@@ -34,7 +34,7 @@ public class ColladaFileTransformer {
    */
   public ColladaFileTransformer(File file) {
     this.fileBefore = file;
-    this.contents = new ArrayList<String>();
+    this.contents = new ArrayList<>();
     this.fileAfter = new File("registry.xml"); //$NON-NLS-1$
   }
 

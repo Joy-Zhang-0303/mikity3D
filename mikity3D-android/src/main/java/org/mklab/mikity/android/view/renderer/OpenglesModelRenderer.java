@@ -3,13 +3,12 @@ package org.mklab.mikity.android.view.renderer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import org.mklab.mikity.android.MainActivity;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
-import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLSurfaceView;
+import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
 
 
@@ -78,6 +77,10 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   private float eyeY = 0.0f;
   private float eyeX = 0.0f;
 
+  /**
+   * 新しく生成された<code>OpenglesModelRenderer</code>オブジェクトを初期化します。
+   * @param glView
+   */
   public OpenglesModelRenderer(GLSurfaceView glView) {
     this.glView = glView;
   }
@@ -150,7 +153,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   }
 
   /**
-   * 画面サイズ変更時に呼ばれる
+   * {@inheritDoc}
    */
   public void onSurfaceChanged(GL10 gl10, int w, int h) {
     //ビューポート変換
@@ -160,11 +163,16 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public void setChildren(Group[] children) {
-
     this.topGroups = new OpenglesModelCreater().create(children);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public void setConfiguration(Mikity3dConfiguration configuration) {
     if (configuration == null) {
       return;
@@ -200,7 +208,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /**
    * 拡大縮小倍率のセッター　x方向、ｙ方向、ｚ方向全て同じ倍率に設定。
    * 
-   * @param scale　スケール
+   * @param scale スケール
    */
   public void setScale(float scale) {
     this.scaleX = scale;
@@ -212,8 +220,8 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    * スケールのセッター
    * 
    * @param scaleY y方向のスケール
-   * @param scaleX　x方向のスケール
-   * @param scaleZ　ｚ方向のスケール
+   * @param scaleX x方向のスケール
+   * @param scaleZ ｚ方向のスケール
    */
   public void setScale(float scaleX, float scaleY, float scaleZ) {
     this.scaleX = scaleX;
@@ -230,10 +238,16 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     return this.scaleX;
   }
 
+  /**
+   * @param translateX
+   */
   public void setTranslationX(float translateX) {
     this.translationX = (translateX + this.translationX);
   }
 
+  /**
+   * @param translateY
+   */
   public void setTranslationY(float translateY) {
     this.translationY = (translateY + this.translationY);
   }

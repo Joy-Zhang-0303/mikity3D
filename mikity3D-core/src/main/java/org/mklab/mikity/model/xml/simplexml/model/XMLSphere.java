@@ -48,7 +48,7 @@ public class XMLSphere implements java.io.Serializable {
    */
   public XMLSphere() {
     super();
-    this.propertyChangeListeners = new Vector<PropertyChangeListener>();
+    this.propertyChangeListeners = new Vector<>();
   }
 
   /**

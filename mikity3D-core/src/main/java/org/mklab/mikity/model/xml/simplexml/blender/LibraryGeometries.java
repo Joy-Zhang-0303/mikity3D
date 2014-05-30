@@ -31,7 +31,7 @@ public class LibraryGeometries {
    * コンストラクタ
    */
   public LibraryGeometries() {
-    this.geometries = new ArrayList<Geometry>();
+    this.geometries = new ArrayList<>();
     this.creater = new BlenderSceneGraphCreater();
   }
 

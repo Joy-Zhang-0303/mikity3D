@@ -190,6 +190,10 @@ public class MainActivity extends Activity implements SensorEventListener {
 
   }
 
+  /**
+   * @throws FileNotFoundException
+   * @throws IOException
+   */
   private void loadTimeData() throws FileNotFoundException, IOException {
     InputStream mat1 = new FileInputStream(this.filePath);
     setTimeData(mat1);
@@ -241,7 +245,9 @@ public class MainActivity extends Activity implements SensorEventListener {
     this.stopButton.setEnabled(false);
 
     this.loadModelButton.setOnClickListener(new View.OnClickListener() {
-
+      /**
+       * {@inheritDoc}
+       */
       public void onClick(View v) {
         MainActivity.this.isSelectedModelFile = false;
         fileManager.getFilePath();
@@ -275,16 +281,21 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     //再生速度の設定
     this.quickButton.setOnClickListener(new View.OnClickListener() {
-
+      /**
+       * {@inheritDoc}
+       */
       public void onClick(View v) {
         MainActivity.this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
         MainActivity.this.animationSpeed += 1;
-        MainActivity.this.animationSpeedTextEdit.setText("" + (double)MainActivity.this.animationSpeed / 10);
+        MainActivity.this.animationSpeedTextEdit.setText("" + (double)MainActivity.this.animationSpeed / 10); //$NON-NLS-1$
         if (MainActivity.this.animationTask != null) MainActivity.this.animationTask.setSpeedScale(MainActivity.this.animationSpeed / 10);
       }
     });
-    this.slowButton.setOnClickListener(new View.OnClickListener() {
 
+    this.slowButton.setOnClickListener(new View.OnClickListener() {
+      /**
+       * {@inheritDoc}
+       */
       public void onClick(View v) {
         MainActivity.this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
         MainActivity.this.animationSpeed -= 1;
@@ -304,7 +315,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     // イベントリスナー
     this.playButton.setOnClickListener(new View.OnClickListener() {
-
       // コールバックメソッド
       public void onClick(View view) {
         runAnimation();
@@ -312,7 +322,6 @@ public class MainActivity extends Activity implements SensorEventListener {
     });
 
     this.stopButton.setOnClickListener(new View.OnClickListener() {
-
       // コールバックメソッド
       public void onClick(View view) {
         MainActivity.this.timer.cancel();
@@ -323,6 +332,9 @@ public class MainActivity extends Activity implements SensorEventListener {
     this.gyroToggleButton = (ToggleButton)findViewById(R.id.gyroToggleButton);
     this.gyroToggleButton.setOnClickListener(new OnClickListener() {
 
+      /**
+       * {@inheritDoc}
+       */
       public void onClick(View v) {
         if (MainActivity.this.gyroToggleButton.isChecked()) {
           MainActivity.this.useOrientationSensor = true;
@@ -334,6 +346,9 @@ public class MainActivity extends Activity implements SensorEventListener {
     this.accelerToggleButton = (ToggleButton)findViewById(R.id.accelerToggleButton);
     this.accelerToggleButton.setOnClickListener(new OnClickListener() {
 
+      /**
+       * {@inheritDoc}
+       */
       public void onClick(View v) {
         if (MainActivity.this.accelerToggleButton.isChecked()) {
           MainActivity.this.useAccelerSensor = true;
@@ -349,9 +364,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     //外部アプリからの起動
     Intent intent = getIntent();
-    if (intent.getStringArrayListExtra("org.mklab.mikity.android.ModelDataPathAndTimeDataPath") != null) {
-      ArrayList<String> data = intent.getStringArrayListExtra("org.mklab.mikity.android.ModelDataPathAndTimeDataPath");
-      Toast.makeText(this, "Launch ounter application", Toast.LENGTH_LONG).show();
+    if (intent.getStringArrayListExtra("org.mklab.mikity.android.ModelDataPathAndTimeDataPath") != null) { //$NON-NLS-1$
+      ArrayList<String> data = intent.getStringArrayListExtra("org.mklab.mikity.android.ModelDataPathAndTimeDataPath"); //$NON-NLS-1$
+      Toast.makeText(this, "Launch ounter application", Toast.LENGTH_LONG).show(); //$NON-NLS-1$
 
       String modelFilePath = data.get(0);
       String timeDataPath = data.get(1);
@@ -784,9 +799,9 @@ public class MainActivity extends Activity implements SensorEventListener {
       if (this.useAccelerSensor) {
 
         // Low Pass Filter
-        this.lowPassX = lowPassX + event.values[0];
-        this.lowPassY = lowPassY + event.values[1];
-        this.lowPassZ = (0.1 * event.values[2] + 0.9 * lowPassZ);
+        this.lowPassX = this.lowPassX + event.values[0];
+        this.lowPassY = this.lowPassY + event.values[1];
+        this.lowPassZ = (0.1 * event.values[2] + 0.9 * this.lowPassZ);
 
         this.rawAz = event.values[2] - this.lowPassZ;
 

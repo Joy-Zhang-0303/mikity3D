@@ -28,8 +28,8 @@ public class Mikity3d implements java.io.Serializable {
    * 新しく生成された<code>Mikity3d</code>オブジェクトを初期化します。
    */
   public Mikity3d() {
-    this.models = new ArrayList<Mikity3dModel>();
-    this.configurations = new ArrayList<Mikity3dConfiguration>();
+    this.models = new ArrayList<>();
+    this.configurations = new ArrayList<>();
   }
 
   /**

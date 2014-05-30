@@ -25,7 +25,7 @@ public class AnimationTask extends TimerTask {
   /** グループマネージャ　*/
   private MovableGroupManager manager;
   /** リスナー　*/
-  private List<AnimationTaskListener> listeners = new ArrayList<AnimationTaskListener>();
+  private List<AnimationTaskListener> listeners = new ArrayList<>();
   /** 現在の時間　*/
   private double currentTime = 0.0;
   /** 開始時間　*/

@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class ColorConstant {
   /** 色の名前と色オブジェクトのマップ */
-  private final static Map<String, Color3> colorMap = new HashMap<String, Color3>();
+  private final static Map<String, Color3> colorMap = new HashMap<>();
 
   static {
     colorMap.put("white", new Color3(255, 255, 255)); //$NON-NLS-1$

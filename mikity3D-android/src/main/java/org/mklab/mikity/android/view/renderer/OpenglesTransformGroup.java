@@ -62,6 +62,9 @@ public class OpenglesTransformGroup implements MovableGroup {
     this.coordinate = coordinate;
   }
 
+  /**
+   * @param gl10
+   */
   public void apply(GL10 gl10) {
     gl10.glPushMatrix();
 

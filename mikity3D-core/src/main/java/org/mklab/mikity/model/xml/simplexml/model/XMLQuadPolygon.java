@@ -47,7 +47,7 @@ public class XMLQuadPolygon {
    * 新しく生成された<code>XMLQuadPolygon</code>オブジェクトを初期化します。
    */
   public XMLQuadPolygon() {
-    this.points = new ArrayList<Location>(4);
+    this.points = new ArrayList<>(4);
     this.color = "orange"; //$NON-NLS-1$
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }

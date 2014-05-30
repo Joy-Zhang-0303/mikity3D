@@ -45,7 +45,7 @@ public class Mesh {
    * コンストラクタ
    */
   public Mesh() {
-    this.sources = new ArrayList<Source>();
+    this.sources = new ArrayList<>();
     this.polygons = new Polygons();
     this.triangles = new Triangle();
     this.polylist = new Polylist();

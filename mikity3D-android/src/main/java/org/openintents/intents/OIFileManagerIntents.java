@@ -33,7 +33,7 @@ public final class OIFileManagerIntents {
 	 * 
 	 * <p>Constant Value: "org.openintents.action.PICK_FILE"</p>
 	 */
-	public static final String ACTION_PICK_FILE = "org.openintents.action.PICK_FILE";
+	public static final String ACTION_PICK_FILE = "org.openintents.action.PICK_FILE"; //$NON-NLS-1$
 
 	/**
 	 * Activity Action: Pick a directory through the file manager, or let user
@@ -43,7 +43,7 @@ public final class OIFileManagerIntents {
 	 * 
 	 * <p>Constant Value: "org.openintents.action.PICK_DIRECTORY"</p>
 	 */
-	public static final String ACTION_PICK_DIRECTORY = "org.openintents.action.PICK_DIRECTORY";
+	public static final String ACTION_PICK_DIRECTORY = "org.openintents.action.PICK_DIRECTORY"; //$NON-NLS-1$
 	
 	/**
 	 * The title to display.
@@ -52,7 +52,7 @@ public final class OIFileManagerIntents {
 	 * 
 	 * <p>Constant Value: "org.openintents.extra.TITLE"</p>
 	 */
-	public static final String EXTRA_TITLE = "org.openintents.extra.TITLE";
+	public static final String EXTRA_TITLE = "org.openintents.extra.TITLE"; //$NON-NLS-1$
 
 	/**
 	 * The text on the button to display.
@@ -61,6 +61,6 @@ public final class OIFileManagerIntents {
 	 * 
 	 * <p>Constant Value: "org.openintents.extra.BUTTON_TEXT"</p>
 	 */
-	public static final String EXTRA_BUTTON_TEXT = "org.openintents.extra.BUTTON_TEXT";
+	public static final String EXTRA_BUTTON_TEXT = "org.openintents.extra.BUTTON_TEXT"; //$NON-NLS-1$
 
 }
