@@ -58,7 +58,7 @@
 						</goals>
 						<phase>install</phase>
 						<configuration>
-							<executable>${ANDROID_HOME}/tools/zipalign</executable>
+							<executable>${ANDROID_HOME}/build-tools/19.1.0/zipalign</executable>
 							<arguments>
 								<argument>-f</argument>
 								<argument>-v</argument>
