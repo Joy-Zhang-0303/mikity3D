@@ -14,7 +14,7 @@ public class GLView extends GLSurfaceView {
 
   /**
    * 新しく生成された<code>GLView</code>オブジェクトを初期化します。
-   * @param context
+   * @param context コンテクスト
    */
   public GLView(Context context) {
     super(context);

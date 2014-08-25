@@ -79,7 +79,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
   /**
    * 新しく生成された<code>OpenglesModelRenderer</code>オブジェクトを初期化します。
-   * @param glView
+   * @param glView GLサーフェースビュー
    */
   public OpenglesModelRenderer(GLSurfaceView glView) {
     this.glView = glView;
@@ -239,14 +239,14 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   }
 
   /**
-   * @param translateX
+   * @param translateX X軸方向の移動量
    */
   public void setTranslationX(float translateX) {
     this.translationX = (translateX + this.translationX);
   }
 
   /**
-   * @param translateY
+   * @param translateY Y軸方向の移動量
    */
   public void setTranslationY(float translateY) {
     this.translationY = (translateY + this.translationY);

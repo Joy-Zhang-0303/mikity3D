@@ -312,7 +312,7 @@ public class MovableGroupManager {
   
   
   /**
-   * @param logCat
+   * @param logCat Androidのログキャット利用クラス
    */
   public void setLogCat(LogCatPrinter logCat){
     this.logCat = logCat;

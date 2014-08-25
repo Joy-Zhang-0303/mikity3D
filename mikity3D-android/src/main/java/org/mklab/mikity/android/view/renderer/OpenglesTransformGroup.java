@@ -63,7 +63,7 @@ public class OpenglesTransformGroup implements MovableGroup {
   }
 
   /**
-   * @param gl10
+   * @param gl10 GL10クラス
    */
   public void apply(GL10 gl10) {
     gl10.glPushMatrix();

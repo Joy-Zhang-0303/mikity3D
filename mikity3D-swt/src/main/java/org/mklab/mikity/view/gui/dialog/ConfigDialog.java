@@ -26,7 +26,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
 /**
- * <ConfigDialog>の設定を行うクラス
+ * ConfigDialogの設定を行うクラス
  * 
  * @author miki
  * @version $Revision: 1.1 $.2005/02/01

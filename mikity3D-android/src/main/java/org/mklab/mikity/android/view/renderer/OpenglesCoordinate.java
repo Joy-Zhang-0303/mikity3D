@@ -29,7 +29,7 @@ public class OpenglesCoordinate {
 
   /**
    * GLによる座標変換を適用します。
-   * @param gl10
+   * @param gl10 GL10クラス
    */
   public void apply(GL10 gl10) {
     gl10.glTranslatef(this.x, this.y, this.z);

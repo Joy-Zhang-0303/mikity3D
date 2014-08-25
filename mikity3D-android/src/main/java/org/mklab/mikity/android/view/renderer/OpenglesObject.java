@@ -13,7 +13,7 @@ public interface OpenglesObject {
 
   /**
    * オブジェクトを表示します。
-   * @param gl10
+   * @param gl10 GL10クラス
    */
   void display(GL10 gl10);
   
