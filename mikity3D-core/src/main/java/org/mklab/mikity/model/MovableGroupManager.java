@@ -107,7 +107,7 @@ public class MovableGroupManager {
    * @param data 時系列データ
    */
   private void registerMovableGroups(final Group[] groups, final Matrix data) {
-    logCat.printLog("registerMovableGroups"); //$NON-NLS-1$
+    //logCat.printLog("registerMovableGroups"); //$NON-NLS-1$
     for (final Group group : groups) {
       final MovableGroup movableGroup = MOVABLE_GROUPS.get(group);
       final LinkData[] links = group.getLinkData();
