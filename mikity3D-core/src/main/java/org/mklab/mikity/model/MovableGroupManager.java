@@ -131,7 +131,7 @@ public class MovableGroupManager {
     final DataPicker picker = new ClosenessDataPicker(data);
     for (final LinkData link : links) {
       if (link.hasDHParameter()) {
-        //logCat.printLog("hasDHParameter"); //$NON-NLS-1$
+       // logCat.printLog("hasDHParameter"); //$NON-NLS-1$
         if (link.hasColumnNumber()) {
           //logCat.printLog("hasColumNumber"); //$NON-NLS-1$
           final int dataNumber = link.getColumnNumber();
@@ -262,7 +262,7 @@ public class MovableGroupManager {
 
     this.movableGroups.clear();
     registerMovableGroups(this.root.getModel(0).getGroups(), data);
-    //logCat.printLog("setData"); //$NON-NLS-1$
+   // logCat.printLog("setData"); //$NON-NLS-1$
   }
   
   /**
