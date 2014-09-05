@@ -106,6 +106,14 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public AnimationWindow(final Shell parentShell, final Mikity3d root) {
     super(parentShell);
+    setRoot(root);
+  }
+  // TODO change the method name(setRoot) or change the function, the reason is why its authority was huge.
+  /**
+   * ルートを設定し、モデル描画をできるようにするためのメソッドです。
+   * @param root ルート
+   */
+  public void setRoot(final Mikity3d root) {
     this.root = root;
     this.manager = new MovableGroupManager(this.root);
 
@@ -124,6 +132,14 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
     this(parentShell, new Mikity3dFactory().loadFile(modelFile));
+  }
+  
+  /**
+   * ファイル名を指定しないコンストラクター
+   * @param parentShell 親シェル
+   */
+  public AnimationWindow(final Shell parentShell) {
+    super(parentShell);
   }
 
   /**
