@@ -34,6 +34,9 @@ public class Mikity3dAnimation {
     main.setRoot(new Mikity3dFactory().loadFile(new File(modelFileName)));
     main.setBlockOnOpen(true);
     main.open();
+    main.setModelData(main.getFrame());
+    main.getFrame().validate();
+    //main.createFileChooseComposite(main.getComposite());
     Display.getCurrent().dispose();
   }
 }

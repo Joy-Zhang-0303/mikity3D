@@ -97,6 +97,10 @@ public class AnimationWindow extends ApplicationWindow {
 
   /** ModelCanvas */
   private ModelRenderer modelRenderer;
+  
+  private Frame frame;
+  
+  private Composite composite;
 
   /**
    * コンストラクター
@@ -120,6 +124,14 @@ public class AnimationWindow extends ApplicationWindow {
     // TODO Java3d or JOGL
     //this.modelRenderer = new Java3dModelRenderer(this.root);
     this.modelRenderer = new JoglModelRenderer();
+  }
+  
+  /**
+   * ルートを返すメソッドです。
+   * @return root ルート
+   */
+  public Mikity3d getRoot() {
+    return this.root;
   }
 
   /**
@@ -155,7 +167,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}          
    */
   @Override
   protected Control createContents(final Composite parent) {
@@ -168,7 +180,7 @@ public class AnimationWindow extends ApplicationWindow {
 
     form.setWeights(new int[] {70, 30}); // 70%:30%に分割点を設定
 
-    if (this.root.getConfiguration(0).getData() != null) {
+    if (this.root != null && this.root.getConfiguration(0).getData() != null) {
       setTimeData(new File(this.root.getConfiguration(0).getData()));
     }
     return parent;
@@ -205,7 +217,34 @@ public class AnimationWindow extends ApplicationWindow {
     composite.setLayoutData(gridData);
 
     // AWTのフレームを作る。
-    final Frame frame = SWT_AWT.new_Frame(composite);
+    //final Frame frame = SWT_AWT.new_Frame(composite);
+    setFrame(composite);
+    setComposite(composite);
+    //setModelData(frame);
+  }
+  
+  private void setFrame(Composite composite) {
+    frame = SWT_AWT.new_Frame(composite);
+    //setModelData(frame);
+  }
+  
+  private void setComposite(Composite composite) {
+    this.composite = composite;
+  }
+  
+  public Composite getComposite() {
+    return this.composite;
+  }
+  
+  public Frame getFrame() {
+    return this.frame;
+  }
+
+  /**
+   * モデルデータを設定するためのメソッドです。
+   * @param frame フレーム
+   */
+  public void setModelData(final Frame frame) {
     frame.add((Component)this.modelRenderer);
     
     final Group[] children = this.root.getModel(0).getGroups();
@@ -227,6 +266,7 @@ public class AnimationWindow extends ApplicationWindow {
     controllerComposite.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.VERTICAL_ALIGN_END));
     controllerComposite.setLayout(new GridLayout());
 
+    createModelFileChooseComposite(controllerComposite);
     createFileChooseComposite(controllerComposite);
 
     final Composite controller = new Composite(controllerComposite, SWT.NONE);
@@ -342,11 +382,65 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
+   * モデルファイルを選択するボタン
+   * 
+   * @param parent
+   */
+  public void createModelFileChooseComposite(final Composite parent) {
+    final Composite composite = new Composite(parent, SWT.NONE);
+    final GridLayout layout = new GridLayout();
+    layout.numColumns = 6;
+    composite.setLayout(layout);
+    composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+    final Label label = new Label(composite, SWT.NONE);
+    label.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
+
+    this.filePathText = new Text(composite, SWT.BORDER);
+    this.filePathText.setText(""); //$NON-NLS-1$
+    this.filePathText.addTraverseListener(new TraverseListener() {
+
+      public void keyTraversed(TraverseEvent e) {
+        if (e.detail == SWT.TRAVERSE_RETURN) {
+          setModelData(getFrame());
+        }
+      }
+    });
+    
+    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    gridData.horizontalSpan = 4;
+    this.filePathText.setLayoutData(gridData);
+
+    final Button refButton = new Button(composite, SWT.BORDER);
+    refButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
+
+    refButton.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent arg0) {
+        final FileDialog dialog = new FileDialog(parent.getShell());
+        // ファイルを選択させる
+        final String filePath = dialog.open();
+        if (filePath != null) {
+          try {
+            setRoot(new Mikity3dFactory().loadFile(new File(filePath)));
+            setModelData(getFrame());
+            frame.validate();
+            } catch (IOException | Mikity3dSerializeDeserializeException e) {
+            // TODO 自動生成された catch ブロック
+            throw new RuntimeException(e);
+          }
+        }
+      }
+    });
+  }
+  
+  /**
    * ファイルを選択するボタン
    * 
    * @param parent
    */
-  private void createFileChooseComposite(final Composite parent) {
+  public void createFileChooseComposite(final Composite parent) {
     final Composite composite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
