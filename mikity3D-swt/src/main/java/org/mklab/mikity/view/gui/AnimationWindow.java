@@ -460,19 +460,27 @@ public class AnimationWindow extends ApplicationWindow {
         // ファイルを選択させる
         final String filePath = dialog.open();
         if (filePath != null) {
-          // ルートの設定
-          try {
-            File file = new File(filePath);
-            Mikity3dFactory m3f = new Mikity3dFactory();
-            Mikity3d root = m3f.loadFile(file);
-            setRoot(root);
-            setModelData(getFrame());
-            } catch (IOException | Mikity3dSerializeDeserializeException e) {
-            throw new RuntimeException(e);
-          }
+          // ルートの設定setRoot(root);
+          makeRoot(filePath);
+          setModelData(getFrame()); 
         }
       }
     });
+  }
+  
+  /**
+   * ルートを作るメソッドです。
+   * @param filePath ファイルのパス
+   */
+  public void makeRoot(String filePath) {
+    try {
+      File file = new File(filePath);
+      Mikity3dFactory m3f = new Mikity3dFactory();
+      Mikity3d mroot = m3f.loadFile(file);
+      setRoot(mroot);
+      } catch (IOException | Mikity3dSerializeDeserializeException e) {
+          throw new RuntimeException(e);
+    }
   }
   
   /**
@@ -546,8 +554,7 @@ public class AnimationWindow extends ApplicationWindow {
    * @param file ファイル
    */
   public void setTimeData(final File file) {
-    try {
-      FileReader input = new FileReader(file);
+    try(FileReader input = new FileReader(file);) {
       this.data = MatxMatrix.readMatFormat(input);
       input.close();
 
