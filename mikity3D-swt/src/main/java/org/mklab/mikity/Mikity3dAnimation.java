@@ -5,12 +5,7 @@
  */
 package org.mklab.mikity;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.eclipse.swt.widgets.Display;
-import org.mklab.mikity.model.xml.Mikity3dFactory;
-import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.view.gui.AnimationWindow;
 
 /**
@@ -24,19 +19,11 @@ public class Mikity3dAnimation {
   /**
    * メインメソッドです。
    * @param args コマンドライン引数
-   * @throws IOException ファイルを読み込めない場合
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
    */
-  public static void main(String[] args) throws IOException, Mikity3dSerializeDeserializeException {
-    final String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml";  //$NON-NLS-1$
-    //final AnimationWindow main = new AnimationWindow(null, new File(modelFileName));
+  public static void main(String[] args) {
     final AnimationWindow main = new AnimationWindow(null);
-    main.setRoot(new Mikity3dFactory().loadFile(new File(modelFileName)));
     main.setBlockOnOpen(true);
     main.open();
-    main.setModelData(main.getFrame());
-    main.getFrame().validate();
-    //main.createFileChooseComposite(main.getComposite());
     Display.getCurrent().dispose();
   }
 }

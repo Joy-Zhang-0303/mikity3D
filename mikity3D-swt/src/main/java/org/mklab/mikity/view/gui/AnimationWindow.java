@@ -81,6 +81,9 @@ public class AnimationWindow extends ApplicationWindow {
   private Matrix data;
 
   /** */
+  Text modelFilePathText;
+  
+  /** */
   Text filePathText;
 
   /** */
@@ -98,8 +101,10 @@ public class AnimationWindow extends ApplicationWindow {
   /** ModelCanvas */
   private ModelRenderer modelRenderer;
   
+  /** */
   private Frame frame;
   
+  /** */
   private Composite composite;
 
   /**
@@ -112,7 +117,27 @@ public class AnimationWindow extends ApplicationWindow {
     super(parentShell);
     setRoot(root);
   }
-  // TODO change the method name(setRoot) or change the function, the reason is why its authority was huge.
+  
+  /**
+   * コンストラクター
+   * 
+   * @param parentShell 親シェル
+   * @param modelFile モデルファイル
+   * @throws IOException ファイルを読み込めない場合
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
+   */
+  public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
+    this(parentShell, new Mikity3dFactory().loadFile(modelFile));
+  }
+  
+  /**
+   * ファイル名を指定しないコンストラクター
+   * @param parentShell 親シェル
+   */
+  public AnimationWindow(final Shell parentShell) {
+    super(parentShell);
+  }
+  
   /**
    * ルートを設定し、モデル描画をできるようにするためのメソッドです。
    * @param root ルート
@@ -132,26 +157,6 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public Mikity3d getRoot() {
     return this.root;
-  }
-
-  /**
-   * コンストラクター
-   * 
-   * @param parentShell 親シェル
-   * @param modelFile モデルファイル
-   * @throws IOException ファイルを読み込めない場合
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
-   */
-  public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
-    this(parentShell, new Mikity3dFactory().loadFile(modelFile));
-  }
-  
-  /**
-   * ファイル名を指定しないコンストラクター
-   * @param parentShell 親シェル
-   */
-  public AnimationWindow(final Shell parentShell) {
-    super(parentShell);
   }
 
   /**
@@ -209,33 +214,46 @@ public class AnimationWindow extends ApplicationWindow {
   /**
    * アニメーションを描画するビューを生成します。
    * 
-   * @param parent
+   * @param parent 親コンポジット
    */
   private void createView(final Composite parent) {
-    final Composite composite = new Composite(parent, SWT.EMBEDDED);
+    final Composite createViewComposite = new Composite(parent, SWT.EMBEDDED);
     final GridData gridData = new GridData(GridData.FILL_BOTH);
-    composite.setLayoutData(gridData);
-
+    createViewComposite.setLayoutData(gridData);
+    
     // AWTのフレームを作る。
-    //final Frame frame = SWT_AWT.new_Frame(composite);
-    setFrame(composite);
-    setComposite(composite);
-    //setModelData(frame);
+    setFrame(createViewComposite);
+    setComposite(createViewComposite);
   }
   
+  /**
+   * フレームを設定するためのメソッドです。
+   * @param composite コンポジット
+   */
   private void setFrame(Composite composite) {
-    frame = SWT_AWT.new_Frame(composite);
-    //setModelData(frame);
+    this.frame = SWT_AWT.new_Frame(composite);
   }
   
+  /**
+   * コンポジットを設定するメソッドです。
+   * @param composite コンポジット
+   */
   private void setComposite(Composite composite) {
     this.composite = composite;
   }
   
+  /**
+   * コンポジットを返すメソッドです。
+   * @return composite　コンポジット
+   */
   public Composite getComposite() {
     return this.composite;
   }
   
+  /**
+   * フレームを返すメソッドです。
+   * @return frame フレーム
+   */
   public Frame getFrame() {
     return this.frame;
   }
@@ -252,12 +270,14 @@ public class AnimationWindow extends ApplicationWindow {
 
     final Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
+    //frame.invalidate();
+    frame.validate();
   }
 
   /**
    * This method initializes controllerComp
    * 
-   * コントローラCompositの中身
+   * コントローラCompositeの中身
    * 
    * @param parent
    */
@@ -267,7 +287,7 @@ public class AnimationWindow extends ApplicationWindow {
     controllerComposite.setLayout(new GridLayout());
 
     createModelFileChooseComposite(controllerComposite);
-    createFileChooseComposite(controllerComposite);
+    createTimeDataChooseComposite(controllerComposite);
 
     final Composite controller = new Composite(controllerComposite, SWT.NONE);
     controller.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -298,6 +318,9 @@ public class AnimationWindow extends ApplicationWindow {
     //composite2.setLayout(new GridLayout(3, false));
 
     fasterButton.addSelectionListener(new SelectionAdapter() {
+      /**
+       * @param arg0 selectionEvent 
+       */
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         AnimationWindow.this.speed += 0.1;
@@ -311,6 +334,9 @@ public class AnimationWindow extends ApplicationWindow {
     });
 
     slowerButton.addSelectionListener(new SelectionAdapter() {
+      /**
+       * @param arg0  selectionEvent
+       */
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         AnimationWindow.this.speed -= 0.1;
@@ -324,6 +350,9 @@ public class AnimationWindow extends ApplicationWindow {
     });
 
     playbackButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+      /**
+       * @param e selectionEvent 
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         runAnimation();
@@ -331,6 +360,9 @@ public class AnimationWindow extends ApplicationWindow {
     });
 
     stopButton.addSelectionListener(new SelectionAdapter() {
+      /**
+       * @param arg0 selectionEvent 
+       */
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         // スレッドを停止させる。復元不能
@@ -343,20 +375,20 @@ public class AnimationWindow extends ApplicationWindow {
   /**
    * 実行時間バーを生成する。
    * 
-   * @param parent
+   * @param parent 親コンポジット
    */
   private void createTimeBar(final Composite parent) {
-    final Composite composite = new Composite(parent, SWT.NONE);
-    composite.setLayout(new GridLayout(3, true));
+    final Composite tiemBarComposite = new Composite(parent, SWT.NONE);
+    tiemBarComposite.setLayout(new GridLayout(3, true));
     final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
 
-    this.startTimeLabel = new Label(composite, SWT.NONE | SWT.LEFT);
-    this.currentTimeLabel = new Label(composite, SWT.NONE | SWT.CENTER);
+    this.startTimeLabel = new Label(tiemBarComposite, SWT.NONE | SWT.LEFT);
+    this.currentTimeLabel = new Label(tiemBarComposite, SWT.NONE | SWT.CENTER);
     this.currentTimeLabel.setText("0.0"); //$NON-NLS-1$
     this.currentTimeLabel.setLayoutData(gridData1);
-    this.endTimeLabel = new Label(composite, SWT.NONE | SWT.RIGHT);
+    this.endTimeLabel = new Label(tiemBarComposite, SWT.NONE | SWT.RIGHT);
 
-    this.timeSlider = new Slider(composite, SWT.NONE);
+    this.timeSlider = new Slider(tiemBarComposite, SWT.NONE);
 
     final GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
     gridData2.horizontalSpan = 3;
@@ -365,6 +397,9 @@ public class AnimationWindow extends ApplicationWindow {
     this.timeSlider.setMaximum(0);
 
     this.timeSlider.addSelectionListener(new SelectionAdapter() {
+      /**
+       * @param arg0 selectionEvent 
+       */
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         final double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
@@ -384,21 +419,21 @@ public class AnimationWindow extends ApplicationWindow {
   /**
    * モデルファイルを選択するボタン
    * 
-   * @param parent
+   * @param parent 親コンポジット
    */
   public void createModelFileChooseComposite(final Composite parent) {
-    final Composite composite = new Composite(parent, SWT.NONE);
+    final Composite modelChooseComposite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
-    composite.setLayout(layout);
-    composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    modelChooseComposite.setLayout(layout);
+    modelChooseComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-    final Label label = new Label(composite, SWT.NONE);
+    final Label label = new Label(modelChooseComposite, SWT.NONE);
     label.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
 
-    this.filePathText = new Text(composite, SWT.BORDER);
-    this.filePathText.setText(""); //$NON-NLS-1$
-    this.filePathText.addTraverseListener(new TraverseListener() {
+    this.modelFilePathText = new Text(modelChooseComposite, SWT.BORDER);
+    this.modelFilePathText.setText(""); //$NON-NLS-1$
+    this.modelFilePathText.addTraverseListener(new TraverseListener() {
 
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
@@ -409,25 +444,30 @@ public class AnimationWindow extends ApplicationWindow {
     
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 4;
-    this.filePathText.setLayoutData(gridData);
+    this.modelFilePathText.setLayoutData(gridData);
 
-    final Button refButton = new Button(composite, SWT.BORDER);
+    final Button refButton = new Button(modelChooseComposite, SWT.BORDER);
     refButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
 
     refButton.addSelectionListener(new SelectionAdapter() {
 
+      /**
+       * @param arg0 selectionEvent
+       */
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         final FileDialog dialog = new FileDialog(parent.getShell());
         // ファイルを選択させる
         final String filePath = dialog.open();
         if (filePath != null) {
+          // ルートの設定
           try {
-            setRoot(new Mikity3dFactory().loadFile(new File(filePath)));
+            File file = new File(filePath);
+            Mikity3dFactory m3f = new Mikity3dFactory();
+            Mikity3d root = m3f.loadFile(file);
+            setRoot(root);
             setModelData(getFrame());
-            frame.validate();
             } catch (IOException | Mikity3dSerializeDeserializeException e) {
-            // TODO 自動生成された catch ブロック
             throw new RuntimeException(e);
           }
         }
@@ -438,19 +478,19 @@ public class AnimationWindow extends ApplicationWindow {
   /**
    * ファイルを選択するボタン
    * 
-   * @param parent
+   * @param parent 親コンポジット
    */
-  public void createFileChooseComposite(final Composite parent) {
-    final Composite composite = new Composite(parent, SWT.NONE);
+  public void createTimeDataChooseComposite(final Composite parent) {
+    final Composite timeDataComposite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
-    composite.setLayout(layout);
-    composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    timeDataComposite.setLayout(layout);
+    timeDataComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-    final Label label = new Label(composite, SWT.NONE);
+    final Label label = new Label(timeDataComposite, SWT.NONE);
     label.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
 
-    this.filePathText = new Text(composite, SWT.BORDER);
+    this.filePathText = new Text(timeDataComposite, SWT.BORDER);
     this.filePathText.setText(""); //$NON-NLS-1$
     this.filePathText.addTraverseListener(new TraverseListener() {
 
@@ -465,11 +505,14 @@ public class AnimationWindow extends ApplicationWindow {
     gridData.horizontalSpan = 4;
     this.filePathText.setLayoutData(gridData);
 
-    final Button refButton = new Button(composite, SWT.BORDER);
+    final Button refButton = new Button(timeDataComposite, SWT.BORDER);
     refButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
 
     refButton.addSelectionListener(new SelectionAdapter() {
 
+      /**
+       * @param arg0 selectionEvent 
+       */
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         final FileDialog dialog = new FileDialog(parent.getShell());
@@ -504,7 +547,7 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public void setTimeData(final File file) {
     try {
-      final FileReader input = new FileReader(file);
+      FileReader input = new FileReader(file);
       this.data = MatxMatrix.readMatFormat(input);
       input.close();
 
