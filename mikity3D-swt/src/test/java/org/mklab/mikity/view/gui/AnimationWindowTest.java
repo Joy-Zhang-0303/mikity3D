@@ -11,7 +11,9 @@ import java.io.File;
 import java.io.IOException;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.*;
 
@@ -37,6 +39,10 @@ public class AnimationWindowTest {
   public void init() {
     this.am = new AnimationWindow(null);
   }
+  
+  /**ルール */
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
   /**
    * ルートの値が正しいか否かを判断するためのテストです。
    */
@@ -59,7 +65,7 @@ public class AnimationWindowTest {
    * ルートを作るメソッドのテストメソッドです。
    *    */
   @Test
-  public void testMakeRoot1() {
+  public void testMakeRoot() {
     String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
     this.am.makeRoot(modelFileName);
     Mikity3d root;
@@ -70,6 +76,33 @@ public class AnimationWindowTest {
     }
     assertThat(this.am.getRoot(), is(root));
   }
+  
+  /**
+   * ルートを作るメソッドの例外テストメソッドです。
+   */
+  @Test
+  public void testExceptionForMakeRoot() {
+    this.thrown.expect(RuntimeException.class);
+    this.thrown.expectMessage("ddd");
+    
+    this.am.makeRoot("filePath"); //$NON-NLS-1$
+  }
+  
+  /**
+   * ファイルが選択された時のテストメソッドです。
+   * @throws RuntimeException  ddd
+   */
+ /*
+  @Test
+  public void testWidgetSelected() {
+    try {
+      this.am.makeRoot("ddd");
+      fail();
+    } catch (RuntimeException e) {
+        assertThat(e.getMessage(), is("ddd"));
+    }
+  }
+  */
 }
 
 //@throws IOException ファイルを読み込めない場合
