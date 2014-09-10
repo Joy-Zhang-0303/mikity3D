@@ -56,12 +56,19 @@ public class AnimationWindowTest {
   }
   
   /**
-   * ファイル読み込みのテストメソッドです。
+   * ルートを作るメソッドのテストメソッドです。
    *    */
   @Test
-  public void testLoadFile() {
-    //Mikity3dFactory m3f = new Mikity3dFactory();
-   // m3f.loadFile(null);
+  public void testMakeRoot1() {
+    String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
+    this.am.makeRoot(modelFileName);
+    Mikity3d root;
+    try {
+      root = new Mikity3dFactory().loadFile(new File(modelFileName));
+    } catch (IOException | Mikity3dSerializeDeserializeException e) {
+      throw new RuntimeException(e);
+    }
+    assertThat(this.am.getRoot(), is(root));
   }
 }
 
