@@ -5,22 +5,21 @@
  */
 package org.mklab.mikity.view.gui;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
+
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import static org.hamcrest.CoreMatchers.*;
-
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.view.gui.AnimationWindow;
 
 
 
@@ -46,6 +45,7 @@ public class AnimationWindowTest {
   /**
    * ルートの値が正しいか否かを判断するためのテストです。
    */
+  @Ignore
   @Test
   public void testGetRoot() {
     String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
@@ -63,8 +63,8 @@ public class AnimationWindowTest {
   
   /**
    * ルートを作るメソッドのテストメソッドです。
-   *    */
-  /*
+   */
+  @Ignore
   @Test
   public void testMakeRoot() {
     String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
@@ -77,11 +77,11 @@ public class AnimationWindowTest {
     }
     assertThat(this.am.getRoot(), is(root));
   }
-  */
   
   /**
    * ルートを作るメソッドの例外テストメソッドです。
    */
+  @Ignore
   @Test
   public void testExceptionForMakeRoot() {
     this.thrown.expect(RuntimeException.class);
