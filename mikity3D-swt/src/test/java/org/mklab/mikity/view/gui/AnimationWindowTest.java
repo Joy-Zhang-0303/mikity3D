@@ -33,7 +33,6 @@ public class AnimationWindowTest {
   /**
    * 初期化メソッドです。
    */
-  @Ignore
   @Before
   public void init() {
     this.am = new AnimationWindow(null);
