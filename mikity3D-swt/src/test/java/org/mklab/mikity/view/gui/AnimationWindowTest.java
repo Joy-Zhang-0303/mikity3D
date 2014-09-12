@@ -64,6 +64,7 @@ public class AnimationWindowTest {
   /**
    * ルートを作るメソッドのテストメソッドです。
    *    */
+  /*
   @Test
   public void testMakeRoot() {
     String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
@@ -76,6 +77,7 @@ public class AnimationWindowTest {
     }
     assertThat(this.am.getRoot(), is(root));
   }
+  */
   
   /**
    * ルートを作るメソッドの例外テストメソッドです。
