@@ -80,7 +80,6 @@ public class AnimationWindowTest {
   /**
    * ルートを作るメソッドの例外テストメソッドです。
    */
-  @Ignore
   @Test
   public void testExceptionForMakeRoot() {
     this.thrown.expect(RuntimeException.class);
