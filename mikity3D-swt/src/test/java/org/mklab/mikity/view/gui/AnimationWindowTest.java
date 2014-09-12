@@ -63,7 +63,6 @@ public class AnimationWindowTest {
   /**
    * ルートを作るメソッドのテストメソッドです。
    */
-  @Ignore
   @Test
   public void testMakeRoot() {
     String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
