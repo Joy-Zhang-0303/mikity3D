@@ -36,7 +36,11 @@ import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -60,6 +64,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 
   // private static String TAG = "3Dmikity-android";
 
+  protected static final String LOGTAG = null;
   private boolean mIsInitScreenSize;
   GLSurfaceView glView;
 
@@ -160,6 +165,9 @@ public class MainActivity extends Activity implements SensorEventListener {
   private long useAccelerOldTime = 0L;
   /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか*/
   private boolean useAccelerSensor = false;
+
+  private ActionBarDrawerToggle mDrawerToggle;
+  private DrawerLayout mDrawer;
 
   /**
    * @param modelFile モデルファイル
@@ -414,8 +422,67 @@ public class MainActivity extends Activity implements SensorEventListener {
       }
     }
 
+//    ((Button)findViewById(R.id.drawer_button)).setOnClickListener((OnClickListener)this);
+    
+    this.mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer,
+            R.drawable.icon, R.string.drawer_open,
+            R.string.drawer_close) {
+        @Override
+        public void onDrawerClosed(View drawerView) {
+            Log.i(LOGTAG, "onDrawerClosed");
+        }
+ 
+        @Override
+        public void onDrawerOpened(View drawerView) {
+            Log.i(LOGTAG, "onDrawerOpened");
+        }
+ 
+        @Override
+        public void onDrawerSlide(View drawerView, float slideOffset) {
+            super.onDrawerSlide(drawerView, slideOffset);
+            Log.i(LOGTAG, "onDrawerSlide : " + slideOffset);
+        }
+ 
+        @Override
+        public void onDrawerStateChanged(int newState) {
+            Log.i(LOGTAG, "onDrawerStateChanged  new state : " + newState);
+        }
+    };
+      this.mDrawer.setDrawerListener(this.mDrawerToggle);
+    getActionBar().setDisplayHomeAsUpEnabled(true);
+    getActionBar().setHomeButtonEnabled(true);
+    
+    
   }
-
+  
+  @Override
+  protected void onPostCreate(Bundle savedInstanceState) {
+      super.onPostCreate(savedInstanceState);
+      mDrawerToggle.syncState();
+  }
+   
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+      super.onConfigurationChanged(newConfig);
+      mDrawerToggle.onConfigurationChanged(newConfig);
+  }
+   
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+   
+      // ActionBarDrawerToggleにandroid.id.home(up ナビゲーション)を渡す。
+      if (mDrawerToggle.onOptionsItemSelected(item)) {
+          return true;
+      }
+   
+      return super.onOptionsItemSelected(item);
+  }
+   
+  public void onClick(View v) {
+      mDrawer.closeDrawers();
+  }
+  
   /** 表示されるときに呼ばれる */
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
