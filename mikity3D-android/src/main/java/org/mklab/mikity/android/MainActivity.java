@@ -453,7 +453,6 @@ public class MainActivity extends Activity implements SensorEventListener {
     getActionBar().setDisplayHomeAsUpEnabled(true);
     getActionBar().setHomeButtonEnabled(true);
     
-    
   }
   
   @Override
@@ -502,7 +501,9 @@ public class MainActivity extends Activity implements SensorEventListener {
         default:
           throw new IllegalStateException("It is not a portrait or landscape"); //$NON-NLS-1$
       }
-      LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
+      LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(this.glView.getWidth()-1, this.glView.getHeight());
+      //TODO drawerLayoutを実装した状態かつ画面を横向きにした状態では、横幅いっぱいにビューを広げるとなぜかうまく描画されません。
+      //TODO そのための対策として、今はgetWidth()-1としています。
       this.glView.setLayoutParams(params);
     }
     super.onWindowFocusChanged(hasFocus);
