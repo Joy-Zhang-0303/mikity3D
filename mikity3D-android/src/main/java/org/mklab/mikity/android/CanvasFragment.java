@@ -19,12 +19,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
+/**
+ * @author soda
+ * @version $Revision$, 2014/10/10
+ * モデル描画用のフラグメントです。
+ */
 public class CanvasFragment extends Fragment {
   
   GLSurfaceView glView;
   private boolean mIsInitScreenSize;
   private OpenglesModelRenderer modelRenderer;
   
+  /**
+   * @param savedInstanceState Bundle
+   * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+   */
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     
     View view = inflater.inflate(R.layout.canvas_fragment, container, false);
@@ -36,9 +46,6 @@ public class CanvasFragment extends Fragment {
 //// // 描画のクラスを登録する
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
-//    
-//    GLSurfaceView mGLView = new GLSurfaceView(null, null);
-//    View view = inflater.inflate();
     
     return view;
   }

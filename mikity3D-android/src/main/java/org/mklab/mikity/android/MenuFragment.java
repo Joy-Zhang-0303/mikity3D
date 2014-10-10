@@ -15,8 +15,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
+/**
+ * @author soda
+ * @version $Revision$, 2014/10/10
+ * デバック時に落ちないようにするために作った、メニューのフラグメントです。
+ */
 public class MenuFragment extends Fragment implements OnClickListener {
   
+  /**
+   * @param savedInstanceState Bundle
+   * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+   */
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     
     View view = inflater.inflate(R.layout.menu_fragment, container, false);
@@ -27,6 +37,9 @@ public class MenuFragment extends Fragment implements OnClickListener {
     return view;
   }
   
+  /**
+   * @see android.view.View.OnClickListener#onClick(android.view.View)
+   */
   public void onClick(View view) {
     
     if(view.getId() == R.id.button1) {
