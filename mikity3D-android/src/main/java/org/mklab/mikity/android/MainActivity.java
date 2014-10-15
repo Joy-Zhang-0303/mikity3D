@@ -112,6 +112,8 @@ public class MainActivity extends Activity implements SensorEventListener {
   /** スケーリング中かどうかのフラグ */
   private boolean scaling;
   /** 回転中かどうかのフラグ */
+  
+  
   private boolean rotationing;
   /** 3Dオブジェクトの大きさの値 */
   private double scaleValue = 1;
@@ -424,7 +426,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 //    ((Button)findViewById(R.id.drawer_button)).setOnClickListener((OnClickListener)this);
     
-    this.mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    this.mDrawer = (DrawerLayout) findViewById(R.id.activity_canvas);
     this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer,
             R.drawable.icon, R.string.drawer_open,
             R.string.drawer_close) {

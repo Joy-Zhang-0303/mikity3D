@@ -12,10 +12,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
+import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
@@ -28,6 +30,9 @@ import org.mklab.nfc.matx.MatxMatrix;
 import org.openintents.intents.OIFileManager;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -36,13 +41,17 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.opengl.GLSurfaceView;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,7 +61,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
-public class CanvasActivity extends Activity implements SensorEventListener {
+public class CanvasActivity extends Activity implements SensorEventListener, FragmentSetListener {
   
   protected static final String LOGTAG = null;
   private boolean mIsInitScreenSize;
@@ -158,6 +167,7 @@ public class CanvasActivity extends Activity implements SensorEventListener {
 
   private ActionBarDrawerToggle mDrawerToggle;
   private DrawerLayout mDrawer;
+  private CanvasFragment canvasFragment;
   
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -165,9 +175,12 @@ public class CanvasActivity extends Activity implements SensorEventListener {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.canvas);
     
+    makeFragment();
+    
   //this.inputModelFile = res.openRawResource(R.raw.pendulum);
     final OIFileManager fileManager = new OIFileManager(this);
-    this.modelRenderer = new OpenglesModelRenderer(this.glView);
+    //this.modelRenderer = new OpenglesModelRenderer(this.glView);
+    initField();
 
     //モデルデータ選択ボタンの表示
     this.loadModelButton = (Button)findViewById(R.id.modelSelectButton);
@@ -209,34 +222,32 @@ public class CanvasActivity extends Activity implements SensorEventListener {
     this.testTextView = new TextView(this);
     this.testTextView = (TextView)findViewById(R.id.textView1);
 
-    // ScaleGestureDetecotorクラスのインスタンス生成
-//    this.gesDetect = new ScaleGestureDetector(this, this.onScaleGestureListener);
-//
-//    //再生速度の設定
-//    this.quickButton.setOnClickListener(new View.OnClickListener() {
-//      /**
-//       * {@inheritDoc}
-//       */
-//      public void onClick(View v) {
-//        Activity.this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
-//        MainActivity.this.animationSpeed += 1;
-//        MainActivity.this.animationSpeedTextEdit.setText("" + (double)MainActivity.this.animationSpeed / 10); //$NON-NLS-1$
-//        if (MainActivity.this.animationTask != null) MainActivity.this.animationTask.setSpeedScale(MainActivity.this.animationSpeed / 10);
-//      }
-//    });
 
-//    this.slowButton.setOnClickListener(new View.OnClickListener() {
-//      /**
-//       * {@inheritDoc}
-//       */
-//      public void onClick(View v) {
-//        MainActivity.this.animationSpeed = (int)(Double.parseDouble(MainActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
-//        MainActivity.this.animationSpeed -= 1;
-//        if (MainActivity.this.animationSpeed < 0) MainActivity.this.animationSpeed = 0;
-//        MainActivity.this.animationSpeedTextEdit.setText(Double.toString((double)MainActivity.this.animationSpeed / 10));
-//        if (MainActivity.this.animationTask != null) MainActivity.this.animationTask.setSpeedScale(MainActivity.this.animationSpeed / 10);
-//      }
-//    });
+    //再生速度の設定
+    this.quickButton.setOnClickListener(new View.OnClickListener() {
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+        CanvasActivity.this.animationSpeed = (int)(Double.parseDouble(CanvasActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
+        CanvasActivity.this.animationSpeed += 1;
+        CanvasActivity.this.animationSpeedTextEdit.setText("" + (double)CanvasActivity.this.animationSpeed / 10); //$NON-NLS-1$
+        if (CanvasActivity.this.animationTask != null) CanvasActivity.this.animationTask.setSpeedScale(CanvasActivity.this.animationSpeed / 10);
+      }
+    });
+
+    this.slowButton.setOnClickListener(new View.OnClickListener() {
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+        CanvasActivity.this.animationSpeed = (int)(Double.parseDouble(CanvasActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
+        CanvasActivity.this.animationSpeed -= 1;
+        if (CanvasActivity.this.animationSpeed < 0) CanvasActivity.this.animationSpeed = 0;
+        CanvasActivity.this.animationSpeedTextEdit.setText(Double.toString((double)CanvasActivity.this.animationSpeed / 10));
+        if (CanvasActivity.this.animationTask != null) CanvasActivity.this.animationTask.setSpeedScale(CanvasActivity.this.animationSpeed / 10);
+      }
+    });
 
     this.selectButton.setOnClickListener(new View.OnClickListener() {
 
@@ -294,6 +305,11 @@ public class CanvasActivity extends Activity implements SensorEventListener {
       }
 
     });
+    
+//    this.animationSpeedTextEdit = (EditText)findViewById(R.id.animationSpeedEditText);
+//    this.animationSpeedTextEdit.clearFocus();
+//    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
+//    this.animationSpeedTextEdit.clearFocus();
 
     //外部アプリからの起動
     Intent intent = getIntent();
@@ -349,7 +365,7 @@ public class CanvasActivity extends Activity implements SensorEventListener {
 
 //    ((Button)findViewById(R.id.drawer_button)).setOnClickListener((OnClickListener)this);
     
-    this.mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    this.mDrawer = (DrawerLayout) findViewById(R.id.activity_canvas);
     this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer,
             R.drawable.icon, R.string.drawer_open,
             R.string.drawer_close) {
@@ -407,18 +423,7 @@ public class CanvasActivity extends Activity implements SensorEventListener {
   public void onClick(View v) {
       mDrawer.closeDrawers();
   }
-    
-
-  public void onSensorChanged(SensorEvent event) {
-    // TODO Auto-generated method stub
-    
-  }
-
-  public void onAccuracyChanged(Sensor sensor, int accuracy) {
-    // TODO Auto-generated method stub
-    
-  }
-  
+      
   /**
    * 実行時間バーを設定する。
    * 
@@ -528,13 +533,374 @@ public class CanvasActivity extends Activity implements SensorEventListener {
 //          throw new IllegalStateException("It is not a portrait or landscape"); //$NON-NLS-1$
 //      }
       GLSurfaceView glSurfaceView = (GLSurfaceView)findViewById(R.id.glview1);
-      //View v = (View)findViewById(R.id.fragment_canvas);
       LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(glSurfaceView.getWidth(), glSurfaceView.getHeight());
-      //TODO drawerLayoutを実装した状態かつ画面を横向きにした状態では、横幅いっぱいにビューを広げるとなぜかうまく描画されません。
-      //TODO そのための対策として、今はgetWidth()-1としています。
       glSurfaceView.setLayoutParams(params);
     }
     super.onWindowFocusChanged(hasFocus);
   }
+  
+  /**
+   * フィールドの初期化を行うメソッドです。
+   */
+  public void initField() {
+    this.sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+    this.registerAccerlerometer = false;
+    this.registerMagneticFieldSensor = false;
+    for (int i = 0; i < 3; i++) {
+      this.accels[i] = 0.0f;
+      this.magneticFields[i] = 0.0f;
+      this.orientations[i] = 0.0f;
+      this.prevOrientations[i] = 0.0f;
+      this.prevAccerlerometer[i] = 0.0f;
+    }
+    this.mIsInitScreenSize = false;
+  }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void onResume() {
+    if (!this.registerAccerlerometer) {
+      List<Sensor> sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+      if (sensors.size() > 0) {
+//        this.registerAccerlerometer = this.sensorManager.registerListener(this, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
+      }
+    }
+    if (!this.registerMagneticFieldSensor) {
+      List<Sensor> sensors = this.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
+      if (sensors.size() > 0) {
+//        this.registerMagneticFieldSensor = this.sensorManager.registerListener(this, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
+        this.sensorManager.registerListener(this, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
+      }
+    }
+
+    //this.glView.onResume();
+    super.onResume();
+
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void onPause() {
+
+    //this.glView.onPause();
+    if (this.registerAccerlerometer || this.registerMagneticFieldSensor) {
+      this.sensorManager.unregisterListener(this);
+
+      this.registerAccerlerometer = false;
+      this.registerMagneticFieldSensor = false;
+    }
+
+    super.onPause();
+
+  }
+  
+  /**
+   * アニメーションを開始します。
+   */
+  /**
+   * 
+   */
+  public void runAnimation() {
+    long startTime = SystemClock.uptimeMillis();
+
+    this.animationSpeed = (int)(Double.parseDouble(CanvasActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
+    if (playable == false) {
+      this.timer.cancel();
+    }
+
+    if (this.data == null || this.timeTable == null) {
+      return;
+    }
+
+    playable = false;
+
+    this.endTime = this.manager.getEndTime();
+    this.animationTask = new AnimationTask(startTime, this.endTime, this.manager, this.modelRenderer);
+    this.animationTask.setSpeedScale((double)this.animationSpeed / 10);
+    this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void tearDownAnimation() {
+        playable = true;
+      }
+
+      /**
+       * {@inheritDoc}
+       */
+      public void setUpAnimation() {
+        // nothing to do
+      }
+    });
+
+    this.timer = new Timer();
+    this.timer.schedule(this.animationTask, 0, 30);
+  }
+
+  /**
+   * This is called after the file manager finished.
+   */
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+
+    switch (requestCode) {
+      case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
+        if (resultCode == RESULT_OK && data != null) {
+          // obtain the filename
+          if (this.isSelectedModelFile) {
+            String timeDataPath = data.getData().getPath();
+            this.filePathView.setText(new File(timeDataPath).getName());
+
+            loadtimeSeriesData(timeDataPath);
+
+          } else {
+            String modelFilePath = data.getData().getPath();
+            try {
+              this.inputModelFile = new FileInputStream(modelFilePath);
+              this.modelFilePathView.setText(new File(modelFilePath).getName());
+
+            } catch (FileNotFoundException e) {
+              throw new RuntimeException(e);
+            }
+
+            try {
+              loadModelFile(this.inputModelFile);
+            } catch (IOException e) {
+              throw new RuntimeException(e);
+            } catch (Mikity3dSerializeDeserializeException e) {
+              throw new RuntimeException(e);
+            }
+            this.isSelectedModelFile = true;
+
+            this.selectButton.setEnabled(true);
+            this.quickButton.setEnabled(true);
+            this.slowButton.setEnabled(true);
+            this.playButton.setEnabled(true);
+            this.stopButton.setEnabled(true);
+            this.modelRenderer.updateDisplay();
+          }
+        }
+
+        break;
+    }
+  }
+
+  private void loadtimeSeriesData(final String filePath) {
+    AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
+
+      ProgressDialog progressDialog;
+
+      @Override
+      protected void onPreExecute() {
+        this.progressDialog = new ProgressDialog(CanvasActivity.this);
+        this.progressDialog.setCanceledOnTouchOutside(false);
+        this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        this.progressDialog.setMessage("Now Loading..."); //$NON-NLS-1$
+        this.progressDialog.show();
+      }
+
+      @Override
+      protected Void doInBackground(String... arg0) {
+        InputStream mat1;
+        try {
+          mat1 = new FileInputStream(filePath);
+        } catch (FileNotFoundException e) {
+          throw new RuntimeException(e);
+        }
+        setTimeData(mat1);
+        try {
+          mat1.close();
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+        return null;
+      }
+
+      @Override
+      protected void onPostExecute(Void result) {
+        this.progressDialog.dismiss();
+
+      }
+
+    };
+    task.execute();
+  }
+
+
+  /**
+   * {@inheritDoc}
+   */
+  // タッチ操作の種類によってイベントを取得する
+  @Override
+  public boolean onTouchEvent(MotionEvent event) {
+    float transferAmountX;
+    float transferAmountY;
+    int touchCount = event.getPointerCount();
+    // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
+    this.gesDetect.onTouchEvent(event);
+
+    switch (event.getAction()) {
+    // タッチした
+      case MotionEvent.ACTION_DOWN:
+        this.rotationing = true;
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+        break;
+
+      // タッチしたまま移動
+      case MotionEvent.ACTION_MOVE:
+        transferAmountX = event.getX() - this.prevX;
+        transferAmountY = event.getY() - this.prevY;
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+
+       
+
+        if ((this.rotationing) && (touchCount == 1)) {
+          this.modelRenderer.setRotation(transferAmountX, transferAmountY);
+        }
+        if ((touchCount == 2) && (!this.scaling)) {
+          final float Touch3DModelProportion = 1000.0f;
+          this.modelRenderer.setTranslationY(-transferAmountX / Touch3DModelProportion);
+          this.modelRenderer.setTranslationX(transferAmountY / Touch3DModelProportion);
+          this.rotationing = false;
+        }
+        this.rotationing = true;
+        break;
+
+      // タッチが離れた
+      case MotionEvent.ACTION_UP:
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+        break;
+
+      // タッチがキャンセルされた
+      case MotionEvent.ACTION_CANCEL:
+        break;
+
+      default:
+        break;
+    }
+
+    this.modelRenderer.updateDisplay();
+    return super.onTouchEvent(event);
+  }
+
+  protected void setScaleValue(double d) {
+    this.scaleValue = d;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    // TODO 自動生成されたメソッド・スタブ
+
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  /**
+   * {@inheritDoc}
+   */
+  public void onSensorChanged(SensorEvent event) {
+
+    if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+      for (int i = 0; i < 3; i++)
+        this.accels[i] = event.values[i];
+
+      if (this.useAccelerSensor) {
+
+        // Low Pass Filter
+        this.lowPassX = this.lowPassX + event.values[0];
+        this.lowPassY = this.lowPassY + event.values[1];
+        this.lowPassZ = (0.1 * event.values[2] + 0.9 * this.lowPassZ);
+
+        this.rawAz = event.values[2] - this.lowPassZ;
+
+        long nowTime = SystemClock.uptimeMillis();
+        long interval = nowTime - this.useAccelerOldTime;
+
+        if (interval > 300) {
+          final int accelerSensorThreshold = 5;
+          if (this.rawAz > accelerSensorThreshold) {
+            for (int i = 0; i < 10000; i++) {
+              if (this.scaleValue < 20.0) {
+                this.scaleValue += 0.00002;
+                this.modelRenderer.setScale((float)this.scaleValue);
+                this.modelRenderer.updateDisplay();
+              }
+            }
+            this.useAccelerOldTime = nowTime;
+          }
+          if (this.rawAz < -accelerSensorThreshold) {
+            for (int i = 0; i < 10000; i++) {
+              if (this.scaleValue > 0.05) {
+                this.scaleValue -= 0.00002;
+                this.modelRenderer.setScale((float)this.scaleValue);
+                this.modelRenderer.updateDisplay();
+              }
+            }
+            this.useAccelerOldTime = nowTime;
+          }
+        }
+
+        this.modelRenderer.setScale((float)this.scaleValue);
+
+      }
+
+    } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+      for (int i = 0; i < 3; i++)
+        this.magneticFields[i] = event.values[i];
+    }
+
+    if (this.useOrientationSensor) {
+      float[] R = new float[9];
+      float[] I = new float[9];
+      SensorManager.getRotationMatrix(R, I, this.accels, this.magneticFields);
+
+      SensorManager.getOrientation(R, this.orientations);
+
+      float[] diffOrientations = new float[3];
+
+      for (int i = 0; i < this.orientations.length; i++) {
+
+        diffOrientations[i] = this.orientations[i] - this.prevOrientations[i];
+        if (Math.abs(diffOrientations[i]) < 0.05) diffOrientations[i] = (float)0.0;
+      }
+
+      for (int i = 0; i < this.orientations.length; i++) {
+        this.prevOrientations[i] = this.orientations[i];
+
+      }
+
+      this.modelRenderer.setRotation(0.0f, (float)Math.toDegrees(diffOrientations[2] * 3.5));
+      //this.modelRenderer.setRotation((float)Math.toDegrees(diffOrientations[0] * 5.5), 0.0f);
+    }
+
+//    this.modelRenderer.updateDisplay();
+  }
+
+  public void makeFragment() {
+  //this.canvasFragment = (CanvasFragment)getFragmentManager().findFragmentById(R.id.fragment_canvas);
+  FragmentManager fm = getFragmentManager();
+  FragmentTransaction t = fm.beginTransaction();
+  CanvasFragment fragment = new CanvasFragment();
+  Bundle bundle = new Bundle();
+  t.add(R.id.fragment_canvas, fragment, "canvas_fragment");
+  t.commit();
+  }
+
+  public void setFragmnet() {
+    // TODO Auto-generated method stub
+    
+  }
+  
 }
