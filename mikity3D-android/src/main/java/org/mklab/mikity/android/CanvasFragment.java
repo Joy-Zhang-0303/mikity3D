@@ -8,6 +8,7 @@ package org.mklab.mikity.android;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 import org.openintents.intents.OIFileManager;
 
+import roboguice.fragment.RoboFragment;
 import android.app.Fragment;
 import android.content.Intent;
 import android.opengl.GLSurfaceView;
@@ -26,7 +27,7 @@ import android.widget.Button;
  * @version $Revision$, 2014/10/10
  * モデル描画用のフラグメントです。
  */
-public class CanvasFragment extends Fragment {
+public class CanvasFragment extends RoboFragment {
   
   GLSurfaceView glView;
   private boolean mIsInitScreenSize;

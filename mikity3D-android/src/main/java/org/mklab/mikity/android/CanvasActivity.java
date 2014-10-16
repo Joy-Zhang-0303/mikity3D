@@ -29,6 +29,7 @@ import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 import org.openintents.intents.OIFileManager;
 
+import roboguice.activity.RoboActivity;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -61,7 +62,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
-public class CanvasActivity extends Activity implements SensorEventListener, FragmentSetListener {
+public class CanvasActivity extends RoboActivity implements SensorEventListener, FragmentSetListener {
   
   protected static final String LOGTAG = null;
   private boolean mIsInitScreenSize;
@@ -168,6 +169,9 @@ public class CanvasActivity extends Activity implements SensorEventListener, Fra
   private ActionBarDrawerToggle mDrawerToggle;
   private DrawerLayout mDrawer;
   private CanvasFragment canvasFragment;
+  private FragmentManager fManager;
+  private FragmentTransaction fTransaction;
+  private Bundle bundle;
   
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -888,17 +892,31 @@ public class CanvasActivity extends Activity implements SensorEventListener, Fra
 //    this.modelRenderer.updateDisplay();
   }
 
+  /**
+   * @see org.mklab.mikity.android.FragmentSetListener#makeFragment()
+   */
   public void makeFragment() {
   //this.canvasFragment = (CanvasFragment)getFragmentManager().findFragmentById(R.id.fragment_canvas);
-  FragmentManager fm = getFragmentManager();
-  FragmentTransaction t = fm.beginTransaction();
-  CanvasFragment fragment = new CanvasFragment();
-  Bundle bundle = new Bundle();
-  t.add(R.id.fragment_canvas, fragment, "canvas_fragment");
-  t.commit();
+  this.fManager = getFragmentManager();
+  this.fTransaction = this.fManager.beginTransaction();
+  this.canvasFragment = new CanvasFragment();
+  this.bundle = new Bundle();
   }
 
   public void setFragmnet() {
+    
+  }
+  
+  /**
+   * @see org.mklab.mikity.android.FragmentSetListener#addToFragment()
+   */
+  public void addToFragment() {
+//    this.fTransaction.add(R.id.fragment_canvas, this.canvasFragment, "canvas_fragment");
+//    this.fTransaction.commit();
+//    
+  }
+
+  public void addToFragment(Object o) {
     // TODO Auto-generated method stub
     
   }

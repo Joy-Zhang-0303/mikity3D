@@ -10,4 +10,5 @@ public interface FragmentSetListener {
 
   public void makeFragment();
   public void setFragmnet();
+  public void addToFragment(Object o);
 }
