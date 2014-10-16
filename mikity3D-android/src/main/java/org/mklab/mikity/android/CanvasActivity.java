@@ -30,6 +30,8 @@ import org.mklab.nfc.matx.MatxMatrix;
 import org.openintents.intents.OIFileManager;
 
 import roboguice.activity.RoboActivity;
+import roboguice.activity.RoboFragmentActivity;
+import roboguice.inject.InjectFragment;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -62,7 +64,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
-public class CanvasActivity extends RoboActivity implements SensorEventListener, FragmentSetListener {
+public class CanvasActivity extends RoboFragmentActivity implements SensorEventListener, FragmentSetListener {
   
   protected static final String LOGTAG = null;
   private boolean mIsInitScreenSize;
@@ -168,10 +170,11 @@ public class CanvasActivity extends RoboActivity implements SensorEventListener,
 
   private ActionBarDrawerToggle mDrawerToggle;
   private DrawerLayout mDrawer;
-  private CanvasFragment canvasFragment;
   private FragmentManager fManager;
   private FragmentTransaction fTransaction;
   private Bundle bundle;
+  @InjectFragment(R.id.fragment_canvas)
+  private CanvasFragment canvasFragment;
   
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -179,7 +182,7 @@ public class CanvasActivity extends RoboActivity implements SensorEventListener,
     super.onCreate(savedInstanceState);
     setContentView(R.layout.canvas);
     
-    makeFragment();
+    //makeFragment();
     
   //this.inputModelFile = res.openRawResource(R.raw.pendulum);
     final OIFileManager fileManager = new OIFileManager(this);
@@ -333,7 +336,7 @@ public class CanvasActivity extends RoboActivity implements SensorEventListener,
       }
 
       try {
-        loadModelFile(this.inputModelFile);
+        this.canvasFragment.loadModelFile(this.inputModelFile);
       } catch (IOException e) {
         throw new RuntimeException(e);
       } catch (Mikity3dSerializeDeserializeException e) {
@@ -478,44 +481,7 @@ public class CanvasActivity extends RoboActivity implements SensorEventListener,
     }
   }
   
-  /**
-   * @param modelFile モデルファイル
-   * @throws IOException ファイルを読み込めない場合
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
-   */
-  private void loadModelFile(File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
-    this.root = new Mikity3dFactory().loadFile(modelFile);
-    this.manager = new MovableGroupManager(this.root);
-    this.modelRenderer = new OpenglesModelRenderer(this.glView);
-  }
 
-  /**
-   * 
-   * @param modelFile モデルファイル
-   * @throws IOException ファイルを読み込めない場合
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
-   */
-  private void loadModelFile(InputStream input) throws IOException, Mikity3dSerializeDeserializeException {
-    this.root = new Mikity3dFactory().loadFile(input);
-    this.manager = new MovableGroupManager(this.root);
-    Group[] children = this.root.getModel(0).getGroups();
-    this.modelRenderer.setChildren(children);
-    Mikity3dConfiguration configuration = this.root.getConfiguration(0);
-    this.modelRenderer.setConfiguration(configuration);
-
-    this.manager.setLogCat(new LogCatImpl()); //LogCatのセット
-
-  }
-
-  /**
-   * @throws FileNotFoundException
-   * @throws IOException
-   */
-  private void loadTimeData() throws FileNotFoundException, IOException {
-    InputStream mat1 = new FileInputStream(this.filePath);
-    setTimeData(mat1);
-    mat1.close();
-  }
   
   /** 表示されるときに呼ばれる */
   @Override
@@ -674,7 +640,7 @@ public class CanvasActivity extends RoboActivity implements SensorEventListener,
             }
 
             try {
-              loadModelFile(this.inputModelFile);
+              this.canvasFragment.loadModelFile(this.inputModelFile);
             } catch (IOException e) {
               throw new RuntimeException(e);
             } catch (Mikity3dSerializeDeserializeException e) {
@@ -687,7 +653,7 @@ public class CanvasActivity extends RoboActivity implements SensorEventListener,
             this.slowButton.setEnabled(true);
             this.playButton.setEnabled(true);
             this.stopButton.setEnabled(true);
-            this.modelRenderer.updateDisplay();
+            canvasFragment.modelRenderer.updateDisplay();
           }
         }
 

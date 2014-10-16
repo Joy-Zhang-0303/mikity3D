@@ -5,7 +5,19 @@
  */
 package org.mklab.mikity.android;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
+import org.mklab.mikity.model.MovableGroupManager;
+import org.mklab.mikity.model.xml.Mikity3dFactory;
+import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
+import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.openintents.intents.OIFileManager;
 
 import roboguice.fragment.RoboFragment;
@@ -31,7 +43,7 @@ public class CanvasFragment extends RoboFragment {
   
   GLSurfaceView glView;
   private boolean mIsInitScreenSize;
-  private OpenglesModelRenderer modelRenderer;
+  public OpenglesModelRenderer modelRenderer;
   private ScaleGestureDetector gesDetect;
   private boolean rotationing;
   private boolean scaling;
@@ -100,6 +112,8 @@ public class CanvasFragment extends RoboFragment {
       super.onScaleEnd(detector);
     }
   };
+  private Mikity3d root;
+  private MovableGroupManager manager;
   
   protected void setScaleValue(double d) {
     this.scaleValue = d;
@@ -111,4 +125,43 @@ public class CanvasFragment extends RoboFragment {
   public void setActivity() {
     //this.canvasActivity = ActivitygetActivity().findViewById(R.id.activity_canvas);
   }
+  
+  /**
+   * @param modelFile モデルファイル
+   * @throws IOException ファイルを読み込めない場合
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
+   */
+  private void loadModelFile(File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
+    this.root = new Mikity3dFactory().loadFile(modelFile);
+    this.manager = new MovableGroupManager(this.root);
+    this.modelRenderer = new OpenglesModelRenderer(this.glView);
+  }
+
+  /**
+   * 
+   * @param modelFile モデルファイル
+   * @throws IOException ファイルを読み込めない場合
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
+   */
+  public void loadModelFile(InputStream input) throws IOException, Mikity3dSerializeDeserializeException {
+    this.root = new Mikity3dFactory().loadFile(input);
+    this.manager = new MovableGroupManager(this.root);
+    Group[] children = this.root.getModel(0).getGroups();
+    this.modelRenderer.setChildren(children);
+    Mikity3dConfiguration configuration = this.root.getConfiguration(0);
+    this.modelRenderer.setConfiguration(configuration);
+
+    this.manager.setLogCat(new LogCatImpl()); //LogCatのセット
+
+  }
+//
+//  /**
+//   * @throws FileNotFoundException
+//   * @throws IOException
+//   */
+//  private void loadTimeData() throws FileNotFoundException, IOException {
+//    InputStream mat1 = new FileInputStream(this.filePath);
+//    setTimeData(mat1);
+//    mat1.close();
+//  }
 }
