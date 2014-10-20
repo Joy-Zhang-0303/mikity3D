@@ -118,7 +118,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   /** 3Dオブジェクトの大きさの値 */
   private double scaleValue = 1;
   /** アニメーションスピードを表示するエディットテキスト */
-  private EditText animationSpeedTextEdit;
+  public EditText animationSpeedTextEdit;
   /** 3Dモデルのインプットストリーム */
   private InputStream inputModelFile;
   /** 3Dモデルが選ばれて表示されたかどうかのフラグ */
@@ -182,11 +182,8 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     super.onCreate(savedInstanceState);
     setContentView(R.layout.canvas);
     
-    //makeFragment();
-    
   //this.inputModelFile = res.openRawResource(R.raw.pendulum);
     final OIFileManager fileManager = new OIFileManager(this);
-    //this.modelRenderer = new OpenglesModelRenderer(this.glView);
     initField();
 
     //モデルデータ選択ボタンの表示
@@ -242,6 +239,22 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
         if (CanvasActivity.this.animationTask != null) CanvasActivity.this.animationTask.setSpeedScale(CanvasActivity.this.animationSpeed / 10);
       }
     });
+    
+    this.selectButton.setOnClickListener(new View.OnClickListener() {
+
+      public void onClick(View v) {
+        fileManager.getFilePath();
+
+      }
+    });
+
+    // イベントリスナー
+    this.playButton.setOnClickListener(new View.OnClickListener() {
+      // コールバックメソッド
+      public void onClick(View view) {
+        runAnimation();
+      }
+    });
 
     this.slowButton.setOnClickListener(new View.OnClickListener() {
       /**
@@ -261,14 +274,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
       public void onClick(View v) {
         fileManager.getFilePath();
 
-      }
-    });
-
-    // イベントリスナー
-    this.playButton.setOnClickListener(new View.OnClickListener() {
-      // コールバックメソッド
-      public void onClick(View view) {
-        //runAnimation();
       }
     });
 
@@ -361,7 +366,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      setTimeData(mat);
+      this.canvasFragment.setTimeData(mat);
 
       try {
         mat.close();
@@ -430,58 +435,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   public void onClick(View v) {
       mDrawer.closeDrawers();
   }
-      
-  /**
-   * 実行時間バーを設定する。
-   * 
-   * @param input 時系列データのインプットストリーム
-   * 
-   */
-  public void setTimeData(final InputStream input) {
-    try {
-      this.data = MatxMatrix.readMatFormat(new InputStreamReader(input));
-      input.close();
-
-      this.manager.setData(this.data);
-
-      final Group rootGroup = this.root.getModel(0).getGroup(0);
-      checkLinkParameterType(rootGroup);
-
-      final int dataSize = this.manager.getDataSize();
-
-      this.timeTable = new double[dataSize];
-
-      this.endTime = this.manager.getEndTime();
-      for (int i = 0; i < this.timeTable.length; i++) {
-        this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
-      }
-
-    } catch (FileNotFoundException e) {
-
-      throw new RuntimeException(e);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-    
-  }
-  
-  private void checkLinkParameterType(Group parent) {
-    final Group[] groups = parent.getGroups();
-    for (final Group group : groups) {
-      final LinkData[] links = group.getLinkData();
-      for (final LinkData link : links) {
-        if (link.hasDHParameter()) {
-          this.manager.setHasDHParameter(true);
-        } else if (link.hasCoordinateParameter()) {
-          this.manager.setHasCoordinateParameter(true);
-        }
-      }
-
-      checkLinkParameterType(group);
-    }
-  }
-  
-
   
   /** 表示されるときに呼ばれる */
   @Override
@@ -545,7 +498,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
       }
     }
 
-    //this.glView.onResume();
+    this.canvasFragment.glView.onResume();
     super.onResume();
 
   }
@@ -556,7 +509,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   @Override
   public void onPause() {
 
-    //this.glView.onPause();
+    this.canvasFragment.glView.onPause();
     if (this.registerAccerlerometer || this.registerMagneticFieldSensor) {
       this.sensorManager.unregisterListener(this);
 
@@ -568,49 +521,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
 
   }
   
-  /**
-   * アニメーションを開始します。
-   */
-  /**
-   * 
-   */
-  public void runAnimation() {
-    long startTime = SystemClock.uptimeMillis();
 
-    this.animationSpeed = (int)(Double.parseDouble(CanvasActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
-    if (playable == false) {
-      this.timer.cancel();
-    }
-
-    if (this.data == null || this.timeTable == null) {
-      return;
-    }
-
-    playable = false;
-
-    this.endTime = this.manager.getEndTime();
-    this.animationTask = new AnimationTask(startTime, this.endTime, this.manager, this.modelRenderer);
-    this.animationTask.setSpeedScale((double)this.animationSpeed / 10);
-    this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void tearDownAnimation() {
-        playable = true;
-      }
-
-      /**
-       * {@inheritDoc}
-       */
-      public void setUpAnimation() {
-        // nothing to do
-      }
-    });
-
-    this.timer = new Timer();
-    this.timer.schedule(this.animationTask, 0, 30);
-  }
 
   /**
    * This is called after the file manager finished.
@@ -627,7 +538,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
             String timeDataPath = data.getData().getPath();
             this.filePathView.setText(new File(timeDataPath).getName());
 
-            loadtimeSeriesData(timeDataPath);
+            this.canvasFragment.loadtimeSeriesData(timeDataPath);
 
           } else {
             String modelFilePath = data.getData().getPath();
@@ -660,107 +571,65 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
         break;
     }
   }
-
-  private void loadtimeSeriesData(final String filePath) {
-    AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
-
-      ProgressDialog progressDialog;
-
-      @Override
-      protected void onPreExecute() {
-        this.progressDialog = new ProgressDialog(CanvasActivity.this);
-        this.progressDialog.setCanceledOnTouchOutside(false);
-        this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        this.progressDialog.setMessage("Now Loading..."); //$NON-NLS-1$
-        this.progressDialog.show();
-      }
-
-      @Override
-      protected Void doInBackground(String... arg0) {
-        InputStream mat1;
-        try {
-          mat1 = new FileInputStream(filePath);
-        } catch (FileNotFoundException e) {
-          throw new RuntimeException(e);
-        }
-        setTimeData(mat1);
-        try {
-          mat1.close();
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-        return null;
-      }
-
-      @Override
-      protected void onPostExecute(Void result) {
-        this.progressDialog.dismiss();
-
-      }
-
-    };
-    task.execute();
-  }
-
-
-  /**
-   * {@inheritDoc}
-   */
-  // タッチ操作の種類によってイベントを取得する
-  @Override
-  public boolean onTouchEvent(MotionEvent event) {
-    float transferAmountX;
-    float transferAmountY;
-    int touchCount = event.getPointerCount();
-    // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
-    this.gesDetect.onTouchEvent(event);
-
-    switch (event.getAction()) {
-    // タッチした
-      case MotionEvent.ACTION_DOWN:
-        this.rotationing = true;
-        this.prevX = event.getX();
-        this.prevY = event.getY();
-        break;
-
-      // タッチしたまま移動
-      case MotionEvent.ACTION_MOVE:
-        transferAmountX = event.getX() - this.prevX;
-        transferAmountY = event.getY() - this.prevY;
-        this.prevX = event.getX();
-        this.prevY = event.getY();
-
-       
-
-        if ((this.rotationing) && (touchCount == 1)) {
-          this.modelRenderer.setRotation(transferAmountX, transferAmountY);
-        }
-        if ((touchCount == 2) && (!this.scaling)) {
-          final float Touch3DModelProportion = 1000.0f;
-          this.modelRenderer.setTranslationY(-transferAmountX / Touch3DModelProportion);
-          this.modelRenderer.setTranslationX(transferAmountY / Touch3DModelProportion);
-          this.rotationing = false;
-        }
-        this.rotationing = true;
-        break;
-
-      // タッチが離れた
-      case MotionEvent.ACTION_UP:
-        this.prevX = event.getX();
-        this.prevY = event.getY();
-        break;
-
-      // タッチがキャンセルされた
-      case MotionEvent.ACTION_CANCEL:
-        break;
-
-      default:
-        break;
-    }
-
-    this.modelRenderer.updateDisplay();
-    return super.onTouchEvent(event);
-  }
+//
+//  /**
+//   * {@inheritDoc}
+//   */
+//  // タッチ操作の種類によってイベントを取得する
+//  @Override
+//  public boolean onTouchEvent(MotionEvent event) {
+//    float transferAmountX;
+//    float transferAmountY;
+//    int touchCount = event.getPointerCount();
+//    // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
+//    this.gesDetect.onTouchEvent(event);
+//
+//    switch (event.getAction()) {
+//    // タッチした
+//      case MotionEvent.ACTION_DOWN:
+//        this.rotationing = true;
+//        this.prevX = event.getX();
+//        this.prevY = event.getY();
+//        break;
+//
+//      // タッチしたまま移動
+//      case MotionEvent.ACTION_MOVE:
+//        transferAmountX = event.getX() - this.prevX;
+//        transferAmountY = event.getY() - this.prevY;
+//        this.prevX = event.getX();
+//        this.prevY = event.getY();
+//
+//       
+//
+//        if ((this.rotationing) && (touchCount == 1)) {
+//          this.modelRenderer.setRotation(transferAmountX, transferAmountY);
+//        }
+//        if ((touchCount == 2) && (!this.scaling)) {
+//          final float Touch3DModelProportion = 1000.0f;
+//          this.modelRenderer.setTranslationY(-transferAmountX / Touch3DModelProportion);
+//          this.modelRenderer.setTranslationX(transferAmountY / Touch3DModelProportion);
+//          this.rotationing = false;
+//        }
+//        this.rotationing = true;
+//        break;
+//
+//      // タッチが離れた
+//      case MotionEvent.ACTION_UP:
+//        this.prevX = event.getX();
+//        this.prevY = event.getY();
+//        break;
+//
+//      // タッチがキャンセルされた
+//      case MotionEvent.ACTION_CANCEL:
+//        break;
+//
+//      default:
+//        break;
+//    }
+//
+//    this.modelRenderer.updateDisplay();
+//    return super.onTouchEvent(event);
+//  }
 
   protected void setScaleValue(double d) {
     this.scaleValue = d;
@@ -863,10 +732,10 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
    */
   public void makeFragment() {
   //this.canvasFragment = (CanvasFragment)getFragmentManager().findFragmentById(R.id.fragment_canvas);
-  this.fManager = getFragmentManager();
-  this.fTransaction = this.fManager.beginTransaction();
-  this.canvasFragment = new CanvasFragment();
-  this.bundle = new Bundle();
+//  this.fManager = getFragmentManager();
+//  this.fTransaction = this.fManager.beginTransaction();
+//  this.canvasFragment = new CanvasFragment();
+//  this.bundle = new Bundle();
   }
 
   public void setFragmnet() {
@@ -885,6 +754,10 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   public void addToFragment(Object o) {
     // TODO Auto-generated method stub
     
+  }
+  
+  public void runAnimation() {
+    this.canvasFragment.runAnimation();
   }
   
 }
