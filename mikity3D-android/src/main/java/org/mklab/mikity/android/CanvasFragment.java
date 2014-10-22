@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
@@ -28,9 +29,15 @@ import org.mklab.nfc.matx.MatxMatrix;
 import org.openintents.intents.OIFileManager;
 
 import roboguice.fragment.RoboFragment;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -45,6 +52,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ToggleButton;
 
 
 /**
@@ -52,7 +60,7 @@ import android.widget.Button;
  * @version $Revision$, 2014/10/10
  * モデル描画用のフラグメントです。
  */
-public class CanvasFragment extends RoboFragment {
+public class CanvasFragment extends RoboFragment implements SensorEventListener {
   
   GLSurfaceView glView;
   private boolean mIsInitScreenSize;
@@ -66,6 +74,47 @@ public class CanvasFragment extends RoboFragment {
   private View canvasActivity;
   public CanvasActivity activity;
   Timer timer = new Timer();
+  private Mikity3d root;
+  private MovableGroupManager manager;
+  private Matrix data;
+  private double[] timeTable;
+  private double endTime;
+  private int animationSpeed;
+  private boolean playable;
+  private AnimationTask animationTask;
+  /** センサーマネージャー */
+  SensorManager sensorManager;
+//  private boolean registerAccerlerometer;
+//  private boolean registerMagneticFieldSensor;
+  /** センサーからの加速度を格納する配列 */
+  private float[] accels = new float[3];
+  /** センサーからの地磁気を格納する配列 */
+  private float[] magneticFields = new float[3];
+  /** センサーから算出した端末の角度を格納する配列 */
+  private float[] orientations = new float[3];
+  /** 角度の基準値 */
+  private float[] prevOrientations = new float[3];
+  /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
+  private ToggleButton gyroToggleButton;
+  /** 端末の角度を3Dオブジェクトに反映させるかどうかのフラグ */
+  boolean useOrientationSensor = false;
+  /** */
+  private float[] prevAccerlerometer = new float[3];
+  /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
+  private ToggleButton accelerToggleButton;
+  /** 加速度のローパスフィルターのxの値 */
+  private double lowPassX;
+  /** 加速度のローパスフィルターのｙの値 */
+  private double lowPassY;
+  /** 加速度のローパスフィルターのzの値 */
+  private double lowPassZ = 9.45;
+  /** 加速度のハイパスフィルターのZの値 */
+  private double rawAz;
+  /** 前回加速度センサーを3Dオブジェクトに使用したときの時間 */
+  private long useAccelerOldTime = 0L;
+  /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか*/
+  boolean useAccelerSensor = false;
+  public List<Sensor> sensors;
   
   
   /**
@@ -84,6 +133,7 @@ public class CanvasFragment extends RoboFragment {
 //// // 描画のクラスを登録する
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
+    initField();
     
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
@@ -91,6 +141,7 @@ public class CanvasFragment extends RoboFragment {
     
     // ScaleGestureDetecotorクラスのインスタンス生成
     this.gesDetect = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
+    // タッチ操作の種類によってイベントを取得する
     view.setOnTouchListener(new View.OnTouchListener() {
       
       public boolean onTouch(View v, MotionEvent event) {
@@ -185,14 +236,7 @@ public class CanvasFragment extends RoboFragment {
       super.onScaleEnd(detector);
     }
   };
-  private Mikity3d root;
-  private MovableGroupManager manager;
-  private Matrix data;
-  private double[] timeTable;
-  private double endTime;
-  private int animationSpeed;
-  private boolean playable;
-  private AnimationTask animationTask;
+
   
   protected void setScaleValue(double d) {
     this.scaleValue = d;
@@ -383,5 +427,107 @@ public class CanvasFragment extends RoboFragment {
     this.timer = new Timer();
     this.timer.schedule(this.animationTask, 0, 30);
   }
+
+  public void onSensorChanged(SensorEvent event) {
+
+    if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+      for (int i = 0; i < 3; i++)
+        this.accels[i] = event.values[i];
+
+      if (this.useAccelerSensor) {
+
+        // Low Pass Filter
+        this.lowPassX = this.lowPassX + event.values[0];
+        this.lowPassY = this.lowPassY + event.values[1];
+        this.lowPassZ = (0.1 * event.values[2] + 0.9 * this.lowPassZ);
+
+        this.rawAz = event.values[2] - this.lowPassZ;
+
+        long nowTime = SystemClock.uptimeMillis();
+        long interval = nowTime - this.useAccelerOldTime;
+
+        if (interval > 300) {
+          final int accelerSensorThreshold = 5;
+          if (this.rawAz > accelerSensorThreshold) {
+            for (int i = 0; i < 10000; i++) {
+              if (this.scaleValue < 20.0) {
+                this.scaleValue += 0.00002;
+                this.modelRenderer.setScale((float)this.scaleValue);
+                this.modelRenderer.updateDisplay();
+              }
+            }
+            this.useAccelerOldTime = nowTime;
+          }
+          if (this.rawAz < -accelerSensorThreshold) {
+            for (int i = 0; i < 10000; i++) {
+              if (this.scaleValue > 0.05) {
+                this.scaleValue -= 0.00002;
+                this.modelRenderer.setScale((float)this.scaleValue);
+                this.modelRenderer.updateDisplay();
+              }
+            }
+            this.useAccelerOldTime = nowTime;
+          }
+        }
+
+        this.modelRenderer.setScale((float)this.scaleValue);
+
+      }
+
+    } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+      for (int i = 0; i < 3; i++)
+        this.magneticFields[i] = event.values[i];
+    }
+
+    if (this.useOrientationSensor) {
+      float[] R = new float[9];
+      float[] I = new float[9];
+      SensorManager.getRotationMatrix(R, I, this.accels, this.magneticFields);
+
+      SensorManager.getOrientation(R, this.orientations);
+
+      float[] diffOrientations = new float[3];
+
+      for (int i = 0; i < this.orientations.length; i++) {
+
+        diffOrientations[i] = this.orientations[i] - this.prevOrientations[i];
+        if (Math.abs(diffOrientations[i]) < 0.05) diffOrientations[i] = (float)0.0;
+      }
+
+      for (int i = 0; i < this.orientations.length; i++) {
+        this.prevOrientations[i] = this.orientations[i];
+
+      }
+
+      this.modelRenderer.setRotation(0.0f, (float)Math.toDegrees(diffOrientations[2] * 3.5));
+      //this.modelRenderer.setRotation((float)Math.toDegrees(diffOrientations[0] * 5.5), 0.0f);
+    }
+    this.modelRenderer.updateDisplay();
+  }
+
+  public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    // TODO Auto-generated method stub
+    
+  }
   
+  /**
+   * フィールドの初期化を行うメソッドです。
+   */
+  public void initField() {
+    this.sensorManager = (SensorManager)this.getActivity().getSystemService(Activity.SENSOR_SERVICE);
+    this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+//    this.registerAccerlerometer = false;
+//    this.registerMagneticFieldSensor = false;
+    for (int i = 0; i < 3; i++) {
+      this.accels[i] = 0.0f;
+      this.magneticFields[i] = 0.0f;
+      this.orientations[i] = 0.0f;
+      this.prevOrientations[i] = 0.0f;
+      this.prevAccerlerometer[i] = 0.0f;
+    }
+    this.mIsInitScreenSize = false;
+  }
+  public void getSensor() {
+    this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+  }
 }

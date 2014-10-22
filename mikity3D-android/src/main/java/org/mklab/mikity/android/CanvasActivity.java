@@ -64,7 +64,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
-public class CanvasActivity extends RoboFragmentActivity implements SensorEventListener {
+public class CanvasActivity extends RoboFragmentActivity {
   
   protected static final String LOGTAG = null;
   private boolean mIsInitScreenSize;
@@ -294,8 +294,8 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
        */
       public void onClick(View v) {
         if (CanvasActivity.this.gyroToggleButton.isChecked()) {
-          CanvasActivity.this.useOrientationSensor = true;
-        } else CanvasActivity.this.useOrientationSensor = false;
+          CanvasActivity.this.canvasFragment.useOrientationSensor = true;
+        } else CanvasActivity.this.canvasFragment.useOrientationSensor = false;
 
       }
     });
@@ -308,10 +308,10 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
        */
       public void onClick(View v) {
         if (CanvasActivity.this.accelerToggleButton.isChecked()) {
-          CanvasActivity.this.useAccelerSensor = true;
+          CanvasActivity.this.canvasFragment.useAccelerSensor = true;
           
         } else {
-          CanvasActivity.this.useAccelerSensor = false;
+          CanvasActivity.this.canvasFragment.useAccelerSensor = false;
           
 
         }
@@ -486,16 +486,17 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   @Override
   public void onResume() {
     if (!this.registerAccerlerometer) {
-      List<Sensor> sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
-      if (sensors.size() > 0) {
-//        this.registerAccerlerometer = this.sensorManager.registerListener(this, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
+      //List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+      this.canvasFragment.getSensor();
+      if (this.canvasFragment.sensors.size() > 0) {
+        this.registerAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, this.canvasFragment.sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
     if (!this.registerMagneticFieldSensor) {
       List<Sensor> sensors = this.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
       if (sensors.size() > 0) {
-//        this.registerMagneticFieldSensor = this.sensorManager.registerListener(this, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
-        this.sensorManager.registerListener(this, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
+        this.registerMagneticFieldSensor = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
+        this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
 
@@ -512,7 +513,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
 
     this.canvasFragment.glView.onPause();
     if (this.registerAccerlerometer || this.registerMagneticFieldSensor) {
-      this.sensorManager.unregisterListener(this);
+      this.canvasFragment.sensorManager.unregisterListener(this.canvasFragment);
 
       this.registerAccerlerometer = false;
       this.registerMagneticFieldSensor = false;
@@ -571,154 +572,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
 
         break;
     }
-  }
-//
-//  /**
-//   * {@inheritDoc}
-//   */
-//  // タッチ操作の種類によってイベントを取得する
-//  @Override
-//  public boolean onTouchEvent(MotionEvent event) {
-//    float transferAmountX;
-//    float transferAmountY;
-//    int touchCount = event.getPointerCount();
-//    // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
-//    this.gesDetect.onTouchEvent(event);
-//
-//    switch (event.getAction()) {
-//    // タッチした
-//      case MotionEvent.ACTION_DOWN:
-//        this.rotationing = true;
-//        this.prevX = event.getX();
-//        this.prevY = event.getY();
-//        break;
-//
-//      // タッチしたまま移動
-//      case MotionEvent.ACTION_MOVE:
-//        transferAmountX = event.getX() - this.prevX;
-//        transferAmountY = event.getY() - this.prevY;
-//        this.prevX = event.getX();
-//        this.prevY = event.getY();
-//
-//       
-//
-//        if ((this.rotationing) && (touchCount == 1)) {
-//          this.modelRenderer.setRotation(transferAmountX, transferAmountY);
-//        }
-//        if ((touchCount == 2) && (!this.scaling)) {
-//          final float Touch3DModelProportion = 1000.0f;
-//          this.modelRenderer.setTranslationY(-transferAmountX / Touch3DModelProportion);
-//          this.modelRenderer.setTranslationX(transferAmountY / Touch3DModelProportion);
-//          this.rotationing = false;
-//        }
-//        this.rotationing = true;
-//        break;
-//
-//      // タッチが離れた
-//      case MotionEvent.ACTION_UP:
-//        this.prevX = event.getX();
-//        this.prevY = event.getY();
-//        break;
-//
-//      // タッチがキャンセルされた
-//      case MotionEvent.ACTION_CANCEL:
-//        break;
-//
-//      default:
-//        break;
-//    }
-//
-//    this.modelRenderer.updateDisplay();
-//    return super.onTouchEvent(event);
-//  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void onAccuracyChanged(Sensor sensor, int accuracy) {
-    // TODO 自動生成されたメソッド・スタブ
-
-  }
-  
-  /**
-   * {@inheritDoc}
-   */
-  public void onSensorChanged(SensorEvent event) {
-
-    if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-      for (int i = 0; i < 3; i++)
-        this.accels[i] = event.values[i];
-
-      if (this.useAccelerSensor) {
-
-        // Low Pass Filter
-        this.lowPassX = this.lowPassX + event.values[0];
-        this.lowPassY = this.lowPassY + event.values[1];
-        this.lowPassZ = (0.1 * event.values[2] + 0.9 * this.lowPassZ);
-
-        this.rawAz = event.values[2] - this.lowPassZ;
-
-        long nowTime = SystemClock.uptimeMillis();
-        long interval = nowTime - this.useAccelerOldTime;
-
-        if (interval > 300) {
-          final int accelerSensorThreshold = 5;
-          if (this.rawAz > accelerSensorThreshold) {
-            for (int i = 0; i < 10000; i++) {
-              if (this.scaleValue < 20.0) {
-                this.scaleValue += 0.00002;
-                this.modelRenderer.setScale((float)this.scaleValue);
-                this.modelRenderer.updateDisplay();
-              }
-            }
-            this.useAccelerOldTime = nowTime;
-          }
-          if (this.rawAz < -accelerSensorThreshold) {
-            for (int i = 0; i < 10000; i++) {
-              if (this.scaleValue > 0.05) {
-                this.scaleValue -= 0.00002;
-                this.modelRenderer.setScale((float)this.scaleValue);
-                this.modelRenderer.updateDisplay();
-              }
-            }
-            this.useAccelerOldTime = nowTime;
-          }
-        }
-
-        this.modelRenderer.setScale((float)this.scaleValue);
-
-      }
-
-    } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-      for (int i = 0; i < 3; i++)
-        this.magneticFields[i] = event.values[i];
-    }
-
-    if (this.useOrientationSensor) {
-      float[] R = new float[9];
-      float[] I = new float[9];
-      SensorManager.getRotationMatrix(R, I, this.accels, this.magneticFields);
-
-      SensorManager.getOrientation(R, this.orientations);
-
-      float[] diffOrientations = new float[3];
-
-      for (int i = 0; i < this.orientations.length; i++) {
-
-        diffOrientations[i] = this.orientations[i] - this.prevOrientations[i];
-        if (Math.abs(diffOrientations[i]) < 0.05) diffOrientations[i] = (float)0.0;
-      }
-
-      for (int i = 0; i < this.orientations.length; i++) {
-        this.prevOrientations[i] = this.orientations[i];
-
-      }
-
-      this.modelRenderer.setRotation(0.0f, (float)Math.toDegrees(diffOrientations[2] * 3.5));
-      //this.modelRenderer.setRotation((float)Math.toDegrees(diffOrientations[0] * 5.5), 0.0f);
-    }
-
-//    this.modelRenderer.updateDisplay();
   }
   
 }
