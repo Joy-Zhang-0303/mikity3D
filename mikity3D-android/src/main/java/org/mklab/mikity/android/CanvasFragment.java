@@ -63,7 +63,7 @@ import android.widget.ToggleButton;
 public class CanvasFragment extends RoboFragment implements SensorEventListener {
   
   GLSurfaceView glView;
-  private boolean mIsInitScreenSize;
+  boolean mIsInitScreenSize;
   public OpenglesModelRenderer modelRenderer;
   public ScaleGestureDetector gesDetect = null;
   boolean rotationing;
@@ -507,7 +507,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
   public void onAccuracyChanged(Sensor sensor, int accuracy) {
     // TODO Auto-generated method stub
-    
   }
   
   /**
@@ -525,7 +524,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       this.prevOrientations[i] = 0.0f;
       this.prevAccerlerometer[i] = 0.0f;
     }
-    this.mIsInitScreenSize = false;
   }
   public void getSensor() {
     this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);

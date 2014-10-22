@@ -184,7 +184,6 @@ public class CanvasActivity extends RoboFragmentActivity {
     
   //this.inputModelFile = res.openRawResource(R.raw.pendulum);
     final OIFileManager fileManager = new OIFileManager(this);
-    initField();
 
     //モデルデータ選択ボタンの表示
     this.loadModelButton = (Button)findViewById(R.id.modelSelectButton);
@@ -442,7 +441,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   public void onWindowFocusChanged(boolean hasFocus) {
 
     // スクリーンサイズ調整が済んでいない場合は調整する
-    if (this.mIsInitScreenSize == false) {
+    if (this.canvasFragment.mIsInitScreenSize == false) {
 //      Resources resources = getResources();
 //      Configuration config = resources.getConfiguration();
 //      int size;
@@ -462,23 +461,6 @@ public class CanvasActivity extends RoboFragmentActivity {
     }
     super.onWindowFocusChanged(hasFocus);
   }
-  
-  /**
-   * フィールドの初期化を行うメソッドです。
-   */
-  public void initField() {
-    this.sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-    this.registerAccerlerometer = false;
-    this.registerMagneticFieldSensor = false;
-    for (int i = 0; i < 3; i++) {
-      this.accels[i] = 0.0f;
-      this.magneticFields[i] = 0.0f;
-      this.orientations[i] = 0.0f;
-      this.prevOrientations[i] = 0.0f;
-      this.prevAccerlerometer[i] = 0.0f;
-    }
-    this.mIsInitScreenSize = false;
-  }
 
   /**
    * {@inheritDoc}
@@ -493,7 +475,7 @@ public class CanvasActivity extends RoboFragmentActivity {
       }
     }
     if (!this.registerMagneticFieldSensor) {
-      List<Sensor> sensors = this.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
+      List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
       if (sensors.size() > 0) {
         this.registerMagneticFieldSensor = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
         this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
@@ -566,7 +548,7 @@ public class CanvasActivity extends RoboFragmentActivity {
             this.slowButton.setEnabled(true);
             this.playButton.setEnabled(true);
             this.stopButton.setEnabled(true);
-            canvasFragment.modelRenderer.updateDisplay();
+            this.canvasFragment.modelRenderer.updateDisplay();
           }
         }
 
