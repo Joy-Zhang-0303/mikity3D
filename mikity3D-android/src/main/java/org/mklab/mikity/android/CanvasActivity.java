@@ -64,7 +64,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
-public class CanvasActivity extends RoboFragmentActivity implements SensorEventListener, FragmentSetListener {
+public class CanvasActivity extends RoboFragmentActivity implements SensorEventListener {
   
   protected static final String LOGTAG = null;
   private boolean mIsInitScreenSize;
@@ -174,7 +174,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   private FragmentTransaction fTransaction;
   private Bundle bundle;
   @InjectFragment(R.id.fragment_canvas)
-  private CanvasFragment canvasFragment;
+  CanvasFragment canvasFragment;
   
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -252,9 +252,10 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     this.playButton.setOnClickListener(new View.OnClickListener() {
       // コールバックメソッド
       public void onClick(View view) {
-        runAnimation();
+       CanvasActivity.this.canvasFragment.runAnimation();
       }
     });
+    
 
     this.slowButton.setOnClickListener(new View.OnClickListener() {
       /**
@@ -631,10 +632,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
 //    return super.onTouchEvent(event);
 //  }
 
-  protected void setScaleValue(double d) {
-    this.scaleValue = d;
-  }
-
   /**
    * {@inheritDoc}
    */
@@ -642,10 +639,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     // TODO 自動生成されたメソッド・スタブ
 
   }
-
-  /**
-   * {@inheritDoc}
-   */
+  
   /**
    * {@inheritDoc}
    */
@@ -725,39 +719,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     }
 
 //    this.modelRenderer.updateDisplay();
-  }
-
-  /**
-   * @see org.mklab.mikity.android.FragmentSetListener#makeFragment()
-   */
-  public void makeFragment() {
-  //this.canvasFragment = (CanvasFragment)getFragmentManager().findFragmentById(R.id.fragment_canvas);
-//  this.fManager = getFragmentManager();
-//  this.fTransaction = this.fManager.beginTransaction();
-//  this.canvasFragment = new CanvasFragment();
-//  this.bundle = new Bundle();
-  }
-
-  public void setFragmnet() {
-    
-  }
-  
-  /**
-   * @see org.mklab.mikity.android.FragmentSetListener#addToFragment()
-   */
-  public void addToFragment() {
-//    this.fTransaction.add(R.id.fragment_canvas, this.canvasFragment, "canvas_fragment");
-//    this.fTransaction.commit();
-//    
-  }
-
-  public void addToFragment(Object o) {
-    // TODO Auto-generated method stub
-    
-  }
-  
-  public void runAnimation() {
-    this.canvasFragment.runAnimation();
   }
   
 }

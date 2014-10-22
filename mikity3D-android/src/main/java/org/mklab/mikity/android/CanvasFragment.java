@@ -52,12 +52,12 @@ import android.widget.Button;
  * @version $Revision$, 2014/10/10
  * モデル描画用のフラグメントです。
  */
-public class CanvasFragment extends RoboFragment implements OnTouchListener {
+public class CanvasFragment extends RoboFragment {
   
   GLSurfaceView glView;
   private boolean mIsInitScreenSize;
   public OpenglesModelRenderer modelRenderer;
-  ScaleGestureDetector gesDetect = null;
+  public ScaleGestureDetector gesDetect = null;
   boolean rotationing;
   boolean scaling;
   private double scaleValue = 1;
@@ -91,13 +91,62 @@ public class CanvasFragment extends RoboFragment implements OnTouchListener {
     
     // ScaleGestureDetecotorクラスのインスタンス生成
     this.gesDetect = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
-//    view.setOnTouchListener(new View.OnTouchListener() {
-//      
-//      public boolean onTouch(View v, MotionEvent event) {
-//        // TODO Auto-generated method stub
-//        return false;
-//      }
-//    })
+    view.setOnTouchListener(new View.OnTouchListener() {
+      
+      public boolean onTouch(View v, MotionEvent event) {
+      float transferAmountX;
+      float transferAmountY;
+      int touchCount = event.getPointerCount();
+      // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
+      CanvasFragment.this.gesDetect.onTouchEvent(event);
+  
+      switch (event.getAction()) {
+      // タッチした
+        case MotionEvent.ACTION_DOWN:
+          CanvasFragment.this.rotationing = true;
+          CanvasFragment.this.prevX = event.getX();
+          CanvasFragment.this.prevY = event.getY();
+          break;
+  
+        // タッチしたまま移動
+        case MotionEvent.ACTION_MOVE:
+          transferAmountX = event.getX() - CanvasFragment.this.prevX;
+          transferAmountY = event.getY() - CanvasFragment.this.prevY;
+          CanvasFragment.this.prevX = event.getX();
+          CanvasFragment.this.prevY = event.getY();
+  
+         
+  
+          if ((CanvasFragment.this.rotationing) && (touchCount == 1)) {
+            CanvasFragment.this.modelRenderer.setRotation(transferAmountX, transferAmountY);
+          }
+          if ((touchCount == 2) && (!CanvasFragment.this.scaling)) {
+            final float Touch3DModelProportion = 1000.0f;
+            CanvasFragment.this.modelRenderer.setTranslationY(-transferAmountX / Touch3DModelProportion);
+            CanvasFragment.this.modelRenderer.setTranslationX(transferAmountY / Touch3DModelProportion);
+            CanvasFragment.this.rotationing = false;
+          }
+          CanvasFragment.this.rotationing = true;
+          break;
+  
+        // タッチが離れた
+        case MotionEvent.ACTION_UP:
+          CanvasFragment.this.prevX = event.getX();
+          CanvasFragment.this.prevY = event.getY();
+          break;
+  
+        // タッチがキャンセルされた
+        case MotionEvent.ACTION_CANCEL:
+          break;
+  
+        default:
+          break;
+      }
+  
+      CanvasFragment.this.modelRenderer.updateDisplay();
+      return true;
+      }
+    });
     return view;
   }
   
@@ -334,74 +383,5 @@ public class CanvasFragment extends RoboFragment implements OnTouchListener {
     this.timer = new Timer();
     this.timer.schedule(this.animationTask, 0, 30);
   }
-
-  public boolean onTouch(View v, MotionEvent event) {
-
-    return false;
-  }
-  
-  private OnTouchListener touchListener = new OnTouchListener() {
-
-
-
-
-
-    public boolean onTouch(View v, MotionEvent event) {
-      float transferAmountX;
-      float transferAmountY;
-      int touchCount = event.getPointerCount();
-      // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
-      CanvasFragment.this.gesDetect.onTouchEvent(event);
-
-      switch (event.getAction()) {
-      // タッチした
-        case MotionEvent.ACTION_DOWN:
-          CanvasFragment.this.rotationing = true;
-          CanvasFragment.this.prevX = event.getX();
-          CanvasFragment.this.prevY = event.getY();
-          break;
-
-        // タッチしたまま移動
-        case MotionEvent.ACTION_MOVE:
-          transferAmountX = event.getX() - CanvasFragment.this.prevX;
-          transferAmountY = event.getY() - CanvasFragment.this.prevY;
-          CanvasFragment.this.prevX = event.getX();
-          CanvasFragment.this.prevY = event.getY();
-
-         
-
-          if ((CanvasFragment.this.rotationing) && (touchCount == 1)) {
-            CanvasFragment.this.modelRenderer.setRotation(transferAmountX, transferAmountY);
-          }
-          if ((touchCount == 2) && (!CanvasFragment.this.scaling)) {
-            final float Touch3DModelProportion = 1000.0f;
-            CanvasFragment.this.modelRenderer.setTranslationY(-transferAmountX / Touch3DModelProportion);
-            CanvasFragment.this.modelRenderer.setTranslationX(transferAmountY / Touch3DModelProportion);
-            CanvasFragment.this.rotationing = false;
-          }
-          CanvasFragment.this.rotationing = true;
-          break;
-
-        // タッチが離れた
-        case MotionEvent.ACTION_UP:
-          CanvasFragment.this.prevX = event.getX();
-          CanvasFragment.this.prevY = event.getY();
-          break;
-
-        // タッチがキャンセルされた
-        case MotionEvent.ACTION_CANCEL:
-          break;
-
-        default:
-          break;
-      }
-
-      CanvasFragment.this.modelRenderer.updateDisplay();
-      return CanvasFragment.this.gesDetect.onTouchEvent(event);
-      //return true;
-    }
-    
-  };
-  
   
 }
