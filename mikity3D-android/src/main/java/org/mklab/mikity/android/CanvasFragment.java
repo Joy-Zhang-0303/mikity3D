@@ -41,6 +41,8 @@ import android.hardware.SensorManager;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,7 +62,7 @@ import android.widget.ToggleButton;
  * @version $Revision$, 2014/10/10
  * モデル描画用のフラグメントです。
  */
-public class CanvasFragment extends RoboFragment implements SensorEventListener {
+public class CanvasFragment extends RoboFragment implements SensorEventListener, Parcelable {
   
   GLSurfaceView glView;
   boolean mIsInitScreenSize;
@@ -115,7 +117,24 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか*/
   boolean useAccelerSensor = false;
   public List<Sensor> sensors;
-  
+//  public CanvasFragment savedFragmentInstance;
+//  public CanvasFragment() {
+//    super();
+//  }
+//  public CanvasFragment(Parcel in) {
+//    this.savedFragmentInstance = in.readParcelable(this.getClass().getClassLoader());
+//  }
+//  
+//  public static final Parcelable.Creator<CanvasFragment> CREATOR = new Parcelable.Creator<CanvasFragment>() {
+//
+//    public CanvasFragment createFromParcel(Parcel source) {
+//      return new CanvasFragment(source);
+//    }
+//
+//    public CanvasFragment[] newArray(int size) {
+//      return new CanvasFragment[size];
+//    }
+//  };
   
   /**
    * @param savedInstanceState Bundle
@@ -527,5 +546,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
   public void getSensor() {
     this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+  }
+
+  public int describeContents() {
+    return 0;
+  }
+
+  public void writeToParcel(Parcel dest, int flags) {
+    //dest.writeParcelable(savedFragmentInstance, flags);
   }
 }

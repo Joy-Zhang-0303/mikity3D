@@ -37,6 +37,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.hardware.Sensor;
@@ -46,6 +47,8 @@ import android.hardware.SensorManager;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.SystemClock;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -64,7 +67,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
-public class CanvasActivity extends RoboFragmentActivity {
+public class CanvasActivity extends RoboFragmentActivity implements SensorEventListener, Parcelable {
   
   protected static final String LOGTAG = null;
   private boolean mIsInitScreenSize;
@@ -173,6 +176,26 @@ public class CanvasActivity extends RoboFragmentActivity {
   private FragmentManager fManager;
   private FragmentTransaction fTransaction;
   private Bundle bundle;
+  private boolean useRotateSensor = false;
+  private ToggleButton rotateTogguleButton;
+  private Configuration config;
+//  public CanvasActivity() {
+//    super();
+//  }
+//  public CanvasActivity(Parcel in) {
+//    this.canvasFragment = in.readParcelable(this.canvasFragment.getClass().getClassLoader());
+//  }
+//  
+//  public static final Parcelable.Creator<CanvasActivity> CREATOR = new Parcelable.Creator<CanvasActivity>() {
+//
+//    public CanvasActivity createFromParcel(Parcel source) {
+//      return new CanvasActivity(source);
+//    }
+//
+//    public CanvasActivity[] newArray(int size) {
+//      return new CanvasActivity[size];
+//    }
+//  };
   @InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
   
@@ -298,7 +321,6 @@ public class CanvasActivity extends RoboFragmentActivity {
 
       }
     });
-
     this.accelerToggleButton = (ToggleButton)findViewById(R.id.accelerToggleButton);
     this.accelerToggleButton.setOnClickListener(new OnClickListener() {
 
@@ -311,11 +333,25 @@ public class CanvasActivity extends RoboFragmentActivity {
           
         } else {
           CanvasActivity.this.canvasFragment.useAccelerSensor = false;
-          
-
         }
       }
 
+    });
+    this.rotateTogguleButton = (ToggleButton)findViewById(R.id.rotateLayoutButton);
+    this.rotateTogguleButton.setOnClickListener(new OnClickListener() {
+      public void onClick(View v) {
+        CanvasActivity.this.config = getResources().getConfiguration();
+        if (CanvasActivity.this.rotateTogguleButton.isChecked()) {
+          if(config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+          } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+          }
+        } else {
+          setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+        }
+        CanvasActivity.this.canvasFragment.modelRenderer.updateDisplay();
+      }
     });
     
 //    this.animationSpeedTextEdit = (EditText)findViewById(R.id.animationSpeedEditText);
@@ -554,6 +590,45 @@ public class CanvasActivity extends RoboFragmentActivity {
 
         break;
     }
+  }
+
+  public void onSensorChanged(SensorEvent event) {
+    
+    
+  }
+
+  public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    // TODO Auto-generated method stub
+    
+  }
+  
+  @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    //if (this.canvasFragment.savedFragmentInstance != null) {
+      //if (this.canvasFragment != null) {
+        //outState.putParcelable("canvasFragment", this.canvasFragment);
+     // }
+    //}
+  }
+  
+  @Override
+  protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    super.onRestoreInstanceState(savedInstanceState);
+    //if (savedInstanceState.getParcelable("canvasFragment") != null) {
+      //this.canvasFragment = savedInstanceState.getParcelable("canvasFragment");
+     // this.canvasFragment.modelRenderer.updateDisplay();
+    //}
+  }
+
+  public int describeContents() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  public void writeToParcel(Parcel dest, int flags) {
+    // TODO Auto-generated method stub
+   // dest.writeParcelable(this.canvasFragment, flags);
   }
   
 }
