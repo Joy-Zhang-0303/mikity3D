@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
+import org.mklab.mikity.android.view.renderer.ContactParcelable;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
@@ -59,11 +60,10 @@ import android.widget.ToggleButton;
 
 /**
  * @author soda
- * @version $Revision$, 2014/10/10
- * モデル描画用のフラグメントです。
+ * @version $Revision$, 2014/10/10 モデル描画用のフラグメントです。
  */
-public class CanvasFragment extends RoboFragment implements SensorEventListener, Parcelable {
-  
+public class CanvasFragment extends RoboFragment implements SensorEventListener {
+
   GLSurfaceView glView;
   boolean mIsInitScreenSize;
   public OpenglesModelRenderer modelRenderer;
@@ -86,8 +86,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener,
   private AnimationTask animationTask;
   /** センサーマネージャー */
   SensorManager sensorManager;
-//  private boolean registerAccerlerometer;
-//  private boolean registerMagneticFieldSensor;
+  //  private boolean registerAccerlerometer;
+  //  private boolean registerMagneticFieldSensor;
   /** センサーからの加速度を格納する配列 */
   private float[] accels = new float[3];
   /** センサーからの地磁気を格納する配列 */
@@ -114,112 +114,120 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener,
   private double rawAz;
   /** 前回加速度センサーを3Dオブジェクトに使用したときの時間 */
   private long useAccelerOldTime = 0L;
-  /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか*/
+  /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか */
   boolean useAccelerSensor = false;
   public List<Sensor> sensors;
-//  public CanvasFragment savedFragmentInstance;
-//  public CanvasFragment() {
-//    super();
-//  }
-//  public CanvasFragment(Parcel in) {
-//    this.savedFragmentInstance = in.readParcelable(this.getClass().getClassLoader());
-//  }
-//  
-//  public static final Parcelable.Creator<CanvasFragment> CREATOR = new Parcelable.Creator<CanvasFragment>() {
-//
-//    public CanvasFragment createFromParcel(Parcel source) {
-//      return new CanvasFragment(source);
-//    }
-//
-//    public CanvasFragment[] newArray(int size) {
-//      return new CanvasFragment[size];
-//    }
-//  };
-  
+  private ContactParcelable parcelable;
+  public CanvasFragment savedFragmentInstance;
+
+  public CanvasFragment() {
+    super();
+  }
+
+  public CanvasFragment(Parcel in) {
+
+  }
+
+  public static final Parcelable.Creator<CanvasFragment> CREATOR = new Parcelable.Creator<CanvasFragment>() {
+
+    public CanvasFragment createFromParcel(Parcel source) {
+      return new CanvasFragment(source);
+    }
+
+    public CanvasFragment[] newArray(int size) {
+      return new CanvasFragment[size];
+    }
+  };
+
   /**
    * @param savedInstanceState Bundle
    * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    
+    Log.d("3D Fragment", "onCreateView");
     View view = inflater.inflate(R.layout.canvas_fragment, container, false);
-//    //this.inputModelFile = res.openRawResource(R.raw.pendulum);
-//    //final OIFileManager fileManager = new OIFileManager(this);
+    //    //this.inputModelFile = res.openRawResource(R.raw.pendulum);
+    //    //final OIFileManager fileManager = new OIFileManager(this);
     this.glView = (GLSurfaceView)view.findViewById(R.id.glview1);
     this.getResources();
     this.modelRenderer = new OpenglesModelRenderer(this.glView);
-//// // 描画のクラスを登録する
+    //// // 描画のクラスを登録する
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
     initField();
-    
+
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     this.activity = (CanvasActivity)getActivity();
-    
+
     // ScaleGestureDetecotorクラスのインスタンス生成
     this.gesDetect = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
     // タッチ操作の種類によってイベントを取得する
     view.setOnTouchListener(new View.OnTouchListener() {
-      
+
       public boolean onTouch(View v, MotionEvent event) {
-      float transferAmountX;
-      float transferAmountY;
-      int touchCount = event.getPointerCount();
-      // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
-      CanvasFragment.this.gesDetect.onTouchEvent(event);
-  
-      switch (event.getAction()) {
-      // タッチした
-        case MotionEvent.ACTION_DOWN:
-          CanvasFragment.this.rotationing = true;
-          CanvasFragment.this.prevX = event.getX();
-          CanvasFragment.this.prevY = event.getY();
-          break;
-  
-        // タッチしたまま移動
-        case MotionEvent.ACTION_MOVE:
-          transferAmountX = event.getX() - CanvasFragment.this.prevX;
-          transferAmountY = event.getY() - CanvasFragment.this.prevY;
-          CanvasFragment.this.prevX = event.getX();
-          CanvasFragment.this.prevY = event.getY();
-  
-         
-  
-          if ((CanvasFragment.this.rotationing) && (touchCount == 1)) {
-            CanvasFragment.this.modelRenderer.setRotation(transferAmountX, transferAmountY);
-          }
-          if ((touchCount == 2) && (!CanvasFragment.this.scaling)) {
-            final float Touch3DModelProportion = 1000.0f;
-            CanvasFragment.this.modelRenderer.setTranslationY(-transferAmountX / Touch3DModelProportion);
-            CanvasFragment.this.modelRenderer.setTranslationX(transferAmountY / Touch3DModelProportion);
-            CanvasFragment.this.rotationing = false;
-          }
-          CanvasFragment.this.rotationing = true;
-          break;
-  
-        // タッチが離れた
-        case MotionEvent.ACTION_UP:
-          CanvasFragment.this.prevX = event.getX();
-          CanvasFragment.this.prevY = event.getY();
-          break;
-  
-        // タッチがキャンセルされた
-        case MotionEvent.ACTION_CANCEL:
-          break;
-  
-        default:
-          break;
-      }
-  
-      CanvasFragment.this.modelRenderer.updateDisplay();
-      return true;
+        float transferAmountX;
+        float transferAmountY;
+        int touchCount = event.getPointerCount();
+        // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
+        CanvasFragment.this.gesDetect.onTouchEvent(event);
+
+        switch (event.getAction()) {
+        // タッチした
+          case MotionEvent.ACTION_DOWN:
+            CanvasFragment.this.rotationing = true;
+            CanvasFragment.this.prevX = event.getX();
+            CanvasFragment.this.prevY = event.getY();
+            break;
+
+          // タッチしたまま移動
+          case MotionEvent.ACTION_MOVE:
+            transferAmountX = event.getX() - CanvasFragment.this.prevX;
+            transferAmountY = event.getY() - CanvasFragment.this.prevY;
+            CanvasFragment.this.prevX = event.getX();
+            CanvasFragment.this.prevY = event.getY();
+
+            if ((CanvasFragment.this.rotationing) && (touchCount == 1)) {
+              CanvasFragment.this.modelRenderer.setRotation(transferAmountX, transferAmountY);
+            }
+            if ((touchCount == 2) && (!CanvasFragment.this.scaling)) {
+              final float Touch3DModelProportion = 1000.0f;
+              CanvasFragment.this.modelRenderer.setTranslationY(-transferAmountX / Touch3DModelProportion);
+              CanvasFragment.this.modelRenderer.setTranslationX(transferAmountY / Touch3DModelProportion);
+              CanvasFragment.this.rotationing = false;
+            }
+            CanvasFragment.this.rotationing = true;
+            break;
+
+          // タッチが離れた
+          case MotionEvent.ACTION_UP:
+            CanvasFragment.this.prevX = event.getX();
+            CanvasFragment.this.prevY = event.getY();
+            break;
+
+          // タッチがキャンセルされた
+          case MotionEvent.ACTION_CANCEL:
+            break;
+
+          default:
+            break;
+        }
+
+        CanvasFragment.this.modelRenderer.updateDisplay();
+        return true;
       }
     });
+    //    this.parcelable = new ContactParcelable(this);
+
     return view;
   }
-  
+
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setRetainInstance(true);
+  }
+
   // スケールジェスチャーイベントを取得
   private final SimpleOnScaleGestureListener onScaleGestureListener = new SimpleOnScaleGestureListener() {
 
@@ -235,6 +243,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener,
 
       return super.onScale(detector);
     }
+
     @Override
     public boolean onScaleBegin(ScaleGestureDetector detector) {
 
@@ -256,18 +265,17 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener,
     }
   };
 
-  
   protected void setScaleValue(double d) {
     this.scaleValue = d;
   }
-  
+
   /**
    * 現在の呼び出し元アクティビティのビューを格納するメソッドです。
    */
   public void setActivity() {
     //this.canvasActivity = ActivitygetActivity().findViewById(R.id.activity_canvas);
   }
-  
+
   /**
    * @param modelFile モデルファイル
    * @throws IOException ファイルを読み込めない場合
@@ -287,26 +295,20 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener,
    */
   public void loadModelFile(InputStream input) throws IOException, Mikity3dSerializeDeserializeException {
     this.root = new Mikity3dFactory().loadFile(input);
-    this.manager = new MovableGroupManager(this.root);
-    Group[] children = this.root.getModel(0).getGroups();
-    this.modelRenderer.setChildren(children);
-    Mikity3dConfiguration configuration = this.root.getConfiguration(0);
-    this.modelRenderer.setConfiguration(configuration);
-
-    this.manager.setLogCat(new LogCatImpl()); //LogCatのセット
-
+    setModel();
   }
-//
-//  /**
-//   * @throws FileNotFoundException
-//   * @throws IOException
-//   */
-//  private void loadTimeData() throws FileNotFoundException, IOException {
-//    InputStream mat1 = new FileInputStream(this.filePath);
-//    setTimeData(mat1);
-//    mat1.close();
-//  }
-  
+
+  //
+  //  /**
+  //   * @throws FileNotFoundException
+  //   * @throws IOException
+  //   */
+  //  private void loadTimeData() throws FileNotFoundException, IOException {
+  //    InputStream mat1 = new FileInputStream(this.filePath);
+  //    setTimeData(mat1);
+  //    mat1.close();
+  //  }
+
   public void loadtimeSeriesData(final String filePath) {
     AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
 
@@ -347,7 +349,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener,
     };
     task.execute();
   }
-  
+
   /**
    * 実行時間バーを設定する。
    * 
@@ -380,7 +382,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener,
       throw new RuntimeException(e);
     }
   }
-  
+
   private void checkLinkParameterType(Group parent) {
     final Group[] groups = parent.getGroups();
     for (final Group group : groups) {
@@ -396,12 +398,15 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener,
       checkLinkParameterType(group);
     }
   }
+
   public MovableGroupManager getManager() {
     return this.manager;
   }
+
   public OpenglesModelRenderer getModelRender() {
     return this.modelRenderer;
   }
+
   /**
    * アニメーションを開始します。
    */
@@ -527,15 +532,15 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener,
   public void onAccuracyChanged(Sensor sensor, int accuracy) {
     // TODO Auto-generated method stub
   }
-  
+
   /**
    * フィールドの初期化を行うメソッドです。
    */
   public void initField() {
     this.sensorManager = (SensorManager)this.getActivity().getSystemService(Activity.SENSOR_SERVICE);
     this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
-//    this.registerAccerlerometer = false;
-//    this.registerMagneticFieldSensor = false;
+    //    this.registerAccerlerometer = false;
+    //    this.registerMagneticFieldSensor = false;
     for (int i = 0; i < 3; i++) {
       this.accels[i] = 0.0f;
       this.magneticFields[i] = 0.0f;
@@ -544,15 +549,23 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener,
       this.prevAccerlerometer[i] = 0.0f;
     }
   }
+
   public void getSensor() {
     this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
   }
 
-  public int describeContents() {
-    return 0;
+  public Mikity3d getRoot() {
+    // TODO Auto-generated method stub
+    return this.root;
   }
 
-  public void writeToParcel(Parcel dest, int flags) {
-    //dest.writeParcelable(savedFragmentInstance, flags);
+  public void setModel() {
+    this.manager = new MovableGroupManager(this.root);
+    Group[] children = this.root.getModel(0).getGroups();
+    this.modelRenderer.setChildren(children);
+    Mikity3dConfiguration configuration = this.root.getConfiguration(0);
+    this.modelRenderer.setConfiguration(configuration);
+    this.manager.setLogCat(new LogCatImpl()); //LogCatのセット    
   }
+
 }

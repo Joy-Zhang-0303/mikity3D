@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
+import org.mklab.mikity.android.view.renderer.ContactParcelable;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
@@ -59,6 +60,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -67,8 +69,8 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
-public class CanvasActivity extends RoboFragmentActivity implements SensorEventListener, Parcelable {
-  
+public class CanvasActivity extends RoboFragmentActivity implements SensorEventListener {
+
   protected static final String LOGTAG = null;
   private boolean mIsInitScreenSize;
   GLSurfaceView glView;
@@ -168,7 +170,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   private double rawAz;
   /** 前回加速度センサーを3Dオブジェクトに使用したときの時間 */
   private long useAccelerOldTime = 0L;
-  /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか*/
+  /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか */
   private boolean useAccelerSensor = false;
 
   private ActionBarDrawerToggle mDrawerToggle;
@@ -179,33 +181,34 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   private boolean useRotateSensor = false;
   private ToggleButton rotateTogguleButton;
   private Configuration config;
-//  public CanvasActivity() {
-//    super();
-//  }
-//  public CanvasActivity(Parcel in) {
-//    this.canvasFragment = in.readParcelable(this.canvasFragment.getClass().getClassLoader());
-//  }
-//  
-//  public static final Parcelable.Creator<CanvasActivity> CREATOR = new Parcelable.Creator<CanvasActivity>() {
-//
-//    public CanvasActivity createFromParcel(Parcel source) {
-//      return new CanvasActivity(source);
-//    }
-//
-//    public CanvasActivity[] newArray(int size) {
-//      return new CanvasActivity[size];
-//    }
-//  };
+  ContactParcelable parcelable;
+  //  public CanvasActivity() {
+  //    super();
+  //  }
+  //  public CanvasActivity(Parcel in) {
+  //    this.canvasFragment = in.readParcelable(this.canvasFragment.getClass().getClassLoader());
+  //  }
+  //  
+  //  public static final Parcelable.Creator<CanvasActivity> CREATOR = new Parcelable.Creator<CanvasActivity>() {
+  //
+  //    public CanvasActivity createFromParcel(Parcel source) {
+  //      return new CanvasActivity(source);
+  //    }
+  //
+  //    public CanvasActivity[] newArray(int size) {
+  //      return new CanvasActivity[size];
+  //    }
+  //  };
   @InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
-  
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    
+
     super.onCreate(savedInstanceState);
+    Log.d("Mikity3D", "onCreate");
     setContentView(R.layout.canvas);
-    
-  //this.inputModelFile = res.openRawResource(R.raw.pendulum);
+    //this.inputModelFile = res.openRawResource(R.raw.pendulum);
     final OIFileManager fileManager = new OIFileManager(this);
 
     //モデルデータ選択ボタンの表示
@@ -224,6 +227,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     this.stopButton.setEnabled(false);
 
     this.loadModelButton.setOnClickListener(new View.OnClickListener() {
+
       /**
        * {@inheritDoc}
        */
@@ -232,7 +236,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
         fileManager.getFilePath();
       }
     });
-    
+
     this.animationSpeedTextEdit = (EditText)findViewById(R.id.animationSpeedEditText);
     this.animationSpeedTextEdit.clearFocus();
     this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
@@ -248,9 +252,9 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     this.testTextView = new TextView(this);
     this.testTextView = (TextView)findViewById(R.id.textView1);
 
-
     //再生速度の設定
     this.quickButton.setOnClickListener(new View.OnClickListener() {
+
       /**
        * {@inheritDoc}
        */
@@ -261,7 +265,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
         if (CanvasActivity.this.animationTask != null) CanvasActivity.this.animationTask.setSpeedScale(CanvasActivity.this.animationSpeed / 10);
       }
     });
-    
+
     this.selectButton.setOnClickListener(new View.OnClickListener() {
 
       public void onClick(View v) {
@@ -272,14 +276,15 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
 
     // イベントリスナー
     this.playButton.setOnClickListener(new View.OnClickListener() {
+
       // コールバックメソッド
       public void onClick(View view) {
-       CanvasActivity.this.canvasFragment.runAnimation();
+        CanvasActivity.this.canvasFragment.runAnimation();
       }
     });
-    
 
     this.slowButton.setOnClickListener(new View.OnClickListener() {
+
       /**
        * {@inheritDoc}
        */
@@ -301,6 +306,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     });
 
     this.stopButton.setOnClickListener(new View.OnClickListener() {
+
       // コールバックメソッド
       public void onClick(View view) {
         CanvasActivity.this.timer.cancel();
@@ -330,7 +336,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
       public void onClick(View v) {
         if (CanvasActivity.this.accelerToggleButton.isChecked()) {
           CanvasActivity.this.canvasFragment.useAccelerSensor = true;
-          
+
         } else {
           CanvasActivity.this.canvasFragment.useAccelerSensor = false;
         }
@@ -339,10 +345,11 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     });
     this.rotateTogguleButton = (ToggleButton)findViewById(R.id.rotateLayoutButton);
     this.rotateTogguleButton.setOnClickListener(new OnClickListener() {
+
       public void onClick(View v) {
         CanvasActivity.this.config = getResources().getConfiguration();
         if (CanvasActivity.this.rotateTogguleButton.isChecked()) {
-          if(config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+          if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
           } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -353,11 +360,11 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
         CanvasActivity.this.canvasFragment.modelRenderer.updateDisplay();
       }
     });
-    
-//    this.animationSpeedTextEdit = (EditText)findViewById(R.id.animationSpeedEditText);
-//    this.animationSpeedTextEdit.clearFocus();
-//    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
-//    this.animationSpeedTextEdit.clearFocus();
+
+    //    this.animationSpeedTextEdit = (EditText)findViewById(R.id.animationSpeedEditText);
+    //    this.animationSpeedTextEdit.clearFocus();
+    //    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
+    //    this.animationSpeedTextEdit.clearFocus();
 
     //外部アプリからの起動
     Intent intent = getIntent();
@@ -411,86 +418,85 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
       }
     }
 
-//    ((Button)findViewById(R.id.drawer_button)).setOnClickListener((OnClickListener)this);
-    
-    this.mDrawer = (DrawerLayout) findViewById(R.id.activity_canvas);
-    this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer,
-            R.drawable.icon, R.string.drawer_open,
-            R.string.drawer_close) {
-        @Override
-        public void onDrawerClosed(View drawerView) {
-            Log.i(LOGTAG, "onDrawerClosed");
-        }
- 
-        @Override
-        public void onDrawerOpened(View drawerView) {
-          mIsInitScreenSize = false;
-            Log.i(LOGTAG, "onDrawerOpened");
-        }
- 
-        @Override
-        public void onDrawerSlide(View drawerView, float slideOffset) {
-            super.onDrawerSlide(drawerView, slideOffset);
-            Log.i(LOGTAG, "onDrawerSlide : " + slideOffset);
-        }
- 
-        @Override
-        public void onDrawerStateChanged(int newState) {
-            Log.i(LOGTAG, "onDrawerStateChanged  new state : " + newState);
-        }
+    //    ((Button)findViewById(R.id.drawer_button)).setOnClickListener((OnClickListener)this);
+
+    this.mDrawer = (DrawerLayout)findViewById(R.id.activity_canvas);
+    this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.icon, R.string.drawer_open, R.string.drawer_close) {
+
+      @Override
+      public void onDrawerClosed(View drawerView) {
+        Log.i(LOGTAG, "onDrawerClosed");
+      }
+
+      @Override
+      public void onDrawerOpened(View drawerView) {
+        mIsInitScreenSize = false;
+        Log.i(LOGTAG, "onDrawerOpened");
+      }
+
+      @Override
+      public void onDrawerSlide(View drawerView, float slideOffset) {
+        super.onDrawerSlide(drawerView, slideOffset);
+        Log.i(LOGTAG, "onDrawerSlide : " + slideOffset);
+      }
+
+      @Override
+      public void onDrawerStateChanged(int newState) {
+        Log.i(LOGTAG, "onDrawerStateChanged  new state : " + newState);
+      }
     };
-      this.mDrawer.setDrawerListener(this.mDrawerToggle);
+    this.mDrawer.setDrawerListener(this.mDrawerToggle);
     getActionBar().setDisplayHomeAsUpEnabled(true);
     getActionBar().setHomeButtonEnabled(true);
-    
+
   }
-  
+
   @Override
   protected void onPostCreate(Bundle savedInstanceState) {
-      super.onPostCreate(savedInstanceState);
-      mDrawerToggle.syncState();
+    super.onPostCreate(savedInstanceState);
+    mDrawerToggle.syncState();
   }
-   
+
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
-      super.onConfigurationChanged(newConfig);
-      mDrawerToggle.onConfigurationChanged(newConfig);
+    super.onConfigurationChanged(newConfig);
+    mDrawerToggle.onConfigurationChanged(newConfig);
   }
-   
+
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-   
-      // ActionBarDrawerToggleにandroid.id.home(up ナビゲーション)を渡す。
-      if (mDrawerToggle.onOptionsItemSelected(item)) {
-          return true;
-      }
-   
-      return super.onOptionsItemSelected(item);
+
+    // ActionBarDrawerToggleにandroid.id.home(up ナビゲーション)を渡す。
+    if (mDrawerToggle.onOptionsItemSelected(item)) {
+      return true;
+    }
+
+    return super.onOptionsItemSelected(item);
   }
-   
+
   public void onClick(View v) {
-      mDrawer.closeDrawers();
+    mDrawer.closeDrawers();
   }
-  
+
   /** 表示されるときに呼ばれる */
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
-
+    Log.d("Mikity3D", "onWindowFocusChanged");
     // スクリーンサイズ調整が済んでいない場合は調整する
     if (this.canvasFragment.mIsInitScreenSize == false) {
-//      Resources resources = getResources();
-//      Configuration config = resources.getConfiguration();
-//      int size;
-//      switch (config.orientation) {
-//        case Configuration.ORIENTATION_PORTRAIT:
-//          size = this.glView.getWidth();
-//          break;
-//        case Configuration.ORIENTATION_LANDSCAPE:
-//          size = this.glView.getHeight();
-//          break;
-//        default:
-//          throw new IllegalStateException("It is not a portrait or landscape"); //$NON-NLS-1$
-//      }
+      //      Resources resources = getResources();
+      //      Configuration config = resources.getConfiguration();
+      //      int size;
+      //      switch (config.orientation) {
+      //        case Configuration.ORIENTATION_PORTRAIT:
+      //          size = this.glView.getWidth();
+      //          break;
+      //        case Configuration.ORIENTATION_LANDSCAPE:
+      //          size = this.glView.getHeight();
+      //          break;
+      //        default:
+      //          throw new IllegalStateException("It is not a portrait or landscape"); //$NON-NLS-1$
+      //      }
       GLSurfaceView glSurfaceView = (GLSurfaceView)findViewById(R.id.glview1);
       LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(glSurfaceView.getWidth(), glSurfaceView.getHeight());
       glSurfaceView.setLayoutParams(params);
@@ -503,6 +509,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
    */
   @Override
   public void onResume() {
+    Log.d("Mikity3D", "onResume");
     if (!this.registerAccerlerometer) {
       //List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
       this.canvasFragment.getSensor();
@@ -522,13 +529,13 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     super.onResume();
 
   }
-  
+
   /**
    * {@inheritDoc}
    */
   @Override
   public void onPause() {
-
+    Log.d("Mikity3D", "onPause");
     this.canvasFragment.glView.onPause();
     if (this.registerAccerlerometer || this.registerMagneticFieldSensor) {
       this.canvasFragment.sensorManager.unregisterListener(this.canvasFragment);
@@ -540,8 +547,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     super.onPause();
 
   }
-  
-
 
   /**
    * This is called after the file manager finished.
@@ -584,6 +589,12 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
             this.slowButton.setEnabled(true);
             this.playButton.setEnabled(true);
             this.stopButton.setEnabled(true);
+
+            Mikity3d root = this.canvasFragment.getRoot();
+
+            Log.d("LOOT on RESULT 3D", root.getMikity3dData().toString());
+            Log.d("LOOT on RESULT Manager", this.canvasFragment.getManager().toString());
+            Log.d("LOOT on RESULT Render", this.canvasFragment.getModelRender().toString());
             this.canvasFragment.modelRenderer.updateDisplay();
           }
         }
@@ -593,42 +604,62 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   }
 
   public void onSensorChanged(SensorEvent event) {
-    
-    
+
   }
 
   public void onAccuracyChanged(Sensor sensor, int accuracy) {
     // TODO Auto-generated method stub
-    
+
   }
-  
+
   @Override
   protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
+    Log.d("Mikity3D", "onSaveInstanceState");
     //if (this.canvasFragment.savedFragmentInstance != null) {
-      //if (this.canvasFragment != null) {
-        //outState.putParcelable("canvasFragment", this.canvasFragment);
-     // }
+    this.parcelable = new ContactParcelable();
+    this.parcelable.setCanvasFragment(this.canvasFragment);
+    //      if (this.parcelable != null) {
+    outState.putParcelable("contact", this.parcelable);
+    //        //this.canvasFragment.writeToParcel(dest, flags);
+    //      }
     //}
   }
-  
+
   @Override
   protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    Log.d("Mikity3D", "onRestoreInstanceState");
     super.onRestoreInstanceState(savedInstanceState);
-    //if (savedInstanceState.getParcelable("canvasFragment") != null) {
-      //this.canvasFragment = savedInstanceState.getParcelable("canvasFragment");
-     // this.canvasFragment.modelRenderer.updateDisplay();
-    //}
-  }
-
-  public int describeContents() {
-    // TODO Auto-generated method stub
-    return 0;
-  }
-
-  public void writeToParcel(Parcel dest, int flags) {
-    // TODO Auto-generated method stub
-   // dest.writeParcelable(this.canvasFragment, flags);
-  }
+    Mikity3d root = this.canvasFragment.getRoot();
+    if (root != null){
+      Log.d("LOOT on RESTORE 3D", root.getMikity3dData().toString());
+      Log.d("LOOT on RESTORE Manager", this.canvasFragment.getManager().toString());
+      Log.d("LOOT on RESTORE Render", this.canvasFragment.getModelRender().toString());
+    }
+    //    if (savedInstanceState.getParcelable("contact") != null) {
+    //this.canvasFragment = savedInstanceState.getParcelable("contact");
+    this.parcelable = savedInstanceState.getParcelable("contact");
+    this.canvasFragment = this.parcelable.getFragment();
   
+    root = this.canvasFragment.getRoot();
+    if (root != null){
+      this.canvasFragment.setModel();
+      Log.d("LOOT on RESTORE 3D", root.getMikity3dData().toString());
+      Log.d("LOOT on RESTORE Manager", this.canvasFragment.getManager().toString());
+      Log.d("LOOT on RESTORE Render", this.canvasFragment.getModelRender().toString());
+    }
+    this.canvasFragment.modelRenderer.updateDisplay();
+    //    }
+  }
+
+  //  public int describeContents() {
+  //    // TODO Auto-generated method stub
+  //    return 0;
+  //  }
+  //
+  //  public void writeToParcel(Parcel dest, int flags) {
+  //    // TODO Auto-generated method stub
+  //   // dest.writeParcelable(this.canvasFragment, flags);
+  //  }
+
 }
