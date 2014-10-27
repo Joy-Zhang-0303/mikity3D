@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.android.view.renderer.ContactParcelable;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
@@ -117,7 +116,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか */
   boolean useAccelerSensor = false;
   public List<Sensor> sensors;
-  private ContactParcelable parcelable;
   public CanvasFragment savedFragmentInstance;
 
   public CanvasFragment() {
@@ -218,7 +216,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
         return true;
       }
     });
-    //    this.parcelable = new ContactParcelable(this);
 
     return view;
   }
@@ -530,7 +527,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   public void onAccuracyChanged(Sensor sensor, int accuracy) {
-    // TODO Auto-generated method stub
   }
 
   /**
@@ -555,7 +551,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   public Mikity3d getRoot() {
-    // TODO Auto-generated method stub
     return this.root;
   }
 

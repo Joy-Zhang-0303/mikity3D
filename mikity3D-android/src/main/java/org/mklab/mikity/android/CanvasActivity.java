@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.android.view.renderer.ContactParcelable;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
@@ -181,24 +180,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   private boolean useRotateSensor = false;
   private ToggleButton rotateTogguleButton;
   private Configuration config;
-  ContactParcelable parcelable;
-  //  public CanvasActivity() {
-  //    super();
-  //  }
-  //  public CanvasActivity(Parcel in) {
-  //    this.canvasFragment = in.readParcelable(this.canvasFragment.getClass().getClassLoader());
-  //  }
-  //  
-  //  public static final Parcelable.Creator<CanvasActivity> CREATOR = new Parcelable.Creator<CanvasActivity>() {
-  //
-  //    public CanvasActivity createFromParcel(Parcel source) {
-  //      return new CanvasActivity(source);
-  //    }
-  //
-  //    public CanvasActivity[] newArray(int size) {
-  //      return new CanvasActivity[size];
-  //    }
-  //  };
   @InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
 
@@ -350,9 +331,19 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
         CanvasActivity.this.config = getResources().getConfiguration();
         if (CanvasActivity.this.rotateTogguleButton.isChecked()) {
           if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE) {
+              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+            } else {
+              //              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+            }
           } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT) {
+              //              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+            } else {
+              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
           }
         } else {
           setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
@@ -481,7 +472,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   /** 表示されるときに呼ばれる */
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
-    Log.d("Mikity3D", "onWindowFocusChanged");
     // スクリーンサイズ調整が済んでいない場合は調整する
     if (this.canvasFragment.mIsInitScreenSize == false) {
       //      Resources resources = getResources();
@@ -509,7 +499,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
    */
   @Override
   public void onResume() {
-    Log.d("Mikity3D", "onResume");
     if (!this.registerAccerlerometer) {
       //List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
       this.canvasFragment.getSensor();
@@ -535,7 +524,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
    */
   @Override
   public void onPause() {
-    Log.d("Mikity3D", "onPause");
     this.canvasFragment.glView.onPause();
     if (this.registerAccerlerometer || this.registerMagneticFieldSensor) {
       this.canvasFragment.sensorManager.unregisterListener(this.canvasFragment);
@@ -591,10 +579,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
             this.stopButton.setEnabled(true);
 
             Mikity3d root = this.canvasFragment.getRoot();
-
-            Log.d("LOOT on RESULT 3D", root.getMikity3dData().toString());
-            Log.d("LOOT on RESULT Manager", this.canvasFragment.getManager().toString());
-            Log.d("LOOT on RESULT Render", this.canvasFragment.getModelRender().toString());
             this.canvasFragment.modelRenderer.updateDisplay();
           }
         }
@@ -608,58 +592,13 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   }
 
   public void onAccuracyChanged(Sensor sensor, int accuracy) {
-    // TODO Auto-generated method stub
 
-  }
-
-  @Override
-  protected void onSaveInstanceState(Bundle outState) {
-    super.onSaveInstanceState(outState);
-    Log.d("Mikity3D", "onSaveInstanceState");
-    //if (this.canvasFragment.savedFragmentInstance != null) {
-    this.parcelable = new ContactParcelable();
-    this.parcelable.setCanvasFragment(this.canvasFragment);
-    //      if (this.parcelable != null) {
-    outState.putParcelable("contact", this.parcelable);
-    //        //this.canvasFragment.writeToParcel(dest, flags);
-    //      }
-    //}
   }
 
   @Override
   protected void onRestoreInstanceState(Bundle savedInstanceState) {
-    Log.d("Mikity3D", "onRestoreInstanceState");
     super.onRestoreInstanceState(savedInstanceState);
-    Mikity3d root = this.canvasFragment.getRoot();
-    if (root != null){
-      Log.d("LOOT on RESTORE 3D", root.getMikity3dData().toString());
-      Log.d("LOOT on RESTORE Manager", this.canvasFragment.getManager().toString());
-      Log.d("LOOT on RESTORE Render", this.canvasFragment.getModelRender().toString());
-    }
-    //    if (savedInstanceState.getParcelable("contact") != null) {
-    //this.canvasFragment = savedInstanceState.getParcelable("contact");
-    this.parcelable = savedInstanceState.getParcelable("contact");
-    this.canvasFragment = this.parcelable.getFragment();
-  
-    root = this.canvasFragment.getRoot();
-    if (root != null){
-      this.canvasFragment.setModel();
-      Log.d("LOOT on RESTORE 3D", root.getMikity3dData().toString());
-      Log.d("LOOT on RESTORE Manager", this.canvasFragment.getManager().toString());
-      Log.d("LOOT on RESTORE Render", this.canvasFragment.getModelRender().toString());
-    }
+    this.canvasFragment.setModel();
     this.canvasFragment.modelRenderer.updateDisplay();
-    //    }
   }
-
-  //  public int describeContents() {
-  //    // TODO Auto-generated method stub
-  //    return 0;
-  //  }
-  //
-  //  public void writeToParcel(Parcel dest, int flags) {
-  //    // TODO Auto-generated method stub
-  //   // dest.writeParcelable(this.canvasFragment, flags);
-  //  }
-
 }
