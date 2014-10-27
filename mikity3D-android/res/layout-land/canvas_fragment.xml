@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/frame"
-    android:padding="4dip" > 
+    android:padding="1dip" > 
     
      <android.opengl.GLSurfaceView
             android:id="@+id/glview1"

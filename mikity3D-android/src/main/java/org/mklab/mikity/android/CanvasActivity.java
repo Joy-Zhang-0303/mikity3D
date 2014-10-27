@@ -423,7 +423,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
     //    ((Button)findViewById(R.id.drawer_button)).setOnClickListener((OnClickListener)this);
 
     this.mDrawer = (DrawerLayout)findViewById(R.id.activity_canvas);
-    this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.icon, R.string.drawer_open, R.string.drawer_close) {
+    this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close) {
 
       @Override
       public void onDrawerClosed(View drawerView) {
