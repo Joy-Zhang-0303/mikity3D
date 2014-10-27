@@ -555,12 +555,15 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   public void setModel() {
-    this.manager = new MovableGroupManager(this.root);
-    Group[] children = this.root.getModel(0).getGroups();
-    this.modelRenderer.setChildren(children);
-    Mikity3dConfiguration configuration = this.root.getConfiguration(0);
-    this.modelRenderer.setConfiguration(configuration);
-    this.manager.setLogCat(new LogCatImpl()); //LogCatのセット    
+    if(this.root != null){
+      this.manager = new MovableGroupManager(this.root);
+      Group[] children = this.root.getModel(0).getGroups();
+      this.modelRenderer.setChildren(children);
+      Mikity3dConfiguration configuration = this.root.getConfiguration(0);
+      this.modelRenderer.setConfiguration(configuration);
+      this.manager.setLogCat(new LogCatImpl()); //LogCatのセット    
+      
+    }
   }
 
 }

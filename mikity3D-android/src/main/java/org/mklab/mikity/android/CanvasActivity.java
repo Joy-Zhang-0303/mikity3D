@@ -56,10 +56,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
+import android.view.Surface;
 import android.view.View;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -329,26 +331,35 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
 
       public void onClick(View v) {
         CanvasActivity.this.config = getResources().getConfiguration();
+        int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+        boolean isReverse = false;
         if (CanvasActivity.this.rotateTogguleButton.isChecked()) {
+          switch(rotation) {
+            case Surface.ROTATION_180:
+            case Surface.ROTATION_270:
+              isReverse = true;
+              break;
+            default:
+              isReverse = false;
+              break;
+          }
           if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE) {
+            if (isReverse) {
               setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
             } else {
-              //              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             }
           } else {
-            if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT) {
-              //              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+            if (isReverse) {
               setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
             } else {
               setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
           }
+          CanvasActivity.this.canvasFragment.modelRenderer.updateDisplay();
         } else {
           setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
-        CanvasActivity.this.canvasFragment.modelRenderer.updateDisplay();
       }
     });
 
