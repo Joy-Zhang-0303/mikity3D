@@ -184,12 +184,12 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   private Configuration config;
   @InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
+  private Object modelFilePath;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 
     super.onCreate(savedInstanceState);
-    Log.d("Mikity3D", "onCreate");
     setContentView(R.layout.canvas);
     //this.inputModelFile = res.openRawResource(R.raw.pendulum);
     final OIFileManager fileManager = new OIFileManager(this);
@@ -215,7 +215,11 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        CanvasActivity.this.isSelectedModelFile = false;
+        if (CanvasActivity.this.canvasFragment.root != null) {
+          CanvasActivity.this.isSelectedModelFile = true;
+        } else {
+          CanvasActivity.this.isSelectedModelFile = false;
+        }
         fileManager.getFilePath();
       }
     });
@@ -280,20 +284,12 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
       }
     });
 
-    this.selectButton.setOnClickListener(new View.OnClickListener() {
-
-      public void onClick(View v) {
-        fileManager.getFilePath();
-
-      }
-    });
-
     this.stopButton.setOnClickListener(new View.OnClickListener() {
 
       // コールバックメソッド
       public void onClick(View view) {
-        CanvasActivity.this.timer.cancel();
-        playable = true;
+        CanvasActivity.this.canvasFragment.timer.cancel();
+        CanvasActivity.this.canvasFragment.playable = false;
       }
     });
 
@@ -485,19 +481,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   public void onWindowFocusChanged(boolean hasFocus) {
     // スクリーンサイズ調整が済んでいない場合は調整する
     if (this.canvasFragment.mIsInitScreenSize == false) {
-      //      Resources resources = getResources();
-      //      Configuration config = resources.getConfiguration();
-      //      int size;
-      //      switch (config.orientation) {
-      //        case Configuration.ORIENTATION_PORTRAIT:
-      //          size = this.glView.getWidth();
-      //          break;
-      //        case Configuration.ORIENTATION_LANDSCAPE:
-      //          size = this.glView.getHeight();
-      //          break;
-      //        default:
-      //          throw new IllegalStateException("It is not a portrait or landscape"); //$NON-NLS-1$
-      //      }
       GLSurfaceView glSurfaceView = (GLSurfaceView)findViewById(R.id.glview1);
       LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(glSurfaceView.getWidth(), glSurfaceView.getHeight());
       glSurfaceView.setLayoutParams(params);
@@ -558,14 +541,17 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
       case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
         if (resultCode == RESULT_OK && data != null) {
           // obtain the filename
-          if (this.isSelectedModelFile) {
+          if (this.isSelectedModelFile && (new File(data.getData().getPath()).getName()).endsWith(".xml") == false) {
             String timeDataPath = data.getData().getPath();
+            this.canvasFragment.setTimeDataPaht(timeDataPath);
             this.filePathView.setText(new File(timeDataPath).getName());
 
             this.canvasFragment.loadtimeSeriesData(timeDataPath);
 
           } else {
             String modelFilePath = data.getData().getPath();
+            this.canvasFragment.setModelFilePath(modelFilePath);
+            
             try {
               this.inputModelFile = new FileInputStream(modelFilePath);
               this.modelFilePathView.setText(new File(modelFilePath).getName());
@@ -589,7 +575,7 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
             this.playButton.setEnabled(true);
             this.stopButton.setEnabled(true);
 
-            Mikity3d root = this.canvasFragment.getRoot();
+            //Mikity3d root = this.canvasFragment.getRoot();
             this.canvasFragment.modelRenderer.updateDisplay();
           }
         }
@@ -610,6 +596,25 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
   protected void onRestoreInstanceState(Bundle savedInstanceState) {
     super.onRestoreInstanceState(savedInstanceState);
     this.canvasFragment.setModel();
+    if (this.canvasFragment.root != null) {
+      this.modelFilePathView.setText(new File(this.canvasFragment.modelFilePath).getName());
+      this.isSelectedModelFile = true;
+
+      this.selectButton.setEnabled(true);
+      this.quickButton.setEnabled(true);
+      this.slowButton.setEnabled(true);
+      this.playButton.setEnabled(true);
+      this.stopButton.setEnabled(true);
+      if (this.canvasFragment.data != null) {
+        try {
+          this.canvasFragment.setTimeData(new FileInputStream(this.canvasFragment.timeDataPath));
+        } catch (FileNotFoundException e) {
+          // TODO 自動生成された catch ブロック
+          throw new RuntimeException(e);
+        }
+        this.filePathView.setText(new File(this.canvasFragment.timeDataPath).getName());
+      }
+    }
     this.canvasFragment.modelRenderer.updateDisplay();
   }
 }

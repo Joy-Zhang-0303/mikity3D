@@ -75,13 +75,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private View canvasActivity;
   public CanvasActivity activity;
   Timer timer = new Timer();
-  private Mikity3d root;
+  public Mikity3d root;
   private MovableGroupManager manager;
-  private Matrix data;
+  Matrix data;
   private double[] timeTable;
   private double endTime;
   private int animationSpeed;
-  private boolean playable;
+  boolean playable;
   private AnimationTask animationTask;
   /** センサーマネージャー */
   SensorManager sensorManager;
@@ -117,6 +117,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   boolean useAccelerSensor = false;
   public List<Sensor> sensors;
   public CanvasFragment savedFragmentInstance;
+  public String modelFilePath;
+  public String timeDataPath;
 
   public CanvasFragment() {
     super();
@@ -264,13 +266,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
   protected void setScaleValue(double d) {
     this.scaleValue = d;
-  }
-
-  /**
-   * 現在の呼び出し元アクティビティのビューを格納するメソッドです。
-   */
-  public void setActivity() {
-    //this.canvasActivity = ActivitygetActivity().findViewById(R.id.activity_canvas);
   }
 
   /**
@@ -564,6 +559,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       this.manager.setLogCat(new LogCatImpl()); //LogCatのセット    
       
     }
+  }
+  
+  public void setModelFilePath(String modelFilePath) {
+    this.modelFilePath = modelFilePath;
+  }
+  public void setTimeDataPaht(String timeDataPath) {
+    this.timeDataPath = timeDataPath;
   }
 
 }
