@@ -70,7 +70,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
-public class CanvasActivity extends RoboFragmentActivity implements SensorEventListener {
+public class CanvasActivity extends RoboFragmentActivity {
 
   protected static final String LOGTAG = null;
   private boolean mIsInitScreenSize;
@@ -582,14 +582,6 @@ public class CanvasActivity extends RoboFragmentActivity implements SensorEventL
 
         break;
     }
-  }
-
-  public void onSensorChanged(SensorEvent event) {
-
-  }
-
-  public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
   }
 
   @Override
