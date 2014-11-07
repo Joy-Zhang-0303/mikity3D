@@ -182,6 +182,25 @@
                 android:layout_weight="0"
                 android:text="rotateLayoutButton" />
     	</LinearLayout>
+    	
+    	<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/sampleModelView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="sampleModel" />
+
+            <Button
+                android:id="@+id/sampleModelButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="参照" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView1"

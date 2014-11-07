@@ -40,16 +40,22 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
+import android.provider.MediaStore;
+import android.provider.MediaStore.MediaColumns;
+import android.provider.OpenableColumns;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -62,6 +68,7 @@ import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -185,6 +192,8 @@ public class CanvasActivity extends RoboFragmentActivity {
   @InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
   private Object modelFilePath;
+  private Button sampleModelButton;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -339,7 +348,7 @@ public class CanvasActivity extends RoboFragmentActivity {
               isReverse = false;
               break;
           }
-          if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+          if (CanvasActivity.this.config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             if (isReverse) {
               setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
             } else {
@@ -359,6 +368,26 @@ public class CanvasActivity extends RoboFragmentActivity {
       }
     });
 
+    this.sampleModelButton = (Button)findViewById(R.id.sampleModelButton);
+    this.sampleModelButton.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+//        if(Build.VERSION.SDK_INT < 19) {
+        
+          Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+          intent.setType("*/*");
+          startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+//        } else {
+//          Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+//          intent.addCategory(Intent.CATEGORY_OPENABLE);
+//          intent.setType("*/*");
+//          startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+        }
+//      }
+    });
     //    this.animationSpeedTextEdit = (EditText)findViewById(R.id.animationSpeedEditText);
     //    this.animationSpeedTextEdit.clearFocus();
     //    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
@@ -536,29 +565,61 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-
+  
     switch (requestCode) {
       case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
+        Uri uri = data.getData();
         if (resultCode == RESULT_OK && data != null) {
           // obtain the filename
-          if (this.isSelectedModelFile && (new File(data.getData().getPath()).getName()).endsWith(".xml") == false) {
-            String timeDataPath = data.getData().getPath();
+//          if (this.isSelectedModelFile && (new File(data.getData().getPath()).getName()).endsWith(".xml") == false) {
+          if (this.isSelectedModelFile == true) {
+            String timeDataPath;
+            if (uri != null) {
+              Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Files.FileColumns.DATA }, null, null, null);
+              cursor.moveToFirst();   
+              timeDataPath = cursor.getString(0);
+              cursor.close();
+            } else {
+              timeDataPath = uri.getPath();
+            }
             this.canvasFragment.setTimeDataPaht(timeDataPath);
             this.filePathView.setText(new File(timeDataPath).getName());
 
             this.canvasFragment.loadtimeSeriesData(timeDataPath);
 
           } else {
-            String modelFilePath = data.getData().getPath();
-            this.canvasFragment.setModelFilePath(modelFilePath);
-            
-            try {
-              this.inputModelFile = new FileInputStream(modelFilePath);
-              this.modelFilePathView.setText(new File(modelFilePath).getName());
-
-            } catch (FileNotFoundException e) {
-              throw new RuntimeException(e);
+            String modelFilePath;
+            if (uri != null && "content".equals(uri.getScheme())) {
+//              Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Files.FileColumns.DATA }, null, null, null);
+//              cursor.moveToFirst();   
+//              modelFilePath = cursor.getString(0);
+//              cursor.close();
+              String[] columns = { MediaColumns.DATA };
+//             String[] columns = { android.provider.MediaStore.Files.FileColumns.DATA };
+//              Cursor cursor = getApplicationContext().getContentResolver().query(uri, columns, null, null, null);
+//              cursor.moveToFirst();
+//              modelFilePath = cursor.getString(0);
+//              modelFilePath = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+//              cursor.close();
+              // googleDrive用、ストリーム直接URIから取り出します。
+              try {
+                this.inputModelFile = getContentResolver().openInputStream(uri);
+              } catch (FileNotFoundException e) {
+                // TODO 自動生成された catch ブロック
+                throw new RuntimeException(e);
+              }
+            } else {
+              modelFilePath = uri.getPath();
             }
+//            this.canvasFragment.setModelFilePath(modelFilePath);
+//            
+//            try {
+//              this.inputModelFile = new FileInputStream(modelFilePath);
+//              this.modelFilePathView.setText(new File(modelFilePath).getName());
+//
+//            } catch (FileNotFoundException e) {
+//              throw new RuntimeException(e);
+//            }
 
             try {
               this.canvasFragment.loadModelFile(this.inputModelFile);
@@ -579,7 +640,11 @@ public class CanvasActivity extends RoboFragmentActivity {
             this.canvasFragment.modelRenderer.updateDisplay();
           }
         }
-
+        //Toast.makeText(getBaseContext(), MimeTypeMap.getSingleton().getMimeTypeFromExtension(MimeTypeMap.getFileExtensionFromUrl(data.getData().toString())), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getBaseContext(), data.getData().toString(), Toast.LENGTH_SHORT).show();
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
         break;
     }
   }
