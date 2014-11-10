@@ -568,87 +568,80 @@ public class CanvasActivity extends RoboFragmentActivity {
   
     switch (requestCode) {
       case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
-        Uri uri = data.getData();
         if (resultCode == RESULT_OK && data != null) {
-          // obtain the filename
-//          if (this.isSelectedModelFile && (new File(data.getData().getPath()).getName()).endsWith(".xml") == false) {
-          if (this.isSelectedModelFile == true) {
-            String timeDataPath;
-            if (uri != null) {
-              Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Files.FileColumns.DATA }, null, null, null);
-              cursor.moveToFirst();   
-              timeDataPath = cursor.getString(0);
-              cursor.close();
-            } else {
-              timeDataPath = uri.getPath();
-            }
-            this.canvasFragment.setTimeDataPaht(timeDataPath);
-            this.filePathView.setText(new File(timeDataPath).getName());
-
-            this.canvasFragment.loadtimeSeriesData(timeDataPath);
-
-          } else {
-            String modelFilePath;
-            if (uri != null && "content".equals(uri.getScheme())) {
-//              Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Files.FileColumns.DATA }, null, null, null);
-//              cursor.moveToFirst();   
-//              modelFilePath = cursor.getString(0);
-//              cursor.close();
-              String[] columns = { MediaColumns.DATA };
-//             String[] columns = { android.provider.MediaStore.Files.FileColumns.DATA };
-//              Cursor cursor = getApplicationContext().getContentResolver().query(uri, columns, null, null, null);
-//              cursor.moveToFirst();
-//              modelFilePath = cursor.getString(0);
-//              modelFilePath = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-//              cursor.close();
-              // googleDrive用、ストリーム直接URIから取り出します。
-              try {
-                this.inputModelFile = getContentResolver().openInputStream(uri);
-              } catch (FileNotFoundException e) {
-                // TODO 自動生成された catch ブロック
-                throw new RuntimeException(e);
-              }
-            } else {
-              modelFilePath = uri.getPath();
-            }
-//            this.canvasFragment.setModelFilePath(modelFilePath);
-//            
-//            try {
-//              this.inputModelFile = new FileInputStream(modelFilePath);
-//              this.modelFilePathView.setText(new File(modelFilePath).getName());
-//
-//            } catch (FileNotFoundException e) {
-//              throw new RuntimeException(e);
-//            }
-
-            try {
-              this.canvasFragment.loadModelFile(this.inputModelFile);
-            } catch (IOException e) {
-              throw new RuntimeException(e);
-            } catch (Mikity3dSerializeDeserializeException e) {
-              throw new RuntimeException(e);
-            }
-            this.isSelectedModelFile = true;
-
-            this.selectButton.setEnabled(true);
-            this.quickButton.setEnabled(true);
-            this.slowButton.setEnabled(true);
-            this.playButton.setEnabled(true);
-            this.stopButton.setEnabled(true);
-
-            //Mikity3d root = this.canvasFragment.getRoot();
-            this.canvasFragment.modelRenderer.updateDisplay();
-          }
+          Uri uri = data.getData();
+          readModelTimeData(uri);
         }
-        //Toast.makeText(getBaseContext(), MimeTypeMap.getSingleton().getMimeTypeFromExtension(MimeTypeMap.getFileExtensionFromUrl(data.getData().toString())), Toast.LENGTH_SHORT).show();
-//        Toast.makeText(getBaseContext(), data.getData().toString(), Toast.LENGTH_SHORT).show();
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
         break;
     }
   }
 
+  /**
+   * モデルデータと時間データをストリームとして取り出すためのメソッドです。
+   * @param uri
+   */
+  private void readModelTimeData(Uri uri) {
+    // obtain the filename
+//          if (this.isSelectedModelFile && (new File(data.getData().getPath()).getName()).endsWith(".xml") == false) {
+    if (this.isSelectedModelFile == true) {
+      String timeDataPath;
+      if (uri != null) {
+        Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Files.FileColumns.DATA }, null, null, null);
+        cursor.moveToFirst();   
+        timeDataPath = cursor.getString(0);
+        cursor.close();
+      } else {
+        timeDataPath = uri.getPath();
+      }
+      this.canvasFragment.setTimeDataPaht(timeDataPath);
+      this.filePathView.setText(new File(timeDataPath).getName());
+
+      this.canvasFragment.loadtimeSeriesData(timeDataPath);
+
+    } else {
+      String modelFilePath;
+      if (uri != null && "content".equals(uri.getScheme())) {
+        // ストリームを直接URIから取り出します。
+        try {
+          this.inputModelFile = getContentResolver().openInputStream(uri);
+        } catch (FileNotFoundException e) {
+          throw new RuntimeException(e);
+        }
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
+        // URIをファイルパスに変換し、その後ストリームを取り出します。
+      } else {
+        modelFilePath = uri.getPath();
+        this.canvasFragment.setModelFilePath(modelFilePath);         
+        try {
+          this.inputModelFile = new FileInputStream(modelFilePath);
+          this.modelFilePathView.setText(new File(modelFilePath).getName());
+        } catch (FileNotFoundException e) {
+          throw new RuntimeException(e);
+        }
+        String[] parts = modelFilePath.split("/");
+        String modelFileName = parts[parts.length-1];
+        Toast.makeText(getBaseContext(), modelFileName, Toast.LENGTH_SHORT).show();
+      }
+
+      try {
+        this.canvasFragment.loadModelFile(this.inputModelFile);
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      } catch (Mikity3dSerializeDeserializeException e) {
+        throw new RuntimeException(e);
+      }
+      this.isSelectedModelFile = true;
+      this.selectButton.setEnabled(true);
+      this.quickButton.setEnabled(true);
+      this.slowButton.setEnabled(true);
+      this.playButton.setEnabled(true);
+      this.stopButton.setEnabled(true);
+      this.canvasFragment.modelRenderer.updateDisplay();
+    } 
+  }
+  
   @Override
   protected void onRestoreInstanceState(Bundle savedInstanceState) {
     super.onRestoreInstanceState(savedInstanceState);
