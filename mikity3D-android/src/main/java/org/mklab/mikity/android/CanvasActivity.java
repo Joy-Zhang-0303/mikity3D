@@ -193,6 +193,9 @@ public class CanvasActivity extends RoboFragmentActivity {
   CanvasFragment canvasFragment;
   private Object modelFilePath;
   private Button sampleModelButton;
+  boolean isSelectedsampleModel;
+  boolean isSelectedsampleData;
+  InputStream inputDataFile;
 
 
   @Override
@@ -375,8 +378,7 @@ public class CanvasActivity extends RoboFragmentActivity {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-//        if(Build.VERSION.SDK_INT < 19) {
-        
+//        if(Build.VERSION.SDK_INT < 19) {        
           Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
           intent.setType("*/*");
           startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
@@ -388,11 +390,17 @@ public class CanvasActivity extends RoboFragmentActivity {
         }
 //      }
     });
-    //    this.animationSpeedTextEdit = (EditText)findViewById(R.id.animationSpeedEditText);
-    //    this.animationSpeedTextEdit.clearFocus();
-    //    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
-    //    this.animationSpeedTextEdit.clearFocus();
 
+    startByExternalActivity();
+
+    this.mDrawer = (DrawerLayout)findViewById(R.id.activity_canvas);
+    this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
+    this.mDrawer.setDrawerListener(this.mDrawerToggle);
+    getActionBar().setDisplayHomeAsUpEnabled(true);
+    getActionBar().setHomeButtonEnabled(true);
+  }
+
+  private void startByExternalActivity() {
     //外部アプリからの起動
     Intent intent = getIntent();
     if (intent.getStringArrayListExtra("org.mklab.mikity.android.ModelDataPathAndTimeDataPath") != null) { //$NON-NLS-1$
@@ -444,38 +452,6 @@ public class CanvasActivity extends RoboFragmentActivity {
         throw new RuntimeException(e);
       }
     }
-
-    //    ((Button)findViewById(R.id.drawer_button)).setOnClickListener((OnClickListener)this);
-
-    this.mDrawer = (DrawerLayout)findViewById(R.id.activity_canvas);
-    this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close) {
-
-      @Override
-      public void onDrawerClosed(View drawerView) {
-        Log.i(LOGTAG, "onDrawerClosed");
-      }
-
-      @Override
-      public void onDrawerOpened(View drawerView) {
-        mIsInitScreenSize = false;
-        Log.i(LOGTAG, "onDrawerOpened");
-      }
-
-      @Override
-      public void onDrawerSlide(View drawerView, float slideOffset) {
-        super.onDrawerSlide(drawerView, slideOffset);
-        Log.i(LOGTAG, "onDrawerSlide : " + slideOffset);
-      }
-
-      @Override
-      public void onDrawerStateChanged(int newState) {
-        Log.i(LOGTAG, "onDrawerStateChanged  new state : " + newState);
-      }
-    };
-    this.mDrawer.setDrawerListener(this.mDrawerToggle);
-    getActionBar().setDisplayHomeAsUpEnabled(true);
-    getActionBar().setHomeButtonEnabled(true);
-
   }
 
   @Override
@@ -492,17 +468,10 @@ public class CanvasActivity extends RoboFragmentActivity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-
-    // ActionBarDrawerToggleにandroid.id.home(up ナビゲーション)を渡す。
     if (mDrawerToggle.onOptionsItemSelected(item)) {
       return true;
     }
-
     return super.onOptionsItemSelected(item);
-  }
-
-  public void onClick(View v) {
-    mDrawer.closeDrawers();
   }
 
   /** 表示されるときに呼ばれる */
@@ -536,10 +505,8 @@ public class CanvasActivity extends RoboFragmentActivity {
         this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
-
     this.canvasFragment.glView.onResume();
     super.onResume();
-
   }
 
   /**
@@ -556,7 +523,6 @@ public class CanvasActivity extends RoboFragmentActivity {
     }
 
     super.onPause();
-
   }
 
   /**
@@ -584,62 +550,85 @@ public class CanvasActivity extends RoboFragmentActivity {
     // obtain the filename
 //          if (this.isSelectedModelFile && (new File(data.getData().getPath()).getName()).endsWith(".xml") == false) {
     if (this.isSelectedModelFile == true) {
-      String timeDataPath;
-      if (uri != null) {
-        Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Files.FileColumns.DATA }, null, null, null);
-        cursor.moveToFirst();   
-        timeDataPath = cursor.getString(0);
-        cursor.close();
-      } else {
-        timeDataPath = uri.getPath();
-      }
-      this.canvasFragment.setTimeDataPaht(timeDataPath);
-      this.filePathView.setText(new File(timeDataPath).getName());
-
-      this.canvasFragment.loadtimeSeriesData(timeDataPath);
-
+      loadDataUri(uri);
     } else {
-      String modelFilePath;
-      if (uri != null && "content".equals(uri.getScheme())) {
-        // ストリームを直接URIから取り出します。
-        try {
-          this.inputModelFile = getContentResolver().openInputStream(uri);
-        } catch (FileNotFoundException e) {
-          throw new RuntimeException(e);
-        }
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
-        // URIをファイルパスに変換し、その後ストリームを取り出します。
-      } else {
-        modelFilePath = uri.getPath();
-        this.canvasFragment.setModelFilePath(modelFilePath);         
-        try {
-          this.inputModelFile = new FileInputStream(modelFilePath);
-          this.modelFilePathView.setText(new File(modelFilePath).getName());
-        } catch (FileNotFoundException e) {
-          throw new RuntimeException(e);
-        }
-        String[] parts = modelFilePath.split("/");
-        String modelFileName = parts[parts.length-1];
-        Toast.makeText(getBaseContext(), modelFileName, Toast.LENGTH_SHORT).show();
-      }
-
-      try {
-        this.canvasFragment.loadModelFile(this.inputModelFile);
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      } catch (Mikity3dSerializeDeserializeException e) {
-        throw new RuntimeException(e);
-      }
-      this.isSelectedModelFile = true;
-      this.selectButton.setEnabled(true);
-      this.quickButton.setEnabled(true);
-      this.slowButton.setEnabled(true);
-      this.playButton.setEnabled(true);
-      this.stopButton.setEnabled(true);
-      this.canvasFragment.modelRenderer.updateDisplay();
+      loadModelUri(uri);
     } 
+  }
+
+  private void loadDataUri(Uri uri) {
+    String timeDataPath;
+    if (uri != null && "content".equals(uri.getScheme())) {
+//      Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Files.FileColumns.DATA }, null, null, null);
+//      cursor.moveToFirst();   
+//      timeDataPath = cursor.getString(0);
+//      cursor.close();
+      
+      // ストリームを直接URIから取り出します。
+      try {
+        this.inputDataFile = getContentResolver().openInputStream(uri);
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+      
+      Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+      cursor.moveToFirst();
+      Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
+      // URIをファイルパスに変換し、その後ストリームを取り出します。
+    } else {
+      timeDataPath = uri.getPath();
+      this.canvasFragment.setTimeDataPath(timeDataPath);
+      this.filePathView.setText(new File(timeDataPath).getName());
+      try {
+        this.inputDataFile = new FileInputStream(timeDataPath);
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+    }
+    this.canvasFragment.loadtimeSeriesData(this.inputDataFile);
+  }
+
+  private void loadModelUri(Uri uri) {
+    String modelFilePath;
+    if (uri != null && "content".equals(uri.getScheme())) {
+      // ストリームを直接URIから取り出します。
+      try {
+        this.inputModelFile = getContentResolver().openInputStream(uri);
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+      Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+      cursor.moveToFirst();
+      Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
+      // URIをファイルパスに変換し、その後ストリームを取り出します。
+    } else {
+      modelFilePath = uri.getPath();
+      this.canvasFragment.setModelFilePath(modelFilePath);         
+      try {
+        this.inputModelFile = new FileInputStream(modelFilePath);
+        this.modelFilePathView.setText(new File(modelFilePath).getName());
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+      String[] parts = modelFilePath.split("/");
+      String modelFileName = parts[parts.length-1];
+      Toast.makeText(getBaseContext(), modelFileName, Toast.LENGTH_SHORT).show();
+    }
+
+    try {
+      this.canvasFragment.loadModelFile(this.inputModelFile);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    } catch (Mikity3dSerializeDeserializeException e) {
+      throw new RuntimeException(e);
+    }
+    this.isSelectedModelFile = true;
+    this.selectButton.setEnabled(true);
+    this.quickButton.setEnabled(true);
+    this.slowButton.setEnabled(true);
+    this.playButton.setEnabled(true);
+    this.stopButton.setEnabled(true);
+    this.canvasFragment.modelRenderer.updateDisplay();
   }
   
   @Override
@@ -659,7 +648,6 @@ public class CanvasActivity extends RoboFragmentActivity {
         try {
           this.canvasFragment.setTimeData(new FileInputStream(this.canvasFragment.timeDataPath));
         } catch (FileNotFoundException e) {
-          // TODO 自動生成された catch ブロック
           throw new RuntimeException(e);
         }
         this.filePathView.setText(new File(this.canvasFragment.timeDataPath).getName());

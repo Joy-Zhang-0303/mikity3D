@@ -301,7 +301,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   //    mat1.close();
   //  }
 
-  public void loadtimeSeriesData(final String filePath) {
+  public void loadtimeSeriesData(final InputStream filePath) {
     AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
 
       ProgressDialog progressDialog;
@@ -318,11 +318,12 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       @Override
       protected Void doInBackground(String... arg0) {
         InputStream mat1;
-        try {
-          mat1 = new FileInputStream(filePath);
-        } catch (FileNotFoundException e) {
-          throw new RuntimeException(e);
-        }
+        mat1 = filePath;
+//        try {
+//          mat1 = filePath;
+//        } catch (FileNotFoundException e) {
+//          throw new RuntimeException(e);
+//        }
         setTimeData(mat1);
         try {
           mat1.close();
@@ -564,7 +565,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public void setModelFilePath(String modelFilePath) {
     this.modelFilePath = modelFilePath;
   }
-  public void setTimeDataPaht(String timeDataPath) {
+  public void setTimeDataPath(String timeDataPath) {
     this.timeDataPath = timeDataPath;
   }
 
