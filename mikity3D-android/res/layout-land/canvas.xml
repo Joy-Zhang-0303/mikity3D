@@ -202,6 +202,13 @@
                 android:text="参照" />
         </LinearLayout>
 
+    	<fragment
+    	        xmlns:android="http://schemas.android.com/apk/res/android"
+    	        android:id="@+id/fragment_instance_management"
+    	        android:name="org.mklab.mikity.android.InstanceManagementFragment"
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content" />
+    	
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"

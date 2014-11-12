@@ -558,7 +558,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       Mikity3dConfiguration configuration = this.root.getConfiguration(0);
       this.modelRenderer.setConfiguration(configuration);
       this.manager.setLogCat(new LogCatImpl()); //LogCatのセット    
-      
     }
   }
   
@@ -568,5 +567,5 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public void setTimeDataPath(String timeDataPath) {
     this.timeDataPath = timeDataPath;
   }
-
+  
 }

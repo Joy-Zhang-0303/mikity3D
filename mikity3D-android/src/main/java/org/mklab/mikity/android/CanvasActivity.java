@@ -31,6 +31,7 @@ import org.openintents.intents.OIFileManager;
 
 import roboguice.activity.RoboActivity;
 import roboguice.activity.RoboFragmentActivity;
+import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectFragment;
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -183,20 +184,18 @@ public class CanvasActivity extends RoboFragmentActivity {
 
   private ActionBarDrawerToggle mDrawerToggle;
   private DrawerLayout mDrawer;
-  private FragmentManager fManager;
-  private FragmentTransaction fTransaction;
-  private Bundle bundle;
-  private boolean useRotateSensor = false;
   private ToggleButton rotateTogguleButton;
   private Configuration config;
   @InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
-  private Object modelFilePath;
   private Button sampleModelButton;
   boolean isSelectedsampleModel;
   boolean isSelectedsampleData;
   InputStream inputDataFile;
-
+  private String timeDataName;
+  private String modelFileName;
+  @InjectFragment(R.id.fragment_instance_management)
+  InstanceManagementFragment imFragment;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -539,12 +538,14 @@ public class CanvasActivity extends RoboFragmentActivity {
           readModelTimeData(uri);
         }
         break;
+      default:
+        break;
     }
   }
 
   /**
    * モデルデータと時間データをストリームとして取り出すためのメソッドです。
-   * @param uri
+   * @param uri ファイルのuri
    */
   private void readModelTimeData(Uri uri) {
     // obtain the filename
@@ -559,32 +560,30 @@ public class CanvasActivity extends RoboFragmentActivity {
   private void loadDataUri(Uri uri) {
     String timeDataPath;
     if (uri != null && "content".equals(uri.getScheme())) {
-//      Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Files.FileColumns.DATA }, null, null, null);
-//      cursor.moveToFirst();   
-//      timeDataPath = cursor.getString(0);
-//      cursor.close();
-      
       // ストリームを直接URIから取り出します。
       try {
         this.inputDataFile = getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
-      }
-      
+      }      
       Cursor cursor = getContentResolver().query(uri, null, null, null, null);
       cursor.moveToFirst();
-      Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
+      this.timeDataName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+//      Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
       timeDataPath = uri.getPath();
       this.canvasFragment.setTimeDataPath(timeDataPath);
-      this.filePathView.setText(new File(timeDataPath).getName());
+//      this.filePathView.setText(new File(timeDataPath).getName());
       try {
         this.inputDataFile = new FileInputStream(timeDataPath);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
+      String[] parts = timeDataPath.split("/");
+      this.timeDataName = parts[parts.length-1];
     }
+    this.filePathView.setText(this.timeDataName);
     this.canvasFragment.loadtimeSeriesData(this.inputDataFile);
   }
 
@@ -599,22 +598,23 @@ public class CanvasActivity extends RoboFragmentActivity {
       }
       Cursor cursor = getContentResolver().query(uri, null, null, null, null);
       cursor.moveToFirst();
-      Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
+      this.modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+//      Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
       modelFilePath = uri.getPath();
       this.canvasFragment.setModelFilePath(modelFilePath);         
       try {
         this.inputModelFile = new FileInputStream(modelFilePath);
-        this.modelFilePathView.setText(new File(modelFilePath).getName());
+//        this.modelFilePathView.setText(new File(modelFilePath).getName());
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
       String[] parts = modelFilePath.split("/");
-      String modelFileName = parts[parts.length-1];
+      this.modelFileName = parts[parts.length-1];
       Toast.makeText(getBaseContext(), modelFileName, Toast.LENGTH_SHORT).show();
     }
-
+    this.modelFilePathView.setText(this.modelFileName);
     try {
       this.canvasFragment.loadModelFile(this.inputModelFile);
     } catch (IOException e) {
@@ -632,18 +632,28 @@ public class CanvasActivity extends RoboFragmentActivity {
   }
   
   @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    
+    this.imFragment.setParameter(isSelectedModelFile, selectButton.isEnabled(),
+        quickButton.isEnabled(), slowButton.isEnabled(), stopButton.isEnabled(),
+        loadModelButton.isEnabled(), playButton.isEnabled());
+  }
+  
+  @Override
   protected void onRestoreInstanceState(Bundle savedInstanceState) {
     super.onRestoreInstanceState(savedInstanceState);
     this.canvasFragment.setModel();
-    if (this.canvasFragment.root != null) {
+    if (this.canvasFragment.modelFilePath != null) {
       this.modelFilePathView.setText(new File(this.canvasFragment.modelFilePath).getName());
-      this.isSelectedModelFile = true;
-
-      this.selectButton.setEnabled(true);
-      this.quickButton.setEnabled(true);
-      this.slowButton.setEnabled(true);
-      this.playButton.setEnabled(true);
-      this.stopButton.setEnabled(true);
+      setParameterFromArray();
+//      this.isSelectedModelFile = true;
+//
+//      this.selectButton.setEnabled(true);
+//      this.quickButton.setEnabled(true);
+//      this.slowButton.setEnabled(true);
+//      this.playButton.setEnabled(true);
+//      this.stopButton.setEnabled(true);
       if (this.canvasFragment.data != null) {
         try {
           this.canvasFragment.setTimeData(new FileInputStream(this.canvasFragment.timeDataPath));
@@ -654,5 +664,16 @@ public class CanvasActivity extends RoboFragmentActivity {
       }
     }
     this.canvasFragment.modelRenderer.updateDisplay();
+  }
+  
+  private void setParameterFromArray() {
+    boolean[] paramArray = this.imFragment.getParameter();
+    this.isSelectedModelFile = paramArray[0];
+    this.selectButton.setEnabled(paramArray[1]);
+    this.quickButton.setEnabled(paramArray[2]);
+    this.slowButton.setEnabled(paramArray[3]);
+    this.stopButton.setEnabled(paramArray[4]);
+    this.loadModelButton.setEnabled(paramArray[5]);
+    this.playButton.setEnabled(paramArray[6]);
   }
 }
