@@ -644,9 +644,9 @@ public class CanvasActivity extends RoboFragmentActivity {
   protected void onRestoreInstanceState(Bundle savedInstanceState) {
     super.onRestoreInstanceState(savedInstanceState);
     this.canvasFragment.setModel();
+    setParameterFromArray();
     if (this.canvasFragment.modelFilePath != null) {
       this.modelFilePathView.setText(new File(this.canvasFragment.modelFilePath).getName());
-      setParameterFromArray();
 //      this.isSelectedModelFile = true;
 //
 //      this.selectButton.setEnabled(true);

@@ -47,6 +47,7 @@ public class InstanceManagementFragment extends RoboFragment {
     this.isStopButton = isStopButton;
     this.isLoadModelButton = isLoadModelButton;
     this.isPlayButton = isPlayButton;
+    setParameterArray();
   }
   
   protected boolean[] getParameter() {
@@ -57,6 +58,11 @@ public class InstanceManagementFragment extends RoboFragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.instance_management_fragment, container, false);
     return view;
+  }
+  
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setRetainInstance(true);
   }
   
   private void setParameterArray() {
