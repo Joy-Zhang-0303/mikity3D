@@ -35,6 +35,7 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -128,7 +129,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   protected boolean rotateTimeDataFlag = false;
   @InjectView(R.id.fragment_canvas)
   View view;
-  protected InputStream mat2;
+  ProgressDialog progressDialog;
 
   /**
    * @param savedInstanceState Bundle
@@ -304,22 +305,21 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public void loadtimeSeriesData(final InputStream filePath) {
     AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
 
-      ProgressDialog progressDialog;
+//      ProgressDialog progressDialog;
 
       @Override
       protected void onPreExecute() {
-        this.progressDialog = new ProgressDialog(getActivity());
-        this.progressDialog.setCanceledOnTouchOutside(false);
-        this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        this.progressDialog.setMessage("Now Loading..."); //$NON-NLS-1$
-        this.progressDialog.show();
+        CanvasFragment.this.progressDialog = new ProgressDialog(getActivity());
+        CanvasFragment.this.progressDialog.setCanceledOnTouchOutside(false);
+        CanvasFragment.this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        CanvasFragment.this.progressDialog.setMessage("Now Loading..."); //$NON-NLS-1$
+        CanvasFragment.this.progressDialog.show();
       }
 
       @Override
       protected Void doInBackground(String... arg0) {
         InputStream mat1;
         mat1 = filePath;
-        mat2 = filePath;
 //        try {
 //          mat1 = filePath;
 //        } catch (FileNotFoundException e) {
@@ -336,7 +336,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
       @Override
       protected void onPostExecute(Void result) {
-        this.progressDialog.dismiss();
+        CanvasFragment.this.progressDialog.dismiss();
       }
 
     };
@@ -585,5 +585,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     int height = displaymetrics.heightPixels;
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
     glView.setLayoutParams(params); 
+  }
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    if (this.progressDialog != null) {
+    this.progressDialog.dismiss();
+    setDirection();
+    Log.d("dismiss", "dismiss");
+    }
   }
 }

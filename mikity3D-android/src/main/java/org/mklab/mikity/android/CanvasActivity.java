@@ -485,6 +485,9 @@ public class CanvasActivity extends RoboFragmentActivity {
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
     mDrawerToggle.onConfigurationChanged(newConfig);
+//    if (this.canvasFragment.progressDialog != null) {
+//      this.canvasFragment.progressDialog.dismiss();
+//    }
   }
 
   @Override
