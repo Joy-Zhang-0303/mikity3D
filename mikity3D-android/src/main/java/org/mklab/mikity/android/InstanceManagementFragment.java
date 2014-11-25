@@ -35,7 +35,10 @@ public class InstanceManagementFragment extends RoboFragment {
   /** アニメーションを再生するボタン */
   private boolean isPlayButton;
   
-  private boolean[] getArray = new boolean[7];
+  private boolean[] getParamArray = new boolean[7];
+  private String modelFileName;
+  private String timeDataName;
+  private String[] fileNameArray = new String[2];
   
   protected void setParameter(boolean isSelectedModelFile, boolean isSelectButton
       , boolean isQuickButton, boolean isSlowButton, boolean isStopButton
@@ -50,8 +53,14 @@ public class InstanceManagementFragment extends RoboFragment {
     setParameterArray();
   }
   
+  protected void setFileName(String modelFileName, String timeDataName) {
+    this.modelFileName = modelFileName;
+    this.timeDataName = timeDataName;
+    setFileNameArray();
+  }
+  
   protected boolean[] getParameter() {
-    return this.getArray; 
+    return this.getParamArray; 
   }
   
   @Override
@@ -66,12 +75,21 @@ public class InstanceManagementFragment extends RoboFragment {
   }
   
   private void setParameterArray() {
-    this.getArray[0] = this.isSelectedModelFile;
-    this.getArray[1] = this.isSelectButton;
-    this.getArray[2] = this.isQuickButton;
-    this.getArray[3] = this.isSlowButton;
-    this.getArray[4] = this.isStopButton;
-    this.getArray[5] = this.isLoadModelButton;
-    this.getArray[6] = this.isPlayButton;
+    this.getParamArray[0] = this.isSelectedModelFile;
+    this.getParamArray[1] = this.isSelectButton;
+    this.getParamArray[2] = this.isQuickButton;
+    this.getParamArray[3] = this.isSlowButton;
+    this.getParamArray[4] = this.isStopButton;
+    this.getParamArray[5] = this.isLoadModelButton;
+    this.getParamArray[6] = this.isPlayButton;
+  }
+  
+  private void setFileNameArray() {
+    this.fileNameArray[0] = this.modelFileName;
+    this.fileNameArray[1] = this.timeDataName;
+  }
+  
+  protected String[] getFileNameArray() {
+    return this.fileNameArray;
   }
 }

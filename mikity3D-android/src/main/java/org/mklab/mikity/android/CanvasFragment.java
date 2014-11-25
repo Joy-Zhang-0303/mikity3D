@@ -29,6 +29,7 @@ import org.mklab.nfc.matx.MatxMatrix;
 import org.openintents.intents.OIFileManager;
 
 import roboguice.fragment.RoboFragment;
+import roboguice.inject.InjectView;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
@@ -38,13 +39,16 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -54,6 +58,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 
@@ -76,7 +81,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public CanvasActivity activity;
   Timer timer = new Timer();
   public Mikity3d root;
-  private MovableGroupManager manager;
+  MovableGroupManager manager;
   Matrix data;
   private double[] timeTable;
   private double endTime;
@@ -119,25 +124,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public CanvasFragment savedFragmentInstance;
   public String modelFilePath;
   public String timeDataPath;
-
-  public CanvasFragment() {
-    super();
-  }
-
-  public CanvasFragment(Parcel in) {
-
-  }
-
-  public static final Parcelable.Creator<CanvasFragment> CREATOR = new Parcelable.Creator<CanvasFragment>() {
-
-    public CanvasFragment createFromParcel(Parcel source) {
-      return new CanvasFragment(source);
-    }
-
-    public CanvasFragment[] newArray(int size) {
-      return new CanvasFragment[size];
-    }
-  };
+  protected Uri timeDataUri;
+  protected boolean rotateTimeDataFlag = false;
+  @InjectView(R.id.fragment_canvas)
+  View view;
+  protected InputStream mat2;
 
   /**
    * @param savedInstanceState Bundle
@@ -146,7 +137,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     Log.d("3D Fragment", "onCreateView");
-    View view = inflater.inflate(R.layout.canvas_fragment, container, false);
+    if (view != null) {
+      ViewGroup parent = (ViewGroup)view.getParent();
+      parent.removeView(view);
+      return this.view;
+    }
+    
+    view = inflater.inflate(R.layout.canvas_fragment, container, false);
     //    //this.inputModelFile = res.openRawResource(R.raw.pendulum);
     //    //final OIFileManager fileManager = new OIFileManager(this);
     this.glView = (GLSurfaceView)view.findViewById(R.id.glview1);
@@ -156,6 +153,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
     initField();
+//    if(root!= null) {
+//      setModel();
+//    }
 
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
@@ -218,7 +218,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
         return true;
       }
     });
-
     return view;
   }
 
@@ -273,11 +272,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * @throws IOException ファイルを読み込めない場合
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  private void loadModelFile(File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
-    this.root = new Mikity3dFactory().loadFile(modelFile);
-    this.manager = new MovableGroupManager(this.root);
-    this.modelRenderer = new OpenglesModelRenderer(this.glView);
-  }
+//  private void loadModelFile(File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
+//    this.root = new Mikity3dFactory().loadFile(modelFile);
+//    this.manager = new MovableGroupManager(this.root);
+//    this.modelRenderer = new OpenglesModelRenderer(this.glView);
+//  }
 
   /**
    * 
@@ -288,6 +287,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public void loadModelFile(InputStream input) throws IOException, Mikity3dSerializeDeserializeException {
     this.root = new Mikity3dFactory().loadFile(input);
     setModel();
+    setGroupManager();
   }
 
   //
@@ -319,6 +319,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       protected Void doInBackground(String... arg0) {
         InputStream mat1;
         mat1 = filePath;
+        mat2 = filePath;
 //        try {
 //          mat1 = filePath;
 //        } catch (FileNotFoundException e) {
@@ -336,7 +337,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       @Override
       protected void onPostExecute(Void result) {
         this.progressDialog.dismiss();
-
       }
 
     };
@@ -393,10 +393,12 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   public MovableGroupManager getManager() {
+    Log.d("getManager", this.manager.toString());
     return this.manager;
   }
 
   public OpenglesModelRenderer getModelRender() {
+    Log.d("getModelRender", this.modelRenderer.toString());
     return this.modelRenderer;
   }
 
@@ -408,6 +410,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    */
   public void runAnimation() {
     long startTime = SystemClock.uptimeMillis();
+    Log.d("data", this.data.toString());
+//    Log.d("Animation:manager_data", Integer.toString(this.manager.getDataSize()));
 
     this.animationSpeed = (int)(Double.parseDouble(this.activity.animationSpeedTextEdit.getText().toString()) * 10);
     if (this.playable == false) {
@@ -421,6 +425,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.playable = false;
 
     this.endTime = this.manager.getEndTime();
+    Log.d("endTime", Double.toString(this.manager.getEndTime()));
     //this.animationTask = new AnimationTask(startTime, this.endTime, this.manager, this.modelRenderer);
     this.animationTask = new AnimationTask(startTime, this.endTime, getManager(), getModelRender());
     this.animationTask.setSpeedScale((double)this.animationSpeed / 10);
@@ -551,14 +556,15 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   public void setModel() {
-    if(this.root != null){
-      this.manager = new MovableGroupManager(this.root);
-      Group[] children = this.root.getModel(0).getGroups();
-      this.modelRenderer.setChildren(children);
-      Mikity3dConfiguration configuration = this.root.getConfiguration(0);
-      this.modelRenderer.setConfiguration(configuration);
-      this.manager.setLogCat(new LogCatImpl()); //LogCatのセット    
-    }
+    Group[] children = this.root.getModel(0).getGroups();
+    this.modelRenderer.setChildren(children);
+    Mikity3dConfiguration configuration = this.root.getConfiguration(0);
+    this.modelRenderer.setConfiguration(configuration);
+  }
+
+  private void setGroupManager() {
+    this.manager = new MovableGroupManager(this.root);
+    this.manager.setLogCat(new LogCatImpl()); //LogCatのセット    
   }
   
   public void setModelFilePath(String modelFilePath) {
@@ -568,4 +574,16 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.timeDataPath = timeDataPath;
   }
   
+  public void setTimeDataUri(Uri uri) {
+    this.timeDataUri = uri;
+  }
+
+  public void setDirection() {
+    DisplayMetrics displaymetrics = new DisplayMetrics();
+    getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+    int width = displaymetrics.widthPixels;
+    int height = displaymetrics.heightPixels;
+    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
+    glView.setLayoutParams(params); 
+  }
 }
