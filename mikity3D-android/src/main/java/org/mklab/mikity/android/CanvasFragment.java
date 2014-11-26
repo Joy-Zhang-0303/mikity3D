@@ -590,8 +590,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public void onConfigurationChanged(Configuration newConfig) {
     if (this.progressDialog != null) {
     this.progressDialog.dismiss();
-    setDirection();
     Log.d("dismiss", "dismiss");
     }
+    setDirection();
   }
 }
