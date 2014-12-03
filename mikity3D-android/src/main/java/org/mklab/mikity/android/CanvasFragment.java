@@ -22,6 +22,7 @@ import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
+import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
@@ -593,5 +594,20 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     Log.d("dismiss", "dismiss");
     }
     setDirection();
+  }
+  
+  protected void changeModelConfig() {
+    if (this.root != null) {
+      //int columNumber =       this.root.getModel(0).getGroup(0).getLinkData(0).getColumnNumber();
+      Mikity3d root = this.root;
+      Mikity3dModel model = root.getModel(0);
+      Group[] groupArray = model.getGroups();
+      Group group = groupArray[0];
+      LinkData[] linkDataArray = group.getLinkData();
+      LinkData linkData = linkDataArray[0];
+      int columnNumber = linkData.getColumnNumber();
+//      int columnNumber = linkData[0].getColumnNumber();
+//      Log.d("columnNumber", String.valueOf(columnNumber));
+    }
   }
 }

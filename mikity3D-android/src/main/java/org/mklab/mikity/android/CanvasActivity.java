@@ -397,6 +397,7 @@ public class CanvasActivity extends RoboFragmentActivity {
        * {@inheritDoc}
        */
       public void onClick(View v) {
+        CanvasActivity.this.canvasFragment.changeModelConfig();
         //        if(Build.VERSION.SDK_INT < 19) {        
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");

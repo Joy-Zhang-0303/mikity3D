@@ -70,7 +70,7 @@ public class Group implements java.io.Serializable {
     this.spheres = new ArrayList<>();
     this.cones = new ArrayList<>();
     this.trianglePolygons = new ArrayList<>();
-    this.quadPolygons = new ArrayList<>();
+    this.quadPolygons = new ArrayList<>(); 
 
     this.links = new ArrayList<>();
     this.groups = new ArrayList<>();

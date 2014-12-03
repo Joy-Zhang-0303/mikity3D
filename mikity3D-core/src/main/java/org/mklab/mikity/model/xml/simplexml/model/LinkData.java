@@ -24,6 +24,7 @@ public class LinkData implements java.io.Serializable {
   /** データの列番号 */
   @Attribute(name="column")
   private int columnNumber;
+  
 
   /**
    * データの列番号を返します。

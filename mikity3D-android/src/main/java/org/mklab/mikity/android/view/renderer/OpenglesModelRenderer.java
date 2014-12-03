@@ -1,5 +1,7 @@
 package org.mklab.mikity.android.view.renderer;
 
+import java.nio.FloatBuffer;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -106,7 +108,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
-
+    
   }
 
   /**
@@ -250,6 +252,39 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    */
   public void setTranslationY(float translateY) {
     this.translationY = (translateY + this.translationY);
+  }
+  
+  public void drawFloor(double widthX, double widthZ, int nx, int nz, GL10 gl10) {
+//    int i, j;
+//    //Floor‚P–‡“–‚½‚è‚Ì•
+//    double wX = widthX / (double)nx;
+//    double wZ = widthZ / (double)nz;
+//
+//    float diffuse[][] = {
+//      { 0.9f, 0.6f, 0.3f, 1.0f}, { 0.3f, 0.5f, 0.8f, 1.0f} };
+//    float ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f};
+//    float specular[]= { 0.5f, 0.5f, 0.5f, 1.0f};;
+//    gl10.glMaterialfv(GL10.GL_FRONT,GL10.GL_AMBIENT,ambient, 0);
+//    gl10.glMaterialfv(GL10.GL_FRONT,GL10.GL_SPECULAR,specular, 0);
+//    gl10.glMaterialf(GL10.GL_FRONT,GL10.GL_SHININESS,10);
+//
+//    gl10.glNormal3f(0.0f, 1.0f, 0.0f);
+//    gl10.glPushMatrix();
+//    gl10.glBegin(GL10.GL_TRIANGLE_FAN);
+//    for (j = 0; j < nz; j++) {
+//      double z1 = -widthZ / 2.0 + wZ * j; double z2 = z1 + wZ;
+//      for (i = 0; i < nx; i++) {
+//        double x1 = -widthX / 2.0 + wX * i; double x2 = x1 + wX;
+//
+//        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse[(i + j) & 1]);
+//        glVertex3d(x1, 0.0, z1);
+//        glVertex3d(x1, 0.0, z2);
+//        glVertex3d(x2, 0.0, z2);
+//        glVertex3d(x2, 0.0, z1);
+//      }
+//    }
+//    glEnd();
+//    glPopMatrix();
   }
 
 }
