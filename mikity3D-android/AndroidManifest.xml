@@ -49,6 +49,12 @@
                 <data android:mimeType="text/*" />
             </intent-filter>
         </activity>
+        <activity 
+            android:name="org.mklab.mikity.android.SetModelColumnNumberActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name" >
+            
+        </activity>
     </application>
 
 </manifest>

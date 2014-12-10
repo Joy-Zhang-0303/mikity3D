@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
+import android.app.FragmentManager;
+
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
@@ -34,8 +36,6 @@ import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectFragment;
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -58,6 +58,8 @@ import android.provider.MediaStore;
 import android.provider.MediaStore.MediaColumns;
 import android.provider.OpenableColumns;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
@@ -118,7 +120,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   /** 前回のタッチのｙ座標 */
   float prevY = 0;
   /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。 */
-  private int animationSpeed = 10;
+  int animationSpeed = 10;
 
   private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
   private final int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
@@ -163,13 +165,13 @@ public class CanvasActivity extends RoboFragmentActivity {
   /** 角度の基準値 */
   private float[] prevOrientations = new float[3];
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
-  private ToggleButton gyroToggleButton;
+  ToggleButton gyroToggleButton;
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのフラグ */
   private boolean useOrientationSensor = false;
   /** */
   private float[] prevAccerlerometer = new float[3];
   /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
-  private ToggleButton accelerToggleButton;
+  ToggleButton accelerToggleButton;
   /** 加速度のローパスフィルターのxの値 */
   private double lowPassX;
   /** 加速度のローパスフィルターのｙの値 */
@@ -197,6 +199,9 @@ public class CanvasActivity extends RoboFragmentActivity {
   private String modelFileName;
   @InjectFragment(R.id.fragment_instance_management)
   InstanceManagementFragment imFragment;
+  protected Button setModelColumnNumberButton;
+  public NavigationDrawerFragment ndFragment;
+  
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -206,214 +211,228 @@ public class CanvasActivity extends RoboFragmentActivity {
     //this.inputModelFile = res.openRawResource(R.raw.pendulum);
     final OIFileManager fileManager = new OIFileManager(this);
 
-    //モデルデータ選択ボタンの表示
-    this.loadModelButton = (Button)findViewById(R.id.modelSelectButton);
-    //時系列選択ボタンの配置
-    this.selectButton = (Button)findViewById(R.id.timeSelectButton);
-    this.quickButton = (Button)findViewById(R.id.quickButton);
-    this.slowButton = (Button)findViewById(R.id.slowButton);
-    this.playButton = (Button)findViewById(R.id.button1);
-    this.stopButton = (Button)findViewById(R.id.button2);
-
-    this.selectButton.setEnabled(false);
-    this.quickButton.setEnabled(false);
-    this.slowButton.setEnabled(false);
-    this.playButton.setEnabled(false);
-    this.stopButton.setEnabled(false);
-
-    this.loadModelButton.setOnClickListener(new View.OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View v) {
-        //        if (CanvasActivity.this.canvasFragment.root != null) {
-        //          CanvasActivity.this.isSelectedModelFile = true;
-        //        } else {
-        //          CanvasActivity.this.isSelectedModelFile = false;
-        //        }
-        //        fileManager.getFilePath();
-        //      if(Build.VERSION.SDK_INT < 19) {        
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
-        //      } else {
-        //        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        //        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        //        intent.setType("*/*");
-        //        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
-        //    }
-      }
-    });
-
-    this.animationSpeedTextEdit = (EditText)findViewById(R.id.animationSpeedEditText);
-    this.animationSpeedTextEdit.clearFocus();
-    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
-    this.animationSpeedTextEdit.clearFocus();
-
-    //ファイルパスビューの配置
-
-    this.filePathView = new TextView(this);
-    this.modelFilePathView = new TextView(this);
-    this.filePathView = (TextView)findViewById(R.id.filePathView);
-    this.modelFilePathView = (TextView)findViewById(R.id.modelPathView);
-
-    this.testTextView = new TextView(this);
-    this.testTextView = (TextView)findViewById(R.id.textView1);
-
-    //再生速度の設定
-    this.quickButton.setOnClickListener(new View.OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View v) {
-        CanvasActivity.this.animationSpeed = (int)(Double.parseDouble(CanvasActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
-        CanvasActivity.this.animationSpeed += 1;
-        CanvasActivity.this.animationSpeedTextEdit.setText("" + (double)CanvasActivity.this.animationSpeed / 10); //$NON-NLS-1$
-        if (CanvasActivity.this.animationTask != null) CanvasActivity.this.animationTask.setSpeedScale(CanvasActivity.this.animationSpeed / 10);
-      }
-    });
-
-    this.selectButton.setOnClickListener(new View.OnClickListener() {
-
-      public void onClick(View v) {
-        //        fileManager.getFilePath();
-        //      if(Build.VERSION.SDK_INT < 19) {        
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        startActivityForResult(intent, REQUEST_CODE_PICK_TIME_DATA_FILE);
-        //      } else {
-        //        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        //        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        //        intent.setType("*/*");
-        //        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
-      }
-      //    }
-    });
-
-    // イベントリスナー
-    this.playButton.setOnClickListener(new View.OnClickListener() {
-
-      // コールバックメソッド
-      public void onClick(View view) {
-        CanvasActivity.this.canvasFragment.runAnimation();
-      }
-    });
-
-    this.slowButton.setOnClickListener(new View.OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View v) {
-        CanvasActivity.this.animationSpeed = (int)(Double.parseDouble(CanvasActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
-        CanvasActivity.this.animationSpeed -= 1;
-        if (CanvasActivity.this.animationSpeed < 0) CanvasActivity.this.animationSpeed = 0;
-        CanvasActivity.this.animationSpeedTextEdit.setText(Double.toString((double)CanvasActivity.this.animationSpeed / 10));
-        if (CanvasActivity.this.animationTask != null) CanvasActivity.this.animationTask.setSpeedScale(CanvasActivity.this.animationSpeed / 10);
-      }
-    });
-
-    this.stopButton.setOnClickListener(new View.OnClickListener() {
-
-      // コールバックメソッド
-      public void onClick(View view) {
-        CanvasActivity.this.canvasFragment.timer.cancel();
-        CanvasActivity.this.canvasFragment.playable = false;
-      }
-    });
-
-    this.gyroToggleButton = (ToggleButton)findViewById(R.id.gyroToggleButton);
-    this.gyroToggleButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View v) {
-        if (CanvasActivity.this.gyroToggleButton.isChecked()) {
-          CanvasActivity.this.canvasFragment.useOrientationSensor = true;
-        } else CanvasActivity.this.canvasFragment.useOrientationSensor = false;
-
-      }
-    });
-    this.accelerToggleButton = (ToggleButton)findViewById(R.id.accelerToggleButton);
-    this.accelerToggleButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View v) {
-        if (CanvasActivity.this.accelerToggleButton.isChecked()) {
-          CanvasActivity.this.canvasFragment.useAccelerSensor = true;
-
-        } else {
-          CanvasActivity.this.canvasFragment.useAccelerSensor = false;
-        }
-      }
-
-    });
-    this.rotateTogguleButton = (ToggleButton)findViewById(R.id.rotateLayoutButton);
-    this.rotateTogguleButton.setOnClickListener(new OnClickListener() {
-
-      public void onClick(View v) {
-        CanvasActivity.this.config = getResources().getConfiguration();
-        int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
-        boolean isReverse = false;
-        if (CanvasActivity.this.rotateTogguleButton.isChecked()) {
-          switch (rotation) {
-            case Surface.ROTATION_180:
-            case Surface.ROTATION_270:
-              isReverse = true;
-              break;
-            default:
-              isReverse = false;
-              break;
-          }
-          if (CanvasActivity.this.config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            if (isReverse) {
-              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-            } else {
-              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            }
-          } else {
-            if (isReverse) {
-              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
-            } else {
-              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
-          }
-          CanvasActivity.this.canvasFragment.modelRenderer.updateDisplay();
-        } else {
-          setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-        }
-      }
-    });
-
-    this.sampleModelButton = (Button)findViewById(R.id.sampleModelButton);
-    this.sampleModelButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View v) {
-        CanvasActivity.this.canvasFragment.changeModelConfig();
-        //        if(Build.VERSION.SDK_INT < 19) {        
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
-        //        } else {
-        //          Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        //          intent.addCategory(Intent.CATEGORY_OPENABLE);
-        //          intent.setType("*/*");
-        //          startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
-      }
-      //      }
-    });
+//    //モデルデータ選択ボタンの表示
+//    this.loadModelButton = (Button)findViewById(R.id.modelSelectButton);
+//    //時系列選択ボタンの配置
+//    this.selectButton = (Button)findViewById(R.id.timeSelectButton);
+//    this.quickButton = (Button)findViewById(R.id.quickButton);
+//    this.slowButton = (Button)findViewById(R.id.slowButton);
+//    this.playButton = (Button)findViewById(R.id.button1);
+//    this.stopButton = (Button)findViewById(R.id.button2);
+//
+//    this.selectButton.setEnabled(false);
+//    this.quickButton.setEnabled(false);
+//    this.slowButton.setEnabled(false);
+//    this.playButton.setEnabled(false);
+//    this.stopButton.setEnabled(false);
+//
+//    this.loadModelButton.setOnClickListener(new View.OnClickListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void onClick(View v) {
+//        //        if (CanvasActivity.this.canvasFragment.root != null) {
+//        //          CanvasActivity.this.isSelectedModelFile = true;
+//        //        } else {
+//        //          CanvasActivity.this.isSelectedModelFile = false;
+//        //        }
+//        //        fileManager.getFilePath();
+//        //      if(Build.VERSION.SDK_INT < 19) {        
+//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        intent.setType("*/*");
+//        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+//        //      } else {
+//        //        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+//        //        intent.addCategory(Intent.CATEGORY_OPENABLE);
+//        //        intent.setType("*/*");
+//        //        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+//        //    }
+//      }
+//    });
+//
+//    this.animationSpeedTextEdit = (EditText)findViewById(R.id.animationSpeedEditText);
+//    this.animationSpeedTextEdit.clearFocus();
+//    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
+//    this.animationSpeedTextEdit.clearFocus();
+//
+//    //ファイルパスビューの配置
+//
+//    this.filePathView = new TextView(this);
+//    this.modelFilePathView = new TextView(this);
+//    this.filePathView = (TextView)findViewById(R.id.filePathView);
+//    this.modelFilePathView = (TextView)findViewById(R.id.modelPathView);
+//
+//    this.testTextView = new TextView(this);
+//    this.testTextView = (TextView)findViewById(R.id.textView1);
+//
+//    //再生速度の設定
+//    this.quickButton.setOnClickListener(new View.OnClickListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void onClick(View v) {
+//        CanvasActivity.this.animationSpeed = (int)(Double.parseDouble(CanvasActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
+//        CanvasActivity.this.animationSpeed += 1;
+//        CanvasActivity.this.animationSpeedTextEdit.setText("" + (double)CanvasActivity.this.animationSpeed / 10); //$NON-NLS-1$
+//        if (CanvasActivity.this.animationTask != null) CanvasActivity.this.animationTask.setSpeedScale(CanvasActivity.this.animationSpeed / 10);
+//      }
+//    });
+//
+//    this.selectButton.setOnClickListener(new View.OnClickListener() {
+//
+//      public void onClick(View v) {
+//        //        fileManager.getFilePath();
+//        //      if(Build.VERSION.SDK_INT < 19) {        
+//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        intent.setType("*/*");
+//        startActivityForResult(intent, REQUEST_CODE_PICK_TIME_DATA_FILE);
+//        //      } else {
+//        //        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+//        //        intent.addCategory(Intent.CATEGORY_OPENABLE);
+//        //        intent.setType("*/*");
+//        //        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+//      }
+//      //    }
+//    });
+//
+//    // イベントリスナー
+//    this.playButton.setOnClickListener(new View.OnClickListener() {
+//
+//      // コールバックメソッド
+//      public void onClick(View view) {
+//        CanvasActivity.this.canvasFragment.runAnimation();
+//      }
+//    });
+//
+//    this.slowButton.setOnClickListener(new View.OnClickListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void onClick(View v) {
+//        CanvasActivity.this.animationSpeed = (int)(Double.parseDouble(CanvasActivity.this.animationSpeedTextEdit.getText().toString()) * 10);
+//        CanvasActivity.this.animationSpeed -= 1;
+//        if (CanvasActivity.this.animationSpeed < 0) CanvasActivity.this.animationSpeed = 0;
+//        CanvasActivity.this.animationSpeedTextEdit.setText(Double.toString((double)CanvasActivity.this.animationSpeed / 10));
+//        if (CanvasActivity.this.animationTask != null) CanvasActivity.this.animationTask.setSpeedScale(CanvasActivity.this.animationSpeed / 10);
+//      }
+//    });
+//
+//    this.stopButton.setOnClickListener(new View.OnClickListener() {
+//
+//      // コールバックメソッド
+//      public void onClick(View view) {
+//        CanvasActivity.this.canvasFragment.timer.cancel();
+//        CanvasActivity.this.canvasFragment.playable = false;
+//      }
+//    });
+//
+//    this.gyroToggleButton = (ToggleButton)findViewById(R.id.gyroToggleButton);
+//    this.gyroToggleButton.setOnClickListener(new OnClickListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void onClick(View v) {
+//        if (CanvasActivity.this.gyroToggleButton.isChecked()) {
+//          CanvasActivity.this.canvasFragment.useOrientationSensor = true;
+//        } else CanvasActivity.this.canvasFragment.useOrientationSensor = false;
+//
+//      }
+//    });
+//    this.accelerToggleButton = (ToggleButton)findViewById(R.id.accelerToggleButton);
+//    this.accelerToggleButton.setOnClickListener(new OnClickListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void onClick(View v) {
+//        if (CanvasActivity.this.accelerToggleButton.isChecked()) {
+//          CanvasActivity.this.canvasFragment.useAccelerSensor = true;
+//
+//        } else {
+//          CanvasActivity.this.canvasFragment.useAccelerSensor = false;
+//        }
+//      }
+//
+//    });
+//    this.rotateTogguleButton = (ToggleButton)findViewById(R.id.rotateLayoutButton);
+//    this.rotateTogguleButton.setOnClickListener(new OnClickListener() {
+//
+//      public void onClick(View v) {
+//        CanvasActivity.this.config = getResources().getConfiguration();
+//        int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+//        boolean isReverse = false;
+//        if (CanvasActivity.this.rotateTogguleButton.isChecked()) {
+//          switch (rotation) {
+//            case Surface.ROTATION_180:
+//            case Surface.ROTATION_270:
+//              isReverse = true;
+//              break;
+//            default:
+//              isReverse = false;
+//              break;
+//          }
+//          if (CanvasActivity.this.config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            if (isReverse) {
+//              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+//            } else {
+//              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//            }
+//          } else {
+//            if (isReverse) {
+//              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+//            } else {
+//              setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//            }
+//          }
+//          CanvasActivity.this.canvasFragment.modelRenderer.updateDisplay();
+//        } else {
+//          setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+//        }
+//      }
+//    });
+//
+//    this.sampleModelButton = (Button)findViewById(R.id.sampleModelButton);
+//    this.sampleModelButton.setOnClickListener(new OnClickListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void onClick(View v) {
+//        CanvasActivity.this.canvasFragment.changeModelConfig();
+//        //        if(Build.VERSION.SDK_INT < 19) {        
+//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        intent.setType("*/*");
+//        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+//        //        } else {
+//        //          Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+//        //          intent.addCategory(Intent.CATEGORY_OPENABLE);
+//        //          intent.setType("*/*");
+//        //          startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+//      }
+//      //      }
+//    });
+//    
+//    this.setModelColumnNumberButton = (Button)findViewById(R.id.setModelColumnNumberlButton);
+//    this.setModelColumnNumberButton.setEnabled(false);
+//    this.setModelColumnNumberButton.setOnClickListener(new OnClickListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void onClick(View v) {
+//        
+//        moveToSetModelColumn();
+//        
+//        }
+//    });
 
     startByExternalActivity();
 
-    this.mDrawer = (DrawerLayout)findViewById(R.id.activity_canvas);
+    this.mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
     this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
     this.mDrawer.setDrawerListener(this.mDrawerToggle);
     getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -586,7 +605,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   private void readModelTimeData(Uri uri) {
     // obtain the filename
     //          if (this.isSelectedModelFile && (new File(data.getData().getPath()).getName()).endsWith(".xml") == false) {
-    if (this.isSelectedModelFile == true) {
+    if (this.ndFragment.isSelectedModelFile == true) {
       loadDataUri(uri);
     } else {
       loadModelUri(uri);
@@ -594,34 +613,9 @@ public class CanvasActivity extends RoboFragmentActivity {
   }
 
   private void loadDataUri(Uri uri) {
-    String timeDataPath;
-    if (uri != null && "content".equals(uri.getScheme())) {
-      // ストリームを直接URIから取り出します。
-      try {
-        this.inputDataFile = getContentResolver().openInputStream(uri);
-      } catch (FileNotFoundException e) {
-        throw new RuntimeException(e);
-      }
-      Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-      cursor.moveToFirst();
-      this.timeDataName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-      //Toast.makeText(getBaseContext(), uri.toString(), Toast.LENGTH_SHORT).show();
-      Log.d("URI", uri.toString());
-      // URIをファイルパスに変換し、その後ストリームを取り出します。
-    } else {
-      timeDataPath = uri.getPath();
-      this.canvasFragment.setTimeDataPath(timeDataPath);
-      //      this.filePathView.setText(new File(timeDataPath).getName());
-      try {
-        this.inputDataFile = new FileInputStream(timeDataPath);
-      } catch (FileNotFoundException e) {
-        throw new RuntimeException(e);
-      }
-      String[] parts = timeDataPath.split("/");
-      this.timeDataName = parts[parts.length - 1];
-    }
-    this.filePathView.setText(this.timeDataName);
-    this.canvasFragment.loadtimeSeriesData(this.inputDataFile);
+    this.ndFragment.loadDataUri(uri);
+    
+    this.canvasFragment.loadtimeSeriesData(this.ndFragment.inputDataFile);
     //this.canvasFragment.setTimeData(this.inputDataFile);
     this.canvasFragment.setTimeDataUri(uri);
     if (this.canvasFragment.manager != null) Log.d("onRestore:this.fragment.manager == null ???", this.canvasFragment.manager.toString());
@@ -629,50 +623,9 @@ public class CanvasActivity extends RoboFragmentActivity {
   }
 
   private void loadModelUri(Uri uri) {
-    String modelFilePath;
-    if (uri != null && "content".equals(uri.getScheme())) {
-      // ストリームを直接URIから取り出します。
-      try {
-        this.inputModelFile = getContentResolver().openInputStream(uri);
-      } catch (FileNotFoundException e) {
-        throw new RuntimeException(e);
-      }
-      Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-      cursor.moveToFirst();
-      this.modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-      //      Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
-      // URIをファイルパスに変換し、その後ストリームを取り出します。
-    } else {
-      modelFilePath = uri.getPath();
-      this.canvasFragment.setModelFilePath(modelFilePath);
-      try {
-        this.inputModelFile = new FileInputStream(modelFilePath);
-        //        this.modelFilePathView.setText(new File(modelFilePath).getName());
-      } catch (FileNotFoundException e) {
-        throw new RuntimeException(e);
-      }
-      String[] parts = modelFilePath.split("/");
-      this.modelFileName = parts[parts.length - 1];
-      Toast.makeText(getBaseContext(), modelFileName, Toast.LENGTH_SHORT).show();
-    }
-    Log.d("URI", uri.toString());
-    this.modelFilePathView.setText(this.modelFileName);
-    this.timeDataName = "...";
-    this.filePathView.setText(this.timeDataName);
-    try {
-      this.canvasFragment.loadModelFile(this.inputModelFile);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    } catch (Mikity3dSerializeDeserializeException e) {
-      throw new RuntimeException(e);
-    }
+    this.ndFragment.loadModelUri(uri);
+    
     this.canvasFragment.timeDataUri = null;
-    this.isSelectedModelFile = true;
-    this.selectButton.setEnabled(true);
-    this.quickButton.setEnabled(true);
-    this.slowButton.setEnabled(true);
-    this.playButton.setEnabled(true);
-    this.stopButton.setEnabled(true);
     this.canvasFragment.modelRenderer.updateDisplay();
     if (this.canvasFragment.manager != null) Log.d("onRestore:this.fragment.manager == null ???", this.canvasFragment.manager.toString());
     if (this.canvasFragment.manager == null) Log.d("onCreate:this.fragment.manager == null ???", "manager==null");
@@ -681,10 +634,8 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
-
-    this.imFragment.setParameter(isSelectedModelFile, selectButton.isEnabled(), quickButton.isEnabled(), slowButton.isEnabled(), stopButton.isEnabled(), loadModelButton.isEnabled(),
-        playButton.isEnabled());
-    this.imFragment.setFileName(this.modelFileName, this.timeDataName);
+    
+    this.ndFragment.saveInstanceonActivity();
     if (this.canvasFragment.manager != null) Log.d("onRestore:this.fragment.manager == null ???", this.canvasFragment.manager.toString());
     if (this.canvasFragment.manager == null) Log.d("onCreate:this.fragment.manager == null ???", "manager==null");
   }
@@ -694,8 +645,8 @@ public class CanvasActivity extends RoboFragmentActivity {
     super.onRestoreInstanceState(savedInstanceState);
     //this.canvasFragment.setModel();
     this.canvasFragment.setDirection();
-    setParameterFromArray();
-    setFileNameArray();
+//    this.ndFragment.setParameterFromArray();
+//    this.ndFragment.setFileNameArray();
     if (this.canvasFragment.root != null) {
         //this.canvasFragment.setModel();
     }
@@ -704,27 +655,80 @@ public class CanvasActivity extends RoboFragmentActivity {
       //loadDataUri(this.canvasFragment.timeDataUri);
       //this.canvasFragment.manager.setData(this.data);
     }
-    this.modelFilePathView.setText(this.modelFileName);
-    this.filePathView.setText(this.timeDataName);
+    this.ndFragment.restoreInstanceonActivity();
     this.canvasFragment.modelRenderer.updateDisplay();
     if (this.canvasFragment.manager != null) Log.d("onRestore:this.fragment.manager == null ???", this.canvasFragment.manager.toString());
     if (this.canvasFragment.manager == null) Log.d("onCreate:this.fragment.manager == null ???", "manager==null");
   }
 
-  private void setParameterFromArray() {
-    boolean[] paramArray = this.imFragment.getParameter();
-    this.isSelectedModelFile = paramArray[0];
-    this.selectButton.setEnabled(paramArray[1]);
-    this.quickButton.setEnabled(paramArray[2]);
-    this.slowButton.setEnabled(paramArray[3]);
-    this.stopButton.setEnabled(paramArray[4]);
-    this.loadModelButton.setEnabled(paramArray[5]);
-    this.playButton.setEnabled(paramArray[6]);
-  }
 
-  private void setFileNameArray() {
-    String[] fileNameArray = this.imFragment.getFileNameArray();
-    this.modelFileName = fileNameArray[0];
-    this.timeDataName = fileNameArray[1];
+  
+  public void moveToSetModelColumn() {
+  
+//  Intent intent = new Intent(this, SetModelColumnNumberActivity.class);    
+//  startActivity(intent);
+//    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//
+//    CanvasFragment fragment = new CanvasFragment();
+//    fragmentTransaction.replace(R.id.fragment_canvas, fragment);
+//    fragmentTransaction.addToBackStack(null);
+//    fragmentTransaction.commit();
+  }
+  
+  public void controlRotate() {
+    this.config = getResources().getConfiguration();
+    int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+    boolean isReverse = false;
+    if (CanvasActivity.this.rotateTogguleButton.isChecked()) {
+      switch (rotation) {
+        case Surface.ROTATION_180:
+        case Surface.ROTATION_270:
+          isReverse = true;
+          break;
+        default:
+          isReverse = false;
+          break;
+      }
+      if (CanvasActivity.this.config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isReverse) {
+          setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+        } else {
+          setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+      } else {
+        if (isReverse) {
+          setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+        } else {
+          setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+      }
+      CanvasActivity.this.canvasFragment.modelRenderer.updateDisplay();
+    } else {
+      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+    }
+  }
+  
+  public void sendIntent(int requestCode) {
+//  if (CanvasActivity.this.canvasFragment.root != null) {
+  //          CanvasActivity.this.isSelectedModelFile = true;
+  //        } else {
+  //          CanvasActivity.this.isSelectedModelFile = false;
+  //        }
+  //        fileManager.getFilePath();
+  //      if(Build.VERSION.SDK_INT < 19) {        
+  Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+  intent.setType("*/*");
+  startActivityForResult(intent, requestCode);
+  //      } else {
+  //        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+  //        intent.addCategory(Intent.CATEGORY_OPENABLE);
+  //        intent.setType("*/*");
+  //        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+  //    }
+  }
+  
+  public int getAnimationEditTextSpeed() {
+    return this.animationSpeed;
   }
 }

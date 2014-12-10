@@ -128,7 +128,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public String timeDataPath;
   protected Uri timeDataUri;
   protected boolean rotateTimeDataFlag = false;
-  @InjectView(R.id.fragment_canvas)
+  @InjectView(R.id.layout_fragment_canvas)
   View view;
   ProgressDialog progressDialog;
 
@@ -413,8 +413,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     long startTime = SystemClock.uptimeMillis();
     Log.d("data", this.data.toString());
 //    Log.d("Animation:manager_data", Integer.toString(this.manager.getDataSize()));
-
-    this.animationSpeed = (int)(Double.parseDouble(this.activity.animationSpeedTextEdit.getText().toString()) * 10);
+    
+//    this.animationSpeed = (int)(Double.parseDouble(this.activity.animationSpeedTextEdit.getText().toString()) * 10);
+    this.animationSpeed = this.activity.getAnimationEditTextSpeed();
     if (this.playable == false) {
       this.timer.cancel();
     }
@@ -561,6 +562,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.modelRenderer.setChildren(children);
     Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
+//    this.activity.setModelColumnNumberButton.setEnabled(true);
   }
 
   private void setGroupManager() {
