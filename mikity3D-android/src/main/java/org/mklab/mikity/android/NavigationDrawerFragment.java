@@ -152,7 +152,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
   private ActionBarDrawerToggle mDrawerToggle;
   private DrawerLayout mDrawer;
-  private ToggleButton rotateTogguleButton;
+  ToggleButton rotateTogguleButton;
   private Configuration config;
 
   private Button sampleModelButton;
@@ -277,7 +277,7 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        if (NavigationDrawerFragment.this.canvasActivity.gyroToggleButton.isChecked()) {
+        if (NavigationDrawerFragment.this.gyroToggleButton.isChecked()) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.useOrientationSensor = true;
         } else NavigationDrawerFragment.this.canvasActivity.canvasFragment.useOrientationSensor = false;
 
@@ -290,7 +290,7 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        if (NavigationDrawerFragment.this.canvasActivity.accelerToggleButton.isChecked()) {
+        if (NavigationDrawerFragment.this.accelerToggleButton.isChecked()) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerSensor = true;
 
         } else {

@@ -635,9 +635,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
     
-    this.ndFragment.saveInstanceonActivity();
-    if (this.canvasFragment.manager != null) Log.d("onRestore:this.fragment.manager == null ???", this.canvasFragment.manager.toString());
-    if (this.canvasFragment.manager == null) Log.d("onCreate:this.fragment.manager == null ???", "manager==null");
+    //this.ndFragment.saveInstanceonActivity();
   }
 
   @Override
@@ -680,7 +678,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     this.config = getResources().getConfiguration();
     int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
     boolean isReverse = false;
-    if (CanvasActivity.this.rotateTogguleButton.isChecked()) {
+    if (this.ndFragment.rotateTogguleButton.isChecked()) {
       switch (rotation) {
         case Surface.ROTATION_180:
         case Surface.ROTATION_270:
