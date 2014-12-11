@@ -188,11 +188,11 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        NavigationDrawerFragment.this.canvasActivity.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.canvasActivity.animationSpeedTextEdit.getText().toString()) * 10);
-        NavigationDrawerFragment.this.canvasActivity.animationSpeed -= 1;
-        if (NavigationDrawerFragment.this.canvasActivity.animationSpeed < 0) NavigationDrawerFragment.this.canvasActivity.animationSpeed = 0;
-        NavigationDrawerFragment.this.canvasActivity.animationSpeedTextEdit.setText(Double.toString((double)NavigationDrawerFragment.this.canvasActivity.animationSpeed / 10));
-        if (NavigationDrawerFragment.this.canvasActivity.animationTask != null) NavigationDrawerFragment.this.canvasActivity.animationTask.setSpeedScale(NavigationDrawerFragment.this.canvasActivity.animationSpeed / 10);
+        NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
+        NavigationDrawerFragment.this.animationSpeed -= 1;
+        if (NavigationDrawerFragment.this.animationSpeed < 0) NavigationDrawerFragment.this.animationSpeed = 0;
+        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(Double.toString((double)NavigationDrawerFragment.this.animationSpeed / 10));
+        if (NavigationDrawerFragment.this.animationTask != null) NavigationDrawerFragment.this.canvasActivity.animationTask.setSpeedScale(NavigationDrawerFragment.this.canvasActivity.animationSpeed / 10);
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
         NavigationDrawerFragment.this.setAnimationSpeed();
       }
