@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
-import android.app.FragmentManager;
-
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
@@ -401,5 +399,17 @@ public class CanvasActivity extends RoboFragmentActivity {
   
   public int getAnimationEditTextSpeed() {
     return this.animationSpeed;
+  }
+  
+  public void setColumn() {
+    android.support.v4.app.FragmentManager fragmentManager;
+    fragmentManager = getSupportFragmentManager();
+    android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+//    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//   ModelColumnNumberFragment fragment =  new ModelColumnNumberFragment();
+    CanvasFragment fragment = new CanvasFragment();
+//    transaction.replace(R.id.fragment_canvas, fragment);
+    transaction.addToBackStack(null);
+    transaction.commit();
   }
 }

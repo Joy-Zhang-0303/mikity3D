@@ -28,6 +28,8 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -243,6 +245,24 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.canvasActivity.controlRotate();
       }
     });
+    this.setModelColumnNumberButton = (Button)view.findViewById(R.id.setModelColumnNumberlButton);
+    this.setModelColumnNumberButton.setEnabled(false);
+    this.setModelColumnNumberButton.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+//NavigationDrawerFragment.this.canvasActivity.setColumn();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ModelColumnNumberFragment fragment =  new ModelColumnNumberFragment();
+        fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+      }
+
+    });
     // fragmentの値をactivityで保持。
     //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
     this.canvasActivity.ndFragment = this;
@@ -332,5 +352,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.slowButton.setEnabled(true);
     this.playButton.setEnabled(true);
     this.stopButton.setEnabled(true);
+    this.setModelColumnNumberButton.setEnabled(true);
   }
 }
