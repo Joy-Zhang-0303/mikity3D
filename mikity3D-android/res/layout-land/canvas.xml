@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+
     <LinearLayout
         android:id="@+id/drawer_layout"
         android:layout_width="260dp"
@@ -20,199 +21,15 @@
         android:background="#000"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+        <fragment
+        	xmlns:android="http://schemas.android.com/apk/res/android"
+        	android:id="@+id/fragment_navigation_drawer"
+        	android:name="org.mklab.mikity.android.NavigationDrawerFragment"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content" >
+            
 
-            <Button
-                android:id="@+id/button1"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/button1" />
-
-            <Button
-                android:id="@+id/button2"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/button2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/animationSpeedTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:text="再生速度" />
-
-            <Button
-                android:id="@+id/slowButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxWidth="2dp"
-                android:text="&lt;&lt;" />
-
-            <EditText
-                android:id="@+id/animationSpeedEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:maxLength="4" >
-
-                <requestFocus />
-            </EditText>
-
-            <Button
-                android:id="@+id/quickButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxWidth="2dp"
-                android:text=">>" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="モデル" />
-
-            <Button
-                android:id="@+id/modelSelectButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="参照" />
-
-            <TextView
-                android:id="@+id/modelPathView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="..." />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/timePath"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="時系列"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <Button
-                android:id="@+id/timeSelectButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="参照" />
-
-            <TextView
-                android:id="@+id/filePathView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="..." />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/useGyroTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="UseGyro" />
-
-            <ToggleButton
-                android:id="@+id/gyroToggleButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="gyroToggleButton" />
-
-            <TextView
-                android:id="@+id/UseAccelerTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="UseAcceler" />
-
-            <ToggleButton
-                android:id="@+id/accelerToggleButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="accelerToggleButton" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-    		<TextView
-    		    android:id="@+id/rotateLayoutTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Rotate" />
-    		
-    		<ToggleButton
-                android:id="@+id/rotateLayoutButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="rotateLayoutButton" />
-    	</LinearLayout>
-    	
-    	<LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/sampleModelView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="sampleModel" />
-
-            <Button
-                android:id="@+id/sampleModelButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="参照" />
-        </LinearLayout>
-
-    	<fragment
-    	        xmlns:android="http://schemas.android.com/apk/res/android"
-    	        android:id="@+id/fragment_instance_management"
-    	        android:name="org.mklab.mikity.android.InstanceManagementFragment"
-    	        android:layout_width="wrap_content"
-    	        android:layout_height="wrap_content" />
-    	
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        </fragment>
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

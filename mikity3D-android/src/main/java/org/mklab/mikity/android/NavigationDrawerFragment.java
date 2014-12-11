@@ -323,39 +323,42 @@ public class NavigationDrawerFragment extends RoboFragment {
     return view;
   }
   
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setRetainInstance(true);
+  }
+  
   public void setAnimationSpeed() {
     this.canvasActivity.animationSpeed = this.animationSpeed;
   }
   
   protected void saveInstanceonActivity() {
-    this.imFragment.setParameter(isSelectedModelFile, selectButton.isEnabled(), quickButton.isEnabled(), 
-        slowButton.isEnabled(), stopButton.isEnabled(), loadModelButton.isEnabled(),
-        playButton.isEnabled());
-    this.imFragment.setFileName(this.modelFileName, this.timeDataName);
+//    this.imFragment.setParameter(isSelectedModelFile, selectButton.isEnabled(), quickButton.isEnabled(), 
+//        slowButton.isEnabled(), stopButton.isEnabled(), loadModelButton.isEnabled(),
+//        playButton.isEnabled());
+//    this.imFragment.setFileName(this.modelFileName, this.timeDataName);
   }
   
   public void restoreInstanceonActivity() {
-    setParameterFromArray();
-    setFileNameArray();
-    this.modelFilePathView.setText(this.modelFileName);
-    this.filePathView.setText(this.timeDataName);
+//    setParameterFromArray();
+//    setFileNameArray();
+//    this.modelFilePathView.setText(this.modelFileName);
+//    this.filePathView.setText(this.timeDataName);
   }
   
   protected void setParameterFromArray() {
-    boolean[] paramArray = this.imFragment.getParameter();
-    this.isSelectedModelFile = paramArray[0];
-    this.selectButton.setEnabled(paramArray[1]);
-    this.quickButton.setEnabled(paramArray[2]);
-    this.slowButton.setEnabled(paramArray[3]);
-    this.stopButton.setEnabled(paramArray[4]);
-    this.loadModelButton.setEnabled(paramArray[5]);
-    this.playButton.setEnabled(paramArray[6]);
+//    boolean[] paramArray = this.imFragment.getParameter();
+//    this.isSelectedModelFile = paramArray[0];
+//    this.selectButton.setEnabled(paramArray[1]);
+//    this.quickButton.setEnabled(paramArray[2]);
+//    this.slowButton.setEnabled(paramArray[3]);
+//    this.stopButton.setEnabled(paramArray[4]);
+//    this.loadModelButton.setEnabled(paramArray[5]);
+//    this.playButton.setEnabled(paramArray[6]);
   }
   
   protected void setFileNameArray() {
-    String[] fileNameArray = this.imFragment.getFileNameArray();
-    this.modelFileName = fileNameArray[0];
-    this.timeDataName = fileNameArray[1];
+
   }
   
   protected void loadDataUri(Uri uri) {

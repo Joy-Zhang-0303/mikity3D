@@ -43,20 +43,20 @@ public class InstanceManagementFragment extends RoboFragment {
   protected void setParameter(boolean isSelectedModelFile, boolean isSelectButton
       , boolean isQuickButton, boolean isSlowButton, boolean isStopButton
       , boolean isLoadModelButton, boolean isPlayButton) {
-    this.isSelectedModelFile = isSelectedModelFile;
-    this.isSelectButton = isSelectButton;
-    this.isQuickButton = isQuickButton;
-    this.isSlowButton = isSlowButton;
-    this.isStopButton = isStopButton;
-    this.isLoadModelButton = isLoadModelButton;
-    this.isPlayButton = isPlayButton;
-    setParameterArray();
+//    this.isSelectedModelFile = isSelectedModelFile;
+//    this.isSelectButton = isSelectButton;
+//    this.isQuickButton = isQuickButton;
+//    this.isSlowButton = isSlowButton;
+//    this.isStopButton = isStopButton;
+//    this.isLoadModelButton = isLoadModelButton;
+//    this.isPlayButton = isPlayButton;
+//    setParameterArray();
   }
   
   protected void setFileName(String modelFileName, String timeDataName) {
-    this.modelFileName = modelFileName;
-    this.timeDataName = timeDataName;
-    setFileNameArray();
+//    this.modelFileName = modelFileName;
+//    this.timeDataName = timeDataName;
+//    setFileNameArray();
   }
   
   protected boolean[] getParameter() {
@@ -71,22 +71,22 @@ public class InstanceManagementFragment extends RoboFragment {
   
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setRetainInstance(true);
+//    setRetainInstance(true);
   }
   
   private void setParameterArray() {
-    this.getParamArray[0] = this.isSelectedModelFile;
-    this.getParamArray[1] = this.isSelectButton;
-    this.getParamArray[2] = this.isQuickButton;
-    this.getParamArray[3] = this.isSlowButton;
-    this.getParamArray[4] = this.isStopButton;
-    this.getParamArray[5] = this.isLoadModelButton;
-    this.getParamArray[6] = this.isPlayButton;
+//    this.getParamArray[0] = this.isSelectedModelFile;
+//    this.getParamArray[1] = this.isSelectButton;
+//    this.getParamArray[2] = this.isQuickButton;
+//    this.getParamArray[3] = this.isSlowButton;
+//    this.getParamArray[4] = this.isStopButton;
+//    this.getParamArray[5] = this.isLoadModelButton;
+//    this.getParamArray[6] = this.isPlayButton;
   }
   
   private void setFileNameArray() {
-    this.fileNameArray[0] = this.modelFileName;
-    this.fileNameArray[1] = this.timeDataName;
+//    this.fileNameArray[0] = this.modelFileName;
+//    this.fileNameArray[1] = this.timeDataName;
   }
   
   protected String[] getFileNameArray() {

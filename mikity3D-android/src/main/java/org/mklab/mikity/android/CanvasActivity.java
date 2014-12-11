@@ -430,7 +430,7 @@ public class CanvasActivity extends RoboFragmentActivity {
 //        }
 //    });
 
-    startByExternalActivity();
+//    startByExternalActivity();
 
     this.mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
     this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
@@ -634,8 +634,6 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
-    
-    //this.ndFragment.saveInstanceonActivity();
   }
 
   @Override
