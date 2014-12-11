@@ -167,25 +167,7 @@
                 android:layout_weight="0"
                 android:text="rotateLayoutButton" />
     	</LinearLayout>
-    	
-    	<LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/sampleModelView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="sampleModel" />
-
-            <Button
-                android:id="@+id/sampleModelButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="参照" />
-        </LinearLayout>
         
     	<LinearLayout
             android:layout_width="wrap_content"
@@ -205,19 +187,4 @@
                 android:layout_height="wrap_content"
                 android:text="編集" />
         </LinearLayout>
-        
-
-    	
-    	<fragment
-    	    xmlns:android="http://schemas.android.com/apk/res/android"
-    	    android:id="@+id/fragment_instance_management"
-    	    android:name="org.mklab.mikity.android.InstanceManagementFragment"
-    	    android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-     
 </LinearLayout>

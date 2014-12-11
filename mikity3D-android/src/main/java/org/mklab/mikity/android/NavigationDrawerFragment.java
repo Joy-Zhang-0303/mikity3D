@@ -49,31 +49,19 @@ import roboguice.inject.InjectFragment;
 public class NavigationDrawerFragment extends RoboFragment {
   
   protected static final String LOGTAG = null;
-  private boolean mIsInitScreenSize;
-
   /** アニメーション用タスク */
   AnimationTask animationTask;
 
   /** */
   public static boolean playable = true;
 
-  /** */
-  private double endTime;
-
-  private Mikity3d root;
-
   /** 等間隔の時間を保存しとく配列 */
   double[] timeTable;
 
   Timer timer = new Timer();
 
-  private Matrix data;
-
   /** */
   MovableGroupManager manager;
-
-  /** ModelCanvas */
-  private OpenglesModelRenderer modelRenderer;
 
   // DEBUG textview
   TextView testTextView;
@@ -85,20 +73,10 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** 前回のタッチのｙ座標 */
   float prevY = 0;
   /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。 */
-  private int animationSpeed = 10;
+  int animationSpeed = 10;
 
   private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
   private final int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
-  /** 時系列データのファイルパス */
-  private String filePath;
-  /** 　ピンチイン、ピンチアウト用のジェスチャー */
-  private ScaleGestureDetector gesDetect = null;
-  /** スケーリング中かどうかのフラグ */
-  private boolean scaling;
-  /** 回転中かどうかのフラグ */
-  private boolean rotationing;
-  /** 3Dオブジェクトの大きさの値 */
-  private double scaleValue = 1;
   /** アニメーションスピードを表示するエディットテキスト */
   public EditText animationSpeedTextEdit;
   /** 3Dモデルのインプットストリーム */
@@ -117,52 +95,14 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button loadModelButton;
   /** アニメーションを再生するボタン */
   Button playButton;
-  /** センサーマネージャー */
-  private SensorManager sensorManager;
-  private boolean registerAccerlerometer;
-  private boolean registerMagneticFieldSensor;
-  /** センサーからの加速度を格納する配列 */
-  private float[] accels = new float[3];
-  /** センサーからの地磁気を格納する配列 */
-  private float[] magneticFields = new float[3];
-  /** センサーから算出した端末の角度を格納する配列 */
-  private float[] orientations = new float[3];
-  /** 角度の基準値 */
-  private float[] prevOrientations = new float[3];
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
-  private ToggleButton gyroToggleButton;
-  /** 端末の角度を3Dオブジェクトに反映させるかどうかのフラグ */
-  private boolean useOrientationSensor = false;
-  /** */
-  private float[] prevAccerlerometer = new float[3];
+  ToggleButton gyroToggleButton;
   /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
-  private ToggleButton accelerToggleButton;
-  /** 加速度のローパスフィルターのxの値 */
-  private double lowPassX;
-  /** 加速度のローパスフィルターのｙの値 */
-  private double lowPassY;
-  /** 加速度のローパスフィルターのzの値 */
-  private double lowPassZ = 9.45;
-  /** 加速度のハイパスフィルターのZの値 */
-  private double rawAz;
-  /** 前回加速度センサーを3Dオブジェクトに使用したときの時間 */
-  private long useAccelerOldTime = 0L;
-  /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか */
-  private boolean useAccelerSensor = false;
-
-  private ActionBarDrawerToggle mDrawerToggle;
-  private DrawerLayout mDrawer;
+  ToggleButton accelerToggleButton;
   ToggleButton rotateTogguleButton;
-  private Configuration config;
-
-  private Button sampleModelButton;
-  boolean isSelectedsampleModel;
-  boolean isSelectedsampleData;
   InputStream inputDataFile;
   private String timeDataName;
   private String modelFileName;
-  @InjectFragment(R.id.fragment_instance_management)
-  InstanceManagementFragment imFragment;
   protected Button setModelColumnNumberButton;
   CanvasActivity canvasActivity;
   public int animationTextSpeed;
@@ -204,9 +144,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.animationSpeedTextEdit.clearFocus();
 
     //ファイルパスビューの配置
-
-//    this.filePathView = new TextView(this.canvasActivity);
-//    this.modelFilePathView = new TextView(this.canvasActivity);
     this.filePathView = (TextView)view.findViewById(R.id.filePathView);
     this.modelFilePathView = (TextView)view.findViewById(R.id.modelPathView);
 
@@ -306,19 +243,8 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.canvasActivity.controlRotate();
       }
     });
-
-    this.sampleModelButton = (Button)view.findViewById(R.id.sampleModelButton);
-    this.sampleModelButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View v) {
-        NavigationDrawerFragment.this.canvasActivity.canvasFragment.changeModelConfig();
-        NavigationDrawerFragment.this.canvasActivity.sendIntent(REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
-      }
-
-    });
+    // fragmentの値をactivityで保持。
+    //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
     this.canvasActivity.ndFragment = this;
     return view;
   }
@@ -330,35 +256,6 @@ public class NavigationDrawerFragment extends RoboFragment {
   
   public void setAnimationSpeed() {
     this.canvasActivity.animationSpeed = this.animationSpeed;
-  }
-  
-  protected void saveInstanceonActivity() {
-//    this.imFragment.setParameter(isSelectedModelFile, selectButton.isEnabled(), quickButton.isEnabled(), 
-//        slowButton.isEnabled(), stopButton.isEnabled(), loadModelButton.isEnabled(),
-//        playButton.isEnabled());
-//    this.imFragment.setFileName(this.modelFileName, this.timeDataName);
-  }
-  
-  public void restoreInstanceonActivity() {
-//    setParameterFromArray();
-//    setFileNameArray();
-//    this.modelFilePathView.setText(this.modelFileName);
-//    this.filePathView.setText(this.timeDataName);
-  }
-  
-  protected void setParameterFromArray() {
-//    boolean[] paramArray = this.imFragment.getParameter();
-//    this.isSelectedModelFile = paramArray[0];
-//    this.selectButton.setEnabled(paramArray[1]);
-//    this.quickButton.setEnabled(paramArray[2]);
-//    this.slowButton.setEnabled(paramArray[3]);
-//    this.stopButton.setEnabled(paramArray[4]);
-//    this.loadModelButton.setEnabled(paramArray[5]);
-//    this.playButton.setEnabled(paramArray[6]);
-  }
-  
-  protected void setFileNameArray() {
-
   }
   
   protected void loadDataUri(Uri uri) {

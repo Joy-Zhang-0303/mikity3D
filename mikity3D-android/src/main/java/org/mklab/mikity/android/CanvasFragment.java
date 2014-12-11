@@ -102,14 +102,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private float[] orientations = new float[3];
   /** 角度の基準値 */
   private float[] prevOrientations = new float[3];
-  /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
-  private ToggleButton gyroToggleButton;
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのフラグ */
   boolean useOrientationSensor = false;
   /** */
   private float[] prevAccerlerometer = new float[3];
-  /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
-  private ToggleButton accelerToggleButton;
   /** 加速度のローパスフィルターのxの値 */
   private double lowPassX;
   /** 加速度のローパスフィルターのｙの値 */
@@ -138,7 +134,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    Log.d("3D Fragment", "onCreateView");
     if (view != null) {
       ViewGroup parent = (ViewGroup)view.getParent();
       parent.removeView(view);
