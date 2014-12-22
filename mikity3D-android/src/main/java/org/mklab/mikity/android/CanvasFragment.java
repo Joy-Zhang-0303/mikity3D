@@ -588,23 +588,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public void onConfigurationChanged(Configuration newConfig) {
     if (this.progressDialog != null) {
     this.progressDialog.dismiss();
-    Log.d("dismiss", "dismiss");
     }
     setDirection();
-  }
-  
-  protected void changeModelConfig() {
-    if (this.root != null) {
-      //int columNumber =       this.root.getModel(0).getGroup(0).getLinkData(0).getColumnNumber();
-      Mikity3d root = this.root;
-      Mikity3dModel model = root.getModel(0);
-      Group[] groupArray = model.getGroups();
-      Group group = groupArray[0];
-      LinkData[] linkDataArray = group.getLinkData();
-      LinkData linkData = linkDataArray[0];
-      int columnNumber = linkData.getColumnNumber();
-//      int columnNumber = linkData[0].getColumnNumber();
-//      Log.d("columnNumber", String.valueOf(columnNumber));
-    }
   }
 }

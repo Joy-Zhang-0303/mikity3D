@@ -130,6 +130,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   boolean isSelectedsampleData;
   InputStream inputDataFile;
   public NavigationDrawerFragment ndFragment;
+  public ModelColumnNumberFragment mcnFragment;
   
 
   @Override
@@ -142,9 +143,12 @@ public class CanvasActivity extends RoboFragmentActivity {
 
     this.mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
     this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
+    this.mDrawerToggle.syncState();
     this.mDrawer.setDrawerListener(this.mDrawerToggle);
     getActionBar().setDisplayHomeAsUpEnabled(true);
+    getActionBar().setLogo(getResources().getDrawable(R.drawable.icon));
     getActionBar().setHomeButtonEnabled(true);
+    getActionBar().setDisplayUseLogoEnabled(true);
   }
 
   private void startByExternalActivity() {
@@ -411,5 +415,10 @@ public class CanvasActivity extends RoboFragmentActivity {
 //    transaction.replace(R.id.fragment_canvas, fragment);
     transaction.addToBackStack(null);
     transaction.commit();
+  }
+  
+  protected void setMCNFragmnet(ModelColumnNumberFragment mcnFragment) {
+    this.mcnFragment = mcnFragment;
+    this.ndFragment.searchModelGroup(this.canvasFragment.root);
   }
 }
