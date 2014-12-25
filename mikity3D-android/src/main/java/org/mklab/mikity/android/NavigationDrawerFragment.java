@@ -9,6 +9,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
@@ -114,6 +118,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   public int animationTextSpeed;
   protected String[] groupNameArray;
   protected int[] columnNumberArray;
+  protected List groupNameList;
+  protected List columnNUmberList;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -379,7 +385,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       groupCount++;
     }
     String[] groupName = new String[groupCount-2];
-    int[] columnNumber = new int[groupCount-2];
+    int[] columnNumber = new int[10];
     group = groupArray[0];
 //    groupName[0] = group.getName();
 //    columnNumber[0] = group.getLinkData(0).getColumnNumber();
@@ -418,5 +424,50 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
   protected void setGroupNameArray(String[] groupNameArray) {
     this.groupNameArray = groupNameArray;
+  }
+  
+  protected void setGroupNameList(Mikity3d root) {
+	Mikity3dModel model = root.getModel(0);
+	Group[] groupArray = model.getGroups();
+	Group group = groupArray[0];
+	group = group.getGroup(0);
+	List<Map<String, String>> groupNameList = new ArrayList<Map<String, String>>();
+	int count = 0;
+	while(true) {
+	  try {
+ 		if (count != 0) {
+ 		  group = group.getGroup(0);
+	   	}
+	  } catch(IndexOutOfBoundsException e) {
+	    break;
+	  }
+	  Map<String, String> groupNameData = new HashMap<String, String>();
+	  groupNameData.put("groupName", group.getName());
+	  groupNameList.add(groupNameData);
+	  count++;
+    }
+	group = groupArray[0];
+	List<List<Map<String, String>>> allColumnNumberList = new ArrayList<List<Map<String, String>>>();
+	for(int i=0; i<groupNameList.size(); i++) {
+		List<Map<String, String>> columnNumberList = new ArrayList<Map<String, String>>();
+		int j = 0;
+		group = group.getGroup(0);
+	  while(true) {
+		Map<String, String> columnNumberData = new HashMap<String, String>();
+		try {
+			columnNumberData.put("columnNumber", String.valueOf(group.getLinkData(j).getColumnNumber()));
+			columnNumberList.add(columnNumberData);
+			j++;
+		} catch(IndexOutOfBoundsException e) {
+			break;
+		}
+      }
+	  allColumnNumberList.add(columnNumberList);
+	}
+	setLists(groupNameList, allColumnNumberList);
+  }
+  protected void setLists(List<Map<String, String>> groupNameList, List<List<Map<String, String>>> allColumnNumberList) {
+	  this.groupNameList = groupNameList;
+	  this.columnNUmberList = allColumnNumberList;
   }
 }

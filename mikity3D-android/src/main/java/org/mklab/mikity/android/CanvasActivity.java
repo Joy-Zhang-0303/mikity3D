@@ -418,7 +418,8 @@ public class CanvasActivity extends RoboFragmentActivity {
   }
   
   protected void setMCNFragmnet(ModelColumnNumberFragment mcnFragment) {
+	this.ndFragment.setGroupNameList(this.canvasFragment.root);
     this.mcnFragment = mcnFragment;
-    this.ndFragment.searchModelGroup(this.canvasFragment.root);
+    //this.ndFragment.searchModelGroup(this.canvasFragment.root);
   }
 }
