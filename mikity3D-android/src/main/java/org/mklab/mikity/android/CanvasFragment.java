@@ -5,8 +5,6 @@
  */
 package org.mklab.mikity.android;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,20 +20,14 @@ import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
-import org.openintents.intents.OIFileManager;
-
 import roboguice.fragment.RoboFragment;
 import roboguice.inject.InjectView;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -45,23 +37,16 @@ import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ToggleButton;
 
 
 /**
@@ -79,7 +64,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private double scaleValue = 1;
   float prevX = 0;
   float prevY = 0;
-  private View canvasActivity;
   public CanvasActivity activity;
   Timer timer = new Timer();
   public Mikity3d root;

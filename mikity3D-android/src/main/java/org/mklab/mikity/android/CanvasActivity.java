@@ -5,76 +5,32 @@
  */
 package org.mklab.mikity.android;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
-import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
-import org.mklab.mikity.model.xml.Mikity3dFactory;
-import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.LinkData;
-import org.mklab.nfc.matrix.Matrix;
-import org.mklab.nfc.matx.MatxMatrix;
-import org.openintents.intents.OIFileManager;
 
-import roboguice.activity.RoboActivity;
 import roboguice.activity.RoboFragmentActivity;
-import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectFragment;
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.database.Cursor;
 import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.os.SystemClock;
-import android.provider.MediaStore;
-import android.provider.MediaStore.MediaColumns;
-import android.provider.OpenableColumns;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.Surface;
-import android.view.View;
-import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.webkit.MimeTypeMap;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
@@ -215,9 +171,6 @@ public class CanvasActivity extends RoboFragmentActivity {
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
     this.mDrawerToggle.onConfigurationChanged(newConfig);
-//    if (this.canvasFragment.progressDialog != null) {
-//      this.canvasFragment.progressDialog.dismiss();
-//    }
   }
 
   @Override
@@ -290,14 +243,12 @@ public class CanvasActivity extends RoboFragmentActivity {
       case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
         if (resultCode == RESULT_OK && data != null) {
           Uri uri = data.getData();
-          //readModelTimeData(uri);
           loadModelUri(uri);
         }
         break;
       case REQUEST_CODE_PICK_TIME_DATA_FILE:
         if (resultCode == RESULT_OK && data != null) {
           Uri uri = data.getData();
-          //readModelTimeData(uri);
           loadDataUri(uri);
         }
       default:
@@ -324,9 +275,7 @@ public class CanvasActivity extends RoboFragmentActivity {
 
   private void loadDataUri(Uri uri) {
     this.ndFragment.loadDataUri(uri);
-    
     this.canvasFragment.loadtimeSeriesData(this.ndFragment.inputDataFile);
-    //this.canvasFragment.setTimeData(this.inputDataFile);
     this.canvasFragment.setTimeDataUri(uri);
   }
 
@@ -335,18 +284,6 @@ public class CanvasActivity extends RoboFragmentActivity {
     
     this.canvasFragment.timeDataUri = null;
     this.canvasFragment.modelRenderer.updateDisplay();
-  }
-
-  @Override
-  protected void onSaveInstanceState(Bundle outState) {
-    super.onSaveInstanceState(outState);
-  }
-
-  @Override
-  protected void onRestoreInstanceState(Bundle savedInstanceState) {
-    super.onRestoreInstanceState(savedInstanceState);
-    //this.canvasFragment.setDirection();
-    //this.canvasFragment.modelRenderer.updateDisplay();
   }
   
   public void controlRotate() {
@@ -405,21 +342,8 @@ public class CanvasActivity extends RoboFragmentActivity {
     return this.animationSpeed;
   }
   
-  public void setColumn() {
-    android.support.v4.app.FragmentManager fragmentManager;
-    fragmentManager = getSupportFragmentManager();
-    android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-//    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//   ModelColumnNumberFragment fragment =  new ModelColumnNumberFragment();
-    CanvasFragment fragment = new CanvasFragment();
-//    transaction.replace(R.id.fragment_canvas, fragment);
-    transaction.addToBackStack(null);
-    transaction.commit();
-  }
-  
   protected void setMCNFragmnet(ModelColumnNumberFragment mcnFragment) {
 	this.ndFragment.setGroupNameList(this.canvasFragment.root);
     this.mcnFragment = mcnFragment;
-    //this.ndFragment.searchModelGroup(this.canvasFragment.root);
   }
 }

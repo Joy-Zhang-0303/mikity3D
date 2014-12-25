@@ -16,44 +16,28 @@ import java.util.Map;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.nfc.matrix.Matrix;
-
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.database.Cursor;
-import android.hardware.SensorManager;
 import android.net.Uri;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.ScaleGestureDetector;
-import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import roboguice.fragment.RoboFragment;
-import roboguice.inject.InjectFragment;
 
 
 public class NavigationDrawerFragment extends RoboFragment {
@@ -265,7 +249,6 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-//NavigationDrawerFragment.this.canvasActivity.setColumn();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ModelColumnNumberFragment fragment =  new ModelColumnNumberFragment();
@@ -366,64 +349,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.playButton.setEnabled(true);
     this.stopButton.setEnabled(true);
     this.setModelColumnNumberButton.setEnabled(true);
-  }
-  
-  protected void searchModelGroup(Mikity3d root) {
-    Mikity3dModel model = root.getModel(0);
-    Group[] groupArray = model.getGroups();
-    Group group = groupArray[0];
-    int groupCount = 1;
-    while(true) {
-      Group searchGroup;
-      try {
-        searchGroup = group.getGroup(0);
-      } catch (IndexOutOfBoundsException e) {
-        groupCount++;
-        break;
-      }
-      group = searchGroup;
-      groupCount++;
-    }
-    String[] groupName = new String[groupCount-2];
-    int[] columnNumber = new int[10];
-    group = groupArray[0];
-//    groupName[0] = group.getName();
-//    columnNumber[0] = group.getLinkData(0).getColumnNumber();
-    for(int i=0; i<groupCount-2; i++) {
-      Group searchGroup = group.getGroup(0);
-      groupName[i] = searchGroup.getName();
-      try {
-        columnNumber[i] = searchGroup.getLinkData(0).getColumnNumber();
-      } catch(IndexOutOfBoundsException e) {
-        columnNumber[i] = -1;
-      }
-      group = searchGroup;
-    }
-//    Log.d("columnNumber",String.valueOf(columnNumber));
-//    Log.d("groupName", groupName.toString());
-    int count = 0;
-    for(int i=0; i<groupCount-2; i++) {
-      if(columnNumber[i] < 0) {
-        continue;
-      }
-      columnNumber[count] = columnNumber[i];
-      groupName[count] = groupName[i];
-      count++;
-    }
-    String[] groupNameArray = new String[count];
-    int[] columnNumberArray = new int[count];
-    for(int i=0; i<count; i++) {
-      groupNameArray[i] = groupName[i];
-      columnNumberArray[i] = columnNumber[i];
-    }
-    setColumnNumberArray(columnNumberArray);
-    setGroupNameArray(groupNameArray);
-  }
-  protected void setColumnNumberArray(int[] columnNumberArray) {
-    this.columnNumberArray = columnNumberArray;
-  }
-  protected void setGroupNameArray(String[] groupNameArray) {
-    this.groupNameArray = groupNameArray;
   }
   
   protected void setGroupNameList(Mikity3d root) {
