@@ -8,7 +8,12 @@ package org.mklab.mikity.android;
 import java.util.List;
 import java.util.Map;
 
+import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.LinkData;
+
 import roboguice.fragment.RoboFragment;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +64,10 @@ public class ModelColumnNumberFragment extends RoboFragment {
 	                int childPosition, long id) {
 			  ExpandableListAdapter adapter = parent.getExpandableListAdapter();
 			  
+			  DialogFragment newFragment = new ColumnNumberSelectionDialogFragment(ModelColumnNumberFragment.this.canvasActivity, groupPosition, childPosition);
+		        newFragment.show(ModelColumnNumberFragment.this.canvasActivity.getFragmentManager(), "contact_us");
+			  
+			  
 			  Map<String, String> item = (Map<String, String>) adapter.getChild(groupPosition, childPosition);
 			  
 			  Toast.makeText(getActivity().getApplicationContext(), "child clicked" + item.get("columnNumber"), Toast.LENGTH_LONG).show();
@@ -79,5 +88,19 @@ public class ModelColumnNumberFragment extends RoboFragment {
 			  return false;
 		  }
 	  });
+  }
+  
+  public void changeModelColumnNumber(int groupPosition, int childPosition, int columnNumber) {
+    Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
+    Group[] groupArray = model.getGroups();
+    Group group = groupArray[0];
+    group = group.getGroup(0);
+    for(int i=0; i<groupPosition; i++) {
+      group = group.getGroup(0);
+    }
+    group.getLinkData(childPosition).setColumnNumber(columnNumber);
+    this.canvasActivity.canvasFragment.setModel();
+    this.canvasActivity.canvasFragment.setGroupManager();
+//    group.setLinkData(columnNumber, group.getLinkData(childPosition));
   }
 }

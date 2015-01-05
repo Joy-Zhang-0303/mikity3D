@@ -544,7 +544,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 //    this.activity.setModelColumnNumberButton.setEnabled(true);
   }
 
-  private void setGroupManager() {
+  protected void setGroupManager() {
     this.manager = new MovableGroupManager(this.root);
     this.manager.setLogCat(new LogCatImpl()); //LogCatのセット    
   }
