@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     >
     <TextView
-        android:id="@+id/member_list"
+        android:id="@+id/target_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -12,12 +12,13 @@
         android:paddingLeft="36dip"
         android:layout_centerVertical="true"
         />
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@id/member_list"
-        android:textSize="10sp"
-        android:text="aaa"
+    <TextView
+        android:id="@+id/column_number_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="136dip"
+        android:layout_centerVertical="true"
         />
 </RelativeLayout>

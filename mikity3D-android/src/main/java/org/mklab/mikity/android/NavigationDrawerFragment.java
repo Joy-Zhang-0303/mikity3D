@@ -103,7 +103,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   protected String[] groupNameArray;
   protected int[] columnNumberArray;
   protected List groupNameList;
-  protected List columnNUmberList;
+  protected List columnNumberList;
+  protected List targetNameList;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -373,26 +374,34 @@ public class NavigationDrawerFragment extends RoboFragment {
     }
 	group = groupArray[0];
 	List<List<Map<String, String>>> allColumnNumberList = new ArrayList<List<Map<String, String>>>();
+	List<List<Map<String, String>>> allTargetList = new ArrayList<List<Map<String, String>>>();
 	for(int i=0; i<groupNameList.size(); i++) {
 		List<Map<String, String>> columnNumberList = new ArrayList<Map<String, String>>();
+		List<Map<String, String>> targetList = new ArrayList<Map<String, String>>();
 		int j = 0;
 		group = group.getGroup(0);
 	  while(true) {
 		Map<String, String> columnNumberData = new HashMap<String, String>();
+		Map<String, String> targetData = new HashMap<String, String>();
 		try {
 			columnNumberData.put("columnNumber", String.valueOf(group.getLinkData(j).getColumnNumber()));
 			columnNumberList.add(columnNumberData);
+			targetData.put("target", group.getLinkData(j).getTargetName());
+			targetList.add(targetData);
 			j++;
 		} catch(IndexOutOfBoundsException e) {
 			break;
 		}
       }
 	  allColumnNumberList.add(columnNumberList);
+	  allTargetList.add(targetList);
 	}
-	setLists(groupNameList, allColumnNumberList);
+	setLists(groupNameList, allColumnNumberList, allTargetList);
   }
-  protected void setLists(List<Map<String, String>> groupNameList, List<List<Map<String, String>>> allColumnNumberList) {
+  protected void setLists(List<Map<String, String>> groupNameList, List<List<Map<String, String>>> allColumnNumberList,
+      List<List<Map<String, String>>> allTargetList) {
 	  this.groupNameList = groupNameList;
-	  this.columnNUmberList = allColumnNumberList;
+	  this.columnNumberList = allColumnNumberList;
+	  this.targetNameList = allTargetList;
   }
 }

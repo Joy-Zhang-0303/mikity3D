@@ -23,13 +23,15 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
   
   private List<Map<String, String>> parentList;
   private List<List<Map<String, String>>> allChildList;
+  private List<List<Map<String, String>>> allTargetList;
   private Context context = null;
   
   public ColumnNumberExpandableListAdapter(Context ctx, List<Map<String, String>> parentList,
-                                    List<List<Map<String, String>>> allChildList) {
+                                    List<List<Map<String, String>>> allChildList, List<List<Map<String, String>>> allTargetList) {
     this.context = ctx;
     this.parentList = parentList;
     this.allChildList = allChildList;
+    this.allTargetList = allTargetList;
   }
   
   public View getGenericView() {
@@ -86,7 +88,9 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
 
   public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
     View childView = getGenericView();
-    TextView textView = (TextView)childView.findViewById(R.id.member_list);
+    TextView targetTextView = (TextView)childView.findViewById(R.id.target_list);
+    targetTextView.setText(allTargetList.get(groupPosition).get(childPosition).toString());
+    TextView textView = (TextView)childView.findViewById(R.id.column_number_list);
     textView.setText(allChildList.get(groupPosition).get(childPosition).toString());
     
     return childView;
