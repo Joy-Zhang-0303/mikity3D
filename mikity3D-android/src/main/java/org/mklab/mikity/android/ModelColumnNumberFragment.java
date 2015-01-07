@@ -47,13 +47,14 @@ public class ModelColumnNumberFragment extends RoboFragment {
 	  List<Map<String, String>> parentList = this.ndFragment.groupNameList;
 	  List<List<Map<String, String>>> allChildList = this.ndFragment.columnNUmberList;
 	  	  
-	  SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(
-			  this.getActivity(), parentList,
-			  android.R.layout.simple_expandable_list_item_1,
-			  new String[] { "groupName" }, new int[] { android.R.id.text1 },
-			  allChildList, android.R.layout.simple_expandable_list_item_2,
-			  new String[] { "columnNumber" }, new int[] {
-					  android.R.id.text1 });
+//	  SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(
+//			  this.getActivity(), parentList,
+//			  android.R.layout.simple_expandable_list_item_1,
+//			  new String[] { "groupName" }, new int[] { android.R.id.text1 },
+//			  allChildList, android.R.layout.simple_expandable_list_item_2,
+//			  new String[] { "columnNumber" }, new int[] {
+//					  android.R.id.text1 });
+	  ColumnNumberExpandableListAdapter adapter = new ColumnNumberExpandableListAdapter(getActivity(), parentList, allChildList);
 	  
 	  ExpandableListView lv = (ExpandableListView)this.view.findViewById(R.id.expandableListView1);
 	  lv.setAdapter(adapter);
