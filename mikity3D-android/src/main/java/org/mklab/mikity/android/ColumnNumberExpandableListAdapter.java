@@ -31,7 +31,6 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
   private String columnNumber;
   private int column;
   private ModelColumnNumberFragment mcnFragment;
-  private boolean isButtonClicked = false;
   
   public ColumnNumberExpandableListAdapter(Context ctx, List<Map<String, String>> parentList,
                                     List<List<Map<String, String>>> allChildList, 
@@ -103,12 +102,12 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
     this.columnNumber = allChildList.get(groupPosition).get(childPosition).get("columnNumber");
     columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
     this.column = Integer.parseInt(columnNumber);
+    
     Button minusButton = (Button)childView.findViewById(R.id.minusButton);
     minusButton.setOnClickListener(new View.OnClickListener() {
       
       public void onClick(View v) {
         ColumnNumberExpandableListAdapter.this.column--;
-        ColumnNumberExpandableListAdapter.this.isButtonClicked = true;
         columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
         ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
         Map<String, String> columnData = new HashMap<String, String>();
@@ -122,7 +121,6 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
       
       public void onClick(View v) {
         ColumnNumberExpandableListAdapter.this.column++;
-        ColumnNumberExpandableListAdapter.this.isButtonClicked = true;
         columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
         ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
         Map<String, String> columnData = new HashMap<String, String>();
@@ -130,16 +128,11 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
         allChildList.get(groupPosition).set(childPosition, columnData);
       }
     });
-    if (this.isButtonClicked == true) {
-      columnEditText.setText(String.valueOf(this.column));
-      this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
-    }
-    this.isButtonClicked = false;
+    
     return childView;
   }
 
   public boolean isChildSelectable(int groupPosition, int childPosition) {
     return true;
   }
-
 }
