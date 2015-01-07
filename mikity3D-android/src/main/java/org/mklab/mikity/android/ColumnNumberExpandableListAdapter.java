@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.android;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -25,13 +28,19 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
   private List<List<Map<String, String>>> allChildList;
   private List<List<Map<String, String>>> allTargetList;
   private Context context = null;
+  private String columnNumber;
+  private int column;
+  private ModelColumnNumberFragment mcnFragment;
+  private boolean isButtonClicked = false;
   
   public ColumnNumberExpandableListAdapter(Context ctx, List<Map<String, String>> parentList,
-                                    List<List<Map<String, String>>> allChildList, List<List<Map<String, String>>> allTargetList) {
+                                    List<List<Map<String, String>>> allChildList, 
+                                    List<List<Map<String, String>>> allTargetList, ModelColumnNumberFragment mcnFragment) {
     this.context = ctx;
     this.parentList = parentList;
     this.allChildList = allChildList;
     this.allTargetList = allTargetList;
+    this.mcnFragment = mcnFragment;
   }
   
   public View getGenericView() {
@@ -61,7 +70,7 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
   }
 
   public Object getGroup(int groupPosition) {
-    return parentList.get(groupPosition);
+    return parentList.get(groupPosition).get("groupName");
   }
 
   public Object getChild(int groupPosition, int childPosition) {
@@ -86,13 +95,46 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
     return textView;
   }
 
-  public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+  public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
     View childView = getGenericView();
     TextView targetTextView = (TextView)childView.findViewById(R.id.target_list);
-    targetTextView.setText(allTargetList.get(groupPosition).get(childPosition).toString());
-    TextView textView = (TextView)childView.findViewById(R.id.column_number_list);
-    textView.setText(allChildList.get(groupPosition).get(childPosition).toString());
+    targetTextView.setText(allTargetList.get(groupPosition).get(childPosition).get("target").toString());
+    final EditText columnEditText = (EditText)childView.findViewById(R.id.column_edit_text);
+    this.columnNumber = allChildList.get(groupPosition).get(childPosition).get("columnNumber");
+    columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
+    this.column = Integer.parseInt(columnNumber);
+    Button minusButton = (Button)childView.findViewById(R.id.minusButton);
+    minusButton.setOnClickListener(new View.OnClickListener() {
+      
+      public void onClick(View v) {
+        ColumnNumberExpandableListAdapter.this.column--;
+        ColumnNumberExpandableListAdapter.this.isButtonClicked = true;
+        columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
+        ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
+        Map<String, String> columnData = new HashMap<String, String>();
+        columnData.put("columnNumber", String.valueOf(column));
+        allChildList.get(groupPosition).set(childPosition, columnData);
+      }
+    });
     
+    Button plusButton = (Button)childView.findViewById(R.id.plusButton);
+    plusButton.setOnClickListener(new View.OnClickListener() {
+      
+      public void onClick(View v) {
+        ColumnNumberExpandableListAdapter.this.column++;
+        ColumnNumberExpandableListAdapter.this.isButtonClicked = true;
+        columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
+        ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
+        Map<String, String> columnData = new HashMap<String, String>();
+        columnData.put("columnNumber", String.valueOf(column));
+        allChildList.get(groupPosition).set(childPosition, columnData);
+      }
+    });
+    if (this.isButtonClicked == true) {
+      columnEditText.setText(String.valueOf(this.column));
+      this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
+    }
+    this.isButtonClicked = false;
     return childView;
   }
 

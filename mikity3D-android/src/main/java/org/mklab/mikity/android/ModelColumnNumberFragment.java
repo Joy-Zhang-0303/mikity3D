@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -33,6 +35,9 @@ public class ModelColumnNumberFragment extends RoboFragment {
   NavigationDrawerFragment ndFragment;
   String[] groupNameArray;
   int[] columnNumberArray;
+  public Button minusButton;
+  public Button plusButton;
+  public EditText columnEditText; 
   
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +45,8 @@ public class ModelColumnNumberFragment extends RoboFragment {
     this.canvasActivity = (CanvasActivity)getActivity();
     this.ndFragment = this.canvasActivity.ndFragment;
     setExpandableListView();
+//    this.minusButton = (Button)view.findViewById(R.id.minusButton);
+//    this.plusButton = (Button)view.findViewById(R.id.plusButton);
     return this.view;
   }
   
@@ -55,7 +62,7 @@ public class ModelColumnNumberFragment extends RoboFragment {
 //			  allChildList, android.R.layout.simple_expandable_list_item_2,
 //			  new String[] { "columnNumber" }, new int[] {
 //					  android.R.id.text1 });
-	  ColumnNumberExpandableListAdapter adapter = new ColumnNumberExpandableListAdapter(getActivity(), parentList, allChildList, targetNameList);
+	  ColumnNumberExpandableListAdapter adapter = new ColumnNumberExpandableListAdapter(getActivity(), parentList, allChildList, targetNameList, this);
 	  
 	  ExpandableListView lv = (ExpandableListView)this.view.findViewById(R.id.expandableListView1);
 	  lv.setAdapter(adapter);
@@ -70,9 +77,9 @@ public class ModelColumnNumberFragment extends RoboFragment {
 		        newFragment.show(ModelColumnNumberFragment.this.canvasActivity.getFragmentManager(), "contact_us");
 			  
 			  
-			  Map<String, String> item = (Map<String, String>) adapter.getChild(groupPosition, childPosition);
-			  
-			  Toast.makeText(getActivity().getApplicationContext(), "child clicked" + item.get("columnNumber"), Toast.LENGTH_LONG).show();
+//			  Map<String, String> item = (Map<String, String>) adapter.getChild(groupPosition, childPosition);
+//			  
+//			  Toast.makeText(getActivity().getApplicationContext(), "child clicked" + item.get("columnNumber"), Toast.LENGTH_LONG).show();
 			  return false;
 		  }
 	  });
@@ -84,9 +91,9 @@ public class ModelColumnNumberFragment extends RoboFragment {
 			  
 			  ExpandableListAdapter adapter = parent.getExpandableListAdapter();
 			  
-			  Map<String, String> item = (Map<String, String>) adapter.getGroup(groupPosition);
-			  Toast.makeText(getActivity().getApplicationContext(), "parent clicked" + item.get("groupName"),
-					  Toast.LENGTH_LONG).show();
+//			  Map<String, String> item = (Map<String, String>) adapter.getGroup(groupPosition).;
+//			  Toast.makeText(getActivity().getApplicationContext(), "parent clicked" + item.get("groupName"),
+//					  Toast.LENGTH_LONG).show();
 			  return false;
 		  }
 	  });
