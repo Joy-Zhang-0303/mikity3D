@@ -134,6 +134,9 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
         Map<String, String> columnData = new HashMap<String, String>();
         columnData.put("columnNumber", String.valueOf(column));
         allChildList.get(groupPosition).set(childPosition, columnData);
+        if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null) {
+          ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
+        }
       }
     });
     
