@@ -107,12 +107,17 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
     minusButton.setOnClickListener(new View.OnClickListener() {
       
       public void onClick(View v) {
-        ColumnNumberExpandableListAdapter.this.column--;
-        columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
-        ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
-        Map<String, String> columnData = new HashMap<String, String>();
-        columnData.put("columnNumber", String.valueOf(column));
-        allChildList.get(groupPosition).set(childPosition, columnData);
+        columnNumber = allChildList.get(groupPosition).get(childPosition).get("columnNumber");
+        column = Integer.parseInt(columnNumber);
+        if (2 < column) {
+          columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
+          ColumnNumberExpandableListAdapter.this.column--;
+          columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
+          ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
+          Map<String, String> columnData = new HashMap<String, String>();
+          columnData.put("columnNumber", String.valueOf(column));
+          allChildList.get(groupPosition).set(childPosition, columnData);
+        }
       }
     });
     
@@ -120,6 +125,9 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
     plusButton.setOnClickListener(new View.OnClickListener() {
       
       public void onClick(View v) {
+        columnNumber = allChildList.get(groupPosition).get(childPosition).get("columnNumber");
+        columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
+        column = Integer.parseInt(columnNumber);
         ColumnNumberExpandableListAdapter.this.column++;
         columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
         ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);

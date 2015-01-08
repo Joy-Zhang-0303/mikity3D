@@ -390,7 +390,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    */
   public void runAnimation() {
     long startTime = SystemClock.uptimeMillis();
-    Log.d("data", this.data.toString());
 //    Log.d("Animation:manager_data", Integer.toString(this.manager.getDataSize()));
     
 //    this.animationSpeed = (int)(Double.parseDouble(this.activity.animationSpeedTextEdit.getText().toString()) * 10);
