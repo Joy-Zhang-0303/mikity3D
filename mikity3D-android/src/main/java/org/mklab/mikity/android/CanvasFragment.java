@@ -24,6 +24,7 @@ import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
+
 import roboguice.fragment.RoboFragment;
 import roboguice.inject.InjectView;
 import android.app.Activity;
@@ -37,6 +38,8 @@ import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -47,6 +50,7 @@ import android.view.View;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 /**
@@ -349,10 +353,25 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
 
     } catch (FileNotFoundException e) {
-
       throw new RuntimeException(e);
     } catch (IOException e) {
-      throw new RuntimeException(e);
+//      Toast.makeText(getActivity(), "Please select time data", Toast.LENGTH_SHORT).show();
+      if(this.progressDialog != null) {
+        this.progressDialog.dismiss();
+      }
+      this.activity.ndFragment.timeDataName = "";
+      this.activity.ndFragment.filePathView.setText(this.activity.ndFragment.timeDataName);
+//      HandlerThread ht = new HandlerThread("TestThead");
+//      ht.start();
+//      
+//      Handler h = new Handler(ht.getLooper());
+//      h.post(new Runnable() {
+//        
+//        public void run() {
+//          Toast.makeText(activity, "Please select time data", Toast.LENGTH_SHORT).show();
+//        }
+//      });
+//      ht.quit();
     }
   }
   

@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.android;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Timer;
@@ -31,6 +32,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
@@ -243,13 +245,20 @@ public class CanvasActivity extends RoboFragmentActivity {
       case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
         if (resultCode == RESULT_OK && data != null) {
           Uri uri = data.getData();
-          loadModelUri(uri);
+            loadModelUri(uri);
         }
         break;
       case REQUEST_CODE_PICK_TIME_DATA_FILE:
         if (resultCode == RESULT_OK && data != null) {
           Uri uri = data.getData();
-          loadDataUri(uri);
+
+            loadDataUri(uri);
+            
+//          } catch (IOException e) {
+//            Toast.makeText(this, "Please select time data", Toast.LENGTH_SHORT).show();
+//            this.ndFragment.timeDataName = "";
+//            this.ndFragment.filePathView.setText(this.ndFragment.timeDataName);
+//          }
         }
       default:
         break;

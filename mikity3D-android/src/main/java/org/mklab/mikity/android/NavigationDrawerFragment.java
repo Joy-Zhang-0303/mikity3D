@@ -95,7 +95,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   ToggleButton accelerToggleButton;
   ToggleButton rotateTogguleButton;
   InputStream inputDataFile;
-  private String timeDataName;
+  protected String timeDataName;
   private String modelFileName;
   protected Button setModelColumnNumberButton;
   CanvasActivity canvasActivity;
@@ -338,18 +338,25 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.filePathView.setText(this.timeDataName);
     try {
       this.canvasActivity.canvasFragment.loadModelFile(this.inputModelFile);
+      setButtonEnabled(true);
     } catch (IOException e) {
       throw new RuntimeException(e);
     } catch (Mikity3dSerializeDeserializeException e) {
-      throw new RuntimeException(e);
+      this.modelFileName = "";
+      this.modelFilePathView.setText(this.modelFileName);
+      Toast.makeText(this.canvasActivity, "Please select model data", Toast.LENGTH_SHORT).show();
+      setButtonEnabled(false);
     }
-    this.isSelectedModelFile = true;
-    this.selectButton.setEnabled(true);
-    this.quickButton.setEnabled(true);
-    this.slowButton.setEnabled(true);
-    this.playButton.setEnabled(true);
-    this.stopButton.setEnabled(true);
-    this.setModelColumnNumberButton.setEnabled(true);
+  }
+  
+  private void setButtonEnabled(boolean flag) {
+    this.isSelectedModelFile = flag;
+    this.selectButton.setEnabled(flag);
+    this.quickButton.setEnabled(flag);
+    this.slowButton.setEnabled(flag);
+    this.playButton.setEnabled(flag);
+    this.stopButton.setEnabled(flag);
+    this.setModelColumnNumberButton.setEnabled(flag);
   }
   
   protected void setGroupNameList(Mikity3d root) {
