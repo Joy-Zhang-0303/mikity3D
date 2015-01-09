@@ -337,7 +337,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     try {
       this.data = MatxMatrix.readMatFormat(new InputStreamReader(input));
       input.close();
-
+      
       this.manager.setData(this.data);
 
       final Group rootGroup = this.root.getModel(0).getGroup(0);
@@ -351,27 +351,17 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       for (int i = 0; i < this.timeTable.length; i++) {
         this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
       }
-
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
-//      Toast.makeText(getActivity(), "Please select time data", Toast.LENGTH_SHORT).show();
       if(this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      this.activity.ndFragment.timeDataName = "";
+      this.activity.ndFragment.timeDataName = "Please select data file.";
       this.activity.ndFragment.filePathView.setText(this.activity.ndFragment.timeDataName);
-//      HandlerThread ht = new HandlerThread("TestThead");
-//      ht.start();
-//      
-//      Handler h = new Handler(ht.getLooper());
-//      h.post(new Runnable() {
-//        
-//        public void run() {
-//          Toast.makeText(activity, "Please select time data", Toast.LENGTH_SHORT).show();
-//        }
-//      });
-//      ht.quit();
+    } catch (IllegalArgumentException e) {
+      this.activity.ndFragment.timeDataName = "Please select proper data file.";
+      this.activity.ndFragment.filePathView.setText(this.activity.ndFragment.timeDataName);
     }
   }
   

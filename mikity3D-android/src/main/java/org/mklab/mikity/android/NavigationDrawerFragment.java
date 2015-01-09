@@ -342,9 +342,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     } catch (IOException e) {
       throw new RuntimeException(e);
     } catch (Mikity3dSerializeDeserializeException e) {
-      this.modelFileName = "";
+      this.modelFileName = "please select model file.";
       this.modelFilePathView.setText(this.modelFileName);
-      Toast.makeText(this.canvasActivity, "Please select model data", Toast.LENGTH_SHORT).show();
       setButtonEnabled(false);
     }
   }
