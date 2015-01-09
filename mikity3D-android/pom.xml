@@ -16,6 +16,10 @@
 	</parent>
 
 	<dependencies>
+	<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>android</groupId>
 			<artifactId>android</artifactId>

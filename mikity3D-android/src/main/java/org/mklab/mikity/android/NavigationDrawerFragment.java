@@ -348,7 +348,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     }
   }
   
-  private void setButtonEnabled(boolean flag) {
+  protected void setButtonEnabled(boolean flag) {
     this.isSelectedModelFile = flag;
     this.selectButton.setEnabled(flag);
     this.quickButton.setEnabled(flag);
