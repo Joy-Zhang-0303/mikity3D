@@ -13,9 +13,13 @@ public class NavigationDrawerFragmentTest extends ActivityInstrumentationTestCas
   public NavigationDrawerFragmentTest(Class<CanvasActivity> activityClass) {
     super(activityClass);
   }
+  
+  public NavigationDrawerFragmentTest() {
+    super(CanvasActivity.class);
+  }
 
-  private CanvasActivity activity;
-  private NavigationDrawerFragment fragment;
+  protected CanvasActivity activity;
+  protected NavigationDrawerFragment fragment;
   
   @Override
   protected void setUp() throws Exception {
