@@ -41,6 +41,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.SystemClock;
+import android.support.v4.app.DialogFragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -357,12 +358,18 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       if(this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      this.activity.ndFragment.timeDataName = "Please select data file.";
-      this.activity.ndFragment.filePathView.setText(this.activity.ndFragment.timeDataName);
+      callExceptionDialogFragment("Please select data file.");
     } catch (IllegalArgumentException e) {
-      this.activity.ndFragment.timeDataName = "Please select proper data file.";
-      this.activity.ndFragment.filePathView.setText(this.activity.ndFragment.timeDataName);
+      callExceptionDialogFragment("Please select proper data file.");
     }
+  }
+  
+  public void callExceptionDialogFragment(String message) {
+    DialogFragment dialogFragment = new ExceptionDialogFragment();
+    ((ExceptionDialogFragment)dialogFragment).setMessage(message);
+    dialogFragment.show(getFragmentManager(), "exceptionDialogFragment");
+    this.activity.ndFragment.timeDataName = "";
+    this.activity.ndFragment.filePathView.setText(this.activity.ndFragment.timeDataName);
   }
   
   public void setTimeData() {

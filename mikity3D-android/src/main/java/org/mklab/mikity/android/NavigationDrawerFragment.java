@@ -21,10 +21,12 @@ import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
+
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -342,10 +344,17 @@ public class NavigationDrawerFragment extends RoboFragment {
     } catch (IOException e) {
       throw new RuntimeException(e);
     } catch (Mikity3dSerializeDeserializeException e) {
-      this.modelFileName = "please select model file.";
-      this.modelFilePathView.setText(this.modelFileName);
+      setExceptionDailogFragment("please select model file.");
       setButtonEnabled(false);
     }
+  }
+  
+  protected void setExceptionDailogFragment(String message) {
+    DialogFragment dialogFragment = new ExceptionDialogFragment();
+    ((ExceptionDialogFragment)dialogFragment).setMessage("Please select data file.");
+    dialogFragment.show(getFragmentManager(), "exceptionDialogFragment");
+    this.modelFileName = "";
+    this.modelFilePathView.setText(this.modelFileName);
   }
   
   protected void setButtonEnabled(boolean flag) {
