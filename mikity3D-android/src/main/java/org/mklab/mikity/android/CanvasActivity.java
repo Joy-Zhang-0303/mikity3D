@@ -23,6 +23,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -89,7 +90,9 @@ public class CanvasActivity extends RoboFragmentActivity {
   InputStream inputDataFile;
   public NavigationDrawerFragment ndFragment;
   public ModelColumnNumberFragment mcnFragment;
-  
+  Intent i;
+  Uri sUri;
+  Bundle bundle;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +110,24 @@ public class CanvasActivity extends RoboFragmentActivity {
     getActionBar().setLogo(getResources().getDrawable(R.drawable.icon));
     getActionBar().setHomeButtonEnabled(true);
     getActionBar().setDisplayUseLogoEnabled(true);
+    startSampleIntent();
+  }
+  
+  private void startSampleIntent() {
+    i = getIntent();
+//    if(i.getData() != null) {
+//      sUri = i.getData();
+//      Toast.makeText(this, i.toString(), Toast.LENGTH_LONG).show();
+//      loadModelUri(sUri);
+//    }
+    if(i.getBundleExtra("path") != null) {
+      bundle = i.getBundleExtra("path");
+//      Uri[] urim = (Uri[])bundle.getParcelableArray("path");
+      Uri mPath = bundle.getParcelable("path");
+      loadModelUri(mPath);
+      Uri dPath = bundle.getParcelable("data");
+      loadDataUri(dPath);
+    }
   }
 
   private void startByExternalActivity() {
