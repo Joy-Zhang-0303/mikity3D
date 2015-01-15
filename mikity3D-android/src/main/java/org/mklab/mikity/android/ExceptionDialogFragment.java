@@ -11,6 +11,10 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
+/**
+ * @author soda
+ * @version $Revision$, 2015/01/16
+ */
 public class ExceptionDialogFragment extends DialogFragment {
   
   protected String message;

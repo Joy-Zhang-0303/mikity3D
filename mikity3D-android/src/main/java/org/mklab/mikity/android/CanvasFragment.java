@@ -116,6 +116,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   @InjectView(R.id.layout_fragment_canvas)
   View view;
   ProgressDialog progressDialog;
+  public int setModelCount = 0;
+  public boolean setIllegalTimeData = false;
+  public boolean setProperTimeData = false;
 
   /**
    * @param savedInstanceState Bundle
@@ -207,6 +210,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     return view;
   }
 
+  @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
@@ -352,6 +356,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       for (int i = 0; i < this.timeTable.length; i++) {
         this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
       }
+//      this.setProperTimeData = true;
+      this.setIllegalTimeData = false;
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
@@ -361,6 +367,16 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       callExceptionDialogFragment("Please select data file.");
     } catch (IllegalArgumentException e) {
       callExceptionDialogFragment("Please select proper data file.");
+    } catch (IllegalAccessError e) {
+      if(this.progressDialog != null) {
+        this.progressDialog.dismiss();
+      }
+      String message = "Time data size is not match model's column number."
+          + "\nPlease select proper time data or set proper column number.";
+      DialogFragment dialogFragment = new ExceptionDialogFragment();
+      ((ExceptionDialogFragment)dialogFragment).setMessage(message);
+      dialogFragment.show(getFragmentManager(), "exceptionDialogFragment");
+      this.setIllegalTimeData = true;
     }
   }
   
@@ -374,7 +390,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   
   public void setTimeData() {
     this.manager.setData(this.data);
-
+    this.setModelCount = 0;
     final Group rootGroup = this.root.getModel(0).getGroup(0);
     checkLinkParameterType(rootGroup);
 
@@ -572,6 +588,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.modelRenderer.setChildren(children);
     Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
+    this.setModelCount++;
 //    this.activity.setModelColumnNumberButton.setEnabled(true);
   }
 

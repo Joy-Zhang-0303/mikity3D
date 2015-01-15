@@ -117,7 +117,8 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
           Map<String, String> columnData = new HashMap<String, String>();
           columnData.put("columnNumber", String.valueOf(column));
           allChildList.get(groupPosition).set(childPosition, columnData);
-          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null) {
+          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null
+              && ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setModelCount < 2) {
             ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
           }
         }
@@ -130,7 +131,7 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
       public void onClick(View v) {
         columnNumber = allChildList.get(groupPosition).get(childPosition).get("columnNumber");
         column = Integer.parseInt(columnNumber);
-        if(column < getTimeDataRowSize()) {
+        if((column < getTimeDataRowSize(column) || ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data == null)) {
           columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
           ColumnNumberExpandableListAdapter.this.column++;
           columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
@@ -138,7 +139,8 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
           Map<String, String> columnData = new HashMap<String, String>();
           columnData.put("columnNumber", String.valueOf(column));
           allChildList.get(groupPosition).set(childPosition, columnData);
-          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null) {
+          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null
+              && ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setModelCount < 2) {
             ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
           }
         } else {
@@ -150,9 +152,13 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
     return childView;
   }
   
-  public int getTimeDataRowSize() {
+  public int getTimeDataRowSize(int column) {
     if(this.mcnFragment.canvasActivity.canvasFragment.data != null) {
+      if(this.mcnFragment.canvasActivity.canvasFragment.setIllegalTimeData == true) {
+        return ++column;
+      } else {
       return this.mcnFragment.canvasActivity.canvasFragment.data.getRowSize();
+      }
     } else {
       return 0;
     }
