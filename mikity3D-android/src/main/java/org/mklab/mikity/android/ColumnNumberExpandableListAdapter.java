@@ -117,6 +117,9 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
           Map<String, String> columnData = new HashMap<String, String>();
           columnData.put("columnNumber", String.valueOf(column));
           allChildList.get(groupPosition).set(childPosition, columnData);
+          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null) {
+            ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
+          }
         }
       }
     });
@@ -126,9 +129,9 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
       
       public void onClick(View v) {
         columnNumber = allChildList.get(groupPosition).get(childPosition).get("columnNumber");
-        columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
         column = Integer.parseInt(columnNumber);
         if(column < getTimeDataRowSize()) {
+          columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
           ColumnNumberExpandableListAdapter.this.column++;
           columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
           ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
