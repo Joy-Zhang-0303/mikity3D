@@ -10,8 +10,10 @@ import java.util.Map;
 
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
+
 import roboguice.fragment.RoboFragment;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,5 +81,11 @@ public class ModelColumnNumberFragment extends RoboFragment {
     group.getLinkData(childPosition).setColumnNumber(columnNumber);
     this.canvasActivity.canvasFragment.setModel();
     this.canvasActivity.canvasFragment.setGroupManager();
+  }
+  
+  public void setExceptionDailogFragment(String message) {
+    DialogFragment dialogFragment = new ExceptionDialogFragment();
+    ((ExceptionDialogFragment)dialogFragment).setMessage(message);
+    dialogFragment.show(getFragmentManager(), "exceptionDialogFragment");
   }
 }

@@ -373,19 +373,19 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
   
   public void setTimeData() {
-      this.manager.setData(this.data);
+    this.manager.setData(this.data);
 
-      final Group rootGroup = this.root.getModel(0).getGroup(0);
-      checkLinkParameterType(rootGroup);
+    final Group rootGroup = this.root.getModel(0).getGroup(0);
+    checkLinkParameterType(rootGroup);
 
-      final int dataSize = this.manager.getDataSize();
+    final int dataSize = this.manager.getDataSize();
 
-      this.timeTable = new double[dataSize];
+    this.timeTable = new double[dataSize];
 
-      this.endTime = this.manager.getEndTime();
-      for (int i = 0; i < this.timeTable.length; i++) {
-        this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
-      }
+    this.endTime = this.manager.getEndTime();
+    for (int i = 0; i < this.timeTable.length; i++) {
+      this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
+    }
   }
 
   private void checkLinkParameterType(Group parent) {

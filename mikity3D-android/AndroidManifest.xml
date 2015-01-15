@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.mklab.mikity.android"
     android:versionCode="5"
-    android:versionName="0.1.2-alpha" >
+    android:versionName="0.1.2-alpha" xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="19" tools:ignore="OldTargetApi"/>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -14,7 +14,7 @@
         android:allowBackup="true"
         android:debuggable="true"
         android:icon="@drawable/icon"
-        android:label="@string/app_name" >
+        android:label="@string/app_name" tools:ignore="HardcodedDebugMode">
         <activity
             android:name="org.mklab.mikity.android.MainActivity"
             android:label="@string/app_name"

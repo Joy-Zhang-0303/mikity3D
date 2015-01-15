@@ -128,19 +128,31 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
         columnNumber = allChildList.get(groupPosition).get(childPosition).get("columnNumber");
         columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
         column = Integer.parseInt(columnNumber);
-        ColumnNumberExpandableListAdapter.this.column++;
-        columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
-        ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
-        Map<String, String> columnData = new HashMap<String, String>();
-        columnData.put("columnNumber", String.valueOf(column));
-        allChildList.get(groupPosition).set(childPosition, columnData);
-        if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null) {
-          ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
+        if(column < getTimeDataRowSize()) {
+          ColumnNumberExpandableListAdapter.this.column++;
+          columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
+          ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
+          Map<String, String> columnData = new HashMap<String, String>();
+          columnData.put("columnNumber", String.valueOf(column));
+          allChildList.get(groupPosition).set(childPosition, columnData);
+          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null) {
+            ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
+          }
+        } else {
+          mcnFragment.setExceptionDailogFragment("Column number is over.");
         }
       }
     });
     
     return childView;
+  }
+  
+  public int getTimeDataRowSize() {
+    if(this.mcnFragment.canvasActivity.canvasFragment.data != null) {
+      return this.mcnFragment.canvasActivity.canvasFragment.data.getRowSize();
+    } else {
+      return 0;
+    }
   }
 
   public boolean isChildSelectable(int groupPosition, int childPosition) {
