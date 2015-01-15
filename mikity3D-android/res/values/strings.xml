@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">Mikity3DAndroid</string>
     <string name="menu_settings">Settings</string>
@@ -7,5 +7,19 @@
     <string name="button2">■</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
-
+	<string name="filePathView">...</string>
+	<string name="fileSelectButton">参照</string>
+	<string name="animationSpeedTextView">再生速度</string>
+	<string name="minusButton">&lt;&lt;</string>
+	<string name="plusButton">>></string>
+	<string name="textView2">モデル</string>
+	<string name="timePath">時系列</string>
+	<string name="useGyroTextView">UseGyro</string>
+	<string name="gyroToggleButton">gyroToggleButton</string>
+	<string name="UseAccelerTextView">UseAcceler</string>
+	<string name="accelerToggleButton">accelerToggleButton</string>
+	<string name="rotateLayoutTextView">Rotate</string>
+	<string name="rotateLayoutButton">rotateLayoutButton</string>
+	<string name="setModelColumnNumberView">setModelColumnNumber</string>
+	<string name="setModelColumnNumberButton">編集</string>
 </resources>
