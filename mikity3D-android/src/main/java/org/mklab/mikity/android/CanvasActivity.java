@@ -99,8 +99,6 @@ public class CanvasActivity extends RoboFragmentActivity {
 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.canvas);
-    
-//    startByExternalActivity();
 
     this.mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
     this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
@@ -115,73 +113,17 @@ public class CanvasActivity extends RoboFragmentActivity {
   
   private void startSampleIntent() {
     i = getIntent();
-//    if(i.getData() != null) {
-//      sUri = i.getData();
-//      Toast.makeText(this, i.toString(), Toast.LENGTH_LONG).show();
-//      loadModelUri(sUri);
-//    }
     if(i.getBundleExtra("path") != null) {
       bundle = i.getBundleExtra("path");
-//      Uri[] urim = (Uri[])bundle.getParcelableArray("path");
-      Uri mPath = bundle.getParcelable("path");
-      loadModelUri(mPath);
-      Uri dPath = bundle.getParcelable("data");
-      loadDataUri(dPath);
+      if(bundle.getParcelable("path") != null) {
+        Uri mPath = bundle.getParcelable("path");
+        loadModelUri(mPath);
+      }
+      if(bundle.getParcelable("data") != null) {
+        Uri dPath = bundle.getParcelable("data");
+        loadDataUri(dPath);
+      }
     }
-  }
-
-  private void startByExternalActivity() {
-    //外部アプリからの起動
-//    Intent intent = getIntent();
-//    if (intent.getStringArrayListExtra("org.mklab.mikity.android.ModelDataPathAndTimeDataPath") != null) { //$NON-NLS-1$
-//      ArrayList<String> data = intent.getStringArrayListExtra("org.mklab.mikity.android.ModelDataPathAndTimeDataPath"); //$NON-NLS-1$
-//      Toast.makeText(this, "Launch ounter application", Toast.LENGTH_LONG).show(); //$NON-NLS-1$
-//
-//      String modelFilePath = data.get(0);
-//      String timeDataPath = data.get(1);
-//
-//      try {
-//        this.inputModelFile = new FileInputStream(modelFilePath);
-//        this.modelFilePathView.setText(new File(modelFilePath).getName());
-//
-//      } catch (FileNotFoundException e) {
-//        throw new RuntimeException(e);
-//      }
-//
-//      try {
-//        this.canvasFragment.loadModelFile(this.inputModelFile);
-//      } catch (IOException e) {
-//        throw new RuntimeException(e);
-//      } catch (Mikity3dSerializeDeserializeException e) {
-//
-//        throw new RuntimeException(e);
-//      }
-//
-//      this.isSelectedModelFile = true;
-//
-//      this.selectButton.setEnabled(true);
-//      this.quickButton.setEnabled(true);
-//      this.slowButton.setEnabled(true);
-//      this.playButton.setEnabled(true);
-//      this.stopButton.setEnabled(true);
-//      this.modelRenderer.updateDisplay();
-//
-//      this.filePathView.setText(new File(timeDataPath).getName());
-//
-//      InputStream mat;
-//      try {
-//        mat = new FileInputStream(timeDataPath);
-//      } catch (FileNotFoundException e) {
-//        throw new RuntimeException(e);
-//      }
-//      this.canvasFragment.setTimeData(mat);
-//
-//      try {
-//        mat.close();
-//      } catch (IOException e) {
-//        throw new RuntimeException(e);
-//      }
-//    }
   }
 
   @Override
