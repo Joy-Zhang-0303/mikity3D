@@ -31,8 +31,8 @@ import android.widget.LinearLayout;
  */
 public class CanvasActivity extends RoboFragmentActivity {
 
-  private final static int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
-  private final static int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
+  final static int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
+  final static int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
   private boolean registerAccerlerometer;
   private boolean registerMagneticFieldSensor;
   /** NavigationDrawer用のアクションバートグル*/

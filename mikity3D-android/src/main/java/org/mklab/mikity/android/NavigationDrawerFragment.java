@@ -7,7 +7,6 @@ package org.mklab.mikity.android;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +28,6 @@ import android.provider.OpenableColumns;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,11 +35,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 import roboguice.fragment.RoboFragment;
 
 
+/**
+ * NavigationDrawerでメニューを表示するためのフラグメントです。
+ * @author soda
+ * @version $Revision$, 2015/01/16
+ */
 public class NavigationDrawerFragment extends RoboFragment {
   
   protected static final String LOGTAG = null;
@@ -71,8 +73,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。 */
   int animationSpeed = 10;
 
-  private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
-  private final int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
+//  private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
+//  private final int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
   /** アニメーションスピードを表示するエディットテキスト */
   public EditText animationSpeedTextEdit;
   /** 3Dモデルのインプットストリーム */
@@ -101,15 +103,26 @@ public class NavigationDrawerFragment extends RoboFragment {
   private String modelFileName;
   protected Button setModelColumnNumberButton;
   CanvasActivity canvasActivity;
+  /** アニメーションスピードテキスト用のスピード*/
   public int animationTextSpeed;
   protected String[] groupNameArray;
   protected int[] columnNumberArray;
-  protected List groupNameList;
-  protected List columnNumberList;
-  protected List targetNameList;
+  protected List<Map<String, String>> groupNameList;
+  protected List<List<Map<String, String>>> columnNumberList;
+  protected List<List<Map<String, String>>> targetNameList;
+  /** 時間データ再読み込みのためのボタン*/
   public Button reloadButton;
+  /** 時間データを削除するためのボタン*/
   public Button timeDataDeleteButton;
+  private List<Map<String, String>> columnNumberList2;
+  private List<Map<String, String>> groupNameList2;
+  private Cursor cursor;
+  private Cursor cursor2;
 
+  /**
+   * @param savedInstanceState Bundle
+   * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
@@ -136,12 +149,13 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.timeDataDeleteButton.setEnabled(false);
 
     this.loadModelButton.setOnClickListener(new View.OnClickListener() {
-
+      final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_FILE_OR_DIRECTORY;
       /**
        * {@inheritDoc}
+       * @param v view
        */
       public void onClick(View v) {
-        NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+        NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
       }
     });
 
@@ -162,6 +176,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
       /**
        * {@inheritDoc}
+       * @param v view
        */
       public void onClick(View v) {
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
@@ -174,9 +189,12 @@ public class NavigationDrawerFragment extends RoboFragment {
     });
 
     this.selectButton.setOnClickListener(new View.OnClickListener() {
-
+      final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_TIME_DATA_FILE;
+      /**
+       * @param v view 
+       */
       public void onClick(View v) {
-        NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(REQUEST_CODE_PICK_TIME_DATA_FILE);
+        NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
       }
     });
 
@@ -184,14 +202,20 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.playButton.setOnClickListener(new View.OnClickListener() {
 
       // コールバックメソッド
-      public void onClick(View view) {
+      /**
+       * @param view1 view 
+       */
+      public void onClick(View view1) {
         NavigationDrawerFragment.this.canvasActivity.canvasFragment.runAnimation();
       }
     });
 
     this.reloadButton.setOnClickListener(new View.OnClickListener() {
 
-      public void onClick(View view) {
+      /**
+       * @param view1 view 
+       */
+      public void onClick(View view1) {
         if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.setTimeData();
         }
@@ -200,10 +224,13 @@ public class NavigationDrawerFragment extends RoboFragment {
     
     this.timeDataDeleteButton.setOnClickListener(new View.OnClickListener() {
 
-      public void onClick(View view) {
+      /**
+       * @param view1 view 
+       */
+      public void onClick(View view1) {
         if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.data = null;
-          NavigationDrawerFragment.this.timeDataName = "...";
+          NavigationDrawerFragment.this.timeDataName = "..."; //$NON-NLS-1$
           NavigationDrawerFragment.this.filePathView.setText(NavigationDrawerFragment.this.timeDataName);
         }
       }
@@ -213,6 +240,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
       /**
        * {@inheritDoc}
+       * @param v view
        */
       public void onClick(View v) {
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
@@ -228,7 +256,10 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.stopButton.setOnClickListener(new View.OnClickListener() {
 
       // コールバックメソッド
-      public void onClick(View view) {
+      /**
+       * @param view1 view 
+       */
+      public void onClick(View view1) {
         NavigationDrawerFragment.this.canvasActivity.canvasFragment.timer.cancel();
         NavigationDrawerFragment.this.canvasActivity.canvasFragment.playable = false;
       }
@@ -239,6 +270,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
       /**
        * {@inheritDoc}
+       * @param v view
        */
       public void onClick(View v) {
         if (NavigationDrawerFragment.this.gyroToggleButton.isChecked()) {
@@ -252,6 +284,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
       /**
        * {@inheritDoc}
+       * @param v view
        */
       public void onClick(View v) {
         if (NavigationDrawerFragment.this.accelerToggleButton.isChecked()) {
@@ -266,6 +299,9 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.rotateTogguleButton = (ToggleButton)view.findViewById(R.id.rotateLayoutButton);
     this.rotateTogguleButton.setOnClickListener(new OnClickListener() {
 
+      /**
+       * @param v view 
+       */
       public void onClick(View v) {
         NavigationDrawerFragment.this.canvasActivity.controlRotation();
       }
@@ -276,6 +312,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
       /**
        * {@inheritDoc}
+       * @param v view
        */
       public void onClick(View v) {
         FragmentManager fragmentManager = getFragmentManager();
@@ -294,75 +331,80 @@ public class NavigationDrawerFragment extends RoboFragment {
     return view;
   }
   
+  /**
+   * @see roboguice.fragment.RoboFragment#onCreate(android.os.Bundle)
+   */
+  @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
   }
-//  
-//  public void setAnimationSpeed() {
-//    this.canvasActivity.animationSpeed = this.animationSpeed;
-//  }
   
+  /**
+   * 時間データをURIから読み込むためのメソッドです。
+   * @param uri 時間データURI
+   */
   protected void loadDataUri(Uri uri) {
     String timeDataPath;
-    if (uri != null && "content".equals(uri.getScheme())) {
+    if (uri != null && "content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
         this.inputDataFile = this.canvasActivity.getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      Cursor cursor = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
-      cursor.moveToFirst();
-      this.timeDataName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-      //Toast.makeText(getBaseContext(), uri.toString(), Toast.LENGTH_SHORT).show();
-      Log.d("URI", uri.toString());
+      this.cursor2 = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
+      this.cursor2.moveToFirst();
+      this.timeDataName = this.cursor2.getString(this.cursor2.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
-      timeDataPath = uri.getPath();
-      this.canvasActivity.canvasFragment.setTimeDataPath(timeDataPath);
-      //      this.filePathView.setText(new File(timeDataPath).getName());
-      try {
-        this.inputDataFile = new FileInputStream(timeDataPath);
-      } catch (FileNotFoundException e) {
-        throw new RuntimeException(e);
+      if(uri != null) {
+        timeDataPath = uri.getPath();
+        this.canvasActivity.canvasFragment.setTimeDataPath(timeDataPath);
+        try {
+          this.inputDataFile = new FileInputStream(timeDataPath);
+        } catch (FileNotFoundException e) {
+          throw new RuntimeException(e);
+        }
+        String[] parts = timeDataPath.split("/"); //$NON-NLS-1$
+        this.timeDataName = parts[parts.length - 1];
       }
-      String[] parts = timeDataPath.split("/");
-      this.timeDataName = parts[parts.length - 1];
+
     }
     this.filePathView.setText(this.timeDataName);
   }
-  
+  /**
+   * モデルをURIから読み込むためのメソッドです。
+   * @param uri モデルURI
+   */
   protected void loadModelUri(Uri uri) {
     String modelFilePath;
-    if (uri != null && "content".equals(uri.getScheme())) {
+    if (uri != null && "content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
         this.inputModelFile = this.canvasActivity.getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      Cursor cursor = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
-      cursor.moveToFirst();
-      this.modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-      //      Toast.makeText(getBaseContext(), cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)), Toast.LENGTH_SHORT).show();
+      this.cursor = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
+      this.cursor.moveToFirst();
+      this.modelFileName = this.cursor.getString(this.cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
-      modelFilePath = uri.getPath();
-      this.canvasActivity.canvasFragment.setModelFilePath(modelFilePath);
-      try {
-        this.inputModelFile = new FileInputStream(modelFilePath);
-        //        this.modelFilePathView.setText(new File(modelFilePath).getName());
-      } catch (FileNotFoundException e) {
-        throw new RuntimeException(e);
+      if(uri != null) {
+        modelFilePath = uri.getPath();
+        this.canvasActivity.canvasFragment.setModelFilePath(modelFilePath);
+        try {
+          this.inputModelFile = new FileInputStream(modelFilePath);
+        } catch (FileNotFoundException e) {
+          throw new RuntimeException(e);
+        }
+        String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
+        this.modelFileName = parts[parts.length - 1];
       }
-      String[] parts = modelFilePath.split("/");
-      this.modelFileName = parts[parts.length - 1];
-      Toast.makeText(this.canvasActivity.getBaseContext(), modelFileName, Toast.LENGTH_SHORT).show();
     }
-    Log.d("URI", uri.toString());
     this.modelFilePathView.setText(this.modelFileName);
-    this.timeDataName = "...";
+    this.timeDataName = "..."; //$NON-NLS-1$
     this.filePathView.setText(this.timeDataName);
     try {
       this.canvasActivity.canvasFragment.loadModelFile(this.inputModelFile);
@@ -371,17 +413,18 @@ public class NavigationDrawerFragment extends RoboFragment {
         this.canvasActivity.canvasFragment.data = null;
       }
     } catch (Mikity3dSerializeDeserializeException e) {
-      setExceptionDailogFragment("please select model file.");
+      setExceptionDailogFragment("please select model file."); //$NON-NLS-1$
       setButtonEnabled(false);
     }
   }
   
+  /**
+   * @param message 例外メッセージ
+   */
   protected void setExceptionDailogFragment(String message) {
     DialogFragment dialogFragment = new ExceptionDialogFragment();
-    ((ExceptionDialogFragment)dialogFragment).setMessage("Please select data file.");
-    dialogFragment.show(getFragmentManager(), "exceptionDialogFragment");
-//    this.modelFileName = "";
-//    this.modelFilePathView.setText(this.modelFileName);
+    ((ExceptionDialogFragment)dialogFragment).setMessage(message);
+    dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
   
   protected void setButtonEnabled(boolean flag) {
@@ -401,7 +444,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 	Group[] groupArray = model.getGroups();
 	Group group = groupArray[0];
 	group = group.getGroup(0);
-	List<Map<String, String>> groupNameList = new ArrayList<Map<String, String>>();
+	this.groupNameList2 = new ArrayList<Map<String, String>>();
 	int count = 0;
 	while(true) {
 	  try {
@@ -412,15 +455,15 @@ public class NavigationDrawerFragment extends RoboFragment {
 	    break;
 	  }
 	  Map<String, String> groupNameData = new HashMap<String, String>();
-	  groupNameData.put("groupName", group.getName());
-	  groupNameList.add(groupNameData);
+	  groupNameData.put("groupName", group.getName()); //$NON-NLS-1$
+	  this.groupNameList2.add(groupNameData);
 	  count++;
     }
 	group = groupArray[0];
 	List<List<Map<String, String>>> allColumnNumberList = new ArrayList<List<Map<String, String>>>();
 	List<List<Map<String, String>>> allTargetList = new ArrayList<List<Map<String, String>>>();
-	for(int i=0; i<groupNameList.size(); i++) {
-		List<Map<String, String>> columnNumberList = new ArrayList<Map<String, String>>();
+	for(int i=0; i<this.groupNameList2.size(); i++) {
+		this.columnNumberList2 = new ArrayList<Map<String, String>>();
 		List<Map<String, String>> targetList = new ArrayList<Map<String, String>>();
 		int j = 0;
 		group = group.getGroup(0);
@@ -428,19 +471,19 @@ public class NavigationDrawerFragment extends RoboFragment {
 		Map<String, String> columnNumberData = new HashMap<String, String>();
 		Map<String, String> targetData = new HashMap<String, String>();
 		try {
-			columnNumberData.put("columnNumber", String.valueOf(group.getLinkData(j).getColumnNumber()));
-			columnNumberList.add(columnNumberData);
-			targetData.put("target", group.getLinkData(j).getTargetName());
+			columnNumberData.put("columnNumber", String.valueOf(group.getLinkData(j).getColumnNumber())); //$NON-NLS-1$
+			this.columnNumberList2.add(columnNumberData);
+			targetData.put("target", group.getLinkData(j).getTargetName()); //$NON-NLS-1$
 			targetList.add(targetData);
 			j++;
 		} catch(IndexOutOfBoundsException e) {
 			break;
 		}
       }
-	  allColumnNumberList.add(columnNumberList);
+	  allColumnNumberList.add(this.columnNumberList2);
 	  allTargetList.add(targetList);
 	}
-	setLists(groupNameList, allColumnNumberList, allTargetList);
+	setLists(this.groupNameList2, allColumnNumberList, allTargetList);
   }
   protected void setLists(List<Map<String, String>> groupNameList, List<List<Map<String, String>>> allColumnNumberList,
       List<List<Map<String, String>>> allTargetList) {
