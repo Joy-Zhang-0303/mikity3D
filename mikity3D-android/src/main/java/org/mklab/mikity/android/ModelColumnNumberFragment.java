@@ -17,12 +17,16 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 
 
+/**
+ * モデルのターゲットに対する番号を設定するためのフラグメントです。
+ * @author soda
+ * @version $Revision$, 2015/01/16
+ */
 public class ModelColumnNumberFragment extends RoboFragment {
   
   View view;
@@ -31,6 +35,10 @@ public class ModelColumnNumberFragment extends RoboFragment {
   String[] groupNameArray;
   int[] columnNumberArray; 
   
+  /**
+   * @param savedInstanceState Bundle
+   * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     this.view = inflater.inflate(R.layout.model_column_number_fragment, container, false);
@@ -52,24 +60,42 @@ public class ModelColumnNumberFragment extends RoboFragment {
 	  
 	  lv.setOnChildClickListener(new OnChildClickListener() {
 		  
+		  /**
+       * @param parent ExpandableListView
+		   * @param v  view
+		   * @param groupPosition 親のリスト
+		   * @param childPosition 子供のリスト
+		   * @param id id
+       */
 		  public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
 	                int childPosition, long id) {
-			  ExpandableListAdapter adapter = parent.getExpandableListAdapter();
+//			  ExpandableListAdapter adapter1 = parent.getExpandableListAdapter();
 			  return false;
 		  }
 	  });
 	  
 	  lv.setOnGroupClickListener(new OnGroupClickListener() {
 		  
-		  public boolean onGroupClick(ExpandableListView parent, View view,
+		  /**
+       * @param parent ExpandableListView 
+		   * @param view1 view
+		   * @param groupPosition 親のリスト
+		   * @param id id
+       */
+		  public boolean onGroupClick(ExpandableListView parent, View view1,
 				  int groupPosition, long id) {
 			  
-			  ExpandableListAdapter adapter = parent.getExpandableListAdapter();
+//			  ExpandableListAdapter adapter = parent.getExpandableListAdapter();
 			  return false;
 		  }
 	  });
   }
   
+  /**
+   * @param groupPosition 親の場所
+   * @param childPosition 子供の場所
+   * @param columnNumber カラムナンバー
+   */
   public void changeModelColumnNumber(int groupPosition, int childPosition, int columnNumber) {
     Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
     Group[] groupArray = model.getGroups();
@@ -83,9 +109,12 @@ public class ModelColumnNumberFragment extends RoboFragment {
     this.canvasActivity.canvasFragment.setGroupManager();
   }
   
+  /**
+   * @param message エラーメッセージ
+   */
   public void setExceptionDailogFragment(String message) {
     DialogFragment dialogFragment = new ExceptionDialogFragment();
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
-    dialogFragment.show(getFragmentManager(), "exceptionDialogFragment");
+    dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
 }

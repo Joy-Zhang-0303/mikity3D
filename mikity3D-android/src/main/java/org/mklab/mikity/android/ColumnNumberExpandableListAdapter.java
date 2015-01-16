@@ -21,17 +21,30 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+/**
+ * カラムナンバーを設定するためのExpandableListAdapterです。
+ * @author soda
+ * @version $Revision$, 2015/01/16
+ */
 public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter {
 
   
   private List<Map<String, String>> parentList;
-  private List<List<Map<String, String>>> allChildList;
+  List<List<Map<String, String>>> allChildList;
   private List<List<Map<String, String>>> allTargetList;
   private Context context = null;
-  private String columnNumber;
-  private int column;
-  private ModelColumnNumberFragment mcnFragment;
+  String columnNumber;
+  int column;
+  ModelColumnNumberFragment mcnFragment;
   
+  /**
+   * 新しく生成された<code>ColumnNumberExpandableListAdapter</code>オブジェクトを初期化します。
+   * @param ctx context
+   * @param parentList 親のリスト
+   * @param allChildList すべての子のリスト
+   * @param allTargetList すべてのターゲットのリスト
+   * @param mcnFragment ModelColumnNumberFragment
+   */
   public ColumnNumberExpandableListAdapter(Context ctx, List<Map<String, String>> parentList,
                                     List<List<Map<String, String>>> allChildList, 
                                     List<List<Map<String, String>>> allTargetList, ModelColumnNumberFragment mcnFragment) {
@@ -42,11 +55,19 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
     this.mcnFragment = mcnFragment;
   }
   
+  /**
+   * ExpandableListViewのレイアウトを返します。
+   * @return view view
+   */
   public View getGenericView() {
     View view = LayoutInflater.from(this.context).inflate(R.layout.line_item, null);
     return view;
   }
   
+  /**
+   * ExpandableListViewに設定されているてるtextViewを返します。
+   * @return textView textView
+   */
   public TextView getGroupGenericView() {
     AbsListView.LayoutParams param = new AbsListView.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, 64);
@@ -60,67 +81,100 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
     return textView;
 }
   
+  /**
+   * @see android.widget.ExpandableListAdapter#getGroupCount()
+   */
   public int getGroupCount() {
-    return allChildList.size();
+    return this.allChildList.size();
   }
 
+  /**
+   * @see android.widget.ExpandableListAdapter#getChildrenCount(int)
+   */
   public int getChildrenCount(int groupPosition) {
-    return allChildList.get(groupPosition).size();
+    return this.allChildList.get(groupPosition).size();
   }
 
+  /**
+   * @see android.widget.ExpandableListAdapter#getGroup(int)
+   */
   public Object getGroup(int groupPosition) {
-    return parentList.get(groupPosition).get("groupName");
+    return this.parentList.get(groupPosition).get("groupName"); //$NON-NLS-1$
   }
 
+  /**
+   * @see android.widget.ExpandableListAdapter#getChild(int, int)
+   */
   public Object getChild(int groupPosition, int childPosition) {
-    return allChildList.get(groupPosition).get(childPosition);
+    return this.allChildList.get(groupPosition).get(childPosition);
   }
 
+  /**
+   * @see android.widget.ExpandableListAdapter#getGroupId(int)
+   */
   public long getGroupId(int groupPosition) {
     return groupPosition;
   }
 
+  /**
+   * @param groupPosition 親の場所
+   * @see android.widget.ExpandableListAdapter#getChildId(int, int)
+   */
   public long getChildId(int groupPosition, int childPosition) {
     return childPosition;
   }
 
+  /**
+   * @see android.widget.ExpandableListAdapter#hasStableIds()
+   */
   public boolean hasStableIds() {
     return true;
   }
 
+  /**
+   * @param isExpanded isExpanded
+   * @param convertView view
+   * @param parent viewGroup
+   * @see android.widget.ExpandableListAdapter#getGroupView(int, boolean, android.view.View, android.view.ViewGroup)
+   */
   public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
     TextView textView = getGroupGenericView();
     textView.setText(getGroup(groupPosition).toString());
     return textView;
   }
 
+  /**
+   * @param isLastChild isLastChild
+   * @param convertView view
+   * @param parent viewGroup
+   * @see android.widget.ExpandableListAdapter#getChildView(int, int, boolean, android.view.View, android.view.ViewGroup)
+   */
   public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
     View childView = getGenericView();
     TextView targetTextView = (TextView)childView.findViewById(R.id.target_list);
-    targetTextView.setText(allTargetList.get(groupPosition).get(childPosition).get("target").toString());
+    targetTextView.setText(this.allTargetList.get(groupPosition).get(childPosition).get("target").toString()); //$NON-NLS-1$
     final EditText columnEditText = (EditText)childView.findViewById(R.id.column_edit_text);
-    this.columnNumber = allChildList.get(groupPosition).get(childPosition).get("columnNumber");
-    columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
-    this.column = Integer.parseInt(columnNumber);
+    this.columnNumber = this.allChildList.get(groupPosition).get(childPosition).get("columnNumber"); //$NON-NLS-1$
+    columnEditText.setText(this.allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString()); //$NON-NLS-1$
+    this.column = Integer.parseInt(this.columnNumber);
     
     Button minusButton = (Button)childView.findViewById(R.id.minusButton);
     minusButton.setOnClickListener(new View.OnClickListener() {
       
+      /**
+       * @param v view
+       */
       public void onClick(View v) {
-        columnNumber = allChildList.get(groupPosition).get(childPosition).get("columnNumber");
-        column = Integer.parseInt(columnNumber);
-        if (2 < column) {
-          columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
+        ColumnNumberExpandableListAdapter.this.columnNumber = ColumnNumberExpandableListAdapter.this.allChildList.get(groupPosition).get(childPosition).get("columnNumber"); //$NON-NLS-1$
+        ColumnNumberExpandableListAdapter.this.column = Integer.parseInt(ColumnNumberExpandableListAdapter.this.columnNumber);
+        if (2 < ColumnNumberExpandableListAdapter.this.column) {
+          columnEditText.setText(ColumnNumberExpandableListAdapter.this.allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString()); //$NON-NLS-1$
           ColumnNumberExpandableListAdapter.this.column--;
           columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
-          ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
+          ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, ColumnNumberExpandableListAdapter.this.column);
           Map<String, String> columnData = new HashMap<String, String>();
-          columnData.put("columnNumber", String.valueOf(column));
-          allChildList.get(groupPosition).set(childPosition, columnData);
-//          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null) {
-////              && ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setModelCount < 2) {
-//            ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
-//          }
+          columnData.put("columnNumber", String.valueOf(ColumnNumberExpandableListAdapter.this.column)); //$NON-NLS-1$
+          ColumnNumberExpandableListAdapter.this.allChildList.get(groupPosition).set(childPosition, columnData);
         }
       }
     });
@@ -128,24 +182,23 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
     Button plusButton = (Button)childView.findViewById(R.id.plusButton);
     plusButton.setOnClickListener(new View.OnClickListener() {
       
+      /**
+       * @param v view
+       */
       public void onClick(View v) {
-        columnNumber = allChildList.get(groupPosition).get(childPosition).get("columnNumber");
-        column = Integer.parseInt(columnNumber);
-        if((column < getTimeDataRowSize(column) || ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data == null)) {
-          columnEditText.setText(allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString());
+        ColumnNumberExpandableListAdapter.this.columnNumber = ColumnNumberExpandableListAdapter.this.allChildList.get(groupPosition).get(childPosition).get("columnNumber"); //$NON-NLS-1$
+        ColumnNumberExpandableListAdapter.this.column = Integer.parseInt(ColumnNumberExpandableListAdapter.this.columnNumber);
+        if((ColumnNumberExpandableListAdapter.this.column < getTimeDataRowSize(ColumnNumberExpandableListAdapter.this.column) || ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data == null)) {
+          columnEditText.setText(ColumnNumberExpandableListAdapter.this.allChildList.get(groupPosition).get(childPosition).get("columnNumber").toString()); //$NON-NLS-1$
           ColumnNumberExpandableListAdapter.this.column++;
           columnEditText.setText(String.valueOf(ColumnNumberExpandableListAdapter.this.column));
-          ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, column);
+          ColumnNumberExpandableListAdapter.this.mcnFragment.changeModelColumnNumber(groupPosition, childPosition, ColumnNumberExpandableListAdapter.this.column);
           Map<String, String> columnData = new HashMap<String, String>();
-          columnData.put("columnNumber", String.valueOf(column));
-          allChildList.get(groupPosition).set(childPosition, columnData);
-//          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null) {
-////              && ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setModelCount < 2) {
-//            ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
-//          }
+          columnData.put("columnNumber", String.valueOf(ColumnNumberExpandableListAdapter.this.column)); //$NON-NLS-1$
+          ColumnNumberExpandableListAdapter.this.allChildList.get(groupPosition).set(childPosition, columnData);
         } else {
-          mcnFragment.setExceptionDailogFragment("Column number is over.\n"
-              + "If you set bigger column number, please push \"×\"button and select time data.");
+          ColumnNumberExpandableListAdapter.this.mcnFragment.setExceptionDailogFragment("Column number is over.\n" //$NON-NLS-1$
+              + "If you set bigger column number, please push \"×\"button and select time data."); //$NON-NLS-1$
         }
       }
     });
@@ -153,18 +206,27 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
     return childView;
   }
   
-  public int getTimeDataRowSize(int column) {
+  /**
+   * 条件に応じて読み込んだ時間データのサイズを返します。
+   * @param column1 カラム
+   * @return 以降の処理のための時間データサイズ
+   */
+  public int getTimeDataRowSize(int column1) {
     if(this.mcnFragment.canvasActivity.canvasFragment.data != null) {
       if(this.mcnFragment.canvasActivity.canvasFragment.setIllegalTimeData == true) {
-        return ++column;
-      } else {
-      return this.mcnFragment.canvasActivity.canvasFragment.data.getRowSize();
+        int newColumn = column1 + 1;
+        return newColumn;
       }
-    } else {
-      return 0;
+      return this.mcnFragment.canvasActivity.canvasFragment.data.getRowSize();
     }
+    return 0;
   }
 
+  /**
+   * @param groupPosition 親の場所
+   * @param childPosition 子供の場所
+   * @see android.widget.ExpandableListAdapter#isChildSelectable(int, int)
+   */
   public boolean isChildSelectable(int groupPosition, int childPosition) {
     return true;
   }
