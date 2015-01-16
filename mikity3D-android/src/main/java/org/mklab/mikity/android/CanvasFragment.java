@@ -38,8 +38,6 @@ import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.SystemClock;
 import android.support.v4.app.DialogFragment;
 import android.util.DisplayMetrics;
@@ -51,7 +49,6 @@ import android.view.View;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 
 /**
@@ -631,6 +628,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
     glView.setLayoutParams(params); 
   }
+  /**
+   * @param newConfig configuration
+   * @see android.support.v4.app.Fragment#onConfigurationChanged(android.content.res.Configuration)
+   */
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
     if (this.progressDialog != null) {

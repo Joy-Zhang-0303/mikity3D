@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.android;
 
-import java.io.InputStream;
 import java.util.List;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectFragment;
@@ -19,7 +18,6 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.Surface;
 import android.view.WindowManager;
@@ -33,58 +31,27 @@ import android.widget.LinearLayout;
  */
 public class CanvasActivity extends RoboFragmentActivity {
 
-  /** アニメーション用タスク */
-//  AnimationTask animationTask;
-
-  /** */
-//  public static boolean playable = true;
-
-//  /** 等間隔の時間を保存しとく配列 */
-//  double[] timeTable;
-//
-//  Timer timer = new Timer();
-//
-//  /** */
-//  MovableGroupManager manager;
-//
-//  // DEBUG textview
-//  TextView testTextView;
-//  TextView filePathView;
-//  TextView modelFilePathView;
-
-//  /** 前回のタッチのｘ座標 */
-//  float prevX = 0;
-//  /** 前回のタッチのｙ座標 */
-//  float prevY = 0;
-//  /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。 */
-//  int animationSpeed = 10;
-
-  private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
-  private final int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
-//  /** アニメーションスピードを表示するエディットテキスト */
-//  public EditText animationSpeedTextEdit;
-//  /** 3Dモデルが選ばれて表示されたかどうかのフラグ */
-//  protected boolean isSelectedModelFile;
+  private final static int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
+  private final static int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
   private boolean registerAccerlerometer;
   private boolean registerMagneticFieldSensor;
-//  /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
-//  ToggleButton gyroToggleButton;
-//  /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
-//  ToggleButton accelerToggleButton;
+  /** NavigationDrawer用のアクションバートグル*/
   private ActionBarDrawerToggle mDrawerToggle;
+  /** NavigationDrawerのレイアウト*/
   private DrawerLayout mDrawer;
+  /** アクティビティのconfiguration*/
   private Configuration config;
+  /** CanvasFragment*/
   @InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
-  boolean isSelectedsampleModel;
-  boolean isSelectedsampleData;
-  InputStream inputDataFile;
+  /** NavigationDrawerFragment*/
   public NavigationDrawerFragment ndFragment;
+  /** ModelColumnNunberFragment*/
   public ModelColumnNumberFragment mcnFragment;
-  Intent i;
-  Uri sUri;
-  Bundle bundle;
 
+  /**
+   * @see roboguice.activity.RoboFragmentActivity#onCreate(android.os.Bundle)
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 
@@ -99,36 +66,53 @@ public class CanvasActivity extends RoboFragmentActivity {
     getActionBar().setLogo(getResources().getDrawable(R.drawable.icon));
     getActionBar().setHomeButtonEnabled(true);
     getActionBar().setDisplayUseLogoEnabled(true);
-    startSampleIntent();
+    
+    startIntentByExternalActivity();
   }
   
-  private void startSampleIntent() {
-    i = getIntent();
-    if(i.getBundleExtra("path") != null) {
-      bundle = i.getBundleExtra("path");
-      if(bundle.getParcelable("path") != null) {
-        Uri mPath = bundle.getParcelable("path");
+  /**
+   * 外部アクティビティからのモデルパス、データパスを渡されるインテントに対応したメソッドです。
+   */
+  private void startIntentByExternalActivity() {
+    Intent i = getIntent();
+    Bundle bundle;
+    final String intentPath = "path"; //$NON-NLS-1$
+    final String intentDataPath = "data"; //$NON-NLS-1$
+    if(i.getBundleExtra(intentPath) != null) {
+      bundle = i.getBundleExtra(intentPath);
+      if(bundle.getParcelable(intentPath) != null) {
+        Uri mPath = bundle.getParcelable(intentPath);
         loadModelUri(mPath);
       }
-      if(bundle.getParcelable("data") != null) {
-        Uri dPath = bundle.getParcelable("data");
-        loadDataUri(dPath);
+      if(bundle.getParcelable(intentDataPath) != null) {
+        Uri dPath = bundle.getParcelable(intentDataPath);
+        loadTimeDataUri(dPath);
       }
     }
   }
 
+  
+  /**
+   * @see android.app.Activity#onPostCreate(android.os.Bundle)
+   */
   @Override
   protected void onPostCreate(Bundle savedInstanceState) {
     super.onPostCreate(savedInstanceState);
     this.mDrawerToggle.syncState();
   }
 
+  /**
+   * @see roboguice.activity.RoboFragmentActivity#onConfigurationChanged(android.content.res.Configuration)
+   */
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
     this.mDrawerToggle.onConfigurationChanged(newConfig);
   }
 
+  /**
+   * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+   */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (this.mDrawerToggle.onOptionsItemSelected(item)) {
@@ -155,7 +139,6 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   public void onResume() {
     if (!this.registerAccerlerometer) {
-      //List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
       this.canvasFragment.getSensor();
       if (this.canvasFragment.sensors.size() > 0) {
         this.registerAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, this.canvasFragment.sensors.get(0), SensorManager.SENSOR_DELAY_UI);
@@ -205,43 +188,28 @@ public class CanvasActivity extends RoboFragmentActivity {
       case REQUEST_CODE_PICK_TIME_DATA_FILE:
         if (resultCode == RESULT_OK && data != null) {
           Uri uri = data.getData();
-
-            loadDataUri(uri);
-            
-//          } catch (IOException e) {
-//            Toast.makeText(this, "Please select time data", Toast.LENGTH_SHORT).show();
-//            this.ndFragment.timeDataName = "";
-//            this.ndFragment.filePathView.setText(this.ndFragment.timeDataName);
-//          }
+          loadTimeDataUri(uri);
         }
+        break;
       default:
         break;
     }
-    if (this.canvasFragment.manager != null) Log.d("onRestore:this.fragment.manager == null ???", this.canvasFragment.manager.toString());
-    if (this.canvasFragment.manager == null) Log.d("onCreate:this.fragment.manager == null ???", "manager==null");
   }
 
   /**
-   * モデルデータと時間データをストリームとして取り出すためのメソッドです。
-   * 
-   * @param uri ファイルのuri
+   * 時間データを読み込むためのメソッドです。
+   * @param uri 時間データのURI
    */
-  private void readModelTimeData(Uri uri) {
-    // obtain the filename
-    //          if (this.isSelectedModelFile && (new File(data.getData().getPath()).getName()).endsWith(".xml") == false) {
-    if (this.ndFragment.isSelectedModelFile == true) {
-      loadDataUri(uri);
-    } else {
-      loadModelUri(uri);
-    }
-  }
-
-  private void loadDataUri(Uri uri) {
+  private void loadTimeDataUri(Uri uri) {
     this.ndFragment.loadDataUri(uri);
     this.canvasFragment.loadtimeSeriesData(this.ndFragment.inputDataFile);
     this.canvasFragment.setTimeDataUri(uri);
   }
 
+  /**
+   * モデルデータを読み込むためのメソッドです。
+   * @param uri モデルデータのURI
+   */
   private void loadModelUri(Uri uri) {
     this.ndFragment.loadModelUri(uri);
     
@@ -249,7 +217,10 @@ public class CanvasActivity extends RoboFragmentActivity {
     this.canvasFragment.modelRenderer.updateDisplay();
   }
   
-  public void controlRotate() {
+  /**
+   * 画面回転時の処理をするメソッドです。
+   */
+  public void controlRotation() {
     this.config = getResources().getConfiguration();
     int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
     boolean isReverse = false;
@@ -282,28 +253,29 @@ public class CanvasActivity extends RoboFragmentActivity {
     }
   }
   
-  public void sendIntent(int requestCode) {
+  /**
+   * ファイルエクスプローラーにインテントを発行するメソッドです。
+   * @param requestCode インテント時のリクエストコード
+   */
+  public void sendFileChooseIntent(int requestCode) {
+    //APIレベルによる処理
 //  if (CanvasActivity.this.canvasFragment.root != null) {
-  //          CanvasActivity.this.isSelectedModelFile = true;
-  //        } else {
-  //          CanvasActivity.this.isSelectedModelFile = false;
-  //        }
-  //        fileManager.getFilePath();
-  //      if(Build.VERSION.SDK_INT < 19) {        
+//            CanvasActivity.this.isSelectedModelFile = true;
+//          } else {
+//            CanvasActivity.this.isSelectedModelFile = false;
+//          }
+//          fileManager.getFilePath();
+//        if(Build.VERSION.SDK_INT < 19) {        
   Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-  intent.setType("*/*");
+  intent.setType("*/*"); //$NON-NLS-1$
   startActivityForResult(intent, requestCode);
-  //      } else {
-  //        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-  //        intent.addCategory(Intent.CATEGORY_OPENABLE);
-  //        intent.setType("*/*");
-  //        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
-  //    }
+//        } else {
+//        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+//        intent.addCategory(Intent.CATEGORY_OPENABLE);
+//        intent.setType("*/*");
+//        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+//    }
   }
-  
-//  public int getAnimationEditTextSpeed() {
-//    return this.animationSpeed;
-//  }
   
   protected void setMCNFragmnet(ModelColumnNumberFragment mcnFragment) {
 	this.ndFragment.setGroupNameList(this.canvasFragment.root);

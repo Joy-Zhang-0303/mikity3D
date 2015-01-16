@@ -141,7 +141,7 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        NavigationDrawerFragment.this.canvasActivity.sendIntent(REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+        NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
       }
     });
 
@@ -176,7 +176,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.selectButton.setOnClickListener(new View.OnClickListener() {
 
       public void onClick(View v) {
-        NavigationDrawerFragment.this.canvasActivity.sendIntent(REQUEST_CODE_PICK_TIME_DATA_FILE);
+        NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(REQUEST_CODE_PICK_TIME_DATA_FILE);
       }
     });
 
@@ -267,7 +267,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.rotateTogguleButton.setOnClickListener(new OnClickListener() {
 
       public void onClick(View v) {
-        NavigationDrawerFragment.this.canvasActivity.controlRotate();
+        NavigationDrawerFragment.this.canvasActivity.controlRotation();
       }
     });
     this.setModelColumnNumberButton = (Button)view.findViewById(R.id.setModelColumnNumberlButton);
