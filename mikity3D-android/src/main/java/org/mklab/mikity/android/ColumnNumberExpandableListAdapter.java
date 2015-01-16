@@ -117,10 +117,10 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
           Map<String, String> columnData = new HashMap<String, String>();
           columnData.put("columnNumber", String.valueOf(column));
           allChildList.get(groupPosition).set(childPosition, columnData);
-          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null
-              && ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setModelCount < 2) {
-            ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
-          }
+//          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null) {
+////              && ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setModelCount < 2) {
+//            ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
+//          }
         }
       }
     });
@@ -139,12 +139,13 @@ public class ColumnNumberExpandableListAdapter extends BaseExpandableListAdapter
           Map<String, String> columnData = new HashMap<String, String>();
           columnData.put("columnNumber", String.valueOf(column));
           allChildList.get(groupPosition).set(childPosition, columnData);
-          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null
-              && ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setModelCount < 2) {
-            ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
-          }
+//          if (ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.data != null) {
+////              && ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setModelCount < 2) {
+//            ColumnNumberExpandableListAdapter.this.mcnFragment.canvasActivity.canvasFragment.setTimeData();
+//          }
         } else {
-          mcnFragment.setExceptionDailogFragment("Column number is over.");
+          mcnFragment.setExceptionDailogFragment("Column number is over.\n"
+              + "If you set bigger column number, please push \"×\"button and select time data.");
         }
       }
     });

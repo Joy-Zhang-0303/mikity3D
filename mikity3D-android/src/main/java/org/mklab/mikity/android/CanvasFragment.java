@@ -342,20 +342,20 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     try {
       this.data = MatxMatrix.readMatFormat(new InputStreamReader(input));
       input.close();
-      
-      this.manager.setData(this.data);
-
-      final Group rootGroup = this.root.getModel(0).getGroup(0);
-      checkLinkParameterType(rootGroup);
-
-      final int dataSize = this.manager.getDataSize();
-
-      this.timeTable = new double[dataSize];
-
-      this.endTime = this.manager.getEndTime();
-      for (int i = 0; i < this.timeTable.length; i++) {
-        this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
-      }
+      setTimeData();
+//      this.manager.setData(this.data);
+//
+//      final Group rootGroup = this.root.getModel(0).getGroup(0);
+//      checkLinkParameterType(rootGroup);
+//
+//      final int dataSize = this.manager.getDataSize();
+//
+//      this.timeTable = new double[dataSize];
+//
+//      this.endTime = this.manager.getEndTime();
+//      for (int i = 0; i < this.timeTable.length; i++) {
+//        this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
+//      }
 //      this.setProperTimeData = true;
       this.setIllegalTimeData = false;
     } catch (FileNotFoundException e) {
@@ -366,7 +366,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
       callExceptionDialogFragment("Please select data file.");
     } catch (IllegalArgumentException e) {
-      callExceptionDialogFragment("Please select proper data file.");
+      callExceptionDialogFragment("Please select proper data file or set column number size to data size or lower.");
     } catch (IllegalAccessError e) {
       if(this.progressDialog != null) {
         this.progressDialog.dismiss();
@@ -384,12 +384,26 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     DialogFragment dialogFragment = new ExceptionDialogFragment();
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment");
-    this.activity.ndFragment.timeDataName = "";
-    this.activity.ndFragment.filePathView.setText(this.activity.ndFragment.timeDataName);
+//    this.activity.ndFragment.timeDataName = "";
+//    this.activity.ndFragment.filePathView.setText(this.activity.ndFragment.timeDataName);
   }
   
   public void setTimeData() {
-    this.manager.setData(this.data);
+    try {
+      this.manager.setData(this.data);
+    } catch(IllegalAccessError e) {
+      if(this.progressDialog != null) {
+        this.progressDialog.dismiss();
+      }
+      String message = "Time data size is not match model's column number."
+          + "\nPlease select proper time data or set proper column number.";
+      DialogFragment dialogFragment = new ExceptionDialogFragment();
+      ((ExceptionDialogFragment)dialogFragment).setMessage(message);
+      dialogFragment.show(getFragmentManager(), "exceptionDialogFragment");
+      this.setIllegalTimeData = true;
+    } catch (IllegalArgumentException e) {
+      callExceptionDialogFragment("Please select proper data file or set column number to data size or lower.");
+    }
     this.setModelCount = 0;
     final Group rootGroup = this.root.getModel(0).getGroup(0);
     checkLinkParameterType(rootGroup);
@@ -402,6 +416,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     for (int i = 0; i < this.timeTable.length; i++) {
       this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
     }
+    this.setIllegalTimeData = false;
   }
 
   private void checkLinkParameterType(Group parent) {

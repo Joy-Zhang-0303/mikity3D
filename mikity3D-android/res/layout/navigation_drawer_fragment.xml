@@ -24,6 +24,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="@string/button2" />
+            
+            <Button
+                android:id="@+id/reloadButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/reloadButton" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,6 +98,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/filePathView" />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -115,6 +125,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/filePathView" />
+                
+            <Button
+                android:id="@+id/timeDataDeleteButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timeDataDeleteButton" />
         </LinearLayout>
 
         <LinearLayout

@@ -107,6 +107,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   protected List groupNameList;
   protected List columnNumberList;
   protected List targetNameList;
+  public Button reloadButton;
+  public Button timeDataDeleteButton;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -122,12 +124,16 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.slowButton = (Button)view.findViewById(R.id.slowButton);
     this.playButton = (Button)view.findViewById(R.id.button1);
     this.stopButton = (Button)view.findViewById(R.id.button2);
+    this.reloadButton = (Button)view.findViewById(R.id.reloadButton);
+    this.timeDataDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
 
     this.selectButton.setEnabled(false);
     this.quickButton.setEnabled(false);
     this.slowButton.setEnabled(false);
     this.playButton.setEnabled(false);
     this.stopButton.setEnabled(false);
+    this.reloadButton.setEnabled(false);
+    this.timeDataDeleteButton.setEnabled(false);
 
     this.loadModelButton.setOnClickListener(new View.OnClickListener() {
 
@@ -180,6 +186,26 @@ public class NavigationDrawerFragment extends RoboFragment {
       // コールバックメソッド
       public void onClick(View view) {
         NavigationDrawerFragment.this.canvasActivity.canvasFragment.runAnimation();
+      }
+    });
+
+    this.reloadButton.setOnClickListener(new View.OnClickListener() {
+
+      public void onClick(View view) {
+        if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.setTimeData();
+        }
+      }
+    });
+    
+    this.timeDataDeleteButton.setOnClickListener(new View.OnClickListener() {
+
+      public void onClick(View view) {
+        if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.data = null;
+          NavigationDrawerFragment.this.timeDataName = "...";
+          NavigationDrawerFragment.this.filePathView.setText(NavigationDrawerFragment.this.timeDataName);
+        }
       }
     });
 
@@ -341,6 +367,9 @@ public class NavigationDrawerFragment extends RoboFragment {
     try {
       this.canvasActivity.canvasFragment.loadModelFile(this.inputModelFile);
       setButtonEnabled(true);
+      if(this.canvasActivity.canvasFragment.data != null) {
+        this.canvasActivity.canvasFragment.data = null;
+      }
     } catch (IOException e) {
       throw new RuntimeException(e);
     } catch (Mikity3dSerializeDeserializeException e) {
@@ -353,8 +382,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     DialogFragment dialogFragment = new ExceptionDialogFragment();
     ((ExceptionDialogFragment)dialogFragment).setMessage("Please select data file.");
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment");
-    this.modelFileName = "";
-    this.modelFilePathView.setText(this.modelFileName);
+//    this.modelFileName = "";
+//    this.modelFilePathView.setText(this.modelFileName);
   }
   
   protected void setButtonEnabled(boolean flag) {
@@ -365,6 +394,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.playButton.setEnabled(flag);
     this.stopButton.setEnabled(flag);
     this.setModelColumnNumberButton.setEnabled(flag);
+    this.reloadButton.setEnabled(flag);
+    this.timeDataDeleteButton.setEnabled(flag);
   }
   
   protected void setGroupNameList(Mikity3d root) {
