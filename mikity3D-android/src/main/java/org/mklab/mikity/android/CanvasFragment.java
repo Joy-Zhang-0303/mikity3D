@@ -456,7 +456,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 //    Log.d("Animation:manager_data", Integer.toString(this.manager.getDataSize()));
     
 //    this.animationSpeed = (int)(Double.parseDouble(this.activity.animationSpeedTextEdit.getText().toString()) * 10);
-    this.animationSpeed = this.activity.getAnimationEditTextSpeed();
+    this.animationSpeed = this.activity.ndFragment.animationSpeed;
     if (this.playable == false) {
       this.timer.cancel();
     }

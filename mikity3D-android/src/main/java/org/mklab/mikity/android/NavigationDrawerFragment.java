@@ -167,9 +167,9 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
         NavigationDrawerFragment.this.animationSpeed += 1;
         NavigationDrawerFragment.this.animationSpeedTextEdit.setText("" + (double)NavigationDrawerFragment.this.animationSpeed / 10); //$NON-NLS-1$
-        if (NavigationDrawerFragment.this.animationTask != null) NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.canvasActivity.animationSpeed / 10);
+        if (NavigationDrawerFragment.this.animationTask != null) NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeed / 10);
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
-        NavigationDrawerFragment.this.setAnimationSpeed();
+//        NavigationDrawerFragment.this.setAnimationSpeed();
       }
     });
 
@@ -219,9 +219,9 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.animationSpeed -= 1;
         if (NavigationDrawerFragment.this.animationSpeed < 0) NavigationDrawerFragment.this.animationSpeed = 0;
         NavigationDrawerFragment.this.animationSpeedTextEdit.setText(Double.toString((double)NavigationDrawerFragment.this.animationSpeed / 10));
-        if (NavigationDrawerFragment.this.animationTask != null) NavigationDrawerFragment.this.canvasActivity.animationTask.setSpeedScale(NavigationDrawerFragment.this.canvasActivity.animationSpeed / 10);
+        if (NavigationDrawerFragment.this.animationTask != null) NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeed / 10);
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
-        NavigationDrawerFragment.this.setAnimationSpeed();
+//        NavigationDrawerFragment.this.setAnimationSpeed();
       }
     });
 
@@ -298,10 +298,10 @@ public class NavigationDrawerFragment extends RoboFragment {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
   }
-  
-  public void setAnimationSpeed() {
-    this.canvasActivity.animationSpeed = this.animationSpeed;
-  }
+//  
+//  public void setAnimationSpeed() {
+//    this.canvasActivity.animationSpeed = this.animationSpeed;
+//  }
   
   protected void loadDataUri(Uri uri) {
     String timeDataPath;

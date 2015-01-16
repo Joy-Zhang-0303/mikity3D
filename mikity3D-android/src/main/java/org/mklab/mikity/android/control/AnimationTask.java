@@ -6,6 +6,7 @@
 package org.mklab.mikity.android.control;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.TimerTask;
 
@@ -13,6 +14,7 @@ import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 import org.mklab.mikity.android.MainActivity;
+
 import android.os.SystemClock;
 
 
@@ -97,7 +99,12 @@ public class AnimationTask extends TimerTask {
     final long ctime = SystemClock.uptimeMillis();
     this.currentTime = this.speedScale*(ctime- this.initialTime)/1000;
     if (this.manager.hasDHParameter()) {
-      this.manager.updateMovableGroupsWithDHParameter(this.currentTime);
+      try {
+        this.manager.updateMovableGroupsWithDHParameter(this.currentTime);
+      } catch(ConcurrentModificationException e) {
+        //　再生中に再読み込みが何度も押されすぎたら落ちてしまうので、そのエラーをキャッチしています。
+        e.getMessage();
+      }
     } else if (this.manager.hasCoordinateParameter()) {
       this.manager.updateMovableGroupsWithCoordinateParameter(this.currentTime);
     }

@@ -5,14 +5,8 @@
  */
 package org.mklab.mikity.android;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Timer;
-
-import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.model.MovableGroupManager;
-
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectFragment;
 import android.content.Intent;
@@ -23,63 +17,60 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.Surface;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 
+/**
+ * @author soda
+ * @version $Revision$, 2015/01/16
+ * Mikity3dのメインとなるアクティビティクラスです。
+ */
 public class CanvasActivity extends RoboFragmentActivity {
 
-  protected static final String LOGTAG = null;
-  GLSurfaceView glView;
-
   /** アニメーション用タスク */
-  AnimationTask animationTask;
+//  AnimationTask animationTask;
 
   /** */
-  public static boolean playable = true;
+//  public static boolean playable = true;
 
-  /** 等間隔の時間を保存しとく配列 */
-  double[] timeTable;
+//  /** 等間隔の時間を保存しとく配列 */
+//  double[] timeTable;
+//
+//  Timer timer = new Timer();
+//
+//  /** */
+//  MovableGroupManager manager;
+//
+//  // DEBUG textview
+//  TextView testTextView;
+//  TextView filePathView;
+//  TextView modelFilePathView;
 
-  Timer timer = new Timer();
-
-  /** */
-  MovableGroupManager manager;
-
-  // DEBUG textview
-  TextView testTextView;
-  TextView filePathView;
-  TextView modelFilePathView;
-
-  /** 前回のタッチのｘ座標 */
-  float prevX = 0;
-  /** 前回のタッチのｙ座標 */
-  float prevY = 0;
-  /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。 */
-  int animationSpeed = 10;
+//  /** 前回のタッチのｘ座標 */
+//  float prevX = 0;
+//  /** 前回のタッチのｙ座標 */
+//  float prevY = 0;
+//  /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。 */
+//  int animationSpeed = 10;
 
   private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
   private final int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
-  /** アニメーションスピードを表示するエディットテキスト */
-  public EditText animationSpeedTextEdit;
-  /** 3Dモデルが選ばれて表示されたかどうかのフラグ */
-  protected boolean isSelectedModelFile;
+//  /** アニメーションスピードを表示するエディットテキスト */
+//  public EditText animationSpeedTextEdit;
+//  /** 3Dモデルが選ばれて表示されたかどうかのフラグ */
+//  protected boolean isSelectedModelFile;
   private boolean registerAccerlerometer;
   private boolean registerMagneticFieldSensor;
-  /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
-  ToggleButton gyroToggleButton;
-  /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
-  ToggleButton accelerToggleButton;
+//  /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
+//  ToggleButton gyroToggleButton;
+//  /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
+//  ToggleButton accelerToggleButton;
   private ActionBarDrawerToggle mDrawerToggle;
   private DrawerLayout mDrawer;
   private Configuration config;
@@ -310,9 +301,9 @@ public class CanvasActivity extends RoboFragmentActivity {
   //    }
   }
   
-  public int getAnimationEditTextSpeed() {
-    return this.animationSpeed;
-  }
+//  public int getAnimationEditTextSpeed() {
+//    return this.animationSpeed;
+//  }
   
   protected void setMCNFragmnet(ModelColumnNumberFragment mcnFragment) {
 	this.ndFragment.setGroupNameList(this.canvasFragment.root);
