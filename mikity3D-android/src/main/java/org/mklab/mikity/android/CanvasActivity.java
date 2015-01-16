@@ -139,7 +139,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   public void onResume() {
     if (!this.registerAccerlerometer) {
-      this.canvasFragment.getSensor();
+      this.canvasFragment.setSensor();
       if (this.canvasFragment.sensors.size() > 0) {
         this.registerAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, this.canvasFragment.sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }

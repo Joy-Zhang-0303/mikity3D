@@ -79,7 +79,7 @@ public class ModelColumnNumberFragment extends RoboFragment {
       group = group.getGroup(0);
     }
     group.getLinkData(childPosition).setColumnNumber(columnNumber);
-    this.canvasActivity.canvasFragment.setModel();
+    this.canvasActivity.canvasFragment.configurateModel();
     this.canvasActivity.canvasFragment.setGroupManager();
   }
   

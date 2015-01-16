@@ -370,8 +370,6 @@ public class NavigationDrawerFragment extends RoboFragment {
       if(this.canvasActivity.canvasFragment.data != null) {
         this.canvasActivity.canvasFragment.data = null;
       }
-    } catch (IOException e) {
-      throw new RuntimeException(e);
     } catch (Mikity3dSerializeDeserializeException e) {
       setExceptionDailogFragment("please select model file.");
       setButtonEnabled(false);

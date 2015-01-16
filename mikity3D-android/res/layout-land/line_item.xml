@@ -24,7 +24,7 @@
         	android:layout_height="wrap_content"
         	android:layout_weight="1"
         	android:maxWidth="2dp"
-        	android:text="&lt;&lt;" />
+        	android:text="@string/minusButton" />
     	
     	<EditText
         	android:id="@+id/column_edit_text"
@@ -40,6 +40,6 @@
          	android:layout_height="wrap_content"
          	android:layout_weight="1"
          	android:maxWidth="2dp"
-         	android:text=">>" />
+         	android:text="@string/plusButton" />
     </LinearLayout>
 </RelativeLayout>

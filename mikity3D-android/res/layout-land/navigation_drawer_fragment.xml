@@ -24,6 +24,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="@string/button2" />
+            
+            <Button
+                android:id="@+id/reloadButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/reloadButton" />
         </LinearLayout>
 
         <LinearLayout
@@ -37,7 +45,7 @@
                 android:layout_weight="1"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:text="再生速度" />
+                android:text="@string/animationSpeedTextView" />
 
             <Button
                 android:id="@+id/slowButton"
@@ -45,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxWidth="2dp"
-                android:text="&lt;&lt;" />
+                android:text="@string/minusButton" />
 
             <EditText
                 android:id="@+id/animationSpeedEditText"
@@ -64,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxWidth="2dp"
-                android:text=">>" />
+                android:text="@string/plusButton" />
         </LinearLayout>
 
         <LinearLayout
@@ -73,23 +81,25 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="モデル" />
+                android:text="@string/textView2" />
 
             <Button
                 android:id="@+id/modelSelectButton"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="参照" />
+                android:text="@string/fileSelectButton" />
 
             <TextView
                 android:id="@+id/modelPathView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="..." />
+                android:text="@string/filePathView" />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -100,7 +110,7 @@
                 android:id="@+id/timePath"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="時系列"
+                android:text="@string/timePath"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <Button
@@ -108,13 +118,20 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="参照" />
+                android:text="@string/fileSelectButton" />
 
             <TextView
                 android:id="@+id/filePathView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="..." />
+                android:text="@string/filePathView" />
+                
+            <Button
+                android:id="@+id/timeDataDeleteButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timeDataDeleteButton" />
         </LinearLayout>
 
         <LinearLayout
@@ -126,28 +143,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="UseGyro" />
+                android:text="@string/useGyroTextView" />
 
             <ToggleButton
                 android:id="@+id/gyroToggleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="gyroToggleButton" />
+                android:text="@string/gyroToggleButton" />
 
             <TextView
                 android:id="@+id/UseAccelerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="UseAcceler" />
+                android:text="@string/UseAccelerTextView" />
 
             <ToggleButton
                 android:id="@+id/accelerToggleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="accelerToggleButton" />
+                android:text="@string/accelerToggleButton" />
         </LinearLayout>
         
         <LinearLayout
@@ -158,14 +175,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="Rotate" />
+                android:text="@string/rotateLayoutTextView" />
     		
     		<ToggleButton
                 android:id="@+id/rotateLayoutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="rotateLayoutButton" />
+                android:text="@string/rotateLayoutButton" />
     	</LinearLayout>
 
         
@@ -175,16 +192,16 @@
 
             <TextView
                 android:id="@+id/setModelColumnNumberView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="setModelColumnNumber" />
+                android:text="@string/setModelColumnNumberView" />
 
             <Button
                 android:id="@+id/setModelColumnNumberlButton"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="編集" />
+                android:text="@string/setModelColumnNumberButton" />
         </LinearLayout>
 </LinearLayout>
