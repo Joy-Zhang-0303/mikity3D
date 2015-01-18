@@ -83,10 +83,10 @@ public class CanvasActivity extends RoboFragmentActivity {
       if(bundle.getParcelable(intentPath) != null) {
         Uri mPath = bundle.getParcelable(intentPath);
         loadModelUri(mPath);
-      }
-      if(bundle.getParcelable(intentDataPath) != null) {
-        Uri dPath = bundle.getParcelable(intentDataPath);
-        loadTimeDataUri(dPath);
+        if(bundle.getParcelable(intentDataPath) != null) {
+          Uri dPath = bundle.getParcelable(intentDataPath);
+          loadTimeDataUri(dPath);
+        }
       }
     }
   }
