@@ -5,35 +5,51 @@
  */
 package org.mklab.mikity.android;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.StringReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.LinkData;
+import org.xmlpull.v1.XmlPullParser;
 
+import android.app.ListFragment;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import roboguice.fragment.RoboFragment;
@@ -118,6 +134,20 @@ public class NavigationDrawerFragment extends RoboFragment {
   private List<Map<String, String>> groupNameList2;
   private Cursor cursor;
   private Cursor cursor2;
+//  /** サンプルモデル読み込みのためのテキストビュー*/
+//  public Button sampleModelTextView;
+  /** サンプルモデル読み込みのためのボタン*/
+  public Button sampleModelButton;
+  public Button sampleSetColumnButton;
+  public List aalist = new ArrayList();
+  public int aadepth;
+  public ListView[] listView;
+  public InputStream input;
+  public List<Object> paList;
+  public List<List<Object>> chList = new ArrayList<List<Object>>();
+  public Group lastGroup;
+  public int lastDepth;
+  public int aadepthMax = 0;
 
   /**
    * @param savedInstanceState Bundle
@@ -139,6 +169,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.stopButton = (Button)view.findViewById(R.id.button2);
     this.reloadButton = (Button)view.findViewById(R.id.reloadButton);
     this.timeDataDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
+    this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
+    this.sampleSetColumnButton = (Button)view.findViewById(R.id.sampleSetCplimnButton);
 
     this.selectButton.setEnabled(false);
     this.quickButton.setEnabled(false);
@@ -325,10 +357,134 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
 
     });
+    this.sampleModelButton.setOnClickListener(new OnClickListener() {
+      
+      public void onClick(View v) {
+        DownloadFileFromURL get = new DownloadFileFromURL(NavigationDrawerFragment.this);
+        get.execute("http://jamox.mklab.org/img/menu/sitemap.png");
+//        String path = "http://jmatx.mklab.org/jmatx-android-0.1.2-SNAPSHOT.apk";
+//        Uri uri = Uri.parse(path);
+//        Intent i = new Intent(Intent.ACTION_VIEW, uri);
+//        startActivity(i);
+      }
+    });
+    
+    this.sampleSetColumnButton.setOnClickListener(new OnClickListener() {
+      
+      public void onClick(View v) { 
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ListColumnFragment fragment =  new ListColumnFragment();
+        if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
+          sample();
+          fragment.setColumnData(chList);
+        }
+        fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+      }
+    });
     // fragmentの値をactivityで保持。
     //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
     this.canvasActivity.ndFragment = this;
     return view;
+  }
+  
+  private void sample() {
+    Mikity3d root = this.canvasActivity.canvasFragment.root;
+    Mikity3dModel model = root.getModel(0);
+    Group[] groupArray = model.getGroups();
+    Group group = groupArray[0];
+    this.aadepth = 0;
+//    setListView();
+    listView = new ListView[4];
+    Recursion(group);
+    try {
+      GetLinkData(lastGroup, 0);
+      this.chList.add(aadepth-1, this.paList);
+    } catch(Exception e) {
+      // nothing to do
+    }
+  }
+  
+  private void setListView() {
+    //ListView listView = new ListView(getActivity());
+    TextView textView = new TextView(getActivity());
+    Map<Integer, String> groupName = new HashMap<Integer, String>();
+    groupName = (Map<Integer, String>)aalist.get(1);
+    textView.setText(groupName.get(1));
+    //listView.addView(textView);
+    
+  }
+  
+  private void Recursion(Group group) { 
+    this.paList = new ArrayList<Object>();
+    int count = 0;
+    aadepth++;
+    while(true) {
+      try {
+//        listView[aadepth-1] = new ListView(getActivity());
+        Group newGroup = group.getGroup(count);
+        String name = newGroup.getName();
+//        Map<Integer, String> nameData= new HashMap<Integer, String>();
+//        nameData.put(aadepth, name);
+//        Map<Integer, Map<Integer, String>> nameRow = new HashMap<Integer, Map<Integer,String>>();
+//        nameRow.put(count+1, nameData);
+        aalist.add(name);
+        this.paList.add(name);
+        GetLinkData(group, count);
+        this.chList.add(aadepth-1, this.paList);
+        Recursion(newGroup);
+        count++;
+      } catch(Exception e) {
+        Log.d("errrrrrrrrr", e.getMessage());
+        if(aadepthMax < aadepth) {
+          aadepthMax = aadepth;
+          lastGroup = group;
+        }
+//        lastDepth = aadepth;
+        break;
+      }
+    }
+  }
+  
+  private void GetLinkData(Group group, int row) {
+    int count = 0;
+    while(true) {
+      try {
+        LinkData data = group.getLinkData(count);
+        int column = data.getColumnNumber();
+//        Map<Integer, Integer> columnData= new HashMap<Integer, Integer>();
+//        columnData.put(aadepth+1, column);
+        String target = data.getTargetName();
+//        Map<Integer, String> targetData= new HashMap<Integer, String>();
+//        targetData.put(aadepth+1, target);
+//        Map<Integer, List> tcMap = new HashMap<Integer, List>();
+//        List tcList = new ArrayList();
+//        tcList.add(target);
+//        tcList.add(column);
+//        tcMap.put(aadepth+1, tcList);
+//        Map<Integer, Map<Integer, List>> tcMapRow = new HashMap<Integer, Map<Integer,List>>();
+//        tcMapRow.put(row+1, tcMap);
+//        aalist.add(tcMapRow);
+        //            List list = new ArrayList();
+        //            list.add(columnData);list.add(targetData);
+        //            aalist.add(list);
+//                    aalist.add(columnData);
+//                    aalist.add(targetData);
+        List TCList = new ArrayList();
+        TCList.add(target);
+        TCList.add(column);
+        this.paList.add(TCList);
+        aalist.add(column);
+        aalist.add(target);
+        count++;
+      } catch(Exception ee) {
+        Log.d("err0rrrrrrr", ee.getMessage());
+        break;
+      }
+    }
   }
   
   /**

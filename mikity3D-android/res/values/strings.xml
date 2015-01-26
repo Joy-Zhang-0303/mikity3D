@@ -24,4 +24,6 @@
 	<string name="rotateLayoutButton">rotateLayoutButton</string>
 	<string name="setModelColumnNumberView">setModelColumnNumber</string>
 	<string name="setModelColumnNumberButton">編集</string>
+	<string name="setSampleModelView">サンプルモデル</string>
+	<string name="setSampleModelButton">ダウンロード</string>
 </resources>
