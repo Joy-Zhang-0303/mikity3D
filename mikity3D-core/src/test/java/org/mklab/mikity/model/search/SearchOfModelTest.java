@@ -3,7 +3,7 @@
  * Copyright (C) 2015 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.model;
+package org.mklab.mikity.model.search;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertThat;
  * @author soda
  * @version $Revision$, 2015/01/27
  */
-public class SearchModelTest {
+public class SearchOfModelTest {
   
   private SearchOfModel searchModel;
   
