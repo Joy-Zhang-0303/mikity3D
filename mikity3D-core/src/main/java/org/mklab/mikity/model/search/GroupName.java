@@ -12,7 +12,7 @@ package org.mklab.mikity.model.search;
  * @version $Revision$, 2015/01/27
  */
 @SuppressWarnings("serial")
-public class GroupNameSearchOfModel extends SearchOfModel {
+public class GroupName extends GroupManager {
   
   private String groupName;
 

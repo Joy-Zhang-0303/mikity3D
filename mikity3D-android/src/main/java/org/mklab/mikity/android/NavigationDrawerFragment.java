@@ -24,6 +24,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.model.MovableGroupManager;
+import org.mklab.mikity.model.search.SearchGroups;
+import org.mklab.mikity.model.search.GroupManager;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
@@ -376,7 +378,7 @@ public class NavigationDrawerFragment extends RoboFragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ListColumnFragment fragment =  new ListColumnFragment();
         if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
-          sample();
+          sample2();
           fragment.setColumnData(chList);
         }
         fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
@@ -389,6 +391,26 @@ public class NavigationDrawerFragment extends RoboFragment {
     //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
     this.canvasActivity.ndFragment = this;
     return view;
+  }
+  
+  private void sample2() {
+    SearchGroups search = new SearchGroups();
+    Mikity3d root = this.canvasActivity.canvasFragment.root;
+    Mikity3dModel model = root.getModel(0);
+    Group[] groupArray = model.getGroups();
+    Group group = groupArray[0];
+    GroupManager rootList = new GroupManager();
+    
+    GroupManager lastList = search.searchGroupRecursion(group, rootList);
+    int a = 0;
+    GroupManager som0 = new GroupManager();
+    GroupManager som1 = new GroupManager();
+    
+    GroupManager som2 = new GroupManager();
+    som0.add(som1);som0.add(som2);int size = som0.size();
+    int size2 = som2.size();
+    Object[] aa = som0.toArray();
+    int a2 = 0;
   }
   
   private void sample() {

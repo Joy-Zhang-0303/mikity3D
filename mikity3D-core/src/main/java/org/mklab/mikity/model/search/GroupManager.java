@@ -14,17 +14,20 @@ import java.util.ArrayList;
  * @version $Revision$, 2015/01/27
  */
 @SuppressWarnings("serial")
-public class SearchOfModel extends ArrayList<SearchOfModel> {
+public class GroupManager extends ArrayList<GroupManager> {
   
   /**親を表すフィールドです 。*/
-  private SearchOfModel parent;
+  private GroupManager parent;
 
+  public GroupManager() {
+    super(1);
+  }
   
   /**
    * 親を設定します。
    * @param parentSearchModel 親
    */
-  public void setParent(SearchOfModel parentSearchModel) {
+  public void setParent(GroupManager parentSearchModel) {
     this.parent = parentSearchModel;
   }
 
@@ -32,7 +35,7 @@ public class SearchOfModel extends ArrayList<SearchOfModel> {
    * 親を返します。
    * @return parent
    */
-  public SearchOfModel getParent() {
+  public GroupManager getParent() {
     return this.parent;
   }
 }

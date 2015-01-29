@@ -18,14 +18,14 @@ import static org.junit.Assert.assertThat;
  */
 public class LinkSearchOfModelTest {
   
-  private LinkSearchOfModel linkModel;
+  private GroupLink linkModel;
   
   /**
    * 初期化メソッドです。
    */
   @Before
   public void setUp() {
-    this.linkModel = new LinkSearchOfModel();
+    this.linkModel = new GroupLink();
   }
   /**
    * get,setColumnNumber()のテストメソッドです。

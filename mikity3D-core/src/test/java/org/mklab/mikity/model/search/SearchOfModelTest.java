@@ -7,7 +7,7 @@ package org.mklab.mikity.model.search;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mklab.mikity.model.search.SearchOfModel;
+import org.mklab.mikity.model.search.GroupManager;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -19,14 +19,14 @@ import static org.junit.Assert.assertThat;
  */
 public class SearchOfModelTest {
   
-  private SearchOfModel searchModel;
+  private GroupManager searchModel;
   
   /**
    * 初期化メソッドです。
    */
   @Before
   public void init() {
-    this.searchModel = new SearchOfModel();
+    this.searchModel = new GroupManager();
   }
   
   /**
@@ -35,7 +35,7 @@ public class SearchOfModelTest {
   @Test
   public void testSetGetParent() {
     this.searchModel.setParent(this.searchModel);
-    SearchOfModel testModel = this.searchModel.getParent();
+    GroupManager testModel = this.searchModel.getParent();
     assertThat(this.searchModel, equalTo(testModel));
   }
 }

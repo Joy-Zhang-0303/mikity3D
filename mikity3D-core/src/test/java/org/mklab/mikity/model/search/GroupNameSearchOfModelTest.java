@@ -17,14 +17,14 @@ import static org.junit.Assert.assertThat;
  */
 public class GroupNameSearchOfModelTest {
   
-  private GroupNameSearchOfModel groupNameModel;
+  private GroupName groupNameModel;
   
   /**
    * 初期化メソッドです。
    */
   @Before
   public void setUp() {
-    this.groupNameModel = new GroupNameSearchOfModel();
+    this.groupNameModel = new GroupName();
   }
   
   /**

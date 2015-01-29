@@ -12,7 +12,7 @@ package org.mklab.mikity.model.search;
  * @version $Revision$, 2015/01/28
  */
 @SuppressWarnings("serial")
-public class LinkSearchOfModel extends SearchOfModel {
+public class GroupLink extends GroupManager {
   
   private String targetName;
   private int columnNumber;

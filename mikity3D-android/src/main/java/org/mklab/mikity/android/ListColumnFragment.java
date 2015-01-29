@@ -6,12 +6,20 @@
 package org.mklab.mikity.android;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import org.mklab.mikity.model.searcher.GroupLink;
+import org.mklab.mikity.model.searcher.GroupManager;
+import org.mklab.mikity.model.searcher.GroupName;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import roboguice.fragment.RoboFragment;
@@ -48,9 +56,38 @@ public class ListColumnFragment extends RoboFragment {
       }
     }
   }
+  
+  public void sample(List<GroupManager> lists) {
+//    View[] views = new View[lists.size()];
+    List<View> views = new ArrayList<View>();
+    for(Iterator itr = lists.iterator(); itr.hasNext();) {
+      GroupManager item = (GroupManager)itr.next();
+      if(item.getClass() == GroupName.class) {
+        Button button = new Button(this.getActivity());
+        button.setText(((GroupName)item).getGroupName());
+      } else {
+        ((GroupLink)item).getColumn();
+        ((GroupLink)item).getTarget();
+      }
+    }
+    
+    
+    
+    
+    
+    View[] buttons = new Button[2];
+    for(int i = 0; i<2; i++) {
+      buttons[i] = new Button(this.getActivity());
+      views.add(buttons[i]);
+    }
+//  ArrayAdapter<View> adapter = new ArrayAdapter<View>(this.getActivity(), android.R.layout.simple_list_item_1, buttons);
+    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.button, null, lists);
+    this.listView.setAdapter(adapter);
+  }
+  
   public void configureListView() {
 //    int[] resId = { R.id.variousView };
-    View[] buttons = new Button[2];
+    final View[] buttons = new Button[2];
     List<View> views = new ArrayList<View>();
     for(int i = 0; i<2; i++) {
       buttons[i] = new Button(this.getActivity());
@@ -58,8 +95,35 @@ public class ListColumnFragment extends RoboFragment {
       views.add(buttons[i]);
     }
 //    ArrayAdapter<View> adapter = new ArrayAdapter<View>(this.getActivity(), android.R.layout.simple_list_item_1, buttons);
-    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.button, views);
+    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.button, views, null);
     this.listView.setAdapter(adapter);
+    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // TODO Auto-generated method stub
+        ListView listView = (ListView)parent;
+        final Button button = (Button)listView.getItemAtPosition(1);
+        button.setOnTouchListener(new OnTouchListener() {
+
+          public boolean onTouch(View v, MotionEvent event) {
+            // TODO Auto-generated method stub
+            button.setText("pushed!!!!!1 ");
+            return false;
+          }
+          
+        });
+      }
+      
+    });
+//    buttons[1].findViewById(R.id.variousView);
+//    buttons[1].setOnTouchListener(new OnTouchListener() {
+//
+//      public boolean onTouch(View v, MotionEvent event) {
+//        ((Button)buttons[1]).setText("pushed!!!!");
+//        return false;
+//      }
+//    });
+    
   }
 //  
 //  public void setColumn() {

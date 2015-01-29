@@ -7,10 +7,14 @@ package org.mklab.mikity.android;
 
 import java.util.List;
 
+import org.mklab.mikity.model.searcher.GroupManager;
+
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
@@ -21,14 +25,15 @@ public class ColumnArrayAdapter extends ArrayAdapter <View>{
   private LayoutInflater layoutInflater_;
   private List<View> _items;
   private int count = 0;
+  private List<GroupManager> lists;
 
-  public ColumnArrayAdapter(Context context, int resourceId, List<View> items) {
+  public ColumnArrayAdapter(Context context, int resourceId, List<View> items, List<GroupManager> lists) {
     super(context, resourceId, items);
     _context = context;
     _viewResourceId = resourceId;
     _items = items;
     layoutInflater_ = (LayoutInflater)_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    
+    this.lists = lists;
   }
   
   @Override
@@ -41,12 +46,32 @@ public class ColumnArrayAdapter extends ArrayAdapter <View>{
     } else {
 //      view = layoutInflater_.inflate(_viewResourceId, null);
       if(count==0)
-        view = layoutInflater_.inflate(R.layout.line_item, null);
+//        view = layoutInflater_.inflate(R.layout.line_item, null);
+        view = layoutInflater_.inflate(_viewResourceId, null);
       else
         view = layoutInflater_.inflate(_viewResourceId, null);
       count++;
     }
-    View item = _items.get(position);
+    final Button button = (Button)view.findViewById(R.id.variousView);
+    button.setOnTouchListener(new OnTouchListener() {
+
+      public boolean onTouch(View v, MotionEvent event) {
+        // TODO Auto-generated method stub
+        button.setText("pussssssssssssed!!!!");
+        return false;
+      }
+      
+    });
+//    View item = _items.get(position);
+////    _items.get(1).findViewById(R.id.variousView).setFocusableInTouchMode(false);
+////    _items.get(1).findViewById(R.id.variousView).setFocusable(false);
+//    _items.get(1).setOnTouchListener(new OnTouchListener() {
+//
+//      public boolean onTouch(View v, MotionEvent event) {
+//        ((Button)_items.get(1)).setText("pushed!!!!");
+//        return false;
+//      }
+//    });
 //    ListView listView = (ListView)convertView.findViewById(R.id.list_view_column);
 //    listView.addView(_items.get(position));
 //    listView.addView(item, position, new LayoutParams(WC,WC));
