@@ -5,38 +5,23 @@
  */
 package org.mklab.mikity.android;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.StringReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.model.MovableGroupManager;
-import org.mklab.mikity.model.search.SearchGroups;
-import org.mklab.mikity.model.search.GroupManager;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
-import org.xmlpull.v1.XmlPullParser;
-
-import android.app.ListFragment;
-import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -44,7 +29,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -394,23 +378,23 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
   
   private void sample2() {
-    SearchGroups search = new SearchGroups();
-    Mikity3d root = this.canvasActivity.canvasFragment.root;
-    Mikity3dModel model = root.getModel(0);
-    Group[] groupArray = model.getGroups();
-    Group group = groupArray[0];
-    GroupManager rootList = new GroupManager();
-    
-    GroupManager lastList = search.searchGroupRecursion(group, rootList);
-    int a = 0;
-    GroupManager som0 = new GroupManager();
-    GroupManager som1 = new GroupManager();
-    
-    GroupManager som2 = new GroupManager();
-    som0.add(som1);som0.add(som2);int size = som0.size();
-    int size2 = som2.size();
-    Object[] aa = som0.toArray();
-    int a2 = 0;
+//    SearchGroups search = new SearchGroups();
+//    Mikity3d root = this.canvasActivity.canvasFragment.root;
+//    Mikity3dModel model = root.getModel(0);
+//    Group[] groupArray = model.getGroups();
+//    Group group = groupArray[0];
+//    GroupManager rootList = new GroupManager();
+//    
+//    GroupManager lastList = search.searchGroupRecursion(group, rootList);
+//    int a = 0;
+//    GroupManager som0 = new GroupManager();
+//    GroupManager som1 = new GroupManager();
+//    
+//    GroupManager som2 = new GroupManager();
+//    som0.add(som1);som0.add(som2);int size = som0.size();
+//    int size2 = som2.size();
+//    Object[] aa = som0.toArray();
+//    int a2 = 0;
   }
   
   private void sample() {
