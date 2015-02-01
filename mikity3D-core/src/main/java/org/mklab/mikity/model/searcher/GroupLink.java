@@ -10,12 +10,13 @@ public class GroupLink extends GroupManager {
 
   private int columnNumber;
   private String targetName;
-  private GroupManager parent;
+//  private GroupManager parent;
   
-  public GroupLink(int column, String target, GroupManager parentGroupName) {
+  public GroupLink(int column, String target, GroupManager parent) {
+  	super(parent);
     this.columnNumber = column;
     this.targetName = target;
-    this.parent = parentGroupName;
+//    this.parent = parentGroupName;
   }
   
   public int getColumn() {

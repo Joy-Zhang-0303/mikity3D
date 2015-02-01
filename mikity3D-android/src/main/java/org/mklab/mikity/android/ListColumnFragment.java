@@ -28,8 +28,6 @@ import roboguice.fragment.RoboFragment;
 public class ListColumnFragment extends RoboFragment {
   
   public ListView listView;
-  private final int FP = ViewGroup.LayoutParams.MATCH_PARENT; 
-  private final int WC = ViewGroup.LayoutParams.WRAP_CONTENT; 
   private View view;
   private List<List<Object>> columnLists;
   
@@ -43,47 +41,6 @@ public class ListColumnFragment extends RoboFragment {
     return view;
   }
   
-  public void setColumnData(List<List<Object>> list) {
-    this.columnLists = list;
-  }
-  
-  public void createViewLists() {
-    if(this.columnLists != null) {
-      int parentSize = this.columnLists.size();
-      int[] childSize = new int[parentSize];
-      for(int i=0; i<parentSize; i++) {
-        childSize[i] = this.columnLists.get(i).size();
-      }
-    }
-  }
-  
-  public void sample(List<GroupManager> lists) {
-//    View[] views = new View[lists.size()];
-    List<View> views = new ArrayList<View>();
-    for(Iterator itr = lists.iterator(); itr.hasNext();) {
-      GroupManager item = (GroupManager)itr.next();
-      if(item.getClass() == GroupName.class) {
-        Button button = new Button(this.getActivity());
-        button.setText(((GroupName)item).getGroupName());
-      } else {
-        ((GroupLink)item).getColumn();
-        ((GroupLink)item).getTarget();
-      }
-    }
-    
-    
-    
-    
-    
-    View[] buttons = new Button[2];
-    for(int i = 0; i<2; i++) {
-      buttons[i] = new Button(this.getActivity());
-      views.add(buttons[i]);
-    }
-//  ArrayAdapter<View> adapter = new ArrayAdapter<View>(this.getActivity(), android.R.layout.simple_list_item_1, buttons);
-    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.button, null, lists);
-    this.listView.setAdapter(adapter);
-  }
   
   public void configureListView() {
 //    int[] resId = { R.id.variousView };
@@ -125,6 +82,45 @@ public class ListColumnFragment extends RoboFragment {
 //    });
     
   }
+  
+  public void setColumnData(List<List<Object>> list) {
+    this.columnLists = list;
+  }
+  
+  public void createViewLists() {
+    if(this.columnLists != null) {
+      int parentSize = this.columnLists.size();
+      int[] childSize = new int[parentSize];
+      for(int i=0; i<parentSize; i++) {
+        childSize[i] = this.columnLists.get(i).size();
+      }
+    }
+  }
+  
+//  public void sample(List<GroupManager> lists) {
+////    View[] views = new View[lists.size()];
+//    List<View> views = new ArrayList<View>();
+//    for(Iterator itr = lists.iterator(); itr.hasNext();) {
+//      GroupManager item = (GroupManager)itr.next();
+//      if(item.getClass() == GroupName.class) {
+//        Button button = new Button(this.getActivity());
+//        button.setText(((GroupName)item).getGroupName());
+//      } else {
+//        ((GroupLink)item).getColumn();
+//        ((GroupLink)item).getTarget();
+//      }
+//    }
+//    
+//    View[] buttons = new Button[2];
+//    for(int i = 0; i<2; i++) {
+//      buttons[i] = new Button(this.getActivity());
+//      views.add(buttons[i]);
+//    }
+////  ArrayAdapter<View> adapter = new ArrayAdapter<View>(this.getActivity(), android.R.layout.simple_list_item_1, buttons);
+//    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.button, null, lists);
+//    this.listView.setAdapter(adapter);
+//  }
+
 //  
 //  public void setColumn() {
 //    List<ColumnData> datas = new ArrayList<ColumnData>();

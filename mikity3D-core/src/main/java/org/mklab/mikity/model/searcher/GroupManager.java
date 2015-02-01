@@ -9,6 +9,12 @@ import java.util.List;
 
 
 public class GroupManager {
+	
+	private GroupManager parent;
+	
+	public GroupManager(GroupManager parent) {
+		this.parent = parent;
+	}
   
   public void parentRegister() {
     throw new UnsupportedOperationException();
@@ -29,4 +35,9 @@ public class GroupManager {
   public List<GroupManager> get() {
     throw new UnsupportedOperationException();
   }
+  
+  public GroupManager getParent() {
+  	return this.parent;
+  }
+  
 }

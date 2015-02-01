@@ -12,13 +12,16 @@ import java.util.List;
 
 public class GroupName extends GroupManager {
   
-  private List<GroupManager> items = new ArrayList();
+  private List<GroupManager> items = new ArrayList<GroupManager>();
+//	private ChildGroupManager items;
   private String groupName;
-  private GroupManager parent;
+//  private GroupManager parent;
   
   public GroupName(String name, GroupManager parent) {
+  	super(parent);
     this.groupName = name;
-    this.parent = parent;
+ //   items = new ChildGroupManager();
+//    this.parent = parent;
   }
   
   @Override
@@ -33,7 +36,7 @@ public class GroupName extends GroupManager {
   
   @Override
   public void trimToSizeArray() {
-    ((ArrayList)this.items).trimToSize();
+    ((ArrayList<GroupManager>)this.items).trimToSize();
   }
   
   @Override
