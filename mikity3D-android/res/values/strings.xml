@@ -26,4 +26,5 @@
 	<string name="setModelColumnNumberButton">編集</string>
 	<string name="setSampleModelView">サンプルモデル</string>
 	<string name="setSampleModelButton">ダウンロード</string>
+	<string name="back">back</string>
 </resources>

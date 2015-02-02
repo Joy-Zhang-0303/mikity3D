@@ -369,6 +369,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 //          sample2();
 //          fragment.setColumnData(chList);
           fragment.setGroupManager(sample2());
+          fragment.setNavigationDrawerFragment(NavigationDrawerFragment.this);
         
         fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
         fragmentTransaction.addToBackStack(null);
@@ -648,5 +649,19 @@ public class NavigationDrawerFragment extends RoboFragment {
 	  this.groupNameList = groupNameList;
 	  this.columnNumberList = allColumnNumberList;
 	  this.targetNameList = allTargetList;
+  }
+  
+  public void changeModelColumnNumber(int groupPosition, int childPosition, int columnNumber) {
+    Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
+    Group[] groupArray = model.getGroups();
+    Group group = groupArray[0];
+    
+//    group = group.getGroup(0);
+//    for(int i=0; i<groupPosition; i++) {
+//      group = group.getGroup(0);
+//    }
+//    group.getLinkData(childPosition).setColumnNumber(columnNumber);
+    this.canvasActivity.canvasFragment.configurateModel();
+    this.canvasActivity.canvasFragment.setGroupManager();
   }
 }
