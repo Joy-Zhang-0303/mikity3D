@@ -13,15 +13,11 @@ import java.util.List;
 public class GroupName extends GroupManager {
   
   private List<GroupManager> items = new ArrayList<GroupManager>();
-//	private ChildGroupManager items;
   private String groupName;
-//  private GroupManager parent;
   
   public GroupName(String name, GroupManager parent) {
   	super(parent);
     this.groupName = name;
- //   items = new ChildGroupManager();
-//    this.parent = parent;
   }
   
   @Override
@@ -40,7 +36,7 @@ public class GroupName extends GroupManager {
   }
   
   @Override
-  public List<GroupManager> get() {
+  public List<GroupManager> getItems() {
     return this.items;
   }
   

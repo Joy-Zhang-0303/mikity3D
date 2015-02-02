@@ -32,7 +32,7 @@ public class GroupManager {
     throw new UnsupportedOperationException();
   }
   
-  public List<GroupManager> get() {
+  public List<GroupManager> getItems() {
     throw new UnsupportedOperationException();
   }
   
