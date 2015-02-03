@@ -48,7 +48,7 @@ public class ListColumnFragment extends RoboFragment {
           ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManager.getParent();
           ListColumnFragment.this.groupList = ListColumnFragment.this.groupManager.getItems();
           groupDepth--;
-          int size = targetColumn.size();
+          int size = targetColumn.size()-1;
           targetColumn.remove(size);
           configureListView();
         }

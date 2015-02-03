@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.android;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.mklab.mikity.model.searcher.GroupLink;
@@ -43,6 +44,14 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
     this.targetColumn = targetColumn;
     this.groupNameCount = 0;
     
+    int groupCount = 0;
+    for(Iterator itr = lists.iterator(); itr.hasNext();) { 
+      if((itr.next()).getClass() == GroupName.class) {
+        groupCount++;
+      }
+    }
+    this.groupNameCount = groupCount;
+    
   }
   
   @Override
@@ -56,7 +65,7 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
         view = this.layoutInflater_.inflate(this._viewResourceId, null);
         TextView columnText = (TextView)view.findViewById(R.id.groupNameText);
         columnText.setText(groupName.getGroupName());
-        this.groupNameCount++;
+//        this.groupNameCount++;
       } else {
         final GroupLink groupLink = (GroupLink)this.lists.get(position);
         view = this.layoutInflater_.inflate(R.layout.list_link, null);
@@ -64,6 +73,7 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
         targetText.setText(groupLink.getTarget());
         final EditText columnText = (EditText)view.findViewById(R.id.list_column); 
         columnText.setText(Integer.toString(groupLink.getColumn()));
+
         Button minusButton = (Button)view.findViewById(R.id.minusButton);
         minusButton.setOnClickListener(new OnClickListener() {
 
