@@ -23,7 +23,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Surface;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
@@ -51,7 +50,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   /** NavigationDrawerFragment*/
   public NavigationDrawerFragment ndFragment;
   /** ModelColumnNunberFragment*/
-  public ModelColumnNumberFragment mcnFragment;
+//  public ModelColumnNumberFragment mcnFragment;
 
   /**
    * @see roboguice.activity.RoboFragmentActivity#onCreate(android.os.Bundle)
@@ -297,9 +296,9 @@ public class CanvasActivity extends RoboFragmentActivity {
 //        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
 //    }
   }
-  
-  protected void setMCNFragmnet(ModelColumnNumberFragment mcnFragment) {
-	this.ndFragment.setGroupNameList(this.canvasFragment.root);
-    this.mcnFragment = mcnFragment;
-  }
+//  
+//  protected void setMCNFragmnet(ModelColumnNumberFragment mcnFragment) {
+//	this.ndFragment.setGroupNameList(this.canvasFragment.root);
+//    this.mcnFragment = mcnFragment;
+//  }
 }

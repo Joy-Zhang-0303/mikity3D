@@ -95,12 +95,12 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button quickButton;
   /** アニメーションスピードを遅くするときに押されるボタン */
   Button slowButton;
-  /** アニメーションを停止するときに押されるボタン */
-  Button stopButton;
+//  /** アニメーションを停止するときに押されるボタン */
+//  Button stopButton;
   /** モデルファイル読み込むときに押されるボタン */
   Button loadModelButton;
-  /** アニメーションを再生するボタン */
-  Button playButton;
+//  /** アニメーションを再生するボタン */
+//  Button playButton;
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton gyroToggleButton;
   /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
@@ -109,7 +109,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   InputStream inputDataFile;
   protected String timeDataName;
   private String modelFileName;
-  protected Button setModelColumnNumberButton;
+//  protected Button setModelColumnNumberButton;
   CanvasActivity canvasActivity;
   /** アニメーションスピードテキスト用のスピード*/
   public int animationTextSpeed;
@@ -130,7 +130,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 //  public Button sampleModelTextView;
   /** サンプルモデル読み込みのためのボタン*/
   public Button sampleModelButton;
-  public Button sampleSetColumnButton;
+  public Button setColumnButton;
   public List aalist = new ArrayList();
   public int aadepth;
   public ListView[] listView;
@@ -157,20 +157,21 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.selectButton = (Button)view.findViewById(R.id.timeSelectButton);
     this.quickButton = (Button)view.findViewById(R.id.quickButton);
     this.slowButton = (Button)view.findViewById(R.id.slowButton);
-    this.playButton = (Button)view.findViewById(R.id.button1);
-    this.stopButton = (Button)view.findViewById(R.id.button2);
+//    this.playButton = (Button)view.findViewById(R.id.button1);
+//    this.stopButton = (Button)view.findViewById(R.id.button2);
     this.reloadButton = (Button)view.findViewById(R.id.reloadButton);
     this.timeDataDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
     this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
-    this.sampleSetColumnButton = (Button)view.findViewById(R.id.sampleSetCplimnButton);
+    this.setColumnButton = (Button)view.findViewById(R.id.sampleSetCplimnButton);
 
     this.selectButton.setEnabled(false);
     this.quickButton.setEnabled(false);
     this.slowButton.setEnabled(false);
-    this.playButton.setEnabled(false);
-    this.stopButton.setEnabled(false);
+//    this.playButton.setEnabled(false);
+//    this.stopButton.setEnabled(false);
     this.reloadButton.setEnabled(false);
     this.timeDataDeleteButton.setEnabled(false);
+    this.setColumnButton.setEnabled(false);
 
     this.loadModelButton.setOnClickListener(new View.OnClickListener() {
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_FILE_OR_DIRECTORY;
@@ -223,17 +224,17 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    // イベントリスナー
-    this.playButton.setOnClickListener(new View.OnClickListener() {
-
-      // コールバックメソッド
-      /**
-       * @param view1 view 
-       */
-      public void onClick(View view1) {
-        NavigationDrawerFragment.this.canvasActivity.canvasFragment.runAnimation();
-      }
-    });
+//    // イベントリスナー
+//    this.playButton.setOnClickListener(new View.OnClickListener() {
+//
+//      // コールバックメソッド
+//      /**
+//       * @param view1 view 
+//       */
+//      public void onClick(View view1) {
+//        NavigationDrawerFragment.this.canvasActivity.canvasFragment.runAnimation();
+//      }
+//    });
 
     this.reloadButton.setOnClickListener(new View.OnClickListener() {
 
@@ -278,17 +279,17 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    this.stopButton.setOnClickListener(new View.OnClickListener() {
-
-      // コールバックメソッド
-      /**
-       * @param view1 view 
-       */
-      public void onClick(View view1) {
-        NavigationDrawerFragment.this.canvasActivity.canvasFragment.timer.cancel();
-        NavigationDrawerFragment.this.canvasActivity.canvasFragment.playable = false;
-      }
-    });
+//    this.stopButton.setOnClickListener(new View.OnClickListener() {
+//
+//      // コールバックメソッド
+//      /**
+//       * @param view1 view 
+//       */
+//      public void onClick(View view1) {
+//        NavigationDrawerFragment.this.canvasActivity.canvasFragment.timer.cancel();
+//        NavigationDrawerFragment.this.canvasActivity.canvasFragment.playable = false;
+//      }
+//    });
 
     this.gyroToggleButton = (ToggleButton)view.findViewById(R.id.gyroToggleButton);
     this.gyroToggleButton.setOnClickListener(new OnClickListener() {
@@ -331,25 +332,25 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.canvasActivity.controlRotation();
       }
     });
-    this.setModelColumnNumberButton = (Button)view.findViewById(R.id.setModelColumnNumberlButton);
-    this.setModelColumnNumberButton.setEnabled(false);
-    this.setModelColumnNumberButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       * @param v view
-       */
-      public void onClick(View v) {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ModelColumnNumberFragment fragment =  new ModelColumnNumberFragment();
-        fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
-        fragmentTransaction.addToBackStack(null);
-        NavigationDrawerFragment.this.canvasActivity.setMCNFragmnet(fragment);
-        fragmentTransaction.commit();
-      }
-
-    });
+//    this.setModelColumnNumberButton = (Button)view.findViewById(R.id.setModelColumnNumberlButton);
+//    this.setModelColumnNumberButton.setEnabled(false);
+//    this.setModelColumnNumberButton.setOnClickListener(new OnClickListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       * @param v view
+//       */
+//      public void onClick(View v) {
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        ModelColumnNumberFragment fragment =  new ModelColumnNumberFragment();
+//        fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
+//        fragmentTransaction.addToBackStack(null);
+//        NavigationDrawerFragment.this.canvasActivity.setMCNFragmnet(fragment);
+//        fragmentTransaction.commit();
+//      }
+//
+//    });
     this.sampleModelButton.setOnClickListener(new OnClickListener() {
       
       public void onClick(View v) {
@@ -362,7 +363,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
     
-    this.sampleSetColumnButton.setOnClickListener(new OnClickListener() {
+    this.setColumnButton.setOnClickListener(new OnClickListener() {
       
       public void onClick(View v) { 
         FragmentManager fragmentManager = getFragmentManager();
@@ -594,9 +595,10 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.selectButton.setEnabled(flag);
     this.quickButton.setEnabled(flag);
     this.slowButton.setEnabled(flag);
-    this.playButton.setEnabled(flag);
-    this.stopButton.setEnabled(flag);
-    this.setModelColumnNumberButton.setEnabled(flag);
+//    this.playButton.setEnabled(flag);
+//    this.stopButton.setEnabled(flag);
+    this.setColumnButton.setEnabled((flag));
+//    this.setModelColumnNumberButton.setEnabled(flag);
     this.reloadButton.setEnabled(flag);
     this.timeDataDeleteButton.setEnabled(flag);
   }
@@ -660,15 +662,9 @@ public class NavigationDrawerFragment extends RoboFragment {
     Group group = groupArray[0];
     
     for (Iterator itr = targetColumn.iterator(); itr.hasNext();) {
-//       item = (GroupManager) itr.next();
     	int target = (Integer) itr.next();
     	group = group.getGroup(target);
     }
-    
-//    group = group.getGroup(0);
-//    for(int i=0; i<groupPosition; i++) {
-//      group = group.getGroup(0);
-//    }
     group.getLinkData(childPosition).setColumnNumber(columnNumber);
     this.canvasActivity.canvasFragment.configurateModel();
     this.canvasActivity.canvasFragment.setGroupManager();
