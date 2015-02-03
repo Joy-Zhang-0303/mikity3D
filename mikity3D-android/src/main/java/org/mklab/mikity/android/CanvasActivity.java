@@ -50,7 +50,6 @@ public class CanvasActivity extends RoboFragmentActivity {
   /** NavigationDrawerFragment*/
   public NavigationDrawerFragment ndFragment;
   /** ModelColumnNunberFragment*/
-//  public ModelColumnNumberFragment mcnFragment;
 
   /**
    * @see roboguice.activity.RoboFragmentActivity#onCreate(android.os.Bundle)
@@ -60,8 +59,7 @@ public class CanvasActivity extends RoboFragmentActivity {
 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.canvas);
-
-//    this.mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
+    
     this.mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
     this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
     this.mDrawerToggle.syncState();
@@ -130,6 +128,8 @@ public class CanvasActivity extends RoboFragmentActivity {
         CanvasActivity.this.canvasFragment.timer.cancel();
         CanvasActivity.this.canvasFragment.playable = false;
         break;
+      default:
+        break;
     }
     return super.onOptionsItemSelected(item);
   }
@@ -184,6 +184,9 @@ public class CanvasActivity extends RoboFragmentActivity {
     super.onPause();
   }
   
+  /**
+   * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+   */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
@@ -296,9 +299,4 @@ public class CanvasActivity extends RoboFragmentActivity {
 //        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
 //    }
   }
-//  
-//  protected void setMCNFragmnet(ModelColumnNumberFragment mcnFragment) {
-//	this.ndFragment.setGroupNameList(this.canvasFragment.root);
-//    this.mcnFragment = mcnFragment;
-//  }
 }

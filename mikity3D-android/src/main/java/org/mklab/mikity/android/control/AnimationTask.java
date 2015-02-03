@@ -13,7 +13,6 @@ import java.util.TimerTask;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.view.renderer.ModelRenderer;
-//import org.mklab.mikity.android.MainActivity;
 
 import android.os.SystemClock;
 
@@ -42,7 +41,6 @@ public class AnimationTask extends TimerTask {
   private long lastUpdatedTimeMillis = SystemClock.uptimeMillis();
   /** モデルキャンバス　 */
   private ModelRenderer renderer;
-//  private MainActivity main;
 
   /**
    * コンストラクター

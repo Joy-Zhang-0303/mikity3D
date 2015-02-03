@@ -7,26 +7,32 @@ package org.mklab.mikity.android;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 
 
+/**
+ * モデルデータを別のスレッドでダウンロードするためのクラスです。
+ * @author soda
+ * @version $Revision$, 2015/02/03
+ */
 public class DownloadFileFromURL extends AsyncTask<String, String, InputStream>{
 
+  /** ストリーム*/
   public InputStream input;
+  /** NavigationDrawer*/
   public NavigationDrawerFragment fragment;
   
+  /**
+   * 新しく生成された<code>DownloadFileFromURL</code>オブジェクトを初期化します。
+   * @param fragment NavigationDrawer
+   */
   public DownloadFileFromURL(NavigationDrawerFragment fragment) {
     this.fragment = fragment;
   }
@@ -45,7 +51,7 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream>{
     try {
         httpResponse = httpClient.execute(request);
     } catch (Exception e) {
-        Log.d("HttpSampleActivity", e.getMessage());
+        Log.d("HttpSampleActivity", e.getMessage()); //$NON-NLS-1$
     }
     try {
       if(HttpStatus.SC_OK == httpResponse.getStatusLine().getStatusCode()) {
@@ -63,15 +69,18 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream>{
     }
     return this.input;
   }
+  /**
+   * @param strings  String
+   */
   @Override
   protected void onProgressUpdate(String...strings) {
-    
+    // nothing to do
   }
   
   @Override 
   protected void onPostExecute(InputStream input) {
-    fragment.input = input;
-    Drawable d = Drawable.createFromStream(input, "webimage");
-    fragment.sampleModelButton.setBackground(d);
+    this.fragment.input = input;
+    Drawable d = Drawable.createFromStream(input, "webimage"); //$NON-NLS-1$
+    this.fragment.sampleModelButton.setBackground(d);
   }
 }

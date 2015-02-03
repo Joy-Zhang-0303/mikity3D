@@ -8,11 +8,8 @@ package org.mklab.mikity.android;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
@@ -24,7 +21,6 @@ import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 
 import android.database.Cursor;
 import android.net.Uri;
@@ -34,14 +30,12 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import roboguice.fragment.RoboFragment;
@@ -81,8 +75,6 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。 */
   int animationSpeed = 10;
 
-//  private final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
-//  private final int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
   /** アニメーションスピードを表示するエディットテキスト */
   public EditText animationSpeedTextEdit;
   /** 3Dモデルのインプットストリーム */
@@ -95,12 +87,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button quickButton;
   /** アニメーションスピードを遅くするときに押されるボタン */
   Button slowButton;
-//  /** アニメーションを停止するときに押されるボタン */
-//  Button stopButton;
   /** モデルファイル読み込むときに押されるボタン */
   Button loadModelButton;
-//  /** アニメーションを再生するボタン */
-//  Button playButton;
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton gyroToggleButton;
   /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
@@ -109,37 +97,21 @@ public class NavigationDrawerFragment extends RoboFragment {
   InputStream inputDataFile;
   protected String timeDataName;
   private String modelFileName;
-//  protected Button setModelColumnNumberButton;
   CanvasActivity canvasActivity;
   /** アニメーションスピードテキスト用のスピード*/
   public int animationTextSpeed;
-  protected String[] groupNameArray;
-  protected int[] columnNumberArray;
-  protected List<Map<String, String>> groupNameList;
-  protected List<List<Map<String, String>>> columnNumberList;
-  protected List<List<Map<String, String>>> targetNameList;
   /** 時間データ再読み込みのためのボタン*/
   public Button reloadButton;
   /** 時間データを削除するためのボタン*/
   public Button timeDataDeleteButton;
-  private List<Map<String, String>> columnNumberList2;
-  private List<Map<String, String>> groupNameList2;
   private Cursor cursor;
   private Cursor cursor2;
-//  /** サンプルモデル読み込みのためのテキストビュー*/
-//  public Button sampleModelTextView;
   /** サンプルモデル読み込みのためのボタン*/
   public Button sampleModelButton;
+  /** カラムを入れ替えるためのボタン*/
   public Button setColumnButton;
-  public List aalist = new ArrayList();
-  public int aadepth;
-  public ListView[] listView;
+  /** ストリーム*/
   public InputStream input;
-  public List<Object> paList;
-  public List<List<Object>> chList = new ArrayList<List<Object>>();
-  public Group lastGroup;
-  public int lastDepth;
-  public int aadepthMax = 0;
 
   /**
    * @param savedInstanceState Bundle
@@ -157,8 +129,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.selectButton = (Button)view.findViewById(R.id.timeSelectButton);
     this.quickButton = (Button)view.findViewById(R.id.quickButton);
     this.slowButton = (Button)view.findViewById(R.id.slowButton);
-//    this.playButton = (Button)view.findViewById(R.id.button1);
-//    this.stopButton = (Button)view.findViewById(R.id.button2);
     this.reloadButton = (Button)view.findViewById(R.id.reloadButton);
     this.timeDataDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
     this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
@@ -167,8 +137,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.selectButton.setEnabled(false);
     this.quickButton.setEnabled(false);
     this.slowButton.setEnabled(false);
-//    this.playButton.setEnabled(false);
-//    this.stopButton.setEnabled(false);
     this.reloadButton.setEnabled(false);
     this.timeDataDeleteButton.setEnabled(false);
     this.setColumnButton.setEnabled(false);
@@ -210,7 +178,6 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.animationSpeedTextEdit.setText("" + (double)NavigationDrawerFragment.this.animationSpeed / 10); //$NON-NLS-1$
         if (NavigationDrawerFragment.this.animationTask != null) NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeed / 10);
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
-//        NavigationDrawerFragment.this.setAnimationSpeed();
       }
     });
 
@@ -223,18 +190,6 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
       }
     });
-
-//    // イベントリスナー
-//    this.playButton.setOnClickListener(new View.OnClickListener() {
-//
-//      // コールバックメソッド
-//      /**
-//       * @param view1 view 
-//       */
-//      public void onClick(View view1) {
-//        NavigationDrawerFragment.this.canvasActivity.canvasFragment.runAnimation();
-//      }
-//    });
 
     this.reloadButton.setOnClickListener(new View.OnClickListener() {
 
@@ -275,21 +230,8 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.animationSpeedTextEdit.setText(Double.toString((double)NavigationDrawerFragment.this.animationSpeed / 10));
         if (NavigationDrawerFragment.this.animationTask != null) NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeed / 10);
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
-//        NavigationDrawerFragment.this.setAnimationSpeed();
       }
     });
-
-//    this.stopButton.setOnClickListener(new View.OnClickListener() {
-//
-//      // コールバックメソッド
-//      /**
-//       * @param view1 view 
-//       */
-//      public void onClick(View view1) {
-//        NavigationDrawerFragment.this.canvasActivity.canvasFragment.timer.cancel();
-//        NavigationDrawerFragment.this.canvasActivity.canvasFragment.playable = false;
-//      }
-//    });
 
     this.gyroToggleButton = (ToggleButton)view.findViewById(R.id.gyroToggleButton);
     this.gyroToggleButton.setOnClickListener(new OnClickListener() {
@@ -332,47 +274,29 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.canvasActivity.controlRotation();
       }
     });
-//    this.setModelColumnNumberButton = (Button)view.findViewById(R.id.setModelColumnNumberlButton);
-//    this.setModelColumnNumberButton.setEnabled(false);
-//    this.setModelColumnNumberButton.setOnClickListener(new OnClickListener() {
-//
-//      /**
-//       * {@inheritDoc}
-//       * @param v view
-//       */
-//      public void onClick(View v) {
-//        FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        ModelColumnNumberFragment fragment =  new ModelColumnNumberFragment();
-//        fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
-//        fragmentTransaction.addToBackStack(null);
-//        NavigationDrawerFragment.this.canvasActivity.setMCNFragmnet(fragment);
-//        fragmentTransaction.commit();
-//      }
-//
-//    });
+    
     this.sampleModelButton.setOnClickListener(new OnClickListener() {
       
+      /**
+       * @param v View 
+       */
       public void onClick(View v) {
         DownloadFileFromURL get = new DownloadFileFromURL(NavigationDrawerFragment.this);
-        get.execute("http://jamox.mklab.org/img/menu/sitemap.png");
-//        String path = "http://jmatx.mklab.org/jmatx-android-0.1.2-SNAPSHOT.apk";
-//        Uri uri = Uri.parse(path);
-//        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-//        startActivity(i);
+        get.execute("http://jamox.mklab.org/img/menu/sitemap.png"); //$NON-NLS-1$
       }
     });
     
     this.setColumnButton.setOnClickListener(new OnClickListener() {
       
+      /**
+       * @param v  View
+       */
       public void onClick(View v) { 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ListColumnFragment fragment =  new ListColumnFragment();
         if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
-//          sample2();
-//          fragment.setColumnData(chList);
-          fragment.setGroupManager(sample2());
+          fragment.setGroupManager(getGroupManager());
           fragment.setNavigationDrawerFragment(NavigationDrawerFragment.this);
         
         fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
@@ -387,7 +311,11 @@ public class NavigationDrawerFragment extends RoboFragment {
     return view;
   }
   
-  private GroupManager sample2() {
+  /**
+   * GroupManagerを取得するメソッドです。
+   * @return result GroupManager
+   */
+  public GroupManager getGroupManager() {
     Mikity3d root = this.canvasActivity.canvasFragment.root;
     Mikity3dModel model = root.getModel(0);
     Group[] groupArray = model.getGroups();
@@ -396,102 +324,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     GroupName groupManager = new GroupName(group.getName(), null);
     GroupManager result = search.searchGroupRecursion(group, groupManager);
     return result;
-  }
-  
-  private void sample() {
-    Mikity3d root = this.canvasActivity.canvasFragment.root;
-    Mikity3dModel model = root.getModel(0);
-    Group[] groupArray = model.getGroups();
-    Group group = groupArray[0];
-    this.aadepth = 0;
-//    setListView();
-    listView = new ListView[4];
-    Recursion(group);
-    try {
-      GetLinkData(lastGroup, 0);
-      this.chList.add(aadepth-1, this.paList);
-    } catch(Exception e) {
-      // nothing to do
-    }
-  }
-  
-  private void setListView() {
-    //ListView listView = new ListView(getActivity());
-    TextView textView = new TextView(getActivity());
-    Map<Integer, String> groupName = new HashMap<Integer, String>();
-    groupName = (Map<Integer, String>)aalist.get(1);
-    textView.setText(groupName.get(1));
-    //listView.addView(textView);
-    
-  }
-  
-  private void Recursion(Group group) { 
-    this.paList = new ArrayList<Object>();
-    int count = 0;
-    aadepth++;
-    while(true) {
-      try {
-//        listView[aadepth-1] = new ListView(getActivity());
-        Group newGroup = group.getGroup(count);
-        String name = newGroup.getName();
-//        Map<Integer, String> nameData= new HashMap<Integer, String>();
-//        nameData.put(aadepth, name);
-//        Map<Integer, Map<Integer, String>> nameRow = new HashMap<Integer, Map<Integer,String>>();
-//        nameRow.put(count+1, nameData);
-        aalist.add(name);
-        this.paList.add(name);
-        GetLinkData(group, count);
-        this.chList.add(aadepth-1, this.paList);
-        Recursion(newGroup);
-        count++;
-      } catch(Exception e) {
-        Log.d("errrrrrrrrr", e.getMessage());
-        if(aadepthMax < aadepth) {
-          aadepthMax = aadepth;
-          lastGroup = group;
-        }
-//        lastDepth = aadepth;
-        break;
-      }
-    }
-  }
-  
-  private void GetLinkData(Group group, int row) {
-    int count = 0;
-    while(true) {
-      try {
-        LinkData data = group.getLinkData(count);
-        int column = data.getColumnNumber();
-//        Map<Integer, Integer> columnData= new HashMap<Integer, Integer>();
-//        columnData.put(aadepth+1, column);
-        String target = data.getTargetName();
-//        Map<Integer, String> targetData= new HashMap<Integer, String>();
-//        targetData.put(aadepth+1, target);
-//        Map<Integer, List> tcMap = new HashMap<Integer, List>();
-//        List tcList = new ArrayList();
-//        tcList.add(target);
-//        tcList.add(column);
-//        tcMap.put(aadepth+1, tcList);
-//        Map<Integer, Map<Integer, List>> tcMapRow = new HashMap<Integer, Map<Integer,List>>();
-//        tcMapRow.put(row+1, tcMap);
-//        aalist.add(tcMapRow);
-        //            List list = new ArrayList();
-        //            list.add(columnData);list.add(targetData);
-        //            aalist.add(list);
-//                    aalist.add(columnData);
-//                    aalist.add(targetData);
-        List TCList = new ArrayList();
-        TCList.add(target);
-        TCList.add(column);
-        this.paList.add(TCList);
-        aalist.add(column);
-        aalist.add(target);
-        count++;
-      } catch(Exception ee) {
-        Log.d("err0rrrrrrr", ee.getMessage());
-        break;
-      }
-    }
   }
   
   /**
@@ -595,74 +427,25 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.selectButton.setEnabled(flag);
     this.quickButton.setEnabled(flag);
     this.slowButton.setEnabled(flag);
-//    this.playButton.setEnabled(flag);
-//    this.stopButton.setEnabled(flag);
     this.setColumnButton.setEnabled((flag));
-//    this.setModelColumnNumberButton.setEnabled(flag);
     this.reloadButton.setEnabled(flag);
     this.timeDataDeleteButton.setEnabled(flag);
   }
   
-  protected void setGroupNameList(Mikity3d root) {
-	Mikity3dModel model = root.getModel(0);
-	Group[] groupArray = model.getGroups();
-	Group group = groupArray[0];
-	group = group.getGroup(0);
-	this.groupNameList2 = new ArrayList<Map<String, String>>();
-	int count = 0;
-	while(true) {
-	  try {
- 		if (count != 0) {
- 		  group = group.getGroup(0);
-	   	}
-	  } catch(IndexOutOfBoundsException e) {
-	    break;
-	  }
-	  Map<String, String> groupNameData = new HashMap<String, String>();
-	  groupNameData.put("groupName", group.getName()); //$NON-NLS-1$
-	  this.groupNameList2.add(groupNameData);
-	  count++;
-    }
-	group = groupArray[0];
-	List<List<Map<String, String>>> allColumnNumberList = new ArrayList<List<Map<String, String>>>();
-	List<List<Map<String, String>>> allTargetList = new ArrayList<List<Map<String, String>>>();
-	for(int i=0; i<this.groupNameList2.size(); i++) {
-		this.columnNumberList2 = new ArrayList<Map<String, String>>();
-		List<Map<String, String>> targetList = new ArrayList<Map<String, String>>();
-		int j = 0;
-		group = group.getGroup(0);
-	  while(true) {
-		Map<String, String> columnNumberData = new HashMap<String, String>();
-		Map<String, String> targetData = new HashMap<String, String>();
-		try {
-			columnNumberData.put("columnNumber", String.valueOf(group.getLinkData(j).getColumnNumber())); //$NON-NLS-1$
-			this.columnNumberList2.add(columnNumberData);
-			targetData.put("target", group.getLinkData(j).getTargetName()); //$NON-NLS-1$
-			targetList.add(targetData);
-			j++;
-		} catch(IndexOutOfBoundsException e) {
-			break;
-		}
-      }
-	  allColumnNumberList.add(this.columnNumberList2);
-	  allTargetList.add(targetList);
-	}
-	setLists(this.groupNameList2, allColumnNumberList, allTargetList);
-  }
-  protected void setLists(List<Map<String, String>> groupNameList, List<List<Map<String, String>>> allColumnNumberList,
-      List<List<Map<String, String>>> allTargetList) {
-	  this.groupNameList = groupNameList;
-	  this.columnNumberList = allColumnNumberList;
-	  this.targetNameList = allTargetList;
-  }
-  
+  /**
+   * コラムナンバーを入れ替えるためのメソッドです。
+   * @param targetColumn グループの階層を所持したリスト
+   * @param childPosition リンクデータがある場所
+   * @param columnNumber 入れ替えるコラムナンバー
+   */
   public void changeModelColumnNumber(List<Integer> targetColumn, int childPosition, int columnNumber) {
     Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
     Group[] groupArray = model.getGroups();
     Group group = groupArray[0];
     
-    for (Iterator itr = targetColumn.iterator(); itr.hasNext();) {
-    	int target = (Integer) itr.next();
+    for (Iterator<Integer> itr = targetColumn.iterator(); itr.hasNext();) {
+    	@SuppressWarnings("boxing")
+      int target = itr.next();
     	group = group.getGroup(target);
     }
     group.getLinkData(childPosition).setColumnNumber(columnNumber);

@@ -23,15 +23,31 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+/**
+ * リストビューを動的に生成するためのアダプタークラスです。
+ * @author soda
+ * @version $Revision$, 2015/02/03
+ */
 public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
   private Context _context;
   private int _viewResourceId;
   private LayoutInflater layoutInflater_;
   private List<GroupManager> lists;
-  private NavigationDrawerFragment fragment;
-  private List<Integer> targetColumn;
-  private int groupNameCount;
+  /** NavigationDrawer*/
+  public NavigationDrawerFragment fragment;
+  /** 変更するカラムのターゲットリスト*/
+  public List<Integer> targetColumn;
+  /** 現在のリストに登録されているグループの数*/
+  public int groupNameCount;
 
+  /**
+   * 新しく生成された<code>ColumnArrayAdapter</code>オブジェクトを初期化します。
+   * @param context Context
+   * @param resourceId id
+   * @param lists GroupManager
+   * @param fragment NavigatioDrawerFragment
+   * @param targetColumn リンクの中の何番目のターゲットかを知るための変数
+   */
   public ColumnArrayAdapter(Context context, int resourceId, List<GroupManager> lists, 
       NavigationDrawerFragment fragment, List<Integer> targetColumn) {
     super(context, resourceId, lists);
@@ -44,7 +60,7 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
     this.groupNameCount = 0;
     
     int groupCount = 0;
-    for(Iterator itr = lists.iterator(); itr.hasNext();) { 
+    for(Iterator<GroupManager> itr = lists.iterator(); itr.hasNext();) { 
       if((itr.next()).getClass() == GroupName.class) {
         groupCount++;
       }
@@ -53,6 +69,10 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
     
   }
   
+  /**
+   * @param parent ViewGroup
+   * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+   */
   @Override
   public View getView(final int position, View convertView, ViewGroup parent) {
     View view;
@@ -75,24 +95,30 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
         Button minusButton = (Button)view.findViewById(R.id.minusButton2);
         minusButton.setOnClickListener(new OnClickListener() {
 
+          /**
+           * @param v  View
+           */
           public void onClick(View v) {
             if(2 < groupLink.getColumn()) {
               int column = groupLink.getColumn() - 1;
               groupLink.setColumnNumber(column);
               columnText.setText(Integer.toString(column));
-              fragment.changeModelColumnNumber(targetColumn, position-groupNameCount, column);
+              ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position-ColumnArrayAdapter.this.groupNameCount, column);
             }
           }          
         });
         Button plusButton = (Button)view.findViewById(R.id.plusButton2);
         plusButton.setOnClickListener(new OnClickListener() {
 
+          /**
+           * @param v  View
+           */
           public void onClick(View v) {
             if(groupLink.getColumn() < 99) {
               int column = groupLink.getColumn() + 1;
               groupLink.setColumnNumber(column);
               columnText.setText(Integer.toString(column));
-              fragment.changeModelColumnNumber(targetColumn, position-groupNameCount, column);
+              ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position-ColumnArrayAdapter.this.groupNameCount, column);
             }
           }          
         });
