@@ -64,7 +64,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   MovableGroupManager manager;
 
   // DEBUG textview
-  TextView testTextView;
+//  TextView testTextView;
   TextView filePathView;
   TextView modelFilePathView;
 
@@ -162,8 +162,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.modelFilePathView = (TextView)view.findViewById(R.id.modelPathView);
     this.modelFilePathView.setMovementMethod(ScrollingMovementMethod.getInstance());
 
-    this.testTextView = new TextView(this.canvasActivity);
-    this.testTextView = (TextView)view.findViewById(R.id.textView1);
+//    this.testTextView = new TextView(this.canvasActivity);
+//    this.testTextView = (TextView)view.findViewById(R.id.textView1);
 
     //再生速度の設定
     this.quickButton.setOnClickListener(new View.OnClickListener() {
