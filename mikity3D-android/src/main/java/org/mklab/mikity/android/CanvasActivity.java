@@ -6,6 +6,7 @@
 package org.mklab.mikity.android;
 
 import java.util.List;
+
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectFragment;
 import android.content.Intent;
@@ -18,8 +19,11 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Surface;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
@@ -58,6 +62,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.canvas);
 
+//    this.mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
     this.mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
     this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
     this.mDrawerToggle.syncState();
@@ -118,6 +123,15 @@ public class CanvasActivity extends RoboFragmentActivity {
     if (this.mDrawerToggle.onOptionsItemSelected(item)) {
       return true;
     }
+    switch(item.getItemId()) {
+      case R.id.menu_play:
+        CanvasActivity.this.canvasFragment.runAnimation();
+        break;
+      case R.id.menu_stop:
+        CanvasActivity.this.canvasFragment.timer.cancel();
+        CanvasActivity.this.canvasFragment.playable = false;
+        break;
+    }
     return super.onOptionsItemSelected(item);
   }
 
@@ -169,6 +183,13 @@ public class CanvasActivity extends RoboFragmentActivity {
     }
 
     super.onPause();
+  }
+  
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.menu_main, menu);
+    return true;
   }
 
   /**

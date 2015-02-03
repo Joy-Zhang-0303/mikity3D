@@ -29,7 +29,6 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
   private LayoutInflater layoutInflater_;
   private List<GroupManager> lists;
   private NavigationDrawerFragment fragment;
-  private int groupDepth;
   private List<Integer> targetColumn;
   private int groupNameCount;
 
@@ -65,7 +64,6 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
         view = this.layoutInflater_.inflate(this._viewResourceId, null);
         TextView columnText = (TextView)view.findViewById(R.id.groupNameText);
         columnText.setText(groupName.getGroupName());
-//        this.groupNameCount++;
       } else {
         final GroupLink groupLink = (GroupLink)this.lists.get(position);
         view = this.layoutInflater_.inflate(R.layout.list_link, null);
@@ -74,7 +72,7 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
         final EditText columnText = (EditText)view.findViewById(R.id.list_column); 
         columnText.setText(Integer.toString(groupLink.getColumn()));
 
-        Button minusButton = (Button)view.findViewById(R.id.minusButton);
+        Button minusButton = (Button)view.findViewById(R.id.minusButton2);
         minusButton.setOnClickListener(new OnClickListener() {
 
           public void onClick(View v) {
@@ -86,7 +84,7 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
             }
           }          
         });
-        Button plusButton = (Button)view.findViewById(R.id.plusButton);
+        Button plusButton = (Button)view.findViewById(R.id.plusButton2);
         plusButton.setOnClickListener(new OnClickListener() {
 
           public void onClick(View v) {
@@ -98,7 +96,6 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
             }
           }          
         });
-        
       }
     }
     return view;

@@ -33,6 +33,7 @@ import android.provider.OpenableColumns;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -190,6 +191,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     //ファイルパスビューの配置
     this.filePathView = (TextView)view.findViewById(R.id.filePathView);
     this.modelFilePathView = (TextView)view.findViewById(R.id.modelPathView);
+    this.modelFilePathView.setMovementMethod(ScrollingMovementMethod.getInstance());
 
     this.testTextView = new TextView(this.canvasActivity);
     this.testTextView = (TextView)view.findViewById(R.id.textView1);

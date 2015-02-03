@@ -13,7 +13,6 @@ import org.mklab.mikity.model.searcher.GroupName;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -32,13 +31,11 @@ public class ListColumnFragment extends RoboFragment {
   private int groupPosition = 0;
   private Button backButton;
   private NavigationDrawerFragment fragment;
-  private int groupDepth = 0;
   private List<Integer> targetColumn = new ArrayList<Integer>();
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     this.view = inflater.inflate(R.layout.set_column_fragment, container, false);
     this.listView = (ListView)this.view.findViewById(R.id.list_view_column);
-//    targetColumn.add(0);
     configureListView();
     this.backButton = (Button)this.view.findViewById(R.id.rootButton);
     this.backButton.setOnClickListener(new OnClickListener() {
@@ -47,7 +44,6 @@ public class ListColumnFragment extends RoboFragment {
         if(ListColumnFragment.this.groupManager.getParent() != null) {
           ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManager.getParent();
           ListColumnFragment.this.groupList = ListColumnFragment.this.groupManager.getItems();
-          groupDepth--;
           int size = targetColumn.size()-1;
           targetColumn.remove(size);
           configureListView();
@@ -59,7 +55,6 @@ public class ListColumnFragment extends RoboFragment {
   
   
   public void configureListView() {
-//    targetColumn.add(groupDepth);
     ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.list_groupname, groupList, fragment, targetColumn);
     this.listView.setAdapter(adapter);
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -70,7 +65,6 @@ public class ListColumnFragment extends RoboFragment {
           ListColumnFragment.this.groupPosition = position;
           ListColumnFragment.this.groupManager = ListColumnFragment.this.groupList.get(ListColumnFragment.this.groupPosition);
           ListColumnFragment.this.groupList = groupManager.getItems();
-          groupDepth++;
           targetColumn.add(position);
           configureListView();
         }
@@ -82,7 +76,6 @@ public class ListColumnFragment extends RoboFragment {
     this.groupManager = list;
     this.groupList = list.getItems();
   }
-
 
   public void setNavigationDrawerFragment(NavigationDrawerFragment fragment) {
     this.fragment = fragment;
