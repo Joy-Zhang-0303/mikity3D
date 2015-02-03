@@ -27,4 +27,8 @@ public class GroupLink extends GroupManager {
     return this.targetName;
   }
   
+  public void setColumnNumber(int columnNumber) {
+  	this.columnNumber = columnNumber;
+  }
+  
 }

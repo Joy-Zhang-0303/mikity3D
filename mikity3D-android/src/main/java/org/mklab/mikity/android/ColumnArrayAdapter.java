@@ -29,16 +29,20 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
   private List<GroupManager> lists;
   private NavigationDrawerFragment fragment;
   private int groupDepth;
+  private List<Integer> targetColumn;
+  private int groupNameCount;
 
   public ColumnArrayAdapter(Context context, int resourceId, List<GroupManager> lists, 
-      NavigationDrawerFragment fragment, int groupDepth) {
+      NavigationDrawerFragment fragment, List<Integer> targetColumn) {
     super(context, resourceId, lists);
     this._context = context;
     this._viewResourceId = resourceId;
     this.layoutInflater_ = (LayoutInflater)this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     this.lists = lists;
     this.fragment = fragment;
-    this.groupDepth = groupDepth;
+    this.targetColumn = targetColumn;
+    this.groupNameCount = 0;
+    
   }
   
   @Override
@@ -52,6 +56,7 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
         view = this.layoutInflater_.inflate(this._viewResourceId, null);
         TextView columnText = (TextView)view.findViewById(R.id.groupNameText);
         columnText.setText(groupName.getGroupName());
+        this.groupNameCount++;
       } else {
         final GroupLink groupLink = (GroupLink)this.lists.get(position);
         view = this.layoutInflater_.inflate(R.layout.list_link, null);
@@ -65,11 +70,25 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
           public void onClick(View v) {
             if(2 < groupLink.getColumn()) {
               int column = groupLink.getColumn() - 1;
-              columnText.setText(column);
-              fragment.changeModelColumnNumber(groupDepth, position, column);
+              groupLink.setColumnNumber(column);
+              columnText.setText(Integer.toString(column));
+              fragment.changeModelColumnNumber(targetColumn, position-groupNameCount, column);
             }
           }          
         });
+        Button plusButton = (Button)view.findViewById(R.id.plusButton);
+        plusButton.setOnClickListener(new OnClickListener() {
+
+          public void onClick(View v) {
+            if(groupLink.getColumn() < 99) {
+              int column = groupLink.getColumn() + 1;
+              groupLink.setColumnNumber(column);
+              columnText.setText(Integer.toString(column));
+              fragment.changeModelColumnNumber(targetColumn, position-groupNameCount, column);
+            }
+          }          
+        });
+        
       }
     }
     return view;

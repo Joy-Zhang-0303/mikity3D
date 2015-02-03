@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -39,7 +38,7 @@ public class ListColumnFragment extends RoboFragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     this.view = inflater.inflate(R.layout.set_column_fragment, container, false);
     this.listView = (ListView)this.view.findViewById(R.id.list_view_column);
-    targetColumn.add(0);
+//    targetColumn.add(0);
     configureListView();
     this.backButton = (Button)this.view.findViewById(R.id.rootButton);
     this.backButton.setOnClickListener(new OnClickListener() {
@@ -49,7 +48,7 @@ public class ListColumnFragment extends RoboFragment {
           ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManager.getParent();
           ListColumnFragment.this.groupList = ListColumnFragment.this.groupManager.getItems();
           groupDepth--;
-          int size = targetColumn.size() - 1;
+          int size = targetColumn.size();
           targetColumn.remove(size);
           configureListView();
         }
@@ -60,8 +59,8 @@ public class ListColumnFragment extends RoboFragment {
   
   
   public void configureListView() {
-    targetColumn.add(groupDepth);
-    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.list_groupname, groupList, fragment, groupDepth);
+//    targetColumn.add(groupDepth);
+    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.list_groupname, groupList, fragment, targetColumn);
     this.listView.setAdapter(adapter);
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

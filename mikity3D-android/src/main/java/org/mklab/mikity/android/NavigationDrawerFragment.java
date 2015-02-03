@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
@@ -651,16 +652,22 @@ public class NavigationDrawerFragment extends RoboFragment {
 	  this.targetNameList = allTargetList;
   }
   
-  public void changeModelColumnNumber(int groupPosition, int childPosition, int columnNumber) {
+  public void changeModelColumnNumber(List<Integer> targetColumn, int childPosition, int columnNumber) {
     Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
     Group[] groupArray = model.getGroups();
     Group group = groupArray[0];
+    
+    for (Iterator itr = targetColumn.iterator(); itr.hasNext();) {
+//       item = (GroupManager) itr.next();
+    	int target = (Integer) itr.next();
+    	group = group.getGroup(target);
+    }
     
 //    group = group.getGroup(0);
 //    for(int i=0; i<groupPosition; i++) {
 //      group = group.getGroup(0);
 //    }
-//    group.getLinkData(childPosition).setColumnNumber(columnNumber);
+    group.getLinkData(childPosition).setColumnNumber(columnNumber);
     this.canvasActivity.canvasFragment.configurateModel();
     this.canvasActivity.canvasFragment.setGroupManager();
   }
