@@ -131,7 +131,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.slowButton = (Button)view.findViewById(R.id.slowButton);
     this.reloadButton = (Button)view.findViewById(R.id.reloadButton);
     this.timeDataDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
-    this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
+//    this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
     this.setColumnButton = (Button)view.findViewById(R.id.sampleSetCplimnButton);
 
     this.selectButton.setEnabled(false);
@@ -274,17 +274,17 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.canvasActivity.controlRotation();
       }
     });
-    
-    this.sampleModelButton.setOnClickListener(new OnClickListener() {
-      
-      /**
-       * @param v View 
-       */
-      public void onClick(View v) {
-        DownloadFileFromURL get = new DownloadFileFromURL(NavigationDrawerFragment.this);
-        get.execute("http://jamox.mklab.org/img/menu/sitemap.png"); //$NON-NLS-1$
-      }
-    });
+//    
+//    this.sampleModelButton.setOnClickListener(new OnClickListener() {
+//      
+//      /**
+//       * @param v View 
+//       */
+//      public void onClick(View v) {
+//        DownloadFileFromURL get = new DownloadFileFromURL(NavigationDrawerFragment.this);
+//        get.execute("http://jamox.mklab.org/img/menu/sitemap.png"); //$NON-NLS-1$
+//      }
+//    });
     
     this.setColumnButton.setOnClickListener(new OnClickListener() {
       
