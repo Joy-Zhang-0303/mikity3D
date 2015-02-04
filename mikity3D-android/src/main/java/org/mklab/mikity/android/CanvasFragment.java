@@ -78,7 +78,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private double endTime;
   private int animationSpeed;
   boolean playable;
-  private AnimationTask animationTask;
+  AnimationTask animationTask;
   /** センサーマネージャー */
   SensorManager sensorManager;
   //  private boolean registerAccerlerometer;
@@ -122,10 +122,16 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   View view;
   /** プログレスダイアログ*/
   public ProgressDialog progressDialog;
-//  public int setModelCount = 0;
   /** 無効な時間データが読み込まれたかどうかの判定*/
   public boolean setIllegalTimeData = false;
-//  public boolean setProperTimeData = false;
+  /** ポーズボタンが押されたかの判定*/
+  public boolean isPause = false;
+  /** アニメーションの開始時間*/
+  private long startTime;
+  /** アニメーションの一時停止時間*/
+  private long stopTime;
+  /** アニメーションの待ち時間*/
+  private long waitTime;
 
   /**
    * @param savedInstanceState Bundle
@@ -355,8 +361,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     DialogFragment dialogFragment = new ExceptionDialogFragment();
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
-//    this.activity.ndFragment.timeDataName = "";
-//    this.activity.ndFragment.filePathView.setText(this.activity.ndFragment.timeDataName);
   }
   
   /**
@@ -378,7 +382,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     } catch (IllegalArgumentException e) {
       callExceptionDialogFragment("Please select proper data file or set column number to data size or lower."); //$NON-NLS-1$
     }
-//    this.setModelCount = 0;
+    
     final Group rootGroup = this.root.getModel(0).getGroup(0);
     checkLinkParameterType(rootGroup);
 
@@ -428,7 +432,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * アニメーションを開始します。
    */
   public void runAnimation() {
-    long startTime = SystemClock.uptimeMillis();
+    if(this.isPause == false) {
+      this.startTime = SystemClock.uptimeMillis();
+      this.waitTime = 0;
+    }
     this.animationSpeed = this.activity.ndFragment.animationSpeed;
     if (this.playable == false) {
       this.timer.cancel();
@@ -437,9 +444,12 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       return;
     }
     this.playable = false;
-
     this.endTime = this.manager.getEndTime();
-    this.animationTask = new AnimationTask(startTime, this.endTime, getManager(), getModelRender());
+    if(this.isPause) {
+      this.waitTime += SystemClock.uptimeMillis() - this.stopTime;
+    }
+    this.isPause = false;
+    this.animationTask = new AnimationTask(this.startTime, this.endTime, getManager(), getModelRender(), this.waitTime);
     this.animationTask.setSpeedScale((double)this.animationSpeed / 10);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
@@ -589,7 +599,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.modelRenderer.setChildren(children);
     Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
-//    this.setModelCount++;
   }
 
   /**
@@ -644,5 +653,12 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       this.progressDialog.dismiss();
     }
     configurateDirection();
+  }
+  /**
+   * 一時停止が押された時間を設定するメソッドです。
+   * @param stopTime 一時停止が押された時間
+   */
+  public void setStopTime(long stopTime) {
+    this.stopTime = stopTime;
   }
 }

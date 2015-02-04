@@ -10,4 +10,9 @@
         android:id="@+id/menu_stop"
         android:title="@string/button2"
         android:showAsAction="always" />
+    
+    <item
+        android:id="@+id/menu_pause"
+        android:title="@string/pause"
+        android:showAsAction="always" />
 </menu>

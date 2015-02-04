@@ -38,9 +38,11 @@ public class AnimationTask extends TimerTask {
   /** 終了時間　 */
   private double endTime = 0.0;
   /** 最後の更新時間 */
-  private long lastUpdatedTimeMillis = SystemClock.uptimeMillis();
+//  private long lastUpdatedTimeMillis = SystemClock.uptimeMillis();
   /** モデルキャンバス　 */
   private ModelRenderer renderer;
+  /** 遅延時間*/
+  private long delayTime;
 
   /**
    * コンストラクター
@@ -49,13 +51,15 @@ public class AnimationTask extends TimerTask {
    * @param endTime 終了時間
    * @param manager グループマネージャー
    * @param canvas モデルキャンバス
+   * @param delayTime 遅延時間
    */
-  public AnimationTask(double initialTime, double endTime, MovableGroupManager manager, ModelRenderer canvas) {
+  public AnimationTask(double initialTime, double endTime, MovableGroupManager manager, ModelRenderer canvas, long delayTime) {
     this.endTime = endTime;
     this.currentTime = initialTime;
     this.manager = manager;
     this.initialTime = initialTime;
     this.renderer = canvas;
+    this.delayTime = delayTime;
   }
 
 
@@ -94,7 +98,7 @@ public class AnimationTask extends TimerTask {
     if (this.currentTime == this.initialTime) {
       setUpAnimation();
     }
-    final long ctime = SystemClock.uptimeMillis();
+    final long ctime = SystemClock.uptimeMillis()-this.delayTime;
     this.currentTime = this.speedScale*(ctime- this.initialTime)/1000;
     if (this.manager.hasDHParameter()) {
       try {

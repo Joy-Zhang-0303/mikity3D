@@ -27,4 +27,5 @@
 	<string name="setSampleModelView">サンプルモデル</string>
 	<string name="setSampleModelButton">ダウンロード</string>
 	<string name="back">back</string>
+	<string name="pause">〃</string>
 </resources>

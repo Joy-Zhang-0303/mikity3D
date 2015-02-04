@@ -17,6 +17,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
@@ -49,7 +50,8 @@ public class CanvasActivity extends RoboFragmentActivity {
   CanvasFragment canvasFragment;
   /** NavigationDrawerFragment*/
   public NavigationDrawerFragment ndFragment;
-  /** ModelColumnNunberFragment*/
+  /** 停止ボタンが押されたかの判定*/
+  private boolean isPushedStopButton;
 
   /**
    * @see roboguice.activity.RoboFragmentActivity#onCreate(android.os.Bundle)
@@ -123,10 +125,24 @@ public class CanvasActivity extends RoboFragmentActivity {
     switch(item.getItemId()) {
       case R.id.menu_play:
         CanvasActivity.this.canvasFragment.runAnimation();
+        this.isPushedStopButton = false;
         break;
       case R.id.menu_stop:
         CanvasActivity.this.canvasFragment.timer.cancel();
         CanvasActivity.this.canvasFragment.playable = false;
+        this.isPushedStopButton = true;
+        CanvasActivity.this.canvasFragment.isPause = false;
+        break;
+      case R.id.menu_pause:
+        if(this.isPushedStopButton == false) {
+          if(CanvasActivity.this.canvasFragment.isPause == false) {
+            if(CanvasActivity.this.canvasFragment.animationTask != null) {
+              CanvasActivity.this.canvasFragment.timer.cancel();
+              CanvasActivity.this.canvasFragment.isPause = true;
+              this.canvasFragment.setStopTime(SystemClock.uptimeMillis());
+            }
+          }
+        }
         break;
       default:
         break;
