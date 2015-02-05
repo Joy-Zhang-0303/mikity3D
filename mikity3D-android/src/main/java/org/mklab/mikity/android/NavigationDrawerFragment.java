@@ -5,12 +5,20 @@
  */
 package org.mklab.mikity.android;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.model.MovableGroupManager;
@@ -25,7 +33,9 @@ import org.mklab.mikity.model.xml.simplexml.model.Group;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.OpenableColumns;
+import android.provider.ContactsContract.Contacts.Data;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -112,6 +122,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   public Button setColumnButton;
   /** ストリーム*/
   public InputStream input;
+  private Button unzipSaveButton;
 
   /**
    * @param savedInstanceState Bundle
@@ -132,7 +143,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.reloadButton = (Button)view.findViewById(R.id.reloadButton);
     this.timeDataDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
 //    this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
-    this.setColumnButton = (Button)view.findViewById(R.id.sampleSetCplimnButton);
+    this.setColumnButton = (Button)view.findViewById(R.id.sampleSetColumnButton);
 
     this.selectButton.setEnabled(false);
     this.quickButton.setEnabled(false);
@@ -305,6 +316,22 @@ public class NavigationDrawerFragment extends RoboFragment {
         }
       }
     });
+    
+    this.unzipSaveButton = (Button)view.findViewById(R.id.unzipSaveButton);
+    this.unzipSaveButton.setOnClickListener(new OnClickListener() {
+      final int REQUEST_CODE_ZIP = 3;
+      /**
+       * @param v  View
+       */
+      public void onClick(View v) { 
+try {
+          saveUnzipFile();
+        } catch (IOException e) {
+          // TODO 自動生成された catch ブロック
+          throw new RuntimeException(e);
+        }
+      }
+    });
     // fragmentの値をactivityで保持。
     //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
     this.canvasActivity.ndFragment = this;
@@ -451,5 +478,49 @@ public class NavigationDrawerFragment extends RoboFragment {
     group.getLinkData(childPosition).setColumnNumber(columnNumber);
     this.canvasActivity.canvasFragment.configurateModel();
     this.canvasActivity.canvasFragment.setGroupManager();
+  }
+  
+  public void unzipSaveFile(Uri uri) {
+    if (uri != null) { //$NON-NLS-1$
+      InputStream zipFile;
+      // ストリームを直接URIから取り出します。
+      try {
+        zipFile = this.canvasActivity.getContentResolver().openInputStream(uri);
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+      ZipInputStream in = new ZipInputStream(new BufferedInputStream(zipFile));
+      ZipEntry zipEntry;
+      BufferedOutputStream out;
+      int data;
+      try {
+        while((zipEntry = in.getNextEntry()) != null) {
+          out = new BufferedOutputStream(new FileOutputStream("/sdcard/mikity3d" + zipEntry.getName()));
+          while((data = in.read()) != -1) {
+            out.write(data);
+          }
+        }
+      } catch (IOException e) {
+        // TODO 自動生成された catch ブロック
+        throw new RuntimeException(e);
+      }
+    } 
+  }
+  
+  public void saveUnzipFile() throws IOException {
+    String path = Environment.getDownloadCacheDirectory().getPath();
+    ZipInputStream in = new ZipInputStream(new BufferedInputStream(new FileInputStream("/sdcard/Download/Furiage_Sim.zip")));
+    ZipEntry zipEntry;
+    BufferedOutputStream out = null;
+    int data;
+    while((zipEntry = in.getNextEntry()) != null) {
+      String a = zipEntry.getName();
+      out = new BufferedOutputStream(new FileOutputStream("/sdcard/Download/" + zipEntry.getName()));
+      while((data = in.read()) != -1) {
+        out.write(data);
+      }
+    }
+    out.close();
+    in.close();
   }
 }

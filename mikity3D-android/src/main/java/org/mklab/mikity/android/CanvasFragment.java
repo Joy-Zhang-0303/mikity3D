@@ -203,6 +203,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
           // タッチが離れた
           case MotionEvent.ACTION_UP:
             CanvasFragment.this.prevX = event.getX();
+            
             CanvasFragment.this.prevY = event.getY();
             break;
 

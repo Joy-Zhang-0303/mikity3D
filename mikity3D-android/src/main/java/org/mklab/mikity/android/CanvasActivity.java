@@ -230,6 +230,12 @@ public class CanvasActivity extends RoboFragmentActivity {
           loadTimeDataUri(uri);
         }
         break;
+      case 3:
+        if (resultCode == RESULT_OK && data != null) {
+          Uri uri = data.getData();
+          this.ndFragment.unzipSaveFile(uri);
+        }
+        break;
       default:
         break;
     }
