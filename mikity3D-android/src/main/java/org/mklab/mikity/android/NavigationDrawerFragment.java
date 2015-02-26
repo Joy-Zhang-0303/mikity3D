@@ -123,6 +123,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** ストリーム*/
   public InputStream input;
   private Button unzipSaveButton;
+  private Button assetsModelButton;
+  public Button assetsTimeButton;
 
   /**
    * @param savedInstanceState Bundle
@@ -317,19 +319,55 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
     
-    this.unzipSaveButton = (Button)view.findViewById(R.id.unzipSaveButton);
-    this.unzipSaveButton.setOnClickListener(new OnClickListener() {
-      final int REQUEST_CODE_ZIP = 3;
+//    this.unzipSaveButton = (Button)view.findViewById(R.id.unzipSaveButton);
+//    this.unzipSaveButton.setOnClickListener(new OnClickListener() {
+//      final int REQUEST_CODE_ZIP = 3;
+//      /**
+//       * @param v  View
+//       */
+//      public void onClick(View v) { 
+//try {
+//          saveUnzipFile();
+//        } catch (IOException e) {
+//          // TODO 自動生成された catch ブロック
+//          throw new RuntimeException(e);
+//        }
+//      }
+//    });
+    this.assetsModelButton = (Button)view.findViewById(R.id.assetsModelButtonView);
+    this.assetsModelButton.setOnClickListener(new OnClickListener() {
+      
       /**
        * @param v  View
        */
       public void onClick(View v) { 
-try {
-          saveUnzipFile();
-        } catch (IOException e) {
-          // TODO 自動生成された catch ブロック
-          throw new RuntimeException(e);
-        }
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        AssetsListViewFragment fragment =  new AssetsListViewFragment();
+        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
+        fragment.setModelTimeFrag(true);
+        fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+      }
+    });
+    
+    this.assetsTimeButton = (Button)view.findViewById(R.id.assetsTimeButtonView);
+    this.assetsTimeButton.setEnabled(false);
+    this.assetsTimeButton.setOnClickListener(new OnClickListener() {
+      
+      /**
+       * @param v  View
+       */
+      public void onClick(View v) { 
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        AssetsListViewFragment fragment =  new AssetsListViewFragment();
+        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
+        fragment.setModelTimeFrag(false);
+        fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
       }
     });
     // fragmentの値をactivityで保持。

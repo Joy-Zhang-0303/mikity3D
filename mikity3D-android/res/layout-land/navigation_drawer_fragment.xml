@@ -166,7 +166,7 @@
                 android:layout_weight="0"
                 android:text="@string/rotateLayoutButton" />
     	</LinearLayout>
-<!--       
+ <!--         
     	<LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -185,7 +185,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/setSampleModelButton" />
         </LinearLayout>
--->    
+-->
+        
     	<LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -204,4 +205,63 @@
                 android:layout_height="wrap_content"
                 android:text="@string/setModelColumnNumberButton" />
         </LinearLayout>
+<!--          
+    	<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/unzipSaveView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/setModelColumnNumberView" />
+
+            <Button
+                android:id="@+id/unzipSaveButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setModelColumnNumberButton" />
+        </LinearLayout>
+-->        
+    	<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/assetsModelTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/assetsModelText" />
+
+            <Button
+                android:id="@+id/assetsModelButtonView"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/assetsModelButtonText" />
+        </LinearLayout>
+        
+    	<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/assetsTimeTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/assetsTimeText" />
+
+            <Button
+                android:id="@+id/assetsTimeButtonView"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/assetsTimeButtonText" />
+        </LinearLayout>
+        
+    	
 </LinearLayout>
