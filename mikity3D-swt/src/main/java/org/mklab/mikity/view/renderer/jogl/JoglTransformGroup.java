@@ -21,7 +21,7 @@ public class JoglTransformGroup implements MovableGroup {
   private List<JoglObject> objects = new ArrayList<>();
   /**可動サブグループ */
   private List<JoglTransformGroup> groups = new ArrayList<>();
-  /** 初期座標系 */
+  /** 座標系の初期値 */
   private JoglCoordinate initialCoordinate;
   /** 座標系 */
   private JoglCoordinate coordinate = new JoglCoordinate();

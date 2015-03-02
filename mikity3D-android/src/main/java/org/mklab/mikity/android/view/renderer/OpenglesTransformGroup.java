@@ -22,8 +22,10 @@ public class OpenglesTransformGroup implements MovableGroup {
   private List<OpenglesObject> objects;
   /** トランスフォームグループのリスト */
   private List<OpenglesTransformGroup> groups;
+  /** 座標系の初期値 */
+  private OpenglesCoordinate initialCoordinate;
   /** 座標系 */
-  private OpenglesCoordinate coordinate;
+  private OpenglesCoordinate coordinate = new OpenglesCoordinate();
   /** 名前 */
   private String name;
 
@@ -54,12 +56,12 @@ public class OpenglesTransformGroup implements MovableGroup {
   }
 
   /**
-   * 座標系を設定します。
+   * 座標系の初期値を設定します。
    * 
-   * @param coordinate 座標系
+   * @param coordinate 座標系の初期値
    */
-  public void setCoordinate(OpenglesCoordinate coordinate) {
-    this.coordinate = coordinate;
+  public void setInitialCoordinate(OpenglesCoordinate coordinate) {
+    this.initialCoordinate = coordinate;
   }
 
   /**
@@ -67,6 +69,10 @@ public class OpenglesTransformGroup implements MovableGroup {
    */
   public void apply(GL10 gl10) {
     gl10.glPushMatrix();
+
+    if (this.initialCoordinate != null) {
+      this.initialCoordinate.apply(gl10);
+    }
 
     if (this.coordinate != null) {
       this.coordinate.apply(gl10);
