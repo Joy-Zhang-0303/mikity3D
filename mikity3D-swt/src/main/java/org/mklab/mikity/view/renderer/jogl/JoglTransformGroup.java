@@ -21,8 +21,10 @@ public class JoglTransformGroup implements MovableGroup {
   private List<JoglObject> objects = new ArrayList<>();
   /**可動サブグループ */
   private List<JoglTransformGroup> groups = new ArrayList<>();
+  /** 初期座標系 */
+  private JoglCoordinate initialCoordinate;
   /** 座標系 */
-  private JoglCoordinate coordinate;
+  private JoglCoordinate coordinate = new JoglCoordinate();
   /** 名前 */
   private String name;
 
@@ -45,12 +47,12 @@ public class JoglTransformGroup implements MovableGroup {
   }
 
   /**
-   * 座標系を設定します。
+   * 座標系の初期値を設定します。
    * 
-   * @param coordinate 座標系
+   * @param coordinate 座標系の初期値
    */
-  public void setCoordinate(JoglCoordinate coordinate) {
-    this.coordinate = coordinate;
+  public void setInitialCoordinate(JoglCoordinate coordinate) {
+    this.initialCoordinate = coordinate; 
   }
 
   /**
@@ -60,6 +62,10 @@ public class JoglTransformGroup implements MovableGroup {
   public void display(GL2 gl) {
     gl.glPushMatrix();
     
+    if (this.initialCoordinate != null) {
+      this.initialCoordinate.apply(gl);
+    }
+
     if (this.coordinate != null) {
       this.coordinate.apply(gl);
     }

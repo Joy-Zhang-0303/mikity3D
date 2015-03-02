@@ -27,7 +27,7 @@ public class JoglCoordinate {
 
   /** z軸方向の移動距離[m] */
   private float z;
-
+  
   /**
    * GLによる座標変換を適用します。
    * @param gl GL
