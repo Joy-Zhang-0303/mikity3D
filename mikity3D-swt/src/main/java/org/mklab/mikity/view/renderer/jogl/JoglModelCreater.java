@@ -32,7 +32,7 @@ public class JoglModelCreater {
 
     bg.addChild(tg); ///////
     
-    final List<JoglBranchGroup> branchGroups = new ArrayList<JoglBranchGroup>();
+    final List<JoglBranchGroup> branchGroups = new ArrayList<>();
     branchGroups.add(bg);
 
     return branchGroups.toArray(new JoglBranchGroup[branchGroups.size()]);

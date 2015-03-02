@@ -10,7 +10,6 @@ import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
-import javax.media.opengl.GLProfile;
 import javax.media.opengl.awt.GLJPanel;
 import javax.media.opengl.fixedfunc.GLLightingFunc;
 import javax.media.opengl.fixedfunc.GLMatrixFunc;
@@ -151,9 +150,11 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     display();
     // TODO
   }
-  
+
   /**
-   * {@inheritDoc}
+   * @param drawable
+   * @param modeChanged
+   * @param deviceChanged
    */
   public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
     // nothing to do
@@ -174,6 +175,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
 
   /**
    * マウス左クリック時の処理　カメラを移動させます。
+   * @param e 
    */
   public void mousePressed(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e) == true) {
@@ -240,6 +242,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
 
   /**
    * マウスをドラッグさせるとカメラ座標が移動させます。
+   * @param e 
    */
   public void mouseDragged(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e)) {
@@ -301,8 +304,10 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     display();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public void dispose(GLAutoDrawable arg0) {
     // TODO 自動生成されたメソッド・スタブ
-    
   }
 }

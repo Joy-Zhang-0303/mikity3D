@@ -83,7 +83,7 @@ public class AnimationWindowTest {
   @Test
   public void testExceptionForMakeRoot() {
     this.thrown.expect(RuntimeException.class);
-    this.thrown.expectMessage("ddd");
+    this.thrown.expectMessage("ddd"); //$NON-NLS-1$
     
     this.am.makeRoot("filePath"); //$NON-NLS-1$
   }

@@ -23,8 +23,8 @@ public class JoglBranchGroup implements JoglObject {
    * 新しく生成された<code>JoglBranchGroup</code>オブジェクトを初期化します。
    */
   public JoglBranchGroup() {
-    this.objects = new ArrayList<JoglObject>();
-    this.groups = new ArrayList<JoglTransformGroup>();
+    this.objects = new ArrayList<>();
+    this.groups = new ArrayList<>();
   }
 
   /**
