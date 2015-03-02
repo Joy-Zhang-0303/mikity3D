@@ -15,8 +15,7 @@ public class JoglModeler extends AbstractModeler {
   private JoglModelRenderer renderer;
 
   /**
-   * Initialize the generated object of {@link JoglModeler}.
-   * 
+   * 新しく生成された<code>JoglModeler</code>オブジェクトを初期化します。
    * @param parent ツリーの親
    * @param style スタイル
    * @param root ツリーのルート

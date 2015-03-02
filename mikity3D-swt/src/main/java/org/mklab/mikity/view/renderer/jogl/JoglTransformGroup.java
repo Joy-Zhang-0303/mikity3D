@@ -3,7 +3,6 @@ package org.mklab.mikity.view.renderer.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 
 import org.mklab.mikity.model.CoordinateParameter;
@@ -12,28 +11,20 @@ import org.mklab.mikity.model.MovableGroup;
 
 
 /**
- * JOGLの座標系のグループを表すクラスです。
+ * 可動グループを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/07
  */
 public class JoglTransformGroup implements MovableGroup {
-  /** オブジェクトのリスト */
-  private List<JoglObject> objects;
-  /** トランスフォームグループのリスト */
-  private List<JoglTransformGroup> groups;
+  /** オブジェクト */
+  private List<JoglObject> objects = new ArrayList<>();
+  /**可動サブグループ */
+  private List<JoglTransformGroup> groups = new ArrayList<>();
   /** 座標系 */
   private JoglCoordinate coordinate;
   /** 名前 */
   private String name;
-
-  /**
-   * 新しく生成された<code>JoglTransformGroup</code>オブジェクトを初期化します。
-   */
-  public JoglTransformGroup() {
-    this.objects = new ArrayList<JoglObject>();
-    this.groups = new ArrayList<JoglTransformGroup>();
-  }
 
   /**
    * オブジェクトを追加します。
@@ -45,9 +36,9 @@ public class JoglTransformGroup implements MovableGroup {
   }
 
   /**
-   * トランスフォームグループを追加します。
+   * 可動サブグループを追加します。
    * 
-   * @param child トランスフォームグループ
+   * @param child 可動サブグループ
    */
   public void addChild(JoglTransformGroup child) {
     this.groups.add(child);

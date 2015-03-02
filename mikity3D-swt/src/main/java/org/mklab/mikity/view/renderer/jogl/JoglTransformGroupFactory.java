@@ -20,13 +20,15 @@ import org.mklab.mikity.util.Util;
 
 
 /**
+ * {@link JoglTransformGroup}のファクトリークラスです。
  * @author iwamoto
  * @version $Revision$, 2012/02/07
  */
 public class JoglTransformGroupFactory {
   /**
-   * @param group グループ
-   * @return トランスフォームグループ
+   * {@link JoglTransformGroup}を生成します。
+   * @param group オブジェクトのグループ
+   * @return 可動グループ
    */
   public JoglTransformGroup create(final Group group) {
     final JoglTransformGroup movableGroup = new JoglTransformGroup();
@@ -47,8 +49,8 @@ public class JoglTransformGroupFactory {
       movableGroup.addChild(JoglPrimitiveFactory.create(cone));
     }
 
-    final List<CoordinateParameter> coordinateParameters = new ArrayList<CoordinateParameter>();
-    final List<DHParameter> dhParameters = new ArrayList<DHParameter>();
+    final List<CoordinateParameter> coordinateParameters = new ArrayList<>();
+    final List<DHParameter> dhParameters = new ArrayList<>();
     
     final LinkData[] links = group.getLinkData();
     for (final LinkData link : links) {
@@ -88,9 +90,10 @@ public class JoglTransformGroupFactory {
   }
 
   /**
-   * 移動可能なグループの座標を生成します。
-   * @param group グループ
-   * @return 移動可能なグループの座標
+   * 可動グループを生成します。
+   * 
+   * @param group オブジェクトのグループ
+   * @return 可動グループ
    */
   private JoglCoordinate createCoordinateOf(final Group group) {
     final Location groupLocation = group.getLocation();

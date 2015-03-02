@@ -13,19 +13,10 @@ import javax.media.opengl.GL2;
  * @version $Revision$, 2012/01/20
  */
 public class JoglBranchGroup implements JoglObject {
-
-  /** オブジェクトのリスト */
-  private List<JoglObject> objects;
-  /** 座標系 */
-  private List<JoglTransformGroup> groups;
-
-  /**
-   * 新しく生成された<code>JoglBranchGroup</code>オブジェクトを初期化します。
-   */
-  public JoglBranchGroup() {
-    this.objects = new ArrayList<>();
-    this.groups = new ArrayList<>();
-  }
+  /** オブジェクト */
+  private List<JoglObject> objects = new ArrayList<>();
+  /** 可動サブグループ */
+  private List<JoglTransformGroup> groups = new ArrayList<>();
 
   /**
    * オブジェクトを追加します。
@@ -37,9 +28,9 @@ public class JoglBranchGroup implements JoglObject {
   }
 
   /**
-   * 座標系を追加します。
+   * 可動サブグループを追加します。
    * 
-   * @param group 座標系
+   * @param group 可動サブグループ
    */
   public void addChild(JoglTransformGroup group) {
     this.groups.add(group);
@@ -51,13 +42,11 @@ public class JoglBranchGroup implements JoglObject {
   public void display(GL2 gl) {
     for (final JoglObject object : this.objects) {
       object.display(gl);
-
     }
 
     for (final JoglTransformGroup group : this.groups) {
       group.display(gl);
     }
-
   }
 
 }

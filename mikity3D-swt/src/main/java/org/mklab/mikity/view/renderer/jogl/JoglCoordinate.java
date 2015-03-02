@@ -10,22 +10,22 @@ import javax.media.opengl.GL2;
  * @version $Revision$, 2012/02/09
  */
 public class JoglCoordinate {
-  /** x軸周りの回転[rad] */
+  /** x軸周りの回転角度[rad] */
   private float rotationX;
 
-  /** y軸周りの回転[rad] */
+  /** y軸周りの回転角度[rad] */
   private float rotationY;
 
-  /** z軸周りの回転[rad] */
+  /** z軸周りの回転角度[rad] */
   private float rotationZ;
 
-  /** x[m] */
+  /** x軸方向の移動距離[m] */
   private float x;
 
-  /** y[m] */
+  /** y軸方向の移動距離[m] */
   private float y;
 
-  /** z[m] */
+  /** z軸方向の移動距離[m] */
   private float z;
 
   /**
@@ -40,9 +40,11 @@ public class JoglCoordinate {
   }
 
   /**
-   * @param x x座標
-   * @param y y座標
-   * @param z z座標
+   * x軸, y軸, z軸方向の移動距離を設定します。
+   * 
+   * @param x x座標方向の移動距離
+   * @param y y座標方向の移動距離
+   * @param z z座標方向の移動距離
    */
   public void setLocation(float x, float y, float z) {
     this.x = x;
@@ -51,11 +53,11 @@ public class JoglCoordinate {
   }
 
   /**
-   * x-y-z軸周りの回転を設定します。
+   * x-y-z軸周りの回転角度を設定します。
    * 
-   * @param rotationX x軸周りの回転
-   * @param rotationY y軸周りの回転
-   * @param rotationZ z軸周りの回転
+   * @param rotationX x軸周りの回転角度
+   * @param rotationY y軸周りの回転角度
+   * @param rotationZ z軸周りの回転角度
    */
   public void setRotation(float rotationX, float rotationY, float rotationZ) {
     this.rotationX = rotationX;

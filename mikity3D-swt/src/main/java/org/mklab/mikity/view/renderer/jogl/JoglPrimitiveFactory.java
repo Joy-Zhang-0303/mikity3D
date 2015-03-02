@@ -31,10 +31,10 @@ import org.mklab.mikity.view.renderer.jogl.primitive.JoglTrianglePolygon;
 public class JoglPrimitiveFactory {
 
   /**
-   * グループを生成します。
+   * 可動グループを生成します。
    * 
-   * @param group グループ
-   * @return トランスフォームグループ
+   * @param group オブジェクトのグループ
+   * @return 可動グループ
    */
   public static JoglTransformGroup create(Group group) {
     return new JoglTransformGroupFactory().create(group);
@@ -94,7 +94,7 @@ public class JoglPrimitiveFactory {
   }
 
   /**
-   * 与えられたcylinderを含む可動グループを生成します。
+   * 与えられたcylinderを含む可動なグループを生成します。
    * 
    * @param cylinder シリンダー
    * @return 与えられたcylinderを含む可動グループ
