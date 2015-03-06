@@ -144,7 +144,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case ROTATIONE_Z:
+      case ROTATION_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
           if (dataIsRadian) {
@@ -245,7 +245,7 @@ public abstract class AbstractDataPicker implements DataPicker {
           }
         }
         break;
-      case ROTATIONE_Z:
+      case ROTATION_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           double angleZ = this.coordinateParameters[i].getAngleZ();
           if (Util.radian) {

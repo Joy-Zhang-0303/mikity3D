@@ -23,5 +23,5 @@ public enum CoordinateParameterType {
   /** Rotation Y */
   ROTATION_Y,
   /** Rotation Z */
-  ROTATIONE_Z;
+  ROTATION_Z;
 }
