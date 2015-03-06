@@ -495,6 +495,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.setColumnButton.setEnabled((flag));
     this.reloadButton.setEnabled(flag);
     this.timeDataDeleteButton.setEnabled(flag);
+    this.assetsTimeButton.setEnabled(flag);
   }
   
   /**

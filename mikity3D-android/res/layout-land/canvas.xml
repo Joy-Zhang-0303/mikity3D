@@ -15,21 +15,22 @@
 
     <LinearLayout
         android:id="@+id/drawer_layout"
-        android:layout_width="320dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:background="#000"
         android:orientation="vertical" >
-
-        <fragment
-        	xmlns:android="http://schemas.android.com/apk/res/android"
-        	android:id="@+id/fragment_navigation_drawer"
-        	android:name="org.mklab.mikity.android.NavigationDrawerFragment"
-        	android:layout_width="wrap_content"
-        	android:layout_height="match_parent" >
-            
-
-        </fragment>
+		<ScrollView
+    		android:layout_width="match_parent"
+       		android:layout_height="match_parent" >
+        	<fragment
+        		xmlns:android="http://schemas.android.com/apk/res/android"
+        		android:id="@+id/fragment_navigation_drawer"
+        		android:name="org.mklab.mikity.android.NavigationDrawerFragment"
+        		android:layout_width="wrap_content"
+        		android:layout_height="match_parent" >
+        	</fragment>
+    	</ScrollView>
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>
