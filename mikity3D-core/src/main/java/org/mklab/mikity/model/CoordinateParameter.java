@@ -21,9 +21,9 @@ public class CoordinateParameter {
   /** X軸周りの回転 */
   private double rotationX;
   /** Y軸周りの回転 */
-  private double rotationeY;
+  private double rotationY;
   /** Z軸ｋ周りの回転 */
-  private double rotationeZ;
+  private double rotationZ;
 
   /**
    * 新しく生成された<code>CoordinateParameter</code>オブジェクトを初期化します。
@@ -46,8 +46,8 @@ public class CoordinateParameter {
     this.y = y;
     this.z = z;
     this.rotationX = angleX;
-    this.rotationeY = angleY;
-    this.rotationeZ = angleZ;
+    this.rotationY = angleY;
+    this.rotationZ = angleZ;
   }
 
   /**
@@ -128,7 +128,7 @@ public class CoordinateParameter {
    * @return Y軸周りの回転の値
    */
   public double getAngleY() {
-    return this.rotationeY;
+    return this.rotationY;
   }
 
   /**
@@ -137,7 +137,7 @@ public class CoordinateParameter {
    * @param angleY Y軸周りの回転の値
    */
   public void setAngleY(double angleY) {
-    this.rotationeY = angleY;
+    this.rotationY = angleY;
   }
 
   /**
@@ -146,7 +146,7 @@ public class CoordinateParameter {
    * @return Z軸周りの回転の値
    */
   public double getAngleZ() {
-    return this.rotationeZ;
+    return this.rotationZ;
   }
 
   /**
@@ -155,6 +155,6 @@ public class CoordinateParameter {
    * @param angleZ Z軸周りの回転の値
    */
   public void setAngleZ(double angleZ) {
-    this.rotationeZ = angleZ;
+    this.rotationZ = angleZ;
   }
 }

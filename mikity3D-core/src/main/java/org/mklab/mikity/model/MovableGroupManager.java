@@ -188,7 +188,7 @@ public class MovableGroupManager {
           } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
             type = CoordinateParameterType.ROTATION_Y;
           } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTATIONE_Z;
+            type = CoordinateParameterType.ROTATION_Z;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
@@ -211,7 +211,7 @@ public class MovableGroupManager {
           } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
             type = CoordinateParameterType.ROTATION_Y;
           } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTATIONE_Z;
+            type = CoordinateParameterType.ROTATION_Z;
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.3")); //$NON-NLS-1$
           }
