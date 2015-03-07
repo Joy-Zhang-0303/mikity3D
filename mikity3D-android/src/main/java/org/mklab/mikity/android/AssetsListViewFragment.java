@@ -21,6 +21,8 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,7 @@ public class AssetsListViewFragment extends RoboFragment {
   private CanvasActivity canvasActivity;
   private AssetManager assetManager;
   private boolean isModel;
+  private FragmentManager fragmentManager;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -100,6 +103,7 @@ public class AssetsListViewFragment extends RoboFragment {
                             } else {
                               AssetsListViewFragment.this.canvasActivity.canvasFragment.loadtimeSeriesData(input);
                             }
+                            AssetsListViewFragment.this.fragmentManager.popBackStack();
                           } catch(IOException e) {
                             e.printStackTrace();
                           } catch (Mikity3dSerializeDeserializeException e) {
@@ -219,5 +223,19 @@ public class AssetsListViewFragment extends RoboFragment {
       }
     }
     return nextFileLimitList;
+  }
+  
+  public void fragmentTransaction() {
+    FragmentManager fragmentManager = getFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    NavigationDrawerFragment fragment =  new NavigationDrawerFragment();
+    
+    fragmentTransaction.replace(R.id.assets_list_layput, fragment);
+    fragmentTransaction.addToBackStack(null);
+    fragmentTransaction.commit();
+  }
+  
+  public void setFragmentManager(FragmentManager fragmentManager) {
+  	this.fragmentManager = fragmentManager;
   }
 }

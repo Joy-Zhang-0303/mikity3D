@@ -346,6 +346,7 @@ public class NavigationDrawerFragment extends RoboFragment {
         AssetsListViewFragment fragment =  new AssetsListViewFragment();
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setModelTimeFrag(true);
+        fragment.setFragmentManager(fragmentManager);
         fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -365,6 +366,7 @@ public class NavigationDrawerFragment extends RoboFragment {
         AssetsListViewFragment fragment =  new AssetsListViewFragment();
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setModelTimeFrag(false);
+        fragment.setFragmentManager(fragmentManager);
         fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();

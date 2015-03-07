@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        android:background="#000001" >
+        android:background="#000001"
+        android:id="@+id/assets_list_layput" >
 
     <ListView
         android:id="@+id/assetsListView"
