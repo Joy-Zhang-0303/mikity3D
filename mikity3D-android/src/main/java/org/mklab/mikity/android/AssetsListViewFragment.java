@@ -85,9 +85,9 @@ public class AssetsListViewFragment extends RoboFragment {
                             AssetsListViewFragment.this.currentPath,
                                 item,
                                 Environment
-                                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM
+                                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS
                                                 + File.separator
-                                                + "ASSETSCOPY")); //$NON-NLS-1$
+                                                + "org.mklab.mikity")); //$NON-NLS-1$
 
                           InputStream input;
                           try {

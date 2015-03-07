@@ -28,8 +28,9 @@
 	<string name="setSampleModelButton">ダウンロード</string>
 	<string name="back">Back</string>
 	<string name="pause">Pause</string>
-	<string name="assetsModelText">Sample 3D Model</string>
+	<string name="sampleText">Sample</string>
+	<string name="assetsModelText">3D Model</string>
 	<string name="assetsModelButtonText">Open</string>
-	<string name="assetsTimeText">Sample Time Series</string>
+	<string name="assetsTimeText">Time Series</string>
 	<string name="assetsTimeButtonText">Open</string>
 </resources>
