@@ -7,11 +7,9 @@ package org.mklab.mikity.android;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
@@ -30,25 +28,24 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 
+import roboguice.fragment.RoboFragment;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.OpenableColumns;
-import android.provider.ContactsContract.Contacts.Data;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-import roboguice.fragment.RoboFragment;
 
 
 /**
@@ -124,7 +121,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   public InputStream input;
   private Button unzipSaveButton;
   private Button assetsModelButton;
-  public Button assetsTimeButton;
+  Button assetsTimeButton;
 
   /**
    * @param savedInstanceState Bundle
@@ -521,8 +518,11 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.canvasActivity.canvasFragment.setGroupManager();
   }
   
+  /**
+   * @param uri
+   */
   public void unzipSaveFile(Uri uri) {
-    if (uri != null) { //$NON-NLS-1$
+    if (uri != null) {
       InputStream zipFile;
       // ストリームを直接URIから取り出します。
       try {
@@ -536,7 +536,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       int data;
       try {
         while((zipEntry = in.getNextEntry()) != null) {
-          out = new BufferedOutputStream(new FileOutputStream("/sdcard/mikity3d" + zipEntry.getName()));
+          out = new BufferedOutputStream(new FileOutputStream("/sdcard/mikity3d" + zipEntry.getName())); //$NON-NLS-1$
           while((data = in.read()) != -1) {
             out.write(data);
           }
@@ -548,9 +548,12 @@ public class NavigationDrawerFragment extends RoboFragment {
     } 
   }
   
-  public void saveUnzipFile() throws IOException {
+  /**
+   * @throws IOException
+   */
+  private void saveUnzipFile() throws IOException {
     String path = Environment.getDownloadCacheDirectory().getPath();
-    ZipInputStream in = new ZipInputStream(new BufferedInputStream(new FileInputStream("/sdcard/Download/Furiage_Sim.zip")));
+    ZipInputStream in = new ZipInputStream(new BufferedInputStream(new FileInputStream("/sdcard/Download/Furiage_Sim.zip"))); //$NON-NLS-1$
     ZipEntry zipEntry;
     BufferedOutputStream out = null;
     int data;

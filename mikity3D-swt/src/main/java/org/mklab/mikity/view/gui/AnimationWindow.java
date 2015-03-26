@@ -82,7 +82,7 @@ public class AnimationWindow extends ApplicationWindow {
 
   /** */
   Text modelFilePathText;
-  
+
   /** */
   Text filePathText;
 
@@ -100,10 +100,10 @@ public class AnimationWindow extends ApplicationWindow {
 
   /** ModelCanvas */
   private ModelRenderer modelRenderer;
-  
+
   /** */
   private Frame frame;
-  
+
   /** */
   private Composite composite;
 
@@ -117,29 +117,31 @@ public class AnimationWindow extends ApplicationWindow {
     super(parentShell);
     setRoot(root);
   }
-  
+
   /**
    * コンストラクター
    * 
    * @param parentShell 親シェル
    * @param modelFile モデルファイル
    * @throws IOException ファイルを読み込めない場合
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
   public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
     this(parentShell, new Mikity3dFactory().loadFile(modelFile));
   }
-  
+
   /**
    * ファイル名を指定しないコンストラクター
+   * 
    * @param parentShell 親シェル
    */
   public AnimationWindow(final Shell parentShell) {
     super(parentShell);
   }
-  
+
   /**
    * ルートを設定し、モデル描画をできるようにするためのメソッドです。
+   * 
    * @param root ルート
    */
   public void setRoot(final Mikity3d root) {
@@ -150,9 +152,10 @@ public class AnimationWindow extends ApplicationWindow {
     //this.modelRenderer = new Java3dModelRenderer(this.root);
     this.modelRenderer = new JoglModelRenderer();
   }
-  
+
   /**
    * ルートを返すメソッドです。
+   * 
    * @return root ルート
    */
   public Mikity3d getRoot() {
@@ -172,7 +175,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * {@inheritDoc}          
+   * {@inheritDoc}
    */
   @Override
   protected Control createContents(final Composite parent) {
@@ -220,38 +223,42 @@ public class AnimationWindow extends ApplicationWindow {
     final Composite createViewComposite = new Composite(parent, SWT.EMBEDDED);
     final GridData gridData = new GridData(GridData.FILL_BOTH);
     createViewComposite.setLayoutData(gridData);
-    
+
     // AWTのフレームを作る。
     setFrame(createViewComposite);
     setComposite(createViewComposite);
   }
-  
+
   /**
    * フレームを設定するためのメソッドです。
+   * 
    * @param composite コンポジット
    */
   private void setFrame(Composite composite) {
     this.frame = SWT_AWT.new_Frame(composite);
   }
-  
+
   /**
    * コンポジットを設定するメソッドです。
+   * 
    * @param composite コンポジット
    */
   private void setComposite(Composite composite) {
     this.composite = composite;
   }
-  
+
   /**
    * コンポジットを返すメソッドです。
+   * 
    * @return composite　コンポジット
    */
   public Composite getComposite() {
     return this.composite;
   }
-  
+
   /**
    * フレームを返すメソッドです。
+   * 
    * @return frame フレーム
    */
   public Frame getFrame() {
@@ -259,12 +266,13 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * モデルデータを設定するためのメソッドです。
+   * モデルデータを設定します。
+   * 
    * @param frame フレーム
    */
   public void setModelData(final Frame frame) {
     frame.add((Component)this.modelRenderer);
-    
+
     final Group[] children = this.root.getModel(0).getGroups();
     this.modelRenderer.setChildren(children);
 
@@ -275,7 +283,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * This method initializes controllerComp
+   * コントローラーを生成します。
    * 
    * コントローラCompositeの中身
    * 
@@ -319,10 +327,10 @@ public class AnimationWindow extends ApplicationWindow {
 
     fasterButton.addSelectionListener(new SelectionAdapter() {
       /**
-       * @param arg0 selectionEvent 
+       * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent arg0) {
+      public void widgetSelected(SelectionEvent e) {
         AnimationWindow.this.speed += 0.1;
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.speed);
@@ -335,10 +343,10 @@ public class AnimationWindow extends ApplicationWindow {
 
     slowerButton.addSelectionListener(new SelectionAdapter() {
       /**
-       * @param arg0  selectionEvent
+       * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent arg0) {
+      public void widgetSelected(SelectionEvent e) {
         AnimationWindow.this.speed -= 0.1;
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.speed);
@@ -351,7 +359,7 @@ public class AnimationWindow extends ApplicationWindow {
 
     playbackButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       /**
-       * @param e selectionEvent 
+       * {@inheritDoc}
        */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
@@ -361,10 +369,10 @@ public class AnimationWindow extends ApplicationWindow {
 
     stopButton.addSelectionListener(new SelectionAdapter() {
       /**
-       * @param arg0 selectionEvent 
+       * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent arg0) {
+      public void widgetSelected(SelectionEvent e) {
         // スレッドを停止させる。復元不能
         AnimationWindow.this.timer.cancel();
         playable = true;
@@ -373,7 +381,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * 実行時間バーを生成する。
+   * 実行時間バーを生成します。
    * 
    * @param parent 親コンポジット
    */
@@ -397,11 +405,12 @@ public class AnimationWindow extends ApplicationWindow {
     this.timeSlider.setMaximum(0);
 
     this.timeSlider.addSelectionListener(new SelectionAdapter() {
+
       /**
-       * @param arg0 selectionEvent 
+       * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent arg0) {
+      public void widgetSelected(SelectionEvent e) {
         final double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
         AnimationWindow.this.manager.updateMovableGroupsWithCoordinateParameter(t);
         if (AnimationWindow.this.animationTask != null) {
@@ -417,7 +426,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * モデルファイルを選択するボタン
+   * モデルファイルを選択すチューザーを生成します。
    * 
    * @param parent 親コンポジット
    */
@@ -441,7 +450,7 @@ public class AnimationWindow extends ApplicationWindow {
         }
       }
     });
-    
+
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 4;
     this.modelFilePathText.setLayoutData(gridData);
@@ -452,39 +461,38 @@ public class AnimationWindow extends ApplicationWindow {
     refButton.addSelectionListener(new SelectionAdapter() {
 
       /**
-       * @param arg0 selectionEvent
+       * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent arg0) {
+      public void widgetSelected(SelectionEvent e) {
         final FileDialog dialog = new FileDialog(parent.getShell());
-        // ファイルを選択させる
         final String filePath = dialog.open();
         if (filePath != null) {
-          // ルートの設定setRoot(root);
           makeRoot(filePath);
-          setModelData(getFrame()); 
+          setModelData(getFrame());
         }
       }
     });
   }
-  
+
   /**
-   * ルートを作るメソッドです。
+   * ルートを作ります。
+   * 
    * @param filePath ファイルのパス
    */
   public void makeRoot(String filePath) {
     try {
-      File file = new File(filePath);
-      Mikity3dFactory m3f = new Mikity3dFactory();
-      Mikity3d mroot = m3f.loadFile(file);
+      final File file = new File(filePath);
+      final Mikity3dFactory m3f = new Mikity3dFactory();
+      final Mikity3d mroot = m3f.loadFile(file);
       setRoot(mroot);
-      } catch (IOException e) {
-          throw new RuntimeException("ddd");
-      } catch (Mikity3dSerializeDeserializeException e) {
-          throw new RuntimeException(e);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    } catch (Mikity3dSerializeDeserializeException e) {
+      throw new RuntimeException(e);
     }
   }
-  
+
   /**
    * ファイルを選択するボタン
    * 
@@ -521,12 +529,11 @@ public class AnimationWindow extends ApplicationWindow {
     refButton.addSelectionListener(new SelectionAdapter() {
 
       /**
-       * @param arg0 selectionEvent 
+       * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent arg0) {
+      public void widgetSelected(SelectionEvent e) {
         final FileDialog dialog = new FileDialog(parent.getShell());
-        // ファイルを選択させる
         final String filePath = dialog.open();
         if (filePath != null) {
           setTimeData(new File(filePath));
@@ -551,12 +558,12 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * 実行時間バーを設定する。
+   * 実行時間バーを設定します。
    * 
    * @param file ファイル
    */
   public void setTimeData(final File file) {
-    try(FileReader input = new FileReader(file);) {
+    try (FileReader input = new FileReader(file);) {
       this.data = MatxMatrix.readMatFormat(input);
       input.close();
 
@@ -624,13 +631,13 @@ public class AnimationWindow extends ApplicationWindow {
     if (playable == false) {
       this.timer.cancel();
     }
-    
+
     if (this.data == null || this.timeTable == null) {
       MessagegUtil.show(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
       System.out.println(Messages.getString("SimulationViewer.5")); //$NON-NLS-1$
       return;
     }
-    
+
     playable = false;
 
     this.endTime = this.manager.getEndTime();
@@ -638,12 +645,14 @@ public class AnimationWindow extends ApplicationWindow {
     this.animationTask.setSpeedScale(this.playSpeed.getDoubleValue());// スピードの設定
     this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
+
       /**
        * {@inheritDoc}
        */
       public void tearDownAnimation() {
         playable = true;
       }
+
       /**
        * {@inheritDoc}
        */
@@ -660,6 +669,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   private class SliderPositionMoveTask extends TimerTask {
+
     AnimationTask localTask;
     Slider slider;
 
@@ -675,7 +685,7 @@ public class AnimationWindow extends ApplicationWindow {
     }
 
     /**
-     * @see java.util.TimerTask#run()
+     * {@inheritDoc}
      */
     @Override
     public void run() {
@@ -698,7 +708,7 @@ public class AnimationWindow extends ApplicationWindow {
           if (AnimationWindow.this.currentTimeLabel.isDisposed()) {
             return;
           }
-          
+
           AnimationWindow.this.currentTimeLabel.setText(timeString);
           for (int i = 0; i < AnimationWindow.this.timeTable.length; i++) {
             if (AnimationWindow.this.timeTable[i] > time) {

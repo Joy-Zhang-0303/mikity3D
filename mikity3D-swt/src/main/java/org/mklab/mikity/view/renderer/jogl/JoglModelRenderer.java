@@ -175,7 +175,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
 
   /**
    * マウス左クリック時の処理　カメラを移動させます。
-   * @param e 
+   * @param e マウスイベント 
    */
   public void mousePressed(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e) == true) {
@@ -242,7 +242,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
 
   /**
    * マウスをドラッグさせるとカメラ座標が移動させます。
-   * @param e 
+   * @param e マウスイベント
    */
   public void mouseDragged(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e)) {
