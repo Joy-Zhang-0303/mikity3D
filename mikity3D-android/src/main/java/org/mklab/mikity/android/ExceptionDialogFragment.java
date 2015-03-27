@@ -16,29 +16,30 @@ import android.support.v4.app.DialogFragment;
  * @version $Revision$, 2015/01/16
  */
 public class ExceptionDialogFragment extends DialogFragment {
-  
+
   protected String message;
+
   /**
-   * @param savedInstanceState Bundle
-   * @see android.support.v4.app.DialogFragment#onCreateDialog(android.os.Bundle)
+   * {@inheritDoc}
    */
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setMessage(this.message)
-            .setPositiveButton("閉じる", new DialogInterface.OnClickListener() { //$NON-NLS-1$
-                /**
-                 * @param dialog dialog 
-                 * @param id id
-                 */
-                public void onClick(DialogInterface dialog, int id) {
-                  //nothing to do
-                }
-            });
+    builder.setMessage(this.message).setPositiveButton("閉じる", new DialogInterface.OnClickListener() { //$NON-NLS-1$
+
+          /**
+           * {@inheritDoc}
+           */
+          public void onClick(DialogInterface dialog, int id) {
+            //nothing to do
+          }
+        });
     return builder.create();
   }
+
   /**
-   * メッセージを取得します。
+   * メッセージを設定します。
+   * 
    * @param message ダイアログに表示するメッセージ
    */
   public void setMessage(String message) {

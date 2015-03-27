@@ -19,65 +19,70 @@ import android.util.Log;
 
 /**
  * モデルデータを別のスレッドでダウンロードするためのクラスです。
+ * 
  * @author soda
  * @version $Revision$, 2015/02/03
  */
-public class DownloadFileFromURL extends AsyncTask<String, String, InputStream>{
+public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> {
 
-  /** ストリーム*/
-  public InputStream input;
-  /** NavigationDrawer*/
-  public NavigationDrawerFragment fragment;
-  
+  /** ストリーム */
+  private InputStream input;
+  /** NavigationDrawer */
+  private NavigationDrawerFragment fragment;
+
   /**
    * 新しく生成された<code>DownloadFileFromURL</code>オブジェクトを初期化します。
+   * 
    * @param fragment NavigationDrawer
    */
   public DownloadFileFromURL(NavigationDrawerFragment fragment) {
     this.fragment = fragment;
   }
+
   @Override
   protected InputStream doInBackground(String... params) {
-//    String url = "http://www.mk.ces.kyutech.ac.jp/?page_id=18";
+    //    String url = "http://www.mk.ces.kyutech.ac.jp/?page_id=18";
     String url = params[0];
     HttpClient httpClient = new DefaultHttpClient();
-//    HttpParams param = httpClient.getParams();
-//    HttpConnectionParams.setConnectionTimeout(param, 1000);
-//    HttpConnectionParams.setSoTimeout(param, 1000);
-//    StringBuilder url= new StringBuilder("http://www.mk.ces.kyutech.ac.jp/?page_id=18");
+    //    HttpParams param = httpClient.getParams();
+    //    HttpConnectionParams.setConnectionTimeout(param, 1000);
+    //    HttpConnectionParams.setSoTimeout(param, 1000);
+    //    StringBuilder url= new StringBuilder("http://www.mk.ces.kyutech.ac.jp/?page_id=18");
     HttpGet request = new HttpGet(url.toString());
-    
+
     HttpResponse httpResponse = null;
     try {
-        httpResponse = httpClient.execute(request);
+      httpResponse = httpClient.execute(request);
     } catch (Exception e) {
-        Log.d("HttpSampleActivity", e.getMessage()); //$NON-NLS-1$
+      Log.d("HttpSampleActivity", e.getMessage()); //$NON-NLS-1$
     }
     try {
-      if(HttpStatus.SC_OK == httpResponse.getStatusLine().getStatusCode()) {
+      if (HttpStatus.SC_OK == httpResponse.getStatusLine().getStatusCode()) {
         InputStream inputStream = httpResponse.getEntity().getContent();
         this.input = inputStream;
       }
     } catch (IllegalStateException e) {
-        // TODO 自動生成された catch ブロック
       throw new RuntimeException(e);
     } catch (IOException e) {
-      // TODO 自動生成された catch ブロック
       throw new RuntimeException(e);
     } catch (NullPointerException e) {
-        // show dialog of network connection
+      // show dialog of network connection
     }
     return this.input;
   }
+
   /**
-   * @param strings  String
+   * {@inheritDoc}
    */
   @Override
-  protected void onProgressUpdate(String...strings) {
+  protected void onProgressUpdate(String... strings) {
     // nothing to do
   }
-  
-  @Override 
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   protected void onPostExecute(InputStream anInput) {
     this.fragment.input = anInput;
     Drawable d = Drawable.createFromStream(anInput, "webimage"); //$NON-NLS-1$

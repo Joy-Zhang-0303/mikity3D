@@ -1,7 +1,5 @@
 package org.mklab.mikity.android.view.renderer;
 
-import java.nio.FloatBuffer;
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -22,9 +20,10 @@ import android.opengl.GLU;
  */
 public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
-  //システム
-  private float aspect;//アスペクト比
-  private int angle; //回転角度
+  /** アスペクト比 */
+  private float aspect;
+  /** 回転角度 */
+  private int angle;
 
   private static final long serialVersionUID = 5653656698891675370L;
 
@@ -67,20 +66,25 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
   GLSurfaceView glView;
 
-  //光源の設定です 
-  private float[] lightLocation0 = {0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源1です 
-  private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源2です 
-  private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f}; // 反射光の強さです 
-  private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f}; // 拡散光の強さです 
-  private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
+  /** 平行光源1  */
+  private float[] lightLocation0 = {0.5f, 1.0f, -1.0f, 1.0f};
+  /**  平行光源2 */
+  private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f};
+  /** 反射光の強さ  */
+  private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f};
+  /** 拡散光の強さ  */
+  private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f};
+  /** 環境光の強さ  */
+  private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; 
 
-  /** カメラの位置ｚ */
+  /** カメラの位置 */
   private float eyeZ = -2.0f;
   private float eyeY = 0.0f;
   private float eyeX = 0.0f;
 
   /**
    * 新しく生成された<code>OpenglesModelRenderer</code>オブジェクトを初期化します。
+   * 
    * @param glView GLサーフェースビュー
    */
   public OpenglesModelRenderer(GLSurfaceView glView) {
@@ -91,7 +95,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    * {@inheritDoc}
    */
   public void onSurfaceCreated(GL10 gl10, EGLConfig config) {
-
     //final GL10 gl10 = drawable.getGL();
 
     this.glu = new GLU();
@@ -108,7 +111,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
-    
   }
 
   /**
@@ -130,7 +132,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     //gl10.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
 
-
     //光源位置の指定
     gl10.glMatrixMode(GL10.GL_MODELVIEW);
     gl10.glLoadIdentity();
@@ -138,7 +139,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     GLU.gluLookAt(gl10, this.eyeX, this.eyeY, this.eyeZ, //カメラの視点
         0.0F, 0.0F, -1.0F, //カメラの焦点
         0.0F, 1.0F, 1.0F);//カメラの上方向
-  
+
     gl10.glTranslatef(this.translationY, -this.translationX, 0.0f);
     gl10.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
     gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
@@ -148,9 +149,10 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
     gl10.glScalef(this.scaleX, this.scaleY, this.scaleZ);
 
-    if(this.topGroups != null)
-    for (final OpenglesBranchGroup group : this.topGroups) {
-      group.display(gl10);
+    if (this.topGroups != null) { 
+      for (final OpenglesBranchGroup group : this.topGroups) {
+        group.display(gl10);
+      }
     }
   }
 
@@ -162,7 +164,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glViewport(0, 0, w, h);
     //アスペクト比の設定
     this.aspect = (float)w / (float)h;
-
   }
 
   /**
@@ -197,7 +198,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   }
 
   /**
-   * 回転角度のセッター
+   * 回転角度を設定します。
    * 
    * @param rotationX X方向の回転角度
    * @param rotationY y方向の回転角度
@@ -208,7 +209,9 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   }
 
   /**
-   * 拡大縮小倍率のセッター　x方向、ｙ方向、ｚ方向全て同じ倍率に設定。
+   * 拡大縮小倍率のを設定します。　
+   * 
+   * x方向、ｙ方向、ｚ方向全て同じ倍率を設定します。
    * 
    * @param scale スケール
    */
@@ -219,7 +222,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   }
 
   /**
-   * スケールのセッター
+   * スケールを設定します。
    * 
    * @param scaleY y方向のスケール
    * @param scaleX x方向のスケール
@@ -232,7 +235,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   }
 
   /**
-   * スケールのゲッター
+   * スケールを返します。
    * 
    * @return　スケール
    */
@@ -253,38 +256,45 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   public void setTranslationY(float translateY) {
     this.translationY = (translateY + this.translationY);
   }
-  
+
+  /**
+   * @param widthX
+   * @param widthZ
+   * @param nx
+   * @param nz
+   * @param gl10
+   */
   public void drawFloor(double widthX, double widthZ, int nx, int nz, GL10 gl10) {
-//    int i, j;
-//    //Floor‚P–‡“–‚½‚è‚Ì•
-//    double wX = widthX / (double)nx;
-//    double wZ = widthZ / (double)nz;
-//
-//    float diffuse[][] = {
-//      { 0.9f, 0.6f, 0.3f, 1.0f}, { 0.3f, 0.5f, 0.8f, 1.0f} };
-//    float ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f};
-//    float specular[]= { 0.5f, 0.5f, 0.5f, 1.0f};;
-//    gl10.glMaterialfv(GL10.GL_FRONT,GL10.GL_AMBIENT,ambient, 0);
-//    gl10.glMaterialfv(GL10.GL_FRONT,GL10.GL_SPECULAR,specular, 0);
-//    gl10.glMaterialf(GL10.GL_FRONT,GL10.GL_SHININESS,10);
-//
-//    gl10.glNormal3f(0.0f, 1.0f, 0.0f);
-//    gl10.glPushMatrix();
-//    gl10.glBegin(GL10.GL_TRIANGLE_FAN);
-//    for (j = 0; j < nz; j++) {
-//      double z1 = -widthZ / 2.0 + wZ * j; double z2 = z1 + wZ;
-//      for (i = 0; i < nx; i++) {
-//        double x1 = -widthX / 2.0 + wX * i; double x2 = x1 + wX;
-//
-//        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse[(i + j) & 1]);
-//        glVertex3d(x1, 0.0, z1);
-//        glVertex3d(x1, 0.0, z2);
-//        glVertex3d(x2, 0.0, z2);
-//        glVertex3d(x2, 0.0, z1);
-//      }
-//    }
-//    glEnd();
-//    glPopMatrix();
+    //    int i, j;
+    //    //Floor‚P–‡“–‚½‚è‚Ì•
+    //    double wX = widthX / (double)nx;
+    //    double wZ = widthZ / (double)nz;
+    //
+    //    float diffuse[][] = {
+    //      { 0.9f, 0.6f, 0.3f, 1.0f}, { 0.3f, 0.5f, 0.8f, 1.0f} };
+    //    float ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f};
+    //    float specular[]= { 0.5f, 0.5f, 0.5f, 1.0f};;
+    //    gl10.glMaterialfv(GL10.GL_FRONT,GL10.GL_AMBIENT,ambient, 0);
+    //    gl10.glMaterialfv(GL10.GL_FRONT,GL10.GL_SPECULAR,specular, 0);
+    //    gl10.glMaterialf(GL10.GL_FRONT,GL10.GL_SHININESS,10);
+    //
+    //    gl10.glNormal3f(0.0f, 1.0f, 0.0f);
+    //    gl10.glPushMatrix();
+    //    gl10.glBegin(GL10.GL_TRIANGLE_FAN);
+    //    for (j = 0; j < nz; j++) {
+    //      double z1 = -widthZ / 2.0 + wZ * j; double z2 = z1 + wZ;
+    //      for (i = 0; i < nx; i++) {
+    //        double x1 = -widthX / 2.0 + wX * i; double x2 = x1 + wX;
+    //
+    //        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse[(i + j) & 1]);
+    //        glVertex3d(x1, 0.0, z1);
+    //        glVertex3d(x1, 0.0, z2);
+    //        glVertex3d(x2, 0.0, z2);
+    //        glVertex3d(x2, 0.0, z1);
+    //      }
+    //    }
+    //    glEnd();
+    //    glPopMatrix();
   }
 
 }

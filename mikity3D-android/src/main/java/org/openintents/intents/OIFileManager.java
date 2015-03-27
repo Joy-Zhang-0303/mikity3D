@@ -33,7 +33,7 @@ public class OIFileManager {
       this.activity.startActivityForResult(intent, this.REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
     } catch (ActivityNotFoundException e) {
       // No compatible file manager was found.
-      Toast.makeText(this.activity, "IOファイルマネージャーをインストールしてください。", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this.activity, "IOファイルマネージャーをインストールしてください。", Toast.LENGTH_SHORT).show(); //$NON-NLS-1$
     }
 
   }

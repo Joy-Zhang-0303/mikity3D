@@ -68,10 +68,9 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
     this.groupNameCount = groupCount;
     
   }
-  
+
   /**
-   * @param parent ViewGroup
-   * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+   * {@inheritDoc}
    */
   @Override
   public View getView(final int position, View convertView, ViewGroup parent) {

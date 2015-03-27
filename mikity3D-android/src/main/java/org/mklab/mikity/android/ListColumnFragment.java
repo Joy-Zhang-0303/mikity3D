@@ -29,17 +29,18 @@ import roboguice.fragment.RoboFragment;
  */
 public class ListColumnFragment extends RoboFragment {
   
-  /** リストビュー*/
+  /** リストビュー */
   public ListView listView;
   private View view;
-  /** グループリスト*/
+  /** グループリスト */
   public List<GroupManager> groupList;
-  /** GroupNamerの親の管理のためのグループマネージャー*/
+  /** GroupNamerの親の管理のためのグループマネージャー */
   public GroupManager groupManager;
   int groupPosition = 0;
   private Button backButton;
   private NavigationDrawerFragment fragment;
   List<Integer> targetColumn = new ArrayList<Integer>();
+  
   /**
    * @param savedInstanceState Bundle
    * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
@@ -69,7 +70,7 @@ public class ListColumnFragment extends RoboFragment {
   }
   
   /**
-   * リストビューをアダプタに登録し、リストの処理をするためのメソッドです。
+   * リストビューをアダプタに登録し、リストの処理します。
    */
   public void configureListView() {
     ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.list_groupname, this.groupList, this.fragment, this.targetColumn);
@@ -95,7 +96,7 @@ public class ListColumnFragment extends RoboFragment {
   }
   
   /**
-   * グループマネージャーとそのリストを初期化するためのメソッドです。
+   * グループマネージャーとそのリストを初期化します。
    * @param list GroupManager
    */
   public void setGroupManager(GroupManager list) {
@@ -104,7 +105,7 @@ public class ListColumnFragment extends RoboFragment {
   }
 
   /**
-   * NavigationDrawerFragmentを設定するためのメソッドです。
+   * NavigationDrawerFragmentを設定します。
    * @param fragment NavigationDrawerFragment
    */
   public void setNavigationDrawerFragment(NavigationDrawerFragment fragment) {

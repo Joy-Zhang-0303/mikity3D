@@ -41,7 +41,7 @@ public class AssetsListViewFragment extends RoboFragment {
   ListView listView;
   String currentPath = "sample"; //$NON-NLS-1$
   CanvasActivity canvasActivity;
-  private AssetManager assetManager;
+  AssetManager assetManager;
   boolean isModel;
   FragmentManager fragmentManager;
 
@@ -181,22 +181,22 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * @param activity
+   * @param activity アクティビティ
    */
   public void setActivity(CanvasActivity activity) {
     this.canvasActivity = activity;
   }
 
   /**
-   * @param isModel
+   * @param isModel モデルならばtrue
    */
   public void setModelTimeFrag(boolean isModel) {
     this.isModel = isModel;
   }
 
   /**
-   * @param fileName
-   * @return
+   * @param fileName ファイル名
+   * @return 拡張子
    */
   public String getSuffix(String fileName) {
     if (fileName == null) {
@@ -210,9 +210,9 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * @param extension
-   * @param nextFileList
-   * @return
+   * @param extension 拡張子
+   * @param nextFileList ファイルのリスト
+   * @return 対象となるファイルのリスト
    */
   public List<String> getLimitList(String extension, String[] nextFileList) {
     final List<String> nextFileLimitList = new ArrayList<String>();
@@ -241,7 +241,7 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * @param fragmentManager
+   * @param fragmentManager フラグメントマネージャ
    */
   public void setFragmentManager(FragmentManager fragmentManager) {
     this.fragmentManager = fragmentManager;

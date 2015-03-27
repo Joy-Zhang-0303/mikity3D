@@ -58,19 +58,19 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
   GLSurfaceView glView;
   boolean mIsInitScreenSize;
-  /** レンダー*/
+  /** レンダー */
   public OpenglesModelRenderer modelRenderer;
-  /** scaleGestureDetector*/
+  /** scaleGestureDetector */
   public ScaleGestureDetector gesDetect = null;
   boolean rotationing;
   boolean scaling;
   double scaleValue = 1;
   float prevX = 0;
   float prevY = 0;
-  /** CanvasActivity*/
+  /** CanvasActivity */
   public CanvasActivity activity;
   Timer timer = new Timer();
-  /** Mikity3dモデル*/
+  /** Mikity3dモデル */
   public Mikity3d root;
   MovableGroupManager manager;
   Matrix data;
@@ -107,35 +107,34 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private long useAccelerOldTime = 0L;
   /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか */
   boolean useAccelerSensor = false;
-  /** センサー*/
+  /** センサー */
   public List<Sensor> sensors;
-  /** モデルデータパス*/
+  /** モデルデータパス */
   public String modelFilePath;
-  /** 時間データパス*/
+  /** 時間データパス */
   public String timeDataPath;
-  /** 時間データURI*/
+  /** 時間データURI */
   protected Uri timeDataUri;
-  /** 画面回転時に、時間データを読み込み中かどうかを判定するフラグ*/
+  /** 画面回転時に、時間データを読み込み中かどうかを判定するフラグ */
   protected boolean rotateTimeDataFlag = false;
-  /** ビュー*/
+  /** ビュー */
   @InjectView(R.id.layout_fragment_canvas)
   View view;
-  /** プログレスダイアログ*/
+  /** プログレスダイアログ */
   public ProgressDialog progressDialog;
-  /** 無効な時間データが読み込まれたかどうかの判定*/
+  /** 無効な時間データが読み込まれたかどうかの判定 */
   public boolean setIllegalTimeData = false;
-  /** ポーズボタンが押されたかの判定*/
+  /** ポーズボタンが押されたかの判定 */
   public boolean isPause = false;
-  /** アニメーションの開始時間*/
+  /** アニメーションの開始時間 */
   private long startTime;
-  /** アニメーションの一時停止時間*/
+  /** アニメーションの一時停止時間 */
   private long stopTime;
-  /** アニメーションの待ち時間*/
+  /** アニメーションの待ち時間 */
   private long waitTime;
 
   /**
-   * @param savedInstanceState Bundle
-   * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+   * {@inheritDoc}
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -144,12 +143,12 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       parent.removeView(this.view);
       return this.view;
     }
-    
+
     this.view = inflater.inflate(R.layout.canvas_fragment, container, false);
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
     this.getResources();
     this.modelRenderer = new OpenglesModelRenderer(this.glView);
-    //// // 描画のクラスを登録する
+    // 描画のクラスを登録する
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
     initField();
@@ -164,6 +163,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
       /**
        * タッチイベントを取得するためのメソッドです。
+       * 
        * @param v view
        */
       public boolean onTouch(View v, MotionEvent event) {
@@ -203,7 +203,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
           // タッチが離れた
           case MotionEvent.ACTION_UP:
             CanvasFragment.this.prevX = event.getX();
-            
+
             CanvasFragment.this.prevY = event.getY();
             break;
 
@@ -223,7 +223,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * @see roboguice.fragment.RoboFragment#onCreate(android.os.Bundle)
+   * {@inheritDoc}
    */
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -268,7 +268,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * モデルデータをストリームから読み込むためのメソッドです。
+   * モデルデータをストリームから読み込みます。
+   * 
    * @param input モデルファイル
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
@@ -279,7 +280,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * ストリームから時間データを取り出すためのメソッドです。
+   * ストリームから時間データを取り出します。
+   * 
    * @param filePath 時間データのパス
    */
   public void loadtimeSeriesData(final InputStream filePath) {
@@ -295,7 +297,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
 
       /**
-       * @param arg0  
+       * @param arg0
        */
       @Override
       protected Void doInBackground(String... arg0) {
@@ -311,7 +313,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
 
       /**
-       * @param result  
+       * @param result
        */
       @Override
       protected void onPostExecute(Void result) {
@@ -323,7 +325,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * 実行時間バーを設定する。
+   * 実行時間バーを設定します。
    * 
    * @param input 時系列データのインプットストリーム
    * 
@@ -337,14 +339,14 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
-      if(this.progressDialog != null) {
+      if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
       callExceptionDialogFragment("Please select data file."); //$NON-NLS-1$
     } catch (IllegalArgumentException e) {
       callExceptionDialogFragment("Please select proper data file or set column number size to data size or lower."); //$NON-NLS-1$
     } catch (IllegalAccessError e) {
-      if(this.progressDialog != null) {
+      if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
       String message = "Time data size is not match model's column number." //$NON-NLS-1$
@@ -353,9 +355,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       this.setIllegalTimeData = true;
     }
   }
-  
+
   /**
-   * 例外がキャッチされた時に、その例外に対するダイアログを表示するメソッドです。
+   * 例外がキャッチされた時に、その例外に対するダイアログを表示します。
+   * 
    * @param message 例外に対する返答
    */
   public void callExceptionDialogFragment(String message) {
@@ -363,15 +366,15 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
-  
+
   /**
-   * MovableGroupManagerに時間データを登録するためのメソッドです。
+   * MovableGroupManagerに時間データを登録します。
    */
   public void setTimeData() {
     try {
       this.manager.setData(this.data);
-    } catch(IllegalAccessError e) {
-      if(this.progressDialog != null) {
+    } catch (IllegalAccessError e) {
+      if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
       String message = "Time data size is not match model's column number." //$NON-NLS-1$
@@ -383,7 +386,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     } catch (IllegalArgumentException e) {
       callExceptionDialogFragment("Please select proper data file or set column number to data size or lower."); //$NON-NLS-1$
     }
-    
+
     final Group rootGroup = this.root.getModel(0).getGroup(0);
     checkLinkParameterType(rootGroup);
 
@@ -408,13 +411,14 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
         } else if (link.hasCoordinateParameter()) {
           this.manager.setHasCoordinateParameter(true);
         }
-      } 
+      }
       checkLinkParameterType(group);
     }
   }
 
   /**
    * MovableGroupManagerを返します。
+   * 
    * @return manager
    */
   public MovableGroupManager getManager() {
@@ -423,6 +427,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
   /**
    * モデルレンダラーを返します。
+   * 
    * @return modelRenderer
    */
   public OpenglesModelRenderer getModelRender() {
@@ -433,7 +438,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * アニメーションを開始します。
    */
   public void runAnimation() {
-    if(this.isPause == false) {
+    if (this.isPause == false) {
       this.startTime = SystemClock.uptimeMillis();
       this.waitTime = 0;
     }
@@ -446,7 +451,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     }
     this.playable = false;
     this.endTime = this.manager.getEndTime();
-    if(this.isPause) {
+    if (this.isPause) {
       this.waitTime += SystemClock.uptimeMillis() - this.stopTime;
     }
     this.isPause = false;
@@ -474,7 +479,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * @see android.hardware.SensorEventListener#onSensorChanged(android.hardware.SensorEvent)
+   * {@inheritDoc}
    */
   public void onSensorChanged(SensorEvent event) {
 
@@ -552,18 +557,15 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     }
     this.modelRenderer.updateDisplay();
   }
-
   /**
-   * @param sensor Sensor
-   * @param accuracy accuracy
-   * @see android.hardware.SensorEventListener#onAccuracyChanged(android.hardware.Sensor, int)
+   * {@inheritDoc}
    */
   public void onAccuracyChanged(Sensor sensor, int accuracy) {
     //nothing to do
   }
 
   /**
-   * フィールドの初期化を行うメソッドです。
+   * フィールドを初期化します。
    */
   public void initField() {
     this.sensorManager = (SensorManager)this.getActivity().getSystemService(Context.SENSOR_SERVICE);
@@ -578,7 +580,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * センサーを取得するメソッドです。
+   * センサーを設定します。
    */
   public void setSensor() {
     this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
@@ -586,6 +588,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
   /**
    * Mikity3dを返します。
+   * 
    * @return root
    */
   public Mikity3d getRoot() {
@@ -593,7 +596,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * モデルデータにレンダーを登録するメソッドです。
+   * モデルデータにレンダーを登録します。
    */
   public void configurateModel() {
     Group[] children = this.root.getModel(0).getGroups();
@@ -603,30 +606,34 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * MovableGroupManagerを取得します。
+   * MovableGroupManagerを設定します。
    */
   protected void setGroupManager() {
     this.manager = new MovableGroupManager(this.root);
     this.manager.setLogCat(new LogCatImpl()); //LogCatのセット    
   }
-  
+
   /**
-   * モデルファイルパスを取得します。
+   * モデルファイルパスを設定します。
+   * 
    * @param modelFilePath モデルファイルパス
    */
   public void setModelFilePath(String modelFilePath) {
     this.modelFilePath = modelFilePath;
   }
+
   /**
-   * 時間データパスを取得します。
+   * 時間データパスを設定します。
+   * 
    * @param timeDataPath 時間データパス
    */
   public void setTimeDataPath(String timeDataPath) {
     this.timeDataPath = timeDataPath;
   }
-  
+
   /**
-   * 時間データのURIを取得します。
+   * 時間データのURIを設定します。
+   * 
    * @param uri 時間データのURI
    */
   public void setTimeDataUri(Uri uri) {
@@ -642,11 +649,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     int width = displaymetrics.widthPixels;
     int height = displaymetrics.heightPixels;
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
-    this.glView.setLayoutParams(params); 
+    this.glView.setLayoutParams(params);
   }
+
   /**
-   * @param newConfig configuration
-   * @see android.support.v4.app.Fragment#onConfigurationChanged(android.content.res.Configuration)
+   * {@inheritDoc}
    */
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
@@ -655,8 +662,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     }
     configurateDirection();
   }
+
   /**
-   * 一時停止が押された時間を設定するメソッドです。
+   * 一時停止が押された時間を設定します。
+   * 
    * @param stopTime 一時停止が押された時間
    */
   public void setStopTime(long stopTime) {

@@ -50,6 +50,7 @@ import android.widget.ToggleButton;
 
 /**
  * NavigationDrawerでメニューを表示するためのフラグメントです。
+ * 
  * @author soda
  * @version $Revision$, 2015/01/16
  */
@@ -376,7 +377,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
   
   /**
-   * GroupManagerを取得するメソッドです。
+   * GroupManagerを取得します。
+   * 
    * @return result GroupManager
    */
   public GroupManager getGroupManager() {
@@ -389,9 +391,9 @@ public class NavigationDrawerFragment extends RoboFragment {
     GroupManager result = search.searchGroupRecursion(group, groupManager);
     return result;
   }
-  
+
   /**
-   * @see roboguice.fragment.RoboFragment#onCreate(android.os.Bundle)
+   * {@inheritDoc}
    */
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -400,7 +402,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
   
   /**
-   * 時間データをURIから読み込むためのメソッドです。
+   * 時間データをURIから読み込みます。
+   * 
    * @param uri 時間データURI
    */
   protected void loadDataUri(Uri uri) {
@@ -432,8 +435,10 @@ public class NavigationDrawerFragment extends RoboFragment {
     }
     this.filePathView.setText(this.timeDataName);
   }
+  
   /**
-   * モデルをURIから読み込むためのメソッドです。
+   * モデルをURIから読み込みます。
+   * 
    * @param uri モデルURI
    */
   protected void loadModelUri(Uri uri) {
@@ -498,7 +503,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
   
   /**
-   * コラムナンバーを入れ替えるためのメソッドです。
+   * コラムナンバーを入れ替えます。
+   * 
    * @param targetColumn グループの階層を所持したリスト
    * @param childPosition リンクデータがある場所
    * @param columnNumber 入れ替えるコラムナンバー
@@ -519,7 +525,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
   
   /**
-   * @param uri
+   * @param uri URL
    */
   public void unzipSaveFile(Uri uri) {
     if (uri != null) {
@@ -530,10 +536,12 @@ public class NavigationDrawerFragment extends RoboFragment {
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
+      
       ZipInputStream in = new ZipInputStream(new BufferedInputStream(zipFile));
       ZipEntry zipEntry;
       BufferedOutputStream out;
       int data;
+      
       try {
         while((zipEntry = in.getNextEntry()) != null) {
           out = new BufferedOutputStream(new FileOutputStream("/sdcard/mikity3d" + zipEntry.getName())); //$NON-NLS-1$
@@ -542,7 +550,6 @@ public class NavigationDrawerFragment extends RoboFragment {
           }
         }
       } catch (IOException e) {
-        // TODO 自動生成された catch ブロック
         throw new RuntimeException(e);
       }
     } 
@@ -559,7 +566,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     int data;
     while((zipEntry = in.getNextEntry()) != null) {
       String a = zipEntry.getName();
-      out = new BufferedOutputStream(new FileOutputStream("/sdcard/Download/" + zipEntry.getName()));
+      out = new BufferedOutputStream(new FileOutputStream("/sdcard/Download/" + zipEntry.getName())); //$NON-NLS-1$
       while((data = in.read()) != -1) {
         out.write(data);
       }
