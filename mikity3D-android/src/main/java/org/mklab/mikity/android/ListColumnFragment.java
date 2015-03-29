@@ -30,19 +30,19 @@ import roboguice.fragment.RoboFragment;
 public class ListColumnFragment extends RoboFragment {
   
   /** リストビュー */
-  public ListView listView;
-  private View view;
+  ListView listView;
+  View view;
   /** グループリスト */
-  public List<GroupManager> groupList;
+  List<GroupManager> groupList;
   /** GroupNamerの親の管理のためのグループマネージャー */
-  public GroupManager groupManager;
+  GroupManager groupManager;
   int groupPosition = 0;
   private Button backButton;
   private NavigationDrawerFragment fragment;
   List<Integer> targetColumn = new ArrayList<Integer>();
-  
+
   /**
-   * @param savedInstanceState Bundle
+   * {@inheritDoc}
    * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
    */
   @Override
@@ -54,7 +54,7 @@ public class ListColumnFragment extends RoboFragment {
     this.backButton.setOnClickListener(new OnClickListener() {
 
       /**
-       * @param v View
+       * {@inheritDoc}
        */
       public void onClick(View v) {
         if(ListColumnFragment.this.groupManager.getParent() != null) {
@@ -78,8 +78,7 @@ public class ListColumnFragment extends RoboFragment {
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
       /**
-       * @param view1 View
-       * @param id id
+       * {@inheritDoc}
        */
       @SuppressWarnings("boxing")
       public void onItemClick(AdapterView<?> parent, View view1, int position, long id) {

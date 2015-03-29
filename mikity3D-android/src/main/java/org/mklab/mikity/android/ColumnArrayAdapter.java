@@ -34,12 +34,12 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
   private LayoutInflater layoutInflater_;
   private List<GroupManager> lists;
   /** NavigationDrawer*/
-  public NavigationDrawerFragment fragment;
+  NavigationDrawerFragment fragment;
   /** 変更するカラムのターゲットリスト*/
-  public List<Integer> targetColumn;
+  List<Integer> targetColumn;
   /** 現在のリストに登録されているグループの数*/
-  public int groupNameCount;
-
+  int groupNameCount;
+  
   /**
    * 新しく生成された<code>ColumnArrayAdapter</code>オブジェクトを初期化します。
    * @param context Context

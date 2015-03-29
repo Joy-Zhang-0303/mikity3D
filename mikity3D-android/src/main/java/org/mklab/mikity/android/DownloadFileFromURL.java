@@ -39,6 +39,9 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> 
     this.fragment = fragment;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected InputStream doInBackground(String... params) {
     //    String url = "http://www.mk.ces.kyutech.ac.jp/?page_id=18";
@@ -56,6 +59,7 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> 
     } catch (Exception e) {
       Log.d("HttpSampleActivity", e.getMessage()); //$NON-NLS-1$
     }
+    
     try {
       if (HttpStatus.SC_OK == httpResponse.getStatusLine().getStatusCode()) {
         InputStream inputStream = httpResponse.getEntity().getContent();

@@ -29,9 +29,10 @@ import android.widget.LinearLayout;
 
 
 /**
+ * Mikity3dのメインとなるアクティビティクラスです。
+ * 
  * @author soda
  * @version $Revision$, 2015/01/16
- * Mikity3dのメインとなるアクティビティクラスです。
  */
 public class CanvasActivity extends RoboFragmentActivity {
 
@@ -39,29 +40,29 @@ public class CanvasActivity extends RoboFragmentActivity {
   final static int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
   private boolean registerAccerlerometer;
   private boolean registerMagneticFieldSensor;
-  /** NavigationDrawer用のアクションバートグル*/
+  /** NavigationDrawer用のアクションバートグル */
   private ActionBarDrawerToggle mDrawerToggle;
-  /** NavigationDrawerのレイアウト*/
+  /** NavigationDrawerのレイアウト */
   private DrawerLayout mDrawer;
-  /** アクティビティのconfiguration*/
+  /** アクティビティのconfiguration */
   private Configuration config;
-  /** CanvasFragment*/
+  /** CanvasFragment */
   @InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
-  /** NavigationDrawerFragment*/
-  public NavigationDrawerFragment ndFragment;
-  /** 停止ボタンが押されたかの判定*/
+  /** NavigationDrawerFragment */
+  NavigationDrawerFragment ndFragment;
+  /** 停止ボタンが押されたかの判定 */
   private boolean isPushedStopButton;
 
   /**
-   * @see roboguice.activity.RoboFragmentActivity#onCreate(android.os.Bundle)
+   * {@inheritDoc}
    */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.canvas);
-    
+
     this.mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
     this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
     this.mDrawerToggle.syncState();
@@ -70,24 +71,24 @@ public class CanvasActivity extends RoboFragmentActivity {
     getActionBar().setLogo(getResources().getDrawable(R.drawable.icon));
     getActionBar().setHomeButtonEnabled(true);
     getActionBar().setDisplayUseLogoEnabled(true);
-    
+
     startIntentByExternalActivity();
   }
-  
+
   /**
    * 外部アクティビティからのモデルパス、データパスを渡されるインテントに対応したメソッドです。
    */
   private void startIntentByExternalActivity() {
-    Intent i = getIntent();
-    Bundle bundle;
     final String intentPath = "path"; //$NON-NLS-1$
     final String intentDataPath = "data"; //$NON-NLS-1$
-    if(i.getBundleExtra(intentPath) != null) {
-      bundle = i.getBundleExtra(intentPath);
-      if(bundle.getParcelable(intentPath) != null) {
+    
+    Intent i = getIntent();
+    if (i.getBundleExtra(intentPath) != null) {
+      Bundle bundle = i.getBundleExtra(intentPath);
+      if (bundle.getParcelable(intentPath) != null) {
         Uri mPath = bundle.getParcelable(intentPath);
         loadModelUri(mPath);
-        if(bundle.getParcelable(intentDataPath) != null) {
+        if (bundle.getParcelable(intentDataPath) != null) {
           Uri dPath = bundle.getParcelable(intentDataPath);
           loadTimeDataUri(dPath);
         }
@@ -95,9 +96,8 @@ public class CanvasActivity extends RoboFragmentActivity {
     }
   }
 
-  
   /**
-   * @see android.app.Activity#onPostCreate(android.os.Bundle)
+   * {@inheritDoc}
    */
   @Override
   protected void onPostCreate(Bundle savedInstanceState) {
@@ -106,7 +106,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   }
 
   /**
-   * @see roboguice.activity.RoboFragmentActivity#onConfigurationChanged(android.content.res.Configuration)
+   * {@inheritDoc}
    */
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
@@ -115,14 +115,15 @@ public class CanvasActivity extends RoboFragmentActivity {
   }
 
   /**
-   * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+   * {@inheritDoc}
    */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (this.mDrawerToggle.onOptionsItemSelected(item)) {
       return true;
     }
-    switch(item.getItemId()) {
+    
+    switch (item.getItemId()) {
       case R.id.menu_play:
         CanvasActivity.this.canvasFragment.runAnimation();
         this.isPushedStopButton = false;
@@ -134,9 +135,9 @@ public class CanvasActivity extends RoboFragmentActivity {
         CanvasActivity.this.canvasFragment.isPause = false;
         break;
       case R.id.menu_pause:
-        if(this.isPushedStopButton == false) {
-          if(CanvasActivity.this.canvasFragment.isPause == false) {
-            if(CanvasActivity.this.canvasFragment.animationTask != null) {
+        if (this.isPushedStopButton == false) {
+          if (CanvasActivity.this.canvasFragment.isPause == false) {
+            if (CanvasActivity.this.canvasFragment.animationTask != null) {
               CanvasActivity.this.canvasFragment.timer.cancel();
               CanvasActivity.this.canvasFragment.isPause = true;
               this.canvasFragment.setStopTime(SystemClock.uptimeMillis());
@@ -149,8 +150,10 @@ public class CanvasActivity extends RoboFragmentActivity {
     }
     return super.onOptionsItemSelected(item);
   }
-
-  /** 表示されるときに呼ばれる */
+  
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
     // スクリーンサイズ調整が済んでいない場合は調整する
@@ -173,6 +176,7 @@ public class CanvasActivity extends RoboFragmentActivity {
         this.registerAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, this.canvasFragment.sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
+    
     if (!this.registerMagneticFieldSensor) {
       List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
       if (sensors.size() > 0) {
@@ -180,6 +184,7 @@ public class CanvasActivity extends RoboFragmentActivity {
         this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
+    
     this.canvasFragment.glView.onResume();
     super.onResume();
   }
@@ -199,9 +204,9 @@ public class CanvasActivity extends RoboFragmentActivity {
 
     super.onPause();
   }
-  
+
   /**
-   * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+   * {@inheritDoc}
    */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
@@ -212,6 +217,7 @@ public class CanvasActivity extends RoboFragmentActivity {
 
   /**
    * This is called after the file manager finished.
+   * {@inheritDoc}
    */
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -221,7 +227,7 @@ public class CanvasActivity extends RoboFragmentActivity {
       case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
         if (resultCode == RESULT_OK && data != null) {
           Uri uri = data.getData();
-            loadModelUri(uri);
+          loadModelUri(uri);
         }
         break;
       case REQUEST_CODE_PICK_TIME_DATA_FILE:
@@ -242,7 +248,8 @@ public class CanvasActivity extends RoboFragmentActivity {
   }
 
   /**
-   * 時間データを読み込むためのメソッドです。
+   * 時間データを読み込みます。
+   * 
    * @param uri 時間データのURI
    */
   private void loadTimeDataUri(Uri uri) {
@@ -252,18 +259,19 @@ public class CanvasActivity extends RoboFragmentActivity {
   }
 
   /**
-   * モデルデータを読み込むためのメソッドです。
+   * モデルデータを読み込みます。
+   * 
    * @param uri モデルデータのURI
    */
   private void loadModelUri(Uri uri) {
     this.ndFragment.loadModelUri(uri);
-    
+
     this.canvasFragment.timeDataUri = null;
     this.canvasFragment.modelRenderer.updateDisplay();
   }
-  
+
   /**
-   * 画面回転時の処理をするメソッドです。
+   * 画面回転時の処理を行います。
    */
   public void controlRotation() {
     this.config = getResources().getConfiguration();
@@ -279,6 +287,7 @@ public class CanvasActivity extends RoboFragmentActivity {
           isReverse = false;
           break;
       }
+      
       if (CanvasActivity.this.config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
         if (isReverse) {
           setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
@@ -297,28 +306,29 @@ public class CanvasActivity extends RoboFragmentActivity {
       setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
     }
   }
-  
+
   /**
-   * ファイルエクスプローラーにインテントを発行するメソッドです。
+   * ファイルエクスプローラーにインテントを発行します。
+   * 
    * @param requestCode インテント時のリクエストコード
    */
   public void sendFileChooseIntent(int requestCode) {
     //APIレベルによる処理
-//  if (CanvasActivity.this.canvasFragment.root != null) {
-//            CanvasActivity.this.isSelectedModelFile = true;
-//          } else {
-//            CanvasActivity.this.isSelectedModelFile = false;
-//          }
-//          fileManager.getFilePath();
-//        if(Build.VERSION.SDK_INT < 19) {        
-  Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-  intent.setType("*/*"); //$NON-NLS-1$
-  startActivityForResult(intent, requestCode);
-//        } else {
-//        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-//        intent.addCategory(Intent.CATEGORY_OPENABLE);
-//        intent.setType("*/*");
-//        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
-//    }
+    //  if (CanvasActivity.this.canvasFragment.root != null) {
+    //            CanvasActivity.this.isSelectedModelFile = true;
+    //          } else {
+    //            CanvasActivity.this.isSelectedModelFile = false;
+    //          }
+    //          fileManager.getFilePath();
+    //        if(Build.VERSION.SDK_INT < 19) {        
+    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+    intent.setType("*/*"); //$NON-NLS-1$
+    startActivityForResult(intent, requestCode);
+    //        } else {
+    //        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+    //        intent.addCategory(Intent.CATEGORY_OPENABLE);
+    //        intent.setType("*/*");
+    //        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
+    //    }
   }
 }

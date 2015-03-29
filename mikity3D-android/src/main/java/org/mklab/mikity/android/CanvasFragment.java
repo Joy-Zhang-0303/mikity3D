@@ -59,19 +59,20 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   GLSurfaceView glView;
   boolean mIsInitScreenSize;
   /** レンダー */
-  public OpenglesModelRenderer modelRenderer;
+  OpenglesModelRenderer modelRenderer;
   /** scaleGestureDetector */
-  public ScaleGestureDetector gesDetect = null;
+  ScaleGestureDetector gesDetect = null;
   boolean rotationing;
   boolean scaling;
   double scaleValue = 1;
   float prevX = 0;
   float prevY = 0;
   /** CanvasActivity */
-  public CanvasActivity activity;
+  private CanvasActivity activity;
   Timer timer = new Timer();
+
   /** Mikity3dモデル */
-  public Mikity3d root;
+  Mikity3d root;
   MovableGroupManager manager;
   Matrix data;
   private double[] timeTable;
@@ -91,7 +92,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private float[] orientations = new float[3];
   /** 角度の基準値 */
   private float[] prevOrientations = new float[3];
-  /** 端末の角度を3Dオブジェクトに反映させるかどうかのフラグ */
+  /** 端末の角度を3Dオブジェクトに反映させるならばtrue */
   boolean useOrientationSensor = false;
   /** */
   private float[] prevAccerlerometer = new float[3];
@@ -105,27 +106,27 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private double rawAz;
   /** 前回加速度センサーを3Dオブジェクトに使用したときの時間 */
   private long useAccelerOldTime = 0L;
-  /** 加速度センサーの値を3Dオブジェクトに反映させるかどうか */
+  /** 加速度センサーの値を3Dオブジェクトに反映させるならばtrue */
   boolean useAccelerSensor = false;
   /** センサー */
-  public List<Sensor> sensors;
+  List<Sensor> sensors;
   /** モデルデータパス */
-  public String modelFilePath;
+  private String modelFilePath;
   /** 時間データパス */
-  public String timeDataPath;
+  private String timeDataPath;
   /** 時間データURI */
   protected Uri timeDataUri;
-  /** 画面回転時に、時間データを読み込み中かどうかを判定するフラグ */
+  /** 画面回転時に、時間データを読み込み中ならばtrue */
   protected boolean rotateTimeDataFlag = false;
   /** ビュー */
   @InjectView(R.id.layout_fragment_canvas)
   View view;
   /** プログレスダイアログ */
-  public ProgressDialog progressDialog;
-  /** 無効な時間データが読み込まれたかどうかの判定 */
-  public boolean setIllegalTimeData = false;
-  /** ポーズボタンが押されたかの判定 */
-  public boolean isPause = false;
+  ProgressDialog progressDialog;
+  /** 無効な時間データが読み込まれたならばtrue */
+  private boolean setIllegalTimeData = false;
+  /** ポーズボタンが押されたならばtrue */
+  boolean isPause = false;
   /** アニメーションの開始時間 */
   private long startTime;
   /** アニメーションの一時停止時間 */
@@ -158,13 +159,12 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
     // ScaleGestureDetecotorクラスのインスタンス生成
     this.gesDetect = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
+    
     // タッチ操作の種類によってイベントを取得する
     this.view.setOnTouchListener(new View.OnTouchListener() {
 
       /**
-       * タッチイベントを取得するためのメソッドです。
-       * 
-       * @param v view
+       * {@inheritDoc}
        */
       public boolean onTouch(View v, MotionEvent event) {
         float transferAmountX;
@@ -203,7 +203,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
           // タッチが離れた
           case MotionEvent.ACTION_UP:
             CanvasFragment.this.prevX = event.getX();
-
             CanvasFragment.this.prevY = event.getY();
             break;
 
@@ -234,6 +233,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   // スケールジェスチャーイベントを取得
   private final SimpleOnScaleGestureListener onScaleGestureListener = new SimpleOnScaleGestureListener() {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
       CanvasFragment.this.rotationing = false;
@@ -247,12 +249,18 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       return super.onScale(detector);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onScaleBegin(ScaleGestureDetector detector) {
       CanvasFragment.this.scaling = true;
       return super.onScaleBegin(detector);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
       CanvasFragment.this.scaling = false;
@@ -287,6 +295,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public void loadtimeSeriesData(final InputStream filePath) {
     AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
 
+      /**
+       * {@inheritDoc}
+       */
       @Override
       protected void onPreExecute() {
         CanvasFragment.this.progressDialog = new ProgressDialog(getActivity());
@@ -297,12 +308,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
 
       /**
-       * @param arg0
+       * {@inheritDoc}
        */
       @Override
       protected Void doInBackground(String... arg0) {
-        InputStream mat1;
-        mat1 = filePath;
+        InputStream mat1 = filePath;
         setTimeData(mat1);
         try {
           mat1.close();
@@ -313,7 +323,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
 
       /**
-       * @param result
+       * {@inheritDoc}
        */
       @Override
       protected void onPostExecute(Void result) {
@@ -328,7 +338,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * 実行時間バーを設定します。
    * 
    * @param input 時系列データのインプットストリーム
-   * 
    */
   public void setTimeData(final InputStream input) {
     try {
@@ -357,7 +366,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * 例外がキャッチされた時に、その例外に対するダイアログを表示します。
+   * 例外がキャッチされた時、その例外に対するダイアログを表示します。
    * 
    * @param message 例外に対する返答
    */
@@ -451,9 +460,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     }
     this.playable = false;
     this.endTime = this.manager.getEndTime();
+    
     if (this.isPause) {
       this.waitTime += SystemClock.uptimeMillis() - this.stopTime;
     }
+    
     this.isPause = false;
     this.animationTask = new AnimationTask(this.startTime, this.endTime, getManager(), getModelRender(), this.waitTime);
     this.animationTask.setSpeedScale((double)this.animationSpeed / 10);
@@ -484,11 +495,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public void onSensorChanged(SensorEvent event) {
 
     if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-      for (int i = 0; i < 3; i++)
+      for (int i = 0; i < 3; i++) {
         this.accels[i] = event.values[i];
+      }
 
       if (this.useAccelerSensor) {
-
         // Low Pass Filter
         this.lowPassX = this.lowPassX + event.values[0];
         this.lowPassY = this.lowPassY + event.values[1];
@@ -511,6 +522,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
             }
             this.useAccelerOldTime = nowTime;
           }
+
           if (this.rawAz < -accelerSensorThreshold) {
             for (int i = 0; i < 10000; i++) {
               if (this.scaleValue > 0.05) {
@@ -528,8 +540,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
 
     } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-      for (int i = 0; i < 3; i++)
+      for (int i = 0; i < 3; i++) {
         this.magneticFields[i] = event.values[i];
+      }
     }
 
     if (this.useOrientationSensor) {
@@ -542,9 +555,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       float[] diffOrientations = new float[3];
 
       for (int i = 0; i < this.orientations.length; i++) {
-
         diffOrientations[i] = this.orientations[i] - this.prevOrientations[i];
-        if (Math.abs(diffOrientations[i]) < 0.05) diffOrientations[i] = (float)0.0;
+        if (Math.abs(diffOrientations[i]) < 0.05) {
+          diffOrientations[i] = (float)0.0;
+        }
       }
 
       for (int i = 0; i < this.orientations.length; i++) {
@@ -557,6 +571,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     }
     this.modelRenderer.updateDisplay();
   }
+
   /**
    * {@inheritDoc}
    */

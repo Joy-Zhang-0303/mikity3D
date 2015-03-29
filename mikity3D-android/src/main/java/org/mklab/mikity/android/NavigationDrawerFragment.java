@@ -56,12 +56,12 @@ import android.widget.ToggleButton;
  */
 public class NavigationDrawerFragment extends RoboFragment {
   
-  protected static final String LOGTAG = null;
+  static final String LOGTAG = null;
   /** アニメーション用タスク */
   AnimationTask animationTask;
 
   /** */
-  public static boolean playable = true;
+  static boolean playable = true;
 
   /** 等間隔の時間を保存しとく配列 */
   double[] timeTable;
@@ -84,11 +84,11 @@ public class NavigationDrawerFragment extends RoboFragment {
   int animationSpeed = 10;
 
   /** アニメーションスピードを表示するエディットテキスト */
-  public EditText animationSpeedTextEdit;
+  EditText animationSpeedTextEdit;
   /** 3Dモデルのインプットストリーム */
   private InputStream inputModelFile;
   /** 3Dモデルが選ばれて表示されたかどうかのフラグ */
-  protected boolean isSelectedModelFile;
+  boolean isSelectedModelFile;
   /** モデルを参照するときに押されるボタン */
   Button selectButton;
   /** アニメーションスピードを早くするときに押されるボタン */
@@ -103,29 +103,29 @@ public class NavigationDrawerFragment extends RoboFragment {
   ToggleButton accelerToggleButton;
   ToggleButton rotateTogguleButton;
   InputStream inputDataFile;
-  protected String timeDataName;
+  String timeDataName;
   private String modelFileName;
   CanvasActivity canvasActivity;
   /** アニメーションスピードテキスト用のスピード*/
-  public int animationTextSpeed;
+  int animationTextSpeed;
   /** 時間データ再読み込みのためのボタン*/
-  public Button reloadButton;
+  Button reloadButton;
   /** 時間データを削除するためのボタン*/
-  public Button timeDataDeleteButton;
+  Button timeDataDeleteButton;
   private Cursor cursor;
   private Cursor cursor2;
   /** サンプルモデル読み込みのためのボタン*/
-  public Button sampleModelButton;
+  Button sampleModelButton;
   /** カラムを入れ替えるためのボタン*/
-  public Button setColumnButton;
+  Button setColumnButton;
   /** ストリーム*/
-  public InputStream input;
+  InputStream input;
   private Button unzipSaveButton;
   private Button assetsModelButton;
   Button assetsTimeButton;
 
   /**
-   * @param savedInstanceState Bundle
+   * {@inheritDoc}
    * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
    */
   @Override
@@ -156,7 +156,6 @@ public class NavigationDrawerFragment extends RoboFragment {
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_FILE_OR_DIRECTORY;
       /**
        * {@inheritDoc}
-       * @param v view
        */
       public void onClick(View v) {
         NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
@@ -181,7 +180,6 @@ public class NavigationDrawerFragment extends RoboFragment {
 
       /**
        * {@inheritDoc}
-       * @param v view
        */
       public void onClick(View v) {
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
@@ -195,7 +193,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.selectButton.setOnClickListener(new View.OnClickListener() {
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_TIME_DATA_FILE;
       /**
-       * @param v view 
+       * {@inheritDoc}
        */
       public void onClick(View v) {
         NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
@@ -203,9 +201,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     });
 
     this.reloadButton.setOnClickListener(new View.OnClickListener() {
-
       /**
-       * @param view1 view 
+       * {@inheritDoc}
        */
       public void onClick(View view1) {
         if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
@@ -215,9 +212,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     });
     
     this.timeDataDeleteButton.setOnClickListener(new View.OnClickListener() {
-
       /**
-       * @param view1 view 
+       * {@inheritDoc}
        */
       public void onClick(View view1) {
         if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
@@ -232,7 +228,6 @@ public class NavigationDrawerFragment extends RoboFragment {
 
       /**
        * {@inheritDoc}
-       * @param v view
        */
       public void onClick(View v) {
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
@@ -249,7 +244,6 @@ public class NavigationDrawerFragment extends RoboFragment {
 
       /**
        * {@inheritDoc}
-       * @param v view
        */
       public void onClick(View v) {
         if (NavigationDrawerFragment.this.gyroToggleButton.isChecked()) {
@@ -263,7 +257,6 @@ public class NavigationDrawerFragment extends RoboFragment {
 
       /**
        * {@inheritDoc}
-       * @param v view
        */
       public void onClick(View v) {
         if (NavigationDrawerFragment.this.accelerToggleButton.isChecked()) {
@@ -279,7 +272,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.rotateTogguleButton.setOnClickListener(new OnClickListener() {
 
       /**
-       * @param v view 
+       * {@inheritDoc}
        */
       public void onClick(View v) {
         NavigationDrawerFragment.this.canvasActivity.controlRotation();
@@ -298,9 +291,8 @@ public class NavigationDrawerFragment extends RoboFragment {
 //    });
     
     this.setColumnButton.setOnClickListener(new OnClickListener() {
-      
       /**
-       * @param v  View
+       * {@inheritDoc}
        */
       public void onClick(View v) { 
         FragmentManager fragmentManager = getFragmentManager();
@@ -334,9 +326,8 @@ public class NavigationDrawerFragment extends RoboFragment {
 //    });
     this.assetsModelButton = (Button)view.findViewById(R.id.assetsModelButtonView);
     this.assetsModelButton.setOnClickListener(new OnClickListener() {
-      
       /**
-       * @param v  View
+       * {@inheritDoc}
        */
       public void onClick(View v) { 
         FragmentManager fragmentManager = getFragmentManager();
@@ -354,9 +345,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.assetsTimeButton = (Button)view.findViewById(R.id.assetsTimeButtonView);
     this.assetsTimeButton.setEnabled(false);
     this.assetsTimeButton.setOnClickListener(new OnClickListener() {
-      
       /**
-       * @param v  View
+       * {@inheritDoc}
        */
       public void onClick(View v) { 
         FragmentManager fragmentManager = getFragmentManager();
@@ -406,7 +396,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    * 
    * @param uri 時間データURI
    */
-  protected void loadDataUri(Uri uri) {
+  void loadDataUri(Uri uri) {
     String timeDataPath;
     if (uri != null && "content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
@@ -441,7 +431,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    * 
    * @param uri モデルURI
    */
-  protected void loadModelUri(Uri uri) {
+  void loadModelUri(Uri uri) {
     String modelFilePath;
     if (uri != null && "content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
@@ -485,13 +475,13 @@ public class NavigationDrawerFragment extends RoboFragment {
   /**
    * @param message 例外メッセージ
    */
-  protected void setExceptionDailogFragment(String message) {
+  void setExceptionDailogFragment(String message) {
     DialogFragment dialogFragment = new ExceptionDialogFragment();
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
   
-  protected void setButtonEnabled(boolean flag) {
+  void setButtonEnabled(boolean flag) {
     this.isSelectedModelFile = flag;
     this.selectButton.setEnabled(flag);
     this.quickButton.setEnabled(flag);
@@ -509,7 +499,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    * @param childPosition リンクデータがある場所
    * @param columnNumber 入れ替えるコラムナンバー
    */
-  public void changeModelColumnNumber(List<Integer> targetColumn, int childPosition, int columnNumber) {
+  void changeModelColumnNumber(List<Integer> targetColumn, int childPosition, int columnNumber) {
     Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
     Group[] groupArray = model.getGroups();
     Group group = groupArray[0];
@@ -527,7 +517,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   /**
    * @param uri URL
    */
-  public void unzipSaveFile(Uri uri) {
+  void unzipSaveFile(Uri uri) {
     if (uri != null) {
       InputStream zipFile;
       // ストリームを直接URIから取り出します。
