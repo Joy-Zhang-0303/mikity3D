@@ -130,7 +130,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
+    final View view = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
     
     this.canvasActivity = (CanvasActivity)getActivity();
     
@@ -295,9 +295,9 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) { 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ListColumnFragment fragment =  new ListColumnFragment();
+        final FragmentManager fragmentManager = getFragmentManager();
+        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        final ListColumnFragment fragment =  new ListColumnFragment();
         if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
           fragment.setGroupManager(getGroupManager());
           fragment.setNavigationDrawerFragment(NavigationDrawerFragment.this);
@@ -330,9 +330,9 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) { 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        AssetsListViewFragment fragment =  new AssetsListViewFragment();
+        final FragmentManager fragmentManager = getFragmentManager();
+        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        final AssetsListViewFragment fragment =  new AssetsListViewFragment();
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setModelTimeFrag(true);
         fragment.setFragmentManager(fragmentManager);
@@ -349,9 +349,9 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) { 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        AssetsListViewFragment fragment =  new AssetsListViewFragment();
+        final FragmentManager fragmentManager = getFragmentManager();
+        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        final AssetsListViewFragment fragment =  new AssetsListViewFragment();
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setModelTimeFrag(false);
         fragment.setFragmentManager(fragmentManager);
@@ -372,13 +372,13 @@ public class NavigationDrawerFragment extends RoboFragment {
    * @return result GroupManager
    */
   public GroupManager getGroupManager() {
-    Mikity3d root = this.canvasActivity.canvasFragment.root;
-    Mikity3dModel model = root.getModel(0);
-    Group[] groupArray = model.getGroups();
-    Group group = groupArray[0];
-    ExcecuteSearchGroup search = new ExcecuteSearchGroup();
-    GroupName groupManager = new GroupName(group.getName(), null);
-    GroupManager result = search.searchGroupRecursion(group, groupManager);
+    final Mikity3d root = this.canvasActivity.canvasFragment.root;
+    final Mikity3dModel model = root.getModel(0);
+    final Group[] groupArray = model.getGroups();
+    final Group group = groupArray[0];
+    final ExcecuteSearchGroup search = new ExcecuteSearchGroup();
+    final GroupName groupManager = new GroupName(group.getName(), null);
+    final GroupManager result = search.searchGroupRecursion(group, groupManager);
     return result;
   }
 
@@ -476,7 +476,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    * @param message 例外メッセージ
    */
   void setExceptionDailogFragment(String message) {
-    DialogFragment dialogFragment = new ExceptionDialogFragment();
+    final DialogFragment dialogFragment = new ExceptionDialogFragment();
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
@@ -500,9 +500,9 @@ public class NavigationDrawerFragment extends RoboFragment {
    * @param columnNumber 入れ替えるコラムナンバー
    */
   void changeModelColumnNumber(List<Integer> targetColumn, int childPosition, int columnNumber) {
-    Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
-    Group[] groupArray = model.getGroups();
-    Group group = groupArray[0];
+    final Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
+    final Group[] groups = model.getGroups();
+    Group group = groups[0];
     
     for (Iterator<Integer> itr = targetColumn.iterator(); itr.hasNext();) {
     	@SuppressWarnings("boxing")
@@ -519,7 +519,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    */
   void unzipSaveFile(Uri uri) {
     if (uri != null) {
-      InputStream zipFile;
+      final InputStream zipFile;
       // ストリームを直接URIから取り出します。
       try {
         zipFile = this.canvasActivity.getContentResolver().openInputStream(uri);
@@ -527,15 +527,15 @@ public class NavigationDrawerFragment extends RoboFragment {
         throw new RuntimeException(e);
       }
       
-      ZipInputStream in = new ZipInputStream(new BufferedInputStream(zipFile));
+      final ZipInputStream input = new ZipInputStream(new BufferedInputStream(zipFile));
       ZipEntry zipEntry;
       BufferedOutputStream out;
       int data;
       
       try {
-        while((zipEntry = in.getNextEntry()) != null) {
+        while((zipEntry = input.getNextEntry()) != null) {
           out = new BufferedOutputStream(new FileOutputStream("/sdcard/mikity3d" + zipEntry.getName())); //$NON-NLS-1$
-          while((data = in.read()) != -1) {
+          while((data = input.read()) != -1) {
             out.write(data);
           }
         }
@@ -549,19 +549,19 @@ public class NavigationDrawerFragment extends RoboFragment {
    * @throws IOException
    */
   private void saveUnzipFile() throws IOException {
-    String path = Environment.getDownloadCacheDirectory().getPath();
-    ZipInputStream in = new ZipInputStream(new BufferedInputStream(new FileInputStream("/sdcard/Download/Furiage_Sim.zip"))); //$NON-NLS-1$
+    final String path = Environment.getDownloadCacheDirectory().getPath();
+    ZipInputStream input = new ZipInputStream(new BufferedInputStream(new FileInputStream("/sdcard/Download/Furiage_Sim.zip"))); //$NON-NLS-1$
     ZipEntry zipEntry;
-    BufferedOutputStream out = null;
+    BufferedOutputStream output = null;
     int data;
-    while((zipEntry = in.getNextEntry()) != null) {
+    while((zipEntry = input.getNextEntry()) != null) {
       String a = zipEntry.getName();
-      out = new BufferedOutputStream(new FileOutputStream("/sdcard/Download/" + zipEntry.getName())); //$NON-NLS-1$
-      while((data = in.read()) != -1) {
-        out.write(data);
+      output = new BufferedOutputStream(new FileOutputStream("/sdcard/Download/" + zipEntry.getName())); //$NON-NLS-1$
+      while((data = input.read()) != -1) {
+        output.write(data);
       }
     }
-    out.close();
-    in.close();
+    output.close();
+    input.close();
   }
 }

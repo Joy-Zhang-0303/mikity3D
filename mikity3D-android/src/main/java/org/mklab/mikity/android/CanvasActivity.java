@@ -40,17 +40,23 @@ public class CanvasActivity extends RoboFragmentActivity {
   final static int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
   private boolean registerAccerlerometer;
   private boolean registerMagneticFieldSensor;
+  
   /** NavigationDrawer用のアクションバートグル */
   private ActionBarDrawerToggle mDrawerToggle;
+  
   /** NavigationDrawerのレイアウト */
   private DrawerLayout mDrawer;
+  
   /** アクティビティのconfiguration */
   private Configuration config;
+  
   /** CanvasFragment */
   @InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
+  
   /** NavigationDrawerFragment */
   NavigationDrawerFragment ndFragment;
+
   /** 停止ボタンが押されたかの判定 */
   private boolean isPushedStopButton;
 
@@ -82,14 +88,14 @@ public class CanvasActivity extends RoboFragmentActivity {
     final String intentPath = "path"; //$NON-NLS-1$
     final String intentDataPath = "data"; //$NON-NLS-1$
     
-    Intent i = getIntent();
-    if (i.getBundleExtra(intentPath) != null) {
-      Bundle bundle = i.getBundleExtra(intentPath);
+    final Intent intent = getIntent();
+    if (intent.getBundleExtra(intentPath) != null) {
+      final Bundle bundle = intent.getBundleExtra(intentPath);
       if (bundle.getParcelable(intentPath) != null) {
-        Uri mPath = bundle.getParcelable(intentPath);
+        final Uri mPath = bundle.getParcelable(intentPath);
         loadModelUri(mPath);
         if (bundle.getParcelable(intentDataPath) != null) {
-          Uri dPath = bundle.getParcelable(intentDataPath);
+          final Uri dPath = bundle.getParcelable(intentDataPath);
           loadTimeDataUri(dPath);
         }
       }
@@ -178,7 +184,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     }
     
     if (!this.registerMagneticFieldSensor) {
-      List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
+      final List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
       if (sensors.size() > 0) {
         this.registerMagneticFieldSensor = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
         this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
@@ -210,7 +216,7 @@ public class CanvasActivity extends RoboFragmentActivity {
    */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    MenuInflater inflater = getMenuInflater();
+    final MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.menu_main, menu);
     return true;
   }
@@ -226,19 +232,19 @@ public class CanvasActivity extends RoboFragmentActivity {
     switch (requestCode) {
       case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
         if (resultCode == RESULT_OK && data != null) {
-          Uri uri = data.getData();
+          final Uri uri = data.getData();
           loadModelUri(uri);
         }
         break;
       case REQUEST_CODE_PICK_TIME_DATA_FILE:
         if (resultCode == RESULT_OK && data != null) {
-          Uri uri = data.getData();
+          final Uri uri = data.getData();
           loadTimeDataUri(uri);
         }
         break;
       case 3:
         if (resultCode == RESULT_OK && data != null) {
-          Uri uri = data.getData();
+          final Uri uri = data.getData();
           this.ndFragment.unzipSaveFile(uri);
         }
         break;
@@ -321,7 +327,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     //          }
     //          fileManager.getFilePath();
     //        if(Build.VERSION.SDK_INT < 19) {        
-    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+    final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
     intent.setType("*/*"); //$NON-NLS-1$
     startActivityForResult(intent, requestCode);
     //        } else {

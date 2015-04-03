@@ -24,25 +24,31 @@ import roboguice.fragment.RoboFragment;
 
 /**
  * モデルのグループデータをListViewとして表示するためのFragmentです。
+ * 
  * @author soda
  * @version $Revision$, 2015/02/03
  */
 public class ListColumnFragment extends RoboFragment {
-  
+
   /** リストビュー */
   ListView listView;
+
   View view;
+
   /** グループリスト */
-  List<GroupManager> groupList;
+  List<GroupManager> groupManageers;
+
   /** GroupNamerの親の管理のためのグループマネージャー */
   GroupManager groupManager;
+
   int groupPosition = 0;
   private Button backButton;
   private NavigationDrawerFragment fragment;
-  List<Integer> targetColumn = new ArrayList<Integer>();
+  List<Integer> targetColumnNumbers = new ArrayList<Integer>();
 
   /**
    * {@inheritDoc}
+   * 
    * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
    */
   @Override
@@ -57,23 +63,23 @@ public class ListColumnFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        if(ListColumnFragment.this.groupManager.getParent() != null) {
+        if (ListColumnFragment.this.groupManager.getParent() != null) {
           ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManager.getParent();
-          ListColumnFragment.this.groupList = ListColumnFragment.this.groupManager.getItems();
-          int size = ListColumnFragment.this.targetColumn.size()-1;
-          ListColumnFragment.this.targetColumn.remove(size);
+          ListColumnFragment.this.groupManageers = ListColumnFragment.this.groupManager.getItems();
+          int size = ListColumnFragment.this.targetColumnNumbers.size() - 1;
+          ListColumnFragment.this.targetColumnNumbers.remove(size);
           configureListView();
         }
       }
     });
     return this.view;
   }
-  
+
   /**
    * リストビューをアダプタに登録し、リストの処理します。
    */
   public void configureListView() {
-    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.list_groupname, this.groupList, this.fragment, this.targetColumn);
+    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.list_groupname, this.groupManageers, this.fragment, this.targetColumnNumbers);
     this.listView.setAdapter(adapter);
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -82,29 +88,31 @@ public class ListColumnFragment extends RoboFragment {
        */
       @SuppressWarnings("boxing")
       public void onItemClick(AdapterView<?> parent, View view1, int position, long id) {
-        ListView listView1 = (ListView)parent;
-        if(listView1.getItemAtPosition(position).getClass() == GroupName.class) {
+        final ListView listView1 = (ListView)parent;
+        if (listView1.getItemAtPosition(position).getClass() == GroupName.class) {
           ListColumnFragment.this.groupPosition = position;
-          ListColumnFragment.this.groupManager = ListColumnFragment.this.groupList.get(ListColumnFragment.this.groupPosition);
-          ListColumnFragment.this.groupList = ListColumnFragment.this.groupManager.getItems();
-          ListColumnFragment.this.targetColumn.add(position);
+          ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManageers.get(ListColumnFragment.this.groupPosition);
+          ListColumnFragment.this.groupManageers = ListColumnFragment.this.groupManager.getItems();
+          ListColumnFragment.this.targetColumnNumbers.add(position);
           configureListView();
         }
-      }  
+      }
     });
   }
-  
+
   /**
    * グループマネージャーとそのリストを初期化します。
-   * @param list GroupManager
+   * 
+   * @param groupManager GroupManager
    */
-  public void setGroupManager(GroupManager list) {
-    this.groupManager = list;
-    this.groupList = list.getItems();
+  public void setGroupManager(GroupManager groupManager) {
+    this.groupManager = groupManager;
+    this.groupManageers = groupManager.getItems();
   }
 
   /**
    * NavigationDrawerFragmentを設定します。
+   * 
    * @param fragment NavigationDrawerFragment
    */
   public void setNavigationDrawerFragment(NavigationDrawerFragment fragment) {

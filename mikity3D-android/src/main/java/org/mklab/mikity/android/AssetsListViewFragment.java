@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,26 +65,25 @@ public class AssetsListViewFragment extends RoboFragment {
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final String item = (String)AssetsListViewFragment.this.listView.getItemAtPosition(position);
         final String nextFile = AssetsListViewFragment.this.currentPath + File.separator + item;
-        String[] nextFileList = loadAssetsFolder(nextFile);
-        List<String> nextFileLimitList = new ArrayList<String>();
+        String[] nextFiles = loadAssetsFolder(nextFile);
+        List<String> nextFileLimits = new ArrayList<String>();
         if (AssetsListViewFragment.this.isModel) {
-          nextFileLimitList = getLimitList("mat", nextFileList); //$NON-NLS-1$
+          nextFileLimits = getLimitList("mat", nextFiles); //$NON-NLS-1$
         } else {
-          nextFileLimitList = getLimitList("m3d", nextFileList); //$NON-NLS-1$
+          nextFileLimits = getLimitList("m3d", nextFiles); //$NON-NLS-1$
         }
-        final String[] newNextFileList = nextFileLimitList.toArray(new String[nextFileLimitList.size()]);
-        nextFileList = nextFileLimitList.toArray(new String[nextFileLimitList.size()]);
+        final String[] newNextFiles = nextFileLimits.toArray(new String[nextFileLimits.size()]);
+        nextFiles = nextFileLimits.toArray(new String[nextFileLimits.size()]);
 
-        if (nextFileList.length > 0) {
+        if (nextFiles.length > 0) {
           AssetsListViewFragment.this.currentPath = nextFile;
-          AssetsListViewFragment.this.listView.setAdapter(new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, android.R.layout.simple_list_item_1, nextFileList));
+          AssetsListViewFragment.this.listView.setAdapter(new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, android.R.layout.simple_list_item_1, nextFiles));
         } else {
-
           copyAssetsFiles(AssetsListViewFragment.this.currentPath, item, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + File.separator + "org.mklab.mikity")); //$NON-NLS-1$
-
-          final InputStream input;
+          
           try {
-            input = AssetsListViewFragment.this.assetManager.open(nextFile);
+            final InputStream input = AssetsListViewFragment.this.assetManager.open(nextFile);
+            
             if (AssetsListViewFragment.this.isModel) {
               AssetsListViewFragment.this.canvasActivity.canvasFragment.loadModelFile(input);
               AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
@@ -92,8 +92,8 @@ public class AssetsListViewFragment extends RoboFragment {
             } else {
               AssetsListViewFragment.this.canvasActivity.canvasFragment.loadtimeSeriesData(input);
             }
+
             AssetsListViewFragment.this.fragmentManager.popBackStack();
-            
             input.close();
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -107,19 +107,19 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   protected void setExceptionDailogFragment(String message) {
-    DialogFragment dialogFragment = new ExceptionDialogFragment();
+    final DialogFragment dialogFragment = new ExceptionDialogFragment();
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
 
   String[] loadAssetsFolder(String folderName) {
-    String[] fileList = null;
+    String[] files = null;
     try {
-      fileList = this.assetManager.list(folderName);
+      files = this.assetManager.list(folderName);
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
-    return fileList;
+    return files;
   }
 
   //  public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -139,18 +139,16 @@ public class AssetsListViewFragment extends RoboFragment {
 
   @SuppressWarnings("resource")
   String loadAssetsFile(String filePath) {
-    InputStream is;
-    BufferedReader br = null;
     String text = ""; //$NON-NLS-1$
     try {
-      is = this.assetManager.open(filePath);
-      br = new BufferedReader(new InputStreamReader(is));
-      String str;
-      while ((str = br.readLine()) != null) {
-        text += str + "\n"; //$NON-NLS-1$
+      final InputStream input = this.assetManager.open(filePath);
+      final BufferedReader buffer = new BufferedReader(new InputStreamReader(input));
+      String string;
+      while ((string = buffer.readLine()) != null) {
+        text += string + "\n"; //$NON-NLS-1$
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
     return text;
   }
@@ -159,24 +157,26 @@ public class AssetsListViewFragment extends RoboFragment {
     if (!folder.exists()) {
       folder.mkdirs();
     }
-    File file = new File(folder, filename);
+    
+    final File file = new File(folder, filename);
     if (file.exists()) {
       file.delete();
     }
+    
     try {
-      FileOutputStream fileOutputStream = new FileOutputStream(file);
-      byte[] buffer = new byte[1024];
+      final OutputStream output = new FileOutputStream(file);
+      final byte[] buffer = new byte[1024];
       int length = 0;
-      InputStream inputStream = this.canvasActivity.getAssets().open(parentPath + File.separator + filename);
-      while ((length = inputStream.read(buffer)) >= 0) {
-        fileOutputStream.write(buffer, 0, length);
+      final InputStream input = this.canvasActivity.getAssets().open(parentPath + File.separator + filename);
+      while ((length = input.read(buffer)) >= 0) {
+        output.write(buffer, 0, length);
       }
-      fileOutputStream.close();
-      inputStream.close();
+      output.close();
+      input.close();
       //          Toast.makeText(getApplicationContext(), "Copy of " + filename + " to " + folder.getPath(), //$NON-NLS-1$
       //                  Toast.LENGTH_LONG).show();
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
   }
 
@@ -215,16 +215,16 @@ public class AssetsListViewFragment extends RoboFragment {
    * @return 対象となるファイルのリスト
    */
   public List<String> getLimitList(String extension, String[] nextFileList) {
-    final List<String> nextFileLimitList = new ArrayList<String>();
+    final List<String> nextFileLimits = new ArrayList<String>();
     for (int i = 0; i < nextFileList.length; i++) {
       final String a = getSuffix(nextFileList[i]);
       if (getSuffix(nextFileList[i]).equals(extension)) {
         // nothing to do
       } else {
-        nextFileLimitList.add(nextFileList[i]);
+        nextFileLimits.add(nextFileList[i]);
       }
     }
-    return nextFileLimitList;
+    return nextFileLimits;
   }
 
   /**

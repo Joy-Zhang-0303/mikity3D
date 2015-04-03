@@ -25,48 +25,53 @@ import android.widget.TextView;
 
 /**
  * リストビューを動的に生成するためのアダプタークラスです。
+ * 
  * @author soda
  * @version $Revision$, 2015/02/03
  */
-public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
-  private Context _context;
-  private int _viewResourceId;
-  private LayoutInflater layoutInflater_;
-  private List<GroupManager> lists;
-  /** NavigationDrawer*/
+public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
+
+  private Context context;
+  private int viewResourceId;
+  private LayoutInflater layoutInflater;
+  private List<GroupManager> groupManagers;
+
+  /** NavigationDrawer */
   NavigationDrawerFragment fragment;
-  /** 変更するカラムのターゲットリスト*/
+
+  /** 変更するカラムのターゲットリスト */
   List<Integer> targetColumn;
-  /** 現在のリストに登録されているグループの数*/
+
+  /** 現在のリストに登録されているグループの数 */
   int groupNameCount;
-  
+
   /**
    * 新しく生成された<code>ColumnArrayAdapter</code>オブジェクトを初期化します。
-   * @param context Context
+   * 
+   * @param aContext Context
    * @param resourceId id
-   * @param lists GroupManager
+   * @param localGroupManagers GroupManager
    * @param fragment NavigatioDrawerFragment
    * @param targetColumn リンクの中の何番目のターゲットかを知るための変数
    */
-  public ColumnArrayAdapter(Context context, int resourceId, List<GroupManager> lists, 
-      NavigationDrawerFragment fragment, List<Integer> targetColumn) {
-    super(context, resourceId, lists);
-    this._context = context;
-    this._viewResourceId = resourceId;
-    this.layoutInflater_ = (LayoutInflater)this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    this.lists = lists;
+  public ColumnArrayAdapter(Context aContext, int resourceId, List<GroupManager> localGroupManagers, NavigationDrawerFragment fragment, List<Integer> targetColumn) {
+    super(aContext, resourceId, localGroupManagers);
+    this.context = aContext;
+    this.viewResourceId = resourceId;
+    this.layoutInflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    this.groupManagers = localGroupManagers;
     this.fragment = fragment;
     this.targetColumn = targetColumn;
     this.groupNameCount = 0;
-    
+
     int groupCount = 0;
-    for(Iterator<GroupManager> itr = lists.iterator(); itr.hasNext();) { 
-      if((itr.next()).getClass() == GroupName.class) {
+    for (Iterator<GroupManager> itr = localGroupManagers.iterator(); itr.hasNext();) {
+      if ((itr.next()).getClass() == GroupName.class) {
         groupCount++;
       }
     }
     this.groupNameCount = groupCount;
-    
+
   }
 
   /**
@@ -78,48 +83,49 @@ public class ColumnArrayAdapter extends ArrayAdapter <GroupManager>{
     if (convertView != null) {
       view = convertView;
     } else {
-      if(this.lists.get(position).getClass() == GroupName.class) {
-        GroupName groupName = (GroupName)this.lists.get(position);
-        view = this.layoutInflater_.inflate(this._viewResourceId, null);
-        TextView columnText = (TextView)view.findViewById(R.id.groupNameText);
+      if (this.groupManagers.get(position).getClass() == GroupName.class) {
+        final GroupName groupName = (GroupName)this.groupManagers.get(position);
+        view = this.layoutInflater.inflate(this.viewResourceId, null);
+        final TextView columnText = (TextView)view.findViewById(R.id.groupNameText);
         columnText.setText(groupName.getGroupName());
       } else {
-        final GroupLink groupLink = (GroupLink)this.lists.get(position);
-        view = this.layoutInflater_.inflate(R.layout.list_link, null);
-        TextView targetText = (TextView)view.findViewById(R.id.list_target);
+        final GroupLink groupLink = (GroupLink)this.groupManagers.get(position);
+        view = this.layoutInflater.inflate(R.layout.list_link, null);
+        final TextView targetText = (TextView)view.findViewById(R.id.list_target);
         targetText.setText(groupLink.getTarget());
-        final EditText columnText = (EditText)view.findViewById(R.id.list_column); 
+        final EditText columnText = (EditText)view.findViewById(R.id.list_column);
         columnText.setText(Integer.toString(groupLink.getColumn()));
 
-        Button minusButton = (Button)view.findViewById(R.id.minusButton2);
+        final Button minusButton = (Button)view.findViewById(R.id.minusButton2);
         minusButton.setOnClickListener(new OnClickListener() {
 
           /**
-           * @param v  View
+           * {@inheritDoc}
            */
           public void onClick(View v) {
-            if(2 < groupLink.getColumn()) {
-              int column = groupLink.getColumn() - 1;
+            if (2 < groupLink.getColumn()) {
+              final int column = groupLink.getColumn() - 1;
               groupLink.setColumnNumber(column);
               columnText.setText(Integer.toString(column));
-              ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position-ColumnArrayAdapter.this.groupNameCount, column);
+              ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position - ColumnArrayAdapter.this.groupNameCount, column);
             }
-          }          
+          }
         });
-        Button plusButton = (Button)view.findViewById(R.id.plusButton2);
+
+        final Button plusButton = (Button)view.findViewById(R.id.plusButton2);
         plusButton.setOnClickListener(new OnClickListener() {
 
           /**
-           * @param v  View
+           * {@inheritDoc}
            */
           public void onClick(View v) {
-            if(groupLink.getColumn() < 99) {
-              int column = groupLink.getColumn() + 1;
+            if (groupLink.getColumn() < 99) {
+              final int column = groupLink.getColumn() + 1;
               groupLink.setColumnNumber(column);
               columnText.setText(Integer.toString(column));
-              ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position-ColumnArrayAdapter.this.groupNameCount, column);
+              ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position - ColumnArrayAdapter.this.groupNameCount, column);
             }
-          }          
+          }
         });
       }
     }

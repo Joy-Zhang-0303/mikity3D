@@ -58,21 +58,27 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
   GLSurfaceView glView;
   boolean mIsInitScreenSize;
+  
   /** レンダー */
   OpenglesModelRenderer modelRenderer;
+  
   /** scaleGestureDetector */
   ScaleGestureDetector gesDetect = null;
+  
   boolean rotationing;
   boolean scaling;
   double scaleValue = 1;
   float prevX = 0;
   float prevY = 0;
+  
   /** CanvasActivity */
   private CanvasActivity activity;
+  
   Timer timer = new Timer();
 
   /** Mikity3dモデル */
   Mikity3d root;
+  
   MovableGroupManager manager;
   Matrix data;
   private double[] timeTable;
@@ -167,9 +173,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
        * {@inheritDoc}
        */
       public boolean onTouch(View v, MotionEvent event) {
-        float transferAmountX;
-        float transferAmountY;
-        int touchCount = event.getPointerCount();
+        final float transferAmountX;
+        final float transferAmountY;
+        final int touchCount = event.getPointerCount();
         // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
         CanvasFragment.this.gesDetect.onTouchEvent(event);
 
@@ -293,7 +299,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * @param filePath 時間データのパス
    */
   public void loadtimeSeriesData(final InputStream filePath) {
-    AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
+    final AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
 
       /**
        * {@inheritDoc}
@@ -312,10 +318,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
        */
       @Override
       protected Void doInBackground(String... arg0) {
-        InputStream mat1 = filePath;
-        setTimeData(mat1);
+        final InputStream input = filePath;
+        setTimeData(input);
         try {
-          mat1.close();
+          input.close();
         } catch (IOException e) {
           throw new RuntimeException(e);
         }
@@ -371,7 +377,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * @param message 例外に対する返答
    */
   public void callExceptionDialogFragment(String message) {
-    DialogFragment dialogFragment = new ExceptionDialogFragment();
+    final DialogFragment dialogFragment = new ExceptionDialogFragment();
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
@@ -386,9 +392,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      String message = "Time data size is not match model's column number." //$NON-NLS-1$
+      final String message = "Time data size is not match model's column number." //$NON-NLS-1$
           + "\nPlease select proper time data or set proper column number."; //$NON-NLS-1$
-      DialogFragment dialogFragment = new ExceptionDialogFragment();
+      final DialogFragment dialogFragment = new ExceptionDialogFragment();
       ((ExceptionDialogFragment)dialogFragment).setMessage(message);
       dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
       this.setIllegalTimeData = true;
@@ -614,7 +620,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * モデルデータにレンダーを登録します。
    */
   public void configurateModel() {
-    Group[] children = this.root.getModel(0).getGroups();
+    final Group[] children = this.root.getModel(0).getGroups();
     this.modelRenderer.setChildren(children);
     Mikity3dConfiguration configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
@@ -659,10 +665,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * アクティビティの画面のレイアウトを取得し、設定します。
    */
   public void configurateDirection() {
-    DisplayMetrics displaymetrics = new DisplayMetrics();
+    final DisplayMetrics displaymetrics = new DisplayMetrics();
     getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-    int width = displaymetrics.widthPixels;
-    int height = displaymetrics.heightPixels;
+    final int width = displaymetrics.widthPixels;
+    final int height = displaymetrics.heightPixels;
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
     this.glView.setLayoutParams(params);
   }

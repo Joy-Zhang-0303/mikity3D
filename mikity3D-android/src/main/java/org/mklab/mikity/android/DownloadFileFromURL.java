@@ -45,13 +45,13 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> 
   @Override
   protected InputStream doInBackground(String... params) {
     //    String url = "http://www.mk.ces.kyutech.ac.jp/?page_id=18";
-    String url = params[0];
+    final String url = params[0];
     HttpClient httpClient = new DefaultHttpClient();
     //    HttpParams param = httpClient.getParams();
     //    HttpConnectionParams.setConnectionTimeout(param, 1000);
     //    HttpConnectionParams.setSoTimeout(param, 1000);
     //    StringBuilder url= new StringBuilder("http://www.mk.ces.kyutech.ac.jp/?page_id=18");
-    HttpGet request = new HttpGet(url.toString());
+    final HttpGet request = new HttpGet(url.toString());
 
     HttpResponse httpResponse = null;
     try {
@@ -62,8 +62,7 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> 
     
     try {
       if (HttpStatus.SC_OK == httpResponse.getStatusLine().getStatusCode()) {
-        InputStream inputStream = httpResponse.getEntity().getContent();
-        this.input = inputStream;
+        this.input = httpResponse.getEntity().getContent();
       }
     } catch (IllegalStateException e) {
       throw new RuntimeException(e);
@@ -89,7 +88,7 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> 
   @Override
   protected void onPostExecute(InputStream anInput) {
     this.fragment.input = anInput;
-    Drawable d = Drawable.createFromStream(anInput, "webimage"); //$NON-NLS-1$
+    final Drawable d = Drawable.createFromStream(anInput, "webimage"); //$NON-NLS-1$
     //this.fragment.sampleModelButton.setBackground(d);
   }
 }
