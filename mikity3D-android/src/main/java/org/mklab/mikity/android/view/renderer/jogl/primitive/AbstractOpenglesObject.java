@@ -13,14 +13,13 @@ import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.android.view.renderer.OpenglesObject;
 
-
-
 /**
+ * OpenGL ESのオブジェクトを表す抽象クラスです。
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
 public abstract class  AbstractOpenglesObject implements OpenglesObject {
-  /** 色 */
+  /** 色。 */
   private String color;
 
   /**

@@ -13,8 +13,7 @@ import javax.microedition.khronos.opengles.GL10;
  * @version $Revision$, 2013/02/06
  */
 public class OpenglesBranchGroup implements OpenglesObject {
-
-  /** オブジェクトのリスト */
+  /** オブジェクト。 */
   private List<OpenglesObject> objects;
   /** 座標系 */
   private List<OpenglesTransformGroup> groups;

@@ -5,26 +5,22 @@ import javax.microedition.khronos.opengles.GL10;
 
 /**
  * OpenGL ESの座標系を表すクラスです。
+ * 
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */
 public class OpenglesCoordinate {
-  /** x軸周りの回転[rad] */
+  /** x軸周りの回転角度[rad] */
   private float rotationX;
-
-  /** y軸周りの回転[rad] */
+  /** y軸周りの回転角度[rad] */
   private float rotationY;
-
-  /** z軸周りの回転[rad] */
+  /** z軸周りの回転角度[rad] */
   private float rotationZ;
-
-  /** x[m] */
+  /** x座標[m] */
   private float x;
-
-  /** y[m] */
+  /** y座標[m] */
   private float y;
-
-  /** z[m] */
+  /** z座標[m] */
   private float z;
 
   /**
@@ -39,6 +35,8 @@ public class OpenglesCoordinate {
   }
 
   /**
+   * 座標を設定します。
+   * 
    * @param x x座標
    * @param y y座標
    * @param z z座標
@@ -50,11 +48,11 @@ public class OpenglesCoordinate {
   }
 
   /**
-   * x-y-z軸周りの回転を設定します。
+   * x-y-z軸周りの回転角度を設定します。
    * 
-   * @param rotationX x軸周りの回転
-   * @param rotationY y軸周りの回転
-   * @param rotationZ z軸周りの回転
+   * @param rotationX x軸周りの回転角度[rad]
+   * @param rotationY y軸周りの回転角度[rad]
+   * @param rotationZ z軸周りの回転角度[rad]
    */
   public void setRotation(float rotationX, float rotationY, float rotationZ) {
     this.rotationX = rotationX;

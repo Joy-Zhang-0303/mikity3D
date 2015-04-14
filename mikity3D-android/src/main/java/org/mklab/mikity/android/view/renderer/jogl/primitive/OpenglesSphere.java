@@ -11,24 +11,25 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
+ * 球を表すクラスです。
+ * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
 public class OpenglesSphere extends AbstractOpenglesObject {
-  /** 半径 */
+  /** 半径。 */
   private float radius;
-
-  /** 分割数 */
+  /** 分割数。 */
   private int div;
 
   /**
    * {@inheritDoc}
    */
   public void display(GL10 gl10) {
-    //頂点配列の有効化
+    // 頂点配列の有効化
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
-    //デプステストの有効化
+    // デプステストの有効化
     gl10.glEnable(GL10.GL_DEPTH_TEST);
 
     // TODO this._div=16までしか対応していない。
@@ -38,7 +39,7 @@ public class OpenglesSphere extends AbstractOpenglesObject {
     final float incV = 2 * this.radius / grid;
     final int incU = 360 / grid;
     
-    //頂点バッファの生成
+    // 頂点バッファの生成
     final float[] vertices = new float[(2 + (grid1 - 2) * grid) * 3];
     int count1 = 0;
     vertices[count1++] = 0.0f;
@@ -61,11 +62,6 @@ public class OpenglesSphere extends AbstractOpenglesObject {
     vertices[count1++] = 0.0f;
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
-
-    //test
-    // for(int i = 0; i <= vertexs.length-1; i++){
-    //  System.out.println("vertexs["+i+"] = " + vertexs[i]); //$NON-NLS-1$ //$NON-NLS-2$
-    //}
 
     //インデックスバッファの生成
     final byte[] indices = new byte[((grid - 1) * grid * 2) * 3];
@@ -101,14 +97,9 @@ public class OpenglesSphere extends AbstractOpenglesObject {
 
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
-    //test
-    //for(int i = 0; i <= indexs.length-1; i++){
-    // System.out.println("indexs["+ i +"] = " + indexs[i]);  //$NON-NLS-1$//$NON-NLS-2$
-    //}
-
     applyColor(gl10);
 
-    //頂点バッファの指定 
+    // 頂点バッファの指定 
     gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
     indexBuffer.position(0);
@@ -116,7 +107,7 @@ public class OpenglesSphere extends AbstractOpenglesObject {
   }
 
   /**
-   * 大きさを設定します。
+   * 半径を設定します。
    * 
    * @param radius 半径
    */

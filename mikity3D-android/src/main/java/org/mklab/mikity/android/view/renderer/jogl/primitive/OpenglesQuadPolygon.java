@@ -11,11 +11,13 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
+ * 四角ポリゴンを表すクラスです。
+ * 
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
 public class OpenglesQuadPolygon extends AbstractOpenglesObject {
-  /** 頂点 */
+  /** 頂点。 */
   private float[][] points = new float[4][3];
 
   /**

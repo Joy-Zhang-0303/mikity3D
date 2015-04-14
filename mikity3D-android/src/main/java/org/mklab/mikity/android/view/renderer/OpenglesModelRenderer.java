@@ -19,10 +19,9 @@ import android.opengl.GLU;
  * @version $Revision$, 2013/02/06
  */
 public class OpenglesModelRenderer implements ModelRenderer, Renderer {
-
-  /** アスペクト比 */
+  /** アスペクト比 。*/
   private float aspect;
-  /** 回転角度 */
+  /** 回転角度。 */
   private int angle;
 
   private static final long serialVersionUID = 5653656698891675370L;
@@ -32,11 +31,12 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /** オブジェクトのグループ */
   private OpenglesBranchGroup[] topGroups;
 
+  /** 視点。 */
   private double[] eye = {0.0, 0.0, 5.0};
 
-  /** X軸に関する回転角度 */
+  /** X軸周りの回転角度 */
   private float rotationX = 0.0f;
-  /** Y軸に関する回転角度 */
+  /** Y軸周りの回転角度 */
   private float rotationY = 0.0f;
   /** X軸方向への移動距離 */
   private float translationX = 0.0f;
@@ -200,8 +200,8 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /**
    * 回転角度を設定します。
    * 
-   * @param rotationX X方向の回転角度
-   * @param rotationY y方向の回転角度
+   * @param rotationX X軸周りの回転角度
+   * @param rotationY y軸周りの回転角度
    */
   public void setRotation(float rotationX, float rotationY) {
     this.rotationY -= rotationX / 5;
@@ -244,6 +244,8 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   }
 
   /**
+   * X軸方向の移動量を設定します。
+   * 
    * @param translateX X軸方向の移動量
    */
   public void setTranslationX(float translateX) {
@@ -251,6 +253,8 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   }
 
   /**
+   * Y軸方向の移動量を設定します。
+   * 
    * @param translateY Y軸方向の移動量
    */
   public void setTranslationY(float translateY) {

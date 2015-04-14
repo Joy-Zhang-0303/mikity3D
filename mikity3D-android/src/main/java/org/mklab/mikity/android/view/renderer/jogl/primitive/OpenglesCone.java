@@ -12,18 +12,17 @@ import javax.microedition.khronos.opengles.GL10;
 
 
 /**
+ * 三角錐を表すクラスです。
+ * 
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
 public class OpenglesCone extends AbstractOpenglesObject {
-
-  /** 底面の半径 */
+  /** 底面の半径。 */
   protected float radius;
-
-  /** 高さ */
+  /** 高さ。 */
   protected float height;
-
-  /** 分割数 */
+  /** 分割数。 */
   protected int div;
 
   /**

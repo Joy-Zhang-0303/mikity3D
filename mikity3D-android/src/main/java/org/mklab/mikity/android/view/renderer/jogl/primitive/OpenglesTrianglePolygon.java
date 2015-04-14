@@ -11,12 +11,13 @@ import javax.microedition.khronos.opengles.GL10;
 
 
 /**
+ * 四角ポリゴンを表すクラスです。
+ * 
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
 public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
-
-  /** 頂点 */
+  /** 頂点。 */
   private float[][] points = new float[3][3];
 
   /**

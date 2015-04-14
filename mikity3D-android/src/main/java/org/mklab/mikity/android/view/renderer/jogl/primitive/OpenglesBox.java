@@ -12,18 +12,17 @@ import javax.microedition.khronos.opengles.GL10;
 
 
 /**
+ * ボックスを表すクラスです。
+ * 
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
 public class OpenglesBox extends AbstractOpenglesObject {
-
-  /** 幅 */
+  /** 幅 。*/
   private float xSize;
-
-  /** 奥行 */
+  /** 奥行 。*/
   private float ySize;
-
-  /** 高さ */
+  /** 高さ。 */
   private float zSize;
 
   /**

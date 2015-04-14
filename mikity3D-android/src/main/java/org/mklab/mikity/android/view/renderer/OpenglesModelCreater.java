@@ -11,6 +11,8 @@ import java.util.List;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 
 /**
+ * モデルの生成器です。
+ * 
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
