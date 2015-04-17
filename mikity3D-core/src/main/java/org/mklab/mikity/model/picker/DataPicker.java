@@ -13,6 +13,7 @@ import org.mklab.mikity.model.DHParameterType;
 
 /**
  * データを抽出器を表すインターフェースです。
+ * 
  * @author koga
  * @version $Revision$, 2012/11/05
  */

@@ -14,11 +14,11 @@ package org.mklab.mikity.util;
  */
 public class Color3 {
   /** 赤成分 */
-  float r;
+  private float r;
   /** 緑成分 */
-  float g;
+  private float g;
   /** 青成分 */
-  float b;
+  private float b;
   
   /**
    * 新しく生成された<code>Color3</code>オブジェクトを初期化します。

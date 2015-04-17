@@ -12,12 +12,14 @@ import java.util.List;
 
 /**
  * Mikity3Dモデルのグループ名を管理するためのクラスです。
+ * 
  * @author soda
  * @version $Revision$, 2015/02/03
  */
 public class GroupName extends GroupManager {
-  
+  /** 要素。 */
   private List<GroupManager> items = new ArrayList<>();
+  /** グループ名。 */
   private String groupName;
   
   /**
@@ -29,25 +31,25 @@ public class GroupName extends GroupManager {
   	super(parent);
     this.groupName = name;
   }
-  
+
   /**
-   * @see org.mklab.mikity.model.searcher.GroupManager#addItems(org.mklab.mikity.model.searcher.GroupManager)
+   * {@inheritDoc}
    */
   @Override
   public void addItems(GroupManager item) {
     this.items.add(item);
   }
-  
+
   /**
-   * @see org.mklab.mikity.model.searcher.GroupManager#removeNullElements()
+   * {@inheritDoc}
    */
   @Override
   public void removeNullElements() {
     this.items.removeAll(Collections.singleton(null));
   }
-  
+
   /**
-   * @see org.mklab.mikity.model.searcher.GroupManager#trimToSizeArray()
+   * {@inheritDoc}
    */
   @Override
   public void trimToSizeArray() {
@@ -55,7 +57,7 @@ public class GroupName extends GroupManager {
   }
   
   /**
-   * @see org.mklab.mikity.model.searcher.GroupManager#getItems()
+   * {@inheritDoc}
    */
   @Override
   public List<GroupManager> getItems() {
@@ -64,6 +66,7 @@ public class GroupName extends GroupManager {
   
   /**
    * グループ名を返します。
+   * 
    * @return groupName グループ名
    */
   public String getGroupName() {

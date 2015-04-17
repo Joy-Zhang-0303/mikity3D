@@ -8,42 +8,40 @@ package org.mklab.mikity.model.searcher;
 
 /**
  * Mikity3Dモデルのリンクデータを管理するクラスです。
+ * 
  * @author soda
  * @version $Revision$, 2015/02/03
  */
 public class GroupLink extends GroupManager {
-
+  /** 列番号。 */
   private int columnNumber;
+  /** ターゲット名。 */
   private String targetName;
-  
+
   /**
    * 新しく生成された<code>GroupLink</code>オブジェクトを初期化します。
-   * @param column
-   * @param target
-   * @param parent
-   */
-  /**
-   * 新しく生成された<code>GroupLink</code>オブジェクトを初期化します。
-   * @param column コラムナンバー
+   * @param columnNumber 列番号
    * @param target ターゲット名
    * @param parent 親
    */
-  public GroupLink(int column, String target, GroupManager parent) {
+  public GroupLink(int columnNumber, String target, GroupManager parent) {
   	super(parent);
-    this.columnNumber = column;
+    this.columnNumber = columnNumber;
     this.targetName = target;
   }
   
   /**
-   * コラムナンバーを取得するためのメソッドです。
-   * @return columnNumber コラムナンバー
+   * 列番号を返します。
+   * 
+   * @return columnNumber 列番号
    */
   public int getColumn() {
     return this.columnNumber;
   }
   
   /**
-   * ターゲット名を取得するためのメソッドです。
+   * ターゲット名を返します。
+   * 
    * @return ターゲット名
    */
   public String getTarget() {
@@ -51,7 +49,8 @@ public class GroupLink extends GroupManager {
   }
   
   /**
-   * コラムナンバーを設定するためのメソッドです。
+   * 列番号を設定すします。
+   * 
    * @param columnNumber コラムナンバー
    */
   public void setColumnNumber(int columnNumber) {

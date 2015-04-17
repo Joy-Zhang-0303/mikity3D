@@ -20,6 +20,7 @@ import org.mklab.nfc.matrix.Matrix;
  * @version $Revision: 1.7 $.2005/01/17
  */
 public abstract class AbstractDataPicker implements DataPicker {
+  /** データ。 */
   private DoubleMatrix data;
   /** DHパラメータ */
   protected DHParameter[] dhParameters;
@@ -31,9 +32,8 @@ public abstract class AbstractDataPicker implements DataPicker {
   private static boolean dataIsRadian = true;
 
   /**
-   * コンストラクター
-   * 
-   * @param data データ
+   * 新しく生成された<code>AbstractDataPicker</code>オブジェクトを初期化します。
+   * @param data data データ
    */
   public AbstractDataPicker(Matrix data) {
     this.data = (DoubleMatrix)data;

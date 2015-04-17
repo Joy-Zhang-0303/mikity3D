@@ -10,69 +10,69 @@ import java.util.List;
 
 /**
  * Mikity3Dモデルのグループとリンクを管理するためのクラスです。
+ * 
  * @author soda
  * @version $Revision$, 2015/02/03
  */
 public class GroupManager {
-	
-	private GroupManager parent;
-	
-	/**
-	 * 新しく生成された<code>GroupManager</code>オブジェクトを初期化します。
-	 * @param parent 親GroupManager(GroupName)
-	 */
-	public GroupManager(GroupManager parent) {
-		this.parent = parent;
-	}
-  
+  /** 親。 */
+  private GroupManager parent;
+
   /**
-   * 親の登録をするためのメソッドです。
+   * 新しく生成された<code>GroupManager</code>オブジェクトを初期化します。
+   * 
+   * @param parent 親GroupManager(GroupName)
    */
-  @SuppressWarnings("static-method")
+  public GroupManager(GroupManager parent) {
+    this.parent = parent;
+  }
+
+  /**
+   * 親の登録します。
+   */
   public void parentRegister() {
     throw new UnsupportedOperationException();
   }
-  
+
   /**
-   * 要素を追加するためのメソッドです。
+   * 要素を追加します。
+   * 
    * @param item 要素
    */
-  @SuppressWarnings("static-method")
   public void addItems(GroupManager item) {
-    throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException(item.toString());
   }
-  
+
   /**
-   * Null要素を削除するためのメソッドです。
+   * Null要素を削除します。
    */
-  @SuppressWarnings("static-method")
   public void removeNullElements() {
     throw new UnsupportedOperationException();
   }
-  
+
   /**
    * 
    */
-  @SuppressWarnings("static-method")
   public void trimToSizeArray() {
     throw new UnsupportedOperationException();
   }
-  
+
   /**
-   * 要素を取得するメソッドです。
+   * 要素を返します。
+   * 
    * @return 要素
    */
-  @SuppressWarnings("static-method")
   public List<GroupManager> getItems() {
     throw new UnsupportedOperationException();
   }
-  
+
   /**
-   * 親を取得するメソッドです。
+   * 親を返します。
+   * 
    * @return parent 親
    */
   public GroupManager getParent() {
-  	return this.parent;
+    return this.parent;
   }
-  
+
 }

@@ -19,7 +19,6 @@ import org.simpleframework.xml.core.Persister;
  * @version $Revision: 1.4 $. 2007/07/10
  */
 public class SimpleXmlUnmarshaller extends AbstractMikity3DUnmarshaller {
-
   /** モデルデータのルート */
   protected Mikity3d root;
   /** Colladaのグループ */

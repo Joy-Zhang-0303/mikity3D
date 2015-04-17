@@ -42,8 +42,7 @@ public class ColladaFileTransformer {
    * ルート要素を小文字に変換し，各行ごとに内容をリストに追加します。
    */
   private void transformFile() {
-    try {
-      final BufferedReader reader = new BufferedReader(new FileReader(this.fileBefore));
+    try (final BufferedReader reader = new BufferedReader(new FileReader(this.fileBefore))) {
       String line;
       while ((line = reader.readLine()) != null) {
         if (line.indexOf("<COLLADA") != -1) { //$NON-NLS-1$
@@ -54,7 +53,6 @@ public class ColladaFileTransformer {
           this.contents.add(line);
         }
       }
-      reader.close();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -64,13 +62,11 @@ public class ColladaFileTransformer {
    * 変換後の内容をファイルに書き込みます。
    */
   private void writeTransformedFile() {
-    try {
-      final FileWriter writer = new FileWriter(this.fileAfter);
+    try (final FileWriter writer = new FileWriter(this.fileAfter)) {
       for (int i = 0; i < this.contents.size(); i++) {
         writer.write(this.contents.get(i) + "\n"); //$NON-NLS-1$
       }
-      writer.close();
-    } catch (Exception e) {
+    } catch (IOException e) {
       throw new RuntimeException(e);
     }
   }
