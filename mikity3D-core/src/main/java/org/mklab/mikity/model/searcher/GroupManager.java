@@ -28,9 +28,9 @@ public class GroupManager {
   }
 
   /**
-   * 親の登録します。
+   * 親を登録します。
    */
-  public void parentRegister() {
+  public void registerParent() {
     throw new UnsupportedOperationException();
   }
 

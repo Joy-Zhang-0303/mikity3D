@@ -26,7 +26,7 @@ public class ExcecuteSearchGroup {
    * @return GroupManager
    */
   public GroupManager searchGroupRecursion(Group group, GroupManager parents) {
-    List<GroupManager> managers = new ArrayList<>();
+    List<GroupManager> items = new ArrayList<>();
     int groupCount = 0;
     
     while (true) {
@@ -39,7 +39,7 @@ public class ExcecuteSearchGroup {
         int linkCount = 0;
         while (true) {
           try {
-            managers.add(searchLinkData(group, linkCount, parents));
+            items.add(searchLinkData(group, linkCount, parents));
             linkCount++;
           } catch (Exception e) {
             break;
@@ -53,7 +53,7 @@ public class ExcecuteSearchGroup {
           int linkCount = 0;
           while (true) {
             try {
-              managers.add(searchLinkData(group, linkCount, parents));
+              items.add(searchLinkData(group, linkCount, parents));
               linkCount++;
             } catch (Exception ee) {
               break;
@@ -61,10 +61,10 @@ public class ExcecuteSearchGroup {
           }
         }
 
-        for (GroupManager manager : managers) {
-          parents.addItems(manager);
+        for (GroupManager item : items) {
+          parents.addItems(item);
         }
-        managers = new ArrayList<>();
+        items = new ArrayList<>();
         break;
       }
     }
@@ -76,52 +76,14 @@ public class ExcecuteSearchGroup {
    * 
    * @param group グループリスト
    * @param linkCount カウント
-   * @param parentList 親リスト
-   * @return linkList LinkSearchOfModel
+   * @param parents 親リスト
+   * @return links LinkSearchOfModel
    */
-  private GroupManager searchLinkData(Group group, int linkCount, GroupManager parentList) {
+  private GroupManager searchLinkData(Group group, int linkCount, GroupManager parents) {
     final LinkData data = group.getLinkData(linkCount);
     final int column = data.getColumnNumber();
     final String target = data.getTargetName();
-    final GroupLink linkList = new GroupLink(column, target, parentList);
-    return linkList;
+    final GroupLink links = new GroupLink(column, target, parents);
+    return links;
   }
-
-  //TODO　不要なら消す
-  //Windows上でデバッグするときに使用した
-  //  public static void main(String[] args) {
-  //    FileInputStream input;
-  //    try {
-  //      input = new FileInputStream(
-  //          "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.m3d");
-  //    } catch (FileNotFoundException e1) {
-  //      throw new RuntimeException(e1);
-  //    }
-  //    try {‘
-  //      Mikity3d root = new Mikity3dFactory().loadFile(input);
-  //      sample(root);
-  //    } catch (Mikity3dSerializeDeserializeException e) {
-  //      throw new RuntimeException(e);
-  //    }
-  //  }
-  //
-  //  private static void sample(Mikity3d root) {
-  //    ExcecuteSearchGroup search = new ExcecuteSearchGroup();
-  //    Mikity3dModel model = root.getModel(0);
-  //    Group[] groupArray = model.getGroups();
-  //    Group group = groupArray[0];
-  //    GroupName manager = new GroupName(group.getName(), null);
-  //    GroupManager result = search.searchGroupRecursion(group, manager);
-  //    int a = 0;
-  //    List<GroupManager> lists = result.getItems();
-  //    for (Iterator itr = lists.iterator(); itr.hasNext();) {
-  //      GroupManager item = (GroupManager) itr.next();
-  //      if (item.getClass() == GroupName.class) {
-  //        ((GroupName) item).getGroupName();
-  //      } else {
-  //        ((GroupLink) item).getColumn();
-  //        ((GroupLink) item).getTarget();
-  //      }
-  //    }
-  //  }
 }

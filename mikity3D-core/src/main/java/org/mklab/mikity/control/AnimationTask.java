@@ -36,10 +36,9 @@ public class AnimationTask extends TimerTask {
   private long lastUpdatedTimeMillis = System.currentTimeMillis();
   /** モデルキャンバス　*/
   private ModelRenderer renderer;
-  
+
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>AnimationTask</code>オブジェクトを初期化します。
    * @param initialTime 開始時間
    * @param endTime 終了時間
    * @param manager グループマネージャー
@@ -56,14 +55,16 @@ public class AnimationTask extends TimerTask {
   /**
    * {@link AnimationTaskListener}を登録します。
    * 
-   * @param listener リスナ
+   * @param listener リスナー
    */
   public void addAnimationTaskListener(AnimationTaskListener listener) {
     this.listeners.add(listener);
   }
 
   /**
-   * アニメーションの速度倍率を返します。 速度は1.0のときに実時間で再生します。
+   * アニメーションの速度倍率を返します。 
+   * 
+   * 速度は1.0のときに実時間で再生します。
    * 
    * @return アニメーションの速度倍率
    */
@@ -72,7 +73,9 @@ public class AnimationTask extends TimerTask {
   }
 
   /**
-   * アニメーションの速度倍率を設定します。 速度が1.0のときに実時間で再生します。
+   * アニメーションの速度倍率を設定します。 
+   * 
+   * 速度が1.0のときに実時間で再生します。
    * 
    * @param speedScale アニメーションの速度倍率
    */
