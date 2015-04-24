@@ -24,8 +24,7 @@ public class Java3dViewpoint {
   private TransformGroup viewPointTranform = null;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>Java3dViewpoint</code>オブジェクトを初期化します。
    * @param orientationAngle 視点の方向と角度
    * @param position 視点の位置
    * @param universe 空間
@@ -39,9 +38,7 @@ public class Java3dViewpoint {
   }
 
   /**
-   * 
-   * コンストラクター
-   * 
+   * 新しく生成された<code>Java3dViewpoint</code>オブジェクトを初期化します。
    * @param universe 空間
    * @param view 視点
    * @param type マウスの操作タイプ

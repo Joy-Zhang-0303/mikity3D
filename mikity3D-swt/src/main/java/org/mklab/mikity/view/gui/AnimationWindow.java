@@ -108,8 +108,7 @@ public class AnimationWindow extends ApplicationWindow {
   private Composite composite;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
    * @param root ルート
    */
@@ -119,8 +118,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
    * @param modelFile モデルファイル
    * @throws IOException ファイルを読み込めない場合
@@ -131,8 +129,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * ファイル名を指定しないコンストラクター
-   * 
+   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
    */
   public AnimationWindow(final Shell parentShell) {
@@ -140,7 +137,9 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * ルートを設定し、モデル描画をできるようにするためのメソッドです。
+   * ルートを設定します。
+   * 
+   * モデル描画をできるようにします。
    * 
    * @param root ルート
    */
@@ -154,7 +153,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * ルートを返すメソッドです。
+   * ルートを返します。
    * 
    * @return root ルート
    */
@@ -163,9 +162,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * シェルの設定
-   * 
-   * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
+   * {@inheritDoc}
    */
   @Override
   protected void configureShell(final Shell shell) {
@@ -195,9 +192,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * シェルを閉じるときにこのメソッドが呼ばれる
-   * 
-   * @see org.eclipse.jface.window.Window#handleShellCloseEvent()
+   * {@inheritDoc}
    */
   @Override
   protected void handleShellCloseEvent() {
@@ -230,7 +225,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * フレームを設定するためのメソッドです。
+   * フレームを設定します。
    * 
    * @param composite コンポジット
    */
@@ -239,7 +234,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * コンポジットを設定するメソッドです。
+   * コンポジットを設定します。
    * 
    * @param composite コンポジット
    */
@@ -248,7 +243,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * コンポジットを返すメソッドです。
+   * コンポジットを返します。
    * 
    * @return composite　コンポジット
    */
@@ -257,7 +252,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * フレームを返すメソッドです。
+   * フレームを返します。
    * 
    * @return frame フレーム
    */
@@ -287,7 +282,7 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * コントローラCompositeの中身
    * 
-   * @param parent
+   * @param parent 親
    */
   private void createController(final Composite parent) {
     final Composite controllerComposite = new Composite(parent, SWT.NONE);
@@ -468,7 +463,7 @@ public class AnimationWindow extends ApplicationWindow {
         final FileDialog dialog = new FileDialog(parent.getShell());
         final String filePath = dialog.open();
         if (filePath != null) {
-          makeRoot(filePath);
+          createRoot(filePath);
           setModelData(getFrame());
         }
       }
@@ -480,7 +475,7 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param filePath ファイルのパス
    */
-  public void makeRoot(String filePath) {
+  public void createRoot(String filePath) {
     try {
       final File file = new File(filePath);
       final Mikity3dFactory m3f = new Mikity3dFactory();
@@ -494,7 +489,7 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * ファイルを選択するボタン
+   * 時系列データを選択するコンポジットを生成します。
    * 
    * @param parent 親コンポジット
    */
@@ -558,9 +553,9 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * 実行時間バーを設定します。
+   * 時系列データのファイルを設定します。
    * 
-   * @param file ファイル
+   * @param file 時系列データファイル
    */
   public void setTimeData(final File file) {
     try (FileReader input = new FileReader(file);) {
@@ -595,9 +590,9 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * 実行時間を設定します。
+   * 時系列データを設定します。
    * 
-   * @param data データ
+   * @param data 時系列データ
    */
   public void setTimeData(final Matrix data) {
     this.data = data;
@@ -669,13 +664,11 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   private class SliderPositionMoveTask extends TimerTask {
-
     AnimationTask localTask;
     Slider slider;
 
     /**
-     * コンストラクター
-     * 
+     * 新しく生成された<code>SliderPositionMoveTask</code>オブジェクトを初期化します。
      * @param task タスク
      * @param slider スライダー
      */

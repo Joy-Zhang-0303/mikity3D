@@ -35,17 +35,16 @@ import org.mklab.mikity.view.gui.dialog.GroupConfigWithDHParameterDialog;
  */
 public abstract class AbstractModeler extends Composite {
 
-  /** シーングラフツリー */
+  /** シーングラフツリー。 */
   protected SceneGraphTree tree;
-  /** ルート */
+  /** ルート。 */
   protected Mikity3d root;
   /** */
   protected Frame awtFrame;
   private Group treeViewerGroup;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>AbstractModeler</code>オブジェクトを初期化します。
    * @param parent 親
    * @param style スタイル
    * @param root ルート
@@ -312,6 +311,8 @@ public abstract class AbstractModeler extends Composite {
   public abstract void createViewer();
 
   /**
+   * キャンバスを生成します。
+   * 
    * @param viewerComp ビュワーコンポジット
    */
   public abstract void createModelCanvas(Composite viewerComp);

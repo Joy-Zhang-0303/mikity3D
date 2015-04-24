@@ -80,16 +80,14 @@ public class ModelingWindow extends ApplicationWindow {
   private AbstractModeler modeler;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>ModelingWindow</code>オブジェクトを初期化します。
    */
   public ModelingWindow() {
     this(null);
   }
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>ModelingWindow</code>オブジェクトを初期化します。
    * @param shell シェル
    */
   public ModelingWindow(final Shell shell) {
@@ -101,7 +99,7 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * @see org.eclipse.jface.window.Window#createContents(org.eclipse.swt.widgets.Composite)
+   * {@inheritDoc}
    */
   @Override
   protected Control createContents(Composite composite) {
@@ -118,9 +116,7 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * シェルの設定を行う
-   * 
-   * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
+   * {@inheritDoc}
    */
   @Override
   protected void configureShell(Shell shell) {
@@ -139,9 +135,7 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * メニューバーを作成する。
-   * 
-   * @see org.eclipse.jface.window.ApplicationWindow#createMenuManager()
+   * {@inheritDoc}
    */
   @Override
   protected MenuManager createMenuManager() {
@@ -169,9 +163,7 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * ツールバーを作成します。
-   * 
-   * @return ツールバー
+   * {@inheritDoc}
    */
   @Override
   protected ToolBarManager createToolBarManager(int arg0) {

@@ -18,7 +18,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
 /**
- * groupを追加します。
+ * groupを追加するためのダイアログを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.1 $.2005/02/10
@@ -29,8 +29,7 @@ public class AddGroupDialog extends ApplicationWindow {
   Group group;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>AddGroupDialog</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
    * @param group グループ
    */
@@ -43,9 +42,7 @@ public class AddGroupDialog extends ApplicationWindow {
   }
 
   /**
-   * コンテンツ作成
-   * 
-   * @see org.eclipse.jface.window.Window#createContents(org.eclipse.swt.widgets.Composite)
+   * {@inheritDoc}
    */
   @Override
   protected Control createContents(Composite parent) {
@@ -86,9 +83,7 @@ public class AddGroupDialog extends ApplicationWindow {
   }
 
   /**
-   * ぐるーぷのついかをおこなうしぇるを作成する
-   * 
-   * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
+   * {@inheritDoc}
    */
   @Override
   protected void configureShell(Shell shell) {

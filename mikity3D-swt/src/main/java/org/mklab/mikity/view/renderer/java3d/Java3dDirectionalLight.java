@@ -15,12 +15,11 @@ import javax.vecmath.Vector3f;
  */
 public class Java3dDirectionalLight extends BranchGroup {
 
-  /** */
+  /** 半径。 */
   private double radius = 100.0f;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>Java3dDirectionalLight</code>オブジェクトを初期化します。
    * @param color 色
    * @param orientaion 方向
    */

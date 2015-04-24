@@ -41,7 +41,7 @@ import com.sun.j3d.utils.geometry.Sphere;
 
 
 /**
- * プリミティブおよびポリゴンの生成クラスするクラスです。
+ * プリミティブを生成するクラスです。
  * 
  * @author miki
  * @version $Revision: 1.21 $.2004/11/30
@@ -55,17 +55,17 @@ public class Java3dPrimitiveFactory {
    * グループを生成します。
    * 
    * @param group グループ
-   * @return tg トランスフォームグループ
+   * @return トランスフォームグループ
    */
   public static Java3dTransformGroup create(Group group) {
     return new Java3dTransformGroupFactory().create(group);
   }
 
   /**
-   * 与えられたboxインスタンスのプリミティブを生成します。
+   * 与えられたインスタンスのboxプリミティブを生成します。
    * 
    * @param box ボックス
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
+   * @return boxプリミティブ
    */
   public static Java3dTransformGroup create(XMLBox box) {
     final int flag = Primitive.GENERATE_NORMALS;
@@ -88,10 +88,10 @@ public class Java3dPrimitiveFactory {
   }
 
   /**
-   * 与えられたcylinderインスタンスのプリミティブを生成します。
+   * 与えられたインスタンスのcylinderプリミティブを生成します。
    * 
    * @param cylinder シリンダー
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
+   * @return cylinderプリミティブ
    */
   public static Java3dTransformGroup create(XMLCylinder cylinder) {
     final int flag = Primitive.GENERATE_NORMALS;
@@ -117,10 +117,10 @@ public class Java3dPrimitiveFactory {
   }
 
   /**
-   * 与えられたsphereインスタンスのプリミティブを作成する。
+   * 与えられたインスタンスのsphereプリミティブを生成します。
    * 
    * @param sphere スフィア
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
+   * @return sphereプリミティブ
    */
   public static Java3dTransformGroup create(XMLSphere sphere) {
     final int flag = Primitive.GENERATE_NORMALS;
@@ -146,10 +146,10 @@ public class Java3dPrimitiveFactory {
   }
 
   /**
-   * 与えられたconeインスタンスのプリミティブを作成する。
+   * 与えられたインスタンスのconeプリミティブを生成します。
    * 
    * @param cone コーン
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLBox クラス名 org.mklab.mikity.xml 変数名)
+   * @return coneプリミティブ
    */
   public static Java3dTransformGroup create(XMLCone cone) {
     final int flag = Primitive.GENERATE_NORMALS;
@@ -176,10 +176,10 @@ public class Java3dPrimitiveFactory {
   }
 
   /**
-   * 与えられたTrianglePolygonインスタンスのプリミティブを作成する。
+   * 与えられたインスタンスのtrianglePolygonプリミティブを生成します。
    * 
    * @param triangle 三角形ポリゴン
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLTrianglePolygon クラス名 org.mklab.mikity.xml 変数名)
+   * @return trianglePolygonプリミティブ
    */
   public static Java3dTransformGroup create(XMLTrianglePolygon triangle) {
     final Point3f[] vertices = new Point3f[3];
@@ -234,10 +234,10 @@ public class Java3dPrimitiveFactory {
   }
 
   /**
-   * 与えられたQuadPolygonインスタンスのプリミティブを作成する。
+   * 与えられたインスタンスのquadPolygonプリミティブを生成します。
    * 
    * @param quad 四角形ポリゴン
-   * @return tg 与えられたファイルで出来るプリミティブ (XMLQuadPolygon クラス名 org.mklab.mikity.xml 変数名)
+   * @return quadPolygonプリミティブ
    */
   public static Java3dTransformGroup create(XMLQuadPolygon quad) {
     final Point3f[] vertices = new Point3f[4];
@@ -294,11 +294,11 @@ public class Java3dPrimitiveFactory {
   }
 
   /**
-   * 単位を考慮して、渡されたtgに 回転変換と平行変換を適用します。
+   * 単位を考慮して、指定されたプリミティブに 回転変換と平行変換を適用します。
    * 
    * @param location 平行移動
    * @param rotation 回転移動
-   * @param tg
+   * @param tg プリミティブ
    */
   private static void transform(Location location, Rotation rotation, Java3dTransformGroup tg) {
     if (rotation != null) {

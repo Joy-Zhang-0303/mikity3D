@@ -28,7 +28,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
 
 
 /**
- * プリミティブの追加を行うクラス
+ * プリミティブの追加を行うダイアログを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.3 $.2005/02/09

@@ -28,8 +28,7 @@ public class UnitLabel extends Composite {
   private Label label;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>UnitLabel</code>オブジェクトを初期化します。
    * @param composite コンポジット
    * @param target 対象
    */
@@ -46,7 +45,7 @@ public class UnitLabel extends Composite {
   }
 
   /**
-   * 単位を取得する。
+   * 単位を返します。
    * 
    * @param target 対象
    * @return Angle or Length
@@ -66,7 +65,7 @@ public class UnitLabel extends Composite {
   }
 
   /**
-   * モデルの角度を設定する。
+   * モデルの角度を設定します。
    * 
    * @param angle モデルの角度
    */
@@ -79,7 +78,7 @@ public class UnitLabel extends Composite {
   }
 
   /**
-   * モデルの長さを設定する。
+   * モデルの長さを設定します。
    * 
    * @param length モデルの長さ
    */
@@ -94,7 +93,7 @@ public class UnitLabel extends Composite {
   }
 
   /**
-   * データの角度を設定する
+   * データの角度を設定します。
    * 
    * @param angle データの角度
    */
@@ -107,7 +106,7 @@ public class UnitLabel extends Composite {
   }
 
   /**
-   * データの長さを設定する。
+   * データの長さを設定します。
    * 
    * @param length データの長さ
    */
@@ -122,7 +121,7 @@ public class UnitLabel extends Composite {
   }
 
   /**
-   * ラベルを設定する。
+   * ラベルを設定します。
    * 
    * @param label ラベル
    */

@@ -77,8 +77,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>SceneGraphTree</code>オブジェクトを初期化します。
    * @param composite コンポジット
    * @param modeler モデラー
    * @param model モデル
@@ -167,7 +166,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent arg0) {
-        setObj();
+        setSelectedObjectAsTarget();
       }
     });
 
@@ -347,9 +346,9 @@ public class SceneGraphTree {
   }
 
   /**
-   * 現在選択されているObjを設定する。
+   * 現在選択されているObjectを設定する。
    */
-  void setObj() {
+  void setSelectedObjectAsTarget() {
     this.targetObj = null;
     this.targetGroup = null;
     
@@ -386,7 +385,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * ターゲットを指定
+   * ターゲットを設定します。
    * 
    * @param object
    */
@@ -475,7 +474,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * 抽出したグループを取得する。
+   * 抽出したグループを返します。
    * 
    * @return targetGroup
    */
@@ -484,16 +483,16 @@ public class SceneGraphTree {
   }
 
   /**
-   * グループが編集可能か判定する
+   * グループが編集可能か判定する。
    * 
-   * @return editable
+   * @return editable 編集可能ならばtrue
    */
   public boolean getGroupEditable() {
     return this.editable;
   }
 
   /**
-   * ツリー、ビューアの再描画
+   * ツリーとビューアを再描画します。
    */
   void setTree() {
     fillTree();
@@ -501,7 +500,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * グループgからPrimitive primを消す。
+   * グループからPrimitiveを削除します。
    * 
    * @param group グループ
    * @param primitive プリミティブ
@@ -616,7 +615,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * 抽出したデータを取得する。
+   * 抽出したデータを返します。
    * 
    * @return xmlTree.getSelection()[0].getData()
    */
@@ -649,7 +648,7 @@ public class SceneGraphTree {
 //  }
 
   /**
-   * ツリーを消去する。
+   * ツリーを消去します。
    */
   public void clearTree() {
     if (this.xmlTree.getItemCount() == 0) {
@@ -666,7 +665,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * モデルを設定する。
+   * モデルを設定します。
    * 
    * @param model モデル
    */
@@ -683,7 +682,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * 現在ツリーのリンク関係にDHパラメータが使われているか調べる
+   * 現在ツリーのリンク関係にDHパラメータが使われているか判定します。
    * 
    * @param groups グループリスト
    */

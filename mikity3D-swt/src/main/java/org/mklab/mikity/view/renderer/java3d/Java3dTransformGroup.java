@@ -82,7 +82,7 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
   }
 
   /**
-   * モデルの回転移動の演算を行う。
+   * モデルの回転移動の演算を行います。
    * 
    * @param matrix 回転移動の行列
    */
@@ -124,7 +124,7 @@ public class Java3dTransformGroup extends TransformGroup implements MovableGroup
   }
 
   /**
-   * @see javax.media.j3d.Group#addChild(javax.media.j3d.Node)
+   * {@inheritDoc}
    */
   @Override
   public void addChild(Node node) {

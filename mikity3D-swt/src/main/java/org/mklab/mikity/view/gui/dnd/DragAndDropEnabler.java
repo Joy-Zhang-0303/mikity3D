@@ -63,30 +63,29 @@ public class DragAndDropEnabler {
    * @version $Revision$, 2012/02/23
    */
   class MyDropTargetListener implements DropTargetListener {
-
     /**
-     * @see org.eclipse.swt.dnd.DropTargetListener#dragEnter(org.eclipse.swt.dnd.DropTargetEvent)
+     * {@inheritDoc}
      */
     public void dragEnter(DropTargetEvent e) {
     // nothing to do
     }
 
     /**
-     * @see org.eclipse.swt.dnd.DropTargetListener#dragLeave(org.eclipse.swt.dnd.DropTargetEvent)
+     * {@inheritDoc}
      */
     public void dragLeave(DropTargetEvent e) {
     // nothing to do
     }
 
     /**
-     * @see org.eclipse.swt.dnd.DropTargetListener#dragOperationChanged(org.eclipse.swt.dnd.DropTargetEvent)
+     * {@inheritDoc}
      */
     public void dragOperationChanged(DropTargetEvent e) {
     // nothing to do
     }
 
     /**
-     * @see org.eclipse.swt.dnd.DropTargetListener#dragOver(org.eclipse.swt.dnd.DropTargetEvent)
+     * {@inheritDoc}
      */
     public void dragOver(DropTargetEvent e) {
       final TreeItem item = DragAndDropEnabler.this.tree.getItem(DragAndDropEnabler.this.tree.toControl(e.x, e.y));
@@ -98,7 +97,7 @@ public class DragAndDropEnabler {
     }
 
     /**
-     * @see org.eclipse.swt.dnd.DropTargetListener#drop(org.eclipse.swt.dnd.DropTargetEvent)
+     * {@inheritDoc}
      */
     public void drop(DropTargetEvent e) {
       // 今マウスがある場所のアイテムを取得
@@ -156,7 +155,7 @@ public class DragAndDropEnabler {
     }
 
     /**
-     * @see org.eclipse.swt.dnd.DropTargetListener#dropAccept(org.eclipse.swt.dnd.DropTargetEvent)
+     * {@inheritDoc}
      */
     public void dropAccept(DropTargetEvent e) {
     // nothing to do
@@ -169,9 +168,8 @@ public class DragAndDropEnabler {
    * @version $Revision$, 2012/02/23
    */
   class MyDragSourceListener implements DragSourceListener {
-
     /**
-     * @see org.eclipse.swt.dnd.DragSourceListener#dragStart(org.eclipse.swt.dnd.DragSourceEvent)
+     * {@inheritDoc}
      */
     public void dragStart(DragSourceEvent e) {
       // 選択要素が1つでないときは、終了
@@ -183,14 +181,14 @@ public class DragAndDropEnabler {
     }
 
     /**
-     * @see org.eclipse.swt.dnd.DragSourceListener#dragSetData(org.eclipse.swt.dnd.DragSourceEvent)
+     * {@inheritDoc}
      */
     public void dragSetData(DragSourceEvent e) {
     // nothing to do
     }
 
     /**
-     * @see org.eclipse.swt.dnd.DragSourceListener#dragFinished(org.eclipse.swt.dnd.DragSourceEvent)
+     * {@inheritDoc}
      */
     public void dragFinished(DragSourceEvent e) {
     // nothing to do

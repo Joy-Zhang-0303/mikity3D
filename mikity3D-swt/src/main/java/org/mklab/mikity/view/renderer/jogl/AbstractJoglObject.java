@@ -11,10 +11,6 @@ import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL2;
 
-
-
-
-
 /**
  * {@link JoglObject}の抽象クラスです。
  * 

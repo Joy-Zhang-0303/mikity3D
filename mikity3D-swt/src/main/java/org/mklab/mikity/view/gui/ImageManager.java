@@ -20,7 +20,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class ImageManager {
 
-  private static Map<String, Image> images = new HashMap<String, Image>();
+  private static Map<String, Image> images = new HashMap<>();
 
   /** 再生画像ファイル定数 */
   public static final String PLAYBACK = "playback.gif"; //$NON-NLS-1$

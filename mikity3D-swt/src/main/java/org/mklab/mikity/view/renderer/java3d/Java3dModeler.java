@@ -8,6 +8,8 @@ import org.mklab.mikity.view.gui.AbstractModeler;
 
 
 /**
+ * Java3Dのモデルを管理するクラスです。
+ * 
  * @author iwamoto
  * @version $Revision$, 2012/01/12
  */

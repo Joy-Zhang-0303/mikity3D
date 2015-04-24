@@ -67,7 +67,7 @@ public class AnimationWindowTest {
   @Test
   public void testMakeRoot() {
     String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
-    this.am.makeRoot(modelFileName);
+    this.am.createRoot(modelFileName);
     Mikity3d root;
     try {
       root = new Mikity3dFactory().loadFile(new File(modelFileName));
@@ -85,7 +85,7 @@ public class AnimationWindowTest {
     this.thrown.expect(RuntimeException.class);
     this.thrown.expectMessage("ddd"); //$NON-NLS-1$
     
-    this.am.makeRoot("filePath"); //$NON-NLS-1$
+    this.am.createRoot("filePath"); //$NON-NLS-1$
   }
   
   /**
