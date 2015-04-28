@@ -8,6 +8,7 @@
 		<module>mikity3D-android</module>
 		<module>mikity3D-sample</module>
 		<module>mikity3D-swt</module>
+		<module>mikity3D-store</module>
 	</modules>
 	<parent>
 		<groupId>org.mklab</groupId>
