@@ -63,13 +63,15 @@ public class ListColumnFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        if (ListColumnFragment.this.groupManager.getParent() != null) {
-          ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManager.getParent();
-          ListColumnFragment.this.groupManageers = ListColumnFragment.this.groupManager.getItems();
-          int size = ListColumnFragment.this.targetColumnNumbers.size() - 1;
-          ListColumnFragment.this.targetColumnNumbers.remove(size);
-          configureListView();
+        if (ListColumnFragment.this.groupManager.getParent() == null) {
+          return;
         }
+
+        ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManager.getParent();
+        ListColumnFragment.this.groupManageers = ListColumnFragment.this.groupManager.getItems();
+        int size = ListColumnFragment.this.targetColumnNumbers.size() - 1;
+        ListColumnFragment.this.targetColumnNumbers.remove(size);
+        configureListView();
       }
     });
     return this.view;
@@ -89,13 +91,15 @@ public class ListColumnFragment extends RoboFragment {
       @SuppressWarnings("boxing")
       public void onItemClick(AdapterView<?> parent, View view1, int position, long id) {
         final ListView listView1 = (ListView)parent;
-        if (listView1.getItemAtPosition(position).getClass() == GroupName.class) {
-          ListColumnFragment.this.groupPosition = position;
-          ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManageers.get(ListColumnFragment.this.groupPosition);
-          ListColumnFragment.this.groupManageers = ListColumnFragment.this.groupManager.getItems();
-          ListColumnFragment.this.targetColumnNumbers.add(position);
-          configureListView();
+        if (listView1.getItemAtPosition(position).getClass() != GroupName.class) {
+          return;
         }
+
+        ListColumnFragment.this.groupPosition = position;
+        ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManageers.get(ListColumnFragment.this.groupPosition);
+        ListColumnFragment.this.groupManageers = ListColumnFragment.this.groupManager.getItems();
+        ListColumnFragment.this.targetColumnNumbers.add(position);
+        configureListView();
       }
     });
   }

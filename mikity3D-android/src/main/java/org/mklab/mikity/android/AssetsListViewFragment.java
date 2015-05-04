@@ -67,11 +67,13 @@ public class AssetsListViewFragment extends RoboFragment {
         final String nextFile = AssetsListViewFragment.this.currentPath + File.separator + item;
         String[] nextFiles = loadAssetsFolder(nextFile);
         List<String> nextFileLimits = new ArrayList<String>();
+
         if (AssetsListViewFragment.this.isModel) {
           nextFileLimits = getLimitList("mat", nextFiles); //$NON-NLS-1$
         } else {
           nextFileLimits = getLimitList("m3d", nextFiles); //$NON-NLS-1$
         }
+
         final String[] newNextFiles = nextFileLimits.toArray(new String[nextFileLimits.size()]);
         nextFiles = nextFileLimits.toArray(new String[nextFileLimits.size()]);
 
@@ -80,10 +82,10 @@ public class AssetsListViewFragment extends RoboFragment {
           AssetsListViewFragment.this.listView.setAdapter(new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, android.R.layout.simple_list_item_1, nextFiles));
         } else {
           copyAssetsFiles(AssetsListViewFragment.this.currentPath, item, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + File.separator + "org.mklab.mikity")); //$NON-NLS-1$
-          
+
           try {
             final InputStream input = AssetsListViewFragment.this.assetManager.open(nextFile);
-            
+
             if (AssetsListViewFragment.this.isModel) {
               AssetsListViewFragment.this.canvasActivity.canvasFragment.loadModelFile(input);
               AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
@@ -106,12 +108,19 @@ public class AssetsListViewFragment extends RoboFragment {
     return this.view;
   }
 
+  /**
+   * @param message
+   */
   protected void setExceptionDailogFragment(String message) {
     final DialogFragment dialogFragment = new ExceptionDialogFragment();
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
 
+  /**
+   * @param folderName
+   * @return
+   */
   String[] loadAssetsFolder(String folderName) {
     String[] files = null;
     try {
@@ -137,6 +146,10 @@ public class AssetsListViewFragment extends RoboFragment {
   //      return super.onKeyDown(keyCode, event);
   //  }
 
+  /**
+   * @param filePath
+   * @return
+   */
   @SuppressWarnings("resource")
   String loadAssetsFile(String filePath) {
     String text = ""; //$NON-NLS-1$
@@ -157,12 +170,12 @@ public class AssetsListViewFragment extends RoboFragment {
     if (!folder.exists()) {
       folder.mkdirs();
     }
-    
+
     final File file = new File(folder, filename);
     if (file.exists()) {
       file.delete();
     }
-    
+
     try {
       final OutputStream output = new FileOutputStream(file);
       final byte[] buffer = new byte[1024];

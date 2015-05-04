@@ -77,8 +77,9 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         -1.0f, -1.0f, -1.0f,//頂点7
     };
     float div = (float)Math.sqrt((1.0f * 1.0f) + (1.0f * 1.0f) + (1.0f * 1.0f));
-    for (int i = 0; i < normals.length; i++)
+    for (int i = 0; i < normals.length; i++) {
       normals[i] /= div;
+    }
     this.normalBuffer = makeFloatBuffer(normals);
   }
 
@@ -179,9 +180,9 @@ public class GLRenderer implements GLSurfaceView.Renderer {
    * @return 変換結果
    */
   private static FloatBuffer makeFloatBuffer(float[] array) {
-    FloatBuffer fb = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
-    fb.put(array).position(0);
-    return fb;
+    final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    buffer.put(array).position(0);
+    return buffer;
   }
 
   /**
@@ -191,9 +192,9 @@ public class GLRenderer implements GLSurfaceView.Renderer {
    * @return 変換結果
    */
   private static ByteBuffer makeByteBuffer(byte[] array) {
-    ByteBuffer bb = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
-    bb.put(array).position(0);
-    return bb;
+    final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
+    buffer.put(array).position(0);
+    return buffer;
   }
 
 }

@@ -35,9 +35,9 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
     final float[] vertices = {this.points[0][0], this.points[0][1], this.points[0][2], this.points[1][0], this.points[1][1], this.points[1][2], this.points[2][0], this.points[2][1],
         this.points[2][2],};
 
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
+    final FloatBuffer buffer = makeFloatBuffer(vertices);
 
-    gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
+    gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, buffer);
     gl10.glDrawArrays(GL10.GL_TRIANGLES, 0, 3); //プリミティブの描画
   }
 

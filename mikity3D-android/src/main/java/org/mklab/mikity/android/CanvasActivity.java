@@ -40,20 +40,20 @@ public class CanvasActivity extends RoboFragmentActivity {
   final static int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
   private boolean registerAccerlerometer;
   private boolean registerMagneticFieldSensor;
-  
+
   /** NavigationDrawer用のアクションバートグル */
   private ActionBarDrawerToggle mDrawerToggle;
-  
+
   /** NavigationDrawerのレイアウト */
   private DrawerLayout mDrawer;
-  
+
   /** アクティビティのconfiguration */
   private Configuration config;
-  
+
   /** CanvasFragment */
   @InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
-  
+
   /** NavigationDrawerFragment */
   NavigationDrawerFragment ndFragment;
 
@@ -87,19 +87,25 @@ public class CanvasActivity extends RoboFragmentActivity {
   private void startIntentByExternalActivity() {
     final String intentPath = "path"; //$NON-NLS-1$
     final String intentDataPath = "data"; //$NON-NLS-1$
-    
+
     final Intent intent = getIntent();
-    if (intent.getBundleExtra(intentPath) != null) {
-      final Bundle bundle = intent.getBundleExtra(intentPath);
-      if (bundle.getParcelable(intentPath) != null) {
-        final Uri mPath = bundle.getParcelable(intentPath);
-        loadModelUri(mPath);
-        if (bundle.getParcelable(intentDataPath) != null) {
-          final Uri dPath = bundle.getParcelable(intentDataPath);
-          loadTimeDataUri(dPath);
-        }
-      }
+    if (intent.getBundleExtra(intentPath) == null) {
+      return;
     }
+
+    final Bundle bundle = intent.getBundleExtra(intentPath);
+    if (bundle.getParcelable(intentPath) == null) {
+      return;
+    }
+
+    final Uri mPath = bundle.getParcelable(intentPath);
+    loadModelUri(mPath);
+    if (bundle.getParcelable(intentDataPath) == null) {
+      return;
+    }
+      
+    final Uri dPath = bundle.getParcelable(intentDataPath);
+    loadTimeDataUri(dPath);
   }
 
   /**
@@ -128,7 +134,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     if (this.mDrawerToggle.onOptionsItemSelected(item)) {
       return true;
     }
-    
+
     switch (item.getItemId()) {
       case R.id.menu_play:
         CanvasActivity.this.canvasFragment.runAnimation();
@@ -156,7 +162,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     }
     return super.onOptionsItemSelected(item);
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -182,7 +188,7 @@ public class CanvasActivity extends RoboFragmentActivity {
         this.registerAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, this.canvasFragment.sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
-    
+
     if (!this.registerMagneticFieldSensor) {
       final List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
       if (sensors.size() > 0) {
@@ -190,7 +196,7 @@ public class CanvasActivity extends RoboFragmentActivity {
         this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
-    
+
     this.canvasFragment.glView.onResume();
     super.onResume();
   }
@@ -222,8 +228,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   }
 
   /**
-   * This is called after the file manager finished.
-   * {@inheritDoc}
+   * This is called after the file manager finished. {@inheritDoc}
    */
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -293,7 +298,7 @@ public class CanvasActivity extends RoboFragmentActivity {
           isReverse = false;
           break;
       }
-      
+
       if (CanvasActivity.this.config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
         if (isReverse) {
           setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);

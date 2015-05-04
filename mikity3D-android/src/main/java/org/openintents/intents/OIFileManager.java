@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 
 /**
+ * OIFileマネージャへのIntentを管理するクラスです。
+ * 
  * @author koga
  * @version $Revision$, 2014/05/30
  */
@@ -16,7 +18,9 @@ public class OIFileManager {
   private Activity activity;
 
   /**
-   * 新しく生成された<code>FileManager</code>オブジェクトを初期化します。 OIファイルマネージャーが見つからないとトーストを表示するので表示するアクティビティのインスタンスを渡してください。
+   * 新しく生成された<code>FileManager</code>オブジェクトを初期化します。 
+   * 
+   * OIファイルマネージャーが見つからないとトーストを表示するので表示するアクティビティのインスタンスを渡してください。
    * 
    * @param activity アクティビティのインスタンス。
    */

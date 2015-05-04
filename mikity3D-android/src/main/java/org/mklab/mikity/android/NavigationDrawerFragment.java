@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 import java.util.zip.ZipEntry;
@@ -55,7 +54,7 @@ import android.widget.ToggleButton;
  * @version $Revision$, 2015/01/16
  */
 public class NavigationDrawerFragment extends RoboFragment {
-  
+
   static final String LOGTAG = null;
   /** アニメーション用タスク */
   AnimationTask animationTask;
@@ -72,7 +71,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   MovableGroupManager manager;
 
   // DEBUG textview
-//  TextView testTextView;
+  //  TextView testTextView;
   TextView filePathView;
   TextView modelFilePathView;
 
@@ -106,19 +105,19 @@ public class NavigationDrawerFragment extends RoboFragment {
   String timeDataName;
   private String modelFileName;
   CanvasActivity canvasActivity;
-  /** アニメーションスピードテキスト用のスピード*/
+  /** アニメーションスピードテキスト用のスピード */
   int animationTextSpeed;
-  /** 時間データ再読み込みのためのボタン*/
+  /** 時間データ再読み込みのためのボタン */
   Button reloadButton;
-  /** 時間データを削除するためのボタン*/
+  /** 時間データを削除するためのボタン */
   Button timeDataDeleteButton;
   private Cursor cursor;
   private Cursor cursor2;
-  /** サンプルモデル読み込みのためのボタン*/
+  /** サンプルモデル読み込みのためのボタン */
   Button sampleModelButton;
-  /** カラムを入れ替えるためのボタン*/
+  /** カラムを入れ替えるためのボタン */
   Button setColumnButton;
-  /** ストリーム*/
+  /** ストリーム */
   InputStream input;
   private Button unzipSaveButton;
   private Button assetsModelButton;
@@ -126,14 +125,15 @@ public class NavigationDrawerFragment extends RoboFragment {
 
   /**
    * {@inheritDoc}
+   * 
    * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
-    
+
     this.canvasActivity = (CanvasActivity)getActivity();
-    
+
     //モデルデータ選択ボタンの表示
     this.loadModelButton = (Button)view.findViewById(R.id.modelSelectButton);
     //時系列選択ボタンの配置
@@ -142,7 +142,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.slowButton = (Button)view.findViewById(R.id.slowButton);
     this.reloadButton = (Button)view.findViewById(R.id.reloadButton);
     this.timeDataDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
-//    this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
+    //    this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
     this.setColumnButton = (Button)view.findViewById(R.id.sampleSetColumnButton);
 
     this.selectButton.setEnabled(false);
@@ -153,7 +153,9 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.setColumnButton.setEnabled(false);
 
     this.loadModelButton.setOnClickListener(new View.OnClickListener() {
+
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_FILE_OR_DIRECTORY;
+
       /**
        * {@inheritDoc}
        */
@@ -172,8 +174,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.modelFilePathView = (TextView)view.findViewById(R.id.modelPathView);
     this.modelFilePathView.setMovementMethod(ScrollingMovementMethod.getInstance());
 
-//    this.testTextView = new TextView(this.canvasActivity);
-//    this.testTextView = (TextView)view.findViewById(R.id.textView1);
+    //    this.testTextView = new TextView(this.canvasActivity);
+    //    this.testTextView = (TextView)view.findViewById(R.id.textView1);
 
     //再生速度の設定
     this.quickButton.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +193,9 @@ public class NavigationDrawerFragment extends RoboFragment {
     });
 
     this.selectButton.setOnClickListener(new View.OnClickListener() {
+
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_TIME_DATA_FILE;
+
       /**
        * {@inheritDoc}
        */
@@ -201,22 +205,24 @@ public class NavigationDrawerFragment extends RoboFragment {
     });
 
     this.reloadButton.setOnClickListener(new View.OnClickListener() {
+
       /**
        * {@inheritDoc}
        */
       public void onClick(View view1) {
-        if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
+        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.setTimeData();
         }
       }
     });
-    
+
     this.timeDataDeleteButton.setOnClickListener(new View.OnClickListener() {
+
       /**
        * {@inheritDoc}
        */
       public void onClick(View view1) {
-        if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
+        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.data = null;
           NavigationDrawerFragment.this.timeDataName = "..."; //$NON-NLS-1$
           NavigationDrawerFragment.this.filePathView.setText(NavigationDrawerFragment.this.timeDataName);
@@ -278,61 +284,63 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.canvasActivity.controlRotation();
       }
     });
-//    
-//    this.sampleModelButton.setOnClickListener(new OnClickListener() {
-//      
-//      /**
-//       * @param v View 
-//       */
-//      public void onClick(View v) {
-//        DownloadFileFromURL get = new DownloadFileFromURL(NavigationDrawerFragment.this);
-//        get.execute("http://jamox.mklab.org/img/menu/sitemap.png"); //$NON-NLS-1$
-//      }
-//    });
-    
+    //    
+    //    this.sampleModelButton.setOnClickListener(new OnClickListener() {
+    //      
+    //      /**
+    //       * @param v View 
+    //       */
+    //      public void onClick(View v) {
+    //        DownloadFileFromURL get = new DownloadFileFromURL(NavigationDrawerFragment.this);
+    //        get.execute("http://jamox.mklab.org/img/menu/sitemap.png"); //$NON-NLS-1$
+    //      }
+    //    });
+
     this.setColumnButton.setOnClickListener(new OnClickListener() {
+
       /**
        * {@inheritDoc}
        */
-      public void onClick(View v) { 
+      public void onClick(View v) {
         final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        final ListColumnFragment fragment =  new ListColumnFragment();
-        if(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
+        final ListColumnFragment fragment = new ListColumnFragment();
+        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
           fragment.setGroupManager(getGroupManager());
           fragment.setNavigationDrawerFragment(NavigationDrawerFragment.this);
-        
-        fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+
+          fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
+          fragmentTransaction.addToBackStack(null);
+          fragmentTransaction.commit();
         }
       }
     });
-    
-//    this.unzipSaveButton = (Button)view.findViewById(R.id.unzipSaveButton);
-//    this.unzipSaveButton.setOnClickListener(new OnClickListener() {
-//      final int REQUEST_CODE_ZIP = 3;
-//      /**
-//       * @param v  View
-//       */
-//      public void onClick(View v) { 
-//try {
-//          saveUnzipFile();
-//        } catch (IOException e) {
-//          // TODO 自動生成された catch ブロック
-//          throw new RuntimeException(e);
-//        }
-//      }
-//    });
+
+    //    this.unzipSaveButton = (Button)view.findViewById(R.id.unzipSaveButton);
+    //    this.unzipSaveButton.setOnClickListener(new OnClickListener() {
+    //      final int REQUEST_CODE_ZIP = 3;
+    //      /**
+    //       * @param v  View
+    //       */
+    //      public void onClick(View v) { 
+    //try {
+    //          saveUnzipFile();
+    //        } catch (IOException e) {
+    //          // TODO 自動生成された catch ブロック
+    //          throw new RuntimeException(e);
+    //        }
+    //      }
+    //    });
     this.assetsModelButton = (Button)view.findViewById(R.id.assetsModelButtonView);
     this.assetsModelButton.setOnClickListener(new OnClickListener() {
+
       /**
        * {@inheritDoc}
        */
-      public void onClick(View v) { 
+      public void onClick(View v) {
         final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        final AssetsListViewFragment fragment =  new AssetsListViewFragment();
+        final AssetsListViewFragment fragment = new AssetsListViewFragment();
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setModelTimeFrag(true);
         fragment.setFragmentManager(fragmentManager);
@@ -341,17 +349,18 @@ public class NavigationDrawerFragment extends RoboFragment {
         fragmentTransaction.commit();
       }
     });
-    
+
     this.assetsTimeButton = (Button)view.findViewById(R.id.assetsTimeButtonView);
     this.assetsTimeButton.setEnabled(false);
     this.assetsTimeButton.setOnClickListener(new OnClickListener() {
+
       /**
        * {@inheritDoc}
        */
-      public void onClick(View v) { 
+      public void onClick(View v) {
         final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        final AssetsListViewFragment fragment =  new AssetsListViewFragment();
+        final AssetsListViewFragment fragment = new AssetsListViewFragment();
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setModelTimeFrag(false);
         fragment.setFragmentManager(fragmentManager);
@@ -365,7 +374,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.canvasActivity.ndFragment = this;
     return view;
   }
-  
+
   /**
    * GroupManagerを取得します。
    * 
@@ -390,15 +399,18 @@ public class NavigationDrawerFragment extends RoboFragment {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
   }
-  
+
   /**
    * 時間データをURIから読み込みます。
    * 
    * @param uri 時間データURI
    */
   void loadDataUri(Uri uri) {
-    String timeDataPath;
-    if (uri != null && "content".equals(uri.getScheme())) { //$NON-NLS-1$
+    if (uri == null) {
+      return;
+    }
+
+    if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
         this.inputDataFile = this.canvasActivity.getContentResolver().openInputStream(uri);
@@ -410,30 +422,30 @@ public class NavigationDrawerFragment extends RoboFragment {
       this.timeDataName = this.cursor2.getString(this.cursor2.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
-      if(uri != null) {
-        timeDataPath = uri.getPath();
-        this.canvasActivity.canvasFragment.setTimeDataPath(timeDataPath);
-        try {
-          this.inputDataFile = new FileInputStream(timeDataPath);
-        } catch (FileNotFoundException e) {
-          throw new RuntimeException(e);
-        }
-        String[] parts = timeDataPath.split("/"); //$NON-NLS-1$
-        this.timeDataName = parts[parts.length - 1];
+      final String timeDataPath = uri.getPath();
+      this.canvasActivity.canvasFragment.setTimeDataPath(timeDataPath);
+      try {
+        this.inputDataFile = new FileInputStream(timeDataPath);
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
       }
-
+      final String[] parts = timeDataPath.split("/"); //$NON-NLS-1$
+      this.timeDataName = parts[parts.length - 1];
     }
     this.filePathView.setText(this.timeDataName);
   }
-  
+
   /**
    * モデルをURIから読み込みます。
    * 
    * @param uri モデルURI
    */
   void loadModelUri(Uri uri) {
-    String modelFilePath;
-    if (uri != null && "content".equals(uri.getScheme())) { //$NON-NLS-1$
+    if (uri == null) {
+      return;
+    }
+
+    if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
         this.inputModelFile = this.canvasActivity.getContentResolver().openInputStream(uri);
@@ -445,25 +457,25 @@ public class NavigationDrawerFragment extends RoboFragment {
       this.modelFileName = this.cursor.getString(this.cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
-      if(uri != null) {
-        modelFilePath = uri.getPath();
-        this.canvasActivity.canvasFragment.setModelFilePath(modelFilePath);
-        try {
-          this.inputModelFile = new FileInputStream(modelFilePath);
-        } catch (FileNotFoundException e) {
-          throw new RuntimeException(e);
-        }
-        String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
-        this.modelFileName = parts[parts.length - 1];
+      String modelFilePath = uri.getPath();
+      this.canvasActivity.canvasFragment.setModelFilePath(modelFilePath);
+      try {
+        this.inputModelFile = new FileInputStream(modelFilePath);
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
       }
+      String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
+      this.modelFileName = parts[parts.length - 1];
     }
+
     this.modelFilePathView.setText(this.modelFileName);
     this.timeDataName = "..."; //$NON-NLS-1$
     this.filePathView.setText(this.timeDataName);
+
     try {
       this.canvasActivity.canvasFragment.loadModelFile(this.inputModelFile);
       setButtonEnabled(true);
-      if(this.canvasActivity.canvasFragment.data != null) {
+      if (this.canvasActivity.canvasFragment.data != null) {
         this.canvasActivity.canvasFragment.data = null;
       }
     } catch (Mikity3dSerializeDeserializeException e) {
@@ -471,7 +483,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       setButtonEnabled(false);
     }
   }
-  
+
   /**
    * @param message 例外メッセージ
    */
@@ -480,7 +492,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
-  
+
   void setButtonEnabled(boolean flag) {
     this.isSelectedModelFile = flag;
     this.selectButton.setEnabled(flag);
@@ -491,7 +503,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.timeDataDeleteButton.setEnabled(flag);
     this.assetsTimeButton.setEnabled(flag);
   }
-  
+
   /**
    * コラムナンバーを入れ替えます。
    * 
@@ -503,65 +515,62 @@ public class NavigationDrawerFragment extends RoboFragment {
     final Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
     final Group[] groups = model.getGroups();
     Group group = groups[0];
-    
-    for (Iterator<Integer> itr = targetColumn.iterator(); itr.hasNext();) {
-    	@SuppressWarnings("boxing")
-      int target = itr.next();
-    	group = group.getGroup(target);
+
+    for (Integer target : targetColumn) {
+      group = group.getGroup(target.intValue());
     }
     group.getLinkData(childPosition).setColumnNumber(columnNumber);
     this.canvasActivity.canvasFragment.configurateModel();
     this.canvasActivity.canvasFragment.setGroupManager();
   }
-  
+
   /**
    * @param uri URL
    */
   void unzipSaveFile(Uri uri) {
-    if (uri != null) {
-      final InputStream zipFile;
-      // ストリームを直接URIから取り出します。
-      try {
-        zipFile = this.canvasActivity.getContentResolver().openInputStream(uri);
-      } catch (FileNotFoundException e) {
-        throw new RuntimeException(e);
-      }
-      
-      final ZipInputStream input = new ZipInputStream(new BufferedInputStream(zipFile));
-      ZipEntry zipEntry;
-      BufferedOutputStream out;
-      int data;
-      
-      try {
-        while((zipEntry = input.getNextEntry()) != null) {
-          out = new BufferedOutputStream(new FileOutputStream("/sdcard/mikity3d" + zipEntry.getName())); //$NON-NLS-1$
-          while((data = input.read()) != -1) {
-            out.write(data);
-          }
-        }
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
-    } 
-  }
-  
-  /**
-   * @throws IOException
-   */
-  private void saveUnzipFile() throws IOException {
-    final String path = Environment.getDownloadCacheDirectory().getPath();
-    ZipInputStream input = new ZipInputStream(new BufferedInputStream(new FileInputStream("/sdcard/Download/Furiage_Sim.zip"))); //$NON-NLS-1$
-    ZipEntry zipEntry;
-    BufferedOutputStream output = null;
-    int data;
-    while((zipEntry = input.getNextEntry()) != null) {
-      String a = zipEntry.getName();
-      output = new BufferedOutputStream(new FileOutputStream("/sdcard/Download/" + zipEntry.getName())); //$NON-NLS-1$
-      while((data = input.read()) != -1) {
-        output.write(data);
-      }
+    if (uri == null) {
+      return;
     }
-    output.close();
-    input.close();
+
+    // ストリームを直接URIから取り出します。
+    try {
+      final InputStream zipFile = this.canvasActivity.getContentResolver().openInputStream(uri);
+      final ZipInputStream input = new ZipInputStream(new BufferedInputStream(zipFile));
+
+      ZipEntry zipEntry;
+      while ((zipEntry = input.getNextEntry()) != null) {
+        final BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("/sdcard/mikity3d" + zipEntry.getName())); //$NON-NLS-1$
+        int data;
+        while ((data = input.read()) != -1) {
+          out.write(data);
+        }
+        out.close();
+      }
+      input.close();
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
+
+//  /**
+//   * @throws IOException
+//   */
+//  private void saveUnzipFile() throws IOException {
+//    final String path = Environment.getDownloadCacheDirectory().getPath();
+//    final ZipInputStream input = new ZipInputStream(new BufferedInputStream(new FileInputStream("/sdcard/Download/Furiage_Sim.zip"))); //$NON-NLS-1$
+//    ZipEntry zipEntry;
+//    BufferedOutputStream output = null;
+//    int data;
+//    while ((zipEntry = input.getNextEntry()) != null) {
+//      String a = zipEntry.getName();
+//      output = new BufferedOutputStream(new FileOutputStream("/sdcard/Download/" + zipEntry.getName())); //$NON-NLS-1$
+//      while ((data = input.read()) != -1) {
+//        output.write(data);
+//      }
+//    }
+//    output.close();
+//    input.close();
+//  }
 }

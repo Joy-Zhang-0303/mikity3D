@@ -7,11 +7,14 @@ package org.mklab.mikity.android;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -44,33 +47,23 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> 
    */
   @Override
   protected InputStream doInBackground(String... params) {
-    //    String url = "http://www.mk.ces.kyutech.ac.jp/?page_id=18";
     final String url = params[0];
-    HttpClient httpClient = new DefaultHttpClient();
-    //    HttpParams param = httpClient.getParams();
-    //    HttpConnectionParams.setConnectionTimeout(param, 1000);
-    //    HttpConnectionParams.setSoTimeout(param, 1000);
-    //    StringBuilder url= new StringBuilder("http://www.mk.ces.kyutech.ac.jp/?page_id=18");
+    final HttpClient httpClient = new DefaultHttpClient();
     final HttpGet request = new HttpGet(url.toString());
 
-    HttpResponse httpResponse = null;
     try {
-      httpResponse = httpClient.execute(request);
-    } catch (Exception e) {
-      Log.d("HttpSampleActivity", e.getMessage()); //$NON-NLS-1$
-    }
-    
-    try {
+      final HttpResponse httpResponse = httpClient.execute(request);
       if (HttpStatus.SC_OK == httpResponse.getStatusLine().getStatusCode()) {
         this.input = httpResponse.getEntity().getContent();
       }
-    } catch (IllegalStateException e) {
-      throw new RuntimeException(e);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    } catch (NullPointerException e) {
-      // show dialog of network connection
+    } catch (ClientProtocolException e1) {
+      Log.d("HttpSampleActivity", e1.getMessage()); //$NON-NLS-1$
+      throw new RuntimeException(e1);
+    } catch (IOException e1) {
+      Log.d("HttpSampleActivity", e1.getMessage()); //$NON-NLS-1$
+      throw new RuntimeException(e1);
     }
+    
     return this.input;
   }
 

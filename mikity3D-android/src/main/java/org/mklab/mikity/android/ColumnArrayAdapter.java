@@ -65,8 +65,8 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
     this.groupNameCount = 0;
 
     int groupCount = 0;
-    for (Iterator<GroupManager> itr = localGroupManagers.iterator(); itr.hasNext();) {
-      if ((itr.next()).getClass() == GroupName.class) {
+    for (GroupManager manager : localGroupManagers) {
+      if (manager.getClass() == GroupName.class) {
         groupCount++;
       }
     }

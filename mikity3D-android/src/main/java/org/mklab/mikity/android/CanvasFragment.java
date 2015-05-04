@@ -51,8 +51,10 @@ import android.widget.LinearLayout;
 
 
 /**
+ * モデル描画用のフラグメントを表すクラスです。
+ * 
  * @author soda
- * @version $Revision$, 2014/10/10 モデル描画用のフラグメントです。
+ * @version $Revision$, 2014/10/10 
  */
 public class CanvasFragment extends RoboFragment implements SensorEventListener {
 
@@ -631,7 +633,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    */
   protected void setGroupManager() {
     this.manager = new MovableGroupManager(this.root);
-    this.manager.setLogCat(new LogCatImpl()); //LogCatのセット    
+    this.manager.setLogCat(new LogCatImpl());
   }
 
   /**
