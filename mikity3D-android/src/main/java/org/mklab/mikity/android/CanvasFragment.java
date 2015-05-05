@@ -90,8 +90,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   AnimationTask animationTask;
   /** センサーマネージャー */
   SensorManager sensorManager;
-  //  private boolean registerAccerlerometer;
-  //  private boolean registerMagneticFieldSensor;
   /** センサーからの加速度を格納する配列 */
   private float[] accels = new float[3];
   /** センサーからの地磁気を格納する配列 */
@@ -366,7 +364,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      String message = "Time data size is not match model's column number." //$NON-NLS-1$
+      final String message = "Time data size is not match model's column number." //$NON-NLS-1$
           + "\nPlease select proper time data or set proper column number."; //$NON-NLS-1$
       callExceptionDialogFragment(message);
       this.setIllegalTimeData = true;
@@ -554,13 +552,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     }
 
     if (this.useOrientationSensor) {
-      float[] R = new float[9];
-      float[] I = new float[9];
+      final float[] R = new float[9];
+      final float[] I = new float[9];
       SensorManager.getRotationMatrix(R, I, this.accels, this.magneticFields);
 
       SensorManager.getOrientation(R, this.orientations);
 
-      float[] diffOrientations = new float[3];
+      final float[] diffOrientations = new float[3];
 
       for (int i = 0; i < this.orientations.length; i++) {
         diffOrientations[i] = this.orientations[i] - this.prevOrientations[i];

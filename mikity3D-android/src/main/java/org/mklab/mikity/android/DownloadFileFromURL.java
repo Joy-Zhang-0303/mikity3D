@@ -82,6 +82,5 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> 
   protected void onPostExecute(InputStream anInput) {
     this.fragment.input = anInput;
     final Drawable d = Drawable.createFromStream(anInput, "webimage"); //$NON-NLS-1$
-    //this.fragment.sampleModelButton.setBackground(d);
   }
 }

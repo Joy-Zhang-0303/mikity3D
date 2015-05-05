@@ -131,21 +131,6 @@ public class AssetsListViewFragment extends RoboFragment {
     return files;
   }
 
-  //  public boolean onKeyDown(int keyCode, KeyEvent event) {
-  //      if (keyCode == KeyEvent.KEYCODE_BACK) {
-  //          if (this.correntPath.lastIndexOf(File.separator) > 0) { // NON-NLS-1$
-  //              this.correntPath = this.correntPath.substring(0,
-  //                      this.correntPath.lastIndexOf(File.separator));
-  //              this.listView.setAdapter(new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity,
-  //                      android.R.layout.simple_list_item_1,
-  //                      loadAssetsFolder(this.correntPath)));
-  //          }
-  //          return false;
-  //      }
-  //
-  //      return super.onKeyDown(keyCode, event);
-  //  }
-
   /**
    * @param filePath
    * @return
@@ -166,6 +151,11 @@ public class AssetsListViewFragment extends RoboFragment {
     return text;
   }
 
+  /**
+   * @param parentPath
+   * @param filename
+   * @param folder
+   */
   void copyAssetsFiles(final String parentPath, final String filename, File folder) {
     if (!folder.exists()) {
       folder.mkdirs();
@@ -186,8 +176,6 @@ public class AssetsListViewFragment extends RoboFragment {
       }
       output.close();
       input.close();
-      //          Toast.makeText(getApplicationContext(), "Copy of " + filename + " to " + folder.getPath(), //$NON-NLS-1$
-      //                  Toast.LENGTH_LONG).show();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -215,7 +203,9 @@ public class AssetsListViewFragment extends RoboFragment {
     if (fileName == null) {
       return null;
     }
+    
     int point = fileName.lastIndexOf("."); //$NON-NLS-1$
+   
     if (point != -1) {
       return fileName.substring(point + 1);
     }

@@ -286,8 +286,9 @@ public class CanvasActivity extends RoboFragmentActivity {
    */
   public void controlRotation() {
     this.config = getResources().getConfiguration();
-    int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+    final int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
     boolean isReverse = false;
+    
     if (this.ndFragment.rotateTogguleButton.isChecked()) {
       switch (rotation) {
         case Surface.ROTATION_180:
@@ -324,22 +325,8 @@ public class CanvasActivity extends RoboFragmentActivity {
    * @param requestCode インテント時のリクエストコード
    */
   public void sendFileChooseIntent(int requestCode) {
-    //APIレベルによる処理
-    //  if (CanvasActivity.this.canvasFragment.root != null) {
-    //            CanvasActivity.this.isSelectedModelFile = true;
-    //          } else {
-    //            CanvasActivity.this.isSelectedModelFile = false;
-    //          }
-    //          fileManager.getFilePath();
-    //        if(Build.VERSION.SDK_INT < 19) {        
     final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
     intent.setType("*/*"); //$NON-NLS-1$
     startActivityForResult(intent, requestCode);
-    //        } else {
-    //        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-    //        intent.addCategory(Intent.CATEGORY_OPENABLE);
-    //        intent.setType("*/*");
-    //        startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
-    //    }
   }
 }

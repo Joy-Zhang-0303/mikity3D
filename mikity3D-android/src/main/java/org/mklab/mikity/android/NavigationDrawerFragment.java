@@ -31,7 +31,6 @@ import roboguice.fragment.RoboFragment;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.OpenableColumns;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -70,8 +69,6 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** */
   MovableGroupManager manager;
 
-  // DEBUG textview
-  //  TextView testTextView;
   TextView filePathView;
   TextView modelFilePathView;
 
@@ -125,8 +122,6 @@ public class NavigationDrawerFragment extends RoboFragment {
 
   /**
    * {@inheritDoc}
-   * 
-   * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -173,9 +168,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.filePathView = (TextView)view.findViewById(R.id.filePathView);
     this.modelFilePathView = (TextView)view.findViewById(R.id.modelPathView);
     this.modelFilePathView.setMovementMethod(ScrollingMovementMethod.getInstance());
-
-    //    this.testTextView = new TextView(this.canvasActivity);
-    //    this.testTextView = (TextView)view.findViewById(R.id.textView1);
 
     //再生速度の設定
     this.quickButton.setOnClickListener(new View.OnClickListener() {
@@ -284,17 +276,6 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.canvasActivity.controlRotation();
       }
     });
-    //    
-    //    this.sampleModelButton.setOnClickListener(new OnClickListener() {
-    //      
-    //      /**
-    //       * @param v View 
-    //       */
-    //      public void onClick(View v) {
-    //        DownloadFileFromURL get = new DownloadFileFromURL(NavigationDrawerFragment.this);
-    //        get.execute("http://jamox.mklab.org/img/menu/sitemap.png"); //$NON-NLS-1$
-    //      }
-    //    });
 
     this.setColumnButton.setOnClickListener(new OnClickListener() {
 
@@ -316,24 +297,8 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    //    this.unzipSaveButton = (Button)view.findViewById(R.id.unzipSaveButton);
-    //    this.unzipSaveButton.setOnClickListener(new OnClickListener() {
-    //      final int REQUEST_CODE_ZIP = 3;
-    //      /**
-    //       * @param v  View
-    //       */
-    //      public void onClick(View v) { 
-    //try {
-    //          saveUnzipFile();
-    //        } catch (IOException e) {
-    //          // TODO 自動生成された catch ブロック
-    //          throw new RuntimeException(e);
-    //        }
-    //      }
-    //    });
     this.assetsModelButton = (Button)view.findViewById(R.id.assetsModelButtonView);
     this.assetsModelButton.setOnClickListener(new OnClickListener() {
-
       /**
        * {@inheritDoc}
        */
@@ -493,6 +458,9 @@ public class NavigationDrawerFragment extends RoboFragment {
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
 
+  /**
+   * @param flag
+   */
   void setButtonEnabled(boolean flag) {
     this.isSelectedModelFile = flag;
     this.selectButton.setEnabled(flag);
@@ -535,42 +503,22 @@ public class NavigationDrawerFragment extends RoboFragment {
     // ストリームを直接URIから取り出します。
     try {
       final InputStream zipFile = this.canvasActivity.getContentResolver().openInputStream(uri);
-      final ZipInputStream input = new ZipInputStream(new BufferedInputStream(zipFile));
+      final ZipInputStream zipInput = new ZipInputStream(new BufferedInputStream(zipFile));
 
       ZipEntry zipEntry;
-      while ((zipEntry = input.getNextEntry()) != null) {
+      while ((zipEntry = zipInput.getNextEntry()) != null) {
         final BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("/sdcard/mikity3d" + zipEntry.getName())); //$NON-NLS-1$
         int data;
-        while ((data = input.read()) != -1) {
+        while ((data = zipInput.read()) != -1) {
           out.write(data);
         }
         out.close();
       }
-      input.close();
+      zipInput.close();
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
   }
-
-//  /**
-//   * @throws IOException
-//   */
-//  private void saveUnzipFile() throws IOException {
-//    final String path = Environment.getDownloadCacheDirectory().getPath();
-//    final ZipInputStream input = new ZipInputStream(new BufferedInputStream(new FileInputStream("/sdcard/Download/Furiage_Sim.zip"))); //$NON-NLS-1$
-//    ZipEntry zipEntry;
-//    BufferedOutputStream output = null;
-//    int data;
-//    while ((zipEntry = input.getNextEntry()) != null) {
-//      String a = zipEntry.getName();
-//      output = new BufferedOutputStream(new FileOutputStream("/sdcard/Download/" + zipEntry.getName())); //$NON-NLS-1$
-//      while ((data = input.read()) != -1) {
-//        output.write(data);
-//      }
-//    }
-//    output.close();
-//    input.close();
-//  }
 }

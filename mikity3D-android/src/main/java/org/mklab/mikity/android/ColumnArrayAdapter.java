@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.android;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.mklab.mikity.model.searcher.GroupLink;
@@ -79,56 +78,55 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
    */
   @Override
   public View getView(final int position, View convertView, ViewGroup parent) {
-    View view;
     if (convertView != null) {
-      view = convertView;
-    } else {
-      if (this.groupManagers.get(position).getClass() == GroupName.class) {
-        final GroupName groupName = (GroupName)this.groupManagers.get(position);
-        view = this.layoutInflater.inflate(this.viewResourceId, null);
-        final TextView columnText = (TextView)view.findViewById(R.id.groupNameText);
-        columnText.setText(groupName.getGroupName());
-      } else {
-        final GroupLink groupLink = (GroupLink)this.groupManagers.get(position);
-        view = this.layoutInflater.inflate(R.layout.list_link, null);
-        final TextView targetText = (TextView)view.findViewById(R.id.list_target);
-        targetText.setText(groupLink.getTarget());
-        final EditText columnText = (EditText)view.findViewById(R.id.list_column);
-        columnText.setText(Integer.toString(groupLink.getColumn()));
-
-        final Button minusButton = (Button)view.findViewById(R.id.minusButton2);
-        minusButton.setOnClickListener(new OnClickListener() {
-
-          /**
-           * {@inheritDoc}
-           */
-          public void onClick(View v) {
-            if (2 < groupLink.getColumn()) {
-              final int column = groupLink.getColumn() - 1;
-              groupLink.setColumnNumber(column);
-              columnText.setText(Integer.toString(column));
-              ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position - ColumnArrayAdapter.this.groupNameCount, column);
-            }
-          }
-        });
-
-        final Button plusButton = (Button)view.findViewById(R.id.plusButton2);
-        plusButton.setOnClickListener(new OnClickListener() {
-
-          /**
-           * {@inheritDoc}
-           */
-          public void onClick(View v) {
-            if (groupLink.getColumn() < 99) {
-              final int column = groupLink.getColumn() + 1;
-              groupLink.setColumnNumber(column);
-              columnText.setText(Integer.toString(column));
-              ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position - ColumnArrayAdapter.this.groupNameCount, column);
-            }
-          }
-        });
-      }
+      return convertView;
     }
+
+    if (this.groupManagers.get(position).getClass() == GroupName.class) {
+      final GroupName groupName = (GroupName)this.groupManagers.get(position);
+      final View view = this.layoutInflater.inflate(this.viewResourceId, null);
+      final TextView columnText = (TextView)view.findViewById(R.id.groupNameText);
+      columnText.setText(groupName.getGroupName());
+      return view;
+    }
+
+    final GroupLink groupLink = (GroupLink)this.groupManagers.get(position);
+    final View view = this.layoutInflater.inflate(R.layout.list_link, null);
+    final TextView targetText = (TextView)view.findViewById(R.id.list_target);
+    targetText.setText(groupLink.getTarget());
+    final EditText columnText = (EditText)view.findViewById(R.id.list_column);
+    columnText.setText(Integer.toString(groupLink.getColumn()));
+
+    final Button minusButton = (Button)view.findViewById(R.id.minusButton2);
+    minusButton.setOnClickListener(new OnClickListener() {
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+        if (2 < groupLink.getColumn()) {
+          final int column = groupLink.getColumn() - 1;
+          groupLink.setColumnNumber(column);
+          columnText.setText(Integer.toString(column));
+          ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position - ColumnArrayAdapter.this.groupNameCount, column);
+        }
+      }
+    });
+
+    final Button plusButton = (Button)view.findViewById(R.id.plusButton2);
+    plusButton.setOnClickListener(new OnClickListener() {
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+        if (groupLink.getColumn() < 99) {
+          final int column = groupLink.getColumn() + 1;
+          groupLink.setColumnNumber(column);
+          columnText.setText(Integer.toString(column));
+          ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position - ColumnArrayAdapter.this.groupNameCount, column);
+        }
+      }
+    });
+
     return view;
   }
 }
