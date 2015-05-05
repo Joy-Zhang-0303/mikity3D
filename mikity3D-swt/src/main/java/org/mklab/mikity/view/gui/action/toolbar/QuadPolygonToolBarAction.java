@@ -26,8 +26,7 @@ public class QuadPolygonToolBarAction extends Action {
   private ModelingWindow window;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>QuadPolygonToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    */
   public QuadPolygonToolBarAction(final ModelingWindow window) {
@@ -44,9 +43,7 @@ public class QuadPolygonToolBarAction extends Action {
   }
 
   /**
-   * ツールバークリック時に実行する。
-   * 
-   * @see org.eclipse.jface.action.IAction#run()
+   * {@inheritDoc}
    */
   @Override
   public void run() {

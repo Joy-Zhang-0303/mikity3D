@@ -98,11 +98,11 @@ public class GroupConfigWithDHParameterDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         if (Check()) {
-          final MessageBox mesBox = new MessageBox(GroupConfigWithDHParameterDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          mesBox.setMessage(Messages.getString("GroupConfigDialogDH.3")); //$NON-NLS-1$
-          mesBox.setText(Messages.getString("GroupConfigDialogDH.4")); //$NON-NLS-1$
-          int result = mesBox.open();
-          if (result == SWT.YES) {
+          final MessageBox message = new MessageBox(GroupConfigWithDHParameterDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+          message.setMessage(Messages.getString("GroupConfigDialogDH.3")); //$NON-NLS-1$
+          message.setText(Messages.getString("GroupConfigDialogDH.4")); //$NON-NLS-1$
+          int yesNo = message.open();
+          if (yesNo == SWT.YES) {
             GroupConfigWithDHParameterDialog.this.group.setName(GroupConfigWithDHParameterDialog.this.groupName.getText());
             GroupConfigWithDHParameterDialog.this.group.clearLinkdata();
             addLinkData(GroupConfigWithDHParameterDialog.this.a, GroupConfigWithDHParameterDialog.this.columnA);
@@ -112,9 +112,9 @@ public class GroupConfigWithDHParameterDialog {
             GroupConfigWithDHParameterDialog.this.sShell.close();
           }
         } else {
-          final MessageBox mgb = new MessageBox(GroupConfigWithDHParameterDialog.this.sShell, SWT.ICON_WARNING);
-          mgb.setMessage(Messages.getString("GroupConfigDialogDH.5")); //$NON-NLS-1$
-          mgb.setText(Messages.getString("GroupConfigDialogDH.6")); //$NON-NLS-1$
+          final MessageBox message = new MessageBox(GroupConfigWithDHParameterDialog.this.sShell, SWT.ICON_WARNING);
+          message.setMessage(Messages.getString("GroupConfigDialogDH.5")); //$NON-NLS-1$
+          message.setText(Messages.getString("GroupConfigDialogDH.6")); //$NON-NLS-1$
         }
       }
     });
@@ -240,11 +240,6 @@ public class GroupConfigWithDHParameterDialog {
 
     for (int i = 0; i < linkdata.length; i++) {
       final String target = linkdata[i].getTargetName();
-      // if(linkdata[i].hasColumn()){
-      // column = "" + linkdata[i].getColumn();
-      // } else{
-      // column = "0";
-      // }
       final String column = linkdata[i].hasColumnNumber() ? "" + linkdata[i].getColumnNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       final String constant = linkdata[i].hasConstantValue() ? "" + linkdata[i].getConstantValue() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       if (target.equals("a")) { //$NON-NLS-1$

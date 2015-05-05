@@ -57,10 +57,10 @@ public class FileNewAction extends Action {
         this.window.loadFile();
       } else {
         // 新規作成したいが、もともとその名前のファイルが存在するとき
-        final MessageBox messageBox = new MessageBox(this.window.getShell(), SWT.YES | SWT.NO);
-        messageBox.setText(Messages.getString("FileNewAction.3")); //$NON-NLS-1$
-        messageBox.setMessage(Messages.getString("FileNewAction.4")); //$NON-NLS-1$
-        final int yesNo = messageBox.open();
+        final MessageBox message = new MessageBox(this.window.getShell(), SWT.YES | SWT.NO);
+        message.setText(Messages.getString("FileNewAction.3")); //$NON-NLS-1$
+        message.setMessage(Messages.getString("FileNewAction.4")); //$NON-NLS-1$
+        final int yesNo = message.open();
 
         if (yesNo == SWT.YES) {
           this.window.setFile(fileName);
@@ -73,7 +73,6 @@ public class FileNewAction extends Action {
     } catch (IOException e1) {
       throw new RuntimeException(e1);
     } catch (Mikity3dSerializeDeserializeException e) {
-      // TODO 自動生成された catch ブロック
       throw new RuntimeException(e);
     }
   }

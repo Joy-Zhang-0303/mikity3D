@@ -60,9 +60,11 @@ public class EditPrimitiveDialog {
   private ParameterInputBox newParam1;
   private ParameterInputBox newParam2;
   private ParameterInputBox newParam3;
+  
   private ParameterInputBox newRotationX;
   private ParameterInputBox newRotationY;
   private ParameterInputBox newRotationZ;
+  
   private ParameterInputBox newLocationX;
   private ParameterInputBox newLocationY;
   private ParameterInputBox newLocationZ;
@@ -239,19 +241,19 @@ public class EditPrimitiveDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         // 数字以外が入っていないかを判断
         if (Check()) {
-          final MessageBox mesBox = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          mesBox.setMessage(Messages.getString("EditPrimitiveDialog.21")); //$NON-NLS-1$
-          mesBox.setText(Messages.getString("EditPrimitiveDialog.22")); //$NON-NLS-1$
-          int result = mesBox.open();
-          if (result == SWT.YES) {
+          final MessageBox message = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+          message.setMessage(Messages.getString("EditPrimitiveDialog.21")); //$NON-NLS-1$
+          message.setText(Messages.getString("EditPrimitiveDialog.22")); //$NON-NLS-1$
+          int yesNo = message.open();
+          if (yesNo == SWT.YES) {
             setParam();
             EditPrimitiveDialog.this.sShell.close();
           }
         } else {
-          final MessageBox mgb = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.ICON_WARNING);
-          mgb.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
-          mgb.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
-          mgb.open();
+          final MessageBox message = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.ICON_WARNING);
+          message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
+          message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
+          message.open();
         }
       }
     });
@@ -264,12 +266,11 @@ public class EditPrimitiveDialog {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-
-        final MessageBox mesBox = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-        mesBox.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
-        mesBox.setText(Messages.getString("EditPrimitiveDialog.27")); //$NON-NLS-1$
-        int result = mesBox.open();
-        if (result == SWT.YES) {
+        final MessageBox message = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
+        message.setText(Messages.getString("EditPrimitiveDialog.27")); //$NON-NLS-1$
+        int yesNo = message.open();
+        if (yesNo == SWT.YES) {
           EditPrimitiveDialog.this.sShell.close();
         }
       }
@@ -347,45 +348,45 @@ public class EditPrimitiveDialog {
       }
       box.setColor(this.colorCombo.getColorComboBox().getText());
     } else if (this.primitive instanceof XMLCylinder) {
-      final XMLCylinder cyl = (XMLCylinder)this.primitive;
-      cyl.setRadius(this.newParam1.getFloatValue());
-      cyl.setHeight(this.newParam2.getFloatValue());
-      cyl.setDiv(setDiv(this.newParam3));
+      final XMLCylinder cylinder = (XMLCylinder)this.primitive;
+      cylinder.setRadius(this.newParam1.getFloatValue());
+      cylinder.setHeight(this.newParam2.getFloatValue());
+      cylinder.setDiv(setDiv(this.newParam3));
 
       if (this.rotationB == false) {
         if (this.rotationA == true) {
-          cyl.setRotation(setRotation(rot));
+          cylinder.setRotation(setRotation(rot));
         }
       } else {
-        setRotation(cyl.getRotation());
+        setRotation(cylinder.getRotation());
       }
       if (this.locationB == false) {
         if (this.locationA == true) {
-          cyl.setLocation(setLocation(loc));
+          cylinder.setLocation(setLocation(loc));
         }
       } else {
-        setLocation(cyl.getLocation());
+        setLocation(cylinder.getLocation());
       }
-      cyl.setColor(this.colorCombo.getColorComboBox().getText());
+      cylinder.setColor(this.colorCombo.getColorComboBox().getText());
     } else if (this.primitive instanceof XMLSphere) {
-      final XMLSphere sph = (XMLSphere)this.primitive;
-      sph.setRadius(this.newParam1.getFloatValue());
-      sph.setDiv(setDiv(this.newParam2));
+      final XMLSphere sphere = (XMLSphere)this.primitive;
+      sphere.setRadius(this.newParam1.getFloatValue());
+      sphere.setDiv(setDiv(this.newParam2));
       if (this.rotationB == false) {
         if (this.rotationA == true) {
-          sph.setRotation(setRotation(rot));
+          sphere.setRotation(setRotation(rot));
         }
       } else {
-        setRotation(sph.getRotation());
+        setRotation(sphere.getRotation());
       }
       if (this.locationB == false) {
         if (this.locationA == true) {
-          sph.setLocation(setLocation(loc));
+          sphere.setLocation(setLocation(loc));
         }
       } else {
-        setLocation(sph.getLocation());
+        setLocation(sphere.getLocation());
       }
-      sph.setColor(this.colorCombo.getColorComboBox().getText());
+      sphere.setColor(this.colorCombo.getColorComboBox().getText());
     } else if (this.primitive instanceof XMLCone) {
       final XMLCone cone = (XMLCone)this.primitive;
       cone.setRadius(this.newParam1.getFloatValue());

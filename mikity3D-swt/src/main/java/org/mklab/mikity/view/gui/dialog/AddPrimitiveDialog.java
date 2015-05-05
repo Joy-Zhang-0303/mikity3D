@@ -44,12 +44,12 @@ public class AddPrimitiveDialog {
   private Label unitLabel1;
   private Label unitLabel2;
   private Label unitLabel3;
-  private ParameterInputBox rotX;
-  private ParameterInputBox rotY;
-  private ParameterInputBox rotZ;
-  private ParameterInputBox locX;
-  private ParameterInputBox locY;
-  private ParameterInputBox locZ;
+  private ParameterInputBox rotationX;
+  private ParameterInputBox rotationY;
+  private ParameterInputBox rotationZ;
+  private ParameterInputBox locationX;
+  private ParameterInputBox locationY;
+  private ParameterInputBox locationZ;
   private Combo primitiveCombo;
   private Combo colorCombo;
   private Group group;
@@ -61,8 +61,6 @@ public class AddPrimitiveDialog {
   private static final int cylinderFlag = 1;
   private static final int sphereFlag = 2;
   private static final int coneFlag = 3;
-
-  // private CollisionCanceller dc;
 
   /**
    * コンストラクター
@@ -95,11 +93,11 @@ public class AddPrimitiveDialog {
     gLabelData.horizontalSpan = 3;
     groupLabel.setLayoutData(gLabelData);
 
-    final Label primLabel = new Label(this.sShell, SWT.RIGHT);
-    primLabel.setText("primitive"); //$NON-NLS-1$
+    final Label primitiveLabel = new Label(this.sShell, SWT.RIGHT);
+    primitiveLabel.setText("primitive"); //$NON-NLS-1$
     final GridData labelData = new GridData(GridData.FILL_HORIZONTAL);
     labelData.widthHint = 80;
-    primLabel.setLayoutData(labelData);
+    primitiveLabel.setLayoutData(labelData);
     createPrimitiveCombo();
 
     this.parameter1 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.2"), "0.2"); //$NON-NLS-1$//$NON-NLS-2$
@@ -115,23 +113,23 @@ public class AddPrimitiveDialog {
     this.unitLabel3.setText(this.lengthUnit);
 
     GridData rotationData = new GridData(GridData.FILL_HORIZONTAL);
-    org.eclipse.swt.widgets.Group rotateGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
-    rotateGroup.setText(Messages.getString("AddPrimitiveDialog.5")); //$NON-NLS-1$
+    org.eclipse.swt.widgets.Group rotationGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
+    rotationGroup.setText(Messages.getString("AddPrimitiveDialog.5")); //$NON-NLS-1$
     final GridLayout layout2 = new GridLayout();
     layout2.numColumns = 3;
-    rotateGroup.setLayout(layout2);
+    rotationGroup.setLayout(layout2);
     rotationData = new GridData(GridData.FILL_HORIZONTAL);
     rotationData.horizontalSpan = 3;
-    rotateGroup.setLayoutData(rotationData);
+    rotationGroup.setLayoutData(rotationData);
 
-    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.6"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    final Label unitLabelRX = new Label(rotateGroup, SWT.NONE);
+    this.rotationX = new ParameterInputBox(rotationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.6"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    final Label unitLabelRX = new Label(rotationGroup, SWT.NONE);
     unitLabelRX.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.7")); //$NON-NLS-1$
-    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.8"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    final Label unitLabelRY = new Label(rotateGroup, SWT.NONE);
+    this.rotationY = new ParameterInputBox(rotationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.8"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    final Label unitLabelRY = new Label(rotationGroup, SWT.NONE);
     unitLabelRY.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.9")); //$NON-NLS-1$
-    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.10"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    final Label unitLabelRZ = new Label(rotateGroup, SWT.NONE);
+    this.rotationZ = new ParameterInputBox(rotationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.10"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    final Label unitLabelRZ = new Label(rotationGroup, SWT.NONE);
     unitLabelRZ.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.11")); //$NON-NLS-1$
 
     GridData locationData = new GridData(GridData.FILL_HORIZONTAL);
@@ -144,13 +142,13 @@ public class AddPrimitiveDialog {
     locationData.horizontalSpan = 3;
     locationGroup.setLayoutData(locationData);
 
-    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.13"), "0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.locationX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.13"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLX = new Label(locationGroup, SWT.NONE);
     unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.14"), "0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.locationY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.14"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLY = new Label(locationGroup, SWT.NONE);
     unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.15"), "0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.locationZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.15"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
     unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
 
@@ -221,22 +219,22 @@ public class AddPrimitiveDialog {
     if (this.parameter3.checkParam() == false) {
       return false;
     }
-    if (this.rotX.checkParam() == false) {
+    if (this.rotationX.checkParam() == false) {
       return false;
     }
-    if (this.rotY.checkParam() == false) {
+    if (this.rotationY.checkParam() == false) {
       return false;
     }
-    if (this.rotZ.checkParam() == false) {
+    if (this.rotationZ.checkParam() == false) {
       return false;
     }
-    if (this.locX.checkParam() == false) {
+    if (this.locationX.checkParam() == false) {
       return false;
     }
-    if (this.locY.checkParam() == false) {
+    if (this.locationY.checkParam() == false) {
       return false;
     }
-    if (this.locZ.checkParam() == false) {
+    if (this.locationZ.checkParam() == false) {
       return false;
     }
     return true;
@@ -262,10 +260,8 @@ public class AddPrimitiveDialog {
           box.setLocation(getLocation(location));
         }
         box.setColor(this.colorCombo.getText());
-        // dc.checkCollision(box,box.loadLocation(),group);
         box.setLocation(location);
         this.group.addXMLBox(box);
-
         break;
       case cylinderFlag:
         final XMLCylinder cylinder = new XMLCylinder();
@@ -279,10 +275,8 @@ public class AddPrimitiveDialog {
           cylinder.setLocation(getLocation(location));
         }
         cylinder.setColor(this.colorCombo.getText());
-        // dc.checkCollision(cyl,cyl.loadLocation(),group);
         cylinder.setLocation(location);
         this.group.addXMLCylinder(cylinder);
-
         break;
       case sphereFlag:
         final XMLSphere sphere = new XMLSphere();
@@ -295,10 +289,8 @@ public class AddPrimitiveDialog {
           sphere.setLocation(getLocation(location));
         }
         sphere.setColor(this.colorCombo.getText());
-        // dc.checkCollision(sph,sph.loadLocation(),group);
         sphere.setLocation(location);
         this.group.addXMLSphere(sphere);
-
         break;
       case coneFlag:
         final XMLCone cone = new XMLCone();
@@ -312,7 +304,6 @@ public class AddPrimitiveDialog {
           cone.setLocation(getLocation(location));
         }
         cone.setColor(this.colorCombo.getText());
-        // dc.checkCollision(cone,cone.loadLocation(),group);
         cone.setLocation(location);
         this.group.addXMLCone(cone);
         break;
@@ -323,34 +314,34 @@ public class AddPrimitiveDialog {
   }
 
   /**
-   * Rotationの値を設定 param Rotation return Rotation
+   * Rotationを設定します。
    * 
    * @param rotation
    * @return rot
    */
   private Rotation getRotation(Rotation rotation) {
-    if (this.rotX.getFloatValue() == 0 && this.rotY.getFloatValue() == 0 && this.rotZ.getFloatValue() == 0) {
+    if (this.rotationX.getFloatValue() == 0 && this.rotationY.getFloatValue() == 0 && this.rotationZ.getFloatValue() == 0) {
       return null;
     }
-    rotation.setXrotation(this.rotX.getFloatValue());
-    rotation.setYrotation(this.rotY.getFloatValue());
-    rotation.setZrotation(this.rotZ.getFloatValue());
+    rotation.setXrotation(this.rotationX.getFloatValue());
+    rotation.setYrotation(this.rotationY.getFloatValue());
+    rotation.setZrotation(this.rotationZ.getFloatValue());
     return rotation;
   }
 
   /**
-   * Locationの値を設定 param Location return Location
+   * Locationを設定します。
    * 
    * @param location
    * @return loc
    */
   private Location getLocation(Location location) {
-    if (this.locX.getFloatValue() == 0 && this.locY.getFloatValue() == 0 && this.locZ.getFloatValue() == 0) {
+    if (this.locationX.getFloatValue() == 0 && this.locationY.getFloatValue() == 0 && this.locationZ.getFloatValue() == 0) {
       return null;
     }
-    location.setX(this.locX.getFloatValue());
-    location.setY(this.locY.getFloatValue());
-    location.setZ(this.locZ.getFloatValue());
+    location.setX(this.locationX.getFloatValue());
+    location.setY(this.locationY.getFloatValue());
+    location.setZ(this.locationZ.getFloatValue());
     return location;
   }
 
@@ -475,7 +466,6 @@ public class AddPrimitiveDialog {
     this.primitiveCombo.setLayoutData(gridData);
     final String[] primitives = {"Box", "Cylinder", "Sphere", "Cone"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     this.primitiveCombo.setItems(primitives);
-    // デフォルトはBox
     this.primitiveCombo.setText("Box"); //$NON-NLS-1$
     this.primitiveCombo.addSelectionListener(new PComboCheck());
   }

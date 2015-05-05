@@ -40,8 +40,8 @@ public class FileExitAction extends Action {
   @Override
   public void run() {
     if (this.window.isDirty()) {
-      int ans = MessagegUtil.showYesNoCancel(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
-      switch (ans) {
+      int yesNo = MessagegUtil.showYesNoCancel(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
+      switch (yesNo) {
         case SWT.YES:
           try {
             final FileDialog dialog = new FileDialog(this.window.getShell());

@@ -34,24 +34,28 @@ public class AddQuadPolygonDialog {
   private Shell parentShell;
   Shell sShell;
 
-  private ParameterInputBox paramX_1;
-  private ParameterInputBox paramY_1;
-  private ParameterInputBox paramZ_1;
-  private ParameterInputBox paramX_2;
-  private ParameterInputBox paramY_2;
-  private ParameterInputBox paramZ_2;
-  private ParameterInputBox paramX_3;
-  private ParameterInputBox paramY_3;
-  private ParameterInputBox paramZ_3;
-  private ParameterInputBox paramX_4;
-  private ParameterInputBox paramY_4;
-  private ParameterInputBox paramZ_4;
-  private ParameterInputBox rotX;
-  private ParameterInputBox rotY;
-  private ParameterInputBox rotZ;
-  private ParameterInputBox locX;
-  private ParameterInputBox locY;
-  private ParameterInputBox locZ;
+  private ParameterInputBox vertex1X;
+  private ParameterInputBox vertex1y;
+  private ParameterInputBox vertex1z;
+  
+  private ParameterInputBox vertex2x;
+  private ParameterInputBox vertex2y;
+  private ParameterInputBox vertex2z;
+  
+  private ParameterInputBox vertex3x;
+  private ParameterInputBox vertex3y;
+  private ParameterInputBox vertex3z;
+  
+  private ParameterInputBox vertex4x;
+  private ParameterInputBox vertex4y;
+  private ParameterInputBox vertex4z;
+  
+  private ParameterInputBox rotationX;
+  private ParameterInputBox rotationY;
+  private ParameterInputBox rotationZ;
+  private ParameterInputBox locationX;
+  private ParameterInputBox locationY;
+  private ParameterInputBox locationZ;
 
   private Group group;
   private String angleUnit;
@@ -85,9 +89,9 @@ public class AddQuadPolygonDialog {
 
     final Label groupLabel = new Label(this.sShell, SWT.LEFT);
     groupLabel.setText(Messages.getString("AddQuadPolygonDialog.1") + this.group.getName()); //$NON-NLS-1$
-    final GridData gLabelData = new GridData(GridData.FILL_HORIZONTAL);
-    gLabelData.horizontalSpan = 3;
-    groupLabel.setLayoutData(gLabelData);
+    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    gridData.horizontalSpan = 3;
+    groupLabel.setLayoutData(gridData);
 
     GridData vertexData = new GridData(GridData.FILL_HORIZONTAL);
     final org.eclipse.swt.widgets.Group vertexGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
@@ -99,26 +103,26 @@ public class AddQuadPolygonDialog {
     vertexData.horizontalSpan = 3;
     vertexGroup.setLayoutData(vertexData);
 
-    this.paramX_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.3"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramY_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.4"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramZ_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1X = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.3"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1y = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.4"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1z = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     Label label1 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label1, 2);
 
-    this.paramX_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.6"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramY_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.7"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramZ_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2x = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.6"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2y = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.7"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2z = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label label2 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label2, 2);
-    this.paramX_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.9"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramY_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.10"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramZ_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    
+    this.vertex3x = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.9"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3y = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.10"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3z = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label label3 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label3, 2);
-    this.paramX_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.12"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramY_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.13"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramZ_4 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-
+    this.vertex4x = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.12"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex4y = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.13"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex4z = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddQuadPolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
     final Label colorLabel = new Label(this.sShell, SWT.RIGHT);
     colorLabel.setText("color"); //$NON-NLS-1$
@@ -135,13 +139,13 @@ public class AddQuadPolygonDialog {
     rotData.horizontalSpan = 3;
     rotateGroup.setLayoutData(rotData);
 
-    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationX = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelRX = new Label(rotateGroup, SWT.NONE);
     unitLabelRX.setText(this.angleUnit + " "); //$NON-NLS-1$
-    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.18"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationY = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.18"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelRY = new Label(rotateGroup, SWT.NONE);
     unitLabelRY.setText(this.angleUnit + " "); //$NON-NLS-1$
-    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.19"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationZ = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.19"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelRZ = new Label(rotateGroup, SWT.NONE);
     unitLabelRZ.setText(this.angleUnit + " "); //$NON-NLS-1$
 
@@ -155,13 +159,13 @@ public class AddQuadPolygonDialog {
     locData.horizontalSpan = 3;
     locationGroup.setLayoutData(locData);
 
-    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.21"), "0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.locationX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.21"), "0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLX = new Label(locationGroup, SWT.NONE);
     unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.22"), "0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.locationY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.22"), "0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLY = new Label(locationGroup, SWT.NONE);
     unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.23"), "0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.locationZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddQuadPolygonDialog.23"), "0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
     unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
 
@@ -181,15 +185,13 @@ public class AddQuadPolygonDialog {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-
         if (Check()) {
-          // dc.checkDuplication(,.getLocation,group);
           addPolygon();
           AddQuadPolygonDialog.this.sShell.close();
         } else {
-          MessageBox mgb = new MessageBox(AddQuadPolygonDialog.this.sShell, SWT.ICON_WARNING);
-          mgb.setMessage(Messages.getString("AddQuadPolygonDialog.25")); //$NON-NLS-1$
-          mgb.setText(Messages.getString("AddQuadPolygonDialog.26")); //$NON-NLS-1$
+          MessageBox message = new MessageBox(AddQuadPolygonDialog.this.sShell, SWT.ICON_WARNING);
+          message.setMessage(Messages.getString("AddQuadPolygonDialog.25")); //$NON-NLS-1$
+          message.setText(Messages.getString("AddQuadPolygonDialog.26")); //$NON-NLS-1$
         }
       }
     });
@@ -203,11 +205,11 @@ public class AddQuadPolygonDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final MessageBox mesBox = new MessageBox(AddQuadPolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-        mesBox.setMessage(Messages.getString("AddQuadPolygonDialog.28")); //$NON-NLS-1$
-        mesBox.setText(Messages.getString("AddQuadPolygonDialog.29")); //$NON-NLS-1$
-        int result = mesBox.open();
-        if (result == SWT.YES) {
+        final MessageBox message = new MessageBox(AddQuadPolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        message.setMessage(Messages.getString("AddQuadPolygonDialog.28")); //$NON-NLS-1$
+        message.setText(Messages.getString("AddQuadPolygonDialog.29")); //$NON-NLS-1$
+        int yesNo = message.open();
+        if (yesNo == SWT.YES) {
           AddQuadPolygonDialog.this.sShell.close();
         }
       }
@@ -222,16 +224,16 @@ public class AddQuadPolygonDialog {
     final Rotation rot = new Rotation();
     final Location loc = new Location();
 
-    final Location vertex1 = new Location(this.paramX_1.getFloatValue(), this.paramY_1.getFloatValue(), this.paramZ_1.getFloatValue());
-    final Location vertex2 = new Location(this.paramX_2.getFloatValue(), this.paramY_2.getFloatValue(), this.paramZ_2.getFloatValue());
-    final Location vertex3 = new Location(this.paramX_3.getFloatValue(), this.paramY_3.getFloatValue(), this.paramZ_3.getFloatValue());
-    final Location vertex4 = new Location(this.paramX_4.getFloatValue(), this.paramY_4.getFloatValue(), this.paramZ_4.getFloatValue());
+    final Location vertex1 = new Location(this.vertex1X.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
+    final Location vertex2 = new Location(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
+    final Location vertex3 = new Location(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
+    final Location vertex4 = new Location(this.vertex4x.getFloatValue(), this.vertex4y.getFloatValue(), this.vertex4z.getFloatValue());
     quad.setPointLocations(vertex1, vertex2, vertex3, vertex4);
-    if (getRot(rot) != null) {
-      quad.setRotation(getRot(rot));
+    if (getRotation(rot) != null) {
+      quad.setRotation(getRotation(rot));
     }
-    if (getLoc(loc) != null) {
-      quad.setLocation(getLoc(loc));
+    if (getLocaion(loc) != null) {
+      quad.setLocation(getLocaion(loc));
     }
     quad.setColor(this.colorCombo.getText());
     this.group.addXMLQuadPolygon(quad);
@@ -252,34 +254,34 @@ public class AddQuadPolygonDialog {
   /**
    * Rotationの値を設定 param Rotation return Rotation
    * 
-   * @param rot
+   * @param rotation
    * @return rot
    */
-  private Rotation getRot(Rotation rot) {
-    if (this.rotX.getFloatValue() == 0 && this.rotY.getFloatValue() == 0 && this.rotZ.getFloatValue() == 0) {
+  private Rotation getRotation(Rotation rotation) {
+    if (this.rotationX.getFloatValue() == 0 && this.rotationY.getFloatValue() == 0 && this.rotationZ.getFloatValue() == 0) {
       return null;
     }
-    rot.setXrotation(this.rotX.getFloatValue());
-    rot.setYrotation(this.rotY.getFloatValue());
-    rot.setZrotation(this.rotZ.getFloatValue());
-    return rot;
+    rotation.setXrotation(this.rotationX.getFloatValue());
+    rotation.setYrotation(this.rotationY.getFloatValue());
+    rotation.setZrotation(this.rotationZ.getFloatValue());
+    return rotation;
 
   }
 
   /**
    * Locationの値を設定 param Location return Location
    * 
-   * @param loc
+   * @param location
    * @return loc
    */
-  private Location getLoc(Location loc) {
-    if (this.locX.getFloatValue() == 0 && this.locY.getFloatValue() == 0 && this.locZ.getFloatValue() == 0) {
+  private Location getLocaion(Location location) {
+    if (this.locationX.getFloatValue() == 0 && this.locationY.getFloatValue() == 0 && this.locationZ.getFloatValue() == 0) {
       return null;
     }
-    loc.setX(this.locX.getFloatValue());
-    loc.setY(this.locY.getFloatValue());
-    loc.setZ(this.locZ.getFloatValue());
-    return loc;
+    location.setX(this.locationX.getFloatValue());
+    location.setY(this.locationY.getFloatValue());
+    location.setZ(this.locationZ.getFloatValue());
+    return location;
   }
 
   /**
@@ -288,61 +290,61 @@ public class AddQuadPolygonDialog {
    * @return boolean
    */
   boolean Check() {
-    if (this.paramX_1.checkParam() == false) {
+    if (this.vertex1X.checkParam() == false) {
       return false;
     }
-    if (this.paramY_1.checkParam() == false) {
+    if (this.vertex1y.checkParam() == false) {
       return false;
     }
-    if (this.paramZ_1.checkParam() == false) {
+    if (this.vertex1z.checkParam() == false) {
       return false;
     }
-    if (this.rotX.checkParam() == false) {
+    if (this.rotationX.checkParam() == false) {
       return false;
     }
-    if (this.paramX_2.checkParam() == false) {
+    if (this.vertex2x.checkParam() == false) {
       return false;
     }
-    if (this.paramY_2.checkParam() == false) {
+    if (this.vertex2y.checkParam() == false) {
       return false;
     }
-    if (this.paramZ_2.checkParam() == false) {
+    if (this.vertex2z.checkParam() == false) {
       return false;
     }
-    if (this.paramX_3.checkParam() == false) {
+    if (this.vertex3x.checkParam() == false) {
       return false;
     }
-    if (this.paramY_3.checkParam() == false) {
+    if (this.vertex3y.checkParam() == false) {
       return false;
     }
-    if (this.paramZ_3.checkParam() == false) {
+    if (this.vertex3z.checkParam() == false) {
       return false;
     }
-    if (this.paramX_4.checkParam() == false) {
+    if (this.vertex4x.checkParam() == false) {
       return false;
     }
-    if (this.paramY_4.checkParam() == false) {
+    if (this.vertex4y.checkParam() == false) {
       return false;
     }
-    if (this.paramZ_4.checkParam() == false) {
+    if (this.vertex4z.checkParam() == false) {
       return false;
     }
-    if (this.rotX.checkParam() == false) {
+    if (this.rotationX.checkParam() == false) {
       return false;
     }
-    if (this.rotY.checkParam() == false) {
+    if (this.rotationY.checkParam() == false) {
       return false;
     }
-    if (this.rotZ.checkParam() == false) {
+    if (this.rotationZ.checkParam() == false) {
       return false;
     }
-    if (this.locX.checkParam() == false) {
+    if (this.locationX.checkParam() == false) {
       return false;
     }
-    if (this.locY.checkParam() == false) {
+    if (this.locationY.checkParam() == false) {
       return false;
     }
-    if (this.locZ.checkParam() == false) {
+    if (this.locationZ.checkParam() == false) {
       return false;
     }
     return true;

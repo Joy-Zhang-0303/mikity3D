@@ -50,21 +50,21 @@ public class ConfigDialog {
   private ParameterInputBox viewY;
   private ParameterInputBox viewZ;
 
-  private ParameterInputBox viewXrotate;
-  private ParameterInputBox viewYrotate;
-  private ParameterInputBox viewZrotate;
+  private ParameterInputBox viewRotationX;
+  private ParameterInputBox viewRotationY;
+  private ParameterInputBox viewRotationZ;
 
-  private Mikity3dConfiguration config;
+  private Mikity3dConfiguration configuration;
 
   /**
    * コンストラクター
    * 
    * @param parentShell 親シェル
-   * @param config 設定
+   * @param configuration 設定
    */
-  public ConfigDialog(Shell parentShell, Mikity3dConfiguration config) {
+  public ConfigDialog(Shell parentShell, Mikity3dConfiguration configuration) {
     this.parentShell = parentShell;
-    this.config = config;
+    this.configuration = configuration;
     createSShell();
   }
 
@@ -178,9 +178,9 @@ public class ConfigDialog {
     vRollData.horizontalSpan = 7;
     vRollLabel.setLayoutData(vRollData);
 
-    this.viewXrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "-0.2"); //$NON-NLS-1$//$NON-NLS-2$
-    this.viewYrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.viewZrotate = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.viewRotationX = new ParameterInputBox(viewPointGroup, SWT.NONE, "  (", "-0.2"); //$NON-NLS-1$//$NON-NLS-2$
+    this.viewRotationY = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.viewRotationZ = new ParameterInputBox(viewPointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     final Label vKakko2 = new Label(viewPointGroup, SWT.NONE);
     final GridData vKakkoData2 = new GridData();
@@ -215,41 +215,41 @@ public class ConfigDialog {
    * XMLファイルから値を読み込む
    */
   private void getParameter() {
-    if (this.config.getLight() != null) {
-      Light light = this.config.getLight();
+    if (this.configuration.getLight() != null) {
+      Light light = this.configuration.getLight();
       this.lightX.setText("" + light.getX()); //$NON-NLS-1$
       this.lightY.setText("" + light.getY()); //$NON-NLS-1$
       this.lightZ.setText("" + light.getZ()); //$NON-NLS-1$
     }
-    if (this.config.getView() != null) {
-      View view = this.config.getView();
+    if (this.configuration.getView() != null) {
+      View view = this.configuration.getView();
       this.viewX.setText("" + view.getX()); //$NON-NLS-1$
       this.viewY.setText("" + view.getY()); //$NON-NLS-1$
       this.viewZ.setText("" + view.getZ()); //$NON-NLS-1$
-      this.viewXrotate.setText("" + view.getXrotation()); //$NON-NLS-1$
-      this.viewYrotate.setText("" + view.getYrotation()); //$NON-NLS-1$
-      this.viewZrotate.setText("" + view.getZrotation()); //$NON-NLS-1$
+      this.viewRotationX.setText("" + view.getXrotation()); //$NON-NLS-1$
+      this.viewRotationY.setText("" + view.getYrotation()); //$NON-NLS-1$
+      this.viewRotationZ.setText("" + view.getZrotation()); //$NON-NLS-1$
     }
-    if (this.config.getModelUnit() != null) {
-      if (this.config.getModelUnit().getAngle() != null) {
-        this.modelAngleUnitCombo.setText(this.config.getModelUnit().getAngle());
+    if (this.configuration.getModelUnit() != null) {
+      if (this.configuration.getModelUnit().getAngle() != null) {
+        this.modelAngleUnitCombo.setText(this.configuration.getModelUnit().getAngle());
       }
-      if (this.config.getModelUnit().getLength() != null) {
-        this.modelLengthUnitCombo.setText(this.config.getModelUnit().getLength());
-      }
-    }
-    if (this.config.getDataUnit() != null) {
-      if (this.config.getDataUnit().getAngle() != null) {
-        this.dataAngleUnitCombo.setText(this.config.getDataUnit().getAngle());
-      }
-      if (this.config.getDataUnit().getLength() != null) {
-        this.dataLengthUnitCombo.setText(this.config.getDataUnit().getLength());
+      if (this.configuration.getModelUnit().getLength() != null) {
+        this.modelLengthUnitCombo.setText(this.configuration.getModelUnit().getLength());
       }
     }
-    if (this.config.getBackground() == null) {
+    if (this.configuration.getDataUnit() != null) {
+      if (this.configuration.getDataUnit().getAngle() != null) {
+        this.dataAngleUnitCombo.setText(this.configuration.getDataUnit().getAngle());
+      }
+      if (this.configuration.getDataUnit().getLength() != null) {
+        this.dataLengthUnitCombo.setText(this.configuration.getDataUnit().getLength());
+      }
+    }
+    if (this.configuration.getBackground() == null) {
       this.colorCombo.setText("white"); //$NON-NLS-1$
     } else {
-      this.colorCombo.setText(this.config.getBackground().getColor());
+      this.colorCombo.setText(this.configuration.getBackground().getColor());
     }
   }
 
@@ -321,48 +321,48 @@ public class ConfigDialog {
     light.setX(this.lightX.getFloatValue());
     light.setY(this.lightY.getFloatValue());
     light.setZ(this.lightZ.getFloatValue());
-    this.config.setLight(light);
+    this.configuration.setLight(light);
     final View view = new View();
     view.setX(this.viewX.getFloatValue());
     view.setY(this.viewY.getFloatValue());
     view.setZ(this.viewZ.getFloatValue());
-    view.setXrotation(this.viewXrotate.getDoubleValue());
-    view.setYrotation(this.viewYrotate.getDoubleValue());
-    view.setZrotation(this.viewZrotate.getDoubleValue());
-    this.config.setView(view);
+    view.setXrotation(this.viewRotationX.getDoubleValue());
+    view.setYrotation(this.viewRotationY.getDoubleValue());
+    view.setZrotation(this.viewRotationZ.getDoubleValue());
+    this.configuration.setView(view);
 
-    if (this.config.getBackground() == null) {
+    if (this.configuration.getBackground() == null) {
       if (this.colorCombo.getText() != "white") { //$NON-NLS-1$
         final Background background = new Background();
         background.setColor(this.colorCombo.getText());
-        this.config.setBackground(background);
+        this.configuration.setBackground(background);
       }
     } else {
-      this.config.getBackground().setColor(this.colorCombo.getText());
+      this.configuration.getBackground().setColor(this.colorCombo.getText());
     }
 
-    if (this.config.getModelUnit() == null) {
+    if (this.configuration.getModelUnit() == null) {
       if (this.modelAngleUnitCombo.getText() != "radian") { //$NON-NLS-1$
         final ModelUnit modelUnit = new ModelUnit();
         modelUnit.setAngle(this.modelAngleUnitCombo.getText());
         modelUnit.setLength(this.modelLengthUnitCombo.getText());
-        this.config.setModelUnit(modelUnit);
+        this.configuration.setModelUnit(modelUnit);
       }
     } else {
-      this.config.getModelUnit().setAngle(this.modelAngleUnitCombo.getText());
-      this.config.getModelUnit().setLength(this.modelLengthUnitCombo.getText());
+      this.configuration.getModelUnit().setAngle(this.modelAngleUnitCombo.getText());
+      this.configuration.getModelUnit().setLength(this.modelLengthUnitCombo.getText());
     }
 
-    if (this.config.getDataUnit() == null) {
+    if (this.configuration.getDataUnit() == null) {
       if (this.dataAngleUnitCombo.getText() != "radian") { //$NON-NLS-1$
         final DataUnit dataUnit = new DataUnit();
         dataUnit.setAngle(this.dataAngleUnitCombo.getText());
         dataUnit.setLength(this.dataLengthUnitCombo.getText());
-        this.config.setDataUnit(dataUnit);
+        this.configuration.setDataUnit(dataUnit);
       }
     } else {
-      this.config.getDataUnit().setAngle(this.dataAngleUnitCombo.getText());
-      this.config.getDataUnit().setLength(this.dataLengthUnitCombo.getText());
+      this.configuration.getDataUnit().setAngle(this.dataAngleUnitCombo.getText());
+      this.configuration.getDataUnit().setLength(this.dataLengthUnitCombo.getText());
     }
 
   }
@@ -391,13 +391,13 @@ public class ConfigDialog {
     if (this.viewZ.checkParam() == false) {
       return false;
     }
-    if (this.viewXrotate.checkParam() == false) {
+    if (this.viewRotationX.checkParam() == false) {
       return false;
     }
-    if (this.viewYrotate.checkParam() == false) {
+    if (this.viewRotationY.checkParam() == false) {
       return false;
     }
-    if (this.viewZrotate.checkParam() == false) {
+    if (this.viewRotationZ.checkParam() == false) {
       return false;
     }
     return true;
@@ -423,8 +423,8 @@ public class ConfigDialog {
     this.colorCombo = new Combo(this.editGroup, SWT.READ_ONLY);
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     this.colorCombo.setLayoutData(gridData);
-    final String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
-    this.colorCombo.setItems(COLORS);
+    final String[] colors = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
+    this.colorCombo.setItems(colors);
   }
 
   /**
@@ -436,10 +436,9 @@ public class ConfigDialog {
     this.modelLengthUnitCombo = new Combo(group, SWT.READ_ONLY);
     final GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
     this.modelLengthUnitCombo.setLayoutData(lengthData);
-    final String[] LENGTH = {"m"}; //$NON-NLS-1$
-    // 現時点では変更不能。増やしたい。
+    final String[] length = {"m"}; //$NON-NLS-1$
     // String[] LENGTH = {"m", "cm", "mm"};
-    this.modelLengthUnitCombo.setItems(LENGTH);
+    this.modelLengthUnitCombo.setItems(length);
     this.modelLengthUnitCombo.setText("m"); //$NON-NLS-1$
   }
 
@@ -452,10 +451,9 @@ public class ConfigDialog {
     this.dataLengthUnitCombo = new Combo(group, SWT.READ_ONLY);
     final GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
     this.dataLengthUnitCombo.setLayoutData(lengthData);
-    final String[] LENGTH = {"m"}; //$NON-NLS-1$
-    // 現時点では変更不能。増やしたい。
+    final String[] length = {"m"}; //$NON-NLS-1$
     // String[] LENGTH = {"m", "cm", "mm"};
-    this.dataLengthUnitCombo.setItems(LENGTH);
+    this.dataLengthUnitCombo.setItems(length);
     this.dataLengthUnitCombo.setText("m"); //$NON-NLS-1$
   }
 
@@ -468,10 +466,9 @@ public class ConfigDialog {
     this.modelAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
     final GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
     this.modelAngleUnitCombo.setLayoutData(angleData);
-    final String[] ANGLES = {"radian"}; //$NON-NLS-1$
-    // 現時点では変更不能
+    final String[] angles = {"radian"}; //$NON-NLS-1$
     // String[] ANGLES = {"degree", "radian"};
-    this.modelAngleUnitCombo.setItems(ANGLES);
+    this.modelAngleUnitCombo.setItems(angles);
     this.modelAngleUnitCombo.setText("radian"); //$NON-NLS-1$
   }
 
@@ -484,10 +481,9 @@ public class ConfigDialog {
     this.dataAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
     final GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
     this.dataAngleUnitCombo.setLayoutData(angleData);
-    final String[] ANGLES = {"radian"}; //$NON-NLS-1$
-    // 現時点では変更不能
+    final String[] angles = {"radian"}; //$NON-NLS-1$
     // String[] ANGLES = {"degree", "radian"};
-    this.dataAngleUnitCombo.setItems(ANGLES);
+    this.dataAngleUnitCombo.setItems(angles);
     this.dataAngleUnitCombo.setText("radian"); //$NON-NLS-1$
   }
 

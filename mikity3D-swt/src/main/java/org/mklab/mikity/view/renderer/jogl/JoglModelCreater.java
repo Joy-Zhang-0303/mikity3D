@@ -22,18 +22,18 @@ public class JoglModelCreater {
    * @return オブジェクトのグループ
    */
   public JoglBranchGroup[] create(final Group[] groups) {
-    final JoglBranchGroup bg = new JoglBranchGroup();
+    final JoglBranchGroup branchGroup = new JoglBranchGroup();
 
-    final JoglTransformGroup tg = new JoglTransformGroup();
+    final JoglTransformGroup parent = new JoglTransformGroup();
     for (final Group group : groups) {
       final JoglTransformGroup child = JoglPrimitiveFactory.create(group);
-      tg.addChild(child);
+      parent.addChild(child);
     }
 
-    bg.addChild(tg); ///////
+    branchGroup.addChild(parent); ///////
     
     final List<JoglBranchGroup> branchGroups = new ArrayList<>();
-    branchGroups.add(bg);
+    branchGroups.add(branchGroup);
 
     return branchGroups.toArray(new JoglBranchGroup[branchGroups.size()]);
   }

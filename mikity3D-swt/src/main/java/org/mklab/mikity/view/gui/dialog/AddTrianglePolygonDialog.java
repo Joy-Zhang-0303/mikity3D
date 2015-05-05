@@ -34,21 +34,25 @@ public class AddTrianglePolygonDialog {
   private Shell parentShell;
   Shell sShell;
 
-  private ParameterInputBox paramX_1;
-  private ParameterInputBox paramY_1;
-  private ParameterInputBox paramZ_1;
-  private ParameterInputBox paramX_2;
-  private ParameterInputBox paramY_2;
-  private ParameterInputBox paramZ_2;
-  private ParameterInputBox paramX_3;
-  private ParameterInputBox paramY_3;
-  private ParameterInputBox paramZ_3;
-  private ParameterInputBox rotX;
-  private ParameterInputBox rotY;
-  private ParameterInputBox rotZ;
-  private ParameterInputBox locX;
-  private ParameterInputBox locY;
-  private ParameterInputBox locZ;
+  private ParameterInputBox vertex1x;
+  private ParameterInputBox vertex1y;
+  private ParameterInputBox vertex1z;
+  
+  private ParameterInputBox vertex2x;
+  private ParameterInputBox vertex2y;
+  private ParameterInputBox vertex2z;
+  
+  private ParameterInputBox vertex3x;
+  private ParameterInputBox vertex3y;
+  private ParameterInputBox vertex3z;
+  
+  private ParameterInputBox rotationX;
+  private ParameterInputBox rotationY;
+  private ParameterInputBox rotationZ;
+  
+  private ParameterInputBox locationX;
+  private ParameterInputBox locationY;
+  private ParameterInputBox locationZ;
 
   private Group group;
   private String angleUnit;
@@ -82,9 +86,9 @@ public class AddTrianglePolygonDialog {
 
     final Label groupLabel = new Label(this.sShell, SWT.LEFT);
     groupLabel.setText(Messages.getString("AddTrianglePolygonDialog.1") + this.group.getName()); //$NON-NLS-1$
-    GridData gLabelData = new GridData(GridData.FILL_HORIZONTAL);
-    gLabelData.horizontalSpan = 3;
-    groupLabel.setLayoutData(gLabelData);
+    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    gridData.horizontalSpan = 3;
+    groupLabel.setLayoutData(gridData);
 
     GridData vertexData = new GridData(GridData.FILL_HORIZONTAL);
     org.eclipse.swt.widgets.Group vertexGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
@@ -96,20 +100,20 @@ public class AddTrianglePolygonDialog {
     vertexData.horizontalSpan = 3;
     vertexGroup.setLayoutData(vertexData);
 
-    this.paramX_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.3"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramY_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.4"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramZ_1 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1x = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.3"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1y = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.4"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1z = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label label1 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label1, 2);
 
-    this.paramX_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.6"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramY_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.7"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramZ_2 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2x = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.6"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2y = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.7"), "0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2z = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label label2 = new Label(vertexGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label2, 2);
-    this.paramX_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.9"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramY_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.10"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
-    this.paramZ_3 = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3x = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.9"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3y = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.10"), "-0.3");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3z = new ParameterInputBox(vertexGroup, SWT.READ_ONLY, Messages.getString("AddTrianglePolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
 
     final GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
     final Label colorLabel = new Label(this.sShell, SWT.RIGHT);
@@ -127,13 +131,13 @@ public class AddTrianglePolygonDialog {
     rotData.horizontalSpan = 3;
     rotateGroup.setLayoutData(rotData);
 
-    this.rotX = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.13"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationX = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.13"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelRX = new Label(rotateGroup, SWT.NONE);
     unitLabelRX.setText(this.angleUnit + " "); //$NON-NLS-1$
-    this.rotY = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationY = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelRY = new Label(rotateGroup, SWT.NONE);
     unitLabelRY.setText(this.angleUnit + " "); //$NON-NLS-1$
-    this.rotZ = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationZ = new ParameterInputBox(rotateGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelRZ = new Label(rotateGroup, SWT.NONE);
     unitLabelRZ.setText(this.angleUnit + " "); //$NON-NLS-1$
 
@@ -147,13 +151,13 @@ public class AddTrianglePolygonDialog {
     locData.horizontalSpan = 3;
     locationGroup.setLayoutData(locData);
 
-    this.locX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.17"), "0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.locationX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.17"), "0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLX = new Label(locationGroup, SWT.NONE);
     unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.18"), "0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.locationY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.18"), "0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLY = new Label(locationGroup, SWT.NONE);
     unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.19"), "0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.locationZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddTrianglePolygonDialog.19"), "0");  //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
     unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
 
@@ -174,13 +178,12 @@ public class AddTrianglePolygonDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         if (Check()) {
-          // dc.checkDuplication(,.getLocation,group);
           addPolygon();
           AddTrianglePolygonDialog.this.sShell.close();
         } else {
-          final MessageBox mgb = new MessageBox(AddTrianglePolygonDialog.this.sShell, SWT.ICON_WARNING);
-          mgb.setMessage(Messages.getString("AddTrianglePolygonDialog.21")); //$NON-NLS-1$
-          mgb.setText(Messages.getString("AddTrianglePolygonDialog.22")); //$NON-NLS-1$
+          final MessageBox message = new MessageBox(AddTrianglePolygonDialog.this.sShell, SWT.ICON_WARNING);
+          message.setMessage(Messages.getString("AddTrianglePolygonDialog.21")); //$NON-NLS-1$
+          message.setText(Messages.getString("AddTrianglePolygonDialog.22")); //$NON-NLS-1$
         }
       }
     });
@@ -194,11 +197,11 @@ public class AddTrianglePolygonDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final MessageBox mesBox = new MessageBox(AddTrianglePolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-        mesBox.setMessage(Messages.getString("AddTrianglePolygonDialog.24")); //$NON-NLS-1$
-        mesBox.setText(Messages.getString("AddTrianglePolygonDialog.25")); //$NON-NLS-1$
-        int result = mesBox.open();
-        if (result == SWT.YES) {
+        final MessageBox message = new MessageBox(AddTrianglePolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        message.setMessage(Messages.getString("AddTrianglePolygonDialog.24")); //$NON-NLS-1$
+        message.setText(Messages.getString("AddTrianglePolygonDialog.25")); //$NON-NLS-1$
+        int yesNo = message.open();
+        if (yesNo == SWT.YES) {
           AddTrianglePolygonDialog.this.sShell.close();
         }
       }
@@ -210,18 +213,18 @@ public class AddTrianglePolygonDialog {
    */
   void addPolygon() {
     final XMLTrianglePolygon triangle = new XMLTrianglePolygon();
-    final Rotation rot = new Rotation();
-    final Location loc = new Location();
+    final Rotation rotation = new Rotation();
+    final Location location = new Location();
 
-    final Location vertex1 = new Location(this.paramX_1.getFloatValue(), this.paramY_1.getFloatValue(), this.paramZ_1.getFloatValue());
-    final Location vertex2 = new Location(this.paramX_2.getFloatValue(), this.paramY_2.getFloatValue(), this.paramZ_2.getFloatValue());
-    final Location vertex3 = new Location(this.paramX_3.getFloatValue(), this.paramY_3.getFloatValue(), this.paramZ_3.getFloatValue());
+    final Location vertex1 = new Location(this.vertex1x.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
+    final Location vertex2 = new Location(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
+    final Location vertex3 = new Location(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
     triangle.setPointLocations(vertex1, vertex2, vertex3);
-    if (getRot(rot) != null) {
-      triangle.setRotation(getRot(rot));
+    if (getRotation(rotation) != null) {
+      triangle.setRotation(getRotation(rotation));
     }
-    if (getLoc(loc) != null) {
-      triangle.setLocation(getLoc(loc));
+    if (getLocation(location) != null) {
+      triangle.setLocation(getLocation(location));
     }
     triangle.setColor(this.colorCombo.getText());
     this.group.addXMLTrianglePolygon(triangle);
@@ -242,34 +245,34 @@ public class AddTrianglePolygonDialog {
   /**
    * Rotationの値を設定 param Rotation return Rotation
    * 
-   * @param rot
+   * @param rotation
    * @return rot
    */
-  private Rotation getRot(Rotation rot) {
-    if (this.rotX.getFloatValue() == 0 && this.rotY.getFloatValue() == 0 && this.rotZ.getFloatValue() == 0) {
+  private Rotation getRotation(Rotation rotation) {
+    if (this.rotationX.getFloatValue() == 0 && this.rotationY.getFloatValue() == 0 && this.rotationZ.getFloatValue() == 0) {
       return null;
     }
-    rot.setXrotation(this.rotX.getFloatValue());
-    rot.setYrotation(this.rotY.getFloatValue());
-    rot.setZrotation(this.rotZ.getFloatValue());
-    return rot;
+    rotation.setXrotation(this.rotationX.getFloatValue());
+    rotation.setYrotation(this.rotationY.getFloatValue());
+    rotation.setZrotation(this.rotationZ.getFloatValue());
+    return rotation;
 
   }
 
   /**
    * Locationの値を設定 param Location return Location
    * 
-   * @param loc
+   * @param location
    * @return loc
    */
-  private Location getLoc(Location loc) {
-    if (this.locX.getFloatValue() == 0 && this.locY.getFloatValue() == 0 && this.locZ.getFloatValue() == 0) {
+  private Location getLocation(Location location) {
+    if (this.locationX.getFloatValue() == 0 && this.locationY.getFloatValue() == 0 && this.locationZ.getFloatValue() == 0) {
       return null;
     }
-    loc.setX(this.locX.getFloatValue());
-    loc.setY(this.locY.getFloatValue());
-    loc.setZ(this.locZ.getFloatValue());
-    return loc;
+    location.setX(this.locationX.getFloatValue());
+    location.setY(this.locationY.getFloatValue());
+    location.setZ(this.locationZ.getFloatValue());
+    return location;
   }
 
   /**
@@ -278,49 +281,49 @@ public class AddTrianglePolygonDialog {
    * @return boolean
    */
   boolean Check() {
-    if (this.paramX_1.checkParam() == false) {
+    if (this.vertex1x.checkParam() == false) {
       return false;
     }
-    if (this.paramY_1.checkParam() == false) {
+    if (this.vertex1y.checkParam() == false) {
       return false;
     }
-    if (this.paramZ_1.checkParam() == false) {
+    if (this.vertex1z.checkParam() == false) {
       return false;
     }
-    if (this.paramX_2.checkParam() == false) {
+    if (this.vertex2x.checkParam() == false) {
       return false;
     }
-    if (this.paramY_2.checkParam() == false) {
+    if (this.vertex2y.checkParam() == false) {
       return false;
     }
-    if (this.paramZ_2.checkParam() == false) {
+    if (this.vertex2z.checkParam() == false) {
       return false;
     }
-    if (this.paramX_3.checkParam() == false) {
+    if (this.vertex3x.checkParam() == false) {
       return false;
     }
-    if (this.paramY_3.checkParam() == false) {
+    if (this.vertex3y.checkParam() == false) {
       return false;
     }
-    if (this.paramZ_3.checkParam() == false) {
+    if (this.vertex3z.checkParam() == false) {
       return false;
     }
-    if (this.rotX.checkParam() == false) {
+    if (this.rotationX.checkParam() == false) {
       return false;
     }
-    if (this.rotY.checkParam() == false) {
+    if (this.rotationY.checkParam() == false) {
       return false;
     }
-    if (this.rotZ.checkParam() == false) {
+    if (this.rotationZ.checkParam() == false) {
       return false;
     }
-    if (this.locX.checkParam() == false) {
+    if (this.locationX.checkParam() == false) {
       return false;
     }
-    if (this.locY.checkParam() == false) {
+    if (this.locationY.checkParam() == false) {
       return false;
     }
-    if (this.locZ.checkParam() == false) {
+    if (this.locationZ.checkParam() == false) {
       return false;
     }
     return true;

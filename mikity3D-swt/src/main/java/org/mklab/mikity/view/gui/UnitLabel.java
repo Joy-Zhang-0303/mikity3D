@@ -53,15 +53,18 @@ public class UnitLabel extends Composite {
   public static String getUnit(String target) {
     if (target.startsWith("modelAngle")) { //$NON-NLS-1$
       return modelAngle;
-    } else if (target.startsWith("modelL")) { //$NON-NLS-1$
+    } 
+    if (target.startsWith("modelL")) { //$NON-NLS-1$
       return modelLength;
-    } else if (target.startsWith("dataAngle")) { //$NON-NLS-1$
+    } 
+    if (target.startsWith("dataAngle")) { //$NON-NLS-1$
       return dataAngle;
-    } else if (target.startsWith("dataLength")) { //$NON-NLS-1$
+    } 
+    if (target.startsWith("dataLength")) { //$NON-NLS-1$
       return dataLength;
-    } else {
-      return " "; //$NON-NLS-1$
     }
+
+    return " "; //$NON-NLS-1$
   }
 
   /**

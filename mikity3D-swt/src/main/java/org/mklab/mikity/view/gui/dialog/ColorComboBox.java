@@ -19,28 +19,22 @@ import org.eclipse.swt.widgets.Group;
  */
 public class ColorComboBox {
 
-  /**
-   * カラーコンボボックス
-   */
+  /** カラーコンボボックス  */
   private Combo colorCombo;
-  /**
-   * 変化後のプリミティブ
-   */
+  /** 変化後のプリミティブ */
   private Group afterGroup;
-  /**
-   * 色リスト
-   */
-  private String[] COLORS;
+  /** 色リスト  */
+  private String[] colors;
 
   /**
    * コンストラクタ
    * 
    * @param afterGroup 　変化後のプリミティブ
-   * @param COLORS 　色リスト
+   * @param colors 　色リスト
    */
-  public ColorComboBox(Group afterGroup, String[] COLORS) {
+  public ColorComboBox(Group afterGroup, String[] colors) {
     this.afterGroup = afterGroup;
-    this.COLORS = COLORS;
+    this.colors = colors;
   }
 
   /**
@@ -50,7 +44,7 @@ public class ColorComboBox {
     this.colorCombo = new Combo(this.afterGroup, SWT.READ_ONLY);
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     this.colorCombo.setLayoutData(gridData);
-    this.colorCombo.setItems(this.COLORS);
+    this.colorCombo.setItems(this.colors);
   }
 
   /**

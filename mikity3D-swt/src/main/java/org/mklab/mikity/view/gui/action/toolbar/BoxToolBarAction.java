@@ -35,9 +35,7 @@ public class BoxToolBarAction extends Action {
   }
 
   /**
-   * ツールバークリック時に実行する。
-   * 
-   * @see org.eclipse.jface.action.IAction#run()
+   * {@inheritDoc}
    */
   @Override
   public void run() {

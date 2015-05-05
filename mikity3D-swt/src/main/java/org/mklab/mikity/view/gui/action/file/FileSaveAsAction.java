@@ -46,14 +46,13 @@ public class FileSaveAsAction extends Action {
 
     final String filePath = dialog.open();
     if (filePath == null) {
-      // キャンセル
       return;
     }
     
     final File file = new File(filePath);
     if (file.exists()) {
-      int yesno = MessagegUtil.showYesNo(this.window.getShell(), Messages.getString("FileSaveAsAction.2")); //$NON-NLS-1$
-      if (yesno != SWT.YES) {
+      int yesNo = MessagegUtil.showYesNo(this.window.getShell(), Messages.getString("FileSaveAsAction.2")); //$NON-NLS-1$
+      if (yesNo != SWT.YES) {
         return;
       }
     }

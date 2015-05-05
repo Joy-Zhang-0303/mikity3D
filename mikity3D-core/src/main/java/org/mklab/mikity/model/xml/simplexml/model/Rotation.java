@@ -132,9 +132,9 @@ public class Rotation implements java.io.Serializable {
   /**
    * Z軸周りの回転を設定します。
    * 
-   * @param zrotation Z軸周りの回転
+   * @param zRotation Z軸周りの回転
    */
-  public void setZrotation(float zrotation) {
-    this.zRotation = zrotation;
+  public void setZrotation(float zRotation) {
+    this.zRotation = zRotation;
   }
 }

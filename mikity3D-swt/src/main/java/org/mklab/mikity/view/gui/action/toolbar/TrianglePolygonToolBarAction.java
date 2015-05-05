@@ -27,8 +27,7 @@ public class TrianglePolygonToolBarAction extends Action {
   private ModelingWindow window;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>TrianglePolygonToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    */
   public TrianglePolygonToolBarAction(final ModelingWindow window) {
@@ -45,9 +44,7 @@ public class TrianglePolygonToolBarAction extends Action {
   }
 
   /**
-   * ツールバークリック時に実行する。
-   * 
-   * @see org.eclipse.jface.action.IAction#run()
+   * {@inheritDoc}
    */
   @Override
   public void run() {
