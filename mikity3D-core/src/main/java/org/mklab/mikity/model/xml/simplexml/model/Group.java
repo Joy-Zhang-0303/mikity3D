@@ -808,17 +808,6 @@ public class Group implements java.io.Serializable {
     return removed;
   } 
 
-//  /**
-//   * Method removeLinkdata
-//   * 
-//   * @param link リンクデータ
-//   * @return removed
-//   */
-//  public boolean removeLinkdata(LinkData link) {
-//    boolean removed = this.links.remove(link);
-//    return removed;
-//  } 
-
   /**
    * Method removeXMLBox
    * 
@@ -903,7 +892,6 @@ public class Group implements java.io.Serializable {
    * @param argGroups グループの文字列
    */
   public void setGroups(Group[] argGroups) {
-    // -- copy array
     this.groups.clear();
     for (int i = 0; i < argGroups.length; i++) {
       this.groups.add(argGroups[i]);
@@ -916,21 +904,11 @@ public class Group implements java.io.Serializable {
    * @param argGroups the Vector to copy.
    */
   public void setGroups(List<Group> argGroups) {
-    // -- copy collection
     this.groups.clear();
     for (int i = 0; i < argGroups.size(); i++) {
       this.groups.add(argGroups.get(i));
     }
   } 
-//
-//  /**
-//   * Method setGroupAsReferenceSets the value of 'group' by setting it to the given ArrayList. No type checking is performed.
-//   * 
-//   * @param argGroups the ArrayList to copy.
-//   */
-//  public void setGroupsAsReference(List<Group> argGroups) {
-//    this.groups = argGroups;
-//  } 
 
   /**
    * Method setLinkdata
@@ -956,15 +934,6 @@ public class Group implements java.io.Serializable {
       this.links.add(links[i]);
     }
   } 
-  
-//  /**
-//   * Method setLinkdataAsReferenceSets the value of 'linkdata' by setting it to the given ArrayList. No type checking is performed.
-//   * 
-//   * @param argLinks the ArrayList to copy.
-//   */
-//  public void setLinksAsReference(List<LinkData> argLinks) {
-//    this.links = argLinks;
-//  } 
 
   /**
    * Sets the value of field 'location'.
@@ -1012,21 +981,11 @@ public class Group implements java.io.Serializable {
    * @param argBoxes ボックスの文字列
    */
   public void setXMLBoxes(XMLBox[] argBoxes) {
-    // -- copy array
     this.boxes.clear();
     for (int i = 0; i < argBoxes.length; i++) {
       this.boxes.add(argBoxes[i]);
     }
   } 
-
-//  /**
-//   * Method setXMLBoxAsReferenceSets the value of 'XMLBox' by setting it to the given ArrayList. No type checking is performed.
-//   * 
-//   * @param argBoxes the ArrayList to copy.
-//   */
-//  public void setXMLBoxesAsReference(List<XMLBox> argBoxes) {
-//    this.boxes = argBoxes;
-//  } 
 
   /**
    * Method setXMLCone
@@ -1047,21 +1006,11 @@ public class Group implements java.io.Serializable {
    * @param argCones コーンの文字列
    */
   public void setXMLCones(XMLCone[] argCones) {
-    // -- copy array
     this.cones.clear();
     for (int i = 0; i < argCones.length; i++) {
       this.cones.add(argCones[i]);
     }
   } 
-
-//  /**
-//   * Method setXMLConeAsReferenceSets the value of 'XMLCone' by setting it to the given ArrayList. No type checking is performed.
-//   * 
-//   * @param argCones the ArrayList to copy.
-//   */
-//  public void setXMLConesAsReference(List<XMLCone> argCones) {
-//    this.cones = argCones;
-//  } 
 
   /**
    * Method setXMLCylinder
@@ -1082,21 +1031,11 @@ public class Group implements java.io.Serializable {
    * @param argCylinders シリンダーの文字列
    */
   public void setXMLCylinders(XMLCylinder[] argCylinders) {
-    // -- copy array
     this.cylinders.clear();
     for (int i = 0; i < argCylinders.length; i++) {
       this.cylinders.add(argCylinders[i]);
     }
   } 
-
-//  /**
-//   * Method setXMLCylinderAsReferenceSets the value of 'XMLCylinder' by setting it to the given ArrayList. No type checking is performed.
-//   * 
-//   * @param argCylinders the ArrayList to copy.
-//   */
-//  public void setXMLCylindersAsReference(List<XMLCylinder> argCylinders) {
-//    this.cylinders = argCylinders;
-//  } 
 
   /**
    * Method setXMLSphere
@@ -1117,21 +1056,11 @@ public class Group implements java.io.Serializable {
    * @param argSpheres スフィアの文字列
    */
   public void setXMLSpheres(XMLSphere[] argSpheres) {
-    // -- copy array
     this.spheres.clear();
     for (int i = 0; i < argSpheres.length; i++) {
       this.spheres.add(argSpheres[i]);
     }
   } 
-
-//  /**
-//   * Method setXMLSphereAsReferenceSets the value of 'XMLSphere' by setting it to the given ArrayList. No type checking is performed.
-//   * 
-//   * @param argSpheres the ArrayList to copy.
-//   */
-//  public void setXMLSpheresAsReference(List<XMLSphere> argSpheres) {
-//    this.spheres = argSpheres;
-//  } 
 
   /**
    * Method setXMLTrianglePolygon
@@ -1152,21 +1081,11 @@ public class Group implements java.io.Serializable {
    * @param argTrianglePolygons 三角形のポリゴンの文字列
    */
   public void setXMLTrianglePolygons(XMLTrianglePolygon[] argTrianglePolygons) {
-    // -- copy array
     this.trianglePolygons.clear();
     for (int i = 0; i < argTrianglePolygons.length; i++) {
       this.trianglePolygons.add(argTrianglePolygons[i]);
     }
   } 
-
-//  /**
-//   * Method setXMLTrianglePolygonAsReferenceSets the value of 'XMLTrianglePolygon' by setting it to the given ArrayList. No type checking is performed.
-//   * 
-//   * @param argTrianglePolygons the ArrayList to copy.
-//   */
-//  public void setXMLTrianglePolygonsAsReference(List<XMLTrianglePolygon> argTrianglePolygons) {
-//    this.trianglePolygons = argTrianglePolygons;
-//  } 
 
   /**
    * Method setXMLQuadPolygon
@@ -1187,19 +1106,9 @@ public class Group implements java.io.Serializable {
    * @param argQuadPolygons 四角形ポリゴンの文字列
    */
   public void setXMLQuadPolygons(XMLQuadPolygon[] argQuadPolygons) {
-    // -- copy array
     this.quadPolygons.clear();
     for (int i = 0; i < argQuadPolygons.length; i++) {
       this.quadPolygons.add(argQuadPolygons[i]);
     }
   } 
-
-//  /**
-//   * Method setXMLQuadPolygonAsReference the value of 'XMLQuadPolygon' by setting it to the given ArrayList. No type checking is performed.
-//   * 
-//   * @param argQuadPolygons the ArrayList to copy.
-//   */
-//  public void setXMLQuadPolygonsAsReference(List<XMLQuadPolygon> argQuadPolygons) {
-//    this.quadPolygons = argQuadPolygons;
-//  } 
 }

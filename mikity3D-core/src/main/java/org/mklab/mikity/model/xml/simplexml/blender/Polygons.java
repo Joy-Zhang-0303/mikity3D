@@ -56,8 +56,10 @@ public class Polygons {
   private void setIndex() {
     for (int i = 0; i < this.p.size(); i++) {
       final List<Integer> spaces = new ArrayList<>();
-      for (int j = 0; j < this.p.get(i).length(); j++) {
-        if (this.p.get(i).charAt(j) == ' ') {
+      final String pi = this.p.get(i);
+      
+      for (int j = 0; j < pi.length(); j++) {
+        if (pi.charAt(j) == ' ') {
           spaces.add(j);
         }
       }
@@ -68,13 +70,15 @@ public class Polygons {
       this.spaceIndices.add(spaceNumbers);
 
       final List<Integer> numbers = new ArrayList<>();
-      for (int j = 0; j < this.spaceIndices.get(i).length + 1; j += 2) {
+      int[] index = this.spaceIndices.get(i);
+      
+      for (int j = 0; j < index.length + 1; j += 2) {
         if (j == 0) {
-          numbers.add(Integer.parseInt(this.p.get(i).substring(0, this.spaceIndices.get(i)[0])));
-        } else if (j == this.spaceIndices.get(i).length) {
-          numbers.add(Integer.parseInt(this.p.get(i).substring(this.spaceIndices.get(i)[this.spaceIndices.get(i).length - 1] + 1)));
+          numbers.add(Integer.parseInt(pi.substring(0, index[0])));
+        } else if (j == index.length) {
+          numbers.add(Integer.parseInt(pi.substring(index[index.length - 1] + 1)));
         } else {
-          numbers.add(Integer.parseInt(this.p.get(i).substring(this.spaceIndices.get(i)[j - 1] + 1, this.spaceIndices.get(i)[j])));
+          numbers.add(Integer.parseInt(pi.substring(index[j - 1] + 1, index[j])));
         }
       }
 

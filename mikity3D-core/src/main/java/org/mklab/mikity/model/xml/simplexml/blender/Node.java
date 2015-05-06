@@ -134,13 +134,13 @@ public class Node {
       }
       
       for (int i = 0; i < this.vectors.size(); i++) {
-        List<Integer> space = new ArrayList<>();
+        final List<Integer> space = new ArrayList<>();
         for (int j = 0; j < this.vectors.get(i).length(); j++) {
           if (this.vectors.get(i).indexOf(" ", j) == j) { //$NON-NLS-1$
             space.add(j);
           }
         }
-        float[] elements = new float[4];
+        final float[] elements = new float[4];
         elements[0] = Float.parseFloat(this.vectors.get(i).substring(0, space.get(0)));
         elements[1] = Float.parseFloat(this.vectors.get(i).substring(space.get(0) + 1, space.get(1)));
         elements[2] = Float.parseFloat(this.vectors.get(i).substring(space.get(1) + 1, space.get(2)));
@@ -164,8 +164,8 @@ public class Node {
       /**
        * translate
        */
-      String[] trans = this.translate.split(" "); //$NON-NLS-1$
-      float[] n = new float[trans.length];
+      final String[] trans = this.translate.split(" "); //$NON-NLS-1$
+      final float[] n = new float[trans.length];
       for (int l = 0; l < trans.length; l++) {
         n[l] = Float.parseFloat(trans[l]);
       }
@@ -187,13 +187,13 @@ public class Node {
        * rotate
        */
       for (int i = 0; i < this.rotate.size(); i++) {
-        List<Integer> space = new ArrayList<>();
+        final List<Integer> space = new ArrayList<>();
         for (int j = 0; j < this.rotate.get(i).length(); j++) {
           if (this.rotate.get(i).charAt(j) == ' ') {
             space.add(j);
           }
         }
-        int[] spaceNum = new int[space.size()];
+        final int[] spaceNum = new int[space.size()];
         for (int k = 0; k < spaceNum.length; k++) {
           spaceNum[k] = space.get(k);
         }
