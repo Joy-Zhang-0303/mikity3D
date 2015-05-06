@@ -39,24 +39,24 @@ public class SimpleXmlUnmarshaller extends AbstractMikity3DUnmarshaller {
   /**
    * {@inheritDoc}
    */
+  public void unmarshalFromMikity3DFile(InputStream input) throws Mikity3dSerializeDeserializeException {
+    try {
+      final Serializer serializer = new Persister();
+      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3d.class, input);
+    } catch (Exception e) {
+      throw new Mikity3dSerializeDeserializeException(e);
+    }
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
   public void unmarshalFromColladaFile(File file) throws Mikity3dSerializeDeserializeException {
     try {
       final ColladaFileTransformer transformer = new ColladaFileTransformer(file);
       final File blender = transformer.getTransformedFile();
       final Serializer serializer = new Persister();
       this.collada = serializer.read(org.mklab.mikity.model.xml.simplexml.blender.Collada.class, blender);
-    } catch (Exception e) {
-      throw new Mikity3dSerializeDeserializeException(e);
-    }
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void unmarshalFromMikity3DFile(InputStream input) throws Mikity3dSerializeDeserializeException {
-    try {
-      final Serializer serializer = new Persister();
-      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3d.class, input);
     } catch (Exception e) {
       throw new Mikity3dSerializeDeserializeException(e);
     }
