@@ -3,9 +3,9 @@
  * Copyright (C) 2005 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity;
+package org.mklab.mikity.model.picker;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,8 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.DHParameterType;
-import org.mklab.mikity.model.picker.ClosenessDataPicker;
-import org.mklab.mikity.model.picker.DataPicker;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
