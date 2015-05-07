@@ -57,7 +57,7 @@ public class SimpleXmlUnmarshallerTest {
   //  }
 
   /**
-   * Test method for {@link org.mklab.mikity.model.xml.simplexml.SimpleXmlUnmarshaller#unmarshalFromMikity3DFile(java.io.InputStream)}.
+   * Test method for {@link SimpleXmlUnmarshaller#unmarshalFromMikity3DFile(java.io.InputStream)}.
    * 
    * @throws IOException ファイルを参照できない場合
    * @throws Mikity3dSerializeDeserializeException unmarshallできない場合
@@ -70,7 +70,7 @@ public class SimpleXmlUnmarshallerTest {
   }
 
   /**
-   * Test method for {@link org.mklab.mikity.model.xml.simplexml.SimpleXmlUnmarshaller#getRoot()}.
+   * Test method for {@link SimpleXmlUnmarshaller#getRoot()}.
    */
   @Test
   public void testGetRoot() {

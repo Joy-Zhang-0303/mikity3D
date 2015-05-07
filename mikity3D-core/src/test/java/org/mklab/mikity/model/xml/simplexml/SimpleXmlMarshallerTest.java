@@ -35,21 +35,21 @@ public class SimpleXmlMarshallerTest {
    */
   @Test
   public void testMarshal() throws IOException, Mikity3dSerializeDeserializeException {
-    final SimpleXmlUnmarshaller unmarshaler1 = new SimpleXmlUnmarshaller();
+    final SimpleXmlUnmarshaller unmarshaller1 = new SimpleXmlUnmarshaller();
     try (final InputStream input = getClass().getClassLoader().getResourceAsStream("pendulum.m3d")) { //$NON-NLS-1$
-      unmarshaler1.unmarshalFromMikity3DFile(input);
+      unmarshaller1.unmarshalFromMikity3DFile(input);
     }
 
-    final Mikity3d expected = unmarshaler1.getRoot();
+    final Mikity3d expected = unmarshaller1.getRoot();
     final SimpleXmlMarshaller marshaller = new SimpleXmlMarshaller(expected);
     
     final File file = this.temporaryFolder.newFile("afo.m3d"); //$NON-NLS-1$
     marshaller.marshal(file);
     
-    final SimpleXmlUnmarshaller unmarshaler2 = new SimpleXmlUnmarshaller();
-    unmarshaler2.unmarshalFromMikity3DFile(file);
+    final SimpleXmlUnmarshaller unmarshaller2 = new SimpleXmlUnmarshaller();
+    unmarshaller2.unmarshal(file);
     
-    final Mikity3d actual = unmarshaler2.getRoot();
+    final Mikity3d actual = unmarshaller2.getRoot();
 
     assertThat(actual, is(expected));
   }

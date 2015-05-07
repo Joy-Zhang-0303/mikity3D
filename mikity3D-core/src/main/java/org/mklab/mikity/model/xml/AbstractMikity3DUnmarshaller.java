@@ -6,6 +6,7 @@
 package org.mklab.mikity.model.xml;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -42,14 +43,16 @@ public abstract class AbstractMikity3DUnmarshaller implements Mikity3dUnmashalle
         data.append(line);
       }
     }
+    
+    final InputStream clonedInput = new ByteArrayInputStream(data.toString().getBytes());
 
     if (data.indexOf("<mikity3d") != -1) { //$NON-NLS-1$
-      unmarshalFromMikity3DFile(input);
+      unmarshalFromMikity3DFile(clonedInput);
       return;
     }
 
     if (data.indexOf("<collada") != -1 || data.indexOf("<COLLADA") != -1) { //$NON-NLS-1$ //$NON-NLS-2$
-      unmarshalFromColladaFile(input);
+      unmarshalFromColladaFile(clonedInput);
       return;
     }
 
