@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 
 /**
@@ -44,4 +46,31 @@ public abstract class AbstractMikity3DUnmarshaller implements Mikity3dUnmashalle
 
     throw new IllegalArgumentException("Neither mikity3d nor collada data"); //$NON-NLS-1$
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void unmarshal(InputStream input) throws Mikity3dSerializeDeserializeException, IOException {
+    final StringBuffer data = new StringBuffer();
+
+    try (final BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
+      String line;
+      while ((line = reader.readLine()) != null) {
+        data.append(line);
+      }
+    }
+
+    if (data.indexOf("<mikity3d") != -1) { //$NON-NLS-1$
+      unmarshalFromMikity3DFile(input);
+      return;
+    }
+
+    if (data.indexOf("<collada") != -1 || data.indexOf("<COLLADA") != -1) { //$NON-NLS-1$ //$NON-NLS-2$
+      unmarshalFromColladaFile(input);
+      return;
+    }
+
+    throw new IllegalArgumentException("Neither mikity3d nor collada data"); //$NON-NLS-1$
+  }
+
 }

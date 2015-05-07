@@ -53,7 +53,8 @@ public class SimpleXmlUnmarshaller extends AbstractMikity3DUnmarshaller {
    */
   public void unmarshalFromColladaFile(File file) throws Mikity3dSerializeDeserializeException {
     try {
-      final ColladaFileTransformer transformer = new ColladaFileTransformer(file);
+      final ColladaFileTransformer transformer = new ColladaFileTransformer();
+      transformer.transform(file);
       final File blender = transformer.getTransformedFile();
       final Serializer serializer = new Persister();
       this.collada = serializer.read(org.mklab.mikity.model.xml.simplexml.blender.Collada.class, blender);
@@ -61,7 +62,22 @@ public class SimpleXmlUnmarshaller extends AbstractMikity3DUnmarshaller {
       throw new Mikity3dSerializeDeserializeException(e);
     }
   }
-  
+
+  /**
+   * {@inheritDoc}
+   */
+  public void unmarshalFromColladaFile(InputStream input) throws Mikity3dSerializeDeserializeException {
+    try {
+      final ColladaFileTransformer transformer = new ColladaFileTransformer();
+      transformer.transform(input);
+      final File blender = transformer.getTransformedFile();
+      final Serializer serializer = new Persister();
+      this.collada = serializer.read(org.mklab.mikity.model.xml.simplexml.blender.Collada.class, blender);
+    } catch (Exception e) {
+      throw new Mikity3dSerializeDeserializeException(e);
+    }
+  }
+
   /**
    * Colladaのグループを返します。
    * 
@@ -79,4 +95,5 @@ public class SimpleXmlUnmarshaller extends AbstractMikity3DUnmarshaller {
   public Mikity3d getRoot() {
     return this.root;
   }
+
 }

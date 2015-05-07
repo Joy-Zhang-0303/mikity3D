@@ -28,6 +28,15 @@ public interface Mikity3dUnmashaller {
   void unmarshal(File file) throws IOException, Mikity3dSerializeDeserializeException;
 
   /**
+   * 指定した入力ストリームから読み込みます。
+   * 
+   * @param input 入力ストリーム 
+   * @throws IOException 入力ストリームから読み込めない場合
+   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
+   */
+  void unmarshal(InputStream input) throws IOException, Mikity3dSerializeDeserializeException;
+
+  /**
    * 指定したMikity3DTファイルを読み込みます。
    * 
    * @param file Mikity3DTファイル
@@ -52,4 +61,13 @@ public interface Mikity3dUnmashaller {
    * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
    */
   void unmarshalFromColladaFile(File file) throws IOException, Mikity3dSerializeDeserializeException;
+  
+  /**
+   * 指定した入力ストリームからColladaファイルを読み込みます。
+   * 
+   * @param input 入力ストリーム
+   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
+   */
+  void unmarshalFromColladaFile(InputStream input) throws Mikity3dSerializeDeserializeException;
+
 }
