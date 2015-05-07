@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
 
 
 /**
- * Mikity3DのUnmarshallerの抽象クラスです。１
+ * Mikity3DのUnmarshallerの抽象クラスです。
  * 
  * @author koga
  * @version $Revision$, 2013/02/05
