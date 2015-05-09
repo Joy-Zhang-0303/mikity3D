@@ -19,34 +19,8 @@ import org.simpleframework.xml.core.Persister;
  * @version $Revision: 1.4 $. 2007/07/10
  */
 public class ColladaUnmarshaller {
-//  /** モデルデータのルート */
-//  protected Mikity3d root;
   /** Colladaのグループ */
-  protected Collada collada;
-
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void unmarshalFromMikity3DFile(File file) throws Mikity3dSerializeDeserializeException {
-//    try {
-//      final Serializer serializer = new Persister();
-//      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3d.class, file);
-//    } catch (Exception e) {
-//      throw new Mikity3dSerializeDeserializeException(e);
-//    }
-//  }
-//
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void unmarshalFromMikity3DFile(InputStream input) throws Mikity3dSerializeDeserializeException {
-//    try {
-//      final Serializer serializer = new Persister();
-//      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3d.class, input);
-//    } catch (Exception e) {
-//      throw new Mikity3dSerializeDeserializeException(e);
-//    }
-//  }
+  private Collada collada;
 
   /**
    * 指定したColladaファイルを読み込みます。
@@ -94,14 +68,4 @@ public class ColladaUnmarshaller {
   public Group getClolladaGroup() {
     return this.collada.getColladaPolygonGroup();
   }
-
-//  /**
-//   * 現在のモデルデータのルートを返します。
-//   * 
-//   * @return 現在のモデルデータのルート
-//   */
-//  public Mikity3d getRoot() {
-//    return this.root;
-//  }
-
 }

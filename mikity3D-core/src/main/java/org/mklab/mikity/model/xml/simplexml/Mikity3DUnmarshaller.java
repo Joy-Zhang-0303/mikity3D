@@ -16,9 +16,7 @@ import org.simpleframework.xml.core.Persister;
  */
 public class Mikity3DUnmarshaller {
   /** モデルデータのルート */
-  protected Mikity3d root;
-//  /** Colladaのグループ */
-//  protected Collada collada;
+  private Mikity3d root;
 
   /**
    * 指定したMikity3DTファイルを読み込みます。
@@ -49,53 +47,6 @@ public class Mikity3DUnmarshaller {
       throw new Mikity3dSerializeDeserializeException(e);
     }
   }
-  
-//  /**
-//   * 指定したMikity3DTファイルを読み込みます。
-//   * 
-//   * @param file Mikity3DTファイル
-//   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
-//   */
-//  @SuppressWarnings("resource")
-//  public void unmarshalFromColladaFile(File file) throws Mikity3dSerializeDeserializeException {
-//    try {
-//      final ColladaFileTransformer transformer = new ColladaFileTransformer();
-//      transformer.transform(new FileInputStream(file));
-//      final InputStream blender = transformer.getTransformedStream();
-//      final Serializer serializer = new Persister();
-//      this.collada = serializer.read(org.mklab.mikity.model.xml.simplexml.blender.Collada.class, blender);
-//    } catch (Exception e) {
-//      throw new Mikity3dSerializeDeserializeException(e);
-//    }
-//  }
-//
-//  /**
-//   * 指定した入力ストリームからMikity3Dデータを読み込みます。
-//   * 
-//   * @param input 入力ストリーム
-//   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
-//   */
-//  public void unmarshalFromColladaFile(InputStream input) throws Mikity3dSerializeDeserializeException {
-//    try {
-//      final ColladaFileTransformer transformer = new ColladaFileTransformer();
-//      transformer.transform(input);
-//      @SuppressWarnings("resource")
-//      final InputStream blender = transformer.getTransformedStream();
-//      final Serializer serializer = new Persister();
-//      this.collada = serializer.read(org.mklab.mikity.model.xml.simplexml.blender.Collada.class, blender);
-//    } catch (Exception e) {
-//      throw new Mikity3dSerializeDeserializeException(e);
-//    }
-//  }
-
-//  /**
-//   * Colladaのグループを返します。
-//   * 
-//   * @return Colladaのグループ
-//   */
-//  public Group getClolladaGroup() {
-//    return this.collada.getColladaPolygonGroup();
-//  }
 
   /**
    * 現在のモデルデータのルートを返します。
@@ -105,5 +56,4 @@ public class Mikity3DUnmarshaller {
   public Mikity3d getRoot() {
     return this.root;
   }
-
 }
