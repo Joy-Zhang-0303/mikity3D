@@ -6,13 +6,13 @@
 package org.mklab.mikity.model.xml;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
+import org.mklab.mikity.model.xml.simplexml.ColladaUnmarshaller;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
-import org.mklab.mikity.model.xml.simplexml.SimpleXmlUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
@@ -35,24 +35,14 @@ public class Mikity3dFactory {
    * 
    * @param file ファイル
    * @param parent Jamastのroot
-   * @throws IOException ファイルを読み込めない場合
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
    */
-  public void importFile(File file, Mikity3d parent) throws IOException, Mikity3dSerializeDeserializeException {
-    final SimpleXmlUnmarshaller unmarshaller = new SimpleXmlUnmarshaller();
-    unmarshaller.unmarshal(file);
+  public void importFile(File file, Mikity3d parent) throws Mikity3dSerializeDeserializeException {
+    final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
+    unmarshaller.unmarshalFromMikity3DFile(file);
     final Mikity3d root = unmarshaller.getRoot();
 
     final Group parentGroup = parent.getModel(0).getGroup(0);
-    
-    if (root == null) {
-      final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
-      for (final Group group : groups) {
-        parentGroup.addGroup(group);
-      }
-      return;
-    }
-
     final Group rootGroup = root.getModel(0).getGroup(0);
 
     final XMLBox[] boxes = rootGroup.getXMLBoxes();
@@ -105,28 +95,14 @@ public class Mikity3dFactory {
    * 
    * @param file Mikity3Dファイル
    * @return Mikity3Dモデル
-   * @throws IOException ファイルを読み込めない場合
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  public Mikity3d loadFile(final File file) throws IOException, Mikity3dSerializeDeserializeException {
-    final SimpleXmlUnmarshaller unmarshaller = new SimpleXmlUnmarshaller();
-    unmarshaller.unmarshal(file);
+  public Mikity3d loadFile(final File file) throws Mikity3dSerializeDeserializeException {
+    final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
+    unmarshaller.unmarshalFromMikity3DFile(file);
     final Mikity3d root = unmarshaller.getRoot();
-
-    if (root != null) {
-      return root;
-    }
-
-    final Mikity3d newRoot = createEmptyModel();
-    final Group newGroup = newRoot.getModel(0).getGroup(0);
-    final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
-    for (final Group group : groups) {
-      newGroup.addGroup(group);
-    }
-
-    return newRoot;
+    return root;
   }
-
 
   /**
    * 入力ストリームからMikity3Dデータを読み込みます。
@@ -136,13 +112,22 @@ public class Mikity3dFactory {
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
   public Mikity3d loadFile(final InputStream input) throws Mikity3dSerializeDeserializeException {
-    final SimpleXmlUnmarshaller unmarshaller = new SimpleXmlUnmarshaller();
+    final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
     unmarshaller.unmarshalFromMikity3DFile(input);
     final Mikity3d root = unmarshaller.getRoot();
+    return root;
+  }
 
-    if (root != null) {
-      return root;
-    }
+  /**
+   * Mikity3Dファイルを読み込みます。
+   * 
+   * @param file Mikity3Dファイル
+   * @return Mikity3Dモデル
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
+   */
+  public Mikity3d loadColladFile(final File file) throws Mikity3dSerializeDeserializeException {
+    final ColladaUnmarshaller unmarshaller = new ColladaUnmarshaller();
+    unmarshaller.unmarshalFromColladaFile(file);
 
     final Mikity3d newRoot = createEmptyModel();
     final Group newGroup = newRoot.getModel(0).getGroup(0);
@@ -154,6 +139,26 @@ public class Mikity3dFactory {
     return newRoot;
   }
 
+  /**
+   * 入力ストリームからMikity3Dデータを読み込みます。
+   * 
+   * @param input 入力ストリーム
+   * @return Mikity3Dモデル
+   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
+   */
+  public Mikity3d loadColladaFile(final InputStream input) throws Mikity3dSerializeDeserializeException {
+    final ColladaUnmarshaller unmarshaller = new ColladaUnmarshaller();
+    unmarshaller.unmarshalFromColladaFile(input);
+
+    final Mikity3d newRoot = createEmptyModel();
+    final Group newGroup = newRoot.getModel(0).getGroup(0);
+    final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
+    for (final Group group : groups) {
+      newGroup.addGroup(group);
+    }
+
+    return newRoot;
+  }
   
   /**
    * 空のモデルを生成します。

@@ -28,14 +28,14 @@ import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
 
 
 /**
- * {@link SimpleXmlUnmarshaller}のテストケースクラスです。
+ * {@link Mikity3DUnmarshaller}のテストケースクラスです。
  * 
  * @author koga
  * @version $Revision$, 2015/05/06
  */
 public class SimpleXmlUnmarshallerTest {
 
-  private SimpleXmlUnmarshaller unmarshaler = new SimpleXmlUnmarshaller();
+  private Mikity3DUnmarshaller unmarshaler = new Mikity3DUnmarshaller();
 
   /**
    * @throws IOException ファイルを参照できない場合
@@ -57,7 +57,7 @@ public class SimpleXmlUnmarshallerTest {
   //  }
 
   /**
-   * Test method for {@link SimpleXmlUnmarshaller#unmarshalFromMikity3DFile(java.io.InputStream)}.
+   * Test method for {@link Mikity3DUnmarshaller#unmarshalFromMikity3DFile(java.io.InputStream)}.
    * 
    * @throws IOException ファイルを参照できない場合
    * @throws Mikity3dSerializeDeserializeException unmarshallできない場合
@@ -70,7 +70,7 @@ public class SimpleXmlUnmarshallerTest {
   }
 
   /**
-   * Test method for {@link SimpleXmlUnmarshaller#getRoot()}.
+   * Test method for {@link Mikity3DUnmarshaller#getRoot()}.
    */
   @Test
   public void testGetRoot() {

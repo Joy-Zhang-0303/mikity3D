@@ -8,12 +8,12 @@ import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 /**
- * Simpleを用いてモデルデータを保存するクラスです。
+ * Simpleを用いてMikity3Dモデルデータを保存するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.4 $. 2007/07/10
  */
-public class SimpleXmlMarshaller {
+public class Mikity3DMarshaller {
   /** モデルデータのルート */
   private Mikity3d root;
 
@@ -21,7 +21,7 @@ public class SimpleXmlMarshaller {
    * 新しく生成された<code>JAXBMarshaller</code>オブジェクトを初期化します。
    * @param root モデルデータのルート
    */
-  public SimpleXmlMarshaller(Mikity3d root) {
+  public Mikity3DMarshaller(Mikity3d root) {
     this.root = root;
   }
 

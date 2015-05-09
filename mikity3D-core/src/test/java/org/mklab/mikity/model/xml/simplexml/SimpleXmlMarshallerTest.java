@@ -19,7 +19,7 @@ import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 
 
 /**
- * {@link SimpleXmlMarshaller}のテストケースクラスです。
+ * {@link Mikity3DMarshaller}のテストケースクラスです。
  * @author koga
  * @version $Revision$, 2015/05/07
  */
@@ -29,25 +29,25 @@ public class SimpleXmlMarshallerTest {
   public TemporaryFolder temporaryFolder = new TemporaryFolder();
   
   /**
-   * Test method for {@link SimpleXmlMarshaller#marshal(java.io.File)}.
+   * Test method for {@link Mikity3DMarshaller#marshal(java.io.File)}.
    * @throws IOException ファイルを作成できない場合
    * @throws Mikity3dSerializeDeserializeException アンマーシャルできない場合
    */
   @Test
   public void testMarshal() throws IOException, Mikity3dSerializeDeserializeException {
-    final SimpleXmlUnmarshaller unmarshaller1 = new SimpleXmlUnmarshaller();
+    final Mikity3DUnmarshaller unmarshaller1 = new Mikity3DUnmarshaller();
     try (final InputStream input = getClass().getClassLoader().getResourceAsStream("pendulum.m3d")) { //$NON-NLS-1$
       unmarshaller1.unmarshalFromMikity3DFile(input);
     }
 
     final Mikity3d expected = unmarshaller1.getRoot();
-    final SimpleXmlMarshaller marshaller = new SimpleXmlMarshaller(expected);
+    final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(expected);
     
     final File file = this.temporaryFolder.newFile("afo.m3d"); //$NON-NLS-1$
     marshaller.marshal(file);
     
-    final SimpleXmlUnmarshaller unmarshaller2 = new SimpleXmlUnmarshaller();
-    unmarshaller2.unmarshal(file);
+    final Mikity3DUnmarshaller unmarshaller2 = new Mikity3DUnmarshaller();
+    unmarshaller2.unmarshalFromMikity3DFile(file);
     
     final Mikity3d actual = unmarshaller2.getRoot();
 

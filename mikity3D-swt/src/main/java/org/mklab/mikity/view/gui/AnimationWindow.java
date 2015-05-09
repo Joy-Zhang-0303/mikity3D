@@ -481,8 +481,6 @@ public class AnimationWindow extends ApplicationWindow {
       final Mikity3dFactory m3f = new Mikity3dFactory();
       final Mikity3d mroot = m3f.loadFile(file);
       setRoot(mroot);
-    } catch (IOException e) {
-      throw new RuntimeException("ddd"); //$NON-NLS-1$
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }

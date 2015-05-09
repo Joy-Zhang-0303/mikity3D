@@ -19,7 +19,7 @@ import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.SimpleXmlMarshaller;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DMarshaller;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
 import org.mklab.mikity.view.gui.action.AnimationWindowOpenAction;
@@ -222,7 +222,7 @@ public class ModelingWindow extends ApplicationWindow {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
     this.root.getMikity3dData();
-    final SimpleXmlMarshaller marshaller = new SimpleXmlMarshaller(this.root);
+    final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
     marshaller.marshal(this.file);
     setFile(this.file.getPath());
     this.dirty = false;

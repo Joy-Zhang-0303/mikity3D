@@ -51,8 +51,6 @@ public class AnimationWindowTest {
     Mikity3d root;
     try {
       root = new Mikity3dFactory().loadFile(new File(modelFileName));
-    } catch (IOException e) {
-      throw new RuntimeException(e);
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
@@ -71,7 +69,7 @@ public class AnimationWindowTest {
     Mikity3d root;
     try {
       root = new Mikity3dFactory().loadFile(new File(modelFileName));
-    } catch (IOException | Mikity3dSerializeDeserializeException e) {
+    } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
     assertThat(this.am.getRoot(), is(root));

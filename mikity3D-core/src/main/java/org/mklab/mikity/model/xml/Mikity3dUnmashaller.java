@@ -18,23 +18,23 @@ import java.io.InputStream;
  */
 public interface Mikity3dUnmashaller {
 
-  /**
-   * 指定したファイルを読み込みます。
-   * 
-   * @param file 読込ファイル
-   * @throws IOException ファイルを読み込めない場合
-   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
-   */
-  void unmarshal(File file) throws IOException, Mikity3dSerializeDeserializeException;
-
-  /**
-   * 指定した入力ストリームから読み込みます。
-   * 
-   * @param input 入力ストリーム 
-   * @throws IOException 入力ストリームから読み込めない場合
-   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
-   */
-  void unmarshal(InputStream input) throws IOException, Mikity3dSerializeDeserializeException;
+//  /**
+//   * 指定したファイルを読み込みます。
+//   * 
+//   * @param file 読込ファイル
+//   * @throws IOException ファイルを読み込めない場合
+//   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
+//   */
+//  void unmarshal(File file) throws IOException, Mikity3dSerializeDeserializeException;
+//
+//  /**
+//   * 指定した入力ストリームから読み込みます。
+//   * 
+//   * @param input 入力ストリーム 
+//   * @throws IOException 入力ストリームから読み込めない場合
+//   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
+//   */
+//  void unmarshal(InputStream input) throws IOException, Mikity3dSerializeDeserializeException;
 
   /**
    * 指定したMikity3DTファイルを読み込みます。
@@ -53,21 +53,21 @@ public interface Mikity3dUnmashaller {
    */
   void unmarshalFromMikity3DFile(InputStream input) throws Mikity3dSerializeDeserializeException;
   
-  /**
-   * 指定したColladaファイルを読み込みます。
-   * 
-   * @param file Colladaファイル
-   * @throws IOException ファイルを読み込めない場合
-   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
-   */
-  void unmarshalFromColladaFile(File file) throws IOException, Mikity3dSerializeDeserializeException;
-  
-  /**
-   * 指定した入力ストリームからColladaファイルを読み込みます。
-   * 
-   * @param input 入力ストリーム
-   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
-   */
-  void unmarshalFromColladaFile(InputStream input) throws Mikity3dSerializeDeserializeException;
+//  /**
+//   * 指定したColladaファイルを読み込みます。
+//   * 
+//   * @param file Colladaファイル
+//   * @throws IOException ファイルを読み込めない場合
+//   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
+//   */
+//  void unmarshalFromColladaFile(File file) throws IOException, Mikity3dSerializeDeserializeException;
+//  
+//  /**
+//   * 指定した入力ストリームからColladaファイルを読み込みます。
+//   * 
+//   * @param input 入力ストリーム
+//   * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
+//   */
+//  void unmarshalFromColladaFile(InputStream input) throws Mikity3dSerializeDeserializeException;
 
 }
