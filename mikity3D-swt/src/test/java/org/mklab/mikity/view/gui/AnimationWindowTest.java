@@ -9,7 +9,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -28,8 +27,8 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3d;
  * AnimationWindowクラスのためのテストクラスです。
  */
 public class AnimationWindowTest {
-
   AnimationWindow am;
+
   /**
    * 初期化メソッドです。
    */
@@ -37,10 +36,7 @@ public class AnimationWindowTest {
   public void init() {
     this.am = new AnimationWindow(null);
   }
-  
-  /**ルール */
-  @Rule
-  public ExpectedException thrown = ExpectedException.none();
+
   /**
    * ルートの値が正しいか否かを判断するためのテストです。
    */
@@ -78,11 +74,8 @@ public class AnimationWindowTest {
   /**
    * ルートを作るメソッドの例外テストメソッドです。
    */
-  @Test
+  @Test(expected=RuntimeException.class)
   public void testExceptionForMakeRoot() {
-    this.thrown.expect(RuntimeException.class);
-    this.thrown.expectMessage("ddd"); //$NON-NLS-1$
-    
     this.am.createRoot("filePath"); //$NON-NLS-1$
   }
   
@@ -102,6 +95,3 @@ public class AnimationWindowTest {
   }
   */
 }
-
-//@throws IOException ファイルを読み込めない場合
-//@throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
