@@ -121,10 +121,9 @@ public class AnimationWindow extends ApplicationWindow {
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
    * @param modelFile モデルファイル
-   * @throws IOException ファイルを読み込めない場合
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  public AnimationWindow(final Shell parentShell, File modelFile) throws IOException, Mikity3dSerializeDeserializeException {
+  public AnimationWindow(final Shell parentShell, File modelFile) throws Mikity3dSerializeDeserializeException {
     this(parentShell, new Mikity3dFactory().loadFile(modelFile));
   }
 

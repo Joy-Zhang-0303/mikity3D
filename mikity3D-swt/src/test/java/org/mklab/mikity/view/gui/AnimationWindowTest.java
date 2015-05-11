@@ -5,93 +5,77 @@
  */
 package org.mklab.mikity.view.gui;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
 import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 
-
-
 /**
+ * {@link AnimationWindow}のテストケースクラスです。
+ * 
  * @author soda
  * @version $Revision$, 2014/09/05
  * AnimationWindowクラスのためのテストクラスです。
  */
 public class AnimationWindowTest {
-  AnimationWindow am;
+  private AnimationWindow am;
 
   /**
    * 初期化メソッドです。
    */
   @Before
-  public void init() {
+  public void setUp() {
     this.am = new AnimationWindow(null);
   }
 
   /**
-   * ルートの値が正しいか否かを判断するためのテストです。
+   * {@link AnimationWindow#getRoot()}のテストメソッドです。
    */
-  @Ignore
   @Test
   public void testGetRoot() {
-    String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
-    Mikity3d root;
+    final String modelFileName = "src/test/resources/org/mklab/mikity/view/gui/pendulum.m3d"; //$NON-NLS-1$
+    final Mikity3d expected;
     try {
-      root = new Mikity3dFactory().loadFile(new File(modelFileName));
+      expected = new Mikity3dFactory().loadFile(new File(modelFileName));
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
-    this.am.setRoot(root);
-    assertThat(this.am.getRoot(), is(root));
+    
+    this.am.setRoot(expected);
+    final Mikity3d actual = this.am.getRoot();
+    
+    assertTrue(actual.equals(expected));
   }
   
   /**
-   * ルートを作るメソッドのテストメソッドです。
+   * {@link AnimationWindow#createRoot(String)}のテストメソッドです。
    */
-  @Ignore
   @Test
-  public void testMakeRoot() {
-    String modelFileName = "../mikity3D-sample/src/main/resources/pendulum/pendulum/pendulum.xml"; //$NON-NLS-1$
-    this.am.createRoot(modelFileName);
-    Mikity3d root;
+  public void testCreateRoot() {
+    final String modelFileName = "src/test/resources/org/mklab/mikity/view/gui/pendulum.m3d"; //$NON-NLS-1$
+    final Mikity3d expected;
     try {
-      root = new Mikity3dFactory().loadFile(new File(modelFileName));
+      expected = new Mikity3dFactory().loadFile(new File(modelFileName));
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
-    assertThat(this.am.getRoot(), is(root));
+    
+    this.am.createRoot(modelFileName);
+    final Mikity3d actual = this.am.getRoot();
+    
+    assertTrue(actual.equals(expected));
   }
   
   /**
-   * ルートを作るメソッドの例外テストメソッドです。
+   * {@link AnimationWindow#createRoot(String)}のテストメソッドです。
    */
   @Test(expected=RuntimeException.class)
-  public void testExceptionForMakeRoot() {
+  public void testExceptionForCreateRoot() {
     this.am.createRoot("filePath"); //$NON-NLS-1$
   }
-  
-  /**
-   * ファイルが選択された時のテストメソッドです。
-   * @throws RuntimeException  ddd
-   */
- /*
-  @Test
-  public void testWidgetSelected() {
-    try {
-      this.am.makeRoot("ddd");
-      fail();
-    } catch (RuntimeException e) {
-        assertThat(e.getMessage(), is("ddd"));
-    }
-  }
-  */
 }
