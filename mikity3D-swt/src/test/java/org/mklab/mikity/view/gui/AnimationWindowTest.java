@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
@@ -36,6 +37,7 @@ public class AnimationWindowTest {
   /**
    * {@link AnimationWindow#getRoot()}のテストメソッドです。
    */
+  @Ignore
   @Test
   public void testGetRoot() {
     final String modelFileName = "src/test/resources/org/mklab/mikity/view/gui/pendulum.m3d"; //$NON-NLS-1$
@@ -55,6 +57,7 @@ public class AnimationWindowTest {
   /**
    * {@link AnimationWindow#createRoot(String)}のテストメソッドです。
    */
+  @Ignore
   @Test
   public void testCreateRoot() {
     final String modelFileName = "src/test/resources/org/mklab/mikity/view/gui/pendulum.m3d"; //$NON-NLS-1$
@@ -74,6 +77,7 @@ public class AnimationWindowTest {
   /**
    * {@link AnimationWindow#createRoot(String)}のテストメソッドです。
    */
+  @Ignore
   @Test(expected=RuntimeException.class)
   public void testExceptionForCreateRoot() {
     this.am.createRoot("filePath"); //$NON-NLS-1$
