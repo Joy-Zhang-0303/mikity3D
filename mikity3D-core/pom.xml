@@ -3,7 +3,7 @@
 	<artifactId>mikity3D-core</artifactId>
 
 	<parent>
-		<groupId>org.mklab</groupId>
+		<groupId>org.mklab.mikity3D</groupId>
 		<artifactId>mikity3D</artifactId>
 		<version>0.1.9-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>

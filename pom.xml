@@ -13,7 +13,7 @@
 	<parent>
 		<groupId>org.mklab</groupId>
 		<artifactId>mklab-base-pom</artifactId>
-		<version>1.1.36</version>
+		<version>1.1.37</version>
 	</parent>
 	<repositories>
 		<repository>
@@ -25,4 +25,5 @@
 	<scm>
 		<connection>scm:git:git@birdcage.mk.ces.kyutech.ac.jp:mikity3D.git</connection>
 	</scm>
+	<groupId>org.mklab.mikity3D</groupId>
 </project>

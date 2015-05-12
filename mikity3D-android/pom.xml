@@ -9,7 +9,7 @@
 	</properties>
 
 	<parent>
-		<groupId>org.mklab</groupId>
+		<groupId>org.mklab.mikity3D</groupId>
 		<artifactId>mikity3D</artifactId>
 		<version>0.1.9-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
@@ -32,7 +32,7 @@
 			<version>20.0.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.mklab</groupId>
+			<groupId>org.mklab.mikity3D</groupId>
 			<artifactId>mikity3D-core</artifactId>
 			<exclusions>
 				<exclusion>
