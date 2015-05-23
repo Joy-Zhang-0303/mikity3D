@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>mikity3D</artifactId>
+		<groupId>org.mklab.mikity3D</groupId>
+		<version>0.1.10-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>mikity3D-installer</artifactId>
+
+	<scm>
+		<connection>scm:git:git@birdcage.mk.ces.kyutech.ac.jp:mikity3D.git</connection>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>mklab-repository</id>
+			<url>http://maven.mk.ces.kyutech.ac.jp/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+</project>
