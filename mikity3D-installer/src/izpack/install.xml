@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<installation version="1.0">
+
+	<!-- The info section. The meaning of the tags should be natural ... -->
+	<info>
+		<appname>Jamox</appname>
+		<appversion>${project.version}</appversion>
+		<authors>
+			<author name="MKLab.org" email="mklab.org@google.com" />
+		</authors>
+		<url>http://mikity3D.mklab.org/</url>
+		<run-privileged os="windows" condition="izpack.windowsinstall.7|izpack.windowsinstall.vista" />
+	</info>
+
+	<guiprefs width="640" height="480" resizable="no" />
+
+	<locale>
+		<langpack iso3="eng" />
+		<langpack iso3="jpn" />
+	</locale>
+
+	<resources>
+		<res id="LicencePanel.licence" src="LICENSE.txt" />
+		<res id="TargetPanel.dir.windows" src="TargetPanel.dir.windows" />
+		<res id="InfoPanel.info" src="README.txt" />
+		<res id="packsLang.xml_jpn" src="packsLang.xml_jpn" />
+		<res id="userInputSpec.xml" src="userInputSpec.xml" />
+	</resources>
+
+	<conditions>
+		<condition type="variable" id="vmarch64">
+			<name>vmarch</name>
+			<value>64</value>
+		</condition>
+		<condition type="variable" id="vmarch32">
+			<name>vmarch</name>
+			<value>32</value>
+		</condition>
+	</conditions>
+
+
+	<panels>
+		<!-- <panel classname="InfoPanel" /> -->
+		<panel classname="LicencePanel" />
+		<panel classname="TargetPanel" />
+		<panel classname="UserInputPanel" id="UserInputPanel.0" />
+		<panel classname="PacksPanel" />
+		<panel classname="InstallPanel" />
+		<panel classname="FinishPanel" />
+	</panels>
+
+	<packs>
+		<pack id="platformIndepended" name="Platform Independent Libraries" required="yes">
+			<description><![CDATA[Install all libraries which doesn't depend on the platforms.]]></description>
+			<fileset dir="dependency" targetdir="$INSTALL_PATH/lib">
+				<exclude name="mikity3D-app.jar" />
+				<exclude name="swt*" />
+			</fileset>
+			<fileset dir="" targetdir="$INSTALL_PATH">
+				<include name="mikity3D-app.jar" />
+			</fileset>
+		</pack>
+		<pack id="platformDepended" name="Platform Depended Libraries" required="yes">
+			<description><![CDATA[Install all libraries which depend on the platforms.]]>
+			</description>
+			<!-- SWT Libraries for Unix. -->
+			<file src="dependency/swt-gtk.jar" targetdir="$INSTALL_PATH/lib" condition="vmarch32">
+				<os family="unix" />
+			</file>
+			<file src="dependency/swt-gtk_64.jar" targetdir="$INSTALL_PATH/lib" condition="vmarch64">
+				<os family="unix" />
+			</file>
+
+			<!-- SWT Libraries for Windows -->
+			<file src="dependency/swt-win32.jar" targetdir="$INSTALL_PATH/lib" condition="vmarch32">
+				<os family="windows" />
+			</file>
+			<file src="dependency/swt-win32_64.jar" targetdir="$INSTALL_PATH/lib" condition="vmarch64">
+				<os family="windows" />
+			</file>
+
+			<!-- SWT Libraries for Mac OSX -->
+			<file src="dependency/swt-cocoa.jar" targetdir="$INSTALL_PATH/lib" condition="vmarch32">
+				<os family="mac" />
+			</file>
+			<file src="dependency/swt-cocoa_64.jar" targetdir="$INSTALL_PATH/lib" condition="vmarch64">
+				<os family="mac" />
+			</file>
+		</pack>
+		<pack id="launcherScripts" name="Launcher Scripts" required="yes">
+			<description><![CDATA[Install the platform-specific launcher scripts.]]>
+			</description>
+			<file src="mikity3D" targetdir="$INSTALL_PATH" os="unix" />
+			<file src="mikity3D-mac" targetdir="$INSTALL_PATH" os="mac" />
+			<file src="mikity3D.bat" targetdir="$INSTALL_PATH" os="windows" />
+			
+			<executable src="mikity3D" targetfile="$INSTALL_PATH/mikity3D" os="unix" />
+			<executable src="mikity3D-mac" targetfile="$INSTALL_PATH/mikity3D-mac" os="mac" />
+			
+			<file src="commons-logging.properties" targetdir="$INSTALL_PATH"/>
+			<file src="simplelog.properties" targetdir="$INSTALL_PATH"/>
+		</pack>
+		<pack id="samples" name="Sample Files" required="no">
+			<description><![CDATA[Install sample files of Mikity3D.]]></description>
+			<fileset dir="sample" targetdir="$INSTALL_PATH/sample" />
+		</pack>
+	</packs>
+
+</installation>

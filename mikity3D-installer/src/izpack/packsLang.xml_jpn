@@ -1,0 +1,13 @@
+<langpack>
+    <str id="platformIndepended" txt="プラットフォーム非依存ライブラリ"/>
+    <str id="platformIndepended.description" txt="プラットフォームに依存しない共通ライブラリ群をインストールします。"/>
+    
+    <str id="platformDepended" txt="プラットフォーム依存ライブラリ"/>
+    <str id="platformDepended.description" txt="プラットフォームに依存するライブラリ群をインストールします。"/>
+    
+    <str id="launcherScripts" txt="起動スクリプト"/>
+    <str id="launcherScripts.description" txt="起動スクリプトのインストールを行います。"/>
+    
+    <str id="samples" txt="サンプル ファイル"/>
+    <str id="samples.description" txt="サンプルファイル(*.m3d)をインストールします。"/>
+</langpack>

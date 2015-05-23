@@ -1,0 +1,16 @@
+<userInput>
+	<!-- Install -->
+	<panel order="0">
+		<field type="title" txt="Java VM Architecture Selection" bold="true"
+			size="1" />
+		<field type="divider" align="top" />
+
+		<field type="combo" variable="vmarch">
+			<spec txt="VM arch:" id="vmarch">
+				<choice txt="32bit" value="32" set="true" />
+				<choice txt="64bit" value="64" />
+			</spec>
+		</field>
+		<field type="divider" align="bottom" />
+	</panel>
+</userInput>

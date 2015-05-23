@@ -1,0 +1,4 @@
+#!/bin/sh
+export MIKITY3D_HOME=$HOME/Mikity3D
+export MIKITY3D_USER_HOME=$HOME
+java -Dfile.encoding=UTF-8 -cp $MIKITY3D_HOME:$MIKITY3D_HOME/mikity3D-app.jar org.mklab.mikity.Mikity3dApplication
