@@ -37,10 +37,10 @@ public class JoglCylinder extends AbstractJoglObject {
     // デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
 
+    // 表と裏を両方表示する
+    gl.glDisable(GL.GL_CULL_FACE);
+    
     final float[] vertices = new float[(this.div * 2 + 2) * 3];
-
-    // TODO 描画がおかしいですが、これ以上考えても今は案が出てこないのでPushしました。
-    // TODO vertexsかindexsの配列がおかしいのかもしれません。
     
     //頂点バッファの生成
     
@@ -139,40 +139,6 @@ public class JoglCylinder extends AbstractJoglObject {
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
     applyColor(gl);
-
-    /*
-    // 上面
-    gl.glBegin(GL.GL_TRIANGLE_FAN);
-    gl.glNormal3f(0.0f, 1.0f, 0.0f);
-    gl.glVertex3f(0.0f, this._height / 2.0f, 0.0f);
-    for (i = this._div; i >= 0; i--) {
-      ang = 2.0 * PAI / this._div * i;
-      gl.glNormal3f(0.0f, 1.0f, 0.0f);
-      gl.glVertex3f(this._r * (float)Math.cos(ang), this._height / 2.0f, this._r * (float)Math.sin(ang));
-    }
-    gl.glEnd();
-
-    // 側面を作成
-    gl.glBegin(GL.GL_QUAD_STRIP);
-    for (i = this._div; i >= 0; i--) {
-      ang = 2.0 * PAI / this._div * i;
-      gl.glNormal3f((float)Math.cos(ang), 0.0f, (float)Math.sin(ang));
-      gl.glVertex3f(this._r * (float)Math.cos(ang), this._height / 2.0f, this._r * (float)Math.sin(ang));
-      gl.glVertex3f(this._r * (float)Math.cos(ang), -this._height / 2.0f, this._r * (float)Math.sin(ang));
-    }
-    gl.glEnd();
-
-    // 底面
-    gl.glBegin(GL.GL_TRIANGLE_FAN);
-    gl.glNormal3f(0.0f, -1.0f, 0.0f);
-    gl.glVertex3f(0.0f, -this._height / 2.0f, 0.0f);
-    for (i = 0; i <= this._div; i++) {
-      ang = 2.0 * PAI / this._div * i;
-      gl.glNormal3f(0.0f, -1.0f, 0.0f);
-      gl.glVertex3f(this._r * (float)Math.cos(ang), -this._height / 2.0f, this._r * (float)Math.sin(ang));
-    }
-    gl.glEnd();
-    */
 
     // 頂点バッファの指定 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);

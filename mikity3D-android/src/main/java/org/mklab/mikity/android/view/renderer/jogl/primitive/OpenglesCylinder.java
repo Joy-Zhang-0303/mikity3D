@@ -34,32 +34,38 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
 
     //デプステストの有効化
     gl10.glEnable(GL10.GL_DEPTH_TEST);
+    
+    // 表と裏を両方表示する
+    gl10.glDisable(GL10.GL_CULL_FACE);
 
     final float[] vertices = new float[(this.div * 2 + 2) * 3];
 
-    // TODO 描画がおかしいですが、これ以上考えても今は案が出てこないのでPushしました。
-    // TODO vertexsかindexsの配列がおかしいのかもしれません。
     //頂点バッファの生成
+
+    // 上面の中心点(0)
     vertices[0] = 0.0f;
     vertices[1] = this.height / 2.0f;
     vertices[2] = 0.0f;
     
+    // 上面の周上の点(1 - div)
     for (int i = 1; i <= this.div; i++) {
       final double theta = 2.0 * Math.PI / this.div * i;
-      vertices[i * 3] = this.radius * (float)Math.cos(theta);
+      vertices[i * 3 + 0] = (float)(this.radius * Math.cos(theta));
       vertices[i * 3 + 1] = this.height / 2.0f;
-      vertices[i * 3 + 2] = this.radius * (float)Math.sin(theta);
+      vertices[i * 3 + 2] = (float)(this.radius * Math.sin(theta));
     }
     
-    vertices[3 + this.div * 3] = 0.0f;
-    vertices[4 + this.div * 3] = -this.height / 2.0f;
-    vertices[5 + this.div * 3] = 0.0f;
+    // 下面の中心点(div+1)
+    vertices[this.div * 3 + 3] = 0.0f;
+    vertices[this.div * 3 + 4] = -this.height / 2.0f;
+    vertices[this.div * 3 + 5] = 0.0f;
     
+    // 下面の周上の点([div+1+1] - [div+1+div+1])
     for (int i = 1; i <= this.div; i++) {
       final double theta = 2.0 * Math.PI / this.div * i;
-      vertices[i * 3 + 3 + this.div * 3] = this.radius * (float)Math.cos(theta);
-      vertices[i * 3 + 4 + this.div * 3] = -this.height / 2.0f;
-      vertices[i * 3 + 5 + this.div * 3] = this.radius * (float)Math.sin(theta);
+      vertices[this.div * 3 + i * 3 + 3] = (float)(this.radius * Math.cos(theta));
+      vertices[this.div * 3 + i * 3 + 4] = -this.height / 2.0f;
+      vertices[this.div * 3 + i * 3 + 5] = (float)(this.radius * Math.sin(theta));
     }
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
@@ -67,6 +73,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     //インデックスバッファの生成
     final byte[] indices = new byte[this.div * 12];
     
+    // 上面(中心点)
     for (int i = 1; i <= this.div; i++) {
       indices[3 * i - 3] = 0;
     }
@@ -81,6 +88,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     
     indices[3 * this.div - 1] = 1;
     
+    // 下面(中心点)
     for (int i = 1; i <= this.div; i++) {
       indices[this.div * 3 + 3 * i - 3] = (byte)(1 + this.div);
     }
@@ -95,8 +103,8 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     
     indices[this.div * 6 - 1] = (byte)(this.div + 2);
 
-    //側面
-
+    // 側面
+    // 左上半分の三角形
     for (int i = 1; i <= this.div; i++) {
       indices[this.div * 6 + 3 * i - 3] = (byte)(this.div + 1 + i);
     }
@@ -111,6 +119,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
 
     indices[this.div * 9 - 1] = 1;
 
+    // 右下半分の三角形
     for (int i = 1; i <= this.div; i++) {
       indices[this.div * 9 + 3 * i - 3] = (byte)(i);
     }
@@ -128,8 +137,6 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
     applyColor(gl10);
-
- 
 
     //頂点バッファの指定 
     gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
