@@ -10,6 +10,8 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
 
 /**
+ * 三角形ポリゴンをGLで表したクラスです。
+ * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */

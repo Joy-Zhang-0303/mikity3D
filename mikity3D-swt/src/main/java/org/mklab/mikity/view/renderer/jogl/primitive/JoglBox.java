@@ -11,7 +11,7 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
 
 /**
- * XMLBOXをJOGLで表したクラスです
+ * BOXをGLで表したクラスです
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/26

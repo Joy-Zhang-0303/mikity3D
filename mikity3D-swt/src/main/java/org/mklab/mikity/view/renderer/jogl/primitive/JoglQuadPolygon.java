@@ -11,6 +11,8 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
 
 /**
+ * 四角形ポリゴンをGLで表したクラスです。
+ * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */

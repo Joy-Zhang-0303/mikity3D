@@ -10,6 +10,8 @@ import javax.media.opengl.fixedfunc.GLPointerFunc;
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
 /**
+ * 球をGLで表したクラスです。
+ * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
