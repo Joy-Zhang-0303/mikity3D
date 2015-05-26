@@ -82,7 +82,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** アニメーションスピードを表示するエディットテキスト */
   EditText animationSpeedTextEdit;
   /** 3Dモデルのインプットストリーム */
-  private InputStream inputModelFile;
+  private InputStream inputModelDataFile;
   /** 3Dモデルが選ばれて表示されたかどうかのフラグ */
   boolean isSelectedModelFile;
   /** モデルを参照するときに押されるボタン */
@@ -98,7 +98,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton accelerToggleButton;
   ToggleButton rotateTogguleButton;
-  InputStream inputDataFile;
+  InputStream inputTimeDataFile;
   String timeDataName;
   private String modelFileName;
   CanvasActivity canvasActivity;
@@ -370,7 +370,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    * 
    * @param uri 時間データURI
    */
-  void loadDataUri(Uri uri) {
+  void openTimeData(Uri uri) {
     if (uri == null) {
       return;
     }
@@ -378,7 +378,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        this.inputDataFile = this.canvasActivity.getContentResolver().openInputStream(uri);
+        this.inputTimeDataFile = this.canvasActivity.getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
@@ -387,14 +387,14 @@ public class NavigationDrawerFragment extends RoboFragment {
       this.timeDataName = this.cursor2.getString(this.cursor2.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
-      final String timeDataPath = uri.getPath();
-      this.canvasActivity.canvasFragment.setTimeDataPath(timeDataPath);
+      final String timeDataFilePath = uri.getPath();
+      this.canvasActivity.canvasFragment.setTimeDataPath(timeDataFilePath);
       try {
-        this.inputDataFile = new FileInputStream(timeDataPath);
+        this.inputTimeDataFile = new FileInputStream(timeDataFilePath);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      final String[] parts = timeDataPath.split("/"); //$NON-NLS-1$
+      final String[] parts = timeDataFilePath.split("/"); //$NON-NLS-1$
       this.timeDataName = parts[parts.length - 1];
     }
     this.filePathView.setText(this.timeDataName);
@@ -405,7 +405,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    * 
    * @param uri モデルURI
    */
-  void loadModelUri(Uri uri) {
+  void loadModelData(Uri uri) {
     if (uri == null) {
       return;
     }
@@ -413,7 +413,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        this.inputModelFile = this.canvasActivity.getContentResolver().openInputStream(uri);
+        this.inputModelDataFile = this.canvasActivity.getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
@@ -422,14 +422,14 @@ public class NavigationDrawerFragment extends RoboFragment {
       this.modelFileName = this.cursor.getString(this.cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
-      String modelFilePath = uri.getPath();
-      this.canvasActivity.canvasFragment.setModelFilePath(modelFilePath);
+      final String modelDataFilePath = uri.getPath();
+      this.canvasActivity.canvasFragment.setModelFilePath(modelDataFilePath);
       try {
-        this.inputModelFile = new FileInputStream(modelFilePath);
+        this.inputModelDataFile = new FileInputStream(modelDataFilePath);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
+      final String[] parts = modelDataFilePath.split("/"); //$NON-NLS-1$
       this.modelFileName = parts[parts.length - 1];
     }
 
@@ -438,14 +438,17 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.filePathView.setText(this.timeDataName);
 
     try {
-      this.canvasActivity.canvasFragment.loadModelFile(this.inputModelFile);
+      this.canvasActivity.canvasFragment.loadModelData(this.inputModelDataFile);
       setButtonEnabled(true);
+      this.inputModelDataFile.close();
       if (this.canvasActivity.canvasFragment.data != null) {
         this.canvasActivity.canvasFragment.data = null;
       }
     } catch (Mikity3dSerializeDeserializeException e) {
       setExceptionDailogFragment("please select model file."); //$NON-NLS-1$
       setButtonEnabled(false);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
   }
 

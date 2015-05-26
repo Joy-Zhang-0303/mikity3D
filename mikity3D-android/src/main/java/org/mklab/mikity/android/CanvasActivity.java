@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.android;
 
+import java.io.IOException;
 import java.util.List;
 
 import roboguice.activity.RoboFragmentActivity;
@@ -99,13 +100,13 @@ public class CanvasActivity extends RoboFragmentActivity {
     }
 
     final Uri mPath = bundle.getParcelable(intentPath);
-    loadModelUri(mPath);
+    loadModelData(mPath);
     if (bundle.getParcelable(intentDataPath) == null) {
       return;
     }
       
     final Uri dPath = bundle.getParcelable(intentDataPath);
-    loadTimeDataUri(dPath);
+    loadTimeData(dPath);
   }
 
   /**
@@ -238,13 +239,13 @@ public class CanvasActivity extends RoboFragmentActivity {
       case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
         if (resultCode == RESULT_OK && data != null) {
           final Uri uri = data.getData();
-          loadModelUri(uri);
+          loadModelData(uri);
         }
         break;
       case REQUEST_CODE_PICK_TIME_DATA_FILE:
         if (resultCode == RESULT_OK && data != null) {
           final Uri uri = data.getData();
-          loadTimeDataUri(uri);
+          loadTimeData(uri);
         }
         break;
       case 3:
@@ -263,10 +264,15 @@ public class CanvasActivity extends RoboFragmentActivity {
    * 
    * @param uri 時間データのURI
    */
-  private void loadTimeDataUri(Uri uri) {
-    this.ndFragment.loadDataUri(uri);
-    this.canvasFragment.loadtimeSeriesData(this.ndFragment.inputDataFile);
+  private void loadTimeData(Uri uri) {
+    this.ndFragment.openTimeData(uri);
     this.canvasFragment.setTimeDataUri(uri);
+    this.canvasFragment.loadTimeData(this.ndFragment.inputTimeDataFile);
+    try {
+      this.ndFragment.inputTimeDataFile.close();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   /**
@@ -274,8 +280,8 @@ public class CanvasActivity extends RoboFragmentActivity {
    * 
    * @param uri モデルデータのURI
    */
-  private void loadModelUri(Uri uri) {
-    this.ndFragment.loadModelUri(uri);
+  private void loadModelData(Uri uri) {
+    this.ndFragment.loadModelData(uri);
 
     this.canvasFragment.timeDataUri = null;
     this.canvasFragment.modelRenderer.updateDisplay();

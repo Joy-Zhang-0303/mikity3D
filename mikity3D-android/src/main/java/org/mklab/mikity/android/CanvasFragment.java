@@ -287,7 +287,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * @param input モデルファイル
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  public void loadModelFile(InputStream input) throws Mikity3dSerializeDeserializeException {
+  public void loadModelData(InputStream input) throws Mikity3dSerializeDeserializeException {
     this.root = new Mikity3dFactory().loadFile(input);
     configurateModel();
     setGroupManager();
@@ -296,9 +296,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /**
    * ストリームから時間データを取り出します。
    * 
-   * @param filePath 時間データのパス
+   * @param input 時間データのパス
    */
-  public void loadtimeSeriesData(final InputStream filePath) {
+  public void loadTimeData(final InputStream input) {
     final AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
 
       /**
@@ -318,13 +318,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
        */
       @Override
       protected Void doInBackground(String... arg0) {
-        final InputStream input = filePath;
-        setTimeData(input);
-        try {
-          input.close();
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
+        readTimeData(input);
+        setTimeData();
         return null;
       }
 
@@ -341,15 +336,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * 実行時間バーを設定します。
+   * 時系列データを読み込みます。
    * 
    * @param input 時系列データのインプットストリーム
    */
-  public void setTimeData(final InputStream input) {
+  void readTimeData(final InputStream input) {
     try {
       this.data = MatxMatrix.readMatFormat(new InputStreamReader(input));
-      input.close();
-      setTimeData();
       this.setIllegalTimeData = false;
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);

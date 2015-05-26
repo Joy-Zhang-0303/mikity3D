@@ -86,12 +86,12 @@ public class AssetsListViewFragment extends RoboFragment {
             final InputStream input = AssetsListViewFragment.this.assetManager.open(nextFile);
 
             if (AssetsListViewFragment.this.isModel) {
-              AssetsListViewFragment.this.canvasActivity.canvasFragment.loadModelFile(input);
+              AssetsListViewFragment.this.canvasActivity.canvasFragment.loadModelData(input);
               AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
               AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
               AssetsListViewFragment.this.canvasActivity.ndFragment.assetsTimeButton.setEnabled(true);
             } else {
-              AssetsListViewFragment.this.canvasActivity.canvasFragment.loadtimeSeriesData(input);
+              AssetsListViewFragment.this.canvasActivity.canvasFragment.loadTimeData(input);
             }
 
             AssetsListViewFragment.this.fragmentManager.popBackStack();
