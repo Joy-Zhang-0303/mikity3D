@@ -69,12 +69,11 @@ public class AssetsListViewFragment extends RoboFragment {
         List<String> nextFileLimits = new ArrayList<String>();
 
         if (AssetsListViewFragment.this.isModel) {
-          nextFileLimits = getLimitList("mat", nextFiles); //$NON-NLS-1$
-        } else {
           nextFileLimits = getLimitList("m3d", nextFiles); //$NON-NLS-1$
+        } else {
+          nextFileLimits = getLimitList("mat", nextFiles); //$NON-NLS-1$
         }
 
-        final String[] newNextFiles = nextFileLimits.toArray(new String[nextFileLimits.size()]);
         nextFiles = nextFileLimits.toArray(new String[nextFileLimits.size()]);
 
         if (nextFiles.length > 0) {
@@ -182,6 +181,8 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
+   * アクティビティを設定します。
+   * 
    * @param activity アクティビティ
    */
   public void setActivity(CanvasActivity activity) {
@@ -189,13 +190,18 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * @param isModel モデルならばtrue
+   * モデルデータであるか判定するための値を設定します。
+   * 
+   * @param isModelData モデルデータならばtrue
    */
-  public void setModelTimeFrag(boolean isModel) {
-    this.isModel = isModel;
+  public void setIsModelData(boolean isModelData) {
+    this.isModel = isModelData;
   }
 
   /**
+   * 拡張子を返します。
+   * 拡張子がない場合、そのままファイル名を返します。
+   * 
    * @param fileName ファイル名
    * @return 拡張子
    */
@@ -204,7 +210,7 @@ public class AssetsListViewFragment extends RoboFragment {
       return null;
     }
     
-    int point = fileName.lastIndexOf("."); //$NON-NLS-1$
+    final int point = fileName.lastIndexOf("."); //$NON-NLS-1$
    
     if (point != -1) {
       return fileName.substring(point + 1);
@@ -213,18 +219,18 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
+   * 指定された拡張子をもつファイルのみのリストを返します。
+   * 
    * @param extension 拡張子
-   * @param nextFileList ファイルのリスト
-   * @return 対象となるファイルのリスト
+   * @param files ファイルのリスト
+   * @return 指定された拡張子をもつファイルのみのリスト
    */
-  public List<String> getLimitList(String extension, String[] nextFileList) {
+  public List<String> getLimitList(String extension, String[] files) {
     final List<String> nextFileLimits = new ArrayList<String>();
-    for (int i = 0; i < nextFileList.length; i++) {
-      final String a = getSuffix(nextFileList[i]);
-      if (getSuffix(nextFileList[i]).equals(extension)) {
-        // nothing to do
-      } else {
-        nextFileLimits.add(nextFileList[i]);
+    
+    for (int i = 0; i < files.length; i++) {
+      if (getSuffix(files[i]).equals(extension)) {
+        nextFileLimits.add(files[i]);
       }
     }
     return nextFileLimits;
@@ -244,6 +250,8 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
+   * フラグメントマネージャを設定します。
+   * 
    * @param fragmentManager フラグメントマネージャ
    */
   public void setFragmentManager(FragmentManager fragmentManager) {
