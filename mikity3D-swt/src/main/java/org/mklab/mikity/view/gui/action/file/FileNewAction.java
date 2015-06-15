@@ -44,7 +44,8 @@ public class FileNewAction extends Action {
   public void run() {
     final FileDialog dialog = new FileDialog(this.window.getShell());
     dialog.setText(Messages.getString("FileNewAction.2")); //$NON-NLS-1$
-
+    dialog.setFilterExtensions(new String[] {"*.m3d", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
+    
     final String fileName = dialog.open();
     if (fileName == null) {
       return;

@@ -40,6 +40,8 @@ public class FileOpenAction extends Action {
   @Override
   public void run() {
     final FileDialog dialog = new FileDialog(this.window.getShell());
+    dialog.setFilterExtensions(new String[] {"*.m3d", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
+    
     final String fileName = dialog.open();
     if (fileName == null) {
       return;

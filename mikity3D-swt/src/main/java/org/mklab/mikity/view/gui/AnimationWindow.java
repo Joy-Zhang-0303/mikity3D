@@ -460,6 +460,8 @@ public class AnimationWindow extends ApplicationWindow {
       @Override
       public void widgetSelected(SelectionEvent e) {
         final FileDialog dialog = new FileDialog(parent.getShell());
+        dialog.setFilterExtensions(new String[] {"*.m3d", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
+        
         final String filePath = dialog.open();
         if (filePath != null) {
           createRoot(filePath);

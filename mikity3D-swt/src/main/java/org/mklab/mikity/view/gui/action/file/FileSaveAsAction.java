@@ -42,7 +42,7 @@ public class FileSaveAsAction extends Action {
   public void run() {
     final FileDialog dialog = new FileDialog(this.window.getShell(), SWT.SAVE);
     dialog.setText(Messages.getString("FileSaveAsAction.1")); //$NON-NLS-1$
-    dialog.setFilterExtensions(new String[] {"*.xml", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
+    dialog.setFilterExtensions(new String[] {"*.m3d", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
 
     final String filePath = dialog.open();
     if (filePath == null) {
