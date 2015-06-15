@@ -25,6 +25,13 @@ public class LinkData implements java.io.Serializable {
   @Attribute(name="column")
   private int columnNumber;
   
+  /**
+   * 新しく生成された<code>LinkData</code>オブジェクトを初期化します。
+   */
+  public LinkData() {
+    this.targetName = ""; //$NON-NLS-1$
+  }
+  
 
   /**
    * データの列番号を返します。

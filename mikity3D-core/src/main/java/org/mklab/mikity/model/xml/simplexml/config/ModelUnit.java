@@ -18,6 +18,14 @@ public class ModelUnit implements java.io.Serializable {
   /** 長さの単位 */
   @Attribute(name="length")
   private String length;
+  
+  /**
+   * 新しく生成された<code>ModelUnit</code>オブジェクトを初期化します。
+   */
+  public ModelUnit() {
+    this.angle = "radian"; //$NON-NLS-1$
+    this.length = "m"; //$NON-NLS-1$
+  }
 
   /**
    * 角度の単位を返します。

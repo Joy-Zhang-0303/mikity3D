@@ -52,7 +52,9 @@ public class XMLBox implements java.io.Serializable {
    * コンストラクター
    */
   public XMLBox() {
-    super();
+    this.color = "red"; //$NON-NLS-1$
+    this.rotation = new Rotation();
+    this.location = new Location();
     this.propertyChangeListeners = new Vector<>();
   } 
 

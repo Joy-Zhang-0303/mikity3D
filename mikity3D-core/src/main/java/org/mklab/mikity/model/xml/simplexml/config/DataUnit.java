@@ -20,6 +20,14 @@ public class DataUnit implements java.io.Serializable {
   private String length;
 
   /**
+   * 新しく生成された<code>DataUnit</code>オブジェクトを初期化します。
+   */
+  public DataUnit() {
+    this.angle = "radian"; //$NON-NLS-1$
+    this.length = "m"; //$NON-NLS-1$
+  }
+  
+  /**
    * 角度の単位を返します。
    * 
    * @return 角度の単位

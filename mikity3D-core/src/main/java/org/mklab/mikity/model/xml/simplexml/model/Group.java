@@ -65,6 +65,7 @@ public class Group implements java.io.Serializable {
    * コンストラクター
    */
   public Group() {
+    this.name = ""; //$NON-NLS-1$
     this.boxes = new ArrayList<>();
     this.cylinders = new ArrayList<>();
     this.spheres = new ArrayList<>();

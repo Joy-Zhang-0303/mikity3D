@@ -15,6 +15,13 @@ public class Background implements java.io.Serializable {
   private String color;
   
   /**
+   * 新しく生成された<code>Background</code>オブジェクトを初期化します。
+   */
+  public Background() {
+    this.color = "white"; //$NON-NLS-1$
+  }
+  
+  /**
    * {@inheritDoc}
    */
   @Override

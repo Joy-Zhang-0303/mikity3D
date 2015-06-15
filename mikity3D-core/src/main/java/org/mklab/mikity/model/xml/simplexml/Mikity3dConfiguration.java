@@ -20,7 +20,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
 
   /** データ */
   @Element(name="data", required=false)
-  private java.lang.String data;
+  private String data;
 
   /** 背景 */
   @Element(name="background")
@@ -42,6 +42,17 @@ public class Mikity3dConfiguration implements java.io.Serializable {
   @Element(name="dataUnit")
   private DataUnit dataUnit;
 
+  /**
+   * 新しく生成された<code>Mikity3dConfiguration</code>オブジェクトを初期化します。
+   */
+  public Mikity3dConfiguration() {
+    this.background = new Background();
+    this.light = new Light();
+    this.view = new View();
+    this.modelUnit = new ModelUnit();
+    this.dataUnit = new DataUnit();
+  }
+  
   /**
    * 背景を返します。
    * 

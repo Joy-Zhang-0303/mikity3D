@@ -3,6 +3,8 @@ package org.mklab.mikity.view.gui.action.toolbar;
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
