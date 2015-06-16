@@ -1,7 +1,6 @@
 package org.mklab.mikity.view.gui;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
@@ -17,9 +16,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DMarshaller;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.Mikity3DMarshaller;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
 import org.mklab.mikity.view.gui.action.AnimationWindowOpenAction;
@@ -69,6 +68,7 @@ public class ModelingWindow extends ApplicationWindow {
   private Action TOOLBAR_TRIANGLE_ACTION = new TrianglePolygonToolBarAction(this);
   private Action TOOLBAR_QUAD_ACTION = new QuadPolygonToolBarAction(this);
 
+  /** ファイル */
   private File file;
   
   private Mikity3d root;
@@ -76,6 +76,7 @@ public class ModelingWindow extends ApplicationWindow {
   /** */
   Text filePathText;
   
+  /** 変更されていればtrue */
   private boolean dirty;
   private AbstractModeler modeler;
 
@@ -125,13 +126,21 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * ファイルを設定します。
+   * ファイルパスを設定します。
    * 
    * @param filePath ファイルパス
    */
-  public void setFile(String filePath) {
+  public void setFilePath(String filePath) {
     this.file = new File(filePath);
-    this.modeler.createViewer();
+    //this.modeler.createViewer();
+  }
+  
+  /**
+   * ファイルを返します。
+   * @return ファイル
+   */
+  public File getFile() {
+    return this.file;
   }
 
   /**
@@ -224,16 +233,15 @@ public class ModelingWindow extends ApplicationWindow {
     this.root.getMikity3dData();
     final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
     marshaller.marshal(this.file);
-    setFile(this.file.getPath());
+    //setFile(this.file.getPath());
     this.dirty = false;
   }
 
   /**
    * ファイルを読み込みます。
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
-   * @throws IOException ファイルを読み込めない場合 
    */
-  public void loadFile() throws Mikity3dSerializeDeserializeException, IOException {
+  public void loadFile() throws Mikity3dSerializeDeserializeException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
@@ -250,10 +258,9 @@ public class ModelingWindow extends ApplicationWindow {
 
   /**
    * ファイルを読み込み，データをモデルに追加します。
-   * @throws IOException ファイルを読み込めない場合 
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合  
    */
-  public void importFile() throws IOException, Mikity3dSerializeDeserializeException {
+  public void importFile() throws Mikity3dSerializeDeserializeException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }

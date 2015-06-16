@@ -61,5 +61,7 @@ public class TrianglePolygonToolBarAction extends Action {
     rootGroup.addXMLTrianglePolygon(polygon);
 
     updateTriagle();
+    
+    this.window.setDirty(true);
   }
 }

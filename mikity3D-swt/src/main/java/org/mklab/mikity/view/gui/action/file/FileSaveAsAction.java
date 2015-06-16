@@ -57,8 +57,9 @@ public class FileSaveAsAction extends Action {
       }
     }
 
+    this.window.setFilePath(filePath);
+    
     try {
-      this.window.setFile(filePath);
       this.window.saveFile();
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);

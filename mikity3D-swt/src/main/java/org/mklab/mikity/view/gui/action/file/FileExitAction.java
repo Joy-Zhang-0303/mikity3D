@@ -6,8 +6,6 @@ package org.mklab.mikity.view.gui.action.file;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.FileDialog;
-import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.view.gui.MessagegUtil;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -43,14 +41,15 @@ public class FileExitAction extends Action {
       int yesNo = MessagegUtil.showYesNoCancel(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
       switch (yesNo) {
         case SWT.YES:
-          try {
-            final FileDialog dialog = new FileDialog(this.window.getShell());
-            final String path = dialog.getFileName();
-            this.window.setFile(path);
-            this.window.saveFile();
-          } catch (Mikity3dSerializeDeserializeException e) {
-            throw new RuntimeException(e);
-          }
+//          try {
+            new FileSaveAction(this.window).run();
+//            final FileDialog dialog = new FileDialog(this.window.getShell());
+//            final String path = dialog.getFileName();
+//            this.window.setFile(path);
+//            this.window.saveFile();
+//          } catch (Mikity3dSerializeDeserializeException e) {
+//            throw new RuntimeException(e);
+//          }
           break;
         case SWT.NO:
           break;

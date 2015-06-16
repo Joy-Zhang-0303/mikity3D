@@ -50,5 +50,7 @@ public class SphereToolBarAction extends Action {
     rootGroup.addXMLSphere(sphere);
     
     updateSphere();
+    
+    this.window.setDirty(true);
   }
 }

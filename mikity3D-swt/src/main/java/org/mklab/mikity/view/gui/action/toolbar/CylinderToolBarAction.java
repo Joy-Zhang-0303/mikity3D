@@ -51,5 +51,7 @@ public class CylinderToolBarAction extends Action {
     rootGroup.addXMLCylinder(cylinder);
     
     updateCylinder();
+    
+    this.window.setDirty(true);
   }
 }

@@ -54,7 +54,7 @@ public class FileNewAction extends Action {
     try {
       final File file = new File(fileName);
       if (file.createNewFile()) {
-        this.window.setFile(fileName);
+        this.window.setFilePath(fileName);
         this.window.loadFile();
       } else {
         // 新規作成したいが、もともとその名前のファイルが存在するとき
@@ -64,7 +64,7 @@ public class FileNewAction extends Action {
         final int yesNo = message.open();
 
         if (yesNo == SWT.YES) {
-          this.window.setFile(fileName);
+          this.window.setFilePath(fileName);
           this.window.loadFile();
         } else if (yesNo == SWT.NO) {
           return;

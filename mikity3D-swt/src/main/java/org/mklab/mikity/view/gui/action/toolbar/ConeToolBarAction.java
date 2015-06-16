@@ -50,5 +50,7 @@ public class ConeToolBarAction extends Action {
     final Group rootGroup = root.getModel(0).getGroup(0);
     rootGroup.addXMLCone(cone);
     updateCone();
+    
+    this.window.setDirty(true);
   }
 }

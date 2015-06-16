@@ -61,5 +61,7 @@ public class QuadPolygonToolBarAction extends Action {
     rootGroup.addXMLQuadPolygon(polygon);
 
     updateQuad();
+    
+    this.window.setDirty(true);
   }
 }

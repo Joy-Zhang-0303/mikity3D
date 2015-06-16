@@ -4,8 +4,13 @@
  */
 package org.mklab.mikity.view.gui.action.file;
 
+import java.io.File;
+
 import org.eclipse.jface.action.Action;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.FileDialog;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
+import org.mklab.mikity.view.gui.MessagegUtil;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -34,9 +39,29 @@ public class FileSaveAction extends Action {
    */
   @Override
   public void run() {
+    final File file = this.window.getFile();
+    if (file == null) {
+      final FileDialog dialog = new FileDialog(this.window.getShell(), SWT.SAVE);
+      dialog.setText(Messages.getString("FileSaveAsAction.1")); //$NON-NLS-1$
+      dialog.setFilterExtensions(new String[] {"*.m3d", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
+      final String filePath = dialog.open();
+      if (filePath == null) {
+        return;
+      }
+      
+      final File newFile = new File(filePath);
+      if (newFile.exists()) {
+        int yesNo = MessagegUtil.showYesNo(this.window.getShell(), Messages.getString("FileSaveAsAction.2")); //$NON-NLS-1$
+        if (yesNo != SWT.YES) {
+          return;
+        }
+      }
+      
+      this.window.setFilePath(filePath);
+    }
+    
     try {
       this.window.saveFile();
-      new FileSaveAsAction(this.window).run();
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
