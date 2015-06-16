@@ -31,6 +31,9 @@ public class JoglSphere extends AbstractJoglObject {
 
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
+    
+    // 表と裏を両方表示する
+    gl.glDisable(GL.GL_CULL_FACE);
 
     // TODO this._div=16までしか対応していない。
     this.div = 16;

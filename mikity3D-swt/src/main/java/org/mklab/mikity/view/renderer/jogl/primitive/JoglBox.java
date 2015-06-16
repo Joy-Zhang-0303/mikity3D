@@ -35,6 +35,9 @@ public class JoglBox extends AbstractJoglObject {
 
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
+    
+    // 表と裏を両方表示する
+    gl.glDisable(GL.GL_CULL_FACE);
 
     final float[] vertices = {this.xSize / 2, this.ySize / 2, this.zSize / 2, -this.xSize / 2, this.ySize / 2, this.zSize / 2, -this.xSize / 2, -this.ySize / 2, this.zSize / 2,
         this.xSize / 2, -this.ySize / 2, this.zSize / 2, this.xSize / 2, this.ySize / 2, -this.zSize / 2, -this.xSize / 2, this.ySize / 2, -this.zSize / 2, -this.xSize / 2,

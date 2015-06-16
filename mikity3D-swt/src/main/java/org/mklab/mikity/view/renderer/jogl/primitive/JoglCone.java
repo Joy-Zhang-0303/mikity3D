@@ -37,6 +37,9 @@ public class JoglCone extends AbstractJoglObject {
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
 
+    // 表と裏を両方表示する
+    gl.glDisable(GL.GL_CULL_FACE);
+    
     final float[] vertices = new float[(this.div + 2) * 3];
 
     // TODO 描画は出来てますが、Normal3fを使うとバグがでます。
