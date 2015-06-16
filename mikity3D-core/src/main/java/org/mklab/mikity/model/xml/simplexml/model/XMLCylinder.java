@@ -36,6 +36,7 @@ public class XMLCylinder implements Serializable {
   protected String color;
 
   /** transparent */
+  @Attribute(name="transparent", required=false)
   protected boolean transparent;
 
   /** rotation */
@@ -43,7 +44,7 @@ public class XMLCylinder implements Serializable {
   protected Rotation rotation;
 
   /** location */
-  @Element(name="location")
+  @Element(name="location", required=false)
   protected Location location;
 
   /** Field propertyChangeListeners */
@@ -54,8 +55,8 @@ public class XMLCylinder implements Serializable {
    */
   public XMLCylinder() {
     this.color = "red"; //$NON-NLS-1$
-    this.rotation = new Rotation();
-    this.location = new Location();
+    //this.location = new Location();
+    //this.rotation = new Rotation();
     this.propertyChangeListeners = new Vector<>();
   }
 

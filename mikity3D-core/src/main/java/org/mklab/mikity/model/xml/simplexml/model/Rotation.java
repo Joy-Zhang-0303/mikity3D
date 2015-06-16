@@ -28,7 +28,9 @@ public class Rotation implements java.io.Serializable {
    * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
    */
   public Rotation() {
-    super();
+    this.xRotation = 0;
+    this.yRotation = 0;
+    this.zRotation = 0;
   }
 
   /**

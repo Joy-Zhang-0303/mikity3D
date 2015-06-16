@@ -30,10 +30,10 @@ public class XMLQuadPolygon {
   @Attribute(name="color")
   private String color;
   
-  @Element(required=false)
+  @Element(name="location", required=false)
   private Location location;
   
-  @Element(required=false)
+  @Element(name="rotation", required=false)
   private Rotation rotation;
 
   private Vector3[] normal = new Vector3[4];
@@ -49,8 +49,8 @@ public class XMLQuadPolygon {
   public XMLQuadPolygon() {
     this.points = new ArrayList<>(4);
     this.color = "orange"; //$NON-NLS-1$
-    this.location = new Location();
-    this.rotation = new Rotation();
+    //this.location = new Location();
+    //this.rotation = new Rotation();
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 

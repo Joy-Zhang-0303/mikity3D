@@ -47,8 +47,8 @@ public class XMLTrianglePolygon {
   public XMLTrianglePolygon() {
     this.points = new ArrayList<>(3);
     this.color = "orange"; //$NON-NLS-1$
-    this.location = new Location();
-    this.rotation = new Rotation();
+    //this.location = new Location();
+    //this.rotation = new Rotation();
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
     //setNormalVector();
   }

@@ -34,7 +34,7 @@ public class XMLBox implements java.io.Serializable {
   private String color;
 
   /** transparent */
-  @Attribute(name="transparent")
+  @Attribute(name="transparent", required=false)
   private boolean transparent;
 
   /** rotation */
@@ -42,7 +42,7 @@ public class XMLBox implements java.io.Serializable {
   private Rotation rotation;
 
   /** location */
-  @Element(name="location")
+  @Element(name="location", required=false)
   private Location location;
 
   /** propertyChangeListeners */
@@ -53,8 +53,8 @@ public class XMLBox implements java.io.Serializable {
    */
   public XMLBox() {
     this.color = "red"; //$NON-NLS-1$
-    this.rotation = new Rotation();
-    this.location = new Location();
+    //this.rotation = new Rotation();
+    //this.location = new Location();
     this.propertyChangeListeners = new Vector<>();
   } 
 
@@ -213,7 +213,7 @@ public class XMLBox implements java.io.Serializable {
    * @param newValue the new value of the property.
    * @param oldValue the old value of the property.
    */
-  protected void notifyPropertyChangeListeners(java.lang.String fieldName, java.lang.Object oldValue, java.lang.Object newValue) {
+  protected void notifyPropertyChangeListeners(String fieldName, Object oldValue, Object newValue) {
     if (this.propertyChangeListeners == null) return;
     java.beans.PropertyChangeEvent event = new java.beans.PropertyChangeEvent(this, fieldName, oldValue, newValue);
 
@@ -237,7 +237,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @param color the value of field 'color'.
    */
-  public void setColor(java.lang.String color) {
+  public void setColor(String color) {
     this.color = color;
   }
 

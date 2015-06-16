@@ -244,7 +244,7 @@ public class AddPrimitiveDialog {
    * プリミティブを追加する
    */
   void addPrimitive() {
-    final Rotation rot = new Rotation();
+    final Rotation rotation = new Rotation();
     final Location location = new Location();
 
     switch (this.selectedIndex) {
@@ -253,14 +253,14 @@ public class AddPrimitiveDialog {
         box.setXsize(this.parameter1.getFloatValue());
         box.setYsize(this.parameter2.getFloatValue());
         box.setZsize(this.parameter3.getFloatValue());
-        if (getRotation(rot) != null) {
-          box.setRotation(getRotation(rot));
+        if (getRotation(rotation) != null) {
+          box.setRotation(getRotation(rotation));
         }
         if (getLocation(location) != null) {
           box.setLocation(getLocation(location));
         }
         box.setColor(this.colorCombo.getText());
-        box.setLocation(location);
+        //box.setLocation(location);
         this.group.addXMLBox(box);
         break;
       case cylinderFlag:
@@ -268,28 +268,28 @@ public class AddPrimitiveDialog {
         cylinder.setRadius(this.parameter1.getFloatValue());
         cylinder.setHeight(this.parameter2.getFloatValue());
         cylinder.setDiv(setDiv(this.parameter3));
-        if (getRotation(rot) != null) {
-          cylinder.setRotation(getRotation(rot));
+        if (getRotation(rotation) != null) {
+          cylinder.setRotation(getRotation(rotation));
         }
         if (getLocation(location) != null) {
           cylinder.setLocation(getLocation(location));
         }
         cylinder.setColor(this.colorCombo.getText());
-        cylinder.setLocation(location);
+        //cylinder.setLocation(location);
         this.group.addXMLCylinder(cylinder);
         break;
       case sphereFlag:
         final XMLSphere sphere = new XMLSphere();
         sphere.setRadius(this.parameter1.getFloatValue());
         sphere.setDiv(setDiv(this.parameter2));
-        if (getRotation(rot) != null) {
-          sphere.setRotation(getRotation(rot));
+        if (getRotation(rotation) != null) {
+          sphere.setRotation(getRotation(rotation));
         }
         if (getLocation(location) != null) {
           sphere.setLocation(getLocation(location));
         }
         sphere.setColor(this.colorCombo.getText());
-        sphere.setLocation(location);
+        //sphere.setLocation(location);
         this.group.addXMLSphere(sphere);
         break;
       case coneFlag:
@@ -297,14 +297,14 @@ public class AddPrimitiveDialog {
         cone.setRadius(this.parameter1.getFloatValue());
         cone.setHeight(this.parameter2.getFloatValue());
         cone.setDiv(setDiv(this.parameter3));
-        if (getRotation(rot) != null) {
-          cone.setRotation(getRotation(rot));
+        if (getRotation(rotation) != null) {
+          cone.setRotation(getRotation(rotation));
         }
         if (getLocation(location) != null) {
           cone.setLocation(getLocation(location));
         }
         cone.setColor(this.colorCombo.getText());
-        cone.setLocation(location);
+        //cone.setLocation(location);
         this.group.addXMLCone(cone);
         break;
       default:

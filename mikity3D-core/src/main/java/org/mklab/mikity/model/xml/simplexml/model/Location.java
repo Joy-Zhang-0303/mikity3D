@@ -13,23 +13,25 @@ import org.simpleframework.xml.Root;
 public class Location implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** z */
-  @Attribute(name="z")
-  private float z;
-  
+  /** x */
+  @Attribute(name="x")
+  private float x;
+
   /** y */
   @Attribute(name="y")
   private float y;
 
-  /** x */
-  @Attribute(name="x")
-  private float x;
+  /** z */
+  @Attribute(name="z")
+  private float z;
 
   /**
    * 新しく生成された<code>Location</code>オブジェクトを初期化します。
    */
   public Location() {
-    super();
+    this.x = 0;
+    this.y = 0;
+    this.z = 0;
   }
   
   /**

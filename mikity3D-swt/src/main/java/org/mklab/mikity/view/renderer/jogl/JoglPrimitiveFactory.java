@@ -62,9 +62,9 @@ public class JoglPrimitiveFactory {
     final Rotation boxRotation = box.getRotation();
     
     if (boxLocation != null && boxRotation != null) {
-      final float xLocation = boxLocation.getX() * 10f;
-      final float yLocation = boxLocation.getY() * 10f;
-      final float zLocation = boxLocation.getZ() * 10f;
+      final float xLocation = boxLocation.getX();
+      final float yLocation = boxLocation.getY();
+      final float zLocation = boxLocation.getZ();
       final float xRotation = boxRotation.getXrotation();
       final float yRotation = boxRotation.getYrotation();
       final float zRotation = boxRotation.getZrotation();
