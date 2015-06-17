@@ -18,13 +18,12 @@ import org.mklab.mikity.view.gui.ModelingWindow;
  */
 public class FileExitAction extends Action {
 
+  /** ウィンドウ */
   private ModelingWindow window;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>FileExitAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
-   * 
    */
   public FileExitAction(final ModelingWindow window) {
     this.window = window;
@@ -33,7 +32,7 @@ public class FileExitAction extends Action {
   }
 
   /**
-   * @see org.eclipse.jface.action.IAction#run()
+   * {@inheritDoc}
    */
   @Override
   public void run() {
@@ -41,15 +40,7 @@ public class FileExitAction extends Action {
       int yesNo = MessagegUtil.showYesNoCancel(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
       switch (yesNo) {
         case SWT.YES:
-//          try {
             new FileSaveAction(this.window).run();
-//            final FileDialog dialog = new FileDialog(this.window.getShell());
-//            final String path = dialog.getFileName();
-//            this.window.setFile(path);
-//            this.window.saveFile();
-//          } catch (Mikity3dSerializeDeserializeException e) {
-//            throw new RuntimeException(e);
-//          }
           break;
         case SWT.NO:
           break;
