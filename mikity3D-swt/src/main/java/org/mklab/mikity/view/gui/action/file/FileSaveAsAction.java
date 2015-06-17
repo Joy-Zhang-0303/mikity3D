@@ -44,9 +44,13 @@ public class FileSaveAsAction extends Action {
     dialog.setText(Messages.getString("FileSaveAsAction.1")); //$NON-NLS-1$
     dialog.setFilterExtensions(new String[] {"*.m3d", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
 
-    final String filePath = dialog.open();
+    String filePath = dialog.open();
     if (filePath == null) {
       return;
+    }
+    
+    if (filePath.endsWith(".m3d") == false) { //$NON-NLS-1$
+      filePath = filePath + ".m3d"; //$NON-NLS-1$
     }
     
     final File file = new File(filePath);
@@ -55,6 +59,7 @@ public class FileSaveAsAction extends Action {
       if (yesNo != SWT.YES) {
         return;
       }
+      file.delete();
     }
 
     this.window.setFilePath(filePath);
