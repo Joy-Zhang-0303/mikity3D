@@ -45,7 +45,7 @@ import org.mklab.mikity.view.renderer.jogl.JoglModeler;
  */
 public class ModelingWindow extends ApplicationWindow {
   /** */
-  Action FILE_NEW_ACTION = new FileNewAction(this);
+  //Action FILE_NEW_ACTION = new FileNewAction(this);
   /** */
   Action FILE_OPEN_ACTION = new FileOpenAction(this);
   /** */
@@ -132,7 +132,6 @@ public class ModelingWindow extends ApplicationWindow {
    */
   public void setFilePath(String filePath) {
     this.file = new File(filePath);
-    //this.modeler.createViewer();
   }
   
   /**
@@ -149,7 +148,7 @@ public class ModelingWindow extends ApplicationWindow {
   @Override
   protected MenuManager createMenuManager() {
     final MenuManager fileMenu = new MenuManager(Messages.getString("MainWindow.8")); //$NON-NLS-1$
-    fileMenu.add(this.FILE_NEW_ACTION);
+    //fileMenu.add(this.FILE_NEW_ACTION);
     fileMenu.add(this.FILE_OPEN_ACTION);
     fileMenu.add(this.FILE_SAVE_ACTION);
     fileMenu.add(this.FILE_SAVE_AS_ACTION);
@@ -233,7 +232,6 @@ public class ModelingWindow extends ApplicationWindow {
     this.root.getMikity3dData();
     final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
     marshaller.marshal(this.file);
-    //setFile(this.file.getPath());
     this.dirty = false;
   }
 
