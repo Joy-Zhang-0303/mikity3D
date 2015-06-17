@@ -313,49 +313,49 @@ public class EditTrianglePolygonDialog {
    * @return boolean
    */
   boolean Check() {
-    if (this.newVertex1X.checkParam() == false) {
+    if (this.newVertex1X.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex1Y.checkParam() == false) {
+    if (this.newVertex1Y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex1Z.checkParam() == false) {
+    if (this.newVertex1Z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex2X.checkParam() == false) {
+    if (this.newVertex2X.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex2Y.checkParam() == false) {
+    if (this.newVertex2Y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex2Z.checkParam() == false) {
+    if (this.newVertex2Z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex3X.checkParam() == false) {
+    if (this.newVertex3X.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex3Y.checkParam() == false) {
+    if (this.newVertex3Y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex3Z.checkParam() == false) {
+    if (this.newVertex3Z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newRightVertexX.checkParam() == false) {
+    if (this.newRightVertexX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newRightVertexY.checkParam() == false) {
+    if (this.newRightVertexY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newRightVertexZ.checkParam() == false) {
+    if (this.newRightVertexZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newLeftVertexX.checkParam() == false) {
+    if (this.newLeftVertexX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newLeftVertexY.checkParam() == false) {
+    if (this.newLeftVertexY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newLeftVertexZ.checkParam() == false) {
+    if (this.newLeftVertexZ.containsOnlyNumbers() == false) {
       return false;
     }
     return true;

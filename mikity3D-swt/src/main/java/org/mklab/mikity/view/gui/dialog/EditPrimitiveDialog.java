@@ -60,11 +60,11 @@ public class EditPrimitiveDialog {
   private ParameterInputBox newParam1;
   private ParameterInputBox newParam2;
   private ParameterInputBox newParam3;
-  
+
   private ParameterInputBox newRotationX;
   private ParameterInputBox newRotationY;
   private ParameterInputBox newRotationZ;
-  
+
   private ParameterInputBox newLocationX;
   private ParameterInputBox newLocationY;
   private ParameterInputBox newLocationZ;
@@ -239,22 +239,23 @@ public class EditPrimitiveDialog {
 
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        // 数字以外が入っていないかを判断
-        if (Check()) {
-          final MessageBox message = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          message.setMessage(Messages.getString("EditPrimitiveDialog.21")); //$NON-NLS-1$
-          message.setText(Messages.getString("EditPrimitiveDialog.22")); //$NON-NLS-1$
-          int yesNo = message.open();
-          if (yesNo == SWT.YES) {
-            setParam();
-            EditPrimitiveDialog.this.sShell.close();
-          }
-        } else {
+        if (containsOnlyNumbers() == false) {
           final MessageBox message = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.ICON_WARNING);
           message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
           message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
           message.open();
+          return;
         }
+
+//        final MessageBox message = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+//        message.setMessage(Messages.getString("EditPrimitiveDialog.21")); //$NON-NLS-1$
+//        message.setText(Messages.getString("EditPrimitiveDialog.22")); //$NON-NLS-1$
+//        int yesNo = message.open();
+//        if (yesNo == SWT.YES) {
+          setParam();
+          EditPrimitiveDialog.this.sShell.close();
+//        }
+
       }
     });
 
@@ -278,36 +279,36 @@ public class EditPrimitiveDialog {
   }
 
   /**
-   * 数字以外が入力されていたらfalseを返す
+   * 数字のみが入力されているか判定します。
    * 
-   * @return boolean
+   * @return boolean 数字のみが入力されていればtrue、そうでなければfalse
    */
-  boolean Check() {
-    if (this.newParam1.checkParam() == false) {
+  boolean containsOnlyNumbers() {
+    if (this.newParam1.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newParam2.checkParam() == false) {
+    if (this.newParam2.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.parameter3.isVisible() && this.newParam3.isVisible() && this.newParam3.checkParam() == false) {
+    if (this.parameter3.isVisible() && this.newParam3.isVisible() && this.newParam3.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newRotationX.checkParam() == false) {
+    if (this.newRotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newRotationY.checkParam() == false) {
+    if (this.newRotationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newRotationZ.checkParam() == false) {
+    if (this.newRotationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newLocationX.checkParam() == false) {
+    if (this.newLocationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newLocationY.checkParam() == false) {
+    if (this.newLocationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newLocationZ.checkParam() == false) {
+    if (this.newLocationZ.containsOnlyNumbers() == false) {
       return false;
     }
     return true;

@@ -373,31 +373,31 @@ public class ConfigDialog {
    * @return boolean
    */
   boolean check() {
-    if (this.lightX.checkParam() == false) {
+    if (this.lightX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.lightY.checkParam() == false) {
+    if (this.lightY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.lightZ.checkParam() == false) {
+    if (this.lightZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.viewX.checkParam() == false) {
+    if (this.viewX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.viewY.checkParam() == false) {
+    if (this.viewY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.viewZ.checkParam() == false) {
+    if (this.viewZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.viewRotationX.checkParam() == false) {
+    if (this.viewRotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.viewRotationY.checkParam() == false) {
+    if (this.viewRotationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.viewRotationZ.checkParam() == false) {
+    if (this.viewRotationZ.containsOnlyNumbers() == false) {
       return false;
     }
     return true;

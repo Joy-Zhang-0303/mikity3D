@@ -210,31 +210,31 @@ public class AddPrimitiveDialog {
    * @return boolean 数字以外が入力されていればfalse
    */
   boolean checkParamters() {
-    if (this.parameter1.checkParam() == false) {
+    if (this.parameter1.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.parameter2.checkParam() == false) {
+    if (this.parameter2.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.parameter3.checkParam() == false) {
+    if (this.parameter3.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationX.checkParam() == false) {
+    if (this.rotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationY.checkParam() == false) {
+    if (this.rotationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationZ.checkParam() == false) {
+    if (this.rotationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationX.checkParam() == false) {
+    if (this.locationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationY.checkParam() == false) {
+    if (this.locationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationZ.checkParam() == false) {
+    if (this.locationZ.containsOnlyNumbers() == false) {
       return false;
     }
     return true;

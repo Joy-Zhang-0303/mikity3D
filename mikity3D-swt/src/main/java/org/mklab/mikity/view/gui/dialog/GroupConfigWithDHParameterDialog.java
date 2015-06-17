@@ -264,28 +264,28 @@ public class GroupConfigWithDHParameterDialog {
    * @return boolean
    */
   boolean Check() {
-    if (this.a.checkParam() == false) {
+    if (this.a.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.alpha.checkParam() == false) {
+    if (this.alpha.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.d.checkParam() == false) {
+    if (this.d.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.theta.checkParam() == false) {
+    if (this.theta.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnA.checkParam() == false) {
+    if (this.columnA.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnAlpha.checkParam() == false) {
+    if (this.columnAlpha.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnD.checkParam() == false) {
+    if (this.columnD.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnTheta.checkParam() == false) {
+    if (this.columnTheta.containsOnlyNumbers() == false) {
       return false;
     }
     return true;

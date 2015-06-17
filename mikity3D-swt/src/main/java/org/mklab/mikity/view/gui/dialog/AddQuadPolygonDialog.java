@@ -290,61 +290,61 @@ public class AddQuadPolygonDialog {
    * @return boolean
    */
   boolean Check() {
-    if (this.vertex1X.checkParam() == false) {
+    if (this.vertex1X.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex1y.checkParam() == false) {
+    if (this.vertex1y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex1z.checkParam() == false) {
+    if (this.vertex1z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationX.checkParam() == false) {
+    if (this.rotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex2x.checkParam() == false) {
+    if (this.vertex2x.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex2y.checkParam() == false) {
+    if (this.vertex2y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex2z.checkParam() == false) {
+    if (this.vertex2z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex3x.checkParam() == false) {
+    if (this.vertex3x.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex3y.checkParam() == false) {
+    if (this.vertex3y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex3z.checkParam() == false) {
+    if (this.vertex3z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex4x.checkParam() == false) {
+    if (this.vertex4x.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex4y.checkParam() == false) {
+    if (this.vertex4y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.vertex4z.checkParam() == false) {
+    if (this.vertex4z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationX.checkParam() == false) {
+    if (this.rotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationY.checkParam() == false) {
+    if (this.rotationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationZ.checkParam() == false) {
+    if (this.rotationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationX.checkParam() == false) {
+    if (this.locationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationY.checkParam() == false) {
+    if (this.locationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationZ.checkParam() == false) {
+    if (this.locationZ.containsOnlyNumbers() == false) {
       return false;
     }
     return true;

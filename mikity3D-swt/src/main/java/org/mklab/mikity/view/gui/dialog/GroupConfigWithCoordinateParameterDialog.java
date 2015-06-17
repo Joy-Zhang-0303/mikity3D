@@ -272,40 +272,40 @@ public class GroupConfigWithCoordinateParameterDialog {
    * @return boolean
    */
   boolean Check() {
-    if (this.locationX.checkParam() == false) {
+    if (this.locationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationY.checkParam() == false) {
+    if (this.locationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationZ.checkParam() == false) {
+    if (this.locationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationX.checkParam() == false) {
+    if (this.rotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationY.checkParam() == false) {
+    if (this.rotationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationZ.checkParam() == false) {
+    if (this.rotationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnLocationX.checkParam() == false) {
+    if (this.columnLocationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnLocationY.checkParam() == false) {
+    if (this.columnLocationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnLocationZ.checkParam() == false) {
+    if (this.columnLocationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnRotationX.checkParam() == false) {
+    if (this.columnRotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnRotationY.checkParam() == false) {
+    if (this.columnRotationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnRotationZ.checkParam() == false) {
+    if (this.columnRotationZ.containsOnlyNumbers() == false) {
       return false;
     }
     return true;

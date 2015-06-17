@@ -187,11 +187,11 @@ public class ParameterInputBox extends Composite {
   }
 
   /**
-   * テキストボックスに入っている値が 数字であるか判別します。
+   * テキストボックスに 数字のみが入っているか判別します。
    * 
-   * @return boolean テキストボックスに入っている値が 数字ではないときにfalse
+   * @return boolean テキストボックスに 数字のみが入っていればtrue、そうでなければfalse
    */
-  public boolean checkParam() {
+  public boolean containsOnlyNumbers() {
     try {
       Double.parseDouble(this.text.getText());
     } catch (NumberFormatException e) {
