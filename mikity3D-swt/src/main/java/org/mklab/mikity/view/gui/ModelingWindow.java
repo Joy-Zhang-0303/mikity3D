@@ -126,12 +126,12 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * ファイルパスを設定します。
+   * ファイルを設定します。
    * 
-   * @param filePath ファイルパス
+   * @param file ファイル
    */
-  public void setFilePath(String filePath) {
-    this.file = new File(filePath);
+  public void setFile(File file) {
+    this.file = file;
   }
   
   /**

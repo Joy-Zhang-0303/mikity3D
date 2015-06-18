@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.view.gui.action.file;
 
+import java.io.File;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
@@ -46,7 +48,8 @@ public class FileOpenAction extends Action {
     }
     
     try {
-      this.window.setFilePath(fileName);
+      final File file = new File(fileName);
+      this.window.setFile(file);
       this.window.loadFile();
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);

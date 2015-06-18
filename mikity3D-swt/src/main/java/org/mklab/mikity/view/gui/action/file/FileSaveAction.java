@@ -40,6 +40,7 @@ public class FileSaveAction extends Action {
   @Override
   public void run() {
     final File file = this.window.getFile();
+    
     if (file == null) {
       final FileDialog dialog = new FileDialog(this.window.getShell(), SWT.SAVE);
       dialog.setText(Messages.getString("FileSaveAsAction.1")); //$NON-NLS-1$
@@ -59,10 +60,9 @@ public class FileSaveAction extends Action {
         if (yesNo != SWT.YES) {
           return;
         }
-        newFile.delete();
       }
       
-      this.window.setFilePath(filePath);
+      this.window.setFile(newFile);
     }
     
     try {

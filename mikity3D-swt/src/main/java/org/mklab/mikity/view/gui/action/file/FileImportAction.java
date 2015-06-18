@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.view.gui.action.file;
 
+import java.io.File;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.FileDialog;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
@@ -38,13 +40,14 @@ public class FileImportAction extends Action {
     final FileDialog dialog = new FileDialog(this.window.getShell());
     dialog.setFilterExtensions(new String[] {"*.m3d", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
     
-    final String fileName = dialog.open();
-    if (fileName == null) {
+    final String filePath = dialog.open();
+    if (filePath == null) {
       return;
     }
     
     try {
-      this.window.setFilePath(fileName);
+      final File file = new File(filePath);
+      this.window.setFile(file);
       this.window.importFile();
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);

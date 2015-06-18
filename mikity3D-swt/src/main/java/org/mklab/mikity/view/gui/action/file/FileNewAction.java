@@ -46,15 +46,15 @@ public class FileNewAction extends Action {
     dialog.setText(Messages.getString("FileNewAction.2")); //$NON-NLS-1$
     dialog.setFilterExtensions(new String[] {"*.m3d", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
     
-    final String fileName = dialog.open();
-    if (fileName == null) {
+    final String filePath = dialog.open();
+    if (filePath == null) {
       return;
     }
     
     try {
-      final File file = new File(fileName);
+      final File file = new File(filePath);
       if (file.createNewFile()) {
-        this.window.setFilePath(fileName);
+        this.window.setFile(file);
         this.window.loadFile();
       } else {
         // 新規作成したいが、もともとその名前のファイルが存在するとき
@@ -64,7 +64,7 @@ public class FileNewAction extends Action {
         final int yesNo = message.open();
 
         if (yesNo == SWT.YES) {
-          this.window.setFilePath(fileName);
+          this.window.setFile(file);
           this.window.loadFile();
         } else if (yesNo == SWT.NO) {
           return;

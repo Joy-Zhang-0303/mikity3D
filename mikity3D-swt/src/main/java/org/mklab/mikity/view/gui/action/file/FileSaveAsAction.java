@@ -54,15 +54,19 @@ public class FileSaveAsAction extends Action {
     }
     
     final File file = new File(filePath);
+    if (file.equals(this.window.getFile())) {
+      new FileSaveAction(this.window).run();
+      return;
+    }
+    
     if (file.exists()) {
       int yesNo = MessagegUtil.showYesNo(this.window.getShell(), Messages.getString("FileSaveAsAction.2")); //$NON-NLS-1$
       if (yesNo != SWT.YES) {
         return;
       }
-      file.delete();
     }
 
-    this.window.setFilePath(filePath);
+    this.window.setFile(file);
     
     try {
       this.window.saveFile();
