@@ -106,7 +106,10 @@ public class AnimationWindow extends ApplicationWindow {
 
   /** */
   private Composite composite;
-
+  
+  /** モデルファイル */
+  private File modelFile;
+  
   /**
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
@@ -120,11 +123,23 @@ public class AnimationWindow extends ApplicationWindow {
   /**
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
+   * @param root ルート
+   * @param modelFile ファイルパス
+   */
+  public AnimationWindow(final Shell parentShell, final Mikity3d root, File modelFile) {
+    this(parentShell, root);
+    this.modelFile = modelFile;
+  }
+
+  /**
+   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
+   * @param parentShell 親シェル
    * @param modelFile モデルファイル
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
   public AnimationWindow(final Shell parentShell, File modelFile) throws Mikity3dSerializeDeserializeException {
     this(parentShell, new Mikity3dFactory().loadFile(modelFile));
+    this.modelFile = modelFile;
   }
 
   /**
@@ -187,6 +202,12 @@ public class AnimationWindow extends ApplicationWindow {
     if (this.root != null && this.root.getConfiguration(0).getData() != null) {
       setTimeData(new File(this.root.getConfiguration(0).getData()));
     }
+
+    if (this.root != null) {
+      setModelData(getFrame());
+      this.modelFilePathText.setText(this.modelFile.getAbsolutePath());
+    }
+    
     return parent;
   }
 
@@ -490,6 +511,7 @@ public class AnimationWindow extends ApplicationWindow {
   public void createRoot(String filePath) {
     try {
       final File file = new File(filePath);
+      this.modelFile = file;
       final Mikity3dFactory m3f = new Mikity3dFactory();
       final Mikity3d mroot = m3f.loadFile(file);
       setRoot(mroot);

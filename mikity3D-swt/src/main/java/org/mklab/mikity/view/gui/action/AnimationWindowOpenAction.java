@@ -8,7 +8,6 @@ package org.mklab.mikity.view.gui.action;
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.view.gui.AnimationWindow;
 import org.mklab.mikity.view.gui.ModelingWindow;
-import org.mklab.mikity.view.gui.SceneGraphTree;
 
 
 /**
@@ -39,9 +38,9 @@ public class AnimationWindowOpenAction extends Action {
    */
   @Override
   public void run() {
-    final AnimationWindow viewer = new AnimationWindow(this.window.getShell(), this.window.getRoot());
-    final SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(this.window.getRoot().getModel(0).getGroup(0), false);
+    final AnimationWindow viewer = new AnimationWindow(this.window.getShell(), this.window.getRoot(), this.window.getFile());
+//    final SceneGraphTree tree = new SceneGraphTree();
+//    tree.setAllTransparent(this.window.getRoot().getModel(0).getGroup(0), false);
     viewer.open();
     this.window.setDirty(true);
   }
