@@ -464,12 +464,23 @@ public class AnimationWindow extends ApplicationWindow {
         
         final String filePath = dialog.open();
         if (filePath != null) {
-          createRoot(filePath);
-          setModelData(getFrame());
+          loadModelData(filePath);
         }
       }
+
     });
   }
+  
+  /**
+   * モデルデータを読み込みます。
+   * @param filePath モデルデータのファイルパス
+   */
+  public void loadModelData(final String filePath) {
+    AnimationWindow.this.modelFilePathText.setText(filePath);
+    createRoot(filePath);
+    setModelData(getFrame());
+  }
+
 
   /**
    * ルートを作ります。
@@ -528,8 +539,11 @@ public class AnimationWindow extends ApplicationWindow {
       @Override
       public void widgetSelected(SelectionEvent e) {
         final FileDialog dialog = new FileDialog(parent.getShell());
+        dialog.setFilterExtensions(new String[] {"*.mat", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
+        
         final String filePath = dialog.open();
         if (filePath != null) {
+          AnimationWindow.this.filePathText.setText(filePath);
           setTimeData(new File(filePath));
         }
       }
