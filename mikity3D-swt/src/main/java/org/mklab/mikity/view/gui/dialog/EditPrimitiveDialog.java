@@ -112,6 +112,7 @@ public class EditPrimitiveDialog {
   /**
    * シェルを作成
    */
+  @SuppressWarnings({"unused", "unused"})
   private void createSShell() {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout = new GridLayout();
@@ -137,20 +138,18 @@ public class EditPrimitiveDialog {
     this.parameter2 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
     this.parameter3 = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
     final Label label = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-
     setGridLayout(label, 2);
+
+    this.locationX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.6"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.locationY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.7"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.locationZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.8"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    final Label label2 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(label2, 2);
 
     this.rotationX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.3"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     this.rotationY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.4"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     this.rotationZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.5"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    final Label label2 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-
-    setGridLayout(label2, 2);
-    this.locationX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.6"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    this.locationY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.7"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    this.locationZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditPrimitiveDialog.8"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label label3 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-
     setGridLayout(label3, 2);
 
     this.color = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "color", ""); //$NON-NLS-1$ //$NON-NLS-2$
@@ -176,21 +175,21 @@ public class EditPrimitiveDialog {
     this.uLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.uLabel3, 1);
 
-    this.newRotationX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.newRotationY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.newRotationZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    final Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label5, 3);
-
     this.newLocationX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
     this.newLocationY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
     this.newLocationZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    final Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(label5, 3);
+
+    this.newRotationX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
+    this.newRotationY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
+    this.newRotationZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
     final Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label6, 3);
 
@@ -236,7 +235,6 @@ public class EditPrimitiveDialog {
     okButton.setText(Messages.getString("EditPrimitiveDialog.20")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containsOnlyNumbers() == false) {
@@ -247,15 +245,8 @@ public class EditPrimitiveDialog {
           return;
         }
 
-//        final MessageBox message = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-//        message.setMessage(Messages.getString("EditPrimitiveDialog.21")); //$NON-NLS-1$
-//        message.setText(Messages.getString("EditPrimitiveDialog.22")); //$NON-NLS-1$
-//        int yesNo = message.open();
-//        if (yesNo == SWT.YES) {
-          setParam();
-          EditPrimitiveDialog.this.sShell.close();
-//        }
-
+        setParameter();
+        EditPrimitiveDialog.this.sShell.close();
       }
     });
 
@@ -264,7 +255,6 @@ public class EditPrimitiveDialog {
     cancelButton.setText(Messages.getString("EditPrimitiveDialog.25")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         final MessageBox message = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
@@ -317,7 +307,7 @@ public class EditPrimitiveDialog {
   /**
    * パラメータを変更する
    */
-  void setParam() {
+  void setParameter() {
     final Rotation rot = new Rotation();
     final Location loc = new Location();
 
