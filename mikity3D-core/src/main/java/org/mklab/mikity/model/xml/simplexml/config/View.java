@@ -12,16 +12,16 @@ public class View implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** xRotation */
-  @Attribute(name="xrotation")
-  private double xRotation;
+  @Attribute(name="rotationX")
+  private double rotationX;
 
   /** yRotation */
-  @Attribute(name="yrotation")
-  private double yRotation;
+  @Attribute(name="rotationY")
+  private double rotationY;
   
   /** zRotation */
-  @Attribute(name="zrotation")
-  private double zRotation;
+  @Attribute(name="rotationZ")
+  private double rotationZ;
 
   /** x */
   @Attribute(name="x")
@@ -52,13 +52,13 @@ public class View implements java.io.Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + Float.floatToIntBits(this.x);
-    long temp = Double.doubleToLongBits(this.xRotation);
+    long temp = Double.doubleToLongBits(this.rotationX);
     result = prime * result + (int)(temp ^ (temp >>> 32));
     result = prime * result + Float.floatToIntBits(this.y);
-    temp = Double.doubleToLongBits(this.yRotation);
+    temp = Double.doubleToLongBits(this.rotationY);
     result = prime * result + (int)(temp ^ (temp >>> 32));
     result = prime * result + Float.floatToIntBits(this.z);
-    temp = Double.doubleToLongBits(this.zRotation);
+    temp = Double.doubleToLongBits(this.rotationZ);
     result = prime * result + (int)(temp ^ (temp >>> 32));
     return result;
   }
@@ -81,19 +81,19 @@ public class View implements java.io.Serializable {
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
-    if (Double.doubleToLongBits(this.xRotation) != Double.doubleToLongBits(other.xRotation)) {
+    if (Double.doubleToLongBits(this.rotationX) != Double.doubleToLongBits(other.rotationX)) {
       return false;
     }
     if (Float.floatToIntBits(this.y) != Float.floatToIntBits(other.y)) {
       return false;
     }
-    if (Double.doubleToLongBits(this.yRotation) != Double.doubleToLongBits(other.yRotation)) {
+    if (Double.doubleToLongBits(this.rotationY) != Double.doubleToLongBits(other.rotationY)) {
       return false;
     }
     if (Float.floatToIntBits(this.z) != Float.floatToIntBits(other.z)) {
       return false;
     }
-    if (Double.doubleToLongBits(this.zRotation) != Double.doubleToLongBits(other.zRotation)) {
+    if (Double.doubleToLongBits(this.rotationZ) != Double.doubleToLongBits(other.rotationZ)) {
       return false;
     }
     return true;
@@ -104,8 +104,8 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'xrotate'.
    */
-  public double getXrotation() {
-    return this.xRotation;
+  public double getRotationX() {
+    return this.rotationX;
   }
 
   /**
@@ -122,8 +122,8 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'yrotate'.
    */
-  public double getYrotation() {
-    return this.yRotation;
+  public double getRotationY() {
+    return this.rotationY;
   }
 
   /**
@@ -140,8 +140,8 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'zrotate'.
    */
-  public double getZrotation() {
-    return this.zRotation;
+  public double getRotationZ() {
+    return this.rotationZ;
   }
 
   /**
@@ -156,10 +156,10 @@ public class View implements java.io.Serializable {
   /**
    * Sets the value of field 'xrotate'.
    * 
-   * @param xRotation the value of field 'xrotate'.
+   * @param rotationX the value of field 'xrotate'.
    */
-  public void setXrotation(double xRotation) {
-    this.xRotation = xRotation;
+  public void setRotationX(double rotationX) {
+    this.rotationX = rotationX;
   }
 
   /**
@@ -174,10 +174,10 @@ public class View implements java.io.Serializable {
   /**
    * Sets the value of field 'yrotate'.
    * 
-   * @param yRotation the value of field 'yrotate'.
+   * @param rotationY the value of field 'yrotate'.
    */
-  public void setYrotation(double yRotation) {
-    this.yRotation = yRotation;
+  public void setRotationY(double rotationY) {
+    this.rotationY = rotationY;
   }
 
   /**
@@ -192,9 +192,9 @@ public class View implements java.io.Serializable {
   /**
    * Sets the value of field 'zrotate'.
    * 
-   * @param zRotation the value of field 'zrotate'.
+   * @param rotationZ the value of field 'zrotate'.
    */
-  public void setZrotation(double zRotation) {
-    this.zRotation = zRotation;
+  public void setRotationZ(double rotationZ) {
+    this.rotationZ = rotationZ;
   }
 }

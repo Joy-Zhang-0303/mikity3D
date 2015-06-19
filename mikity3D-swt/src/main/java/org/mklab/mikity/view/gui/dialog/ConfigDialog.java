@@ -226,9 +226,9 @@ public class ConfigDialog {
       this.viewX.setText("" + view.getX()); //$NON-NLS-1$
       this.viewY.setText("" + view.getY()); //$NON-NLS-1$
       this.viewZ.setText("" + view.getZ()); //$NON-NLS-1$
-      this.viewRotationX.setText("" + view.getXrotation()); //$NON-NLS-1$
-      this.viewRotationY.setText("" + view.getYrotation()); //$NON-NLS-1$
-      this.viewRotationZ.setText("" + view.getZrotation()); //$NON-NLS-1$
+      this.viewRotationX.setText("" + view.getRotationX()); //$NON-NLS-1$
+      this.viewRotationY.setText("" + view.getRotationY()); //$NON-NLS-1$
+      this.viewRotationZ.setText("" + view.getRotationZ()); //$NON-NLS-1$
     }
     if (this.configuration.getModelUnit() != null) {
       if (this.configuration.getModelUnit().getAngle() != null) {
@@ -326,9 +326,9 @@ public class ConfigDialog {
     view.setX(this.viewX.getFloatValue());
     view.setY(this.viewY.getFloatValue());
     view.setZ(this.viewZ.getFloatValue());
-    view.setXrotation(this.viewRotationX.getDoubleValue());
-    view.setYrotation(this.viewRotationY.getDoubleValue());
-    view.setZrotation(this.viewRotationZ.getDoubleValue());
+    view.setRotationX(this.viewRotationX.getDoubleValue());
+    view.setRotationY(this.viewRotationY.getDoubleValue());
+    view.setRotationZ(this.viewRotationZ.getDoubleValue());
     this.configuration.setView(view);
 
     if (this.configuration.getBackground() == null) {

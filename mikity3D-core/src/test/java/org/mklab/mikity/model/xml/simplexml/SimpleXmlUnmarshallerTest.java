@@ -94,9 +94,9 @@ public class SimpleXmlUnmarshallerTest {
     expectedView.setX(0.0F);
     expectedView.setY(0.0F);
     expectedView.setZ(1.0F);
-    expectedView.setXrotation(-0.2);
-    expectedView.setYrotation(0.0);
-    expectedView.setZrotation(0.0);
+    expectedView.setRotationX(-0.2);
+    expectedView.setRotationY(0.0);
+    expectedView.setRotationZ(0.0);
     assertThat(actualView, is(expectedView));
 
     final ModelUnit actualModelUnit = actualConfiguration.getModelUnit();

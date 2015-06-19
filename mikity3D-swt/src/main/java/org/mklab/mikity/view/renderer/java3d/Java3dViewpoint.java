@@ -50,13 +50,13 @@ public class Java3dViewpoint {
     if (type == 0) {
       // 視点方向の設定
       final Transform3D transform1 = new Transform3D();
-      transform1.setRotation(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(view.getXrotation())));
+      transform1.setRotation(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(view.getRotationX())));
       
       final Transform3D transform2 = new Transform3D();
-      transform2.setRotation(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(view.getYrotation())));
+      transform2.setRotation(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(view.getRotationY())));
       
       final Transform3D transform3 = new Transform3D();
-      transform3.setRotation(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(view.getZrotation())));
+      transform3.setRotation(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(view.getRotationZ())));
       
       // 視点位置の設定
       final Transform3D transform4 = new Transform3D();
