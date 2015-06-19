@@ -76,7 +76,7 @@ public class GroupConfigWithCoordinateParameterDialog {
     // group.getName());
     this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    System.out.println("group : " + this.group); //$NON-NLS-1$
+    //System.out.println("group : " + this.group); //$NON-NLS-1$
     if (this.group.getName() != null) {
       this.groupName.setText(this.group.getName());
     }
@@ -211,7 +211,7 @@ public class GroupConfigWithCoordinateParameterDialog {
     this.rotationZ = new ParameterInputBox(paramGroup, style, "rotationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.columnRotationZ = new ParameterInputBox(paramGroup, style, 0);
 
-    setParam();
+    setParameter();
   }
 
   /**
@@ -237,7 +237,7 @@ public class GroupConfigWithCoordinateParameterDialog {
   /**
    * Linkdata の column を表示させる
    */
-  private void setParam() {
+  private void setParameter() {
     final LinkData[] linkdata = this.group.getLinkData();
 
     for (int i = 0; i < linkdata.length; i++) {

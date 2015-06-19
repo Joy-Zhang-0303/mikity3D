@@ -86,7 +86,7 @@ public class EditPrimitiveDialog {
     this.primitive = primitive;
     this.groupName = group.getName();
     createSShell();
-    detectPrimitve();
+    setParametersInDialog();
   }
 
   /**
@@ -245,7 +245,7 @@ public class EditPrimitiveDialog {
           return;
         }
 
-        setParameter();
+        updatePrimitiveParameters();
         EditPrimitiveDialog.this.sShell.close();
       }
     });
@@ -305,9 +305,9 @@ public class EditPrimitiveDialog {
   }
 
   /**
-   * パラメータを変更する
+   * パラメータを更新する。
    */
-  void setParameter() {
+  void updatePrimitiveParameters() {
     final Rotation rot = new Rotation();
     final Location loc = new Location();
 
@@ -413,7 +413,6 @@ public class EditPrimitiveDialog {
     rotation.setY(this.newRotationY.getFloatValue());
     rotation.setZ(this.newRotationZ.getFloatValue());
     return rotation;
-
   }
 
   /**
@@ -427,7 +426,6 @@ public class EditPrimitiveDialog {
     location.setY(this.newLocationY.getFloatValue());
     location.setZ(this.newLocationZ.getFloatValue());
     return location;
-
   }
 
   /**
@@ -448,7 +446,7 @@ public class EditPrimitiveDialog {
   /**
    * primitiveの型を判断し、値を入れる
    */
-  private void detectPrimitve() {
+  private void setParametersInDialog() {
     if (this.primitive instanceof XMLBox) {
       final XMLBox box = (XMLBox)this.primitive;
       this.parameter1.setText("" + box.getXsize()); //$NON-NLS-1$
@@ -624,7 +622,9 @@ public class EditPrimitiveDialog {
   }
 
   /**
-   * 平行移動、回転移動の値を読み取る 空の場合はゼロを入れる
+   * 平行移動、回転移動の値を読み取る。
+   * 
+   * 空の場合はゼロを入れる。
    * 
    * @param rotation
    */

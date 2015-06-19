@@ -242,6 +242,7 @@ public class GroupConfigWithDHParameterDialog {
       final String target = linkdata[i].getTargetName();
       final String column = linkdata[i].hasColumnNumber() ? "" + linkdata[i].getColumnNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       final String constant = linkdata[i].hasConstantValue() ? "" + linkdata[i].getConstantValue() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      
       if (target.equals("a")) { //$NON-NLS-1$
         this.columnA.setText(column);
         this.a.setText(constant);
