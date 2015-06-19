@@ -59,11 +59,6 @@ public class EditPrimitiveDialog {
   private ParameterInputBox locationY;
   private ParameterInputBox locationZ;
 
-  private boolean rotationB = true;
-  private boolean locationB = true;
-  private boolean rotationA = true;
-  private boolean locationA = true;
-
   /**
    * コンストラクター
    * 
@@ -274,107 +269,52 @@ public class EditPrimitiveDialog {
    * パラメータを更新する。
    */
   void updatePrimitiveParameters() {
-    final Rotation rotation = new Rotation();
-    final Location location = new Location();
-
-    if (this.rotationX.getFloatValue() == 0 && this.rotationY.getFloatValue() == 0 && this.rotationZ.getFloatValue() == 0) {
-      this.rotationA = false;
-    }
-    if (this.locationX.getFloatValue() == 0 && this.locationY.getFloatValue() == 0 && this.locationZ.getFloatValue() == 0) {
-      this.locationA = false;
-    }
-
     if (this.primitive instanceof XMLBox) {
       final XMLBox box = (XMLBox)this.primitive;
+      box.setColor(this.colorCombo.getColorComboBox().getText());
       box.setXsize(this.parameter1.getFloatValue());
       box.setYsize(this.parameter2.getFloatValue());
       box.setZsize(this.parameter3.getFloatValue());
-      if (this.rotationB == false) {
-        if (this.rotationA == true) {
-          box.setRotation(setRotation(rotation));
-        }
-      } else {
-        setRotation(box.getRotation());
-      }
-      if (this.locationB == false) {
-        if (this.locationA == true) {
-          box.setLocation(setLocation(location));
-        }
-      } else {
-        setLocation(box.getLocation());
-      }
-      box.setColor(this.colorCombo.getColorComboBox().getText());
+      
+      box.setRotation(getRotation());
+      box.setLocation(getLocation());
     } else if (this.primitive instanceof XMLCylinder) {
       final XMLCylinder cylinder = (XMLCylinder)this.primitive;
+      
+      cylinder.setColor(this.colorCombo.getColorComboBox().getText());
       cylinder.setRadius(this.parameter1.getFloatValue());
       cylinder.setHeight(this.parameter2.getFloatValue());
       cylinder.setDiv(setDiv(this.parameter3));
 
-      if (this.rotationB == false) {
-        if (this.rotationA == true) {
-          cylinder.setRotation(setRotation(rotation));
-        }
-      } else {
-        setRotation(cylinder.getRotation());
-      }
-      if (this.locationB == false) {
-        if (this.locationA == true) {
-          cylinder.setLocation(setLocation(location));
-        }
-      } else {
-        setLocation(cylinder.getLocation());
-      }
-      cylinder.setColor(this.colorCombo.getColorComboBox().getText());
+      cylinder.setRotation(getRotation());
+      cylinder.setLocation(getLocation());
     } else if (this.primitive instanceof XMLSphere) {
       final XMLSphere sphere = (XMLSphere)this.primitive;
+      sphere.setColor(this.colorCombo.getColorComboBox().getText());
       sphere.setRadius(this.parameter1.getFloatValue());
       sphere.setDiv(setDiv(this.parameter2));
-      if (this.rotationB == false) {
-        if (this.rotationA == true) {
-          sphere.setRotation(setRotation(rotation));
-        }
-      } else {
-        setRotation(sphere.getRotation());
-      }
-      if (this.locationB == false) {
-        if (this.locationA == true) {
-          sphere.setLocation(setLocation(location));
-        }
-      } else {
-        setLocation(sphere.getLocation());
-      }
-      sphere.setColor(this.colorCombo.getColorComboBox().getText());
+      
+      sphere.setRotation(getRotation());
+      sphere.setLocation(getLocation());
     } else if (this.primitive instanceof XMLCone) {
       final XMLCone cone = (XMLCone)this.primitive;
+      cone.setColor(this.colorCombo.getColorComboBox().getText());
       cone.setRadius(this.parameter1.getFloatValue());
       cone.setHeight(this.parameter2.getFloatValue());
       cone.setDiv(setDiv(this.parameter3));
-      if (this.rotationB == false) {
-        if (this.rotationA == true) {
-          cone.setRotation(setRotation(rotation));
-        }
-      } else {
-        setRotation(cone.getRotation());
-      }
-      if (this.locationB == false) {
-        if (this.locationA == true) {
-          cone.setLocation(setLocation(location));
-        }
-      } else {
-        setLocation(cone.getLocation());
-      }
-      cone.setColor(this.colorCombo.getColorComboBox().getText());
+      
+      cone.setRotation(getRotation());
+      cone.setLocation(getLocation());
     }
-
   }
 
   /**
    * Rotationを設定 受け取ったRotationを変更に応じて設定
    * 
-   * @param rotation
-   * @return rot
+   * @return rotation
    */
-  private Rotation setRotation(Rotation rotation) {
+  private Rotation getRotation() {
+    final Rotation rotation = new Rotation();
     rotation.setX(this.rotationX.getFloatValue());
     rotation.setY(this.rotationY.getFloatValue());
     rotation.setZ(this.rotationZ.getFloatValue());
@@ -384,10 +324,10 @@ public class EditPrimitiveDialog {
   /**
    * Locationを設定 受け取ったLocationを変更に応じて設定
    * 
-   * @param location
-   * @return loc
+   * @return location
    */
-  private Location setLocation(Location location) {
+  private Location getLocation() {
+    final Location location = new Location();
     location.setX(this.locationX.getFloatValue());
     location.setY(this.locationY.getFloatValue());
     location.setZ(this.locationZ.getFloatValue());
@@ -420,17 +360,11 @@ public class EditPrimitiveDialog {
       this.parameter3.setText("" + box.getZsize()); //$NON-NLS-1$
       final Rotation rotation = box.getRotation();
       final Location location = box.getLocation();
-      if (rotation == null) {
-        // 変換前にRotationが存在しなかったことを示す
-        this.rotationB = false;
-      } else {
-        getRotation(rotation);
+      if (rotation != null) {
+        setRotationToDialog(rotation);
       }
-      if (location == null) {
-        // 変換前にLocationが存在しなかったことを示す
-        this.locationB = false;
-      } else {
-        getLocation(location);
+      if (location != null) {
+        setLocationToDialog(location);
       }
       setBoxLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
@@ -442,15 +376,11 @@ public class EditPrimitiveDialog {
       this.parameter3.setText("" + cylinder.getDiv()); //$NON-NLS-1$
       final Rotation rotation = cylinder.getRotation();
       final Location location = cylinder.getLocation();
-      if (rotation == null) {
-        this.rotationB = false;
-      } else {
-        getRotation(rotation);
+      if (rotation != null) {
+        setRotationToDialog(rotation);
       }
-      if (location == null) {
-        this.locationB = false;
-      } else {
-        getLocation(location);
+      if (location != null) {
+        setLocationToDialog(location);
       }
       setCylinderLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
@@ -461,15 +391,11 @@ public class EditPrimitiveDialog {
       this.parameter2.setText("" + sphere.getDiv()); //$NON-NLS-1$
       final Rotation rotation = sphere.getRotation();
       final Location location = sphere.getLocation();
-      if (rotation == null) {
-        this.rotationB = false;
-      } else {
-        getRotation(rotation);
+      if (rotation != null) {
+        setRotationToDialog(rotation);
       }
-      if (location == null) {
-        this.locationB = false;
-      } else {
-        getLocation(location);
+      if (location != null) {
+        setLocationToDialog(location);
       }
       setSphereLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
@@ -481,15 +407,11 @@ public class EditPrimitiveDialog {
       this.parameter3.setText("" + cone.getDiv()); //$NON-NLS-1$
       final Rotation rotation = cone.getRotation();
       final Location location = cone.getLocation();
-      if (rotation == null) {
-        this.rotationB = false;
-      } else {
-        getRotation(rotation);
+      if (rotation != null) {
+        setRotationToDialog(rotation);
       }
-      if (location == null) {
-        this.locationB = false;
-      } else {
-        getLocation(location);
+      if (location != null) {
+        setLocationToDialog(location);
       }
       setConeLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
@@ -579,13 +501,13 @@ public class EditPrimitiveDialog {
    * 
    * @param rotation
    */
-  private void getRotation(Rotation rotation) {
+  private void setRotationToDialog(Rotation rotation) {
     this.rotationX.setText("" + rotation.getX()); //$NON-NLS-1$
     this.rotationY.setText("" + rotation.getY()); //$NON-NLS-1$
     this.rotationZ.setText("" + rotation.getZ()); //$NON-NLS-1$
   }
 
-  private void getLocation(Location location) {
+  private void setLocationToDialog(Location location) {
     this.locationX.setText("" + location.getX()); //$NON-NLS-1$
     this.locationY.setText("" + location.getY()); //$NON-NLS-1$
     this.locationZ.setText("" + location.getZ()); //$NON-NLS-1$
