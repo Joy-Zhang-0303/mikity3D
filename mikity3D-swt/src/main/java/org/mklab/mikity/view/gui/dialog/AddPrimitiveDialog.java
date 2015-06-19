@@ -241,7 +241,7 @@ public class AddPrimitiveDialog {
   }
 
   /**
-   * プリミティブを追加する
+   * プリミティブを追加します。
    */
   void addPrimitive() {
     final Rotation rotation = new Rotation();
@@ -330,10 +330,10 @@ public class AddPrimitiveDialog {
   }
 
   /**
-   * Locationを設定します。
+   * Locationを返します。
    * 
    * @param location
-   * @return loc
+   * @return Location
    */
   private Location getLocation(Location location) {
     if (this.locationX.getFloatValue() == 0 && this.locationY.getFloatValue() == 0 && this.locationZ.getFloatValue() == 0) {
