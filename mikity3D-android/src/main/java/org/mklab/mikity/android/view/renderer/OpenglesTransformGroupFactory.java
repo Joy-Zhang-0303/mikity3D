@@ -107,9 +107,9 @@ public class OpenglesTransformGroupFactory {
       final float xLocation = groupLocation.getX();
       final float yLocation = groupLocation.getY();
       final float zLocation = groupLocation.getZ();
-      final float xRotation = groupRotation.getXrotation();
-      final float yRotation = groupRotation.getYrotation();
-      final float zRotation = groupRotation.getZrotation();
+      final float xRotation = groupRotation.getX();
+      final float yRotation = groupRotation.getY();
+      final float zRotation = groupRotation.getZ();
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
       coordinate.setLocation(xLocation, yLocation, zLocation);
       coordinate.setRotation(xRotation, yRotation, zRotation);
@@ -126,9 +126,9 @@ public class OpenglesTransformGroupFactory {
     }
     
     if (groupRotation != null) {
-      final float xRotation = groupRotation.getXrotation();
-      final float yRotation = groupRotation.getYrotation();
-      final float zRotation = groupRotation.getZrotation();
+      final float xRotation = groupRotation.getX();
+      final float yRotation = groupRotation.getY();
+      final float zRotation = groupRotation.getZ();
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
       coordinate.setRotation(xRotation, yRotation, zRotation);
       return coordinate;

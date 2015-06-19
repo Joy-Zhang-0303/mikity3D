@@ -303,13 +303,13 @@ public class Java3dPrimitiveFactory {
   private static void transform(Location location, Rotation rotation, Java3dTransformGroup tg) {
     if (rotation != null) {
       if (Util.radian == false) {
-        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rotation.getXrotation())));
-        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(rotation.getYrotation())));
-        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(rotation.getZrotation())));
+        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rotation.getX())));
+        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, (float)Math.toRadians(rotation.getY())));
+        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, (float)Math.toRadians(rotation.getZ())));
       } else {
-        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, rotation.getXrotation()));
-        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, rotation.getYrotation()));
-        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, rotation.getZrotation()));
+        tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, rotation.getX()));
+        tg.rotate(new AxisAngle4f(0.0f, 1.0f, 0.0f, rotation.getY()));
+        tg.rotate(new AxisAngle4f(0.0f, 0.0f, 1.0f, rotation.getZ()));
       }
     }
     if (location != null) {

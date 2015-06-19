@@ -419,9 +419,9 @@ public class EditPrimitiveDialog {
    * @return rot
    */
   private Rotation setRotation(Rotation rotation) {
-    rotation.setXrotation(this.newRotationX.getFloatValue());
-    rotation.setYrotation(this.newRotationY.getFloatValue());
-    rotation.setZrotation(this.newRotationZ.getFloatValue());
+    rotation.setX(this.newRotationX.getFloatValue());
+    rotation.setY(this.newRotationY.getFloatValue());
+    rotation.setZ(this.newRotationZ.getFloatValue());
     return rotation;
 
   }
@@ -639,12 +639,12 @@ public class EditPrimitiveDialog {
    * @param rotation
    */
   private void getRotation(Rotation rotation) {
-    this.rotationX.setText("" + rotation.getXrotation()); //$NON-NLS-1$
-    this.newRotationX.setText("" + rotation.getXrotation()); //$NON-NLS-1$
-    this.rotationY.setText("" + rotation.getYrotation()); //$NON-NLS-1$
-    this.newRotationY.setText("" + rotation.getYrotation()); //$NON-NLS-1$
-    this.rotationZ.setText("" + rotation.getZrotation()); //$NON-NLS-1$
-    this.newRotationZ.setText("" + rotation.getZrotation()); //$NON-NLS-1$
+    this.rotationX.setText("" + rotation.getX()); //$NON-NLS-1$
+    this.newRotationX.setText("" + rotation.getX()); //$NON-NLS-1$
+    this.rotationY.setText("" + rotation.getY()); //$NON-NLS-1$
+    this.newRotationY.setText("" + rotation.getY()); //$NON-NLS-1$
+    this.rotationZ.setText("" + rotation.getZ()); //$NON-NLS-1$
+    this.newRotationZ.setText("" + rotation.getZ()); //$NON-NLS-1$
   }
 
   private void getLocation(Location location) {

@@ -323,9 +323,9 @@ public class AddPrimitiveDialog {
     if (this.rotationX.getFloatValue() == 0 && this.rotationY.getFloatValue() == 0 && this.rotationZ.getFloatValue() == 0) {
       return null;
     }
-    rotation.setXrotation(this.rotationX.getFloatValue());
-    rotation.setYrotation(this.rotationY.getFloatValue());
-    rotation.setZrotation(this.rotationZ.getFloatValue());
+    rotation.setX(this.rotationX.getFloatValue());
+    rotation.setY(this.rotationY.getFloatValue());
+    rotation.setZ(this.rotationZ.getFloatValue());
     return rotation;
   }
 

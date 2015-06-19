@@ -450,12 +450,12 @@ public class EditQuadPolygonDialog {
     this.colorCombo.getColorComboBox().setText(this.quad.getColor());
 
     if (this.quad.getRotation() != null) {
-      this.rightVertexX.setText("" + this.quad.getRotation().getXrotation()); //$NON-NLS-1$
-      this.rightVertexY.setText("" + this.quad.getRotation().getYrotation()); //$NON-NLS-1$
-      this.rightVertexZ.setText("" + this.quad.getRotation().getZrotation()); //$NON-NLS-1$
-      this.newRightVertexX.setText("" + this.quad.getRotation().getXrotation()); //$NON-NLS-1$
-      this.newRightVertexY.setText("" + this.quad.getRotation().getYrotation()); //$NON-NLS-1$
-      this.newRightVertexZ.setText("" + this.quad.getRotation().getZrotation()); //$NON-NLS-1$
+      this.rightVertexX.setText("" + this.quad.getRotation().getX()); //$NON-NLS-1$
+      this.rightVertexY.setText("" + this.quad.getRotation().getY()); //$NON-NLS-1$
+      this.rightVertexZ.setText("" + this.quad.getRotation().getZ()); //$NON-NLS-1$
+      this.newRightVertexX.setText("" + this.quad.getRotation().getX()); //$NON-NLS-1$
+      this.newRightVertexY.setText("" + this.quad.getRotation().getY()); //$NON-NLS-1$
+      this.newRightVertexZ.setText("" + this.quad.getRotation().getZ()); //$NON-NLS-1$
     } else {
       this.rightVertexX.setText("" + 0.0); //$NON-NLS-1$
       this.rightVertexY.setText("" + 0.0); //$NON-NLS-1$

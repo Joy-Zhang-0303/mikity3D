@@ -407,12 +407,12 @@ public class EditTrianglePolygonDialog {
     this.colorCombo.getColorComboBox().setText(this.triangle.getColor());
 
     if (this.triangle.getRotation() != null) {
-      this.rightVertexX.setText("" + this.triangle.getRotation().getXrotation()); //$NON-NLS-1$
-      this.rightVertexY.setText("" + this.triangle.getRotation().getYrotation()); //$NON-NLS-1$
-      this.rightVertexZ.setText("" + this.triangle.getRotation().getZrotation()); //$NON-NLS-1$
-      this.newRightVertexX.setText("" + this.triangle.getRotation().getXrotation()); //$NON-NLS-1$
-      this.newRightVertexY.setText("" + this.triangle.getRotation().getYrotation()); //$NON-NLS-1$
-      this.newRightVertexZ.setText("" + this.triangle.getRotation().getZrotation()); //$NON-NLS-1$
+      this.rightVertexX.setText("" + this.triangle.getRotation().getX()); //$NON-NLS-1$
+      this.rightVertexY.setText("" + this.triangle.getRotation().getY()); //$NON-NLS-1$
+      this.rightVertexZ.setText("" + this.triangle.getRotation().getZ()); //$NON-NLS-1$
+      this.newRightVertexX.setText("" + this.triangle.getRotation().getX()); //$NON-NLS-1$
+      this.newRightVertexY.setText("" + this.triangle.getRotation().getY()); //$NON-NLS-1$
+      this.newRightVertexZ.setText("" + this.triangle.getRotation().getZ()); //$NON-NLS-1$
     } else {
       this.rightVertexX.setText("" + 0.0); //$NON-NLS-1$
       this.rightVertexY.setText("" + 0.0); //$NON-NLS-1$

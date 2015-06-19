@@ -2,10 +2,10 @@
 	<model>
 		<group name="Group0">
 			<location z="0.0" y="0.0" x="0.0" />
-			<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+			<rotation z="0.0" y="0.0" x="0.0" />
 			<group name="belt">
 				<location z="0.0" y="-0.15" x="0.0" />
-				<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+				<rotation z="0.0" y="0.0" x="0.0" />
 				<quadPolygon color="lightGray">
 					<point z="-0.05" y="0.05" x="0.75" />
 					<point z="-0.05" y="-0.05" x="0.75" />
@@ -44,7 +44,7 @@
 				</quadPolygon>
 				<group name="daisha">
 					<location z="0.0" y="0.15" x="0.0" />
-					<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+					<rotation z="0.0" y="0.0" x="0.0" />
 					<linkData column="2" const="0.0" target="a" />
 					<quadPolygon color="yellow">
 						<point z="-0.025" y="0.1" x="0.125" />
@@ -84,7 +84,7 @@
 					</quadPolygon>
 					<group name="sinsi1">
 						<location z="0.0" y="0.035" x="0.0" />
-						<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+						<rotation z="0.0" y="0.0" x="0.0" />
 						<linkData column="3" const="0.0" target="theta" />
 						<trianglePolygon color="red">
 							<point z="-0.01" y="0.0" x="0.0" />
@@ -411,7 +411,7 @@
 						</quadPolygon>
 						<group name="sinsi2">
 							<location z="0.0" y="0.389" x="0.0" />
-							<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+							<rotation z="0.0" y="0.0" x="0.0" />
 							<linkData column="4" const="0.0" target="theta" />
 							<trianglePolygon color="red">
 								<point z="-0.01" y="0.0" x="0.0" />

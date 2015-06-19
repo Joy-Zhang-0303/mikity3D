@@ -13,46 +13,37 @@ public class Rotation implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** X軸周りの回転 */
-  @Attribute(name = "xrotation")
-  private float xRotation;
+  @Attribute(name = "x")
+  private float x;
 
   /** Y軸周りの回転 */
-  @Attribute(name = "yrotation")
-  private float yRotation;
+  @Attribute(name = "y")
+  private float y;
 
   /** Z軸周りの回転 */
-  @Attribute(name = "zrotation")
-  private float zRotation;
+  @Attribute(name = "z")
+  private float z;
 
   /**
    * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
    */
   public Rotation() {
-    this.xRotation = 0;
-    this.yRotation = 0;
-    this.zRotation = 0;
+    this.x = 0;
+    this.y = 0;
+    this.z = 0;
   }
 
   /**
    * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
    * 
-   * @param xRotation Ｘ軸周りの回転
-   * @param yRotation Y軸周りの回転
-   * @param zRotation Z軸周りの回転
+   * @param x Ｘ軸周りの回転
+   * @param y Y軸周りの回転
+   * @param z Z軸周りの回転
    */
-  public Rotation(float xRotation, float yRotation, float zRotation) {
-    this.xRotation = xRotation;
-    this.yRotation = yRotation;
-    this.zRotation = zRotation;
-  }
-
-  /**
-   * X軸周りの回転を返します。
-   * 
-   * @return X軸周りの回転
-   */
-  public float getXrotation() {
-    return this.xRotation;
+  public Rotation(float x, float y, float z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
   }
 
   /**
@@ -62,9 +53,9 @@ public class Rotation implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + Float.floatToIntBits(this.xRotation);
-    result = prime * result + Float.floatToIntBits(this.yRotation);
-    result = prime * result + Float.floatToIntBits(this.zRotation);
+    result = prime * result + Float.floatToIntBits(this.x);
+    result = prime * result + Float.floatToIntBits(this.y);
+    result = prime * result + Float.floatToIntBits(this.z);
     return result;
   }
 
@@ -83,16 +74,26 @@ public class Rotation implements java.io.Serializable {
       return false;
     }
     Rotation other = (Rotation)obj;
-    if (Float.floatToIntBits(this.xRotation) != Float.floatToIntBits(other.xRotation)) {
+    if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
-    if (Float.floatToIntBits(this.yRotation) != Float.floatToIntBits(other.yRotation)) {
+    if (Float.floatToIntBits(this.y) != Float.floatToIntBits(other.y)) {
       return false;
     }
-    if (Float.floatToIntBits(this.zRotation) != Float.floatToIntBits(other.zRotation)) {
+    if (Float.floatToIntBits(this.z) != Float.floatToIntBits(other.z)) {
       return false;
     }
     return true;
+  }
+
+
+  /**
+   * X軸周りの回転を返します。
+   * 
+   * @return X軸周りの回転
+   */
+  public float getX() {
+    return this.x;
   }
 
   /**
@@ -100,8 +101,8 @@ public class Rotation implements java.io.Serializable {
    * 
    * @return Y軸周りの回転
    */
-  public float getYrotation() {
-    return this.yRotation;
+  public float getY() {
+    return this.y;
   }
 
   /**
@@ -109,34 +110,34 @@ public class Rotation implements java.io.Serializable {
    * 
    * @return Z軸周りの回転
    */
-  public float getZrotation() {
-    return this.zRotation;
+  public float getZ() {
+    return this.z;
   }
 
   /**
    * X軸周りの回転を設定します。
    * 
-   * @param xRotation X軸周りの回転
+   * @param x X軸周りの回転
    */
-  public void setXrotation(float xRotation) {
-    this.xRotation = xRotation;
+  public void setX(float x) {
+    this.x = x;
   }
 
   /**
    * Y軸周りの回転を設定します。
    * 
-   * @param yRotation Y軸ｋ周りの回転
+   * @param y Y軸ｋ周りの回転
    */
-  public void setYrotation(float yRotation) {
-    this.yRotation = yRotation;
+  public void setY(float y) {
+    this.y = y;
   }
 
   /**
    * Z軸周りの回転を設定します。
    * 
-   * @param zRotation Z軸周りの回転
+   * @param z Z軸周りの回転
    */
-  public void setZrotation(float zRotation) {
-    this.zRotation = zRotation;
+  public void setZ(float z) {
+    this.z = z;
   }
 }

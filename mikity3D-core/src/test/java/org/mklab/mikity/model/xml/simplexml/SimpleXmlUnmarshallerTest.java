@@ -123,9 +123,9 @@ public class SimpleXmlUnmarshallerTest {
     
     final Rotation actualRotation = actualGroup.getRotation();
     final Rotation expectedRotation = new Rotation();
-    expectedRotation.setXrotation(0.0F);
-    expectedRotation.setYrotation(0.0F);
-    expectedRotation.setZrotation(0.0F);
+    expectedRotation.setX(0.0F);
+    expectedRotation.setY(0.0F);
+    expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
     final Group actualDodaiGroup = actualGroup.getGroup(0);
@@ -142,9 +142,9 @@ public class SimpleXmlUnmarshallerTest {
 
     final Rotation actualRotation = actualGroup.getRotation();
     final Rotation expectedRotation = new Rotation();
-    expectedRotation.setXrotation(0.0F);
-    expectedRotation.setYrotation(0.0F);
-    expectedRotation.setZrotation(0.0F);
+    expectedRotation.setX(0.0F);
+    expectedRotation.setY(0.0F);
+    expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
     final XMLBox actualBox1 = actualGroup.getXMLBox(0);
@@ -246,9 +246,9 @@ public class SimpleXmlUnmarshallerTest {
 
     final Rotation actualRotation = actualGroup.getRotation();
     final Rotation expectedRotation = new Rotation();
-    expectedRotation.setXrotation(0.0F);
-    expectedRotation.setYrotation(0.0F);
-    expectedRotation.setZrotation(0.0F);
+    expectedRotation.setX(0.0F);
+    expectedRotation.setY(0.0F);
+    expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
 
     final LinkData actualLinkData = actualGroup.getLinkData(0);
@@ -293,9 +293,9 @@ public class SimpleXmlUnmarshallerTest {
 
     final Rotation actualRotation = actualGroup.getRotation();
     final Rotation expectedRotation = new Rotation();
-    expectedRotation.setXrotation(0.0F);
-    expectedRotation.setYrotation(0.0F);
-    expectedRotation.setZrotation(0.0F);
+    expectedRotation.setX(0.0F);
+    expectedRotation.setY(0.0F);
+    expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
     final LinkData actualLinkData = actualGroup.getLinkData(0);
@@ -326,9 +326,9 @@ public class SimpleXmlUnmarshallerTest {
     expectedLocation.setZ(0.0325F);
 
     final Rotation expectedRotation = new Rotation();
-    expectedRotation.setXrotation(1.5708F);
-    expectedRotation.setYrotation(0.0F);
-    expectedRotation.setZrotation(0.0F);
+    expectedRotation.setX(1.5708F);
+    expectedRotation.setY(0.0F);
+    expectedRotation.setZ(0.0F);
     
     expectedCylinder.setLocation(expectedLocation);
     expectedCylinder.setRotation(expectedRotation);
