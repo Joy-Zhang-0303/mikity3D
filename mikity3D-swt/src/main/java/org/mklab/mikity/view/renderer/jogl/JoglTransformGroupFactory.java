@@ -100,33 +100,33 @@ public class JoglTransformGroupFactory {
     final Rotation groupRotation = group.getRotation();
     
     if (groupLocation != null && groupRotation != null) {
-      final float xLocation = groupLocation.getX();
-      final float yLocation = groupLocation.getY();
-      final float zLocation = groupLocation.getZ();
-      final float xRotation = groupRotation.getX();
-      final float yRotation = groupRotation.getY();
-      final float zRotation = groupRotation.getZ();
+      final float locationX = groupLocation.getX();
+      final float locationY = groupLocation.getY();
+      final float locationZ = groupLocation.getZ();
+      final float rotationX = groupRotation.getX();
+      final float rotationY = groupRotation.getY();
+      final float rotationZ = groupRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(xLocation, yLocation, zLocation);
-      coordinate.setRotation(xRotation, yRotation, zRotation);
+      coordinate.setLocation(locationX, locationY, locationZ);
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
       return coordinate;
     } 
     
     if (groupLocation != null) {
-      final float xLocation = groupLocation.getX();
-      final float yLocation = groupLocation.getY();
-      final float zLocation = groupLocation.getZ();
+      final float locationX = groupLocation.getX();
+      final float locationY = groupLocation.getY();
+      final float locationZ = groupLocation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(xLocation, yLocation, zLocation);
+      coordinate.setLocation(locationX, locationY, locationZ);
       return coordinate;
     }
     
     if (groupRotation != null) {
-      final float xRotation = groupRotation.getX();
-      final float yRotation = groupRotation.getY();
-      final float zRotation = groupRotation.getZ();
+      final float rotationX = groupRotation.getX();
+      final float rotationY = groupRotation.getY();
+      final float rotationZ = groupRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(xRotation, yRotation, zRotation);
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
       return coordinate;
     }
 
