@@ -149,7 +149,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @return the value of field 'div'.
    */
-  public int getDiv() {
+  public int getDivision() {
     return this.division;
   }
 
@@ -227,10 +227,10 @@ public class XMLSphere implements java.io.Serializable {
   /**
    * Sets the value of field 'div'.
    * 
-   * @param div the value of field 'div'.
+   * @param division the value of field 'div'.
    */
-  public void setDiv(int div) {
-    this.division = div;
+  public void setDivision(int division) {
+    this.division = division;
   }
 
   /**

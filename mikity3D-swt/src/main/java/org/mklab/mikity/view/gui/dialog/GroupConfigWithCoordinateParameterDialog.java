@@ -19,7 +19,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
 /**
- * グループの設定を行うクラス(DHパラメータ未使用)
+ * グループの設定を行うダイアログを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.1 $.2005/02/03
@@ -37,12 +37,12 @@ public class GroupConfigWithCoordinateParameterDialog {
   ParameterInputBox rotationX;
   ParameterInputBox rotationY;
   ParameterInputBox rotationZ;
-  ParameterInputBox columnLocationX;
-  ParameterInputBox columnLocationY;
-  ParameterInputBox columnLocationZ;
-  ParameterInputBox columnRotationX;
-  ParameterInputBox columnRotationY;
-  ParameterInputBox columnRotationZ;
+  ParameterInputBox dataNumberLocationX;
+  ParameterInputBox dataNumberLocationY;
+  ParameterInputBox dataNumberLocationZ;
+  ParameterInputBox dataNumberRotationX;
+  ParameterInputBox dataNumberRotationY;
+  ParameterInputBox dataNumberRotationZ;
 
   private boolean editable;
   private Label statusLabel;
@@ -99,12 +99,12 @@ public class GroupConfigWithCoordinateParameterDialog {
           if (yesNo == SWT.YES) {
             GroupConfigWithCoordinateParameterDialog.this.group.setName(GroupConfigWithCoordinateParameterDialog.this.groupName.getText());
             GroupConfigWithCoordinateParameterDialog.this.group.clearLinkdata();
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locationX, GroupConfigWithCoordinateParameterDialog.this.columnLocationX);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locationY, GroupConfigWithCoordinateParameterDialog.this.columnLocationY);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locationZ, GroupConfigWithCoordinateParameterDialog.this.columnLocationZ);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotationX, GroupConfigWithCoordinateParameterDialog.this.columnRotationX);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotationY, GroupConfigWithCoordinateParameterDialog.this.columnRotationY);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotationZ, GroupConfigWithCoordinateParameterDialog.this.columnRotationZ);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locationX, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationX);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locationY, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationY);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locationZ, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationZ);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotationX, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationX);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotationY, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationY);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotationZ, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationZ);
             GroupConfigWithCoordinateParameterDialog.this.sShell.close();
           }
         } else {
@@ -177,39 +177,39 @@ public class GroupConfigWithCoordinateParameterDialog {
 
     final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 40;
-    final Label label1 = new Label(paramGroup, SWT.RIGHT);
+    final Label label1 = new Label(paramGroup, SWT.CENTER);
     label1.setText(Messages.getString("GroupConfigDialogLink.12")); //$NON-NLS-1$
     label1.setLayoutData(gridData1);
 
     final GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
     gridData2.widthHint = 65;
-    final Label label2 = new Label(paramGroup, SWT.RIGHT);
+    final Label label2 = new Label(paramGroup, SWT.CENTER);
     label2.setText(Messages.getString("GroupConfigDialogLink.13")); //$NON-NLS-1$
     label2.setLayoutData(gridData2);
 
     final GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
     gridData3.widthHint = 65;
-    final Label label3 = new Label(paramGroup, SWT.RIGHT);
+    final Label label3 = new Label(paramGroup, SWT.CENTER);
     label3.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
     label3.setLayoutData(gridData3);
 
     this.locationX = new ParameterInputBox(paramGroup, style, "locationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.columnLocationX = new ParameterInputBox(paramGroup, style, 0);
+    this.dataNumberLocationX = new ParameterInputBox(paramGroup, style, 0);
 
     this.locationY = new ParameterInputBox(paramGroup, style, "locationY", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.columnLocationY = new ParameterInputBox(paramGroup, style, 0);
+    this.dataNumberLocationY = new ParameterInputBox(paramGroup, style, 0);
 
     this.locationZ = new ParameterInputBox(paramGroup, style, "locationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.columnLocationZ = new ParameterInputBox(paramGroup, style, 0);
+    this.dataNumberLocationZ = new ParameterInputBox(paramGroup, style, 0);
 
     this.rotationX = new ParameterInputBox(paramGroup, style, "rotationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.columnRotationX = new ParameterInputBox(paramGroup, style, 0);
+    this.dataNumberRotationX = new ParameterInputBox(paramGroup, style, 0);
 
     this.rotationY = new ParameterInputBox(paramGroup, style, "rotationY", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.columnRotationY = new ParameterInputBox(paramGroup, style, 0);
+    this.dataNumberRotationY = new ParameterInputBox(paramGroup, style, 0);
 
     this.rotationZ = new ParameterInputBox(paramGroup, style, "rotationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.columnRotationZ = new ParameterInputBox(paramGroup, style, 0);
+    this.dataNumberRotationZ = new ParameterInputBox(paramGroup, style, 0);
 
     setParameter();
   }
@@ -245,22 +245,22 @@ public class GroupConfigWithCoordinateParameterDialog {
       final String column = linkdata[i].hasNumber() ? "" + linkdata[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       final String constant = linkdata[i].hasBasis() ? "" + linkdata[i].getBasis() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       if (target.equals("locationX")) { //$NON-NLS-1$
-        this.columnLocationX.setText(column);
+        this.dataNumberLocationX.setText(column);
         this.locationX.setText(constant);
       } else if (target.equals("locationY")) { //$NON-NLS-1$
-        this.columnLocationY.setText(column);
+        this.dataNumberLocationY.setText(column);
         this.locationY.setText(constant);
       } else if (target.equals("locationZ")) { //$NON-NLS-1$
-        this.columnLocationZ.setText(column);
+        this.dataNumberLocationZ.setText(column);
         this.locationZ.setText(constant);
       } else if (target.equals("rotationX")) { //$NON-NLS-1$
-        this.columnRotationX.setText(column);
+        this.dataNumberRotationX.setText(column);
         this.rotationX.setText(constant);
       } else if (target.equals("rotationY")) { //$NON-NLS-1$
-        this.columnRotationY.setText(column);
+        this.dataNumberRotationY.setText(column);
         this.rotationY.setText(constant);
       } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-        this.columnRotationZ.setText(column);
+        this.dataNumberRotationZ.setText(column);
         this.rotationZ.setText(constant);
       }
     }
@@ -290,22 +290,22 @@ public class GroupConfigWithCoordinateParameterDialog {
     if (this.rotationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnLocationX.containsOnlyNumbers() == false) {
+    if (this.dataNumberLocationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnLocationY.containsOnlyNumbers() == false) {
+    if (this.dataNumberLocationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnLocationZ.containsOnlyNumbers() == false) {
+    if (this.dataNumberLocationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnRotationX.containsOnlyNumbers() == false) {
+    if (this.dataNumberRotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnRotationY.containsOnlyNumbers() == false) {
+    if (this.dataNumberRotationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.columnRotationZ.containsOnlyNumbers() == false) {
+    if (this.dataNumberRotationZ.containsOnlyNumbers() == false) {
       return false;
     }
     return true;

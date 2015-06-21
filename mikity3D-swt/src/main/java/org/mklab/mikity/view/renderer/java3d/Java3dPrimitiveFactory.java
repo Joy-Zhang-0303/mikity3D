@@ -95,10 +95,10 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLCylinder cylinder) {
     final int flag = Primitive.GENERATE_NORMALS;
-    if (cylinder.getDiv() < 3) {
-      cylinder.setDiv(10);
+    if (cylinder.getDivision() < 3) {
+      cylinder.setDivision(10);
     }
-    final Primitive primitive = new Cylinder(cylinder.getRadius(), cylinder.getHeight(), flag, cylinder.getDiv(), cylinder.getDiv(), null);
+    final Primitive primitive = new Cylinder(cylinder.getRadius(), cylinder.getHeight(), flag, cylinder.getDivision(), cylinder.getDivision(), null);
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(cylinder.getColor()));
     if (cylinder.getTransparent() == true) {
@@ -124,10 +124,10 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLSphere sphere) {
     final int flag = Primitive.GENERATE_NORMALS;
-    if (sphere.getDiv() < 3) {
-      sphere.setDiv(10);
+    if (sphere.getDivision() < 3) {
+      sphere.setDivision(10);
     }
-    final Primitive primitive = new Sphere(sphere.getRadius(), flag, sphere.getDiv(), null);
+    final Primitive primitive = new Sphere(sphere.getRadius(), flag, sphere.getDivision(), null);
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(sphere.getColor()));
     if (sphere.getTransparent() == true) {

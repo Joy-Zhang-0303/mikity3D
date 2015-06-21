@@ -284,7 +284,7 @@ public class EditPrimitiveDialog {
       cylinder.setColor(this.colorCombo.getColorComboBox().getText());
       cylinder.setRadius(this.parameter1.getFloatValue());
       cylinder.setHeight(this.parameter2.getFloatValue());
-      cylinder.setDiv(setDiv(this.parameter3));
+      cylinder.setDivision(setDiv(this.parameter3));
 
       cylinder.setRotation(getRotation());
       cylinder.setLocation(getLocation());
@@ -292,7 +292,7 @@ public class EditPrimitiveDialog {
       final XMLSphere sphere = (XMLSphere)this.primitive;
       sphere.setColor(this.colorCombo.getColorComboBox().getText());
       sphere.setRadius(this.parameter1.getFloatValue());
-      sphere.setDiv(setDiv(this.parameter2));
+      sphere.setDivision(setDiv(this.parameter2));
       
       sphere.setRotation(getRotation());
       sphere.setLocation(getLocation());
@@ -373,7 +373,7 @@ public class EditPrimitiveDialog {
       final XMLCylinder cylinder = (XMLCylinder)this.primitive;
       this.parameter1.setText("" + cylinder.getRadius()); //$NON-NLS-1$
       this.parameter2.setText("" + cylinder.getHeight()); //$NON-NLS-1$
-      this.parameter3.setText("" + cylinder.getDiv()); //$NON-NLS-1$
+      this.parameter3.setText("" + cylinder.getDivision()); //$NON-NLS-1$
       final Rotation rotation = cylinder.getRotation();
       final Location location = cylinder.getLocation();
       if (rotation != null) {
@@ -388,7 +388,7 @@ public class EditPrimitiveDialog {
     } else if (this.primitive instanceof XMLSphere) {
       final XMLSphere sphere = (XMLSphere)this.primitive;
       this.parameter1.setText("" + sphere.getRadius()); //$NON-NLS-1$
-      this.parameter2.setText("" + sphere.getDiv()); //$NON-NLS-1$
+      this.parameter2.setText("" + sphere.getDivision()); //$NON-NLS-1$
       final Rotation rotation = sphere.getRotation();
       final Location location = sphere.getLocation();
       if (rotation != null) {

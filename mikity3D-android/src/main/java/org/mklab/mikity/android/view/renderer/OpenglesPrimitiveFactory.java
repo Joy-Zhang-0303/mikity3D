@@ -104,7 +104,7 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたcylinderを含む可動グループ
    */
   public static OpenglesTransformGroup create(XMLCylinder cylinder) {
-    final int div = cylinder.getDiv();
+    final int div = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
     final String color = cylinder.getColor();
@@ -158,7 +158,7 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたsphereを含む可動グループ
    */
   public static OpenglesTransformGroup create(XMLSphere sphere) {
-    final int div = sphere.getDiv();
+    final int div = sphere.getDivision();
     final float radius = sphere.getRadius();
     final String color = sphere.getColor();
     

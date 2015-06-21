@@ -42,7 +42,7 @@ public class SphereToolBarAction extends Action {
   public void run() {
     final XMLSphere sphere = new XMLSphere();
     sphere.setRadius(0.10f);
-    sphere.setDiv(20);
+    sphere.setDivision(20);
     sphere.setColor("yellow"); //$NON-NLS-1$
     
     final Mikity3d root = this.window.getRoot();

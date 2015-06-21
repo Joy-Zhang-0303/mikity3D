@@ -43,7 +43,7 @@ public class CylinderToolBarAction extends Action {
     final XMLCylinder cylinder = new XMLCylinder();    
     cylinder.setRadius(0.10f);
     cylinder.setHeight(0.10f);
-    cylinder.setDiv(20);
+    cylinder.setDivision(20);
     cylinder.setColor("blue"); //$NON-NLS-1$
     
     final Mikity3d root = this.window.getRoot();

@@ -562,14 +562,14 @@ public class SceneGraphTree {
       final XMLCylinder[] cylinders = groups[i].getXMLCylinders();
       for (int j = 0; j < cylinders.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cylinder ( " + cylinders[j].getRadius() + ", " + cylinders[j].getHeight() + ", " + cylinders[j].getDiv() + ", " + cylinders[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setText("Cylinder ( " + cylinders[j].getRadius() + ", " + cylinders[j].getHeight() + ", " + cylinders[j].getDivision() + ", " + cylinders[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cylinders[j]);
       }
 
       final XMLSphere[] spheres = groups[i].getXMLSpheres();
       for (int j = 0; j < spheres.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Sphere ( " + spheres[j].getRadius() + ", " + spheres[j].getDiv() + ", " + spheres[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        boxChild.setText("Sphere ( " + spheres[j].getRadius() + ", " + spheres[j].getDivision() + ", " + spheres[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         boxChild.setData(spheres[j]);
       }
 

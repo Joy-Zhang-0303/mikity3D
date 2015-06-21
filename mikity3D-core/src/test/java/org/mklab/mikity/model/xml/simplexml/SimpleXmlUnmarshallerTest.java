@@ -255,7 +255,7 @@ public class SimpleXmlUnmarshallerTest {
     final LinkData expectedLinkData = new LinkData();
     expectedLinkData.setNumber(2);
     expectedLinkData.setConstantValue(0);
-    expectedLinkData.setTarget("a"); //$NON-NLS-1$
+    expectedLinkData.setTarget("locationX"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
 
     final XMLBox actualBox = actualGroup.getXMLBox(0);
@@ -302,7 +302,7 @@ public class SimpleXmlUnmarshallerTest {
     final LinkData expectedLinkData = new LinkData();
     expectedLinkData.setNumber(3);
     expectedLinkData.setConstantValue(0);
-    expectedLinkData.setTarget("theta"); //$NON-NLS-1$
+    expectedLinkData.setTarget("rotationZ"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
     
     final XMLCylinder actualCylinder1 = actualGroup.getXMLCylinder(0);
@@ -316,7 +316,7 @@ public class SimpleXmlUnmarshallerTest {
   private void assertCylinder1(XMLCylinder actualCylinder) {
     final XMLCylinder expectedCylinder = new XMLCylinder();
     expectedCylinder.setColor("red"); //$NON-NLS-1$
-    expectedCylinder.setDiv(10);
+    expectedCylinder.setDivision(10);
     expectedCylinder.setHeight(0.018F);
     expectedCylinder.setRadius(0.01F);
     
@@ -339,7 +339,7 @@ public class SimpleXmlUnmarshallerTest {
   private void assertCylinder2(XMLCylinder actualCylinder) {
     final XMLCylinder expectedCylinder = new XMLCylinder();
     expectedCylinder.setColor("black"); //$NON-NLS-1$
-    expectedCylinder.setDiv(10);
+    expectedCylinder.setDivision(10);
     expectedCylinder.setHeight(0.3F);
     expectedCylinder.setRadius(0.0025F);
     

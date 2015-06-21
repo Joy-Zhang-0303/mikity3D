@@ -159,7 +159,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @return the value of field 'div'.
    */
-  public int getDiv() {
+  public int getDivision() {
     return this.division;
   }
 
@@ -248,7 +248,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @param div the value of field 'div'.
    */
-  public void setDiv(int div) {
+  public void setDivision(int div) {
     this.division = div;
   }
 
