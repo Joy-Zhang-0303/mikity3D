@@ -16,14 +16,14 @@
 				<cylinder r="0.02" height="0.3" div="30" color="yellow">
 					<location x="0.0" y="0.15" z="0.0" />
 				</cylinder>
-				<linkData target="rotationZ" column="2" const="0" />
+				<linkData target="rotationZ" number="2" basis="0" />
 				<group name="link2">
 					<location z="0.0" y="0.3" x="0.0"/>
 					<rotation z="0.0" y="0.0" x="1.5708"/>
 					<cylinder r="0.02" height="0.3" div="30" color="yellow">
 						<location x="0.0" y="0.15" z="0.0" />
 					</cylinder>
-					<linkData target="rotationZ" column="3" const="0" />
+					<linkData target="rotationZ" number="3" basis="0" />
 				</group>
 			</group>
 		</group>

@@ -2,10 +2,10 @@
 	<model>
 		<group name="Group0">
 			<location z="0.0" y="0.0" x="0.0" />
-			<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+			<rotation z="0.0" y="0.0" x="0.0" />
 			<group name="dodai">
 				<location z="0.0" y="0.0" x="0.0" />
-				<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+				<rotation z="0.0" y="0.0" x="0.0" />
 				<box transparent="true" color="lightGray" zsize="0.02" ysize="0.27" xsize="0.02">
 					<location z="0.0" y="-0.21" x="-0.05" />
 				</box>
@@ -20,17 +20,17 @@
 				</box>
 				<group name="daisha">
 					<location z="0.0" y="0.0" x="0.0" />
-					<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
-					<linkData column="2" const="0.0" target="a" />
+					<rotation z="0.0" y="0.0" x="0.0" />
+					<linkData number="2" basis="0.0" target="a" />
 					<box transparent="true" color="yellow" zsize="0.0050" ysize="0.05" xsize="0.07">
 						<location z="0.02" y="0.0" x="0.0" />
 					</box>
 					<group name="sinsi">
 						<location z="0.0" y="0.0" x="0.0"/>
-						<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"/>
-						<linkData column="3" const="0.0" target="theta"/>
+						<rotation z="0.0" y="0.0" x="0.0"/>
+						<linkData number="3" basis="0.0" target="theta"/>
 						<cylinder color="red" div="10" height="0.018" r="0.01">
-							<rotation zrotation="0.0" yrotation="0.0" xrotation="1.5708"/>
+							<rotation z="0.0" y="0.0" x="1.5708"/>
 							<location z="0.0325" y="0.0" x="0.0"/>
 						</cylinder>
 						<cylinder color="black" div="10" height="0.3" r="0.0025">
@@ -44,7 +44,7 @@
 	<config>
 		<background color="white"/>
 		<light z="-0.8" y="-0.8" x="0.2"/>
-		<view z="1.0" y="0.0" x="0.0" zrotation="0.0" yrotation="0.0" xrotation="-0.2"/>
+		<view z="1.0" y="0.0" x="0.0" rotationZ="0.0" rotationY="0.0" rotationX="-0.2"/>
 		<modelUnit length="m" angle="radian"/>
 		<dataUnit length="m" angle="radian"/>
 	</config>

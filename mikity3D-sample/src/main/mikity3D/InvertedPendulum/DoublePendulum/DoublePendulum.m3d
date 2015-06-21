@@ -45,7 +45,7 @@
 				<group name="daisha">
 					<location z="0.0" y="0.15" x="0.0" />
 					<rotation z="0.0" y="0.0" x="0.0" />
-					<linkData column="2" const="0.0" target="a" />
+					<linkData number="2" basis="0.0" target="a" />
 					<quadPolygon color="yellow">
 						<point z="-0.025" y="0.1" x="0.125" />
 						<point z="-0.025" y="-0.1" x="0.125" />
@@ -85,7 +85,7 @@
 					<group name="sinsi1">
 						<location z="0.0" y="0.035" x="0.0" />
 						<rotation z="0.0" y="0.0" x="0.0" />
-						<linkData column="3" const="0.0" target="theta" />
+						<linkData number="3" basis="0.0" target="theta" />
 						<trianglePolygon color="red">
 							<point z="-0.01" y="0.0" x="0.0" />
 							<point z="-0.01" y="0.00707" x="0.00707" />
@@ -412,7 +412,7 @@
 						<group name="sinsi2">
 							<location z="0.0" y="0.389" x="0.0" />
 							<rotation z="0.0" y="0.0" x="0.0" />
-							<linkData column="4" const="0.0" target="theta" />
+							<linkData number="4" basis="0.0" target="theta" />
 							<trianglePolygon color="red">
 								<point z="-0.01" y="0.0" x="0.0" />
 								<point z="-0.01" y="0.00707" x="0.00707" />

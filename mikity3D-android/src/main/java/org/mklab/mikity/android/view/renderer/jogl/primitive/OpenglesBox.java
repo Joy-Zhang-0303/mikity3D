@@ -19,11 +19,11 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class OpenglesBox extends AbstractOpenglesObject {
   /** 幅 。*/
-  private float xSize;
-  /** 奥行 。*/
-  private float ySize;
-  /** 高さ。 */
-  private float zSize;
+  private float width;
+  /** 高さ 。*/
+  private float height;
+  /** 奥行。 */
+  private float depth;
 
   /**
    * {@inheritDoc}
@@ -35,9 +35,9 @@ public class OpenglesBox extends AbstractOpenglesObject {
     //デプステストの有効化
     gl10.glEnable(GL10.GL_DEPTH_TEST);
 
-    final float[] vertices = {this.xSize / 2, this.ySize / 2, this.zSize / 2, -this.xSize / 2, this.ySize / 2, this.zSize / 2, -this.xSize / 2, -this.ySize / 2, this.zSize / 2, this.xSize / 2,
-        -this.ySize / 2, this.zSize / 2, this.xSize / 2, this.ySize / 2, -this.zSize / 2, -this.xSize / 2, this.ySize / 2, -this.zSize / 2, -this.xSize / 2, -this.ySize / 2, -this.zSize / 2,
-        this.xSize / 2, -this.ySize / 2, -this.zSize / 2,};
+    final float[] vertices = {this.width / 2, this.height / 2, this.depth / 2, -this.width / 2, this.height / 2, this.depth / 2, -this.width / 2, -this.height / 2, this.depth / 2, this.width / 2,
+        -this.height / 2, this.depth / 2, this.width / 2, this.height / 2, -this.depth / 2, -this.width / 2, this.height / 2, -this.depth / 2, -this.width / 2, -this.height / 2, -this.depth / 2,
+        this.width / 2, -this.height / 2, -this.depth / 2,};
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
@@ -62,13 +62,13 @@ public class OpenglesBox extends AbstractOpenglesObject {
   /**
    * 大きさを設定します。
    * 
-   * @param xSize 幅
-   * @param ySize 高さ
-   * @param zSize 奥行
+   * @param width 幅
+   * @param height 高さ
+   * @param depth 奥行
    */
-  public void setSize(float xSize, float ySize, float zSize) {
-    this.xSize = xSize;
-    this.ySize = ySize;
-    this.zSize = zSize;
+  public void setSize(float width, float height, float depth) {
+    this.width = width;
+    this.height = height;
+    this.depth = depth;
   }
 }

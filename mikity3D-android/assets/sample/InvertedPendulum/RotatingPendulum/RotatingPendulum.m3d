@@ -2,10 +2,8 @@
 	<model>
 		<group name="Group0">
 			<location z="0.0" y="0.0" x="0.0"/>
-			<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0"/>
-			<box transparent="true" xsize="0.8" ysize="0.01" zsize="0.8" color="green">
-				<location x="0.0" y="0.0" z="0.0" />
-			</box>
+			<rotation z="0.0" y="0.0" x="0.0"/>
+			<box transparent="true" xsize="0.8" ysize="0.01" zsize="0.8" color="green"/>
 			<box transparent="true" xsize="0.4" ysize="0.12" zsize="0.4" color="blue">
 				<location x="0.0" y="0.065" z="0.0" />
 			</box>
@@ -14,19 +12,18 @@
 			</cylinder>
 			<group name="link1">
 				<location z="0.0" y="0.33" x="0.0"/>
-				<rotation zrotation="0.0" yrotation="0.0" xrotation="1.5708"/>
+				<rotation z="0.0" y="0.0" x="1.5708"/>
 				<cylinder r="0.02" height="0.3" div="30" color="yellow">
-					<rotation xrotation="0.0" yrotation="0.0" zrotation="0.0" />
 					<location x="0.0" y="0.15" z="0.0" />
 				</cylinder>
-				<linkData target="rotationZ" column="2" const="0" />
+				<linkData target="rotationZ" number="2" basis="0" />
 				<group name="link2">
 					<location z="0.0" y="0.3" x="0.0"/>
-					<rotation zrotation="0.0" yrotation="0.0" xrotation="1.5708"/>
+					<rotation z="0.0" y="0.0" x="1.5708"/>
 					<cylinder r="0.02" height="0.3" div="30" color="yellow">
 						<location x="0.0" y="0.15" z="0.0" />
 					</cylinder>
-					<linkData target="rotationZ" column="3" const="0" />
+					<linkData target="rotationZ" number="3" basis="0" />
 				</group>
 			</group>
 		</group>
@@ -34,7 +31,7 @@
 	<config>
 		<background color="white" />
 		<light x="0.2" y="-0.8" z="-0.8" />
-		<view xrotation="-0.2" yrotation="0.0" zrotation="0.0" x="0.0" y="0.3" z="1.0" />
+		<view x="-0.2" y="0.0" z="0.0" rotationX="0.0" rotationY="0.3" rotationZ="1.0" />
 		<modelUnit angle="degree" length="m" />
 		<dataUnit angle="radian" length="m" />
 	</config>

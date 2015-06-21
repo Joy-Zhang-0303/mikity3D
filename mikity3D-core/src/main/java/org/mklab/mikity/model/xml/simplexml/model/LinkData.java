@@ -15,31 +15,31 @@ public class LinkData implements java.io.Serializable {
 
   /** 対象となるパラメータの名前 */
   @Attribute(name="target")
-  private String targetName;
+  private String target;
 
-  /** 定数の値 */
-  @Attribute(name="const")
-  private double constantValue;
+  /** 基準 */
+  @Attribute(name="basis")
+  private double basis;
 
-  /** データの列番号 */
-  @Attribute(name="column")
-  private int columnNumber;
+  /** データの番号 */
+  @Attribute(name="number")
+  private int number;
   
   /**
    * 新しく生成された<code>LinkData</code>オブジェクトを初期化します。
    */
   public LinkData() {
-    this.targetName = ""; //$NON-NLS-1$
+    this.target = ""; //$NON-NLS-1$
   }
   
 
   /**
-   * データの列番号を返します。
+   * データの番号を返します。
    * 
-   * @return データの列番号
+   * @return データの番号
    */
-  public int getColumnNumber() {
-    return this.columnNumber;
+  public int getNumber() {
+    return this.number;
   }
 
   /**
@@ -49,11 +49,11 @@ public class LinkData implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + this.columnNumber;
+    result = prime * result + this.number;
     long temp;
-    temp = Double.doubleToLongBits(this.constantValue);
+    temp = Double.doubleToLongBits(this.basis);
     result = prime * result + (int)(temp ^ (temp >>> 32));
-    result = prime * result + ((this.targetName == null) ? 0 : this.targetName.hashCode());
+    result = prime * result + ((this.target == null) ? 0 : this.target.hashCode());
     return result;
   }
 
@@ -72,29 +72,29 @@ public class LinkData implements java.io.Serializable {
       return false;
     }
     LinkData other = (LinkData)obj;
-    if (this.columnNumber != other.columnNumber) {
+    if (this.number != other.number) {
       return false;
     }
-    if (Double.doubleToLongBits(this.constantValue) != Double.doubleToLongBits(other.constantValue)) {
+    if (Double.doubleToLongBits(this.basis) != Double.doubleToLongBits(other.basis)) {
       return false;
     }
-    if (this.targetName == null) {
-      if (other.targetName != null) {
+    if (this.target == null) {
+      if (other.target != null) {
         return false;
       }
-    } else if (!this.targetName.equals(other.targetName)) {
+    } else if (!this.target.equals(other.target)) {
       return false;
     }
     return true;
   }
 
   /**
-   * 定数の値を返します。
+   * 基準の値を返します。
    * 
-   * @return 定数の値
+   * @return 基準の値
    */
-  public double getConstantValue() {
-    return this.constantValue;
+  public double getBasis() {
+    return this.basis;
   }
 
   /**
@@ -102,50 +102,50 @@ public class LinkData implements java.io.Serializable {
    * 
    * @return 対象となるパラメータの名前
    */
-  public String getTargetName() {
-    return this.targetName;
+  public String getTarget() {
+    return this.target;
   }
 
   /**
-   * データの列番号をもつか判別します。
+   * データの番号をもつか判別します。
    * 
-   * @return データの列番号をもつならばtrue
+   * @return データの番号をもつならばtrue
    */
-  public boolean hasColumnNumber() {
-    if (this.columnNumber != 0) {
+  public boolean hasNumber() {
+    if (this.number != 0) {
       return true;
     }
     return false;
   }
 
   /**
-   * 定数をもつか判別します。
+   * 機運をもつか判別します。
    * 
-   * @return 定数をもつならばtrue
+   * @return 基準をもつならばtrue
    */
-  public boolean hasConstantValue() {
-    if (this.constantValue != 0.0) {
+  public boolean hasBasis() {
+    if (this.basis != 0.0) {
       return true;
     }
     return false;
   }
 
   /**
-   * データの列番号を設定します。
+   * データの番号を設定します。
    * 
-   * @param columnNumber データの列番号
+   * @param number データの番号
    */
-  public void setColumnNumber(int columnNumber) {
-    this.columnNumber = columnNumber;
+  public void setNumber(int number) {
+    this.number = number;
   }
 
   /**
-   * 定数を設定します。
+   * 基準を設定します。
    * 
-   * @param constantValue 定数
+   * @param basis 基準
    */
-  public void setConstantValue(double constantValue) {
-    this.constantValue = constantValue;
+  public void setConstantValue(double basis) {
+    this.basis = basis;
   }
 
   /**
@@ -153,8 +153,8 @@ public class LinkData implements java.io.Serializable {
    * 
    * @param target 対象となるパラメータの名前
    */
-  public void setTargetName(String target) {
-    this.targetName = target;
+  public void setTarget(String target) {
+    this.target = target;
   }
 
   /**
@@ -162,7 +162,7 @@ public class LinkData implements java.io.Serializable {
    * @return DHパラメータを持つならばtrue
    */
   public boolean hasDHParameter() {
-    if (this.targetName.equals("a") || this.targetName.equals("alpha") || this.targetName.equals("d") || this.targetName.equals("theta")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+    if (this.target.equals("a") || this.target.equals("alpha") || this.target.equals("d") || this.target.equals("theta")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
       return true;
     }
     return false;
@@ -173,8 +173,8 @@ public class LinkData implements java.io.Serializable {
    * @return 座標パラメータをもつならばtrue
    */
   public boolean hasCoordinateParameter() {
-    if (this.targetName.equals("locationX") || this.targetName.equals("locationY") || this.targetName.equals("locationZ") || this.targetName.equals("rotationX") || this.targetName.equals("rotationY") //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-        || this.targetName.equals("rotationZ")) { //$NON-NLS-1$
+    if (this.target.equals("locationX") || this.target.equals("locationY") || this.target.equals("locationZ") || this.target.equals("rotationX") || this.target.equals("rotationY") //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        || this.target.equals("rotationZ")) { //$NON-NLS-1$
       return true;
     }
     return false;

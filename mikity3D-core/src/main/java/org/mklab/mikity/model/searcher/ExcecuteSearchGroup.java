@@ -81,8 +81,8 @@ public class ExcecuteSearchGroup {
    */
   private GroupManager searchLinkData(Group group, int linkCount, GroupManager parents) {
     final LinkData data = group.getLinkData(linkCount);
-    final int column = data.getColumnNumber();
-    final String target = data.getTargetName();
+    final int column = data.getNumber();
+    final String target = data.getTarget();
     final GroupLink links = new GroupLink(column, target, parents);
     return links;
   }

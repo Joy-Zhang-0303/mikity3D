@@ -490,7 +490,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     for (Integer target : targetColumn) {
       group = group.getGroup(target.intValue());
     }
-    group.getLinkData(childPosition).setColumnNumber(columnNumber);
+    group.getLinkData(childPosition).setNumber(columnNumber);
     this.canvasActivity.canvasFragment.configurateModel();
     this.canvasActivity.canvasFragment.setGroupManager();
   }

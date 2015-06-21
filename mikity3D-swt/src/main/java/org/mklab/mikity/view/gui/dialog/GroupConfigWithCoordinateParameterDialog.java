@@ -144,12 +144,12 @@ public class GroupConfigWithCoordinateParameterDialog {
   void addLinkData(final ParameterInputBox dh, final ParameterInputBox col) {
     if (dh.getFloatValue() != 0.0 || col.getIntValue() != 0) {
       final LinkData linkdata = new LinkData();
-      linkdata.setTargetName(dh.getLabelText());
+      linkdata.setTarget(dh.getLabelText());
       if (dh.getFloatValue() != 0.0) {
         linkdata.setConstantValue(dh.getFloatValue());
       }
       if (col.getIntValue() != 0) {
-        linkdata.setColumnNumber(col.getIntValue());
+        linkdata.setNumber(col.getIntValue());
       }
       this.group.addLinkdata(linkdata);
     }
@@ -241,9 +241,9 @@ public class GroupConfigWithCoordinateParameterDialog {
     final LinkData[] linkdata = this.group.getLinkData();
 
     for (int i = 0; i < linkdata.length; i++) {
-      final String target = linkdata[i].getTargetName();
-      final String column = linkdata[i].hasColumnNumber() ? "" + linkdata[i].getColumnNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      final String constant = linkdata[i].hasConstantValue() ? "" + linkdata[i].getConstantValue() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String target = linkdata[i].getTarget();
+      final String column = linkdata[i].hasNumber() ? "" + linkdata[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String constant = linkdata[i].hasBasis() ? "" + linkdata[i].getBasis() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       if (target.equals("locationX")) { //$NON-NLS-1$
         this.columnLocationX.setText(column);
         this.locationX.setText(constant);

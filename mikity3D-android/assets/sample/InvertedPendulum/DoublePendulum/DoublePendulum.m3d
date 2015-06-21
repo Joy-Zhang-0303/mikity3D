@@ -2,10 +2,10 @@
 	<model>
 		<group name="Group0">
 			<location z="0.0" y="0.0" x="0.0" />
-			<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+			<rotation z="0.0" y="0.0" x="0.0" />
 			<group name="belt">
 				<location z="0.0" y="-0.15" x="0.0" />
-				<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
+				<rotation z="0.0" y="0.0" x="0.0" />
 				<quadPolygon color="lightGray">
 					<point z="-0.05" y="0.05" x="0.75" />
 					<point z="-0.05" y="-0.05" x="0.75" />
@@ -44,8 +44,8 @@
 				</quadPolygon>
 				<group name="daisha">
 					<location z="0.0" y="0.15" x="0.0" />
-					<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
-					<linkData column="2" const="0.0" target="a" />
+					<rotation z="0.0" y="0.0" x="0.0" />
+					<linkData number="2" basis="0.0" target="a" />
 					<quadPolygon color="yellow">
 						<point z="-0.025" y="0.1" x="0.125" />
 						<point z="-0.025" y="-0.1" x="0.125" />
@@ -84,8 +84,8 @@
 					</quadPolygon>
 					<group name="sinsi1">
 						<location z="0.0" y="0.035" x="0.0" />
-						<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
-						<linkData column="3" const="0.0" target="theta" />
+						<rotation z="0.0" y="0.0" x="0.0" />
+						<linkData number="3" basis="0.0" target="theta" />
 						<trianglePolygon color="red">
 							<point z="-0.01" y="0.0" x="0.0" />
 							<point z="-0.01" y="0.00707" x="0.00707" />
@@ -411,8 +411,8 @@
 						</quadPolygon>
 						<group name="sinsi2">
 							<location z="0.0" y="0.389" x="0.0" />
-							<rotation zrotation="0.0" yrotation="0.0" xrotation="0.0" />
-							<linkData column="4" const="0.0" target="theta" />
+							<rotation z="0.0" y="0.0" x="0.0" />
+							<linkData number="4" basis="0.0" target="theta" />
 							<trianglePolygon color="red">
 								<point z="-0.01" y="0.0" x="0.0" />
 								<point z="-0.01" y="0.00707" x="0.00707" />
@@ -742,7 +742,7 @@
 	<config>
 		<background color="white"/>
 		<light z="-0.8" y="-0.8" x="0.2"/>
-		<view z="1.0" y="0.0" x="0.0" zrotation="0.0" yrotation="0.0" xrotation="-0.2"/>
+		<view z="1.0" y="0.0" x="0.0" rotationZ="0.0" rotationY="0.0" rotationX="-0.2"/>
 		<modelUnit length="m" angle="radian"/>
 		<dataUnit length="m" angle="radian"/>
 	</config>

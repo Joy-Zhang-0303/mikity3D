@@ -362,13 +362,13 @@ public class Node {
         this.group.setName(this.name);
         LinkData[] linkdata = new LinkData[3];
         linkdata[0] = new LinkData();
-        linkdata[0].setTargetName("locationX"); //$NON-NLS-1$
+        linkdata[0].setTarget("locationX"); //$NON-NLS-1$
         linkdata[0].setConstantValue(this.matrix4f.getElement(0, 3)); // m03
         linkdata[1] = new LinkData();
-        linkdata[1].setTargetName("locationY"); //$NON-NLS-1$
+        linkdata[1].setTarget("locationY"); //$NON-NLS-1$
         linkdata[1].setConstantValue(this.matrix4f.getElement(1, 3)); // m13
         linkdata[2] = new LinkData();
-        linkdata[2].setTargetName("locationZ"); //$NON-NLS-1$
+        linkdata[2].setTarget("locationZ"); //$NON-NLS-1$
         linkdata[2].setConstantValue(this.matrix4f.getElement(2, 3)); // m23
         this.group.setLinks(linkdata);
       }

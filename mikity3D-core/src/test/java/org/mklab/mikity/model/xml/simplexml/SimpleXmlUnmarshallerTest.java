@@ -253,9 +253,9 @@ public class SimpleXmlUnmarshallerTest {
 
     final LinkData actualLinkData = actualGroup.getLinkData(0);
     final LinkData expectedLinkData = new LinkData();
-    expectedLinkData.setColumnNumber(2);
+    expectedLinkData.setNumber(2);
     expectedLinkData.setConstantValue(0);
-    expectedLinkData.setTargetName("a"); //$NON-NLS-1$
+    expectedLinkData.setTarget("a"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
 
     final XMLBox actualBox = actualGroup.getXMLBox(0);
@@ -300,9 +300,9 @@ public class SimpleXmlUnmarshallerTest {
     
     final LinkData actualLinkData = actualGroup.getLinkData(0);
     final LinkData expectedLinkData = new LinkData();
-    expectedLinkData.setColumnNumber(3);
+    expectedLinkData.setNumber(3);
     expectedLinkData.setConstantValue(0);
-    expectedLinkData.setTargetName("theta"); //$NON-NLS-1$
+    expectedLinkData.setTarget("theta"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
     
     final XMLCylinder actualCylinder1 = actualGroup.getXMLCylinder(0);

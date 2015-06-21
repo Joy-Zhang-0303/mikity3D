@@ -169,7 +169,7 @@
 				<group name="dodai2">
 					<location z="-0.15" y="0.0" x="0.0" />
 					<rotation z="0.0" y="0.0" x="3.14" />
-					<linkData column="2" const="0.0" target="rotationZ" />
+					<linkData number="2" basis="0.0" target="rotationZ" />
 					<quadPolygon color="blue">
 						<point z="-0.05" y="0.05" x="0.29" />
 						<point z="-0.05" y="-0.05" x="0.29" />
@@ -209,7 +209,7 @@
 					<group name="sinsi1">
 						<location z="0.0" y="0.0" x="-0.30000001192092896" />
 						<rotation z="0.0" y="0.0" x="1.57" />
-						<linkData column="3" const="0.0" target="rotationX" />
+						<linkData number="3" basis="0.0" target="rotationX" />
 						<trianglePolygon color="orange">
 							<point z="-0.01" y="0.0" x="0.0" />
 							<point z="-0.01" y="0.00707" x="0.00707" />
@@ -534,7 +534,7 @@
 					<group name="sinsi2">
 						<location z="0.0" y="0.0" x="0.30000001192092896" />
 						<rotation z="0.0" y="0.0" x="1.57" />
-						<linkData column="4" const="0.0" target="rotationX" />
+						<linkData number="4" basis="0.0" target="rotationX" />
 						<trianglePolygon color="yellow">
 							<point z="-0.01" y="0.0" x="0.0" />
 							<point z="-0.01" y="0.00707" x="0.00707" />

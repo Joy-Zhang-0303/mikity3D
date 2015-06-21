@@ -132,10 +132,10 @@ public class MovableGroupManager {
     for (final LinkData link : links) {
       if (link.hasDHParameter()) {
        // this.logCat.printLog("hasDHParameter"); //$NON-NLS-1$
-        if (link.hasColumnNumber()) {
+        if (link.hasNumber()) {
           // this.logCat.printLog("hasColumNumber"); //$NON-NLS-1$
-          final int dataNumber = link.getColumnNumber();
-          final String parameterName = link.getTargetName();
+          final int dataNumber = link.getNumber();
+          final String parameterName = link.getTarget();
           // this.logCat.printLog("Number of link:"+links.length+" dataNumber:"+dataNumber  +"parameterName:"+parameterName); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
           final DHParameterType type;
 
@@ -153,9 +153,9 @@ public class MovableGroupManager {
           picker.pickup(type, dataNumber);
         }
         
-        if (link.hasConstantValue()) {
-          final double initialValue = link.getConstantValue();
-          final String parameterName = link.getTargetName();
+        if (link.hasBasis()) {
+          final double initialValue = link.getBasis();
+          final String parameterName = link.getTarget();
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
@@ -172,9 +172,9 @@ public class MovableGroupManager {
           picker.setParameter(type, initialValue);
         }
       } else if (link.hasCoordinateParameter()) {
-        if (link.hasColumnNumber()) {
-          final int dataNumber = link.getColumnNumber();
-          final String parameterName = link.getTargetName();
+        if (link.hasNumber()) {
+          final int dataNumber = link.getNumber();
+          final String parameterName = link.getTarget();
           final CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
@@ -195,9 +195,9 @@ public class MovableGroupManager {
           picker.pickup(type, dataNumber);
         }
         
-        if (link.hasConstantValue()) {
-          final double initialValue = link.getConstantValue();
-          final String parameterName = link.getTargetName();
+        if (link.hasBasis()) {
+          final double initialValue = link.getBasis();
+          final String parameterName = link.getTarget();
           final CoordinateParameterType type;
 
           if (parameterName.equals("locationX")) { //$NON-NLS-1$
