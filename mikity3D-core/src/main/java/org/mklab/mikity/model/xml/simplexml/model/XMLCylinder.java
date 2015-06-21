@@ -20,16 +20,16 @@ public class XMLCylinder implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** radius */
-  @Attribute(name="r")
+  @Attribute(name="radius")
   protected float radius;
 
   /** height */
   @Attribute(name="height")
   protected float height;
 
-  /** div */
-  @Attribute(name="div")
-  protected int div;
+  /** division */
+  @Attribute(name="division")
+  protected int division;
 
   /** color */
   @Attribute(name="color")
@@ -86,7 +86,7 @@ public class XMLCylinder implements Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
-    result = prime * result + this.div;
+    result = prime * result + this.division;
     result = prime * result + Float.floatToIntBits(this.height);
     result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
     result = prime * result + Float.floatToIntBits(this.radius);
@@ -118,7 +118,7 @@ public class XMLCylinder implements Serializable {
     } else if (!this.color.equals(other.color)) {
       return false;
     }
-    if (this.div != other.div) {
+    if (this.division != other.division) {
       return false;
     }
     if (Float.floatToIntBits(this.height) != Float.floatToIntBits(other.height)) {
@@ -160,7 +160,7 @@ public class XMLCylinder implements Serializable {
    * @return the value of field 'div'.
    */
   public int getDiv() {
-    return this.div;
+    return this.division;
   }
 
   /**
@@ -249,7 +249,7 @@ public class XMLCylinder implements Serializable {
    * @param div the value of field 'div'.
    */
   public void setDiv(int div) {
-    this.div = div;
+    this.division = div;
   }
 
   /**

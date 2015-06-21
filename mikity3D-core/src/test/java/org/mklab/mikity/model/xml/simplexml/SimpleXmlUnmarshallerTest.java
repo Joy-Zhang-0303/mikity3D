@@ -167,9 +167,9 @@ public class SimpleXmlUnmarshallerTest {
     final XMLBox expectedBox = new XMLBox();
     expectedBox.setTransparent(true);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
-    expectedBox.setXsize(0.02F);
-    expectedBox.setYsize(0.27F);
-    expectedBox.setZsize(0.02F);
+    expectedBox.setWidth(0.02F);
+    expectedBox.setHeight(0.27F);
+    expectedBox.setDepth(0.02F);
     
     final Location expectedLocation = new Location();
     expectedLocation.setX(-0.05F);
@@ -185,9 +185,9 @@ public class SimpleXmlUnmarshallerTest {
     final XMLBox expectedBox = new XMLBox();
     expectedBox.setTransparent(true);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
-    expectedBox.setXsize(0.3F);
-    expectedBox.setYsize(0.005F);
-    expectedBox.setZsize(0.1F);
+    expectedBox.setWidth(0.3F);
+    expectedBox.setHeight(0.005F);
+    expectedBox.setDepth(0.1F);
     
     final Location expectedLocation = new Location();
     expectedLocation.setX(0.0F);
@@ -203,9 +203,9 @@ public class SimpleXmlUnmarshallerTest {
     final XMLBox expectedBox = new XMLBox();
     expectedBox.setTransparent(true);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
-    expectedBox.setXsize(0.02F);
-    expectedBox.setYsize(0.27F);
-    expectedBox.setZsize(0.02F);
+    expectedBox.setWidth(0.02F);
+    expectedBox.setHeight(0.27F);
+    expectedBox.setDepth(0.02F);
     
     final Location expectedLocation = new Location();
     expectedLocation.setX(0.05F);
@@ -221,9 +221,9 @@ public class SimpleXmlUnmarshallerTest {
     final XMLBox expectedBox = new XMLBox();
     expectedBox.setTransparent(true);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
-    expectedBox.setXsize(0.54F);
-    expectedBox.setYsize(0.05F);
-    expectedBox.setZsize(0.07F);
+    expectedBox.setWidth(0.54F);
+    expectedBox.setHeight(0.05F);
+    expectedBox.setDepth(0.07F);
     
     final Location expectedLocation = new Location();
     expectedLocation.setX(0.0F);
@@ -269,9 +269,9 @@ public class SimpleXmlUnmarshallerTest {
     final XMLBox expectedBox = new XMLBox();
     expectedBox.setTransparent(true);
     expectedBox.setColor("yellow"); //$NON-NLS-1$
-    expectedBox.setXsize(0.07F);
-    expectedBox.setYsize(0.05F);
-    expectedBox.setZsize(0.005F);
+    expectedBox.setWidth(0.07F);
+    expectedBox.setHeight(0.05F);
+    expectedBox.setDepth(0.005F);
     
     final Location expectedLocation = new Location();
     expectedLocation.setX(0.0F);

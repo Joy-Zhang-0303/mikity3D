@@ -17,17 +17,17 @@ import org.simpleframework.xml.Root;
 public class XMLBox implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** xsize */
-  @Attribute(name="xsize")
-  private float xSize;
+  /** width */
+  @Attribute(name="width")
+  private float width;
 
-  /** ysize */
-  @Attribute(name="ysize")
-  private float ySize;
+  /** height */
+  @Attribute(name="height")
+  private float height;
 
-  /** zsize */
-  @Attribute(name="zsize")
-  private float zSize;
+  /** depth */
+  @Attribute(name="depth")
+  private float depth;
 
   /** color */
   @Attribute(name="color")
@@ -87,9 +87,9 @@ public class XMLBox implements java.io.Serializable {
     result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
     result = prime * result + (this.transparent ? 1231 : 1237);
-    result = prime * result + Float.floatToIntBits(this.xSize);
-    result = prime * result + Float.floatToIntBits(this.ySize);
-    result = prime * result + Float.floatToIntBits(this.zSize);
+    result = prime * result + Float.floatToIntBits(this.width);
+    result = prime * result + Float.floatToIntBits(this.height);
+    result = prime * result + Float.floatToIntBits(this.depth);
     result = prime * result + ((this.propertyChangeListeners == null) ? 0 : this.propertyChangeListeners.hashCode());
     return result;
   }
@@ -133,13 +133,13 @@ public class XMLBox implements java.io.Serializable {
     if (this.transparent != other.transparent) {
       return false;
     }
-    if (Float.floatToIntBits(this.xSize) != Float.floatToIntBits(other.xSize)) {
+    if (Float.floatToIntBits(this.width) != Float.floatToIntBits(other.width)) {
       return false;
     }
-    if (Float.floatToIntBits(this.ySize) != Float.floatToIntBits(other.ySize)) {
+    if (Float.floatToIntBits(this.height) != Float.floatToIntBits(other.height)) {
       return false;
     }
-    if (Float.floatToIntBits(this.zSize) != Float.floatToIntBits(other.zSize)) {
+    if (Float.floatToIntBits(this.depth) != Float.floatToIntBits(other.depth)) {
       return false;
     }
     if (this.propertyChangeListeners == null) {
@@ -184,8 +184,8 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'xsize'.
    */
-  public float getXsize() {
-    return this.xSize;
+  public float getWidth() {
+    return this.width;
   }
 
   /**
@@ -193,8 +193,8 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'ysize'.
    */
-  public float getYsize() {
-    return this.ySize;
+  public float getHeight() {
+    return this.height;
   }
 
   /**
@@ -202,8 +202,8 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'zsize'.
    */
-  public float getZsize() {
-    return this.zSize;
+  public float getDepth() {
+    return this.depth;
   }
 
   /**
@@ -271,28 +271,28 @@ public class XMLBox implements java.io.Serializable {
   /**
    * Sets the value of field 'xsize'.
    * 
-   * @param xsize the value of field 'xsize'.
+   * @param width the value of field 'xsize'.
    */
-  public void setXsize(float xsize) {
-    this.xSize = xsize;
+  public void setWidth(float width) {
+    this.width = width;
   }
 
   /**
    * Sets the value of field 'ysize'.
    * 
-   * @param ysize the value of field 'ysize'.
+   * @param height the value of field 'ysize'.
    */
-  public void setYsize(float ysize) {
-    this.ySize = ysize;
+  public void setHeight(float height) {
+    this.height = height;
   }
 
   /**
    * Sets the value of field 'zsize'.
    * 
-   * @param zsize the value of field 'zsize'.
+   * @param depth the value of field 'zsize'.
    */
-  public void setZsize(float zsize) {
-    this.zSize = zsize;
+  public void setDepth(float depth) {
+    this.depth = depth;
   }
 
 }

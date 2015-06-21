@@ -17,13 +17,13 @@ import org.simpleframework.xml.Root;
 public class XMLSphere implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** r */
-  @Attribute(name="r")
+  /** radius */
+  @Attribute(name="radius")
   private float radius;
 
-  /** div */
-  @Attribute(name="div")
-  private int div;
+  /** division */
+  @Attribute(name="division")
+  private int division;
 
   /** color */
   @Attribute(name="color")
@@ -80,7 +80,7 @@ public class XMLSphere implements java.io.Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
-    result = prime * result + this.div;
+    result = prime * result + this.division;
     result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
     result = prime * result + Float.floatToIntBits(this.radius);
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
@@ -111,7 +111,7 @@ public class XMLSphere implements java.io.Serializable {
     } else if (!this.color.equals(other.color)) {
       return false;
     }
-    if (this.div != other.div) {
+    if (this.division != other.division) {
       return false;
     }
     if (this.location == null) {
@@ -150,7 +150,7 @@ public class XMLSphere implements java.io.Serializable {
    * @return the value of field 'div'.
    */
   public int getDiv() {
-    return this.div;
+    return this.division;
   }
 
   /**
@@ -230,7 +230,7 @@ public class XMLSphere implements java.io.Serializable {
    * @param div the value of field 'div'.
    */
   public void setDiv(int div) {
-    this.div = div;
+    this.division = div;
   }
 
   /**

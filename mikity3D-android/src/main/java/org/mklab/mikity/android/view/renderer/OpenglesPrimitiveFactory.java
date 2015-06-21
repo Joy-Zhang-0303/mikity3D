@@ -51,9 +51,9 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたboxを含む可動グループ
    */
   public static OpenglesTransformGroup create(XMLBox box) {
-    final float xSize = box.getXsize();
-    final float ySize = box.getYsize();
-    final float zSize = box.getZsize();
+    final float xSize = box.getWidth();
+    final float ySize = box.getHeight();
+    final float zSize = box.getDepth();
     final String color = box.getColor();
     
     final OpenglesBox child = new OpenglesBox();
@@ -111,7 +111,7 @@ public class OpenglesPrimitiveFactory {
 
     final OpenglesCylinder child = new OpenglesCylinder();
     child.setSize(radius, hight);
-    child.setDiv(div);
+    child.setDivision(div);
     child.setColor(color);
     
     final OpenglesTransformGroup group = new OpenglesTransformGroup();
@@ -164,7 +164,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesSphere child = new OpenglesSphere();
     child.setSize(radius);
-    child.setDiv(div);
+    child.setDivision(div);
     child.setColor(color);
     
     final OpenglesTransformGroup group = new OpenglesTransformGroup();
@@ -218,7 +218,7 @@ public class OpenglesPrimitiveFactory {
     final OpenglesCone child = new OpenglesCone();
     child.setColor(color);
     child.setSize(radius, hight);
-    child.setDiv(div);
+    child.setDivision(div);
     
     final OpenglesTransformGroup group = new OpenglesTransformGroup();
 

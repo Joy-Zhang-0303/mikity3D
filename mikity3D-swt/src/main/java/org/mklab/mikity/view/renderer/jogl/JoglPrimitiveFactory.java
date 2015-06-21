@@ -47,9 +47,9 @@ public class JoglPrimitiveFactory {
    * @return 与えられたboxを含む可動グループ
    */
   public static JoglTransformGroup create(XMLBox box) {
-    final float xSize = box.getXsize();
-    final float ySize = box.getYsize();
-    final float zSize = box.getZsize();
+    final float xSize = box.getWidth();
+    final float ySize = box.getHeight();
+    final float zSize = box.getDepth();
     final String color = box.getColor();
     
     final JoglBox child = new JoglBox();
@@ -107,7 +107,7 @@ public class JoglPrimitiveFactory {
 
     final JoglCylinder child = new JoglCylinder();
     child.setSize(radius, hight);
-    child.setDiv(div);
+    child.setDivision(div);
     child.setColor(color);
     
     final JoglTransformGroup group = new JoglTransformGroup();
@@ -160,7 +160,7 @@ public class JoglPrimitiveFactory {
     
     final JoglSphere child = new JoglSphere();
     child.setSize(radius);
-    child.setDiv(div);
+    child.setDivision(div);
     child.setColor(color);
     
     final JoglTransformGroup group = new JoglTransformGroup();
@@ -214,7 +214,7 @@ public class JoglPrimitiveFactory {
     final JoglCone child = new JoglCone();
     child.setColor(color);
     child.setSize(radius, hight);
-    child.setDiv(div);
+    child.setDivision(div);
     
     final JoglTransformGroup group = new JoglTransformGroup();
 

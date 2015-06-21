@@ -250,9 +250,9 @@ public class AddPrimitiveDialog {
     switch (this.selectedIndex) {
       case boxFlag:
         final XMLBox box = new XMLBox();
-        box.setXsize(this.parameter1.getFloatValue());
-        box.setYsize(this.parameter2.getFloatValue());
-        box.setZsize(this.parameter3.getFloatValue());
+        box.setWidth(this.parameter1.getFloatValue());
+        box.setHeight(this.parameter2.getFloatValue());
+        box.setDepth(this.parameter3.getFloatValue());
         if (getRotation(rotation) != null) {
           box.setRotation(getRotation(rotation));
         }

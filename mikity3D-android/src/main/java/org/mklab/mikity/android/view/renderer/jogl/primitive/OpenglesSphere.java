@@ -20,7 +20,7 @@ public class OpenglesSphere extends AbstractOpenglesObject {
   /** 半径。 */
   private float radius;
   /** 分割数。 */
-  private int div;
+  private int division;
 
   /**
    * {@inheritDoc}
@@ -33,8 +33,8 @@ public class OpenglesSphere extends AbstractOpenglesObject {
     gl10.glEnable(GL10.GL_DEPTH_TEST);
 
     // TODO this._div=16までしか対応していない。
-    this.div = 16;
-    final int grid = this.div;
+    this.division = 16;
+    final int grid = this.division;
     final int grid1 = grid + 1;
     final float incV = 2 * this.radius / grid;
     final int incU = 360 / grid;
@@ -117,9 +117,9 @@ public class OpenglesSphere extends AbstractOpenglesObject {
   
   /**
    * 分割数を設定します。
-   * @param div 分割数
+   * @param division 分割数
    */
-  public void setDiv(int div) {
-    this.div = div;
+  public void setDivision(int division) {
+    this.division = division;
   }
 }

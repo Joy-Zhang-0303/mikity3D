@@ -23,7 +23,7 @@ public class OpenglesCone extends AbstractOpenglesObject {
   /** 高さ。 */
   protected float height;
   /** 分割数。 */
-  protected int div;
+  protected int division;
 
   /**
    * {@inheritDoc}
@@ -35,7 +35,7 @@ public class OpenglesCone extends AbstractOpenglesObject {
     //デプステストの有効化
     gl10.glEnable(GL10.GL_DEPTH_TEST);
 
-    final float[] vertices = new float[(this.div + 2) * 3];
+    final float[] vertices = new float[(this.division + 2) * 3];
 
     // TODO 描画は出来てますが、Normal3fを使うとバグがでます。
     // TODO vertexs[]かindexs[]にどこか問題があると思います。
@@ -45,49 +45,49 @@ public class OpenglesCone extends AbstractOpenglesObject {
     vertices[1] = this.height / 2.0f;
     vertices[2] = 0.0f;
 
-    for (int i = 1; i <= this.div; i++) {
-      final double theta = 2.0 * Math.PI / this.div * i;
+    for (int i = 1; i <= this.division; i++) {
+      final double theta = 2.0 * Math.PI / this.division * i;
       vertices[i * 3] = this.radius * (float)Math.cos(theta);
       vertices[i * 3 + 1] = -this.height / 2.0f;
       vertices[i * 3 + 2] = this.radius * (float)Math.sin(theta);
     }
 
-    vertices[3 + this.div * 3] = 0.0f;
-    vertices[4 + this.div * 3] = -this.height / 2.0f;
-    vertices[5 + this.div * 3] = 0.0f;
+    vertices[3 + this.division * 3] = 0.0f;
+    vertices[4 + this.division * 3] = -this.height / 2.0f;
+    vertices[5 + this.division * 3] = 0.0f;
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
-    final byte[] indices = new byte[this.div * 6];
+    final byte[] indices = new byte[this.division * 6];
 
-    for (int i = 1; i <= this.div; i++) {
+    for (int i = 1; i <= this.division; i++) {
       indices[3 * i - 3] = 0;
     }
 
-    for (int i = 1; i <= this.div; i++) {
+    for (int i = 1; i <= this.division; i++) {
       indices[3 * i - 2] = (byte)i;
     }
 
-    for (int i = 1; i <= (this.div - 1); i++) {
+    for (int i = 1; i <= (this.division - 1); i++) {
       indices[3 * i - 1] = (byte)(i + 1);
     }
 
-    indices[3 * this.div - 1] = 1;
+    indices[3 * this.division - 1] = 1;
 
-    for (int i = 1; i <= this.div; i++) {
-      indices[this.div * 3 + 3 * i - 3] = (byte)(this.div + 1);
+    for (int i = 1; i <= this.division; i++) {
+      indices[this.division * 3 + 3 * i - 3] = (byte)(this.division + 1);
     }
 
-    for (int i = 1; i <= this.div; i++) {
-      indices[this.div * 3 + 3 * i - 2] = (byte)(i);
+    for (int i = 1; i <= this.division; i++) {
+      indices[this.division * 3 + 3 * i - 2] = (byte)(i);
     }
 
-    for (int i = 1; i <= this.div - 1; i++) {
-      indices[this.div * 3 + 3 * i - 1] = (byte)(i + 1);
+    for (int i = 1; i <= this.division - 1; i++) {
+      indices[this.division * 3 + 3 * i - 1] = (byte)(i + 1);
     }
 
-    indices[this.div * 6 - 1] = 1;
+    indices[this.division * 6 - 1] = 1;
 
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
@@ -122,9 +122,9 @@ public class OpenglesCone extends AbstractOpenglesObject {
   /**
    * 分割数を設定します。
    * 
-   * @param div 分割数
+   * @param division 分割数
    */
-  public void setDiv(int div) {
-    this.div = div;
+  public void setDivision(int division) {
+    this.division = division;
   }
 }

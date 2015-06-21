@@ -69,7 +69,7 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLBox box) {
     final int flag = Primitive.GENERATE_NORMALS;
-    final Primitive primitive = new Box(box.getXsize() / (Util.scale * 2), box.getYsize() / (Util.scale * 2), box.getZsize() / (Util.scale * 2), flag, null);
+    final Primitive primitive = new Box(box.getWidth() / (Util.scale * 2), box.getHeight() / (Util.scale * 2), box.getDepth() / (Util.scale * 2), flag, null);
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(box.getColor()));
     if (box.getTransparent() == true) {

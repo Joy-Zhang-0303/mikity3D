@@ -18,16 +18,16 @@ public class XMLCone implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** radius */
-  @Attribute(name="r")
-  private float radisu;
+  @Attribute(name="radius")
+  private float radius;
 
   /** height */
   @Attribute(name="height")
   private float hheight;
 
-  /** div */
-  @Attribute(name="div")
-  private int div;
+  /** division */
+  @Attribute(name="division")
+  private int division;
 
   /** color */
   @Attribute(name="color")
@@ -84,10 +84,10 @@ public class XMLCone implements java.io.Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
-    result = prime * result + this.div;
+    result = prime * result + this.division;
     result = prime * result + Float.floatToIntBits(this.hheight);
     result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
-    result = prime * result + Float.floatToIntBits(this.radisu);
+    result = prime * result + Float.floatToIntBits(this.radius);
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
     result = prime * result + (this.transparent ? 1231 : 1237);
     result = prime * result + ((this.propertyChangeListeners == null) ? 0 : this.propertyChangeListeners.hashCode());
@@ -116,7 +116,7 @@ public class XMLCone implements java.io.Serializable {
     } else if (!this.color.equals(other.color)) {
       return false;
     }
-    if (this.div != other.div) {
+    if (this.division != other.division) {
       return false;
     }
     if (Float.floatToIntBits(this.hheight) != Float.floatToIntBits(other.hheight)) {
@@ -129,7 +129,7 @@ public class XMLCone implements java.io.Serializable {
     } else if (!this.location.equals(other.location)) {
       return false;
     }
-    if (Float.floatToIntBits(this.radisu) != Float.floatToIntBits(other.radisu)) {
+    if (Float.floatToIntBits(this.radius) != Float.floatToIntBits(other.radius)) {
       return false;
     }
     if (this.rotation == null) {
@@ -158,7 +158,7 @@ public class XMLCone implements java.io.Serializable {
    * @return the value of field 'div'.
    */
   public int getDiv() {
-    return this.div;
+    return this.division;
   }
 
   /**
@@ -185,7 +185,7 @@ public class XMLCone implements java.io.Serializable {
    * @return the value of field 'r'.
    */
   public float getRadisu() {
-    return this.radisu;
+    return this.radius;
   }
 
   /**
@@ -247,7 +247,7 @@ public class XMLCone implements java.io.Serializable {
    * @param div the value of field 'div'.
    */
   public void setDiv(int div) {
-    this.div = div;
+    this.division = div;
   }
 
   /**
@@ -274,7 +274,7 @@ public class XMLCone implements java.io.Serializable {
    * @param radius the value of field 'r'.
    */
   public void setRadius(float radius) {
-    this.radisu = radius;
+    this.radius = radius;
   }
 
   /**

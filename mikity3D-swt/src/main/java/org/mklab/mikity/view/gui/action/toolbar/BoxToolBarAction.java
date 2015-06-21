@@ -40,9 +40,9 @@ public class BoxToolBarAction extends Action {
   @Override
   public void run() {
     final XMLBox box = new XMLBox();
-    box.setXsize(0.10f);
-    box.setYsize(0.10f);
-    box.setZsize(0.10f);
+    box.setWidth(0.10f);
+    box.setHeight(0.10f);
+    box.setDepth(0.10f);
     box.setColor("red"); //$NON-NLS-1$
     
     final Mikity3d root = this.window.getRoot();

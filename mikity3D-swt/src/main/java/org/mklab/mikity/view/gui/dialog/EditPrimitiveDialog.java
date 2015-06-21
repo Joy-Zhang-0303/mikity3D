@@ -272,9 +272,9 @@ public class EditPrimitiveDialog {
     if (this.primitive instanceof XMLBox) {
       final XMLBox box = (XMLBox)this.primitive;
       box.setColor(this.colorCombo.getColorComboBox().getText());
-      box.setXsize(this.parameter1.getFloatValue());
-      box.setYsize(this.parameter2.getFloatValue());
-      box.setZsize(this.parameter3.getFloatValue());
+      box.setWidth(this.parameter1.getFloatValue());
+      box.setHeight(this.parameter2.getFloatValue());
+      box.setDepth(this.parameter3.getFloatValue());
       
       box.setRotation(getRotation());
       box.setLocation(getLocation());
@@ -355,9 +355,9 @@ public class EditPrimitiveDialog {
   private void setParametersInDialog() {
     if (this.primitive instanceof XMLBox) {
       final XMLBox box = (XMLBox)this.primitive;
-      this.parameter1.setText("" + box.getXsize()); //$NON-NLS-1$
-      this.parameter2.setText("" + box.getYsize()); //$NON-NLS-1$
-      this.parameter3.setText("" + box.getZsize()); //$NON-NLS-1$
+      this.parameter1.setText("" + box.getWidth()); //$NON-NLS-1$
+      this.parameter2.setText("" + box.getHeight()); //$NON-NLS-1$
+      this.parameter3.setText("" + box.getDepth()); //$NON-NLS-1$
       final Rotation rotation = box.getRotation();
       final Location location = box.getLocation();
       if (rotation != null) {
