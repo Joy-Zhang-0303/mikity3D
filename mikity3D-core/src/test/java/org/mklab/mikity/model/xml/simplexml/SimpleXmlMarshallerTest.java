@@ -36,7 +36,7 @@ public class SimpleXmlMarshallerTest {
   @Test
   public void testMarshal() throws IOException, Mikity3dSerializeDeserializeException {
     final Mikity3DUnmarshaller unmarshaller1 = new Mikity3DUnmarshaller();
-    try (final InputStream input = getClass().getClassLoader().getResourceAsStream("pendulum.m3d")) { //$NON-NLS-1$
+    try (final InputStream input = getClass().getClassLoader().getResourceAsStream("Pendulum.m3d")) { //$NON-NLS-1$
       unmarshaller1.unmarshalFromMikity3DFile(input);
     }
 

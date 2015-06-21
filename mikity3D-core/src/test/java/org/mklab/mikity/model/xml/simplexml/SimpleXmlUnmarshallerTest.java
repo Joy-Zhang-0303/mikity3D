@@ -43,7 +43,7 @@ public class SimpleXmlUnmarshallerTest {
    */
   @Before
   public void setUp() throws IOException, Mikity3dSerializeDeserializeException {
-    try (final InputStream input = getClass().getClassLoader().getResourceAsStream("pendulum.m3d")) { //$NON-NLS-1$
+    try (final InputStream input = getClass().getClassLoader().getResourceAsStream("Pendulum.m3d")) { //$NON-NLS-1$
       this.unmarshaler.unmarshalFromMikity3DFile(input);
     }
   }
@@ -64,7 +64,7 @@ public class SimpleXmlUnmarshallerTest {
    */
   @Test
   public void testUnmarshalFromMikity3DFileInputStream() throws IOException, Mikity3dSerializeDeserializeException {
-    try (final InputStream input = getClass().getClassLoader().getResourceAsStream("pendulum.m3d")) { //$NON-NLS-1$
+    try (final InputStream input = getClass().getClassLoader().getResourceAsStream("Pendulum.m3d")) { //$NON-NLS-1$
       this.unmarshaler.unmarshalFromMikity3DFile(input);
     }
   }
