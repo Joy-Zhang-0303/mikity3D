@@ -23,7 +23,7 @@ public class XMLCone implements java.io.Serializable {
 
   /** height */
   @Attribute(name="height")
-  private float hheight;
+  private float height;
 
   /** division */
   @Attribute(name="division")
@@ -42,8 +42,8 @@ public class XMLCone implements java.io.Serializable {
   private Rotation rotation;
 
   /** location */
-  @Element(name="location", required=false)
-  private Location location;
+  @Element(name="translation", required=false)
+  private Translation translation;
 
   /** propertyChangeListeners */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
@@ -85,8 +85,8 @@ public class XMLCone implements java.io.Serializable {
     int result = 1;
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
     result = prime * result + this.division;
-    result = prime * result + Float.floatToIntBits(this.hheight);
-    result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
+    result = prime * result + Float.floatToIntBits(this.height);
+    result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
     result = prime * result + Float.floatToIntBits(this.radius);
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
     result = prime * result + (this.transparent ? 1231 : 1237);
@@ -119,14 +119,14 @@ public class XMLCone implements java.io.Serializable {
     if (this.division != other.division) {
       return false;
     }
-    if (Float.floatToIntBits(this.hheight) != Float.floatToIntBits(other.hheight)) {
+    if (Float.floatToIntBits(this.height) != Float.floatToIntBits(other.height)) {
       return false;
     }
-    if (this.location == null) {
-      if (other.location != null) {
+    if (this.translation == null) {
+      if (other.translation != null) {
         return false;
       }
-    } else if (!this.location.equals(other.location)) {
+    } else if (!this.translation.equals(other.translation)) {
       return false;
     }
     if (Float.floatToIntBits(this.radius) != Float.floatToIntBits(other.radius)) {
@@ -157,7 +157,7 @@ public class XMLCone implements java.io.Serializable {
    * 
    * @return the value of field 'div'.
    */
-  public int getDiv() {
+  public int getDivision() {
     return this.division;
   }
 
@@ -167,7 +167,7 @@ public class XMLCone implements java.io.Serializable {
    * @return the value of field 'height'.
    */
   public float getHeight() {
-    return this.hheight;
+    return this.height;
   }
 
   /**
@@ -175,8 +175,8 @@ public class XMLCone implements java.io.Serializable {
    * 
    * @return the value of field 'location'.
    */
-  public Location getLocation() {
-    return this.location;
+  public Translation getTranslation() {
+    return this.translation;
   }
 
   /**
@@ -244,10 +244,10 @@ public class XMLCone implements java.io.Serializable {
   /**
    * Sets the value of field 'div'.
    * 
-   * @param div the value of field 'div'.
+   * @param division the value of field 'div'.
    */
-  public void setDiv(int div) {
-    this.division = div;
+  public void setDivision(int division) {
+    this.division = division;
   }
 
   /**
@@ -256,16 +256,16 @@ public class XMLCone implements java.io.Serializable {
    * @param height the value of field 'height'.
    */
   public void setHeight(float height) {
-    this.hheight = height;
+    this.height = height;
   }
 
   /**
    * Sets the value of field 'location'.
    * 
-   * @param location the value of field 'location'.
+   * @param translation the value of field 'location'.
    */
-  public void setLocation(Location location) {
-    this.location = location;
+  public void setTranslation(Translation translation) {
+    this.translation = translation;
   }
 
   /**

@@ -43,7 +43,7 @@ public class ConeToolBarAction extends Action {
     final XMLCone cone = new XMLCone();
     cone.setRadius(0.10f);
     cone.setHeight(0.10f);
-    cone.setDiv(20);
+    cone.setDivision(20);
     cone.setColor("green"); //$NON-NLS-1$
     
     final Mikity3d root = this.window.getRoot();

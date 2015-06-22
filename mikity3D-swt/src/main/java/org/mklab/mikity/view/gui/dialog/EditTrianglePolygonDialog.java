@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -365,18 +365,18 @@ public class EditTrianglePolygonDialog {
    * パラメータを変更する
    */
   void setParam() {
-    final Location[] newLocation = new Location[3];
+    final Translation[] newLocation = new Translation[3];
 
-    newLocation[0] = new Location(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
-    newLocation[1] = new Location(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
-    newLocation[2] = new Location(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
+    newLocation[0] = new Translation(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
+    newLocation[1] = new Translation(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
+    newLocation[2] = new Translation(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
 
     String newColor = this.colorCombo.getColorComboBox().getText();
 
     this.triangle.setPointLocations(Arrays.asList(newLocation[0], newLocation[1], newLocation[2]));
     this.triangle.setColor(newColor);
     this.triangle.setRotation(new Rotation(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
-    this.triangle.setLocation(new Location(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
+    this.triangle.setTranslation(new Translation(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
   }
 
   /**
@@ -422,13 +422,13 @@ public class EditTrianglePolygonDialog {
       this.newRightVertexZ.setText("" + 0.0); //$NON-NLS-1$
     }
 
-    if (this.triangle.getLocation() != null) {
-      this.leftVertexX.setText("" + this.triangle.getLocation().getX()); //$NON-NLS-1$
-      this.leftVertexY.setText("" + this.triangle.getLocation().getY()); //$NON-NLS-1$
-      this.leftVertexZ.setText("" + this.triangle.getLocation().getZ()); //$NON-NLS-1$
-      this.newLeftVertexX.setText("" + this.triangle.getLocation().getX()); //$NON-NLS-1$
-      this.newLeftVertexY.setText("" + this.triangle.getLocation().getY()); //$NON-NLS-1$
-      this.newLeftVertexZ.setText("" + this.triangle.getLocation().getZ()); //$NON-NLS-1$
+    if (this.triangle.getTranslation() != null) {
+      this.leftVertexX.setText("" + this.triangle.getTranslation().getX()); //$NON-NLS-1$
+      this.leftVertexY.setText("" + this.triangle.getTranslation().getY()); //$NON-NLS-1$
+      this.leftVertexZ.setText("" + this.triangle.getTranslation().getZ()); //$NON-NLS-1$
+      this.newLeftVertexX.setText("" + this.triangle.getTranslation().getX()); //$NON-NLS-1$
+      this.newLeftVertexY.setText("" + this.triangle.getTranslation().getY()); //$NON-NLS-1$
+      this.newLeftVertexZ.setText("" + this.triangle.getTranslation().getZ()); //$NON-NLS-1$
     } else {
       this.leftVertexX.setText("" + 0.0); //$NON-NLS-1$
       this.leftVertexY.setText("" + 0.0); //$NON-NLS-1$

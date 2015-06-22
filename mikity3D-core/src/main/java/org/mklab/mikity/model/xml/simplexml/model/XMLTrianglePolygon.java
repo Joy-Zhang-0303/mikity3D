@@ -22,14 +22,14 @@ import org.simpleframework.xml.Root;
  */
 @Root(name="trianglePolygon")
 public class XMLTrianglePolygon {
-  @ElementList(type=Location.class, inline=true, required=true)
-  private List<Location> points;
+  @ElementList(type=Translation.class, inline=true, required=true)
+  private List<Translation> points;
   
   @Attribute(name="color")
   private String color;
   
-  @Element(name="location", required=false)
-  private Location location;
+  @Element(name="translation", required=false)
+  private Translation translation;
   
   @Element(name="rotation", required=false)
   private Rotation rotation;
@@ -71,7 +71,7 @@ public class XMLTrianglePolygon {
    * @param location2 座標2
    * @param location3 座標3
    */
-  public void setPointLocations(Location location1, Location location2, Location location3) {
+  public void setPointLocations(Translation location1, Translation location2, Translation location3) {
     this.points.set(0, location1);
     this.points.set(1, location2);
     this.points.set(2, location3);
@@ -81,7 +81,7 @@ public class XMLTrianglePolygon {
   /**
    * @param points 座標
    */
-  public void setPointLocations(List<Location> points) {
+  public void setPointLocations(List<Translation> points) {
     this.points = points;
     setNormalVector();
   }
@@ -94,10 +94,10 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param location 位置
+   * @param translation 位置
    */
-  public void setLocation(Location location) {
-    this.location = location;
+  public void setTranslation(Translation translation) {
+    this.translation = translation;
   }
 
   /**
@@ -110,7 +110,7 @@ public class XMLTrianglePolygon {
   /**
    * @param nromalVector 法線ベクトル
    */
-  public void setNormalVector(Location nromalVector) {
+  public void setNormalVector(Translation nromalVector) {
     this.normal[0] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
     this.normal[1] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
     this.normal[2] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
@@ -176,8 +176,8 @@ public class XMLTrianglePolygon {
   /**
    * @return location
    */
-  public Location getLocation() {
-    return this.location;
+  public Translation getTranslation() {
+    return this.translation;
   }
 
   /**

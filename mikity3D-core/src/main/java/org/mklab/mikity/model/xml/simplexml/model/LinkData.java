@@ -173,7 +173,7 @@ public class LinkData implements java.io.Serializable {
    * @return 座標パラメータをもつならばtrue
    */
   public boolean hasCoordinateParameter() {
-    if (this.target.equals("locationX") || this.target.equals("locationY") || this.target.equals("locationZ") || this.target.equals("rotationX") || this.target.equals("rotationY") //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    if (this.target.equals("translationX") || this.target.equals("translationY") || this.target.equals("translationZ") || this.target.equals("rotationX") || this.target.equals("rotationY") //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         || this.target.equals("rotationZ")) { //$NON-NLS-1$
       return true;
     }

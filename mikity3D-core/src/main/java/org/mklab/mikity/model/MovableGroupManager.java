@@ -177,11 +177,11 @@ public class MovableGroupManager {
           final String parameterName = link.getTarget();
           final CoordinateParameterType type;
 
-          if (parameterName.equals("locationX")) { //$NON-NLS-1$
+          if (parameterName.equals("translationX")) { //$NON-NLS-1$
             type = CoordinateParameterType.X;
-          } else if (parameterName.equals("locationY")) { //$NON-NLS-1$
+          } else if (parameterName.equals("translationY")) { //$NON-NLS-1$
             type = CoordinateParameterType.Y;
-          } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
+          } else if (parameterName.equals("translationZ")) { //$NON-NLS-1$
             type = CoordinateParameterType.Z;
           } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
             type = CoordinateParameterType.ROTATION_X;

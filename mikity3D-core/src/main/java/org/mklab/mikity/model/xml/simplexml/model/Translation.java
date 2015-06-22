@@ -5,12 +5,12 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * Class Location.
+ * 並進を表すクラスです。
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
  */
 @Root(name="point")
-public class Location implements java.io.Serializable {
+public class Translation implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** x */
@@ -28,7 +28,7 @@ public class Location implements java.io.Serializable {
   /**
    * 新しく生成された<code>Location</code>オブジェクトを初期化します。
    */
-  public Location() {
+  public Translation() {
     this.x = 0;
     this.y = 0;
     this.z = 0;
@@ -41,7 +41,7 @@ public class Location implements java.io.Serializable {
    * @param y y座標
    * @param z z座標
    */
-  public Location(float x, float y, float z) {
+  public Translation(float x, float y, float z) {
     this.x = x;
     this.y = y;
     this.z = z;
@@ -84,7 +84,7 @@ public class Location implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Location other = (Location)obj;
+    Translation other = (Translation)obj;
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }

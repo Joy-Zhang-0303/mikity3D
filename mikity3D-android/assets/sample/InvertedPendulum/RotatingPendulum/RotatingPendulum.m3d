@@ -1,27 +1,27 @@
 <mikity3d>
    <model>
       <group name="Group0">
-         <location x="0.0" y="0.0" z="0.0"/>
+         <translation x="0.0" y="0.0" z="0.0"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
          <box width="0.8" height="0.01" depth="0.8" color="green" transparent="false"/>
          <box width="0.4" height="0.12" depth="0.4" color="blue" transparent="false">
-            <location x="0.0" y="0.065" z="0.0"/>
+            <translation x="0.0" y="0.065" z="0.0"/>
          </box>
          <cylinder radius="0.2" height="0.2" division="30" color="cyan" transparent="false">
-            <location x="0.0" y="0.22" z="0.0"/>
+            <translation x="0.0" y="0.22" z="0.0"/>
          </cylinder>
          <group name="link1">
-            <location x="0.0" y="0.34" z="0.0"/>
+            <translation x="0.0" y="0.34" z="0.0"/>
             <rotation x="1.5708" y="0.0" z="0.0"/>
             <cylinder radius="0.02" height="0.3" division="30" color="yellow" transparent="true">
-               <location x="0.0" y="0.15" z="0.0"/>
+               <translation x="0.0" y="0.15" z="0.0"/>
             </cylinder>
             <linkData target="rotationZ" number="2"/>
             <group name="link2">
-               <location x="0.0" y="0.3" z="0.0"/>
+               <translation x="0.0" y="0.3" z="0.0"/>
                <rotation x="1.5708" y="0.0" z="0.0"/>
                <cylinder radius="0.02" height="0.3" division="30" color="yellow" transparent="true">
-                  <location x="0.0" y="0.15" z="0.0"/>
+                  <translation x="0.0" y="0.15" z="0.0"/>
                </cylinder>
                <linkData target="rotationZ" number="3"/>
             </group>

@@ -11,7 +11,7 @@ import java.util.List;
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -49,10 +49,10 @@ public class TrianglePolygonToolBarAction extends Action {
   @Override
   public void run() {
     final XMLTrianglePolygon polygon = new XMLTrianglePolygon();
-    final Location p1 = new Location(0.3f, 0.3f, 0.0f);
-    final Location p2 = new Location(-0.3f, 0.3f, 0.0f);
-    final Location p3 = new Location(-0.3f, -0.3f, 0.0f);
-    final List<Location> locations = Arrays.asList(p1, p2, p3);
+    final Translation p1 = new Translation(0.3f, 0.3f, 0.0f);
+    final Translation p2 = new Translation(-0.3f, 0.3f, 0.0f);
+    final Translation p3 = new Translation(-0.3f, -0.3f, 0.0f);
+    final List<Translation> locations = Arrays.asList(p1, p2, p3);
     polygon.setPointLocations(locations);
     polygon.setColor("red"); //$NON-NLS-1$
     

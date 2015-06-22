@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -400,19 +400,19 @@ public class EditQuadPolygonDialog {
    * パラメータを変更する
    */
   void setParam() {
-    final Location[] newLocation = new Location[4];
+    final Translation[] newLocation = new Translation[4];
 
-    newLocation[0] = new Location(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
-    newLocation[1] = new Location(this.newVertexX2.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
-    newLocation[2] = new Location(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
-    newLocation[3] = new Location(this.newVertex4X.getFloatValue(), this.newVertex4Y.getFloatValue(), this.newVertex4Z.getFloatValue());
+    newLocation[0] = new Translation(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
+    newLocation[1] = new Translation(this.newVertexX2.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
+    newLocation[2] = new Translation(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
+    newLocation[3] = new Translation(this.newVertex4X.getFloatValue(), this.newVertex4Y.getFloatValue(), this.newVertex4Z.getFloatValue());
 
     String newColor = this.colorCombo.getColorComboBox().getText();
 
     this.quad.setPointLocations(Arrays.asList(newLocation[0], newLocation[1], newLocation[2], newLocation[3]));
     this.quad.setColor(newColor);
     this.quad.setRotation(new Rotation(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
-    this.quad.setLocation(new Location(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
+    this.quad.setTranslation(new Translation(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
   }
 
   /**
@@ -465,13 +465,13 @@ public class EditQuadPolygonDialog {
       this.newRightVertexZ.setText("" + 0.0); //$NON-NLS-1$
     }
 
-    if (this.quad.getLocation() != null) {
-      this.leftVertexX.setText("" + this.quad.getLocation().getX()); //$NON-NLS-1$
-      this.leftVertexY.setText("" + this.quad.getLocation().getY()); //$NON-NLS-1$
-      this.leftVertexZ.setText("" + this.quad.getLocation().getZ()); //$NON-NLS-1$
-      this.newLeftVertexX.setText("" + this.quad.getLocation().getX()); //$NON-NLS-1$
-      this.newLeftVertexY.setText("" + this.quad.getLocation().getY()); //$NON-NLS-1$
-      this.newLeftVertexZ.setText("" + this.quad.getLocation().getZ()); //$NON-NLS-1$
+    if (this.quad.getTranslation() != null) {
+      this.leftVertexX.setText("" + this.quad.getTranslation().getX()); //$NON-NLS-1$
+      this.leftVertexY.setText("" + this.quad.getTranslation().getY()); //$NON-NLS-1$
+      this.leftVertexZ.setText("" + this.quad.getTranslation().getZ()); //$NON-NLS-1$
+      this.newLeftVertexX.setText("" + this.quad.getTranslation().getX()); //$NON-NLS-1$
+      this.newLeftVertexY.setText("" + this.quad.getTranslation().getY()); //$NON-NLS-1$
+      this.newLeftVertexZ.setText("" + this.quad.getTranslation().getZ()); //$NON-NLS-1$
     } else {
       this.leftVertexX.setText("" + 0.0); //$NON-NLS-1$
       this.leftVertexY.setText("" + 0.0); //$NON-NLS-1$

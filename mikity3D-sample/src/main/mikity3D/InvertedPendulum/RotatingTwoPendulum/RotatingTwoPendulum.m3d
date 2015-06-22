@@ -1,10 +1,10 @@
 <mikity3d>
 	<model>
 		<group name="Group0">
-			<location z="0.0" y="-0.15" x="0.0" />
+			<translation z="0.0" y="-0.15" x="0.0" />
 			<rotation z="0.0" y="0.0" x="0.0" />
 			<group name="dodai1">
-				<location z="0.0" y="0.0" x="0.0" />
+				<translation z="0.0" y="0.0" x="0.0" />
 				<rotation z="0.0" y="0.0" x="1.57" />
 				<trianglePolygon color="green">
 					<point z="-0.1" y="-0.0" x="-0.0" />
@@ -167,7 +167,7 @@
 					<point z="0.1" y="0.09877" x="0.01564" />
 				</quadPolygon>
 				<group name="dodai2">
-					<location z="-0.15" y="0.0" x="0.0" />
+					<translation z="-0.15" y="0.0" x="0.0" />
 					<rotation z="0.0" y="0.0" x="3.14" />
 					<linkData number="2" target="rotationZ" />
 					<quadPolygon color="blue">
@@ -207,7 +207,7 @@
 						<point z="0.05" y="0.05" x="-0.29" />
 					</quadPolygon>
 					<group name="sinsi1">
-						<location z="0.0" y="0.0" x="-0.30000001192092896" />
+						<translation z="0.0" y="0.0" x="-0.30000001192092896" />
 						<rotation z="0.0" y="0.0" x="1.57" />
 						<linkData number="3" target="rotationX" />
 						<trianglePolygon color="orange">
@@ -532,7 +532,7 @@
 						</quadPolygon>
 					</group>
 					<group name="sinsi2">
-						<location z="0.0" y="0.0" x="0.30000001192092896" />
+						<translation z="0.0" y="0.0" x="0.30000001192092896" />
 						<rotation z="0.0" y="0.0" x="1.57" />
 						<linkData number="4" target="rotationX" />
 						<trianglePolygon color="yellow">

@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
@@ -245,7 +245,7 @@ public class AddPrimitiveDialog {
    */
   void addPrimitive() {
     final Rotation rotation = new Rotation();
-    final Location location = new Location();
+    final Translation location = new Translation();
 
     switch (this.selectedIndex) {
       case boxFlag:
@@ -257,7 +257,7 @@ public class AddPrimitiveDialog {
           box.setRotation(getRotation(rotation));
         }
         if (getLocation(location) != null) {
-          box.setLocation(getLocation(location));
+          box.setTranslation(getLocation(location));
         }
         box.setColor(this.colorCombo.getText());
         //box.setLocation(location);
@@ -272,7 +272,7 @@ public class AddPrimitiveDialog {
           cylinder.setRotation(getRotation(rotation));
         }
         if (getLocation(location) != null) {
-          cylinder.setLocation(getLocation(location));
+          cylinder.setTranslation(getLocation(location));
         }
         cylinder.setColor(this.colorCombo.getText());
         //cylinder.setLocation(location);
@@ -286,7 +286,7 @@ public class AddPrimitiveDialog {
           sphere.setRotation(getRotation(rotation));
         }
         if (getLocation(location) != null) {
-          sphere.setLocation(getLocation(location));
+          sphere.setTranslation(getLocation(location));
         }
         sphere.setColor(this.colorCombo.getText());
         //sphere.setLocation(location);
@@ -296,12 +296,12 @@ public class AddPrimitiveDialog {
         final XMLCone cone = new XMLCone();
         cone.setRadius(this.parameter1.getFloatValue());
         cone.setHeight(this.parameter2.getFloatValue());
-        cone.setDiv(setDiv(this.parameter3));
+        cone.setDivision(setDiv(this.parameter3));
         if (getRotation(rotation) != null) {
           cone.setRotation(getRotation(rotation));
         }
         if (getLocation(location) != null) {
-          cone.setLocation(getLocation(location));
+          cone.setTranslation(getLocation(location));
         }
         cone.setColor(this.colorCombo.getText());
         //cone.setLocation(location);
@@ -335,7 +335,7 @@ public class AddPrimitiveDialog {
    * @param location
    * @return Location
    */
-  private Location getLocation(Location location) {
+  private Translation getLocation(Translation location) {
     if (this.locationX.getFloatValue() == 0 && this.locationY.getFloatValue() == 0 && this.locationZ.getFloatValue() == 0) {
       return null;
     }

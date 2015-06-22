@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -214,17 +214,17 @@ public class AddTrianglePolygonDialog {
   void addPolygon() {
     final XMLTrianglePolygon triangle = new XMLTrianglePolygon();
     final Rotation rotation = new Rotation();
-    final Location location = new Location();
+    final Translation location = new Translation();
 
-    final Location vertex1 = new Location(this.vertex1x.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
-    final Location vertex2 = new Location(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
-    final Location vertex3 = new Location(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
+    final Translation vertex1 = new Translation(this.vertex1x.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
+    final Translation vertex2 = new Translation(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
+    final Translation vertex3 = new Translation(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
     triangle.setPointLocations(vertex1, vertex2, vertex3);
     if (getRotation(rotation) != null) {
       triangle.setRotation(getRotation(rotation));
     }
     if (getLocation(location) != null) {
-      triangle.setLocation(getLocation(location));
+      triangle.setTranslation(getLocation(location));
     }
     triangle.setColor(this.colorCombo.getText());
     this.group.addXMLTrianglePolygon(triangle);
@@ -265,7 +265,7 @@ public class AddTrianglePolygonDialog {
    * @param location
    * @return loc
    */
-  private Location getLocation(Location location) {
+  private Translation getLocation(Translation location) {
     if (this.locationX.getFloatValue() == 0 && this.locationY.getFloatValue() == 0 && this.locationZ.getFloatValue() == 0) {
       return null;
     }

@@ -19,7 +19,7 @@ import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
@@ -79,7 +79,7 @@ public class Java3dPrimitiveFactory {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    final Location location = box.getLocation();
+    final Translation location = box.getTranslation();
     final Rotation rotation = box.getRotation();
 
     transform(location, rotation, tg);
@@ -108,7 +108,7 @@ public class Java3dPrimitiveFactory {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    final Location location = cylinder.getLocation();
+    final Translation location = cylinder.getTranslation();
     final Rotation rotation = cylinder.getRotation();
 
     transform(location, rotation, tg);
@@ -137,7 +137,7 @@ public class Java3dPrimitiveFactory {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    final Location location = sphere.getLocation();
+    final Translation location = sphere.getTranslation();
     final Rotation rotation = sphere.getRotation();
 
     transform(location, rotation, tg);
@@ -153,10 +153,10 @@ public class Java3dPrimitiveFactory {
    */
   public static Java3dTransformGroup create(XMLCone cone) {
     final int flag = Primitive.GENERATE_NORMALS;
-    if (cone.getDiv() < 3) {
-      cone.setDiv(10);
+    if (cone.getDivision() < 3) {
+      cone.setDivision(10);
     }
-    final Primitive primitive = new Cone(cone.getRadisu(), cone.getHeight(), flag, cone.getDiv(), cone.getDiv(), null);
+    final Primitive primitive = new Cone(cone.getRadisu(), cone.getHeight(), flag, cone.getDivision(), cone.getDivision(), null);
     final Appearance appearance = new Appearance();
     appearance.setMaterial(getMaterial(cone.getColor()));
     if (cone.getTransparent() == true) {
@@ -167,7 +167,7 @@ public class Java3dPrimitiveFactory {
     final Java3dTransformGroup tg = new Java3dTransformGroup();
     tg.addChild(primitive);
 
-    final Location location = cone.getLocation();
+    final Translation location = cone.getTranslation();
     final Rotation rotation = cone.getRotation();
 
     transform(location, rotation, tg);
@@ -225,7 +225,7 @@ public class Java3dPrimitiveFactory {
     shape.setAppearance(appearance);
 
     tg.addChild(shape);
-    final Location location = triangle.getLocation();
+    final Translation location = triangle.getTranslation();
     final Rotation rotation = triangle.getRotation();
     final Matrix4 matrix = triangle.getMatrix();
     transform(matrix, tg);
@@ -285,7 +285,7 @@ public class Java3dPrimitiveFactory {
     shape.setAppearance(appearance);
 
     tg.addChild(shape);
-    final Location location = quad.getLocation();
+    final Translation location = quad.getTranslation();
     final Rotation rotation = quad.getRotation();
     final Matrix4 matrix = quad.getMatrix();
     transform(matrix, tg);
@@ -300,7 +300,7 @@ public class Java3dPrimitiveFactory {
    * @param rotation 回転移動
    * @param tg プリミティブ
    */
-  private static void transform(Location location, Rotation rotation, Java3dTransformGroup tg) {
+  private static void transform(Translation location, Rotation rotation, Java3dTransformGroup tg) {
     if (rotation != null) {
       if (Util.radian == false) {
         tg.rotate(new AxisAngle4f(1.0f, 0.0f, 0.0f, (float)Math.toRadians(rotation.getX())));

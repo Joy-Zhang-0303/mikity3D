@@ -24,14 +24,14 @@ import org.simpleframework.xml.Root;
  */
 @Root(name="quadPolygon")
 public class XMLQuadPolygon {
-  @ElementList(type=Location.class, inline=true, required=true)
-  private List<Location> points;
+  @ElementList(type=Translation.class, inline=true, required=true)
+  private List<Translation> points;
   
   @Attribute(name="color")
   private String color;
   
-  @Element(name="location", required=false)
-  private Location location;
+  @Element(name="translation", required=false)
+  private Translation translation;
   
   @Element(name="rotation", required=false)
   private Rotation rotation;
@@ -73,7 +73,7 @@ public class XMLQuadPolygon {
    * @param location3 座標3
    * @param location4 座標4
    */
-  public void setPointLocations(Location location1, Location location2, Location location3, Location location4) {
+  public void setPointLocations(Translation location1, Translation location2, Translation location3, Translation location4) {
     this.points.set(0, location1);
     this.points.set(1, location2);
     this.points.set(2, location3);
@@ -84,7 +84,7 @@ public class XMLQuadPolygon {
   /**
    * @param points 座標
    */
-  public void setPointLocations(List<Location> points) {
+  public void setPointLocations(List<Translation> points) {
     this.points = points;
     setNormalVector();
   }
@@ -97,10 +97,10 @@ public class XMLQuadPolygon {
   }
 
   /**
-   * @param location 位置
+   * @param translation 位置
    */
-  public void setLocation(Location location) {
-    this.location = location;
+  public void setTranslation(Translation translation) {
+    this.translation = translation;
   }
 
   /**
@@ -143,7 +143,7 @@ public class XMLQuadPolygon {
   /**
    * @param location 位置
    */
-  public void setNormalVector(Location location) {
+  public void setNormalVector(Translation location) {
     this.normal[0] = new Vector3(location.getX(), location.getY(), location.getZ());
     this.normal[1] = new Vector3(location.getX(), location.getY(), location.getZ());
     this.normal[2] = new Vector3(location.getX(), location.getY(), location.getZ());
@@ -184,8 +184,8 @@ public class XMLQuadPolygon {
   /**
    * @return location
    */
-  public Location getLocation() {
-    return this.location;
+  public Translation getTranslation() {
+    return this.translation;
   }
 
   /**

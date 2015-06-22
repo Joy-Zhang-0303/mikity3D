@@ -16,7 +16,7 @@ import org.mklab.mikity.android.view.renderer.jogl.primitive.OpenglesTrianglePol
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
@@ -62,7 +62,7 @@ public class OpenglesPrimitiveFactory {
 
     final OpenglesTransformGroup group = new OpenglesTransformGroup();
 
-    final Location boxLocation = box.getLocation();
+    final Translation boxLocation = box.getTranslation();
     final Rotation boxRotation = box.getRotation();
     
     if (boxLocation != null && boxRotation != null) {
@@ -116,7 +116,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesTransformGroup group = new OpenglesTransformGroup();
   
-    final Location cylinderLocation = cylinder.getLocation();
+    final Translation cylinderLocation = cylinder.getTranslation();
     final Rotation cylinderRotation = cylinder.getRotation();
     
     if (cylinderLocation != null && cylinderRotation != null) {
@@ -169,7 +169,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesTransformGroup group = new OpenglesTransformGroup();
     
-    final Location sphereLocation = sphere.getLocation();
+    final Translation sphereLocation = sphere.getTranslation();
     final Rotation sphereRotation = sphere.getRotation();
     
     if (sphereLocation != null && sphereRotation != null) {
@@ -212,7 +212,7 @@ public class OpenglesPrimitiveFactory {
   public static OpenglesTransformGroup create(XMLCone cone) {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
-    final int div = cone.getDiv();
+    final int div = cone.getDivision();
     final String color = cone.getColor();
 
     final OpenglesCone child = new OpenglesCone();
@@ -222,7 +222,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesTransformGroup group = new OpenglesTransformGroup();
 
-    final Location coneLocation = cone.getLocation();
+    final Translation coneLocation = cone.getTranslation();
     final Rotation coneRotation = cone.getRotation();
     
     if (coneLocation != null && coneRotation != null) {
@@ -282,7 +282,7 @@ public class OpenglesPrimitiveFactory {
     final OpenglesTransformGroup group = new OpenglesTransformGroup();
     
     if (dhParameters == null && coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
-      final Location polygonLocation = polygon.getLocation();
+      final Translation polygonLocation = polygon.getTranslation();
       final Rotation polygonRotation = polygon.getRotation();
       
       if (polygonLocation != null && polygonRotation != null) {
@@ -353,7 +353,7 @@ public class OpenglesPrimitiveFactory {
     final OpenglesTransformGroup group = new OpenglesTransformGroup();
     
     if (dhParameters == null && coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
-      final Location polygonLocation = polygon.getLocation();
+      final Translation polygonLocation = polygon.getTranslation();
       final Rotation polygonRotation = polygon.getRotation();
       if (polygonLocation != null && polygonRotation != null) {
         final float xLocation = polygonLocation.getX();

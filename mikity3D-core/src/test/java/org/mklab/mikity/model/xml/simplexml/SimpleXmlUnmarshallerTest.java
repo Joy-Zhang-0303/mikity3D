@@ -21,7 +21,7 @@ import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
 import org.mklab.mikity.model.xml.simplexml.config.View;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
@@ -114,8 +114,8 @@ public class SimpleXmlUnmarshallerTest {
     final Mikity3dModel actualModel = actual.getModel(0);
     final Group actualGroup = actualModel.getGroup(0);
     
-    final Location actualLocation = actualGroup.getLocation();
-    final Location expectedLocation = new Location();
+    final Translation actualLocation = actualGroup.getTranslation();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.0F);
@@ -133,8 +133,8 @@ public class SimpleXmlUnmarshallerTest {
   }
 
   private void assertDodaiGroup(Group actualGroup) {
-    final Location actualLocation = actualGroup.getLocation();
-    final Location expectedLocation = new Location();
+    final Translation actualLocation = actualGroup.getTranslation();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.0F);
@@ -171,12 +171,12 @@ public class SimpleXmlUnmarshallerTest {
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
     
-    final Location expectedLocation = new Location();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(-0.05F);
     expectedLocation.setY(-0.21F);
     expectedLocation.setZ(0.0F);
 
-    expectedBox.setLocation(expectedLocation);
+    expectedBox.setTranslation(expectedLocation);
     
     assertThat(actualBox, is(expectedBox));
   }
@@ -189,12 +189,12 @@ public class SimpleXmlUnmarshallerTest {
     expectedBox.setHeight(0.005F);
     expectedBox.setDepth(0.1F);
     
-    final Location expectedLocation = new Location();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(-0.3475F);
     expectedLocation.setZ(0.0F);
 
-    expectedBox.setLocation(expectedLocation);
+    expectedBox.setTranslation(expectedLocation);
     
     assertThat(actualBox, is(expectedBox));
   }
@@ -207,12 +207,12 @@ public class SimpleXmlUnmarshallerTest {
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
     
-    final Location expectedLocation = new Location();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.05F);
     expectedLocation.setY(-0.21F);
     expectedLocation.setZ(0.0F);
 
-    expectedBox.setLocation(expectedLocation);
+    expectedBox.setTranslation(expectedLocation);
     
     assertThat(actualBox, is(expectedBox));
   }
@@ -225,20 +225,20 @@ public class SimpleXmlUnmarshallerTest {
     expectedBox.setHeight(0.05F);
     expectedBox.setDepth(0.07F);
     
-    final Location expectedLocation = new Location();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(-0.05F);
     expectedLocation.setZ(0.0F);
 
-    expectedBox.setLocation(expectedLocation);
+    expectedBox.setTranslation(expectedLocation);
     
     assertThat(actualBox, is(expectedBox));
   }
 
   
   private void assertDaishaGroup(Group actualGroup) {
-    final Location actualLocation = actualGroup.getLocation();
-    final Location expectedLocation = new Location();
+    final Translation actualLocation = actualGroup.getTranslation();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.0F);
@@ -255,7 +255,7 @@ public class SimpleXmlUnmarshallerTest {
     final LinkData expectedLinkData = new LinkData();
     expectedLinkData.setNumber(2);
     //expectedLinkData.setBasis(0);
-    expectedLinkData.setTarget("locationX"); //$NON-NLS-1$
+    expectedLinkData.setTarget("translationX"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
 
     final XMLBox actualBox = actualGroup.getXMLBox(0);
@@ -273,19 +273,19 @@ public class SimpleXmlUnmarshallerTest {
     expectedBox.setHeight(0.05F);
     expectedBox.setDepth(0.005F);
     
-    final Location expectedLocation = new Location();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.02F);
 
-    expectedBox.setLocation(expectedLocation);
+    expectedBox.setTranslation(expectedLocation);
     
     assertThat(actualBox, is(expectedBox));
   }
   
   private void assertSinsiGroup(Group actualGroup) {
-    final Location actualLocation = actualGroup.getLocation();
-    final Location expectedLocation = new Location();
+    final Translation actualLocation = actualGroup.getTranslation();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.0F);
@@ -320,7 +320,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedCylinder.setHeight(0.018F);
     expectedCylinder.setRadius(0.01F);
     
-    final Location expectedLocation = new Location();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.0325F);
@@ -330,7 +330,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedRotation.setY(0.0F);
     expectedRotation.setZ(0.0F);
     
-    expectedCylinder.setLocation(expectedLocation);
+    expectedCylinder.setTranslation(expectedLocation);
     expectedCylinder.setRotation(expectedRotation);
     
     assertThat(actualCylinder, is(expectedCylinder));
@@ -343,12 +343,12 @@ public class SimpleXmlUnmarshallerTest {
     expectedCylinder.setHeight(0.3F);
     expectedCylinder.setRadius(0.0025F);
     
-    final Location expectedLocation = new Location();
+    final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.15F);
     expectedLocation.setZ(0.037F);
     
-    expectedCylinder.setLocation(expectedLocation);
+    expectedCylinder.setTranslation(expectedLocation);
     
     assertThat(actualCylinder, is(expectedCylinder));
   }

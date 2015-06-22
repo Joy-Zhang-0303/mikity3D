@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.util.Matrix4;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -361,8 +361,8 @@ public class Node {
     if (this.type != null) {
       if (this.type.equals("JOINT")) { //$NON-NLS-1$
         this.group.setName(this.name);
-        final Location location = new Location(this.matrix4f.getElement(0, 3), this.matrix4f.getElement(1, 3), this.matrix4f.getElement(2, 3));
-        this.group.setLocation(location);
+        final Translation location = new Translation(this.matrix4f.getElement(0, 3), this.matrix4f.getElement(1, 3), this.matrix4f.getElement(2, 3));
+        this.group.setTranslation(location);
         
         LinkData[] linkdata = new LinkData[3];
         linkdata[0] = new LinkData();

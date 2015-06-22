@@ -22,8 +22,8 @@ public class Group implements java.io.Serializable {
   private String name;
   
   /** location */
-  @Element(name="location")
-  private Location location;
+  @Element(name="translation")
+  private Translation translation;
 
   /** rotation */
   @Element(name="rotation")
@@ -75,7 +75,7 @@ public class Group implements java.io.Serializable {
 
     this.links = new ArrayList<>();
     this.groups = new ArrayList<>();
-    this.location = new Location();
+    this.translation = new Translation();
     this.rotation = new Rotation();
   } 
 
@@ -103,7 +103,7 @@ public class Group implements java.io.Serializable {
    * 
    * @param linkdata リンクデータ
    */
-  public void addLinkdata(LinkData linkdata) {
+  public void addLinkData(LinkData linkdata) {
     this.links.add(linkdata);
   } 
 
@@ -113,7 +113,7 @@ public class Group implements java.io.Serializable {
    * @param index インデックス
    * @param linkdata リンクデータ
    */
-  public void addLinkdata(int index, LinkData linkdata) {
+  public void addLinkData(int index, LinkData linkdata) {
     this.links.add(index, linkdata);
   } 
 
@@ -316,7 +316,7 @@ public class Group implements java.io.Serializable {
     result = prime * result + ((this.trianglePolygons == null) ? 0 : this.trianglePolygons.hashCode());
     result = prime * result + ((this.groups == null) ? 0 : this.groups.hashCode());
     result = prime * result + ((this.links == null) ? 0 : this.links.hashCode());
-    result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
+    result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
     result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
     return result;
@@ -393,11 +393,11 @@ public class Group implements java.io.Serializable {
     } else if (!this.links.equals(other.links)) {
       return false;
     }
-    if (this.location == null) {
-      if (other.location != null) {
+    if (this.translation == null) {
+      if (other.translation != null) {
         return false;
       }
-    } else if (!this.location.equals(other.location)) {
+    } else if (!this.translation.equals(other.translation)) {
       return false;
     }
     if (this.name == null) {
@@ -491,17 +491,17 @@ public class Group implements java.io.Serializable {
    * 
    * @return _linkdataList.size()
    */
-  public int getLinkDataCount() {
+  public int getLinkDataSize() {
     return this.links.size();
   } 
 
   /**
-   * Returns the value of field 'location'.
+   * Returns the value of field 'translation'.
    * 
-   * @return the value of field 'location'.
+   * @return the value of field 'translation'.
    */
-  public Location getLocation() {
-    return this.location;
+  public Translation getTranslation() {
+    return this.translation;
   } 
 
   /**
@@ -564,7 +564,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return _XMLBoxList.size()
    */
-  public int getXMLBoxCount() {
+  public int getXMLBoxSize() {
     return this.boxes.size();
   } 
 
@@ -610,7 +610,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return _XMLConeList.size()
    */
-  public int getXMLConeCount() {
+  public int getXMLConeSize() {
     return this.cones.size();
   } 
 
@@ -656,7 +656,7 @@ public class Group implements java.io.Serializable {
    * 
    * @return _XMLCylinderList.size()
    */
-  public int getXMLCylinderCount() {
+  public int getXMLCylinderSize() {
     return this.cylinders.size();
   } 
 
@@ -937,12 +937,12 @@ public class Group implements java.io.Serializable {
   } 
 
   /**
-   * Sets the value of field 'location'.
+   * Sets the value of field 'translation'.
    * 
-   * @param location the value of field 'location'.
+   * @param translation the value of field 'translation'.
    */
-  public void setLocation(Location location) {
-    this.location = location;
+  public void setTranslation(Translation translation) {
+    this.translation = translation;
   } 
 
   /**

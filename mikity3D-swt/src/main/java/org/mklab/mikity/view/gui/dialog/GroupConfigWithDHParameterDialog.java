@@ -155,7 +155,7 @@ public class GroupConfigWithDHParameterDialog {
       if (col.getIntValue() != 0) {
         linkdata.setNumber(col.getIntValue());
       }
-      this.group.addLinkdata(linkdata);
+      this.group.addLinkData(linkdata);
     }
   }
 

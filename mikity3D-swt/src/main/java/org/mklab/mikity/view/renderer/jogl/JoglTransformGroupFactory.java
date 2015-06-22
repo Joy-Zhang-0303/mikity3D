@@ -8,7 +8,7 @@ import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.MovableGroupManager;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
@@ -96,7 +96,7 @@ public class JoglTransformGroupFactory {
    * @return 可動グループ
    */
   private JoglCoordinate createCoordinateOf(final Group group) {
-    final Location groupLocation = group.getLocation();
+    final Translation groupLocation = group.getTranslation();
     final Rotation groupRotation = group.getRotation();
     
     if (groupLocation != null && groupRotation != null) {

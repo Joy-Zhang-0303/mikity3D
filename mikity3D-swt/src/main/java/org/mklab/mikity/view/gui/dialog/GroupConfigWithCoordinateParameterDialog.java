@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 
@@ -33,15 +33,15 @@ public class GroupConfigWithCoordinateParameterDialog {
   org.mklab.mikity.model.xml.simplexml.model.Group group;
 
   ParameterInputBox groupName;
-  ParameterInputBox locationX;
-  ParameterInputBox locationY;
-  ParameterInputBox locationZ;
+  ParameterInputBox translationX;
+  ParameterInputBox translationY;
+  ParameterInputBox translationZ;
   ParameterInputBox rotationX;
   ParameterInputBox rotationY;
   ParameterInputBox rotationZ;
-  ParameterInputBox locationXdataNumber;
-  ParameterInputBox locationYdataNumber;
-  ParameterInputBox locationZdataNumber;
+  ParameterInputBox translationXdataNumber;
+  ParameterInputBox translationYdataNumber;
+  ParameterInputBox translationZdataNumber;
   ParameterInputBox rotationXdataNumber;
   ParameterInputBox rotationYdataNumber;
   ParameterInputBox rotationZdataNumber;
@@ -130,14 +130,14 @@ public class GroupConfigWithCoordinateParameterDialog {
       style = SWT.READ_ONLY;
     }
 
-    this.locationX = new ParameterInputBox(parameterGroup, style, "locationX", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.locationXdataNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationX = new ParameterInputBox(parameterGroup, style, "translationX", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.translationXdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.locationY = new ParameterInputBox(parameterGroup, style, "locationY", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.locationYdataNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationY = new ParameterInputBox(parameterGroup, style, "translationY", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.translationYdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.locationZ = new ParameterInputBox(parameterGroup, style, "locationZ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.locationZdataNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationZ = new ParameterInputBox(parameterGroup, style, "translationZ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.translationZdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
     this.rotationX = new ParameterInputBox(parameterGroup, style, "rotationX", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.rotationXdataNumber = new ParameterInputBox(parameterGroup, style, 0);
@@ -200,17 +200,17 @@ public class GroupConfigWithCoordinateParameterDialog {
   void updateGroupParameters() {
     this.group.setName(this.groupName.getText());
     this.group.clearLinkData();
-    addLinkData(this.locationX, this.locationXdataNumber);
-    addLinkData(this.locationY, this.locationYdataNumber);
-    addLinkData(this.locationZ, this.locationZdataNumber);
+    addLinkData(this.translationX, this.translationXdataNumber);
+    addLinkData(this.translationY, this.translationYdataNumber);
+    addLinkData(this.translationZ, this.translationZdataNumber);
     addLinkData(this.rotationX, this.rotationXdataNumber);
     addLinkData(this.rotationY, this.rotationYdataNumber);
     addLinkData(this.rotationZ, this.rotationZdataNumber);
     
-    final Location location = new Location(this.locationX.getFloatValue(), this.locationY.getFloatValue(), this.locationZ.getFloatValue());
+    final Translation translation = new Translation(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue());
     final Rotation rotation = new Rotation(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue());
     
-    this.group.setLocation(location);
+    this.group.setTranslation(translation);
     this.group.setRotation(rotation);
   }
 
@@ -227,7 +227,7 @@ public class GroupConfigWithCoordinateParameterDialog {
       linkData.setTarget(parameter.getLabelText());
       //linkData.setBasis(parameter.getFloatValue());
       linkData.setNumber(dataNumber.getIntValue());
-      this.group.addLinkdata(linkData);
+      this.group.addLinkData(linkData);
     }
   }
 
@@ -258,13 +258,13 @@ public class GroupConfigWithCoordinateParameterDialog {
     setLinkDataInDialog();
 
     final Rotation rotation = this.group.getRotation();
-    final Location location = this.group.getLocation();
+    final Translation translation = this.group.getTranslation();
 
     if (rotation != null) {
       setRotationInDialog(rotation);
     }
-    if (location != null) {
-      setLocationInDialog(location);
+    if (translation != null) {
+      setTranslationInDialog(translation);
     }
   }
 
@@ -280,14 +280,14 @@ public class GroupConfigWithCoordinateParameterDialog {
   }
 
   /**
-   * 位置をダイアログに設定します。
+   * 並進量をダイアログに設定します。
    * 
-   * @param location 位置
+   * @param translation 並進量
    */
-  private void setLocationInDialog(Location location) {
-    this.locationX.setText("" + location.getX()); //$NON-NLS-1$
-    this.locationY.setText("" + location.getY()); //$NON-NLS-1$
-    this.locationZ.setText("" + location.getZ()); //$NON-NLS-1$
+  private void setTranslationInDialog(Translation translation) {
+    this.translationX.setText("" + translation.getX()); //$NON-NLS-1$
+    this.translationY.setText("" + translation.getY()); //$NON-NLS-1$
+    this.translationZ.setText("" + translation.getZ()); //$NON-NLS-1$
   }
 
   /**
@@ -301,14 +301,14 @@ public class GroupConfigWithCoordinateParameterDialog {
       final String dataNumber = linkData[i].hasNumber() ? "" + linkData[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       //final String basis = linkData[i].hasBasis() ? "" + linkData[i].getBasis() : "0.0"; //$NON-NLS-1$ //$NON-NLS-2$
 
-      if (target.equals("locationX")) { //$NON-NLS-1$
-        this.locationXdataNumber.setText(dataNumber);
+      if (target.equals("translationX")) { //$NON-NLS-1$
+        this.translationXdataNumber.setText(dataNumber);
         //this.locationX.setText(basis);
-      } else if (target.equals("locationY")) { //$NON-NLS-1$
-        this.locationYdataNumber.setText(dataNumber);
+      } else if (target.equals("translationY")) { //$NON-NLS-1$
+        this.translationYdataNumber.setText(dataNumber);
         //this.locationY.setText(basis);
-      } else if (target.equals("locationZ")) { //$NON-NLS-1$
-        this.locationZdataNumber.setText(dataNumber);
+      } else if (target.equals("translationZ")) { //$NON-NLS-1$
+        this.translationZdataNumber.setText(dataNumber);
         //this.locationZ.setText(basis);
       } else if (target.equals("rotationX")) { //$NON-NLS-1$
         this.rotationXdataNumber.setText(dataNumber);
@@ -329,13 +329,13 @@ public class GroupConfigWithCoordinateParameterDialog {
    * @return 数字のみが入力されていればtrue，そうでなければfalse
    */
   boolean containsOnlyNumbers() {
-    if (this.locationX.containsOnlyNumbers() == false) {
+    if (this.translationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationY.containsOnlyNumbers() == false) {
+    if (this.translationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationZ.containsOnlyNumbers() == false) {
+    if (this.translationZ.containsOnlyNumbers() == false) {
       return false;
     }
     if (this.rotationX.containsOnlyNumbers() == false) {
@@ -347,13 +347,13 @@ public class GroupConfigWithCoordinateParameterDialog {
     if (this.rotationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationXdataNumber.containsOnlyNumbers() == false) {
+    if (this.translationXdataNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationYdataNumber.containsOnlyNumbers() == false) {
+    if (this.translationYdataNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationZdataNumber.containsOnlyNumbers() == false) {
+    if (this.translationZdataNumber.containsOnlyNumbers() == false) {
       return false;
     }
     if (this.rotationXdataNumber.containsOnlyNumbers() == false) {

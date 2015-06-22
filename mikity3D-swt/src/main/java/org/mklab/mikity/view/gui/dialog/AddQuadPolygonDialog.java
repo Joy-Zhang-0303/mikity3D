@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -222,18 +222,18 @@ public class AddQuadPolygonDialog {
   void addPolygon() {
     final XMLQuadPolygon quad = new XMLQuadPolygon();
     final Rotation rot = new Rotation();
-    final Location loc = new Location();
+    final Translation loc = new Translation();
 
-    final Location vertex1 = new Location(this.vertex1X.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
-    final Location vertex2 = new Location(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
-    final Location vertex3 = new Location(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
-    final Location vertex4 = new Location(this.vertex4x.getFloatValue(), this.vertex4y.getFloatValue(), this.vertex4z.getFloatValue());
+    final Translation vertex1 = new Translation(this.vertex1X.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
+    final Translation vertex2 = new Translation(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
+    final Translation vertex3 = new Translation(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
+    final Translation vertex4 = new Translation(this.vertex4x.getFloatValue(), this.vertex4y.getFloatValue(), this.vertex4z.getFloatValue());
     quad.setPointLocations(vertex1, vertex2, vertex3, vertex4);
     if (getRotation(rot) != null) {
       quad.setRotation(getRotation(rot));
     }
     if (getLocaion(loc) != null) {
-      quad.setLocation(getLocaion(loc));
+      quad.setTranslation(getLocaion(loc));
     }
     quad.setColor(this.colorCombo.getText());
     this.group.addXMLQuadPolygon(quad);
@@ -274,7 +274,7 @@ public class AddQuadPolygonDialog {
    * @param location
    * @return loc
    */
-  private Location getLocaion(Location location) {
+  private Translation getLocaion(Translation location) {
     if (this.locationX.getFloatValue() == 0 && this.locationY.getFloatValue() == 0 && this.locationZ.getFloatValue() == 0) {
       return null;
     }
