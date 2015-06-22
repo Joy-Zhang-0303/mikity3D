@@ -149,9 +149,9 @@ public class GroupConfigWithDHParameterDialog {
     if (dh.getFloatValue() != 0.0 || col.getIntValue() != 0) {
       final LinkData linkdata = new LinkData();
       linkdata.setTarget(dh.getLabelText());
-      if (dh.getFloatValue() != 0.0) {
-        linkdata.setBasis(dh.getFloatValue());
-      }
+//      if (dh.getFloatValue() != 0.0) {
+//        linkdata.setBasis(dh.getFloatValue());
+//      }
       if (col.getIntValue() != 0) {
         linkdata.setNumber(col.getIntValue());
       }
@@ -241,20 +241,20 @@ public class GroupConfigWithDHParameterDialog {
     for (int i = 0; i < linkdata.length; i++) {
       final String target = linkdata[i].getTarget();
       final String column = linkdata[i].hasNumber() ? "" + linkdata[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      final String constant = linkdata[i].hasBasis() ? "" + linkdata[i].getBasis() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      //final String constant = linkdata[i].hasBasis() ? "" + linkdata[i].getBasis() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       
       if (target.equals("a")) { //$NON-NLS-1$
         this.columnA.setText(column);
-        this.a.setText(constant);
+        this.a.setText("0"); //$NON-NLS-1$
       } else if (target.equals("alpha")) { //$NON-NLS-1$
         this.columnAlpha.setText(column);
-        this.alpha.setText(constant);
+        this.alpha.setText("0"); //$NON-NLS-1$
       } else if (target.equals("d")) { //$NON-NLS-1$
         this.columnD.setText(column);
-        this.d.setText(constant);
+        this.d.setText("0"); //$NON-NLS-1$
       } else if (target.equals("theta")) { //$NON-NLS-1$
         this.columnTheta.setText(column);
-        this.theta.setText(constant);
+        this.theta.setText("0"); //$NON-NLS-1$
       }
     }
   }

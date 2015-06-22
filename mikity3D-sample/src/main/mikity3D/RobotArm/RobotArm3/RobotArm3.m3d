@@ -12,7 +12,7 @@
 				<group name="arm1">
 					<location z="0.0" y="0.1" x="0.0" />
 					<rotation z="0.0" y="0.0" x="0.0" />
-					<linkData number="2" basis="0.0" target="rotationY" />
+					<linkData number="2" target="rotationY" />
 					<cylinder color="red" division="30" height="0.2" radius="0.02">
 						<location z="0.0" y="0.0" x="0.0" />
 					</cylinder>
@@ -23,7 +23,7 @@
 					<group name="arm2">
 						<location z="0.04" y="0.1" x="0.0" />
 						<rotation z="0.0" y="0.0" x="0.0" />
-						<linkData number="3" basis="0.0" target="rotationZ" />
+						<linkData number="3" target="rotationZ" />
 						<cylinder color="red" division="30" height="0.1" radius="0.02">
 							<location z="0.0" y="0.05" x="0.0" />
 						</cylinder>
@@ -34,7 +34,7 @@
 						<group name="arm3">
 							<location z="0.04" y="0.1" x="0.0" />
 							<rotation z="0.0" y="0.0" x="0.0" />
-							<linkData number="4" basis="0.0" target="rotationZ" />
+							<linkData number="4" target="rotationZ" />
 							<cylinder color="red" division="30" height="0.1" radius="0.02">
 								<location z="0.0" y="0.05" x="0.0" />
 							</cylinder>

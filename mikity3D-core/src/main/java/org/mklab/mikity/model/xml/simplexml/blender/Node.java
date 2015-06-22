@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
+import org.mklab.mikity.model.xml.simplexml.model.Location;
 import org.mklab.mikity.util.Matrix4;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -360,16 +361,19 @@ public class Node {
     if (this.type != null) {
       if (this.type.equals("JOINT")) { //$NON-NLS-1$
         this.group.setName(this.name);
+        final Location location = new Location(this.matrix4f.getElement(0, 3), this.matrix4f.getElement(1, 3), this.matrix4f.getElement(2, 3));
+        this.group.setLocation(location);
+        
         LinkData[] linkdata = new LinkData[3];
         linkdata[0] = new LinkData();
         linkdata[0].setTarget("locationX"); //$NON-NLS-1$
-        linkdata[0].setBasis(this.matrix4f.getElement(0, 3)); // m03
+        //linkdata[0].setBasis(this.matrix4f.getElement(0, 3)); // m03
         linkdata[1] = new LinkData();
         linkdata[1].setTarget("locationY"); //$NON-NLS-1$
-        linkdata[1].setBasis(this.matrix4f.getElement(1, 3)); // m13
+        //linkdata[1].setBasis(this.matrix4f.getElement(1, 3)); // m13
         linkdata[2] = new LinkData();
         linkdata[2].setTarget("locationZ"); //$NON-NLS-1$
-        linkdata[2].setBasis(this.matrix4f.getElement(2, 3)); // m23
+        //linkdata[2].setBasis(this.matrix4f.getElement(2, 3)); // m23
         this.group.setLinks(linkdata);
       }
     }

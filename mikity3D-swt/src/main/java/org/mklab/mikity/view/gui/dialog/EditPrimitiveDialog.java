@@ -265,7 +265,7 @@ public class EditPrimitiveDialog {
   }
 
   /**
-   * パラメータを更新する。
+   * プリミティブのパラメータを更新します。
    */
   void updatePrimitiveParameters() {
     if (this.primitive instanceof XMLBox) {
@@ -349,7 +349,7 @@ public class EditPrimitiveDialog {
   }
 
   /**
-   * primitiveの型を判断し、値を入れる
+   * primitiveの型を判断し、ダイアログにパラメータを設定します。
    */
   private void setParametersInDialog() {
     if (this.primitive instanceof XMLBox) {
@@ -360,10 +360,10 @@ public class EditPrimitiveDialog {
       final Rotation rotation = box.getRotation();
       final Location location = box.getLocation();
       if (rotation != null) {
-        setRotationToDialog(rotation);
+        setRotationInDialog(rotation);
       }
       if (location != null) {
-        setLocationToDialog(location);
+        setLocationInDialog(location);
       }
       setBoxLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
@@ -376,10 +376,10 @@ public class EditPrimitiveDialog {
       final Rotation rotation = cylinder.getRotation();
       final Location location = cylinder.getLocation();
       if (rotation != null) {
-        setRotationToDialog(rotation);
+        setRotationInDialog(rotation);
       }
       if (location != null) {
-        setLocationToDialog(location);
+        setLocationInDialog(location);
       }
       setCylinderLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
@@ -391,10 +391,10 @@ public class EditPrimitiveDialog {
       final Rotation rotation = sphere.getRotation();
       final Location location = sphere.getLocation();
       if (rotation != null) {
-        setRotationToDialog(rotation);
+        setRotationInDialog(rotation);
       }
       if (location != null) {
-        setLocationToDialog(location);
+        setLocationInDialog(location);
       }
       setSphereLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
@@ -407,10 +407,10 @@ public class EditPrimitiveDialog {
       final Rotation rotation = cone.getRotation();
       final Location location = cone.getLocation();
       if (rotation != null) {
-        setRotationToDialog(rotation);
+        setRotationInDialog(rotation);
       }
       if (location != null) {
-        setLocationToDialog(location);
+        setLocationInDialog(location);
       }
       setConeLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
@@ -494,19 +494,22 @@ public class EditPrimitiveDialog {
   }
 
   /**
-   * 平行移動、回転移動の値を読み取る。
+   * 角度をダイアログに設定します。
    * 
-   * 空の場合はゼロを入れる。
-   * 
-   * @param rotation
+   * @param rotation 角度
    */
-  private void setRotationToDialog(Rotation rotation) {
+  private void setRotationInDialog(Rotation rotation) {
     this.rotationX.setText("" + rotation.getX()); //$NON-NLS-1$
     this.rotationY.setText("" + rotation.getY()); //$NON-NLS-1$
     this.rotationZ.setText("" + rotation.getZ()); //$NON-NLS-1$
   }
 
-  private void setLocationToDialog(Location location) {
+  /**
+   * 位置をダイアログに設定します。
+   * 
+   * @param location 位置
+   */
+  private void setLocationInDialog(Location location) {
     this.locationX.setText("" + location.getX()); //$NON-NLS-1$
     this.locationY.setText("" + location.getY()); //$NON-NLS-1$
     this.locationZ.setText("" + location.getZ()); //$NON-NLS-1$

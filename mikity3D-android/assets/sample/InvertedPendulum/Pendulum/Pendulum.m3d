@@ -21,14 +21,14 @@
 				<group name="daisha">
 					<location z="0.0" y="0.0" x="0.0" />
 					<rotation z="0.0" y="0.0" x="0.0" />
-					<linkData number="2" basis="0.0" target="locationX" />
+					<linkData number="2" target="locationX" />
 					<box transparent="true" color="yellow" depth="0.0050" height="0.05" width="0.07">
 						<location z="0.02" y="0.0" x="0.0" />
 					</box>
 					<group name="sinsi">
 						<location z="0.0" y="0.0" x="0.0"/>
 						<rotation z="0.0" y="0.0" x="0.0"/>
-						<linkData number="3" basis="0.0" target="rotationZ"/>
+						<linkData number="3" target="rotationZ"/>
 						<cylinder color="red" division="10" height="0.018" radius="0.01">
 							<rotation z="0.0" y="0.0" x="1.5708"/>
 							<location z="0.0325" y="0.0" x="0.0"/>

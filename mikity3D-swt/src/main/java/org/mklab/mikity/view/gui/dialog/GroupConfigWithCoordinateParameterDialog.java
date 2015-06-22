@@ -15,6 +15,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
+import org.mklab.mikity.model.xml.simplexml.model.Location;
+import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
@@ -31,18 +33,18 @@ public class GroupConfigWithCoordinateParameterDialog {
   org.mklab.mikity.model.xml.simplexml.model.Group group;
 
   ParameterInputBox groupName;
-  ParameterInputBox linkDataLocationX;
-  ParameterInputBox linkDataLocationY;
-  ParameterInputBox linkDataLocationZ;
-  ParameterInputBox linkDataRotationX;
-  ParameterInputBox linkDataRotationY;
-  ParameterInputBox linkDataRotationZ;
-  ParameterInputBox dataNumberLocationX;
-  ParameterInputBox dataNumberLocationY;
-  ParameterInputBox dataNumberLocationZ;
-  ParameterInputBox dataNumberRotationX;
-  ParameterInputBox dataNumberRotationY;
-  ParameterInputBox dataNumberRotationZ;
+  ParameterInputBox locationX;
+  ParameterInputBox locationY;
+  ParameterInputBox locationZ;
+  ParameterInputBox rotationX;
+  ParameterInputBox rotationY;
+  ParameterInputBox rotationZ;
+  ParameterInputBox locationXdataNumber;
+  ParameterInputBox locationYdataNumber;
+  ParameterInputBox locationZdataNumber;
+  ParameterInputBox rotationXdataNumber;
+  ParameterInputBox rotationYdataNumber;
+  ParameterInputBox rotationZdataNumber;
 
   private boolean editable;
   private Label statusLabel;
@@ -72,14 +74,13 @@ public class GroupConfigWithCoordinateParameterDialog {
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 375));
     this.sShell.setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
-    
+
     this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
 
     if (this.group.getName() != null) {
       this.groupName.setText(this.group.getName());
     }
-    
-    
+
     createLinkDataGroup();
 
     createButtonComposite();
@@ -90,7 +91,6 @@ public class GroupConfigWithCoordinateParameterDialog {
       setStatus(Messages.getString("GroupConfigDialogLink.10")); //$NON-NLS-1$
     }
   }
-  
 
   /**
    * グループのパラメータを表示させる
@@ -129,26 +129,26 @@ public class GroupConfigWithCoordinateParameterDialog {
     } else {
       style = SWT.READ_ONLY;
     }
-    
-    this.linkDataLocationX = new ParameterInputBox(parameterGroup, style, "locationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberLocationX = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.linkDataLocationY = new ParameterInputBox(parameterGroup, style, "locationY", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberLocationY = new ParameterInputBox(parameterGroup, style, 0);
+    this.locationX = new ParameterInputBox(parameterGroup, style, "locationX", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.locationXdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.linkDataLocationZ = new ParameterInputBox(parameterGroup, style, "locationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberLocationZ = new ParameterInputBox(parameterGroup, style, 0);
+    this.locationY = new ParameterInputBox(parameterGroup, style, "locationY", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.locationYdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.linkDataRotationX = new ParameterInputBox(parameterGroup, style, "rotationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberRotationX = new ParameterInputBox(parameterGroup, style, 0);
+    this.locationZ = new ParameterInputBox(parameterGroup, style, "locationZ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.locationZdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.linkDataRotationY = new ParameterInputBox(parameterGroup, style, "rotationY", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberRotationY = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationX = new ParameterInputBox(parameterGroup, style, "rotationX", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.rotationXdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.linkDataRotationZ = new ParameterInputBox(parameterGroup, style, "rotationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberRotationZ = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationY = new ParameterInputBox(parameterGroup, style, "rotationY", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.rotationYdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    setLinkDataParameters();
+    this.rotationZ = new ParameterInputBox(parameterGroup, style, "rotationZ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.rotationZdataNumber = new ParameterInputBox(parameterGroup, style, 0);
+
+    setParametersInDialog();
   }
 
   private void createButtonComposite() {
@@ -157,30 +157,27 @@ public class GroupConfigWithCoordinateParameterDialog {
     okButton.setText(Messages.getString("GroupConfigDialogLink.4")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (containsOnlyNumbers()) {
-          final MessageBox message = new MessageBox(GroupConfigWithCoordinateParameterDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          message.setMessage(Messages.getString("GroupConfigDialogLink.5")); //$NON-NLS-1$
-          message.setText(Messages.getString("GroupConfigDialogLink.6")); //$NON-NLS-1$
-          int yesNo = message.open();
-          if (yesNo == SWT.YES) {
-            GroupConfigWithCoordinateParameterDialog.this.group.setName(GroupConfigWithCoordinateParameterDialog.this.groupName.getText());
-            GroupConfigWithCoordinateParameterDialog.this.group.clearLinkData();
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataLocationX, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationX);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataLocationY, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationY);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataLocationZ, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationZ);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataRotationX, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationX);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataRotationY, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationY);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataRotationZ, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationZ);
-            GroupConfigWithCoordinateParameterDialog.this.sShell.close();       
-          }
-        } else {
+        if (containsOnlyNumbers() == false) {
           final MessageBox message = new MessageBox(GroupConfigWithCoordinateParameterDialog.this.sShell, SWT.ICON_WARNING);
           message.setMessage(Messages.getString("GroupConfigDialogLink.7")); //$NON-NLS-1$
           message.setText(Messages.getString("GroupConfigDialogLink.8")); //$NON-NLS-1$
+          message.open();
+          return;
         }
+
+//        final MessageBox message = new MessageBox(GroupConfigWithCoordinateParameterDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+//        message.setMessage(Messages.getString("GroupConfigDialogLink.5")); //$NON-NLS-1$
+//        message.setText(Messages.getString("GroupConfigDialogLink.6")); //$NON-NLS-1$
+//        int yesNo = message.open();
+//        if (yesNo == SWT.YES) {
+          updateGroupParameters();
+          GroupConfigWithCoordinateParameterDialog.this.sShell.close();
+//        }
       }
+
     });
 
     final Button cancelButton = new Button(this.sShell, SWT.NONE);
@@ -188,6 +185,7 @@ public class GroupConfigWithCoordinateParameterDialog {
     cancelButton.setText(Messages.getString("GroupConfigDialogLink.9")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         // キャンセルが選択されたら、変更しないでシェルを閉じる
@@ -195,6 +193,27 @@ public class GroupConfigWithCoordinateParameterDialog {
       }
     });
   }
+  
+  /**
+   * グループのパラメータを更新します。
+   */
+  void updateGroupParameters() {
+    this.group.setName(this.groupName.getText());
+    this.group.clearLinkData();
+    addLinkData(this.locationX, this.locationXdataNumber);
+    addLinkData(this.locationY, this.locationYdataNumber);
+    addLinkData(this.locationZ, this.locationZdataNumber);
+    addLinkData(this.rotationX, this.rotationXdataNumber);
+    addLinkData(this.rotationY, this.rotationYdataNumber);
+    addLinkData(this.rotationZ, this.rotationZdataNumber);
+    
+    final Location location = new Location(this.locationX.getFloatValue(), this.locationY.getFloatValue(), this.locationZ.getFloatValue());
+    final Rotation rotation = new Rotation(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue());
+    
+    this.group.setLocation(location);
+    this.group.setRotation(rotation);
+  }
+
 
   /**
    * Linkdataを追加します。
@@ -206,7 +225,7 @@ public class GroupConfigWithCoordinateParameterDialog {
     if (dataNumber.getIntValue() != 0) {
       final LinkData linkData = new LinkData();
       linkData.setTarget(parameter.getLabelText());
-      linkData.setBasis(parameter.getFloatValue());
+      //linkData.setBasis(parameter.getFloatValue());
       linkData.setNumber(dataNumber.getIntValue());
       this.group.addLinkdata(linkData);
     }
@@ -233,34 +252,73 @@ public class GroupConfigWithCoordinateParameterDialog {
   }
 
   /**
+   * ダイアログにパラメータを設定します。
+   */
+  private void setParametersInDialog() {
+    setLinkDataInDialog();
+
+    final Rotation rotation = this.group.getRotation();
+    final Location location = this.group.getLocation();
+
+    if (rotation != null) {
+      setRotationInDialog(rotation);
+    }
+    if (location != null) {
+      setLocationInDialog(location);
+    }
+  }
+
+  /**
+   * 角度をダイアログに設定します。
+   * 
+   * @param rotation 回転
+   */
+  private void setRotationInDialog(Rotation rotation) {
+    this.rotationX.setText("" + rotation.getX()); //$NON-NLS-1$
+    this.rotationY.setText("" + rotation.getY()); //$NON-NLS-1$
+    this.rotationZ.setText("" + rotation.getZ()); //$NON-NLS-1$
+  }
+
+  /**
+   * 位置をダイアログに設定します。
+   * 
+   * @param location 位置
+   */
+  private void setLocationInDialog(Location location) {
+    this.locationX.setText("" + location.getX()); //$NON-NLS-1$
+    this.locationY.setText("" + location.getY()); //$NON-NLS-1$
+    this.locationZ.setText("" + location.getZ()); //$NON-NLS-1$
+  }
+
+  /**
    * Linkdata の column を表示させる
    */
-  private void setLinkDataParameters() {
-    final LinkData[] linkdata = this.group.getLinkData();
+  private void setLinkDataInDialog() {
+    final LinkData[] linkData = this.group.getLinkData();
 
-    for (int i = 0; i < linkdata.length; i++) {
-      final String target = linkdata[i].getTarget();
-      final String dataNumber = linkdata[i].hasNumber() ? "" + linkdata[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      final String basis = linkdata[i].hasBasis() ? "" + linkdata[i].getBasis() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      
+    for (int i = 0; i < linkData.length; i++) {
+      final String target = linkData[i].getTarget();
+      final String dataNumber = linkData[i].hasNumber() ? "" + linkData[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      //final String basis = linkData[i].hasBasis() ? "" + linkData[i].getBasis() : "0.0"; //$NON-NLS-1$ //$NON-NLS-2$
+
       if (target.equals("locationX")) { //$NON-NLS-1$
-        this.dataNumberLocationX.setText(dataNumber);
-        this.linkDataLocationX.setText(basis);
+        this.locationXdataNumber.setText(dataNumber);
+        //this.locationX.setText(basis);
       } else if (target.equals("locationY")) { //$NON-NLS-1$
-        this.dataNumberLocationY.setText(dataNumber);
-        this.linkDataLocationY.setText(basis);
+        this.locationYdataNumber.setText(dataNumber);
+        //this.locationY.setText(basis);
       } else if (target.equals("locationZ")) { //$NON-NLS-1$
-        this.dataNumberLocationZ.setText(dataNumber);
-        this.linkDataLocationZ.setText(basis);
+        this.locationZdataNumber.setText(dataNumber);
+        //this.locationZ.setText(basis);
       } else if (target.equals("rotationX")) { //$NON-NLS-1$
-        this.dataNumberRotationX.setText(dataNumber);
-        this.linkDataRotationX.setText(basis);
+        this.rotationXdataNumber.setText(dataNumber);
+        //this.rotationX.setText(basis);
       } else if (target.equals("rotationY")) { //$NON-NLS-1$
-        this.dataNumberRotationY.setText(dataNumber);
-        this.linkDataRotationY.setText(basis);
+        this.rotationYdataNumber.setText(dataNumber);
+        //this.rotationY.setText(basis);
       } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-        this.dataNumberRotationZ.setText(dataNumber);
-        this.linkDataRotationZ.setText(basis);
+        this.rotationZdataNumber.setText(dataNumber);
+        //this.rotationZ.setText(basis);
       }
     }
   }
@@ -271,40 +329,40 @@ public class GroupConfigWithCoordinateParameterDialog {
    * @return 数字のみが入力されていればtrue，そうでなければfalse
    */
   boolean containsOnlyNumbers() {
-    if (this.linkDataLocationX.containsOnlyNumbers() == false) {
+    if (this.locationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.linkDataLocationY.containsOnlyNumbers() == false) {
+    if (this.locationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.linkDataLocationZ.containsOnlyNumbers() == false) {
+    if (this.locationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.linkDataRotationX.containsOnlyNumbers() == false) {
+    if (this.rotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.linkDataRotationY.containsOnlyNumbers() == false) {
+    if (this.rotationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.linkDataRotationZ.containsOnlyNumbers() == false) {
+    if (this.rotationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.dataNumberLocationX.containsOnlyNumbers() == false) {
+    if (this.locationXdataNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.dataNumberLocationY.containsOnlyNumbers() == false) {
+    if (this.locationYdataNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.dataNumberLocationZ.containsOnlyNumbers() == false) {
+    if (this.locationZdataNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.dataNumberRotationX.containsOnlyNumbers() == false) {
+    if (this.rotationXdataNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.dataNumberRotationY.containsOnlyNumbers() == false) {
+    if (this.rotationYdataNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.dataNumberRotationZ.containsOnlyNumbers() == false) {
+    if (this.rotationZdataNumber.containsOnlyNumbers() == false) {
       return false;
     }
     return true;

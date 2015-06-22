@@ -17,9 +17,9 @@ public class LinkData implements java.io.Serializable {
   @Attribute(name="target")
   private String target;
 
-  /** 基準 */
-  @Attribute(name="basis")
-  private double basis;
+//  /** 基準 */
+//  @Attribute(name="basis")
+//  private double basis;
 
   /** データの番号 */
   @Attribute(name="number")
@@ -50,9 +50,9 @@ public class LinkData implements java.io.Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + this.number;
-    long temp;
-    temp = Double.doubleToLongBits(this.basis);
-    result = prime * result + (int)(temp ^ (temp >>> 32));
+    //long temp;
+    //temp = Double.doubleToLongBits(this.basis);
+    //result = prime * result + (int)(temp ^ (temp >>> 32));
     result = prime * result + ((this.target == null) ? 0 : this.target.hashCode());
     return result;
   }
@@ -75,9 +75,9 @@ public class LinkData implements java.io.Serializable {
     if (this.number != other.number) {
       return false;
     }
-    if (Double.doubleToLongBits(this.basis) != Double.doubleToLongBits(other.basis)) {
-      return false;
-    }
+//    if (Double.doubleToLongBits(this.basis) != Double.doubleToLongBits(other.basis)) {
+//      return false;
+//    }
     if (this.target == null) {
       if (other.target != null) {
         return false;
@@ -88,14 +88,14 @@ public class LinkData implements java.io.Serializable {
     return true;
   }
 
-  /**
-   * 基準の値を返します。
-   * 
-   * @return 基準の値
-   */
-  public double getBasis() {
-    return this.basis;
-  }
+//  /**
+//   * 基準の値を返します。
+//   * 
+//   * @return 基準の値
+//   */
+//  public double getBasis() {
+//    return this.basis;
+//  }
 
   /**
    * 対象となるパラメータの名前を返します。
@@ -118,17 +118,17 @@ public class LinkData implements java.io.Serializable {
     return false;
   }
 
-  /**
-   * 機運をもつか判別します。
-   * 
-   * @return 基準をもつならばtrue
-   */
-  public boolean hasBasis() {
-    if (this.basis != 0.0) {
-      return true;
-    }
-    return false;
-  }
+//  /**
+//   * 機運をもつか判別します。
+//   * 
+//   * @return 基準をもつならばtrue
+//   */
+//  public boolean hasBasis() {
+//    if (this.basis != 0.0) {
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
    * データの番号を設定します。
@@ -139,14 +139,14 @@ public class LinkData implements java.io.Serializable {
     this.number = number;
   }
 
-  /**
-   * 基準を設定します。
-   * 
-   * @param basis 基準
-   */
-  public void setBasis(double basis) {
-    this.basis = basis;
-  }
+//  /**
+//   * 基準を設定します。
+//   * 
+//   * @param basis 基準
+//   */
+//  public void setBasis(double basis) {
+//    this.basis = basis;
+//  }
 
   /**
    * 対象となるパラメータの名前を設定します。
