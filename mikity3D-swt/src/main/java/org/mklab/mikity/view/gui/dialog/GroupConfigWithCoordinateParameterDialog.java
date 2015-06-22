@@ -31,12 +31,12 @@ public class GroupConfigWithCoordinateParameterDialog {
   org.mklab.mikity.model.xml.simplexml.model.Group group;
 
   ParameterInputBox groupName;
-  ParameterInputBox locationX;
-  ParameterInputBox locationY;
-  ParameterInputBox locationZ;
-  ParameterInputBox rotationX;
-  ParameterInputBox rotationY;
-  ParameterInputBox rotationZ;
+  ParameterInputBox linkDataLocationX;
+  ParameterInputBox linkDataLocationY;
+  ParameterInputBox linkDataLocationZ;
+  ParameterInputBox linkDataRotationX;
+  ParameterInputBox linkDataRotationY;
+  ParameterInputBox linkDataRotationZ;
   ParameterInputBox dataNumberLocationX;
   ParameterInputBox dataNumberLocationY;
   ParameterInputBox dataNumberLocationZ;
@@ -72,40 +72,108 @@ public class GroupConfigWithCoordinateParameterDialog {
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 375));
     this.sShell.setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
-    // groupName = new ParameterInputBox(sShell, SWT.NONE, "Group名",
-    // group.getName());
+    
     this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    //System.out.println("group : " + this.group); //$NON-NLS-1$
     if (this.group.getName() != null) {
       this.groupName.setText(this.group.getName());
     }
-    createGroup();
+    
+    
+    createLinkDataGroup();
 
+    createButtonComposite();
+
+    createStatusBar();
+
+    if (this.editable == false) {
+      setStatus(Messages.getString("GroupConfigDialogLink.10")); //$NON-NLS-1$
+    }
+  }
+  
+
+  /**
+   * グループのパラメータを表示させる
+   */
+  private void createLinkDataGroup() {
+    final Group parameterGroup = new Group(this.sShell, SWT.NONE);
+    final GridLayout layout = new GridLayout();
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    data.horizontalSpan = 2;
+    layout.numColumns = 3;
+    parameterGroup.setText(Messages.getString("GroupConfigDialogLink.11")); //$NON-NLS-1$
+    parameterGroup.setLayout(layout);
+    parameterGroup.setLayoutData(data);
+
+    final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
+    data.widthHint = 40;
+    final Label label1 = new Label(parameterGroup, SWT.CENTER);
+    label1.setText(Messages.getString("GroupConfigDialogLink.12")); //$NON-NLS-1$
+    label1.setLayoutData(gridData1);
+
+    final GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
+    gridData2.widthHint = 65;
+    final Label label2 = new Label(parameterGroup, SWT.CENTER);
+    label2.setText(Messages.getString("GroupConfigDialogLink.13")); //$NON-NLS-1$
+    label2.setLayoutData(gridData2);
+
+    final GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
+    gridData3.widthHint = 65;
+    final Label label3 = new Label(parameterGroup, SWT.CENTER);
+    label3.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
+    label3.setLayoutData(gridData3);
+
+    int style;
+    if (this.editable == true) {
+      style = SWT.NONE;
+    } else {
+      style = SWT.READ_ONLY;
+    }
+    
+    this.linkDataLocationX = new ParameterInputBox(parameterGroup, style, "locationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.dataNumberLocationX = new ParameterInputBox(parameterGroup, style, 0);
+
+    this.linkDataLocationY = new ParameterInputBox(parameterGroup, style, "locationY", "0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.dataNumberLocationY = new ParameterInputBox(parameterGroup, style, 0);
+
+    this.linkDataLocationZ = new ParameterInputBox(parameterGroup, style, "locationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.dataNumberLocationZ = new ParameterInputBox(parameterGroup, style, 0);
+
+    this.linkDataRotationX = new ParameterInputBox(parameterGroup, style, "rotationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.dataNumberRotationX = new ParameterInputBox(parameterGroup, style, 0);
+
+    this.linkDataRotationY = new ParameterInputBox(parameterGroup, style, "rotationY", "0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.dataNumberRotationY = new ParameterInputBox(parameterGroup, style, 0);
+
+    this.linkDataRotationZ = new ParameterInputBox(parameterGroup, style, "rotationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.dataNumberRotationZ = new ParameterInputBox(parameterGroup, style, 0);
+
+    setLinkDataParameters();
+  }
+
+  private void createButtonComposite() {
     final Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("GroupConfigDialogLink.4")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-
-        if (Check()) {
+        if (containsOnlyNumbers()) {
           final MessageBox message = new MessageBox(GroupConfigWithCoordinateParameterDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           message.setMessage(Messages.getString("GroupConfigDialogLink.5")); //$NON-NLS-1$
           message.setText(Messages.getString("GroupConfigDialogLink.6")); //$NON-NLS-1$
           int yesNo = message.open();
           if (yesNo == SWT.YES) {
             GroupConfigWithCoordinateParameterDialog.this.group.setName(GroupConfigWithCoordinateParameterDialog.this.groupName.getText());
-            GroupConfigWithCoordinateParameterDialog.this.group.clearLinkdata();
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locationX, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationX);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locationY, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationY);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.locationZ, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationZ);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotationX, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationX);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotationY, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationY);
-            addLinkData(GroupConfigWithCoordinateParameterDialog.this.rotationZ, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationZ);
-            GroupConfigWithCoordinateParameterDialog.this.sShell.close();
+            GroupConfigWithCoordinateParameterDialog.this.group.clearLinkData();
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataLocationX, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationX);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataLocationY, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationY);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataLocationZ, GroupConfigWithCoordinateParameterDialog.this.dataNumberLocationZ);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataRotationX, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationX);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataRotationY, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationY);
+            addLinkData(GroupConfigWithCoordinateParameterDialog.this.linkDataRotationZ, GroupConfigWithCoordinateParameterDialog.this.dataNumberRotationZ);
+            GroupConfigWithCoordinateParameterDialog.this.sShell.close();       
           }
         } else {
           final MessageBox message = new MessageBox(GroupConfigWithCoordinateParameterDialog.this.sShell, SWT.ICON_WARNING);
@@ -120,98 +188,28 @@ public class GroupConfigWithCoordinateParameterDialog {
     cancelButton.setText(Messages.getString("GroupConfigDialogLink.9")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         // キャンセルが選択されたら、変更しないでシェルを閉じる
         GroupConfigWithCoordinateParameterDialog.this.sShell.close();
       }
     });
-
-    createStatusBar();
-
-    if (this.editable == false) {
-      setStatus(Messages.getString("GroupConfigDialogLink.10")); //$NON-NLS-1$
-    }
   }
 
   /**
-   * グループのLinkdataを追加する
+   * Linkdataを追加します。
    * 
-   * @param dh
-   * @param col
+   * @param parameter パラメータ
+   * @param dataNumber データの番号
    */
-  void addLinkData(final ParameterInputBox dh, final ParameterInputBox col) {
-    if (dh.getFloatValue() != 0.0 || col.getIntValue() != 0) {
-      final LinkData linkdata = new LinkData();
-      linkdata.setTarget(dh.getLabelText());
-      if (dh.getFloatValue() != 0.0) {
-        linkdata.setConstantValue(dh.getFloatValue());
-      }
-      if (col.getIntValue() != 0) {
-        linkdata.setNumber(col.getIntValue());
-      }
-      this.group.addLinkdata(linkdata);
+  void addLinkData(final ParameterInputBox parameter, final ParameterInputBox dataNumber) {
+    if (dataNumber.getIntValue() != 0) {
+      final LinkData linkData = new LinkData();
+      linkData.setTarget(parameter.getLabelText());
+      linkData.setBasis(parameter.getFloatValue());
+      linkData.setNumber(dataNumber.getIntValue());
+      this.group.addLinkdata(linkData);
     }
-  }
-
-  /**
-   * グループのパラメータを表示させる
-   */
-  private void createGroup() {
-    int style;
-    if (this.editable == true) {
-      style = SWT.NONE;
-    } else {
-      style = SWT.READ_ONLY;
-    }
-
-    final Group paramGroup = new Group(this.sShell, SWT.NONE);
-    final GridLayout layout = new GridLayout();
-    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
-    data.horizontalSpan = 2;
-    layout.numColumns = 3;
-    paramGroup.setText(Messages.getString("GroupConfigDialogLink.11")); //$NON-NLS-1$
-    paramGroup.setLayout(layout);
-    paramGroup.setLayoutData(data);
-
-    final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
-    data.widthHint = 40;
-    final Label label1 = new Label(paramGroup, SWT.CENTER);
-    label1.setText(Messages.getString("GroupConfigDialogLink.12")); //$NON-NLS-1$
-    label1.setLayoutData(gridData1);
-
-    final GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
-    gridData2.widthHint = 65;
-    final Label label2 = new Label(paramGroup, SWT.CENTER);
-    label2.setText(Messages.getString("GroupConfigDialogLink.13")); //$NON-NLS-1$
-    label2.setLayoutData(gridData2);
-
-    final GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
-    gridData3.widthHint = 65;
-    final Label label3 = new Label(paramGroup, SWT.CENTER);
-    label3.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
-    label3.setLayoutData(gridData3);
-
-    this.locationX = new ParameterInputBox(paramGroup, style, "locationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberLocationX = new ParameterInputBox(paramGroup, style, 0);
-
-    this.locationY = new ParameterInputBox(paramGroup, style, "locationY", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberLocationY = new ParameterInputBox(paramGroup, style, 0);
-
-    this.locationZ = new ParameterInputBox(paramGroup, style, "locationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberLocationZ = new ParameterInputBox(paramGroup, style, 0);
-
-    this.rotationX = new ParameterInputBox(paramGroup, style, "rotationX", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberRotationX = new ParameterInputBox(paramGroup, style, 0);
-
-    this.rotationY = new ParameterInputBox(paramGroup, style, "rotationY", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberRotationY = new ParameterInputBox(paramGroup, style, 0);
-
-    this.rotationZ = new ParameterInputBox(paramGroup, style, "rotationZ", "0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.dataNumberRotationZ = new ParameterInputBox(paramGroup, style, 0);
-
-    setParameter();
   }
 
   /**
@@ -237,57 +235,58 @@ public class GroupConfigWithCoordinateParameterDialog {
   /**
    * Linkdata の column を表示させる
    */
-  private void setParameter() {
+  private void setLinkDataParameters() {
     final LinkData[] linkdata = this.group.getLinkData();
 
     for (int i = 0; i < linkdata.length; i++) {
       final String target = linkdata[i].getTarget();
-      final String column = linkdata[i].hasNumber() ? "" + linkdata[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      final String constant = linkdata[i].hasBasis() ? "" + linkdata[i].getBasis() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String dataNumber = linkdata[i].hasNumber() ? "" + linkdata[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String basis = linkdata[i].hasBasis() ? "" + linkdata[i].getBasis() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      
       if (target.equals("locationX")) { //$NON-NLS-1$
-        this.dataNumberLocationX.setText(column);
-        this.locationX.setText(constant);
+        this.dataNumberLocationX.setText(dataNumber);
+        this.linkDataLocationX.setText(basis);
       } else if (target.equals("locationY")) { //$NON-NLS-1$
-        this.dataNumberLocationY.setText(column);
-        this.locationY.setText(constant);
+        this.dataNumberLocationY.setText(dataNumber);
+        this.linkDataLocationY.setText(basis);
       } else if (target.equals("locationZ")) { //$NON-NLS-1$
-        this.dataNumberLocationZ.setText(column);
-        this.locationZ.setText(constant);
+        this.dataNumberLocationZ.setText(dataNumber);
+        this.linkDataLocationZ.setText(basis);
       } else if (target.equals("rotationX")) { //$NON-NLS-1$
-        this.dataNumberRotationX.setText(column);
-        this.rotationX.setText(constant);
+        this.dataNumberRotationX.setText(dataNumber);
+        this.linkDataRotationX.setText(basis);
       } else if (target.equals("rotationY")) { //$NON-NLS-1$
-        this.dataNumberRotationY.setText(column);
-        this.rotationY.setText(constant);
+        this.dataNumberRotationY.setText(dataNumber);
+        this.linkDataRotationY.setText(basis);
       } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-        this.dataNumberRotationZ.setText(column);
-        this.rotationZ.setText(constant);
+        this.dataNumberRotationZ.setText(dataNumber);
+        this.linkDataRotationZ.setText(basis);
       }
     }
   }
 
   /**
-   * 数字以外が入力されていたらfalseを返す
+   * 数字のみが入力されているか判定します。
    * 
-   * @return boolean
+   * @return 数字のみが入力されていればtrue，そうでなければfalse
    */
-  boolean Check() {
-    if (this.locationX.containsOnlyNumbers() == false) {
+  boolean containsOnlyNumbers() {
+    if (this.linkDataLocationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationY.containsOnlyNumbers() == false) {
+    if (this.linkDataLocationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationZ.containsOnlyNumbers() == false) {
+    if (this.linkDataLocationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationX.containsOnlyNumbers() == false) {
+    if (this.linkDataRotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationY.containsOnlyNumbers() == false) {
+    if (this.linkDataRotationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationZ.containsOnlyNumbers() == false) {
+    if (this.linkDataRotationZ.containsOnlyNumbers() == false) {
       return false;
     }
     if (this.dataNumberLocationX.containsOnlyNumbers() == false) {

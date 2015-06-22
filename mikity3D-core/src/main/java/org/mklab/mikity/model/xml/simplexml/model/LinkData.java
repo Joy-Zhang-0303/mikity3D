@@ -144,7 +144,7 @@ public class LinkData implements java.io.Serializable {
    * 
    * @param basis 基準
    */
-  public void setConstantValue(double basis) {
+  public void setBasis(double basis) {
     this.basis = basis;
   }
 

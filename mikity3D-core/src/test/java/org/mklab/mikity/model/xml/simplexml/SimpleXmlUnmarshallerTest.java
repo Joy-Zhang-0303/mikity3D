@@ -254,7 +254,7 @@ public class SimpleXmlUnmarshallerTest {
     final LinkData actualLinkData = actualGroup.getLinkData(0);
     final LinkData expectedLinkData = new LinkData();
     expectedLinkData.setNumber(2);
-    expectedLinkData.setConstantValue(0);
+    expectedLinkData.setBasis(0);
     expectedLinkData.setTarget("locationX"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
 
@@ -301,7 +301,7 @@ public class SimpleXmlUnmarshallerTest {
     final LinkData actualLinkData = actualGroup.getLinkData(0);
     final LinkData expectedLinkData = new LinkData();
     expectedLinkData.setNumber(3);
-    expectedLinkData.setConstantValue(0);
+    expectedLinkData.setBasis(0);
     expectedLinkData.setTarget("rotationZ"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
     

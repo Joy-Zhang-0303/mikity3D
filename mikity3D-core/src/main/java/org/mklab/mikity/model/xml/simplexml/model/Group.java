@@ -239,9 +239,9 @@ public class Group implements java.io.Serializable {
   } 
 
   /**
-   * Method clearLinkdata
+   * Clear Linkdata.
    */
-  public void clearLinkdata() {
+  public void clearLinkData() {
     this.links.clear();
   } 
 
@@ -946,9 +946,9 @@ public class Group implements java.io.Serializable {
   } 
 
   /**
-   * Sets the value of field 'name'.
+   * 名前を設定します。
    * 
-   * @param name the value of field 'name'.
+   * @param name 名前
    */
   public void setName(String name) {
     this.name = name;

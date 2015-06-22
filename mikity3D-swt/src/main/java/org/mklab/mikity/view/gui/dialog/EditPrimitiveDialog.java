@@ -41,7 +41,6 @@ public class EditPrimitiveDialog {
   private String groupName;
   private String[] colors = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
   private ColorComboBox colorCombo;
-  private Group parameterGroup;
   private Label primitiveLabel;
   private Label unitLabel1;
   private Label unitLabel2;
@@ -113,58 +112,58 @@ public class EditPrimitiveDialog {
     this.primitiveLabel = new Label(this.sShell, SWT.NONE);
     setGridLayout(this.primitiveLabel, 2);
 
-    this.parameterGroup = new Group(this.sShell, SWT.NONE);
-    this.parameterGroup.setText(Messages.getString("EditPrimitiveDialog.9")); //$NON-NLS-1$
-    setGridLayout(this.parameterGroup, 1);
+    Group parameterGroup = new Group(this.sShell, SWT.NONE);
+    parameterGroup.setText(Messages.getString("EditPrimitiveDialog.9")); //$NON-NLS-1$
+    setGridLayout(parameterGroup, 1);
 
     final GridLayout newValueLayout = new GridLayout(3, false);
-    this.parameterGroup.setLayout(newValueLayout);
+    parameterGroup.setLayout(newValueLayout);
     
-    final Label colorLabel = new Label(this.parameterGroup, SWT.RIGHT);
+    final Label colorLabel = new Label(parameterGroup, SWT.LEFT);
     colorLabel.setText("color"); //$NON-NLS-1$
     final GridData gridData = new GridData();
     gridData.minimumWidth = 200;
     colorLabel.setLayoutData(gridData);
     setGridLayout(colorLabel, 1);
 
-    this.colorCombo = new ColorComboBox(this.parameterGroup, this.colors);
+    this.colorCombo = new ColorComboBox(parameterGroup, this.colors);
     this.colorCombo.createColorCombo();
-    final Label spaceLabel = new Label(this.parameterGroup, SWT.NONE);
+    final Label spaceLabel = new Label(parameterGroup, SWT.NONE);
     spaceLabel.setText(" "); //$NON-NLS-1$
     setGridLayout(spaceLabel, 1);
     
-    this.parameter1 = new ParameterInputBox(this.parameterGroup, SWT.NONE, "→", ""); //$NON-NLS-1$//$NON-NLS-2$
-    this.unitLabel1 = new Label(this.parameterGroup, SWT.NONE);
+    this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, "→", ""); //$NON-NLS-1$//$NON-NLS-2$
+    this.unitLabel1 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel1.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel1, 1);
 
-    this.parameter2 = new ParameterInputBox(this.parameterGroup, SWT.NONE, "→", ""); //$NON-NLS-1$//$NON-NLS-2$
-    this.unitLabel2 = new Label(this.parameterGroup, SWT.NONE);
+    this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, "→", ""); //$NON-NLS-1$//$NON-NLS-2$
+    this.unitLabel2 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel2.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel2, 1);
 
-    this.parameter3 = new ParameterInputBox(this.parameterGroup, SWT.NONE, "→", ""); //$NON-NLS-1$//$NON-NLS-2$
-    this.unitLabel3 = new Label(this.parameterGroup, SWT.NONE);
+    this.parameter3 = new ParameterInputBox(parameterGroup, SWT.NONE, "→", ""); //$NON-NLS-1$//$NON-NLS-2$
+    this.unitLabel3 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel3, 1);
-    final Label label5 = new Label(this.parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
 
-    this.locationX = new ParameterInputBox(this.parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.6"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.locationY = new ParameterInputBox(this.parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.7"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.locationZ = new ParameterInputBox(this.parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.8"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.parameterGroup, "modelLength"); //$NON-NLS-1$
-    final Label label6 = new Label(this.parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    this.locationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.6"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.locationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.7"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.locationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.8"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    final Label label6 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label6, 3);
 
-    this.rotationX = new ParameterInputBox(this.parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.3"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.parameterGroup, "modelAngle"); //$NON-NLS-1$
-    this.rotationY = new ParameterInputBox(this.parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.4"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.parameterGroup, "modelAngle"); //$NON-NLS-1$
-    this.rotationZ = new ParameterInputBox(this.parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.5"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.parameterGroup, "modelAngle"); //$NON-NLS-1$
+    this.rotationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.3"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
+    this.rotationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.4"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
+    this.rotationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.5"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
 
     createButtonComposite();
   }

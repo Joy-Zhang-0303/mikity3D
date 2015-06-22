@@ -104,7 +104,7 @@ public class GroupConfigWithDHParameterDialog {
           int yesNo = message.open();
           if (yesNo == SWT.YES) {
             GroupConfigWithDHParameterDialog.this.group.setName(GroupConfigWithDHParameterDialog.this.groupName.getText());
-            GroupConfigWithDHParameterDialog.this.group.clearLinkdata();
+            GroupConfigWithDHParameterDialog.this.group.clearLinkData();
             addLinkData(GroupConfigWithDHParameterDialog.this.a, GroupConfigWithDHParameterDialog.this.columnA);
             addLinkData(GroupConfigWithDHParameterDialog.this.d, GroupConfigWithDHParameterDialog.this.columnD);
             addLinkData(GroupConfigWithDHParameterDialog.this.theta, GroupConfigWithDHParameterDialog.this.columnTheta);
@@ -150,7 +150,7 @@ public class GroupConfigWithDHParameterDialog {
       final LinkData linkdata = new LinkData();
       linkdata.setTarget(dh.getLabelText());
       if (dh.getFloatValue() != 0.0) {
-        linkdata.setConstantValue(dh.getFloatValue());
+        linkdata.setBasis(dh.getFloatValue());
       }
       if (col.getIntValue() != 0) {
         linkdata.setNumber(col.getIntValue());

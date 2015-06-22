@@ -46,7 +46,7 @@ public class ParameterInputBox extends Composite {
     this.setLayout(layout);
     this.label = new Label(this, SWT.NONE);
     this.label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    this.label.setAlignment(SWT.RIGHT);
+    this.label.setAlignment(SWT.LEFT);
     this.label.setText(key);
     this.text = new Text(this, SWT.BORDER | SWT.RIGHT | style);
     this.text.setText(value);
