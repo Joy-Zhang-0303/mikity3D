@@ -47,9 +47,9 @@ public class AddPrimitiveDialog {
   private ParameterInputBox rotationX;
   private ParameterInputBox rotationY;
   private ParameterInputBox rotationZ;
-  private ParameterInputBox locationX;
-  private ParameterInputBox locationY;
-  private ParameterInputBox locationZ;
+  private ParameterInputBox translationX;
+  private ParameterInputBox translationY;
+  private ParameterInputBox translationZ;
   private Combo primitiveCombo;
   private Combo colorCombo;
   private Group group;
@@ -142,13 +142,13 @@ public class AddPrimitiveDialog {
     locationData.horizontalSpan = 3;
     locationGroup.setLayoutData(locationData);
 
-    this.locationX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.13"), "0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.translationX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.13"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLX = new Label(locationGroup, SWT.NONE);
     unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locationY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.14"), "0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.translationY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.14"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLY = new Label(locationGroup, SWT.NONE);
     unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.locationZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.15"), "0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.translationZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.15"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
     unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
 
@@ -228,13 +228,13 @@ public class AddPrimitiveDialog {
     if (this.rotationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationX.containsOnlyNumbers() == false) {
+    if (this.translationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationY.containsOnlyNumbers() == false) {
+    if (this.translationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.locationZ.containsOnlyNumbers() == false) {
+    if (this.translationZ.containsOnlyNumbers() == false) {
       return false;
     }
     return true;
@@ -267,7 +267,7 @@ public class AddPrimitiveDialog {
         final XMLCylinder cylinder = new XMLCylinder();
         cylinder.setRadius(this.parameter1.getFloatValue());
         cylinder.setHeight(this.parameter2.getFloatValue());
-        cylinder.setDivision(setDiv(this.parameter3));
+        cylinder.setDivision(setDivision(this.parameter3));
         if (getRotation(rotation) != null) {
           cylinder.setRotation(getRotation(rotation));
         }
@@ -281,7 +281,7 @@ public class AddPrimitiveDialog {
       case sphereFlag:
         final XMLSphere sphere = new XMLSphere();
         sphere.setRadius(this.parameter1.getFloatValue());
-        sphere.setDivision(setDiv(this.parameter2));
+        sphere.setDivision(setDivision(this.parameter2));
         if (getRotation(rotation) != null) {
           sphere.setRotation(getRotation(rotation));
         }
@@ -296,7 +296,7 @@ public class AddPrimitiveDialog {
         final XMLCone cone = new XMLCone();
         cone.setRadius(this.parameter1.getFloatValue());
         cone.setHeight(this.parameter2.getFloatValue());
-        cone.setDivision(setDiv(this.parameter3));
+        cone.setDivision(setDivision(this.parameter3));
         if (getRotation(rotation) != null) {
           cone.setRotation(getRotation(rotation));
         }
@@ -332,32 +332,32 @@ public class AddPrimitiveDialog {
   /**
    * Locationを返します。
    * 
-   * @param location
+   * @param translation
    * @return Location
    */
-  private Translation getLocation(Translation location) {
-    if (this.locationX.getFloatValue() == 0 && this.locationY.getFloatValue() == 0 && this.locationZ.getFloatValue() == 0) {
+  private Translation getLocation(Translation translation) {
+    if (this.translationX.getFloatValue() == 0 && this.translationY.getFloatValue() == 0 && this.translationZ.getFloatValue() == 0) {
       return null;
     }
-    location.setX(this.locationX.getFloatValue());
-    location.setY(this.locationY.getFloatValue());
-    location.setZ(this.locationZ.getFloatValue());
-    return location;
+    translation.setX(this.translationX.getFloatValue());
+    translation.setY(this.translationY.getFloatValue());
+    translation.setZ(this.translationZ.getFloatValue());
+    return translation;
   }
 
   /**
    * 分割数が3より小さいときに変わりに30にする
    * 
-   * @param param
-   * @return div
+   * @param parameter
+   * @return division
    */
-  private int setDiv(ParameterInputBox param) {
-    int div = (int)param.getDoubleValue();
-    if (div < 3) {
+  private int setDivision(ParameterInputBox parameter) {
+    int division = (int)parameter.getDoubleValue();
+    if (division < 3) {
       // 3以下なので、30を返します
-      div = 30;
+      division = 30;
     }
-    return div;
+    return division;
   }
 
   /**
