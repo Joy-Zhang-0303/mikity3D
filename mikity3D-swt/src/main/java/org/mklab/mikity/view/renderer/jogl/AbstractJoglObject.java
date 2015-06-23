@@ -9,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
+import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 
 /**
@@ -20,6 +21,9 @@ import javax.media.opengl.GL2;
 public abstract class AbstractJoglObject implements JoglObject {
   /** 色 */
   private String color;
+  
+  /** 透明性 */
+  private boolean transparent = false;
 
   /**
    * 色を設定します。
@@ -27,6 +31,14 @@ public abstract class AbstractJoglObject implements JoglObject {
    */
   public void setColor(String color) {
     this.color = color;
+  }
+  
+  /**
+   * 透明性を設定します。
+   * @param transparent 透明性
+   */
+  public void setTransparent(boolean transparent) {
+    this.transparent = transparent;
   }
 
   /**
@@ -65,6 +77,17 @@ public abstract class AbstractJoglObject implements JoglObject {
       gl.glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
     } else if (this.color.equals("blue")) { //$NON-NLS-1$
       gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
+    }
+  }
+  
+  /**
+   * 透明性を適用します。
+   * @param gl GL
+   */
+  public void applyTransparency(GL2 gl) {
+    if (this.transparent) {
+      gl.glEnable(GL.GL_BLEND);
+      gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
     }
   }
 

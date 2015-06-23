@@ -31,21 +31,21 @@ public class XMLCylinder implements Serializable {
   @Attribute(name="division")
   protected int division;
 
+  /** translation */
+  @Element(name="translation", required=false)
+  protected Translation translation;
+
+  /** rotation */
+  @Element(name="rotation", required=false)
+  protected Rotation rotation;
+
   /** color */
   @Attribute(name="color")
   protected String color;
 
   /** transparent */
   @Attribute(name="transparent", required=false)
-  protected boolean transparent;
-
-  /** rotation */
-  @Element(name="rotation", required=false)
-  protected Rotation rotation;
-
-  /** location */
-  @Element(name="translation", required=false)
-  protected Translation translation;
+  protected boolean transparent = false;
 
   /** Field propertyChangeListeners */
   protected Vector<PropertyChangeListener> propertyChangeListeners;
@@ -55,8 +55,6 @@ public class XMLCylinder implements Serializable {
    */
   public XMLCylinder() {
     this.color = "red"; //$NON-NLS-1$
-    //this.location = new Location();
-    //this.rotation = new Rotation();
     this.propertyChangeListeners = new Vector<>();
   }
 

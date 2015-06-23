@@ -29,6 +29,14 @@ public class XMLBox implements java.io.Serializable {
   @Attribute(name="depth")
   private float depth;
 
+  /** location */
+  @Element(name="translation", required=false)
+  private Translation translation;
+
+  /** rotation */
+  @Element(name="rotation", required=false)
+  private Rotation rotation;
+
   /** color */
   @Attribute(name="color")
   private String color;
@@ -37,13 +45,6 @@ public class XMLBox implements java.io.Serializable {
   @Attribute(name="transparent", required=false)
   private boolean transparent;
 
-  /** rotation */
-  @Element(name="rotation", required=false)
-  private Rotation rotation;
-
-  /** location */
-  @Element(name="translation", required=false)
-  private Translation translation;
 
   /** propertyChangeListeners */
   private Vector<PropertyChangeListener> propertyChangeListeners;
@@ -53,8 +54,6 @@ public class XMLBox implements java.io.Serializable {
    */
   public XMLBox() {
     this.color = "red"; //$NON-NLS-1$
-    //this.rotation = new Rotation();
-    //this.location = new Location();
     this.propertyChangeListeners = new Vector<>();
   } 
 
@@ -86,7 +85,7 @@ public class XMLBox implements java.io.Serializable {
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
     result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
-    result = prime * result + (this.transparent ? 1231 : 1237);
+    //result = prime * result + (this.transparent ? 1231 : 1237);
     result = prime * result + Float.floatToIntBits(this.width);
     result = prime * result + Float.floatToIntBits(this.height);
     result = prime * result + Float.floatToIntBits(this.depth);
@@ -244,10 +243,10 @@ public class XMLBox implements java.io.Serializable {
   /**
    * Sets the value of field 'location'.
    * 
-   * @param location the value of field 'location'.
+   * @param translation the value of field 'location'.
    */
-  public void setTranslation(Translation location) {
-    this.translation = location;
+  public void setTranslation(Translation translation) {
+    this.translation = translation;
   }
 
   /**

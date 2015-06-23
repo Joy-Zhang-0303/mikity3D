@@ -25,21 +25,22 @@ public class XMLSphere implements java.io.Serializable {
   @Attribute(name="division")
   private int division;
 
+  /** translation */
+  @Element(name="translation", required=false)
+  private Translation translation;
+
+  /** rotation */
+  @Element(name="rotation", required=false)
+  private Rotation rotation;
+  
   /** color */
   @Attribute(name="color")
   private String color;
 
   /**_ransparent */
   @Attribute(name="transparent", required=false)
-  private boolean transparent;
+  private boolean transparent = false;
 
-  /** rotation */
-  @Element(name="rotation", required=false)
-  private Rotation rotation;
-
-  /** location */
-  @Element(name="translation", required=false)
-  private Translation translation;
 
   /** propertyChangeListeners */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
