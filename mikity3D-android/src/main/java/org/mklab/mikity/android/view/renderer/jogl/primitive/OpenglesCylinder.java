@@ -106,11 +106,11 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     // 側面
     // 左上半分の三角形
     for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 6 + 3 * i - 3] = (byte)(this.division + 1 + i);
+      indices[this.division * 6 + 3 * i - 3] = (byte)i;
     }
     
     for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 6 + 3 * i - 2] = (byte)i;
+      indices[this.division * 6 + 3 * i - 2] = (byte)(this.division + 1 + i);
     }
     
     for (int i = 1; i <= this.division - 1; i++) {
