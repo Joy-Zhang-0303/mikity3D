@@ -27,21 +27,26 @@ public class XMLQuadPolygon {
   @ElementList(type=Translation.class, inline=true, required=true)
   private List<Translation> points;
   
-  @Attribute(name="color")
-  private String color;
-  
+  /** translation */
   @Element(name="translation", required=false)
   private Translation translation;
   
+  /** rotation */
   @Element(name="rotation", required=false)
   private Rotation rotation;
+
+  /** color */
+  @Attribute(name="color")
+  private String color;
+
+  /** transparent */
+  @Attribute(name="transparent", required=false)
+  protected boolean transparent = false;
 
   private Vector3[] normal = new Vector3[4];
 
   private Matrix4 matrix;
 
-  /** transparent */
-  protected boolean transparent;
 
   /**
    * 新しく生成された<code>XMLQuadPolygon</code>オブジェクトを初期化します。
@@ -49,8 +54,6 @@ public class XMLQuadPolygon {
   public XMLQuadPolygon() {
     this.points = new ArrayList<>(4);
     this.color = "orange"; //$NON-NLS-1$
-    //this.location = new Location();
-    //this.rotation = new Rotation();
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 

@@ -17,7 +17,6 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
  * @version $Revision$, 2012/01/31
  */
 public class JoglCylinder extends AbstractJoglObject {
-
   /** 底面の半径 */
   private float radius;
 
@@ -31,6 +30,9 @@ public class JoglCylinder extends AbstractJoglObject {
    * {@inheritDoc}
    */
   public void display(GL2 gl) {
+    applyColor(gl);
+    applyTransparency(gl);
+    
     // 頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
@@ -137,8 +139,6 @@ public class JoglCylinder extends AbstractJoglObject {
     indices[this.division * 12 - 1] = (byte)(this.division + 2);
 
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
-
-    applyColor(gl);
 
     // 頂点バッファの指定 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);

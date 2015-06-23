@@ -29,21 +29,21 @@ public class XMLCone implements java.io.Serializable {
   @Attribute(name="division")
   private int division;
 
+  /** location */
+  @Element(name="translation", required=false)
+  private Translation translation;
+
+  /** rotation */
+  @Element(name="rotation", required=false)
+  private Rotation rotation;
+
   /** color */
   @Attribute(name="color")
   private String color;
 
   /** transparent */
   @Attribute(name="transparent", required=false)
-  private boolean transparent;
-
-  /** rotation */
-  @Element(name="rotation", required=false)
-  private Rotation rotation;
-
-  /** location */
-  @Element(name="translation", required=false)
-  private Translation translation;
+  private boolean transparent = false;
 
   /** propertyChangeListeners */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
@@ -53,8 +53,6 @@ public class XMLCone implements java.io.Serializable {
    */
   public XMLCone() {
     this.color = "red"; //$NON-NLS-1$
-    //this.rotation = new Rotation();
-    //this.location = new Location();
     this.propertyChangeListeners = new Vector<>();
   }
   

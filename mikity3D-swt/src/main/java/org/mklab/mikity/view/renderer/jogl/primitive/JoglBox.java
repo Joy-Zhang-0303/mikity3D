@@ -30,6 +30,9 @@ public class JoglBox extends AbstractJoglObject {
    * {@inheritDoc}
    */
   public void display(GL2 gl) {
+    applyColor(gl);
+    applyTransparency(gl);
+
     //頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
@@ -50,8 +53,6 @@ public class JoglBox extends AbstractJoglObject {
 
     //頂点バッファの指定
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
-
-    applyColor(gl);
 
     indexBuffer.position(0);
     gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 10, GL.GL_UNSIGNED_BYTE, indexBuffer);

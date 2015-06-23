@@ -31,6 +31,9 @@ public class JoglCone extends AbstractJoglObject {
    * {@inheritDoc}
    */
   public void display(GL2 gl) {
+    applyColor(gl);
+    applyTransparency(gl);
+
     //頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
@@ -95,8 +98,6 @@ public class JoglCone extends AbstractJoglObject {
     indices[this.division * 6 - 1] = 1;
 
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
-
-    applyColor(gl);
 
     //頂点バッファの指定 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);

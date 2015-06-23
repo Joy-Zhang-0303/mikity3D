@@ -17,6 +17,8 @@ import org.simpleframework.xml.Root;
 
 
 /**
+ * 三角形ポリゴンを表すクラスです。
+ * 
  * @author koga
  * @version $Revision$, 2008/08/10
  */
@@ -25,21 +27,26 @@ public class XMLTrianglePolygon {
   @ElementList(type=Translation.class, inline=true, required=true)
   private List<Translation> points;
   
-  @Attribute(name="color")
-  private String color;
-  
+  /** translation */
   @Element(name="translation", required=false)
   private Translation translation;
   
+  /** rotation */
   @Element(name="rotation", required=false)
   private Rotation rotation;
+  
+  /** color */
+  @Attribute(name="color")
+  private String color;
+
+  /** transparent */
+  @Attribute(name="transparent", required=false)
+  private boolean transparent = false;
 
   private Vector3[] normal = new Vector3[3];
 
   private Matrix4 matrix;
 
-  /** _transparent */
-  protected boolean transparent;
 
   /**
    * 新しく生成された<code>XMLTrianglePolygon</code>オブジェクトを初期化します。
@@ -47,10 +54,7 @@ public class XMLTrianglePolygon {
   public XMLTrianglePolygon() {
     this.points = new ArrayList<>(3);
     this.color = "orange"; //$NON-NLS-1$
-    //this.location = new Location();
-    //this.rotation = new Rotation();
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-    //setNormalVector();
   }
 
   /**

@@ -24,6 +24,7 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
    */
   public void display(GL2 gl) {
     applyColor(gl);
+    applyTransparency(gl);
 
     //頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);

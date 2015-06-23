@@ -26,6 +26,9 @@ public class JoglSphere extends AbstractJoglObject {
    * {@inheritDoc}
    */
   public void display(GL2 gl) {
+    applyColor(gl);
+    applyTransparency(gl);
+
     //頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
@@ -109,8 +112,6 @@ public class JoglSphere extends AbstractJoglObject {
     //for(int i = 0; i <= indexs.length-1; i++){
     // System.out.println("indexs["+ i +"] = " + indexs[i]);  //$NON-NLS-1$//$NON-NLS-2$
     //}
-
-    applyColor(gl);
 
     //頂点バッファの指定 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);

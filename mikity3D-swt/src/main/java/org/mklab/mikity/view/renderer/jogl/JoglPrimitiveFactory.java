@@ -51,10 +51,12 @@ public class JoglPrimitiveFactory {
     final float height = box.getHeight();
     final float depth = box.getDepth();
     final String color = box.getColor();
+    final boolean transparent = box.getTransparent();
     
     final JoglBox child = new JoglBox();
     child.setColor(color);
     child.setSize(width, height, depth);
+    child.setTransparent(transparent);
 
     final JoglTransformGroup group = new JoglTransformGroup();
 
@@ -100,15 +102,17 @@ public class JoglPrimitiveFactory {
    * @return 与えられたcylinderを含む可動グループ
    */
   public static JoglTransformGroup create(XMLCylinder cylinder) {
-    final int div = cylinder.getDivision();
+    final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
     final String color = cylinder.getColor();
-
+    final boolean transparent = cylinder.getTransparent();
+        
     final JoglCylinder child = new JoglCylinder();
     child.setSize(radius, hight);
-    child.setDivision(div);
+    child.setDivision(division);
     child.setColor(color);
+    child.setTransparent(transparent);
     
     final JoglTransformGroup group = new JoglTransformGroup();
   
@@ -154,14 +158,16 @@ public class JoglPrimitiveFactory {
    * @return 与えられたsphereを含む可動グループ
    */
   public static JoglTransformGroup create(XMLSphere sphere) {
-    final int div = sphere.getDivision();
+    final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
     final String color = sphere.getColor();
+    final boolean transparent = sphere.getTransparent();
     
     final JoglSphere child = new JoglSphere();
     child.setSize(radius);
-    child.setDivision(div);
+    child.setDivision(division);
     child.setColor(color);
+    child.setTransparent(transparent);
     
     final JoglTransformGroup group = new JoglTransformGroup();
     
@@ -208,13 +214,15 @@ public class JoglPrimitiveFactory {
   public static JoglTransformGroup create(XMLCone cone) {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
-    final int div = cone.getDivision();
+    final int division = cone.getDivision();
     final String color = cone.getColor();
+    final boolean transparent = cone.getTransparent();
 
     final JoglCone child = new JoglCone();
     child.setColor(color);
     child.setSize(radius, hight);
-    child.setDivision(div);
+    child.setDivision(division);
+    child.setTransparent(transparent);
     
     final JoglTransformGroup group = new JoglTransformGroup();
 
@@ -270,10 +278,12 @@ public class JoglPrimitiveFactory {
     }
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
+    final boolean transparent = polygon.getTransparent();
     
     final JoglTrianglePolygon child = new JoglTrianglePolygon();
     child.setColor(color);
     child.setPoints(points);
+    child.setTransparent(transparent);
     
     final JoglTransformGroup group = new JoglTransformGroup();
     
@@ -341,10 +351,12 @@ public class JoglPrimitiveFactory {
     }
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
+    final boolean transparent = polygon.getTransparent();
     
     final JoglQuadPolygon child = new JoglQuadPolygon();
     child.setColor(color);
     child.setPoints(points);
+    child.setTransparent(transparent);
         
     final JoglTransformGroup group = new JoglTransformGroup();
     
