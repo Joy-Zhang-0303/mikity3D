@@ -51,6 +51,6 @@ public class ConeToolBarAction extends Action {
     rootGroup.addXMLCone(cone);
     updateCone();
     
-    this.window.setDirty(true);
+    this.window.setChanged(true);
   }
 }

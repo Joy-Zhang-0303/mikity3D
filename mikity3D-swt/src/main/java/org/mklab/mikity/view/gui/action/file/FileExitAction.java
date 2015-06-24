@@ -36,7 +36,7 @@ public class FileExitAction extends Action {
    */
   @Override
   public void run() {
-    if (this.window.isDirty()) {
+    if (this.window.isChanged()) {
       int yesNo = MessagegUtil.showYesNoCancel(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
       switch (yesNo) {
         case SWT.YES:

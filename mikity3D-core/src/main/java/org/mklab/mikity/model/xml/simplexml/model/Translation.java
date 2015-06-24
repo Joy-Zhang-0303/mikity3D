@@ -13,33 +13,32 @@ import org.simpleframework.xml.Root;
 public class Translation implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** x */
+  /** x軸方向の並進 */
   @Attribute(name="x")
   private float x;
 
-  /** y */
+  /** y軸方向の併進 */
   @Attribute(name="y")
   private float y;
 
-  /** z */
+  /** z軸方向の併進 */
   @Attribute(name="z")
   private float z;
 
   /**
-   * 新しく生成された<code>Location</code>オブジェクトを初期化します。
+   * 新しく生成された<code>Translation</code>オブジェクトを初期化します。
    */
   public Translation() {
     this.x = 0;
     this.y = 0;
     this.z = 0;
   }
-  
+
   /**
-   * 新しく生成された<code>Location</code>オブジェクトを初期化します。
-   * 
-   * @param x x座標
-   * @param y y座標
-   * @param z z座標
+   * 新しく生成された<code>Translation</code>オブジェクトを初期化します。
+   * @param x x
+   * @param y y 
+   * @param z z
    */
   public Translation(float x, float y, float z) {
     this.x = x;
@@ -140,5 +139,13 @@ public class Translation implements java.io.Serializable {
    */
   public void setZ(float z) {
     this.z = z;
+  }
+  
+  /**
+   * (0,0,0)であるか判定します。
+   * @return (0,0,0)ならばtrue，そうでなければfalse
+   */
+  public boolean isZero() {
+    return this.x == 0 && this.y == 0 && this.z == 0;
   }
 }

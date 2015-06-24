@@ -25,7 +25,6 @@ import org.mklab.mikity.view.gui.action.AnimationWindowOpenAction;
 import org.mklab.mikity.view.gui.action.ConfigDialogOpenAction;
 import org.mklab.mikity.view.gui.action.file.FileExitAction;
 import org.mklab.mikity.view.gui.action.file.FileImportAction;
-import org.mklab.mikity.view.gui.action.file.FileNewAction;
 import org.mklab.mikity.view.gui.action.file.FileOpenAction;
 import org.mklab.mikity.view.gui.action.file.FileSaveAction;
 import org.mklab.mikity.view.gui.action.file.FileSaveAsAction;
@@ -77,7 +76,7 @@ public class ModelingWindow extends ApplicationWindow {
   Text filePathText;
   
   /** 変更されていればtrue */
-  private boolean dirty;
+  private boolean isChanged;
   private AbstractModeler modeler;
 
   /**
@@ -232,7 +231,7 @@ public class ModelingWindow extends ApplicationWindow {
     this.root.getMikity3dData();
     final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
     marshaller.marshal(this.file);
-    this.dirty = false;
+    this.isChanged = false;
   }
 
   /**
@@ -251,7 +250,7 @@ public class ModelingWindow extends ApplicationWindow {
     setUnit();
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
-    this.dirty = false;
+    this.isChanged = false;
   }
 
   /**
@@ -270,23 +269,23 @@ public class ModelingWindow extends ApplicationWindow {
     setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
-    this.dirty = false;
+    this.isChanged = false;
   }
 
   /**
    * 変更されているか判定します。
-   * @return isDirty 変更されている場合true
+   * @return 変更されている場合true
    */
-  public boolean isDirty() {
-    return this.dirty;
+  public boolean isChanged() {
+    return this.isChanged;
   }
 
   /**
    * 変更されているか設定します。
-   * @param dirty 変更されている場合true
+   * @param isChanged 変更されている場合true
    */
-  public void setDirty(final boolean dirty) {
-    this.dirty = dirty;
+  public void setChanged(final boolean isChanged) {
+    this.isChanged = isChanged;
   }
 
   /**

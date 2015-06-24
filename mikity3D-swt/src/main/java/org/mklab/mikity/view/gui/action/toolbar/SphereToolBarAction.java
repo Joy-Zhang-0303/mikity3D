@@ -51,6 +51,6 @@ public class SphereToolBarAction extends Action {
     
     updateSphere();
     
-    this.window.setDirty(true);
+    this.window.setChanged(true);
   }
 }

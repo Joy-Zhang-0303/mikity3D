@@ -39,6 +39,6 @@ public class ConfigDialogOpenAction extends Action {
   public void run() {
     final ConfigDialog dialog = new ConfigDialog(this.window.getShell(), this.window.getRoot().getConfiguration(0));
     dialog.open();
-    this.window.setDirty(true);
+    this.window.setChanged(true);
   }
 }

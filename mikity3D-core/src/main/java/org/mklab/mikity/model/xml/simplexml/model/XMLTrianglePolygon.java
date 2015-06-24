@@ -26,15 +26,7 @@ import org.simpleframework.xml.Root;
 public class XMLTrianglePolygon {
   @ElementList(type=Translation.class, inline=true, required=true)
   private List<Translation> points;
-  
-  /** translation */
-  @Element(name="translation", required=false)
-  private Translation translation;
-  
-  /** rotation */
-  @Element(name="rotation", required=false)
-  private Rotation rotation;
-  
+ 
   /** color */
   @Attribute(name="color")
   private String color;
@@ -43,6 +35,14 @@ public class XMLTrianglePolygon {
   @Attribute(name="transparent", required=false)
   private boolean transparent = false;
 
+  /** translation */
+  @Element(name="translation", required=false)
+  private Translation translation;
+  
+  /** rotation */
+  @Element(name="rotation", required=false)
+  private Rotation rotation;
+  
   private Vector3[] normal = new Vector3[3];
 
   private Matrix4 matrix;

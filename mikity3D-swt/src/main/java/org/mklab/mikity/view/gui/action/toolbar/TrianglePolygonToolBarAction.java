@@ -62,6 +62,6 @@ public class TrianglePolygonToolBarAction extends Action {
 
     updateTriagle();
     
-    this.window.setDirty(true);
+    this.window.setChanged(true);
   }
 }

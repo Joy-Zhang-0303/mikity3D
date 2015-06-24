@@ -62,6 +62,6 @@ public class QuadPolygonToolBarAction extends Action {
 
     updateQuad();
     
-    this.window.setDirty(true);
+    this.window.setChanged(true);
   }
 }

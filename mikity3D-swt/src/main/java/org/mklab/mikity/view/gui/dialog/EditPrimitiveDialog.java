@@ -57,6 +57,9 @@ public class EditPrimitiveDialog {
   private ParameterInputBox translationX;
   private ParameterInputBox translationY;
   private ParameterInputBox translationZ;
+  
+  /** 変更されていればtrue */
+  private boolean isChanged = false;
 
   /**
    * コンストラクター
@@ -270,40 +273,66 @@ public class EditPrimitiveDialog {
   void updatePrimitiveParameters() {
     if (this.primitive instanceof XMLBox) {
       final XMLBox box = (XMLBox)this.primitive;
+
       box.setColor(this.colorCombo.getColorComboBox().getText());
       box.setWidth(this.parameter1.getFloatValue());
       box.setHeight(this.parameter2.getFloatValue());
       box.setDepth(this.parameter3.getFloatValue());
       
-      box.setRotation(getRotation());
-      box.setTranslation(getTranslation());
+      final Translation translation = getTranslation();
+      if (translation.isZero() == false) {
+        box.setTranslation(getTranslation());
+      }
+      final Rotation rotation = getRotation();
+      if (rotation.isZero() == false) {
+        box.setRotation(getRotation());
+      }
     } else if (this.primitive instanceof XMLCylinder) {
       final XMLCylinder cylinder = (XMLCylinder)this.primitive;
       
       cylinder.setColor(this.colorCombo.getColorComboBox().getText());
       cylinder.setRadius(this.parameter1.getFloatValue());
       cylinder.setHeight(this.parameter2.getFloatValue());
-      cylinder.setDivision(setDivision(this.parameter3));
+      cylinder.setDivision(this.parameter3.getIntValue());
 
-      cylinder.setRotation(getRotation());
-      cylinder.setTranslation(getTranslation());
+      final Translation translation = getTranslation();
+      if (translation.isZero() == false) {
+        cylinder.setTranslation(getTranslation());
+      }
+      final Rotation rotation = getRotation();
+      if (rotation.isZero() == false) {
+        cylinder.setRotation(getRotation());
+      }
     } else if (this.primitive instanceof XMLSphere) {
       final XMLSphere sphere = (XMLSphere)this.primitive;
+
       sphere.setColor(this.colorCombo.getColorComboBox().getText());
       sphere.setRadius(this.parameter1.getFloatValue());
-      sphere.setDivision(setDivision(this.parameter2));
-      
-      sphere.setRotation(getRotation());
-      sphere.setTranslation(getTranslation());
+      sphere.setDivision(this.parameter2.getIntValue());
+
+      final Translation translation = getTranslation();
+      if (translation.isZero() == false) {
+        sphere.setTranslation(getTranslation());
+      }
+      final Rotation rotation = getRotation();
+      if (rotation.isZero() == false) {
+        sphere.setRotation(getRotation());
+      }
     } else if (this.primitive instanceof XMLCone) {
       final XMLCone cone = (XMLCone)this.primitive;
       cone.setColor(this.colorCombo.getColorComboBox().getText());
       cone.setRadius(this.parameter1.getFloatValue());
       cone.setHeight(this.parameter2.getFloatValue());
-      cone.setDivision(setDivision(this.parameter3));
-      
-      cone.setRotation(getRotation());
-      cone.setTranslation(getTranslation());
+      cone.setDivision(this.parameter3.getIntValue());
+
+      final Translation translation = getTranslation();
+      if (translation.isZero() == false) {
+        cone.setTranslation(getTranslation());
+      }
+      final Rotation rotation = getRotation();
+      if (rotation.isZero() == false) {
+        cone.setRotation(getRotation());
+      }
     }
   }
 
@@ -332,21 +361,20 @@ public class EditPrimitiveDialog {
     translation.setZ(this.translationZ.getFloatValue());
     return translation;
   }
-
-  /**
-   * 分割数が3より小さいときに変わりに30にする
-   * 
-   * @param parameter
-   * @return division
-   */
-  private int setDivision(ParameterInputBox parameter) {
-    int division = (int)parameter.getDoubleValue();
-    if (division < 3) {
-      // 3以下なので、30を返します
-      division = 30;
-    }
-    return division;
-  }
+//
+//  /**
+//   * 分割数が3より小さいときに変わりに3にする
+//   * 
+//   * @param parameter
+//   * @return division
+//   */
+//  private int getDivision(ParameterInputBox parameter) {
+//    int division = parameter.getIntValue();
+//    if (division < 3) {
+//      division = 3;
+//    }
+//    return division;
+//  }
 
   /**
    * primitiveの型を判断し、ダイアログにパラメータを設定します。
@@ -358,12 +386,12 @@ public class EditPrimitiveDialog {
       this.parameter2.setText("" + box.getHeight()); //$NON-NLS-1$
       this.parameter3.setText("" + box.getDepth()); //$NON-NLS-1$
       final Rotation rotation = box.getRotation();
-      final Translation location = box.getTranslation();
+      final Translation translation = box.getTranslation();
       if (rotation != null) {
         setRotationInDialog(rotation);
       }
-      if (location != null) {
-        setTranslationInDialog(location);
+      if (translation != null) {
+        setTranslationInDialog(translation);
       }
       setBoxLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
@@ -374,12 +402,12 @@ public class EditPrimitiveDialog {
       this.parameter2.setText("" + cylinder.getHeight()); //$NON-NLS-1$
       this.parameter3.setText("" + cylinder.getDivision()); //$NON-NLS-1$
       final Rotation rotation = cylinder.getRotation();
-      final Translation location = cylinder.getTranslation();
+      final Translation translation = cylinder.getTranslation();
       if (rotation != null) {
         setRotationInDialog(rotation);
       }
-      if (location != null) {
-        setTranslationInDialog(location);
+      if (translation != null) {
+        setTranslationInDialog(translation);
       }
       setCylinderLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
@@ -389,12 +417,12 @@ public class EditPrimitiveDialog {
       this.parameter1.setText("" + sphere.getRadius()); //$NON-NLS-1$
       this.parameter2.setText("" + sphere.getDivision()); //$NON-NLS-1$
       final Rotation rotation = sphere.getRotation();
-      final Translation location = sphere.getTranslation();
+      final Translation translation = sphere.getTranslation();
       if (rotation != null) {
         setRotationInDialog(rotation);
       }
-      if (location != null) {
-        setTranslationInDialog(location);
+      if (translation != null) {
+        setTranslationInDialog(translation);
       }
       setSphereLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
@@ -405,12 +433,12 @@ public class EditPrimitiveDialog {
       this.parameter2.setText("" + cone.getHeight()); //$NON-NLS-1$
       this.parameter3.setText("" + cone.getDivision()); //$NON-NLS-1$
       final Rotation rotation = cone.getRotation();
-      final Translation location = cone.getTranslation();
+      final Translation translation = cone.getTranslation();
       if (rotation != null) {
         setRotationInDialog(rotation);
       }
-      if (location != null) {
-        setTranslationInDialog(location);
+      if (translation != null) {
+        setTranslationInDialog(translation);
       }
       setConeLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
@@ -439,13 +467,13 @@ public class EditPrimitiveDialog {
     this.parameter2.setLabelText(Messages.getString("EditPrimitiveDialog.36")); //$NON-NLS-1$
     this.parameter3.setLabelText(Messages.getString("EditPrimitiveDialog.37")); //$NON-NLS-1$
 
-    int div = 0;
+    int division = 0;
     if (this.parameter3.getIntValue() < 3) {
-      div = 30;
+      division = 30;
     } else {
-      div = this.parameter3.getIntValue();
+      division = this.parameter3.getIntValue();
     }
-    this.parameter3.setText("" + div); //$NON-NLS-1$
+    this.parameter3.setText("" + division); //$NON-NLS-1$
 
     this.parameter3.setVisible(true);
     this.unitLabel2.setVisible(true);
@@ -459,13 +487,13 @@ public class EditPrimitiveDialog {
     this.parameter1.setLabelText(Messages.getString("EditPrimitiveDialog.38")); //$NON-NLS-1$
     this.parameter2.setLabelText(Messages.getString("EditPrimitiveDialog.39")); //$NON-NLS-1$
 
-    int div = 0;
+    int division = 0;
     if (this.parameter2.getIntValue() < 3) {
-      div = 30;
+      division = 30;
     } else {
-      div = this.parameter2.getIntValue();
+      division = this.parameter2.getIntValue();
     }
-    this.parameter2.setText("" + div); //$NON-NLS-1$
+    this.parameter2.setText("" + division); //$NON-NLS-1$
 
     this.parameter3.setVisible(false);
     this.unitLabel2.setVisible(false);
@@ -480,13 +508,13 @@ public class EditPrimitiveDialog {
     this.parameter2.setLabelText(Messages.getString("EditPrimitiveDialog.41")); //$NON-NLS-1$
     this.parameter3.setLabelText(Messages.getString("EditPrimitiveDialog.42")); //$NON-NLS-1$
 
-    int div = 0;
+    int division = 0;
     if (this.parameter3.getIntValue() < 3) {
-      div = 30;
+      division = 30;
     } else {
-      div = this.parameter3.getIntValue();
+      division = this.parameter3.getIntValue();
     }
-    this.parameter3.setText("" + div); //$NON-NLS-1$
+    this.parameter3.setText("" + division); //$NON-NLS-1$
 
     this.parameter3.setVisible(true);
     this.unitLabel2.setVisible(true);
@@ -513,5 +541,21 @@ public class EditPrimitiveDialog {
     this.translationX.setText("" + translation.getX()); //$NON-NLS-1$
     this.translationY.setText("" + translation.getY()); //$NON-NLS-1$
     this.translationZ.setText("" + translation.getZ()); //$NON-NLS-1$
+  }
+  
+  /**
+   * 変更されているか判定します。
+   * @return 変更されている場合true
+   */
+  public boolean isChanged() {
+    return this.isChanged;
+  }
+
+  /**
+   * 変更されているか設定します。
+   * @param isChanged 変更されている場合true
+   */
+  public void setChanged(final boolean isChanged) {
+    this.isChanged = isChanged;
   }
 }

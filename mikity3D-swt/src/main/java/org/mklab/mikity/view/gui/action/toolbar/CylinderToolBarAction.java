@@ -52,6 +52,6 @@ public class CylinderToolBarAction extends Action {
     
     updateCylinder();
     
-    this.window.setDirty(true);
+    this.window.setChanged(true);
   }
 }

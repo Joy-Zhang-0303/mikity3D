@@ -50,6 +50,6 @@ public class BoxToolBarAction extends Action {
     rootGroup.addXMLBox(box);
     updateBox();
     
-    this.window.setDirty(true);
+    this.window.setChanged(true);
   }
 }

@@ -140,4 +140,12 @@ public class Rotation implements java.io.Serializable {
   public void setZ(float z) {
     this.z = z;
   }
+  
+  /**
+   * (0,0,0)であるか判定します。
+   * @return (0,0,0)ならばtrue，そうでなければfalse
+   */
+  public boolean isZero() {
+    return this.x == 0 && this.y == 0 && this.z == 0;
+  }
 }

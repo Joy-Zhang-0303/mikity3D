@@ -115,6 +115,7 @@ public class XMLBox implements java.io.Serializable {
     } else if (!this.color.equals(other.color)) {
       return false;
     }
+    
     if (this.translation == null) {
       if (other.translation != null) {
         return false;
@@ -122,6 +123,7 @@ public class XMLBox implements java.io.Serializable {
     } else if (!this.translation.equals(other.translation)) {
       return false;
     }
+    
     if (this.rotation == null) {
       if (other.rotation != null) {
         return false;
@@ -129,6 +131,7 @@ public class XMLBox implements java.io.Serializable {
     } else if (!this.rotation.equals(other.rotation)) {
       return false;
     }
+    
     if (this.transparent != other.transparent) {
       return false;
     }
