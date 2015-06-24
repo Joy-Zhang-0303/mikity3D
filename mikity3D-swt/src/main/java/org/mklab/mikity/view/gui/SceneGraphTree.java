@@ -127,25 +127,10 @@ public class SceneGraphTree {
           if (SceneGraphTree.this.usedDHParameter) {
             final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
-          } else { //if (SceneGraphTree.this.usedCoordinateParameter) {
+          } else {
             final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           }
-//          } else {
-//            final MessageBox mesBox = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-//            mesBox.setMessage(Messages.getString("SceneGraphTree.1")); //$NON-NLS-1$
-//            mesBox.setText(Messages.getString("SceneGraphTree.2")); //$NON-NLS-1$
-//            int result = mesBox.open();
-//            if (result == SWT.YES) {
-//              GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
-//              groupConf.open();
-//              //setTree();
-//            } else if (result == SWT.NO) {
-//              final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
-//              groupConf.open();
-//              //setTree();
-//            }
-//          }
           setTree();
         } else if (doubleClickObj instanceof XMLTrianglePolygon) {
           final EditTrianglePolygonDialog editPoly = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)doubleClickObj, SceneGraphTree.this.targetGroup);
@@ -264,7 +249,6 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        // if (targetObj == null) {
         if (SceneGraphTree.this.targetObj instanceof Group) {
           checkUsedLinkType(SceneGraphTree.this.model.getGroups());
 
@@ -382,7 +366,6 @@ public class SceneGraphTree {
       setTarget(this.targetObj);
     }
     this.modeler.createViewer();
-    // setTree();
   }
 
   /**
@@ -637,16 +620,6 @@ public class SceneGraphTree {
   public Mikity3dModel getModel() {
     return this.model;
   }
-
-//  /**
-//   * グループを消去する。
-//   */
-//  public void clearGroups() {
-//    this.model.clearGroups();
-//    Group group = new Group();
-//    this.model.addGroup(group);
-//    fillTree();
-//  }
 
   /**
    * ツリーを消去します。

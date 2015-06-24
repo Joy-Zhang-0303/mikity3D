@@ -168,14 +168,8 @@ public class GroupConfigWithCoordinateParameterDialog {
           return;
         }
 
-//        final MessageBox message = new MessageBox(GroupConfigWithCoordinateParameterDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-//        message.setMessage(Messages.getString("GroupConfigDialogLink.5")); //$NON-NLS-1$
-//        message.setText(Messages.getString("GroupConfigDialogLink.6")); //$NON-NLS-1$
-//        int yesNo = message.open();
-//        if (yesNo == SWT.YES) {
-          updateGroupParameters();
-          GroupConfigWithCoordinateParameterDialog.this.sShell.close();
-//        }
+        updateGroupParameters();
+        GroupConfigWithCoordinateParameterDialog.this.sShell.close();
       }
 
     });
@@ -225,7 +219,6 @@ public class GroupConfigWithCoordinateParameterDialog {
     if (dataNumber.getIntValue() != 0) {
       final LinkData linkData = new LinkData();
       linkData.setTarget(parameter.getLabelText());
-      //linkData.setBasis(parameter.getFloatValue());
       linkData.setNumber(dataNumber.getIntValue());
       this.group.addLinkData(linkData);
     }
@@ -299,26 +292,19 @@ public class GroupConfigWithCoordinateParameterDialog {
     for (int i = 0; i < linkData.length; i++) {
       final String target = linkData[i].getTarget();
       final String dataNumber = linkData[i].hasNumber() ? "" + linkData[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      //final String basis = linkData[i].hasBasis() ? "" + linkData[i].getBasis() : "0.0"; //$NON-NLS-1$ //$NON-NLS-2$
 
       if (target.equals("translationX")) { //$NON-NLS-1$
         this.translationXdataNumber.setText(dataNumber);
-        //this.locationX.setText(basis);
       } else if (target.equals("translationY")) { //$NON-NLS-1$
         this.translationYdataNumber.setText(dataNumber);
-        //this.locationY.setText(basis);
       } else if (target.equals("translationZ")) { //$NON-NLS-1$
         this.translationZdataNumber.setText(dataNumber);
-        //this.locationZ.setText(basis);
       } else if (target.equals("rotationX")) { //$NON-NLS-1$
         this.rotationXdataNumber.setText(dataNumber);
-        //this.rotationX.setText(basis);
       } else if (target.equals("rotationY")) { //$NON-NLS-1$
         this.rotationYdataNumber.setText(dataNumber);
-        //this.rotationY.setText(basis);
       } else if (target.equals("rotationZ")) { //$NON-NLS-1$
         this.rotationZdataNumber.setText(dataNumber);
-        //this.rotationZ.setText(basis);
       }
     }
   }

@@ -361,20 +361,6 @@ public class EditPrimitiveDialog {
     translation.setZ(this.translationZ.getFloatValue());
     return translation;
   }
-//
-//  /**
-//   * 分割数が3より小さいときに変わりに3にする
-//   * 
-//   * @param parameter
-//   * @return division
-//   */
-//  private int getDivision(ParameterInputBox parameter) {
-//    int division = parameter.getIntValue();
-//    if (division < 3) {
-//      division = 3;
-//    }
-//    return division;
-//  }
 
   /**
    * primitiveの型を判断し、ダイアログにパラメータを設定します。

@@ -725,8 +725,11 @@ public class AnimationWindow extends ApplicationWindow {
       if (display.isDisposed()) {
         return;
       }
+      
       display.syncExec(new Runnable() {
-
+        /**
+         * {@inheritDoc}
+         */
         public void run() {
           final double time = SliderPositionMoveTask.this.localTask.getCurrentTime();
           String timeString = String.valueOf(time);

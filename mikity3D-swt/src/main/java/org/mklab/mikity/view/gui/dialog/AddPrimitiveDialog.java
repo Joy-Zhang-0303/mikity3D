@@ -174,7 +174,6 @@ public class AddPrimitiveDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         if (checkParamters()) {
-          // dc.checkDuplication(,.getLocation,group);
           addPrimitive();
           AddPrimitiveDialog.this.sShell.close();
         } else {
@@ -260,14 +259,13 @@ public class AddPrimitiveDialog {
           box.setTranslation(getLocation(location));
         }
         box.setColor(this.colorCombo.getText());
-        //box.setLocation(location);
         this.group.addXMLBox(box);
         break;
       case cylinderFlag:
         final XMLCylinder cylinder = new XMLCylinder();
         cylinder.setRadius(this.parameter1.getFloatValue());
         cylinder.setHeight(this.parameter2.getFloatValue());
-        cylinder.setDivision(setDivision(this.parameter3));
+        cylinder.setDivision(getDivision(this.parameter3));
         if (getRotation(rotation) != null) {
           cylinder.setRotation(getRotation(rotation));
         }
@@ -275,13 +273,12 @@ public class AddPrimitiveDialog {
           cylinder.setTranslation(getLocation(location));
         }
         cylinder.setColor(this.colorCombo.getText());
-        //cylinder.setLocation(location);
         this.group.addXMLCylinder(cylinder);
         break;
       case sphereFlag:
         final XMLSphere sphere = new XMLSphere();
         sphere.setRadius(this.parameter1.getFloatValue());
-        sphere.setDivision(setDivision(this.parameter2));
+        sphere.setDivision(getDivision(this.parameter2));
         if (getRotation(rotation) != null) {
           sphere.setRotation(getRotation(rotation));
         }
@@ -289,14 +286,13 @@ public class AddPrimitiveDialog {
           sphere.setTranslation(getLocation(location));
         }
         sphere.setColor(this.colorCombo.getText());
-        //sphere.setLocation(location);
         this.group.addXMLSphere(sphere);
         break;
       case coneFlag:
         final XMLCone cone = new XMLCone();
         cone.setRadius(this.parameter1.getFloatValue());
         cone.setHeight(this.parameter2.getFloatValue());
-        cone.setDivision(setDivision(this.parameter3));
+        cone.setDivision(getDivision(this.parameter3));
         if (getRotation(rotation) != null) {
           cone.setRotation(getRotation(rotation));
         }
@@ -304,7 +300,6 @@ public class AddPrimitiveDialog {
           cone.setTranslation(getLocation(location));
         }
         cone.setColor(this.colorCombo.getText());
-        //cone.setLocation(location);
         this.group.addXMLCone(cone);
         break;
       default:
@@ -351,11 +346,11 @@ public class AddPrimitiveDialog {
    * @param parameter
    * @return division
    */
-  private int setDivision(ParameterInputBox parameter) {
+  private int getDivision(ParameterInputBox parameter) {
     int division = (int)parameter.getDoubleValue();
     if (division < 3) {
       // 3以下なので、30を返します
-      division = 30;
+      division = 3;
     }
     return division;
   }

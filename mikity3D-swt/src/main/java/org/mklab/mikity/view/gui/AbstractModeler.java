@@ -171,7 +171,9 @@ public abstract class AbstractModeler extends Composite {
     cancelButton.setText(Messages.getString("Modeler.7")); //$NON-NLS-1$
 
     xzButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         // nothing to do
@@ -179,7 +181,9 @@ public abstract class AbstractModeler extends Composite {
     });
 
     addGroupButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         final org.mklab.mikity.model.xml.simplexml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
@@ -197,7 +201,9 @@ public abstract class AbstractModeler extends Composite {
     });
 
     dhButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
@@ -240,7 +246,9 @@ public abstract class AbstractModeler extends Composite {
     });
 
     primitiveAddButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
@@ -262,7 +270,9 @@ public abstract class AbstractModeler extends Composite {
     });
 
     primitiveEditButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 

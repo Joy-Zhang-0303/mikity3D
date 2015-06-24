@@ -182,7 +182,9 @@ public class AddQuadPolygonDialog {
     okButton.setText(Messages.getString("AddQuadPolygonDialog.24")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (Check()) {
@@ -201,7 +203,9 @@ public class AddQuadPolygonDialog {
     cancelButton.setText(Messages.getString("AddQuadPolygonDialog.27")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 

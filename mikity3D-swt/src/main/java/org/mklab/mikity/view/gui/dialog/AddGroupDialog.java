@@ -38,7 +38,6 @@ public class AddGroupDialog extends ApplicationWindow {
     this.group = group;
     setShellStyle(SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.CLOSE);
     setBlockOnOpen(true);
-    // createSShell();
   }
 
   /**
@@ -58,7 +57,9 @@ public class AddGroupDialog extends ApplicationWindow {
     okButton.setText(Messages.getString("AddGroupDialog.3")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         final Group newGroup = new Group();
@@ -73,7 +74,9 @@ public class AddGroupDialog extends ApplicationWindow {
     cancelButton.setText(Messages.getString("AddGroupDialog.4")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         close();

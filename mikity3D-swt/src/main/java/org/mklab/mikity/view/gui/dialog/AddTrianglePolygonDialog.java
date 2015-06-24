@@ -173,7 +173,9 @@ public class AddTrianglePolygonDialog {
     okButton.setText(Messages.getString("AddTrianglePolygonDialog.20")); //$NON-NLS-1$
 
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
@@ -193,7 +195,9 @@ public class AddTrianglePolygonDialog {
     cancelButton.setText(Messages.getString("AddTrianglePolygonDialog.23")); //$NON-NLS-1$
 
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
+      /**
+       * {@inheritDoc}
+       */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 

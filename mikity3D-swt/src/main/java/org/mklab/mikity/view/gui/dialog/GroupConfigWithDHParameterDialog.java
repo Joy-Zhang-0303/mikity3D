@@ -147,15 +147,13 @@ public class GroupConfigWithDHParameterDialog {
    */
   void addLinkData(final ParameterInputBox dh, final ParameterInputBox col) {
     if (dh.getFloatValue() != 0.0 || col.getIntValue() != 0) {
-      final LinkData linkdata = new LinkData();
-      linkdata.setTarget(dh.getLabelText());
-//      if (dh.getFloatValue() != 0.0) {
-//        linkdata.setBasis(dh.getFloatValue());
-//      }
+      final LinkData linkData = new LinkData();
+      linkData.setTarget(dh.getLabelText());
+
       if (col.getIntValue() != 0) {
-        linkdata.setNumber(col.getIntValue());
+        linkData.setNumber(col.getIntValue());
       }
-      this.group.addLinkData(linkdata);
+      this.group.addLinkData(linkData);
     }
   }
 
