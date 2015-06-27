@@ -160,9 +160,6 @@ public class AnimationWindow extends ApplicationWindow {
   public void setRoot(final Mikity3d root) {
     this.root = root;
     this.manager = new MovableGroupManager(this.root);
-
-    // TODO Java3d or JOGL
-    //this.modelRenderer = new Java3dModelRenderer();
     this.modelRenderer = new JoglModelRenderer();
   }
 

@@ -107,10 +107,7 @@ public class ModelingWindow extends ApplicationWindow {
     localComposite.setLayout(new GridLayout());
     localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-    // TODO Java3d or JOGL
-    //this.modeler = new Java3dModeler(localComposite, SWT.NONE, this.root);
     this.modeler = new JoglModeler(localComposite, SWT.NONE, this.root);
-    
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     return localComposite;
   }
