@@ -43,23 +43,23 @@ public class OpenglesSphere extends AbstractOpenglesObject {
     final float[] vertices = new float[(2 + (grid1 - 2) * grid) * 3];
     int count1 = 0;
     vertices[count1++] = 0.0f;
-    vertices[count1++] = -this.radius;
     vertices[count1++] = 0.0f;
+    vertices[count1++] = -this.radius;
 
     for (int i = 1; i < grid1 - 1; ++i) {
-      final float y = i * incV - this.radius;
-      final float r = (float)Math.sqrt(this.radius * this.radius - y * y);
+      final float z = i * incV - this.radius;
+      final float r = (float)Math.sqrt(this.radius * this.radius - z * z);
       for (int j = 0; j < grid; ++j) {
         final float theta = (float)(j * incU * Math.PI / 180);
         vertices[count1++] = (float)(r * Math.cos(theta));
-        vertices[count1++] = y;
         vertices[count1++] = (float)(r * Math.sin(theta));
+        vertices[count1++] = z;
       }
     }
 
     vertices[count1++] = 0.0f;
-    vertices[count1++] = this.radius;
     vertices[count1++] = 0.0f;
+    vertices[count1++] = this.radius;
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 

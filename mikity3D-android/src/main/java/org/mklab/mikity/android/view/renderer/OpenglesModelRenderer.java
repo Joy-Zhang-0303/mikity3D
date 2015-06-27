@@ -28,14 +28,14 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /** オブジェクトのグループ */
   private OpenglesBranchGroup[] topGroups;
 
-  /** X軸周りの回転角度 */
-  private float rotationX = 0.0f;
   /** Y軸周りの回転角度 */
   private float rotationY = 0.0f;
-  /** X軸方向への移動距離 */
-  private float translationX = 0.0f;
+  /** Z軸周りの回転角度 */
+  private float rotationZ = 0.0f;
   /** Y軸方向への移動距離 */
   private float translationY = 0.0f;
+  /** Z軸方向への移動距離 */
+  private float translationZ = 0.0f;
 
   private float scaleX = 1.0F;
   private float scaleY = 1.0F;
@@ -44,7 +44,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   GLSurfaceView glView;
 
   /** 平行光源1 */
-  private float[] lightLocation0 = {0.5f, 1.0f, -1.0f, 1.0f};
+  private float[] lightLocation0 = {1.0f, -1.0f, 0.5f, 1.0f};
   /** 平行光源2 */
   private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f};
   /** 反射光の強さ */
@@ -55,9 +55,9 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
 
   /** カメラの位置 */
-  private float eyeZ = -2.0f;
+  private float eyeZ = 0.0f;
   private float eyeY = 0.0f;
-  private float eyeX = 0.0f;
+  private float eyeX = -2.0f;
 
   /**
    * 新しく生成された<code>OpenglesModelRenderer</code>オブジェクトを初期化します。
@@ -105,14 +105,14 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glMatrixMode(GL10.GL_MODELVIEW);
     gl10.glLoadIdentity();
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[] {-10.0f, 10.0f, -10.0f, 1.0f}, 0);
-    GLU.gluLookAt(gl10, this.eyeX, this.eyeY, this.eyeZ, 0.0F, 0.0F, -1.0F, 0.0F, 1.0F, 1.0F);
+    GLU.gluLookAt(gl10, this.eyeX, this.eyeY, this.eyeZ, 0.0F, 0.0F, -1.0F, 0.0F, 0.0F, 1.0F);
 
-    gl10.glTranslatef(this.translationY, -this.translationX, 0.0f);
-    gl10.glRotatef(this.rotationX, 1.0f, 0.0f, 0.0f);
+    gl10.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
+    gl10.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
 
     // ここで微調整してます
-    gl10.glRotatef(-180f, 0f, 1f, 0f);
+    gl10.glRotatef(-180f, 0.0f, 0.0f, 1.0f);
 
     gl10.glScalef(this.scaleX, this.scaleY, this.scaleZ);
 
@@ -166,12 +166,12 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /**
    * 回転角度を設定します。
    * 
-   * @param rotationX X軸周りの回転角度
-   * @param rotationY y軸周りの回転角度
+   * @param rotationZ Z軸周りの回転角度
+   * @param rotationY Y軸周りの回転角度
    */
-  public void setRotation(float rotationX, float rotationY) {
-    this.rotationY -= rotationX / 5;
-    this.rotationX -= rotationY / 5;
+  public void setRotation(float rotationZ, float rotationY) {
+    this.rotationZ -= rotationZ / 5;
+    this.rotationY -= rotationY / 5;
   }
 
   /**
@@ -210,20 +210,20 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   }
 
   /**
-   * X軸方向の移動量を設定します。
+   * Y軸方向の移動量を設定します。
    * 
-   * @param translateX X軸方向の移動量
+   * @param translationY Y軸方向の移動量
    */
-  public void setTranslationX(float translateX) {
-    this.translationX = (translateX + this.translationX);
+  public void setTranslationY(float translationY) {
+    this.translationY = (translationY + this.translationY);
   }
 
   /**
-   * Y軸方向の移動量を設定します。
+   * Z軸方向の移動量を設定します。
    * 
-   * @param translateY Y軸方向の移動量
+   * @param translationZ Z軸方向の移動量
    */
-  public void setTranslationY(float translateY) {
-    this.translationY = (translateY + this.translationY);
+  public void setTranslationZ(float translationZ) {
+    this.translationZ = (translationZ + this.translationZ);
   }
 }

@@ -37,14 +37,14 @@ public class OpenglesCoordinate {
   /**
    * 座標を設定します。
    * 
-   * @param x x座標
-   * @param y y座標
-   * @param z z座標
+   * @param translationX x軸方向への並進
+   * @param translationY y軸方向への並進
+   * @param translationZ z軸方向への並進
    */
-  public void setLocation(float x, float y, float z) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
+  public void setTranslation(float translationX, float translationY, float translationZ) {
+    this.x = translationX;
+    this.y = translationY;
+    this.z = translationZ;
   }
 
   /**

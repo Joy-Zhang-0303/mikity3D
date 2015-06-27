@@ -40,7 +40,7 @@ public class JoglCylinder extends AbstractJoglObject {
     gl.glEnable(GL.GL_DEPTH_TEST);
 
     // 表と裏を両方表示する
-    //gl.glDisable(GL.GL_CULL_FACE);
+    // gl.glDisable(GL.GL_CULL_FACE);
     
     final float[] vertices = new float[(this.division * 2 + 2) * 3];
     
@@ -48,33 +48,33 @@ public class JoglCylinder extends AbstractJoglObject {
     
     // 上面の中心点(0)
     vertices[0] = 0.0f;
-    vertices[1] = this.height / 2.0f;
-    vertices[2] = 0.0f;
+    vertices[1] = 0.0f;
+    vertices[2] = this.height / 2.0f;
 
-    // 上面の周上の点(1 - div)
+    // 上面の周上の点(1 ～ div)
     for (int i = 1; i <= this.division; i++) {
       final double theta = 2.0 * Math.PI / this.division * i;
       vertices[i * 3 + 0] = (float)(this.radius * Math.cos(theta));
-      vertices[i * 3 + 1] = this.height / 2.0f;
-      vertices[i * 3 + 2] = (float)(this.radius * Math.sin(theta));
+      vertices[i * 3 + 1] = (float)(this.radius * Math.sin(theta));
+      vertices[i * 3 + 2] = this.height / 2.0f;
     }
     
     // 下面の中心点(div+1)
     vertices[this.division * 3 + 3] = 0.0f;
-    vertices[this.division * 3 + 4] = -this.height / 2.0f;
-    vertices[this.division * 3 + 5] = 0.0f;
+    vertices[this.division * 3 + 4] = 0.0f;
+    vertices[this.division * 3 + 5] = -this.height / 2.0f;
 
-    // 下面の周上の点([div+1+1] - [div+1+div+1])
+    // 下面の周上の点([div+1+1] ～ [div+1+div+1])
     for (int i = 1; i <= this.division; i++) {
       final double theta = 2.0 * Math.PI / this.division * i;
       vertices[this.division * 3 + i * 3 + 3] = (float)(this.radius * Math.cos(theta));
-      vertices[this.division * 3 + i * 3 + 4] = -this.height / 2.0f;
-      vertices[this.division * 3 + i * 3 + 5] = (float)(this.radius * Math.sin(theta));
+      vertices[this.division * 3 + i * 3 + 4] = (float)(this.radius * Math.sin(theta));
+      vertices[this.division * 3 + i * 3 + 5] = -this.height / 2.0f;
     }
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
-    //インデックスバッファの生成
+    // インデックスバッファの生成
     final byte[] indices = new byte[this.division * 12];
 
     // 上面(中心点)
@@ -113,30 +113,31 @@ public class JoglCylinder extends AbstractJoglObject {
       indices[this.division * 6 + 3 * i - 3] = (byte)i;
     }
 
+    for (int i = 1; i < this.division; i++) {
+      indices[this.division * 6 + 3 * i - 2] = (byte)(i + 1);
+    }
+
     for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 6 + 3 * i - 2] = (byte)(this.division + 1 + i);
+      indices[this.division * 6 + 3 * i - 1] = (byte)(this.division + 1 + i);
     }
 
-    for (int i = 1; i <= this.division - 1; i++) {
-      indices[this.division * 6 + 3 * i - 1] = (byte)(i + 1);
-    }
-
-    indices[this.division * 9 - 1] = 1;
+    indices[this.division * 9 - 2] = 1;
 
     // 右下半分の三角形
-    for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 9 + 3 * i - 3] = (byte)(i);
+    for (int i = 1; i < this.division; i++) {
+      indices[this.division * 9 + 3 * i - 3] = (byte)(i+1);
+    }
+
+    for (int i = 1; i < this.division; i++) {
+      indices[this.division * 9 + 3 * i - 2] = (byte)(this.division + 2 + i);
     }
 
     for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 9 + 3 * i - 2] = (byte)(this.division + i + 1);
+      indices[this.division * 9 + 3 * i - 1] = (byte)(this.division + 1 + i);
     }
 
-    for (int i = 1; i <= this.division - 1; i++) {
-      indices[this.division * 9 + 3 * i - 1] = (byte)(this.division + i + 2);
-    }
-
-    indices[this.division * 12 - 1] = (byte)(this.division + 2);
+    indices[this.division * 12 - 3] = (byte)(1);
+    indices[this.division * 12 - 2] = (byte)(this.division + 1);
 
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
 

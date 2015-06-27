@@ -17,6 +17,7 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
  * @version $Revision$, 2012/01/26
  */
 public class JoglBox extends AbstractJoglObject {
+
   /** 幅 */
   private float width;
 
@@ -38,15 +39,45 @@ public class JoglBox extends AbstractJoglObject {
 
     //デプステストの有効化
     gl.glEnable(GL.GL_DEPTH_TEST);
-    
+
     // 表と裏を両方表示する
     gl.glDisable(GL.GL_CULL_FACE);
 
-    final float[] vertices = {this.width / 2, this.height / 2, this.depth / 2, -this.width / 2, this.height / 2, this.depth / 2, -this.width / 2, -this.height / 2, this.depth / 2,
-        this.width / 2, -this.height / 2, this.depth / 2, this.width / 2, this.height / 2, -this.depth / 2, -this.width / 2, this.height / 2, -this.depth / 2, -this.width / 2,
-        -this.height / 2, -this.depth / 2, this.width / 2, -this.height / 2, -this.depth / 2,};
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
+    float x0 = this.depth / 2;
+    float y0 = this.width / 2;
+    float z0 = this.height / 2;
     
+    float x1 = this.depth / 2;
+    float y1 = -this.width / 2;
+    float z1 = this.height / 2;
+
+    float x2 = this.depth / 2;
+    float y2 = -this.width / 2;
+    float z2 = -this.height / 2;
+    
+    float x3 = this.depth / 2;
+    float y3 = this.width / 2;
+    float z3 = -this.height / 2;
+    
+    float x4 = -this.depth / 2;
+    float y4 = this.width / 2;
+    float z4 = this.height / 2;
+    
+    float x5 = -this.depth / 2;
+    float y5 = -this.width / 2;
+    float z5 = this.height / 2;
+    
+    float x6 = -this.depth / 2;
+    float y6 = -this.width / 2;
+    float z6 = -this.height / 2;
+    
+    float x7 = -this.depth / 2;
+    float y7 = this.width / 2;
+    float z7 = -this.height / 2;
+    
+    final float[] vertices = {x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4, x5, y5, z5, x6, y6, z6, x7, y7, z7};
+    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
+
     //インデックスバッファの生成
     final byte[] indices = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
     final ByteBuffer indexBuffer = makeByteBuffer(indices);

@@ -96,28 +96,28 @@ public class JoglTransformGroupFactory {
    * @return 可動グループ
    */
   private JoglCoordinate createCoordinateOf(final Group group) {
-    final Translation groupLocation = group.getTranslation();
+    final Translation groupTranslation = group.getTranslation();
     final Rotation groupRotation = group.getRotation();
     
-    if (groupLocation != null && groupRotation != null) {
-      final float locationX = groupLocation.getX();
-      final float locationY = groupLocation.getY();
-      final float locationZ = groupLocation.getZ();
+    if (groupTranslation != null && groupRotation != null) {
+      final float translationX = groupTranslation.getX();
+      final float translationY = groupTranslation.getY();
+      final float translationZ = groupTranslation.getZ();
       final float rotationX = groupRotation.getX();
       final float rotationY = groupRotation.getY();
       final float rotationZ = groupRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(locationX, locationY, locationZ);
+      coordinate.setTranslation(translationX, translationY, translationZ);
       coordinate.setRotation(rotationX, rotationY, rotationZ);
       return coordinate;
     } 
     
-    if (groupLocation != null) {
-      final float locationX = groupLocation.getX();
-      final float locationY = groupLocation.getY();
-      final float locationZ = groupLocation.getZ();
+    if (groupTranslation != null) {
+      final float translationX = groupTranslation.getX();
+      final float translationY = groupTranslation.getY();
+      final float translationZ = groupTranslation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(locationX, locationY, locationZ);
+      coordinate.setTranslation(translationX, translationY, translationZ);
       return coordinate;
     }
     

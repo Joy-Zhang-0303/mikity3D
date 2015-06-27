@@ -114,17 +114,17 @@ public class JoglTransformGroup implements MovableGroup {
       return;
     }
     
-    final double x = parameter.getTranslationX();
-    final double y = parameter.getTranslationY();
-    final double z = parameter.getTranslationZ();
+    final double translationX = parameter.getTranslationX();
+    final double translationY = parameter.getTranslationY();
+    final double translationZ = parameter.getTranslationZ();
     
-    this.coordinate.setTranslation((float)x, (float)y, (float)z);
+    this.coordinate.setTranslation((float)translationX, (float)translationY, (float)translationZ);
 
-    final double angleX = parameter.getRotationX();
-    final double angleY = parameter.getRotationY();
-    final double angleZ = parameter.getRotationZ();
+    final double rotationX = parameter.getRotationX();
+    final double rotationY = parameter.getRotationY();
+    final double rotationZ = parameter.getRotationZ();
     
-    this.coordinate.setRotation((float)angleX, (float)angleY, (float)angleZ);
+    this.coordinate.setRotation((float)rotationX, (float)rotationY, (float)rotationZ);
   }
 
   /**

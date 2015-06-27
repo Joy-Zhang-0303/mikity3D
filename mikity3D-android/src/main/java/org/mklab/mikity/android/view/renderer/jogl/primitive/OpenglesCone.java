@@ -42,19 +42,19 @@ public class OpenglesCone extends AbstractOpenglesObject {
 
     // 頂点バッファの生成
     vertices[0] = 0.0f;
-    vertices[1] = this.height / 2.0f;
-    vertices[2] = 0.0f;
+    vertices[1] = 0.0f;
+    vertices[2] = this.height / 2.0f;
 
     for (int i = 1; i <= this.division; i++) {
       final double theta = 2.0 * Math.PI / this.division * i;
       vertices[i * 3] = this.radius * (float)Math.cos(theta);
-      vertices[i * 3 + 1] = -this.height / 2.0f;
-      vertices[i * 3 + 2] = this.radius * (float)Math.sin(theta);
+      vertices[i * 3 + 1] = this.radius * (float)Math.sin(theta);
+      vertices[i * 3 + 2] = -this.height / 2.0f;
     }
 
     vertices[3 + this.division * 3] = 0.0f;
-    vertices[4 + this.division * 3] = -this.height / 2.0f;
-    vertices[5 + this.division * 3] = 0.0f;
+    vertices[4 + this.division * 3] = 0.0f;
+    vertices[5 + this.division * 3] = -this.height / 2.0f;
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 

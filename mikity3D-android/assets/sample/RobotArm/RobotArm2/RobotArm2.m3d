@@ -1,31 +1,31 @@
 <mikity3d>
 	<model>
 		<group name="Group0">
-			<translation z="0.0" y="0.0" x="0.0" />
-			<rotation z="0.0" y="0.0" x="0.0" />
+			<translation x="0.0" z="0.0" y="0.0" />
+			<rotation x="0.0" z="0.0" y="0.0" />
 			<group name="dodai">
-				<translation z="0.0" y="0.0" x="0.0" />
-				<rotation z="0.0" y="-1.57" x="0.0" />
+				<translation x="0.0" z="0.0" y="0.0" />
+				<rotation x="0.0" z="-1.57" y="0.0" />
 				<cylinder color="yellow" division="30" height="0.2" radius="0.2">
-					<translation z="0.0" y="0.0" x="0.0" />
+					<translation x="0.0" z="0.0" y="0.0" />
 				</cylinder>
 				<group name="arm1">
-					<translation z="0.0" y="0.12" x="0.0" />
-					<rotation z="0.0" y="0.0" x="1.5708" />
-					<linkData number="2" target="rotationZ" />
+					<translation x="0.0" z="0.12" y="0.0" />
+					<rotation x="0.0" z="0.0" y="1.5708" />
+					<linkData number="2" target="rotationX" />
 					<cylinder color="red" division="30" height="0.4" radius="0.02">
-						<translation z="0.0" y="0.2" x="0.0" />
+						<translation x="0.0" z="0.2" y="0.0" />
 					</cylinder>
 					<cylinder color="orange" division="30" height="0.04" radius="0.02">
-						<rotation z="0.0" y="0.0" x="1.5708" />
-						<translation z="0.0" y="0.42" x="0.0" />
+						<rotation x="0.0" z="0.0" y="1.5708" />
+						<translation x="0.0" z="0.42" y="0.0" />
 					</cylinder>
 					<group name="arm2">
-						<translation z="0.0" y="0.4" x="0.0" />
-						<rotation z="0.0" y="0.0" x="0.0" />
-						<linkData number="3" target="rotationZ" />
+						<translation x="0.0" z="0.4" y="0.0" />
+						<rotation x="0.0" z="0.0" y="0.0" />
+						<linkData number="3" target="rotationX" />
 						<cylinder color="red" division="30" height="0.4" radius="0.02">
-							<translation z="0.0" y="0.2" x="0.0" />
+							<translation x="0.0" z="0.2" y="0.0" />
 						</cylinder>
 					</group>
 				</group>
@@ -34,8 +34,8 @@
 	</model>
 	<config>
 		<background color="white"/>
-		<light z="-0.8" y="-0.8" x="0.2"/>
-		<view z="1.0" y="0.0" x="0.0" rotationZ="0.0" rotationY="0.0" rotationX="-0.2"/>
+		<light x="-0.8" z="-0.8" y="0.2"/>
+		<view x="1.0" z="0.0" y="0.0" rotationZ="0.0" rotationY="0.0" rotationX="-0.2"/>
 		<modelUnit length="m" angle="radian"/>
 		<dataUnit length="m" angle="radian"/>
 	</config>
