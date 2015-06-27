@@ -199,8 +199,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
             }
             if ((touchCount == 2) && (!CanvasFragment.this.scaling)) {
               final float Touch3DModelProportion = 1000.0f;
-              CanvasFragment.this.modelRenderer.setTranslationZ(-transferAmountX / Touch3DModelProportion);
-              CanvasFragment.this.modelRenderer.setTranslationY(transferAmountY / Touch3DModelProportion);
+              CanvasFragment.this.modelRenderer.setTranslationY(-transferAmountX / Touch3DModelProportion);
+              CanvasFragment.this.modelRenderer.setTranslationZ(transferAmountY / Touch3DModelProportion);
               CanvasFragment.this.rotationing = false;
             }
             CanvasFragment.this.rotationing = true;
