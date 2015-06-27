@@ -42,7 +42,7 @@ public class Java3dModelRenderer extends Canvas3D implements ModelRenderer {
   private SimpleUniverse universe;
 
   /** 背景色 */
-  private Color3 backgroundColor;
+  private Color3 backgroundColor = ColorConstant.getColor("white"); //$NON-NLS-1$
   
   /** 光源の位置 */
   private Vector3f lightLocation = new Vector3f(0.2f, -0.8f, -0.8f);

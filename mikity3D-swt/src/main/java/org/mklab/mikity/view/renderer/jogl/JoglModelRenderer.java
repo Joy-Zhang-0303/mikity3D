@@ -148,7 +148,6 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
       return;
     }
     display();
-    // TODO
   }
 
   /**

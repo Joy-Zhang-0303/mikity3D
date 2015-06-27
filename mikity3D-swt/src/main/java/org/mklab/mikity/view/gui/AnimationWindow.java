@@ -162,7 +162,7 @@ public class AnimationWindow extends ApplicationWindow {
     this.manager = new MovableGroupManager(this.root);
 
     // TODO Java3d or JOGL
-    //this.modelRenderer = new Java3dModelRenderer(this.root);
+    //this.modelRenderer = new Java3dModelRenderer();
     this.modelRenderer = new JoglModelRenderer();
   }
 
