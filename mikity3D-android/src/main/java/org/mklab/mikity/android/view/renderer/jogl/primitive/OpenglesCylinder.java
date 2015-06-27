@@ -29,10 +29,10 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
    * {@inheritDoc}
    */
   public void display(GL10 gl10) {
-    //頂点配列の有効化
+    // 頂点配列の有効化
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
-    //デプステストの有効化
+    // デプステストの有効化
     gl10.glEnable(GL10.GL_DEPTH_TEST);
     
     // 表と裏を両方表示する
@@ -40,7 +40,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
 
     final float[] vertices = new float[(this.division * 2 + 2) * 3];
 
-    //頂点バッファの生成
+    // 頂点バッファの生成
 
     // 上面の中心点(0)
     vertices[0] = 0.0f;
@@ -70,7 +70,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
-    //インデックスバッファの生成
+    // インデックスバッファの生成
     final byte[] indices = new byte[this.division * 12];
     
     // 上面(中心点)
@@ -138,7 +138,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
 
     applyColor(gl10);
 
-    //頂点バッファの指定 
+    // 頂点バッファの指定 
     gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
     indexBuffer.position(0);

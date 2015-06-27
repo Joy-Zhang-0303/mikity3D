@@ -29,10 +29,10 @@ public class OpenglesBox extends AbstractOpenglesObject {
    * {@inheritDoc}
    */
   public void display(GL10 gl10) {
-    //頂点配列の有効化
+    // 頂点配列の有効化
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
-    //デプステストの有効化
+    // デプステストの有効化
     gl10.glEnable(GL10.GL_DEPTH_TEST);
 
     final float[] vertices = {this.width / 2, this.height / 2, this.depth / 2, -this.width / 2, this.height / 2, this.depth / 2, -this.width / 2, -this.height / 2, this.depth / 2, this.width / 2,
@@ -40,11 +40,11 @@ public class OpenglesBox extends AbstractOpenglesObject {
         this.width / 2, -this.height / 2, -this.depth / 2,};
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
-    //インデックスバッファの生成
+    // インデックスバッファの生成
     final byte[] indices = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
-    //頂点バッファの指定
+    // 頂点バッファの指定
     gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
     applyColor(gl10);

@@ -383,26 +383,26 @@ public class EditTrianglePolygonDialog {
    * 各頂点の座標値を色を入れる　変更後の欄にはデフォルトで変更前の値を入力
    */
   private void detectPrim() {
-    this.vertex1X.setText("" + this.triangle.getPointLocationX(0)); //$NON-NLS-1$
-    this.vertex1Y.setText("" + this.triangle.getPointLocationY(0)); //$NON-NLS-1$
-    this.vertex1Z.setText("" + this.triangle.getPointLocationZ(0)); //$NON-NLS-1$
-    this.newVertex1X.setText("" + this.triangle.getPointLocationX(0)); //$NON-NLS-1$
-    this.newVertex1Y.setText("" + this.triangle.getPointLocationY(0)); //$NON-NLS-1$
-    this.newVertex1Z.setText("" + this.triangle.getPointLocationZ(0)); //$NON-NLS-1$
+    this.vertex1X.setText("" + this.triangle.getPointX(0)); //$NON-NLS-1$
+    this.vertex1Y.setText("" + this.triangle.getPointY(0)); //$NON-NLS-1$
+    this.vertex1Z.setText("" + this.triangle.getPointZ(0)); //$NON-NLS-1$
+    this.newVertex1X.setText("" + this.triangle.getPointX(0)); //$NON-NLS-1$
+    this.newVertex1Y.setText("" + this.triangle.getPointY(0)); //$NON-NLS-1$
+    this.newVertex1Z.setText("" + this.triangle.getPointZ(0)); //$NON-NLS-1$
 
-    this.vertex2X.setText("" + this.triangle.getPointLocationX(1)); //$NON-NLS-1$
-    this.vertex2Y.setText("" + this.triangle.getPointLocationY(1)); //$NON-NLS-1$
-    this.vertex2Z.setText("" + this.triangle.getPointLocationZ(1)); //$NON-NLS-1$
-    this.newVertex2X.setText("" + this.triangle.getPointLocationX(1)); //$NON-NLS-1$
-    this.newVertex2Y.setText("" + this.triangle.getPointLocationY(1)); //$NON-NLS-1$
-    this.newVertex2Z.setText("" + this.triangle.getPointLocationZ(1)); //$NON-NLS-1$
+    this.vertex2X.setText("" + this.triangle.getPointX(1)); //$NON-NLS-1$
+    this.vertex2Y.setText("" + this.triangle.getPointY(1)); //$NON-NLS-1$
+    this.vertex2Z.setText("" + this.triangle.getPointZ(1)); //$NON-NLS-1$
+    this.newVertex2X.setText("" + this.triangle.getPointX(1)); //$NON-NLS-1$
+    this.newVertex2Y.setText("" + this.triangle.getPointY(1)); //$NON-NLS-1$
+    this.newVertex2Z.setText("" + this.triangle.getPointZ(1)); //$NON-NLS-1$
 
-    this.vertex3X.setText("" + this.triangle.getPointLocationX(2)); //$NON-NLS-1$
-    this.vertex3Y.setText("" + this.triangle.getPointLocationY(2)); //$NON-NLS-1$
-    this.vertex3Z.setText("" + this.triangle.getPointLocationZ(2)); //$NON-NLS-1$
-    this.newVertex3X.setText("" + this.triangle.getPointLocationX(2)); //$NON-NLS-1$
-    this.newVertex3Y.setText("" + this.triangle.getPointLocationY(2)); //$NON-NLS-1$
-    this.newVertex3Z.setText("" + this.triangle.getPointLocationZ(2)); //$NON-NLS-1$
+    this.vertex3X.setText("" + this.triangle.getPointX(2)); //$NON-NLS-1$
+    this.vertex3Y.setText("" + this.triangle.getPointY(2)); //$NON-NLS-1$
+    this.vertex3Z.setText("" + this.triangle.getPointZ(2)); //$NON-NLS-1$
+    this.newVertex3X.setText("" + this.triangle.getPointX(2)); //$NON-NLS-1$
+    this.newVertex3Y.setText("" + this.triangle.getPointY(2)); //$NON-NLS-1$
+    this.newVertex3Z.setText("" + this.triangle.getPointZ(2)); //$NON-NLS-1$
     this.color.setText(this.triangle.getColor());
     this.colorCombo.getColorComboBox().setText(this.triangle.getColor());
 

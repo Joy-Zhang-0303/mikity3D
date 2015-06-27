@@ -150,7 +150,7 @@ public class XMLTrianglePolygon {
    * @param number 座標番号
    * @return x location
    */
-  public float getPointLocationX(int number) {
+  public float getPointX(int number) {
     return this.points.get(number).getX();
   }
 
@@ -158,7 +158,7 @@ public class XMLTrianglePolygon {
    * @param number 座標番号
    * @return y location
    */
-  public float getPointLocationY(int number) {
+  public float getPointY(int number) {
     return this.points.get(number).getY();
   }
 
@@ -166,7 +166,7 @@ public class XMLTrianglePolygon {
    * @param number 座標番号
    * @return z location
    */
-  public float getPointLocationZ(int number) {
+  public float getPointZ(int number) {
     return this.points.get(number).getZ();
   }
 

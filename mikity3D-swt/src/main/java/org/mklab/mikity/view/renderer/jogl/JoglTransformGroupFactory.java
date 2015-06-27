@@ -107,7 +107,7 @@ public class JoglTransformGroupFactory {
       final float rotationY = groupRotation.getY();
       final float rotationZ = groupRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(locationX, locationY, locationZ);
+      coordinate.setTranslation(locationX, locationY, locationZ);
       coordinate.setRotation(rotationX, rotationY, rotationZ);
       return coordinate;
     } 
@@ -117,7 +117,7 @@ public class JoglTransformGroupFactory {
       final float locationY = groupLocation.getY();
       final float locationZ = groupLocation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(locationX, locationY, locationZ);
+      coordinate.setTranslation(locationX, locationY, locationZ);
       return coordinate;
     }
     

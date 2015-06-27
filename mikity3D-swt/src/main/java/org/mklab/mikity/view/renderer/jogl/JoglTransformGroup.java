@@ -98,7 +98,7 @@ public class JoglTransformGroup implements MovableGroup {
     final double a = parameter.getA();
     final double d = parameter.getD();
     
-    this.coordinate.setLocation((float)a, 0, (float)d);
+    this.coordinate.setTranslation((float)a, 0, (float)d);
 
     final double alpha = parameter.getAlpha();
     final double theta = parameter.getTheta();
@@ -118,7 +118,7 @@ public class JoglTransformGroup implements MovableGroup {
     final double y = parameter.getY();
     final double z = parameter.getZ();
     
-    this.coordinate.setLocation((float)x, (float)y, (float)z);
+    this.coordinate.setTranslation((float)x, (float)y, (float)z);
 
     final double angleX = parameter.getAngleX();
     final double angleY = parameter.getAngleY();

@@ -40,13 +40,13 @@ public class JoglCoordinate {
   }
 
   /**
-   * x軸, y軸, z軸方向の移動距離を設定します。
+   * x軸, y軸, z軸方向の距離を設定します。
    * 
-   * @param x x座標方向の移動距離
-   * @param y y座標方向の移動距離
-   * @param z z座標方向の移動距離
+   * @param x x座標方向の距離
+   * @param y y座標方向の距離
+   * @param z z座標方向の距離
    */
-  public void setLocation(float x, float y, float z) {
+  public void setTranslation(float x, float y, float z) {
     this.x = x;
     this.y = y;
     this.z = z;

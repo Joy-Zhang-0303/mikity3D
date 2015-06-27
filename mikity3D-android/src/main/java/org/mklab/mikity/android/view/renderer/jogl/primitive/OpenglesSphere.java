@@ -63,7 +63,7 @@ public class OpenglesSphere extends AbstractOpenglesObject {
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
-    //インデックスバッファの生成
+    // インデックスバッファの生成
     final byte[] indices = new byte[((grid - 1) * grid * 2) * 3];
     int count2 = 0;
     for (int i = 0; i < grid; ++i) {
@@ -76,12 +76,12 @@ public class OpenglesSphere extends AbstractOpenglesObject {
       for (int j = 0; j < grid; ++j) {
         int m = (i - 1) * grid;
 
-        //TriangleA
+        // TriangleA
         indices[count2++] = (byte)(j + 1 + m);
         indices[count2++] = (byte)((j + 1) % grid + 1 + m);
         indices[count2++] = (byte)(j + 1 + grid + m);
 
-        //TriangleB
+        // TriangleB
         indices[count2++] = (byte)((j + 1) % grid1 + grid + m);
         indices[count2++] = (byte)(j + 1 + grid + m);
         indices[count2++] = (byte)((j + 1) % grid + 1 + m);

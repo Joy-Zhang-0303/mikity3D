@@ -419,33 +419,33 @@ public class EditQuadPolygonDialog {
    * 各頂点の座標値を色を入れる　変更後の欄にはデフォルトで変更前の値を入力
    */
   private void detectPrim() {
-    this.vertex1X.setText("" + this.quad.getPointLocationX(0)); //$NON-NLS-1$
-    this.vertex1Y.setText("" + this.quad.getPointLocationY(0)); //$NON-NLS-1$
-    this.vertex1Z.setText("" + this.quad.getPointLocationZ(0)); //$NON-NLS-1$
-    this.newVertex1X.setText("" + this.quad.getPointLocationX(0)); //$NON-NLS-1$
-    this.newVertex1Y.setText("" + this.quad.getPointLocationY(0)); //$NON-NLS-1$
-    this.newVertex1Z.setText("" + this.quad.getPointLocationZ(0)); //$NON-NLS-1$
+    this.vertex1X.setText("" + this.quad.getPointX(0)); //$NON-NLS-1$
+    this.vertex1Y.setText("" + this.quad.getPointY(0)); //$NON-NLS-1$
+    this.vertex1Z.setText("" + this.quad.getPointZ(0)); //$NON-NLS-1$
+    this.newVertex1X.setText("" + this.quad.getPointX(0)); //$NON-NLS-1$
+    this.newVertex1Y.setText("" + this.quad.getPointY(0)); //$NON-NLS-1$
+    this.newVertex1Z.setText("" + this.quad.getPointZ(0)); //$NON-NLS-1$
 
-    this.vertex2X.setText("" + this.quad.getPointLocationX(1)); //$NON-NLS-1$
-    this.vertex2Y.setText("" + this.quad.getPointLocationY(1)); //$NON-NLS-1$
-    this.vertex2Z.setText("" + this.quad.getPointLocationZ(1)); //$NON-NLS-1$
-    this.newVertexX2.setText("" + this.quad.getPointLocationX(1)); //$NON-NLS-1$
-    this.newVertex2Y.setText("" + this.quad.getPointLocationY(1)); //$NON-NLS-1$
-    this.newVertex2Z.setText("" + this.quad.getPointLocationZ(1)); //$NON-NLS-1$
+    this.vertex2X.setText("" + this.quad.getPointX(1)); //$NON-NLS-1$
+    this.vertex2Y.setText("" + this.quad.getPointY(1)); //$NON-NLS-1$
+    this.vertex2Z.setText("" + this.quad.getPointZ(1)); //$NON-NLS-1$
+    this.newVertexX2.setText("" + this.quad.getPointX(1)); //$NON-NLS-1$
+    this.newVertex2Y.setText("" + this.quad.getPointY(1)); //$NON-NLS-1$
+    this.newVertex2Z.setText("" + this.quad.getPointZ(1)); //$NON-NLS-1$
 
-    this.vertex3X.setText("" + this.quad.getPointLocationX(2)); //$NON-NLS-1$
-    this.vertex3Y.setText("" + this.quad.getPointLocationY(2)); //$NON-NLS-1$
-    this.vertex3Z.setText("" + this.quad.getPointLocationZ(2)); //$NON-NLS-1$
-    this.newVertex3X.setText("" + this.quad.getPointLocationX(2)); //$NON-NLS-1$
-    this.newVertex3Y.setText("" + this.quad.getPointLocationY(2)); //$NON-NLS-1$
-    this.newVertex3Z.setText("" + this.quad.getPointLocationZ(2)); //$NON-NLS-1$
+    this.vertex3X.setText("" + this.quad.getPointX(2)); //$NON-NLS-1$
+    this.vertex3Y.setText("" + this.quad.getPointY(2)); //$NON-NLS-1$
+    this.vertex3Z.setText("" + this.quad.getPointZ(2)); //$NON-NLS-1$
+    this.newVertex3X.setText("" + this.quad.getPointX(2)); //$NON-NLS-1$
+    this.newVertex3Y.setText("" + this.quad.getPointY(2)); //$NON-NLS-1$
+    this.newVertex3Z.setText("" + this.quad.getPointZ(2)); //$NON-NLS-1$
 
-    this.vertex4X.setText("" + this.quad.getPointLocationX(3)); //$NON-NLS-1$
-    this.vertex4Y.setText("" + this.quad.getPointLocationY(3)); //$NON-NLS-1$
-    this.vertex4Z.setText("" + this.quad.getPointLocationZ(3)); //$NON-NLS-1$
-    this.newVertex4X.setText("" + this.quad.getPointLocationX(3)); //$NON-NLS-1$
-    this.newVertex4Y.setText("" + this.quad.getPointLocationY(3)); //$NON-NLS-1$
-    this.newVertex4Z.setText("" + this.quad.getPointLocationZ(3)); //$NON-NLS-1$
+    this.vertex4X.setText("" + this.quad.getPointX(3)); //$NON-NLS-1$
+    this.vertex4Y.setText("" + this.quad.getPointY(3)); //$NON-NLS-1$
+    this.vertex4Z.setText("" + this.quad.getPointZ(3)); //$NON-NLS-1$
+    this.newVertex4X.setText("" + this.quad.getPointX(3)); //$NON-NLS-1$
+    this.newVertex4Y.setText("" + this.quad.getPointY(3)); //$NON-NLS-1$
+    this.newVertex4Z.setText("" + this.quad.getPointZ(3)); //$NON-NLS-1$
     this.color.setText(this.quad.getColor());
     this.colorCombo.getColorComboBox().setText(this.quad.getColor());
 

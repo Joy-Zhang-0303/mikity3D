@@ -64,29 +64,29 @@ public class JoglPrimitiveFactory {
     final Rotation boxRotation = box.getRotation();
     
     if (boxTranslation != null && boxRotation != null) {
-      final float xLocation = boxTranslation.getX();
-      final float yLocation = boxTranslation.getY();
-      final float zLocation = boxTranslation.getZ();
-      final float xRotation = boxRotation.getX();
-      final float yRotation = boxRotation.getY();
-      final float zRotation = boxRotation.getZ();
+      final float translationx = boxTranslation.getX();
+      final float translationY = boxTranslation.getY();
+      final float translationZ = boxTranslation.getZ();
+      final float rotationX = boxRotation.getX();
+      final float rotationY = boxRotation.getY();
+      final float rotationZ = boxRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(xLocation, yLocation, zLocation);
-      coordinate.setRotation(xRotation, yRotation, zRotation);
+      coordinate.setTranslation(translationx, translationY, translationZ);
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
       group.setInitialCoordinate(coordinate);
     } else if (boxTranslation != null) {
       final float translationX = boxTranslation.getX();
       final float translationY = boxTranslation.getY();
       final float translationZ = boxTranslation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(translationX, translationY, translationZ);
+      coordinate.setTranslation(translationX, translationY, translationZ);
       group.setInitialCoordinate(coordinate);
     } else if (boxRotation != null) {
-      final float xRotation = boxRotation.getX();
-      final float yRotation = boxRotation.getY();
-      final float zRotation = boxRotation.getZ();
+      final float rotationX = boxRotation.getX();
+      final float rotationY = boxRotation.getY();
+      final float rotationZ = boxRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(xRotation, yRotation, zRotation);
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
       group.setInitialCoordinate(coordinate);
     }
     
@@ -120,29 +120,29 @@ public class JoglPrimitiveFactory {
     final Rotation cylinderRotation = cylinder.getRotation();
     
     if (cylinderLocation != null && cylinderRotation != null) {
-      final float xLocation = cylinderLocation.getX();
-      final float yLocation = cylinderLocation.getY();
-      final float zLocation = cylinderLocation.getZ();
-      final float xRotation = cylinderRotation.getX();
-      final float yRotation = cylinderRotation.getY();
-      final float zRotation = cylinderRotation.getZ();
+      final float translationX = cylinderLocation.getX();
+      final float translationY = cylinderLocation.getY();
+      final float translationZ = cylinderLocation.getZ();
+      final float rotationX = cylinderRotation.getX();
+      final float rotationY = cylinderRotation.getY();
+      final float rotationZ = cylinderRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(xLocation, yLocation, zLocation);
-      coordinate.setRotation(xRotation, yRotation, zRotation);
+      coordinate.setTranslation(translationX, translationY, translationZ);
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
       group.setInitialCoordinate(coordinate);
     } else if (cylinderLocation != null) {
-      final float xLocation = cylinderLocation.getX();
-      final float yLocation = cylinderLocation.getY();
-      final float zLocation = cylinderLocation.getZ();
+      final float translationX = cylinderLocation.getX();
+      final float translationY = cylinderLocation.getY();
+      final float translationZ = cylinderLocation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(xLocation, yLocation, zLocation);
+      coordinate.setTranslation(translationX, translationY, translationZ);
       group.setInitialCoordinate(coordinate);
     } else if (cylinderRotation != null) {
-      final float xRotation = cylinderRotation.getX();
-      final float yRotation = cylinderRotation.getY();
-      final float zRotation = cylinderRotation.getZ();
+      final float rotationX = cylinderRotation.getX();
+      final float rotationY = cylinderRotation.getY();
+      final float rotationZ = cylinderRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(xRotation, yRotation, zRotation);
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
       group.setInitialCoordinate(coordinate);
     }  
 
@@ -175,29 +175,29 @@ public class JoglPrimitiveFactory {
     final Rotation sphereRotation = sphere.getRotation();
     
     if (sphereLocation != null && sphereRotation != null) {
-      final float xLocation = sphereLocation.getX();
-      final float yLocation = sphereLocation.getY();
-      final float zLocatino = sphereLocation.getZ();
-      final float xRotation = sphereRotation.getX();
-      final float yRotation = sphereRotation.getY();
-      final float zRotation = sphereRotation.getZ();
+      final float translationX = sphereLocation.getX();
+      final float translationY = sphereLocation.getY();
+      final float translationZ = sphereLocation.getZ();
+      final float rotationX = sphereRotation.getX();
+      final float rotationY = sphereRotation.getY();
+      final float rotationZ = sphereRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(xLocation, yLocation, zLocatino);
-      coordinate.setRotation(xRotation, yRotation, zRotation);
+      coordinate.setTranslation(translationX, translationY, translationZ);
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
       group.setInitialCoordinate(coordinate);
     } else if (sphereLocation != null) {
-      final float xLocation = sphereLocation.getX();
-      final float yLocation = sphereLocation.getY();
-      final float zLocation = sphereLocation.getZ();
+      final float translationX = sphereLocation.getX();
+      final float translationY = sphereLocation.getY();
+      final float translationZ = sphereLocation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(xLocation, yLocation, zLocation);
+      coordinate.setTranslation(translationX, translationY, translationZ);
       group.setInitialCoordinate(coordinate);
     } else if (sphereRotation != null) {
-      final float xRotation = sphereRotation.getX();
-      final float yRotation = sphereRotation.getY();
-      final float zRotation = sphereRotation.getZ();
+      final float rotationX = sphereRotation.getX();
+      final float rotationY = sphereRotation.getY();
+      final float rotationZ = sphereRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(xRotation, yRotation, zRotation);
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
       group.setInitialCoordinate(coordinate);
     }
 
@@ -237,22 +237,22 @@ public class JoglPrimitiveFactory {
       final float rotationY = coneRotation.getY();
       final float rotationZ = coneRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(translationX, translationY, translationZ);
+      coordinate.setTranslation(translationX, translationY, translationZ);
       coordinate.setRotation(rotationX, rotationY, rotationZ);
       group.setInitialCoordinate(coordinate);
     } else if (coneTranslation != null) {
-      final float locationX = coneTranslation.getX();
-      final float locationY = coneTranslation.getY();
-      final float locationZ = coneTranslation.getZ();
+      final float translationX = coneTranslation.getX();
+      final float translationY = coneTranslation.getY();
+      final float translationZ = coneTranslation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(locationX, locationY, locationZ);
+      coordinate.setTranslation(translationX, translationY, translationZ);
       group.setInitialCoordinate(coordinate);
     } else if (coneRotation != null) {
-      final float xRotation = coneRotation.getX();
-      final float yRotation = coneRotation.getY();
-      final float zRotation = coneRotation.getZ();
+      final float rotationX = coneRotation.getX();
+      final float rotationY = coneRotation.getY();
+      final float rotationZ = coneRotation.getZ();
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(xRotation, yRotation, zRotation);
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
       group.setInitialCoordinate(coordinate);
     }
 
@@ -272,9 +272,9 @@ public class JoglPrimitiveFactory {
   public static JoglTransformGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[3][3];
     for (int i = 0; i < 3; i++) {
-      points[i][0] = polygon.getPointLocationX(i);
-      points[i][1] = polygon.getPointLocationY(i);
-      points[i][2] = polygon.getPointLocationZ(i);
+      points[i][0] = polygon.getPointX(i);
+      points[i][1] = polygon.getPointY(i);
+      points[i][2] = polygon.getPointZ(i);
     }
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
@@ -292,34 +292,34 @@ public class JoglPrimitiveFactory {
       final Rotation polygonRotation = polygon.getRotation();
       
       if (polygonTranslation != null && polygonRotation != null) {
-        final float locationX = polygonTranslation.getX();
-        final float locationY = polygonTranslation.getY();
-        final float locationZ = polygonTranslation.getZ();
-        final float xRotation = polygonRotation.getX();
-        final float yRotation = polygonRotation.getY();
-        final float zRotation = polygonRotation.getZ();
+        final float translationX = polygonTranslation.getX();
+        final float translationY = polygonTranslation.getY();
+        final float translationZ = polygonTranslation.getZ();
+        final float rotationX = polygonRotation.getX();
+        final float rotationY = polygonRotation.getY();
+        final float rotationZ = polygonRotation.getZ();
         final JoglCoordinate coordinate = new JoglCoordinate();
-        coordinate.setLocation(locationX, locationY, locationZ);
-        coordinate.setRotation(xRotation, yRotation, zRotation);
+        coordinate.setTranslation(translationX, translationY, translationZ);
+        coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setInitialCoordinate(coordinate);
       } else if (polygonTranslation != null) {
-        final float locationX = polygonTranslation.getX();
-        final float locationY = polygonTranslation.getY();
-        final float locationZ = polygonTranslation.getZ();
+        final float translationX = polygonTranslation.getX();
+        final float translationY = polygonTranslation.getY();
+        final float translationZ = polygonTranslation.getZ();
         final JoglCoordinate coordinate = new JoglCoordinate();
-        coordinate.setLocation(locationX, locationY, locationZ);
+        coordinate.setTranslation(translationX, translationY, translationZ);
         group.setInitialCoordinate(coordinate);
       } else if (polygonRotation != null) {
-        final float xRotation = polygonRotation.getX();
-        final float yRotation = polygonRotation.getY();
-        final float zRotation = polygonRotation.getZ();
+        final float rotationX = polygonRotation.getX();
+        final float rotationY = polygonRotation.getY();
+        final float rotationZ = polygonRotation.getZ();
         final JoglCoordinate coordinate = new JoglCoordinate();
-        coordinate.setRotation(xRotation, yRotation, zRotation);
+        coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setInitialCoordinate(coordinate);
       }
     } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
+      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setInitialCoordinate(coordinate);
     } else if (dhParameters != null) {
       final JoglCoordinate coordinate = createDhParameterCoordinate(dhParameters);
@@ -345,9 +345,9 @@ public class JoglPrimitiveFactory {
   public static JoglTransformGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[4][3];
     for (int i = 0; i < 4; i++) {
-      points[i][0] = polygon.getPointLocationX(i);
-      points[i][1] = polygon.getPointLocationY(i);
-      points[i][2] = polygon.getPointLocationZ(i);
+      points[i][0] = polygon.getPointX(i);
+      points[i][1] = polygon.getPointY(i);
+      points[i][2] = polygon.getPointZ(i);
     }
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
@@ -364,34 +364,34 @@ public class JoglPrimitiveFactory {
       final Translation polygonTranslation = polygon.getTranslation();
       final Rotation polygonRotation = polygon.getRotation();
       if (polygonTranslation != null && polygonRotation != null) {
-        final float xLocation = polygonTranslation.getX();
-        final float yLocation = polygonTranslation.getY();
-        final float zLocation = polygonTranslation.getZ();
-        final float xRotation = polygonRotation.getX();
-        final float yRotation = polygonRotation.getY();
-        final float zRotation = polygonRotation.getZ();
+        final float translationX = polygonTranslation.getX();
+        final float translationY = polygonTranslation.getY();
+        final float translationZ = polygonTranslation.getZ();
+        final float rotationX = polygonRotation.getX();
+        final float rotationY = polygonRotation.getY();
+        final float rotationZ = polygonRotation.getZ();
         final JoglCoordinate coordinate = new JoglCoordinate();
-        coordinate.setLocation(xLocation, yLocation, zLocation);
-        coordinate.setRotation(xRotation, yRotation, zRotation);
+        coordinate.setTranslation(translationX, translationY, translationZ);
+        coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setInitialCoordinate(coordinate);
       } else if (polygonTranslation != null) {
-        final float xLocation = polygonTranslation.getX();
-        final float yLocation = polygonTranslation.getY();
-        final float zLocation = polygonTranslation.getZ();
+        final float translationX = polygonTranslation.getX();
+        final float translationY = polygonTranslation.getY();
+        final float translationZ = polygonTranslation.getZ();
         final JoglCoordinate coordinamte = new JoglCoordinate();
-        coordinamte.setLocation(xLocation, yLocation, zLocation);
+        coordinamte.setTranslation(translationX, translationY, translationZ);
         group.setInitialCoordinate(coordinamte);
       } else if (polygonRotation != null) {
-        final float xRotation = polygonRotation.getX();
-        final float yRotation = polygonRotation.getY();
-        final float zRotation = polygonRotation.getZ();
+        final float rotationX = polygonRotation.getX();
+        final float rotationY = polygonRotation.getY();
+        final float rotationZ = polygonRotation.getZ();
         final JoglCoordinate coordinate = new JoglCoordinate();
-        coordinate.setRotation(xRotation, yRotation, zRotation);
+        coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setInitialCoordinate(coordinate);
       }
     } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
       final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setLocation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
+      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setInitialCoordinate(coordinate);
     } else if (dhParameters != null) {
       final JoglCoordinate coordinate = createDhParameterCoordinate(dhParameters);
@@ -413,22 +413,22 @@ public class JoglPrimitiveFactory {
     float x = 0; 
     float y = 0; 
     float z = 0; 
-    float xRotation = 0; 
-    float yRotation = 0; 
-    float zRotation = 0;
+    float rotationX = 0; 
+    float rotationY = 0; 
+    float rotationZ = 0;
 
     for (final CoordinateParameter parameter : parameters) {
       x = x + (float)parameter.getX();
       y = y + (float)parameter.getY();
       z = z + (float)parameter.getZ();
-      xRotation = xRotation + (float)parameter.getAngleX();
-      yRotation = yRotation + (float)parameter.getAngleY();
-      zRotation = zRotation + (float)parameter.getAngleZ();
+      rotationX = rotationX + (float)parameter.getAngleX();
+      rotationY = rotationY + (float)parameter.getAngleY();
+      rotationZ = rotationZ + (float)parameter.getAngleZ();
     }
 
     final JoglCoordinate coordinate = new JoglCoordinate();
-    coordinate.setLocation(x, y, z);
-    coordinate.setRotation(xRotation, yRotation, zRotation);
+    coordinate.setTranslation(x, y, z);
+    coordinate.setRotation(rotationX, rotationY, rotationZ);
     return coordinate;
   }
 
@@ -449,7 +449,7 @@ public class JoglPrimitiveFactory {
     }
 
     final JoglCoordinate coordinate = new JoglCoordinate();
-    coordinate.setLocation(a, 0, d);
+    coordinate.setTranslation(a, 0, d);
     coordinate.setRotation(alpha, 0, theta);
       
     return coordinate;

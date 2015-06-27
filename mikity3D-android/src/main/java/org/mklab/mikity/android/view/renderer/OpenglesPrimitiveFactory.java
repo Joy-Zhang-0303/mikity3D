@@ -268,9 +268,9 @@ public class OpenglesPrimitiveFactory {
   public static OpenglesTransformGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[3][3];
     for (int i = 0; i < 3; i++) {
-      points[i][0] = polygon.getPointLocationX(i);
-      points[i][1] = polygon.getPointLocationY(i);
-      points[i][2] = polygon.getPointLocationZ(i);
+      points[i][0] = polygon.getPointX(i);
+      points[i][1] = polygon.getPointY(i);
+      points[i][2] = polygon.getPointZ(i);
     }
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
@@ -339,9 +339,9 @@ public class OpenglesPrimitiveFactory {
   public static OpenglesTransformGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[4][3];
     for (int i = 0; i < 4; i++) {
-      points[i][0] = polygon.getPointLocationX(i);
-      points[i][1] = polygon.getPointLocationY(i);
-      points[i][2] = polygon.getPointLocationZ(i);
+      points[i][0] = polygon.getPointX(i);
+      points[i][1] = polygon.getPointY(i);
+      points[i][2] = polygon.getPointZ(i);
     }
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();

@@ -29,10 +29,10 @@ public class OpenglesCone extends AbstractOpenglesObject {
    * {@inheritDoc}
    */
   public void display(GL10 gl10) {
-    //頂点配列の有効化
+    // 頂点配列の有効化
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
-    //デプステストの有効化
+    // デプステストの有効化
     gl10.glEnable(GL10.GL_DEPTH_TEST);
 
     final float[] vertices = new float[(this.division + 2) * 3];
@@ -40,7 +40,7 @@ public class OpenglesCone extends AbstractOpenglesObject {
     // TODO 描画は出来てますが、Normal3fを使うとバグがでます。
     // TODO vertexs[]かindexs[]にどこか問題があると思います。
 
-    //頂点バッファの生成
+    // 頂点バッファの生成
     vertices[0] = 0.0f;
     vertices[1] = this.height / 2.0f;
     vertices[2] = 0.0f;
@@ -58,7 +58,7 @@ public class OpenglesCone extends AbstractOpenglesObject {
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
-    //インデックスバッファの生成
+    // インデックスバッファの生成
     final byte[] indices = new byte[this.division * 6];
 
     for (int i = 1; i <= this.division; i++) {
@@ -93,7 +93,7 @@ public class OpenglesCone extends AbstractOpenglesObject {
 
     applyColor(gl10);
 
-    //頂点バッファの指定 
+    // 頂点バッファの指定 
     gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
     //    gl.glNormal3f(0.0f, 1.0f, 0.0f);

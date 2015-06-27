@@ -26,12 +26,12 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
   public void display(GL10 gl10) {
     applyColor(gl10);
 
-    //頂点配列の有効化
+    // 頂点配列の有効化
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
     gl10.glDisable(GL10.GL_CULL_FACE);
 
-    //頂点バッファの生成
+    // 頂点バッファの生成
     final float[] vertices = {this.points[0][0], this.points[0][1], this.points[0][2], this.points[1][0], this.points[1][1], this.points[1][2], this.points[2][0], this.points[2][1],
         this.points[2][2],};
 
