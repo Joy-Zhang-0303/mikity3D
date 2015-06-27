@@ -76,7 +76,7 @@ public class JoglTransformGroupFactory {
     }
 
     final JoglCoordinate coordinate = createCoordinateOf(group);
-    movableGroup.setInitialCoordinate(coordinate);
+    movableGroup.setBaseCoordinate(coordinate);
     
     final String name = group.getName();
     if (name != null) {

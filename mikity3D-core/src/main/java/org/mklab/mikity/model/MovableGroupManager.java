@@ -178,11 +178,11 @@ public class MovableGroupManager {
           final CoordinateParameterType type;
 
           if (parameterName.equals("translationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.X;
+            type = CoordinateParameterType.TRANSLATION_X;
           } else if (parameterName.equals("translationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.Y;
+            type = CoordinateParameterType.TRANSLATION_Y;
           } else if (parameterName.equals("translationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.Z;
+            type = CoordinateParameterType.TRANSLATION_Z;
           } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
             type = CoordinateParameterType.ROTATION_X;
           } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$

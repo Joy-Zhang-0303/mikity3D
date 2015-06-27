@@ -22,7 +22,7 @@ public class JoglTransformGroup implements MovableGroup {
   /**可動サブグループ */
   private List<JoglTransformGroup> groups = new ArrayList<>();
   /** 座標系の初期値 */
-  private JoglCoordinate initialCoordinate;
+  private JoglCoordinate baseCoordinate;
   /** 座標系 */
   private JoglCoordinate coordinate = new JoglCoordinate();
   /** 名前 */
@@ -51,8 +51,8 @@ public class JoglTransformGroup implements MovableGroup {
    * 
    * @param coordinate 座標系の初期値
    */
-  public void setInitialCoordinate(JoglCoordinate coordinate) {
-    this.initialCoordinate = coordinate; 
+  public void setBaseCoordinate(JoglCoordinate coordinate) {
+    this.baseCoordinate = coordinate; 
   }
 
   /**
@@ -62,8 +62,8 @@ public class JoglTransformGroup implements MovableGroup {
   public void display(GL2 gl) {
     gl.glPushMatrix();
     
-    if (this.initialCoordinate != null) {
-      this.initialCoordinate.apply(gl);
+    if (this.baseCoordinate != null) {
+      this.baseCoordinate.apply(gl);
     }
 
     if (this.coordinate != null) {
@@ -114,15 +114,15 @@ public class JoglTransformGroup implements MovableGroup {
       return;
     }
     
-    final double x = parameter.getX();
-    final double y = parameter.getY();
-    final double z = parameter.getZ();
+    final double x = parameter.getTranslationX();
+    final double y = parameter.getTranslationY();
+    final double z = parameter.getTranslationZ();
     
     this.coordinate.setTranslation((float)x, (float)y, (float)z);
 
-    final double angleX = parameter.getAngleX();
-    final double angleY = parameter.getAngleY();
-    final double angleZ = parameter.getAngleZ();
+    final double angleX = parameter.getRotationX();
+    final double angleY = parameter.getRotationY();
+    final double angleZ = parameter.getRotationZ();
     
     this.coordinate.setRotation((float)angleX, (float)angleY, (float)angleZ);
   }

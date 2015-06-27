@@ -122,15 +122,15 @@ public class OpenglesTransformGroup implements MovableGroup {
       return;
     }
 
-    final double x = parameter.getX();
-    final double y = parameter.getY();
-    final double z = parameter.getZ();
+    final double x = parameter.getTranslationX();
+    final double y = parameter.getTranslationY();
+    final double z = parameter.getTranslationZ();
 
     this.coordinate.setLocation((float)x, (float)y, (float)z);
 
-    final double angleX = parameter.getAngleX();
-    final double angleY = parameter.getAngleY();
-    final double angleZ = parameter.getAngleZ();
+    final double angleX = parameter.getRotationX();
+    final double angleY = parameter.getRotationY();
+    final double angleZ = parameter.getRotationZ();
 
     this.coordinate.setRotation((float)angleX, (float)angleY, (float)angleZ);
   }

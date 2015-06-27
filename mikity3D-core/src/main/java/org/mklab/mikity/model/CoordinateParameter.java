@@ -12,12 +12,12 @@ package org.mklab.mikity.model;
  * @version $Revision: 1.2 $. 2008/02/29
  */
 public class CoordinateParameter {
-  /** X座標 */
-  private double x;
-  /** Y座標 */
-  private double y;
-  /** Y座標 */
-  private double z;
+  /** X座標方向への並進距離 */
+  private double translationX;
+  /** Y座標方向への並進距離 */
+  private double translationY;
+  /** Z座標方向への並進距離 */
+  private double translationZ;
   /** X軸周りの回転 */
   private double rotationX;
   /** Y軸周りの回転 */
@@ -34,74 +34,74 @@ public class CoordinateParameter {
 
   /**
    * 新しく生成された<code>CoordinateParameter</code>オブジェクトを初期化します。
-   * @param x X座標
-   * @param y Y座標
-   * @param z Z座標
-   * @param angleX X軸周りの回転
-   * @param angleY Y軸周りの回転
-   * @param angleZ Z軸周りの回転
+   * @param translationX X軸方向への並進距離
+   * @param translationY Y軸方向への並進距離
+   * @param translationZ Z軸方向への並進距離
+   * @param rotationX X軸周りの回転
+   * @param rotationY Y軸周りの回転
+   * @param rotationZ Z軸周りの回転
    */
-  public CoordinateParameter(double x, double y, double z, double angleX, double angleY, double angleZ) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.rotationX = angleX;
-    this.rotationY = angleY;
-    this.rotationZ = angleZ;
+  public CoordinateParameter(double translationX, double translationY, double translationZ, double rotationX, double rotationY, double rotationZ) {
+    this.translationX = translationX;
+    this.translationY = translationY;
+    this.translationZ = translationZ;
+    this.rotationX = rotationX;
+    this.rotationY = rotationY;
+    this.rotationZ = rotationZ;
   }
 
   /**
-   * X座標の値を返します。
+   * X軸方向への並進距離を返します。
    * 
-   * @return X座標の値
+   * @return X軸方向への並進距離
    */
-  public double getX() {
-    return this.x;
+  public double getTranslationX() {
+    return this.translationX;
   }
 
   /**
-   * X座標の値を設定します。
+   * X軸方向への並進距離を設定します。
    * 
-   * @param x X座標
+   * @param translationX X軸方向への並進距離
    */
-  public void setX(double x) {
-    this.x = x;
+  public void setTranslationX(double translationX) {
+    this.translationX = translationX;
   }
 
   /**
-   * Y座標の値を返します。
+   * Y軸方向への並進距離の値を返します。
    * 
-   * @return Y座標の値
+   * @return Y軸方向への並進距離の値
    */
-  public double getY() {
-    return this.y;
+  public double getTranslationY() {
+    return this.translationY;
   }
 
   /**
-   * Y座標の値を設定します。
+   * Y軸方向への並進距離の値を設定します。
    * 
-   * @param y Y座標
+   * @param translationY Y軸方向への並進距離
    */
-  public void setY(double y) {
-    this.y = y;
+  public void setTranslationY(double translationY) {
+    this.translationY = translationY;
   }
 
   /**
-   * Z座標の値を返します。
+   * Z軸方向への並進距離の値を返します。
    * 
-   * @return Z座標の値
+   * @return Z軸方向への並進距離の値
    */
-  public double getZ() {
-    return this.z;
+  public double getTranslationZ() {
+    return this.translationZ;
   }
 
   /**
-   * Z座標の値を設定します。
+   * Z軸方向への並進距離の値を設定します。
    * 
-   * @param z Z座標
+   * @param translationZ Z軸方向への並進距離
    */
-  public void setZ(double z) {
-    this.z = z;
+  public void setTranslationZ(double translationZ) {
+    this.translationZ = translationZ;
   }
 
   /**
@@ -109,17 +109,17 @@ public class CoordinateParameter {
    * 
    * @return X軸周りの回転の値
    */
-  public double getAngleX() {
+  public double getRotationX() {
     return this.rotationX;
   }
 
   /**
    * X軸周りの回転の値を設定します。
    * 
-   * @param angleX X軸周りの回転の値
+   * @param rotationX X軸周りの回転の値
    */
-  public void setAngleX(double angleX) {
-    this.rotationX = angleX;
+  public void setRotationX(double rotationX) {
+    this.rotationX = rotationX;
   }
 
   /**
@@ -127,17 +127,17 @@ public class CoordinateParameter {
    * 
    * @return Y軸周りの回転の値
    */
-  public double getAngleY() {
+  public double getRotationY() {
     return this.rotationY;
   }
 
   /**
    * Y軸周りの回転の値を設定します。
    * 
-   * @param angleY Y軸周りの回転の値
+   * @param rotationY Y軸周りの回転の値
    */
-  public void setAngleY(double angleY) {
-    this.rotationY = angleY;
+  public void setRotationY(double rotationY) {
+    this.rotationY = rotationY;
   }
 
   /**
@@ -145,16 +145,16 @@ public class CoordinateParameter {
    * 
    * @return Z軸周りの回転の値
    */
-  public double getAngleZ() {
+  public double getRotationZ() {
     return this.rotationZ;
   }
 
   /**
    * Z軸周りの転の値を設定します。
    * 
-   * @param angleZ Z軸周りの回転の値
+   * @param rotationZ Z軸周りの回転の値
    */
-  public void setAngleZ(double angleZ) {
-    this.rotationZ = angleZ;
+  public void setRotationZ(double rotationZ) {
+    this.rotationZ = rotationZ;
   }
 }

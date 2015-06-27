@@ -410,12 +410,12 @@ public class OpenglesPrimitiveFactory {
     float zRotation = 0;
 
     for (final CoordinateParameter parameter : parameters) {
-      x = x + (float)parameter.getX();
-      y = y + (float)parameter.getY();
-      z = z + (float)parameter.getZ();
-      xRotation = xRotation + (float)parameter.getAngleX();
-      yRotation = yRotation + (float)parameter.getAngleY();
-      zRotation = zRotation + (float)parameter.getAngleZ();
+      x = x + (float)parameter.getTranslationX();
+      y = y + (float)parameter.getTranslationY();
+      z = z + (float)parameter.getTranslationZ();
+      xRotation = xRotation + (float)parameter.getRotationX();
+      yRotation = yRotation + (float)parameter.getRotationY();
+      zRotation = zRotation + (float)parameter.getRotationZ();
     }
 
     final OpenglesCoordinate coordinate = new OpenglesCoordinate();

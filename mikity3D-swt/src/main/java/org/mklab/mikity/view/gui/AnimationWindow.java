@@ -66,7 +66,7 @@ public class AnimationWindow extends ApplicationWindow {
   private Mikity3d root;
 
   /** */
-  double speed = 1.0;
+  double speedRate = 1.0;
 
   /** */
   Timer timer = new Timer();
@@ -77,8 +77,8 @@ public class AnimationWindow extends ApplicationWindow {
   /** 等間隔の時間を保存しとく配列 */
   double[] timeTable;
 
-  /** */
-  private Matrix data;
+  /** 時系列データ。 */
+  private Matrix timeSeriesData;
 
   /** */
   Text modelFilePathText;
@@ -197,7 +197,7 @@ public class AnimationWindow extends ApplicationWindow {
     form.setWeights(new int[] {70, 30}); // 70%:30%に分割点を設定
 
     if (this.root != null && this.root.getConfiguration(0).getData() != null) {
-      setTimeData(new File(this.root.getConfiguration(0).getData()));
+      setTimeSeriesData(new File(this.root.getConfiguration(0).getData()));
     }
 
     if (this.root != null) {
@@ -343,11 +343,11 @@ public class AnimationWindow extends ApplicationWindow {
        */
       @Override
       public void widgetSelected(SelectionEvent e) {
-        AnimationWindow.this.speed += 0.1;
+        AnimationWindow.this.speedRate += 0.1;
         if (AnimationWindow.this.animationTask != null) {
-          AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.speed);
+          AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.speedRate);
         }
-        String value = String.valueOf(AnimationWindow.this.speed);
+        String value = String.valueOf(AnimationWindow.this.speedRate);
         value = value.substring(0, value.indexOf(".") + 2); //$NON-NLS-1$
         AnimationWindow.this.playSpeed.setText(value);
       }
@@ -359,11 +359,11 @@ public class AnimationWindow extends ApplicationWindow {
        */
       @Override
       public void widgetSelected(SelectionEvent e) {
-        AnimationWindow.this.speed -= 0.1;
+        AnimationWindow.this.speedRate -= 0.1;
         if (AnimationWindow.this.animationTask != null) {
-          AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.speed);
+          AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.speedRate);
         }
-        String value = String.valueOf(AnimationWindow.this.speed);
+        String value = String.valueOf(AnimationWindow.this.speedRate);
         value = value.substring(0, value.indexOf(".") + 2); //$NON-NLS-1$
         AnimationWindow.this.playSpeed.setText(value);
       }
@@ -538,7 +538,7 @@ public class AnimationWindow extends ApplicationWindow {
 
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          setTimeData(new File(AnimationWindow.this.filePathText.getText()));
+          setTimeSeriesData(new File(AnimationWindow.this.filePathText.getText()));
         }
       }
     });
@@ -563,7 +563,7 @@ public class AnimationWindow extends ApplicationWindow {
         final String filePath = dialog.open();
         if (filePath != null) {
           AnimationWindow.this.filePathText.setText(filePath);
-          setTimeData(new File(filePath));
+          setTimeSeriesData(new File(filePath));
         }
       }
     });
@@ -589,14 +589,14 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param file 時系列データファイル
    */
-  public void setTimeData(final File file) {
+  public void setTimeSeriesData(final File file) {
     try (FileReader input = new FileReader(file);) {
-      this.data = MatxMatrix.readMatFormat(input);
+      this.timeSeriesData = MatxMatrix.readMatFormat(input);
       input.close();
 
       this.timeSlider.setEnabled(true);
       //this.manager.setData(this.data);
-      this.manager.setData(this.data);
+      this.manager.setData(this.timeSeriesData);
 
       final Group rootGroup = this.root.getModel(0).getGroup(0);
       checkLinkParameterType(rootGroup);
@@ -626,12 +626,12 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param data 時系列データ
    */
-  public void setTimeData(final Matrix data) {
-    this.data = data;
+  public void setTimeSeriesData(final Matrix data) {
+    this.timeSeriesData = data;
 
     this.timeSlider.setEnabled(true);
     //this.manager.setData(this.data);
-    this.manager.setData(this.data);
+    this.manager.setData(this.timeSeriesData);
 
     final Group rootGroup = this.root.getModel(0).getGroup(0);
     checkLinkParameterType(rootGroup);
@@ -659,7 +659,7 @@ public class AnimationWindow extends ApplicationWindow {
       this.timer.cancel();
     }
 
-    if (this.data == null || this.timeTable == null) {
+    if (this.timeSeriesData == null || this.timeTable == null) {
       MessagegUtil.show(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
       System.out.println(Messages.getString("SimulationViewer.5")); //$NON-NLS-1$
       return;

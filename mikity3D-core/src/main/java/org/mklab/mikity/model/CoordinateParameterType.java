@@ -12,12 +12,12 @@ package org.mklab.mikity.model;
  * @version $Revision$, 2012/11/05
  */
 public enum CoordinateParameterType {
-  /** X */
-  X,
-  /** Y */
-  Y,
-  /** Z */
-  Z,
+  /** Translation X */
+  TRANSLATION_X,
+  /** Translation Y */
+  TRANSLATION_Y,
+  /** Translation Z */
+  TRANSLATION_Z,
   /** Rotation X */
   ROTATION_X,
   /** Rotation Y */
