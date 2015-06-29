@@ -189,11 +189,11 @@ public class ModelingWindow extends ApplicationWindow {
 
     if (config.getModelUnit() != null) {
       final ModelUnit modelUnit = config.getModelUnit();
-      if (modelUnit.getAngle() != null) {
-        UnitLabel.setModelAngle(modelUnit.getAngle());
+      if (modelUnit.getAngleUnit() != null) {
+        UnitLabel.setModelAngle(modelUnit.getAngleUnit());
       }
-      if (modelUnit.getLength() != null) {
-        UnitLabel.setModelLength(modelUnit.getLength());
+      if (modelUnit.getLengthUnit() != null) {
+        UnitLabel.setModelLength(modelUnit.getLengthUnit());
       }
     }
     

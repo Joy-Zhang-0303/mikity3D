@@ -210,7 +210,7 @@ public class GroupConfigWithCoordinateParameterDialog {
 
 
   /**
-   * Linkdataを追加します。
+   * LinkDataを追加します。
    * 
    * @param parameter パラメータ
    * @param dataNumber データの番号

@@ -13,18 +13,18 @@ public class ModelUnit implements java.io.Serializable {
 
   /** 角度の単位 */
   @Attribute(name="angle")
-  private String angle;
+  private String angleUnit;
 
   /** 長さの単位 */
   @Attribute(name="length")
-  private String length;
+  private String lengthUnit;
   
   /**
    * 新しく生成された<code>ModelUnit</code>オブジェクトを初期化します。
    */
   public ModelUnit() {
-    this.angle = "radian"; //$NON-NLS-1$
-    this.length = "m"; //$NON-NLS-1$
+    this.angleUnit = "radian"; //$NON-NLS-1$
+    this.lengthUnit = "m"; //$NON-NLS-1$
   }
 
   /**
@@ -32,8 +32,8 @@ public class ModelUnit implements java.io.Serializable {
    * 
    * @return 角度の単位
    */
-  public String getAngle() {
-    return this.angle;
+  public String getAngleUnit() {
+    return this.angleUnit;
   }
 
   /**
@@ -43,8 +43,8 @@ public class ModelUnit implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((this.angle == null) ? 0 : this.angle.hashCode());
-    result = prime * result + ((this.length == null) ? 0 : this.length.hashCode());
+    result = prime * result + ((this.angleUnit == null) ? 0 : this.angleUnit.hashCode());
+    result = prime * result + ((this.lengthUnit == null) ? 0 : this.lengthUnit.hashCode());
     return result;
   }
 
@@ -63,18 +63,18 @@ public class ModelUnit implements java.io.Serializable {
       return false;
     }
     ModelUnit other = (ModelUnit)obj;
-    if (this.angle == null) {
-      if (other.angle != null) {
+    if (this.angleUnit == null) {
+      if (other.angleUnit != null) {
         return false;
       }
-    } else if (!this.angle.equals(other.angle)) {
+    } else if (!this.angleUnit.equals(other.angleUnit)) {
       return false;
     }
-    if (this.length == null) {
-      if (other.length != null) {
+    if (this.lengthUnit == null) {
+      if (other.lengthUnit != null) {
         return false;
       }
-    } else if (!this.length.equals(other.length)) {
+    } else if (!this.lengthUnit.equals(other.lengthUnit)) {
       return false;
     }
     return true;
@@ -85,25 +85,25 @@ public class ModelUnit implements java.io.Serializable {
    * 
    * @return 長さの単位
    */
-  public String getLength() {
-    return this.length;
+  public String getLengthUnit() {
+    return this.lengthUnit;
   }
 
   /**
    * 角度の単位を設定します。
    * 
-   * @param angle 角度の単位
+   * @param angleUnit 角度の単位
    */
-  public void setAngle(String angle) {
-    this.angle = angle;
+  public void setAngleUnit(String angleUnit) {
+    this.angleUnit = angleUnit;
   }
 
   /**
    * 長さの単位を設定します。
    * 
-   * @param length 長さの単位
+   * @param lengthUnit 長さの単位
    */
-  public void setLength(String length) {
-    this.length = length;
+  public void setLengthUnit(String lengthUnit) {
+    this.lengthUnit = lengthUnit;
   }
 }

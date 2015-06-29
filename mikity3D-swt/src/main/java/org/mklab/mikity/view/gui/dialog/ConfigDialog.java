@@ -207,22 +207,23 @@ public class ConfigDialog {
     setColorLabel.setText(Messages.getString("ConfigDialog.13")); //$NON-NLS-1$
     createColorCombo();
 
-    getParameter();
+    setParametersToDialog();
 
   }
 
   /**
    * XMLファイルから値を読み込む
    */
-  private void getParameter() {
+  private void setParametersToDialog() {
     if (this.configuration.getLight() != null) {
-      Light light = this.configuration.getLight();
+      final Light light = this.configuration.getLight();
       this.lightX.setText("" + light.getX()); //$NON-NLS-1$
       this.lightY.setText("" + light.getY()); //$NON-NLS-1$
       this.lightZ.setText("" + light.getZ()); //$NON-NLS-1$
     }
+
     if (this.configuration.getView() != null) {
-      View view = this.configuration.getView();
+      final View view = this.configuration.getView();
       this.viewX.setText("" + view.getX()); //$NON-NLS-1$
       this.viewY.setText("" + view.getY()); //$NON-NLS-1$
       this.viewZ.setText("" + view.getZ()); //$NON-NLS-1$
@@ -230,14 +231,16 @@ public class ConfigDialog {
       this.viewRotationY.setText("" + view.getRotationY()); //$NON-NLS-1$
       this.viewRotationZ.setText("" + view.getRotationZ()); //$NON-NLS-1$
     }
+
     if (this.configuration.getModelUnit() != null) {
-      if (this.configuration.getModelUnit().getAngle() != null) {
-        this.modelAngleUnitCombo.setText(this.configuration.getModelUnit().getAngle());
+      if (this.configuration.getModelUnit().getAngleUnit() != null) {
+        this.modelAngleUnitCombo.setText(this.configuration.getModelUnit().getAngleUnit());
       }
-      if (this.configuration.getModelUnit().getLength() != null) {
-        this.modelLengthUnitCombo.setText(this.configuration.getModelUnit().getLength());
+      if (this.configuration.getModelUnit().getLengthUnit() != null) {
+        this.modelLengthUnitCombo.setText(this.configuration.getModelUnit().getLengthUnit());
       }
     }
+
     if (this.configuration.getDataUnit() != null) {
       if (this.configuration.getDataUnit().getAngle() != null) {
         this.dataAngleUnitCombo.setText(this.configuration.getDataUnit().getAngle());
@@ -246,6 +249,7 @@ public class ConfigDialog {
         this.dataLengthUnitCombo.setText(this.configuration.getDataUnit().getLength());
       }
     }
+
     if (this.configuration.getBackground() == null) {
       this.colorCombo.setText("white"); //$NON-NLS-1$
     } else {
@@ -256,11 +260,11 @@ public class ConfigDialog {
   /**
    * 視点座標に数字以外の文字が入っていたときに出すメッセージボックスの作成
    */
-  void createMesBox() {
-    final MessageBox mesBox = new MessageBox(this.sShell, SWT.ICON_WARNING);
-    mesBox.setMessage(Messages.getString("ConfigDialog.14")); //$NON-NLS-1$
-    mesBox.setText(Messages.getString("ConfigDialog.15")); //$NON-NLS-1$
-    mesBox.open();
+  void createMessageBox() {
+    final MessageBox messsageBox = new MessageBox(this.sShell, SWT.ICON_WARNING);
+    messsageBox.setMessage(Messages.getString("ConfigDialog.14")); //$NON-NLS-1$
+    messsageBox.setText(Messages.getString("ConfigDialog.15")); //$NON-NLS-1$
+    messsageBox.open();
   }
 
   /**
@@ -303,10 +307,10 @@ public class ConfigDialog {
           // getFloatValue());
           // MainWindow.setLightVector(new Vector3f(lightX.getFloatValue(),
           // lightY.getFloatValue(), lightZ.getFloatValue()));
-          setParameter();
+          getParametersFromDialog();
           ConfigDialog.this.sShell.close();
         } else {
-          createMesBox();
+          createMessageBox();
         }
       }
 
@@ -316,12 +320,13 @@ public class ConfigDialog {
   /**
    * 入力したパラメータの値をXMLファイルに書き込む
    */
-  void setParameter() {
+  void getParametersFromDialog() {
     final Light light = new Light();
     light.setX(this.lightX.getFloatValue());
     light.setY(this.lightY.getFloatValue());
     light.setZ(this.lightZ.getFloatValue());
     this.configuration.setLight(light);
+
     final View view = new View();
     view.setX(this.viewX.getFloatValue());
     view.setY(this.viewY.getFloatValue());
@@ -344,13 +349,13 @@ public class ConfigDialog {
     if (this.configuration.getModelUnit() == null) {
       if (this.modelAngleUnitCombo.getText() != "radian") { //$NON-NLS-1$
         final ModelUnit modelUnit = new ModelUnit();
-        modelUnit.setAngle(this.modelAngleUnitCombo.getText());
-        modelUnit.setLength(this.modelLengthUnitCombo.getText());
+        modelUnit.setAngleUnit(this.modelAngleUnitCombo.getText());
+        modelUnit.setLengthUnit(this.modelLengthUnitCombo.getText());
         this.configuration.setModelUnit(modelUnit);
       }
     } else {
-      this.configuration.getModelUnit().setAngle(this.modelAngleUnitCombo.getText());
-      this.configuration.getModelUnit().setLength(this.modelLengthUnitCombo.getText());
+      this.configuration.getModelUnit().setAngleUnit(this.modelAngleUnitCombo.getText());
+      this.configuration.getModelUnit().setLengthUnit(this.modelLengthUnitCombo.getText());
     }
 
     if (this.configuration.getDataUnit() == null) {
@@ -404,7 +409,7 @@ public class ConfigDialog {
   }
 
   /**
-   * Shellを開く
+   * Shellを開きます。
    */
   public void open() {
     this.sShell.open();
@@ -417,7 +422,7 @@ public class ConfigDialog {
   }
 
   /**
-   * 背景の色を指定するコンボボックスの作成
+   * 背景の色を指定するコンボボックスを作成します。
    */
   private void createColorCombo() {
     this.colorCombo = new Combo(this.editGroup, SWT.READ_ONLY);
@@ -428,7 +433,7 @@ public class ConfigDialog {
   }
 
   /**
-   * モデルの長さの単位を指定するコンボボックスの作成
+   * モデルの長さの単位を指定するコンボボックスを作成します。
    * 
    * @param group
    */
@@ -443,7 +448,7 @@ public class ConfigDialog {
   }
 
   /**
-   * データの長さの単位を指定するコンボボックスの作成
+   * データの長さの単位を指定するコンボボックスを作成します。
    * 
    * @param group
    */
@@ -458,7 +463,7 @@ public class ConfigDialog {
   }
 
   /**
-   * モデルの角度の単位を指定するコンボボックスの作成
+   * モデルの角度の単位を指定するコンボボックスを作成します。
    * 
    * @param group
    */
@@ -473,7 +478,7 @@ public class ConfigDialog {
   }
 
   /**
-   * データの角度の単位を指定するコンボボックスの作成
+   * データの角度の単位を指定するコンボボックスを作成します。
    * 
    * @param group
    */

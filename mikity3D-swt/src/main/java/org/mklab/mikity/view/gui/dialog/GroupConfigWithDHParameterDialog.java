@@ -143,15 +143,15 @@ public class GroupConfigWithDHParameterDialog {
    * グループのLinkdataを追加する
    * 
    * @param dh
-   * @param col
+   * @param column
    */
-  void addLinkData(final ParameterInputBox dh, final ParameterInputBox col) {
-    if (dh.getFloatValue() != 0.0 || col.getIntValue() != 0) {
+  void addLinkData(final ParameterInputBox dh, final ParameterInputBox column) {
+    if (dh.getFloatValue() != 0.0 || column.getIntValue() != 0) {
       final LinkData linkData = new LinkData();
       linkData.setTarget(dh.getLabelText());
 
-      if (col.getIntValue() != 0) {
-        linkData.setNumber(col.getIntValue());
+      if (column.getIntValue() != 0) {
+        linkData.setNumber(column.getIntValue());
       }
       this.group.addLinkData(linkData);
     }
@@ -239,7 +239,6 @@ public class GroupConfigWithDHParameterDialog {
     for (int i = 0; i < linkdata.length; i++) {
       final String target = linkdata[i].getTarget();
       final String column = linkdata[i].hasNumber() ? "" + linkdata[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
-      //final String constant = linkdata[i].hasBasis() ? "" + linkdata[i].getBasis() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
       
       if (target.equals("a")) { //$NON-NLS-1$
         this.columnA.setText(column);

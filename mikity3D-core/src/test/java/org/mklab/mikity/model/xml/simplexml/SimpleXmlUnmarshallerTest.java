@@ -101,8 +101,8 @@ public class SimpleXmlUnmarshallerTest {
 
     final ModelUnit actualModelUnit = actualConfiguration.getModelUnit();
     final ModelUnit expectedModelUnit = new ModelUnit();
-    expectedModelUnit.setAngle("radian"); //$NON-NLS-1$
-    expectedModelUnit.setLength("m"); //$NON-NLS-1$
+    expectedModelUnit.setAngleUnit("radian"); //$NON-NLS-1$
+    expectedModelUnit.setLengthUnit("m"); //$NON-NLS-1$
     assertThat(actualModelUnit, is(expectedModelUnit));
     
     final DataUnit actualDataUnit = actualConfiguration.getDataUnit();
@@ -254,7 +254,6 @@ public class SimpleXmlUnmarshallerTest {
     final LinkData actualLinkData = actualGroup.getLinkData(0);
     final LinkData expectedLinkData = new LinkData();
     expectedLinkData.setNumber(2);
-    //expectedLinkData.setBasis(0);
     expectedLinkData.setTarget("translationX"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
 
@@ -301,7 +300,6 @@ public class SimpleXmlUnmarshallerTest {
     final LinkData actualLinkData = actualGroup.getLinkData(0);
     final LinkData expectedLinkData = new LinkData();
     expectedLinkData.setNumber(3);
-    //expectedLinkData.setBasis(0);
     expectedLinkData.setTarget("rotationZ"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
     
