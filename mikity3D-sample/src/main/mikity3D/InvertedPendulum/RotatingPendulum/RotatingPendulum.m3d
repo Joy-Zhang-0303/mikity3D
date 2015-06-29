@@ -31,7 +31,7 @@
    <config>
       <background color="white"/>
       <light y="0.2" z="-0.8" x="-0.8"/>
-      <view rotationX="0.0" rotationY="0.3" rotationZ="1.0" y="-0.2" z="0.0" x="0.0"/>
+      <eye rotationX="0.0" rotationY="0.3" rotationZ="1.0" translationY="-0.2" translationZ="0.0" translationX="0.0"/>
       <modelUnit angle="degree" length="m"/>
       <dataUnit angle="radian" length="m"/>
    </config>

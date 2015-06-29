@@ -21,7 +21,7 @@ import org.mklab.mikity.model.xml.simplexml.config.Background;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.Light;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
-import org.mklab.mikity.model.xml.simplexml.config.View;
+import org.mklab.mikity.model.xml.simplexml.config.Eye;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
@@ -222,11 +222,11 @@ public class ConfigDialog {
       this.lightZ.setText("" + light.getZ()); //$NON-NLS-1$
     }
 
-    if (this.configuration.getView() != null) {
-      final View view = this.configuration.getView();
-      this.viewX.setText("" + view.getX()); //$NON-NLS-1$
-      this.viewY.setText("" + view.getY()); //$NON-NLS-1$
-      this.viewZ.setText("" + view.getZ()); //$NON-NLS-1$
+    if (this.configuration.getEye() != null) {
+      final Eye view = this.configuration.getEye();
+      this.viewX.setText("" + view.getTranslationX()); //$NON-NLS-1$
+      this.viewY.setText("" + view.getTransaltionY()); //$NON-NLS-1$
+      this.viewZ.setText("" + view.getTransaltionZ()); //$NON-NLS-1$
       this.viewRotationX.setText("" + view.getRotationX()); //$NON-NLS-1$
       this.viewRotationY.setText("" + view.getRotationY()); //$NON-NLS-1$
       this.viewRotationZ.setText("" + view.getRotationZ()); //$NON-NLS-1$
@@ -327,14 +327,14 @@ public class ConfigDialog {
     light.setZ(this.lightZ.getFloatValue());
     this.configuration.setLight(light);
 
-    final View view = new View();
-    view.setX(this.viewX.getFloatValue());
-    view.setY(this.viewY.getFloatValue());
-    view.setZ(this.viewZ.getFloatValue());
+    final Eye view = new Eye();
+    view.setTranslationX(this.viewX.getFloatValue());
+    view.setTranslationY(this.viewY.getFloatValue());
+    view.setTranslationZ(this.viewZ.getFloatValue());
     view.setRotationX(this.viewRotationX.getDoubleValue());
     view.setRotationY(this.viewRotationY.getDoubleValue());
     view.setRotationZ(this.viewRotationZ.getDoubleValue());
-    this.configuration.setView(view);
+    this.configuration.setEye(view);
 
     if (this.configuration.getBackground() == null) {
       if (this.colorCombo.getText() != "white") { //$NON-NLS-1$

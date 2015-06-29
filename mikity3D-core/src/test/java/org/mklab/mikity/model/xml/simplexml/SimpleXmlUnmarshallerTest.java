@@ -18,7 +18,7 @@ import org.mklab.mikity.model.xml.simplexml.config.Background;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.Light;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
-import org.mklab.mikity.model.xml.simplexml.config.View;
+import org.mklab.mikity.model.xml.simplexml.config.Eye;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.mikity.model.xml.simplexml.model.Translation;
@@ -89,11 +89,11 @@ public class SimpleXmlUnmarshallerTest {
     expectedLight.setZ(-0.8F);
     assertThat(actualLight, is(expectedLight));
 
-    final View actualView = actualConfiguration.getView();
-    final View expectedView = new View();
-    expectedView.setX(0.0F);
-    expectedView.setY(0.0F);
-    expectedView.setZ(1.0F);
+    final Eye actualView = actualConfiguration.getEye();
+    final Eye expectedView = new Eye();
+    expectedView.setTranslationX(0.0F);
+    expectedView.setTranslationY(0.0F);
+    expectedView.setTranslationZ(1.0F);
     expectedView.setRotationX(-0.2);
     expectedView.setRotationY(0.0);
     expectedView.setRotationZ(0.0);

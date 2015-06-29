@@ -147,6 +147,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     if (configuration == null) {
       return;
     }
+    
     display();
   }
 

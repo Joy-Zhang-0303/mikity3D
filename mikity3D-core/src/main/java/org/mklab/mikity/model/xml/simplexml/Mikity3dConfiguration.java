@@ -4,7 +4,7 @@ import org.mklab.mikity.model.xml.simplexml.config.Background;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.Light;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
-import org.mklab.mikity.model.xml.simplexml.config.View;
+import org.mklab.mikity.model.xml.simplexml.config.Eye;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -18,37 +18,37 @@ import org.simpleframework.xml.Root;
 public class Mikity3dConfiguration implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** データ */
-  @Element(name="data", required=false)
-  private String data;
-
-  /** 背景 */
+  /** 背景。 */
   @Element(name="background")
   private Background background;
 
-  /** 光源 */
+  /** 光源。 */
   @Element(name="light")
   private Light light;
 
-  /** ビュー */
-  @Element(name="view")
-  private View view;
+  /** 視点。 */
+  @Element(name="eye")
+  private Eye eye;
 
-  /** モデルの単位 */
+  /** モデルの単位。 */
   @Element(name="modelUnit")
   private ModelUnit modelUnit;
 
-  /** データの単位 */
+  /** データの単位。 */
   @Element(name="dataUnit")
   private DataUnit dataUnit;
 
+  /** データ。 */
+  @Element(name="data", required=false)
+  private String data;
+  
   /**
    * 新しく生成された<code>Mikity3dConfiguration</code>オブジェクトを初期化します。
    */
   public Mikity3dConfiguration() {
     this.background = new Background();
     this.light = new Light();
-    this.view = new View();
+    this.eye = new Eye();
     this.modelUnit = new ModelUnit();
     this.dataUnit = new DataUnit();
   }
@@ -74,7 +74,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
     result = prime * result + ((this.dataUnit == null) ? 0 : this.dataUnit.hashCode());
     result = prime * result + ((this.light == null) ? 0 : this.light.hashCode());
     result = prime * result + ((this.modelUnit == null) ? 0 : this.modelUnit.hashCode());
-    result = prime * result + ((this.view == null) ? 0 : this.view.hashCode());
+    result = prime * result + ((this.eye == null) ? 0 : this.eye.hashCode());
     return result;
   }
 
@@ -128,11 +128,11 @@ public class Mikity3dConfiguration implements java.io.Serializable {
     } else if (!this.modelUnit.equals(other.modelUnit)) {
       return false;
     }
-    if (this.view == null) {
-      if (other.view != null) {
+    if (this.eye == null) {
+      if (other.eye != null) {
         return false;
       }
-    } else if (!this.view.equals(other.view)) {
+    } else if (!this.eye.equals(other.eye)) {
       return false;
     }
     return true;
@@ -175,12 +175,12 @@ public class Mikity3dConfiguration implements java.io.Serializable {
   }
 
   /**
-   * ビューを返します。
+   * 視点を返します。
    * 
-   * @return ビュー
+   * @return 視点
    */
-  public View getView() {
-    return this.view;
+  public Eye getEye() {
+    return this.eye;
   }
 
   /**
@@ -229,11 +229,11 @@ public class Mikity3dConfiguration implements java.io.Serializable {
   }
 
   /**
-   * ビューを設定します。
+   * 視点を設定します。
    * 
-   * @param view ビュー
+   * @param eye 視点
    */
-  public void setView(View view) {
-    this.view = view;
+  public void setEye(Eye eye) {
+    this.eye = eye;
   }
 }

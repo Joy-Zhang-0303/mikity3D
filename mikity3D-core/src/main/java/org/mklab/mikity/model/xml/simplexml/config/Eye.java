@@ -1,47 +1,50 @@
 package org.mklab.mikity.model.xml.simplexml.config;
 
+import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
 
 
 /**
- * ビューを表すクラスです。
+ * 視点を表すクラスです。
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
-public class View implements java.io.Serializable {
+public class Eye implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
-
-  /** xRotation */
+  
+  /** X軸周りの回転。 */
   @Attribute(name="rotationX")
   private double rotationX;
 
-  /** yRotation */
+  /** Y軸周りの回転。 */
   @Attribute(name="rotationY")
   private double rotationY;
   
-  /** zRotation */
+  /** Z軸周りの回転。 */
   @Attribute(name="rotationZ")
   private double rotationZ;
 
-  /** x */
-  @Attribute(name="x")
-  private float x;
+  /** X軸方向の並進。 */
+  @Attribute(name="translationX")
+  private float transationX;
 
-  /** y */
-  @Attribute(name="y")
-  private float y;
+  /** Y軸方向の並進。 */
+  @Attribute(name="translationY")
+  private float translationY;
 
-  /** z */
-  @Attribute(name="z")
-  private float z;
+  /** Z軸方向の並進。 */
+  @Attribute(name="translationZ")
+  private float translationZ;
 
   /**
    * Returns the value of field 'x'.
    * 
    * @return the value of field 'x'.
    */
-  public float getX() {
-    return this.x;
+  public float getTranslationX() {
+    return this.transationX;
   }
 
   /**
@@ -51,13 +54,13 @@ public class View implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + Float.floatToIntBits(this.x);
+    result = prime * result + Float.floatToIntBits(this.transationX);
     long temp = Double.doubleToLongBits(this.rotationX);
     result = prime * result + (int)(temp ^ (temp >>> 32));
-    result = prime * result + Float.floatToIntBits(this.y);
+    result = prime * result + Float.floatToIntBits(this.translationY);
     temp = Double.doubleToLongBits(this.rotationY);
     result = prime * result + (int)(temp ^ (temp >>> 32));
-    result = prime * result + Float.floatToIntBits(this.z);
+    result = prime * result + Float.floatToIntBits(this.translationZ);
     temp = Double.doubleToLongBits(this.rotationZ);
     result = prime * result + (int)(temp ^ (temp >>> 32));
     return result;
@@ -77,20 +80,20 @@ public class View implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    View other = (View)obj;
-    if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
+    Eye other = (Eye)obj;
+    if (Float.floatToIntBits(this.transationX) != Float.floatToIntBits(other.transationX)) {
       return false;
     }
     if (Double.doubleToLongBits(this.rotationX) != Double.doubleToLongBits(other.rotationX)) {
       return false;
     }
-    if (Float.floatToIntBits(this.y) != Float.floatToIntBits(other.y)) {
+    if (Float.floatToIntBits(this.translationY) != Float.floatToIntBits(other.translationY)) {
       return false;
     }
     if (Double.doubleToLongBits(this.rotationY) != Double.doubleToLongBits(other.rotationY)) {
       return false;
     }
-    if (Float.floatToIntBits(this.z) != Float.floatToIntBits(other.z)) {
+    if (Float.floatToIntBits(this.translationZ) != Float.floatToIntBits(other.translationZ)) {
       return false;
     }
     if (Double.doubleToLongBits(this.rotationZ) != Double.doubleToLongBits(other.rotationZ)) {
@@ -113,8 +116,8 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'y'.
    */
-  public float getY() {
-    return this.y;
+  public float getTransaltionY() {
+    return this.translationY;
   }
 
   /**
@@ -131,8 +134,8 @@ public class View implements java.io.Serializable {
    * 
    * @return the value of field 'z'.
    */
-  public float getZ() {
-    return this.z;
+  public float getTransaltionZ() {
+    return this.translationZ;
   }
 
   /**
@@ -147,10 +150,10 @@ public class View implements java.io.Serializable {
   /**
    * Sets the value of field 'x'.
    * 
-   * @param x the value of field 'x'.
+   * @param translationX the value of field 'x'.
    */
-  public void setX(float x) {
-    this.x = x;
+  public void setTranslationX(float translationX) {
+    this.transationX = translationX;
   }
 
   /**
@@ -165,10 +168,10 @@ public class View implements java.io.Serializable {
   /**
    * Sets the value of field 'y'.
    * 
-   * @param y the value of field 'y'.
+   * @param translationY the value of field 'y'.
    */
-  public void setY(float y) {
-    this.y = y;
+  public void setTranslationY(float translationY) {
+    this.translationY = translationY;
   }
 
   /**
@@ -183,10 +186,10 @@ public class View implements java.io.Serializable {
   /**
    * Sets the value of field 'z'.
    * 
-   * @param z the value of field 'z'.
+   * @param translationZ the value of field 'z'.
    */
-  public void setZ(float z) {
-    this.z = z;
+  public void setTranslationZ(float translationZ) {
+    this.translationZ = translationZ;
   }
 
   /**

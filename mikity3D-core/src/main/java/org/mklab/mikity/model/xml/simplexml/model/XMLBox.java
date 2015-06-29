@@ -29,7 +29,7 @@ public class XMLBox implements java.io.Serializable {
   @Attribute(name="depth")
   private float depth;
 
-  /** location */
+  /** translation */
   @Element(name="translation", required=false)
   private Translation translation;
 
