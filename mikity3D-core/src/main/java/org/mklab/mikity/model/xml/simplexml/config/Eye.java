@@ -22,18 +22,6 @@ public class Eye implements java.io.Serializable {
   /** Z軸方向の並進。 */
   @Attribute(name="z")
   private float z;
-  
-//  /** X軸周りの回転。 */
-//  @Attribute(name="rotationX")
-//  private double rotationX;
-//
-//  /** Y軸周りの回転。 */
-//  @Attribute(name="rotationY")
-//  private double rotationY;
-//  
-//  /** Z軸周りの回転。 */
-//  @Attribute(name="rotationZ")
-//  private double rotationZ;
 
   /**
    * 新しく生成された<code>Eye</code>オブジェクトを初期化します。
@@ -42,9 +30,6 @@ public class Eye implements java.io.Serializable {
     this.x = 0;
     this.y = 0;
     this.z = 0;
-//    this.rotationX = 0;
-//    this.rotationY = 0;
-//    this.rotationZ = 0;
   }
   
   /**
@@ -76,14 +61,8 @@ public class Eye implements java.io.Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + Float.floatToIntBits(this.x);
-    //long temp = Double.doubleToLongBits(this.rotationX);
-    //result = prime * result + (int)(temp ^ (temp >>> 32));
     result = prime * result + Float.floatToIntBits(this.y);
-    //temp = Double.doubleToLongBits(this.rotationY);
-    //result = prime * result + (int)(temp ^ (temp >>> 32));
     result = prime * result + Float.floatToIntBits(this.z);
-    //temp = Double.doubleToLongBits(this.rotationZ);
-    //result = prime * result + (int)(temp ^ (temp >>> 32));
     return result;
   }
 
@@ -105,32 +84,14 @@ public class Eye implements java.io.Serializable {
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
-//    if (Double.doubleToLongBits(this.rotationX) != Double.doubleToLongBits(other.rotationX)) {
-//      return false;
-//    }
     if (Float.floatToIntBits(this.y) != Float.floatToIntBits(other.y)) {
       return false;
     }
-//    if (Double.doubleToLongBits(this.rotationY) != Double.doubleToLongBits(other.rotationY)) {
-//      return false;
-//    }
     if (Float.floatToIntBits(this.z) != Float.floatToIntBits(other.z)) {
       return false;
     }
-//    if (Double.doubleToLongBits(this.rotationZ) != Double.doubleToLongBits(other.rotationZ)) {
-//      return false;
-//    }
     return true;
   }
-
-//  /**
-//   * Returns the value of field 'xrotate'.
-//   * 
-//   * @return the value of field 'xrotate'.
-//   */
-//  public double getRotationX() {
-//    return this.rotationX;
-//  }
 
   /**
    * Returns the value of field 'y'.
@@ -141,15 +102,6 @@ public class Eye implements java.io.Serializable {
     return this.y;
   }
 
-//  /**
-//   * Returns the value of field 'yrotate'.
-//   * 
-//   * @return the value of field 'yrotate'.
-//   */
-//  public double getRotationY() {
-//    return this.rotationY;
-//  }
-
   /**
    * Returns the value of field 'z'.
    * 
@@ -158,15 +110,6 @@ public class Eye implements java.io.Serializable {
   public float getZ() {
     return this.z;
   }
-
-//  /**
-//   * Returns the value of field 'zrotate'.
-//   * 
-//   * @return the value of field 'zrotate'.
-//   */
-//  public double getRotationZ() {
-//    return this.rotationZ;
-//  }
 
   /**
    * Sets the value of field 'x'.
@@ -177,15 +120,6 @@ public class Eye implements java.io.Serializable {
     this.x = x;
   }
 
-//  /**
-//   * Sets the value of field 'xrotate'.
-//   * 
-//   * @param rotationX the value of field 'xrotate'.
-//   */
-//  public void setRotationX(double rotationX) {
-//    this.rotationX = rotationX;
-//  }
-
   /**
    * Sets the value of field 'y'.
    * 
@@ -195,15 +129,6 @@ public class Eye implements java.io.Serializable {
     this.y = y;
   }
 
-//  /**
-//   * Sets the value of field 'yrotate'.
-//   * 
-//   * @param rotationY the value of field 'yrotate'.
-//   */
-//  public void setRotationY(double rotationY) {
-//    this.rotationY = rotationY;
-//  }
-
   /**
    * Sets the value of field 'z'.
    * 
@@ -212,13 +137,4 @@ public class Eye implements java.io.Serializable {
   public void setZ(float z) {
     this.z = z;
   }
-
-//  /**
-//   * Sets the value of field 'zrotate'.
-//   * 
-//   * @param rotationZ the value of field 'zrotate'.
-//   */
-//  public void setRotationZ(double rotationZ) {
-//    this.rotationZ = rotationZ;
-//  }
 }
