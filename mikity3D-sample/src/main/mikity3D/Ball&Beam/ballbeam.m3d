@@ -1,0 +1,36 @@
+<mikity3d>
+   <model>
+      <group name="Group0">
+         <translation x="0.0" y="0.0" z="0.0"/>
+         <rotation x="0.0" y="0.0" z="0.0"/>
+         <box width="0.01" height="0.03" depth="0.01" color="red" transparent="true"/>
+         <cylinder radius="0.005" height="0.012" division="20" color="blue" transparent="true">
+            <translation x="0.0" y="0.0" z="0.02"/>
+            <rotation x="0.0" y="1.57" z="0.0"/>
+         </cylinder>
+         <group name="group">
+            <translation x="0.0" y="0.0" z="0.0"/>
+            <rotation x="0.0" y="0.0" z="0.0"/>
+            <box width="0.2" height="0.01" depth="0.01" color="lightGray" transparent="false">
+               <translation x="0.0" y="0.0" z="0.02"/>
+            </box>
+            <linkData target="rotationX" number="4"/>
+            <group name="grou2">
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <sphere radius="0.01" division="30" color="cyan" transparent="true">
+                  <translation x="0.0" y="0.0" z="0.035"/>
+               </sphere>
+               <linkData target="translationY" number="3"/>
+            </group>
+         </group>
+      </group>
+   </model>
+   <config>
+      <background color="white"/>
+      <light x="-0.8" y="0.2" z="-0.8"/>
+      <eye rotationX="-0.2" rotationY="0.0" rotationZ="0.0" translationX="1.0" translationY="0.0" translationZ="0.0"/>
+      <modelUnit angle="radian" length="m"/>
+      <dataUnit angle="radian" length="m"/>
+   </config>
+</mikity3d>
