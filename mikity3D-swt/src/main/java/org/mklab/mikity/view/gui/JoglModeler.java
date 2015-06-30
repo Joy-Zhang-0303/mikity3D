@@ -35,7 +35,7 @@ import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
  * @author miki
  * @version $Revision: 1.22 $.2004/12/03
  */
-public class AbstractModeler extends Composite {
+public class JoglModeler extends Composite {
 
   /** シーングラフツリー。 */
   protected SceneGraphTree tree;
@@ -53,7 +53,7 @@ public class AbstractModeler extends Composite {
    * @param style スタイル
    * @param root ルート
    */
-  public AbstractModeler(Composite parent, int style, final Mikity3d root) {
+  public JoglModeler(Composite parent, int style, final Mikity3d root) {
     super(parent, style);
     this.root = root;
     this.setLayout(new GridLayout());
@@ -190,7 +190,7 @@ public class AbstractModeler extends Composite {
        */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        final org.mklab.mikity.model.xml.simplexml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
+        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getSelectionGroup();
         if (group == null) {
           MessagegUtil.show(getShell(), Messages.getString("Modeler.8")); //$NON-NLS-1$
           return;
@@ -199,7 +199,7 @@ public class AbstractModeler extends Composite {
         final AddGroupDialog dialog = new AddGroupDialog(getShell(), group);
         dialog.open();
 
-        AbstractModeler.this.tree.fillTree();
+        JoglModeler.this.tree.fillTree();
         createViewer();
       }
     });
@@ -211,7 +211,7 @@ public class AbstractModeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final org.mklab.mikity.model.xml.simplexml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
+        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getSelectionGroup();
         if (group == null) {
           MessagegUtil.show(getShell(), Messages.getString("Modeler.9")); //$NON-NLS-1$
           return;
@@ -224,27 +224,27 @@ public class AbstractModeler extends Composite {
           messageBox.setText(Messages.getString("Modeler.11")); //$NON-NLS-1$
           int result = messageBox.open();
           if (result == SWT.YES) {
-            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
+            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
           } else if (result == SWT.NO) {
-            GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
+            GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
           }
         }
 
         for (int i = 0; i < linkdata.length; i++) {
           if (linkdata[i].hasDHParameter()) {
-            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
+            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
             break;
           } else if (linkdata[i].hasCoordinateParameter()) {
-            final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(getShell(), group, AbstractModeler.this.tree.getGroupEditable());
+            final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
             break;
           }
         }
 
-        AbstractModeler.this.tree.fillTree();
+        JoglModeler.this.tree.fillTree();
         createViewer();
       }
     });
@@ -256,7 +256,7 @@ public class AbstractModeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final org.mklab.mikity.model.xml.simplexml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
+        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getSelectionGroup();
         if (group == null) {
           final MessageBox messageBox = new MessageBox(getShell(), SWT.ICON_WARNING);
           messageBox.setText(Messages.getString("Modeler.12")); //$NON-NLS-1$
@@ -268,7 +268,7 @@ public class AbstractModeler extends Composite {
         final AddPrimitiveDialog dialog = new AddPrimitiveDialog(getShell(), group);
         dialog.open();
 
-        AbstractModeler.this.tree.fillTree();
+        JoglModeler.this.tree.fillTree();
         createViewer();
       }
     });
@@ -280,8 +280,8 @@ public class AbstractModeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final Object primitive = AbstractModeler.this.tree.getSelectionData();
-        final org.mklab.mikity.model.xml.simplexml.model.Group group = AbstractModeler.this.tree.getSelectionGroup();
+        final Object primitive = JoglModeler.this.tree.getSelectionData();
+        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getSelectionGroup();
 
         if (primitive == null) {
           final MessageBox messageBox = new MessageBox(getShell(), SWT.ICON_WARNING);
@@ -294,7 +294,7 @@ public class AbstractModeler extends Composite {
         final EditPrimitiveDialog dialog = new EditPrimitiveDialog(getShell(), primitive, group);
         dialog.open();
 
-        AbstractModeler.this.tree.fillTree();
+        JoglModeler.this.tree.fillTree();
         createViewer();
 
       }
@@ -320,7 +320,7 @@ public class AbstractModeler extends Composite {
   }
 
   /**
-   * GroupをsinsiCanvasに読み込ませ、Frameにaddします。
+   * GroupをCanvasに読み込み、Frameに追加します。
    */
   public void createViewer() {
     org.mklab.mikity.model.xml.simplexml.model.Group[] children = this.tree.getModel().getGroups();

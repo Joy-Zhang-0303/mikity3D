@@ -63,7 +63,7 @@ public class SceneGraphTree {
   /** */
   boolean editable = true;
   /** */
-  AbstractModeler modeler;
+  JoglModeler modeler;
   /** */
   boolean usedDHParameter = false;
   /** */
@@ -82,7 +82,7 @@ public class SceneGraphTree {
    * @param modeler モデラー
    * @param model モデル
    */
-  public SceneGraphTree(final Composite composite, final AbstractModeler modeler, final Mikity3dModel model) {
+  public SceneGraphTree(final Composite composite, final JoglModeler modeler, final Mikity3dModel model) {
     this.model = model;
     this.modeler = modeler;
     // ファイルの読み込みを行う

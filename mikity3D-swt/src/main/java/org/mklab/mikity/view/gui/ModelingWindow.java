@@ -76,7 +76,7 @@ public class ModelingWindow extends ApplicationWindow {
   
   /** 変更されていればtrue */
   private boolean isChanged;
-  private AbstractModeler modeler;
+  private JoglModeler modeler;
 
   /**
    * 新しく生成された<code>ModelingWindow</code>オブジェクトを初期化します。
@@ -106,7 +106,7 @@ public class ModelingWindow extends ApplicationWindow {
     localComposite.setLayout(new GridLayout());
     localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-    this.modeler = new AbstractModeler(localComposite, SWT.NONE, this.root);
+    this.modeler = new JoglModeler(localComposite, SWT.NONE, this.root);
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     return localComposite;
   }
