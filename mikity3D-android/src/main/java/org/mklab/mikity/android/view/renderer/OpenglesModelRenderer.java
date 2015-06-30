@@ -4,6 +4,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
+import org.mklab.mikity.model.xml.simplexml.config.Eye;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
@@ -54,10 +55,13 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /** 環境光の強さ */
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
 
-  /** カメラの位置 */
-  private float eyeZ = 0.0f;
-  private float eyeY = 0.0f;
-  private float eyeX = -2.0f;
+  /** 設定。 */
+  private Mikity3dConfiguration configuration;
+  
+//  /** カメラの位置 */
+//  private float eyeZ = 0.0f;
+//  private float eyeY = 0.0f;
+//  private float eyeX = -2.0f;
 
   /**
    * 新しく生成された<code>OpenglesModelRenderer</code>オブジェクトを初期化します。
@@ -66,6 +70,8 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    */
   public OpenglesModelRenderer(GLSurfaceView glView) {
     this.glView = glView;
+    this.configuration = new Mikity3dConfiguration();
+    this.configuration.setEye(new Eye(-2.0f, 0.0f, 0.0f));
   }
 
   /**
@@ -105,7 +111,9 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glMatrixMode(GL10.GL_MODELVIEW);
     gl10.glLoadIdentity();
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[] {-10.0f, 10.0f, -10.0f, 1.0f}, 0);
-    GLU.gluLookAt(gl10, this.eyeX, this.eyeY, this.eyeZ, 0.0F, 0.0F, -1.0F, 0.0F, 0.0F, 1.0F);
+
+    final Eye eye = this.configuration.getEye();
+    GLU.gluLookAt(gl10, eye.getTranslationX(), eye.getTransaltionY(), eye.getTransaltionZ(), 0.0F, 0.0F, -1.0F, 0.0F, 0.0F, 1.0F);
 
     gl10.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
@@ -146,6 +154,16 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     if (configuration == null) {
       return;
     }
+    this.configuration = configuration;
+    
+    updateDisplay();
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public Mikity3dConfiguration getConfiguration() {
+    return this.configuration;
   }
 
   /**

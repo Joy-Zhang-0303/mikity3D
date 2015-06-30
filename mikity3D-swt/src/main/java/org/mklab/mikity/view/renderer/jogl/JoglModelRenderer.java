@@ -17,6 +17,7 @@ import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
+import org.mklab.mikity.model.xml.simplexml.config.Eye;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
@@ -35,7 +36,14 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /** オブジェクトのグループ */
   private JoglBranchGroup[] topGroups;
   
-  private double[] eye = {5.0, 0.0, 0.0};
+  /** 設定 */
+  private Mikity3dConfiguration configuration;
+  
+  /** 視点 */
+  //private double[] eye = {5.0, 0.0, 0.0};
+  
+  /** 対象の中心 */
+  private double[] center = {0.0, 0.0, 0.0};
 
   /** Y軸に関する回転角度 */
   private float rotationY = 0.0f;
@@ -76,6 +84,10 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    */
   public JoglModelRenderer() {
     super(new GLCapabilities(null));
+    
+    this.configuration = new Mikity3dConfiguration();
+    this.configuration.setEye(new Eye(5.0f, 0.0f, 0.0f));
+    
     addGLEventListener(this);
     addMouseListener(this);
     addMouseMotionListener(this);
@@ -118,8 +130,9 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glEnable(GL.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
     
     gl.glLoadIdentity();
-
-    this.glu.gluLookAt(this.eye[0], this.eye[1], this.eye[2], 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
+    
+    final Eye eye = this.configuration.getEye();
+    this.glu.gluLookAt(eye.getTranslationX(), eye.getTransaltionY(), eye.getTransaltionZ(), this.center[0], this.center[1], this.center[2], 0.0, 0.0, 1.0);
     
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl.glTranslatef(-this.scale, 0.0f, 0.0f);
@@ -148,7 +161,16 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
       return;
     }
     
+    this.configuration = configuration;
     display();
+  }
+  
+  /**
+   * 設定を返します。
+   * @return 設定
+   */
+  public Mikity3dConfiguration getConfiguration() {
+    return this.configuration;
   }
 
   /**

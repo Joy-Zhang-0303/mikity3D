@@ -31,7 +31,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
  * @author miki
  * @version $Revision: 1.1 $.2005/02/01
  */
-public class ConfigDialog {
+public class ConfigurationDialog {
 
   Shell sShell = null;
   private Shell parentShell = null;
@@ -62,7 +62,7 @@ public class ConfigDialog {
    * @param parentShell 親シェル
    * @param configuration 設定
    */
-  public ConfigDialog(Shell parentShell, Mikity3dConfiguration configuration) {
+  public ConfigurationDialog(Shell parentShell, Mikity3dConfiguration configuration) {
     this.parentShell = parentShell;
     this.configuration = configuration;
     createSShell();
@@ -290,7 +290,7 @@ public class ConfigDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        ConfigDialog.this.sShell.close();
+        ConfigurationDialog.this.sShell.close();
       }
     });
 
@@ -308,7 +308,7 @@ public class ConfigDialog {
           // MainWindow.setLightVector(new Vector3f(lightX.getFloatValue(),
           // lightY.getFloatValue(), lightZ.getFloatValue()));
           getParametersFromDialog();
-          ConfigDialog.this.sShell.close();
+          ConfigurationDialog.this.sShell.close();
         } else {
           createMessageBox();
         }

@@ -89,15 +89,15 @@ public class SimpleXmlUnmarshallerTest {
     expectedLight.setZ(-0.8F);
     assertThat(actualLight, is(expectedLight));
 
-    final Eye actualView = actualConfiguration.getEye();
-    final Eye expectedView = new Eye();
-    expectedView.setTranslationX(0.0F);
-    expectedView.setTranslationY(0.0F);
-    expectedView.setTranslationZ(1.0F);
-    expectedView.setRotationX(-0.2);
-    expectedView.setRotationY(0.0);
-    expectedView.setRotationZ(0.0);
-    assertThat(actualView, is(expectedView));
+    final Eye actualEye = actualConfiguration.getEye();
+    final Eye expectedEye = new Eye();
+    expectedEye.setTranslationX(0.0F);
+    expectedEye.setTranslationY(0.0F);
+    expectedEye.setTranslationZ(1.0F);
+    expectedEye.setRotationX(0.0);
+    expectedEye.setRotationY(0.0);
+    expectedEye.setRotationZ(0.0);
+    assertThat(actualEye, is(expectedEye));
 
     final ModelUnit actualModelUnit = actualConfiguration.getModelUnit();
     final ModelUnit expectedModelUnit = new ModelUnit();

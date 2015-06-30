@@ -11,6 +11,18 @@ import org.simpleframework.xml.Attribute;
 public class Eye implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
   
+  /** X軸方向の並進。 */
+  @Attribute(name="translationX")
+  private float translationX;
+
+  /** Y軸方向の並進。 */
+  @Attribute(name="translationY")
+  private float translationY;
+
+  /** Z軸方向の並進。 */
+  @Attribute(name="translationZ")
+  private float translationZ;
+  
   /** X軸周りの回転。 */
   @Attribute(name="rotationX")
   private double rotationX;
@@ -23,25 +35,37 @@ public class Eye implements java.io.Serializable {
   @Attribute(name="rotationZ")
   private double rotationZ;
 
-  /** X軸方向の並進。 */
-  @Attribute(name="translationX")
-  private float transationX;
-
-  /** Y軸方向の並進。 */
-  @Attribute(name="translationY")
-  private float translationY;
-
-  /** Z軸方向の並進。 */
-  @Attribute(name="translationZ")
-  private float translationZ;
-
+  /**
+   * 新しく生成された<code>Eye</code>オブジェクトを初期化します。
+   */
+  public Eye() {
+    this.translationX = 0;
+    this.translationY = 0;
+    this.translationZ = 0;
+    this.rotationX = 0;
+    this.rotationY = 0;
+    this.rotationZ = 0;
+  }
+  
+  /**
+   * 新しく生成された<code>Eye</code>オブジェクトを初期化します。
+   * @param translationX X軸方向の並進
+   * @param translationY Y軸方向の並進
+   * @param translationZ Z軸方向の並進
+   */
+  public Eye(float translationX, float translationY, float translationZ) {
+    this.translationX = translationX;
+    this.translationY = translationY;
+    this.translationZ = translationZ;
+  }
+  
   /**
    * Returns the value of field 'x'.
    * 
    * @return the value of field 'x'.
    */
   public float getTranslationX() {
-    return this.transationX;
+    return this.translationX;
   }
 
   /**
@@ -51,7 +75,7 @@ public class Eye implements java.io.Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + Float.floatToIntBits(this.transationX);
+    result = prime * result + Float.floatToIntBits(this.translationX);
     long temp = Double.doubleToLongBits(this.rotationX);
     result = prime * result + (int)(temp ^ (temp >>> 32));
     result = prime * result + Float.floatToIntBits(this.translationY);
@@ -78,7 +102,7 @@ public class Eye implements java.io.Serializable {
       return false;
     }
     Eye other = (Eye)obj;
-    if (Float.floatToIntBits(this.transationX) != Float.floatToIntBits(other.transationX)) {
+    if (Float.floatToIntBits(this.translationX) != Float.floatToIntBits(other.translationX)) {
       return false;
     }
     if (Double.doubleToLongBits(this.rotationX) != Double.doubleToLongBits(other.rotationX)) {
@@ -150,7 +174,7 @@ public class Eye implements java.io.Serializable {
    * @param translationX the value of field 'x'.
    */
   public void setTranslationX(float translationX) {
-    this.transationX = translationX;
+    this.translationX = translationX;
   }
 
   /**

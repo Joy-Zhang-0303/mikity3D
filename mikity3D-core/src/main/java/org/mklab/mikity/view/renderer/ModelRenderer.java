@@ -30,6 +30,12 @@ public interface ModelRenderer {
   void setConfiguration(Mikity3dConfiguration configuration);
   
   /**
+   * 設定を返します。
+   * @return 設定
+   */
+  Mikity3dConfiguration getConfiguration();
+  
+  /**
    * 画面の更新のためにdisplayメソッドの呼び出しを必要とするか判定します。
    * @return 画面の更新のためにdisplayメソッドの呼び出しを必要と場合，true
    */

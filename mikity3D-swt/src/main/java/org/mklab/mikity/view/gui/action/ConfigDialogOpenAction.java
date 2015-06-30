@@ -7,7 +7,7 @@ package org.mklab.mikity.view.gui.action;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.view.gui.ModelingWindow;
-import org.mklab.mikity.view.gui.dialog.ConfigDialog;
+import org.mklab.mikity.view.gui.dialog.ConfigurationDialog;
 
 
 /**
@@ -37,7 +37,7 @@ public class ConfigDialogOpenAction extends Action {
    */
   @Override
   public void run() {
-    final ConfigDialog dialog = new ConfigDialog(this.window.getShell(), this.window.getRoot().getConfiguration(0));
+    final ConfigurationDialog dialog = new ConfigurationDialog(this.window.getShell(), this.window.getRoot().getConfiguration(0));
     dialog.open();
     this.window.setChanged(true);
   }

@@ -26,6 +26,7 @@ public class LinkData implements java.io.Serializable {
    */
   public LinkData() {
     this.target = ""; //$NON-NLS-1$
+    this.number = 0;
   }
   
 
