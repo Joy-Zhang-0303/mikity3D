@@ -34,7 +34,6 @@ import org.mklab.mikity.view.gui.action.toolbar.CylinderToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.QuadPolygonToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.TrianglePolygonToolBarAction;
-import org.mklab.mikity.view.renderer.jogl.JoglModeler;
 
 /**
  * モデリングを行うウィンドウを表すクラスです。
@@ -107,7 +106,7 @@ public class ModelingWindow extends ApplicationWindow {
     localComposite.setLayout(new GridLayout());
     localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-    this.modeler = new JoglModeler(localComposite, SWT.NONE, this.root);
+    this.modeler = new AbstractModeler(localComposite, SWT.NONE, this.root);
     this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     return localComposite;
   }

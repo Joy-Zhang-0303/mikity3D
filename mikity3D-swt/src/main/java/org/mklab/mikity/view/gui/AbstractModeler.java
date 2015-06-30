@@ -8,6 +8,7 @@ package org.mklab.mikity.view.gui;
 import java.awt.Frame;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -21,6 +22,7 @@ import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.GroupConfigWithCoordinateParameterDialog;
 import org.mklab.mikity.view.gui.dialog.GroupConfigWithDHParameterDialog;
+import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 
 
 /**
@@ -33,7 +35,7 @@ import org.mklab.mikity.view.gui.dialog.GroupConfigWithDHParameterDialog;
  * @author miki
  * @version $Revision: 1.22 $.2004/12/03
  */
-public abstract class AbstractModeler extends Composite {
+public class AbstractModeler extends Composite {
 
   /** シーングラフツリー。 */
   protected SceneGraphTree tree;
@@ -42,6 +44,8 @@ public abstract class AbstractModeler extends Composite {
   /** */
   protected Frame awtFrame;
   private Group treeViewerGroup;
+  
+  private JoglModelRenderer renderer;
 
   /**
    * 新しく生成された<code>AbstractModeler</code>オブジェクトを初期化します。
@@ -318,12 +322,19 @@ public abstract class AbstractModeler extends Composite {
   /**
    * GroupをsinsiCanvasに読み込ませ、Frameにaddします。
    */
-  public abstract void createViewer();
+  public void createViewer() {
+    org.mklab.mikity.model.xml.simplexml.model.Group[] children = this.tree.getModel().getGroups();
+    this.renderer.setChildren(children);
+  }
 
   /**
    * キャンバスを生成します。
    * 
-   * @param viewerComp ビュワーコンポジット
+   * @param viewerComposite ビュワーコンポジット
    */
-  public abstract void createModelCanvas(Composite viewerComp);
+  public void createModelCanvas(Composite viewerComposite) {
+    this.awtFrame = SWT_AWT.new_Frame(viewerComposite);
+    this.renderer = new JoglModelRenderer();
+    this.awtFrame.add(this.renderer);
+  }
 }
