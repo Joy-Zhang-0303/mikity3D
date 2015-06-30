@@ -3,6 +3,7 @@ package org.mklab.mikity.model.xml.simplexml;
 import org.mklab.mikity.model.xml.simplexml.config.Background;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.Light;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
 import org.mklab.mikity.model.xml.simplexml.config.Eye;
 import org.simpleframework.xml.Element;
@@ -25,10 +26,14 @@ public class Mikity3dConfiguration implements java.io.Serializable {
   /** 光源。 */
   @Element(name="light")
   private Light light;
-
+  
   /** 視点。 */
   @Element(name="eye")
   private Eye eye;
+
+  /** 注視点。 */
+  @Element(name="lookAtPoint")
+  private LookAtPoint lookAtPoint;
 
   /** モデルの単位。 */
   @Element(name="modelUnit")
@@ -49,6 +54,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
     this.background = new Background();
     this.light = new Light();
     this.eye = new Eye();
+    this.lookAtPoint = new LookAtPoint();
     this.modelUnit = new ModelUnit();
     this.dataUnit = new DataUnit();
   }
@@ -75,6 +81,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
     result = prime * result + ((this.light == null) ? 0 : this.light.hashCode());
     result = prime * result + ((this.modelUnit == null) ? 0 : this.modelUnit.hashCode());
     result = prime * result + ((this.eye == null) ? 0 : this.eye.hashCode());
+    result = prime * result + ((this.lookAtPoint == null) ? 0 : this.lookAtPoint.hashCode());
     return result;
   }
 
@@ -135,6 +142,14 @@ public class Mikity3dConfiguration implements java.io.Serializable {
     } else if (!this.eye.equals(other.eye)) {
       return false;
     }
+    if (this.lookAtPoint == null) {
+      if (other.lookAtPoint != null) {
+        return false;
+      }
+    } else if (!this.lookAtPoint.equals(other.lookAtPoint)) {
+      return false;
+    }
+
     return true;
   }
 
@@ -183,6 +198,15 @@ public class Mikity3dConfiguration implements java.io.Serializable {
     return this.eye;
   }
 
+  /**
+   * 注視点を返します。
+   * 
+   * @return 注視点
+   */
+  public LookAtPoint getLookAtPoint() {
+    return this.lookAtPoint;
+  }
+  
   /**
    * 背景を設定します。
    * 
@@ -235,5 +259,14 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    */
   public void setEye(Eye eye) {
     this.eye = eye;
+  }
+  
+  /**
+   * 注視点を設定します。
+   * 
+   * @param lookAtPoint 注視点
+   */
+  public void setLookAtPoiint(LookAtPoint lookAtPoint) {
+    this.lookAtPoint = lookAtPoint;
   }
 }

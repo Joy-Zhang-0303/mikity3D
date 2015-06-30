@@ -36,6 +36,7 @@
 		<background color="white"/>
 		<light x="-0.8" z="-0.8" y="0.2"/>
 		<eye x="5.0" z="0.0" y="0.0"/>
+		<lookAtPoint x="0.0" y="0.0" z="0.0"/>
 		<modelUnit length="m" angle="radian"/>
 		<dataUnit length="m" angle="radian"/>
 	</config>

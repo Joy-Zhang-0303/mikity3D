@@ -11,15 +11,15 @@ import org.simpleframework.xml.Attribute;
 public class Eye implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
   
-  /** X軸方向の並進。 */
+  /** X座標。 */
   @Attribute(name="x")
   private float x;
 
-  /** Y軸方向の並進。 */
+  /** Y座標。 */
   @Attribute(name="y")
   private float y;
 
-  /** Z軸方向の並進。 */
+  /** Z座標。 */
   @Attribute(name="z")
   private float z;
 
@@ -34,9 +34,9 @@ public class Eye implements java.io.Serializable {
   
   /**
    * 新しく生成された<code>Eye</code>オブジェクトを初期化します。
-   * @param x X軸方向の並進
-   * @param y Y軸方向の並進
-   * @param z Z軸方向の並進
+   * @param x X座標
+   * @param y Y座標
+   * @param z Z座標
    */
   public Eye(float x, float y, float z) {
     this.x = x;
