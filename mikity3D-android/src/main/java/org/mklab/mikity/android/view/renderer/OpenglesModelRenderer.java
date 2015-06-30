@@ -113,7 +113,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[] {-10.0f, 10.0f, -10.0f, 1.0f}, 0);
 
     final Eye eye = this.configuration.getEye();
-    GLU.gluLookAt(gl10, eye.getTranslationX(), eye.getTransaltionY(), eye.getTransaltionZ(), 0.0F, 0.0F, -1.0F, 0.0F, 0.0F, 1.0F);
+    GLU.gluLookAt(gl10, eye.getX(), eye.getY(), eye.getZ(), 0.0F, 0.0F, -1.0F, 0.0F, 0.0F, 1.0F);
 
     gl10.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);

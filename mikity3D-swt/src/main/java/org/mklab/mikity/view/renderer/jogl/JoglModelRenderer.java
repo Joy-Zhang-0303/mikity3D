@@ -132,7 +132,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glLoadIdentity();
     
     final Eye eye = this.configuration.getEye();
-    this.glu.gluLookAt(eye.getTranslationX(), eye.getTransaltionY(), eye.getTransaltionZ(), this.center[0], this.center[1], this.center[2], 0.0, 0.0, 1.0);
+    this.glu.gluLookAt(eye.getX(), eye.getY(), eye.getZ(), this.center[0], this.center[1], this.center[2], 0.0, 0.0, 1.0);
     
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl.glTranslatef(-this.scale, 0.0f, 0.0f);

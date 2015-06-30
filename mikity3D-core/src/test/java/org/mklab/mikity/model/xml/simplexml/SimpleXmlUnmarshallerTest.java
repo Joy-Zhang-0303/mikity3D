@@ -84,19 +84,19 @@ public class SimpleXmlUnmarshallerTest {
 
     final Light actualLight = actualConfiguration.getLight();
     final Light expectedLight = new Light();
-    expectedLight.setX(0.2F);
-    expectedLight.setY(-0.8F);
+    expectedLight.setX(-0.8F);
+    expectedLight.setY(0.2F);
     expectedLight.setZ(-0.8F);
     assertThat(actualLight, is(expectedLight));
 
     final Eye actualEye = actualConfiguration.getEye();
     final Eye expectedEye = new Eye();
-    expectedEye.setTranslationX(0.0F);
-    expectedEye.setTranslationY(0.0F);
-    expectedEye.setTranslationZ(1.0F);
-    expectedEye.setRotationX(0.0);
-    expectedEye.setRotationY(0.0);
-    expectedEye.setRotationZ(0.0);
+    expectedEye.setX(5.0F);
+    expectedEye.setY(0.0F);
+    expectedEye.setZ(0.0F);
+//    expectedEye.setRotationX(0.0);
+//    expectedEye.setRotationY(0.0);
+//    expectedEye.setRotationZ(0.0);
     assertThat(actualEye, is(expectedEye));
 
     final ModelUnit actualModelUnit = actualConfiguration.getModelUnit();
@@ -165,16 +165,17 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertDodaiBox1(XMLBox actualBox) {
     final XMLBox expectedBox = new XMLBox();
-    expectedBox.setTransparent(true);
+    expectedBox.setTransparent(false);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
     expectedBox.setWidth(0.02F);
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
     
     final Translation expectedLocation = new Translation();
-    expectedLocation.setX(-0.05F);
-    expectedLocation.setY(-0.21F);
-    expectedLocation.setZ(0.0F);
+    expectedLocation.setX(0.0F);
+    expectedLocation.setY(-0.05F);
+    expectedLocation.setZ(-0.21F);
+
 
     expectedBox.setTranslation(expectedLocation);
     
@@ -183,7 +184,7 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertDodaiBox2(XMLBox actualBox) {
     final XMLBox expectedBox = new XMLBox();
-    expectedBox.setTransparent(true);
+    expectedBox.setTransparent(false);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
     expectedBox.setWidth(0.3F);
     expectedBox.setHeight(0.005F);
@@ -191,8 +192,8 @@ public class SimpleXmlUnmarshallerTest {
     
     final Translation expectedLocation = new Translation();
     expectedLocation.setX(0.0F);
-    expectedLocation.setY(-0.3475F);
-    expectedLocation.setZ(0.0F);
+    expectedLocation.setY(0.0F);
+    expectedLocation.setZ(-0.3475F);
 
     expectedBox.setTranslation(expectedLocation);
     
@@ -201,16 +202,16 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertDodaiBox3(XMLBox actualBox) {
     final XMLBox expectedBox = new XMLBox();
-    expectedBox.setTransparent(true);
+    expectedBox.setTransparent(false);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
     expectedBox.setWidth(0.02F);
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
     
     final Translation expectedLocation = new Translation();
-    expectedLocation.setX(0.05F);
-    expectedLocation.setY(-0.21F);
-    expectedLocation.setZ(0.0F);
+    expectedLocation.setX(0.0F);
+    expectedLocation.setY(0.05F);
+    expectedLocation.setZ(-0.21F);
 
     expectedBox.setTranslation(expectedLocation);
     
@@ -219,16 +220,16 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertDodaiBox4(XMLBox actualBox) {
     final XMLBox expectedBox = new XMLBox();
-    expectedBox.setTransparent(true);
+    expectedBox.setTransparent(false);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
     expectedBox.setWidth(0.54F);
     expectedBox.setHeight(0.05F);
     expectedBox.setDepth(0.07F);
     
     final Translation expectedLocation = new Translation();
+    expectedLocation.setY(0.0F);
+    expectedLocation.setZ(-0.05F);
     expectedLocation.setX(0.0F);
-    expectedLocation.setY(-0.05F);
-    expectedLocation.setZ(0.0F);
 
     expectedBox.setTranslation(expectedLocation);
     
@@ -254,7 +255,7 @@ public class SimpleXmlUnmarshallerTest {
     final LinkData actualLinkData = actualGroup.getLinkData(0);
     final LinkData expectedLinkData = new LinkData();
     expectedLinkData.setNumber(2);
-    expectedLinkData.setTarget("translationX"); //$NON-NLS-1$
+    expectedLinkData.setTarget("translationY"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
 
     final XMLBox actualBox = actualGroup.getXMLBox(0);
@@ -266,16 +267,16 @@ public class SimpleXmlUnmarshallerTest {
   
   private void assertDaishaBox(XMLBox actualBox) {
     final XMLBox expectedBox = new XMLBox();
-    expectedBox.setTransparent(true);
+    expectedBox.setTransparent(false);
     expectedBox.setColor("yellow"); //$NON-NLS-1$
     expectedBox.setWidth(0.07F);
     expectedBox.setHeight(0.05F);
     expectedBox.setDepth(0.005F);
     
     final Translation expectedLocation = new Translation();
-    expectedLocation.setX(0.0F);
+    expectedLocation.setZ(0.0F);
     expectedLocation.setY(0.0F);
-    expectedLocation.setZ(0.02F);
+    expectedLocation.setX(0.02F);
 
     expectedBox.setTranslation(expectedLocation);
     
@@ -300,7 +301,7 @@ public class SimpleXmlUnmarshallerTest {
     final LinkData actualLinkData = actualGroup.getLinkData(0);
     final LinkData expectedLinkData = new LinkData();
     expectedLinkData.setNumber(3);
-    expectedLinkData.setTarget("rotationZ"); //$NON-NLS-1$
+    expectedLinkData.setTarget("rotationX"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
     
     final XMLCylinder actualCylinder1 = actualGroup.getXMLCylinder(0);
@@ -319,13 +320,13 @@ public class SimpleXmlUnmarshallerTest {
     expectedCylinder.setRadius(0.01F);
     
     final Translation expectedLocation = new Translation();
-    expectedLocation.setX(0.0F);
+    expectedLocation.setZ(0.0F);
     expectedLocation.setY(0.0F);
-    expectedLocation.setZ(0.0325F);
+    expectedLocation.setX(0.0325F);
 
     final Rotation expectedRotation = new Rotation();
-    expectedRotation.setX(1.5708F);
-    expectedRotation.setY(0.0F);
+    expectedRotation.setY(1.5708F);
+    expectedRotation.setX(0.0F);
     expectedRotation.setZ(0.0F);
     
     expectedCylinder.setTranslation(expectedLocation);
@@ -342,9 +343,9 @@ public class SimpleXmlUnmarshallerTest {
     expectedCylinder.setRadius(0.0025F);
     
     final Translation expectedLocation = new Translation();
-    expectedLocation.setX(0.0F);
-    expectedLocation.setY(0.15F);
-    expectedLocation.setZ(0.037F);
+    expectedLocation.setY(0.0F);
+    expectedLocation.setZ(0.15F);
+    expectedLocation.setX(0.037F);
     
     expectedCylinder.setTranslation(expectedLocation);
     
