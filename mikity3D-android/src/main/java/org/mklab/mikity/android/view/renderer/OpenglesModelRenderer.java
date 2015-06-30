@@ -5,6 +5,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.config.Eye;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
@@ -72,6 +73,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     this.glView = glView;
     this.configuration = new Mikity3dConfiguration();
     this.configuration.setEye(new Eye(-2.0f, 0.0f, 0.0f));
+    this.configuration.setLookAtPoiint(new LookAtPoint(0.0f, 0.0f, 0.0f));
   }
 
   /**
@@ -113,7 +115,8 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[] {-10.0f, 10.0f, -10.0f, 1.0f}, 0);
 
     final Eye eye = this.configuration.getEye();
-    GLU.gluLookAt(gl10, eye.getX(), eye.getY(), eye.getZ(), 0.0F, 0.0F, -1.0F, 0.0F, 0.0F, 1.0F);
+    final LookAtPoint lookAtPoint = this.configuration.getLookAtPoint();
+    GLU.gluLookAt(gl10, eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0F, 0.0F, 1.0F);
 
     gl10.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);

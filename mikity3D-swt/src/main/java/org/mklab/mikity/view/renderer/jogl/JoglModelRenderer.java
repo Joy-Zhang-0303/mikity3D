@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
 
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.config.Eye;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
@@ -43,7 +44,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   //private double[] eye = {5.0, 0.0, 0.0};
   
   /** 対象の中心 */
-  private double[] center = {0.0, 0.0, 0.0};
+  //private double[] center = {0.0, 0.0, 0.0};
 
   /** Y軸に関する回転角度 */
   private float rotationY = 0.0f;
@@ -132,7 +133,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glLoadIdentity();
     
     final Eye eye = this.configuration.getEye();
-    this.glu.gluLookAt(eye.getX(), eye.getY(), eye.getZ(), this.center[0], this.center[1], this.center[2], 0.0, 0.0, 1.0);
+    final LookAtPoint lookAtPoint = this.configuration.getLookAtPoint();
+    this.glu.gluLookAt(eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0, 0.0, 1.0);
     
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl.glTranslatef(-this.scale, 0.0f, 0.0f);

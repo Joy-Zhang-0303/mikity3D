@@ -325,6 +325,7 @@ public class JoglModeler extends Composite {
   public void createViewer() {
     org.mklab.mikity.model.xml.simplexml.model.Group[] children = this.tree.getModel().getGroups();
     this.renderer.setChildren(children);
+    this.renderer.setConfiguration(this.root.getConfiguration(0));
   }
 
   /**

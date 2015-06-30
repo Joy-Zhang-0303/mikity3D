@@ -20,6 +20,7 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.config.Background;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.Light;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
 import org.mklab.mikity.model.xml.simplexml.config.Eye;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -46,9 +47,9 @@ public class ConfigurationDialog {
   private ParameterInputBox lightY;
   private ParameterInputBox lightZ;
 
-  private ParameterInputBox eyePositionX;
-  private ParameterInputBox eyePositionY;
-  private ParameterInputBox eyePositionZ;
+  private ParameterInputBox eyeX;
+  private ParameterInputBox eyeY;
+  private ParameterInputBox eyeZ;
 
   private ParameterInputBox lookAtPointX;
   private ParameterInputBox lookAtPointY;
@@ -146,11 +147,11 @@ public class ConfigurationDialog {
     lightPointGroup.setLayout(lightLayout);
     lightPointGroup.setLayoutData(lightData);
 
-    final Label lKakko = new Label(lightPointGroup, SWT.NONE);
-    lKakko.setText(Messages.getString("ConfigDialog.9")); //$NON-NLS-1$
-    final GridData xData = new GridData(GridData.FILL_HORIZONTAL);
-    xData.horizontalSpan = 7;
-    lKakko.setLayoutData(xData);
+//    final Label lKakko = new Label(lightPointGroup, SWT.NONE);
+//    lKakko.setText(Messages.getString("ConfigDialog.9")); //$NON-NLS-1$
+//    final GridData xData = new GridData(GridData.FILL_HORIZONTAL);
+//    xData.horizontalSpan = 7;
+//    lKakko.setLayoutData(xData);
 
     this.lightX = new ParameterInputBox(lightPointGroup, SWT.NONE, "  (", "0.2"); //$NON-NLS-1$ //$NON-NLS-2$
     this.lightY = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -193,9 +194,9 @@ public class ConfigurationDialog {
     vData.horizontalSpan = 7;
     vLabel.setLayoutData(vData);
 
-    this.eyePositionX = new ParameterInputBox(eyePointGroup, SWT.NONE, "  (", "5.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.eyePositionY = new ParameterInputBox(eyePointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.eyePositionZ = new ParameterInputBox(eyePointGroup, SWT.NONE, ",  ", "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeX = new ParameterInputBox(eyePointGroup, SWT.NONE, "  (", "5.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeY = new ParameterInputBox(eyePointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeZ = new ParameterInputBox(eyePointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     final Label vKakko = new Label(eyePointGroup, SWT.NONE);
     final GridData vKakkoData = new GridData();
@@ -224,12 +225,16 @@ public class ConfigurationDialog {
 
     if (this.configuration.getEye() != null) {
       final Eye eye = this.configuration.getEye();
-      this.eyePositionX.setText("" + eye.getX()); //$NON-NLS-1$
-      this.eyePositionY.setText("" + eye.getY()); //$NON-NLS-1$
-      this.eyePositionZ.setText("" + eye.getZ()); //$NON-NLS-1$
-//      this.lookAtPointX.setText("" + eye.getRotationX()); //$NON-NLS-1$
-//      this.lookAtPointY.setText("" + eye.getRotationY()); //$NON-NLS-1$
-//      this.lookAtPointZ.setText("" + eye.getRotationZ()); //$NON-NLS-1$
+      this.eyeX.setText("" + eye.getX()); //$NON-NLS-1$
+      this.eyeY.setText("" + eye.getY()); //$NON-NLS-1$
+      this.eyeZ.setText("" + eye.getZ()); //$NON-NLS-1$
+    }
+    
+    if (this.configuration.getLookAtPoint() != null) {
+      final LookAtPoint lookAtPoint = this.configuration.getLookAtPoint();
+      this.lookAtPointX.setText("" + lookAtPoint.getX()); //$NON-NLS-1$
+      this.lookAtPointY.setText("" + lookAtPoint.getY()); //$NON-NLS-1$
+      this.lookAtPointZ.setText("" + lookAtPoint.getZ()); //$NON-NLS-1$
     }
 
     if (this.configuration.getModelUnit() != null) {
@@ -328,13 +333,16 @@ public class ConfigurationDialog {
     this.configuration.setLight(light);
 
     final Eye eye = new Eye();
-    eye.setX(this.eyePositionX.getFloatValue());
-    eye.setY(this.eyePositionY.getFloatValue());
-    eye.setZ(this.eyePositionZ.getFloatValue());
-//    eye.setRotationX(this.lookAtPointX.getDoubleValue());
-//    eye.setRotationY(this.lookAtPointY.getDoubleValue());
-//    eye.setRotationZ(this.lookAtPointZ.getDoubleValue());
+    eye.setX(this.eyeX.getFloatValue());
+    eye.setY(this.eyeY.getFloatValue());
+    eye.setZ(this.eyeZ.getFloatValue());
     this.configuration.setEye(eye);
+    
+    final LookAtPoint lookAtPoint = new LookAtPoint();
+    lookAtPoint.setX(this.lookAtPointX.getFloatValue());
+    lookAtPoint.setY(this.lookAtPointY.getFloatValue());
+    lookAtPoint.setZ(this.lookAtPointZ.getFloatValue());
+    this.configuration.setLookAtPoiint(lookAtPoint);
 
     if (this.configuration.getBackground() == null) {
       if (this.colorCombo.getText() != "white") { //$NON-NLS-1$
@@ -387,13 +395,13 @@ public class ConfigurationDialog {
     if (this.lightZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.eyePositionX.containsOnlyNumbers() == false) {
+    if (this.eyeX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.eyePositionY.containsOnlyNumbers() == false) {
+    if (this.eyeY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.eyePositionZ.containsOnlyNumbers() == false) {
+    if (this.eyeZ.containsOnlyNumbers() == false) {
       return false;
     }
     if (this.lookAtPointX.containsOnlyNumbers() == false) {
