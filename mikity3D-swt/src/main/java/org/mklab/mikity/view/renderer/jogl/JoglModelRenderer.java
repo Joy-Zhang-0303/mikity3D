@@ -39,12 +39,6 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   
   /** 設定 */
   private Mikity3dConfiguration configuration;
-  
-  /** 視点 */
-  //private double[] eye = {5.0, 0.0, 0.0};
-  
-  /** 対象の中心 */
-  //private double[] center = {0.0, 0.0, 0.0};
 
   /** Y軸に関する回転角度 */
   private float rotationY = 0.0f;
@@ -189,11 +183,10 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    */
   public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
     final GL2 gl = (GL2)drawable.getGL();
-    //
     gl.glViewport(0, 0, width, height);
     gl.glMatrixMode(GLMatrixFunc.GL_PROJECTION);
     gl.glLoadIdentity();
-    this.glu.gluPerspective(10.0, (double)width / (double)height, 1.0, 100.0);
+    this.glu.gluPerspective(10.0, (double)width / (double)height, 0.001, 100.0);
     gl.glMatrixMode(GLMatrixFunc.GL_MODELVIEW);
   }
 
