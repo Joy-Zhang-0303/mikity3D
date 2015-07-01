@@ -47,8 +47,6 @@ public class MovableGroupManager {
   private boolean hasDHParameter = false;
   /** 座標パラメータを使用するならばtrue */
   private boolean hasCoordinateParameter = false;
-  
-  private LogCatPrinter logCat;
 
   /**
    * 新しく生成された<code>MovableGroupManager</code>オブジェクトを初期化します。
@@ -81,8 +79,6 @@ public class MovableGroupManager {
     for (final MovableGroup movableGroup : this.movableGroups) {
       final DataPicker picker = this.pickers.get(movableGroup);
       movableGroup.setDHParameter(picker.getDHParameter(t));
-     // this.logCat.printLog(" t:"+t+" A:"+picker.getDHParameter(t).getA()+" Alpha:"+picker.getDHParameter(t).getAlpha()
-          //+" D:"+picker.getDHParameter(t).getD()+" Theta:"+picker.getDHParameter(t).getTheta()); //$NON-NLS-1$
     }
   }
 
@@ -95,9 +91,7 @@ public class MovableGroupManager {
     for (final MovableGroup movableGroup : this.movableGroups) {
       final DataPicker picker = this.pickers.get(movableGroup);
       movableGroup.setCoordinateParameter(picker.getCoordinateParameter(t));
-     // this.logCat.printLog(""+picker.getDHParameter(t));
- 
-    }
+     }
   }
 
   /**
@@ -107,7 +101,6 @@ public class MovableGroupManager {
    * @param data 時系列データ
    */
   private void registerMovableGroups(final Group[] groups, final Matrix data) {
-    //logCat.printLog("registerMovableGroups"); //$NON-NLS-1$
     for (final Group group : groups) {
       final MovableGroup movableGroup = MOVABLE_GROUPS.get(group);
       final LinkData[] links = group.getLinkData();
@@ -127,16 +120,12 @@ public class MovableGroupManager {
    * @param links リンクデータ
    */
   private DataPicker createPicker(final Matrix data, final LinkData[] links) {
-    // this.logCat.printLog("createPicker"); //$NON-NLS-1$
     final DataPicker picker = new ClosenessDataPicker(data);
     for (final LinkData link : links) {
       if (link.hasDHParameter()) {
-       // this.logCat.printLog("hasDHParameter"); //$NON-NLS-1$
         if (link.hasNumber()) {
-          // this.logCat.printLog("hasColumNumber"); //$NON-NLS-1$
           final int dataNumber = link.getNumber();
           final String parameterName = link.getTarget();
-          // this.logCat.printLog("Number of link:"+links.length+" dataNumber:"+dataNumber  +"parameterName:"+parameterName); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
           final DHParameterType type;
 
           if (parameterName.equals("a")) { //$NON-NLS-1$
@@ -152,25 +141,6 @@ public class MovableGroupManager {
           }
           picker.pickup(type, dataNumber);
         }
-        
-//        if (link.hasBasis()) {
-//          final double initialValue = link.getBasis();
-//          final String parameterName = link.getTarget();
-//          final DHParameterType type;
-//
-//          if (parameterName.equals("a")) { //$NON-NLS-1$
-//            type = DHParameterType.A;
-//          } else if (parameterName.equals("alpha")) { //$NON-NLS-1$
-//            type = DHParameterType.ALPHA;
-//          } else if (parameterName.equals("d")) { //$NON-NLS-1$
-//            type = DHParameterType.D;
-//          } else if (parameterName.equals("theta")) { //$NON-NLS-1$
-//            type = DHParameterType.THETA;
-//          } else {
-//            throw new IllegalAccessError(Messages.getString("MovableGroupManager.1")); //$NON-NLS-1$
-//          }
-//          picker.setParameter(type, initialValue);
-//        }
       } else if (link.hasCoordinateParameter()) {
         if (link.hasNumber()) {
           final int dataNumber = link.getNumber();
@@ -194,29 +164,6 @@ public class MovableGroupManager {
           }
           picker.pickup(type, dataNumber);
         }
-        
-//        if (link.hasBasis()) {
-//          final double initialValue = link.getBasis();
-//          final String parameterName = link.getTarget();
-//          final CoordinateParameterType type;
-//
-//          if (parameterName.equals("locationX")) { //$NON-NLS-1$
-//            type = CoordinateParameterType.X;
-//          } else if (parameterName.equals("locationY")) { //$NON-NLS-1$
-//            type = CoordinateParameterType.Y;
-//          } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
-//            type = CoordinateParameterType.Z;
-//          } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
-//            type = CoordinateParameterType.ROTATION_X;
-//          } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
-//            type = CoordinateParameterType.ROTATION_Y;
-//          } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-//            type = CoordinateParameterType.ROTATION_Z;
-//          } else {
-//            throw new IllegalAccessError(Messages.getString("MovableGroupManager.3")); //$NON-NLS-1$
-//          }
-//          picker.setParameter(type, initialValue);
-//        }
       }
     }
      
@@ -262,7 +209,6 @@ public class MovableGroupManager {
 
     this.movableGroups.clear();
     registerMovableGroups(this.root.getModel(0).getGroups(), data);
-   // this.logCat.printLog("setData"); //$NON-NLS-1$
   }
   
   /**
@@ -311,12 +257,12 @@ public class MovableGroupManager {
   }
   
   
-  /**
-   * LogCatの出力先を設定します。
-   * @param logCat Androidのログキャット利用クラス
-   */
-  public void setLogCat(LogCatPrinter logCat){
-    this.logCat = logCat;
-  }
+//  /**
+//   * LogCatの出力先を設定します。
+//   * @param logCat Androidのログキャット利用クラス
+//   */
+//  public void setLogCat(LogCatPrinter logCat){
+//    this.logCat = logCat;
+//  }
   
 }

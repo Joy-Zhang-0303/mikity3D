@@ -26,7 +26,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
  * @author miki
  * @version $Revision: 1.1 $.2005/02/03
  */
-public class GroupConfigWithCoordinateParameterDialog {
+public class EditGroupWithXyzParameterDialog {
 
   Shell sShell = null;
   private Shell parentShell = null;
@@ -56,7 +56,7 @@ public class GroupConfigWithCoordinateParameterDialog {
    * @param group グループ
    * @param editable 編集可能性
    */
-  public GroupConfigWithCoordinateParameterDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.Group group, boolean editable) {
+  public EditGroupWithXyzParameterDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.Group group, boolean editable) {
     this.parentShell = parentShell;
     this.group = group;
     this.editable = editable;
@@ -161,7 +161,7 @@ public class GroupConfigWithCoordinateParameterDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containsOnlyNumbers() == false) {
-          final MessageBox message = new MessageBox(GroupConfigWithCoordinateParameterDialog.this.sShell, SWT.ICON_WARNING);
+          final MessageBox message = new MessageBox(EditGroupWithXyzParameterDialog.this.sShell, SWT.ICON_WARNING);
           message.setMessage(Messages.getString("GroupConfigDialogLink.7")); //$NON-NLS-1$
           message.setText(Messages.getString("GroupConfigDialogLink.8")); //$NON-NLS-1$
           message.open();
@@ -169,7 +169,7 @@ public class GroupConfigWithCoordinateParameterDialog {
         }
 
         updateGroupParameters();
-        GroupConfigWithCoordinateParameterDialog.this.sShell.close();
+        EditGroupWithXyzParameterDialog.this.sShell.close();
       }
 
     });
@@ -183,7 +183,7 @@ public class GroupConfigWithCoordinateParameterDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         // キャンセルが選択されたら、変更しないでシェルを閉じる
-        GroupConfigWithCoordinateParameterDialog.this.sShell.close();
+        EditGroupWithXyzParameterDialog.this.sShell.close();
       }
     });
   }

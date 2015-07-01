@@ -31,8 +31,8 @@ import org.mklab.mikity.view.gui.dialog.AddTrianglePolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditQuadPolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditTrianglePolygonDialog;
-import org.mklab.mikity.view.gui.dialog.GroupConfigWithCoordinateParameterDialog;
-import org.mklab.mikity.view.gui.dialog.GroupConfigWithDHParameterDialog;
+import org.mklab.mikity.view.gui.dialog.EditGroupWithXyzParameterDialog;
+import org.mklab.mikity.view.gui.dialog.EditGroupWithDHParameterDialog;
 import org.mklab.mikity.view.gui.dnd.DragAndDropEnabler;
 
 
@@ -118,17 +118,17 @@ public class SceneGraphTree {
         if (doubleClickObj == null) {
           return;
         } else if (doubleClickObj instanceof Group) {
-          if (SceneGraphTree.this.xmlTree.getSelection()[0].getText().startsWith("root")) { //$NON-NLS-1$
-            // 選択されたものがrootであるとき
-            SceneGraphTree.this.editable = false;
-          }
+//          if (SceneGraphTree.this.xmlTree.getSelection()[0].getText().startsWith("root")) { //$NON-NLS-1$
+//            // 選択されたものがrootであるとき
+//            SceneGraphTree.this.editable = false;
+//          }
           checkUsedLinkType(SceneGraphTree.this.model.getGroups());
 
           if (SceneGraphTree.this.usedDHParameter) {
-            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final EditGroupWithDHParameterDialog groupConf = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           } else {
-            final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final EditGroupWithXyzParameterDialog groupConf = new EditGroupWithXyzParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           }
           setTree();
@@ -253,10 +253,10 @@ public class SceneGraphTree {
           checkUsedLinkType(SceneGraphTree.this.model.getGroups());
 
           if (SceneGraphTree.this.usedDHParameter) {
-            final GroupConfigWithDHParameterDialog dialog = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final EditGroupWithDHParameterDialog dialog = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             dialog.open();
           } else if (SceneGraphTree.this.usedCoordinateParameter) {
-            final GroupConfigWithCoordinateParameterDialog dialog = new GroupConfigWithCoordinateParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final EditGroupWithXyzParameterDialog dialog = new EditGroupWithXyzParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             dialog.open();
           } else {
             final MessageBox message = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
@@ -264,11 +264,11 @@ public class SceneGraphTree {
             message.setText(Messages.getString("SceneGraphTree.15")); //$NON-NLS-1$
             int result = message.open();
             if (result == SWT.YES) {
-              final GroupConfigWithDHParameterDialog dialog = new GroupConfigWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+              final EditGroupWithDHParameterDialog dialog = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
               dialog.open();
               setTree();
             } else if (result == SWT.NO) {
-              final GroupConfigWithCoordinateParameterDialog dialog = new GroupConfigWithCoordinateParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+              final EditGroupWithXyzParameterDialog dialog = new EditGroupWithXyzParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
               dialog.open();
               setTree();
             }
@@ -539,42 +539,42 @@ public class SceneGraphTree {
       final XMLBox[] boxes = groups[i].getXMLBoxes();
       for (int j = 0; j < boxes.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("box ( " + boxes[j].getWidth() + ", " + boxes[j].getHeight() + ", " + boxes[j].getDepth() + ", " + boxes[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setText("box (" + boxes[j].getWidth() + ", " + boxes[j].getHeight() + ", " + boxes[j].getDepth() + ", " + boxes[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(boxes[j]);
       }
 
       final XMLCylinder[] cylinders = groups[i].getXMLCylinders();
       for (int j = 0; j < cylinders.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cylinder ( " + cylinders[j].getRadius() + ", " + cylinders[j].getHeight() + ", " + cylinders[j].getDivision() + ", " + cylinders[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setText("Cylinder (" + cylinders[j].getRadius() + ", " + cylinders[j].getHeight() + ", " + cylinders[j].getDivision() + ", " + cylinders[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cylinders[j]);
       }
 
       final XMLSphere[] spheres = groups[i].getXMLSpheres();
       for (int j = 0; j < spheres.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Sphere ( " + spheres[j].getRadius() + ", " + spheres[j].getDivision() + ", " + spheres[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        boxChild.setText("Sphere (" + spheres[j].getRadius() + ", " + spheres[j].getDivision() + ", " + spheres[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         boxChild.setData(spheres[j]);
       }
 
       final XMLCone[] cones = groups[i].getXMLCones();
       for (int j = 0; j < cones.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cone ( " + cones[j].getRadisu() + ", " + cones[j].getHeight() + ", " + cones[j].getDivision() + ", " + cones[j].getColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setText("Cone (" + cones[j].getRadisu() + ", " + cones[j].getHeight() + ", " + cones[j].getDivision() + ", " + cones[j].getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cones[j]);
       }
       
       final XMLTrianglePolygon[] trianglePolygons = groups[i].getXMLTrianglePolygons();
       for (int j = 0; j < trianglePolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Triangle ( " + trianglePolygons[j].getColor() + " )"); //$NON-NLS-1$ //$NON-NLS-2$
+        boxChild.setText("Triangle (" + trianglePolygons[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
         boxChild.setData(trianglePolygons[j]);
       }
 
       final XMLQuadPolygon[] quadPolygons = groups[i].getXMLQuadPolygons();
       for (int j = 0; j < quadPolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Quad ( " + quadPolygons[j].getColor() + " )"); //$NON-NLS-1$//$NON-NLS-2$
+        boxChild.setText("Quad (" + quadPolygons[j].getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$
         boxChild.setData(quadPolygons[j]);
       }
 

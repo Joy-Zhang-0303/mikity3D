@@ -19,12 +19,12 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
 /**
- * グループの設定を行うクラス(DHパラメータ使用)
+ * グループの設定を行う(DHパラメータ使用)ダイアログを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.1 $.2005/02/03
  */
-public class GroupConfigWithDHParameterDialog {
+public class EditGroupWithDHParameterDialog {
 
   /** */
   Shell sShell = null;
@@ -60,7 +60,7 @@ public class GroupConfigWithDHParameterDialog {
    * @param group グループ
    * @param editable 編集可能性
    */
-  public GroupConfigWithDHParameterDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.Group group, boolean editable) {
+  public EditGroupWithDHParameterDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.Group group, boolean editable) {
     this.parentShell = parentShell;
     this.group = group;
     this.editable = editable;
@@ -98,21 +98,21 @@ public class GroupConfigWithDHParameterDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         if (Check()) {
-          final MessageBox message = new MessageBox(GroupConfigWithDHParameterDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+          final MessageBox message = new MessageBox(EditGroupWithDHParameterDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           message.setMessage(Messages.getString("GroupConfigDialogDH.3")); //$NON-NLS-1$
           message.setText(Messages.getString("GroupConfigDialogDH.4")); //$NON-NLS-1$
           int yesNo = message.open();
           if (yesNo == SWT.YES) {
-            GroupConfigWithDHParameterDialog.this.group.setName(GroupConfigWithDHParameterDialog.this.groupName.getText());
-            GroupConfigWithDHParameterDialog.this.group.clearLinkData();
-            addLinkData(GroupConfigWithDHParameterDialog.this.a, GroupConfigWithDHParameterDialog.this.columnA);
-            addLinkData(GroupConfigWithDHParameterDialog.this.d, GroupConfigWithDHParameterDialog.this.columnD);
-            addLinkData(GroupConfigWithDHParameterDialog.this.theta, GroupConfigWithDHParameterDialog.this.columnTheta);
-            addLinkData(GroupConfigWithDHParameterDialog.this.alpha, GroupConfigWithDHParameterDialog.this.columnAlpha);
-            GroupConfigWithDHParameterDialog.this.sShell.close();
+            EditGroupWithDHParameterDialog.this.group.setName(EditGroupWithDHParameterDialog.this.groupName.getText());
+            EditGroupWithDHParameterDialog.this.group.clearLinkData();
+            addLinkData(EditGroupWithDHParameterDialog.this.a, EditGroupWithDHParameterDialog.this.columnA);
+            addLinkData(EditGroupWithDHParameterDialog.this.d, EditGroupWithDHParameterDialog.this.columnD);
+            addLinkData(EditGroupWithDHParameterDialog.this.theta, EditGroupWithDHParameterDialog.this.columnTheta);
+            addLinkData(EditGroupWithDHParameterDialog.this.alpha, EditGroupWithDHParameterDialog.this.columnAlpha);
+            EditGroupWithDHParameterDialog.this.sShell.close();
           }
         } else {
-          final MessageBox message = new MessageBox(GroupConfigWithDHParameterDialog.this.sShell, SWT.ICON_WARNING);
+          final MessageBox message = new MessageBox(EditGroupWithDHParameterDialog.this.sShell, SWT.ICON_WARNING);
           message.setMessage(Messages.getString("GroupConfigDialogDH.5")); //$NON-NLS-1$
           message.setText(Messages.getString("GroupConfigDialogDH.6")); //$NON-NLS-1$
         }
@@ -128,7 +128,7 @@ public class GroupConfigWithDHParameterDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         // キャンセルが選択されたら、変更しないでシェルを閉じる
-        GroupConfigWithDHParameterDialog.this.sShell.close();
+        EditGroupWithDHParameterDialog.this.sShell.close();
       }
     });
 

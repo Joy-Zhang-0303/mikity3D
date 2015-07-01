@@ -82,6 +82,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     
     this.configuration = new Mikity3dConfiguration();
     this.configuration.setEye(new Eye(5.0f, 0.0f, 0.0f));
+    this.configuration.setLookAtPoiint(new LookAtPoint(0.0f, 0.0f, 0.0f));
     
     addGLEventListener(this);
     addMouseListener(this);
@@ -136,8 +137,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
     
     
-    for (final JoglBranchGroup group : this.topGroups) {
-      group.display(gl);
+    for (final JoglBranchGroup topGroup : this.topGroups) {
+      topGroup.display(gl);
     }
   }
 

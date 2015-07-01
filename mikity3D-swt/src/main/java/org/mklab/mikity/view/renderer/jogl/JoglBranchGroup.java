@@ -15,7 +15,7 @@ import javax.media.opengl.GL2;
 public class JoglBranchGroup implements JoglObject {
   /** オブジェクト */
   private List<JoglObject> objects = new ArrayList<>();
-  /** 可動サブグループ */
+  /** サブグループ */
   private List<JoglTransformGroup> groups = new ArrayList<>();
 
   /**
@@ -28,9 +28,9 @@ public class JoglBranchGroup implements JoglObject {
   }
 
   /**
-   * 可動サブグループを追加します。
+   * サブグループを追加します。
    * 
-   * @param group 可動サブグループ
+   * @param group サブグループ
    */
   public void addChild(JoglTransformGroup group) {
     this.groups.add(group);

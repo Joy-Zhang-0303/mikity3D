@@ -20,8 +20,8 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
-import org.mklab.mikity.view.gui.dialog.GroupConfigWithCoordinateParameterDialog;
-import org.mklab.mikity.view.gui.dialog.GroupConfigWithDHParameterDialog;
+import org.mklab.mikity.view.gui.dialog.EditGroupWithXyzParameterDialog;
+import org.mklab.mikity.view.gui.dialog.EditGroupWithDHParameterDialog;
 import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 
 
@@ -224,21 +224,21 @@ public class JoglModeler extends Composite {
           messageBox.setText(Messages.getString("Modeler.11")); //$NON-NLS-1$
           int result = messageBox.open();
           if (result == SWT.YES) {
-            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
+            final EditGroupWithDHParameterDialog groupConf = new EditGroupWithDHParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
           } else if (result == SWT.NO) {
-            GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
+            EditGroupWithXyzParameterDialog groupConf = new EditGroupWithXyzParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
           }
         }
 
         for (int i = 0; i < linkdata.length; i++) {
           if (linkdata[i].hasDHParameter()) {
-            final GroupConfigWithDHParameterDialog groupConf = new GroupConfigWithDHParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
+            final EditGroupWithDHParameterDialog groupConf = new EditGroupWithDHParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
             break;
           } else if (linkdata[i].hasCoordinateParameter()) {
-            final GroupConfigWithCoordinateParameterDialog groupConf = new GroupConfigWithCoordinateParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
+            final EditGroupWithXyzParameterDialog groupConf = new EditGroupWithXyzParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
             break;
           }

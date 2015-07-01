@@ -17,15 +17,15 @@ import org.mklab.mikity.model.MovableGroup;
  * @version $Revision$, 2012/02/07
  */
 public class JoglTransformGroup implements MovableGroup {
-  /** オブジェクト */
+  /** オブジェクト。 */
   private List<JoglObject> objects = new ArrayList<>();
-  /**可動サブグループ */
+  /** サブグループ 。*/
   private List<JoglTransformGroup> groups = new ArrayList<>();
-  /** 座標系の初期値 */
+  /** 座標系の基準。 */
   private JoglCoordinate baseCoordinate;
-  /** 座標系 */
+  /** 座標系。 */
   private JoglCoordinate coordinate = new JoglCoordinate();
-  /** 名前 */
+  /** 名前。 */
   private String name;
 
   /**
@@ -38,18 +38,18 @@ public class JoglTransformGroup implements MovableGroup {
   }
 
   /**
-   * 可動サブグループを追加します。
+   * サブグループを追加します。
    * 
-   * @param child 可動サブグループ
+   * @param child サブグループ
    */
   public void addChild(JoglTransformGroup child) {
     this.groups.add(child);
   }
 
   /**
-   * 座標系の初期値を設定します。
+   * 座標系の基準を設定します。
    * 
-   * @param coordinate 座標系の初期値
+   * @param coordinate 座標系の基準
    */
   public void setBaseCoordinate(JoglCoordinate coordinate) {
     this.baseCoordinate = coordinate; 

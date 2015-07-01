@@ -169,7 +169,7 @@ public class Mikity3dFactory {
     final Mikity3dConfiguration config = new Mikity3dConfiguration();
 
     final Group group = new Group();
-    group.setName("Group0"); //$NON-NLS-1$
+    group.setName("root"); //$NON-NLS-1$
 
     final Mikity3dModel model = new Mikity3dModel();
     model.addGroup(group);
