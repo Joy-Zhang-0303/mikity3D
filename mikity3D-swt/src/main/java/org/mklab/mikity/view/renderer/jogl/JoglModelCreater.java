@@ -22,22 +22,13 @@ public class JoglModelCreater {
    * @return オブジェクトのグループ
    */
   public List<JoglTransformGroup> create(final Group[] groups) {
-    //final JoglBranchGroup branchGroup = new JoglBranchGroup();
-
-    final List<JoglTransformGroup> parent = new ArrayList<>();
+    final List<JoglTransformGroup> objectGroups = new ArrayList<>();
     for (final Group group : groups) {
       final JoglTransformGroup child = JoglPrimitiveFactory.create(group);
-      parent.add(child);
+      objectGroups.add(child);
     }
 
-//    branchGroup.addChild(parent); ///////
-//    
-//    final List<JoglBranchGroup> branchGroups = new ArrayList<>();
-//    branchGroups.add(branchGroup);
-//
-//    return branchGroups;
-    
-    return parent;
+    return objectGroups;
   }
 
 }
