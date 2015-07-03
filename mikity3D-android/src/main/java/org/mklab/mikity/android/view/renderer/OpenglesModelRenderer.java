@@ -21,15 +21,18 @@ import android.opengl.GLU;
  * @version $Revision$, 2013/02/06
  */
 public class OpenglesModelRenderer implements ModelRenderer, Renderer {
-  /** アスペクト比 。 */
-  private float aspect;
-
   @SuppressWarnings("unused")
   private static final long serialVersionUID = 5653656698891675370L;
 
   /** オブジェクトのグループ */
   private OpenglesBranchGroup[] topGroups;
 
+  /** 設定。 */
+  private Mikity3dConfiguration configuration;
+
+  /** アスペクト比 。 */
+  private float aspect;
+  
   /** Y軸周りの回転角度 */
   private float rotationY = 0.0f;
   /** Z軸周りの回転角度 */
@@ -55,14 +58,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f};
   /** 環境光の強さ */
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
-
-  /** 設定。 */
-  private Mikity3dConfiguration configuration;
-  
-//  /** カメラの位置 */
-//  private float eyeZ = 0.0f;
-//  private float eyeY = 0.0f;
-//  private float eyeX = -2.0f;
 
   /**
    * 新しく生成された<code>OpenglesModelRenderer</code>オブジェクトを初期化します。
