@@ -124,7 +124,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
     gl.glEnable(GL.GL_DEPTH_TEST); // 奥行き判定を有効にします 
-    gl.glEnable(GL.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
+    //gl.glEnable(GL.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
     
     gl.glLoadIdentity();
     

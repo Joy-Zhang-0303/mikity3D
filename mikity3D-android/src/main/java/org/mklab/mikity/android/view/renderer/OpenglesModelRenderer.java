@@ -69,7 +69,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   public OpenglesModelRenderer(GLSurfaceView glView) {
     this.glView = glView;
     this.configuration = new Mikity3dConfiguration();
-    this.configuration.setEye(new Eye(-2.0f, 0.0f, 0.0f));
+    this.configuration.setEye(new Eye(5.0f, 0.0f, 0.0f));
     this.configuration.setLookAtPoiint(new LookAtPoint(0.0f, 0.0f, 0.0f));
   }
 
@@ -101,7 +101,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
     gl10.glMatrixMode(GL10.GL_PROJECTION);
     gl10.glLoadIdentity();
-    GLU.gluPerspective(gl10, 45.0f, this.aspect, 0.01f, 100.0f);
+    GLU.gluPerspective(gl10, 10.0f, this.aspect, 0.001f, 100.0f);
 
     gl10.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     // gl10.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
@@ -120,7 +120,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
 
     // ここで微調整してます
-    gl10.glRotatef(-180f, 0.0f, 0.0f, 1.0f);
+    //gl10.glRotatef(-180f, 0.0f, 0.0f, 1.0f);
 
     gl10.glScalef(this.scaleX, this.scaleY, this.scaleZ);
 
