@@ -11,7 +11,7 @@ import java.util.List;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.Messages;
-import org.mklab.mikity.model.MovableGroupManager;
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.mikity.model.xml.simplexml.model.Translation;
@@ -30,28 +30,28 @@ import org.mklab.mikity.util.Util;
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
-public class OpenglesTransformGroupFactory {
+public class OpenglesObjectGroupFactory {
   /**
    * @param group グループ
    * @return トランスフォームグループ
    */
-  public OpenglesTransformGroup create(final Group group) {
-    final OpenglesTransformGroup movableGroup = new OpenglesTransformGroup();
+  public OpenglesObjectGroup create(final Group group) {
+    final OpenglesObjectGroup objectGroup = new OpenglesObjectGroup();
     
     for (final XMLBox box : group.getXMLBoxes()) {
-      movableGroup.addChild(OpenglesPrimitiveFactory.create(box));
+      objectGroup.addChild(OpenglesPrimitiveFactory.create(box));
     }
 
     for (final XMLCylinder cylinder : group.getXMLCylinders()) {
-      movableGroup.addChild(OpenglesPrimitiveFactory.create(cylinder));
+      objectGroup.addChild(OpenglesPrimitiveFactory.create(cylinder));
     }
 
     for (final XMLSphere sphere : group.getXMLSpheres()) {
-      movableGroup.addChild(OpenglesPrimitiveFactory.create(sphere));
+      objectGroup.addChild(OpenglesPrimitiveFactory.create(sphere));
     }
 
     for (final XMLCone cone : group.getXMLCones()) {
-      movableGroup.addChild(OpenglesPrimitiveFactory.create(cone));
+      objectGroup.addChild(OpenglesPrimitiveFactory.create(cone));
     }
 
     final List<CoordinateParameter> coordinateParameters = new ArrayList<CoordinateParameter>();
@@ -69,29 +69,29 @@ public class OpenglesTransformGroupFactory {
     }
     
     for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygons()) {
-      movableGroup.addChild(OpenglesPrimitiveFactory.create(polygon, dhParameters, coordinateParameters));
+      objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon, dhParameters, coordinateParameters));
     }
 
     for (final XMLQuadPolygon polygon : group.getXMLQuadPolygons()) {
-      movableGroup.addChild(OpenglesPrimitiveFactory.create(polygon, dhParameters, coordinateParameters));
+      objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon, dhParameters, coordinateParameters));
     }
 
     for (final Group child : group.getGroups()) {
-      movableGroup.addChild(OpenglesPrimitiveFactory.create(child));
+      objectGroup.addChild(OpenglesPrimitiveFactory.create(child));
     }
 
     final OpenglesCoordinate coordinate = createCoordinateOf(group);
-    movableGroup.setInitialCoordinate(coordinate);
+    objectGroup.setInitialCoordinate(coordinate);
     
     final String name = group.getName();
     if (name != null) {
-      movableGroup.setName(name);
+      objectGroup.setName(name);
     }
     
     // MovableGroup と Groupの関連付けを行う
-    MovableGroupManager.assignGroup(group, movableGroup);
+    ObjectGroupManager.assignGroup(group, objectGroup);
 
-    return movableGroup;
+    return objectGroup;
   }
 
   /**

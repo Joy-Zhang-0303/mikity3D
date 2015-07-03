@@ -36,7 +36,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   private GLU glu = new GLU();
 
   /** オブジェクトのグループ */
-  private List<JoglTransformGroup> topGroups;
+  private List<JoglObjectGroup> topGroups;
   
   /** 設定 */
   private Mikity3dConfiguration configuration;
@@ -138,7 +138,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
     
     
-    for (final JoglTransformGroup topGroup : this.topGroups) {
+    for (final JoglObjectGroup topGroup : this.topGroups) {
       topGroup.display(gl);
     }
   }

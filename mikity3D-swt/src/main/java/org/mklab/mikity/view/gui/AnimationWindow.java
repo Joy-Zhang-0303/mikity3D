@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
-import org.mklab.mikity.model.MovableGroupManager;
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
@@ -87,7 +87,7 @@ public class AnimationWindow extends ApplicationWindow {
   Text filePathText;
 
   /** */
-  MovableGroupManager manager;
+  ObjectGroupManager manager;
 
   /** */
   private Label startTimeLabel;
@@ -159,7 +159,7 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public void setRoot(final Mikity3d root) {
     this.root = root;
-    this.manager = new MovableGroupManager(this.root);
+    this.manager = new ObjectGroupManager(this.root);
     this.modelRenderer = new JoglModelRenderer();
   }
 
@@ -424,7 +424,7 @@ public class AnimationWindow extends ApplicationWindow {
       @Override
       public void widgetSelected(SelectionEvent e) {
         final double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
-        AnimationWindow.this.manager.updateMovableGroupsWithCoordinateParameter(t);
+        AnimationWindow.this.manager.updateObjectGroupsWithCoordinateParameter(t);
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setCurrentTime(t);
           String st = String.valueOf(t);

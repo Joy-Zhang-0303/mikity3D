@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mklab.mikity.LogCatPrinter;
 import org.mklab.mikity.model.picker.ClosenessDataPicker;
 import org.mklab.mikity.model.picker.DataPicker;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
@@ -20,18 +19,18 @@ import org.mklab.nfc.matrix.Matrix;
 
 
 /**
- * 可動グループを管理するクラスです。
+ * オブジェクトグループを管理するクラスです。
  * 
  * @author miki
  * @version $Revision: 1.10 $.2005/01/14
  */
-public class MovableGroupManager {
-  /** グループとと可動グループのマップ */
-  private static Map<Group, MovableGroup> MOVABLE_GROUPS = new HashMap<>();
+public class ObjectGroupManager {
+  /** グループととオブジェクトグループのマップ */
+  private static Map<Group, ObjectGroup> OBJECT_GROUPS = new HashMap<>();
   /** 可動グループ */
-  private List<MovableGroup> movableGroups = new ArrayList<>();
+  private List<ObjectGroup> objectGroups = new ArrayList<>();
   /** データ抽出器 */
-  private Map<MovableGroup, DataPicker> pickers = new HashMap<>();
+  private Map<ObjectGroup, DataPicker> pickers = new HashMap<>();
   
   /** データの個数 */
   private int dataSize;
@@ -49,22 +48,22 @@ public class MovableGroupManager {
   private boolean hasCoordinateParameter = false;
 
   /**
-   * 新しく生成された<code>MovableGroupManager</code>オブジェクトを初期化します。
+   * 新しく生成された<code>ObjectGroupManager</code>オブジェクトを初期化します。
    * @param root ルート
    */
-  public MovableGroupManager(final Mikity3d root) {
+  public ObjectGroupManager(final Mikity3d root) {
     this.root = root;
   }
 
   /**
    * 可動グループを追加します。
    * 
-   * @param movableGroup 可動グループ
+   * @param objectGroup オブジェクトグループ
    * @param picker データ抽出器
    */
-  private void addMovableGroup(final MovableGroup movableGroup, final DataPicker picker) {
-    this.movableGroups.add(movableGroup);
-    this.pickers.put(movableGroup, picker);
+  private void addObjectGroup(final ObjectGroup objectGroup, final DataPicker picker) {
+    this.objectGroups.add(objectGroup);
+    this.pickers.put(objectGroup, picker);
     this.dataSize = Math.max(this.dataSize, picker.getDataSize());
     this.startTime = Math.min(this.startTime, picker.getStartTime());
     this.endTime = Math.max(this.endTime, picker.getEndTime());
@@ -75,41 +74,41 @@ public class MovableGroupManager {
    * 
    * @param t 時刻
    */
-  public void updateMovableGroupsWithDHParameter(final double t) {
-    for (final MovableGroup movableGroup : this.movableGroups) {
-      final DataPicker picker = this.pickers.get(movableGroup);
-      movableGroup.setDHParameter(picker.getDHParameter(t));
+  public void updateObjectGroupsWithDHParameter(final double t) {
+    for (final ObjectGroup objectGroup : this.objectGroups) {
+      final DataPicker picker = this.pickers.get(objectGroup);
+      objectGroup.setDHParameter(picker.getDHParameter(t));
     }
   }
 
   /**
-   * 指定された時刻のデータで可動グループを更新します。
+   * 指定された時刻のデータでオブジェクトグループを更新します。
    * 
    * @param t 時刻
    */
-  public void updateMovableGroupsWithCoordinateParameter(final double t) {
-    for (final MovableGroup movableGroup : this.movableGroups) {
-      final DataPicker picker = this.pickers.get(movableGroup);
-      movableGroup.setCoordinateParameter(picker.getCoordinateParameter(t));
+  public void updateObjectGroupsWithCoordinateParameter(final double t) {
+    for (final ObjectGroup objectGroup : this.objectGroups) {
+      final DataPicker picker = this.pickers.get(objectGroup);
+      objectGroup.setCoordinateParameter(picker.getCoordinateParameter(t));
      }
   }
 
   /**
-   * 可動グループを登録します。
+   * オブジェクトグループを登録します。
    * 
    * @param groups グループ
    * @param data 時系列データ
    */
-  private void registerMovableGroups(final Group[] groups, final Matrix data) {
+  private void registerObjectGroups(final Group[] groups, final Matrix data) {
     for (final Group group : groups) {
-      final MovableGroup movableGroup = MOVABLE_GROUPS.get(group);
+      final ObjectGroup objectGroup = OBJECT_GROUPS.get(group);
       final LinkData[] links = group.getLinkData();
       if (links.length != 0) {
         final DataPicker picker = createPicker(data, links);
-        addMovableGroup(movableGroup, picker);
+        addObjectGroup(objectGroup, picker);
       }
 
-      registerMovableGroups(group.getGroups(), data);
+      registerObjectGroups(group.getGroups(), data);
     }
   }
 
@@ -207,8 +206,8 @@ public class MovableGroupManager {
     this.startTime = 0;
     this.endTime = 0;
 
-    this.movableGroups.clear();
-    registerMovableGroups(this.root.getModel(0).getGroups(), data);
+    this.objectGroups.clear();
+    registerObjectGroups(this.root.getModel(0).getGroups(), data);
   }
   
   /**
@@ -248,21 +247,12 @@ public class MovableGroupManager {
   }
   
   /**
-   * グループと可動グループを対応付けします。
+   * グループとオブジェクトグループを対応付けします。
    * @param group グループ
-   * @param movableGroup 可動グループ
+   * @param objectGroup オブジェクトグループ
    */
-  public static void assignGroup(final Group group, final MovableGroup movableGroup) {
-    MOVABLE_GROUPS.put(group, movableGroup);
+  public static void assignGroup(final Group group, final ObjectGroup objectGroup) {
+    OBJECT_GROUPS.put(group, objectGroup);
   }
-  
-  
-//  /**
-//   * LogCatの出力先を設定します。
-//   * @param logCat Androidのログキャット利用クラス
-//   */
-//  public void setLogCat(LogCatPrinter logCat){
-//    this.logCat = logCat;
-//  }
-  
+ 
 }

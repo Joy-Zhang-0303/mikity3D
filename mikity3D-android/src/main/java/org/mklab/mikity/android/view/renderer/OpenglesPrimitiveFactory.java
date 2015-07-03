@@ -38,10 +38,10 @@ public class OpenglesPrimitiveFactory {
    * グループを生成します。
    * 
    * @param group グループ
-   * @return トランスフォームグループ
+   * @return オブジェクトグループ
    */
-  public static OpenglesTransformGroup create(Group group) {
-    return new OpenglesTransformGroupFactory().create(group);
+  public static OpenglesObjectGroup create(Group group) {
+    return new OpenglesObjectGroupFactory().create(group);
   }
 
   /**
@@ -50,7 +50,7 @@ public class OpenglesPrimitiveFactory {
    * @param box ボックス
    * @return 与えられたboxを含む可動グループ
    */
-  public static OpenglesTransformGroup create(XMLBox box) {
+  public static OpenglesObjectGroup create(XMLBox box) {
     final float width = box.getWidth();
     final float height = box.getHeight();
     final float depth = box.getDepth();
@@ -60,7 +60,7 @@ public class OpenglesPrimitiveFactory {
     child.setColor(color);
     child.setSize(width, height, depth);
 
-    final OpenglesTransformGroup group = new OpenglesTransformGroup();
+    final OpenglesObjectGroup group = new OpenglesObjectGroup();
 
     final Translation boxTranslation = box.getTranslation();
     final Rotation boxRotation = box.getRotation();
@@ -103,7 +103,7 @@ public class OpenglesPrimitiveFactory {
    * @param cylinder シリンダー
    * @return 与えられたcylinderを含む可動グループ
    */
-  public static OpenglesTransformGroup create(XMLCylinder cylinder) {
+  public static OpenglesObjectGroup create(XMLCylinder cylinder) {
     final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
@@ -114,7 +114,7 @@ public class OpenglesPrimitiveFactory {
     child.setDivision(division);
     child.setColor(color);
     
-    final OpenglesTransformGroup group = new OpenglesTransformGroup();
+    final OpenglesObjectGroup group = new OpenglesObjectGroup();
   
     final Translation cylinderTranslation = cylinder.getTranslation();
     final Rotation cylinderRotation = cylinder.getRotation();
@@ -157,7 +157,7 @@ public class OpenglesPrimitiveFactory {
    * @param sphere 球体
    * @return 与えられたsphereを含む可動グループ
    */
-  public static OpenglesTransformGroup create(XMLSphere sphere) {
+  public static OpenglesObjectGroup create(XMLSphere sphere) {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
     final String color = sphere.getColor();
@@ -167,7 +167,7 @@ public class OpenglesPrimitiveFactory {
     child.setDivision(division);
     child.setColor(color);
     
-    final OpenglesTransformGroup group = new OpenglesTransformGroup();
+    final OpenglesObjectGroup group = new OpenglesObjectGroup();
     
     final Translation sphereTranslation = sphere.getTranslation();
     final Rotation sphereRotation = sphere.getRotation();
@@ -209,7 +209,7 @@ public class OpenglesPrimitiveFactory {
    * @param cone コーン
    * @return 与えられたconeを含む可動グループ
    */
-  public static OpenglesTransformGroup create(XMLCone cone) {
+  public static OpenglesObjectGroup create(XMLCone cone) {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
@@ -220,7 +220,7 @@ public class OpenglesPrimitiveFactory {
     child.setSize(radius, hight);
     child.setDivision(division);
     
-    final OpenglesTransformGroup group = new OpenglesTransformGroup();
+    final OpenglesObjectGroup group = new OpenglesObjectGroup();
 
     final Translation coneTranslation = cone.getTranslation();
     final Rotation coneRotation = cone.getRotation();
@@ -265,7 +265,7 @@ public class OpenglesPrimitiveFactory {
    * @param dhParameters DHパラメータ
    * @return 与えられた三角形ポリゴンを含む可動グループを生成します。
    */
-  public static OpenglesTransformGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
+  public static OpenglesObjectGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[3][3];
     for (int i = 0; i < 3; i++) {
       points[i][0] = polygon.getPointX(i);
@@ -279,7 +279,7 @@ public class OpenglesPrimitiveFactory {
     child.setColor(color);
     child.setPoints(points);
     
-    final OpenglesTransformGroup group = new OpenglesTransformGroup();
+    final OpenglesObjectGroup group = new OpenglesObjectGroup();
     
     if (dhParameters == null && coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
       final Translation polygonTranslation = polygon.getTranslation();
@@ -336,7 +336,7 @@ public class OpenglesPrimitiveFactory {
    * @param dhParameters DHパラメータ
    * @return　与えられた四角形ポリゴンを含む可動グループ
    */
-  public static OpenglesTransformGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
+  public static OpenglesObjectGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[4][3];
     for (int i = 0; i < 4; i++) {
       points[i][0] = polygon.getPointX(i);
@@ -350,7 +350,7 @@ public class OpenglesPrimitiveFactory {
     child.setColor(color);
     child.setPoints(points);
         
-    final OpenglesTransformGroup group = new OpenglesTransformGroup();
+    final OpenglesObjectGroup group = new OpenglesObjectGroup();
     
     if (dhParameters == null && coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
       final Translation polygonTranslation = polygon.getTranslation();

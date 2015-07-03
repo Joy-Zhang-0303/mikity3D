@@ -7,7 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.MovableGroup;
+import org.mklab.mikity.model.ObjectGroup;
 
 
 /**
@@ -16,12 +16,12 @@ import org.mklab.mikity.model.MovableGroup;
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */
-public class OpenglesTransformGroup implements MovableGroup {
+public class OpenglesObjectGroup implements ObjectGroup {
 
   /** オブジェクトのリスト */
   private List<OpenglesObject> objects;
   /** トランスフォームグループのリスト */
-  private List<OpenglesTransformGroup> groups;
+  private List<OpenglesObjectGroup> groups;
   /** 座標系の初期値 */
   private OpenglesCoordinate initialCoordinate;
   /** 座標系 */
@@ -32,9 +32,9 @@ public class OpenglesTransformGroup implements MovableGroup {
   /**
    * 新しく生成された<code>JoglTransformGroup</code>オブジェクトを初期化します。
    */
-  public OpenglesTransformGroup() {
+  public OpenglesObjectGroup() {
     this.objects = new ArrayList<OpenglesObject>();
-    this.groups = new ArrayList<OpenglesTransformGroup>();
+    this.groups = new ArrayList<OpenglesObjectGroup>();
   }
 
   /**
@@ -51,7 +51,7 @@ public class OpenglesTransformGroup implements MovableGroup {
    * 
    * @param child トランスフォームグループ
    */
-  public void addChild(OpenglesTransformGroup child) {
+  public void addChild(OpenglesObjectGroup child) {
     this.groups.add(child);
   }
 
@@ -82,7 +82,7 @@ public class OpenglesTransformGroup implements MovableGroup {
       object.display(gl10);
     }
 
-    for (final OpenglesTransformGroup group : this.groups) {
+    for (final OpenglesObjectGroup group : this.groups) {
       group.apply(gl10);
     }
 
@@ -167,7 +167,7 @@ public class OpenglesTransformGroup implements MovableGroup {
       object.display(gl10);
     }
 
-    for (final OpenglesTransformGroup group : this.groups) {
+    for (final OpenglesObjectGroup group : this.groups) {
       group.apply(gl10);
     }
 

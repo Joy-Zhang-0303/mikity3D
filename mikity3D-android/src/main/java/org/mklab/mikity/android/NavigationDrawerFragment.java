@@ -18,7 +18,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.model.MovableGroupManager;
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.searcher.ExcecuteSearchGroup;
 import org.mklab.mikity.model.searcher.GroupManager;
 import org.mklab.mikity.model.searcher.GroupName;
@@ -67,7 +67,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   Timer timer = new Timer();
 
   /** */
-  MovableGroupManager manager;
+  ObjectGroupManager manager;
 
   TextView filePathView;
   TextView modelFilePathView;

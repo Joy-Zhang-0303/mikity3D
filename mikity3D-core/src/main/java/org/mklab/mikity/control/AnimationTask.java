@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
 
-import org.mklab.mikity.model.MovableGroupManager;
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
 
@@ -23,7 +23,7 @@ public class AnimationTask extends TimerTask {
   /** アニメーションの速度倍率(1.0のときに実時間で再生) */
   private double speedScale = 1.0;
   /** グループマネージャ　*/
-  private MovableGroupManager manager;
+  private ObjectGroupManager manager;
   /** リスナー　*/
   private List<AnimationTaskListener> listeners = new ArrayList<>();
   /** 現在の時間　*/
@@ -44,7 +44,7 @@ public class AnimationTask extends TimerTask {
    * @param manager グループマネージャー
    * @param canvas モデルキャンバス
    */
-  public AnimationTask(double initialTime, double endTime, MovableGroupManager manager, ModelRenderer canvas) {
+  public AnimationTask(double initialTime, double endTime, ObjectGroupManager manager, ModelRenderer canvas) {
     this.endTime = endTime;
     this.currentTime = initialTime;
     this.manager = manager;
@@ -98,9 +98,9 @@ public class AnimationTask extends TimerTask {
     this.currentTime += diffTime * this.speedScale;
 
     if (this.manager.hasDHParameter()) {
-      this.manager.updateMovableGroupsWithDHParameter(this.currentTime);
+      this.manager.updateObjectGroupsWithDHParameter(this.currentTime);
     } else if (this.manager.hasCoordinateParameter()) {
-      this.manager.updateMovableGroupsWithCoordinateParameter(this.currentTime);
+      this.manager.updateObjectGroupsWithCoordinateParameter(this.currentTime);
     }
 
     if (this.renderer.isRequiredToCallDisplay()) {

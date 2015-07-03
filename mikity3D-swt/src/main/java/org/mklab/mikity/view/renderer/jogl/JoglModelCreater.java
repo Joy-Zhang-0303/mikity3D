@@ -21,10 +21,10 @@ public class JoglModelCreater {
    * 
    * @return オブジェクトのグループ
    */
-  public List<JoglTransformGroup> create(final Group[] groups) {
-    final List<JoglTransformGroup> objectGroups = new ArrayList<>();
+  public List<JoglObjectGroup> create(final Group[] groups) {
+    final List<JoglObjectGroup> objectGroups = new ArrayList<>();
     for (final Group group : groups) {
-      final JoglTransformGroup child = JoglPrimitiveFactory.create(group);
+      final JoglObjectGroup child = JoglPrimitiveFactory.create(group);
       objectGroups.add(child);
     }
 

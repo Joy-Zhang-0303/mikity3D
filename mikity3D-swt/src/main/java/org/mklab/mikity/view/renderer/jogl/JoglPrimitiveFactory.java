@@ -36,8 +36,8 @@ public class JoglPrimitiveFactory {
    * @param group オブジェクトのグループ
    * @return 可動グループ
    */
-  public static JoglTransformGroup create(Group group) {
-    return new JoglTransformGroupFactory().create(group);
+  public static JoglObjectGroup create(Group group) {
+    return new JoglObjectGroupFactory().create(group);
   }
 
   /**
@@ -46,7 +46,7 @@ public class JoglPrimitiveFactory {
    * @param box ボックス
    * @return 与えられたboxを含む可動グループ
    */
-  public static JoglTransformGroup create(XMLBox box) {
+  public static JoglObjectGroup create(XMLBox box) {
     final float width = box.getWidth();
     final float height = box.getHeight();
     final float depth = box.getDepth();
@@ -58,7 +58,7 @@ public class JoglPrimitiveFactory {
     child.setSize(width, height, depth);
     child.setTransparent(transparent);
 
-    final JoglTransformGroup group = new JoglTransformGroup();
+    final JoglObjectGroup group = new JoglObjectGroup();
 
     final Translation boxTranslation = box.getTranslation();
     final Rotation boxRotation = box.getRotation();
@@ -101,7 +101,7 @@ public class JoglPrimitiveFactory {
    * @param cylinder シリンダー
    * @return 与えられたcylinderを含む可動グループ
    */
-  public static JoglTransformGroup create(XMLCylinder cylinder) {
+  public static JoglObjectGroup create(XMLCylinder cylinder) {
     final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
@@ -114,7 +114,7 @@ public class JoglPrimitiveFactory {
     child.setColor(color);
     child.setTransparent(transparent);
     
-    final JoglTransformGroup group = new JoglTransformGroup();
+    final JoglObjectGroup group = new JoglObjectGroup();
   
     final Translation cylinderLocation = cylinder.getTranslation();
     final Rotation cylinderRotation = cylinder.getRotation();
@@ -157,7 +157,7 @@ public class JoglPrimitiveFactory {
    * @param sphere 球体
    * @return 与えられたsphereを含む可動グループ
    */
-  public static JoglTransformGroup create(XMLSphere sphere) {
+  public static JoglObjectGroup create(XMLSphere sphere) {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
     final String color = sphere.getColor();
@@ -169,7 +169,7 @@ public class JoglPrimitiveFactory {
     child.setColor(color);
     child.setTransparent(transparent);
     
-    final JoglTransformGroup group = new JoglTransformGroup();
+    final JoglObjectGroup group = new JoglObjectGroup();
     
     final Translation sphereLocation = sphere.getTranslation();
     final Rotation sphereRotation = sphere.getRotation();
@@ -211,7 +211,7 @@ public class JoglPrimitiveFactory {
    * @param cone コーン
    * @return 与えられたconeを含む可動グループ
    */
-  public static JoglTransformGroup create(XMLCone cone) {
+  public static JoglObjectGroup create(XMLCone cone) {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
@@ -224,7 +224,7 @@ public class JoglPrimitiveFactory {
     child.setDivision(division);
     child.setTransparent(transparent);
     
-    final JoglTransformGroup group = new JoglTransformGroup();
+    final JoglObjectGroup group = new JoglObjectGroup();
 
     final Translation coneTranslation = cone.getTranslation();
     final Rotation coneRotation = cone.getRotation();
@@ -269,7 +269,7 @@ public class JoglPrimitiveFactory {
    * @param dhParameters DHパラメータ
    * @return 与えられた三角形ポリゴンを含む可動グループを生成します。
    */
-  public static JoglTransformGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
+  public static JoglObjectGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[3][3];
     for (int i = 0; i < 3; i++) {
       points[i][0] = polygon.getPointX(i);
@@ -285,7 +285,7 @@ public class JoglPrimitiveFactory {
     child.setPoints(points);
     child.setTransparent(transparent);
     
-    final JoglTransformGroup group = new JoglTransformGroup();
+    final JoglObjectGroup group = new JoglObjectGroup();
     
     if (dhParameters == null && coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
       final Translation polygonTranslation = polygon.getTranslation();
@@ -342,7 +342,7 @@ public class JoglPrimitiveFactory {
    * @param dhParameters DHパラメータ
    * @return　与えられた四角形ポリゴンを含む可動グループ
    */
-  public static JoglTransformGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
+  public static JoglObjectGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[4][3];
     for (int i = 0; i < 4; i++) {
       points[i][0] = polygon.getPointX(i);
@@ -358,7 +358,7 @@ public class JoglPrimitiveFactory {
     child.setPoints(points);
     child.setTransparent(transparent);
         
-    final JoglTransformGroup group = new JoglTransformGroup();
+    final JoglObjectGroup group = new JoglObjectGroup();
     
     if (dhParameters == null && coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
       final Translation polygonTranslation = polygon.getTranslation();

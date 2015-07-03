@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.TimerTask;
 
 import org.mklab.mikity.control.AnimationTaskListener;
-import org.mklab.mikity.model.MovableGroupManager;
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
 import android.os.SystemClock;
@@ -28,7 +28,7 @@ public class AnimationTask extends TimerTask {
   /** アニメーションの速度倍率(1.0のときに実時間で再生) */
   private double speedScale = 1.0;
   /** グループマネージャ　 */
-  private MovableGroupManager manager;
+  private ObjectGroupManager manager;
   /** リスナー　 */
   private List<AnimationTaskListener> listeners = new ArrayList<AnimationTaskListener>();
   /** 現在の時間　 */
@@ -53,7 +53,7 @@ public class AnimationTask extends TimerTask {
    * @param canvas モデルキャンバス
    * @param delayTime 遅延時間
    */
-  public AnimationTask(double initialTime, double endTime, MovableGroupManager manager, ModelRenderer canvas, long delayTime) {
+  public AnimationTask(double initialTime, double endTime, ObjectGroupManager manager, ModelRenderer canvas, long delayTime) {
     this.endTime = endTime;
     this.currentTime = initialTime;
     this.manager = manager;
@@ -104,13 +104,13 @@ public class AnimationTask extends TimerTask {
     
     if (this.manager.hasDHParameter()) {
       try {
-        this.manager.updateMovableGroupsWithDHParameter(this.currentTime);
+        this.manager.updateObjectGroupsWithDHParameter(this.currentTime);
       } catch(ConcurrentModificationException e) {
         //　再生中に再読み込みが何度も押されすぎたら落ちてしまうので、そのエラーをキャッチしています。
         e.getMessage();
       }
     } else if (this.manager.hasCoordinateParameter()) {
-      this.manager.updateMovableGroupsWithCoordinateParameter(this.currentTime);
+      this.manager.updateObjectGroupsWithCoordinateParameter(this.currentTime);
     }
 
     if (this.renderer.isRequiredToCallDisplay()) {

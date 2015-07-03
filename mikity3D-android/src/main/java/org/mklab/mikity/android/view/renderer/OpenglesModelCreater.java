@@ -25,10 +25,10 @@ public class OpenglesModelCreater {
    * 
    * @return オブジェクトのグループ
    */
-  public List<OpenglesTransformGroup> create(final Group[] groups) {
-    final List<OpenglesTransformGroup> objectGroups = new ArrayList<OpenglesTransformGroup>();
+  public List<OpenglesObjectGroup> create(final Group[] groups) {
+    final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();
     for (final Group group : groups) {
-      final OpenglesTransformGroup child = OpenglesPrimitiveFactory.create(group);
+      final OpenglesObjectGroup child = OpenglesPrimitiveFactory.create(group);
       objectGroups.add(child);
     }
     

@@ -7,7 +7,7 @@ import javax.media.opengl.GL2;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.MovableGroup;
+import org.mklab.mikity.model.ObjectGroup;
 
 
 /**
@@ -16,11 +16,11 @@ import org.mklab.mikity.model.MovableGroup;
  * @author iwamoto
  * @version $Revision$, 2012/02/07
  */
-public class JoglTransformGroup implements MovableGroup {
+public class JoglObjectGroup implements ObjectGroup {
   /** オブジェクト。 */
   private List<JoglObject> objects = new ArrayList<>();
   /** サブグループ 。*/
-  private List<JoglTransformGroup> groups = new ArrayList<>();
+  private List<JoglObjectGroup> groups = new ArrayList<>();
   /** 座標系の基準。 */
   private JoglCoordinate baseCoordinate;
   /** 座標系。 */
@@ -42,7 +42,7 @@ public class JoglTransformGroup implements MovableGroup {
    * 
    * @param child サブグループ
    */
-  public void addChild(JoglTransformGroup child) {
+  public void addChild(JoglObjectGroup child) {
     this.groups.add(child);
   }
 
@@ -74,7 +74,7 @@ public class JoglTransformGroup implements MovableGroup {
       object.display(gl);
     }
 
-    for (final JoglTransformGroup group : this.groups) {
+    for (final JoglObjectGroup group : this.groups) {
       group.display(gl);
     }
     

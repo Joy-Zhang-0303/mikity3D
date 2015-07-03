@@ -27,7 +27,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   private static final long serialVersionUID = 5653656698891675370L;
 
   /** オブジェクトのグループ */
-  private List<OpenglesTransformGroup> topGroups;
+  private List<OpenglesObjectGroup> topGroups;
 
   /** 設定。 */
   private Mikity3dConfiguration configuration;
@@ -125,7 +125,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glScalef(this.scaleX, this.scaleY, this.scaleZ);
 
     if (this.topGroups != null) {
-      for (final OpenglesTransformGroup group : this.topGroups) {
+      for (final OpenglesObjectGroup group : this.topGroups) {
         group.display(gl10);
       }
     }

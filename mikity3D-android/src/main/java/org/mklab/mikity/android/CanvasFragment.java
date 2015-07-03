@@ -15,7 +15,7 @@ import java.util.Timer;
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.android.view.renderer.OpenglesModelRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
-import org.mklab.mikity.model.MovableGroupManager;
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
@@ -81,7 +81,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /** Mikity3dモデル */
   Mikity3d root;
   
-  MovableGroupManager manager;
+  ObjectGroupManager manager;
   Matrix data;
   private double[] timeTable;
   private double endTime;
@@ -429,7 +429,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * 
    * @return manager
    */
-  public MovableGroupManager getManager() {
+  public ObjectGroupManager getManager() {
     return this.manager;
   }
 
@@ -623,7 +623,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * MovableGroupManagerを設定します。
    */
   protected void setGroupManager() {
-    this.manager = new MovableGroupManager(this.root);
+    this.manager = new ObjectGroupManager(this.root);
     //this.manager.setLogCat(new LogCatImpl());
   }
 
