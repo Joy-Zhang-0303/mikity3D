@@ -25,21 +25,23 @@ public class OpenglesModelCreater {
    * 
    * @return オブジェクトのグループ
    */
-  public OpenglesBranchGroup[] create(final Group[] groups) {
-    final OpenglesBranchGroup bg = new OpenglesBranchGroup();
+  public List<OpenglesTransformGroup> create(final Group[] groups) {
+//  final OpenglesBranchGroup bg = new OpenglesBranchGroup();
 
-    final OpenglesTransformGroup tg = new OpenglesTransformGroup();
+    final List<OpenglesTransformGroup> tg = new ArrayList<OpenglesTransformGroup>();
     for (final Group group : groups) {
       final OpenglesTransformGroup child = OpenglesPrimitiveFactory.create(group);
-      tg.addChild(child);
+      tg.add(child);
     }
 
-    bg.addChild(tg); ///////
+//    bg.addChild(tg); ///////
+//    
+//    final List<OpenglesBranchGroup> branchGroups = new ArrayList<OpenglesBranchGroup>();
+//    branchGroups.add(bg);
+//
+//    return branchGroups;
     
-    final List<OpenglesBranchGroup> branchGroups = new ArrayList<OpenglesBranchGroup>();
-    branchGroups.add(bg);
-
-    return branchGroups.toArray(new OpenglesBranchGroup[branchGroups.size()]);
+    return tg;
   }
 
 }

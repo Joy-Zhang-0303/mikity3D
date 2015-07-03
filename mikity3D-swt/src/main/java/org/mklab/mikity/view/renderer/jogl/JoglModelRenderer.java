@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.List;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
@@ -35,7 +36,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   private GLU glu = new GLU();
 
   /** オブジェクトのグループ */
-  private JoglBranchGroup[] topGroups;
+  private List<JoglTransformGroup> topGroups;
   
   /** 設定 */
   private Mikity3dConfiguration configuration;
@@ -137,7 +138,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
     
     
-    for (final JoglBranchGroup topGroup : this.topGroups) {
+    for (final JoglTransformGroup topGroup : this.topGroups) {
       topGroup.display(gl);
     }
   }

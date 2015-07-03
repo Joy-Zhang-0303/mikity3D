@@ -157,5 +157,20 @@ public class OpenglesTransformGroup implements MovableGroup {
 
     return this.name + this.coordinate;
   }
+  
+  /**
+   * オブジェクトを表示します。
+   * @param gl10 GL10クラス
+   */
+  public void display(GL10 gl10) {
+    for (final OpenglesObject object : this.objects) {
+      object.display(gl10);
+    }
+
+    for (final OpenglesTransformGroup group : this.groups) {
+      group.apply(gl10);
+    }
+
+  }
 
 }

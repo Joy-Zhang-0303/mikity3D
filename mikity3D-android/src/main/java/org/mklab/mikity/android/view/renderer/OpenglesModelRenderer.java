@@ -1,5 +1,7 @@
 package org.mklab.mikity.android.view.renderer;
 
+import java.util.List;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -25,7 +27,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   private static final long serialVersionUID = 5653656698891675370L;
 
   /** オブジェクトのグループ */
-  private OpenglesBranchGroup[] topGroups;
+  private List<OpenglesTransformGroup> topGroups;
 
   /** 設定。 */
   private Mikity3dConfiguration configuration;
@@ -123,7 +125,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glScalef(this.scaleX, this.scaleY, this.scaleZ);
 
     if (this.topGroups != null) {
-      for (final OpenglesBranchGroup group : this.topGroups) {
+      for (final OpenglesTransformGroup group : this.topGroups) {
         group.display(gl10);
       }
     }
