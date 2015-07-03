@@ -16,14 +16,14 @@ import org.mklab.mikity.model.ObjectGroup;
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */
-public class OpenglesObjectGroup implements ObjectGroup {
+public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
 
   /** オブジェクトのリスト */
   private List<OpenglesObject> objects;
   /** トランスフォームグループのリスト */
   private List<OpenglesObjectGroup> groups;
   /** 座標系の初期値 */
-  private OpenglesCoordinate initialCoordinate;
+  private OpenglesCoordinate baseCoordinate;
   /** 座標系 */
   private OpenglesCoordinate coordinate = new OpenglesCoordinate();
   /** 名前 */
@@ -56,12 +56,12 @@ public class OpenglesObjectGroup implements ObjectGroup {
   }
 
   /**
-   * 座標系の初期値を設定します。
+   * 座標系の基準を設定します。
    * 
-   * @param coordinate 座標系の初期値
+   * @param coordinate 座標系の基準
    */
-  public void setInitialCoordinate(OpenglesCoordinate coordinate) {
-    this.initialCoordinate = coordinate;
+  public void setBaseCoordinate(OpenglesCoordinate coordinate) {
+    this.baseCoordinate = coordinate;
   }
 
   /**
@@ -70,8 +70,8 @@ public class OpenglesObjectGroup implements ObjectGroup {
   public void apply(GL10 gl10) {
     gl10.glPushMatrix();
 
-    if (this.initialCoordinate != null) {
-      this.initialCoordinate.apply(gl10);
+    if (this.baseCoordinate != null) {
+      this.baseCoordinate.apply(gl10);
     }
 
     if (this.coordinate != null) {
@@ -88,6 +88,20 @@ public class OpenglesObjectGroup implements ObjectGroup {
 
     gl10.glPopMatrix();
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void display(GL10 gl10) {
+    for (final OpenglesObject object : this.objects) {
+      object.display(gl10);
+    }
+
+    for (final OpenglesObjectGroup group : this.groups) {
+      group.apply(gl10);
+    }
+  }
+
 
   /**
    * {@inheritDoc}
@@ -157,20 +171,6 @@ public class OpenglesObjectGroup implements ObjectGroup {
 
     return this.name + this.coordinate;
   }
-  
-  /**
-   * オブジェクトを表示します。
-   * @param gl10 GL10クラス
-   */
-  public void display(GL10 gl10) {
-    for (final OpenglesObject object : this.objects) {
-      object.display(gl10);
-    }
 
-    for (final OpenglesObjectGroup group : this.groups) {
-      group.apply(gl10);
-    }
-
-  }
 
 }

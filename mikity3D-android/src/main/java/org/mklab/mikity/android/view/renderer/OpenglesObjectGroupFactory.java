@@ -81,7 +81,7 @@ public class OpenglesObjectGroupFactory {
     }
 
     final OpenglesCoordinate coordinate = createCoordinateOf(group);
-    objectGroup.setInitialCoordinate(coordinate);
+    objectGroup.setBaseCoordinate(coordinate);
     
     final String name = group.getName();
     if (name != null) {

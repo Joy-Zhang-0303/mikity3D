@@ -9,14 +9,13 @@ import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.ObjectGroup;
 
-
 /**
- * 可動グループを表すクラスです。
+ * オブジェクトグループを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/07
  */
-public class JoglObjectGroup implements ObjectGroup {
+public class JoglObjectGroup implements ObjectGroup, JoglObject {
   /** オブジェクト。 */
   private List<JoglObject> objects = new ArrayList<>();
   /** サブグループ 。*/
@@ -56,8 +55,7 @@ public class JoglObjectGroup implements ObjectGroup {
   }
 
   /**
-   * GLによる操作(座標変換・描画)を適用します。
-   * @param gl GL
+   * {@inheritDoc}
    */
   public void display(GL2 gl) {
     gl.glPushMatrix();
