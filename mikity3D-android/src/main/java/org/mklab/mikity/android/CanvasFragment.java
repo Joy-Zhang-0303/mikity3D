@@ -319,6 +319,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       @Override
       protected Void doInBackground(String... arg0) {
         readTimeData(input);
+        
+        try {
+          input.close();
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+        
         setTimeData();
         return null;
       }
@@ -332,6 +339,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
 
     };
+    
     task.execute();
   }
 

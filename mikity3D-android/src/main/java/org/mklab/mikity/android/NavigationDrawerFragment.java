@@ -370,7 +370,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    * 
    * @param uri 時間データURI
    */
-  void openTimeData(Uri uri) {
+  void loadTimeData(Uri uri) {
     if (uri == null) {
       return;
     }
@@ -400,16 +400,12 @@ public class NavigationDrawerFragment extends RoboFragment {
     
     this.dataFilePathView.setText(this.timeDataName);
     
-    
-    try {
-      this.canvasActivity.canvasFragment.setTimeDataUri(uri);
-      this.canvasActivity.canvasFragment.loadTimeData(this.inputTimeDataFile);
-      this.inputTimeDataFile.close();
-      this.inputTimeDataFile = null;
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-    
+    this.canvasActivity.canvasFragment.setTimeDataUri(uri);
+    this.canvasActivity.canvasFragment.loadTimeData(this.inputTimeDataFile);
+    // inputTimeDataFile has been already closed in the loadTimeData method. 
+    // this.inputTimeDataFile.close();
+    this.inputTimeDataFile = null;
+
   }
 
   /**

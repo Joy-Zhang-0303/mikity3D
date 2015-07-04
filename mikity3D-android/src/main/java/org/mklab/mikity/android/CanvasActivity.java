@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.android;
 
-import java.io.IOException;
 import java.util.List;
 
 import roboguice.activity.RoboFragmentActivity;
@@ -265,7 +264,7 @@ public class CanvasActivity extends RoboFragmentActivity {
    * @param uri 時間データのURI
    */
   private void loadTimeData(Uri uri) {
-    this.ndFragment.openTimeData(uri);
+    this.ndFragment.loadTimeData(uri);
 
 //    try {
 //      this.canvasFragment.setTimeDataUri(uri);
