@@ -20,7 +20,6 @@ import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import roboguice.fragment.RoboFragment;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -80,9 +79,10 @@ public class AssetsListViewFragment extends RoboFragment {
           AssetsListViewFragment.this.currentPath = nextFile;
           AssetsListViewFragment.this.listView.setAdapter(new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, android.R.layout.simple_list_item_1, nextFiles));
         } else {
-          // copyAssetsFiles(AssetsListViewFragment.this.currentPath, item, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + File.separator + "org.mklab.mikity")); //$NON-NLS-1$
+          //copyAssetsFiles(AssetsListViewFragment.this.currentPath, item, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + File.separator + "org.mklab.mikity")); //$NON-NLS-1$
 
           try {
+            // input should not be closed since it is a virtual stream for asset
             final InputStream input = AssetsListViewFragment.this.assetManager.open(nextFile);
 
             if (AssetsListViewFragment.this.isModel) {
@@ -95,7 +95,7 @@ public class AssetsListViewFragment extends RoboFragment {
             }
 
             AssetsListViewFragment.this.fragmentManager.popBackStack();
-            input.close();
+
           } catch (IOException e) {
             throw new RuntimeException(e);
           } catch (Mikity3dSerializeDeserializeException e) {
