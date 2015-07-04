@@ -69,7 +69,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** */
   ObjectGroupManager manager;
 
-  TextView filePathView;
+  TextView dataFilePathView;
   TextView modelFilePathView;
 
   /** 前回のタッチのｘ座標 */
@@ -165,7 +165,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.animationSpeedTextEdit.clearFocus();
 
     //ファイルパスビューの配置
-    this.filePathView = (TextView)view.findViewById(R.id.filePathView);
+    this.dataFilePathView = (TextView)view.findViewById(R.id.filePathView);
     this.modelFilePathView = (TextView)view.findViewById(R.id.modelPathView);
     this.modelFilePathView.setMovementMethod(ScrollingMovementMethod.getInstance());
 
@@ -217,7 +217,7 @@ public class NavigationDrawerFragment extends RoboFragment {
         if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.data = null;
           NavigationDrawerFragment.this.timeDataName = "..."; //$NON-NLS-1$
-          NavigationDrawerFragment.this.filePathView.setText(NavigationDrawerFragment.this.timeDataName);
+          NavigationDrawerFragment.this.dataFilePathView.setText(NavigationDrawerFragment.this.timeDataName);
         }
       }
     });
@@ -397,7 +397,19 @@ public class NavigationDrawerFragment extends RoboFragment {
       final String[] parts = timeDataFilePath.split("/"); //$NON-NLS-1$
       this.timeDataName = parts[parts.length - 1];
     }
-    this.filePathView.setText(this.timeDataName);
+    
+    this.dataFilePathView.setText(this.timeDataName);
+    
+    
+    try {
+      this.canvasActivity.canvasFragment.setTimeDataUri(uri);
+      this.canvasActivity.canvasFragment.loadTimeData(this.inputTimeDataFile);
+      this.inputTimeDataFile.close();
+      this.inputTimeDataFile = null;
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+    
   }
 
   /**
@@ -435,7 +447,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
     this.modelFilePathView.setText(this.modelFileName);
     this.timeDataName = "..."; //$NON-NLS-1$
-    this.filePathView.setText(this.timeDataName);
+    this.dataFilePathView.setText(this.timeDataName);
 
     try {
       this.canvasActivity.canvasFragment.loadModelData(this.inputModelDataFile);

@@ -266,13 +266,15 @@ public class CanvasActivity extends RoboFragmentActivity {
    */
   private void loadTimeData(Uri uri) {
     this.ndFragment.openTimeData(uri);
-    this.canvasFragment.setTimeDataUri(uri);
-    this.canvasFragment.loadTimeData(this.ndFragment.inputTimeDataFile);
-    try {
-      this.ndFragment.inputTimeDataFile.close();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+
+//    try {
+//      this.canvasFragment.setTimeDataUri(uri);
+//      this.canvasFragment.loadTimeData(this.ndFragment.inputTimeDataFile);
+//      this.ndFragment.inputTimeDataFile.close();
+//      this.ndFragment.inputTimeDataFile = null;
+//    } catch (IOException e) {
+//      throw new RuntimeException(e);
+//    }
   }
 
   /**
