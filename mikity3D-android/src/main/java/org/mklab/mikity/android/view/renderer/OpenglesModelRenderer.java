@@ -44,9 +44,11 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /** Z軸方向への移動距離 */
   private float translationZ = 0.0f;
 
-  private float scaleX = 1.0F;
-  private float scaleY = 1.0F;
-  private float scaleZ = 1.0F;
+  private float scale = 1.0F;
+  
+  //private float scaleX = 1.0F;
+  //private float scaleY = 1.0F;
+  //private float scaleZ = 1.0F;
 
   GLSurfaceView glView;
 
@@ -122,7 +124,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     // ここで微調整してます
     //gl10.glRotatef(-180f, 0.0f, 0.0f, 1.0f);
 
-    gl10.glScalef(this.scaleX, this.scaleY, this.scaleZ);
+    gl10.glScalef(this.scale, this.scale, this.scale);
 
     if (this.topGroups != null) {
       for (final OpenglesObjectGroup group : this.topGroups) {
@@ -181,41 +183,42 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
   }
 
+//  /**
+//   * 回転角度を設定します。
+//   * 
+//   * @param rotationZ Z軸周りの回転角度
+//   * @param rotationY Y軸周りの回転角度
+//   */
+//  public void setRotation(float rotationZ, float rotationY) {
+//    this.rotationZ -= rotationZ / 5;
+//    this.rotationY -= rotationY / 5;
+//  }
+  
+  /**
+   * 回転角度を設定します。
+   * 
+   * @param rotationY Y軸周りの回転角度
+   */
+  public void setRotationY(float rotationY) {
+    this.rotationY -= rotationY / 5;
+  }
+  
   /**
    * 回転角度を設定します。
    * 
    * @param rotationZ Z軸周りの回転角度
-   * @param rotationY Y軸周りの回転角度
    */
-  public void setRotation(float rotationZ, float rotationY) {
+  public void setRotationZ(float rotationZ) {
     this.rotationZ -= rotationZ / 5;
-    this.rotationY -= rotationY / 5;
   }
 
   /**
    * 拡大縮小倍率のを設定します。　
    * 
-   * x方向、ｙ方向、ｚ方向全て同じ倍率を設定します。
-   * 
    * @param scale スケール
    */
   public void setScale(float scale) {
-    this.scaleX = scale;
-    this.scaleY = scale;
-    this.scaleZ = scale;
-  }
-
-  /**
-   * スケールを設定します。
-   * 
-   * @param scaleY y方向のスケール
-   * @param scaleX x方向のスケール
-   * @param scaleZ ｚ方向のスケール
-   */
-  public void setScale(float scaleX, float scaleY, float scaleZ) {
-    this.scaleX = scaleX;
-    this.scaleY = scaleY;
-    this.scaleZ = scaleZ;
+    this.scale = scale;
   }
 
   /**
@@ -223,8 +226,8 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    * 
    * @return　スケール
    */
-  public float getscale() {
-    return this.scaleX;
+  public float getScale() {
+    return this.scale;
   }
 
   /**
