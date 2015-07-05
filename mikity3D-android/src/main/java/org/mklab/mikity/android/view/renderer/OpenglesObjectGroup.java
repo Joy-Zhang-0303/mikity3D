@@ -65,9 +65,9 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   }
 
   /**
-   * @param gl10 GL10クラス
+   * {@inheritDoc}
    */
-  public void apply(GL10 gl10) {
+  public void display(GL10 gl10) {
     gl10.glPushMatrix();
 
     if (this.baseCoordinate != null) {
@@ -83,24 +83,24 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
     }
 
     for (final OpenglesObjectGroup group : this.groups) {
-      group.apply(gl10);
+      group.display(gl10);
     }
 
     gl10.glPopMatrix();
   }
   
-  /**
-   * {@inheritDoc}
-   */
-  public void display(GL10 gl10) {
-    for (final OpenglesObject object : this.objects) {
-      object.display(gl10);
-    }
-
-    for (final OpenglesObjectGroup group : this.groups) {
-      group.apply(gl10);
-    }
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void display(GL10 gl10) {
+//    for (final OpenglesObject object : this.objects) {
+//      object.display(gl10);
+//    }
+//
+//    for (final OpenglesObjectGroup group : this.groups) {
+//      group.display(gl10);
+//    }
+//  }
 
 
   /**
