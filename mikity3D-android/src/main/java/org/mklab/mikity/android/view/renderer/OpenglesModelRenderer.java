@@ -45,10 +45,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   private float translationZ = 0.0f;
 
   private float scale = 1.0F;
-  
-  //private float scaleX = 1.0F;
-  //private float scaleY = 1.0F;
-  //private float scaleZ = 1.0F;
 
   GLSurfaceView glView;
 
@@ -121,9 +117,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
     gl10.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
 
-    // ここで微調整してます
-    //gl10.glRotatef(-180f, 0.0f, 0.0f, 1.0f);
-
     gl10.glScalef(this.scale, this.scale, this.scale);
 
     if (this.topGroups != null) {
@@ -182,17 +175,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     this.glView.requestRender();//再描画
 
   }
-
-//  /**
-//   * 回転角度を設定します。
-//   * 
-//   * @param rotationZ Z軸周りの回転角度
-//   * @param rotationY Y軸周りの回転角度
-//   */
-//  public void setRotation(float rotationZ, float rotationY) {
-//    this.rotationZ -= rotationZ / 5;
-//    this.rotationY -= rotationY / 5;
-//  }
   
   /**
    * 回転角度を設定します。

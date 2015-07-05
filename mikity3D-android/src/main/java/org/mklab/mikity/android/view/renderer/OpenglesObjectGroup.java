@@ -88,20 +88,6 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
 
     gl10.glPopMatrix();
   }
-  
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void display(GL10 gl10) {
-//    for (final OpenglesObject object : this.objects) {
-//      object.display(gl10);
-//    }
-//
-//    for (final OpenglesObjectGroup group : this.groups) {
-//      group.display(gl10);
-//    }
-//  }
-
 
   /**
    * {@inheritDoc}

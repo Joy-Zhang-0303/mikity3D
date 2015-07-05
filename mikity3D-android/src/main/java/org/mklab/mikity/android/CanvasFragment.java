@@ -321,6 +321,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       protected Void doInBackground(String... arg0) {
         readTimeData(input);
         
+        // input is closed in order to complete reading the data from the input stream.
         try {
           input.close();
         } catch (IOException e) {
