@@ -3,7 +3,7 @@
  * Copyright (C) 2013 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.android.view.renderer;
+package org.mklab.mikity.android.view.renderer.opengles;
 
 import java.util.ArrayList;
 import java.util.List;

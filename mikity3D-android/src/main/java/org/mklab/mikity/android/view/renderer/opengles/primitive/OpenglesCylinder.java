@@ -3,7 +3,7 @@
  * Copyright (C) 2013 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.android.view.renderer.jogl.primitive;
+package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;

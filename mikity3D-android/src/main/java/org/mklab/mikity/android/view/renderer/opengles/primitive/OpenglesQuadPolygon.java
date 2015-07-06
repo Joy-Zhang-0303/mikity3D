@@ -3,12 +3,12 @@
  * Copyright (C) 2013 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.android.view.renderer.jogl.primitive;
+package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
-
 
 /**
  * 四角ポリゴンを表すクラスです。
@@ -16,9 +16,9 @@ import javax.microedition.khronos.opengles.GL10;
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
-public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
+public class OpenglesQuadPolygon extends AbstractOpenglesObject {
   /** 頂点。 */
-  private float[][] points = new float[3][3];
+  private float[][] points = new float[4][3];
 
   /**
    * {@inheritDoc}
@@ -44,20 +44,31 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
     float y2 = this.points[2][0];
     float z2 = this.points[2][1];
     
-    final float[] vertices = {x0, y0, z0, x1, y1, z1, x2, y2, z2};
+    float x3 = this.points[3][2];
+    float y3 = this.points[3][0];
+    float z3 = this.points[3][1];
+    
+    final float[] vertices = {x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3};
+    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
-    final FloatBuffer buffer = makeFloatBuffer(vertices);
+    // インデックスバッファの生成
+    final byte[] indices = {0, 1, 2, 0, 2, 3};
+    final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
-    gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, buffer);
-    gl10.glDrawArrays(GL10.GL_TRIANGLES, 0, 3); //プリミティブの描画
-  }
+    // 頂点バッファの指定
+    gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
+
+    // プリミティブの描画
+    gl10.glDrawElements(GL10.GL_TRIANGLES, 6, GL10.GL_UNSIGNED_BYTE, indexBuffer);
+  } 
 
   /**
    * 頂点を設定します。
-   * 
    * @param points 頂点
    */
   public void setPoints(float[][] points) {
     this.points = points;
   }
 }
+
+

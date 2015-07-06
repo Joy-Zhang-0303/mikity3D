@@ -3,16 +3,16 @@
  * Copyright (C) 2013 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.android.view.renderer;
+package org.mklab.mikity.android.view.renderer.opengles;
 
 import java.util.List;
 
-import org.mklab.mikity.android.view.renderer.jogl.primitive.OpenglesBox;
-import org.mklab.mikity.android.view.renderer.jogl.primitive.OpenglesCone;
-import org.mklab.mikity.android.view.renderer.jogl.primitive.OpenglesCylinder;
-import org.mklab.mikity.android.view.renderer.jogl.primitive.OpenglesQuadPolygon;
-import org.mklab.mikity.android.view.renderer.jogl.primitive.OpenglesSphere;
-import org.mklab.mikity.android.view.renderer.jogl.primitive.OpenglesTrianglePolygon;
+import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesBox;
+import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesCone;
+import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesCylinder;
+import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesQuadPolygon;
+import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesSphere;
+import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesTrianglePolygon;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.xml.simplexml.model.Group;

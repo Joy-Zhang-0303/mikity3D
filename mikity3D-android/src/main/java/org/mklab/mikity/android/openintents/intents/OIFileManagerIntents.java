@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.openintents.intents;
+package org.mklab.mikity.android.openintents.intents;
 
 // Version Dec 9, 2008
 

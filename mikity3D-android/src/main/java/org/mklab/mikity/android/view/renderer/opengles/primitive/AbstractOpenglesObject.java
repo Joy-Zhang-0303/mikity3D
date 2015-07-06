@@ -3,7 +3,7 @@
  * Copyright (C) 2013 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.android.view.renderer.jogl.primitive;
+package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -11,7 +11,7 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import org.mklab.mikity.android.view.renderer.OpenglesObject;
+import org.mklab.mikity.android.view.renderer.opengles.OpenglesObject;
 
 /**
  * OpenGL ESのオブジェクトを表す抽象クラスです。

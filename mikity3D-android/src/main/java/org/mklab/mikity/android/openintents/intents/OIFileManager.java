@@ -1,4 +1,4 @@
-package org.openintents.intents;
+package org.mklab.mikity.android.openintents.intents;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;

@@ -1,4 +1,4 @@
-package org.mklab.mikity.android.view.renderer;
+package org.mklab.mikity.android.view.renderer.opengles;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;

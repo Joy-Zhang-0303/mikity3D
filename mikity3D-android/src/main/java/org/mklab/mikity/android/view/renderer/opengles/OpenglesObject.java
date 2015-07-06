@@ -1,5 +1,5 @@
 
-package org.mklab.mikity.android.view.renderer;
+package org.mklab.mikity.android.view.renderer.opengles;
 
 import javax.microedition.khronos.opengles.GL10;
 
