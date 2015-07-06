@@ -26,7 +26,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   @SuppressWarnings("unused")
   private static final long serialVersionUID = 5653656698891675370L;
 
-  /** オブジェクトのグループ */
+  /** オブジェクトのグループ。 */
   private List<OpenglesObjectGroup> topGroups;
 
   /** 設定。 */
@@ -43,21 +43,21 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   private float translationY = 0.0f;
   /** Z軸方向への移動距離 */
   private float translationZ = 0.0f;
-
+  /** 拡大縮小比。 */
   private float scale = 1.0F;
 
-  GLSurfaceView glView;
-
   /** 平行光源1 */
-  private float[] lightLocation0 = {1.0f, -1.0f, 0.5f, 1.0f};
+  private float[] lightLocation0 = {-10.0f, 10.0f, -10.0f, 1.0f};
   /** 平行光源2 */
-  private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f};
+  //private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f};
   /** 反射光の強さ */
   private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f};
   /** 拡散光の強さ */
   private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f};
   /** 環境光の強さ */
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
+  
+  GLSurfaceView glView;
 
   /**
    * 新しく生成された<code>OpenglesModelRenderer</code>オブジェクトを初期化します。
@@ -79,14 +79,17 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
     gl10.glEnable(GL10.GL_LIGHTING); //光源を有効にします 
     gl10.glEnable(GL10.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします 
-    gl10.glEnable(GL10.GL_LIGHT0); //0番のライトを有効にします
-    gl10.glEnable(GL10.GL_LIGHT1);
     gl10.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, 90.0f);
 
+    gl10.glEnable(GL10.GL_NORMALIZE);
+    
+    gl10.glEnable(GL10.GL_LIGHT0); //0番のライトを有効にします
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
+    
+   // gl10.glEnable(GL10.GL_LIGHT1);
   }
 
   /**
@@ -124,8 +127,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
         group.display(gl10);
       }
     }
-    
-    //gl10.glFlush();
   }
 
   /**

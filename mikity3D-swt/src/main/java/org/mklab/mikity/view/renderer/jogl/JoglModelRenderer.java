@@ -33,25 +33,34 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
 
-  private GLU glu = new GLU();
-
-  /** オブジェクトのグループ */
+  /** オブジェクトのグループ。 */
   private List<JoglObjectGroup> topGroups;
   
-  /** 設定 */
+  /** 設定。 */
   private Mikity3dConfiguration configuration;
 
-  /** Y軸に関する回転角度 */
+  /** Y軸周りの回転角度 */
   private float rotationY = 0.0f;
-  /** Z軸に関する回転角度 */
+  /** Z軸周りの回転角度 */
   private float rotationZ = 0.0f;
   /** Y軸方向への移動距離 */
   private float translationY = 0.0f;
   /** Z軸方向への移動距離 */
   private float translationZ = 0.0f;
   /** 拡大縮小率 */
-  private float scale = 0.0f;
+  private float scale = 1.0f;
 
+  /** 平行光源1。 */
+  private float[] lightLocation0 = {-10.0f, 10.0f, -10.0f, 1.0f};
+  /** 平行光源2。 */
+  //private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f};
+  /** 反射光の強さ 。 */
+  private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f};
+  /** 拡散光の強さ。 */
+  private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f};
+  /** 環境光の強さ。 */
+  private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
+  
   /** マウスボタンを押した点 */
   private Point startPoint;
   /** マウスボタンを離した点 */
@@ -67,13 +76,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   private float startTranslationZ;
   /** 開始拡大縮小率 */
   private float startScale;
-
-  //光源の設定です 
-  private float[] lightLocation0 = {1.0f, -1.0f, 0.5f, 1.0f}; // 平行光源1です 
-  //private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f}; // 平行光源2です 
-  private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f}; // 反射光の強さです 
-  private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f}; // 拡散光の強さです 
-  private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f}; // 環境光の強さです 
+  
+  private GLU glu = new GLU();
 
   /**
    * 新しく生成された<code>JoglModelCanvas</code>オブジェクトを初期化します。
@@ -101,6 +105,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glEnable(GLLightingFunc.GL_LIGHTING); //光源を有効にします 
     gl.glEnable(GLLightingFunc.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします 
     gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 90.0f);
+    
+    gl.glEnable(GLLightingFunc.GL_NORMALIZE);
 
     gl.glEnable(GLLightingFunc.GL_LIGHT0); //0番のライトを有効にします
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
@@ -133,16 +139,16 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     this.glu.gluLookAt(eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0, 0.0, 1.0);
     
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
-    gl.glTranslatef(-this.scale, 0.0f, 0.0f);
     gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
     gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
     
+    gl.glScalef(this.scale, this.scale, this.scale);
     
-    for (final JoglObjectGroup topGroup : this.topGroups) {
-      topGroup.display(gl);
+    if (this.topGroups != null) {
+      for (final JoglObjectGroup topGroup : this.topGroups) {
+        topGroup.display(gl);
+      }
     }
-    
-    //gl.glFlush();
   }
 
   /**
@@ -282,11 +288,12 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
       if (this.startPoint == null) {
         this.startPoint = new Point(this.endPoint);
       }
-      final int z = Math.abs(this.endPoint.y - this.startPoint.y);
+      final int dy = Math.abs(this.endPoint.y - this.startPoint.y);
+      final float scalingFactor = 50.0f;
       if (this.endPoint.y > this.startPoint.y) {
-        this.scale = this.startScale - z / 25.0f;
+        this.scale = (float)Math.max(0.01, this.startScale - dy / scalingFactor);
       } else {
-        this.scale = this.startScale + z / 25.0f;
+        this.scale = this.startScale + dy / scalingFactor;
       }
       display();
       return;
@@ -297,8 +304,9 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
       if (this.startPoint == null) {
         this.startPoint = new Point(this.endPoint);
       }
-      this.translationZ = this.startTranslationZ + (this.endPoint.y - this.startPoint.y) / 100.0f;
-      this.translationY = this.startTranslationY + (this.endPoint.x - this.startPoint.x) / 100.0f;
+      final float translationFactor = 200.0f;
+      this.translationZ = this.startTranslationZ + (this.endPoint.y - this.startPoint.y) / translationFactor;
+      this.translationY = this.startTranslationY + (this.endPoint.x - this.startPoint.x) / translationFactor;
       display();
       return;
     }

@@ -247,9 +247,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     public boolean onScale(ScaleGestureDetector detector) {
       CanvasFragment.this.rotationing = false;
       CanvasFragment.this.scaling = true;
-      if (CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gesDetect.getScaleFactor()) > 0.2) {
-        CanvasFragment.this.modelRenderer.setScale((float)(CanvasFragment.this.scaleValue - (1.0f - CanvasFragment.this.gesDetect.getScaleFactor())));
-      }
+      final double scalingFactor = 0.5;
+      final double newScale = Math.max(0.01, CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gesDetect.getScaleFactor())) / scalingFactor;
+      CanvasFragment.this.modelRenderer.setScale((float)newScale);
       CanvasFragment.this.prevX = CanvasFragment.this.gesDetect.getFocusX();
       CanvasFragment.this.prevY = CanvasFragment.this.gesDetect.getFocusY();
 
