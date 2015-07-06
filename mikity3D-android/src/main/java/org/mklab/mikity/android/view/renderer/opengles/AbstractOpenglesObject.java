@@ -3,15 +3,13 @@
  * Copyright (C) 2013 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.android.view.renderer.opengles.primitive;
+package org.mklab.mikity.android.view.renderer.opengles;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
-
-import org.mklab.mikity.android.view.renderer.opengles.OpenglesObject;
 
 /**
  * OpenGL ESのオブジェクトを表す抽象クラスです。
@@ -75,7 +73,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param array 変換元
    * @return 変換結果
    */
-  FloatBuffer makeFloatBuffer(float[] array) {
+  public FloatBuffer makeFloatBuffer(float[] array) {
     final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     buffer.put(array).position(0);
     return buffer;
@@ -87,7 +85,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param array 変換元
    * @return 変換結果
    */
-  ByteBuffer makeByteBuffer(byte[] array) {
+  public ByteBuffer makeByteBuffer(byte[] array) {
     final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     buffer.put(array).position(0);
     return buffer;

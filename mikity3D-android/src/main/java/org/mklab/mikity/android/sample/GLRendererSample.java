@@ -1,4 +1,4 @@
-package org.mklab.mikity.android;
+package org.mklab.mikity.android.sample;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -9,12 +9,12 @@ import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 
 /**
- * レンダラーを表すクラスです。
+ * レンダラーを使用する例題クラスです。
  * 
  * @author ohashi
  * @version $Revision$, 2012/10/29
  */
-public class GLRenderer implements GLSurfaceView.Renderer {
+public class GLRendererSample implements GLSurfaceView.Renderer {
   /** アスペクト比 */
   private float aspect;
   /** 回転角度 */

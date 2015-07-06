@@ -10,6 +10,8 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
+
 
 /**
  * ボックスを表すクラスです。
