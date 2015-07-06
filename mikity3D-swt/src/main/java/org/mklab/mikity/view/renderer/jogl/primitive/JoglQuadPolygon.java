@@ -31,9 +31,6 @@ public class JoglQuadPolygon extends AbstractJoglObject {
     //頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
-    // 表と裏を両方表示する
-    //gl.glDisable(GL.GL_CULL_FACE);
-
     //頂点バッファの生成
     float x0 = this.points[0][2];
     float y0 = this.points[0][0];

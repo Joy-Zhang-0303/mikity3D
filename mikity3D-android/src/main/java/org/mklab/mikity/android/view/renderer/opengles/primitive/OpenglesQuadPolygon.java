@@ -29,9 +29,6 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
     // 頂点配列の有効化
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
-    // 表と裏を両方表示する
-    //gl10.glDisable(GL10.GL_CULL_FACE);
-
     // 頂点バッファの生成
     float x0 = this.points[0][2];
     float y0 = this.points[0][0];

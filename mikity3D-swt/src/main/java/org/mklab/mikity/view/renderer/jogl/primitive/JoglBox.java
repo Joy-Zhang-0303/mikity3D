@@ -37,12 +37,6 @@ public class JoglBox extends AbstractJoglObject {
     //頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
-    //デプステストの有効化
-    //gl.glEnable(GL.GL_DEPTH_TEST);
-
-    // 表と裏を両方表示する
-    //gl.glDisable(GL.GL_CULL_FACE);
-
     float x0 = this.depth / 2;
     float y0 = this.width / 2;
     float z0 = this.height / 2;

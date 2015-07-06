@@ -26,11 +26,10 @@ public class OpenglesSphere extends AbstractOpenglesObject {
    * {@inheritDoc}
    */
   public void display(GL10 gl10) {
+    applyColor(gl10);
+    
     // 頂点配列の有効化
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-
-    // デプステストの有効化
-    //gl10.glEnable(GL10.GL_DEPTH_TEST);
 
     // TODO this._div=16までしか対応していない。
     this.division = 16;
@@ -96,8 +95,6 @@ public class OpenglesSphere extends AbstractOpenglesObject {
     }
 
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
-
-    applyColor(gl10);
 
     // 頂点バッファの指定 
     gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);

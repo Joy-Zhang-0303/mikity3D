@@ -29,11 +29,10 @@ public class OpenglesCone extends AbstractOpenglesObject {
    * {@inheritDoc}
    */
   public void display(GL10 gl10) {
+    applyColor(gl10);
+    
     // 頂点配列の有効化
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-
-    // デプステストの有効化
-    //gl10.glEnable(GL10.GL_DEPTH_TEST);
 
     final float[] vertices = new float[(this.division + 2) * 3];
 
@@ -90,8 +89,6 @@ public class OpenglesCone extends AbstractOpenglesObject {
     indices[this.division * 6 - 1] = 1;
 
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
-
-    applyColor(gl10);
 
     // 頂点バッファの指定 
     gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);

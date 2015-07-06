@@ -32,12 +32,6 @@ public class JoglSphere extends AbstractJoglObject {
     //頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
-    //デプステストの有効化
-    //gl.glEnable(GL.GL_DEPTH_TEST);
-    
-    // 表と裏を両方表示する
-    //gl.glDisable(GL.GL_CULL_FACE);
-
     // TODO this._div=16までしか対応していない。
     this.division = 16;
     final int grid = this.division;
@@ -68,11 +62,6 @@ public class JoglSphere extends AbstractJoglObject {
     vertices[count1++] = this.radius;
 
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
-
-    //test
-    // for(int i = 0; i <= vertexs.length-1; i++){
-    //  System.out.println("vertexs["+i+"] = " + vertexs[i]); //$NON-NLS-1$ //$NON-NLS-2$
-    //}
 
     //インデックスバッファの生成
     final byte[] indices = new byte[((grid - 1) * grid * 2) * 3];
@@ -107,11 +96,6 @@ public class JoglSphere extends AbstractJoglObject {
     }
 
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
-
-    //test
-    //for(int i = 0; i <= indexs.length-1; i++){
-    // System.out.println("indexs["+ i +"] = " + indexs[i]);  //$NON-NLS-1$//$NON-NLS-2$
-    //}
 
     //頂点バッファの指定 
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);

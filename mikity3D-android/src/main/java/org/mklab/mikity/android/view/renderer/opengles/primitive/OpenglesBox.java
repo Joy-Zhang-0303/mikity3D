@@ -29,11 +29,10 @@ public class OpenglesBox extends AbstractOpenglesObject {
    * {@inheritDoc}
    */
   public void display(GL10 gl10) {
+    applyColor(gl10);
+    
     // 頂点配列の有効化
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-
-    // デプステストの有効化
-    //gl10.glEnable(GL10.GL_DEPTH_TEST);
 
     float x0 = this.depth / 2;
     float y0 = this.width / 2;
@@ -76,8 +75,6 @@ public class OpenglesBox extends AbstractOpenglesObject {
 
     // 頂点バッファの指定
     gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
-
-    applyColor(gl10);
 
     indexBuffer.position(0);
     gl10.glDrawElements(GL10.GL_TRIANGLE_STRIP, 10, GL10.GL_UNSIGNED_BYTE, indexBuffer);

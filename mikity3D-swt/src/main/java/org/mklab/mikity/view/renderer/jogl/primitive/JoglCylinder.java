@@ -35,12 +35,6 @@ public class JoglCylinder extends AbstractJoglObject {
     
     // 頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
-
-    // デプステストの有効化
-    //gl.glEnable(GL.GL_DEPTH_TEST);
-
-    // 表と裏を両方表示する
-    // gl.glDisable(GL.GL_CULL_FACE);
     
     final float[] vertices = new float[(this.division * 2 + 2) * 3];
     
