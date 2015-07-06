@@ -862,7 +862,7 @@
 	</model>
 	<config>
 		<background color="white" />
-		<light z="-0.8" y="-0.8" x="0.2"/>
+		<light z="20.0" y="10.0" x="10.0"/>
 		<eye z="0.0" y="0.0" x="5.0"/>
 		<lookAtPoint x="0.0" y="0.0" z="0.0"/>
 		<modelUnit length="m" angle="radian"/>

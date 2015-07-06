@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
 
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.config.Eye;
+import org.mklab.mikity.model.xml.simplexml.config.Light;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
@@ -51,7 +52,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   private float scale = 1.0f;
 
   /** 平行光源1。 */
-  private float[] lightLocation0 = {-10.0f, 10.0f, -10.0f, 1.0f};
+  private float[] lightLocation0 = {10.0f, 10.0f, 20.0f, 1.0f};
   /** 平行光源2。 */
   //private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f};
   /** 反射光の強さ 。 */
@@ -88,6 +89,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     this.configuration = new Mikity3dConfiguration();
     this.configuration.setEye(new Eye(5.0f, 0.0f, 0.0f));
     this.configuration.setLookAtPoiint(new LookAtPoint(0.0f, 0.0f, 0.0f));
+    this.configuration.setLight(new Light(10.0f, 10.0f, 20.0f));
     
     addGLEventListener(this);
     addMouseListener(this);
@@ -109,6 +111,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glEnable(GLLightingFunc.GL_NORMALIZE);
 
     gl.glEnable(GLLightingFunc.GL_LIGHT0); //0番のライトを有効にします
+    final Light light0 = this.configuration.getLight();
+    this.lightLocation0 = new float[]{light0.getX(), light0.getY(), light0.getZ(), 1.0f};
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
@@ -137,6 +141,10 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     final Eye eye = this.configuration.getEye();
     final LookAtPoint lookAtPoint = this.configuration.getLookAtPoint();
     this.glu.gluLookAt(eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0, 0.0, 1.0);
+
+    final Light light0 = this.configuration.getLight();
+    this.lightLocation0 = new float[]{light0.getX(), light0.getY(), light0.getZ(), 1.0f};
+    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
     
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);

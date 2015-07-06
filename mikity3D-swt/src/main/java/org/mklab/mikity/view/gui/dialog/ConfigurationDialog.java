@@ -153,9 +153,9 @@ public class ConfigurationDialog {
 //    xData.horizontalSpan = 7;
 //    lKakko.setLayoutData(xData);
 
-    this.lightX = new ParameterInputBox(lightPointGroup, SWT.NONE, "  (", "0.2"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lightY = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lightZ = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "-0.8"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightX = new ParameterInputBox(lightPointGroup, SWT.NONE, "  (", "10.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightY = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "10.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightZ = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "20.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     final Label kakko = new Label(lightPointGroup, SWT.NONE);
     final GridData labelData = new GridData();

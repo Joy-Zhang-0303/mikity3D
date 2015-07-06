@@ -31,6 +31,18 @@ public class Light implements java.io.Serializable {
     this.y = 0;
     this.z = 0;
   }
+  
+  /**
+   * 新しく生成された<code>Light</code>オブジェクトを初期化します。
+   * @param x X座標
+   * @param y Y座標
+   * @param z Z座標
+   */
+  public Light(float x, float y, float z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
 
   /**
    * Returns the value of field 'x'.
