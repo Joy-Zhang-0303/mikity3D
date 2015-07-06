@@ -33,7 +33,7 @@ public class JoglSphere extends AbstractJoglObject {
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
     //デプステストの有効化
-    gl.glEnable(GL.GL_DEPTH_TEST);
+    //gl.glEnable(GL.GL_DEPTH_TEST);
     
     // 表と裏を両方表示する
     //gl.glDisable(GL.GL_CULL_FACE);

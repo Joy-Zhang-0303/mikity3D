@@ -33,7 +33,7 @@ public class OpenglesBox extends AbstractOpenglesObject {
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
     // デプステストの有効化
-    gl10.glEnable(GL10.GL_DEPTH_TEST);
+    //gl10.glEnable(GL10.GL_DEPTH_TEST);
 
     float x0 = this.depth / 2;
     float y0 = this.width / 2;

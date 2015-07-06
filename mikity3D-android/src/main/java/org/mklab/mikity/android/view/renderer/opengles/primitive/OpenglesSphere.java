@@ -30,7 +30,7 @@ public class OpenglesSphere extends AbstractOpenglesObject {
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
     // デプステストの有効化
-    gl10.glEnable(GL10.GL_DEPTH_TEST);
+    //gl10.glEnable(GL10.GL_DEPTH_TEST);
 
     // TODO this._div=16までしか対応していない。
     this.division = 16;

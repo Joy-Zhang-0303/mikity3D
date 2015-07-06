@@ -33,7 +33,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
     // デプステストの有効化
-    gl10.glEnable(GL10.GL_DEPTH_TEST);
+    //gl10.glEnable(GL10.GL_DEPTH_TEST);
     
     // 表と裏を両方表示する
     //gl10.glDisable(GL10.GL_CULL_FACE);
