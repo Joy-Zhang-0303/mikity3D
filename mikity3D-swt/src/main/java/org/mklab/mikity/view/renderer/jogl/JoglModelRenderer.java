@@ -141,6 +141,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     for (final JoglObjectGroup topGroup : this.topGroups) {
       topGroup.display(gl);
     }
+    
+    //gl.glFlush();
   }
 
   /**
