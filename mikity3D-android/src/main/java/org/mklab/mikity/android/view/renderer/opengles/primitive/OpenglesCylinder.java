@@ -36,7 +36,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     gl10.glEnable(GL10.GL_DEPTH_TEST);
     
     // 表と裏を両方表示する
-    gl10.glDisable(GL10.GL_CULL_FACE);
+    //gl10.glDisable(GL10.GL_CULL_FACE);
 
     final float[] vertices = new float[(this.division * 2 + 2) * 3];
 

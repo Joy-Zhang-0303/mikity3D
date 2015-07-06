@@ -41,7 +41,7 @@ public class JoglCone extends AbstractJoglObject {
     gl.glEnable(GL.GL_DEPTH_TEST);
 
     // 表と裏を両方表示する
-    gl.glDisable(GL.GL_CULL_FACE);
+    //gl.glDisable(GL.GL_CULL_FACE);
     
     final float[] vertices = new float[(this.division + 2) * 3];
 

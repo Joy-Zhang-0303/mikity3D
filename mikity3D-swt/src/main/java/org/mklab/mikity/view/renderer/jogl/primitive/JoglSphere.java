@@ -36,7 +36,7 @@ public class JoglSphere extends AbstractJoglObject {
     gl.glEnable(GL.GL_DEPTH_TEST);
     
     // 表と裏を両方表示する
-    gl.glDisable(GL.GL_CULL_FACE);
+    //gl.glDisable(GL.GL_CULL_FACE);
 
     // TODO this._div=16までしか対応していない。
     this.division = 16;
