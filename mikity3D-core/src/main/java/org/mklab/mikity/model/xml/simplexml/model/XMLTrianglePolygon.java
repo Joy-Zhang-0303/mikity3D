@@ -43,7 +43,7 @@ public class XMLTrianglePolygon {
   @Element(name="rotation", required=false)
   private Rotation rotation;
   
-  private Vector3[] normal = new Vector3[3];
+  private Vector3 normalVector = new Vector3(0,0,1);
 
   private Matrix4 matrix;
 
@@ -67,7 +67,7 @@ public class XMLTrianglePolygon {
     this.points.get(number).setX(x);
     this.points.get(number).setY(y);
     this.points.get(number).setZ(z);
-    setNormalVector();
+    updateNormalVector();
   }
 
   /**
@@ -79,7 +79,7 @@ public class XMLTrianglePolygon {
     this.points.set(0, location1);
     this.points.set(1, location2);
     this.points.set(2, location3);
-    setNormalVector();
+    updateNormalVector();
   }
 
   /**
@@ -87,7 +87,7 @@ public class XMLTrianglePolygon {
    */
   public void setPointLocations(List<Translation> points) {
     this.points = points;
-    setNormalVector();
+    updateNormalVector();
   }
 
   /**
@@ -112,31 +112,28 @@ public class XMLTrianglePolygon {
   }
 
   /**
+   * 法線ベクトルを設定します。
    * @param nromalVector 法線ベクトル
    */
   public void setNormalVector(Translation nromalVector) {
-    this.normal[0] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
-    this.normal[1] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
-    this.normal[2] = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
+    this.normalVector = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
   }
 
   /**
-   * @param normalVectors 法線ベクトル
+   * 法線ベクトルを設定します。
+   * @param normalVector 法線ベクトル
    */
-  public void setNormalVector(Vector3[] normalVectors) {
-    this.normal = normalVectors;
+  public void setNormalVector(Vector3 normalVector) {
+    this.normalVector = normalVector;
   }
 
   /**
    *  
    */
-  private void setNormalVector() {
-    Vector3 v1 = new Vector3(this.points.get(1).getX() - this.points.get(0).getX(), this.points.get(1).getY() - this.points.get(0).getY(), this.points.get(1).getZ() - this.points.get(0).getZ());
-    Vector3 v2 = new Vector3(this.points.get(2).getX() - this.points.get(1).getX(), this.points.get(2).getY() - this.points.get(1).getY(), this.points.get(2).getZ() - this.points.get(1).getZ());
-    Vector3 normalVector = v1.cross(v2).normalize();
-    this.normal[0] = normalVector;
-    this.normal[1] = normalVector;
-    this.normal[2] = normalVector;
+  private void updateNormalVector() {
+    final Vector3 v1 = new Vector3(this.points.get(1).getX() - this.points.get(0).getX(), this.points.get(1).getY() - this.points.get(0).getY(), this.points.get(1).getZ() - this.points.get(0).getZ());
+    final Vector3 v2 = new Vector3(this.points.get(2).getX() - this.points.get(1).getX(), this.points.get(2).getY() - this.points.get(1).getY(), this.points.get(2).getZ() - this.points.get(1).getZ());
+    this.normalVector = v1.cross(v2).normalize();
   }
 
   /**
@@ -192,11 +189,11 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @return normal vector
+   * 法線ベクトルを返します。
+   * @return 法線ベクトル
    */
-  public Vector3[] getNormalVectors() {
-    setNormalVector();
-    return this.normal;
+  public Vector3 getNormalVector() {
+    return this.normalVector;
   }
 
   /**

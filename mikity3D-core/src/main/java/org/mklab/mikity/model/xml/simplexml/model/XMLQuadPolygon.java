@@ -43,7 +43,8 @@ public class XMLQuadPolygon {
   @Attribute(name="transparent", required=false)
   protected boolean transparent = false;
 
-  private Vector3[] normal = new Vector3[4];
+  /** 法泉ベクトル。 */
+  private Vector3 normalVector = new Vector3(0,0,1);
 
   private Matrix4 matrix;
 
@@ -67,7 +68,7 @@ public class XMLQuadPolygon {
     this.points.get(number).setX(x);
     this.points.get(number).setY(y);
     this.points.get(number).setZ(z);
-    setNormalVector();
+    updateNormalVector();
   }
 
   /**
@@ -81,7 +82,7 @@ public class XMLQuadPolygon {
     this.points.set(1, location2);
     this.points.set(2, location3);
     this.points.set(3, location4);
-    setNormalVector();
+    updateNormalVector();
   }
 
   /**
@@ -89,7 +90,7 @@ public class XMLQuadPolygon {
    */
   public void setPointLocations(List<Translation> points) {
     this.points = points;
-    setNormalVector();
+    updateNormalVector();
   }
 
   /**
@@ -123,34 +124,24 @@ public class XMLQuadPolygon {
   /**
    * 
    */
-  public void setNormalVector() {
-    // 修正
-    Vector3 v1 = new Vector3(this.points.get(1).getX() - this.points.get(0).getX(), this.points.get(1).getY() - this.points.get(0).getY(), this.points.get(1).getZ() - this.points.get(0).getZ());
-    Vector3 v2 = new Vector3(this.points.get(2).getX() - this.points.get(1).getX(), this.points.get(2).getY() - this.points.get(1).getY(), this.points.get(2).getZ() - this.points.get(1).getZ());
-
-    Vector3 n = v1.cross(v2).normalize();
-
-    this.normal[0] = n;
-    this.normal[1] = n;
-    this.normal[2] = n;
-    this.normal[3] = n;
+  public void updateNormalVector() {
+    final Vector3 v1 = new Vector3(this.points.get(1).getX() - this.points.get(0).getX(), this.points.get(1).getY() - this.points.get(0).getY(), this.points.get(1).getZ() - this.points.get(0).getZ());
+    final Vector3 v2 = new Vector3(this.points.get(2).getX() - this.points.get(1).getX(), this.points.get(2).getY() - this.points.get(1).getY(), this.points.get(2).getZ() - this.points.get(1).getZ());
+    this.normalVector = v1.cross(v2).normalize();
   }
 
   /**
-   * @param normalVectors 法線ベクトル
+   * @param normalVector 法線ベクトル
    */
-  public void setNormalVector(Vector3[] normalVectors) {
-    this.normal = normalVectors;
+  public void setNormalVector(Vector3 normalVector) {
+    this.normalVector = normalVector;
   }
 
   /**
-   * @param location 位置
+   * @param translation 位置
    */
-  public void setNormalVector(Translation location) {
-    this.normal[0] = new Vector3(location.getX(), location.getY(), location.getZ());
-    this.normal[1] = new Vector3(location.getX(), location.getY(), location.getZ());
-    this.normal[2] = new Vector3(location.getX(), location.getY(), location.getZ());
-    this.normal[3] = new Vector3(location.getX(), location.getY(), location.getZ());
+  public void setNormalVector(Translation translation) {
+    this.normalVector = new Vector3(translation.getX(), translation.getY(), translation.getZ());
   }
 
   /**
@@ -201,9 +192,8 @@ public class XMLQuadPolygon {
   /**
    * @return normal vector
    */
-  public Vector3[] getNormalVector() {
-    setNormalVector();
-    return this.normal;
+  public Vector3 getNormalVector() {
+    return this.normalVector;
   }
 
   /**
