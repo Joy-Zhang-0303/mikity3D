@@ -34,17 +34,13 @@ public class JoglBox extends AbstractJoglObject {
     applyColor(gl);
     applyTransparency(gl);
 
-    //頂点配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
-
-    //   v5 -- v4
+    //   v7 -- v3
     //  /      /
-    // v1 -- v0
+    // v4 -- v0
     //
-    //   v6 -- v7
+    //   v6 -- v2
     //  /      /
-    // v2 -- v3
-    
+    // v5 -- v1
     
     float x0 = this.depth / 2;
     float y0 = this.width / 2;
@@ -82,20 +78,57 @@ public class JoglBox extends AbstractJoglObject {
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
     //インデックスバッファの生成
-    final byte[] indices = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
+    //final byte[] indices = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
+    final byte[] indices = 
+      {0, 4, 1, 
+        4, 5, 1,
+        1, 5, 2,
+        5, 6, 2,
+        2, 6, 3,
+        6, 7, 3,
+        3, 7, 0,
+        7, 4, 0,
+        4, 7, 5,
+        7, 6, 5,
+        0, 1, 3,
+        1, 2, 3};
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
+
+    final float[] normals = 
+      {0, 0, 1,
+        0, 0, 1,
+        0, -1, 0,
+        0, -1, 0,
+        0, 0, -1,
+        0, 0, -1,
+        0, 1, 0,
+        0, 1, 0,
+        -1, 0, 0,
+        -1, 0, 0,
+        1, 0, 0,
+        1, 0, 0};
+
+    final FloatBuffer normalsBuffer = makeFloatBuffer(normals);
+
+    //法線配列の有効化
+    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
+    
+    gl.glNormalPointer(GL.GL_FLOAT, 0, normalsBuffer);
+
+    //頂点配列の有効化
+    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
     //頂点バッファの指定
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
 
     indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 10, GL.GL_UNSIGNED_BYTE, indexBuffer);
+    gl.glDrawElements(GL.GL_TRIANGLES, 36, GL.GL_UNSIGNED_BYTE, indexBuffer);
 
-    indexBuffer.position(10);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, indexBuffer);
+    //indexBuffer.position(10);
+    //gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, indexBuffer);
 
-    indexBuffer.position(14);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, indexBuffer);
+    //indexBuffer.position(14);
+    //gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, indexBuffer);
   }
 
   /**
