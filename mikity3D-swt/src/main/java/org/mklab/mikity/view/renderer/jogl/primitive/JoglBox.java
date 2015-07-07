@@ -37,6 +37,15 @@ public class JoglBox extends AbstractJoglObject {
     //頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
+    //   v5 -- v4
+    //  /      /
+    // v1 -- v0
+    //
+    //   v6 -- v7
+    //  /      /
+    // v2 -- v3
+    
+    
     float x0 = this.depth / 2;
     float y0 = this.width / 2;
     float z0 = this.height / 2;

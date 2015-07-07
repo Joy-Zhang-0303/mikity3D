@@ -102,30 +102,14 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   public void init(GLAutoDrawable drawable) {
     final GL2 gl = (GL2)drawable.getGL();
 
-    gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-
     gl.glEnable(GL.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     gl.glEnable(GL.GL_CULL_FACE); // 背面除去
     
     gl.glEnable(GLLightingFunc.GL_LIGHTING); //光源を有効にします 
-    gl.glEnable(GLLightingFunc.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします 
-    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 100.0f);
-    
+    gl.glEnable(GLLightingFunc.GL_COLOR_MATERIAL); //(光源がある場合の)カラーを有効にします 
     gl.glEnable(GLLightingFunc.GL_NORMALIZE);
-
     gl.glEnable(GLLightingFunc.GL_LIGHT0); //0番のライトを有効にします
-    final Light light0 = this.configuration.getLight();
-    this.lightLocation0 = new float[]{light0.getX(), light0.getY(), light0.getZ(), 1.0f};
-    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
-    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
-    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
-    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
-
-//    gl.glEnable(GL.GL_LIGHT1); //1番のライトを有効にします
-//    gl.glLightfv(GL.GL_LIGHT1, GL.GL_POSITION, this.lightLocation1, 0); // 平行光源を設定します 
-//    gl.glLightfv(GL.GL_LIGHT1, GL.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
-//    gl.glLightfv(GL.GL_LIGHT1, GL.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
-//    gl.glLightfv(GL.GL_LIGHT1, GL.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
+    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 100.0f);
   }
 
   /**
@@ -134,6 +118,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   public void display(GLAutoDrawable drawable) {
     final GL2 gl = (GL2)drawable.getGL();
 
+    gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
     
     gl.glLoadIdentity();
@@ -145,6 +130,9 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     final Light light = this.configuration.getLight();
     final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f};
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
+    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
+    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
+    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
     
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
