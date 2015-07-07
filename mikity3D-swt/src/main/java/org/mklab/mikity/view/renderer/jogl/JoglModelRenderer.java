@@ -56,9 +56,9 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /** 平行光源2。 */
   //private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f};
   /** 反射光の強さ 。 */
-  private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f};
+  private float[] lightSpecular = {0.9f, 0.9f, 0.9f, 1.0f};
   /** 拡散光の強さ。 */
-  private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f};
+  private float[] lightDiffuse = {0.5f, 0.5f, 0.5f, 1.0f};
   /** 環境光の強さ。 */
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
   
@@ -104,9 +104,12 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
 
     gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
+    gl.glEnable(GL.GL_DEPTH_TEST); // 奥行き判定を有効にします 
+    gl.glEnable(GL.GL_CULL_FACE); // 背面除去
+    
     gl.glEnable(GLLightingFunc.GL_LIGHTING); //光源を有効にします 
     gl.glEnable(GLLightingFunc.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします 
-    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 90.0f);
+    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 100.0f);
     
     gl.glEnable(GLLightingFunc.GL_NORMALIZE);
 
@@ -132,9 +135,6 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     final GL2 gl = (GL2)drawable.getGL();
 
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-
-    gl.glEnable(GL.GL_DEPTH_TEST); // 奥行き判定を有効にします 
-    //gl.glEnable(GL.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
     
     gl.glLoadIdentity();
     
@@ -142,9 +142,9 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     final LookAtPoint lookAtPoint = this.configuration.getLookAtPoint();
     this.glu.gluLookAt(eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0, 0.0, 1.0);
 
-    final Light light0 = this.configuration.getLight();
-    this.lightLocation0 = new float[]{light0.getX(), light0.getY(), light0.getZ(), 1.0f};
-    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
+    final Light light = this.configuration.getLight();
+    final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f};
+    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
     
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
