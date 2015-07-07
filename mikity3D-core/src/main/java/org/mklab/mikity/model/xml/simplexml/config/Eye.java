@@ -27,7 +27,7 @@ public class Eye implements java.io.Serializable {
    * 新しく生成された<code>Eye</code>オブジェクトを初期化します。
    */
   public Eye() {
-    this.x = 0;
+    this.x = 5;
     this.y = 0;
     this.z = 0;
   }

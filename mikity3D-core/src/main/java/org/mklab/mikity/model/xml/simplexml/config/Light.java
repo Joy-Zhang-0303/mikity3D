@@ -27,9 +27,9 @@ public class Light implements java.io.Serializable {
    * 新しく生成された<code>Light</code>オブジェクトを初期化します。
    */
   public Light() {
-    this.x = 0;
-    this.y = 0;
-    this.z = 0;
+    this.x = 10;
+    this.y = 10;
+    this.z = 20;
   }
   
   /**
