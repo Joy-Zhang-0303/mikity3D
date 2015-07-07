@@ -85,7 +85,7 @@ public class JoglCylinder extends AbstractJoglObject {
     }
 
     indices[this.division *3 - 3] = 1;
-    indices[this.division *3 - 2] = (byte)(0);
+    indices[this.division *3 - 2] = 0;
 
     // 下面(中心点)
     for (int i = 1; i <= this.division; i++) {
