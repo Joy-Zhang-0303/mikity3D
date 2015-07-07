@@ -42,6 +42,14 @@ public class JoglBox extends AbstractJoglObject {
     //  /      /
     // v5 -- v1
     
+    //   v5 -- v4
+    //  /      /
+    // v1 -- v0
+    //
+    //   v6 -- v7
+    //  /      /
+    // v2 -- v3
+    
     float x0 = this.depth / 2;
     float y0 = this.width / 2;
     float z0 = this.height / 2;
@@ -74,37 +82,91 @@ public class JoglBox extends AbstractJoglObject {
     float y7 = this.width / 2;
     float z7 = -this.height / 2;
     
-    final float[] vertices = {x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4, x5, y5, z5, x6, y6, z6, x7, y7, z7};
+    //final float[] vertices = {x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4, x5, y5, z5, x6, y6, z6, x7, y7, z7};
+    
+    final float[] vertices = {
+        x0, y0, z0, x4, y4, z4, x1, y1, z1,
+        x1, y1, z1, x4, y4, z4, x5, y5, z5, 
+        x1, y1, z1, x5, y5, z5, x2, y2, z2,
+        x5, y5, z5, x6, y6, z6, x2, y2, z2,
+        x2, y2, z2, x6, y6, z6, x3, y3, z3,
+        x6, y6, z6, x7, y7, z7, x3, y3, z3,
+        x3, y3, z3, x7, y7, z7, x0, y0, z0,
+        x7, y7, z7, x4, y4, z4, x0, y0, z0,
+        x4, y4, z4, x7, y7, z7, x5, y5, z5,
+        x7, y7, z7, x6, y6, z6, x5, y5, z5,
+        x0, y0, z0, x1, y1, z1, x3, y3, z3,
+        x1, y1, z1, x2, y2, z2, x3, y3, z3};
+    
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
 
+    
     //インデックスバッファの生成
     //final byte[] indices = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
     final byte[] indices = 
-      {0, 4, 1, 
-        4, 5, 1,
-        1, 5, 2,
-        5, 6, 2,
-        2, 6, 3,
-        6, 7, 3,
-        3, 7, 0,
-        7, 4, 0,
-        4, 7, 5,
-        7, 6, 5,
-        0, 1, 3,
-        1, 2, 3};
+      {0, 1, 2, 
+        3, 4, 5,
+        6, 7, 8,
+        9, 10, 11,
+        12, 13, 14,
+        15, 16, 17,
+        18, 19, 20,
+        21, 22, 23,
+        24, 25, 26,
+        27, 28, 29,
+        30, 31, 32,
+        33, 34, 35};
+    
+//    {0, 4, 1, 
+//      4, 5, 1,
+//      1, 5, 2,
+//      5, 6, 2,
+//      2, 6, 3,
+//      6, 7, 3,
+//      3, 7, 0,
+//      7, 4, 0,
+//      4, 7, 5,
+//      7, 6, 5,
+//      0, 1, 3,
+//      1, 2, 3};
+      
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
     final float[] normals = 
       {0, 0, 1,
         0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, -1, 0,
+        0, -1, 0,
+        0, -1, 0,
+        0, -1, 0,
         0, -1, 0,
         0, -1, 0,
         0, 0, -1,
         0, 0, -1,
+        0, 0, -1,
+        0, 0, -1,
+        0, 0, -1,
+        0, 0, -1,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
         0, 1, 0,
         0, 1, 0,
         -1, 0, 0,
         -1, 0, 0,
+        -1, 0, 0,
+        -1, 0, 0,
+        -1, 0, 0,
+        -1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
         1, 0, 0,
         1, 0, 0};
 
