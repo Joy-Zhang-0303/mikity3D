@@ -72,19 +72,20 @@ public class JoglCylinder extends AbstractJoglObject {
     final byte[] indices = new byte[this.division * 12];
 
     // 上面(中心点)
-    for (int i = 1; i <= this.division; i++) {
+    for (int i = 1; i < this.division; i++) {
       indices[3 * i - 3] = 0;
     }
 
-    for (int i = 1; i <= this.division; i++) {
+    for (int i = 1; i < this.division; i++) {
       indices[3 * i - 2] = (byte)i;
     }
  
-    for (int i = 1; i <= this.division - 1; i++) {
+    for (int i = 1; i <= this.division; i++) {
       indices[3 * i - 1] = (byte)(i + 1);
     }
 
-    indices[this.division *3 - 1] = 1;
+    indices[this.division *3 - 3] = 1;
+    indices[this.division *3 - 2] = (byte)(0);
 
     // 下面(中心点)
     for (int i = 1; i <= this.division; i++) {
