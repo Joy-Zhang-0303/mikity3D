@@ -194,7 +194,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     gl.glViewport(0, 0, width, height);
     gl.glMatrixMode(GLMatrixFunc.GL_PROJECTION);
     gl.glLoadIdentity();
-    this.glu.gluPerspective(10.0, (double)width / (double)height, 0.01, 100.0);
+    this.glu.gluPerspective(10.0, (double)width / (double)height, 0.1, 100.0);
     gl.glMatrixMode(GLMatrixFunc.GL_MODELVIEW);
   }
 

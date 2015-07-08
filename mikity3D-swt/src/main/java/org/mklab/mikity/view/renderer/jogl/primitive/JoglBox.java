@@ -176,7 +176,9 @@ public class JoglBox extends AbstractJoglObject {
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
 
     indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLES, 36, GL.GL_UNSIGNED_BYTE, indexBuffer);
+    //gl.glDrawElements(GL.GL_TRIANGLES, 36, GL.GL_UNSIGNED_BYTE, indexBuffer);
+    
+    gl.glDrawArrays(GL.GL_TRIANGLES, 0, 36);
 
     //indexBuffer.position(10);
     //gl.glDrawElements(GL.GL_TRIANGLE_STRIP, 4, GL.GL_UNSIGNED_BYTE, indexBuffer);

@@ -102,7 +102,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
 
     gl10.glMatrixMode(GL10.GL_PROJECTION);
     gl10.glLoadIdentity();
-    GLU.gluPerspective(gl10, 10.0f, this.aspect, 0.01f, 100.0f);
+    GLU.gluPerspective(gl10, 10.0f, this.aspect, 0.1f, 100.0f);
 
     gl10.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     // gl10.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 

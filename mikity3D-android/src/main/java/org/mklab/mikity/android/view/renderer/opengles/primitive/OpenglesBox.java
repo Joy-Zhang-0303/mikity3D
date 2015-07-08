@@ -173,8 +173,9 @@ public class OpenglesBox extends AbstractOpenglesObject {
     gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
     indexBuffer.position(0);
-    gl.glDrawElements(GL10.GL_TRIANGLES, 36, GL10.GL_UNSIGNED_BYTE, indexBuffer);
-
+    //gl.glDrawElements(GL10.GL_TRIANGLES, 36, GL10.GL_UNSIGNED_BYTE, indexBuffer);
+    gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 36);
+    
 //    indexBuffer.position(10);
 //    gl10.glDrawElements(GL10.GL_TRIANGLE_STRIP, 4, GL10.GL_UNSIGNED_BYTE, indexBuffer);
 //
