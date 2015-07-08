@@ -33,14 +33,6 @@ public class OpenglesBox extends AbstractOpenglesObject {
   public void display(GL10 gl) {
     applyColor(gl);
     
-    //   v7 -- v3
-    //  /      /
-    // v4 -- v0
-    //
-    //   v6 -- v2
-    //  /      /
-    // v5 -- v1
-    
     //   v5 -- v4
     //  /      /
     // v1 -- v0

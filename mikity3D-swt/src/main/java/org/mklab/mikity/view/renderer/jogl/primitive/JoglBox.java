@@ -33,14 +33,6 @@ public class JoglBox extends AbstractJoglObject {
   public void display(GL2 gl) {
     applyColor(gl);
     applyTransparency(gl);
-
-    //   v7 -- v3
-    //  /      /
-    // v4 -- v0
-    //
-    //   v6 -- v2
-    //  /      /
-    // v5 -- v1
     
     //   v5 -- v4
     //  /      /
