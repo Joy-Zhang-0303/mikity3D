@@ -25,11 +25,11 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
   /**
    * {@inheritDoc}
    */
-  public void display(GL10 gl10) {
-    applyColor(gl10);
+  public void display(GL10 gl) {
+    applyColor(gl);
 
     // 頂点配列の有効化
-    gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+    gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
     // 頂点バッファの生成
     float x0 = this.points[0][2];
@@ -56,10 +56,10 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
     // 頂点バッファの指定
-    gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
+    gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
     // プリミティブの描画
-    gl10.glDrawElements(GL10.GL_TRIANGLES, 6, GL10.GL_UNSIGNED_BYTE, indexBuffer);
+    gl.glDrawElements(GL10.GL_TRIANGLES, 6, GL10.GL_UNSIGNED_BYTE, indexBuffer);
   } 
 
   /**

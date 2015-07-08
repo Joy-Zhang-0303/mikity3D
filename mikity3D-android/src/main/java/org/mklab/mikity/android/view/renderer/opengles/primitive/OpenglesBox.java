@@ -30,8 +30,8 @@ public class OpenglesBox extends AbstractOpenglesObject {
   /**
    * {@inheritDoc}
    */
-  public void display(GL10 gl10) {
-    applyColor(gl10);
+  public void display(GL10 gl) {
+    applyColor(gl);
     
     //   v7 -- v3
     //  /      /
@@ -170,18 +170,18 @@ public class OpenglesBox extends AbstractOpenglesObject {
     final FloatBuffer normalsBuffer = makeFloatBuffer(normals);
 
     //法線配列の有効化
-    gl10.glEnableClientState(GL10.GL_NORMAL_ARRAY);
+    gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);
     
-    gl10.glNormalPointer(GL10.GL_FLOAT, 0, normalsBuffer);
+    gl.glNormalPointer(GL10.GL_FLOAT, 0, normalsBuffer);
     
     // 頂点配列の有効化
-    gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+    gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
     
     // 頂点バッファの指定
-    gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
+    gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
     indexBuffer.position(0);
-    gl10.glDrawElements(GL10.GL_TRIANGLES, 36, GL10.GL_UNSIGNED_BYTE, indexBuffer);
+    gl.glDrawElements(GL10.GL_TRIANGLES, 36, GL10.GL_UNSIGNED_BYTE, indexBuffer);
 
 //    indexBuffer.position(10);
 //    gl10.glDrawElements(GL10.GL_TRIANGLE_STRIP, 4, GL10.GL_UNSIGNED_BYTE, indexBuffer);

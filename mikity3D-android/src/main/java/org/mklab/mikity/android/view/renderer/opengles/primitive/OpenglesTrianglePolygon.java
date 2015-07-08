@@ -25,11 +25,11 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
   /**
    * {@inheritDoc}
    */
-  public void display(GL10 gl10) {
-    applyColor(gl10);
+  public void display(GL10 gl) {
+    applyColor(gl);
 
     // 頂点配列の有効化
-    gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+    gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
     // 頂点バッファの生成
     float x0 = this.points[0][2];
@@ -48,8 +48,8 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
 
     final FloatBuffer buffer = makeFloatBuffer(vertices);
 
-    gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, buffer);
-    gl10.glDrawArrays(GL10.GL_TRIANGLES, 0, 3); //プリミティブの描画
+    gl.glVertexPointer(3, GL10.GL_FLOAT, 0, buffer);
+    gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 3); //プリミティブの描画
   }
 
   /**

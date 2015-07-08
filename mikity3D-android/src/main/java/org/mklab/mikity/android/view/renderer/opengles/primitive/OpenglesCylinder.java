@@ -30,11 +30,11 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
   /**
    * {@inheritDoc}
    */
-  public void display(GL10 gl10) {
-    applyColor(gl10);
+  public void display(GL10 gl) {
+    applyColor(gl);
     
     // 頂点配列の有効化
-    gl10.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+    gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
     final float[] vertices = new float[(this.division * 2 + 2) * 3];
 
@@ -137,10 +137,10 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     final ByteBuffer indexBuffer = makeByteBuffer(indices);
 
     // 頂点バッファの指定 
-    gl10.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
+    gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
     indexBuffer.position(0);
-    gl10.glDrawElements(GL10.GL_TRIANGLE_STRIP,indices.length,GL10.GL_UNSIGNED_BYTE, indexBuffer);
+    gl.glDrawElements(GL10.GL_TRIANGLE_STRIP,indices.length,GL10.GL_UNSIGNED_BYTE, indexBuffer);
   }
 
   /**
