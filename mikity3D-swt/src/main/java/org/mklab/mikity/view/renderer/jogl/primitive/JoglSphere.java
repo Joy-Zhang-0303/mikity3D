@@ -37,7 +37,7 @@ public class JoglSphere extends AbstractJoglObject {
     final int grid = this.division;
     final int grid1 = grid + 1;
     final float incV = 2 * this.radius / grid;
-    final int incU = 360 / grid;
+    final float incU = 360.f / grid;
     
     // 頂点バッファの生成
     final float[] vertices = new float[(2 + (grid1 - 2) * grid) * 3];

@@ -3,25 +3,30 @@
       <group name="Group0">
          <translation x="0.0" y="0.0" z="0.0"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
-         <box width="0.01" height="0.03" depth="0.01" color="red" transparent="false"/>
-         <cylinder radius="0.005" height="0.012" division="20" color="blue" transparent="false">
+         <box width="0.01" height="0.03" depth="0.01" color="red" transparent="true"/>
+         <cylinder radius="0.005" height="0.012" division="20" color="blue" transparent="true">
             <translation x="0.0" y="0.0" z="0.02"/>
             <rotation x="0.0" y="1.57" z="0.0"/>
          </cylinder>
-         <group name="group">
+         <group name="base">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
-            <box width="0.2" height="0.01" depth="0.01" color="lightGray" transparent="false">
+            <box width="0.2" height="0.01" depth="0.01" color="lightGray" transparent="true">
                <translation x="0.0" y="0.0" z="0.02"/>
             </box>
             <linkData target="rotationX" number="4"/>
-            <group name="grou2">
+            <group name="ballTranslation">
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <sphere radius="0.01" division="30" color="cyan" transparent="false">
+               <linkData target="translationY" number="2"/>
+               <group name="ballTranslation">
                   <translation x="0.0" y="0.0" z="0.035"/>
-               </sphere>
-               <linkData target="translationY" number="3"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+                  <sphere radius="0.01" division="30" color="cyan" transparent="false">
+                     <translation x="0.0" y="0.0" z="0.0"/>
+                  </sphere>
+		  <linkData target="rotationX" number="3"/>
+               </group>
             </group>
          </group>
       </group>
