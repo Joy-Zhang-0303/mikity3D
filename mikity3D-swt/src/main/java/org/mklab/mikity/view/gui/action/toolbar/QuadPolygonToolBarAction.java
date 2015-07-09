@@ -53,7 +53,7 @@ public class QuadPolygonToolBarAction extends Action {
     final Translation p3 = new Translation(-0.3f, -0.3f, 0.0f);
     final Translation p4 = new Translation(0.3f, -0.3f, 0.0f);
     //final Location[] locations = {p1, p2, p3, p4};
-    polygon.setPointLocations(Arrays.asList(p1, p2, p3, p4));
+    polygon.setVertices(Arrays.asList(p1, p2, p3, p4));
     polygon.setColor("blue"); //$NON-NLS-1$
     
     final Mikity3d root = this.window.getRoot();

@@ -53,7 +53,7 @@ public class TrianglePolygonToolBarAction extends Action {
     final Translation p2 = new Translation(-0.3f, 0.3f, 0.0f);
     final Translation p3 = new Translation(-0.3f, -0.3f, 0.0f);
     final List<Translation> locations = Arrays.asList(p1, p2, p3);
-    polygon.setPointLocations(locations);
+    polygon.setVertices(locations);
     polygon.setColor("red"); //$NON-NLS-1$
     
     final Mikity3d root = this.window.getRoot();

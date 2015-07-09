@@ -96,7 +96,7 @@ public class EditTrianglePolygonDialog {
     this.triangle = triangle;
     this.groupName = group.getName();
     createSShell();
-    detectPrim();
+    setParametersInDialog();
   }
 
   /**
@@ -275,7 +275,7 @@ public class EditTrianglePolygonDialog {
           message.setText(Messages.getString("EditTrianglePolygonDialog.37")); //$NON-NLS-1$
           int yesNo = message.open();
           if (yesNo == SWT.YES) {
-            setParam();
+            updateObjectParameters();
             EditTrianglePolygonDialog.this.sShell.close();
           }
         } else {
@@ -362,18 +362,18 @@ public class EditTrianglePolygonDialog {
   }
 
   /**
-   * パラメータを変更する
+   * オブジェクトのパラメータを更新します。
    */
-  void setParam() {
-    final Translation[] newLocation = new Translation[3];
+  void updateObjectParameters() {
+    final Translation[] vertices = new Translation[3];
 
-    newLocation[0] = new Translation(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
-    newLocation[1] = new Translation(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
-    newLocation[2] = new Translation(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
+    vertices[0] = new Translation(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
+    vertices[1] = new Translation(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
+    vertices[2] = new Translation(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
 
-    String newColor = this.colorCombo.getColorComboBox().getText();
+    final String newColor = this.colorCombo.getColorComboBox().getText();
 
-    this.triangle.setPointLocations(Arrays.asList(newLocation[0], newLocation[1], newLocation[2]));
+    this.triangle.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2]));
     this.triangle.setColor(newColor);
     this.triangle.setRotation(new Rotation(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
     this.triangle.setTranslation(new Translation(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
@@ -382,27 +382,27 @@ public class EditTrianglePolygonDialog {
   /**
    * 各頂点の座標値を色を入れる　変更後の欄にはデフォルトで変更前の値を入力
    */
-  private void detectPrim() {
-    this.vertex1X.setText("" + this.triangle.getPointX(0)); //$NON-NLS-1$
-    this.vertex1Y.setText("" + this.triangle.getPointY(0)); //$NON-NLS-1$
-    this.vertex1Z.setText("" + this.triangle.getPointZ(0)); //$NON-NLS-1$
-    this.newVertex1X.setText("" + this.triangle.getPointX(0)); //$NON-NLS-1$
-    this.newVertex1Y.setText("" + this.triangle.getPointY(0)); //$NON-NLS-1$
-    this.newVertex1Z.setText("" + this.triangle.getPointZ(0)); //$NON-NLS-1$
+  private void setParametersInDialog() {
+    this.vertex1X.setText("" + this.triangle.getVertexX(0)); //$NON-NLS-1$
+    this.vertex1Y.setText("" + this.triangle.getVertexY(0)); //$NON-NLS-1$
+    this.vertex1Z.setText("" + this.triangle.getVertexZ(0)); //$NON-NLS-1$
+    this.newVertex1X.setText("" + this.triangle.getVertexX(0)); //$NON-NLS-1$
+    this.newVertex1Y.setText("" + this.triangle.getVertexY(0)); //$NON-NLS-1$
+    this.newVertex1Z.setText("" + this.triangle.getVertexZ(0)); //$NON-NLS-1$
 
-    this.vertex2X.setText("" + this.triangle.getPointX(1)); //$NON-NLS-1$
-    this.vertex2Y.setText("" + this.triangle.getPointY(1)); //$NON-NLS-1$
-    this.vertex2Z.setText("" + this.triangle.getPointZ(1)); //$NON-NLS-1$
-    this.newVertex2X.setText("" + this.triangle.getPointX(1)); //$NON-NLS-1$
-    this.newVertex2Y.setText("" + this.triangle.getPointY(1)); //$NON-NLS-1$
-    this.newVertex2Z.setText("" + this.triangle.getPointZ(1)); //$NON-NLS-1$
+    this.vertex2X.setText("" + this.triangle.getVertexX(1)); //$NON-NLS-1$
+    this.vertex2Y.setText("" + this.triangle.getVertexY(1)); //$NON-NLS-1$
+    this.vertex2Z.setText("" + this.triangle.getVertexZ(1)); //$NON-NLS-1$
+    this.newVertex2X.setText("" + this.triangle.getVertexX(1)); //$NON-NLS-1$
+    this.newVertex2Y.setText("" + this.triangle.getVertexY(1)); //$NON-NLS-1$
+    this.newVertex2Z.setText("" + this.triangle.getVertexZ(1)); //$NON-NLS-1$
 
-    this.vertex3X.setText("" + this.triangle.getPointX(2)); //$NON-NLS-1$
-    this.vertex3Y.setText("" + this.triangle.getPointY(2)); //$NON-NLS-1$
-    this.vertex3Z.setText("" + this.triangle.getPointZ(2)); //$NON-NLS-1$
-    this.newVertex3X.setText("" + this.triangle.getPointX(2)); //$NON-NLS-1$
-    this.newVertex3Y.setText("" + this.triangle.getPointY(2)); //$NON-NLS-1$
-    this.newVertex3Z.setText("" + this.triangle.getPointZ(2)); //$NON-NLS-1$
+    this.vertex3X.setText("" + this.triangle.getVertexX(2)); //$NON-NLS-1$
+    this.vertex3Y.setText("" + this.triangle.getVertexY(2)); //$NON-NLS-1$
+    this.vertex3Z.setText("" + this.triangle.getVertexZ(2)); //$NON-NLS-1$
+    this.newVertex3X.setText("" + this.triangle.getVertexX(2)); //$NON-NLS-1$
+    this.newVertex3Y.setText("" + this.triangle.getVertexY(2)); //$NON-NLS-1$
+    this.newVertex3Z.setText("" + this.triangle.getVertexZ(2)); //$NON-NLS-1$
     this.color.setText(this.triangle.getColor());
     this.colorCombo.getColorComboBox().setText(this.triangle.getColor());
 

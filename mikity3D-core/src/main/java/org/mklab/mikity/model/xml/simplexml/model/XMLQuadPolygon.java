@@ -25,7 +25,7 @@ import org.simpleframework.xml.Root;
 @Root(name="quadPolygon")
 public class XMLQuadPolygon {
   @ElementList(type=Translation.class, inline=true, required=true)
-  private List<Translation> points;
+  private List<Translation> vertices;
   
   /** translation */
   @Element(name="translation", required=false)
@@ -43,7 +43,7 @@ public class XMLQuadPolygon {
   @Attribute(name="transparent", required=false)
   protected boolean transparent = false;
 
-  /** 法泉ベクトル。 */
+  /** 法線ベクトル。 */
   private Vector3 normalVector = new Vector3(0,0,1);
 
   private Matrix4 matrix;
@@ -53,7 +53,7 @@ public class XMLQuadPolygon {
    * 新しく生成された<code>XMLQuadPolygon</code>オブジェクトを初期化します。
    */
   public XMLQuadPolygon() {
-    this.points = new ArrayList<>(4);
+    this.vertices = new ArrayList<>(4);
     this.color = "orange"; //$NON-NLS-1$
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
@@ -64,10 +64,10 @@ public class XMLQuadPolygon {
    * @param y Y座標
    * @param z Z座標
    */
-  public void setPointLocation(int number, float x, float y, float z) {
-    this.points.get(number).setX(x);
-    this.points.get(number).setY(y);
-    this.points.get(number).setZ(z);
+  public void setVertex(int number, float x, float y, float z) {
+    this.vertices.get(number).setX(x);
+    this.vertices.get(number).setY(y);
+    this.vertices.get(number).setZ(z);
     updateNormalVector();
   }
 
@@ -77,19 +77,19 @@ public class XMLQuadPolygon {
    * @param location3 座標3
    * @param location4 座標4
    */
-  public void setPointLocations(Translation location1, Translation location2, Translation location3, Translation location4) {
-    this.points.set(0, location1);
-    this.points.set(1, location2);
-    this.points.set(2, location3);
-    this.points.set(3, location4);
+  public void setVertices(Translation location1, Translation location2, Translation location3, Translation location4) {
+    this.vertices.set(0, location1);
+    this.vertices.set(1, location2);
+    this.vertices.set(2, location3);
+    this.vertices.set(3, location4);
     updateNormalVector();
   }
 
   /**
-   * @param points 座標
+   * @param vertices 座標
    */
-  public void setPointLocations(List<Translation> points) {
-    this.points = points;
+  public void setVertices(List<Translation> vertices) {
+    this.vertices = vertices;
     updateNormalVector();
   }
 
@@ -125,47 +125,47 @@ public class XMLQuadPolygon {
    * 
    */
   public void updateNormalVector() {
-    final Vector3 v1 = new Vector3(this.points.get(1).getX() - this.points.get(0).getX(), this.points.get(1).getY() - this.points.get(0).getY(), this.points.get(1).getZ() - this.points.get(0).getZ());
-    final Vector3 v2 = new Vector3(this.points.get(2).getX() - this.points.get(1).getX(), this.points.get(2).getY() - this.points.get(1).getY(), this.points.get(2).getZ() - this.points.get(1).getZ());
+    final Vector3 v1 = new Vector3(this.vertices.get(1).getX() - this.vertices.get(0).getX(), this.vertices.get(1).getY() - this.vertices.get(0).getY(), this.vertices.get(1).getZ() - this.vertices.get(0).getZ());
+    final Vector3 v2 = new Vector3(this.vertices.get(2).getX() - this.vertices.get(1).getX(), this.vertices.get(2).getY() - this.vertices.get(1).getY(), this.vertices.get(2).getZ() - this.vertices.get(1).getZ());
     this.normalVector = v1.cross(v2).normalize();
   }
 
-  /**
-   * @param normalVector 法線ベクトル
-   */
-  public void setNormalVector(Vector3 normalVector) {
-    this.normalVector = normalVector;
-  }
+//  /**
+//   * @param normalVector 法線ベクトル
+//   */
+//  public void setNormalVector(Vector3 normalVector) {
+//    this.normalVector = normalVector;
+//  }
 
-  /**
-   * @param translation 位置
-   */
-  public void setNormalVector(Translation translation) {
-    this.normalVector = new Vector3(translation.getX(), translation.getY(), translation.getZ());
-  }
+//  /**
+//   * @param translation 位置
+//   */
+//  public void setNormalVector(Translation translation) {
+//    this.normalVector = new Vector3(translation.getX(), translation.getY(), translation.getZ());
+//  }
 
   /**
    * @param number 座標番号
    * @return x location
    */
-  public float getPointX(int number) {
-    return this.points.get(number).getX();
+  public float getVertexX(int number) {
+    return this.vertices.get(number).getX();
   }
 
   /**
    * @param number 座標番号
    * @return y location
    */
-  public float getPointY(int number) {
-    return this.points.get(number).getY();
+  public float getVertexY(int number) {
+    return this.vertices.get(number).getY();
   }
 
   /**
    * @param number 座標番号
    * @return z location
    */
-  public float getPointZ(int number) {
-    return this.points.get(number).getZ();
+  public float getVertexZ(int number) {
+    return this.vertices.get(number).getZ();
   }
 
   /**

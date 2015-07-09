@@ -25,7 +25,7 @@ import org.simpleframework.xml.Root;
 @Root(name="trianglePolygon")
 public class XMLTrianglePolygon {
   @ElementList(type=Translation.class, inline=true, required=true)
-  private List<Translation> points;
+  private List<Translation> vertices;
  
   /** color */
   @Attribute(name="color")
@@ -47,50 +47,56 @@ public class XMLTrianglePolygon {
 
   private Matrix4 matrix;
 
-
   /**
    * 新しく生成された<code>XMLTrianglePolygon</code>オブジェクトを初期化します。
    */
   public XMLTrianglePolygon() {
-    this.points = new ArrayList<>(3);
+    this.vertices = new ArrayList<>(3);
     this.color = "orange"; //$NON-NLS-1$
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 
   /**
-   * @param number 座標番号
+   * 頂点を設定します。
+   * 
+   * @param number 頂点の番号(0-2)
    * @param x X座標
    * @param y Y座標
    * @param z Z座標
    */
-  public void setPointLocation(int number, float x, float y, float z) {
-    this.points.get(number).setX(x);
-    this.points.get(number).setY(y);
-    this.points.get(number).setZ(z);
+  public void setVertex(int number, float x, float y, float z) {
+    this.vertices.get(number).setX(x);
+    this.vertices.get(number).setY(y);
+    this.vertices.get(number).setZ(z);
     updateNormalVector();
   }
 
   /**
-   * @param location1 座標1
-   * @param location2 座標2
-   * @param location3 座標3
+   * 3個の頂点を設定します。
+   * 
+   * @param vertex0 頂点0
+   * @param vertex1 頂点1
+   * @param vertex2 頂点2
    */
-  public void setPointLocations(Translation location1, Translation location2, Translation location3) {
-    this.points.set(0, location1);
-    this.points.set(1, location2);
-    this.points.set(2, location3);
+  public void setVertices(Translation vertex0, Translation vertex1, Translation vertex2) {
+    this.vertices.set(0, vertex0);
+    this.vertices.set(1, vertex1);
+    this.vertices.set(2, vertex2);
     updateNormalVector();
   }
 
   /**
-   * @param points 座標
+   * 頂点を設定します。
+   * @param points 頂点
    */
-  public void setPointLocations(List<Translation> points) {
-    this.points = points;
+  public void setVertices(List<Translation> points) {
+    this.vertices = points;
     updateNormalVector();
   }
 
   /**
+   * 色を設定します。
+   * 
    * @param color 色
    */
   public void setColor(String color) {
@@ -111,28 +117,30 @@ public class XMLTrianglePolygon {
     this.rotation = rotation;
   }
 
-  /**
-   * 法線ベクトルを設定します。
-   * @param nromalVector 法線ベクトル
-   */
-  public void setNormalVector(Translation nromalVector) {
-    this.normalVector = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
-  }
+//  /**
+//   * 法線ベクトルを設定します。
+//   * 
+//   * @param nromalVector 法線ベクトル
+//   */
+//  public void setNormalVector(Translation nromalVector) {
+//    this.normalVector = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
+//  }
+
+//  /**
+//   * 法線ベクトルを設定します。
+//   * 
+//   * @param normalVector 法線ベクトル
+//   */
+//  public void setNormalVector(Vector3 normalVector) {
+//    this.normalVector = normalVector;
+//  }
 
   /**
-   * 法線ベクトルを設定します。
-   * @param normalVector 法線ベクトル
-   */
-  public void setNormalVector(Vector3 normalVector) {
-    this.normalVector = normalVector;
-  }
-
-  /**
-   *  
+   * 法線ベクトルを更新します。
    */
   private void updateNormalVector() {
-    final Vector3 v1 = new Vector3(this.points.get(1).getX() - this.points.get(0).getX(), this.points.get(1).getY() - this.points.get(0).getY(), this.points.get(1).getZ() - this.points.get(0).getZ());
-    final Vector3 v2 = new Vector3(this.points.get(2).getX() - this.points.get(1).getX(), this.points.get(2).getY() - this.points.get(1).getY(), this.points.get(2).getZ() - this.points.get(1).getZ());
+    final Vector3 v1 = new Vector3(this.vertices.get(1).getX() - this.vertices.get(0).getX(), this.vertices.get(1).getY() - this.vertices.get(0).getY(), this.vertices.get(1).getZ() - this.vertices.get(0).getZ());
+    final Vector3 v2 = new Vector3(this.vertices.get(2).getX() - this.vertices.get(1).getX(), this.vertices.get(2).getY() - this.vertices.get(1).getY(), this.vertices.get(2).getZ() - this.vertices.get(1).getZ());
     this.normalVector = v1.cross(v2).normalize();
   }
 
@@ -144,31 +152,39 @@ public class XMLTrianglePolygon {
   }
 
   /**
-   * @param number 座標番号
-   * @return x location
+   * 指定された頂点のX座標を返します。
+   * 
+   * @param number 頂点の番号(0-2)
+   * @return x X座標
    */
-  public float getPointX(int number) {
-    return this.points.get(number).getX();
+  public float getVertexX(int number) {
+    return this.vertices.get(number).getX();
   }
 
   /**
-   * @param number 座標番号
-   * @return y location
+   * 指定された頂点のY座標を返します。
+   * 
+   * @param number 頂点の番号(0-2)
+   * @return y Y座標
    */
-  public float getPointY(int number) {
-    return this.points.get(number).getY();
+  public float getVertexY(int number) {
+    return this.vertices.get(number).getY();
   }
 
   /**
-   * @param number 座標番号
-   * @return z location
+   * 指定された頂点のZ座標を返します。
+   * 
+   * @param number 頂点の番号(0-2)
+   * @return z Z座標
    */
-  public float getPointZ(int number) {
-    return this.points.get(number).getZ();
+  public float getVertexZ(int number) {
+    return this.vertices.get(number).getZ();
   }
 
   /**
-   * @return color
+   * 色を返します。
+   * 
+   * @return 色
    */
   public String getColor() {
     return this.color;
@@ -190,6 +206,7 @@ public class XMLTrianglePolygon {
 
   /**
    * 法線ベクトルを返します。
+   * 
    * @return 法線ベクトル
    */
   public Vector3 getNormalVector() {

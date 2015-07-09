@@ -232,7 +232,7 @@ public class AddQuadPolygonDialog {
     final Translation vertex2 = new Translation(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
     final Translation vertex3 = new Translation(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
     final Translation vertex4 = new Translation(this.vertex4x.getFloatValue(), this.vertex4y.getFloatValue(), this.vertex4z.getFloatValue());
-    quad.setPointLocations(vertex1, vertex2, vertex3, vertex4);
+    quad.setVertices(vertex1, vertex2, vertex3, vertex4);
     if (getRotation(rot) != null) {
       quad.setRotation(getRotation(rot));
     }

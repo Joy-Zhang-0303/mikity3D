@@ -223,7 +223,7 @@ public class AddTrianglePolygonDialog {
     final Translation vertex1 = new Translation(this.vertex1x.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
     final Translation vertex2 = new Translation(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
     final Translation vertex3 = new Translation(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
-    triangle.setPointLocations(vertex1, vertex2, vertex3);
+    triangle.setVertices(vertex1, vertex2, vertex3);
     if (getRotation(rotation) != null) {
       triangle.setRotation(getRotation(rotation));
     }

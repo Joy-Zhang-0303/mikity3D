@@ -272,9 +272,9 @@ public class JoglPrimitiveFactory {
   public static JoglObjectGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[3][3];
     for (int i = 0; i < 3; i++) {
-      points[i][0] = polygon.getPointX(i);
-      points[i][1] = polygon.getPointY(i);
-      points[i][2] = polygon.getPointZ(i);
+      points[i][0] = polygon.getVertexX(i);
+      points[i][1] = polygon.getVertexY(i);
+      points[i][2] = polygon.getVertexZ(i);
     }
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
@@ -345,9 +345,9 @@ public class JoglPrimitiveFactory {
   public static JoglObjectGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[4][3];
     for (int i = 0; i < 4; i++) {
-      points[i][0] = polygon.getPointX(i);
-      points[i][1] = polygon.getPointY(i);
-      points[i][2] = polygon.getPointZ(i);
+      points[i][0] = polygon.getVertexX(i);
+      points[i][1] = polygon.getVertexY(i);
+      points[i][2] = polygon.getVertexZ(i);
     }
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
