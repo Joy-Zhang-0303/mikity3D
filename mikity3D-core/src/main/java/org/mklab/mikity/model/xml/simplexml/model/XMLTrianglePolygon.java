@@ -24,8 +24,9 @@ import org.simpleframework.xml.Root;
  */
 @Root(name="trianglePolygon")
 public class XMLTrianglePolygon {
-  @ElementList(type=XMLPoint.class, inline=true, required=true)
-  private List<XMLPoint> vertices;
+  /** vertices */
+  @ElementList(type=Vertex.class, inline=true, required=true)
+  private List<Vertex> vertices;
  
   /** color */
   @Attribute(name="color")
@@ -78,7 +79,7 @@ public class XMLTrianglePolygon {
    * @param vertex1 頂点1
    * @param vertex2 頂点2
    */
-  public void setVertices(XMLPoint vertex0, XMLPoint vertex1, XMLPoint vertex2) {
+  public void setVertices(Vertex vertex0, Vertex vertex1, Vertex vertex2) {
     this.vertices.set(0, vertex0);
     this.vertices.set(1, vertex1);
     this.vertices.set(2, vertex2);
@@ -89,7 +90,7 @@ public class XMLTrianglePolygon {
    * 頂点を設定します。
    * @param points 頂点
    */
-  public void setVertices(List<XMLPoint> points) {
+  public void setVertices(List<Vertex> points) {
     this.vertices = points;
     updateNormalVector();
   }

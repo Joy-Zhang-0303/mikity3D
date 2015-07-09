@@ -9,8 +9,8 @@ import org.simpleframework.xml.Root;
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
  */
-@Root(name="point")
-public class XMLPoint implements java.io.Serializable {
+@Root(name="vertex")
+public class Vertex implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** x成分 */
@@ -28,7 +28,7 @@ public class XMLPoint implements java.io.Serializable {
   /**
    * 新しく生成された<code>XMLPoint</code>オブジェクトを初期化します。
    */
-  public XMLPoint() {
+  public Vertex() {
     this.x = 0;
     this.y = 0;
     this.z = 0;
@@ -40,7 +40,7 @@ public class XMLPoint implements java.io.Serializable {
    * @param y y
    * @param z z
    */
-  public XMLPoint(float x, float y, float z) {
+  public Vertex(float x, float y, float z) {
     this.x = x;
     this.y = y;
     this.z = z;
@@ -83,7 +83,7 @@ public class XMLPoint implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    XMLPoint other = (XMLPoint)obj;
+    Vertex other = (Vertex)obj;
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }

@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.XMLPoint;
+import org.mklab.mikity.model.xml.simplexml.model.Vertex;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
@@ -221,9 +221,9 @@ public class AddTrianglePolygonDialog {
     final Rotation rotation = new Rotation();
     final Translation location = new Translation();
 
-    final XMLPoint vertex1 = new XMLPoint(this.vertex1x.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
-    final XMLPoint vertex2 = new XMLPoint(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
-    final XMLPoint vertex3 = new XMLPoint(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
+    final Vertex vertex1 = new Vertex(this.vertex1x.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
+    final Vertex vertex2 = new Vertex(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
+    final Vertex vertex3 = new Vertex(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
     triangle.setVertices(vertex1, vertex2, vertex3);
     if (getRotation(rotation) != null) {
       triangle.setRotation(getRotation(rotation));

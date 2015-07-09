@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.XMLPoint;
+import org.mklab.mikity.model.xml.simplexml.model.Vertex;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
@@ -366,11 +366,11 @@ public class EditTrianglePolygonDialog {
    * オブジェクトのパラメータを更新します。
    */
   void updateObjectParameters() {
-    final XMLPoint[] vertices = new XMLPoint[3];
+    final Vertex[] vertices = new Vertex[3];
 
-    vertices[0] = new XMLPoint(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
-    vertices[1] = new XMLPoint(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
-    vertices[2] = new XMLPoint(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
+    vertices[0] = new Vertex(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
+    vertices[1] = new Vertex(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
+    vertices[2] = new Vertex(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
 
     final String newColor = this.colorCombo.getColorComboBox().getText();
 
