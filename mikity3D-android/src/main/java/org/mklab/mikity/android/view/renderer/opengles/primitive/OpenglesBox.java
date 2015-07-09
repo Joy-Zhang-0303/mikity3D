@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -87,40 +86,7 @@ public class OpenglesBox extends AbstractOpenglesObject {
         x7, y7, z7, x6, y6, z6, x5, y5, z5,
         x0, y0, z0, x1, y1, z1, x3, y3, z3,
         x1, y1, z1, x2, y2, z2, x3, y3, z3};
-    
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
-
-    // インデックスバッファの生成
-    //final byte[] indices = {0, 4, 1, 5, 2, 6, 3, 7, 0, 4, 4, 7, 5, 6, 0, 1, 3, 2};
-    final byte[] indices = 
-      {0, 1, 2, 
-        3, 4, 5,
-        6, 7, 8,
-        9, 10, 11,
-        12, 13, 14,
-        15, 16, 17,
-        18, 19, 20,
-        21, 22, 23,
-        24, 25, 26,
-        27, 28, 29,
-        30, 31, 32,
-        33, 34, 35};
-    
-//    {0, 4, 1, 
-//      4, 5, 1,
-//      1, 5, 2,
-//      5, 6, 2,
-//      2, 6, 3,
-//      6, 7, 3,
-//      3, 7, 0,
-//      7, 4, 0,
-//      4, 7, 5,
-//      7, 6, 5,
-//      0, 1, 3,
-//      1, 2, 3};
-    
-    final ByteBuffer indexBuffer = makeByteBuffer(indices);
-    
+      
     final float[] normals = 
       {0, 0, 1,
         0, 0, 1,
@@ -159,28 +125,20 @@ public class OpenglesBox extends AbstractOpenglesObject {
         1, 0, 0,
         1, 0, 0};
 
-    final FloatBuffer normalsBuffer = makeFloatBuffer(normals);
+    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
+    final FloatBuffer normalBuffer = makeFloatBuffer(normals);
 
-    //法線配列の有効化
+    // 法線配列の有効化
     gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);
-    
-    gl.glNormalPointer(GL10.GL_FLOAT, 0, normalsBuffer);
+    // 法線バッファの指定
+    gl.glNormalPointer(GL10.GL_FLOAT, 0, normalBuffer);
     
     // 頂点配列の有効化
     gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-    
     // 頂点バッファの指定
     gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
-    indexBuffer.position(0);
-    //gl.glDrawElements(GL10.GL_TRIANGLES, 36, GL10.GL_UNSIGNED_BYTE, indexBuffer);
     gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 36);
-    
-//    indexBuffer.position(10);
-//    gl10.glDrawElements(GL10.GL_TRIANGLE_STRIP, 4, GL10.GL_UNSIGNED_BYTE, indexBuffer);
-//
-//    indexBuffer.position(14);
-//    gl10.glDrawElements(GL10.GL_TRIANGLE_STRIP, 4, GL10.GL_UNSIGNED_BYTE, indexBuffer);
   }
 
   /**
