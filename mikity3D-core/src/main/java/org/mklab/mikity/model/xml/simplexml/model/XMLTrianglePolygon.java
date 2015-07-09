@@ -88,10 +88,11 @@ public class XMLTrianglePolygon {
 
   /**
    * 頂点を設定します。
-   * @param points 頂点
+   * 
+   * @param vertices 頂点
    */
-  public void setVertices(List<Vertex> points) {
-    this.vertices = points;
+  public void setVertices(List<Vertex> vertices) {
+    this.vertices = vertices;
     updateNormalVector();
   }
 
@@ -151,36 +152,45 @@ public class XMLTrianglePolygon {
   public void setMatrix(Matrix4 matrix) {
     this.matrix = matrix;
   }
-
+  
   /**
-   * 指定された頂点のX座標を返します。
-   * 
+   * 指定された頂点を返します。
    * @param number 頂点の番号(0-2)
-   * @return x X座標
+   * @return 指定された頂点
    */
-  public float getVertexX(int number) {
-    return this.vertices.get(number).getX();
+  public Vertex getVertex(int number) {
+    return this.vertices.get(number); 
   }
 
-  /**
-   * 指定された頂点のY座標を返します。
-   * 
-   * @param number 頂点の番号(0-2)
-   * @return y Y座標
-   */
-  public float getVertexY(int number) {
-    return this.vertices.get(number).getY();
-  }
-
-  /**
-   * 指定された頂点のZ座標を返します。
-   * 
-   * @param number 頂点の番号(0-2)
-   * @return z Z座標
-   */
-  public float getVertexZ(int number) {
-    return this.vertices.get(number).getZ();
-  }
+//  /**
+//   * 指定された頂点のX座標を返します。
+//   * 
+//   * @param number 頂点の番号(0-2)
+//   * @return x X座標
+//   */
+//  public float getVertexX(int number) {
+//    return this.vertices.get(number).getX();
+//  }
+//
+//  /**
+//   * 指定された頂点のY座標を返します。
+//   * 
+//   * @param number 頂点の番号(0-2)
+//   * @return y Y座標
+//   */
+//  public float getVertexY(int number) {
+//    return this.vertices.get(number).getY();
+//  }
+//
+//  /**
+//   * 指定された頂点のZ座標を返します。
+//   * 
+//   * @param number 頂点の番号(0-2)
+//   * @return z Z座標
+//   */
+//  public float getVertexZ(int number) {
+//    return this.vertices.get(number).getZ();
+//  }
 
   /**
    * 色を返します。

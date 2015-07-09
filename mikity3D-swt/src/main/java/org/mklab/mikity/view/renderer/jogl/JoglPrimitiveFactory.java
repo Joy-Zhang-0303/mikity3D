@@ -5,8 +5,9 @@ import java.util.List;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
+import org.mklab.mikity.model.xml.simplexml.model.Vertex;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
@@ -272,9 +273,10 @@ public class JoglPrimitiveFactory {
   public static JoglObjectGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[3][3];
     for (int i = 0; i < 3; i++) {
-      points[i][0] = polygon.getVertexX(i);
-      points[i][1] = polygon.getVertexY(i);
-      points[i][2] = polygon.getVertexZ(i);
+      final Vertex vertex = polygon.getVertex(i);
+      points[i][0] = vertex.getX();
+      points[i][1] = vertex.getY();
+      points[i][2] = vertex.getZ();
     }
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
@@ -345,9 +347,10 @@ public class JoglPrimitiveFactory {
   public static JoglObjectGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[4][3];
     for (int i = 0; i < 4; i++) {
-      points[i][0] = polygon.getVertexX(i);
-      points[i][1] = polygon.getVertexY(i);
-      points[i][2] = polygon.getVertexZ(i);
+      final Vertex vertex = polygon.getVertex(i);
+      points[i][0] = vertex.getX();
+      points[i][1] = vertex.getY();
+      points[i][2] = vertex.getZ();
     }
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();

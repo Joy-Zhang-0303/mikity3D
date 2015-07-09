@@ -60,7 +60,9 @@ public class XMLQuadPolygon {
   }
 
   /**
-   * @param number 座標番号
+   * 頂点を設定します。
+   * 
+   * @param number 頂点番号(0-3)
    * @param x X座標
    * @param y Y座標
    * @param z Z座標
@@ -73,21 +75,25 @@ public class XMLQuadPolygon {
   }
 
   /**
-   * @param location1 座標1
-   * @param location2 座標2
-   * @param location3 座標3
-   * @param location4 座標4
+   * 頂点を設定します。
+   * 
+   * @param vertex0 頂点0
+   * @param vertex1 頂点1
+   * @param vertex2 頂点2
+   * @param vertex3 頂点3
    */
-  public void setVertices(Vertex location1, Vertex location2, Vertex location3, Vertex location4) {
-    this.vertices.set(0, location1);
-    this.vertices.set(1, location2);
-    this.vertices.set(2, location3);
-    this.vertices.set(3, location4);
+  public void setVertices(Vertex vertex0, Vertex vertex1, Vertex vertex2, Vertex vertex3) {
+    this.vertices.set(0, vertex0);
+    this.vertices.set(1, vertex1);
+    this.vertices.set(2, vertex2);
+    this.vertices.set(3, vertex3);
     updateNormalVector();
   }
 
   /**
-   * @param vertices 座標
+   * 頂点を設定します。
+   * 
+   * @param vertices 頂点
    */
   public void setVertices(List<Vertex> vertices) {
     this.vertices = vertices;
@@ -144,30 +150,39 @@ public class XMLQuadPolygon {
 //  public void setNormalVector(Translation translation) {
 //    this.normalVector = new Vector3(translation.getX(), translation.getY(), translation.getZ());
 //  }
-
+  
   /**
-   * @param number 座標番号
-   * @return x location
+   * 指定された頂点を返します。
+   * @param number 頂点の番号(0-3)
+   * @return 指定された頂点
    */
-  public float getVertexX(int number) {
-    return this.vertices.get(number).getX();
+  public Vertex getVertex(int number) {
+    return this.vertices.get(number); 
   }
 
-  /**
-   * @param number 座標番号
-   * @return y location
-   */
-  public float getVertexY(int number) {
-    return this.vertices.get(number).getY();
-  }
-
-  /**
-   * @param number 座標番号
-   * @return z location
-   */
-  public float getVertexZ(int number) {
-    return this.vertices.get(number).getZ();
-  }
+//  /**
+//   * @param number 座標番号
+//   * @return x location
+//   */
+//  public float getVertexX(int number) {
+//    return this.vertices.get(number).getX();
+//  }
+//
+//  /**
+//   * @param number 座標番号
+//   * @return y location
+//   */
+//  public float getVertexY(int number) {
+//    return this.vertices.get(number).getY();
+//  }
+//
+//  /**
+//   * @param number 座標番号
+//   * @return z location
+//   */
+//  public float getVertexZ(int number) {
+//    return this.vertices.get(number).getZ();
+//  }
 
   /**
    * @return color
