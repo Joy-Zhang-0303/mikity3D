@@ -119,30 +119,24 @@ public class XMLTrianglePolygon {
     this.rotation = rotation;
   }
 
-//  /**
-//   * 法線ベクトルを設定します。
-//   * 
-//   * @param nromalVector 法線ベクトル
-//   */
-//  public void setNormalVector(Translation nromalVector) {
-//    this.normalVector = new Vector3(nromalVector.getX(), nromalVector.getY(), nromalVector.getZ());
-//  }
-
-//  /**
-//   * 法線ベクトルを設定します。
-//   * 
-//   * @param normalVector 法線ベクトル
-//   */
-//  public void setNormalVector(Vector3 normalVector) {
-//    this.normalVector = normalVector;
-//  }
-
   /**
    * 法線ベクトルを更新します。
    */
   private void updateNormalVector() {
-    final Vector3 v1 = new Vector3(this.vertices.get(1).getX() - this.vertices.get(0).getX(), this.vertices.get(1).getY() - this.vertices.get(0).getY(), this.vertices.get(1).getZ() - this.vertices.get(0).getZ());
-    final Vector3 v2 = new Vector3(this.vertices.get(2).getX() - this.vertices.get(1).getX(), this.vertices.get(2).getY() - this.vertices.get(1).getY(), this.vertices.get(2).getZ() - this.vertices.get(1).getZ());
+    float x0 = this.vertices.get(0).getX();
+    float y0 = this.vertices.get(0).getY();
+    float z0 = this.vertices.get(0).getZ();
+    
+    float x1 = this.vertices.get(1).getX();
+    float y1 = this.vertices.get(1).getY();
+    float z1 = this.vertices.get(1).getZ();
+
+    float x2 = this.vertices.get(2).getX();
+    float y2 = this.vertices.get(2).getY();
+    float z2 = this.vertices.get(2).getZ();
+    
+    final Vector3 v1 = new Vector3(x1 - x0, y1 - y0, z1 - z0);
+    final Vector3 v2 = new Vector3(x2 - x1, y2 - y1, z2 - z1);
     this.normalVector = v1.cross(v2).normalize();
   }
 
@@ -161,36 +155,6 @@ public class XMLTrianglePolygon {
   public Vertex getVertex(int number) {
     return this.vertices.get(number); 
   }
-
-//  /**
-//   * 指定された頂点のX座標を返します。
-//   * 
-//   * @param number 頂点の番号(0-2)
-//   * @return x X座標
-//   */
-//  public float getVertexX(int number) {
-//    return this.vertices.get(number).getX();
-//  }
-//
-//  /**
-//   * 指定された頂点のY座標を返します。
-//   * 
-//   * @param number 頂点の番号(0-2)
-//   * @return y Y座標
-//   */
-//  public float getVertexY(int number) {
-//    return this.vertices.get(number).getY();
-//  }
-//
-//  /**
-//   * 指定された頂点のZ座標を返します。
-//   * 
-//   * @param number 頂点の番号(0-2)
-//   * @return z Z座標
-//   */
-//  public float getVertexZ(int number) {
-//    return this.vertices.get(number).getZ();
-//  }
 
   /**
    * 色を返します。

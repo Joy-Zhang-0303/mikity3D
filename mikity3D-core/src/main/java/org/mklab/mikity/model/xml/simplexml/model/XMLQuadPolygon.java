@@ -136,20 +136,6 @@ public class XMLQuadPolygon {
     final Vector3 v2 = new Vector3(this.vertices.get(2).getX() - this.vertices.get(1).getX(), this.vertices.get(2).getY() - this.vertices.get(1).getY(), this.vertices.get(2).getZ() - this.vertices.get(1).getZ());
     this.normalVector = v1.cross(v2).normalize();
   }
-
-//  /**
-//   * @param normalVector 法線ベクトル
-//   */
-//  public void setNormalVector(Vector3 normalVector) {
-//    this.normalVector = normalVector;
-//  }
-
-//  /**
-//   * @param translation 位置
-//   */
-//  public void setNormalVector(Translation translation) {
-//    this.normalVector = new Vector3(translation.getX(), translation.getY(), translation.getZ());
-//  }
   
   /**
    * 指定された頂点を返します。
@@ -159,30 +145,6 @@ public class XMLQuadPolygon {
   public Vertex getVertex(int number) {
     return this.vertices.get(number); 
   }
-
-//  /**
-//   * @param number 座標番号
-//   * @return x location
-//   */
-//  public float getVertexX(int number) {
-//    return this.vertices.get(number).getX();
-//  }
-//
-//  /**
-//   * @param number 座標番号
-//   * @return y location
-//   */
-//  public float getVertexY(int number) {
-//    return this.vertices.get(number).getY();
-//  }
-//
-//  /**
-//   * @param number 座標番号
-//   * @return z location
-//   */
-//  public float getVertexZ(int number) {
-//    return this.vertices.get(number).getZ();
-//  }
 
   /**
    * @return color

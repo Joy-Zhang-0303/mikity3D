@@ -401,16 +401,16 @@ public class EditQuadPolygonDialog {
    * パラメータを変更する
    */
   void setParam() {
-    final Vertex[] newLocation = new Vertex[4];
+    final Vertex[] newVertices = new Vertex[4];
 
-    newLocation[0] = new Vertex(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
-    newLocation[1] = new Vertex(this.newVertexX2.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
-    newLocation[2] = new Vertex(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
-    newLocation[3] = new Vertex(this.newVertex4X.getFloatValue(), this.newVertex4Y.getFloatValue(), this.newVertex4Z.getFloatValue());
+    newVertices[0] = new Vertex(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
+    newVertices[1] = new Vertex(this.newVertexX2.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
+    newVertices[2] = new Vertex(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
+    newVertices[3] = new Vertex(this.newVertex4X.getFloatValue(), this.newVertex4Y.getFloatValue(), this.newVertex4Z.getFloatValue());
 
     String newColor = this.colorCombo.getColorComboBox().getText();
 
-    this.quad.setVertices(Arrays.asList(newLocation[0], newLocation[1], newLocation[2], newLocation[3]));
+    this.quad.setVertices(Arrays.asList(newVertices[0], newVertices[1], newVertices[2], newVertices[3]));
     this.quad.setColor(newColor);
     this.quad.setRotation(new Rotation(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
     this.quad.setTranslation(new Translation(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
