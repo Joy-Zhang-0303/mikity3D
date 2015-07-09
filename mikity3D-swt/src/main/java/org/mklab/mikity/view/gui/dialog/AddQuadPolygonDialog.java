@@ -16,8 +16,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLPoint;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
@@ -228,10 +229,10 @@ public class AddQuadPolygonDialog {
     final Rotation rot = new Rotation();
     final Translation loc = new Translation();
 
-    final Translation vertex1 = new Translation(this.vertex1X.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
-    final Translation vertex2 = new Translation(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
-    final Translation vertex3 = new Translation(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
-    final Translation vertex4 = new Translation(this.vertex4x.getFloatValue(), this.vertex4y.getFloatValue(), this.vertex4z.getFloatValue());
+    final XMLPoint vertex1 = new XMLPoint(this.vertex1X.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
+    final XMLPoint vertex2 = new XMLPoint(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
+    final XMLPoint vertex3 = new XMLPoint(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
+    final XMLPoint vertex4 = new XMLPoint(this.vertex4x.getFloatValue(), this.vertex4y.getFloatValue(), this.vertex4z.getFloatValue());
     quad.setVertices(vertex1, vertex2, vertex3, vertex4);
     if (getRotation(rot) != null) {
       quad.setRotation(getRotation(rot));

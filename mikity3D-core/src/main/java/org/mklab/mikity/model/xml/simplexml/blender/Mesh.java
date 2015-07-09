@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLPoint;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Matrix4;
@@ -67,8 +67,8 @@ public class Mesh {
    * 頂点座標を頂点の組み合わせからポリゴンを作成する。 作成したポリゴンはグループに追加します。
    */
   private void createBlenderPolygon() {
-    final List<Translation> vertexLocations = this.sources.get(0).getVertexLocation();
-    final List<Translation> normalVector = this.sources.get(1).getNormalLocation();
+    final List<XMLPoint> vertexLocations = this.sources.get(0).getVertexLocation();
+    final List<XMLPoint> normalVector = this.sources.get(1).getNormalLocation();
 
     if (this.polylist.getP() == null) {
       this.matrix.setElement(0, 3, 0.0f);

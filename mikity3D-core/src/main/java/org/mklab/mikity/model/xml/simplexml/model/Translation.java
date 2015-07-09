@@ -9,7 +9,7 @@ import org.simpleframework.xml.Root;
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
  */
-@Root(name="point")
+@Root(name="translation")
 public class Translation implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 

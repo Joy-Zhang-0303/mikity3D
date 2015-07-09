@@ -18,8 +18,9 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLPoint;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
@@ -400,12 +401,12 @@ public class EditQuadPolygonDialog {
    * パラメータを変更する
    */
   void setParam() {
-    final Translation[] newLocation = new Translation[4];
+    final XMLPoint[] newLocation = new XMLPoint[4];
 
-    newLocation[0] = new Translation(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
-    newLocation[1] = new Translation(this.newVertexX2.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
-    newLocation[2] = new Translation(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
-    newLocation[3] = new Translation(this.newVertex4X.getFloatValue(), this.newVertex4Y.getFloatValue(), this.newVertex4Z.getFloatValue());
+    newLocation[0] = new XMLPoint(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
+    newLocation[1] = new XMLPoint(this.newVertexX2.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
+    newLocation[2] = new XMLPoint(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
+    newLocation[3] = new XMLPoint(this.newVertex4X.getFloatValue(), this.newVertex4Y.getFloatValue(), this.newVertex4Z.getFloatValue());
 
     String newColor = this.colorCombo.getColorComboBox().getText();
 

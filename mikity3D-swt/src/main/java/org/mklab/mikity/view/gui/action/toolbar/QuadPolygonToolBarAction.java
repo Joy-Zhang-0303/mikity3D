@@ -10,7 +10,7 @@ import java.util.Arrays;
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
+import org.mklab.mikity.model.xml.simplexml.model.XMLPoint;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -48,10 +48,10 @@ public class QuadPolygonToolBarAction extends Action {
   @Override
   public void run() {
     final XMLQuadPolygon polygon = new XMLQuadPolygon();
-    final Translation p1 = new Translation(0.3f, 0.3f, 0.0f);
-    final Translation p2 = new Translation(-0.3f, 0.3f, 0.0f);
-    final Translation p3 = new Translation(-0.3f, -0.3f, 0.0f);
-    final Translation p4 = new Translation(0.3f, -0.3f, 0.0f);
+    final XMLPoint p1 = new XMLPoint(0.3f, 0.3f, 0.0f);
+    final XMLPoint p2 = new XMLPoint(-0.3f, 0.3f, 0.0f);
+    final XMLPoint p3 = new XMLPoint(-0.3f, -0.3f, 0.0f);
+    final XMLPoint p4 = new XMLPoint(0.3f, -0.3f, 0.0f);
     //final Location[] locations = {p1, p2, p3, p4};
     polygon.setVertices(Arrays.asList(p1, p2, p3, p4));
     polygon.setColor("blue"); //$NON-NLS-1$

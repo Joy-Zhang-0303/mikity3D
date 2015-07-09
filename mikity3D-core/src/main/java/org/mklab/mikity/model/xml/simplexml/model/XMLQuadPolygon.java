@@ -24,8 +24,8 @@ import org.simpleframework.xml.Root;
  */
 @Root(name="quadPolygon")
 public class XMLQuadPolygon {
-  @ElementList(type=Translation.class, inline=true, required=true)
-  private List<Translation> vertices;
+  @ElementList(type=XMLPoint.class, inline=true, required=true)
+  private List<XMLPoint> vertices;
   
   /** translation */
   @Element(name="translation", required=false)
@@ -77,7 +77,7 @@ public class XMLQuadPolygon {
    * @param location3 座標3
    * @param location4 座標4
    */
-  public void setVertices(Translation location1, Translation location2, Translation location3, Translation location4) {
+  public void setVertices(XMLPoint location1, XMLPoint location2, XMLPoint location3, XMLPoint location4) {
     this.vertices.set(0, location1);
     this.vertices.set(1, location2);
     this.vertices.set(2, location3);
@@ -88,7 +88,7 @@ public class XMLQuadPolygon {
   /**
    * @param vertices 座標
    */
-  public void setVertices(List<Translation> vertices) {
+  public void setVertices(List<XMLPoint> vertices) {
     this.vertices = vertices;
     updateNormalVector();
   }
