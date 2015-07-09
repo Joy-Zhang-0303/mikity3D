@@ -15,6 +15,7 @@ import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Matrix4;
+import org.mklab.mikity.util.Vector3;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglBox;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglCone;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglCylinder;
@@ -278,13 +279,21 @@ public class JoglPrimitiveFactory {
       points[i][1] = vertex.getY();
       points[i][2] = vertex.getZ();
     }
+    
+    final float[] normalVector = new float[3];
+    final Vector3 vector = polygon.getNormalVector();
+    normalVector[0] = vector.getX();
+    normalVector[1] = vector.getY();
+    normalVector[2] = vector.getZ();
+    
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
-    
+        
     final JoglTrianglePolygon child = new JoglTrianglePolygon();
     child.setColor(color);
     child.setPoints(points);
+    child.setNormalVector(normalVector);
     child.setTransparent(transparent);
     
     final JoglObjectGroup group = new JoglObjectGroup();
@@ -352,6 +361,13 @@ public class JoglPrimitiveFactory {
       points[i][1] = vertex.getY();
       points[i][2] = vertex.getZ();
     }
+    
+    final float[] normalVector = new float[3];
+    final Vector3 vector = polygon.getNormalVector();
+    normalVector[0] = vector.getX();
+    normalVector[1] = vector.getY();
+    normalVector[2] = vector.getZ();
+    
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
@@ -359,6 +375,7 @@ public class JoglPrimitiveFactory {
     final JoglQuadPolygon child = new JoglQuadPolygon();
     child.setColor(color);
     child.setPoints(points);
+    child.setNormalVector(normalVector);
     child.setTransparent(transparent);
         
     final JoglObjectGroup group = new JoglObjectGroup();

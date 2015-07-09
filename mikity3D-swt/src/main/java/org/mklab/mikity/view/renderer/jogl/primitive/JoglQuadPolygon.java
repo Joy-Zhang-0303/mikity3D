@@ -1,6 +1,5 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
-import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
@@ -20,6 +19,9 @@ public class JoglQuadPolygon extends AbstractJoglObject {
 
   /** 頂点 */
   private float[][] points = new float[4][3];
+  
+  /** 法線ベクトル */
+  private float[] normalVector = new float[3];
 
   /**
    * {@inheritDoc}
@@ -27,9 +29,6 @@ public class JoglQuadPolygon extends AbstractJoglObject {
   public void display(GL2 gl) {
     applyColor(gl);
     applyTransparency(gl);
-
-    //頂点配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
 
     //頂点バッファの生成
     float x0 = this.points[0][2];
@@ -48,18 +47,37 @@ public class JoglQuadPolygon extends AbstractJoglObject {
     float y3 = this.points[3][0];
     float z3 = this.points[3][1];
     
-    final float[] vertices = {x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3};
+    final float[] vertices = {
+        x0, y0, z0, x1, y1, z1, x2, y2, z2,
+        x0, y0, z0, x2, y2, z2, x3, y3, z3};
+    
+    final float nx = this.normalVector[0];
+    final float ny = this.normalVector[1];
+    final float nz = this.normalVector[2];
+    
+    final float[] normals = {nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz};
+    
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
-
+    final FloatBuffer normalBuffer = makeFloatBuffer(normals);
+    
     //インデックスバッファの生成
-    final byte[] indices = {0, 1, 2, 0, 2, 3};
-    final ByteBuffer indexBuffer = makeByteBuffer(indices);
+    //final byte[] indices = {0, 1, 2, 0, 2, 3};
 
+    //final ByteBuffer indexBuffer = makeByteBuffer(indices);
+
+    // 法線配列の有効化
+    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
+    // 法線バッファの指定
+    gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
+    
+    //頂点配列の有効化
+    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
     //頂点バッファの指定
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
 
     //プリミティブの描画
-    gl.glDrawElements(GL.GL_TRIANGLES, 6, GL.GL_UNSIGNED_BYTE, indexBuffer);
+    gl.glDrawArrays(GL.GL_TRIANGLES, 0, 6); //プリミティブの描画
+    //gl.glDrawElements(GL.GL_TRIANGLES, 6, GL.GL_UNSIGNED_BYTE, indexBuffer);
   }
 
   /**
@@ -69,6 +87,15 @@ public class JoglQuadPolygon extends AbstractJoglObject {
    */
   public void setPoints(float[][] points) {
     this.points = points;
+  }
+  
+  
+  /**
+   * 法線ベクトルを設定します。
+   * @param normalVector 法線ベクトル
+   */
+  public void setNormalVector(float[] normalVector) {
+    this.normalVector = normalVector;
   }
 
 }

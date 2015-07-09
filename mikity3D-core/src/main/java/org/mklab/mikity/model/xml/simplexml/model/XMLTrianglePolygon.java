@@ -136,7 +136,7 @@ public class XMLTrianglePolygon {
     float z2 = this.vertices.get(2).getZ();
     
     final Vector3 v1 = new Vector3(x1 - x0, y1 - y0, z1 - z0);
-    final Vector3 v2 = new Vector3(x2 - x1, y2 - y1, z2 - z1);
+    final Vector3 v2 = new Vector3(x2 - x0, y2 - y0, z2 - z0);
     this.normalVector = v1.cross(v2).normalize();
   }
 
@@ -185,6 +185,7 @@ public class XMLTrianglePolygon {
    * @return 法線ベクトル
    */
   public Vector3 getNormalVector() {
+    updateNormalVector();
     return this.normalVector;
   }
 

@@ -132,8 +132,20 @@ public class XMLQuadPolygon {
    * 
    */
   public void updateNormalVector() {
-    final Vector3 v1 = new Vector3(this.vertices.get(1).getX() - this.vertices.get(0).getX(), this.vertices.get(1).getY() - this.vertices.get(0).getY(), this.vertices.get(1).getZ() - this.vertices.get(0).getZ());
-    final Vector3 v2 = new Vector3(this.vertices.get(2).getX() - this.vertices.get(1).getX(), this.vertices.get(2).getY() - this.vertices.get(1).getY(), this.vertices.get(2).getZ() - this.vertices.get(1).getZ());
+    float x0 = this.vertices.get(0).getX();
+    float y0 = this.vertices.get(0).getY();
+    float z0 = this.vertices.get(0).getZ();
+    
+    float x1 = this.vertices.get(1).getX();
+    float y1 = this.vertices.get(1).getY();
+    float z1 = this.vertices.get(1).getZ();
+
+    float x2 = this.vertices.get(2).getX();
+    float y2 = this.vertices.get(2).getY();
+    float z2 = this.vertices.get(2).getZ();
+    
+    final Vector3 v1 = new Vector3(x1 - x0, y1 - y0, z1 - z0);
+    final Vector3 v2 = new Vector3(x2 - x0, y2 - y0, z2 - z0);
     this.normalVector = v1.cross(v2).normalize();
   }
   
@@ -171,6 +183,7 @@ public class XMLQuadPolygon {
    * @return normal vector
    */
   public Vector3 getNormalVector() {
+    updateNormalVector();
     return this.normalVector;
   }
 

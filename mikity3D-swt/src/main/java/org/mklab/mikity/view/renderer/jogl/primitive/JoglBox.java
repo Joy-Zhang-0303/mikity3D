@@ -10,7 +10,7 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
 
 /**
- * BOXをGLで表したクラスです
+ * BOXをJOGLで表したクラスです
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/26
