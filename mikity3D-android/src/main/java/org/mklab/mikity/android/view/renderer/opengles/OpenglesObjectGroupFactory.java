@@ -27,13 +27,15 @@ import org.mklab.mikity.util.Util;
 
 
 /**
+ * {@link OpenglesObjectGroup}のファクトリークラスです。
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
 public class OpenglesObjectGroupFactory {
   /**
-   * @param group グループ
-   * @return トランスフォームグループ
+   * {@link OpenglesObjectGroup}を生成します。
+   * @param group オブジェクトのグループ
+   * @return グループ
    */
   public OpenglesObjectGroup create(final Group group) {
     final OpenglesObjectGroup objectGroup = new OpenglesObjectGroup();
@@ -88,16 +90,17 @@ public class OpenglesObjectGroupFactory {
       objectGroup.setName(name);
     }
     
-    // MovableGroup と Groupの関連付けを行う
+    //　オブジェクトのGroupとGroupの関連付けを行う
     ObjectGroupManager.assignGroup(group, objectGroup);
 
     return objectGroup;
   }
 
   /**
-   * 移動可能なグループの座標を生成します。
-   * @param group グループ
-   * @return 移動可能なグループの座標
+   * グループの座標系を生成します。
+   * 
+   * @param group オブジェクトのグループ
+   * @return グループの座標
    */
   private OpenglesCoordinate createCoordinateOf(final Group group) {
     final Translation groupTranslation = group.getTranslation();

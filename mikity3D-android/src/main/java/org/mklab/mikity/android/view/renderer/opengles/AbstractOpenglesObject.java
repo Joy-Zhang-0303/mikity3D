@@ -19,6 +19,9 @@ import javax.microedition.khronos.opengles.GL10;
 public abstract class  AbstractOpenglesObject implements OpenglesObject {
   /** 色。 */
   private String color;
+  
+  /** 透明性 */
+  private boolean transparent = false;
 
   /**
    * 色を設定します。
@@ -26,6 +29,14 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    */
   public void setColor(String color) {
     this.color = color;
+  }
+  
+  /**
+   * 透明性を設定します。
+   * @param transparent 透明性
+   */
+  public void setTransparent(boolean transparent) {
+    this.transparent = transparent;
   }
 
   /**
@@ -64,6 +75,17 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
       gl10.glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
     } else if (this.color.equals("blue")) { //$NON-NLS-1$
       gl10.glColor4f(0.0f, 0.0f, 1.0f, 0.0f);
+    }
+  }
+  
+  /**
+   * 透明性を適用します。
+   * @param gl GL
+   */
+  public void applyTransparency(GL10 gl) {
+    if (this.transparent) {
+      gl.glEnable(GL10.GL_BLEND);
+      gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
     }
   }
 

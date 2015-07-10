@@ -28,7 +28,7 @@ public class JoglObjectGroupFactory {
   /**
    * {@link JoglObjectGroup}を生成します。
    * @param group オブジェクトのグループ
-   * @return 可動グループ
+   * @return グループ
    */
   public JoglObjectGroup create(final Group group) {
     final JoglObjectGroup objectGroup = new JoglObjectGroup();
@@ -83,17 +83,17 @@ public class JoglObjectGroupFactory {
       objectGroup.setName(name);
     }
     
-    // MovableGroup と Groupの関連付けを行う
+    // オブジェクトのGroupとGroupの関連付けを行う
     ObjectGroupManager.assignGroup(group, objectGroup);
 
     return objectGroup;
   }
 
   /**
-   * 可動グループを生成します。
+   * グループの座標系を生成します。
    * 
    * @param group オブジェクトのグループ
-   * @return 可動グループ
+   * @return グループの座標系
    */
   private JoglCoordinate createCoordinateOf(final Group group) {
     final Translation groupTranslation = group.getTranslation();

@@ -26,10 +26,13 @@ import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
 import org.mklab.mikity.util.Matrix4;
+import org.mklab.mikity.util.Vector3;
 
 
 
 /**
+ * OpenGLESのプリミティブを生成するファクトリークラスです。
+ * 
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
@@ -38,28 +41,30 @@ public class OpenglesPrimitiveFactory {
   /**
    * グループを生成します。
    * 
-   * @param group グループ
-   * @return オブジェクトグループ
+   * @param group オブジェクトのグループ
+   * @return グループ
    */
   public static OpenglesObjectGroup create(Group group) {
     return new OpenglesObjectGroupFactory().create(group);
   }
 
   /**
-   * 与えられたboxを含む可動グループを生成します。
+   * 与えられたboxを含むグループを生成します。
    * 
    * @param box ボックス
-   * @return 与えられたboxを含む可動グループ
+   * @return 与えられたboxを含むグループ
    */
   public static OpenglesObjectGroup create(XMLBox box) {
     final float width = box.getWidth();
     final float height = box.getHeight();
     final float depth = box.getDepth();
     final String color = box.getColor();
+    final boolean transparent = box.getTransparent();
     
     final OpenglesBox child = new OpenglesBox();
     child.setColor(color);
     child.setSize(width, height, depth);
+    child.setTransparent(transparent);
 
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
 
@@ -99,21 +104,23 @@ public class OpenglesPrimitiveFactory {
   }
 
   /**
-   * 与えられたcylinderを含む可動グループを生成します。
+   * 与えられたcylinderを含むグループを生成します。
    * 
    * @param cylinder シリンダー
-   * @return 与えられたcylinderを含む可動グループ
+   * @return 与えられたcylinderを含むグループ
    */
   public static OpenglesObjectGroup create(XMLCylinder cylinder) {
     final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
     final String color = cylinder.getColor();
+    final boolean transparent = cylinder.getTransparent();
 
     final OpenglesCylinder child = new OpenglesCylinder();
     child.setSize(radius, hight);
     child.setDivision(division);
     child.setColor(color);
+    child.setTransparent(transparent);
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
   
@@ -153,20 +160,22 @@ public class OpenglesPrimitiveFactory {
   }
 
   /**
-   * 与えられたsphereを含む可動グループを生成します。
+   * 与えられたsphereを含むグループを生成します。
    * 
    * @param sphere 球体
-   * @return 与えられたsphereを含む可動グループ
+   * @return 与えられたsphereを含むグループ
    */
   public static OpenglesObjectGroup create(XMLSphere sphere) {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
     final String color = sphere.getColor();
+    final boolean transparent = sphere.getTransparent();
     
     final OpenglesSphere child = new OpenglesSphere();
     child.setSize(radius);
     child.setDivision(division);
     child.setColor(color);
+    child.setTransparent(transparent);
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
     
@@ -206,20 +215,22 @@ public class OpenglesPrimitiveFactory {
   }
 
   /**
-   * 与えられたconeを含む可動グループを生成します。
+   * 与えられたconeを含むグループを生成します。
    * @param cone コーン
-   * @return 与えられたconeを含む可動グループ
+   * @return 与えられたconeを含むグループ
    */
   public static OpenglesObjectGroup create(XMLCone cone) {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
     final String color = cone.getColor();
+    final boolean transparent = cone.getTransparent();
 
     final OpenglesCone child = new OpenglesCone();
     child.setColor(color);
     child.setSize(radius, hight);
     child.setDivision(division);
+    child.setTransparent(transparent);
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
 
@@ -259,12 +270,12 @@ public class OpenglesPrimitiveFactory {
   }
 
   /**
-   * 与えられた三角形ポリゴンを含む可動グループを生成します。
+   * 与えられた三角形ポリゴンを含むグループを生成します。
    * 
    * @param polygon 三角形のポリゴン
    * @param coordinateParameters リンクパラメータ
    * @param dhParameters DHパラメータ
-   * @return 与えられた三角形ポリゴンを含む可動グループを生成します。
+   * @return 与えられた三角形ポリゴンを含むグループを生成します。
    */
   public static OpenglesObjectGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[3][3];
@@ -274,12 +285,22 @@ public class OpenglesPrimitiveFactory {
       points[i][1] = vertex.getY();
       points[i][2] = vertex.getZ();
     }
+    
+    final float[] normalVector = new float[3];
+    final Vector3 vector = polygon.getNormalVector();
+    normalVector[0] = vector.getX();
+    normalVector[1] = vector.getY();
+    normalVector[2] = vector.getZ();
+    
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
+    final boolean transparent = polygon.getTransparent();
     
     final OpenglesTrianglePolygon child = new OpenglesTrianglePolygon();
     child.setColor(color);
-    child.setPoints(points);
+    child.setVertices(points);
+    child.setNormalVector(normalVector);
+    child.setTransparent(transparent);
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
     
@@ -331,12 +352,12 @@ public class OpenglesPrimitiveFactory {
   }
 
   /**
-   * 与えられた四角形ポリゴンを含む可動グループを生成します。
+   * 与えられた四角形ポリゴンを含むグループを生成します。
    * 
    * @param polygon 四角形のポリゴン
    * @param coordinateParameters リンクパラメータ
    * @param dhParameters DHパラメータ
-   * @return　与えられた四角形ポリゴンを含む可動グループ
+   * @return　与えられた四角形ポリゴンを含むグループ
    */
   public static OpenglesObjectGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[4][3];
@@ -346,12 +367,22 @@ public class OpenglesPrimitiveFactory {
       points[i][1] = vertex.getY();
       points[i][2] = vertex.getZ();
     }
+    
+    final float[] normalVector = new float[3];
+    final Vector3 vector = polygon.getNormalVector();
+    normalVector[0] = vector.getX();
+    normalVector[1] = vector.getY();
+    normalVector[2] = vector.getZ();
+    
     final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
+    final boolean transparent = polygon.getTransparent();
     
     final OpenglesQuadPolygon child = new OpenglesQuadPolygon();
     child.setColor(color);
-    child.setPoints(points);
+    child.setVertices(points);
+    child.setNormalVector(normalVector);
+    child.setTransparent(transparent);
         
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
     

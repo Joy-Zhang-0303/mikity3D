@@ -33,20 +33,20 @@ import org.mklab.mikity.view.renderer.jogl.primitive.JoglTrianglePolygon;
 public class JoglPrimitiveFactory {
 
   /**
-   * 可動グループを生成します。
+   * グループを生成します。
    * 
    * @param group オブジェクトのグループ
-   * @return 可動グループ
+   * @return グループ
    */
   public static JoglObjectGroup create(Group group) {
     return new JoglObjectGroupFactory().create(group);
   }
 
   /**
-   * 与えられたboxを含む可動グループを生成します。
+   * 与えられたboxを含むグループを生成します。
    * 
    * @param box ボックス
-   * @return 与えられたboxを含む可動グループ
+   * @return 与えられたboxを含むグループ
    */
   public static JoglObjectGroup create(XMLBox box) {
     final float width = box.getWidth();
@@ -98,10 +98,10 @@ public class JoglPrimitiveFactory {
   }
 
   /**
-   * 与えられたcylinderを含む可動なグループを生成します。
+   * 与えられたcylinderを含むなグループを生成します。
    * 
    * @param cylinder シリンダー
-   * @return 与えられたcylinderを含む可動グループ
+   * @return 与えられたcylinderを含むグループ
    */
   public static JoglObjectGroup create(XMLCylinder cylinder) {
     final int division = cylinder.getDivision();
@@ -154,10 +154,10 @@ public class JoglPrimitiveFactory {
   }
 
   /**
-   * 与えられたsphereを含む可動グループを生成します。
+   * 与えられたsphereを含むグループを生成します。
    * 
    * @param sphere 球体
-   * @return 与えられたsphereを含む可動グループ
+   * @return 与えられたsphereを含むグループ
    */
   public static JoglObjectGroup create(XMLSphere sphere) {
     final int division = sphere.getDivision();
@@ -209,9 +209,9 @@ public class JoglPrimitiveFactory {
   }
 
   /**
-   * 与えられたconeを含む可動グループを生成します。
+   * 与えられたconeを含むグループを生成します。
    * @param cone コーン
-   * @return 与えられたconeを含む可動グループ
+   * @return 与えられたconeを含むグループ
    */
   public static JoglObjectGroup create(XMLCone cone) {
     final float radius = cone.getRadisu();
@@ -264,12 +264,12 @@ public class JoglPrimitiveFactory {
   }
 
   /**
-   * 与えられた三角形ポリゴンを含む可動グループを生成します。
+   * 与えられた三角形ポリゴンを含むグループを生成します。
    * 
    * @param polygon 三角形のポリゴン
    * @param coordinateParameters リンクパラメータ
    * @param dhParameters DHパラメータ
-   * @return 与えられた三角形ポリゴンを含む可動グループを生成します。
+   * @return 与えられた三角形ポリゴンを含むグループを生成します。
    */
   public static JoglObjectGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[3][3];
@@ -292,7 +292,7 @@ public class JoglPrimitiveFactory {
         
     final JoglTrianglePolygon child = new JoglTrianglePolygon();
     child.setColor(color);
-    child.setPoints(points);
+    child.setVertices(points);
     child.setNormalVector(normalVector);
     child.setTransparent(transparent);
     
@@ -346,12 +346,12 @@ public class JoglPrimitiveFactory {
   }
 
   /**
-   * 与えられた四角形ポリゴンを含む可動グループを生成します。
+   * 与えられた四角形ポリゴンを含むグループを生成します。
    * 
    * @param polygon 四角形のポリゴン
    * @param coordinateParameters リンクパラメータ
    * @param dhParameters DHパラメータ
-   * @return　与えられた四角形ポリゴンを含む可動グループ
+   * @return　与えられた四角形ポリゴンを含むグループ
    */
   public static JoglObjectGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[4][3];
@@ -374,7 +374,7 @@ public class JoglPrimitiveFactory {
     
     final JoglQuadPolygon child = new JoglQuadPolygon();
     child.setColor(color);
-    child.setPoints(points);
+    child.setVertices(points);
     child.setNormalVector(normalVector);
     child.setTransparent(transparent);
         

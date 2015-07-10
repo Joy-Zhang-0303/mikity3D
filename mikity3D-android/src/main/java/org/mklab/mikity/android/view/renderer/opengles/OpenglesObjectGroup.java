@@ -11,26 +11,25 @@ import org.mklab.mikity.model.ObjectGroup;
 
 
 /**
- * OpenGL ESの座標系のグループを表すクラスです。
+ * オブジェクトグループを表すクラスです。
  * 
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */
 public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
-
-  /** オブジェクトのリスト */
+  /** オブジェクト。 */
   private List<OpenglesObject> objects;
-  /** トランスフォームグループのリスト */
+  /** サブグループ。 */
   private List<OpenglesObjectGroup> groups;
-  /** 座標系の初期値 */
+  /** 座標系の基準。 */
   private OpenglesCoordinate baseCoordinate;
-  /** 座標系 */
+  /** 座標系。 */
   private OpenglesCoordinate coordinate = new OpenglesCoordinate();
-  /** 名前 */
+  /** 名前。 */
   private String name;
 
   /**
-   * 新しく生成された<code>JoglTransformGroup</code>オブジェクトを初期化します。
+   * 新しく生成された<code>OpenglesObjectGroup</code>オブジェクトを初期化します。
    */
   public OpenglesObjectGroup() {
     this.objects = new ArrayList<OpenglesObject>();
@@ -47,9 +46,9 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   }
 
   /**
-   * トランスフォームグループを追加します。
+   * サブグループを追加します。
    * 
-   * @param child トランスフォームグループ
+   * @param child サブグループ
    */
   public void addChild(OpenglesObjectGroup child) {
     this.groups.add(child);
