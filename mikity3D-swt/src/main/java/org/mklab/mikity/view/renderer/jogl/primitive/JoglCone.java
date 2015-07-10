@@ -1,12 +1,8 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-
-import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
-import javax.media.opengl.fixedfunc.GLPointerFunc;
 
+import org.mklab.mikity.util.Vector3;
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
 
@@ -18,14 +14,20 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
  */
 public class JoglCone extends AbstractJoglObject {
 
-  /** 底面の半径 */
-  protected float radius;
+  /** 底面の半径。 */
+  protected float radius = 0;
 
-  /** 高さ */
-  protected float height;
+  /** 高さ。 */
+  protected float height = 0;
 
-  /** 分割数 */
-  protected int division;
+  /** 分割数。 */
+  protected int division = 0;
+
+  /** 底面のポリゴン。 */
+  private JoglTrianglePolygon[] lowerPolygons;
+
+  /** 側面のポリゴン。 */
+  private JoglTrianglePolygon[] sidePolygons;
 
   /**
    * {@inheritDoc}
@@ -34,78 +36,89 @@ public class JoglCone extends AbstractJoglObject {
     applyColor(gl);
     applyTransparency(gl);
 
-    //頂点配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
+    for (int i = 0; i < this.division; i++) {
+      this.lowerPolygons[i].display(gl);
+      this.sidePolygons[i].display(gl);
+    }
+  }
+
+  /**
+   * ポリゴンを更新します。
+   */
+  private void updatePolygons() {
+    if (this.radius == 0 || this.height == 0 || this.division == 0) {
+      return;
+    }
     
-    final float[] vertices = new float[(this.division + 2) * 3];
-
-    // TODO 描画は出来てますが、Normal3fを使うとバグがでます。
-    // TODO vertexs[]かindexs[]にどこか問題があると思います。
-
-    // 頂点バッファの生成
-    vertices[0] = 0.0f;
-    vertices[1] = 0.0f;
-    vertices[2] = this.height / 2.0f;
-
-    for (int i = 1; i <= this.division; i++) {
+    final float[] topPoint = new float[3];
+    topPoint[0] = 0;
+    topPoint[1] = 0;
+    topPoint[2] = this.height / 2;
+    
+    final float[] centerPoint = new float[3];
+    centerPoint[0] = 0;
+    centerPoint[1] = 0;
+    centerPoint[2]= -this.height / 2;
+    
+    final float[][] lowerPoints = new float[this.division+1][3];
+    for (int i = 0; i <= this.division; i++) {
       final double theta = 2.0 * Math.PI / this.division * i;
-      vertices[i * 3] = this.radius * (float)Math.sin(theta);
-      vertices[i * 3 + 1] = this.radius * (float)Math.cos(theta); 
-      vertices[i * 3 + 2] = -this.height / 2.0f; 
+      lowerPoints[i][0] = this.radius * (float)Math.cos(theta);
+      lowerPoints[i][1] = this.radius * (float)Math.sin(theta); 
+      lowerPoints[i][2] = -this.height / 2; 
     }
+    lowerPoints[this.division][0] = this.radius * (float)Math.cos(0);
+    lowerPoints[this.division][1] = this.radius * (float)Math.sin(0); 
+    lowerPoints[this.division][2] = -this.height / 2; 
+    
+    this.lowerPolygons = new JoglTrianglePolygon[this.division];
+    for (int i = 0; i < this.division; i++) {
+      this.lowerPolygons[i] = new JoglTrianglePolygon();
+     
+      final float[][] vertices = new float[3][3];
+      vertices[0][0] = centerPoint[0];
+      vertices[0][1] = centerPoint[1];
+      vertices[0][2] = centerPoint[2];
+      
+      vertices[1][0] = lowerPoints[i+1][0];
+      vertices[1][1] = lowerPoints[i+1][1];
+      vertices[1][2] = lowerPoints[i+1][2];
 
-    vertices[3 + this.division * 3] = 0.0f;
-    vertices[4 + this.division * 3] = 0.0f;
-    vertices[5 + this.division * 3] = -this.height / 2.0f;
+      vertices[2][0] = lowerPoints[i][0];
+      vertices[2][1] = lowerPoints[i][1];
+      vertices[2][2] = lowerPoints[i][2];
 
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
+      final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
+      final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
+      final Vector3 normalVector = v0.cross(v1);
 
-    //インデックスバッファの生成
-    final byte[] indices = new byte[this.division * 6];
-
-    for (int i = 1; i <= this.division; i++) {
-      indices[3 * i - 3] = 0;
+      this.lowerPolygons[i].setVertices(vertices);
+      this.lowerPolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
     }
+    
+    this.sidePolygons = new JoglTrianglePolygon[this.division];
+    for (int i = 0; i < this.division; i++) {
+      this.sidePolygons[i] = new JoglTrianglePolygon();
+      final float[][] vertices = new float[3][3];
+      vertices[0][0] = topPoint[0];
+      vertices[0][1] = topPoint[1];
+      vertices[0][2] = topPoint[2];
+      
+      vertices[1][0] = lowerPoints[i][0];
+      vertices[1][1] = lowerPoints[i][1];
+      vertices[1][2] = lowerPoints[i][2];
 
-    for (int i = 1; i <= this.division; i++) {
-      indices[3 * i - 2] = (byte)i;
+      vertices[2][0] = lowerPoints[i+1][0];
+      vertices[2][1] = lowerPoints[i+1][1];
+      vertices[2][2] = lowerPoints[i+1][2];
+      
+      final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
+      final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
+      final Vector3 normalVector = v0.cross(v1);
+
+      this.sidePolygons[i].setVertices(vertices);
+      this.sidePolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
     }
-
-    for (int i = 1; i <= (this.division - 1); i++) {
-      indices[3 * i - 1] = (byte)(i + 1);
-    }
-
-    indices[3 * this.division - 1] = 1;
-
-    for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 3 + 3 * i - 3] = (byte)(this.division + 1);
-    }
-
-    for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 3 + 3 * i - 2] = (byte)(i);
-    }
-
-    for (int i = 1; i <= this.division - 1; i++) {
-      indices[this.division * 3 + 3 * i - 1] = (byte)(i + 1);
-    }
-
-    indices[this.division * 6 - 1] = 1;
-
-    final ByteBuffer indexBuffer = makeByteBuffer(indices);
-
-    //頂点バッファの指定 
-    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
-
-    //    gl.glNormal3f(0.0f, 1.0f, 0.0f);
-    //    this.indexBuffer.position(0);
-    //    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,this._div*3,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
-    //    
-    //    gl.glNormal3f(0.0f, -1.0f, 0.0f);   
-    //    this.indexBuffer.position(this._div*3);
-    //    gl.glDrawElements(GL.GL_TRIANGLE_STRIP,this._div*3,GL.GL_UNSIGNED_BYTE,this.indexBuffer);
-
-    indexBuffer.position(0);
-    gl.glDrawElements(GL.GL_TRIANGLE_STRIP, indices.length, GL.GL_UNSIGNED_BYTE, indexBuffer);
   }
 
   /**
@@ -117,6 +130,7 @@ public class JoglCone extends AbstractJoglObject {
   public void setSize(float radius, float hight) {
     this.radius = radius;
     this.height = hight;
+    updatePolygons();
   }
 
   /**
@@ -126,6 +140,7 @@ public class JoglCone extends AbstractJoglObject {
    */
   public void setDivision(int division) {
     this.division = division;
+    updatePolygons();
   }
 
 }
