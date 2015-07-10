@@ -19,11 +19,11 @@ import org.mklab.mikity.util.Vector3;
  */
 public class OpenglesCylinder extends AbstractOpenglesObject {
   /** 底面の半径。 */
-  private float radius;
+  private float radius = 0;
   /** 高さ。 */
-  private float height;
+  private float height = 0;
   /** 分割数。 */
-  private int division;
+  private int division = 0;
   
   /** 上面ポリゴン。 */
   private OpenglesTrianglePolygon[] upperPolygons;
@@ -110,6 +110,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
 
       this.upperPolygons[i].setVertices(vertices);
       this.upperPolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
+      this.upperPolygons[i].setColor(getColor());
     }
     
     this.lowerPolygons = new OpenglesTrianglePolygon[this.division];
@@ -134,6 +135,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
 
       this.lowerPolygons[i].setVertices(vertices);
       this.lowerPolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
+      this.lowerPolygons[i].setColor(getColor());
     }
     
     this.sidePolygons = new OpenglesQuadPolygon[this.division];
@@ -162,6 +164,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
 
       this.sidePolygons[i].setVertices(vertices);
       this.sidePolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
+      this.sidePolygons[i].setColor(getColor());
     }
   }
 
@@ -176,6 +179,24 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     this.radius = radius;
     this.height = height;
     updatePolygons();
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setColor(final String color) {
+    super.setColor(color);
+    
+    if (this.upperPolygons == null || this.lowerPolygons == null || this.sidePolygons == null) {
+      return;
+    }
+    
+    for (int i = 0; i < this.division; i++) {
+      this.upperPolygons[i].setColor(color);
+      this.lowerPolygons[i].setColor(color);
+      this.sidePolygons[i].setColor(color);
+    }
   }
   
   /**

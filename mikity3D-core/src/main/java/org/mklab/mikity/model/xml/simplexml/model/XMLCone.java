@@ -43,7 +43,7 @@ public class XMLCone implements java.io.Serializable {
 
   /** transparent */
   @Attribute(name="transparent", required=false)
-  private boolean transparent = false;
+  private boolean transparent;
 
   /** propertyChangeListeners */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
@@ -53,6 +53,7 @@ public class XMLCone implements java.io.Serializable {
    */
   public XMLCone() {
     this.color = "red"; //$NON-NLS-1$
+    this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
   }
   

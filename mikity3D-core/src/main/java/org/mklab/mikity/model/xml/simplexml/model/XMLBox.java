@@ -54,6 +54,7 @@ public class XMLBox implements java.io.Serializable {
    */
   public XMLBox() {
     this.color = "red"; //$NON-NLS-1$
+    this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
   } 
 

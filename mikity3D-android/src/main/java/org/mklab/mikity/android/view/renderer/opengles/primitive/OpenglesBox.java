@@ -140,6 +140,8 @@ public class OpenglesBox extends AbstractOpenglesObject {
     gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 
     gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 36);
+    
+    gl.glFlush();
   }
 
   /**

@@ -39,7 +39,7 @@ public class XMLSphere implements java.io.Serializable {
 
   /**_ransparent */
   @Attribute(name="transparent", required=false)
-  private boolean transparent = false;
+  private boolean transparent;
 
 
   /** propertyChangeListeners */
@@ -50,8 +50,7 @@ public class XMLSphere implements java.io.Serializable {
    */
   public XMLSphere() {
     this.color = "red"; //$NON-NLS-1$
-    //this.rotation = new Rotation();
-    //this.location = new Location();
+    this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
   }
 

@@ -32,6 +32,15 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
   }
   
   /**
+   * 色を返します。
+   * 
+   * @return 色
+   */
+  public String getColor() {
+    return this.color;
+  }
+  
+  /**
    * 透明性を設定します。
    * @param transparent 透明性
    */

@@ -34,7 +34,7 @@ public class XMLTrianglePolygon {
 
   /** transparent */
   @Attribute(name="transparent", required=false)
-  private boolean transparent = false;
+  private boolean transparent;
 
   /** translation */
   @Element(name="translation", required=false)
@@ -54,6 +54,7 @@ public class XMLTrianglePolygon {
   public XMLTrianglePolygon() {
     this.vertices = new ArrayList<>(3);
     this.color = "orange"; //$NON-NLS-1$
+    this.transparent = false;
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 

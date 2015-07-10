@@ -45,7 +45,7 @@ public class XMLCylinder implements Serializable {
 
   /** transparent */
   @Attribute(name="transparent", required=false)
-  protected boolean transparent = false;
+  protected boolean transparent;
 
   /** Field propertyChangeListeners */
   protected Vector<PropertyChangeListener> propertyChangeListeners;
@@ -55,6 +55,7 @@ public class XMLCylinder implements Serializable {
    */
   public XMLCylinder() {
     this.color = "red"; //$NON-NLS-1$
+    this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
   }
 

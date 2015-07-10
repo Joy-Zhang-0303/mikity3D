@@ -42,7 +42,7 @@ public class XMLQuadPolygon {
 
   /** transparent */
   @Attribute(name="transparent", required=false)
-  protected boolean transparent = false;
+  protected boolean transparent;
 
   /** 法線ベクトル。 */
   private Vector3 normalVector;
@@ -56,6 +56,7 @@ public class XMLQuadPolygon {
   public XMLQuadPolygon() {
     this.vertices = new ArrayList<>(4);
     this.color = "orange"; //$NON-NLS-1$
+    this.transparent = false;
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 

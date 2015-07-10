@@ -34,17 +34,17 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
     applyTransparency(gl);
 
     // 頂点バッファの生成
-    float x0 = this.points[0][2];
-    float y0 = this.points[0][0];
-    float z0 = this.points[0][1];
+    float x0 = this.points[0][0];
+    float y0 = this.points[0][1];
+    float z0 = this.points[0][2];
     
-    float x1 = this.points[1][2];
-    float y1 = this.points[1][0];
-    float z1 = this.points[1][1];
+    float x1 = this.points[1][0];
+    float y1 = this.points[1][1];
+    float z1 = this.points[1][2];
     
-    float x2 = this.points[2][2];
-    float y2 = this.points[2][0];
-    float z2 = this.points[2][1];
+    float x2 = this.points[2][0];
+    float y2 = this.points[2][1];
+    float z2 = this.points[2][2];
     
     final float[] vertexArray = {x0, y0, z0, x1, y1, z1, x2, y2, z2};
     
@@ -68,6 +68,8 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
     gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
     
     gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 3);
+    
+    gl.glFlush();
   }
 
   /**

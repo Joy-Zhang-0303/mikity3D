@@ -88,8 +88,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
-    
-   // gl10.glEnable(GL10.GL_LIGHT1);
   }
 
   /**
@@ -126,6 +124,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
       for (final OpenglesObjectGroup group : this.topGroups) {
         group.display(gl10);
       }
+      gl10.glFlush();
     }
   }
 
@@ -176,7 +175,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    */
   public void updateDisplay() {
     this.glView.requestRender();//再描画
-
   }
   
   /**
