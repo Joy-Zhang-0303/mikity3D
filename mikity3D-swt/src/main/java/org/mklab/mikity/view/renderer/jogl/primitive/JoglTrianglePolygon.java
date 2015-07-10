@@ -30,17 +30,17 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
     applyTransparency(gl);
 
     // 頂点バッファの生成
-    float x0 = this.vertices[0][2];
-    float y0 = this.vertices[0][0];
-    float z0 = this.vertices[0][1];
+    float x0 = this.vertices[0][0];
+    float y0 = this.vertices[0][1];
+    float z0 = this.vertices[0][2];
     
-    float x1 = this.vertices[1][2];
-    float y1 = this.vertices[1][0];
-    float z1 = this.vertices[1][1];
+    float x1 = this.vertices[1][0];
+    float y1 = this.vertices[1][1];
+    float z1 = this.vertices[1][2];
     
-    float x2 = this.vertices[2][2];
-    float y2 = this.vertices[2][0];
-    float z2 = this.vertices[2][1];
+    float x2 = this.vertices[2][0];
+    float y2 = this.vertices[2][1];
+    float z2 = this.vertices[2][2];
     
     final float[] vertexArray = {x0, y0, z0, x1, y1, z1, x2, y2, z2};
     

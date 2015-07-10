@@ -5,12 +5,10 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-
 import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
+import org.mklab.mikity.util.Vector3;
 
 
 /**
@@ -26,6 +24,15 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
   private float height;
   /** 分割数。 */
   private int division;
+  
+  /** 上面ポリゴン。 */
+  private OpenglesTrianglePolygon[] upperPolygons;
+
+  /** 下面ポリゴン。 */
+  private OpenglesTrianglePolygon[] lowerPolygons;
+
+  /** 側面ポリゴン。 */
+  private OpenglesQuadPolygon[] sidePolygons;
 
   /**
    * {@inheritDoc}
@@ -34,115 +41,130 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     applyColor(gl);
     applyTransparency(gl);
     
-    // 頂点配列の有効化
-    gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-
-    final float[] vertices = new float[(this.division * 2 + 2) * 3];
-
-    // 頂点バッファの生成
-
-    // 上面の中心点(0)
-    vertices[0] = 0.0f;
-    vertices[1] = 0.0f;
-    vertices[2] = this.height / 2.0f;
-    
-    // 上面の周上の点(1 - div)
-    for (int i = 1; i <= this.division; i++) {
-      final double theta = 2.0 * Math.PI / this.division * i;
-      vertices[i * 3 + 0] = (float)(this.radius * Math.cos(theta));
-      vertices[i * 3 + 1] = (float)(this.radius * Math.sin(theta));
-      vertices[i * 3 + 2] = this.height / 2.0f;
+    for (int i = 0; i < this.division; i++) {
+      this.upperPolygons[i].display(gl);
+      this.lowerPolygons[i].display(gl);
+      this.sidePolygons[i].display(gl);
     }
-    
-    // 下面の中心点(div+1)
-    vertices[this.division * 3 + 3] = 0.0f;
-    vertices[this.division * 3 + 4] = 0.0f;
-    vertices[this.division * 3 + 5] = -this.height / 2.0f;
-    
-    // 下面の周上の点([div+1+1] - [div+1+div+1])
-    for (int i = 1; i <= this.division; i++) {
-      final double theta = 2.0 * Math.PI / this.division * i;
-      vertices[this.division * 3 + i * 3 + 3] = (float)(this.radius * Math.cos(theta));
-      vertices[this.division * 3 + i * 3 + 4] = (float)(this.radius * Math.sin(theta));
-      vertices[this.division * 3 + i * 3 + 5] = -this.height / 2.0f;
-    }
-
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
-
-    // インデックスバッファの生成
-    final byte[] indices = new byte[this.division * 12];
-    
-    // 上面(中心点)
-    for (int i = 1; i < this.division; i++) {
-      indices[3 * i - 3] = 0;
-    }
-    
-    for (int i = 1; i < this.division; i++) {
-      indices[3 * i - 2] = (byte)i;
-    }
-    
-    for (int i = 1; i <= this.division; i++) {
-      indices[3 * i - 1] = (byte)(i + 1);
-    }
-    
-    indices[3 * this.division - 3] = 1;
-    indices[3 * this.division - 2] = 0;
-    
-    // 下面(中心点)
-    for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 3 + 3 * i - 3] = (byte)(1 + this.division);
-    }
-    
-    for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 3 + 3 * i - 2] = (byte)(i + 1 + this.division);
-    }
-    
-    for (int i = 1; i <= this.division-1; i++) {
-      indices[this.division * 3 + 3 * i - 1] = (byte)(i + 2 + this.division);
-    }
-    
-    indices[this.division * 6 - 1] = (byte)(this.division + 2);
-
-    // 側面
-    // 左上半分の三角形
-    for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 6 + 3 * i - 3] = (byte)i;
-    }
-    
-    for (int i = 1; i < this.division; i++) {
-      indices[this.division * 6 + 3 * i - 2] = (byte)(i + 1);
-    }
-    
-    for (int i = 1; i <= this.division - 1; i++) {
-      indices[this.division * 6 + 3 * i - 1] = (byte)(this.division + 1 + i);
-    }
-
-    indices[this.division * 9 - 2] = 1;
-
-    // 右下半分の三角形
-    for (int i = 1; i < this.division; i++) {
-      indices[this.division * 9 + 3 * i - 3] = (byte)(i+1);
-    }
-
-    for (int i = 1; i < this.division; i++) {
-      indices[this.division * 9 + 3 * i - 2] = (byte)(this.division + 2 + i);
-    }
-    
-    for (int i = 1; i <= this.division; i++) {
-      indices[this.division * 9 + 3 * i - 1] = (byte)(this.division + 1 + i);
-    }
-
-    indices[this.division * 12 - 3] = (byte)(1);
-    indices[this.division * 12 - 2] = (byte)(this.division + 1);
-
-    final ByteBuffer indexBuffer = makeByteBuffer(indices);
-
-    // 頂点バッファの指定 
-    gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
-
-    indexBuffer.position(0);
-    gl.glDrawElements(GL10.GL_TRIANGLE_STRIP,indices.length,GL10.GL_UNSIGNED_BYTE, indexBuffer);
   }
+  
+  /**
+   * ポリゴンを更新します。
+   */
+  private void updatePolygons() {
+    if (this.radius == 0 || this.height == 0 || this.division == 0) {
+      return;
+    }
+    
+    final float[] upperCenterPoint = new float[3];
+    upperCenterPoint[0] = 0;
+    upperCenterPoint[1] = 0;
+    upperCenterPoint[2] = this.height / 2;
+
+    final float[] lowerCenterPoint = new float[3];
+    lowerCenterPoint[0] = 0;
+    lowerCenterPoint[1] = 0;
+    lowerCenterPoint[2] = -this.height / 2;
+
+    final float[][] upperPoints = new float[this.division+1][3];
+    for (int i = 0; i < this.division; i++) {
+      final double theta = 2.0 * Math.PI / this.division * i;
+      upperPoints[i][0] = (float)(this.radius * Math.cos(theta));
+      upperPoints[i][1] = (float)(this.radius * Math.sin(theta));
+      upperPoints[i][2] = this.height / 2.0f;
+    }
+    upperPoints[this.division][0] = (float)(this.radius * Math.cos(0));
+    upperPoints[this.division][1] = (float)(this.radius * Math.sin(0));
+    upperPoints[this.division][2] = this.height / 2.0f;
+
+    final float[][] lowerPoints = new float[this.division+1][3];
+    for (int i = 0; i < this.division; i++) {
+      final double theta = 2.0 * Math.PI / this.division * i;
+      lowerPoints[i][0] = (float)(this.radius * Math.cos(theta));
+      lowerPoints[i][1] = (float)(this.radius * Math.sin(theta));
+      lowerPoints[i][2] = -this.height / 2.0f;
+    }
+    lowerPoints[this.division][0] = (float)(this.radius * Math.cos(0));
+    lowerPoints[this.division][1] = (float)(this.radius * Math.sin(0));
+    lowerPoints[this.division][2] = -this.height / 2.0f;
+
+    this.upperPolygons = new OpenglesTrianglePolygon[this.division];
+    for (int i = 0; i < this.division; i++) {
+      this.upperPolygons[i] = new OpenglesTrianglePolygon();
+      final float[][] vertices = new float[3][3];
+      vertices[0][0] = upperCenterPoint[0];
+      vertices[0][1] = upperCenterPoint[1];
+      vertices[0][2] = upperCenterPoint[2];
+      
+      vertices[1][0] = upperPoints[i][0];
+      vertices[1][1] = upperPoints[i][1];
+      vertices[1][2] = upperPoints[i][2];
+
+      vertices[2][0] = upperPoints[i+1][0];
+      vertices[2][1] = upperPoints[i+1][1];
+      vertices[2][2] = upperPoints[i+1][2];
+
+      final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
+      final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
+      final Vector3 normalVector = v0.cross(v1);
+
+      this.upperPolygons[i].setVertices(vertices);
+      this.upperPolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
+    }
+    
+    this.lowerPolygons = new OpenglesTrianglePolygon[this.division];
+    for (int i = 0; i < this.division; i++) {
+      this.lowerPolygons[i] = new OpenglesTrianglePolygon();
+      final float[][] vertices = new float[3][3];
+      vertices[0][0] = lowerCenterPoint[0];
+      vertices[0][1] = lowerCenterPoint[1];
+      vertices[0][2] = lowerCenterPoint[2];
+      
+      vertices[1][0] = lowerPoints[i+1][0];
+      vertices[1][1] = lowerPoints[i+1][1];
+      vertices[1][2] = lowerPoints[i+1][2];
+
+      vertices[2][0] = lowerPoints[i][0];
+      vertices[2][1] = lowerPoints[i][1];
+      vertices[2][2] = lowerPoints[i][2];
+
+      final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
+      final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
+      final Vector3 normalVector = v0.cross(v1);
+
+      this.lowerPolygons[i].setVertices(vertices);
+      this.lowerPolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
+    }
+    
+    this.sidePolygons = new OpenglesQuadPolygon[this.division];
+    for (int i = 0; i < this.division; i++) {
+      this.sidePolygons[i] = new OpenglesQuadPolygon();
+      final float[][] vertices = new float[4][3];
+      vertices[0][0] = upperPoints[i][0];
+      vertices[0][1] = upperPoints[i][1];
+      vertices[0][2] = upperPoints[i][2];
+      
+      vertices[1][0] = lowerPoints[i][0];
+      vertices[1][1] = lowerPoints[i][1];
+      vertices[1][2] = lowerPoints[i][2];
+
+      vertices[2][0] = lowerPoints[i+1][0];
+      vertices[2][1] = lowerPoints[i+1][1];
+      vertices[2][2] = lowerPoints[i+1][2];
+
+      vertices[3][0] = upperPoints[i+1][0];
+      vertices[3][1] = upperPoints[i+1][1];
+      vertices[3][2] = upperPoints[i+1][2];
+      
+      final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
+      final Vector3 v1 = new Vector3(vertices[3][0] - vertices[0][0], vertices[3][1] - vertices[0][1], vertices[3][2] - vertices[0][2]);
+      final Vector3 normalVector = v0.cross(v1);
+
+      this.sidePolygons[i].setVertices(vertices);
+      this.sidePolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
+    }
+  }
+
 
   /**
    * 大きさを設定します。
@@ -153,6 +175,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
   public void setSize(float radius, float height) {
     this.radius = radius;
     this.height = height;
+    updatePolygons();
   }
   
   /**
@@ -161,5 +184,6 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
    */
   public void setDivision(int division) {
     this.division = division;
+    updatePolygons();
   }
 }
