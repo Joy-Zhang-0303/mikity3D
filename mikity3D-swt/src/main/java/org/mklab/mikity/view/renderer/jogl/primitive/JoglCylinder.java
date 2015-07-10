@@ -22,14 +22,29 @@ public class JoglCylinder extends AbstractJoglObject {
   /** 分割数 */
   private int division = 0;
 
-  /** 上面ポリゴン。 */
-  private JoglTrianglePolygon[] upperPolygons;
+//  /** 上面ポリゴン。 */
+//  private JoglTrianglePolygon[] upperPolygons;
+//
+//  /** 下面ポリゴン。 */
+//  private JoglTrianglePolygon[] lowerPolygons;
+//
+//  /** 側面ポリゴン1。 */
+//  private JoglTrianglePolygon[] sidePolygons1;
+//
+//  /** 側面ポリゴン2。 */
+//  private JoglTrianglePolygon[] sidePolygons2;
 
-  /** 下面ポリゴン。 */
-  private JoglTrianglePolygon[] lowerPolygons;
-
-  /** 側面ポリゴン。 */
-  private JoglQuadPolygon[] sidePolygons;
+  /** 頂点配列の参照位置。 */
+  private int vertexPosition = 0;
+  
+  /** 法線ベクトル配列の参照位置。 */
+  private int normalVectorPosition = 0;
+  
+  /** 頂点配列。 */
+  private float vertexArray[];
+  
+  /** 法線ベクトル配列。 */
+  private float normalVectorArray[];
   
   /**
    * {@inheritDoc}
@@ -38,11 +53,14 @@ public class JoglCylinder extends AbstractJoglObject {
     applyColor(gl);
     applyTransparency(gl);
     
-    for (int i = 0; i < this.division; i++) {
-      this.upperPolygons[i].display(gl);
-      this.lowerPolygons[i].display(gl);
-      this.sidePolygons[i].display(gl);
-    }
+    drawTrianglePolygons(gl, this.vertexArray, this.normalVectorArray);
+    
+//    for (int i = 0; i < this.division; i++) {
+//      this.upperPolygons[i].display(gl);
+//      this.lowerPolygons[i].display(gl);
+//      this.sidePolygons1[i].display(gl);
+//      this.sidePolygons2[i].display(gl);
+//    }
   }
 
   /**
@@ -85,33 +103,119 @@ public class JoglCylinder extends AbstractJoglObject {
     lowerPoints[this.division][1] = (float)(this.radius * Math.sin(0));
     lowerPoints[this.division][2] = -this.height / 2.0f;
 
-    this.upperPolygons = new JoglTrianglePolygon[this.division];
+    final int upperPolygonNumber = this.division;
+    final int lowerPolygonNumber = this.division;
+    final int sidePolygonNumber = this.division*2;
+    final int polygonNumber = upperPolygonNumber + lowerPolygonNumber + sidePolygonNumber;
+
+    this.vertexPosition = 0;
+    this.normalVectorPosition = 0;
+    this.vertexArray = new float[polygonNumber*3*3];
+    this.normalVectorArray = new float[polygonNumber*3*3];
+    
+    updateUpperPolygons(upperCenterPoint, upperPoints);
+    updateLowerPolygons(lowerCenterPoint, lowerPoints);
+    updateSidePolygons(upperPoints, lowerPoints);
+  }
+  
+  /**
+   * 頂点を頂点配列に追加します。
+   * @param vertices 頂点
+   */
+  private void appendVertices(float[][] vertices) {
+    for (int i = 0; i < vertices.length; i++) {
+      for (int j = 0; j < 3; j++) {
+        this.vertexArray[this.vertexPosition++] = vertices[i][j];
+      }
+    }
+  }
+
+  /**
+   * 法線ベクトルを法線ベクトル配列に3個追加します。
+   * @param normalVector 法線ベクトル
+   */
+  private void appendNormalVectors(float[] normalVector) {
+    for (int i = 0; i < 3; i++) {
+      this.normalVectorArray[this.normalVectorPosition++] = normalVector[0];
+      this.normalVectorArray[this.normalVectorPosition++] = normalVector[1];
+      this.normalVectorArray[this.normalVectorPosition++] = normalVector[2];
+    }
+  }
+
+  
+  /**
+   * 側面のポリゴンを生成します。
+   * 
+   * @param upperPoints 上面の周囲の頂点
+   * @param lowerPoints 下面の周囲の頂点
+   */
+  private void updateSidePolygons(final float[][] upperPoints, final float[][] lowerPoints) {
+//    this.sidePolygons1 = new JoglTrianglePolygon[this.division];
     for (int i = 0; i < this.division; i++) {
-      this.upperPolygons[i] = new JoglTrianglePolygon();
+//      this.sidePolygons1[i] = new JoglTrianglePolygon();
       final float[][] vertices = new float[3][3];
-      vertices[0][0] = upperCenterPoint[0];
-      vertices[0][1] = upperCenterPoint[1];
-      vertices[0][2] = upperCenterPoint[2];
+      vertices[0][0] = upperPoints[i][0];
+      vertices[0][1] = upperPoints[i][1];
+      vertices[0][2] = upperPoints[i][2];
       
-      vertices[1][0] = upperPoints[i][0];
-      vertices[1][1] = upperPoints[i][1];
-      vertices[1][2] = upperPoints[i][2];
+      vertices[1][0] = lowerPoints[i][0];
+      vertices[1][1] = lowerPoints[i][1];
+      vertices[1][2] = lowerPoints[i][2];
+
+      vertices[2][0] = lowerPoints[i+1][0];
+      vertices[2][1] = lowerPoints[i+1][1];
+      vertices[2][2] = lowerPoints[i+1][2];
+      
+      final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
+      final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
+      final float[] normalVector = v0.cross(v1).array();
+
+      appendVertices(vertices);
+      appendNormalVectors(normalVector);
+      
+//      this.sidePolygons1[i].setVertices(vertices);
+//      this.sidePolygons1[i].setNormalVector(normalVector);
+    }
+    
+    //this.sidePolygons2 = new JoglTrianglePolygon[this.division];
+    for (int i = 0; i < this.division; i++) {
+      //this.sidePolygons2[i] = new JoglTrianglePolygon();
+      final float[][] vertices = new float[3][3];
+
+      vertices[0][0] = upperPoints[i][0];
+      vertices[0][1] = upperPoints[i][1];
+      vertices[0][2] = upperPoints[i][2];
+      
+      vertices[1][0] = lowerPoints[i+1][0];
+      vertices[1][1] = lowerPoints[i+1][1];
+      vertices[1][2] = lowerPoints[i+1][2];
 
       vertices[2][0] = upperPoints[i+1][0];
       vertices[2][1] = upperPoints[i+1][1];
       vertices[2][2] = upperPoints[i+1][2];
-
+      
       final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
       final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
-      final Vector3 normalVector = v0.cross(v1);
+      final float[] normalVector = v0.cross(v1).array();
 
-      this.upperPolygons[i].setVertices(vertices);
-      this.upperPolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
+      appendVertices(vertices);
+      appendNormalVectors(normalVector);
+      
+//      this.sidePolygons2[i].setVertices(vertices);
+//      this.sidePolygons2[i].setNormalVector(normalVector);
     }
-    
-    this.lowerPolygons = new JoglTrianglePolygon[this.division];
+  }
+
+  /**
+   * 下面のポリゴンを更新します。
+   * 
+   * @param lowerCenterPoint 下面の中心
+   * @param lowerPoints 下面の周囲の頂点
+   */
+  private void updateLowerPolygons(final float[] lowerCenterPoint, final float[][] lowerPoints) {
+//    this.lowerPolygons = new JoglTrianglePolygon[this.division];
     for (int i = 0; i < this.division; i++) {
-      this.lowerPolygons[i] = new JoglTrianglePolygon();
+//      this.lowerPolygons[i] = new JoglTrianglePolygon();
       final float[][] vertices = new float[3][3];
       vertices[0][0] = lowerCenterPoint[0];
       vertices[0][1] = lowerCenterPoint[1];
@@ -127,38 +231,48 @@ public class JoglCylinder extends AbstractJoglObject {
 
       final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
       final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
-      final Vector3 normalVector = v0.cross(v1);
+      final float[] normalVector = v0.cross(v1).array();
 
-      this.lowerPolygons[i].setVertices(vertices);
-      this.lowerPolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
+      appendVertices(vertices);
+      appendNormalVectors(normalVector);
+      
+//      this.lowerPolygons[i].setVertices(vertices);
+//      this.lowerPolygons[i].setNormalVector(normalVector);
     }
-    
-    this.sidePolygons = new JoglQuadPolygon[this.division];
+  }
+
+  /**
+   * 上面のポリゴンを更新します。
+   * 
+   * @param upperCenterPoint 上面の中心
+   * @param upperPoints 上面の周囲の頂点
+   */
+  private void updateUpperPolygons(final float[] upperCenterPoint, final float[][] upperPoints) {
+//    this.upperPolygons = new JoglTrianglePolygon[this.division];
     for (int i = 0; i < this.division; i++) {
-      this.sidePolygons[i] = new JoglQuadPolygon();
-      final float[][] vertices = new float[4][3];
-      vertices[0][0] = upperPoints[i][0];
-      vertices[0][1] = upperPoints[i][1];
-      vertices[0][2] = upperPoints[i][2];
+//      this.upperPolygons[i] = new JoglTrianglePolygon();
+      final float[][] vertices = new float[3][3];
+      vertices[0][0] = upperCenterPoint[0];
+      vertices[0][1] = upperCenterPoint[1];
+      vertices[0][2] = upperCenterPoint[2];
       
-      vertices[1][0] = lowerPoints[i][0];
-      vertices[1][1] = lowerPoints[i][1];
-      vertices[1][2] = lowerPoints[i][2];
+      vertices[1][0] = upperPoints[i][0];
+      vertices[1][1] = upperPoints[i][1];
+      vertices[1][2] = upperPoints[i][2];
 
-      vertices[2][0] = lowerPoints[i+1][0];
-      vertices[2][1] = lowerPoints[i+1][1];
-      vertices[2][2] = lowerPoints[i+1][2];
+      vertices[2][0] = upperPoints[i+1][0];
+      vertices[2][1] = upperPoints[i+1][1];
+      vertices[2][2] = upperPoints[i+1][2];
 
-      vertices[3][0] = upperPoints[i+1][0];
-      vertices[3][1] = upperPoints[i+1][1];
-      vertices[3][2] = upperPoints[i+1][2];
-      
       final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
-      final Vector3 v1 = new Vector3(vertices[3][0] - vertices[0][0], vertices[3][1] - vertices[0][1], vertices[3][2] - vertices[0][2]);
-      final Vector3 normalVector = v0.cross(v1);
+      final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
+      final float[] normalVector = v0.cross(v1).array();
 
-      this.sidePolygons[i].setVertices(vertices);
-      this.sidePolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
+      appendVertices(vertices);
+      appendNormalVectors(normalVector);
+      
+//      this.upperPolygons[i].setVertices(vertices);
+//      this.upperPolygons[i].setNormalVector(normalVector);
     }
   }
 

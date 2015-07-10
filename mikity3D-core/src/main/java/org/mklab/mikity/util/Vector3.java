@@ -88,4 +88,12 @@ public class Vector3 {
     return this.z;
   }
   
+  /**
+   * 成分を配列として返します。
+   * @return 成分を含む配列
+   */
+  public float[] array() {
+    return new float[]{this.x, this.y, this.z};
+  }
+  
 }

@@ -11,6 +11,7 @@ import java.nio.FloatBuffer;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
+import javax.media.opengl.fixedfunc.GLPointerFunc;
 
 /**
  * {@link JoglObject}の抽象クラスです。
@@ -114,4 +115,29 @@ public abstract class AbstractJoglObject implements JoglObject {
     buffer.put(array).position(0);
     return buffer;
   }
+  
+  /**
+   * 三角形ポリゴンを描画します。
+   * @param gl GL
+   * @param vertexArray ポリゴンの頂点配列
+   * @param normalVectorArray 法線ベクトルの配列
+   */
+  protected void drawTrianglePolygons(GL2 gl, final float[] vertexArray, final float[] normalVectorArray) {
+    final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
+    final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
+
+    // 法線配列の有効化
+    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
+    // 法線バッファの指定
+    gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
+    
+    // 頂点配列の有効化
+    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
+    // 頂点バッファの指定
+    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
+
+    final int number = vertexArray.length/3;
+    gl.glDrawArrays(GL.GL_TRIANGLES, 0, number);
+  }
+
 }

@@ -1,10 +1,6 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
-import java.nio.FloatBuffer;
-
-import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
-import javax.media.opengl.fixedfunc.GLPointerFunc;
 
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
@@ -50,20 +46,7 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
     
     final float[] normalVectorArray = {nx,ny,nz,nx,ny,nz,nx,ny,nz};
 
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
-    final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
-
-    // 法線配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
-    // 法線バッファの指定
-    gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
-    
-    // 頂点配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
-    // 頂点バッファの指定
-    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
-
-    gl.glDrawArrays(GL.GL_TRIANGLES, 0, 3);
+    drawTrianglePolygons(gl, vertexArray, normalVectorArray);
   }
 
   /**
