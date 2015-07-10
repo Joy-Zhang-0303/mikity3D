@@ -7,528 +7,528 @@
 				<translation z="0.0" y="0.0" x="0.0" />
 				<rotation x="0.0" z="0.0" y="1.57" />
 				<trianglePolygon color="green">
-					<point z="-0.1" y="-0.0" x="-0.0" />
-					<point z="-0.1" y="0.07071" x="0.07071" />
-					<point z="-0.1" y="0.01564" x="0.09877" />
+					<vertex z="-0.1" y="-0.0" x="-0.0" />
+					<vertex z="-0.1" y="0.07071" x="0.07071" />
+					<vertex z="-0.1" y="0.01564" x="0.09877" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="0.1" y="0.0" x="0.0" />
-					<point z="0.1" y="0.01564" x="0.09877" />
-					<point z="0.1" y="0.07071" x="0.07071" />
+					<vertex z="0.1" y="0.0" x="0.0" />
+					<vertex z="0.1" y="0.01564" x="0.09877" />
+					<vertex z="0.1" y="0.07071" x="0.07071" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="-0.1" y="-0.0" x="-0.0" />
-					<point z="-0.1" y="0.01564" x="0.09877" />
-					<point z="-0.1" y="-0.0454" x="0.0891" />
+					<vertex z="-0.1" y="-0.0" x="-0.0" />
+					<vertex z="-0.1" y="0.01564" x="0.09877" />
+					<vertex z="-0.1" y="-0.0454" x="0.0891" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="0.1" y="0.0" x="0.0" />
-					<point z="0.1" y="-0.0454" x="0.0891" />
-					<point z="0.1" y="0.01564" x="0.09877" />
+					<vertex z="0.1" y="0.0" x="0.0" />
+					<vertex z="0.1" y="-0.0454" x="0.0891" />
+					<vertex z="0.1" y="0.01564" x="0.09877" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="-0.1" y="-0.0" x="-0.0" />
-					<point z="-0.1" y="-0.0454" x="0.0891" />
-					<point z="-0.1" y="-0.0891" x="0.0454" />
+					<vertex z="-0.1" y="-0.0" x="-0.0" />
+					<vertex z="-0.1" y="-0.0454" x="0.0891" />
+					<vertex z="-0.1" y="-0.0891" x="0.0454" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="0.1" y="0.0" x="0.0" />
-					<point z="0.1" y="-0.0891" x="0.0454" />
-					<point z="0.1" y="-0.0454" x="0.0891" />
+					<vertex z="0.1" y="0.0" x="0.0" />
+					<vertex z="0.1" y="-0.0891" x="0.0454" />
+					<vertex z="0.1" y="-0.0454" x="0.0891" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="-0.1" y="-0.0" x="-0.0" />
-					<point z="-0.1" y="-0.0891" x="0.0454" />
-					<point z="-0.1" y="-0.09877" x="-0.01564" />
+					<vertex z="-0.1" y="-0.0" x="-0.0" />
+					<vertex z="-0.1" y="-0.0891" x="0.0454" />
+					<vertex z="-0.1" y="-0.09877" x="-0.01564" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="0.1" y="0.0" x="0.0" />
-					<point z="0.1" y="-0.09877" x="-0.01564" />
-					<point z="0.1" y="-0.0891" x="0.0454" />
+					<vertex z="0.1" y="0.0" x="0.0" />
+					<vertex z="0.1" y="-0.09877" x="-0.01564" />
+					<vertex z="0.1" y="-0.0891" x="0.0454" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="-0.1" y="-0.0" x="-0.0" />
-					<point z="-0.1" y="-0.09877" x="-0.01564" />
-					<point z="-0.1" y="-0.07071" x="-0.07071" />
+					<vertex z="-0.1" y="-0.0" x="-0.0" />
+					<vertex z="-0.1" y="-0.09877" x="-0.01564" />
+					<vertex z="-0.1" y="-0.07071" x="-0.07071" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="0.1" y="0.0" x="0.0" />
-					<point z="0.1" y="-0.07071" x="-0.07071" />
-					<point z="0.1" y="-0.09877" x="-0.01564" />
+					<vertex z="0.1" y="0.0" x="0.0" />
+					<vertex z="0.1" y="-0.07071" x="-0.07071" />
+					<vertex z="0.1" y="-0.09877" x="-0.01564" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="-0.1" y="-0.0" x="-0.0" />
-					<point z="-0.1" y="-0.07071" x="-0.07071" />
-					<point z="-0.1" y="-0.01564" x="-0.09877" />
+					<vertex z="-0.1" y="-0.0" x="-0.0" />
+					<vertex z="-0.1" y="-0.07071" x="-0.07071" />
+					<vertex z="-0.1" y="-0.01564" x="-0.09877" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="0.1" y="0.0" x="0.0" />
-					<point z="0.1" y="-0.01564" x="-0.09877" />
-					<point z="0.1" y="-0.07071" x="-0.07071" />
+					<vertex z="0.1" y="0.0" x="0.0" />
+					<vertex z="0.1" y="-0.01564" x="-0.09877" />
+					<vertex z="0.1" y="-0.07071" x="-0.07071" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="-0.1" y="-0.0" x="-0.0" />
-					<point z="-0.1" y="-0.01564" x="-0.09877" />
-					<point z="-0.1" y="0.0454" x="-0.0891" />
+					<vertex z="-0.1" y="-0.0" x="-0.0" />
+					<vertex z="-0.1" y="-0.01564" x="-0.09877" />
+					<vertex z="-0.1" y="0.0454" x="-0.0891" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="0.1" y="0.0" x="0.0" />
-					<point z="0.1" y="0.0454" x="-0.0891" />
-					<point z="0.1" y="-0.01564" x="-0.09877" />
+					<vertex z="0.1" y="0.0" x="0.0" />
+					<vertex z="0.1" y="0.0454" x="-0.0891" />
+					<vertex z="0.1" y="-0.01564" x="-0.09877" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="-0.1" y="-0.0" x="-0.0" />
-					<point z="-0.1" y="0.0454" x="-0.0891" />
-					<point z="-0.1" y="0.0891" x="-0.0454" />
+					<vertex z="-0.1" y="-0.0" x="-0.0" />
+					<vertex z="-0.1" y="0.0454" x="-0.0891" />
+					<vertex z="-0.1" y="0.0891" x="-0.0454" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="0.1" y="0.0" x="0.0" />
-					<point z="0.1" y="0.0891" x="-0.0454" />
-					<point z="0.1" y="0.0454" x="-0.0891" />
+					<vertex z="0.1" y="0.0" x="0.0" />
+					<vertex z="0.1" y="0.0891" x="-0.0454" />
+					<vertex z="0.1" y="0.0454" x="-0.0891" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="-0.1" y="-0.0" x="-0.0" />
-					<point z="-0.1" y="0.0891" x="-0.0454" />
-					<point z="-0.1" y="0.09877" x="0.01564" />
+					<vertex z="-0.1" y="-0.0" x="-0.0" />
+					<vertex z="-0.1" y="0.0891" x="-0.0454" />
+					<vertex z="-0.1" y="0.09877" x="0.01564" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="0.1" y="0.0" x="0.0" />
-					<point z="0.1" y="0.09877" x="0.01564" />
-					<point z="0.1" y="0.0891" x="-0.0454" />
+					<vertex z="0.1" y="0.0" x="0.0" />
+					<vertex z="0.1" y="0.09877" x="0.01564" />
+					<vertex z="0.1" y="0.0891" x="-0.0454" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="-0.1" y="0.09877" x="0.01564" />
-					<point z="-0.1" y="0.07071" x="0.07071" />
-					<point z="-0.1" y="-0.0" x="-0.0" />
+					<vertex z="-0.1" y="0.09877" x="0.01564" />
+					<vertex z="-0.1" y="0.07071" x="0.07071" />
+					<vertex z="-0.1" y="-0.0" x="-0.0" />
 				</trianglePolygon>
 				<trianglePolygon color="green">
-					<point z="0.1" y="0.0" x="0.0" />
-					<point z="0.1" y="0.07071" x="0.07071" />
-					<point z="0.1" y="0.09877" x="0.01564" />
+					<vertex z="0.1" y="0.0" x="0.0" />
+					<vertex z="0.1" y="0.07071" x="0.07071" />
+					<vertex z="0.1" y="0.09877" x="0.01564" />
 				</trianglePolygon>
 				<quadPolygon color="green">
-					<point z="-0.1" y="0.07071" x="0.07071" />
-					<point z="0.1" y="0.07071" x="0.07071" />
-					<point z="0.1" y="0.01564" x="0.09877" />
-					<point z="-0.1" y="0.01564" x="0.09877" />
+					<vertex z="-0.1" y="0.07071" x="0.07071" />
+					<vertex z="0.1" y="0.07071" x="0.07071" />
+					<vertex z="0.1" y="0.01564" x="0.09877" />
+					<vertex z="-0.1" y="0.01564" x="0.09877" />
 				</quadPolygon>
 				<quadPolygon color="green">
-					<point z="-0.1" y="0.01564" x="0.09877" />
-					<point z="0.1" y="0.01564" x="0.09877" />
-					<point z="0.1" y="-0.0454" x="0.0891" />
-					<point z="-0.1" y="-0.0454" x="0.0891" />
+					<vertex z="-0.1" y="0.01564" x="0.09877" />
+					<vertex z="0.1" y="0.01564" x="0.09877" />
+					<vertex z="0.1" y="-0.0454" x="0.0891" />
+					<vertex z="-0.1" y="-0.0454" x="0.0891" />
 				</quadPolygon>
 				<quadPolygon color="green">
-					<point z="-0.1" y="-0.0454" x="0.0891" />
-					<point z="0.1" y="-0.0454" x="0.0891" />
-					<point z="0.1" y="-0.0891" x="0.0454" />
-					<point z="-0.1" y="-0.0891" x="0.0454" />
+					<vertex z="-0.1" y="-0.0454" x="0.0891" />
+					<vertex z="0.1" y="-0.0454" x="0.0891" />
+					<vertex z="0.1" y="-0.0891" x="0.0454" />
+					<vertex z="-0.1" y="-0.0891" x="0.0454" />
 				</quadPolygon>
 				<quadPolygon color="green">
-					<point z="-0.1" y="-0.0891" x="0.0454" />
-					<point z="0.1" y="-0.0891" x="0.0454" />
-					<point z="0.1" y="-0.09877" x="-0.01564" />
-					<point z="-0.1" y="-0.09877" x="-0.01564" />
+					<vertex z="-0.1" y="-0.0891" x="0.0454" />
+					<vertex z="0.1" y="-0.0891" x="0.0454" />
+					<vertex z="0.1" y="-0.09877" x="-0.01564" />
+					<vertex z="-0.1" y="-0.09877" x="-0.01564" />
 				</quadPolygon>
 				<quadPolygon color="green">
-					<point z="-0.1" y="-0.09877" x="-0.01564" />
-					<point z="0.1" y="-0.09877" x="-0.01564" />
-					<point z="0.1" y="-0.07071" x="-0.07071" />
-					<point z="-0.1" y="-0.07071" x="-0.07071" />
+					<vertex z="-0.1" y="-0.09877" x="-0.01564" />
+					<vertex z="0.1" y="-0.09877" x="-0.01564" />
+					<vertex z="0.1" y="-0.07071" x="-0.07071" />
+					<vertex z="-0.1" y="-0.07071" x="-0.07071" />
 				</quadPolygon>
 				<quadPolygon color="green">
-					<point z="-0.1" y="-0.07071" x="-0.07071" />
-					<point z="0.1" y="-0.07071" x="-0.07071" />
-					<point z="0.1" y="-0.01564" x="-0.09877" />
-					<point z="-0.1" y="-0.01564" x="-0.09877" />
+					<vertex z="-0.1" y="-0.07071" x="-0.07071" />
+					<vertex z="0.1" y="-0.07071" x="-0.07071" />
+					<vertex z="0.1" y="-0.01564" x="-0.09877" />
+					<vertex z="-0.1" y="-0.01564" x="-0.09877" />
 				</quadPolygon>
 				<quadPolygon color="green">
-					<point z="-0.1" y="-0.01564" x="-0.09877" />
-					<point z="0.1" y="-0.01564" x="-0.09877" />
-					<point z="0.1" y="0.0454" x="-0.0891" />
-					<point z="-0.1" y="0.0454" x="-0.0891" />
+					<vertex z="-0.1" y="-0.01564" x="-0.09877" />
+					<vertex z="0.1" y="-0.01564" x="-0.09877" />
+					<vertex z="0.1" y="0.0454" x="-0.0891" />
+					<vertex z="-0.1" y="0.0454" x="-0.0891" />
 				</quadPolygon>
 				<quadPolygon color="green">
-					<point z="-0.1" y="0.0454" x="-0.0891" />
-					<point z="0.1" y="0.0454" x="-0.0891" />
-					<point z="0.1" y="0.0891" x="-0.0454" />
-					<point z="-0.1" y="0.0891" x="-0.0454" />
+					<vertex z="-0.1" y="0.0454" x="-0.0891" />
+					<vertex z="0.1" y="0.0454" x="-0.0891" />
+					<vertex z="0.1" y="0.0891" x="-0.0454" />
+					<vertex z="-0.1" y="0.0891" x="-0.0454" />
 				</quadPolygon>
 				<quadPolygon color="green">
-					<point z="-0.1" y="0.0891" x="-0.0454" />
-					<point z="0.1" y="0.0891" x="-0.0454" />
-					<point z="0.1" y="0.09877" x="0.01564" />
-					<point z="-0.1" y="0.09877" x="0.01564" />
+					<vertex z="-0.1" y="0.0891" x="-0.0454" />
+					<vertex z="0.1" y="0.0891" x="-0.0454" />
+					<vertex z="0.1" y="0.09877" x="0.01564" />
+					<vertex z="-0.1" y="0.09877" x="0.01564" />
 				</quadPolygon>
 				<quadPolygon color="green">
-					<point z="0.1" y="0.07071" x="0.07071" />
-					<point z="-0.1" y="0.07071" x="0.07071" />
-					<point z="-0.1" y="0.09877" x="0.01564" />
-					<point z="0.1" y="0.09877" x="0.01564" />
+					<vertex z="0.1" y="0.07071" x="0.07071" />
+					<vertex z="-0.1" y="0.07071" x="0.07071" />
+					<vertex z="-0.1" y="0.09877" x="0.01564" />
+					<vertex z="0.1" y="0.09877" x="0.01564" />
 				</quadPolygon>
 				<group name="dodai2">
 					<translation x="-0.15" z="0.0" y="0.0" />
 					<rotation x="0.0" z="0.0" y="3.14" />
 					<linkData number="2" target="rotationX" />
 					<quadPolygon color="blue">
-						<point z="-0.05" y="0.05" x="0.29" />
-						<point z="-0.05" y="-0.05" x="0.29" />
-						<point z="-0.05" y="-0.05" x="-0.29" />
-						<point z="-0.05" y="0.05" x="-0.29" />
+						<vertex z="-0.05" y="0.05" x="0.29" />
+						<vertex z="-0.05" y="-0.05" x="0.29" />
+						<vertex z="-0.05" y="-0.05" x="-0.29" />
+						<vertex z="-0.05" y="0.05" x="-0.29" />
 					</quadPolygon>
 					<quadPolygon color="blue">
-						<point z="0.05" y="0.05" x="0.29" />
-						<point z="0.05" y="0.05" x="-0.29" />
-						<point z="0.05" y="-0.05" x="-0.29" />
-						<point z="0.05" y="-0.05" x="0.29" />
+						<vertex z="0.05" y="0.05" x="0.29" />
+						<vertex z="0.05" y="0.05" x="-0.29" />
+						<vertex z="0.05" y="-0.05" x="-0.29" />
+						<vertex z="0.05" y="-0.05" x="0.29" />
 					</quadPolygon>
 					<quadPolygon color="blue">
-						<point z="-0.05" y="0.05" x="0.29" />
-						<point z="0.05" y="0.05" x="0.29" />
-						<point z="0.05" y="-0.05" x="0.29" />
-						<point z="-0.05" y="-0.05" x="0.29" />
+						<vertex z="-0.05" y="0.05" x="0.29" />
+						<vertex z="0.05" y="0.05" x="0.29" />
+						<vertex z="0.05" y="-0.05" x="0.29" />
+						<vertex z="-0.05" y="-0.05" x="0.29" />
 					</quadPolygon>
 					<quadPolygon color="blue">
-						<point z="-0.05" y="-0.05" x="0.29" />
-						<point z="0.05" y="-0.05" x="0.29" />
-						<point z="0.05" y="-0.05" x="-0.29" />
-						<point z="-0.05" y="-0.05" x="-0.29" />
+						<vertex z="-0.05" y="-0.05" x="0.29" />
+						<vertex z="0.05" y="-0.05" x="0.29" />
+						<vertex z="0.05" y="-0.05" x="-0.29" />
+						<vertex z="-0.05" y="-0.05" x="-0.29" />
 					</quadPolygon>
 					<quadPolygon color="blue">
-						<point z="-0.05" y="-0.05" x="-0.29" />
-						<point z="0.05" y="-0.05" x="-0.29" />
-						<point z="0.05" y="0.05" x="-0.29" />
-						<point z="-0.05" y="0.05" x="-0.29" />
+						<vertex z="-0.05" y="-0.05" x="-0.29" />
+						<vertex z="0.05" y="-0.05" x="-0.29" />
+						<vertex z="0.05" y="0.05" x="-0.29" />
+						<vertex z="-0.05" y="0.05" x="-0.29" />
 					</quadPolygon>
 					<quadPolygon color="blue">
-						<point z="0.05" y="0.05" x="0.29" />
-						<point z="-0.05" y="0.05" x="0.29" />
-						<point z="-0.05" y="0.05" x="-0.29" />
-						<point z="0.05" y="0.05" x="-0.29" />
+						<vertex z="0.05" y="0.05" x="0.29" />
+						<vertex z="-0.05" y="0.05" x="0.29" />
+						<vertex z="-0.05" y="0.05" x="-0.29" />
+						<vertex z="0.05" y="0.05" x="-0.29" />
 					</quadPolygon>
 					<group name="sinsi1">
 						<translation x="0.0" z="0.0" y="-0.30000001192092896" />
 						<rotation x="0.0" z="0.0" y="1.57" />
 						<linkData number="3" target="rotationY" />
 						<trianglePolygon color="orange">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="0.00707" x="0.00707" />
-							<point z="-0.01" y="0.00156" x="0.00988" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="0.00707" x="0.00707" />
+							<vertex z="-0.01" y="0.00156" x="0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="0.00156" x="0.00988" />
-							<point z="0.01" y="0.00707" x="0.00707" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="0.00156" x="0.00988" />
+							<vertex z="0.01" y="0.00707" x="0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="0.00156" x="0.00988" />
-							<point z="-0.01" y="-0.00454" x="0.00891" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="0.00156" x="0.00988" />
+							<vertex z="-0.01" y="-0.00454" x="0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="-0.00454" x="0.00891" />
-							<point z="0.01" y="0.00156" x="0.00988" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="-0.00454" x="0.00891" />
+							<vertex z="0.01" y="0.00156" x="0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="-0.00454" x="0.00891" />
-							<point z="-0.01" y="-0.00891" x="0.00454" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="-0.00454" x="0.00891" />
+							<vertex z="-0.01" y="-0.00891" x="0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="-0.00891" x="0.00454" />
-							<point z="0.01" y="-0.00454" x="0.00891" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="-0.00891" x="0.00454" />
+							<vertex z="0.01" y="-0.00454" x="0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="-0.00891" x="0.00454" />
-							<point z="-0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="-0.00891" x="0.00454" />
+							<vertex z="-0.01" y="-0.00988" x="-0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="-0.00988" x="-0.00156" />
-							<point z="0.01" y="-0.00891" x="0.00454" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="0.01" y="-0.00891" x="0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="-0.00988" x="-0.00156" />
-							<point z="-0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="-0.01" y="-0.00707" x="-0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="-0.00707" x="-0.00707" />
-							<point z="0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="0.01" y="-0.00988" x="-0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="-0.00707" x="-0.00707" />
-							<point z="-0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="-0.01" y="-0.00156" x="-0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="-0.00156" x="-0.00988" />
-							<point z="0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="0.01" y="-0.00707" x="-0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="-0.00156" x="-0.00988" />
-							<point z="-0.01" y="0.00454" x="-0.00891" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="-0.01" y="0.00454" x="-0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="0.00454" x="-0.00891" />
-							<point z="0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="0.00454" x="-0.00891" />
+							<vertex z="0.01" y="-0.00156" x="-0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="0.00454" x="-0.00891" />
-							<point z="-0.01" y="0.00891" x="-0.00454" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="0.00454" x="-0.00891" />
+							<vertex z="-0.01" y="0.00891" x="-0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="0.00891" x="-0.00454" />
-							<point z="0.01" y="0.00454" x="-0.00891" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="0.00891" x="-0.00454" />
+							<vertex z="0.01" y="0.00454" x="-0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="0.00891" x="-0.00454" />
-							<point z="-0.01" y="0.00988" x="0.00156" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="0.00891" x="-0.00454" />
+							<vertex z="-0.01" y="0.00988" x="0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="0.00988" x="0.00156" />
-							<point z="0.01" y="0.00891" x="-0.00454" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="0.00988" x="0.00156" />
+							<vertex z="0.01" y="0.00891" x="-0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.01" y="0.00988" x="0.00156" />
-							<point z="-0.01" y="0.00707" x="0.00707" />
-							<point z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="0.00988" x="0.00156" />
+							<vertex z="-0.01" y="0.00707" x="0.00707" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="0.00707" x="0.00707" />
-							<point z="0.01" y="0.00988" x="0.00156" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="0.00707" x="0.00707" />
+							<vertex z="0.01" y="0.00988" x="0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="-0.0" x="0.0" />
-							<point z="0.00707" y="-0.0" x="0.00707" />
-							<point z="0.00988" y="-0.0" x="0.00156" />
+							<vertex z="-0.0" y="-0.0" x="0.0" />
+							<vertex z="0.00707" y="-0.0" x="0.00707" />
+							<vertex z="0.00988" y="-0.0" x="0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="0.296" x="-0.0" />
-							<point z="0.00988" y="0.296" x="0.00156" />
-							<point z="0.00707" y="0.296" x="0.00707" />
+							<vertex z="-0.0" y="0.296" x="-0.0" />
+							<vertex z="0.00988" y="0.296" x="0.00156" />
+							<vertex z="0.00707" y="0.296" x="0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="-0.0" x="0.0" />
-							<point z="0.00988" y="-0.0" x="0.00156" />
-							<point z="0.00891" y="-0.0" x="-0.00454" />
+							<vertex z="-0.0" y="-0.0" x="0.0" />
+							<vertex z="0.00988" y="-0.0" x="0.00156" />
+							<vertex z="0.00891" y="-0.0" x="-0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="0.296" x="-0.0" />
-							<point z="0.00891" y="0.296" x="-0.00454" />
-							<point z="0.00988" y="0.296" x="0.00156" />
+							<vertex z="-0.0" y="0.296" x="-0.0" />
+							<vertex z="0.00891" y="0.296" x="-0.00454" />
+							<vertex z="0.00988" y="0.296" x="0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="-0.0" x="0.0" />
-							<point z="0.00891" y="-0.0" x="-0.00454" />
-							<point z="0.00454" y="-0.0" x="-0.00891" />
+							<vertex z="-0.0" y="-0.0" x="0.0" />
+							<vertex z="0.00891" y="-0.0" x="-0.00454" />
+							<vertex z="0.00454" y="-0.0" x="-0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="0.296" x="-0.0" />
-							<point z="0.00454" y="0.296" x="-0.00891" />
-							<point z="0.00891" y="0.296" x="-0.00454" />
+							<vertex z="-0.0" y="0.296" x="-0.0" />
+							<vertex z="0.00454" y="0.296" x="-0.00891" />
+							<vertex z="0.00891" y="0.296" x="-0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="-0.0" x="0.0" />
-							<point z="0.00454" y="-0.0" x="-0.00891" />
-							<point z="-0.00156" y="-0.0" x="-0.00988" />
+							<vertex z="-0.0" y="-0.0" x="0.0" />
+							<vertex z="0.00454" y="-0.0" x="-0.00891" />
+							<vertex z="-0.00156" y="-0.0" x="-0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="0.296" x="-0.0" />
-							<point z="-0.00156" y="0.296" x="-0.00988" />
-							<point z="0.00454" y="0.296" x="-0.00891" />
+							<vertex z="-0.0" y="0.296" x="-0.0" />
+							<vertex z="-0.00156" y="0.296" x="-0.00988" />
+							<vertex z="0.00454" y="0.296" x="-0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="-0.0" x="0.0" />
-							<point z="-0.00156" y="-0.0" x="-0.00988" />
-							<point z="-0.00707" y="-0.0" x="-0.00707" />
+							<vertex z="-0.0" y="-0.0" x="0.0" />
+							<vertex z="-0.00156" y="-0.0" x="-0.00988" />
+							<vertex z="-0.00707" y="-0.0" x="-0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="0.296" x="-0.0" />
-							<point z="-0.00707" y="0.296" x="-0.00707" />
-							<point z="-0.00156" y="0.296" x="-0.00988" />
+							<vertex z="-0.0" y="0.296" x="-0.0" />
+							<vertex z="-0.00707" y="0.296" x="-0.00707" />
+							<vertex z="-0.00156" y="0.296" x="-0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="-0.0" x="0.0" />
-							<point z="-0.00707" y="-0.0" x="-0.00707" />
-							<point z="-0.00988" y="-0.0" x="-0.00156" />
+							<vertex z="-0.0" y="-0.0" x="0.0" />
+							<vertex z="-0.00707" y="-0.0" x="-0.00707" />
+							<vertex z="-0.00988" y="-0.0" x="-0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="0.296" x="-0.0" />
-							<point z="-0.00988" y="0.296" x="-0.00156" />
-							<point z="-0.00707" y="0.296" x="-0.00707" />
+							<vertex z="-0.0" y="0.296" x="-0.0" />
+							<vertex z="-0.00988" y="0.296" x="-0.00156" />
+							<vertex z="-0.00707" y="0.296" x="-0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="-0.0" x="0.0" />
-							<point z="-0.00988" y="-0.0" x="-0.00156" />
-							<point z="-0.00891" y="-0.0" x="0.00454" />
+							<vertex z="-0.0" y="-0.0" x="0.0" />
+							<vertex z="-0.00988" y="-0.0" x="-0.00156" />
+							<vertex z="-0.00891" y="-0.0" x="0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="0.296" x="-0.0" />
-							<point z="-0.00891" y="0.296" x="0.00454" />
-							<point z="-0.00988" y="0.296" x="-0.00156" />
+							<vertex z="-0.0" y="0.296" x="-0.0" />
+							<vertex z="-0.00891" y="0.296" x="0.00454" />
+							<vertex z="-0.00988" y="0.296" x="-0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="-0.0" x="0.0" />
-							<point z="-0.00891" y="-0.0" x="0.00454" />
-							<point z="-0.00454" y="-0.0" x="0.00891" />
+							<vertex z="-0.0" y="-0.0" x="0.0" />
+							<vertex z="-0.00891" y="-0.0" x="0.00454" />
+							<vertex z="-0.00454" y="-0.0" x="0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="0.296" x="-0.0" />
-							<point z="-0.00454" y="0.296" x="0.00891" />
-							<point z="-0.00891" y="0.296" x="0.00454" />
+							<vertex z="-0.0" y="0.296" x="-0.0" />
+							<vertex z="-0.00454" y="0.296" x="0.00891" />
+							<vertex z="-0.00891" y="0.296" x="0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="-0.0" x="0.0" />
-							<point z="-0.00454" y="-0.0" x="0.00891" />
-							<point z="0.00156" y="-0.0" x="0.00988" />
+							<vertex z="-0.0" y="-0.0" x="0.0" />
+							<vertex z="-0.00454" y="-0.0" x="0.00891" />
+							<vertex z="0.00156" y="-0.0" x="0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="0.296" x="-0.0" />
-							<point z="0.00156" y="0.296" x="0.00988" />
-							<point z="-0.00454" y="0.296" x="0.00891" />
+							<vertex z="-0.0" y="0.296" x="-0.0" />
+							<vertex z="0.00156" y="0.296" x="0.00988" />
+							<vertex z="-0.00454" y="0.296" x="0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="-0.0" x="0.0" />
-							<point z="0.00156" y="-0.0" x="0.00988" />
-							<point z="0.00707" y="-0.0" x="0.00707" />
+							<vertex z="-0.0" y="-0.0" x="0.0" />
+							<vertex z="0.00156" y="-0.0" x="0.00988" />
+							<vertex z="0.00707" y="-0.0" x="0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="orange">
-							<point z="-0.0" y="0.296" x="-0.0" />
-							<point z="0.00707" y="0.296" x="0.00707" />
-							<point z="0.00156" y="0.296" x="0.00988" />
+							<vertex z="-0.0" y="0.296" x="-0.0" />
+							<vertex z="0.00707" y="0.296" x="0.00707" />
+							<vertex z="0.00156" y="0.296" x="0.00988" />
 						</trianglePolygon>
 						<quadPolygon color="orange">
-							<point z="-0.01" y="0.00707" x="0.00707" />
-							<point z="0.01" y="0.00707" x="0.00707" />
-							<point z="0.01" y="0.00156" x="0.00988" />
-							<point z="-0.01" y="0.00156" x="0.00988" />
+							<vertex z="-0.01" y="0.00707" x="0.00707" />
+							<vertex z="0.01" y="0.00707" x="0.00707" />
+							<vertex z="0.01" y="0.00156" x="0.00988" />
+							<vertex z="-0.01" y="0.00156" x="0.00988" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.01" y="0.00156" x="0.00988" />
-							<point z="0.01" y="0.00156" x="0.00988" />
-							<point z="0.01" y="-0.00454" x="0.00891" />
-							<point z="-0.01" y="-0.00454" x="0.00891" />
+							<vertex z="-0.01" y="0.00156" x="0.00988" />
+							<vertex z="0.01" y="0.00156" x="0.00988" />
+							<vertex z="0.01" y="-0.00454" x="0.00891" />
+							<vertex z="-0.01" y="-0.00454" x="0.00891" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.01" y="-0.00454" x="0.00891" />
-							<point z="0.01" y="-0.00454" x="0.00891" />
-							<point z="0.01" y="-0.00891" x="0.00454" />
-							<point z="-0.01" y="-0.00891" x="0.00454" />
+							<vertex z="-0.01" y="-0.00454" x="0.00891" />
+							<vertex z="0.01" y="-0.00454" x="0.00891" />
+							<vertex z="0.01" y="-0.00891" x="0.00454" />
+							<vertex z="-0.01" y="-0.00891" x="0.00454" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.01" y="-0.00891" x="0.00454" />
-							<point z="0.01" y="-0.00891" x="0.00454" />
-							<point z="0.01" y="-0.00988" x="-0.00156" />
-							<point z="-0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="-0.01" y="-0.00891" x="0.00454" />
+							<vertex z="0.01" y="-0.00891" x="0.00454" />
+							<vertex z="0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="-0.01" y="-0.00988" x="-0.00156" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.01" y="-0.00988" x="-0.00156" />
-							<point z="0.01" y="-0.00988" x="-0.00156" />
-							<point z="0.01" y="-0.00707" x="-0.00707" />
-							<point z="-0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="-0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="-0.01" y="-0.00707" x="-0.00707" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.01" y="-0.00707" x="-0.00707" />
-							<point z="0.01" y="-0.00707" x="-0.00707" />
-							<point z="0.01" y="-0.00156" x="-0.00988" />
-							<point z="-0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="-0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="-0.01" y="-0.00156" x="-0.00988" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.01" y="-0.00156" x="-0.00988" />
-							<point z="0.01" y="-0.00156" x="-0.00988" />
-							<point z="0.01" y="0.00454" x="-0.00891" />
-							<point z="-0.01" y="0.00454" x="-0.00891" />
+							<vertex z="-0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="0.01" y="0.00454" x="-0.00891" />
+							<vertex z="-0.01" y="0.00454" x="-0.00891" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.01" y="0.00454" x="-0.00891" />
-							<point z="0.01" y="0.00454" x="-0.00891" />
-							<point z="0.01" y="0.00891" x="-0.00454" />
-							<point z="-0.01" y="0.00891" x="-0.00454" />
+							<vertex z="-0.01" y="0.00454" x="-0.00891" />
+							<vertex z="0.01" y="0.00454" x="-0.00891" />
+							<vertex z="0.01" y="0.00891" x="-0.00454" />
+							<vertex z="-0.01" y="0.00891" x="-0.00454" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.01" y="0.00891" x="-0.00454" />
-							<point z="0.01" y="0.00891" x="-0.00454" />
-							<point z="0.01" y="0.00988" x="0.00156" />
-							<point z="-0.01" y="0.00988" x="0.00156" />
+							<vertex z="-0.01" y="0.00891" x="-0.00454" />
+							<vertex z="0.01" y="0.00891" x="-0.00454" />
+							<vertex z="0.01" y="0.00988" x="0.00156" />
+							<vertex z="-0.01" y="0.00988" x="0.00156" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="0.01" y="0.00707" x="0.00707" />
-							<point z="-0.01" y="0.00707" x="0.00707" />
-							<point z="-0.01" y="0.00988" x="0.00156" />
-							<point z="0.01" y="0.00988" x="0.00156" />
+							<vertex z="0.01" y="0.00707" x="0.00707" />
+							<vertex z="-0.01" y="0.00707" x="0.00707" />
+							<vertex z="-0.01" y="0.00988" x="0.00156" />
+							<vertex z="0.01" y="0.00988" x="0.00156" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="0.00707" y="-0.0" x="0.00707" />
-							<point z="0.00707" y="0.296" x="0.00707" />
-							<point z="0.00988" y="0.296" x="0.00156" />
-							<point z="0.00988" y="-0.0" x="0.00156" />
+							<vertex z="0.00707" y="-0.0" x="0.00707" />
+							<vertex z="0.00707" y="0.296" x="0.00707" />
+							<vertex z="0.00988" y="0.296" x="0.00156" />
+							<vertex z="0.00988" y="-0.0" x="0.00156" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="0.00988" y="-0.0" x="0.00156" />
-							<point z="0.00988" y="0.296" x="0.00156" />
-							<point z="0.00891" y="0.296" x="-0.00454" />
-							<point z="0.00891" y="-0.0" x="-0.00454" />
+							<vertex z="0.00988" y="-0.0" x="0.00156" />
+							<vertex z="0.00988" y="0.296" x="0.00156" />
+							<vertex z="0.00891" y="0.296" x="-0.00454" />
+							<vertex z="0.00891" y="-0.0" x="-0.00454" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="0.00891" y="-0.0" x="-0.00454" />
-							<point z="0.00891" y="0.296" x="-0.00454" />
-							<point z="0.00454" y="0.296" x="-0.00891" />
-							<point z="0.00454" y="-0.0" x="-0.00891" />
+							<vertex z="0.00891" y="-0.0" x="-0.00454" />
+							<vertex z="0.00891" y="0.296" x="-0.00454" />
+							<vertex z="0.00454" y="0.296" x="-0.00891" />
+							<vertex z="0.00454" y="-0.0" x="-0.00891" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="0.00454" y="-0.0" x="-0.00891" />
-							<point z="0.00454" y="0.296" x="-0.00891" />
-							<point z="-0.00156" y="0.296" x="-0.00988" />
-							<point z="-0.00156" y="-0.0" x="-0.00988" />
+							<vertex z="0.00454" y="-0.0" x="-0.00891" />
+							<vertex z="0.00454" y="0.296" x="-0.00891" />
+							<vertex z="-0.00156" y="0.296" x="-0.00988" />
+							<vertex z="-0.00156" y="-0.0" x="-0.00988" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.00156" y="-0.0" x="-0.00988" />
-							<point z="-0.00156" y="0.296" x="-0.00988" />
-							<point z="-0.00707" y="0.296" x="-0.00707" />
-							<point z="-0.00707" y="-0.0" x="-0.00707" />
+							<vertex z="-0.00156" y="-0.0" x="-0.00988" />
+							<vertex z="-0.00156" y="0.296" x="-0.00988" />
+							<vertex z="-0.00707" y="0.296" x="-0.00707" />
+							<vertex z="-0.00707" y="-0.0" x="-0.00707" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.00707" y="-0.0" x="-0.00707" />
-							<point z="-0.00707" y="0.296" x="-0.00707" />
-							<point z="-0.00988" y="0.296" x="-0.00156" />
-							<point z="-0.00988" y="-0.0" x="-0.00156" />
+							<vertex z="-0.00707" y="-0.0" x="-0.00707" />
+							<vertex z="-0.00707" y="0.296" x="-0.00707" />
+							<vertex z="-0.00988" y="0.296" x="-0.00156" />
+							<vertex z="-0.00988" y="-0.0" x="-0.00156" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.00988" y="-0.0" x="-0.00156" />
-							<point z="-0.00988" y="0.296" x="-0.00156" />
-							<point z="-0.00891" y="0.296" x="0.00454" />
-							<point z="-0.00891" y="-0.0" x="0.00454" />
+							<vertex z="-0.00988" y="-0.0" x="-0.00156" />
+							<vertex z="-0.00988" y="0.296" x="-0.00156" />
+							<vertex z="-0.00891" y="0.296" x="0.00454" />
+							<vertex z="-0.00891" y="-0.0" x="0.00454" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.00891" y="-0.0" x="0.00454" />
-							<point z="-0.00891" y="0.296" x="0.00454" />
-							<point z="-0.00454" y="0.296" x="0.00891" />
-							<point z="-0.00454" y="-0.0" x="0.00891" />
+							<vertex z="-0.00891" y="-0.0" x="0.00454" />
+							<vertex z="-0.00891" y="0.296" x="0.00454" />
+							<vertex z="-0.00454" y="0.296" x="0.00891" />
+							<vertex z="-0.00454" y="-0.0" x="0.00891" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="-0.00454" y="-0.0" x="0.00891" />
-							<point z="-0.00454" y="0.296" x="0.00891" />
-							<point z="0.00156" y="0.296" x="0.00988" />
-							<point z="0.00156" y="-0.0" x="0.00988" />
+							<vertex z="-0.00454" y="-0.0" x="0.00891" />
+							<vertex z="-0.00454" y="0.296" x="0.00891" />
+							<vertex z="0.00156" y="0.296" x="0.00988" />
+							<vertex z="0.00156" y="-0.0" x="0.00988" />
 						</quadPolygon>
 						<quadPolygon color="orange">
-							<point z="0.00156" y="-0.0" x="0.00988" />
-							<point z="0.00156" y="0.296" x="0.00988" />
-							<point z="0.00707" y="0.296" x="0.00707" />
-							<point z="0.00707" y="-0.0" x="0.00707" />
+							<vertex z="0.00156" y="-0.0" x="0.00988" />
+							<vertex z="0.00156" y="0.296" x="0.00988" />
+							<vertex z="0.00707" y="0.296" x="0.00707" />
+							<vertex z="0.00707" y="-0.0" x="0.00707" />
 						</quadPolygon>
 					</group>
 					<group name="sinsi2">
@@ -536,324 +536,324 @@
 						<rotation x="0.0" z="0.0" y="1.57" />
 						<linkData number="4" target="rotationY" />
 						<trianglePolygon color="yellow">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="0.00707" x="0.00707" />
-							<point z="-0.01" y="0.00156" x="0.00988" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="0.00707" x="0.00707" />
+							<vertex z="-0.01" y="0.00156" x="0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="0.00156" x="0.00988" />
-							<point z="0.01" y="0.00707" x="0.00707" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="0.00156" x="0.00988" />
+							<vertex z="0.01" y="0.00707" x="0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="0.00156" x="0.00988" />
-							<point z="-0.01" y="-0.00454" x="0.00891" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="0.00156" x="0.00988" />
+							<vertex z="-0.01" y="-0.00454" x="0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="-0.00454" x="0.00891" />
-							<point z="0.01" y="0.00156" x="0.00988" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="-0.00454" x="0.00891" />
+							<vertex z="0.01" y="0.00156" x="0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="-0.00454" x="0.00891" />
-							<point z="-0.01" y="-0.00891" x="0.00454" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="-0.00454" x="0.00891" />
+							<vertex z="-0.01" y="-0.00891" x="0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="-0.00891" x="0.00454" />
-							<point z="0.01" y="-0.00454" x="0.00891" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="-0.00891" x="0.00454" />
+							<vertex z="0.01" y="-0.00454" x="0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="-0.00891" x="0.00454" />
-							<point z="-0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="-0.00891" x="0.00454" />
+							<vertex z="-0.01" y="-0.00988" x="-0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="-0.00988" x="-0.00156" />
-							<point z="0.01" y="-0.00891" x="0.00454" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="0.01" y="-0.00891" x="0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="-0.00988" x="-0.00156" />
-							<point z="-0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="-0.01" y="-0.00707" x="-0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="-0.00707" x="-0.00707" />
-							<point z="0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="0.01" y="-0.00988" x="-0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="-0.00707" x="-0.00707" />
-							<point z="-0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="-0.01" y="-0.00156" x="-0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="-0.00156" x="-0.00988" />
-							<point z="0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="0.01" y="-0.00707" x="-0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="-0.00156" x="-0.00988" />
-							<point z="-0.01" y="0.00454" x="-0.00891" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="-0.01" y="0.00454" x="-0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="0.00454" x="-0.00891" />
-							<point z="0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="0.00454" x="-0.00891" />
+							<vertex z="0.01" y="-0.00156" x="-0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="0.00454" x="-0.00891" />
-							<point z="-0.01" y="0.00891" x="-0.00454" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="0.00454" x="-0.00891" />
+							<vertex z="-0.01" y="0.00891" x="-0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="0.00891" x="-0.00454" />
-							<point z="0.01" y="0.00454" x="-0.00891" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="0.00891" x="-0.00454" />
+							<vertex z="0.01" y="0.00454" x="-0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.01" y="0.0" x="0.0" />
-							<point z="-0.01" y="0.00891" x="-0.00454" />
-							<point z="-0.01" y="0.00988" x="0.00156" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="0.00891" x="-0.00454" />
+							<vertex z="-0.01" y="0.00988" x="0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="0.00988" x="0.00156" />
-							<point z="0.01" y="0.00891" x="-0.00454" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="0.00988" x="0.00156" />
+							<vertex z="0.01" y="0.00891" x="-0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.01" y="0.00988" x="0.00156" />
-							<point z="-0.01" y="0.00707" x="0.00707" />
-							<point z="-0.01" y="0.0" x="0.0" />
+							<vertex z="-0.01" y="0.00988" x="0.00156" />
+							<vertex z="-0.01" y="0.00707" x="0.00707" />
+							<vertex z="-0.01" y="0.0" x="0.0" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="0.01" y="0.0" x="0.0" />
-							<point z="0.01" y="0.00707" x="0.00707" />
-							<point z="0.01" y="0.00988" x="0.00156" />
+							<vertex z="0.01" y="0.0" x="0.0" />
+							<vertex z="0.01" y="0.00707" x="0.00707" />
+							<vertex z="0.01" y="0.00988" x="0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="0.148" x="0.0" />
-							<point z="0.00707" y="0.148" x="-0.00707" />
-							<point z="0.00988" y="0.148" x="-0.00156" />
+							<vertex z="-0.0" y="0.148" x="0.0" />
+							<vertex z="0.00707" y="0.148" x="-0.00707" />
+							<vertex z="0.00988" y="0.148" x="-0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="-0.0" x="-0.0" />
-							<point z="0.00988" y="-0.0" x="-0.00156" />
-							<point z="0.00707" y="-0.0" x="-0.00707" />
+							<vertex z="-0.0" y="-0.0" x="-0.0" />
+							<vertex z="0.00988" y="-0.0" x="-0.00156" />
+							<vertex z="0.00707" y="-0.0" x="-0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="0.148" x="0.0" />
-							<point z="0.00988" y="0.148" x="-0.00156" />
-							<point z="0.00891" y="0.148" x="0.00454" />
+							<vertex z="-0.0" y="0.148" x="0.0" />
+							<vertex z="0.00988" y="0.148" x="-0.00156" />
+							<vertex z="0.00891" y="0.148" x="0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="-0.0" x="-0.0" />
-							<point z="0.00891" y="-0.0" x="0.00454" />
-							<point z="0.00988" y="-0.0" x="-0.00156" />
+							<vertex z="-0.0" y="-0.0" x="-0.0" />
+							<vertex z="0.00891" y="-0.0" x="0.00454" />
+							<vertex z="0.00988" y="-0.0" x="-0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="0.148" x="0.0" />
-							<point z="0.00891" y="0.148" x="0.00454" />
-							<point z="0.00454" y="0.148" x="0.00891" />
+							<vertex z="-0.0" y="0.148" x="0.0" />
+							<vertex z="0.00891" y="0.148" x="0.00454" />
+							<vertex z="0.00454" y="0.148" x="0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="-0.0" x="-0.0" />
-							<point z="0.00454" y="-0.0" x="0.00891" />
-							<point z="0.00891" y="-0.0" x="0.00454" />
+							<vertex z="-0.0" y="-0.0" x="-0.0" />
+							<vertex z="0.00454" y="-0.0" x="0.00891" />
+							<vertex z="0.00891" y="-0.0" x="0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="0.148" x="0.0" />
-							<point z="0.00454" y="0.148" x="0.00891" />
-							<point z="-0.00156" y="0.148" x="0.00988" />
+							<vertex z="-0.0" y="0.148" x="0.0" />
+							<vertex z="0.00454" y="0.148" x="0.00891" />
+							<vertex z="-0.00156" y="0.148" x="0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="-0.0" x="-0.0" />
-							<point z="-0.00156" y="-0.0" x="0.00988" />
-							<point z="0.00454" y="-0.0" x="0.00891" />
+							<vertex z="-0.0" y="-0.0" x="-0.0" />
+							<vertex z="-0.00156" y="-0.0" x="0.00988" />
+							<vertex z="0.00454" y="-0.0" x="0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="0.148" x="0.0" />
-							<point z="-0.00156" y="0.148" x="0.00988" />
-							<point z="-0.00707" y="0.148" x="0.00707" />
+							<vertex z="-0.0" y="0.148" x="0.0" />
+							<vertex z="-0.00156" y="0.148" x="0.00988" />
+							<vertex z="-0.00707" y="0.148" x="0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="-0.0" x="-0.0" />
-							<point z="-0.00707" y="-0.0" x="0.00707" />
-							<point z="-0.00156" y="-0.0" x="0.00988" />
+							<vertex z="-0.0" y="-0.0" x="-0.0" />
+							<vertex z="-0.00707" y="-0.0" x="0.00707" />
+							<vertex z="-0.00156" y="-0.0" x="0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="0.148" x="0.0" />
-							<point z="-0.00707" y="0.148" x="0.00707" />
-							<point z="-0.00988" y="0.148" x="0.00156" />
+							<vertex z="-0.0" y="0.148" x="0.0" />
+							<vertex z="-0.00707" y="0.148" x="0.00707" />
+							<vertex z="-0.00988" y="0.148" x="0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="-0.0" x="-0.0" />
-							<point z="-0.00988" y="-0.0" x="0.00156" />
-							<point z="-0.00707" y="-0.0" x="0.00707" />
+							<vertex z="-0.0" y="-0.0" x="-0.0" />
+							<vertex z="-0.00988" y="-0.0" x="0.00156" />
+							<vertex z="-0.00707" y="-0.0" x="0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="0.148" x="0.0" />
-							<point z="-0.00988" y="0.148" x="0.00156" />
-							<point z="-0.00891" y="0.148" x="-0.00454" />
+							<vertex z="-0.0" y="0.148" x="0.0" />
+							<vertex z="-0.00988" y="0.148" x="0.00156" />
+							<vertex z="-0.00891" y="0.148" x="-0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="-0.0" x="-0.0" />
-							<point z="-0.00891" y="-0.0" x="-0.00454" />
-							<point z="-0.00988" y="-0.0" x="0.00156" />
+							<vertex z="-0.0" y="-0.0" x="-0.0" />
+							<vertex z="-0.00891" y="-0.0" x="-0.00454" />
+							<vertex z="-0.00988" y="-0.0" x="0.00156" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="0.148" x="0.0" />
-							<point z="-0.00891" y="0.148" x="-0.00454" />
-							<point z="-0.00454" y="0.148" x="-0.00891" />
+							<vertex z="-0.0" y="0.148" x="0.0" />
+							<vertex z="-0.00891" y="0.148" x="-0.00454" />
+							<vertex z="-0.00454" y="0.148" x="-0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="-0.0" x="-0.0" />
-							<point z="-0.00454" y="-0.0" x="-0.00891" />
-							<point z="-0.00891" y="-0.0" x="-0.00454" />
+							<vertex z="-0.0" y="-0.0" x="-0.0" />
+							<vertex z="-0.00454" y="-0.0" x="-0.00891" />
+							<vertex z="-0.00891" y="-0.0" x="-0.00454" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="0.148" x="0.0" />
-							<point z="-0.00454" y="0.148" x="-0.00891" />
-							<point z="0.00156" y="0.148" x="-0.00988" />
+							<vertex z="-0.0" y="0.148" x="0.0" />
+							<vertex z="-0.00454" y="0.148" x="-0.00891" />
+							<vertex z="0.00156" y="0.148" x="-0.00988" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="-0.0" x="-0.0" />
-							<point z="0.00156" y="-0.0" x="-0.00988" />
-							<point z="-0.00454" y="-0.0" x="-0.00891" />
+							<vertex z="-0.0" y="-0.0" x="-0.0" />
+							<vertex z="0.00156" y="-0.0" x="-0.00988" />
+							<vertex z="-0.00454" y="-0.0" x="-0.00891" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="0.148" x="0.0" />
-							<point z="0.00156" y="0.148" x="-0.00988" />
-							<point z="0.00707" y="0.148" x="-0.00707" />
+							<vertex z="-0.0" y="0.148" x="0.0" />
+							<vertex z="0.00156" y="0.148" x="-0.00988" />
+							<vertex z="0.00707" y="0.148" x="-0.00707" />
 						</trianglePolygon>
 						<trianglePolygon color="yellow">
-							<point z="-0.0" y="-0.0" x="-0.0" />
-							<point z="0.00707" y="-0.0" x="-0.00707" />
-							<point z="0.00156" y="-0.0" x="-0.00988" />
+							<vertex z="-0.0" y="-0.0" x="-0.0" />
+							<vertex z="0.00707" y="-0.0" x="-0.00707" />
+							<vertex z="0.00156" y="-0.0" x="-0.00988" />
 						</trianglePolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.01" y="0.00707" x="0.00707" />
-							<point z="0.01" y="0.00707" x="0.00707" />
-							<point z="0.01" y="0.00156" x="0.00988" />
-							<point z="-0.01" y="0.00156" x="0.00988" />
+							<vertex z="-0.01" y="0.00707" x="0.00707" />
+							<vertex z="0.01" y="0.00707" x="0.00707" />
+							<vertex z="0.01" y="0.00156" x="0.00988" />
+							<vertex z="-0.01" y="0.00156" x="0.00988" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.01" y="0.00156" x="0.00988" />
-							<point z="0.01" y="0.00156" x="0.00988" />
-							<point z="0.01" y="-0.00454" x="0.00891" />
-							<point z="-0.01" y="-0.00454" x="0.00891" />
+							<vertex z="-0.01" y="0.00156" x="0.00988" />
+							<vertex z="0.01" y="0.00156" x="0.00988" />
+							<vertex z="0.01" y="-0.00454" x="0.00891" />
+							<vertex z="-0.01" y="-0.00454" x="0.00891" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.01" y="-0.00454" x="0.00891" />
-							<point z="0.01" y="-0.00454" x="0.00891" />
-							<point z="0.01" y="-0.00891" x="0.00454" />
-							<point z="-0.01" y="-0.00891" x="0.00454" />
+							<vertex z="-0.01" y="-0.00454" x="0.00891" />
+							<vertex z="0.01" y="-0.00454" x="0.00891" />
+							<vertex z="0.01" y="-0.00891" x="0.00454" />
+							<vertex z="-0.01" y="-0.00891" x="0.00454" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.01" y="-0.00891" x="0.00454" />
-							<point z="0.01" y="-0.00891" x="0.00454" />
-							<point z="0.01" y="-0.00988" x="-0.00156" />
-							<point z="-0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="-0.01" y="-0.00891" x="0.00454" />
+							<vertex z="0.01" y="-0.00891" x="0.00454" />
+							<vertex z="0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="-0.01" y="-0.00988" x="-0.00156" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.01" y="-0.00988" x="-0.00156" />
-							<point z="0.01" y="-0.00988" x="-0.00156" />
-							<point z="0.01" y="-0.00707" x="-0.00707" />
-							<point z="-0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="-0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="0.01" y="-0.00988" x="-0.00156" />
+							<vertex z="0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="-0.01" y="-0.00707" x="-0.00707" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.01" y="-0.00707" x="-0.00707" />
-							<point z="0.01" y="-0.00707" x="-0.00707" />
-							<point z="0.01" y="-0.00156" x="-0.00988" />
-							<point z="-0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="-0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="0.01" y="-0.00707" x="-0.00707" />
+							<vertex z="0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="-0.01" y="-0.00156" x="-0.00988" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.01" y="-0.00156" x="-0.00988" />
-							<point z="0.01" y="-0.00156" x="-0.00988" />
-							<point z="0.01" y="0.00454" x="-0.00891" />
-							<point z="-0.01" y="0.00454" x="-0.00891" />
+							<vertex z="-0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="0.01" y="-0.00156" x="-0.00988" />
+							<vertex z="0.01" y="0.00454" x="-0.00891" />
+							<vertex z="-0.01" y="0.00454" x="-0.00891" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.01" y="0.00454" x="-0.00891" />
-							<point z="0.01" y="0.00454" x="-0.00891" />
-							<point z="0.01" y="0.00891" x="-0.00454" />
-							<point z="-0.01" y="0.00891" x="-0.00454" />
+							<vertex z="-0.01" y="0.00454" x="-0.00891" />
+							<vertex z="0.01" y="0.00454" x="-0.00891" />
+							<vertex z="0.01" y="0.00891" x="-0.00454" />
+							<vertex z="-0.01" y="0.00891" x="-0.00454" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.01" y="0.00891" x="-0.00454" />
-							<point z="0.01" y="0.00891" x="-0.00454" />
-							<point z="0.01" y="0.00988" x="0.00156" />
-							<point z="-0.01" y="0.00988" x="0.00156" />
+							<vertex z="-0.01" y="0.00891" x="-0.00454" />
+							<vertex z="0.01" y="0.00891" x="-0.00454" />
+							<vertex z="0.01" y="0.00988" x="0.00156" />
+							<vertex z="-0.01" y="0.00988" x="0.00156" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="0.01" y="0.00707" x="0.00707" />
-							<point z="-0.01" y="0.00707" x="0.00707" />
-							<point z="-0.01" y="0.00988" x="0.00156" />
-							<point z="0.01" y="0.00988" x="0.00156" />
+							<vertex z="0.01" y="0.00707" x="0.00707" />
+							<vertex z="-0.01" y="0.00707" x="0.00707" />
+							<vertex z="-0.01" y="0.00988" x="0.00156" />
+							<vertex z="0.01" y="0.00988" x="0.00156" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="0.00707" y="0.148" x="-0.00707" />
-							<point z="0.00707" y="-0.0" x="-0.00707" />
-							<point z="0.00988" y="-0.0" x="-0.00156" />
-							<point z="0.00988" y="0.148" x="-0.00156" />
+							<vertex z="0.00707" y="0.148" x="-0.00707" />
+							<vertex z="0.00707" y="-0.0" x="-0.00707" />
+							<vertex z="0.00988" y="-0.0" x="-0.00156" />
+							<vertex z="0.00988" y="0.148" x="-0.00156" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="0.00988" y="0.148" x="-0.00156" />
-							<point z="0.00988" y="-0.0" x="-0.00156" />
-							<point z="0.00891" y="-0.0" x="0.00454" />
-							<point z="0.00891" y="0.148" x="0.00454" />
+							<vertex z="0.00988" y="0.148" x="-0.00156" />
+							<vertex z="0.00988" y="-0.0" x="-0.00156" />
+							<vertex z="0.00891" y="-0.0" x="0.00454" />
+							<vertex z="0.00891" y="0.148" x="0.00454" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="0.00891" y="0.148" x="0.00454" />
-							<point z="0.00891" y="-0.0" x="0.00454" />
-							<point z="0.00454" y="-0.0" x="0.00891" />
-							<point z="0.00454" y="0.148" x="0.00891" />
+							<vertex z="0.00891" y="0.148" x="0.00454" />
+							<vertex z="0.00891" y="-0.0" x="0.00454" />
+							<vertex z="0.00454" y="-0.0" x="0.00891" />
+							<vertex z="0.00454" y="0.148" x="0.00891" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="0.00454" y="0.148" x="0.00891" />
-							<point z="0.00454" y="-0.0" x="0.00891" />
-							<point z="-0.00156" y="-0.0" x="0.00988" />
-							<point z="-0.00156" y="0.148" x="0.00988" />
+							<vertex z="0.00454" y="0.148" x="0.00891" />
+							<vertex z="0.00454" y="-0.0" x="0.00891" />
+							<vertex z="-0.00156" y="-0.0" x="0.00988" />
+							<vertex z="-0.00156" y="0.148" x="0.00988" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.00156" y="0.148" x="0.00988" />
-							<point z="-0.00156" y="-0.0" x="0.00988" />
-							<point z="-0.00707" y="-0.0" x="0.00707" />
-							<point z="-0.00707" y="0.148" x="0.00707" />
+							<vertex z="-0.00156" y="0.148" x="0.00988" />
+							<vertex z="-0.00156" y="-0.0" x="0.00988" />
+							<vertex z="-0.00707" y="-0.0" x="0.00707" />
+							<vertex z="-0.00707" y="0.148" x="0.00707" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.00707" y="0.148" x="0.00707" />
-							<point z="-0.00707" y="-0.0" x="0.00707" />
-							<point z="-0.00988" y="-0.0" x="0.00156" />
-							<point z="-0.00988" y="0.148" x="0.00156" />
+							<vertex z="-0.00707" y="0.148" x="0.00707" />
+							<vertex z="-0.00707" y="-0.0" x="0.00707" />
+							<vertex z="-0.00988" y="-0.0" x="0.00156" />
+							<vertex z="-0.00988" y="0.148" x="0.00156" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.00988" y="0.148" x="0.00156" />
-							<point z="-0.00988" y="-0.0" x="0.00156" />
-							<point z="-0.00891" y="-0.0" x="-0.00454" />
-							<point z="-0.00891" y="0.148" x="-0.00454" />
+							<vertex z="-0.00988" y="0.148" x="0.00156" />
+							<vertex z="-0.00988" y="-0.0" x="0.00156" />
+							<vertex z="-0.00891" y="-0.0" x="-0.00454" />
+							<vertex z="-0.00891" y="0.148" x="-0.00454" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.00891" y="0.148" x="-0.00454" />
-							<point z="-0.00891" y="-0.0" x="-0.00454" />
-							<point z="-0.00454" y="-0.0" x="-0.00891" />
-							<point z="-0.00454" y="0.148" x="-0.00891" />
+							<vertex z="-0.00891" y="0.148" x="-0.00454" />
+							<vertex z="-0.00891" y="-0.0" x="-0.00454" />
+							<vertex z="-0.00454" y="-0.0" x="-0.00891" />
+							<vertex z="-0.00454" y="0.148" x="-0.00891" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="-0.00454" y="0.148" x="-0.00891" />
-							<point z="-0.00454" y="-0.0" x="-0.00891" />
-							<point z="0.00156" y="-0.0" x="-0.00988" />
-							<point z="0.00156" y="0.148" x="-0.00988" />
+							<vertex z="-0.00454" y="0.148" x="-0.00891" />
+							<vertex z="-0.00454" y="-0.0" x="-0.00891" />
+							<vertex z="0.00156" y="-0.0" x="-0.00988" />
+							<vertex z="0.00156" y="0.148" x="-0.00988" />
 						</quadPolygon>
 						<quadPolygon color="yellow">
-							<point z="0.00156" y="0.148" x="-0.00988" />
-							<point z="0.00156" y="-0.0" x="-0.00988" />
-							<point z="0.00707" y="-0.0" x="-0.00707" />
-							<point z="0.00707" y="0.148" x="-0.00707" />
+							<vertex z="0.00156" y="0.148" x="-0.00988" />
+							<vertex z="0.00156" y="-0.0" x="-0.00988" />
+							<vertex z="0.00707" y="-0.0" x="-0.00707" />
+							<vertex z="0.00707" y="0.148" x="-0.00707" />
 						</quadPolygon>
 					</group>
 				</group>
@@ -862,7 +862,7 @@
 	</model>
 	<config>
 		<background color="white" />
-		<light z="-0.8" y="-0.8" x="0.2"/>
+		<light z="20.0" y="10.0" x="10.0"/>
 		<eye z="0.0" y="0.0" x="5.0"/>
 		<lookAtPoint x="0.0" y="0.0" z="0.0"/>
 		<modelUnit length="m" angle="radian"/>

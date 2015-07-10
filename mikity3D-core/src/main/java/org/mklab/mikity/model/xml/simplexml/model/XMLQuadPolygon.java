@@ -45,7 +45,7 @@ public class XMLQuadPolygon {
   protected boolean transparent = false;
 
   /** 法線ベクトル。 */
-  private Vector3 normalVector = new Vector3(0,0,1);
+  private Vector3 normalVector;
 
   private Matrix4 matrix;
 
@@ -183,7 +183,9 @@ public class XMLQuadPolygon {
    * @return normal vector
    */
   public Vector3 getNormalVector() {
-    updateNormalVector();
+    if (this.normalVector == null) {
+      updateNormalVector();
+    }
     return this.normalVector;
   }
 
