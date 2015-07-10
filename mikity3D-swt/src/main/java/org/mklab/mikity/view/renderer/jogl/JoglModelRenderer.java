@@ -51,10 +51,6 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /** 拡大縮小率 */
   private float scale = 1.0f;
 
-  /** 平行光源1。 */
-  private float[] lightLocation0 = {10.0f, 10.0f, 20.0f, 1.0f};
-  /** 平行光源2。 */
-  //private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f};
   /** 反射光の強さ 。 */
   private float[] lightSpecular = {0.9f, 0.9f, 0.9f, 1.0f};
   /** 拡散光の強さ。 */
