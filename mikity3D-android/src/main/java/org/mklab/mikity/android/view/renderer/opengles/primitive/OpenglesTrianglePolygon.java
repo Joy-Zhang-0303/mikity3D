@@ -25,7 +25,6 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
   /** 法線ベクトル */
   private float[] normalVector = new float[3];
 
-
   /**
    * {@inheritDoc}
    */
@@ -68,8 +67,6 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
     gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
     
     gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 3);
-    
-    gl.glFlush();
   }
 
   /**

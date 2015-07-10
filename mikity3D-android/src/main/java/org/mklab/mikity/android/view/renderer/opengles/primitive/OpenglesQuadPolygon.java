@@ -73,8 +73,6 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
 
     //プリミティブの描画
     gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 6);
-    
-    gl.glFlush();
   } 
 
   /**
