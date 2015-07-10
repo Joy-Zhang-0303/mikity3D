@@ -17,6 +17,12 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
   
   /** 法線ベクトル */
   private float[] normalVector = new float[3];
+  
+  /** 頂点配列。 */
+  private float vertexArray[];
+  
+  /** 法線ベクトル配列。 */
+  private float normalVectorArray[];
 
   /**
    * {@inheritDoc}
@@ -25,7 +31,17 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
     applyColor(gl);
     applyTransparency(gl);
 
-    // 頂点バッファの生成
+    drawTrianglePolygons(gl, this.vertexArray, this.normalVectorArray);
+  }
+
+  /**
+   * ポリゴンを更新します。
+   */
+  private void updatePolygons() {
+    if (this.vertices == null || this.normalVector == null) {
+      return;
+    }
+    
     float x0 = this.vertices[0][0];
     float y0 = this.vertices[0][1];
     float z0 = this.vertices[0][2];
@@ -38,15 +54,13 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
     float y2 = this.vertices[2][1];
     float z2 = this.vertices[2][2];
     
-    final float[] vertexArray = {x0, y0, z0, x1, y1, z1, x2, y2, z2};
+    this.vertexArray = new float[]{x0, y0, z0, x1, y1, z1, x2, y2, z2};
     
     final float nx = this.normalVector[0];
     final float ny = this.normalVector[1];
     final float nz = this.normalVector[2];
     
-    final float[] normalVectorArray = {nx,ny,nz,nx,ny,nz,nx,ny,nz};
-
-    drawTrianglePolygons(gl, vertexArray, normalVectorArray);
+    this.normalVectorArray = new float[]{nx,ny,nz,nx,ny,nz,nx,ny,nz};
   }
 
   /**
@@ -55,6 +69,7 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
    */
   public void setVertices(float[][] vertices) {
     this.vertices = vertices;
+    updatePolygons();
   }
   
   /**
@@ -63,6 +78,7 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
    */
   public void setNormalVector(float[] normalVector) {
     this.normalVector = normalVector;
+    updatePolygons();
   }
 
 }

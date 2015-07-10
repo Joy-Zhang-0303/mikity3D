@@ -1,10 +1,6 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
-import java.nio.FloatBuffer;
-
-import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
-import javax.media.opengl.fixedfunc.GLPointerFunc;
 
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
@@ -73,7 +69,7 @@ public class JoglBox extends AbstractJoglObject {
     float y7 = this.width / 2;
     float z7 = -this.height / 2;
 
-    final float[] vertices = {
+    final float[] vertexArray = {
         x0, y0, z0, x4, y4, z4, x1, y1, z1,
         x1, y1, z1, x4, y4, z4, x5, y5, z5, 
         x1, y1, z1, x5, y5, z5, x2, y2, z2,
@@ -87,7 +83,7 @@ public class JoglBox extends AbstractJoglObject {
         x0, y0, z0, x1, y1, z1, x3, y3, z3,
         x1, y1, z1, x2, y2, z2, x3, y3, z3};
 
-    final float[] normals = 
+    final float[] normalVectorArray = 
       {0, 0, 1,
         0, 0, 1,
         0, 0, 1,
@@ -124,21 +120,8 @@ public class JoglBox extends AbstractJoglObject {
         1, 0, 0,
         1, 0, 0,
         1, 0, 0};
-
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
-    final FloatBuffer normalBuffer = makeFloatBuffer(normals);
     
-    // 法線配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
-    // 法線バッファの指定
-    gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
-
-    //頂点配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
-    // 頂点バッファの指定
-    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
-
-    gl.glDrawArrays(GL.GL_TRIANGLES, 0, 36);
+    drawTrianglePolygons(gl, vertexArray, normalVectorArray);
   }
 
   /**

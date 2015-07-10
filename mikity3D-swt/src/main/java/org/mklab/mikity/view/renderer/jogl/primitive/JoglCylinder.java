@@ -22,18 +22,6 @@ public class JoglCylinder extends AbstractJoglObject {
   /** 分割数 */
   private int division = 0;
 
-//  /** 上面ポリゴン。 */
-//  private JoglTrianglePolygon[] upperPolygons;
-//
-//  /** 下面ポリゴン。 */
-//  private JoglTrianglePolygon[] lowerPolygons;
-//
-//  /** 側面ポリゴン1。 */
-//  private JoglTrianglePolygon[] sidePolygons1;
-//
-//  /** 側面ポリゴン2。 */
-//  private JoglTrianglePolygon[] sidePolygons2;
-
   /** 頂点配列の参照位置。 */
   private int vertexPosition = 0;
   
@@ -54,13 +42,6 @@ public class JoglCylinder extends AbstractJoglObject {
     applyTransparency(gl);
     
     drawTrianglePolygons(gl, this.vertexArray, this.normalVectorArray);
-    
-//    for (int i = 0; i < this.division; i++) {
-//      this.upperPolygons[i].display(gl);
-//      this.lowerPolygons[i].display(gl);
-//      this.sidePolygons1[i].display(gl);
-//      this.sidePolygons2[i].display(gl);
-//    }
   }
 
   /**
@@ -103,6 +84,17 @@ public class JoglCylinder extends AbstractJoglObject {
     lowerPoints[this.division][1] = (float)(this.radius * Math.sin(0));
     lowerPoints[this.division][2] = -this.height / 2.0f;
 
+    prepareArrays();
+    
+    updateUpperPolygons(upperCenterPoint, upperPoints);
+    updateLowerPolygons(lowerCenterPoint, lowerPoints);
+    updateSidePolygons(upperPoints, lowerPoints);
+  }
+
+  /**
+   * 頂点配列と法線ベクトル配列を準備します。 
+   */
+  private void prepareArrays() {
     final int upperPolygonNumber = this.division;
     final int lowerPolygonNumber = this.division;
     final int sidePolygonNumber = this.division*2;
@@ -112,10 +104,6 @@ public class JoglCylinder extends AbstractJoglObject {
     this.normalVectorPosition = 0;
     this.vertexArray = new float[polygonNumber*3*3];
     this.normalVectorArray = new float[polygonNumber*3*3];
-    
-    updateUpperPolygons(upperCenterPoint, upperPoints);
-    updateLowerPolygons(lowerCenterPoint, lowerPoints);
-    updateSidePolygons(upperPoints, lowerPoints);
   }
   
   /**
@@ -131,17 +119,16 @@ public class JoglCylinder extends AbstractJoglObject {
   }
 
   /**
-   * 法線ベクトルを法線ベクトル配列に3個追加します。
+   * 三角形ポリゴンの法線ベクトルを法線ベクトル配列に3個追加します。
    * @param normalVector 法線ベクトル
    */
-  private void appendNormalVectors(float[] normalVector) {
+  private void appendNormalVectorsOfTriangle(float[] normalVector) {
     for (int i = 0; i < 3; i++) {
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[0];
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[1];
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[2];
     }
   }
-
   
   /**
    * 側面のポリゴンを生成します。
@@ -150,9 +137,7 @@ public class JoglCylinder extends AbstractJoglObject {
    * @param lowerPoints 下面の周囲の頂点
    */
   private void updateSidePolygons(final float[][] upperPoints, final float[][] lowerPoints) {
-//    this.sidePolygons1 = new JoglTrianglePolygon[this.division];
     for (int i = 0; i < this.division; i++) {
-//      this.sidePolygons1[i] = new JoglTrianglePolygon();
       final float[][] vertices = new float[3][3];
       vertices[0][0] = upperPoints[i][0];
       vertices[0][1] = upperPoints[i][1];
@@ -171,15 +156,10 @@ public class JoglCylinder extends AbstractJoglObject {
       final float[] normalVector = v0.cross(v1).array();
 
       appendVertices(vertices);
-      appendNormalVectors(normalVector);
-      
-//      this.sidePolygons1[i].setVertices(vertices);
-//      this.sidePolygons1[i].setNormalVector(normalVector);
+      appendNormalVectorsOfTriangle(normalVector);
     }
     
-    //this.sidePolygons2 = new JoglTrianglePolygon[this.division];
     for (int i = 0; i < this.division; i++) {
-      //this.sidePolygons2[i] = new JoglTrianglePolygon();
       final float[][] vertices = new float[3][3];
 
       vertices[0][0] = upperPoints[i][0];
@@ -199,10 +179,7 @@ public class JoglCylinder extends AbstractJoglObject {
       final float[] normalVector = v0.cross(v1).array();
 
       appendVertices(vertices);
-      appendNormalVectors(normalVector);
-      
-//      this.sidePolygons2[i].setVertices(vertices);
-//      this.sidePolygons2[i].setNormalVector(normalVector);
+      appendNormalVectorsOfTriangle(normalVector);
     }
   }
 
@@ -213,9 +190,7 @@ public class JoglCylinder extends AbstractJoglObject {
    * @param lowerPoints 下面の周囲の頂点
    */
   private void updateLowerPolygons(final float[] lowerCenterPoint, final float[][] lowerPoints) {
-//    this.lowerPolygons = new JoglTrianglePolygon[this.division];
     for (int i = 0; i < this.division; i++) {
-//      this.lowerPolygons[i] = new JoglTrianglePolygon();
       final float[][] vertices = new float[3][3];
       vertices[0][0] = lowerCenterPoint[0];
       vertices[0][1] = lowerCenterPoint[1];
@@ -234,10 +209,7 @@ public class JoglCylinder extends AbstractJoglObject {
       final float[] normalVector = v0.cross(v1).array();
 
       appendVertices(vertices);
-      appendNormalVectors(normalVector);
-      
-//      this.lowerPolygons[i].setVertices(vertices);
-//      this.lowerPolygons[i].setNormalVector(normalVector);
+      appendNormalVectorsOfTriangle(normalVector);
     }
   }
 
@@ -248,9 +220,7 @@ public class JoglCylinder extends AbstractJoglObject {
    * @param upperPoints 上面の周囲の頂点
    */
   private void updateUpperPolygons(final float[] upperCenterPoint, final float[][] upperPoints) {
-//    this.upperPolygons = new JoglTrianglePolygon[this.division];
     for (int i = 0; i < this.division; i++) {
-//      this.upperPolygons[i] = new JoglTrianglePolygon();
       final float[][] vertices = new float[3][3];
       vertices[0][0] = upperCenterPoint[0];
       vertices[0][1] = upperCenterPoint[1];
@@ -269,10 +239,7 @@ public class JoglCylinder extends AbstractJoglObject {
       final float[] normalVector = v0.cross(v1).array();
 
       appendVertices(vertices);
-      appendNormalVectors(normalVector);
-      
-//      this.upperPolygons[i].setVertices(vertices);
-//      this.upperPolygons[i].setNormalVector(normalVector);
+      appendNormalVectorsOfTriangle(normalVector);
     }
   }
 

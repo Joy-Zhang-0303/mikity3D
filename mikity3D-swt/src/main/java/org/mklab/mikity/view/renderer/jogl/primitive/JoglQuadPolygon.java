@@ -1,10 +1,6 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
-import java.nio.FloatBuffer;
-
-import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
-import javax.media.opengl.fixedfunc.GLPointerFunc;
 
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
@@ -22,6 +18,12 @@ public class JoglQuadPolygon extends AbstractJoglObject {
   
   /** 法線ベクトル */
   private float[] normalVector = new float[3];
+  
+  /** 頂点配列。 */
+  private float vertexArray[];
+  
+  /** 法線ベクトル配列。 */
+  private float normalVectorArray[];
 
   /**
    * {@inheritDoc}
@@ -29,8 +31,18 @@ public class JoglQuadPolygon extends AbstractJoglObject {
   public void display(GL2 gl) {
     applyColor(gl);
     applyTransparency(gl);
+    
+    drawTrianglePolygons(gl, this.vertexArray, this.normalVectorArray);
+  }
 
-    //頂点バッファの生成
+  /**
+   * ポリゴンを更新します。
+   */
+  private void updatePolygons() {
+    if (this.vertices == null || this.normalVector == null) {
+      return;
+    }
+    
     float x0 = this.vertices[0][0];
     float y0 = this.vertices[0][1];
     float z0 = this.vertices[0][2];
@@ -47,7 +59,7 @@ public class JoglQuadPolygon extends AbstractJoglObject {
     float y3 = this.vertices[3][1];
     float z3 = this.vertices[3][2];
     
-    final float[] vertexArray = {
+    this.vertexArray = new float[]{
         x0, y0, z0, x1, y1, z1, x2, y2, z2,
         x0, y0, z0, x2, y2, z2, x3, y3, z3};
     
@@ -55,23 +67,7 @@ public class JoglQuadPolygon extends AbstractJoglObject {
     final float ny = this.normalVector[1];
     final float nz = this.normalVector[2];
     
-    final float[] normalVectorArray = {nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz};
-    
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
-    final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
-
-    // 法線配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
-    // 法線バッファの指定
-    gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
-    
-    //　頂点配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
-    //　頂点バッファの指定
-    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
-
-    //プリミティブの描画
-    gl.glDrawArrays(GL.GL_TRIANGLES, 0, 6);
+    this.normalVectorArray = new float[]{nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz};
   }
 
   /**
@@ -81,6 +77,7 @@ public class JoglQuadPolygon extends AbstractJoglObject {
    */
   public void setVertices(float[][] vertices) {
     this.vertices = vertices;
+    updatePolygons();
   }
   
   /**
@@ -89,5 +86,6 @@ public class JoglQuadPolygon extends AbstractJoglObject {
    */
   public void setNormalVector(float[] normalVector) {
     this.normalVector = normalVector;
+    updatePolygons();
   }
 }
