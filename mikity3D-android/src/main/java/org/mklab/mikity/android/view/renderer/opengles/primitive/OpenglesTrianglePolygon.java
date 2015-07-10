@@ -31,6 +31,7 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
    */
   public void display(GL10 gl) {
     applyColor(gl);
+    applyTransparency(gl);
 
     // 頂点バッファの生成
     float x0 = this.points[0][2];

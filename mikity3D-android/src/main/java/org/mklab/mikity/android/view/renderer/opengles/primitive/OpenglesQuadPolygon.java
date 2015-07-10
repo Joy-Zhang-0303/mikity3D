@@ -29,6 +29,7 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
    */
   public void display(GL10 gl) {
     applyColor(gl);
+    applyTransparency(gl);
 
     // 頂点バッファの生成
     float x0 = this.vertices[0][2];

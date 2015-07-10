@@ -32,6 +32,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
    */
   public void display(GL10 gl) {
     applyColor(gl);
+    applyTransparency(gl);
     
     // 頂点配列の有効化
     gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
