@@ -121,6 +121,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
 
   /**
    * 色を設定します。
+   * 
    * @param color 色
    */
   public void setColor(String color) {
@@ -142,7 +143,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param array 変換元
    * @return 変換結果
    */
-  protected FloatBuffer makeFloatBuffer(float[] array) {
+  private FloatBuffer makeFloatBuffer(float[] array) {
     final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     buffer.put(array).position(0);
     return buffer;
@@ -154,7 +155,8 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param array 変換元
    * @return 変換結果
    */
-  protected ByteBuffer makeByteBuffer(byte[] array) {
+  @SuppressWarnings("unused")
+  private ByteBuffer makeByteBuffer(byte[] array) {
     final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     buffer.put(array).position(0);
     return buffer;

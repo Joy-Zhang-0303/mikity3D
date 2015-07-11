@@ -146,7 +146,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * @param array 変換元
    * @return 変換結果
    */
-  protected static FloatBuffer makeFloatBuffer(float[] array) {
+  private FloatBuffer makeFloatBuffer(float[] array) {
     final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     buffer.put(array).position(0);
     return buffer;
@@ -158,7 +158,8 @@ public abstract class AbstractJoglObject implements JoglObject {
    * @param array 変換元
    * @return 変換結果
    */
-  protected static ByteBuffer makeByteBuffer(byte[] array) {
+  @SuppressWarnings("unused")
+  private ByteBuffer makeByteBuffer(byte[] array) {
     final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     buffer.put(array).position(0);
     return buffer;
@@ -169,7 +170,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * 
    * @param vertices 頂点
    */
-  public void appendVertices(float[][] vertices) {
+  protected void appendVertices(float[][] vertices) {
     for (int i = 0; i < vertices.length; i++) {
       for (int j = 0; j < 3; j++) {
         this.vertexArray[this.vertexPosition++] = vertices[i][j];
@@ -182,7 +183,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * 
    * @param normalVector 法線ベクトル
    */
-  public void appendNormalVectorsOfTriangle(float[] normalVector) {
+  protected void appendNormalVectorsOfTriangle(float[] normalVector) {
     for (int i = 0; i < 3; i++) {
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[0];
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[1];
@@ -195,7 +196,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * 
    * @param normalVector 法線ベクトル
    */
-  public void appendNormalVector(float[][] normalVector) {
+  protected void appendNormalVector(float[][] normalVector) {
     for (int i = 0; i < normalVector.length; i++) {
       for (int j = 0; j < 3; j++) {
         this.normalVectorArray[this.normalVectorPosition++] = normalVector[i][j];
