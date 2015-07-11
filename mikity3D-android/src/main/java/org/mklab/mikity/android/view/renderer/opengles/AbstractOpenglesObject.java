@@ -63,39 +63,39 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
   /**
    * 色を適用します。
    * 
-   * @param gl10 GL　
+   * @param gl GL　
    */
-  public void applyColor(GL10 gl10) {
+  public void applyColor(GL10 gl) {
     if (this.color == null) {
       return;
     }
     
     if (this.color.equals("white")) { //$NON-NLS-1$
-      gl10.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+      gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
     } else if (this.color.equals("lightGray")) { //$NON-NLS-1$
-      gl10.glColor4f(0.75f, 0.75f, 0.75f, 1.0f);
+      gl.glColor4f(0.75f, 0.75f, 0.75f, 1.0f);
     } else if (this.color.equals("gray")) { //$NON-NLS-1$
-      gl10.glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
+      gl.glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
     } else if (this.color.equals("darkGray")) { //$NON-NLS-1$
-      gl10.glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
+      gl.glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
     } else if (this.color.equals("black")) { //$NON-NLS-1$
-      gl10.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
+      gl.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
     } else if (this.color.equals("red")) { //$NON-NLS-1$
-      gl10.glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
+      gl.glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
     } else if (this.color.equals("pink")) { //$NON-NLS-1$
-      gl10.glColor4f(1.0f, 0.69f, 0.69f, 0.5f);
+      gl.glColor4f(1.0f, 0.69f, 0.69f, 0.5f);
     } else if (this.color.equals("orange")) { //$NON-NLS-1$
-      gl10.glColor4f(1.0f, 0.78f, 0.0f, 1.0f);
+      gl.glColor4f(1.0f, 0.78f, 0.0f, 1.0f);
     } else if (this.color.equals("yellow")) { //$NON-NLS-1$
-      gl10.glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
+      gl.glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
     } else if (this.color.equals("green")) { //$NON-NLS-1$
-      gl10.glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
+      gl.glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
     } else if (this.color.equals("magenta")) { //$NON-NLS-1$
-      gl10.glColor4f(1.0f, 0.0f, 1.0f, 1.0f);
+      gl.glColor4f(1.0f, 0.0f, 1.0f, 1.0f);
     } else if (this.color.equals("cyan")) { //$NON-NLS-1$
-      gl10.glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
+      gl.glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
     } else if (this.color.equals("blue")) { //$NON-NLS-1$
-      gl10.glColor4f(0.0f, 0.0f, 1.0f, 0.0f);
+      gl.glColor4f(0.0f, 0.0f, 1.0f, 0.0f);
     }
   }
   
