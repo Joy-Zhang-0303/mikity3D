@@ -29,6 +29,10 @@ public class JoglBox extends AbstractJoglObject {
     applyColor(gl);
     applyTransparency(gl);
     
+    drawTrianglePolygons(gl, this.vertexArray, this.normalVectorArray);
+  }
+
+  private void preparePolygons() {
     //   v5 -- v4
     //  /      /
     // v1 -- v0
@@ -69,7 +73,7 @@ public class JoglBox extends AbstractJoglObject {
     float y7 = this.width / 2;
     float z7 = -this.height / 2;
 
-    final float[] vertexArray = {
+    this.vertexArray = new float[]{
         x0, y0, z0, x4, y4, z4, x1, y1, z1,
         x1, y1, z1, x4, y4, z4, x5, y5, z5, 
         x1, y1, z1, x5, y5, z5, x2, y2, z2,
@@ -83,7 +87,7 @@ public class JoglBox extends AbstractJoglObject {
         x0, y0, z0, x1, y1, z1, x3, y3, z3,
         x1, y1, z1, x2, y2, z2, x3, y3, z3};
 
-    final float[] normalVectorArray = 
+    this.normalVectorArray = new float[] 
       {0, 0, 1,
         0, 0, 1,
         0, 0, 1,
@@ -120,8 +124,6 @@ public class JoglBox extends AbstractJoglObject {
         1, 0, 0,
         1, 0, 0,
         1, 0, 0};
-    
-    drawTrianglePolygons(gl, vertexArray, normalVectorArray);
   }
 
   /**
@@ -135,6 +137,8 @@ public class JoglBox extends AbstractJoglObject {
     this.width = width;
     this.height = height;
     this.depth = depth;
+    
+    preparePolygons();
   }
 
 }

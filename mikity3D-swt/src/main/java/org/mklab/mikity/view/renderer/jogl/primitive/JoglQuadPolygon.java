@@ -18,12 +18,6 @@ public class JoglQuadPolygon extends AbstractJoglObject {
   
   /** 法線ベクトル */
   private float[] normalVector = new float[3];
-  
-  /** 頂点配列。 */
-  private float vertexArray[];
-  
-  /** 法線ベクトル配列。 */
-  private float normalVectorArray[];
 
   /**
    * {@inheritDoc}

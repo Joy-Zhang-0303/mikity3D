@@ -21,18 +21,6 @@ public class JoglCylinder extends AbstractJoglObject {
 
   /** 分割数 */
   private int division = 0;
-
-  /** 頂点配列の参照位置。 */
-  private int vertexPosition = 0;
-  
-  /** 法線ベクトル配列の参照位置。 */
-  private int normalVectorPosition = 0;
-  
-  /** 頂点配列。 */
-  private float vertexArray[];
-  
-  /** 法線ベクトル配列。 */
-  private float normalVectorArray[];
   
   /**
    * {@inheritDoc}
@@ -104,30 +92,6 @@ public class JoglCylinder extends AbstractJoglObject {
     this.normalVectorPosition = 0;
     this.vertexArray = new float[polygonNumber*3*3];
     this.normalVectorArray = new float[polygonNumber*3*3];
-  }
-  
-  /**
-   * 頂点を頂点配列に追加します。
-   * @param vertices 頂点
-   */
-  private void appendVertices(float[][] vertices) {
-    for (int i = 0; i < vertices.length; i++) {
-      for (int j = 0; j < 3; j++) {
-        this.vertexArray[this.vertexPosition++] = vertices[i][j];
-      }
-    }
-  }
-
-  /**
-   * 三角形ポリゴンの法線ベクトルを法線ベクトル配列に3個追加します。
-   * @param normalVector 法線ベクトル
-   */
-  private void appendNormalVectorsOfTriangle(float[] normalVector) {
-    for (int i = 0; i < 3; i++) {
-      this.normalVectorArray[this.normalVectorPosition++] = normalVector[0];
-      this.normalVectorArray[this.normalVectorPosition++] = normalVector[1];
-      this.normalVectorArray[this.normalVectorPosition++] = normalVector[2];
-    }
   }
   
   /**
