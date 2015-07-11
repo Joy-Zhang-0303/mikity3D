@@ -17,12 +17,6 @@ public class JoglSphere extends AbstractJoglObject {
 
   /** 分割数。 */
   private int division = 0;
-  
-  /** ポリゴン1。 */
-  private JoglTrianglePolygon[][] polygons1;
-
-  /** ポリゴン2。 */
-  private JoglTrianglePolygon[][] polygons2;
 
   /**
    * {@inheritDoc}
@@ -32,14 +26,6 @@ public class JoglSphere extends AbstractJoglObject {
     applyTransparency(gl);
     
     drawTrianglePolygons(gl, this.vertexArray, this.normalVectorArray);
-    
-//    for (int i = 0; i < this.division; ++i) {
-//      for (int j = 0; j < this.division; ++j) {
-//        this.polygons1[i][j].display(gl);
-//        this.polygons2[i][j].display(gl);
-//      }
-//    }
-
   }
 
   /**
@@ -100,11 +86,8 @@ public class JoglSphere extends AbstractJoglObject {
    * @param points 球面上の格子点
    */
   private void updateUpperLeftPolygons(final float[][][] points) {
-    this.polygons2 = new JoglTrianglePolygon[this.division][this.division];
-    
     for (int i = 0; i < this.division; ++i) {
       for (int j = 0; j < this.division; ++j) {
-        this.polygons2[i][j] = new JoglTrianglePolygon();
         final float[][] vertices = new float[3][3];
         vertices[0][0] = points[i][j][0];
         vertices[0][1] = points[i][j][1];
@@ -124,9 +107,6 @@ public class JoglSphere extends AbstractJoglObject {
         
         appendVertices(vertices);
         appendNormalVectorsOfTriangle(normalVector);
-                
-//        this.polygons2[i][j].setVertices(vertices);
-//        this.polygons2[i][j].setNormalVector(normalVector);
       }
     }
   }
@@ -137,11 +117,8 @@ public class JoglSphere extends AbstractJoglObject {
    * @param points 球面上の格子点
    */
   private void updateLowerRightPolygons(final float[][][] points) {
-    this.polygons1 = new JoglTrianglePolygon[this.division][this.division];
-    
     for (int i = 0; i < this.division; ++i) {
       for (int j = 0; j < this.division; ++j) {
-        this.polygons1[i][j] = new JoglTrianglePolygon();
         final float[][] vertices = new float[3][3];
         vertices[0][0] = points[i][j][0];
         vertices[0][1] = points[i][j][1];
@@ -161,9 +138,6 @@ public class JoglSphere extends AbstractJoglObject {
   
         appendVertices(vertices);
         appendNormalVectorsOfTriangle(normalVector);
-        
-//        this.polygons1[i][j].setVertices(vertices);
-//        this.polygons1[i][j].setNormalVector(normalVector);
       }
     }
   }
