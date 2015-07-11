@@ -20,10 +20,10 @@ import javax.media.opengl.fixedfunc.GLPointerFunc;
  * @version $Revision$, 2012/12/17
  */
 public abstract class AbstractJoglObject implements JoglObject {
-  /** 色 */
+  /** 色。 */
   private String color;
   
-  /** 透明性 */
+  /** 透明性。 */
   private boolean transparent = false;
   
   /** 頂点配列の参照位置。 */
@@ -44,24 +44,7 @@ public abstract class AbstractJoglObject implements JoglObject {
   public void display(GL2 gl) {
     applyColor(gl);
     applyTransparency(gl);
-    
     drawTrianglePolygons(gl);
-  }
-
-  /**
-   * 色を設定します。
-   * @param color 色
-   */
-  public void setColor(String color) {
-    this.color = color;
-  }
-  
-  /**
-   * 透明性を設定します。
-   * @param transparent 透明性
-   */
-  public void setTransparent(boolean transparent) {
-    this.transparent = transparent;
   }
 
   /**
@@ -69,7 +52,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * 
    * @param gl GL　
    */
-  public void applyColor(GL2 gl) {
+  private void applyColor(GL2 gl) {
     if (this.color == null) {
       return;
     }
@@ -105,14 +88,57 @@ public abstract class AbstractJoglObject implements JoglObject {
   
   /**
    * 透明性を適用します。
+   * 
    * @param gl GL
    */
-  public void applyTransparency(GL2 gl) {
+  private void applyTransparency(GL2 gl) {
     if (this.transparent) {
       gl.glEnable(GL.GL_BLEND);
       gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
     }
   }
+  
+  /**
+   * 三角形ポリゴンを描画します。
+   * 
+   * @param gl GL
+   */
+  private void drawTrianglePolygons(GL2 gl) {
+    final FloatBuffer vertexBuffer = makeFloatBuffer(this.vertexArray);
+    final FloatBuffer normalBuffer = makeFloatBuffer(this.normalVectorArray);
+
+    // 法線配列の有効化
+    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
+    // 法線バッファの指定
+    gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
+    
+    // 頂点配列の有効化
+    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
+    // 頂点バッファの指定
+    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
+
+    final int number = this.vertexArray.length/3;
+    gl.glDrawArrays(GL.GL_TRIANGLES, 0, number);
+  }
+
+  /**
+   * 色を設定します。
+   * 
+   * @param color 色
+   */
+  public void setColor(String color) {
+    this.color = color;
+  }
+  
+  /**
+   * 透明性を設定します。
+   * 
+   * @param transparent 透明性
+   */
+  public void setTransparent(boolean transparent) {
+    this.transparent = transparent;
+  }
+
 
   /**
    * float配列をFloatBufferに変換します。
@@ -137,31 +163,10 @@ public abstract class AbstractJoglObject implements JoglObject {
     buffer.put(array).position(0);
     return buffer;
   }
-  
-  /**
-   * 三角形ポリゴンを描画します。
-   * @param gl GL
-   */
-  protected void drawTrianglePolygons(GL2 gl) {
-    final FloatBuffer vertexBuffer = makeFloatBuffer(this.vertexArray);
-    final FloatBuffer normalBuffer = makeFloatBuffer(this.normalVectorArray);
-
-    // 法線配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
-    // 法線バッファの指定
-    gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
-    
-    // 頂点配列の有効化
-    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
-    // 頂点バッファの指定
-    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
-
-    final int number = this.vertexArray.length/3;
-    gl.glDrawArrays(GL.GL_TRIANGLES, 0, number);
-  }
 
   /**
    * 頂点を頂点配列に追加します。
+   * 
    * @param vertices 頂点
    */
   protected void appendVertices(float[][] vertices) {
@@ -174,6 +179,7 @@ public abstract class AbstractJoglObject implements JoglObject {
 
   /**
    * 三角形ポリゴンの法線ベクトルを法線ベクトル配列に3個追加します。
+   * 
    * @param normalVector 法線ベクトル
    */
   protected void appendNormalVectorsOfTriangle(float[] normalVector) {

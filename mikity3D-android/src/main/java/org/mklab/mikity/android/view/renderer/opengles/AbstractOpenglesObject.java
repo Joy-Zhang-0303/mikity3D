@@ -41,41 +41,16 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
   public void display(GL10 gl) {
     applyColor(gl);
     applyTransparency(gl);
-    
     drawTrianglePolygons(gl);
   }
-
-  /**
-   * 色を設定します。
-   * @param color 色
-   */
-  public void setColor(String color) {
-    this.color = color;
-  }
   
-  /**
-   * 色を返します。
-   * 
-   * @return 色
-   */
-  public String getColor() {
-    return this.color;
-  }
-  
-  /**
-   * 透明性を設定します。
-   * @param transparent 透明性
-   */
-  public void setTransparent(boolean transparent) {
-    this.transparent = transparent;
-  }
 
   /**
    * 色を適用します。
    * 
    * @param gl GL　
    */
-  public void applyColor(GL10 gl) {
+  private void applyColor(GL10 gl) {
     if (this.color == null) {
       return;
     }
@@ -111,13 +86,64 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
   
   /**
    * 透明性を適用します。
+   * 
    * @param gl GL
    */
-  public void applyTransparency(GL10 gl) {
+  private void applyTransparency(GL10 gl) {
     if (this.transparent) {
       gl.glEnable(GL10.GL_BLEND);
       gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
     }
+  }
+  
+
+  /**
+   * 三角形ポリゴンを描画します。
+   * 
+   * @param gl GL
+   */
+  private void drawTrianglePolygons(GL10 gl) {
+    final FloatBuffer vertexBuffer = makeFloatBuffer(this.vertexArray);
+    final FloatBuffer normalBuffer = makeFloatBuffer(this.normalVectorArray);
+  
+    // 法線配列の有効化
+    gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);
+    // 法線バッファの指定
+    gl.glNormalPointer(GL10.GL_FLOAT, 0, normalBuffer);
+    
+    // 頂点配列の有効化
+    gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+    // 頂点バッファの指定
+    gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
+  
+    final int number = this.vertexArray.length/3;
+    gl.glDrawArrays(GL10.GL_TRIANGLES, 0, number);
+  }
+
+  /**
+   * 色を設定します。
+   * @param color 色
+   */
+  public void setColor(String color) {
+    this.color = color;
+  }
+  
+  /**
+   * 色を返します。
+   * 
+   * @return 色
+   */
+  public String getColor() {
+    return this.color;
+  }
+  
+  /**
+   * 透明性を設定します。
+   * 
+   * @param transparent 透明性
+   */
+  public void setTransparent(boolean transparent) {
+    this.transparent = transparent;
   }
 
   /**
@@ -146,6 +172,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
   
   /**
    * 頂点を頂点配列に追加します。
+   * 
    * @param vertices 頂点
    */
   protected void appendVertices(float[][] vertices) {
@@ -158,6 +185,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
 
   /**
    * 三角形ポリゴンの法線ベクトルを法線ベクトル配列に3個追加します。
+   * 
    * @param normalVector 法線ベクトル
    */
   protected void appendNormalVectorsOfTriangle(float[] normalVector) {
@@ -166,28 +194,6 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[1];
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[2];
     }
-  }
-
-  /**
-   * 三角形ポリゴンを描画します。
-   * @param gl GL
-   */
-  protected void drawTrianglePolygons(GL10 gl) {
-    final FloatBuffer vertexBuffer = makeFloatBuffer(this.vertexArray);
-    final FloatBuffer normalBuffer = makeFloatBuffer(this.normalVectorArray);
-  
-    // 法線配列の有効化
-    gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);
-    // 法線バッファの指定
-    gl.glNormalPointer(GL10.GL_FLOAT, 0, normalBuffer);
-    
-    // 頂点配列の有効化
-    gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-    // 頂点バッファの指定
-    gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
-  
-    final int number = this.vertexArray.length/3;
-    gl.glDrawArrays(GL10.GL_TRIANGLES, 0, number);
   }
 }
 
