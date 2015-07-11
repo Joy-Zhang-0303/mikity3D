@@ -131,12 +131,10 @@ public abstract class AbstractJoglObject implements JoglObject {
   /**
    * 三角形ポリゴンを描画します。
    * @param gl GL
-   * @param vertexArray ポリゴンの頂点配列
-   * @param normalVectorArray 法線ベクトルの配列
    */
-  protected void drawTrianglePolygons(GL2 gl, final float[] vertexArray, final float[] normalVectorArray) {
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
-    final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
+  protected void drawTrianglePolygons(GL2 gl) {
+    final FloatBuffer vertexBuffer = makeFloatBuffer(this.vertexArray);
+    final FloatBuffer normalBuffer = makeFloatBuffer(this.normalVectorArray);
 
     // 法線配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
@@ -148,7 +146,7 @@ public abstract class AbstractJoglObject implements JoglObject {
     // 頂点バッファの指定
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
 
-    final int number = vertexArray.length/3;
+    final int number = this.vertexArray.length/3;
     gl.glDrawArrays(GL.GL_TRIANGLES, 0, number);
   }
 

@@ -29,7 +29,7 @@ public class JoglCone extends AbstractJoglObject {
     applyColor(gl);
     applyTransparency(gl);
     
-    drawTrianglePolygons(gl, this.vertexArray, this.normalVectorArray);
+    drawTrianglePolygons(gl);
   }
 
   /**
