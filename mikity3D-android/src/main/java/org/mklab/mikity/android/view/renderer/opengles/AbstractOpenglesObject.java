@@ -24,16 +24,16 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
   private boolean transparent = false;
   
   /** 頂点配列の参照位置。 */
-  protected int vertexPosition = 0;
+  private int vertexPosition = 0;
   
   /** 法線ベクトル配列の参照位置。 */
-  protected int normalVectorPosition = 0;
+  private int normalVectorPosition = 0;
     
   /** 頂点配列。 */
-  protected float vertexArray[];
+  private float vertexArray[];
   
   /** 法線ベクトル配列。 */
-  protected float normalVectorArray[];
+  private float normalVectorArray[];
   
   /**
    * {@inheritDoc}
@@ -43,7 +43,6 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
     applyTransparency(gl);
     drawTrianglePolygons(gl);
   }
-  
 
   /**
    * 色を適用します。
