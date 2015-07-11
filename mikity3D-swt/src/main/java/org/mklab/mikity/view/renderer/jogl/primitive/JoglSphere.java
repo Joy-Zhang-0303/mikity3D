@@ -24,36 +24,35 @@ public class JoglSphere extends AbstractJoglObject {
       return;
     }
     
-    final int grid = this.division;
-    final float incV = 2 * this.radius / grid;
-    final float incH = 360.f / grid;
+    final int polygonNumber = this.division*this.division*2;
+    prepareArrays(polygonNumber);
+    
+    final float incV = 2 * this.radius / this.division;
+    final float incH = 360.f / this.division;
     
     final float[][][] points = new float[this.division+1][this.division+1][3];
     
-    for (int i = 0; i < grid; ++i) {
+    for (int i = 0; i < this.division; ++i) {
       final float z = i * incV - this.radius;
       final float r = (float)Math.sqrt(this.radius * this.radius - z * z);
-      for (int j = 0; j < grid; ++j) {
+      for (int j = 0; j < this.division; ++j) {
         final float theta = (float)(j * incH * Math.PI / 180);
         points[i][j][0] = (float)(r * Math.cos(theta));
         points[i][j][1] = (float)(r * Math.sin(theta));
         points[i][j][2] = z;
       }
       
-      points[i][grid][0] = (float)(r * Math.cos(0));
-      points[i][grid][1] = (float)(r * Math.sin(0));
-      points[i][grid][2] = z;
+      points[i][this.division][0] = (float)(r * Math.cos(0));
+      points[i][this.division][1] = (float)(r * Math.sin(0));
+      points[i][this.division][2] = z;
     }
     
-    for (int j = 0; j <= grid; j++) {
-      points[grid][j][0] = 0;
-      points[grid][j][1] = 0;
-      points[grid][j][2] = this.radius;
+    for (int j = 0; j <= this.division; j++) {
+      points[this.division][j][0] = 0;
+      points[this.division][j][1] = 0;
+      points[this.division][j][2] = this.radius;
     }
-    
-    final int polygonNumber = this.division*this.division*2;
-    prepareArrays(polygonNumber);
-    
+       
     updateLowerRightPolygons(points);
     updateUpperLeftPolygons(points);
   }

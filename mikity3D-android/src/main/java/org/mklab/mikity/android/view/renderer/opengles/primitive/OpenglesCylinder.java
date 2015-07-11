@@ -30,7 +30,13 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     if (this.radius == 0 || this.height == 0 || this.division == 0) {
       return;
     }
-    
+
+    final int upperPolygonNumber = this.division;
+    final int lowerPolygonNumber = this.division;
+    final int sidePolygonNumber = this.division*2;
+    final int polygonNumber = upperPolygonNumber + lowerPolygonNumber + sidePolygonNumber;
+    prepareArrays(polygonNumber);
+
     final float[] upperCenterPoint = new float[3];
     upperCenterPoint[0] = 0;
     upperCenterPoint[1] = 0;
@@ -62,14 +68,6 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     lowerPoints[this.division][0] = (float)(this.radius * Math.cos(0));
     lowerPoints[this.division][1] = (float)(this.radius * Math.sin(0));
     lowerPoints[this.division][2] = -this.height / 2.0f;
-
-    
-    final int upperPolygonNumber = this.division;
-    final int lowerPolygonNumber = this.division;
-    final int sidePolygonNumber = this.division*2;
-    final int polygonNumber = upperPolygonNumber + lowerPolygonNumber + sidePolygonNumber;
-    
-    prepareArrays(polygonNumber);
     
     updateUpperPolygons(upperCenterPoint, upperPoints);
     updateLowerPolygons(lowerCenterPoint, lowerPoints);

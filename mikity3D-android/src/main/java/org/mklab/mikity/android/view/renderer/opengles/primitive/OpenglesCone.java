@@ -31,6 +31,11 @@ public class OpenglesCone extends AbstractOpenglesObject {
       return;
     }
     
+    final int lowerPolygonNumber = this.division;
+    final int sidePolygonNumber = this.division;
+    final int polygonNumber = lowerPolygonNumber + sidePolygonNumber;
+    prepareArrays(polygonNumber);
+    
     final float[] topPoint = new float[3];
     topPoint[0] = 0;
     topPoint[1] = 0;
@@ -51,13 +56,7 @@ public class OpenglesCone extends AbstractOpenglesObject {
     lowerPoints[this.division][0] = this.radius * (float)Math.cos(0);
     lowerPoints[this.division][1] = this.radius * (float)Math.sin(0); 
     lowerPoints[this.division][2] = -this.height / 2; 
-
-    final int lowerPolygonNumber = this.division;
-    final int sidePolygonNumber = this.division;
-    final int polygonNumber = lowerPolygonNumber + sidePolygonNumber;
-
-    prepareArrays(polygonNumber);
-    
+   
     updateLowerPolygons(centerPoint, lowerPoints);
     updateSidePolygons(topPoint, lowerPoints);
   }

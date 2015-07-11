@@ -26,6 +26,9 @@ public class OpenglesBox extends AbstractOpenglesObject {
    * ポリゴンを更新します。 
    */
   private void updatePolygons() {
+    final int polygonNumber = 6*3;
+    prepareArrays(polygonNumber);
+    
     //   v5 -- v4
     //  /      /
     // v1 -- v0
@@ -65,9 +68,6 @@ public class OpenglesBox extends AbstractOpenglesObject {
     float x7 = -this.depth / 2;
     float y7 = this.width / 2;
     float z7 = -this.height / 2;
-    
-    final int polygonNumber = 6*3;
-    prepareArrays(polygonNumber);
 
     final float[][] vertices = new float[][]{
         {x0, y0, z0}, {x4, y4, z4}, {x1, y1, z1},

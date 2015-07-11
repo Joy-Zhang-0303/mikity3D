@@ -169,7 +169,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * 
    * @param vertices 頂点
    */
-  protected void appendVertices(float[][] vertices) {
+  public void appendVertices(float[][] vertices) {
     for (int i = 0; i < vertices.length; i++) {
       for (int j = 0; j < 3; j++) {
         this.vertexArray[this.vertexPosition++] = vertices[i][j];
@@ -182,7 +182,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * 
    * @param normalVector 法線ベクトル
    */
-  protected void appendNormalVectorsOfTriangle(float[] normalVector) {
+  public void appendNormalVectorsOfTriangle(float[] normalVector) {
     for (int i = 0; i < 3; i++) {
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[0];
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[1];
@@ -195,7 +195,7 @@ public abstract class AbstractJoglObject implements JoglObject {
    * 
    * @param normalVector 法線ベクトル
    */
-  protected void appendNormalVector(float[][] normalVector) {
+  public void appendNormalVector(float[][] normalVector) {
     for (int i = 0; i < normalVector.length; i++) {
       for (int j = 0; j < 3; j++) {
         this.normalVectorArray[this.normalVectorPosition++] = normalVector[i][j];

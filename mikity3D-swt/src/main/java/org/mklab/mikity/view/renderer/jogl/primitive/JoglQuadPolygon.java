@@ -24,6 +24,9 @@ public class JoglQuadPolygon extends AbstractJoglObject {
       return;
     }
     
+    final int polygonNumber = 2;
+    prepareArrays(polygonNumber);
+    
     float x0 = this.vertices[0][0];
     float y0 = this.vertices[0][1];
     float z0 = this.vertices[0][2];
@@ -50,9 +53,6 @@ public class JoglQuadPolygon extends AbstractJoglObject {
     
     final float[][] normalVector2 = new float[][]
         {{nx,ny,nz},{nx,ny,nz},{nx,ny,nz},{nx,ny,nz},{nx,ny,nz},{nx,ny,nz}};
-    
-    final int polygonNumber = 2;
-    prepareArrays(polygonNumber);
     
     appendVertices(vertices2);
     appendNormalVector(normalVector2);
