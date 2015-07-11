@@ -22,16 +22,6 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
   private float height = 0;
   /** 分割数。 */
   private int division = 0;
-
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void display(GL10 gl) {
-//    applyColor(gl);
-//    applyTransparency(gl);
-//    
-//    drawTrianglePolygons(gl);
-//  }
   
   /**
    * ポリゴンを更新します。

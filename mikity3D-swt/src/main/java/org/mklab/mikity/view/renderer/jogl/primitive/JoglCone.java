@@ -10,25 +10,14 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
  * @version $Revision$, 2012/02/09
  */
 public class JoglCone extends AbstractJoglObject {
-
   /** 底面の半径。 */
-  protected float radius = 0;
+  private float radius = 0;
 
   /** 高さ。 */
-  protected float height = 0;
+  private float height = 0;
 
   /** 分割数。 */
-  protected int division = 0;
-
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void display(GL2 gl) {
-//    applyColor(gl);
-//    applyTransparency(gl);
-//    
-//    drawTrianglePolygons(gl);
-//  }
+  private int division = 0;
 
   /**
    * ポリゴンを更新します。

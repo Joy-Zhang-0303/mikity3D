@@ -22,16 +22,6 @@ public class OpenglesBox extends AbstractOpenglesObject {
   /** 奥行。 */
   private float depth;
 
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void display(GL10 gl) {
-//    applyColor(gl);
-//    applyTransparency(gl);
-//
-//    drawTrianglePolygons(gl);
-//  }
-
   /**
    * ポリゴンを更新します。 
    */

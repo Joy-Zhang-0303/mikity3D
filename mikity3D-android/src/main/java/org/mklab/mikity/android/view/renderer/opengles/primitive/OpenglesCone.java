@@ -17,21 +17,11 @@ import org.mklab.mikity.util.Vector3;
  */
 public class OpenglesCone extends AbstractOpenglesObject {
   /** 底面の半径。 */
-  protected float radius = 0;
+  private float radius = 0;
   /** 高さ。 */
-  protected float height = 0;
+  private float height = 0;
   /** 分割数。 */
-  protected int division = 0;
-
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void display(GL10 gl) {
-//    applyColor(gl);
-//    applyTransparency(gl);
-//    
-//    drawTrianglePolygons(gl);
-//  }
+  private int division = 0;
   
   /**
    * ポリゴンを更新します。

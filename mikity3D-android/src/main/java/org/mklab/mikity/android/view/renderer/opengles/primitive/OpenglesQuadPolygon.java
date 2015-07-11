@@ -20,16 +20,6 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
   /** 法線ベクトル */
   private float[] normalVector = new float[3];
 
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void display(GL10 gl) {
-//    applyColor(gl);
-//    applyTransparency(gl);
-//
-//    drawTrianglePolygons(gl);
-//  }
-
   /**
    * ポリゴンを更新します。 
    */
