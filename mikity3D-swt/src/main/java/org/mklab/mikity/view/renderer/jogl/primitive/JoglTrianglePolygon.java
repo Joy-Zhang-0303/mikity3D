@@ -35,14 +35,22 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
     float x2 = this.vertices[2][0];
     float y2 = this.vertices[2][1];
     float z2 = this.vertices[2][2];
-    
-    this.vertexArray = new float[]{x0, y0, z0, x1, y1, z1, x2, y2, z2};
-    
+
     final float nx = this.normalVector[0];
     final float ny = this.normalVector[1];
     final float nz = this.normalVector[2];
     
-    this.normalVectorArray = new float[]{nx,ny,nz,nx,ny,nz,nx,ny,nz};
+    final float[][] vertices2 = new float[][]
+        {{x0, y0, z0}, {x1, y1, z1}, {x2, y2, z2}};
+    
+    final float[][] normalVector2 = new float[][]
+        {{nx,ny,nz},{nx,ny,nz},{nx,ny,nz}};
+
+    final int polygonNumber = 1;
+    prepareArrays(polygonNumber);
+    
+    appendVertices(vertices2);
+    appendNormalVector(normalVector2);
   }
 
   /**

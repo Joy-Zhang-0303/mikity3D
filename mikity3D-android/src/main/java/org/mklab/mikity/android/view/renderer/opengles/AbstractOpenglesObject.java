@@ -129,15 +129,6 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
   }
   
   /**
-   * 色を返します。
-   * 
-   * @return 色
-   */
-  public String getColor() {
-    return this.color;
-  }
-  
-  /**
    * 透明性を設定します。
    * 
    * @param transparent 透明性
@@ -152,7 +143,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param array 変換元
    * @return 変換結果
    */
-  public FloatBuffer makeFloatBuffer(float[] array) {
+  protected FloatBuffer makeFloatBuffer(float[] array) {
     final FloatBuffer buffer = ByteBuffer.allocateDirect(array.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
     buffer.put(array).position(0);
     return buffer;
@@ -164,7 +155,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param array 変換元
    * @return 変換結果
    */
-  public ByteBuffer makeByteBuffer(byte[] array) {
+  protected ByteBuffer makeByteBuffer(byte[] array) {
     final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     buffer.put(array).position(0);
     return buffer;
@@ -194,6 +185,31 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[1];
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[2];
     }
+  }
+  
+  /**
+   * 三角形ポリゴンの法線ベクトルを法線ベクトル配列に追加します。
+   * 
+   * @param normalVector 法線ベクトル
+   */
+  protected void appendNormalVector(float[][] normalVector) {
+    for (int i = 0; i < normalVector.length; i++) {
+      for (int j = 0; j < 3; j++) {
+        this.normalVectorArray[this.normalVectorPosition++] = normalVector[i][j];
+      }
+    }
+  }
+
+  /**
+   * 頂点配列と法線ベクトル配列を準備します。
+   * 
+   * @param polygonNumber ポリゴンの数 
+   */
+  protected void prepareArrays(int polygonNumber) {
+    this.vertexPosition = 0;
+    this.normalVectorPosition = 0;
+    this.vertexArray = new float[polygonNumber*3*3];
+    this.normalVectorArray = new float[polygonNumber*3*3];
   }
 }
 

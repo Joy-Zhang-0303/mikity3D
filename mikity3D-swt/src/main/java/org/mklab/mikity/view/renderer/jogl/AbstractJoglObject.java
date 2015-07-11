@@ -189,5 +189,29 @@ public abstract class AbstractJoglObject implements JoglObject {
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[2];
     }
   }
+  
+  /**
+   * 三角形ポリゴンの法線ベクトルを法線ベクトル配列に追加します。
+   * 
+   * @param normalVector 法線ベクトル
+   */
+  protected void appendNormalVector(float[][] normalVector) {
+    for (int i = 0; i < normalVector.length; i++) {
+      for (int j = 0; j < 3; j++) {
+        this.normalVectorArray[this.normalVectorPosition++] = normalVector[i][j];
+      }
+    }
+  }
 
+  /**
+   * 頂点配列と法線ベクトル配列を準備します。
+   * 
+   * @param polygonNumber ポリゴンの数 
+   */
+  protected void prepareArrays(int polygonNumber) {
+    this.vertexPosition = 0;
+    this.normalVectorPosition = 0;
+    this.vertexArray = new float[polygonNumber*3*3];
+    this.normalVectorArray = new float[polygonNumber*3*3];
+  }
 }

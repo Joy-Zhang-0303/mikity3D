@@ -55,23 +55,24 @@ public class OpenglesSphere extends AbstractOpenglesObject {
       points[grid][j][2] = this.radius;
     }
     
-    prepareArrays();
+    final int polygonNumber = this.division*this.division*2;
+    prepareArrays(polygonNumber);
     
     updateLowerRightPolygons(points);
     updateUpperLeftPolygons(points);
   }
   
-  /**
-   * 頂点配列と法線ベクトル配列を準備します。 
-   */
-  private void prepareArrays() {
-    final int polygonNumber = this.division*this.division*2;
-
-    this.vertexPosition = 0;
-    this.normalVectorPosition = 0;
-    this.vertexArray = new float[polygonNumber*3*3];
-    this.normalVectorArray = new float[polygonNumber*3*3];
-  }
+//  /**
+//   * 頂点配列と法線ベクトル配列を準備します。 
+//   */
+//  private void prepareArrays() {
+//    final int polygonNumber = this.division*this.division*2;
+//
+//    this.vertexPosition = 0;
+//    this.normalVectorPosition = 0;
+//    this.vertexArray = new float[polygonNumber*3*3];
+//    this.normalVectorArray = new float[polygonNumber*3*3];
+//  }
 
   /**
    * 四角形セグメントの左上のポリゴンを更新します。

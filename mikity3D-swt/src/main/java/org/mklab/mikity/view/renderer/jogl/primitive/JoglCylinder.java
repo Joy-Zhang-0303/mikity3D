@@ -60,27 +60,32 @@ public class JoglCylinder extends AbstractJoglObject {
     lowerPoints[this.division][1] = (float)(this.radius * Math.sin(0));
     lowerPoints[this.division][2] = -this.height / 2.0f;
 
-    prepareArrays();
+    final int upperPolygonNumber = this.division;
+    final int lowerPolygonNumber = this.division;
+    final int sidePolygonNumber = this.division*2;
+    final int polygonNumber = upperPolygonNumber + lowerPolygonNumber + sidePolygonNumber;
+
+    prepareArrays(polygonNumber);
     
     updateUpperPolygons(upperCenterPoint, upperPoints);
     updateLowerPolygons(lowerCenterPoint, lowerPoints);
     updateSidePolygons(upperPoints, lowerPoints);
   }
 
-  /**
-   * 頂点配列と法線ベクトル配列を準備します。 
-   */
-  private void prepareArrays() {
-    final int upperPolygonNumber = this.division;
-    final int lowerPolygonNumber = this.division;
-    final int sidePolygonNumber = this.division*2;
-    final int polygonNumber = upperPolygonNumber + lowerPolygonNumber + sidePolygonNumber;
-
-    this.vertexPosition = 0;
-    this.normalVectorPosition = 0;
-    this.vertexArray = new float[polygonNumber*3*3];
-    this.normalVectorArray = new float[polygonNumber*3*3];
-  }
+//  /**
+//   * 頂点配列と法線ベクトル配列を準備します。 
+//   */
+//  private void prepareArrays() {
+//    final int upperPolygonNumber = this.division;
+//    final int lowerPolygonNumber = this.division;
+//    final int sidePolygonNumber = this.division*2;
+//    final int polygonNumber = upperPolygonNumber + lowerPolygonNumber + sidePolygonNumber;
+//
+//    this.vertexPosition = 0;
+//    this.normalVectorPosition = 0;
+//    this.vertexArray = new float[polygonNumber*3*3];
+//    this.normalVectorArray = new float[polygonNumber*3*3];
+//  }
   
   /**
    * 側面のポリゴンを生成します。

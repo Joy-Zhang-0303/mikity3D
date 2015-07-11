@@ -48,25 +48,29 @@ public class JoglCone extends AbstractJoglObject {
     lowerPoints[this.division][1] = this.radius * (float)Math.sin(0); 
     lowerPoints[this.division][2] = -this.height / 2; 
 
-    prepareArrays();
+    final int lowerPolygonNumber = this.division;
+    final int sidePolygonNumber = this.division;
+    final int polygonNumber = lowerPolygonNumber + sidePolygonNumber;
+
+    prepareArrays(polygonNumber);
     
     updateLowerPolygons(centerPoint, lowerPoints);
     updateSidePolygons(topPoint, lowerPoints);
   }
   
-  /**
-   * 頂点配列と法線ベクトル配列を準備します。 
-   */
-  private void prepareArrays() {
-    final int lowerPolygonNumber = this.division;
-    final int sidePolygonNumber = this.division;
-    final int polygonNumber = lowerPolygonNumber + sidePolygonNumber;
-
-    this.vertexPosition = 0;
-    this.normalVectorPosition = 0;
-    this.vertexArray = new float[polygonNumber*3*3];
-    this.normalVectorArray = new float[polygonNumber*3*3];
-  }
+//  /**
+//   * 頂点配列と法線ベクトル配列を準備します。 
+//   */
+//  private void prepareArrays() {
+//    final int lowerPolygonNumber = this.division;
+//    final int sidePolygonNumber = this.division;
+//    final int polygonNumber = lowerPolygonNumber + sidePolygonNumber;
+//
+//    this.vertexPosition = 0;
+//    this.normalVectorPosition = 0;
+//    this.vertexArray = new float[polygonNumber*3*3];
+//    this.normalVectorArray = new float[polygonNumber*3*3];
+//  }
 
   /**
    * 側面のポリゴンを更新します。
