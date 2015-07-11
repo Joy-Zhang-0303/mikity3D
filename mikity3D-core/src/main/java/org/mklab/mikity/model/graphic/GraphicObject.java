@@ -3,7 +3,7 @@
  * Copyright (C) 2015 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.renderer.jogl;
+package org.mklab.mikity.model.graphic;
 
 /**
  * グラフィックオブジェクトを表すクラスです。
@@ -33,7 +33,7 @@ public class GraphicObject {
    * 頂点配列を返します。
    * @return 頂点配列
    */
-  float[] getVertexArray() {
+  public float[] getVertexArray() {
     return this.vertexArray;
   }
   
@@ -41,7 +41,7 @@ public class GraphicObject {
    * 法線ベクトル配列を返します。
    * @return 法線ベクトル配列
    */
-  float[] getNormalVectorArray() {
+  public float[] getNormalVectorArray() {
     return this.normalVectorArray;
   }
   

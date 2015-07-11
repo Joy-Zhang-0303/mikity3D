@@ -1,7 +1,4 @@
-package org.mklab.mikity.view.renderer.jogl.primitive;
-
-import org.mklab.mikity.view.renderer.jogl.GraphicObject;
-
+package org.mklab.mikity.model.graphic;
 
 /**
  * BOXをJOGLで表したクラスです

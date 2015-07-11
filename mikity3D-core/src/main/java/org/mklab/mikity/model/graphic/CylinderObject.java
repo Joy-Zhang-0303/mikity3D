@@ -1,7 +1,6 @@
-package org.mklab.mikity.view.renderer.jogl.primitive;
+package org.mklab.mikity.model.graphic;
 
 import org.mklab.mikity.util.Vector3;
-import org.mklab.mikity.view.renderer.jogl.GraphicObject;
 
 
 /**

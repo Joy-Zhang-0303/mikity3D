@@ -13,6 +13,8 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 import javax.media.opengl.fixedfunc.GLPointerFunc;
 
+import org.mklab.mikity.model.graphic.GraphicObject;
+
 /**
  * JOGLのオブジェクトを表すの抽象クラスです。
  * 

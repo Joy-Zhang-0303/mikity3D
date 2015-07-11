@@ -1,5 +1,6 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
+import org.mklab.mikity.model.graphic.TrianglePolygonObject;
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
 
