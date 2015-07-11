@@ -60,12 +60,6 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
     
     appendVertices(vertices2);
     appendNormalVector(normalVector2);
-    
-//    this.vertexArray = new float[]{
-//        x0, y0, z0, x1, y1, z1, x2, y2, z2,
-//        x0, y0, z0, x2, y2, z2, x3, y3, z3};
-//        
-//    this.normalVectorArray = new float[]{nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz};
   } 
 
   /**
