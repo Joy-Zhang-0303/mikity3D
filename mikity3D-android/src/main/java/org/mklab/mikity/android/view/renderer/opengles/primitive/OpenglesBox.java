@@ -5,8 +5,6 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
 
 
@@ -24,15 +22,15 @@ public class OpenglesBox extends AbstractOpenglesObject {
   /** 奥行。 */
   private float depth;
 
-  /**
-   * {@inheritDoc}
-   */
-  public void display(GL10 gl) {
-    applyColor(gl);
-    applyTransparency(gl);
-
-    drawTrianglePolygons(gl);
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void display(GL10 gl) {
+//    applyColor(gl);
+//    applyTransparency(gl);
+//
+//    drawTrianglePolygons(gl);
+//  }
 
   /**
    * ポリゴンを更新します。 

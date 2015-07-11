@@ -37,6 +37,16 @@ public abstract class AbstractJoglObject implements JoglObject {
   
   /** 法線ベクトル配列。 */
   protected float normalVectorArray[];
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void display(GL2 gl) {
+    applyColor(gl);
+    applyTransparency(gl);
+    
+    drawTrianglePolygons(gl);
+  }
 
   /**
    * 色を設定します。

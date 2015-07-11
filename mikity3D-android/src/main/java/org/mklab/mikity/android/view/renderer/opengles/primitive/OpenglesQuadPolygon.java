@@ -5,8 +5,6 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
 
 /**
@@ -22,15 +20,15 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
   /** 法線ベクトル */
   private float[] normalVector = new float[3];
 
-  /**
-   * {@inheritDoc}
-   */
-  public void display(GL10 gl) {
-    applyColor(gl);
-    applyTransparency(gl);
-
-    drawTrianglePolygons(gl);
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void display(GL10 gl) {
+//    applyColor(gl);
+//    applyTransparency(gl);
+//
+//    drawTrianglePolygons(gl);
+//  }
 
   /**
    * ポリゴンを更新します。 

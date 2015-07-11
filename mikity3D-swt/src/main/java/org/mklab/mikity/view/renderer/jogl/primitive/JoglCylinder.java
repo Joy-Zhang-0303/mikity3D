@@ -1,7 +1,5 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
-import javax.media.opengl.GL2;
-
 import org.mklab.mikity.util.Vector3;
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
@@ -22,15 +20,15 @@ public class JoglCylinder extends AbstractJoglObject {
   /** 分割数 */
   private int division = 0;
   
-  /**
-   * {@inheritDoc}
-   */
-  public void display(GL2 gl) {
-    applyColor(gl);
-    applyTransparency(gl);
-    
-    drawTrianglePolygons(gl);
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void display(GL2 gl) {
+//    applyColor(gl);
+//    applyTransparency(gl);
+//    
+//    drawTrianglePolygons(gl);
+//  }
 
   /**
    * ポリゴンを更新します。

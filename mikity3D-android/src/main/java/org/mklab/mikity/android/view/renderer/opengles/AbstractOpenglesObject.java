@@ -34,6 +34,16 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
   
   /** 法線ベクトル配列。 */
   protected float normalVectorArray[];
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void display(GL10 gl) {
+    applyColor(gl);
+    applyTransparency(gl);
+    
+    drawTrianglePolygons(gl);
+  }
 
   /**
    * 色を設定します。

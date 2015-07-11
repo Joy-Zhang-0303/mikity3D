@@ -1,7 +1,5 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
-import javax.media.opengl.GL2;
-
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
 
@@ -19,15 +17,15 @@ public class JoglQuadPolygon extends AbstractJoglObject {
   /** 法線ベクトル */
   private float[] normalVector = new float[3];
 
-  /**
-   * {@inheritDoc}
-   */
-  public void display(GL2 gl) {
-    applyColor(gl);
-    applyTransparency(gl);
-    
-    drawTrianglePolygons(gl);
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void display(GL2 gl) {
+//    applyColor(gl);
+//    applyTransparency(gl);
+//    
+//    drawTrianglePolygons(gl);
+//  }
 
   /**
    * ポリゴンを更新します。

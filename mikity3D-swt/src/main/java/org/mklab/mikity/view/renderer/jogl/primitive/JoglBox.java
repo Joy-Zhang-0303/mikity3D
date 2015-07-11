@@ -1,7 +1,5 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
-import javax.media.opengl.GL2;
-
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
 
@@ -22,15 +20,15 @@ public class JoglBox extends AbstractJoglObject {
   /** 奥行 */
   private float depth;
 
-  /**
-   * {@inheritDoc}
-   */
-  public void display(GL2 gl) {
-    applyColor(gl);
-    applyTransparency(gl);
-    
-    drawTrianglePolygons(gl);
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void display(GL2 gl) {
+//    applyColor(gl);
+//    applyTransparency(gl);
+//    
+//    drawTrianglePolygons(gl);
+//  }
 
   private void updatePolygons() {
     //   v5 -- v4

@@ -5,8 +5,6 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
 
 
@@ -23,15 +21,15 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
   /** 法線ベクトル */
   private float[] normalVector = new float[3];
 
-  /**
-   * {@inheritDoc}
-   */
-  public void display(GL10 gl) {
-    applyColor(gl);
-    applyTransparency(gl);
-    
-    drawTrianglePolygons(gl);
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void display(GL10 gl) {
+//    applyColor(gl);
+//    applyTransparency(gl);
+//    
+//    drawTrianglePolygons(gl);
+//  }
 
   private void updatePolygons() {
     if (this.vertices == null || this.normalVector == null) {
@@ -66,7 +64,6 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
    */
   public void setVertices(float[][] vertices) {
     this.vertices = vertices;
-    
     updatePolygons();
   }
   
@@ -77,7 +74,6 @@ public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
    */
   public void setNormalVector(float[] normalVector) {
     this.normalVector = normalVector;
-    
     updatePolygons();
   }
 }
