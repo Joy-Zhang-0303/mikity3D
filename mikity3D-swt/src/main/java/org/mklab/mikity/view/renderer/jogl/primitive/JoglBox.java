@@ -32,7 +32,7 @@ public class JoglBox extends AbstractJoglObject {
     drawTrianglePolygons(gl, this.vertexArray, this.normalVectorArray);
   }
 
-  private void preparePolygons() {
+  private void updatePolygons() {
     //   v5 -- v4
     //  /      /
     // v1 -- v0
@@ -138,7 +138,7 @@ public class JoglBox extends AbstractJoglObject {
     this.height = height;
     this.depth = depth;
     
-    preparePolygons();
+    updatePolygons();
   }
 
 }

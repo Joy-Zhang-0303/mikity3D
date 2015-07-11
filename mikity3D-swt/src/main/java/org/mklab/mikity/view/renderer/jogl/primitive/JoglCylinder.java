@@ -7,7 +7,7 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
 
 /**
- * シリンダーをGLで表すクラスです。
+ * シリンダーをJOGLで表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/31

@@ -5,9 +5,8 @@ import javax.media.opengl.GL2;
 import org.mklab.mikity.util.Vector3;
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
 
-
 /**
- * コーンをGLで表したクラスです。
+ * コーンをJOGLで表したクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09
@@ -23,12 +22,6 @@ public class JoglCone extends AbstractJoglObject {
   /** 分割数。 */
   protected int division = 0;
 
-  /** 底面のポリゴン。 */
-  private JoglTrianglePolygon[] lowerPolygons;
-
-  /** 側面のポリゴン。 */
-  private JoglTrianglePolygon[] sidePolygons;
-
   /**
    * {@inheritDoc}
    */
@@ -37,11 +30,6 @@ public class JoglCone extends AbstractJoglObject {
     applyTransparency(gl);
     
     drawTrianglePolygons(gl, this.vertexArray, this.normalVectorArray);
-
-//    for (int i = 0; i < this.division; i++) {
-//      this.lowerPolygons[i].display(gl);
-//      this.sidePolygons[i].display(gl);
-//    }
   }
 
   /**
@@ -99,9 +87,7 @@ public class JoglCone extends AbstractJoglObject {
    * @param lowerPoints 底面の周囲の頂点
    */
   private void updateSidePolygons(final float[] topPoint, final float[][] lowerPoints) {
-    this.sidePolygons = new JoglTrianglePolygon[this.division];
     for (int i = 0; i < this.division; i++) {
-      this.sidePolygons[i] = new JoglTrianglePolygon();
       final float[][] vertices = new float[3][3];
       vertices[0][0] = topPoint[0];
       vertices[0][1] = topPoint[1];
@@ -121,9 +107,6 @@ public class JoglCone extends AbstractJoglObject {
 
       appendVertices(vertices);
       appendNormalVectorsOfTriangle(normalVector);
-            
-//      this.sidePolygons[i].setVertices(vertices);
-//      this.sidePolygons[i].setNormalVector(normalVector);
     }
   }
 
@@ -134,10 +117,7 @@ public class JoglCone extends AbstractJoglObject {
    * @param lowerPoints 底面の周囲の頂点
    */
   private void updateLowerPolygons(final float[] centerPoint, final float[][] lowerPoints) {
-    this.lowerPolygons = new JoglTrianglePolygon[this.division];
     for (int i = 0; i < this.division; i++) {
-      this.lowerPolygons[i] = new JoglTrianglePolygon();
-     
       final float[][] vertices = new float[3][3];
       vertices[0][0] = centerPoint[0];
       vertices[0][1] = centerPoint[1];
@@ -157,9 +137,6 @@ public class JoglCone extends AbstractJoglObject {
 
       appendVertices(vertices);
       appendNormalVectorsOfTriangle(normalVector);
-      
-//      this.lowerPolygons[i].setVertices(vertices);
-//      this.lowerPolygons[i].setNormalVector(normalVector);
     }
   }
 
