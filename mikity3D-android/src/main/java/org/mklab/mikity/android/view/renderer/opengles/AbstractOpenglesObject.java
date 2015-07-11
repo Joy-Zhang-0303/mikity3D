@@ -11,29 +11,24 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import org.mklab.mikity.model.graphic.GraphicObject;
+
 /**
  * OpenGL ESのオブジェクトを表す抽象クラスです。
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
 public abstract class  AbstractOpenglesObject implements OpenglesObject {
-  /** 色。 */
-  private String color;
+  /** グラフィックオブジェクト。 */
+  protected GraphicObject object;
   
-  /** 透明性 */
-  private boolean transparent = false;
-  
-  /** 頂点配列の参照位置。 */
-  private int vertexPosition = 0;
-  
-  /** 法線ベクトル配列の参照位置。 */
-  private int normalVectorPosition = 0;
-    
-  /** 頂点配列。 */
-  private float vertexArray[];
-  
-  /** 法線ベクトル配列。 */
-  private float normalVectorArray[];
+  /**
+   * 新しく生成された<code>AbstractJoglObject</code>オブジェクトを初期化します。
+   * @param object グラフィックオブジェクト
+   */
+  public AbstractOpenglesObject(GraphicObject object) {
+    this.object = object;
+  }
   
   /**
    * {@inheritDoc}
@@ -50,35 +45,37 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param gl GL　
    */
   private void applyColor(GL10 gl) {
-    if (this.color == null) {
+    final String color = this.object.getColor();
+    
+    if (color == null) {
       return;
     }
     
-    if (this.color.equals("white")) { //$NON-NLS-1$
+    if (color.equals("white")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-    } else if (this.color.equals("lightGray")) { //$NON-NLS-1$
+    } else if (color.equals("lightGray")) { //$NON-NLS-1$
       gl.glColor4f(0.75f, 0.75f, 0.75f, 1.0f);
-    } else if (this.color.equals("gray")) { //$NON-NLS-1$
+    } else if (color.equals("gray")) { //$NON-NLS-1$
       gl.glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
-    } else if (this.color.equals("darkGray")) { //$NON-NLS-1$
+    } else if (color.equals("darkGray")) { //$NON-NLS-1$
       gl.glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
-    } else if (this.color.equals("black")) { //$NON-NLS-1$
+    } else if (color.equals("black")) { //$NON-NLS-1$
       gl.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
-    } else if (this.color.equals("red")) { //$NON-NLS-1$
+    } else if (color.equals("red")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
-    } else if (this.color.equals("pink")) { //$NON-NLS-1$
+    } else if (color.equals("pink")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 0.69f, 0.69f, 0.5f);
-    } else if (this.color.equals("orange")) { //$NON-NLS-1$
+    } else if (color.equals("orange")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 0.78f, 0.0f, 1.0f);
-    } else if (this.color.equals("yellow")) { //$NON-NLS-1$
+    } else if (color.equals("yellow")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
-    } else if (this.color.equals("green")) { //$NON-NLS-1$
+    } else if (color.equals("green")) { //$NON-NLS-1$
       gl.glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
-    } else if (this.color.equals("magenta")) { //$NON-NLS-1$
+    } else if (color.equals("magenta")) { //$NON-NLS-1$
       gl.glColor4f(1.0f, 0.0f, 1.0f, 1.0f);
-    } else if (this.color.equals("cyan")) { //$NON-NLS-1$
+    } else if (color.equals("cyan")) { //$NON-NLS-1$
       gl.glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
-    } else if (this.color.equals("blue")) { //$NON-NLS-1$
+    } else if (color.equals("blue")) { //$NON-NLS-1$
       gl.glColor4f(0.0f, 0.0f, 1.0f, 0.0f);
     }
   }
@@ -89,7 +86,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param gl GL
    */
   private void applyTransparency(GL10 gl) {
-    if (this.transparent) {
+    if (this.object.isTransparent()) {
       gl.glEnable(GL10.GL_BLEND);
       gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
     }
@@ -102,8 +99,11 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param gl GL
    */
   private void drawTrianglePolygons(GL10 gl) {
-    final FloatBuffer vertexBuffer = makeFloatBuffer(this.vertexArray);
-    final FloatBuffer normalBuffer = makeFloatBuffer(this.normalVectorArray);
+    final float[] vertexArray = this.object.getVertexArray();
+    final float[] normalVectorArray = this.object.getNormalVectorArray();
+    
+    final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
+    final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
   
     // 法線配列の有効化
     gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);
@@ -115,7 +115,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
     // 頂点バッファの指定
     gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
   
-    final int number = this.vertexArray.length/3;
+    final int number = vertexArray.length/3;
     gl.glDrawArrays(GL10.GL_TRIANGLES, 0, number);
   }
 
@@ -125,7 +125,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param color 色
    */
   public void setColor(String color) {
-    this.color = color;
+    this.object.setColor(color);
   }
   
   /**
@@ -134,7 +134,7 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * @param transparent 透明性
    */
   public void setTransparent(boolean transparent) {
-    this.transparent = transparent;
+    this.object.setTransparent(transparent);
   }
 
   /**
@@ -160,61 +160,6 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
     final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     buffer.put(array).position(0);
     return buffer;
-  }
-  
-  /**
-   * 頂点を頂点配列に追加します。
-   * 
-   * @param vertices 頂点
-   */
-  protected void appendVertices(float[][] vertices) {
-    for (int i = 0; i < vertices.length; i++) {
-      for (int j = 0; j < 3; j++) {
-        this.vertexArray[this.vertexPosition++] = vertices[i][j];
-      }
-    }
-  }
-
-  /**
-   * 三角形ポリゴンの法線ベクトルを法線ベクトル配列に3個追加します。
-   * 
-   * @param normalVector 法線ベクトル
-   */
-  protected void appendNormalVectorsOfTriangle(float[] normalVector) {
-    for (int i = 0; i < 3; i++) {
-      this.normalVectorArray[this.normalVectorPosition++] = normalVector[0];
-      this.normalVectorArray[this.normalVectorPosition++] = normalVector[1];
-      this.normalVectorArray[this.normalVectorPosition++] = normalVector[2];
-    }
-  }
-  
-  /**
-   * 三角形ポリゴンの法線ベクトルを法線ベクトル配列に追加します。
-   * 
-   * @param normalVector 法線ベクトル
-   */
-  protected void appendNormalVector(float[][] normalVector) {
-    for (int i = 0; i < normalVector.length; i++) {
-      for (int j = 0; j < 3; j++) {
-        this.normalVectorArray[this.normalVectorPosition++] = normalVector[i][j];
-      }
-    }
-  }
-
-  /**
-   * 頂点配列と法線ベクトル配列を準備します。
-   * 
-   * @param polygonSize ポリゴンの数 
-   */
-  protected void initializeArrays(int polygonSize) {
-    this.vertexPosition = 0;
-    this.normalVectorPosition = 0;
-    if (this.vertexArray == null || this.vertexArray.length != polygonSize*3*3) {
-      this.vertexArray = new float[polygonSize*3*3];
-    }
-    if (this.normalVectorArray == null || this.normalVectorArray.length != polygonSize*3*3) {
-      this.normalVectorArray = new float[polygonSize*3*3];
-    }
   }
 }
 
