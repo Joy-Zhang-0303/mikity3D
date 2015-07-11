@@ -25,7 +25,7 @@ public class JoglTrianglePolygon extends AbstractJoglObject {
     }
 
     final int polygonNumber = 1;
-    prepareArrays(polygonNumber);
+    initializeArrays(polygonNumber);
     
     float x0 = this.vertices[0][0];
     float y0 = this.vertices[0][1];

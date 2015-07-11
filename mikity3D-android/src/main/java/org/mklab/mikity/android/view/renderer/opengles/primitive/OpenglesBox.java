@@ -27,7 +27,7 @@ public class OpenglesBox extends AbstractOpenglesObject {
    */
   private void updatePolygons() {
     final int polygonNumber = 6*3;
-    prepareArrays(polygonNumber);
+    initializeArrays(polygonNumber);
     
     //   v5 -- v4
     //  /      /

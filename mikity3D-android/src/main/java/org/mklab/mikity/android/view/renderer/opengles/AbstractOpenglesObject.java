@@ -202,13 +202,17 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
   /**
    * 頂点配列と法線ベクトル配列を準備します。
    * 
-   * @param polygonNumber ポリゴンの数 
+   * @param polygonSize ポリゴンの数 
    */
-  protected void prepareArrays(int polygonNumber) {
+  protected void initializeArrays(int polygonSize) {
     this.vertexPosition = 0;
     this.normalVectorPosition = 0;
-    this.vertexArray = new float[polygonNumber*3*3];
-    this.normalVectorArray = new float[polygonNumber*3*3];
+    if (this.vertexArray == null || this.vertexArray.length != polygonSize*3*3) {
+      this.vertexArray = new float[polygonSize*3*3];
+    }
+    if (this.normalVectorArray == null || this.normalVectorArray.length != polygonSize*3*3) {
+      this.normalVectorArray = new float[polygonSize*3*3];
+    }
   }
 }
 

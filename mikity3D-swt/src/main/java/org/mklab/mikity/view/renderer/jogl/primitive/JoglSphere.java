@@ -25,7 +25,7 @@ public class JoglSphere extends AbstractJoglObject {
     }
     
     final int polygonNumber = this.division*this.division*2;
-    prepareArrays(polygonNumber);
+    initializeArrays(polygonNumber);
     
     final float incV = 2 * this.radius / this.division;
     final float incH = 360.f / this.division;

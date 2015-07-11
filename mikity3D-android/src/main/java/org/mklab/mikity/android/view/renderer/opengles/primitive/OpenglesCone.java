@@ -34,7 +34,7 @@ public class OpenglesCone extends AbstractOpenglesObject {
     final int lowerPolygonNumber = this.division;
     final int sidePolygonNumber = this.division;
     final int polygonNumber = lowerPolygonNumber + sidePolygonNumber;
-    prepareArrays(polygonNumber);
+    initializeArrays(polygonNumber);
     
     final float[] topPoint = new float[3];
     topPoint[0] = 0;

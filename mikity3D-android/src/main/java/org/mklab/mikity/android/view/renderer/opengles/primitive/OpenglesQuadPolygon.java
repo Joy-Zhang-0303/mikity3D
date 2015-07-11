@@ -29,7 +29,7 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
     }
     
     final int polygonNumber = 2;
-    prepareArrays(polygonNumber);
+    initializeArrays(polygonNumber);
     
     float x0 = this.vertices[0][0];
     float y0 = this.vertices[0][1];

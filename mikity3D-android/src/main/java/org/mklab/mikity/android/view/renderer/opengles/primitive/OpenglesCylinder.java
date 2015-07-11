@@ -35,7 +35,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     final int lowerPolygonNumber = this.division;
     final int sidePolygonNumber = this.division*2;
     final int polygonNumber = upperPolygonNumber + lowerPolygonNumber + sidePolygonNumber;
-    prepareArrays(polygonNumber);
+    initializeArrays(polygonNumber);
 
     final float[] upperCenterPoint = new float[3];
     upperCenterPoint[0] = 0;
