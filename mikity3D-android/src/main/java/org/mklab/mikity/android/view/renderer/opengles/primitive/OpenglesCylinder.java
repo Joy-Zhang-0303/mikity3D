@@ -24,15 +24,6 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
   private float height = 0;
   /** 分割数。 */
   private int division = 0;
-  
-  /** 上面ポリゴン。 */
-  private OpenglesTrianglePolygon[] upperPolygons;
-
-  /** 下面ポリゴン。 */
-  private OpenglesTrianglePolygon[] lowerPolygons;
-
-  /** 側面ポリゴン。 */
-  private OpenglesQuadPolygon[] sidePolygons;
 
   /**
    * {@inheritDoc}
@@ -41,11 +32,7 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     applyColor(gl);
     applyTransparency(gl);
     
-    for (int i = 0; i < this.division; i++) {
-      this.upperPolygons[i].display(gl);
-      this.lowerPolygons[i].display(gl);
-      this.sidePolygons[i].display(gl);
-    }
+    drawTrianglePolygons(gl);
   }
   
   /**
@@ -88,34 +75,89 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     lowerPoints[this.division][1] = (float)(this.radius * Math.sin(0));
     lowerPoints[this.division][2] = -this.height / 2.0f;
 
-    this.upperPolygons = new OpenglesTrianglePolygon[this.division];
+    prepareArrays();
+    
+    updateUpperPolygons(upperCenterPoint, upperPoints);
+    updateLowerPolygons(lowerCenterPoint, lowerPoints);
+    updateSidePolygons(upperPoints, lowerPoints);
+  }
+
+  /**
+   * 頂点配列と法線ベクトル配列を準備します。 
+   */
+  private void prepareArrays() {
+    final int upperPolygonNumber = this.division;
+    final int lowerPolygonNumber = this.division;
+    final int sidePolygonNumber = this.division*2;
+    final int polygonNumber = upperPolygonNumber + lowerPolygonNumber + sidePolygonNumber;
+
+    this.vertexPosition = 0;
+    this.normalVectorPosition = 0;
+    this.vertexArray = new float[polygonNumber*3*3];
+    this.normalVectorArray = new float[polygonNumber*3*3];
+  }
+  
+  /**
+   * 側面のポリゴンを生成します。
+   * 
+   * @param upperPoints 上面の周囲の頂点
+   * @param lowerPoints 下面の周囲の頂点
+   */
+  private void updateSidePolygons(final float[][] upperPoints, final float[][] lowerPoints) {
     for (int i = 0; i < this.division; i++) {
-      this.upperPolygons[i] = new OpenglesTrianglePolygon();
       final float[][] vertices = new float[3][3];
-      vertices[0][0] = upperCenterPoint[0];
-      vertices[0][1] = upperCenterPoint[1];
-      vertices[0][2] = upperCenterPoint[2];
+      vertices[0][0] = upperPoints[i][0];
+      vertices[0][1] = upperPoints[i][1];
+      vertices[0][2] = upperPoints[i][2];
       
-      vertices[1][0] = upperPoints[i][0];
-      vertices[1][1] = upperPoints[i][1];
-      vertices[1][2] = upperPoints[i][2];
+      vertices[1][0] = lowerPoints[i][0];
+      vertices[1][1] = lowerPoints[i][1];
+      vertices[1][2] = lowerPoints[i][2];
+
+      vertices[2][0] = lowerPoints[i+1][0];
+      vertices[2][1] = lowerPoints[i+1][1];
+      vertices[2][2] = lowerPoints[i+1][2];
+      
+      final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
+      final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
+      final float[] normalVector = v0.cross(v1).array();
+
+      appendVertices(vertices);
+      appendNormalVectorsOfTriangle(normalVector);
+    }
+    
+    for (int i = 0; i < this.division; i++) {
+      final float[][] vertices = new float[3][3];
+
+      vertices[0][0] = upperPoints[i][0];
+      vertices[0][1] = upperPoints[i][1];
+      vertices[0][2] = upperPoints[i][2];
+      
+      vertices[1][0] = lowerPoints[i+1][0];
+      vertices[1][1] = lowerPoints[i+1][1];
+      vertices[1][2] = lowerPoints[i+1][2];
 
       vertices[2][0] = upperPoints[i+1][0];
       vertices[2][1] = upperPoints[i+1][1];
       vertices[2][2] = upperPoints[i+1][2];
-
+      
       final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
       final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
-      final Vector3 normalVector = v0.cross(v1);
+      final float[] normalVector = v0.cross(v1).array();
 
-      this.upperPolygons[i].setVertices(vertices);
-      this.upperPolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
-      this.upperPolygons[i].setColor(getColor());
+      appendVertices(vertices);
+      appendNormalVectorsOfTriangle(normalVector);
     }
-    
-    this.lowerPolygons = new OpenglesTrianglePolygon[this.division];
+  }
+
+  /**
+   * 下面のポリゴンを更新します。
+   * 
+   * @param lowerCenterPoint 下面の中心
+   * @param lowerPoints 下面の周囲の頂点
+   */
+  private void updateLowerPolygons(final float[] lowerCenterPoint, final float[][] lowerPoints) {
     for (int i = 0; i < this.division; i++) {
-      this.lowerPolygons[i] = new OpenglesTrianglePolygon();
       final float[][] vertices = new float[3][3];
       vertices[0][0] = lowerCenterPoint[0];
       vertices[0][1] = lowerCenterPoint[1];
@@ -131,43 +173,42 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
 
       final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
       final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
-      final Vector3 normalVector = v0.cross(v1);
+      final float[] normalVector = v0.cross(v1).array();
 
-      this.lowerPolygons[i].setVertices(vertices);
-      this.lowerPolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
-      this.lowerPolygons[i].setColor(getColor());
-    }
-    
-    this.sidePolygons = new OpenglesQuadPolygon[this.division];
-    for (int i = 0; i < this.division; i++) {
-      this.sidePolygons[i] = new OpenglesQuadPolygon();
-      final float[][] vertices = new float[4][3];
-      vertices[0][0] = upperPoints[i][0];
-      vertices[0][1] = upperPoints[i][1];
-      vertices[0][2] = upperPoints[i][2];
-      
-      vertices[1][0] = lowerPoints[i][0];
-      vertices[1][1] = lowerPoints[i][1];
-      vertices[1][2] = lowerPoints[i][2];
-
-      vertices[2][0] = lowerPoints[i+1][0];
-      vertices[2][1] = lowerPoints[i+1][1];
-      vertices[2][2] = lowerPoints[i+1][2];
-
-      vertices[3][0] = upperPoints[i+1][0];
-      vertices[3][1] = upperPoints[i+1][1];
-      vertices[3][2] = upperPoints[i+1][2];
-      
-      final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
-      final Vector3 v1 = new Vector3(vertices[3][0] - vertices[0][0], vertices[3][1] - vertices[0][1], vertices[3][2] - vertices[0][2]);
-      final Vector3 normalVector = v0.cross(v1);
-
-      this.sidePolygons[i].setVertices(vertices);
-      this.sidePolygons[i].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
-      this.sidePolygons[i].setColor(getColor());
+      appendVertices(vertices);
+      appendNormalVectorsOfTriangle(normalVector);
     }
   }
 
+  /**
+   * 上面のポリゴンを更新します。
+   * 
+   * @param upperCenterPoint 上面の中心
+   * @param upperPoints 上面の周囲の頂点
+   */
+  private void updateUpperPolygons(final float[] upperCenterPoint, final float[][] upperPoints) {
+    for (int i = 0; i < this.division; i++) {
+      final float[][] vertices = new float[3][3];
+      vertices[0][0] = upperCenterPoint[0];
+      vertices[0][1] = upperCenterPoint[1];
+      vertices[0][2] = upperCenterPoint[2];
+      
+      vertices[1][0] = upperPoints[i][0];
+      vertices[1][1] = upperPoints[i][1];
+      vertices[1][2] = upperPoints[i][2];
+
+      vertices[2][0] = upperPoints[i+1][0];
+      vertices[2][1] = upperPoints[i+1][1];
+      vertices[2][2] = upperPoints[i+1][2];
+
+      final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
+      final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
+      final float[] normalVector = v0.cross(v1).array();
+
+      appendVertices(vertices);
+      appendNormalVectorsOfTriangle(normalVector);
+    }
+  }
 
   /**
    * 大きさを設定します。
@@ -180,27 +221,10 @@ public class OpenglesCylinder extends AbstractOpenglesObject {
     this.height = height;
     updatePolygons();
   }
-  
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setColor(final String color) {
-    super.setColor(color);
-    
-    if (this.upperPolygons == null || this.lowerPolygons == null || this.sidePolygons == null) {
-      return;
-    }
-    
-    for (int i = 0; i < this.division; i++) {
-      this.upperPolygons[i].setColor(color);
-      this.lowerPolygons[i].setColor(color);
-      this.sidePolygons[i].setColor(color);
-    }
-  }
-  
+
   /**
    * 分割数を設定します。
+   * 
    * @param division 分割数
    */
   public void setDivision(int division) {

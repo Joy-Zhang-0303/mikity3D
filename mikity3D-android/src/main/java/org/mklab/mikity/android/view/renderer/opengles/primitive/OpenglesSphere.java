@@ -21,9 +21,6 @@ public class OpenglesSphere extends AbstractOpenglesObject {
   private float radius = 0;
   /** 分割数。 */
   private int division = 0;
-  
-  /** ポリゴン。 */
-  private OpenglesQuadPolygon[][] polygons;
 
   /**
    * {@inheritDoc}
@@ -31,12 +28,8 @@ public class OpenglesSphere extends AbstractOpenglesObject {
   public void display(GL10 gl) {
     applyColor(gl);
     applyTransparency(gl);
-    
-    for (int i = 0; i < this.division; ++i) {
-      for (int j = 0; j < this.division; ++j) {
-        this.polygons[i][j].display(gl);
-      }
-    }
+
+    drawTrianglePolygons(gl);
   }
   
   /**
@@ -74,12 +67,63 @@ public class OpenglesSphere extends AbstractOpenglesObject {
       points[grid][j][2] = this.radius;
     }
     
-    this.polygons = new OpenglesQuadPolygon[grid][grid];
+    prepareArrays();
     
-    for (int i = 0; i < grid; ++i) {
-      for (int j = 0; j < grid; ++j) {
-        this.polygons[i][j] = new OpenglesQuadPolygon();
-        final float[][] vertices = new float[4][3];
+    updateLowerRightPolygons(points);
+    updateUpperLeftPolygons(points);
+  }
+  
+  /**
+   * 頂点配列と法線ベクトル配列を準備します。 
+   */
+  private void prepareArrays() {
+    final int polygonNumber = this.division*this.division*2;
+
+    this.vertexPosition = 0;
+    this.normalVectorPosition = 0;
+    this.vertexArray = new float[polygonNumber*3*3];
+    this.normalVectorArray = new float[polygonNumber*3*3];
+  }
+
+  /**
+   * 四角形セグメントの左上のポリゴンを更新します。
+   * @param points 球面上の格子点
+   */
+  private void updateUpperLeftPolygons(final float[][][] points) {
+    for (int i = 0; i < this.division; ++i) {
+      for (int j = 0; j < this.division; ++j) {
+        final float[][] vertices = new float[3][3];
+        vertices[0][0] = points[i][j][0];
+        vertices[0][1] = points[i][j][1];
+        vertices[0][2] = points[i][j][2];
+
+        vertices[1][0] = points[i+1][j+1][0];
+        vertices[1][1] = points[i+1][j+1][1];
+        vertices[1][2] = points[i+1][j+1][2];
+
+        vertices[2][0] = points[i+1][j][0];
+        vertices[2][1] = points[i+1][j][1];
+        vertices[2][2] = points[i+1][j][2];
+
+        final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
+        final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
+        final float[] normalVector = v0.cross(v1).array();
+        
+        appendVertices(vertices);
+        appendNormalVectorsOfTriangle(normalVector);
+      }
+    }
+  }
+
+  /**
+   * 四角形セグメントの右下のポリゴンを更新します。
+   * 
+   * @param points 球面上の格子点
+   */
+  private void updateLowerRightPolygons(final float[][][] points) {
+    for (int i = 0; i < this.division; ++i) {
+      for (int j = 0; j < this.division; ++j) {
+        final float[][] vertices = new float[3][3];
         vertices[0][0] = points[i][j][0];
         vertices[0][1] = points[i][j][1];
         vertices[0][2] = points[i][j][2];
@@ -92,21 +136,18 @@ public class OpenglesSphere extends AbstractOpenglesObject {
         vertices[2][1] = points[i+1][j+1][1];
         vertices[2][2] = points[i+1][j+1][2];
 
-        vertices[3][0] = points[i+1][j][0];
-        vertices[3][1] = points[i+1][j][1];
-        vertices[3][2] = points[i+1][j][2];
-
         final Vector3 v0 = new Vector3(vertices[1][0] - vertices[0][0], vertices[1][1] - vertices[0][1], vertices[1][2] - vertices[0][2]);
         final Vector3 v1 = new Vector3(vertices[2][0] - vertices[0][0], vertices[2][1] - vertices[0][1], vertices[2][2] - vertices[0][2]);
-        final Vector3 normalVector = v0.cross(v1);
-        
-        this.polygons[i][j].setVertices(vertices);
-        this.polygons[i][j].setNormalVector(new float[]{normalVector.getX(), normalVector.getY(), normalVector.getZ()});
+        final float[] normalVector = v0.cross(v1).array();
+  
+        appendVertices(vertices);
+        appendNormalVectorsOfTriangle(normalVector);
       }
     }
   }
+
   /**
-   * 半径を設定します。
+   * 大きさを設定します。
    * 
    * @param radius 半径
    */

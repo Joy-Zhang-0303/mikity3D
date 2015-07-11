@@ -157,5 +157,27 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[2];
     }
   }
+
+  /**
+   * 三角形ポリゴンを描画します。
+   * @param gl GL
+   */
+  protected void drawTrianglePolygons(GL10 gl) {
+    final FloatBuffer vertexBuffer = makeFloatBuffer(this.vertexArray);
+    final FloatBuffer normalBuffer = makeFloatBuffer(this.normalVectorArray);
+  
+    // 法線配列の有効化
+    gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);
+    // 法線バッファの指定
+    gl.glNormalPointer(GL10.GL_FLOAT, 0, normalBuffer);
+    
+    // 頂点配列の有効化
+    gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+    // 頂点バッファの指定
+    gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
+  
+    final int number = this.vertexArray.length/3;
+    gl.glDrawArrays(GL10.GL_TRIANGLES, 0, number);
+  }
 }
 

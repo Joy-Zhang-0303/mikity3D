@@ -5,8 +5,6 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import java.nio.FloatBuffer;
-
 import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
@@ -31,7 +29,17 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
     applyColor(gl);
     applyTransparency(gl);
 
-    // 頂点バッファの生成
+    drawTrianglePolygons(gl);
+  }
+
+  /**
+   * ポリゴンを更新します。 
+   */
+  private void updatePolygons() {
+    if (this.vertices == null || this.normalVector == null) {
+      return;
+    }
+    
     float x0 = this.vertices[0][0];
     float y0 = this.vertices[0][1];
     float z0 = this.vertices[0][2];
@@ -48,7 +56,7 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
     float y3 = this.vertices[3][1];
     float z3 = this.vertices[3][2];
     
-    final float[] vertexArray = {
+    this.vertexArray = new float[]{
         x0, y0, z0, x1, y1, z1, x2, y2, z2,
         x0, y0, z0, x2, y2, z2, x3, y3, z3};
     
@@ -56,39 +64,29 @@ public class OpenglesQuadPolygon extends AbstractOpenglesObject {
     final float ny = this.normalVector[1];
     final float nz = this.normalVector[2];
     
-    final float[] normalVectorArray = {nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz};
-    
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
-    final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
-
-    // 法線配列の有効化
-    gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);
-    // 法線バッファの指定
-    gl.glNormalPointer(GL10.GL_FLOAT, 0, normalBuffer);
-
-    // 頂点配列の有効化
-    gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-    // 頂点バッファの指定
-    gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
-
-    //プリミティブの描画
-    gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 6);
+    this.normalVectorArray = new float[]{nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz};
   } 
 
   /**
    * 4個の頂点を設定します。
+   * 
    * @param vertices 4個の頂点
    */
   public void setVertices(float[][] vertices) {
     this.vertices = vertices;
+    
+    updatePolygons();
   }
   
   /**
    * 法線ベクトルを設定します。
+   * 
    * @param normalVector 法線ベクトル
    */
   public void setNormalVector(float[] normalVector) {
     this.normalVector = normalVector;
+    
+    updatePolygons();
   }
 }
 

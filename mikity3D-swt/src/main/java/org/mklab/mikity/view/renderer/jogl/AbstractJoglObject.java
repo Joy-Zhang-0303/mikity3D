@@ -14,7 +14,7 @@ import javax.media.opengl.GL2;
 import javax.media.opengl.fixedfunc.GLPointerFunc;
 
 /**
- * {@link JoglObject}の抽象クラスです。
+ * JOGLのオブジェクトを表すの抽象クラスです。
  * 
  * @author koga
  * @version $Revision$, 2012/12/17

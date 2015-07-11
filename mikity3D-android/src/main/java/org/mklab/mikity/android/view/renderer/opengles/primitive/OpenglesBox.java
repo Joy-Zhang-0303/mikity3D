@@ -5,8 +5,6 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import java.nio.FloatBuffer;
-
 import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
@@ -32,7 +30,14 @@ public class OpenglesBox extends AbstractOpenglesObject {
   public void display(GL10 gl) {
     applyColor(gl);
     applyTransparency(gl);
-    
+
+    drawTrianglePolygons(gl);
+  }
+
+  /**
+   * ポリゴンを更新します。 
+   */
+  private void updatePolygons() {
     //   v5 -- v4
     //  /      /
     // v1 -- v0
@@ -73,8 +78,7 @@ public class OpenglesBox extends AbstractOpenglesObject {
     float y7 = this.width / 2;
     float z7 = -this.height / 2;
     
-    //final float[] vertices = {x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4, x5, y5, z5, x6, y6, z6, x7, y7, z7};
-    final float[] vertices = {
+    this.vertexArray = new float[]{
         x0, y0, z0, x4, y4, z4, x1, y1, z1,
         x1, y1, z1, x4, y4, z4, x5, y5, z5, 
         x1, y1, z1, x5, y5, z5, x2, y2, z2,
@@ -88,7 +92,7 @@ public class OpenglesBox extends AbstractOpenglesObject {
         x0, y0, z0, x1, y1, z1, x3, y3, z3,
         x1, y1, z1, x2, y2, z2, x3, y3, z3};
       
-    final float[] normals = 
+    this.normalVectorArray = new float[] 
       {0, 0, 1,
         0, 0, 1,
         0, 0, 1,
@@ -125,23 +129,6 @@ public class OpenglesBox extends AbstractOpenglesObject {
         1, 0, 0,
         1, 0, 0,
         1, 0, 0};
-
-    final FloatBuffer vertexBuffer = makeFloatBuffer(vertices);
-    final FloatBuffer normalBuffer = makeFloatBuffer(normals);
-
-    // 法線配列の有効化
-    gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);
-    // 法線バッファの指定
-    gl.glNormalPointer(GL10.GL_FLOAT, 0, normalBuffer);
-    
-    // 頂点配列の有効化
-    gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-    // 頂点バッファの指定
-    gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
-
-    gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 36);
-    
-    gl.glFlush();
   }
 
   /**
@@ -155,5 +142,7 @@ public class OpenglesBox extends AbstractOpenglesObject {
     this.width = width;
     this.height = height;
     this.depth = depth;
+    
+    updatePolygons();
   }
 }
