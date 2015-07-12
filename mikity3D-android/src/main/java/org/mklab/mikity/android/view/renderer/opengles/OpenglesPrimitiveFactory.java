@@ -14,7 +14,6 @@ import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesQuadPol
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesSphere;
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesTrianglePolygon;
 import org.mklab.mikity.model.CoordinateParameter;
-import org.mklab.mikity.model.DHParameter;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.Translation;
@@ -274,10 +273,9 @@ public class OpenglesPrimitiveFactory {
    * 
    * @param polygon 三角形のポリゴン
    * @param coordinateParameters リンクパラメータ
-   * @param dhParameters DHパラメータ
    * @return 与えられた三角形ポリゴンを含むグループを生成します。
    */
-  public static OpenglesObjectGroup create(XMLTrianglePolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
+  public static OpenglesObjectGroup create(XMLTrianglePolygon polygon, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[3][3];
     for (int i = 0; i < 3; i++) {
       final Vertex vertex = polygon.getVertex(i);
@@ -304,7 +302,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
     
-    if (dhParameters == null && coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
+    if (coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
       final Translation polygonTranslation = polygon.getTranslation();
       final Rotation polygonRotation = polygon.getRotation();
       
@@ -338,9 +336,10 @@ public class OpenglesPrimitiveFactory {
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
       coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setBaseCoordinate(coordinate);
-    } else if (dhParameters != null) {
-      final OpenglesCoordinate coordinate = createDhParameterCoordinate(dhParameters);
-      group.setBaseCoordinate(coordinate);
+//    } else if (dhParameters != null) {
+//      final OpenglesCoordinate coordinate = createDhParameterCoordinate(dhParameters);
+//      group.setBaseCoordinate(coordinate);
+//    } 
     } else if (coordinateParameters != null) {
       final OpenglesCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
@@ -356,10 +355,9 @@ public class OpenglesPrimitiveFactory {
    * 
    * @param polygon 四角形のポリゴン
    * @param coordinateParameters リンクパラメータ
-   * @param dhParameters DHパラメータ
    * @return　与えられた四角形ポリゴンを含むグループ
    */
-  public static OpenglesObjectGroup create(XMLQuadPolygon polygon, List<DHParameter> dhParameters, List<CoordinateParameter> coordinateParameters) {
+  public static OpenglesObjectGroup create(XMLQuadPolygon polygon, List<CoordinateParameter> coordinateParameters) {
     final float[][] points = new float[4][3];
     for (int i = 0; i < 4; i++) {
       final Vertex vertex = polygon.getVertex(i);
@@ -386,7 +384,7 @@ public class OpenglesPrimitiveFactory {
         
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
     
-    if (dhParameters == null && coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
+    if (coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
       final Translation polygonTranslation = polygon.getTranslation();
       final Rotation polygonRotation = polygon.getRotation();
       if (polygonTranslation != null && polygonRotation != null) {
@@ -419,9 +417,10 @@ public class OpenglesPrimitiveFactory {
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
       coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setBaseCoordinate(coordinate);
-    } else if (dhParameters != null) {
-      final OpenglesCoordinate coordinate = createDhParameterCoordinate(dhParameters);
-      group.setBaseCoordinate(coordinate);
+//    } else if (dhParameters != null) {
+//      final OpenglesCoordinate coordinate = createDhParameterCoordinate(dhParameters);
+//      group.setBaseCoordinate(coordinate);
+//    } 
     } else if (coordinateParameters != null) {
       final OpenglesCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
@@ -458,28 +457,28 @@ public class OpenglesPrimitiveFactory {
     return coordinate;
   }
 
-  /**
-   * @param parameters DHパラメータのリスト
-   */
-  private static OpenglesCoordinate createDhParameterCoordinate(List<DHParameter> parameters) {
-    float a = 0; 
-    float alpha = 0; 
-    float d = 0; 
-    float theta = 0;
-    
-    for (final DHParameter parameter : parameters) {
-      a += parameter.getA();
-      alpha += parameter.getAlpha();
-      d += parameter.getD();
-      theta += parameter.getTheta();
-    }
-
-    final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-    coordinate.setTranslation(a, 0, d);
-    coordinate.setRotation(alpha, 0, theta);
-      
-    return coordinate;
-  }
+//  /**
+//   * @param parameters DHパラメータのリスト
+//   */
+//  private static OpenglesCoordinate createDhParameterCoordinate(List<DHParameter> parameters) {
+//    float a = 0; 
+//    float alpha = 0; 
+//    float d = 0; 
+//    float theta = 0;
+//    
+//    for (final DHParameter parameter : parameters) {
+//      a += parameter.getA();
+//      alpha += parameter.getAlpha();
+//      d += parameter.getD();
+//      theta += parameter.getTheta();
+//    }
+//
+//    final OpenglesCoordinate coordinate = new OpenglesCoordinate();
+//    coordinate.setTranslation(a, 0, d);
+//    coordinate.setRotation(alpha, 0, theta);
+//      
+//    return coordinate;
+//  }
 }
 
 

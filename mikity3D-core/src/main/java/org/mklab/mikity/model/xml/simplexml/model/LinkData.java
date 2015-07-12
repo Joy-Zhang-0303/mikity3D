@@ -122,16 +122,16 @@ public class LinkData implements java.io.Serializable {
     this.target = target;
   }
 
-  /**
-   * DHパラメータをもつか判別します。
-   * @return DHパラメータを持つならばtrue
-   */
-  public boolean hasDHParameter() {
-    if (this.target.equals("a") || this.target.equals("alpha") || this.target.equals("d") || this.target.equals("theta")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-      return true;
-    }
-    return false;
-  }
+//  /**
+//   * DHパラメータをもつか判別します。
+//   * @return DHパラメータを持つならばtrue
+//   */
+//  public boolean hasDHParameter() {
+//    if (this.target.equals("a") || this.target.equals("alpha") || this.target.equals("d") || this.target.equals("theta")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+//      return true;
+//    }
+//    return false;
+//  }
 
   /**
    * 座標パラメータをもつか判別します。

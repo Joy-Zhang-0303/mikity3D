@@ -672,10 +672,11 @@ public class SceneGraphTree {
     for (int i = 0; i < groups.length; i++) {
       final LinkData[] links = groups[i].getLinkData();
       for (int j = 0; j < links.length; j++) {
-        if (links[j].hasDHParameter()) {
-          this.usedDHParameter = true;
-          break;
-        } else if (links[j].hasCoordinateParameter()) {
+//        if (links[j].hasDHParameter()) {
+//          this.usedDHParameter = true;
+//          break;
+//        } else 
+        if (links[j].hasCoordinateParameter()) {
           this.usedCoordinateParameter = true;
           break;
         }

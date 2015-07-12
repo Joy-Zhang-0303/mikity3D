@@ -69,17 +69,17 @@ public class ObjectGroupManager {
     this.endTime = Math.max(this.endTime, picker.getEndTime());
   }
 
-  /**
-   * 指定された時刻のデータで可動グループを更新します。
-   * 
-   * @param t 時刻
-   */
-  public void updateObjectGroupsWithDHParameter(final double t) {
-    for (final ObjectGroup objectGroup : this.objectGroups) {
-      final DataPicker picker = this.pickers.get(objectGroup);
-      objectGroup.setDHParameter(picker.getDHParameter(t));
-    }
-  }
+//  /**
+//   * 指定された時刻のデータで可動グループを更新します。
+//   * 
+//   * @param t 時刻
+//   */
+//  public void updateObjectGroupsWithDHParameter(final double t) {
+//    for (final ObjectGroup objectGroup : this.objectGroups) {
+//      final DataPicker picker = this.pickers.get(objectGroup);
+//      objectGroup.setDHParameter(picker.getDHParameter(t));
+//    }
+//  }
 
   /**
    * 指定された時刻のデータでオブジェクトグループを更新します。
@@ -121,26 +121,27 @@ public class ObjectGroupManager {
   private DataPicker createPicker(final Matrix data, final LinkData[] links) {
     final DataPicker picker = new ClosenessDataPicker(data);
     for (final LinkData link : links) {
-      if (link.hasDHParameter()) {
-        if (link.hasNumber()) {
-          final int dataNumber = link.getNumber();
-          final String parameterName = link.getTarget();
-          final DHParameterType type;
-
-          if (parameterName.equals("a")) { //$NON-NLS-1$
-            type = DHParameterType.A;
-          } else if (parameterName.equals("alpha")) { //$NON-NLS-1$
-            type = DHParameterType.ALPHA;
-          } else if (parameterName.equals("d")) { //$NON-NLS-1$
-            type = DHParameterType.D;
-          } else if (parameterName.equals("theta")) { //$NON-NLS-1$
-            type = DHParameterType.THETA;
-          } else {
-            throw new IllegalArgumentException(Messages.getString("MovableGroupManager.0")); //$NON-NLS-1$
-          }
-          picker.pickup(type, dataNumber);
-        }
-      } else if (link.hasCoordinateParameter()) {
+//      if (link.hasDHParameter()) {
+//        if (link.hasNumber()) {
+//          final int dataNumber = link.getNumber();
+//          final String parameterName = link.getTarget();
+//          final DHParameterType type;
+//
+//          if (parameterName.equals("a")) { //$NON-NLS-1$
+//            type = DHParameterType.A;
+//          } else if (parameterName.equals("alpha")) { //$NON-NLS-1$
+//            type = DHParameterType.ALPHA;
+//          } else if (parameterName.equals("d")) { //$NON-NLS-1$
+//            type = DHParameterType.D;
+//          } else if (parameterName.equals("theta")) { //$NON-NLS-1$
+//            type = DHParameterType.THETA;
+//          } else {
+//            throw new IllegalArgumentException(Messages.getString("MovableGroupManager.0")); //$NON-NLS-1$
+//          }
+//          picker.pickup(type, dataNumber);
+//        }
+//      } else 
+      if (link.hasCoordinateParameter()) {
         if (link.hasNumber()) {
           final int dataNumber = link.getNumber();
           final String parameterName = link.getTarget();

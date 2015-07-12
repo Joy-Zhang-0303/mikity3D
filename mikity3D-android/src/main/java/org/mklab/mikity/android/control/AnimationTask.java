@@ -102,15 +102,21 @@ public class AnimationTask extends TimerTask {
     final long ctime = SystemClock.uptimeMillis()-this.delayTime;
     this.currentTime = this.speedScale*(ctime- this.initialTime)/1000;
     
-    if (this.manager.hasDHParameter()) {
+//    if (this.manager.hasDHParameter()) {
+//      try {
+//        this.manager.updateObjectGroupsWithDHParameter(this.currentTime);
+//      } catch(ConcurrentModificationException e) {
+//        //　再生中に再読み込みが何度も押されすぎたら落ちてしまうので、そのエラーをキャッチしています。
+//        e.getMessage();
+//      }
+//    } else 
+    if (this.manager.hasCoordinateParameter()) {
       try {
-        this.manager.updateObjectGroupsWithDHParameter(this.currentTime);
+        this.manager.updateObjectGroupsWithCoordinateParameter(this.currentTime);
       } catch(ConcurrentModificationException e) {
         //　再生中に再読み込みが何度も押されすぎたら落ちてしまうので、そのエラーをキャッチしています。
         e.getMessage();
       }
-    } else if (this.manager.hasCoordinateParameter()) {
-      this.manager.updateObjectGroupsWithCoordinateParameter(this.currentTime);
     }
 
     if (this.renderer.isRequiredToCallDisplay()) {

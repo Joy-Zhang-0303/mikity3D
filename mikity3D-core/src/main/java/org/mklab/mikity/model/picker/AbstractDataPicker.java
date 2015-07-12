@@ -7,8 +7,6 @@ package org.mklab.mikity.model.picker;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.CoordinateParameterType;
-import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.DHParameterType;
 import org.mklab.mikity.util.Util;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;
@@ -22,8 +20,8 @@ import org.mklab.nfc.matrix.Matrix;
 public abstract class AbstractDataPicker implements DataPicker {
   /** データ。 */
   private DoubleMatrix data;
-  /** DHパラメータ */
-  protected DHParameter[] dhParameters;
+//  /** DHパラメータ */
+//  protected DHParameter[] dhParameters;
   /** 座標パラメータ */
   protected CoordinateParameter[] coordinateParameters;
 
@@ -40,10 +38,10 @@ public abstract class AbstractDataPicker implements DataPicker {
 
     final int movableObjectSize = data.getColumnSize();
     
-    this.dhParameters = new DHParameter[movableObjectSize];
-    for (int i = 0; i < movableObjectSize; i++) {
-      this.dhParameters[i] = new DHParameter();
-    }
+//    this.dhParameters = new DHParameter[movableObjectSize];
+//    for (int i = 0; i < movableObjectSize; i++) {
+//      this.dhParameters[i] = new DHParameter();
+//    }
     
     this.coordinateParameters = new CoordinateParameter[movableObjectSize];
     for (int i = 0; i < movableObjectSize; i++) {
@@ -54,48 +52,48 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void pickup(DHParameterType type, int dataIndex) {
-    if (this.data.getRowSize() < dataIndex) {
-      throw new IllegalArgumentException(); 
-    }
-
-    switch (type) {
-      case A:
-        for (int i = 0; i < this.dhParameters.length; i++) {
-          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          this.dhParameters[i].setA(value / dataScale);
-        }
-        break;
-      case ALPHA:
-        for (int i = 0; i < this.dhParameters.length; i++) {
-          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          if (dataIsRadian) {
-            this.dhParameters[i].setAlpha(value);
-          } else {
-            this.dhParameters[i].setAlpha(Math.toRadians(value));
-          }
-        }
-        break;
-      case D:
-        for (int i = 0; i < this.dhParameters.length; i++) {
-          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          this.dhParameters[i].setD(value / dataScale);
-        }
-        break;
-      case THETA:
-        for (int i = 0; i < this.dhParameters.length; i++) {
-          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          if (dataIsRadian) {
-            this.dhParameters[i].setTheta(value);
-          } else {
-            this.dhParameters[i].setTheta(Math.toRadians(value));
-          }
-        }
-        break;
-      default:
-        throw new AssertionError(Messages.getString("DataPicker.0")); //$NON-NLS-1$
-    }
-  }
+//  public final void pickup(DHParameterType type, int dataIndex) {
+//    if (this.data.getRowSize() < dataIndex) {
+//      throw new IllegalArgumentException(); 
+//    }
+//
+//    switch (type) {
+//      case A:
+//        for (int i = 0; i < this.dhParameters.length; i++) {
+//          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
+//          this.dhParameters[i].setA(value / dataScale);
+//        }
+//        break;
+//      case ALPHA:
+//        for (int i = 0; i < this.dhParameters.length; i++) {
+//          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
+//          if (dataIsRadian) {
+//            this.dhParameters[i].setAlpha(value);
+//          } else {
+//            this.dhParameters[i].setAlpha(Math.toRadians(value));
+//          }
+//        }
+//        break;
+//      case D:
+//        for (int i = 0; i < this.dhParameters.length; i++) {
+//          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
+//          this.dhParameters[i].setD(value / dataScale);
+//        }
+//        break;
+//      case THETA:
+//        for (int i = 0; i < this.dhParameters.length; i++) {
+//          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
+//          if (dataIsRadian) {
+//            this.dhParameters[i].setTheta(value);
+//          } else {
+//            this.dhParameters[i].setTheta(Math.toRadians(value));
+//          }
+//        }
+//        break;
+//      default:
+//        throw new AssertionError(Messages.getString("DataPicker.0")); //$NON-NLS-1$
+//    }
+//  }
 
   /**
    * {@inheritDoc}
@@ -159,48 +157,48 @@ public abstract class AbstractDataPicker implements DataPicker {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public void setParameter(DHParameterType type, double value) {
-    switch (type) {
-      case A:
-        for (int i = 0; i < this.dhParameters.length; i++) {
-          final double a = this.dhParameters[i].getA();
-          this.dhParameters[i].setA(a + value / modelScale);
-        }
-        break;
-      case ALPHA:
-        for (int i = 0; i < this.dhParameters.length; i++) {
-          final double alpha = this.dhParameters[i].getAlpha();
-          if (Util.radian) {
-            this.dhParameters[i].setAlpha(alpha + value);
-          } else {
-            this.dhParameters[i].setAlpha(alpha + Math.toRadians(value));
-          }
-        }
-
-        break;
-      case D:
-        for (int i = 0; i < this.dhParameters.length; i++) {
-          final double d = this.dhParameters[i].getD();
-          this.dhParameters[i].setD(d + value / modelScale);
-        }
-        break;
-      case THETA:
-        for (int i = 0; i < this.dhParameters.length; i++) {
-          final double theta = this.dhParameters[i].getTheta();
-          if (Util.radian) {
-            this.dhParameters[i].setTheta(theta + value );
-          } else {
-            this.dhParameters[i].setTheta(theta + Math.toRadians(value));
-          }
-        }
-        break;
-      default:
-        throw new AssertionError(Messages.getString("DataPicker.2")); //$NON-NLS-1$
-    }
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void setParameter(DHParameterType type, double value) {
+//    switch (type) {
+//      case A:
+//        for (int i = 0; i < this.dhParameters.length; i++) {
+//          final double a = this.dhParameters[i].getA();
+//          this.dhParameters[i].setA(a + value / modelScale);
+//        }
+//        break;
+//      case ALPHA:
+//        for (int i = 0; i < this.dhParameters.length; i++) {
+//          final double alpha = this.dhParameters[i].getAlpha();
+//          if (Util.radian) {
+//            this.dhParameters[i].setAlpha(alpha + value);
+//          } else {
+//            this.dhParameters[i].setAlpha(alpha + Math.toRadians(value));
+//          }
+//        }
+//
+//        break;
+//      case D:
+//        for (int i = 0; i < this.dhParameters.length; i++) {
+//          final double d = this.dhParameters[i].getD();
+//          this.dhParameters[i].setD(d + value / modelScale);
+//        }
+//        break;
+//      case THETA:
+//        for (int i = 0; i < this.dhParameters.length; i++) {
+//          final double theta = this.dhParameters[i].getTheta();
+//          if (Util.radian) {
+//            this.dhParameters[i].setTheta(theta + value );
+//          } else {
+//            this.dhParameters[i].setTheta(theta + Math.toRadians(value));
+//          }
+//        }
+//        break;
+//      default:
+//        throw new AssertionError(Messages.getString("DataPicker.2")); //$NON-NLS-1$
+//    }
+//  }
 
   /**
    * {@inheritDoc}

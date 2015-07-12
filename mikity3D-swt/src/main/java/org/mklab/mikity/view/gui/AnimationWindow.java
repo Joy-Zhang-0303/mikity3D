@@ -574,9 +574,10 @@ public class AnimationWindow extends ApplicationWindow {
     for (final Group group : groups) {
       final LinkData[] links = group.getLinkData();
       for (final LinkData link : links) {
-        if (link.hasDHParameter()) {
-          this.manager.setHasDHParameter(true);
-        } else if (link.hasCoordinateParameter()) {
+//        if (link.hasDHParameter()) {
+//          this.manager.setHasDHParameter(true);
+//        } else 
+        if (link.hasCoordinateParameter()) {
           this.manager.setHasCoordinateParameter(true);
         }
       }

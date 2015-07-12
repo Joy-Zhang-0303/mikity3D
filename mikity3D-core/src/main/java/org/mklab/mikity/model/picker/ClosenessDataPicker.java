@@ -6,7 +6,6 @@
 package org.mklab.mikity.model.picker;
 
 import org.mklab.mikity.model.CoordinateParameter;
-import org.mklab.mikity.model.DHParameter;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.IntMatrix;
 import org.mklab.nfc.matrix.Matrix;
@@ -40,13 +39,13 @@ public class ClosenessDataPicker extends AbstractDataPicker {
     return rowColumn.getIntElement(1);
   }
   
-  /**
-   * {@inheritDoc}
-   */
-  public DHParameter getDHParameter(double t) {
-    final int number = getDataNumber(t);
-    return this.dhParameters[number - 1];
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public DHParameter getDHParameter(double t) {
+//    final int number = getDataNumber(t);
+//    return this.dhParameters[number - 1];
+//  }
 
   /**
    * {@inheritDoc}

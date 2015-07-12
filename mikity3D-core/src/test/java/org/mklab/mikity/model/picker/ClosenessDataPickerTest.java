@@ -12,8 +12,8 @@ import java.io.InputStreamReader;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mklab.mikity.model.DHParameter;
-import org.mklab.mikity.model.DHParameterType;
+import org.mklab.mikity.model.CoordinateParameter;
+import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
@@ -44,19 +44,19 @@ public class ClosenessDataPickerTest {
   public void testGetParameter() {
     final DataPicker picker = new ClosenessDataPicker(this.data);
     
-    picker.pickup(DHParameterType.D, 2);
+    picker.pickup(CoordinateParameterType.TRANSLATION_X, 2);
     
     final double t1 = 13.59;
-    DHParameter param1 = picker.getDHParameter(t1);
-    assertTrue(8.921 == param1.getD());
+    CoordinateParameter param1 = picker.getCoordinateParameter(t1);
+    assertTrue(8.921 == param1.getTranslationX());
 
     final double t2 = 2.86033300E+00;
-    DHParameter param2 = picker.getDHParameter(t2);
-    assertTrue(8.921 == param2.getD());
-    assertTrue(0.0 == param2.getAlpha());
+    CoordinateParameter  param2 = picker.getCoordinateParameter(t2);
+    assertTrue(8.921 == param2.getTranslationX());
+    assertTrue(0.0 == param2.getRotationX());
 
-    picker.pickup(DHParameterType.ALPHA, 3);
+    picker.pickup(CoordinateParameterType.ROTATION_X, 3);
     
-    assertTrue(-0.010995 == param2.getAlpha());
+    assertTrue(-0.010995 == param2.getRotationX());
   }
 }
