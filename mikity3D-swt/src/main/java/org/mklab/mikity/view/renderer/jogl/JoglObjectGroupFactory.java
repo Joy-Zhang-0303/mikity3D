@@ -49,14 +49,9 @@ public class JoglObjectGroupFactory {
     }
 
     final List<CoordinateParameter> coordinateParameters = new ArrayList<>();
-    //final List<DHParameter> dhParameters = new ArrayList<>();
     
     final LinkData[] links = group.getLinkData();
     for (final LinkData link : links) {
-//      if (link.hasDHParameter()) {
-//        dhParameters.add(Util.getDHParameter(links));
-//        break;
-//      } else 
       if (link.hasCoordinateParameter()) {
         coordinateParameters.add(Util.getCoordinateParameter(links));
         break;

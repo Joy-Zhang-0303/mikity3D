@@ -38,14 +38,6 @@ public class ClosenessDataPicker extends AbstractDataPicker {
     final IntMatrix rowColumn = timeDifferences.minimumRowWise().getIndices();
     return rowColumn.getIntElement(1);
   }
-  
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public DHParameter getDHParameter(double t) {
-//    final int number = getDataNumber(t);
-//    return this.dhParameters[number - 1];
-//  }
 
   /**
    * {@inheritDoc}

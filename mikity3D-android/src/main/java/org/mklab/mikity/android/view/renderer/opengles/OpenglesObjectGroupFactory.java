@@ -56,14 +56,9 @@ public class OpenglesObjectGroupFactory {
     }
 
     final List<CoordinateParameter> coordinateParameters = new ArrayList<CoordinateParameter>();
-    //final List<DHParameter> dhParameters = new ArrayList<DHParameter>();
     
     final LinkData[] links = group.getLinkData();
     for (final LinkData link : links) {
-//      if (link.hasDHParameter()) {
-//        dhParameters.add(Util.getDHParameter(links));
-//        break;
-//      } else 
       if (link.hasCoordinateParameter()) {
         coordinateParameters.add(Util.getCoordinateParameter(links));
         break;

@@ -17,13 +17,6 @@ public interface ObjectGroup {
    * @param name 名前
    */
   void setName(String name);
-  
-//  /**
-//   * グループのDHパラメーターを設定します。
-//   * 
-//   * @param parameter DHパラメーター
-//   */
-//  void setDHParameter(DHParameter parameter);
 
   /**
    * グループの座標パラメータを設定します。

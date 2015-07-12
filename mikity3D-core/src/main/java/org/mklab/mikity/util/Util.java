@@ -27,41 +27,6 @@ public class Util {
   // nothing to do
   }
 
-//  /**
-//   * DHパラメータを返します。
-//   * 
-//   * @param links リンクデータ
-//   * @return DHパラメータ
-//   */
-//  public static DHParameter getDHParameter(final LinkData[] links) {
-//    final DHParameter parameter = new DHParameter(); // 初期値全てゼロのDHParameter
-//
-////    for (final LinkData link : links) {
-////      // Constが存在する場合
-////      if (link.hasBasis()) {
-////        final String parameterName = link.getTarget();
-////        if (parameterName.equals("theta")) { //$NON-NLS-1$
-////          if (radian) {
-////            parameter.setTheta(link.getBasis());
-////          } else {
-////            parameter.setTheta(Math.toRadians(link.getBasis()));
-////          }
-////        } else if (parameterName.equals("d")) { //$NON-NLS-1$
-////          parameter.setD(link.getBasis() / scale);
-////        } else if (parameterName.equals("a")) { //$NON-NLS-1$
-////          parameter.setA(link.getBasis() / scale);
-////        } else if (parameterName.equals("alpha")) { //$NON-NLS-1$
-////          if (radian) {
-////            parameter.setAlpha(link.getBasis());
-////          } else {
-////            parameter.setAlpha(Math.toRadians(link.getBasis()));
-////          }
-////        }
-////      }
-////    }
-//    return parameter;
-//  }
-
   /**
    * 座標パラメータを返します。
    * 

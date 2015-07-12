@@ -330,9 +330,6 @@ public class JoglPrimitiveFactory {
       final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setBaseCoordinate(coordinate);
-//    } else if (dhParameters != null) {
-//      final JoglCoordinate coordinate = createDhParameterCoordinate(dhParameters);
-//      group.setBaseCoordinate(coordinate);
     } else if (coordinateParameters != null) {
       final JoglCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
@@ -410,9 +407,6 @@ public class JoglPrimitiveFactory {
       final JoglCoordinate coordinate = new JoglCoordinate();
       coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setBaseCoordinate(coordinate);
-//    } else if (dhParameters != null) {
-//      final JoglCoordinate coordinate = createDhParameterCoordinate(dhParameters);
-//      group.setBaseCoordinate(coordinate);
     } else if (coordinateParameters != null) {
       final JoglCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
@@ -448,27 +442,4 @@ public class JoglPrimitiveFactory {
     coordinate.setRotation(rotationX, rotationY, rotationZ);
     return coordinate;
   }
-
-//  /**
-//   * @param parameters DHパラメータのリスト
-//   */
-//  private static JoglCoordinate createDhParameterCoordinate(List<DHParameter> parameters) {
-//    float a = 0; 
-//    float alpha = 0; 
-//    float d = 0; 
-//    float theta = 0;
-//    
-//    for (final DHParameter parameter : parameters) {
-//      a += parameter.getA();
-//      alpha += parameter.getAlpha();
-//      d += parameter.getD();
-//      theta += parameter.getTheta();
-//    }
-//
-//    final JoglCoordinate coordinate = new JoglCoordinate();
-//    coordinate.setTranslation(a, 0, d);
-//    coordinate.setRotation(alpha, 0, theta);
-//      
-//    return coordinate;
-//  }
 }

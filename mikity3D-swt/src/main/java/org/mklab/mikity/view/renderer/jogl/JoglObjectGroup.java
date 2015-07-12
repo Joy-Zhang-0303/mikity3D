@@ -78,31 +78,6 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
     gl.glPopMatrix();
   }
 
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void setDHParameter(DHParameter parameter) {
-//    if (this.coordinate == null) {
-//      return;
-//    }
-//
-//    /* 座標系Σ(i-1)からΣiへの変換   */
-//    // 1.xi軸に沿ってa(i-1)だけ並進
-//    // 2.x(i-1)軸回りにα(i-1)だけ回転
-//    // 3.ziに沿ってdiだけ並進   
-//    // 4.zi軸回りにθiだけ回転
-//    
-//    final double a = parameter.getA();
-//    final double d = parameter.getD();
-//    
-//    this.coordinate.setTranslation((float)a, 0, (float)d);
-//
-//    final double alpha = parameter.getAlpha();
-//    final double theta = parameter.getTheta();
-//
-//    this.coordinate.setRotation((float)alpha, 0, (float)theta);
-//  }
-
   /**
    * {@inheritDoc}
    */

@@ -16,13 +16,6 @@ import org.mklab.mikity.model.CoordinateParameterType;
  * @version $Revision$, 2012/11/05
  */
 public interface DataPicker {
-//  /**
-//   * 指定された時刻のDHパラメータを返します。
-//   * @param t 時刻
-//   * @return 指定された時刻のDHパラメータ
-//   */
-//  DHParameter getDHParameter(double t);
-
   /**
    * 指定された時刻の座標パラメータを返します。
    * @param t 時刻
@@ -30,27 +23,12 @@ public interface DataPicker {
    */
   CoordinateParameter getCoordinateParameter(double t);
 
-//  /**
-//   * データをピックアップし，パラメータを設定します。
-//   * @param type パラメータのタイプ
-//   * @param dataIndex データ番号
-//   */
-//  void pickup(DHParameterType type, int dataIndex);
-
   /**
    * データをピックアップし，パラメータを設定します。
    * @param type パラメータのタイプ
    * @param dataIndex データ番号
    */
   void pickup(CoordinateParameterType type, int dataIndex);
-
-//  /**
-//   * 値を設定します。
-//   * 
-//   * @param type パラメータのタイプ
-//   * @param value 値
-//   */
-//  void setParameter(DHParameterType type, double value);
 
   /**
    * 値を設定します。
