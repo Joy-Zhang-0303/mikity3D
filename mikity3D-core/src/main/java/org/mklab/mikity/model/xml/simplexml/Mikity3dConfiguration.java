@@ -15,7 +15,7 @@ import org.simpleframework.xml.Root;
  * 
  * @version $Revision: 1.9 $ $Date: 2007/08/03 03:30:27 $
  */
-@Root(name="config")
+@Root(name="configuration")
 public class Mikity3dConfiguration implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 

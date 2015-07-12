@@ -22,12 +22,16 @@ public class Group implements java.io.Serializable {
   private String name;
   
   /** location */
-  @Element(name="translation")
+  @Element(name="translation", required=false)
   private Translation translation;
 
   /** rotation */
-  @Element(name="rotation")
+  @Element(name="rotation", required=false)
   private Rotation rotation;
+
+  /** links */
+  @ElementList(type=LinkData.class, inline=true, required=false)
+  private List<LinkData> linkData;
   
   /** Boxes */
   @ElementList(type=XMLBox.class, inline=true, required=false)
@@ -53,10 +57,6 @@ public class Group implements java.io.Serializable {
   @ElementList(type=XMLQuadPolygon.class, inline=true, required=false)
   private List<XMLQuadPolygon> quadPolygons;
 
-  /** links */
-  @ElementList(type=LinkData.class, inline=true, required=false)
-  private List<LinkData> links;
-
   /** groups */
   @ElementList(type=Group.class, inline=true, required=false)
   private List<Group> groups;
@@ -73,7 +73,7 @@ public class Group implements java.io.Serializable {
     this.trianglePolygons = new ArrayList<>();
     this.quadPolygons = new ArrayList<>(); 
 
-    this.links = new ArrayList<>();
+    this.linkData = new ArrayList<>();
     this.groups = new ArrayList<>();
     this.translation = new Translation();
     this.rotation = new Rotation();
@@ -104,7 +104,7 @@ public class Group implements java.io.Serializable {
    * @param linkdata リンクデータ
    */
   public void addLinkData(LinkData linkdata) {
-    this.links.add(linkdata);
+    this.linkData.add(linkdata);
   } 
 
   /**
@@ -114,7 +114,7 @@ public class Group implements java.io.Serializable {
    * @param linkdata リンクデータ
    */
   public void addLinkData(int index, LinkData linkdata) {
-    this.links.add(index, linkdata);
+    this.linkData.add(index, linkdata);
   } 
 
   /**
@@ -242,7 +242,7 @@ public class Group implements java.io.Serializable {
    * Clear Linkdata.
    */
   public void clearLinkData() {
-    this.links.clear();
+    this.linkData.clear();
   } 
 
   /**
@@ -315,7 +315,7 @@ public class Group implements java.io.Serializable {
     result = prime * result + ((this.spheres == null) ? 0 : this.spheres.hashCode());
     result = prime * result + ((this.trianglePolygons == null) ? 0 : this.trianglePolygons.hashCode());
     result = prime * result + ((this.groups == null) ? 0 : this.groups.hashCode());
-    result = prime * result + ((this.links == null) ? 0 : this.links.hashCode());
+    result = prime * result + ((this.linkData == null) ? 0 : this.linkData.hashCode());
     result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
     result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
@@ -386,11 +386,11 @@ public class Group implements java.io.Serializable {
     } else if (!this.groups.equals(other.groups)) {
       return false;
     }
-    if (this.links == null) {
-      if (other.links != null) {
+    if (this.linkData == null) {
+      if (other.linkData != null) {
         return false;
       }
-    } else if (!this.links.equals(other.links)) {
+    } else if (!this.linkData.equals(other.linkData)) {
       return false;
     }
     if (this.translation == null) {
@@ -456,11 +456,11 @@ public class Group implements java.io.Serializable {
    * @return _linkdataList.get(index)
    */
   public LinkData getLinkData(int index) {
-    if ((index < 0) || (index > this.links.size())) {
+    if ((index < 0) || (index > this.linkData.size())) {
       throw new IndexOutOfBoundsException();
     }
 
-    return this.links.get(index);
+    return this.linkData.get(index);
   } 
 
   /**
@@ -469,10 +469,10 @@ public class Group implements java.io.Serializable {
    * @return mArray
    */
   public LinkData[] getLinkData() {
-    final int size = this.links.size();
+    final int size = this.linkData.size();
     final LinkData[] linkDatas = new LinkData[size];
     for (int i = 0; i < size; i++) {
-      linkDatas[i] = this.links.get(i);
+      linkDatas[i] = this.linkData.get(i);
     }
     return linkDatas;
   } 
@@ -492,7 +492,7 @@ public class Group implements java.io.Serializable {
    * @return _linkdataList.size()
    */
   public int getLinkDataSize() {
-    return this.links.size();
+    return this.linkData.size();
   } 
 
   /**
@@ -918,10 +918,10 @@ public class Group implements java.io.Serializable {
    * @param link リンクデータ
    */
   public void setLinkData(int index, LinkData link) {
-    if ((index < 0) || (index > this.links.size())) {
+    if ((index < 0) || (index > this.linkData.size())) {
       throw new IndexOutOfBoundsException();
     }
-    this.links.set(index, link);
+    this.linkData.set(index, link);
   } 
 
   /**
@@ -930,9 +930,9 @@ public class Group implements java.io.Serializable {
    * @param links リンクデータの文字列
    */
   public void setLinks(LinkData[] links) {
-    this.links.clear();
+    this.linkData.clear();
     for (int i = 0; i < links.length; i++) {
-      this.links.add(links[i]);
+      this.linkData.add(links[i]);
     }
   } 
 

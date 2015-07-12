@@ -4,18 +4,11 @@
 			<translation x="0.0" z="-0.2" y="0.0" />
 			<rotation x="0.0" z="2.0" y="0.0" />
 			<group name="dodai">
-				<cylinder color="red" division="30" height="0.02" radius="0.1">
-					<translation x="0.0" z="0.0" y="0.0" />
-				</cylinder>
-				<translation x="0.0" z="0.0" y="0.0" />
-				<rotation x="0.0" z="0.0" y="0.0" />
+				<cylinder color="red" division="30" height="0.02" radius="0.1"/>
 				<group name="arm1">
 					<translation x="0.0" z="0.1" y="0.0" />
-					<rotation x="0.0" z="0.0" y="0.0" />
 					<linkData number="2" target="rotationZ" />
-					<cylinder color="red" division="30" height="0.2" radius="0.02">
-						<translation x="0.0" z="0.0" y="0.0" />
-					</cylinder>
+					<cylinder color="red" division="30" height="0.2" radius="0.02"/>
 					<cylinder color="orange" division="30" height="0.08" radius="0.02">
 						<rotation x="0.0" z="0.0" y="1.5708" />
 						<translation x="0.02" z="0.1" y="0.0" />
@@ -33,7 +26,6 @@
 						</cylinder>
 						<group name="arm3">
 							<translation x="0.04" z="0.1" y="0.0" />
-							<rotation x="0.0" z="0.0" y="0.0" />
 							<linkData number="4" target="rotationX" />
 							<cylinder color="red" division="30" height="0.1" radius="0.02">
 								<translation x="0.0" z="0.05" y="0.0" />
@@ -60,12 +52,12 @@
 			</group>
 		</group>
 	</model>
-	<config>
+	<configuration>
 		<background color="white"/>
 		<light x="10.0" z="20.0" y="10.0"/>
 		<eye x="5.0" z="0.0" y="0.0"/>
 		<lookAtPoint x="0.0" y="0.0" z="0.0"/>
 		<modelUnit length="m" angle="radian"/>
 		<dataUnit length="m" angle="radian"/>
-	</config>
+	</configuration>
 </mikity3d>
