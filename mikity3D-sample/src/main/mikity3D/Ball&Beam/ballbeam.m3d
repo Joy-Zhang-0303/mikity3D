@@ -2,20 +2,23 @@
    <model>
       <group name="base">
          <translation x="0.0" y="0.0" z="-0.02"/>
+         <rotation x="0.0" y="0.0" z="0.0"/>
          <box width="0.01" height="0.03" depth="0.01" color="orange" transparent="false"/>
-         <cylinder radius="0.005" height="0.012" division="20" color="orange" transparent="true">
+         <cylinder radius="0.005" height="0.012" division="20" color="orange" transparent="false">
             <translation x="0.0" y="0.0" z="0.02"/>
             <rotation x="0.0" y="1.5708" z="0.0"/>
          </cylinder>
          <group name="beam">
             <translation x="0.0" y="0.0" z="0.02"/>
+            <rotation x="0.0" y="0.0" z="0.0"/>
             <linkData target="rotationX" number="4"/>
-             <box width="0.2" height="0.01" depth="0.01" color="lightGray" transparent="true"/>
+            <box width="0.2" height="0.01" depth="0.01" color="lightGray" transparent="false"/>
             <group name="ball">
                <translation x="0.0" y="0.0" z="0.015"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
                <linkData target="translationY" number="2"/>
                <linkData target="rotationX" number="3"/>
-               <sphere radius="0.01" division="30" color="cyan" transparent="true"/>
+               <sphere radius="0.01" division="30" color="cyan" transparent="false"/>
             </group>
          </group>
       </group>

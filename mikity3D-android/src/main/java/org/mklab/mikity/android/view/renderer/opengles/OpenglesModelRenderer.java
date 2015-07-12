@@ -7,6 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.config.Eye;
+import org.mklab.mikity.model.xml.simplexml.config.Light;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.view.renderer.ModelRenderer;
@@ -46,14 +47,10 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /** 拡大縮小比。 */
   private float scale = 1.0F;
 
-  /** 平行光源1 */
-  private float[] lightLocation0 = {-10.0f, 10.0f, -10.0f, 1.0f};
-  /** 平行光源2 */
-  //private float[] lightLocation1 = {-0.5f, 1.0f, -1.0f, 1.0f};
   /** 反射光の強さ */
-  private float[] lightSpecular = {0.5f, 0.5f, 0.5f, 1.0f};
+  private float[] lightSpecular = {0.9f, 0.9f, 0.9f, 1.0f};
   /** 拡散光の強さ */
-  private float[] lightDiffuse = {0.3f, 0.3f, 0.3f, 1.0f};
+  private float[] lightDiffuse = {0.5f, 0.5f, 0.5f, 1.0f};
   /** 環境光の強さ */
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
   
@@ -69,60 +66,64 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     this.configuration = new Mikity3dConfiguration();
     this.configuration.setEye(new Eye(5.0f, 0.0f, 0.0f));
     this.configuration.setLookAtPoiint(new LookAtPoint(0.0f, 0.0f, 0.0f));
+    this.configuration.setLight(new Light(10.0f, 10.0f, 20.0f));
   }
 
   /**
    * {@inheritDoc}
    */
-  public void onSurfaceCreated(GL10 gl10, EGLConfig config) {
-    gl10.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+  public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+    gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-    gl10.glEnable(GL10.GL_LIGHTING); //光源を有効にします 
-    gl10.glEnable(GL10.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします 
-    gl10.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, 90.0f);
-
-    gl10.glEnable(GL10.GL_NORMALIZE);
-    
-    gl10.glEnable(GL10.GL_LIGHT0); //0番のライトを有効にします
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, this.lightLocation0, 0); // 平行光源を設定します 
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
+    gl.glEnable(GL10.GL_LIGHTING); //光源を有効にします 
+    gl.glEnable(GL10.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします
+    gl.glEnable(GL10.GL_NORMALIZE);
+    gl.glEnable(GL10.GL_LIGHT0); //0番のライトを有効にします
+    gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, 100.0f);
+        
+    final Light light = this.configuration.getLight();
+    final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f};
+    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
+    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
+    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
+    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
   }
 
   /**
    * {@inheritDoc}
    */
-  public void onDrawFrame(GL10 gl10) {
+  public void onDrawFrame(GL10 gl) {
     // 画面のクリア　追加した
-    gl10.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-    gl10.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+    gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
-    gl10.glMatrixMode(GL10.GL_PROJECTION);
-    gl10.glLoadIdentity();
-    GLU.gluPerspective(gl10, 10.0f, this.aspect, 0.1f, 100.0f);
+    gl.glMatrixMode(GL10.GL_PROJECTION);
+    gl.glLoadIdentity();
+    GLU.gluPerspective(gl, 10.0f, this.aspect, 0.1f, 100.0f);
 
-    gl10.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
+    gl.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     // gl10.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
 
     // 光源位置の指定
-    gl10.glMatrixMode(GL10.GL_MODELVIEW);
-    gl10.glLoadIdentity();
-    gl10.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[] {-10.0f, 10.0f, -10.0f, 1.0f}, 0);
+    gl.glMatrixMode(GL10.GL_MODELVIEW);
+    gl.glLoadIdentity();
+    final Light light = this.configuration.getLight();
+    final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f};
+    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
 
     final Eye eye = this.configuration.getEye();
     final LookAtPoint lookAtPoint = this.configuration.getLookAtPoint();
-    GLU.gluLookAt(gl10, eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0F, 0.0F, 1.0F);
+    GLU.gluLookAt(gl, eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0F, 0.0F, 1.0F);
 
-    gl10.glTranslatef(0.0f, this.translationY, -this.translationZ);
-    gl10.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
-    gl10.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
+    gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
+    gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
+    gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
 
-    gl10.glScalef(this.scale, this.scale, this.scale);
+    gl.glScalef(this.scale, this.scale, this.scale);
 
     if (this.topGroups != null) {
       for (final OpenglesObjectGroup topGroup : this.topGroups) {
-        topGroup.display(gl10);
+        topGroup.display(gl);
       }
     }
   }
@@ -130,10 +131,10 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /**
    * {@inheritDoc}
    */
-  public void onSurfaceChanged(GL10 gl10, int w, int h) {
+  public void onSurfaceChanged(GL10 gl, int width, int height) {
     //ビューポート変換
-    gl10.glViewport(0, 0, w, h);
-    this.aspect = (float)w / (float)h;
+    gl.glViewport(0, 0, width, height);
+    this.aspect = (float)width / (float)height;
   }
 
   /**
@@ -218,7 +219,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    * @param translationY Y軸方向の移動量
    */
   public void setTranslationY(float translationY) {
-    this.translationY = (translationY + this.translationY);
+    this.translationY = (translationY/2 + this.translationY);
   }
 
   /**
@@ -227,6 +228,6 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    * @param translationZ Z軸方向の移動量
    */
   public void setTranslationZ(float translationZ) {
-    this.translationZ = (translationZ + this.translationZ);
+    this.translationZ = (translationZ/2 + this.translationZ);
   }
 }
