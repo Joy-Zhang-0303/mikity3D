@@ -5,14 +5,9 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.Messages;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
@@ -54,22 +49,22 @@ public class OpenglesObjectGroupFactory {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(cone));
     }
 
-    final List<CoordinateParameter> coordinateParameters = new ArrayList<CoordinateParameter>();
-    
-    final LinkData[] links = group.getLinkData();
-    for (final LinkData link : links) {
-      if (link.hasCoordinateParameter()) {
-        coordinateParameters.add(new CoordinateParameter());
-        break;
-      }
-    }
+//    final List<CoordinateParameter> coordinateParameters = new ArrayList<CoordinateParameter>();
+//    
+//    final LinkData[] links = group.getLinkData();
+//    for (final LinkData link : links) {
+//      if (link.hasCoordinateParameter()) {
+//        coordinateParameters.add(new CoordinateParameter());
+//        break;
+//      }
+//    }
     
     for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygons()) {
-      objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon, coordinateParameters));
+      objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon));
     }
 
     for (final XMLQuadPolygon polygon : group.getXMLQuadPolygons()) {
-      objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon, coordinateParameters));
+      objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon));
     }
 
     for (final Group child : group.getGroups()) {
