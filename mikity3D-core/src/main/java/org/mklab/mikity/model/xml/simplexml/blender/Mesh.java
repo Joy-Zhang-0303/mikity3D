@@ -82,13 +82,13 @@ public class Mesh {
       if (index.length == 3) {
         final XMLTrianglePolygon triangle = new XMLTrianglePolygon();
         triangle.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]));
-        triangle.setMatrix(this.matrix);
+        //triangle.setMatrix(this.matrix);
         //triangle.setNormalVector(normalVector.get(i));
         this.blenderGroup.addXMLTrianglePolygon(triangle);
       } else if (index.length == 4) {
         final XMLQuadPolygon quad = new XMLQuadPolygon();
         quad.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]), vertexLocations.get(index[3]));
-        quad.setMatrix(this.matrix);
+        //quad.setMatrix(this.matrix);
         //quad.setNormalVector(normalVector.get(i));
         this.blenderGroup.addXMLQuadPolygon(quad);
       }
@@ -101,13 +101,13 @@ public class Mesh {
         if (index.length == 3) {
           XMLTrianglePolygon triangle = new XMLTrianglePolygon();
           triangle.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]));
-          triangle.setMatrix(this.matrix);
+          //triangle.setMatrix(this.matrix);
           //triangle.setNormalVector(normalVector.get(i));
           this.blenderGroup.addXMLTrianglePolygon(triangle);
         } else if (index.length == 4) {
           XMLQuadPolygon quad = new XMLQuadPolygon();
           quad.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]), vertexLocations.get(index[3]));
-          quad.setMatrix(this.matrix);
+          //quad.setMatrix(this.matrix);
           //quad.setNormalVector(normalVector.get(i));
           this.blenderGroup.addXMLQuadPolygon(quad);
         }
@@ -120,7 +120,7 @@ public class Mesh {
         final XMLTrianglePolygon triangle = new XMLTrianglePolygon();
         final int[] index = indexNumber3.get(i);
         triangle.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]));
-        triangle.setMatrix(this.matrix);
+        //triangle.setMatrix(this.matrix);
         //triangle.setNormalVector(normalVector.get(i));
         this.blenderGroup.addXMLTrianglePolygon(triangle);
       }

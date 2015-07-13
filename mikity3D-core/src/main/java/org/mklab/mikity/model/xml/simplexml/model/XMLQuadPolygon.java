@@ -8,7 +8,6 @@ package org.mklab.mikity.model.xml.simplexml.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.util.Vector3;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -47,7 +46,7 @@ public class XMLQuadPolygon {
   /** 法線ベクトル。 */
   private Vector3 normalVector;
 
-  private Matrix4 matrix;
+  //private Matrix4 matrix;
 
 
   /**
@@ -57,7 +56,7 @@ public class XMLQuadPolygon {
     this.vertices = new ArrayList<>(4);
     this.color = "orange"; //$NON-NLS-1$
     this.transparent = false;
-    this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    //this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 
   /**
@@ -122,12 +121,12 @@ public class XMLQuadPolygon {
     this.rotation = rotation;
   }
 
-  /**
-   * @param matrix 行列
-   */
-  public void setMatrix(Matrix4 matrix) {
-    this.matrix = matrix;
-  }
+//  /**
+//   * @param matrix 行列
+//   */
+//  public void setMatrix(Matrix4 matrix) {
+//    this.matrix = matrix;
+//  }
 
   /**
    * 
@@ -190,12 +189,12 @@ public class XMLQuadPolygon {
     return this.normalVector;
   }
 
-  /**
-   * @return matrix
-   */
-  public Matrix4 getMatrix() {
-    return this.matrix;
-  }
+//  /**
+//   * @return matrix
+//   */
+//  public Matrix4 getMatrix() {
+//    return this.matrix;
+//  }
 
   /**
    * Sets the value of field 'transparent'.

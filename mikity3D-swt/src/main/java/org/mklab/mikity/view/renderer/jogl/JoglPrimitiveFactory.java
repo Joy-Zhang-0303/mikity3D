@@ -13,7 +13,6 @@ import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
-import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.util.Vector3;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglBox;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglCone;
@@ -59,10 +58,14 @@ public class JoglPrimitiveFactory {
     child.setSize(width, height, depth);
     child.setTransparent(transparent);
 
-    final JoglObjectGroup group = new JoglObjectGroup();
-
     final Translation translation = box.getTranslation();
     final Rotation rotation = box.getRotation();
+    
+    if (translation == null && rotation == null) {
+      return child;
+    }
+    
+    final JoglObjectGroup group = new JoglObjectGroup();
     
     if (translation != null && rotation != null) {
       final float translationx = translation.getX();
@@ -114,11 +117,15 @@ public class JoglPrimitiveFactory {
     child.setDivision(division);
     child.setColor(color);
     child.setTransparent(transparent);
-    
-    final JoglObjectGroup group = new JoglObjectGroup();
   
     final Translation translation = cylinder.getTranslation();
     final Rotation rotation = cylinder.getRotation();
+    
+    if (translation == null && rotation == null) {
+      return child;
+    }
+    
+    final JoglObjectGroup group = new JoglObjectGroup();
     
     if (translation != null && rotation != null) {
       final float translationX = translation.getX();
@@ -170,10 +177,14 @@ public class JoglPrimitiveFactory {
     child.setColor(color);
     child.setTransparent(transparent);
     
-    final JoglObjectGroup group = new JoglObjectGroup();
-    
     final Translation translation = sphere.getTranslation();
     final Rotation rotation = sphere.getRotation();
+    
+    if (translation == null && rotation == null) {
+      return child;
+    }
+    
+    final JoglObjectGroup group = new JoglObjectGroup();
     
     if (translation != null && rotation != null) {
       final float translationX = translation.getX();
@@ -224,11 +235,15 @@ public class JoglPrimitiveFactory {
     child.setSize(radius, hight);
     child.setDivision(division);
     child.setTransparent(transparent);
-    
-    final JoglObjectGroup group = new JoglObjectGroup();
-
+        
     final Translation translation = cone.getTranslation();
     final Rotation rotation = cone.getRotation();
+    
+    if (translation == null && rotation == null) {
+      return child;
+    }
+    
+    final JoglObjectGroup group = new JoglObjectGroup();
     
     if (translation != null && rotation != null) {
       final float translationX = translation.getX();
@@ -284,7 +299,7 @@ public class JoglPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
     
-    final Matrix4 matrix = polygon.getMatrix();
+    //final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
         
@@ -296,7 +311,7 @@ public class JoglPrimitiveFactory {
     
     final JoglObjectGroup group = new JoglObjectGroup();
     
-    if (coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
+    if (coordinateParameters == null) {
       final Translation translation = polygon.getTranslation();
       final Rotation rotation = polygon.getRotation();
       
@@ -326,11 +341,11 @@ public class JoglPrimitiveFactory {
         coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setBaseCoordinate(coordinate);
       }
-    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
-      group.setBaseCoordinate(coordinate);
-    } else if (coordinateParameters != null) {
+//    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
+//      final JoglCoordinate coordinate = new JoglCoordinate();
+//      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
+//      group.setBaseCoordinate(coordinate);
+    } else {
       final JoglCoordinate coordinate = createCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
     }
@@ -362,7 +377,7 @@ public class JoglPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
     
-    final Matrix4 matrix = polygon.getMatrix();
+    //final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
     
@@ -374,7 +389,7 @@ public class JoglPrimitiveFactory {
         
     final JoglObjectGroup group = new JoglObjectGroup();
     
-    if (coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
+    if (coordinateParameters == null) {
       final Translation translation = polygon.getTranslation();
       final Rotation rotation = polygon.getRotation();
       
@@ -404,11 +419,11 @@ public class JoglPrimitiveFactory {
         coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setBaseCoordinate(coordinate);
       }
-    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
-      group.setBaseCoordinate(coordinate);
-    } else if (coordinateParameters != null) {
+//    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
+//      final JoglCoordinate coordinate = new JoglCoordinate();
+//      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
+//      group.setBaseCoordinate(coordinate);
+    } else {
       final JoglCoordinate coordinate = createCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
     }

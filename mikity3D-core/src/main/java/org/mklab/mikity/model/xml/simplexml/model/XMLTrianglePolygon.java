@@ -8,7 +8,6 @@ package org.mklab.mikity.model.xml.simplexml.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.util.Vector3;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -46,7 +45,7 @@ public class XMLTrianglePolygon {
   
   private Vector3 normalVector;
 
-  private Matrix4 matrix;
+  //private Matrix4 matrix;
 
   /**
    * 新しく生成された<code>XMLTrianglePolygon</code>オブジェクトを初期化します。
@@ -55,7 +54,7 @@ public class XMLTrianglePolygon {
     this.vertices = new ArrayList<>(3);
     this.color = "orange"; //$NON-NLS-1$
     this.transparent = false;
-    this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+//    this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 
   /**
@@ -141,12 +140,12 @@ public class XMLTrianglePolygon {
     this.normalVector = v1.cross(v2).normalize();
   }
 
-  /**
-   * @param matrix 行列
-   */
-  public void setMatrix(Matrix4 matrix) {
-    this.matrix = matrix;
-  }
+//  /**
+//   * @param matrix 行列
+//   */
+//  public void setMatrix(Matrix4 matrix) {
+//    this.matrix = matrix;
+//  }
   
   /**
    * 指定された頂点を返します。
@@ -192,12 +191,12 @@ public class XMLTrianglePolygon {
     return this.normalVector;
   }
 
-  /**
-   * @return matrix
-   */
-  public Matrix4 getMatrix() {
-    return this.matrix;
-  }
+//  /**
+//   * @return matrix
+//   */
+//  public Matrix4 getMatrix() {
+//    return this.matrix;
+//  }
 
   /**
    * Sets the value of field 'transparent'.

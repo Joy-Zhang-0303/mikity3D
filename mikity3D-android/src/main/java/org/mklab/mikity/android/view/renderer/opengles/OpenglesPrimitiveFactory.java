@@ -24,7 +24,6 @@ import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
-import org.mklab.mikity.util.Matrix4;
 import org.mklab.mikity.util.Vector3;
 
 
@@ -290,7 +289,7 @@ public class OpenglesPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
     
-    final Matrix4 matrix = polygon.getMatrix();
+    //final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
     
@@ -302,7 +301,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
     
-    if (coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
+    if (coordinateParameters == null) {
       final Translation translation = polygon.getTranslation();
       final Rotation rotation = polygon.getRotation();
       
@@ -332,11 +331,11 @@ public class OpenglesPrimitiveFactory {
         coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setBaseCoordinate(coordinate);
       }
-    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
-      group.setBaseCoordinate(coordinate);
-    } else if (coordinateParameters != null) {
+//    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
+//      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
+//      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
+//      group.setBaseCoordinate(coordinate);
+    } else {
       final OpenglesCoordinate coordinate = createCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
     }
@@ -368,7 +367,7 @@ public class OpenglesPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
     
-    final Matrix4 matrix = polygon.getMatrix();
+    //final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
     
@@ -380,7 +379,7 @@ public class OpenglesPrimitiveFactory {
         
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
     
-    if (coordinateParameters == null && matrix.getElement(0, 3) == 0.0f && matrix.getElement(1, 3) == 0.0f && matrix.getElement(2, 3) == 0.0f) {
+    if (coordinateParameters == null) {
       final Translation translation = polygon.getTranslation();
       final Rotation rotation = polygon.getRotation();
       if (translation != null && rotation != null) {
@@ -409,11 +408,11 @@ public class OpenglesPrimitiveFactory {
         coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setBaseCoordinate(coordinate);
       }
-    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
-      group.setBaseCoordinate(coordinate);
-    } else if (coordinateParameters != null) {
+//    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
+//      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
+//      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
+//      group.setBaseCoordinate(coordinate);
+    } else {
       final OpenglesCoordinate coordinate = createCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
     }
