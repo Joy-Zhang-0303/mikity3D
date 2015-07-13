@@ -17,8 +17,8 @@ import org.mklab.mikity.model.ObjectGroup;
 public class JoglObjectGroup implements ObjectGroup, JoglObject {
   /** オブジェクト。 */
   private List<JoglObject> objects = new ArrayList<>();
-  /** サブグループ 。*/
-  private List<JoglObjectGroup> groups = new ArrayList<>();
+//  /** サブグループ 。*/
+//  private List<JoglObjectGroup> groups = new ArrayList<>();
   /** 座標系の基準。 */
   private JoglCoordinate baseCoordinate;
   /** 座標系。 */
@@ -35,14 +35,14 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
     this.objects.add(child);
   }
 
-  /**
-   * サブグループを追加します。
-   * 
-   * @param child サブグループ
-   */
-  public void addChild(JoglObjectGroup child) {
-    this.groups.add(child);
-  }
+//  /**
+//   * サブグループを追加します。
+//   * 
+//   * @param child サブグループ
+//   */
+//  public void addChild(JoglObjectGroup child) {
+//    this.groups.add(child);
+//  }
 
   /**
    * 座標系の基準を設定します。
@@ -71,9 +71,9 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
       object.display(gl);
     }
 
-    for (final JoglObjectGroup group : this.groups) {
-      group.display(gl);
-    }
+//    for (final JoglObjectGroup group : this.groups) {
+//      group.display(gl);
+//    }
     
     gl.glPopMatrix();
   }

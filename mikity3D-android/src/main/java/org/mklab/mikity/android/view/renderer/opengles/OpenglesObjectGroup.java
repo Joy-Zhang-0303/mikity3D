@@ -18,8 +18,8 @@ import org.mklab.mikity.model.ObjectGroup;
 public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   /** オブジェクト。 */
   private List<OpenglesObject> objects;
-  /** サブグループ。 */
-  private List<OpenglesObjectGroup> groups;
+//  /** サブグループ。 */
+//  private List<OpenglesObjectGroup> groups;
   /** 座標系の基準。 */
   private OpenglesCoordinate baseCoordinate;
   /** 座標系。 */
@@ -32,7 +32,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    */
   public OpenglesObjectGroup() {
     this.objects = new ArrayList<OpenglesObject>();
-    this.groups = new ArrayList<OpenglesObjectGroup>();
+//    this.groups = new ArrayList<OpenglesObjectGroup>();
   }
 
   /**
@@ -44,14 +44,14 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
     this.objects.add(child);
   }
 
-  /**
-   * サブグループを追加します。
-   * 
-   * @param child サブグループ
-   */
-  public void addChild(OpenglesObjectGroup child) {
-    this.groups.add(child);
-  }
+//  /**
+//   * サブグループを追加します。
+//   * 
+//   * @param child サブグループ
+//   */
+//  public void addChild(OpenglesObjectGroup child) {
+//    this.groups.add(child);
+//  }
 
   /**
    * 座標系の基準を設定します。
@@ -80,9 +80,9 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
       object.display(gl10);
     }
 
-    for (final OpenglesObjectGroup group : this.groups) {
-      group.display(gl10);
-    }
+//    for (final OpenglesObjectGroup group : this.groups) {
+//      group.display(gl10);
+//    }
 
     gl10.glPopMatrix();
   }

@@ -47,7 +47,7 @@ public class JoglPrimitiveFactory {
    * @param box ボックス
    * @return 与えられたboxを含むグループ
    */
-  public static JoglObjectGroup create(XMLBox box) {
+  public static JoglObject create(XMLBox box) {
     final float width = box.getWidth();
     final float height = box.getHeight();
     final float depth = box.getDepth();
@@ -102,7 +102,7 @@ public class JoglPrimitiveFactory {
    * @param cylinder シリンダー
    * @return 与えられたcylinderを含むグループ
    */
-  public static JoglObjectGroup create(XMLCylinder cylinder) {
+  public static JoglObject create(XMLCylinder cylinder) {
     final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
@@ -158,7 +158,7 @@ public class JoglPrimitiveFactory {
    * @param sphere 球体
    * @return 与えられたsphereを含むグループ
    */
-  public static JoglObjectGroup create(XMLSphere sphere) {
+  public static JoglObject create(XMLSphere sphere) {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
     final String color = sphere.getColor();
@@ -212,7 +212,7 @@ public class JoglPrimitiveFactory {
    * @param cone コーン
    * @return 与えられたconeを含むグループ
    */
-  public static JoglObjectGroup create(XMLCone cone) {
+  public static JoglObject create(XMLCone cone) {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
@@ -269,7 +269,7 @@ public class JoglPrimitiveFactory {
    * @param coordinateParameters リンクパラメータ
    * @return 与えられた三角形ポリゴンを含むグループを生成します。
    */
-  public static JoglObjectGroup create(XMLTrianglePolygon polygon, List<CoordinateParameter> coordinateParameters) {
+  public static JoglObject create(XMLTrianglePolygon polygon, List<CoordinateParameter> coordinateParameters) {
     final float[][] vertices = new float[3][3];
     for (int i = 0; i < 3; i++) {
       final Vertex vertex = polygon.getVertex(i);
@@ -331,7 +331,7 @@ public class JoglPrimitiveFactory {
       coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setBaseCoordinate(coordinate);
     } else if (coordinateParameters != null) {
-      final JoglCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
+      final JoglCoordinate coordinate = createCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
     }
 
@@ -347,7 +347,7 @@ public class JoglPrimitiveFactory {
    * @param coordinateParameters リンクパラメータ
    * @return　与えられた四角形ポリゴンを含むグループ
    */
-  public static JoglObjectGroup create(XMLQuadPolygon polygon, List<CoordinateParameter> coordinateParameters) {
+  public static JoglObject create(XMLQuadPolygon polygon, List<CoordinateParameter> coordinateParameters) {
     final float[][] vertices = new float[4][3];
     for (int i = 0; i < 4; i++) {
       final Vertex vertex = polygon.getVertex(i);
@@ -409,7 +409,7 @@ public class JoglPrimitiveFactory {
       coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setBaseCoordinate(coordinate);
     } else if (coordinateParameters != null) {
-      final JoglCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
+      final JoglCoordinate coordinate = createCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
     }
 
@@ -421,7 +421,7 @@ public class JoglPrimitiveFactory {
   /**
    * @param parameters リンクパラメータのリスト
    */
-  private static JoglCoordinate createCoordinateParameterCoordinate(List<CoordinateParameter> parameters) {
+  private static JoglCoordinate createCoordinate(List<CoordinateParameter> parameters) {
     float translationX = 0; 
     float translationY = 0; 
     float translationZ = 0; 

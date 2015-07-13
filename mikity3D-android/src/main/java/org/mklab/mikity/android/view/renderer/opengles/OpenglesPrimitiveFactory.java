@@ -53,7 +53,7 @@ public class OpenglesPrimitiveFactory {
    * @param box ボックス
    * @return 与えられたboxを含むグループ
    */
-  public static OpenglesObjectGroup create(XMLBox box) {
+  public static OpenglesObject create(XMLBox box) {
     final float width = box.getWidth();
     final float height = box.getHeight();
     final float depth = box.getDepth();
@@ -108,7 +108,7 @@ public class OpenglesPrimitiveFactory {
    * @param cylinder シリンダー
    * @return 与えられたcylinderを含むグループ
    */
-  public static OpenglesObjectGroup create(XMLCylinder cylinder) {
+  public static OpenglesObject create(XMLCylinder cylinder) {
     final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
@@ -164,7 +164,7 @@ public class OpenglesPrimitiveFactory {
    * @param sphere 球体
    * @return 与えられたsphereを含むグループ
    */
-  public static OpenglesObjectGroup create(XMLSphere sphere) {
+  public static OpenglesObject create(XMLSphere sphere) {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
     final String color = sphere.getColor();
@@ -218,7 +218,7 @@ public class OpenglesPrimitiveFactory {
    * @param cone コーン
    * @return 与えられたconeを含むグループ
    */
-  public static OpenglesObjectGroup create(XMLCone cone) {
+  public static OpenglesObject create(XMLCone cone) {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
@@ -275,7 +275,7 @@ public class OpenglesPrimitiveFactory {
    * @param coordinateParameters リンクパラメータ
    * @return 与えられた三角形ポリゴンを含むグループを生成します。
    */
-  public static OpenglesObjectGroup create(XMLTrianglePolygon polygon, List<CoordinateParameter> coordinateParameters) {
+  public static OpenglesObject create(XMLTrianglePolygon polygon, List<CoordinateParameter> coordinateParameters) {
     final float[][] vertices = new float[3][3];
     for (int i = 0; i < 3; i++) {
       final Vertex vertex = polygon.getVertex(i);
@@ -337,7 +337,7 @@ public class OpenglesPrimitiveFactory {
       coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setBaseCoordinate(coordinate);
     } else if (coordinateParameters != null) {
-      final OpenglesCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
+      final OpenglesCoordinate coordinate = createCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
     }
 
@@ -353,7 +353,7 @@ public class OpenglesPrimitiveFactory {
    * @param coordinateParameters リンクパラメータ
    * @return　与えられた四角形ポリゴンを含むグループ
    */
-  public static OpenglesObjectGroup create(XMLQuadPolygon polygon, List<CoordinateParameter> coordinateParameters) {
+  public static OpenglesObject create(XMLQuadPolygon polygon, List<CoordinateParameter> coordinateParameters) {
     final float[][] vertices = new float[4][3];
     for (int i = 0; i < 4; i++) {
       final Vertex vertex = polygon.getVertex(i);
@@ -414,7 +414,7 @@ public class OpenglesPrimitiveFactory {
       coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
       group.setBaseCoordinate(coordinate);
     } else if (coordinateParameters != null) {
-      final OpenglesCoordinate coordinate = createCoordinateParameterCoordinate(coordinateParameters);
+      final OpenglesCoordinate coordinate = createCoordinate(coordinateParameters);
       group.setBaseCoordinate(coordinate);
     }
 
@@ -426,7 +426,7 @@ public class OpenglesPrimitiveFactory {
   /**
    * @param parameters リンクパラメータのリスト
    */
-  private static OpenglesCoordinate createCoordinateParameterCoordinate(List<CoordinateParameter> parameters) {
+  private static OpenglesCoordinate createCoordinate(List<CoordinateParameter> parameters) {
     float translationX = 0; 
     float translationY = 0; 
     float translationZ = 0; 
