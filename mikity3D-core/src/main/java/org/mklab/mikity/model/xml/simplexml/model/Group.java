@@ -596,15 +596,6 @@ public class Group implements java.io.Serializable {
     return localCones;
   } 
 
-//  /**
-//   * Method getXMLConeAsReferenceReturns a reference to 'XMLCone'. No type checking is performed on any modications to the Collection.
-//   * 
-//   * @return returns a reference to the Collection.
-//   */
-//  public List<XMLCone> getXMLConesAsReference() {
-//    return this.cones;
-//  } 
-
   /**
    * Method getXMLConeCount
    * 
@@ -641,15 +632,6 @@ public class Group implements java.io.Serializable {
     }
     return localCylinders;
   } 
-
-//  /**
-//   * Method getXMLCylinderAsReferenceReturns a reference to 'XMLCylinder'. No type checking is performed on any modications to the Collection.
-//   * 
-//   * @return returns a reference to the Collection.
-//   */
-//  public List<XMLCylinder> getXMLCylindersAsReference() {
-//    return this.cylinders;
-//  } 
 
   /**
    * Method getXMLCylinderCount

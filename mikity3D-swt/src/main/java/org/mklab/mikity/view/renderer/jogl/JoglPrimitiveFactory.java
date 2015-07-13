@@ -51,36 +51,9 @@ public class JoglPrimitiveFactory {
     }
 
     final JoglObjectGroup group = new JoglObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationx = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationx, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
-
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    
     return group;
   }
 
@@ -111,35 +84,8 @@ public class JoglPrimitiveFactory {
     }
 
     final JoglObjectGroup group = new JoglObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
     return group;
   }
@@ -170,35 +116,8 @@ public class JoglPrimitiveFactory {
     }
 
     final JoglObjectGroup group = new JoglObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
     return group;
   }
@@ -230,35 +149,8 @@ public class JoglPrimitiveFactory {
     }
 
     final JoglObjectGroup group = new JoglObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
     return group;
   }
@@ -301,35 +193,8 @@ public class JoglPrimitiveFactory {
     }
     
     final JoglObjectGroup group = new JoglObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
     return group;
   }
@@ -372,36 +237,53 @@ public class JoglPrimitiveFactory {
     }
     
     final JoglObjectGroup group = new JoglObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final JoglCoordinate coordinamte = new JoglCoordinate();
-      coordinamte.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinamte);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
     return group;
+  }
+  
+
+  /**
+   * 基準座標を生成します。
+   * 
+   * @param group オブジェクトグループ
+   * @param translation 並進変換
+   * @param rotation 回転変換
+   * @return 基準座標系
+   */
+  private static JoglCoordinate createBaseCoordinate(final Translation translation, final Rotation rotation) {
+    if (translation != null && rotation != null) {
+      final float translationx = translation.getX();
+      final float translationY = translation.getY();
+      final float translationZ = translation.getZ();
+      final float rotationX = rotation.getX();
+      final float rotationY = rotation.getY();
+      final float rotationZ = rotation.getZ();
+      final JoglCoordinate coordinate = new JoglCoordinate();
+      coordinate.setTranslation(translationx, translationY, translationZ);
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
+      return coordinate;
+    }
+    
+    if (translation != null) {
+      final float translationX = translation.getX();
+      final float translationY = translation.getY();
+      final float translationZ = translation.getZ();
+      final JoglCoordinate coordinate = new JoglCoordinate();
+      coordinate.setTranslation(translationX, translationY, translationZ);
+      return coordinate;
+    }
+    
+    if (rotation != null) {
+      final float rotationX = rotation.getX();
+      final float rotationY = rotation.getY();
+      final float rotationZ = rotation.getZ();
+      final JoglCoordinate coordinate = new JoglCoordinate();
+      coordinate.setRotation(rotationX, rotationY, rotationZ);
+      return coordinate;
+    }
+    
+    throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$
   }
 }

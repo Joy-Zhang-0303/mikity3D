@@ -56,35 +56,8 @@ public class OpenglesPrimitiveFactory {
     }
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
     return group;
   }
@@ -116,35 +89,8 @@ public class OpenglesPrimitiveFactory {
     }
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
     return group;
   }
@@ -175,35 +121,8 @@ public class OpenglesPrimitiveFactory {
     }
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float zLocatino = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, zLocatino);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
     return group;
   }
@@ -235,35 +154,8 @@ public class OpenglesPrimitiveFactory {
     }
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
     return group;
   }
@@ -306,35 +198,8 @@ public class OpenglesPrimitiveFactory {
     }
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
-
-    if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    }
-
     group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
     return group;
   }
@@ -377,7 +242,21 @@ public class OpenglesPrimitiveFactory {
     }
     
     final OpenglesObjectGroup group = new OpenglesObjectGroup();
-    
+    group.addChild(child);
+    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+
+    return group;
+  }
+  
+
+  /**
+   * 基準座標を生成します。
+   * 
+   * @param translation 並進変換
+   * @param rotation 回転変換
+   * @return 基準座標系
+   */
+  private static OpenglesCoordinate createBaseCoordinate(final Translation translation, final Rotation rotation) {
     if (translation != null && rotation != null) {
       final float translationX = translation.getX();
       final float translationY = translation.getY();
@@ -388,26 +267,28 @@ public class OpenglesPrimitiveFactory {
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
       coordinate.setTranslation(translationX, translationY, translationZ);
       coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
-    } else if (translation != null) {
+      return coordinate;
+    } 
+    
+    if (translation != null) {
       final float translationX = translation.getX();
       final float translationY = translation.getY();
       final float translationZ = translation.getZ();
-      final OpenglesCoordinate coordinamte = new OpenglesCoordinate();
-      coordinamte.setTranslation(translationX, translationY, translationZ);
-      group.setBaseCoordinate(coordinamte);
-    } else if (rotation != null) {
+      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
+      coordinate.setTranslation(translationX, translationY, translationZ);
+      return coordinate;
+    } 
+    
+    if (rotation != null) {
       final float rotationX = rotation.getX();
       final float rotationY = rotation.getY();
       final float rotationZ = rotation.getZ();
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
       coordinate.setRotation(rotationX, rotationY, rotationZ);
-      group.setBaseCoordinate(coordinate);
+      return coordinate;
     }
-
-    group.addChild(child);
-
-    return group;
+    
+    throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$
   }
 
 }

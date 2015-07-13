@@ -48,16 +48,6 @@ public class OpenglesObjectGroupFactory {
     for (final XMLCone cone : group.getXMLCones()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(cone));
     }
-
-//    final List<CoordinateParameter> coordinateParameters = new ArrayList<CoordinateParameter>();
-//    
-//    final LinkData[] links = group.getLinkData();
-//    for (final LinkData link : links) {
-//      if (link.hasCoordinateParameter()) {
-//        coordinateParameters.add(new CoordinateParameter());
-//        break;
-//      }
-//    }
     
     for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygons()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon));

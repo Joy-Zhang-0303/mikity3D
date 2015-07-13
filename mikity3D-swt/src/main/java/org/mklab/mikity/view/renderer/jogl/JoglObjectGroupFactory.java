@@ -41,16 +41,6 @@ public class JoglObjectGroupFactory {
     for (final XMLCone cone : group.getXMLCones()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(cone));
     }
-
-//    final List<CoordinateParameter> coordinateParameters = new ArrayList<>();
-//    
-//    final LinkData[] links = group.getLinkData();
-//    for (final LinkData link : links) {
-//      if (link.hasCoordinateParameter()) {
-//        coordinateParameters.add(new CoordinateParameter());
-//        break;
-//      }
-//    }
     
     for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygons()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(polygon));
