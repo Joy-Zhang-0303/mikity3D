@@ -15,7 +15,6 @@ import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
-import org.mklab.mikity.util.Util;
 
 
 /**
@@ -53,7 +52,7 @@ public class JoglObjectGroupFactory {
     final LinkData[] links = group.getLinkData();
     for (final LinkData link : links) {
       if (link.hasCoordinateParameter()) {
-        coordinateParameters.add(Util.getCoordinateParameter(links));
+        coordinateParameters.add(new CoordinateParameter());
         break;
       }
     }
@@ -67,11 +66,11 @@ public class JoglObjectGroupFactory {
     }
 
     for (final Group child : group.getGroups()) {
-      objectGroup.addChild(JoglPrimitiveFactory.create(child));
+      objectGroup.addChild(create(child));
     }
 
-    final JoglCoordinate coordinate = createCoordinateOf(group);
-    objectGroup.setBaseCoordinate(coordinate);
+    final JoglCoordinate baseCoordinate = createBaseCoordinateOf(group);
+    objectGroup.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
     if (name != null) {
@@ -90,7 +89,7 @@ public class JoglObjectGroupFactory {
    * @param group オブジェクトのグループ
    * @return グループの座標系
    */
-  private JoglCoordinate createCoordinateOf(final Group group) {
+  private JoglCoordinate createBaseCoordinateOf(final Group group) {
     final Translation translation = group.getTranslation();
     final Rotation rotation = group.getRotation();
     

@@ -5,8 +5,6 @@
  */
 package org.mklab.mikity.util;
 
-import org.mklab.mikity.model.CoordinateParameter;
-import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 
 /**
  * ユーティリティクラスです。
@@ -27,46 +25,14 @@ public class Util {
   // nothing to do
   }
 
-  /**
-   * 座標パラメータを返します。
-   * 
-   * @param links リンクデータ
-   * @return 座標パラメータ
-   */
-  public static CoordinateParameter getCoordinateParameter(final LinkData[] links) {
-    final CoordinateParameter parameter = new CoordinateParameter();
-
-//    for (final LinkData link : links) {
-//      // Constが存在する場合
-//      if (link.hasBasis()) {
-//        final String parameterName = link.getTarget();
-//        if (parameterName.equals("locationX")) { //$NON-NLS-1$
-//          parameter.setX(link.getBasis() / scale);
-//        } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
-//          if (radian) {
-//            parameter.setAngleX(link.getBasis());
-//          } else {
-//            parameter.setAngleX(Math.toRadians(link.getBasis()));
-//          }
-//        } else if (parameterName.equals("locationY")) { //$NON-NLS-1$
-//          parameter.setY(link.getBasis() / scale);
-//        } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
-//          if (radian) {
-//            parameter.setAngleY(link.getBasis());
-//          } else {
-//            parameter.setAngleY(Math.toRadians(link.getBasis()));
-//          }
-//        } else if (parameterName.equals("locationZ")) { //$NON-NLS-1$
-//          parameter.setZ(link.getBasis() / scale);
-//        } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-//          if (radian) {
-//            parameter.setAngleZ(link.getBasis());
-//          } else {
-//            parameter.setAngleZ(Math.toRadians(link.getBasis()));
-//          }
-//        }
-//      }
-//    }
-    return parameter;
-  }
+//  /**
+//   * 座標パラメータを返します。
+//   * 
+//   * @param links リンクデータ
+//   * @return 座標パラメータ
+//   */
+//  public static CoordinateParameter getCoordinateParameter(final LinkData[] links) {
+//    final CoordinateParameter parameter = new CoordinateParameter();
+//    return parameter;
+//  }
 }

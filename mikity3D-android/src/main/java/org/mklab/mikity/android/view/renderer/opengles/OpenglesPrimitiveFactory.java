@@ -14,7 +14,6 @@ import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesQuadPol
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesSphere;
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesTrianglePolygon;
 import org.mklab.mikity.model.CoordinateParameter;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Vertex;
@@ -36,15 +35,15 @@ import org.mklab.mikity.util.Vector3;
  */
 public class OpenglesPrimitiveFactory {
 
-  /**
-   * グループを生成します。
-   * 
-   * @param group オブジェクトのグループ
-   * @return グループ
-   */
-  public static OpenglesObjectGroup create(Group group) {
-    return new OpenglesObjectGroupFactory().create(group);
-  }
+//  /**
+//   * グループを生成します。
+//   * 
+//   * @param group オブジェクトのグループ
+//   * @return グループ
+//   */
+//  public static OpenglesObjectGroup create(Group group) {
+//    return new OpenglesObjectGroupFactory().create(group);
+//  }
 
   /**
    * 与えられたboxを含むグループを生成します。
@@ -289,7 +288,6 @@ public class OpenglesPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
     
-    //final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
     
@@ -331,13 +329,9 @@ public class OpenglesPrimitiveFactory {
         coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setBaseCoordinate(coordinate);
       }
-//    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
-//      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-//      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
-//      group.setBaseCoordinate(coordinate);
     } else {
-      final OpenglesCoordinate coordinate = createCoordinate(coordinateParameters);
-      group.setBaseCoordinate(coordinate);
+      final OpenglesCoordinate baseCoordinate = createBaseCoordinate(coordinateParameters);
+      group.setBaseCoordinate(baseCoordinate);
     }
 
     group.addChild(child);
@@ -367,7 +361,6 @@ public class OpenglesPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
     
-    //final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
     
@@ -408,13 +401,9 @@ public class OpenglesPrimitiveFactory {
         coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setBaseCoordinate(coordinate);
       }
-//    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
-//      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-//      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
-//      group.setBaseCoordinate(coordinate);
     } else {
-      final OpenglesCoordinate coordinate = createCoordinate(coordinateParameters);
-      group.setBaseCoordinate(coordinate);
+      final OpenglesCoordinate baseCoordinate = createBaseCoordinate(coordinateParameters);
+      group.setBaseCoordinate(baseCoordinate);
     }
 
     group.addChild(child);
@@ -425,7 +414,7 @@ public class OpenglesPrimitiveFactory {
   /**
    * @param parameters リンクパラメータのリスト
    */
-  private static OpenglesCoordinate createCoordinate(List<CoordinateParameter> parameters) {
+  private static OpenglesCoordinate createBaseCoordinate(List<CoordinateParameter> parameters) {
     float translationX = 0; 
     float translationY = 0; 
     float translationZ = 0; 

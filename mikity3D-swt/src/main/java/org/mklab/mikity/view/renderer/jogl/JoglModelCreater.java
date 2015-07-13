@@ -24,7 +24,7 @@ public class JoglModelCreater {
   public List<JoglObjectGroup> create(final Group[] groups) {
     final List<JoglObjectGroup> objectGroups = new ArrayList<>();
     for (final Group group : groups) {
-      final JoglObjectGroup child = JoglPrimitiveFactory.create(group);
+      final JoglObjectGroup child = new JoglObjectGroupFactory().create(group);
       objectGroups.add(child);
     }
 

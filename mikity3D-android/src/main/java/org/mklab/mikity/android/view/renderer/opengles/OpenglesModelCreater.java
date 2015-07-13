@@ -28,7 +28,7 @@ public class OpenglesModelCreater {
   public List<OpenglesObjectGroup> create(final Group[] groups) {
     final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();
     for (final Group group : groups) {
-      final OpenglesObjectGroup child = OpenglesPrimitiveFactory.create(group);
+      final OpenglesObjectGroup child = new OpenglesObjectGroupFactory().create(group);
       objectGroups.add(child);
     }
     

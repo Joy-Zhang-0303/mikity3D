@@ -3,7 +3,6 @@ package org.mklab.mikity.view.renderer.jogl;
 import java.util.List;
 
 import org.mklab.mikity.model.CoordinateParameter;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Vertex;
@@ -30,15 +29,15 @@ import org.mklab.mikity.view.renderer.jogl.primitive.JoglTrianglePolygon;
  */
 public class JoglPrimitiveFactory {
 
-  /**
-   * グループを生成します。
-   * 
-   * @param group オブジェクトのグループ
-   * @return グループ
-   */
-  public static JoglObjectGroup create(Group group) {
-    return new JoglObjectGroupFactory().create(group);
-  }
+//  /**
+//   * グループを生成します。
+//   * 
+//   * @param group オブジェクトのグループ
+//   * @return グループ
+//   */
+//  public static JoglObjectGroup create(Group group) {
+//    return new JoglObjectGroupFactory().create(group);
+//  }
 
   /**
    * 与えられたboxを含むグループを生成します。
@@ -299,7 +298,6 @@ public class JoglPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
     
-    //final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
         
@@ -341,13 +339,9 @@ public class JoglPrimitiveFactory {
         coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setBaseCoordinate(coordinate);
       }
-//    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
-//      final JoglCoordinate coordinate = new JoglCoordinate();
-//      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
-//      group.setBaseCoordinate(coordinate);
     } else {
-      final JoglCoordinate coordinate = createCoordinate(coordinateParameters);
-      group.setBaseCoordinate(coordinate);
+      final JoglCoordinate baseCoordinate = createBaseCoordinate(coordinateParameters);
+      group.setBaseCoordinate(baseCoordinate);
     }
 
     group.addChild(child);
@@ -377,7 +371,6 @@ public class JoglPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
     
-    //final Matrix4 matrix = polygon.getMatrix();
     final String color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
     
@@ -419,13 +412,9 @@ public class JoglPrimitiveFactory {
         coordinate.setRotation(rotationX, rotationY, rotationZ);
         group.setBaseCoordinate(coordinate);
       }
-//    } else if (matrix.getElement(0, 3) != 0.0f || matrix.getElement(1, 3) != 0.0f || matrix.getElement(2, 3) != 0.0f) {
-//      final JoglCoordinate coordinate = new JoglCoordinate();
-//      coordinate.setTranslation(matrix.getElement(0, 3), matrix.getElement(1, 3), matrix.getElement(2, 3));
-//      group.setBaseCoordinate(coordinate);
     } else {
-      final JoglCoordinate coordinate = createCoordinate(coordinateParameters);
-      group.setBaseCoordinate(coordinate);
+      final JoglCoordinate baseCoordinate = createBaseCoordinate(coordinateParameters);
+      group.setBaseCoordinate(baseCoordinate);
     }
 
     group.addChild(child);
@@ -436,7 +425,7 @@ public class JoglPrimitiveFactory {
   /**
    * @param parameters リンクパラメータのリスト
    */
-  private static JoglCoordinate createCoordinate(List<CoordinateParameter> parameters) {
+  private static JoglCoordinate createBaseCoordinate(List<CoordinateParameter> parameters) {
     float translationX = 0; 
     float translationY = 0; 
     float translationZ = 0; 

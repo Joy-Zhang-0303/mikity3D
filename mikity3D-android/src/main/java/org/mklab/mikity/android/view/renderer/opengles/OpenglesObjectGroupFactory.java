@@ -21,7 +21,6 @@ import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
 import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
-import org.mklab.mikity.util.Util;
 
 
 
@@ -60,7 +59,7 @@ public class OpenglesObjectGroupFactory {
     final LinkData[] links = group.getLinkData();
     for (final LinkData link : links) {
       if (link.hasCoordinateParameter()) {
-        coordinateParameters.add(Util.getCoordinateParameter(links));
+        coordinateParameters.add(new CoordinateParameter());
         break;
       }
     }
@@ -74,11 +73,11 @@ public class OpenglesObjectGroupFactory {
     }
 
     for (final Group child : group.getGroups()) {
-      objectGroup.addChild(OpenglesPrimitiveFactory.create(child));
+      objectGroup.addChild(create(child));
     }
 
-    final OpenglesCoordinate coordinate = createCoordinateOf(group);
-    objectGroup.setBaseCoordinate(coordinate);
+    final OpenglesCoordinate baseCoordinate = createBaseCoordinateOf(group);
+    objectGroup.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
     if (name != null) {
@@ -97,7 +96,7 @@ public class OpenglesObjectGroupFactory {
    * @param group オブジェクトのグループ
    * @return グループの座標
    */
-  private OpenglesCoordinate createCoordinateOf(final Group group) {
+  private OpenglesCoordinate createBaseCoordinateOf(final Group group) {
     final Translation translation = group.getTranslation();
     final Rotation rotation = group.getRotation();
     
