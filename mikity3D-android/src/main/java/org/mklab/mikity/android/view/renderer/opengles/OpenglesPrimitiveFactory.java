@@ -55,7 +55,7 @@ public class OpenglesPrimitiveFactory {
       return child;
     }
     
-    final OpenglesObjectGroup group = new OpenglesObjectGroup();
+    final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
@@ -88,7 +88,7 @@ public class OpenglesPrimitiveFactory {
       return child;
     }
     
-    final OpenglesObjectGroup group = new OpenglesObjectGroup();
+    final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
@@ -120,7 +120,7 @@ public class OpenglesPrimitiveFactory {
       return child;
     }
     
-    final OpenglesObjectGroup group = new OpenglesObjectGroup();
+    final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
@@ -153,7 +153,7 @@ public class OpenglesPrimitiveFactory {
       return child;
     }
     
-    final OpenglesObjectGroup group = new OpenglesObjectGroup();
+    final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
@@ -197,7 +197,7 @@ public class OpenglesPrimitiveFactory {
       return child;
     }
     
-    final OpenglesObjectGroup group = new OpenglesObjectGroup();
+    final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
@@ -241,7 +241,7 @@ public class OpenglesPrimitiveFactory {
       return child;
     }
     
-    final OpenglesObjectGroup group = new OpenglesObjectGroup();
+    final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 

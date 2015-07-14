@@ -6,13 +6,10 @@
 package org.mklab.mikity.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.mklab.mikity.model.picker.ClosenessDataPicker;
 import org.mklab.mikity.model.picker.DataPicker;
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
 import org.mklab.nfc.matrix.Matrix;
@@ -25,12 +22,10 @@ import org.mklab.nfc.matrix.Matrix;
  * @version $Revision: 1.10 $.2005/01/14
  */
 public class ObjectGroupManager {
-  /** グループととオブジェクトグループのマップ */
-  private static Map<Group, ObjectGroup> OBJECT_GROUPS = new HashMap<>();
-  /** 可動グループ */
-  private List<ObjectGroup> objectGroups = new ArrayList<>();
-  /** データ抽出器 */
-  private Map<ObjectGroup, DataPicker> pickers = new HashMap<>();
+  /** オブジェクトグループ。 */
+  private static List<ObjectGroup> OBJECT_GROUPS = new ArrayList<>();
+  /** 可動グループ。 */
+  private List<ObjectGroupDataPicker> movingGroups = new ArrayList<>();
   
   /** データの個数 */
   private int dataSize;
@@ -39,21 +34,8 @@ public class ObjectGroupManager {
   /** 終了時間 */
   private double endTime;
 
-  /** ルートグループ */
-  private Mikity3d root;
-
-  /** DHパラメータを使用するならばtrue */
-  private boolean hasDHParameter = false;
   /** 座標パラメータを使用するならばtrue */
   private boolean hasCoordinateParameter = false;
-
-  /**
-   * 新しく生成された<code>ObjectGroupManager</code>オブジェクトを初期化します。
-   * @param root ルート
-   */
-  public ObjectGroupManager(final Mikity3d root) {
-    this.root = root;
-  }
 
   /**
    * 可動グループを追加します。
@@ -61,9 +43,8 @@ public class ObjectGroupManager {
    * @param objectGroup オブジェクトグループ
    * @param picker データ抽出器
    */
-  private void addObjectGroup(final ObjectGroup objectGroup, final DataPicker picker) {
-    this.objectGroups.add(objectGroup);
-    this.pickers.put(objectGroup, picker);
+  private void addMovingGroup(final ObjectGroup objectGroup, final DataPicker picker) {
+    this.movingGroups.add(new ObjectGroupDataPicker(objectGroup, picker));
     this.dataSize = Math.max(this.dataSize, picker.getDataSize());
     this.startTime = Math.min(this.startTime, picker.getStartTime());
     this.endTime = Math.max(this.endTime, picker.getEndTime());
@@ -74,29 +55,31 @@ public class ObjectGroupManager {
    * 
    * @param t 時刻
    */
-  public void updateObjectGroupsWithCoordinateParameter(final double t) {
-    for (final ObjectGroup objectGroup : this.objectGroups) {
-      final DataPicker picker = this.pickers.get(objectGroup);
-      objectGroup.setCoordinateParameter(picker.getCoordinateParameter(t));
-     }
+  public void updateObjectGroups(final double t) {
+    for (final ObjectGroupDataPicker movingGroup: this.movingGroups) {
+      final ObjectGroup objectGroup = movingGroup.objectGroup;
+      final DataPicker dataPicker = movingGroup.dataPicker;
+      objectGroup.setCoordinateParameter(dataPicker.getCoordinateParameter(t));
+    }
   }
 
   /**
-   * オブジェクトグループを登録します。
+   * 可動グループを登録します。
    * 
-   * @param groups グループ
    * @param data 時系列データ
    */
-  private void registerObjectGroups(final Group[] groups, final Matrix data) {
-    for (final Group group : groups) {
-      final ObjectGroup objectGroup = OBJECT_GROUPS.get(group);
-      final LinkData[] links = group.getLinkData();
+  private void registerMovingGroups(final Matrix data) {
+    for (final ObjectGroup objectGroup : OBJECT_GROUPS) {
+      final Group group = objectGroup.getGroup();
+      if (group == null) {
+        continue;
+      }
+      
+      final LinkData[] links =   group.getLinkData();
       if (links.length != 0) {
         final DataPicker picker = createPicker(data, links);
-        addObjectGroup(objectGroup, picker);
+        addMovingGroup(objectGroup, picker);
       }
-
-      registerObjectGroups(group.getGroups(), data);
     }
   }
 
@@ -175,26 +158,8 @@ public class ObjectGroupManager {
     this.startTime = 0;
     this.endTime = 0;
 
-    this.objectGroups.clear();
-    registerObjectGroups(this.root.getModel(0).getGroups(), data);
-  }
-  
-  /**
-   * DHパラメータを使用しているか設定します。
-   * 
-   * @param hasDHParameter DHパラメータ使用するならばtrue
-   */
-  public void setHasDHParameter(final boolean hasDHParameter) {
-    this.hasDHParameter = hasDHParameter;
-  }
-
-  /**
-   * DHパラメータを使用しているか判定します
-   * 
-   * @return　DHパラメータの使用をするならばtrue
-   */
-  public boolean hasDHParameter() {
-    return this.hasDHParameter;
+    this.movingGroups.clear();
+    registerMovingGroups(data);
   }
 
   /**
@@ -217,11 +182,10 @@ public class ObjectGroupManager {
   
   /**
    * グループとオブジェクトグループを対応付けします。
-   * @param group グループ
    * @param objectGroup オブジェクトグループ
    */
-  public static void assignGroup(final Group group, final ObjectGroup objectGroup) {
-    OBJECT_GROUPS.put(group, objectGroup);
+  public static void addObjectGroup(final ObjectGroup objectGroup) {
+    OBJECT_GROUPS.add(objectGroup);
   }
  
 }

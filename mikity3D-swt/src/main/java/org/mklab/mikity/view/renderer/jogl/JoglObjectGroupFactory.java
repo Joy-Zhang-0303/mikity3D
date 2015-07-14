@@ -24,7 +24,7 @@ public class JoglObjectGroupFactory {
    * @return グループ
    */
   public JoglObjectGroup create(final Group group) {
-    final JoglObjectGroup objectGroup = new JoglObjectGroup();
+    final JoglObjectGroup objectGroup = JoglObjectGroup.create(group);
     
     for (final XMLBox box : group.getXMLBoxes()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(box));
@@ -62,8 +62,7 @@ public class JoglObjectGroupFactory {
       objectGroup.setName(name);
     }
     
-    // オブジェクトのGroupとGroupの関連付けを行う
-    ObjectGroupManager.assignGroup(group, objectGroup);
+    ObjectGroupManager.addObjectGroup(objectGroup);
 
     return objectGroup;
   }

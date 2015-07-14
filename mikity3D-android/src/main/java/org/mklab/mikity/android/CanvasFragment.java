@@ -631,8 +631,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * MovableGroupManagerを設定します。
    */
   protected void setGroupManager() {
-    this.manager = new ObjectGroupManager(this.root);
-    //this.manager.setLogCat(new LogCatImpl());
+    this.manager = new ObjectGroupManager();
   }
 
   /**

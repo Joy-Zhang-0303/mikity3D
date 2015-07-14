@@ -50,7 +50,7 @@ public class JoglPrimitiveFactory {
       return child;
     }
 
-    final JoglObjectGroup group = new JoglObjectGroup();
+    final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
     
@@ -83,7 +83,7 @@ public class JoglPrimitiveFactory {
       return child;
     }
 
-    final JoglObjectGroup group = new JoglObjectGroup();
+    final JoglObjectGroup group =  JoglObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
@@ -115,7 +115,7 @@ public class JoglPrimitiveFactory {
       return child;
     }
 
-    final JoglObjectGroup group = new JoglObjectGroup();
+    final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
@@ -148,7 +148,7 @@ public class JoglPrimitiveFactory {
       return child;
     }
 
-    final JoglObjectGroup group = new JoglObjectGroup();
+    final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
@@ -192,7 +192,7 @@ public class JoglPrimitiveFactory {
       return child;
     }
     
-    final JoglObjectGroup group = new JoglObjectGroup();
+    final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 
@@ -236,7 +236,7 @@ public class JoglPrimitiveFactory {
       return child;
     }
     
-    final JoglObjectGroup group = new JoglObjectGroup();
+    final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(child);
     group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
 

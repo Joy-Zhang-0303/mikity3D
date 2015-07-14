@@ -31,7 +31,7 @@ public class OpenglesObjectGroupFactory {
    * @return グループ
    */
   public OpenglesObjectGroup create(final Group group) {
-    final OpenglesObjectGroup objectGroup = new OpenglesObjectGroup();
+    final OpenglesObjectGroup objectGroup = OpenglesObjectGroup.create(group);
     
     for (final XMLBox box : group.getXMLBoxes()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(box));
@@ -69,8 +69,7 @@ public class OpenglesObjectGroupFactory {
       objectGroup.setName(name);
     }
     
-    //　オブジェクトのGroupとGroupの関連付けを行う
-    ObjectGroupManager.assignGroup(group, objectGroup);
+    ObjectGroupManager.addObjectGroup(objectGroup);
 
     return objectGroup;
   }

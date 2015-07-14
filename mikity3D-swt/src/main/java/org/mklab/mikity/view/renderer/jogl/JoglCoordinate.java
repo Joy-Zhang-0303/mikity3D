@@ -22,6 +22,40 @@ public class JoglCoordinate {
   /** x軸方向の移動距離[m] */
   private float x;
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + Float.floatToIntBits(this.rotationX);
+    result = prime * result + Float.floatToIntBits(this.rotationY);
+    result = prime * result + Float.floatToIntBits(this.rotationZ);
+    result = prime * result + Float.floatToIntBits(this.x);
+    result = prime * result + Float.floatToIntBits(this.y);
+    result = prime * result + Float.floatToIntBits(this.z);
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    JoglCoordinate other = (JoglCoordinate)obj;
+    if (Float.floatToIntBits(this.rotationX) != Float.floatToIntBits(other.rotationX)) return false;
+    if (Float.floatToIntBits(this.rotationY) != Float.floatToIntBits(other.rotationY)) return false;
+    if (Float.floatToIntBits(this.rotationZ) != Float.floatToIntBits(other.rotationZ)) return false;
+    if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) return false;
+    if (Float.floatToIntBits(this.y) != Float.floatToIntBits(other.y)) return false;
+    if (Float.floatToIntBits(this.z) != Float.floatToIntBits(other.z)) return false;
+    return true;
+  }
+
   /** y軸方向の移動距離[m] */
   private float y;
 

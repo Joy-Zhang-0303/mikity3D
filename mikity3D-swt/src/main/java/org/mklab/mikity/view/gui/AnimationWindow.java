@@ -159,7 +159,7 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public void setRoot(final Mikity3d root) {
     this.root = root;
-    this.manager = new ObjectGroupManager(this.root);
+    this.manager = new ObjectGroupManager();
     this.modelRenderer = new JoglModelRenderer();
   }
 
@@ -424,7 +424,7 @@ public class AnimationWindow extends ApplicationWindow {
       @Override
       public void widgetSelected(SelectionEvent e) {
         final double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
-        AnimationWindow.this.manager.updateObjectGroupsWithCoordinateParameter(t);
+        AnimationWindow.this.manager.updateObjectGroups(t);
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setCurrentTime(t);
           String st = String.valueOf(t);

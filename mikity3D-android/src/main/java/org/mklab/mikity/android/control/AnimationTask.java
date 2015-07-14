@@ -104,7 +104,7 @@ public class AnimationTask extends TimerTask {
 
     if (this.manager.hasCoordinateParameter()) {
       try {
-        this.manager.updateObjectGroupsWithCoordinateParameter(this.currentTime);
+        this.manager.updateObjectGroups(this.currentTime);
       } catch(ConcurrentModificationException e) {
         //　再生中に再読み込みが何度も押されすぎたら落ちてしまうので、そのエラーをキャッチしています。
         e.getMessage();

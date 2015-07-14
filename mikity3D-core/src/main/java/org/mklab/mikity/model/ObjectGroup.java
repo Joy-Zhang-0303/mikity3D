@@ -5,6 +5,9 @@
  */
 package org.mklab.mikity.model;
 
+import org.mklab.mikity.model.xml.simplexml.model.Group;
+
+
 /**
  * グループを表すインターフェイスです。
  * 
@@ -12,15 +15,25 @@ package org.mklab.mikity.model;
  * @version $Revision: 1.4 $.2005/01/14
  */
 public interface ObjectGroup {
+
   /**
    * 名前を設定します。
+   * 
    * @param name 名前
    */
   void setName(String name);
 
   /**
    * グループの座標パラメータを設定します。
+   * 
    * @param parameter 座標パラメータ
    */
-   void setCoordinateParameter(CoordinateParameter parameter);
+  void setCoordinateParameter(CoordinateParameter parameter);
+
+  /**
+   * 関連するモデルデータのグループを返します。
+   * 
+   * @return 関連するモデルデータのグループ
+   */
+  Group getGroup();
 }

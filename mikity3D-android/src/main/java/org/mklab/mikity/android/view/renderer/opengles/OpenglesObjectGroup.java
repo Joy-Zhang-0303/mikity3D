@@ -7,6 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.ObjectGroup;
+import org.mklab.mikity.model.xml.simplexml.model.Group;
 
 
 /**
@@ -17,22 +18,97 @@ import org.mklab.mikity.model.ObjectGroup;
  */
 public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   /** オブジェクト。 */
-  private List<OpenglesObject> objects;
-//  /** サブグループ。 */
-//  private List<OpenglesObjectGroup> groups;
+  private List<OpenglesObject> objects = new ArrayList<OpenglesObject>();
   /** 座標系の基準。 */
   private OpenglesCoordinate baseCoordinate;
   /** 座標系。 */
   private OpenglesCoordinate coordinate = new OpenglesCoordinate();
   /** 名前。 */
   private String name;
+  /** ID。 */
+  private int id = 0;
+  /** シリアル番号。 */
+  /** モデルデータ。 */
+  private Group group;
+  /** モデルデータ。 */
+  private static int serialID = 0;
 
   /**
    * 新しく生成された<code>OpenglesObjectGroup</code>オブジェクトを初期化します。
+   * @param id ID
+   * @param group モデルデータ
    */
-  public OpenglesObjectGroup() {
-    this.objects = new ArrayList<OpenglesObject>();
-//    this.groups = new ArrayList<OpenglesObjectGroup>();
+  private OpenglesObjectGroup(int id, Group group) {
+    this.id = id;
+    this.group = group;
+  }
+  
+  /**
+   * ファクトリーメソッドです。
+   * @return {@OpenglesObjectGroup}
+   */
+  public static OpenglesObjectGroup create() {
+    return new OpenglesObjectGroup(serialID++, null);
+  }
+
+  /**
+   * ファクトリーメソッドです。
+   * @param group モデルデータ
+   * @return {@OpenglesObjectGroup}
+   */
+  public static OpenglesObjectGroup create(Group group) {
+    return new OpenglesObjectGroup(serialID++, group);
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public Group getGroup() {
+    return this.group;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this.baseCoordinate == null) ? 0 : this.baseCoordinate.hashCode());
+    result = prime * result + ((this.coordinate == null) ? 0 : this.coordinate.hashCode());
+    result = prime * result + ((this.group == null) ? 0 : this.group.hashCode());
+    result = prime * result + this.id;
+    result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
+    result = prime * result + ((this.objects == null) ? 0 : this.objects.hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    OpenglesObjectGroup other = (OpenglesObjectGroup)obj;
+    if (this.baseCoordinate == null) {
+      if (other.baseCoordinate != null) return false;
+    } else if (!this.baseCoordinate.equals(other.baseCoordinate)) return false;
+    if (this.coordinate == null) {
+      if (other.coordinate != null) return false;
+    } else if (!this.coordinate.equals(other.coordinate)) return false;
+    if (this.group == null) {
+      if (other.group != null) return false;
+    } else if (!this.group.equals(other.group)) return false;
+    if (this.id != other.id) return false;
+    if (this.name == null) {
+      if (other.name != null) return false;
+    } else if (!this.name.equals(other.name)) return false;
+    if (this.objects == null) {
+      if (other.objects != null) return false;
+    } else if (!this.objects.equals(other.objects)) return false;
+    return true;
   }
 
   /**
@@ -43,15 +119,6 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   public void addChild(OpenglesObject child) {
     this.objects.add(child);
   }
-
-//  /**
-//   * サブグループを追加します。
-//   * 
-//   * @param child サブグループ
-//   */
-//  public void addChild(OpenglesObjectGroup child) {
-//    this.groups.add(child);
-//  }
 
   /**
    * 座標系の基準を設定します。
@@ -79,10 +146,6 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
     for (final OpenglesObject object : this.objects) {
       object.display(gl10);
     }
-
-//    for (final OpenglesObjectGroup group : this.groups) {
-//      group.display(gl10);
-//    }
 
     gl10.glPopMatrix();
   }
