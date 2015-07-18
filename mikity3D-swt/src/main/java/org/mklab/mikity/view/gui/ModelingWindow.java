@@ -22,7 +22,7 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
 import org.mklab.mikity.view.gui.action.AnimationWindowOpenAction;
-import org.mklab.mikity.view.gui.action.ConfigDialogOpenAction;
+import org.mklab.mikity.view.gui.action.display.ConfigurationDialogOpenAction;
 import org.mklab.mikity.view.gui.action.file.FileExitAction;
 import org.mklab.mikity.view.gui.action.file.FileImportAction;
 import org.mklab.mikity.view.gui.action.file.FileOpenAction;
@@ -55,7 +55,7 @@ public class ModelingWindow extends ApplicationWindow {
   /** */
   Action FILE_EXIT_ACTION = new FileExitAction(this);
   /** */
-  Action CONFIGDIALOG_OPEN_ACTION = new ConfigDialogOpenAction(this);
+  Action CONFIGURATION_DIALOG_OPEN_ACTION = new ConfigurationDialogOpenAction(this);
   /** */
   Action ANIMATION_WINDOW_OPEN_ACTION = new AnimationWindowOpenAction(this);
 
@@ -151,15 +151,15 @@ public class ModelingWindow extends ApplicationWindow {
     fileMenu.add(new Separator());
     fileMenu.add(this.FILE_EXIT_ACTION);
 
-    final MenuManager editMenu = new MenuManager(Messages.getString("MainWindow.9")); //$NON-NLS-1$
-    editMenu.add(this.CONFIGDIALOG_OPEN_ACTION);
+    final MenuManager displayMenu = new MenuManager(Messages.getString("MainWindow.9")); //$NON-NLS-1$
+    displayMenu.add(this.CONFIGURATION_DIALOG_OPEN_ACTION);
     
     final MenuManager playMenu = new MenuManager(Messages.getString("MainWindow.10")); //$NON-NLS-1$
     playMenu.add(this.ANIMATION_WINDOW_OPEN_ACTION);
 
     final MenuManager manager = new MenuManager();
     manager.add(fileMenu);
-    manager.add(editMenu);
+    manager.add(displayMenu);
     manager.add(playMenu);
 
     return manager;

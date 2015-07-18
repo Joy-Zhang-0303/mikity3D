@@ -3,10 +3,11 @@
  * Copyright (C) 2005 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.gui.action;
+package org.mklab.mikity.view.gui.action.display;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.view.gui.ModelingWindow;
+import org.mklab.mikity.view.gui.action.Messages;
 import org.mklab.mikity.view.gui.dialog.ConfigurationDialog;
 
 
@@ -16,7 +17,7 @@ import org.mklab.mikity.view.gui.dialog.ConfigurationDialog;
  * @author Yusuke Tsutsui
  * @version $Revision: 1.4 $.2005/02/18
  */
-public class ConfigDialogOpenAction extends Action {
+public class ConfigurationDialogOpenAction extends Action {
 
   private ModelingWindow window;
 
@@ -24,10 +25,10 @@ public class ConfigDialogOpenAction extends Action {
    * 新しく生成された<code>ConfigDialogOpenAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    */
-  public ConfigDialogOpenAction(final ModelingWindow window) {
+  public ConfigurationDialogOpenAction(final ModelingWindow window) {
     this.window = window;
-    setText(Messages.getString("ConfigDialogOpenAction.0")); //$NON-NLS-1$
-    setToolTipText(Messages.getString("ConfigDialogOpenAction.1")); //$NON-NLS-1$
+    setText(Messages.getString("ConfigurationDialogOpenAction.0")); //$NON-NLS-1$
+    setToolTipText(Messages.getString("ConfigurationDialogOpenAction.1")); //$NON-NLS-1$
   }
 
   /**

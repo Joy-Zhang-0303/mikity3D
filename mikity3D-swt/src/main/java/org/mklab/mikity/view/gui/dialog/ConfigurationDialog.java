@@ -74,7 +74,7 @@ public class ConfigurationDialog {
    */
   private void createSShell() {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.sShell.setText("ConfigDialog"); //$NON-NLS-1$
+    this.sShell.setText("ConfigurationDialog"); //$NON-NLS-1$
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 450));
 
     final GridLayout layout = new GridLayout();

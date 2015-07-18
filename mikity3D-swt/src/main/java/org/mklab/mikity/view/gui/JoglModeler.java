@@ -28,10 +28,6 @@ import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 /**
  * モデラーを表すクラスです。
  * 
- * Primitiveを作成し、Linkを作成するクラスです。
- * 
- * Treeからグループを読み込みます。
- * 
  * @author miki
  * @version $Revision: 1.22 $.2004/12/03
  */
