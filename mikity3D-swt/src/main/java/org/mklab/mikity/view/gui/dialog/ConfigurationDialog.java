@@ -283,9 +283,25 @@ public class ConfigurationDialog {
   private void createMainButtonComp() {
     final Composite comp = new Composite(this.sShell, SWT.NONE);
     final GridLayout layout = new GridLayout();
-    layout.numColumns = 2;
+    layout.numColumns = 3;
     comp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     comp.setLayout(layout);
+    
+    final Button applyButton = new Button(comp, SWT.NONE);
+    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    applyButton.setText(Messages.getString("ConfigurationDialog.0")); //$NON-NLS-1$
+    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+      @Override
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        if (check()) {
+          getParametersFromDialog();
+          ConfigurationDialog.this.modeler.updateDisplay();
+        } else {
+          createMessageBox();
+        }
+      }
+
+    });
 
     final Button okButton = new Button(comp, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
