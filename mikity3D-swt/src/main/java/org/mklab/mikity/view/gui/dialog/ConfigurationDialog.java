@@ -19,10 +19,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
 import org.mklab.mikity.model.xml.simplexml.config.Background;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
+import org.mklab.mikity.model.xml.simplexml.config.Eye;
 import org.mklab.mikity.model.xml.simplexml.config.Light;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
-import org.mklab.mikity.model.xml.simplexml.config.Eye;
+import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
@@ -56,16 +57,20 @@ public class ConfigurationDialog {
   private ParameterInputBox lookAtPointZ;
 
   private Mikity3dConfiguration configuration;
+  
+  JoglModeler modeler;
 
   /**
    * コンストラクター
    * 
    * @param parentShell 親シェル
    * @param configuration 設定
+   * @param modeler モデラー。
    */
-  public ConfigurationDialog(Shell parentShell, Mikity3dConfiguration configuration) {
+  public ConfigurationDialog(Shell parentShell, Mikity3dConfiguration configuration, JoglModeler modeler) {
     this.parentShell = parentShell;
     this.configuration = configuration;
+    this.modeler = modeler;
     createSShell();
   }
 
@@ -285,40 +290,28 @@ public class ConfigurationDialog {
     final Button okButton = new Button(comp, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("ConfigDialog.16")); //$NON-NLS-1$
-
-    final Button cancelButton = new Button(comp, SWT.NONE);
-    cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    cancelButton.setText(Messages.getString("ConfigDialog.17")); //$NON-NLS-1$
-
-    cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
-      @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-
-        ConfigurationDialog.this.sShell.close();
-      }
-    });
-
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        // MainWindow.setBGColor(colorCombo.getText());
-
-        // もし適当な値ならば採用
         if (check()) {
-          // Vector3f viewVector = new
-          // Vector3f(lightX.getFloatValue(),lightY.getFloatValue(),lightZ.
-          // getFloatValue());
-          // MainWindow.setLightVector(new Vector3f(lightX.getFloatValue(),
-          // lightY.getFloatValue(), lightZ.getFloatValue()));
           getParametersFromDialog();
+          ConfigurationDialog.this.modeler.updateDisplay();
           ConfigurationDialog.this.sShell.close();
         } else {
           createMessageBox();
         }
       }
 
+    });
+    
+    final Button cancelButton = new Button(comp, SWT.NONE);
+    cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    cancelButton.setText(Messages.getString("ConfigDialog.17")); //$NON-NLS-1$
+    cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+      @Override
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        ConfigurationDialog.this.sShell.close();
+      }
     });
   }
 

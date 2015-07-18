@@ -336,5 +336,13 @@ public class JoglModeler extends Composite {
    */
   public void setInitialState() {
     this.renderer.setInitialState();
+    this.renderer.updateDisplay();
+  }
+ 
+  /**
+   * 再描画します。 
+   */
+  public void updateDisplay() {
+    this.renderer.updateDisplay();
   }
 }
