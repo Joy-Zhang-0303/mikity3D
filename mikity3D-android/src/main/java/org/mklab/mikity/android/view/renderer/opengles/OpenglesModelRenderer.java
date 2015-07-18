@@ -230,4 +230,15 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   public void setTranslationZ(float translationZ) {
     this.translationZ = (translationZ/2 + this.translationZ);
   }
+  
+  /**
+   * 移動・回転・拡大・縮小の操作をリセットし、初期状態に戻します。
+   */
+  public void setInitialState() {
+    this.translationY = 0;
+    this.translationZ = 0;
+    this.rotationY = 0;
+    this.rotationZ = 0;
+    this.scale = 1;
+  }
 }

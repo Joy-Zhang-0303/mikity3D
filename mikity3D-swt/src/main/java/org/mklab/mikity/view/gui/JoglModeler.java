@@ -330,4 +330,11 @@ public class JoglModeler extends Composite {
     this.renderer = new JoglModelRenderer();
     this.awtFrame.add(this.renderer);
   }
+  
+  /**
+   * モデルをリセットし、初期状態に戻します。 
+   */
+  public void setInitialState() {
+    this.renderer.setInitialState();
+  }
 }

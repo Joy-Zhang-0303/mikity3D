@@ -333,4 +333,15 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   public void dispose(GLAutoDrawable arg0) {
     // TODO 自動生成されたメソッド・スタブ
   }
+  
+  /**
+   * 移動・回転・拡大・縮小の操作をリセットし、初期状態に戻します。
+   */
+  public void setInitialState() {
+    this.translationY = 0;
+    this.translationZ = 0;
+    this.rotationY = 0;
+    this.rotationZ = 0;
+    this.scale = 1;
+  }
 }
