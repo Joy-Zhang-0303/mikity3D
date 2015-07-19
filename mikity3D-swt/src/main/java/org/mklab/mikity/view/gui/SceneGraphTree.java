@@ -31,7 +31,7 @@ import org.mklab.mikity.view.gui.dialog.AddTrianglePolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditQuadPolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditTrianglePolygonDialog;
-import org.mklab.mikity.view.gui.dialog.EditGroupWithXyzParameterDialog;
+import org.mklab.mikity.view.gui.dialog.EditGroupDialog;
 import org.mklab.mikity.view.gui.dialog.EditGroupWithDHParameterDialog;
 import org.mklab.mikity.view.gui.dnd.DragAndDropEnabler;
 
@@ -128,7 +128,7 @@ public class SceneGraphTree {
             final EditGroupWithDHParameterDialog groupConf = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           } else {
-            final EditGroupWithXyzParameterDialog groupConf = new EditGroupWithXyzParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final EditGroupDialog groupConf = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             groupConf.open();
           }
           setTree();
@@ -256,7 +256,7 @@ public class SceneGraphTree {
             final EditGroupWithDHParameterDialog dialog = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             dialog.open();
           } else if (SceneGraphTree.this.usedCoordinateParameter) {
-            final EditGroupWithXyzParameterDialog dialog = new EditGroupWithXyzParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             dialog.open();
           } else {
             final MessageBox message = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
@@ -268,7 +268,7 @@ public class SceneGraphTree {
               dialog.open();
               setTree();
             } else if (result == SWT.NO) {
-              final EditGroupWithXyzParameterDialog dialog = new EditGroupWithXyzParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+              final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
               dialog.open();
               setTree();
             }

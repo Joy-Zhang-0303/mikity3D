@@ -58,7 +58,7 @@ public class ModelingWindow extends ApplicationWindow {
   /** */
   Action CONFIGURATION_DIALOG_OPEN_ACTION = new ConfigurationDialogOpenAction(this);
   
-  Action INITIAL_STATE_ACTION = new ResetToInitialStateAction(this);
+  Action RESET_TO_INITIAL_STATE_ACTION = new ResetToInitialStateAction(this);
   
   /** */
   Action ANIMATION_WINDOW_OPEN_ACTION = new AnimationWindowOpenAction(this);
@@ -162,7 +162,7 @@ public class ModelingWindow extends ApplicationWindow {
 
     final MenuManager displayMenu = new MenuManager(Messages.getString("MainWindow.9")); //$NON-NLS-1$
     displayMenu.add(this.CONFIGURATION_DIALOG_OPEN_ACTION);
-    displayMenu.add(this.INITIAL_STATE_ACTION);
+    displayMenu.add(this.RESET_TO_INITIAL_STATE_ACTION);
     
     final MenuManager playMenu = new MenuManager(Messages.getString("MainWindow.10")); //$NON-NLS-1$
     playMenu.add(this.ANIMATION_WINDOW_OPEN_ACTION);

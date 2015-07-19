@@ -26,7 +26,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
  * @author miki
  * @version $Revision: 1.1 $.2005/02/03
  */
-public class EditGroupWithXyzParameterDialog {
+public class EditGroupDialog {
 
   Shell sShell = null;
   private Shell parentShell = null;
@@ -56,7 +56,7 @@ public class EditGroupWithXyzParameterDialog {
    * @param group グループ
    * @param editable 編集可能性
    */
-  public EditGroupWithXyzParameterDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.Group group, boolean editable) {
+  public EditGroupDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.Group group, boolean editable) {
     this.parentShell = parentShell;
     this.group = group;
     this.editable = editable;
@@ -130,22 +130,22 @@ public class EditGroupWithXyzParameterDialog {
       style = SWT.READ_ONLY;
     }
 
-    this.translationX = new ParameterInputBox(parameterGroup, style, "translationX", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.translationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.0"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.translationXdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.translationY = new ParameterInputBox(parameterGroup, style, "translationY", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.translationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.1"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.translationYdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.translationZ = new ParameterInputBox(parameterGroup, style, "translationZ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.translationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.2"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.translationZdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.rotationX = new ParameterInputBox(parameterGroup, style, "rotationX", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.rotationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.rotationXdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.rotationY = new ParameterInputBox(parameterGroup, style, "rotationY", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.rotationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.rotationYdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.rotationZ = new ParameterInputBox(parameterGroup, style, "rotationZ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.rotationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     this.rotationZdataNumber = new ParameterInputBox(parameterGroup, style, 0);
 
     setParametersInDialog();
@@ -155,13 +155,11 @@ public class EditGroupWithXyzParameterDialog {
     final Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("GroupConfigDialogLink.4")); //$NON-NLS-1$
-
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containsOnlyNumbers() == false) {
-          final MessageBox message = new MessageBox(EditGroupWithXyzParameterDialog.this.sShell, SWT.ICON_WARNING);
+          final MessageBox message = new MessageBox(EditGroupDialog.this.sShell, SWT.ICON_WARNING);
           message.setMessage(Messages.getString("GroupConfigDialogLink.7")); //$NON-NLS-1$
           message.setText(Messages.getString("GroupConfigDialogLink.8")); //$NON-NLS-1$
           message.open();
@@ -169,7 +167,7 @@ public class EditGroupWithXyzParameterDialog {
         }
 
         updateGroupParameters();
-        EditGroupWithXyzParameterDialog.this.sShell.close();
+        EditGroupDialog.this.sShell.close();
       }
 
     });
@@ -177,13 +175,11 @@ public class EditGroupWithXyzParameterDialog {
     final Button cancelButton = new Button(this.sShell, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText(Messages.getString("GroupConfigDialogLink.9")); //$NON-NLS-1$
-
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         // キャンセルが選択されたら、変更しないでシェルを閉じる
-        EditGroupWithXyzParameterDialog.this.sShell.close();
+        EditGroupDialog.this.sShell.close();
       }
     });
   }

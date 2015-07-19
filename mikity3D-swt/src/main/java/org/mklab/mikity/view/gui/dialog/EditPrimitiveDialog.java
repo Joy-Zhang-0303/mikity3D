@@ -123,7 +123,7 @@ public class EditPrimitiveDialog {
     parameterGroup.setLayout(newValueLayout);
     
     final Label colorLabel = new Label(parameterGroup, SWT.LEFT);
-    colorLabel.setText("color"); //$NON-NLS-1$
+    colorLabel.setText(Messages.getString("EditPrimitiveDialog.10")); //$NON-NLS-1$
     final GridData gridData = new GridData();
     gridData.minimumWidth = 200;
     colorLabel.setLayoutData(gridData);
@@ -196,7 +196,6 @@ public class EditPrimitiveDialog {
     final Button okButton = new Button(comp, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("EditPrimitiveDialog.20")); //$NON-NLS-1$
-
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
@@ -216,7 +215,6 @@ public class EditPrimitiveDialog {
     final Button cancelButton = new Button(comp, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText(Messages.getString("EditPrimitiveDialog.25")); //$NON-NLS-1$
-
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {

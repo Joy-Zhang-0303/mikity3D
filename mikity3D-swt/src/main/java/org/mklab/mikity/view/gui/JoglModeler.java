@@ -20,7 +20,7 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
-import org.mklab.mikity.view.gui.dialog.EditGroupWithXyzParameterDialog;
+import org.mklab.mikity.view.gui.dialog.EditGroupDialog;
 import org.mklab.mikity.view.gui.dialog.EditGroupWithDHParameterDialog;
 import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 
@@ -223,14 +223,14 @@ public class JoglModeler extends Composite {
             final EditGroupWithDHParameterDialog groupConf = new EditGroupWithDHParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
           } else if (result == SWT.NO) {
-            EditGroupWithXyzParameterDialog groupConf = new EditGroupWithXyzParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
+            EditGroupDialog groupConf = new EditGroupDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
           }
         }
 
         for (int i = 0; i < linkdata.length; i++) {
           if (linkdata[i].hasCoordinateParameter()) {
-            final EditGroupWithXyzParameterDialog groupConf = new EditGroupWithXyzParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
+            final EditGroupDialog groupConf = new EditGroupDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
             break;
           }
