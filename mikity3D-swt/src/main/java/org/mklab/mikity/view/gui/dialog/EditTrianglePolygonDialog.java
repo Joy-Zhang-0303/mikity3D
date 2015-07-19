@@ -276,7 +276,7 @@ public class EditTrianglePolygonDialog {
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (Check()) {
+        if (containOnlyNumbers()) {
           updateObjectParameters();
           EditTrianglePolygonDialog.this.sShell.close();
         } else {
@@ -310,7 +310,7 @@ public class EditTrianglePolygonDialog {
     applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (Check()) {
+        if (containOnlyNumbers()) {
           updateObjectParameters();
           EditTrianglePolygonDialog.this.tree.updateTree();
           EditTrianglePolygonDialog.this.modeler.updateDisplay();
@@ -329,7 +329,7 @@ public class EditTrianglePolygonDialog {
    * 
    * @return boolean
    */
-  boolean Check() {
+  boolean containOnlyNumbers() {
     if (this.newVertex1X.containsOnlyNumbers() == false) {
       return false;
     }

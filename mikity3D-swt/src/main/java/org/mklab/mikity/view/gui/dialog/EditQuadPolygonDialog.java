@@ -302,7 +302,7 @@ public class EditQuadPolygonDialog {
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (check()) {
+        if (containOnlyNumbers()) {
           updateObjectParameters();
           EditQuadPolygonDialog.this.sShell.close();
         } else {
@@ -336,7 +336,7 @@ public class EditQuadPolygonDialog {
     applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (check()) {
+        if (containOnlyNumbers()) {
           updateObjectParameters();
           EditQuadPolygonDialog.this.tree.updateTree();
           EditQuadPolygonDialog.this.modeler.updateDisplay();
@@ -355,7 +355,7 @@ public class EditQuadPolygonDialog {
    * 
    * @return boolean
    */
-  boolean check() {
+  boolean containOnlyNumbers() {
     if (this.newVertex1X.containsOnlyNumbers() == false) {
       return false;
     }
