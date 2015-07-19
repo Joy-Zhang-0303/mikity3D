@@ -113,7 +113,7 @@ public class EditTrianglePolygonDialog {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 600));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 750));
     this.sShell.setText(Messages.getString("EditTrianglePolygonDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
 
@@ -133,6 +133,16 @@ public class EditTrianglePolygonDialog {
     final GridLayout layout = new GridLayout(3, false);
     group.setLayout(layout);
 
+    final Label colorLabel = new Label(group, SWT.LEFT);
+    colorLabel.setText(Messages.getString("EditTrianglePolygonDialog.20")); //$NON-NLS-1$
+    setGridLayout(colorLabel, 1);
+    
+    this.colorCombo = new ColorComboBox(group, this.COLORS);
+    this.colorCombo.createColorCombo();
+
+    final Label label7 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(label7, 3);
+    
     this.newVertex1X = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelLength"); //$NON-NLS-1$
     this.newVertex1Y = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
@@ -162,17 +172,7 @@ public class EditTrianglePolygonDialog {
 
     final Label label6 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label6, 3);
-
-    final Label colorLabel = new Label(group, SWT.LEFT);
-    colorLabel.setText("color"); //$NON-NLS-1$
-    setGridLayout(colorLabel, 1);
-    
-    this.colorCombo = new ColorComboBox(group, this.COLORS);
-    this.colorCombo.createColorCombo();
-
-    final Label label7 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label7, 3);
-    
+   
     this.newLeftVertexX = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelLength"); //$NON-NLS-1$
     this.newLeftVertexY = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.16"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$

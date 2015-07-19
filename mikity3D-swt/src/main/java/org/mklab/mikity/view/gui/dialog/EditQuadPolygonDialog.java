@@ -119,7 +119,7 @@ public class EditQuadPolygonDialog {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 720));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 850));
     this.sShell.setText(Messages.getString("EditQuadPolygonDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
 
@@ -139,6 +139,16 @@ public class EditQuadPolygonDialog {
     final GridLayout afterLayout = new GridLayout(3, false);
     this.afterGroup.setLayout(afterLayout);
 
+    final Label colorLabel4 = new Label(this.afterGroup, SWT.LEFT);
+    colorLabel4.setText(Messages.getString("EditQuadPolygonDialog.22")); //$NON-NLS-1$
+    setGridLayout(colorLabel4, 1);
+    
+    this.colorCombo = new ColorComboBox(this.afterGroup, this.colors);
+    this.colorCombo.createColorCombo();
+    
+    Label label9 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(label9, 3);
+    
     this.newVertex1X = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
     this.newVertex1Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
@@ -178,16 +188,6 @@ public class EditQuadPolygonDialog {
 
     Label label8 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label8, 3);
-
-    final Label colorLabel4 = new Label(this.afterGroup, SWT.LEFT);
-    colorLabel4.setText("color"); //$NON-NLS-1$
-    setGridLayout(colorLabel4, 1);
-    
-    this.colorCombo = new ColorComboBox(this.afterGroup, this.colors);
-    this.colorCombo.createColorCombo();
-    
-    Label label9 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label9, 3);
 
     this.newLeftVertexX = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
