@@ -128,7 +128,7 @@ public class SceneGraphTree {
             final EditGroupWithDHParameterDialog dialog = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             dialog.open();
           } else {
-            final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
             dialog.open();
           }
           updateTree();
@@ -256,7 +256,7 @@ public class SceneGraphTree {
             final EditGroupWithDHParameterDialog dialog = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
             dialog.open();
           } else if (SceneGraphTree.this.usedCoordinateParameter) {
-            final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
             dialog.open();
           } else {
             final MessageBox message = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
@@ -268,7 +268,7 @@ public class SceneGraphTree {
               dialog.open();
               updateTree();
             } else if (result == SWT.NO) {
-              final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+              final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
               dialog.open();
               updateTree();
             }

@@ -223,14 +223,14 @@ public class JoglModeler extends Composite {
             final EditGroupWithDHParameterDialog groupConf = new EditGroupWithDHParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
             groupConf.open();
           } else if (result == SWT.NO) {
-            EditGroupDialog groupConf = new EditGroupDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
+            EditGroupDialog groupConf = new EditGroupDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable(), JoglModeler.this.tree, JoglModeler.this);
             groupConf.open();
           }
         }
 
         for (int i = 0; i < linkdata.length; i++) {
           if (linkdata[i].hasCoordinateParameter()) {
-            final EditGroupDialog groupConf = new EditGroupDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
+            final EditGroupDialog groupConf = new EditGroupDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable(), JoglModeler.this.tree, JoglModeler.this);
             groupConf.open();
             break;
           }

@@ -200,7 +200,7 @@ public class EditPrimitiveDialog {
     final Composite comp = new Composite(this.sShell, SWT.NONE);
     setGridLayout(comp, 3);
 
-    final GridLayout compLayout = new GridLayout(2, true);
+    final GridLayout compLayout = new GridLayout(3, true);
     comp.setLayout(compLayout);
     
     final Button applyButton = new Button(comp, SWT.NONE);

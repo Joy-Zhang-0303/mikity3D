@@ -9,15 +9,18 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.LinkData;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
+import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
+import org.mklab.mikity.view.gui.SceneGraphTree;
 
 
 /**
@@ -48,6 +51,9 @@ public class EditGroupDialog {
 
   private boolean editable;
   private Label statusLabel;
+  
+  JoglModeler modeler;
+  SceneGraphTree tree;
 
   /**
    * コンストラクター
@@ -56,10 +62,12 @@ public class EditGroupDialog {
    * @param group グループ
    * @param editable 編集可能性
    */
-  public EditGroupDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.Group group, boolean editable) {
+  public EditGroupDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.Group group, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parentShell;
     this.group = group;
     this.editable = editable;
+    this.tree = tree;
+    this.modeler = modeler;
     createSShell();
   }
 
@@ -69,10 +77,10 @@ public class EditGroupDialog {
   private void createSShell() {
     // SWT.APPLICATION_MODAL→このシェルを閉じないと、親シェルを編集できなくする
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    final GridLayout layout = new GridLayout();
-    layout.numColumns = 2;
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 375));
     this.sShell.setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
+    final GridLayout layout = new GridLayout();
+    layout.numColumns = 3;
     this.sShell.setLayout(layout);
 
     this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -99,7 +107,7 @@ public class EditGroupDialog {
     final Group parameterGroup = new Group(this.sShell, SWT.NONE);
     final GridLayout layout = new GridLayout();
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
-    data.horizontalSpan = 2;
+    data.horizontalSpan = 3;
     layout.numColumns = 3;
     parameterGroup.setText(Messages.getString("GroupConfigDialogLink.11")); //$NON-NLS-1$
     parameterGroup.setLayout(layout);
@@ -152,6 +160,20 @@ public class EditGroupDialog {
   }
 
   private void createButtonComposite() {
+    final Button applyButton = new Button(this.sShell, SWT.NONE);
+    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    applyButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
+    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+      @Override
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        updateGroupParameters();
+        EditGroupDialog.this.tree.updateTree();
+        EditGroupDialog.this.modeler.updateDisplay();
+      }
+
+    });
+    
+    
     final Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("GroupConfigDialogLink.4")); //$NON-NLS-1$
