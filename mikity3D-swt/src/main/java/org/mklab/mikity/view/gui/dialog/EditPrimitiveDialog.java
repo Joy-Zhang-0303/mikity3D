@@ -203,20 +203,6 @@ public class EditPrimitiveDialog {
     final GridLayout compLayout = new GridLayout(3, true);
     comp.setLayout(compLayout);
     
-    final Button applyButton = new Button(comp, SWT.NONE);
-    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    applyButton.setText(Messages.getString("EditPrimitiveDialog.11")); //$NON-NLS-1$
-    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-      @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        updatePrimitiveParameters();
-        setParametersInDialog();
-        EditPrimitiveDialog.this.tree.updateTree();
-        EditPrimitiveDialog.this.modeler.updateDisplay();
-      }
-
-    });
-
     final Button okButton = new Button(comp, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("EditPrimitiveDialog.20")); //$NON-NLS-1$
@@ -250,6 +236,20 @@ public class EditPrimitiveDialog {
           EditPrimitiveDialog.this.sShell.close();
         }
       }
+    });
+    
+    final Button applyButton = new Button(comp, SWT.NONE);
+    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    applyButton.setText(Messages.getString("EditPrimitiveDialog.11")); //$NON-NLS-1$
+    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+      @Override
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        updatePrimitiveParameters();
+        setParametersInDialog();
+        EditPrimitiveDialog.this.tree.updateTree();
+        EditPrimitiveDialog.this.modeler.updateDisplay();
+      }
+
     });
   }
 

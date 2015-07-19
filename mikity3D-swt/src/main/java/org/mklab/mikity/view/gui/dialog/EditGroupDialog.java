@@ -160,20 +160,6 @@ public class EditGroupDialog {
   }
 
   private void createButtonComposite() {
-    final Button applyButton = new Button(this.sShell, SWT.NONE);
-    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    applyButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
-    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-      @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        updateGroupParameters();
-        EditGroupDialog.this.tree.updateTree();
-        EditGroupDialog.this.modeler.updateDisplay();
-      }
-
-    });
-    
-    
     final Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("GroupConfigDialogLink.4")); //$NON-NLS-1$
@@ -203,6 +189,19 @@ public class EditGroupDialog {
         // キャンセルが選択されたら、変更しないでシェルを閉じる
         EditGroupDialog.this.sShell.close();
       }
+    });
+    
+    final Button applyButton = new Button(this.sShell, SWT.NONE);
+    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    applyButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
+    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+      @Override
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        updateGroupParameters();
+        EditGroupDialog.this.tree.updateTree();
+        EditGroupDialog.this.modeler.updateDisplay();
+      }
+
     });
   }
   

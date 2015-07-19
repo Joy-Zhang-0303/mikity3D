@@ -133,11 +133,11 @@ public class SceneGraphTree {
           }
           updateTree();
         } else if (doubleClickObj instanceof XMLTrianglePolygon) {
-          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)doubleClickObj, SceneGraphTree.this.targetGroup);
+          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)doubleClickObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (doubleClickObj instanceof XMLQuadPolygon) {
-          final EditQuadPolygonDialog dialogy = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)doubleClickObj, SceneGraphTree.this.targetGroup);
+          final EditQuadPolygonDialog dialogy = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)doubleClickObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialogy.open();
           updateTree();
         } else {
@@ -274,11 +274,11 @@ public class SceneGraphTree {
             }
           }
         } else if (SceneGraphTree.this.targetObj instanceof XMLTrianglePolygon) {
-          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup);
+          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (SceneGraphTree.this.targetObj instanceof XMLQuadPolygon) {
-          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup);
+          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else {

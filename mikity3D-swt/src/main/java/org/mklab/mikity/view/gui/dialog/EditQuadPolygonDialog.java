@@ -22,7 +22,9 @@ import org.mklab.mikity.model.xml.simplexml.model.Rotation;
 import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Vertex;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
+import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
+import org.mklab.mikity.view.gui.SceneGraphTree;
 import org.mklab.mikity.view.gui.UnitLabel;
 
 
@@ -94,17 +96,24 @@ public class EditQuadPolygonDialog {
   private ParameterInputBox newRightVertexY;
   private ParameterInputBox newRightVertexZ;
 
+  SceneGraphTree tree;
+  JoglModeler modeler;
+  
   /**
    * コンストラクター
    * 
    * @param parentShell 親のシェル
    * @param quad ポリゴン
    * @param group グループ
+   * @param tree シーングラフツリー 
+   * @param modeler モデラー
    */
-  public EditQuadPolygonDialog(Shell parentShell, XMLQuadPolygon quad, org.mklab.mikity.model.xml.simplexml.model.Group group) {
+  public EditQuadPolygonDialog(Shell parentShell, XMLQuadPolygon quad, org.mklab.mikity.model.xml.simplexml.model.Group group, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parentShell;
     this.quad = quad;
     this.groupName = group.getName();
+    this.tree = tree;
+    this.modeler = modeler;
     createSShell();
     detectPrim();
   }
@@ -282,29 +291,20 @@ public class EditQuadPolygonDialog {
    */
   private void createButtonComp() {
     final Composite composite = new Composite(this.sShell, SWT.NONE);
-    setGridLayout(composite, 2);
+    setGridLayout(composite, 3);
 
-    final GridLayout compLayout = new GridLayout(2, true);
+    final GridLayout compLayout = new GridLayout(3, true);
     composite.setLayout(compLayout);
 
     final Button okButton = new Button(composite, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("EditQuadPolygonDialog.40")); //$NON-NLS-1$
-
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        // 数字以外が入っていないかを判断
-        if (Check()) {
-          final MessageBox message = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-          message.setMessage(Messages.getString("EditQuadPolygonDialog.41")); //$NON-NLS-1$
-          message.setText(Messages.getString("EditQuadPolygonDialog.42")); //$NON-NLS-1$
-          int yesNo = message.open();
-          if (yesNo == SWT.YES) {
-            setParam();
-            EditQuadPolygonDialog.this.sShell.close();
-          }
+        if (check()) {
+          updateObjectParameters();
+          EditQuadPolygonDialog.this.sShell.close();
         } else {
           final MessageBox message = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.ICON_WARNING);
           message.setMessage(Messages.getString("EditQuadPolygonDialog.43")); //$NON-NLS-1$
@@ -317,18 +317,34 @@ public class EditQuadPolygonDialog {
     final Button cancelButton = new Button(composite, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText(Messages.getString("EditQuadPolygonDialog.45")); //$NON-NLS-1$
-
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-
         final MessageBox message = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditQuadPolygonDialog.46")); //$NON-NLS-1$
         message.setText(Messages.getString("EditQuadPolygonDialog.47")); //$NON-NLS-1$
         int yesNo = message.open();
         if (yesNo == SWT.YES) {
           EditQuadPolygonDialog.this.sShell.close();
+        }
+      }
+    });
+    
+    final Button applyButton = new Button(composite, SWT.NONE);
+    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    applyButton.setText(Messages.getString("EditTrianglePolygonDialog.19")); //$NON-NLS-1$
+    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+      @Override
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        if (check()) {
+          updateObjectParameters();
+          EditQuadPolygonDialog.this.tree.updateTree();
+          EditQuadPolygonDialog.this.modeler.updateDisplay();
+        } else {
+          final MessageBox message = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.ICON_WARNING);
+          message.setMessage(Messages.getString("EditQuadPolygonDialog.43")); //$NON-NLS-1$
+          message.setText(Messages.getString("EditQuadPolygonDialog.44")); //$NON-NLS-1$
+          message.open();
         }
       }
     });
@@ -339,7 +355,7 @@ public class EditQuadPolygonDialog {
    * 
    * @return boolean
    */
-  boolean Check() {
+  boolean check() {
     if (this.newVertex1X.containsOnlyNumbers() == false) {
       return false;
     }
@@ -400,7 +416,7 @@ public class EditQuadPolygonDialog {
   /**
    * パラメータを変更する
    */
-  void setParam() {
+  void updateObjectParameters() {
     final Vertex[] newVertices = new Vertex[4];
 
     newVertices[0] = new Vertex(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
