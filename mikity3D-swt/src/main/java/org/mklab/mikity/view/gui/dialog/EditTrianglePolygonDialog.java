@@ -42,7 +42,7 @@ public class EditTrianglePolygonDialog {
   private String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
 
   private String groupName;
-  private Group afterGroup;
+  //private Group afterGroup;
   private Label primitiveLabel;
   private ParameterInputBox vertex1X;
   private ParameterInputBox vertex1Y;
@@ -135,118 +135,130 @@ public class EditTrianglePolygonDialog {
   private void createSShell() {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout = new GridLayout();
-    layout.numColumns = 2;
+    layout.numColumns = 1;
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 600));
     this.sShell.setText(Messages.getString("EditTrianglePolygonDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
 
     final Label groupLabel = new Label(this.sShell, SWT.LEFT);
     groupLabel.setText(Messages.getString("EditTrianglePolygonDialog.1") + this.groupName); //$NON-NLS-1$
-    setGridLayout(groupLabel, 2);
+    setGridLayout(groupLabel, 1);
 
-    this.primitiveLabel = new Label(this.sShell, SWT.NONE);
-    setGridLayout(this.primitiveLabel, 2);
+//    this.primitiveLabel = new Label(this.sShell, SWT.NONE);
+//    setGridLayout(this.primitiveLabel, 1);
 
-    final Group beforeGroup = new Group(this.sShell, SWT.NONE);
-    beforeGroup.setText(Messages.getString("EditTrianglePolygonDialog.2")); //$NON-NLS-1$
-    setGridLayout(beforeGroup, 1);
-    final GridLayout beforeLayout = new GridLayout(2, true);
-    beforeGroup.setLayout(beforeLayout);
+    //createCurrentGroup();
 
-    this.vertex1X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.vertex1Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.vertex1Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    final Label label1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label1, 2);
-
-    this.vertex2X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.vertex2Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.7"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.vertex2Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    final Label label2 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label2, 2);
-    this.vertex3X = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.9"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.vertex3Y = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.10"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.vertex3Z = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.color = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, "color", ""); //$NON-NLS-1$ //$NON-NLS-2$
-    final Label label3 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label3, 2);
-
-    this.rightVertexX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.12"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.rightVertexY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.13"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.rightVertexZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    final Label labelR1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(labelR1, 2);
-
-    this.leftVertexX = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.leftVertexY = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.16"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.leftVertexZ = new ParameterInputBox(beforeGroup, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    final Label labelL1 = new Label(beforeGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(labelL1, 2);
-
-    this.afterGroup = new Group(this.sShell, SWT.NONE);
-    this.afterGroup.setText(Messages.getString("EditTrianglePolygonDialog.18")); //$NON-NLS-1$
-    setGridLayout(this.afterGroup, 1);
-    final GridLayout afterLayout = new GridLayout(3, false);
-    this.afterGroup.setLayout(afterLayout);
-
-    this.newVertex1X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex1Y = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex1Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-
-    final Label label4 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label4, 3);
-
-    this.newVertex2X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex2Y = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex2Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-
-    final Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label5, 3);
-
-    this.newVertex3X = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex3Y = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex3Z = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-
-    final Label colorLabel = new Label(this.afterGroup, SWT.RIGHT);
-    colorLabel.setText("→"); //$NON-NLS-1$
-    setGridLayout(colorLabel, 1);
-    this.colorCombo = new ColorComboBox(this.afterGroup, this.COLORS);
-    this.colorCombo.createColorCombo();
-    final Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label6, 3);
-
-    this.newRightVertexX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.newRightVertexY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.newRightVertexZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-
-    final Label labelR2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(labelR2, 3);
-
-    this.newLeftVertexX = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newLeftVertexY = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newLeftVertexZ = new ParameterInputBox(this.afterGroup, SWT.NONE, "→", "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-
-    final Label labelL2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(labelL2, 3);
-    // UnitLabel test = new UnitLabel(afterGroup, "modelAngle");
+    createNewGroup();
 
     createButtonComp();
   }
+
+  private void createNewGroup() {
+    Group group = new Group(this.sShell, SWT.NONE);
+    group.setText(Messages.getString("EditTrianglePolygonDialog.18")); //$NON-NLS-1$
+    setGridLayout(group, 1);
+    final GridLayout layout = new GridLayout(3, false);
+    group.setLayout(layout);
+
+    this.newVertex1X = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+    this.newVertex1Y = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+    this.newVertex1Z = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+
+    final Label label4 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(label4, 3);
+
+    this.newVertex2X = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+    this.newVertex2Y = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.7"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+    this.newVertex2Z = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+
+    final Label label5 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(label5, 3);
+
+    this.newVertex3X = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.9"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+    this.newVertex3Y = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.10"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+    this.newVertex3Z = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+
+    final Label label6 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(label6, 3);
+
+    final Label colorLabel = new Label(group, SWT.LEFT);
+    colorLabel.setText("color"); //$NON-NLS-1$
+    setGridLayout(colorLabel, 1);
+    
+    this.colorCombo = new ColorComboBox(group, this.COLORS);
+    this.colorCombo.createColorCombo();
+
+    final Label label7 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(label7, 3);
+    
+    this.newLeftVertexX = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+    this.newLeftVertexY = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.16"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+    this.newLeftVertexZ = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelLength"); //$NON-NLS-1$
+
+    final Label labelR2 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+    setGridLayout(labelR2, 3);
+
+    this.newRightVertexX = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.12"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelAngle"); //$NON-NLS-1$
+    this.newRightVertexY = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.13"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelAngle"); //$NON-NLS-1$
+    this.newRightVertexZ = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(group, "modelAngle"); //$NON-NLS-1$
+
+    //    final Label labelL2 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+//    setGridLayout(labelL2, 3);
+  }
+
+//  private void createCurrentGroup() {
+//    final Group group = new Group(this.sShell, SWT.NONE);
+//    group.setText(Messages.getString("EditTrianglePolygonDialog.2")); //$NON-NLS-1$
+//    setGridLayout(group, 1);
+//    final GridLayout layout = new GridLayout(2, true);
+//    group.setLayout(layout);
+//
+//    this.vertex1X = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.vertex1Y = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.vertex1Z = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    final Label label1 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+//    setGridLayout(label1, 2);
+//
+//    this.vertex2X = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.vertex2Y = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.7"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.vertex2Z = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    final Label label2 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+//    setGridLayout(label2, 2);
+//    this.vertex3X = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.9"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.vertex3Y = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.10"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.vertex3Z = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.color = new ParameterInputBox(group, SWT.READ_ONLY, "color", ""); //$NON-NLS-1$ //$NON-NLS-2$
+//    final Label label3 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+//    setGridLayout(label3, 2);
+//
+//    this.rightVertexX = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.12"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.rightVertexY = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.13"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.rightVertexZ = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    final Label labelR1 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+//    setGridLayout(labelR1, 2);
+//
+//    this.leftVertexX = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.leftVertexY = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.16"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    this.leftVertexZ = new ParameterInputBox(group, SWT.READ_ONLY, Messages.getString("EditTrianglePolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    final Label labelL1 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
+//    setGridLayout(labelL1, 2);
+//  }
 
   /**
    * レイアウトマネージャGridLayoutを設定
@@ -401,58 +413,58 @@ public class EditTrianglePolygonDialog {
    */
   private void setParametersInDialog() {
     final Vertex vertex0 = this.triangle.getVertex(0);
-    this.vertex1X.setText("" + vertex0.getX()); //$NON-NLS-1$
-    this.vertex1Y.setText("" + vertex0.getY()); //$NON-NLS-1$
-    this.vertex1Z.setText("" + vertex0.getZ()); //$NON-NLS-1$
+//    this.vertex1X.setText("" + vertex0.getX()); //$NON-NLS-1$
+//    this.vertex1Y.setText("" + vertex0.getY()); //$NON-NLS-1$
+//    this.vertex1Z.setText("" + vertex0.getZ()); //$NON-NLS-1$
     this.newVertex1X.setText("" + vertex0.getX()); //$NON-NLS-1$
     this.newVertex1Y.setText("" + vertex0.getY()); //$NON-NLS-1$
     this.newVertex1Z.setText("" + vertex0.getZ()); //$NON-NLS-1$
 
     final Vertex vertex1 = this.triangle.getVertex(1);
-    this.vertex2X.setText("" + vertex1.getX()); //$NON-NLS-1$
-    this.vertex2Y.setText("" + vertex1.getY()); //$NON-NLS-1$
-    this.vertex2Z.setText("" + vertex1.getZ()); //$NON-NLS-1$
+//    this.vertex2X.setText("" + vertex1.getX()); //$NON-NLS-1$
+//    this.vertex2Y.setText("" + vertex1.getY()); //$NON-NLS-1$
+//    this.vertex2Z.setText("" + vertex1.getZ()); //$NON-NLS-1$
     this.newVertex2X.setText("" + vertex1.getX()); //$NON-NLS-1$
     this.newVertex2Y.setText("" + vertex1.getY()); //$NON-NLS-1$
     this.newVertex2Z.setText("" + vertex1.getZ()); //$NON-NLS-1$
 
     final Vertex vertex2 = this.triangle.getVertex(2);
-    this.vertex3X.setText("" + vertex2.getX()); //$NON-NLS-1$
-    this.vertex3Y.setText("" + vertex2.getY()); //$NON-NLS-1$
-    this.vertex3Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
+//    this.vertex3X.setText("" + vertex2.getX()); //$NON-NLS-1$
+//    this.vertex3Y.setText("" + vertex2.getY()); //$NON-NLS-1$
+//    this.vertex3Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
     this.newVertex3X.setText("" + vertex2.getX()); //$NON-NLS-1$
     this.newVertex3Y.setText("" + vertex2.getY()); //$NON-NLS-1$
     this.newVertex3Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
-    this.color.setText(this.triangle.getColor());
+    //this.color.setText(this.triangle.getColor());
     this.colorCombo.getColorComboBox().setText(this.triangle.getColor());
 
     if (this.triangle.getRotation() != null) {
-      this.rightVertexX.setText("" + this.triangle.getRotation().getX()); //$NON-NLS-1$
-      this.rightVertexY.setText("" + this.triangle.getRotation().getY()); //$NON-NLS-1$
-      this.rightVertexZ.setText("" + this.triangle.getRotation().getZ()); //$NON-NLS-1$
+//      this.rightVertexX.setText("" + this.triangle.getRotation().getX()); //$NON-NLS-1$
+//      this.rightVertexY.setText("" + this.triangle.getRotation().getY()); //$NON-NLS-1$
+//      this.rightVertexZ.setText("" + this.triangle.getRotation().getZ()); //$NON-NLS-1$
       this.newRightVertexX.setText("" + this.triangle.getRotation().getX()); //$NON-NLS-1$
       this.newRightVertexY.setText("" + this.triangle.getRotation().getY()); //$NON-NLS-1$
       this.newRightVertexZ.setText("" + this.triangle.getRotation().getZ()); //$NON-NLS-1$
     } else {
-      this.rightVertexX.setText("" + 0.0); //$NON-NLS-1$
-      this.rightVertexY.setText("" + 0.0); //$NON-NLS-1$
-      this.rightVertexZ.setText("" + 0.0); //$NON-NLS-1$
+//      this.rightVertexX.setText("" + 0.0); //$NON-NLS-1$
+//      this.rightVertexY.setText("" + 0.0); //$NON-NLS-1$
+//      this.rightVertexZ.setText("" + 0.0); //$NON-NLS-1$
       this.newRightVertexX.setText("" + 0.0); //$NON-NLS-1$
       this.newRightVertexY.setText("" + 0.0); //$NON-NLS-1$
       this.newRightVertexZ.setText("" + 0.0); //$NON-NLS-1$
     }
 
     if (this.triangle.getTranslation() != null) {
-      this.leftVertexX.setText("" + this.triangle.getTranslation().getX()); //$NON-NLS-1$
-      this.leftVertexY.setText("" + this.triangle.getTranslation().getY()); //$NON-NLS-1$
-      this.leftVertexZ.setText("" + this.triangle.getTranslation().getZ()); //$NON-NLS-1$
+//      this.leftVertexX.setText("" + this.triangle.getTranslation().getX()); //$NON-NLS-1$
+//      this.leftVertexY.setText("" + this.triangle.getTranslation().getY()); //$NON-NLS-1$
+//      this.leftVertexZ.setText("" + this.triangle.getTranslation().getZ()); //$NON-NLS-1$
       this.newLeftVertexX.setText("" + this.triangle.getTranslation().getX()); //$NON-NLS-1$
       this.newLeftVertexY.setText("" + this.triangle.getTranslation().getY()); //$NON-NLS-1$
       this.newLeftVertexZ.setText("" + this.triangle.getTranslation().getZ()); //$NON-NLS-1$
     } else {
-      this.leftVertexX.setText("" + 0.0); //$NON-NLS-1$
-      this.leftVertexY.setText("" + 0.0); //$NON-NLS-1$
-      this.leftVertexZ.setText("" + 0.0); //$NON-NLS-1$
+//      this.leftVertexX.setText("" + 0.0); //$NON-NLS-1$
+//      this.leftVertexY.setText("" + 0.0); //$NON-NLS-1$
+//      this.leftVertexZ.setText("" + 0.0); //$NON-NLS-1$
       this.newLeftVertexX.setText("" + 0.0); //$NON-NLS-1$
       this.newLeftVertexY.setText("" + 0.0); //$NON-NLS-1$
       this.newLeftVertexZ.setText("" + 0.0); //$NON-NLS-1$
