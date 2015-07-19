@@ -23,7 +23,7 @@ import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
 import org.mklab.mikity.view.gui.action.AnimationWindowOpenAction;
 import org.mklab.mikity.view.gui.action.display.ConfigurationDialogOpenAction;
-import org.mklab.mikity.view.gui.action.display.InitialStateAction;
+import org.mklab.mikity.view.gui.action.display.ResetToInitialStateAction;
 import org.mklab.mikity.view.gui.action.file.FileExitAction;
 import org.mklab.mikity.view.gui.action.file.FileImportAction;
 import org.mklab.mikity.view.gui.action.file.FileOpenAction;
@@ -58,7 +58,7 @@ public class ModelingWindow extends ApplicationWindow {
   /** */
   Action CONFIGURATION_DIALOG_OPEN_ACTION = new ConfigurationDialogOpenAction(this);
   
-  Action INITIAL_STATE_ACTION = new InitialStateAction(this);
+  Action INITIAL_STATE_ACTION = new ResetToInitialStateAction(this);
   
   /** */
   Action ANIMATION_WINDOW_OPEN_ACTION = new AnimationWindowOpenAction(this);
@@ -320,7 +320,7 @@ public class ModelingWindow extends ApplicationWindow {
   /**
    * モデルへの操作をリセットし、初期状態に戻します。 
    */
-  public void setInitialState() {
-    this.modeler.setInitialState();
+  public void resetToInitialState() {
+    this.modeler.resetToInitialState();
   }
 }

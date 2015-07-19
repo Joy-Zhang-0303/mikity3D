@@ -232,9 +232,9 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   }
   
   /**
-   * 移動・回転・拡大・縮小の操作をリセットし、初期状態に戻します。
+   * 移動・回転・拡大・縮小等の操作をリセットし、初期状態に戻します。
    */
-  public void setInitialState() {
+  public void resetToInitialState() {
     this.translationY = 0;
     this.translationZ = 0;
     this.rotationY = 0;

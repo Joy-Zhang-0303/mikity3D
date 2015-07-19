@@ -334,8 +334,8 @@ public class JoglModeler extends Composite {
   /**
    * モデルをリセットし、初期状態に戻します。 
    */
-  public void setInitialState() {
-    this.renderer.setInitialState();
+  public void resetToInitialState() {
+    this.renderer.resetToInitialState();
     this.renderer.updateDisplay();
   }
  
