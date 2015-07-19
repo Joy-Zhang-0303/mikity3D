@@ -43,20 +43,20 @@ public class EditTrianglePolygonDialog {
 
   private String groupName;
   //private Group afterGroup;
-  private Label primitiveLabel;
-  private ParameterInputBox vertex1X;
-  private ParameterInputBox vertex1Y;
-  private ParameterInputBox vertex1Z;
-  
-  private ParameterInputBox vertex2X;
-  private ParameterInputBox vertex2Y;
-  private ParameterInputBox vertex2Z;
-  
-  private ParameterInputBox vertex3X;
-  private ParameterInputBox vertex3Y;
-  private ParameterInputBox vertex3Z;
-  
-  private ParameterInputBox color;
+//  private Label primitiveLabel;
+//  private ParameterInputBox vertex1X;
+//  private ParameterInputBox vertex1Y;
+//  private ParameterInputBox vertex1Z;
+//  
+//  private ParameterInputBox vertex2X;
+//  private ParameterInputBox vertex2Y;
+//  private ParameterInputBox vertex2Z;
+//  
+//  private ParameterInputBox vertex3X;
+//  private ParameterInputBox vertex3Y;
+//  private ParameterInputBox vertex3Z;
+//  
+//  private ParameterInputBox color;
   private ColorComboBox colorCombo;
 
   private ParameterInputBox newVertex1X;
@@ -71,17 +71,17 @@ public class EditTrianglePolygonDialog {
   private ParameterInputBox newVertex3Y;
   private ParameterInputBox newVertex3Z;
   
-  private ParameterInputBox leftVertexX;
-  private ParameterInputBox leftVertexY;
-  private ParameterInputBox leftVertexZ;
+//  private ParameterInputBox leftVertexX;
+//  private ParameterInputBox leftVertexY;
+//  private ParameterInputBox leftVertexZ;
   
   private ParameterInputBox newLeftVertexX;
   private ParameterInputBox newLeftVertexY;
   private ParameterInputBox newLeftVertexZ;
   
-  private ParameterInputBox rightVertexX;
-  private ParameterInputBox rightVertexY;
-  private ParameterInputBox rightVertexZ;
+//  private ParameterInputBox rightVertexX;
+//  private ParameterInputBox rightVertexY;
+//  private ParameterInputBox rightVertexZ;
   
   private ParameterInputBox newRightVertexX;
   private ParameterInputBox newRightVertexY;
