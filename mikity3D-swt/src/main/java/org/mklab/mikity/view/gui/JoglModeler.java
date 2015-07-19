@@ -283,7 +283,7 @@ public class JoglModeler extends Composite {
           return;
         }
 
-        final EditPrimitiveDialog dialog = new EditPrimitiveDialog(getShell(), primitive, group);
+        final EditPrimitiveDialog dialog = new EditPrimitiveDialog(getShell(), primitive, group, JoglModeler.this.tree,  JoglModeler.this);
         dialog.open();
 
         JoglModeler.this.tree.fillTree();

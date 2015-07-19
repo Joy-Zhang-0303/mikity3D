@@ -125,25 +125,25 @@ public class SceneGraphTree {
           checkUsedLinkType(SceneGraphTree.this.model.getGroups());
 
           if (SceneGraphTree.this.usedDHParameter) {
-            final EditGroupWithDHParameterDialog groupConf = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
-            groupConf.open();
+            final EditGroupWithDHParameterDialog dialog = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            dialog.open();
           } else {
-            final EditGroupDialog groupConf = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
-            groupConf.open();
+            final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
+            dialog.open();
           }
-          setTree();
+          updateTree();
         } else if (doubleClickObj instanceof XMLTrianglePolygon) {
-          final EditTrianglePolygonDialog editPoly = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)doubleClickObj, SceneGraphTree.this.targetGroup);
-          editPoly.open();
-          setTree();
+          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)doubleClickObj, SceneGraphTree.this.targetGroup);
+          dialog.open();
+          updateTree();
         } else if (doubleClickObj instanceof XMLQuadPolygon) {
-          final EditQuadPolygonDialog editPoly = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)doubleClickObj, SceneGraphTree.this.targetGroup);
-          editPoly.open();
-          setTree();
+          final EditQuadPolygonDialog dialogy = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)doubleClickObj, SceneGraphTree.this.targetGroup);
+          dialogy.open();
+          updateTree();
         } else {
-          final EditPrimitiveDialog editPrim = new EditPrimitiveDialog(composite.getShell(), doubleClickObj, SceneGraphTree.this.targetGroup);
-          editPrim.open();
-          setTree();
+          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), doubleClickObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          dialog.open();
+          updateTree();
         }
       }
     });
@@ -211,7 +211,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
         dialog.open();
-        setTree();
+        updateTree();
       }
     });
 
@@ -221,7 +221,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final AddTrianglePolygonDialog dialog = new AddTrianglePolygonDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
         dialog.open();
-        setTree();
+        updateTree();
       }
     });
 
@@ -231,7 +231,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final AddQuadPolygonDialog dialog = new AddQuadPolygonDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
         dialog.open();
-        setTree();
+        updateTree();
       }
     });
 
@@ -241,7 +241,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final AddGroupDialog dialog = new AddGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
         dialog.open();
-        setTree();
+        updateTree();
       }
     });
 
@@ -266,25 +266,25 @@ public class SceneGraphTree {
             if (result == SWT.YES) {
               final EditGroupWithDHParameterDialog dialog = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
               dialog.open();
-              setTree();
+              updateTree();
             } else if (result == SWT.NO) {
               final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
               dialog.open();
-              setTree();
+              updateTree();
             }
           }
         } else if (SceneGraphTree.this.targetObj instanceof XMLTrianglePolygon) {
           final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup);
           dialog.open();
-          setTree();
+          updateTree();
         } else if (SceneGraphTree.this.targetObj instanceof XMLQuadPolygon) {
           final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup);
           dialog.open();
-          setTree();
+          updateTree();
         } else {
-          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup);
+          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
-          setTree();
+          updateTree();
         }
       }
     });
@@ -302,7 +302,7 @@ public class SceneGraphTree {
           } else {
             removeObject(SceneGraphTree.this.targetParentGroup, SceneGraphTree.this.targetGroup);
             SceneGraphTree.this.xmlTree.getSelection()[0].dispose();
-            setTree();
+            updateTree();
           }
         } else if (SceneGraphTree.this.targetObj instanceof XMLTrianglePolygon || SceneGraphTree.this.targetObj instanceof XMLQuadPolygon) {
           final MessageBox message = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
@@ -312,7 +312,7 @@ public class SceneGraphTree {
           if (result == SWT.YES) {
             removeObject(SceneGraphTree.this.targetGroup, SceneGraphTree.this.targetObj);
             SceneGraphTree.this.xmlTree.getSelection()[0].dispose();
-            setTree();
+            updateTree();
           }
         } else {
 
@@ -323,7 +323,7 @@ public class SceneGraphTree {
           if (result == SWT.YES) {
             removeObject(SceneGraphTree.this.targetGroup, SceneGraphTree.this.targetObj);
             SceneGraphTree.this.xmlTree.getSelection()[0].dispose();
-            setTree();
+            updateTree();
           }
         }
       }
@@ -476,9 +476,9 @@ public class SceneGraphTree {
   }
 
   /**
-   * ツリーとビューアを再描画します。
+   * ツリーとビューアを更新します。
    */
-  void setTree() {
+  public void updateTree() {
     fillTree();
     this.modeler.createViewer();
   }

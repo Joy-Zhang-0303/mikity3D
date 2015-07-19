@@ -16,13 +16,15 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
 import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
+import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
+import org.mklab.mikity.view.gui.SceneGraphTree;
 import org.mklab.mikity.view.gui.UnitLabel;
 
 
@@ -60,6 +62,10 @@ public class EditPrimitiveDialog {
   
   /** 変更されていればtrue */
   private boolean isChanged = false;
+  
+  JoglModeler modeler;
+  
+  SceneGraphTree tree;
 
   /**
    * コンストラクター
@@ -67,11 +73,15 @@ public class EditPrimitiveDialog {
    * @param parent 親のシェル
    * @param primitive プリミティブ
    * @param group グループ
+   * @param tree シーングラフツリー
+   * @param modeler モデラー
    */
-  public EditPrimitiveDialog(Shell parent, Object primitive, org.mklab.mikity.model.xml.simplexml.model.Group group) {
+  public EditPrimitiveDialog(Shell parent, Object primitive, org.mklab.mikity.model.xml.simplexml.model.Group group, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parent;
     this.primitive = primitive;
     this.groupName = group.getName();
+    this.tree = tree;
+    this.modeler = modeler;
     createSShell();
     setParametersInDialog();
   }
@@ -188,10 +198,24 @@ public class EditPrimitiveDialog {
    */
   private void createButtonComposite() {
     final Composite comp = new Composite(this.sShell, SWT.NONE);
-    setGridLayout(comp, 2);
+    setGridLayout(comp, 3);
 
     final GridLayout compLayout = new GridLayout(2, true);
     comp.setLayout(compLayout);
+    
+    final Button applyButton = new Button(comp, SWT.NONE);
+    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    applyButton.setText(Messages.getString("EditPrimitiveDialog.11")); //$NON-NLS-1$
+    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+      @Override
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        updatePrimitiveParameters();
+        setParametersInDialog();
+        EditPrimitiveDialog.this.tree.updateTree();
+        EditPrimitiveDialog.this.modeler.updateDisplay();
+      }
+
+    });
 
     final Button okButton = new Button(comp, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -363,7 +387,7 @@ public class EditPrimitiveDialog {
   /**
    * primitiveの型を判断し、ダイアログにパラメータを設定します。
    */
-  private void setParametersInDialog() {
+  void setParametersInDialog() {
     if (this.primitive instanceof XMLBox) {
       final XMLBox box = (XMLBox)this.primitive;
       this.parameter1.setText("" + box.getWidth()); //$NON-NLS-1$
