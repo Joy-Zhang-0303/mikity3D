@@ -112,8 +112,8 @@ public class ModelingWindow extends ApplicationWindow {
     localComposite.setLayout(new GridLayout());
     localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-    this.modeler = new JoglModeler(localComposite, SWT.NONE, this.root);
-    this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
+    this.modeler = new JoglModeler(localComposite, this.root);
+    //this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     
     ((ConfigurationDialogOpenAction)this.CONFIGURATION_DIALOG_OPEN_ACTION).setModeler(this.modeler);
       

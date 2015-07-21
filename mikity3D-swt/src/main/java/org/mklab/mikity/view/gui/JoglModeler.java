@@ -46,11 +46,10 @@ public class JoglModeler extends Composite {
   /**
    * 新しく生成された<code>AbstractModeler</code>オブジェクトを初期化します。
    * @param parent 親
-   * @param style スタイル
    * @param root ルート
    */
-  public JoglModeler(Composite parent, int style, final Mikity3d root) {
-    super(parent, style);
+  public JoglModeler(Composite parent, final Mikity3d root) {
+    super(parent, SWT.None);
     this.root = root;
     this.setLayout(new GridLayout());
     this.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -186,7 +185,7 @@ public class JoglModeler extends Composite {
        */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getSelectionGroup();
+        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getTargetGroup();
         if (group == null) {
           MessagegUtil.show(getShell(), Messages.getString("Modeler.8")); //$NON-NLS-1$
           return;
@@ -207,7 +206,7 @@ public class JoglModeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getSelectionGroup();
+        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getTargetGroup();
         if (group == null) {
           MessagegUtil.show(getShell(), Messages.getString("Modeler.9")); //$NON-NLS-1$
           return;
@@ -220,17 +219,17 @@ public class JoglModeler extends Composite {
           messageBox.setText(Messages.getString("Modeler.11")); //$NON-NLS-1$
           int result = messageBox.open();
           if (result == SWT.YES) {
-            final EditGroupWithDHParameterDialog groupConf = new EditGroupWithDHParameterDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable());
+            final EditGroupWithDHParameterDialog groupConf = new EditGroupWithDHParameterDialog(getShell(), group, JoglModeler.this.tree.isGroupEditable());
             groupConf.open();
           } else if (result == SWT.NO) {
-            EditGroupDialog groupConf = new EditGroupDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable(), JoglModeler.this.tree, JoglModeler.this);
+            EditGroupDialog groupConf = new EditGroupDialog(getShell(), group, JoglModeler.this.tree.isGroupEditable(), JoglModeler.this.tree, JoglModeler.this);
             groupConf.open();
           }
         }
 
         for (int i = 0; i < linkdata.length; i++) {
           if (linkdata[i].hasCoordinateParameter()) {
-            final EditGroupDialog groupConf = new EditGroupDialog(getShell(), group, JoglModeler.this.tree.getGroupEditable(), JoglModeler.this.tree, JoglModeler.this);
+            final EditGroupDialog groupConf = new EditGroupDialog(getShell(), group, JoglModeler.this.tree.isGroupEditable(), JoglModeler.this.tree, JoglModeler.this);
             groupConf.open();
             break;
           }
@@ -248,7 +247,7 @@ public class JoglModeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getSelectionGroup();
+        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getTargetGroup();
         if (group == null) {
           final MessageBox messageBox = new MessageBox(getShell(), SWT.ICON_WARNING);
           messageBox.setText(Messages.getString("Modeler.12")); //$NON-NLS-1$
@@ -272,8 +271,8 @@ public class JoglModeler extends Composite {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
-        final Object primitive = JoglModeler.this.tree.getSelectionData();
-        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getSelectionGroup();
+        final Object primitive = JoglModeler.this.tree.getSelectedData();
+        final org.mklab.mikity.model.xml.simplexml.model.Group group = JoglModeler.this.tree.getTargetGroup();
 
         if (primitive == null) {
           final MessageBox messageBox = new MessageBox(getShell(), SWT.ICON_WARNING);

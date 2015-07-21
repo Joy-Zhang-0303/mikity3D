@@ -51,7 +51,7 @@ public class SceneGraphTree {
   /** */
   TreeItem selectItem = null;
   /** */
-  Object targetObj = null;
+  Object targetObject = null;
   /** */
   Group targetGroup = null;
   /** */
@@ -238,19 +238,19 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        if (SceneGraphTree.this.targetObj instanceof Group) {
+        if (SceneGraphTree.this.targetObject instanceof Group) {
           final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
-        } else if (SceneGraphTree.this.targetObj instanceof XMLTrianglePolygon) {
-          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        } else if (SceneGraphTree.this.targetObject instanceof XMLTrianglePolygon) {
+          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
-        } else if (SceneGraphTree.this.targetObj instanceof XMLQuadPolygon) {
-          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        } else if (SceneGraphTree.this.targetObject instanceof XMLQuadPolygon) {
+          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else {
-          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         }
@@ -261,7 +261,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        if (SceneGraphTree.this.targetObj instanceof Group) {
+        if (SceneGraphTree.this.targetObject instanceof Group) {
           if (SceneGraphTree.this.targetParentGroup == null) {
             final MessageBox message = new MessageBox(composite.getShell(), SWT.ICON_INFORMATION);
             message.setText(Messages.getString("SceneGraphTree.16")); //$NON-NLS-1$
@@ -272,13 +272,13 @@ public class SceneGraphTree {
             SceneGraphTree.this.xmlTree.getSelection()[0].dispose();
             updateTree();
           }
-        } else if (SceneGraphTree.this.targetObj instanceof XMLTrianglePolygon || SceneGraphTree.this.targetObj instanceof XMLQuadPolygon) {
+        } else if (SceneGraphTree.this.targetObject instanceof XMLTrianglePolygon || SceneGraphTree.this.targetObject instanceof XMLQuadPolygon) {
           final MessageBox message = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           message.setMessage(Messages.getString("SceneGraphTree.18")); //$NON-NLS-1$
           message.setText(Messages.getString("SceneGraphTree.19")); //$NON-NLS-1$
           int result = message.open();
           if (result == SWT.YES) {
-            removeObject(SceneGraphTree.this.targetGroup, SceneGraphTree.this.targetObj);
+            removeObject(SceneGraphTree.this.targetGroup, SceneGraphTree.this.targetObject);
             SceneGraphTree.this.xmlTree.getSelection()[0].dispose();
             updateTree();
           }
@@ -289,7 +289,7 @@ public class SceneGraphTree {
           message.setText(Messages.getString("SceneGraphTree.21")); //$NON-NLS-1$
           int result = message.open();
           if (result == SWT.YES) {
-            removeObject(SceneGraphTree.this.targetGroup, SceneGraphTree.this.targetObj);
+            removeObject(SceneGraphTree.this.targetGroup, SceneGraphTree.this.targetObject);
             SceneGraphTree.this.xmlTree.getSelection()[0].dispose();
             updateTree();
           }
@@ -302,7 +302,7 @@ public class SceneGraphTree {
    * 現在選択されているObjectを設定する。
    */
   void setSelectedObjectAsTarget() {
-    this.targetObj = null;
+    this.targetObject = null;
     this.targetGroup = null;
     
     this.targetParentGroup = null;
@@ -312,9 +312,9 @@ public class SceneGraphTree {
       return;
     }
     
-    this.targetObj = this.xmlTree.getSelection()[0].getData();
-    if (this.targetObj instanceof Group) {
-      this.targetGroup = (Group)this.targetObj;
+    this.targetObject = this.xmlTree.getSelection()[0].getData();
+    if (this.targetObject instanceof Group) {
+      this.targetGroup = (Group)this.targetObject;
       // targetObj = null;
       setTarget(this.targetGroup);
       if (this.xmlTree.getSelection()[0].getText().startsWith("root")) { //$NON-NLS-1$
@@ -331,7 +331,7 @@ public class SceneGraphTree {
       this.editable = true;
       this.targetGroup = (Group)this.xmlTree.getSelection()[0].getParentItem().getData();
       this.targetParentGroup = null;
-      setTarget(this.targetObj);
+      setTarget(this.targetObject);
     }
     this.modeler.createViewer();
   }
@@ -430,7 +430,7 @@ public class SceneGraphTree {
    * 
    * @return targetGroup
    */
-  public Group getSelectionGroup() {
+  public Group getTargetGroup() {
     return this.targetGroup;
   }
 
@@ -439,7 +439,7 @@ public class SceneGraphTree {
    * 
    * @return editable 編集可能ならばtrue
    */
-  public boolean getGroupEditable() {
+  public boolean isGroupEditable() {
     return this.editable;
   }
 
@@ -570,12 +570,15 @@ public class SceneGraphTree {
    * 
    * @return xmlTree.getSelection()[0].getData()
    */
-  public Object getSelectionData() {
+  public Object getSelectedData() {
     if (this.xmlTree.getSelectionCount() == 0) {
       return null;
-    } else if (this.xmlTree.getSelection()[0].getData() instanceof Group) {
+    } 
+    
+    if (this.xmlTree.getSelection()[0].getData() instanceof Group) {
       return null;
     }
+    
     return this.xmlTree.getSelection()[0].getData();
   }
 
