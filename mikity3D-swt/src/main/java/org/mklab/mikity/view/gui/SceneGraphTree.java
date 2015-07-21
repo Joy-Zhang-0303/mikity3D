@@ -28,7 +28,6 @@ import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.AddQuadPolygonDialog;
 import org.mklab.mikity.view.gui.dialog.AddTrianglePolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditGroupDialog;
-import org.mklab.mikity.view.gui.dialog.EditGroupWithDHParameterDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditQuadPolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditTrianglePolygonDialog;
@@ -63,10 +62,6 @@ public class SceneGraphTree {
   boolean editable = true;
   /** */
   JoglModeler modeler;
-  /** */
-  //boolean usedDHParameter = false;
-  /** */
-  //boolean usedCoordinateParameter = false;
   
   /** オブジェクトを修正中ならばtrue */
   static boolean isModifyingObject = false;
@@ -123,19 +118,8 @@ public class SceneGraphTree {
         if (doubleClickObj == null) {
           return;
         } else if (doubleClickObj instanceof Group) {
-//          if (SceneGraphTree.this.xmlTree.getSelection()[0].getText().startsWith("root")) { //$NON-NLS-1$
-//            // 選択されたものがrootであるとき
-//            SceneGraphTree.this.editable = false;
-//          }
-          //checkUsedLinkType(SceneGraphTree.this.model.getGroups());
-
-//          if (SceneGraphTree.this.usedDHParameter) {
-//            final EditGroupWithDHParameterDialog dialog = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
-//            dialog.open();
-//          } else {
-            final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
-            dialog.open();
-//          }
+          final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          dialog.open();
           updateTree();
         } else if (doubleClickObj instanceof XMLTrianglePolygon) {
           final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)doubleClickObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
@@ -255,29 +239,8 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(SelectionEvent e) {
         if (SceneGraphTree.this.targetObj instanceof Group) {
-          //checkUsedLinkType(SceneGraphTree.this.model.getGroups());
-
-//          if (SceneGraphTree.this.usedDHParameter) {
-//            final EditGroupWithDHParameterDialog dialog = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
-//            dialog.open();
-//          } else if (SceneGraphTree.this.usedCoordinateParameter) {
-            final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
-            dialog.open();
-//          } else {
-//            final MessageBox message = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-//            message.setMessage(Messages.getString("SceneGraphTree.14")); //$NON-NLS-1$
-//            message.setText(Messages.getString("SceneGraphTree.15")); //$NON-NLS-1$
-//            int result = message.open();
-//            if (result == SWT.YES) {
-//              final EditGroupWithDHParameterDialog dialog = new EditGroupWithDHParameterDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable);
-//              dialog.open();
-//              updateTree();
-//            } else if (result == SWT.NO) {
-//              final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
-//              dialog.open();
-//              updateTree();
-//            }
-//          }
+          final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          dialog.open();
         } else if (SceneGraphTree.this.targetObj instanceof XMLTrianglePolygon) {
           final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)SceneGraphTree.this.targetObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
@@ -658,32 +621,6 @@ public class SceneGraphTree {
   public Tree getXMLTree() {
     return this.xmlTree;
   }
-
-//  /**
-//   * 現在ツリーのリンク関係にDHパラメータが使われているか判定します。
-//   * 
-//   * @param groups グループリスト
-//   */
-//  void checkUsedLinkType(Group[] groups) {
-//    if (groups.length == 0) {
-//      return;
-//    }
-//    
-//    if (this.usedDHParameter && this.usedCoordinateParameter) {
-//      return;
-//    }
-//      
-//    for (int i = 0; i < groups.length; i++) {
-//      final LinkData[] links = groups[i].getLinkData();
-//      for (int j = 0; j < links.length; j++) {
-//        if (links[j].hasCoordinateParameter()) {
-//          this.usedCoordinateParameter = true;
-//          break;
-//        }
-//      }
-//      checkUsedLinkType(groups[i].getGroups());
-//    }
-//  }
   
   /**
    * オブジェクトを修正中であるか設定します。
