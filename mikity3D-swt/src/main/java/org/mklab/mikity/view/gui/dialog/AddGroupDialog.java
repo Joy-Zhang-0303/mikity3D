@@ -52,6 +52,18 @@ public class AddGroupDialog extends ApplicationWindow {
     new ParameterInputBox(composite, SWT.READ_ONLY, Messages.getString("AddGroupDialog.0"), this.group.getName()); //$NON-NLS-1$
     final ParameterInputBox groupParam = new ParameterInputBox(composite, SWT.NONE, Messages.getString("AddGroupDialog.1"), Messages.getString("AddGroupDialog.2")); //$NON-NLS-1$ //$NON-NLS-2$
 
+    createButtons(composite, groupParam);
+    
+    return composite;
+  }
+
+  /**
+   * ボタンを生成します。
+   * 
+   * @param composite コンポジット
+   * @param groupParam グループ名
+   */
+  private void createButtons(final Composite composite, final ParameterInputBox groupParam) {
     final Button okButton = new Button(composite, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("AddGroupDialog.3")); //$NON-NLS-1$
@@ -82,7 +94,6 @@ public class AddGroupDialog extends ApplicationWindow {
         close();
       }
     });
-    return composite;
   }
 
   /**

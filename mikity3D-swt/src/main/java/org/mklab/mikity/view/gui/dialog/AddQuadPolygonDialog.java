@@ -84,7 +84,7 @@ public class AddQuadPolygonDialog {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout1 = new GridLayout();
     layout1.numColumns = 2;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(300, 650));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(300, 770));
     this.sShell.setText(Messages.getString("AddQuadPolygonDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout1);
 

@@ -83,7 +83,7 @@ public class AddPrimitiveDialog {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout1 = new GridLayout();
     layout1.numColumns = 3;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(280, 400));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(280, 480));
     this.sShell.setText(Messages.getString("AddPrimitiveDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout1);
 
@@ -112,6 +112,26 @@ public class AddPrimitiveDialog {
     this.unitLabel3 = new Label(this.sShell, SWT.NONE);
     this.unitLabel3.setText(this.lengthUnit);
 
+    GridData translationData = new GridData(GridData.FILL_HORIZONTAL);
+    org.eclipse.swt.widgets.Group translationGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
+    translationGroup.setText(Messages.getString("AddPrimitiveDialog.12")); //$NON-NLS-1$
+    final GridLayout layout3 = new GridLayout();
+    layout3.numColumns = 3;
+    translationGroup.setLayout(layout3);
+    translationData = new GridData(GridData.FILL_HORIZONTAL);
+    translationData.horizontalSpan = 3;
+    translationGroup.setLayoutData(translationData);
+
+    this.translationX = new ParameterInputBox(translationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.13"), "0"); //$NON-NLS-1$//$NON-NLS-2$
+    final Label unitLabelLX = new Label(translationGroup, SWT.NONE);
+    unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
+    this.translationY = new ParameterInputBox(translationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.14"), "0"); //$NON-NLS-1$//$NON-NLS-2$
+    final Label unitLabelLY = new Label(translationGroup, SWT.NONE);
+    unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
+    this.translationZ = new ParameterInputBox(translationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.15"), "0"); //$NON-NLS-1$//$NON-NLS-2$
+    final Label unitLabelLZ = new Label(translationGroup, SWT.NONE);
+    unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
+
     GridData rotationData = new GridData(GridData.FILL_HORIZONTAL);
     org.eclipse.swt.widgets.Group rotationGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
     rotationGroup.setText(Messages.getString("AddPrimitiveDialog.5")); //$NON-NLS-1$
@@ -132,41 +152,20 @@ public class AddPrimitiveDialog {
     final Label unitLabelRZ = new Label(rotationGroup, SWT.NONE);
     unitLabelRZ.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.11")); //$NON-NLS-1$
 
-    GridData locationData = new GridData(GridData.FILL_HORIZONTAL);
-    org.eclipse.swt.widgets.Group locationGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
-    locationGroup.setText(Messages.getString("AddPrimitiveDialog.12")); //$NON-NLS-1$
-    final GridLayout layout3 = new GridLayout();
-    layout3.numColumns = 3;
-    locationGroup.setLayout(layout3);
-    locationData = new GridData(GridData.FILL_HORIZONTAL);
-    locationData.horizontalSpan = 3;
-    locationGroup.setLayoutData(locationData);
-
-    this.translationX = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.13"), "0"); //$NON-NLS-1$//$NON-NLS-2$
-    final Label unitLabelLX = new Label(locationGroup, SWT.NONE);
-    unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.translationY = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.14"), "0"); //$NON-NLS-1$//$NON-NLS-2$
-    final Label unitLabelLY = new Label(locationGroup, SWT.NONE);
-    unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
-    this.translationZ = new ParameterInputBox(locationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.15"), "0"); //$NON-NLS-1$//$NON-NLS-2$
-    final Label unitLabelLZ = new Label(locationGroup, SWT.NONE);
-    unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
-
-    final GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
-    final Label colorLabel = new Label(this.sShell, SWT.RIGHT);
-    colorLabel.setText("color"); //$NON-NLS-1$
-    colorLabel.setLayoutData(labelData2);
-    createColorCombo();
-
     final Label spaceLabel = new Label(this.sShell, SWT.NONE);
     spaceLabel.setText(" "); //$NON-NLS-1$
 
+    createButtons();
+  }
+
+  /**
+   * ボタンを生成します。
+   */
+  private void createButtons() {
     final Button okButton = new Button(this.sShell, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("AddPrimitiveDialog.16")); //$NON-NLS-1$
-
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       /**
        * {@inheritDoc}
        */
@@ -187,9 +186,7 @@ public class AddPrimitiveDialog {
     final Button cancelButton = new Button(this.sShell, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText(Messages.getString("AddPrimitiveDialog.19")); //$NON-NLS-1$
-
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         final MessageBox messageBox = new MessageBox(AddPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
@@ -459,6 +456,13 @@ public class AddPrimitiveDialog {
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
     this.primitiveCombo.setLayoutData(gridData);
+    
+    final GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
+    final Label colorLabel = new Label(this.sShell, SWT.RIGHT);
+    colorLabel.setText(Messages.getString("AddPrimitiveDialog.34")); //$NON-NLS-1$
+    colorLabel.setLayoutData(labelData2);
+    createColorCombo();
+    
     final String[] primitives = {"Box", "Cylinder", "Sphere", "Cone"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     this.primitiveCombo.setItems(primitives);
     this.primitiveCombo.setText("Box"); //$NON-NLS-1$
