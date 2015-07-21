@@ -49,9 +49,9 @@ public class TrianglePolygonToolBarAction extends Action {
   @Override
   public void run() {
     final XMLTrianglePolygon polygon = new XMLTrianglePolygon();
-    final Vertex vertex0 = new Vertex(0.3f, 0.3f, 0.0f);
-    final Vertex vertex1 = new Vertex(-0.3f, 0.3f, 0.0f);
-    final Vertex vertex2 = new Vertex(-0.3f, -0.3f, 0.0f);
+    final Vertex vertex0 = new Vertex(0.0f, -0.3f, 0.0f);
+    final Vertex vertex1 = new Vertex(0.0f, 0.3f, 0.0f);
+    final Vertex vertex2 = new Vertex(0.0f, 0.0f, 0.3f);
     final List<Vertex> vertices = Arrays.asList(vertex0, vertex1, vertex2);
     polygon.setVertices(vertices);
     polygon.setColor("red"); //$NON-NLS-1$

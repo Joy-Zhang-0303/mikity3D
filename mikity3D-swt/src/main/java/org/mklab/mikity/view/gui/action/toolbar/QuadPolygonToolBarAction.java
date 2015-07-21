@@ -48,11 +48,10 @@ public class QuadPolygonToolBarAction extends Action {
   @Override
   public void run() {
     final XMLQuadPolygon polygon = new XMLQuadPolygon();
-    final Vertex vertex0 = new Vertex(0.3f, 0.3f, 0.0f);
-    final Vertex vertex1 = new Vertex(-0.3f, 0.3f, 0.0f);
-    final Vertex vertex2 = new Vertex(-0.3f, -0.3f, 0.0f);
-    final Vertex vertex3 = new Vertex(0.3f, -0.3f, 0.0f);
-    //final Location[] locations = {p1, p2, p3, p4};
+    final Vertex vertex0 = new Vertex(0.0f, -0.3f, 0.0f);
+    final Vertex vertex1 = new Vertex(0.0f, 0.3f, 0.0f);
+    final Vertex vertex2 = new Vertex(0.0f, 0.3f, 0.3f);
+    final Vertex vertex3 = new Vertex(0.0f, -0.3f, 0.3f);
     polygon.setVertices(Arrays.asList(vertex0, vertex1, vertex2, vertex3));
     polygon.setColor("blue"); //$NON-NLS-1$
     

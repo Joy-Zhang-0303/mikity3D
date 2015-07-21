@@ -80,9 +80,10 @@ public class XMLTrianglePolygon {
    * @param vertex2 頂点2
    */
   public void setVertices(Vertex vertex0, Vertex vertex1, Vertex vertex2) {
-    this.vertices.set(0, vertex0);
-    this.vertices.set(1, vertex1);
-    this.vertices.set(2, vertex2);
+    this.vertices.clear();
+    this.vertices.add(vertex0);
+    this.vertices.add(vertex1);
+    this.vertices.add(vertex2);
     updateNormalVector();
   }
 
