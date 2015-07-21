@@ -8,6 +8,8 @@ package org.mklab.mikity.view.gui.dialog;
 import java.util.Arrays;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ShellEvent;
+import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -88,6 +90,10 @@ public class EditQuadPolygonDialog {
     this.groupName = group.getName();
     this.tree = tree;
     this.modeler = modeler;
+    
+    SceneGraphTree.setIsModifyingObject(true);
+    
+    
     createSShell();
     detectPrim();
   }
@@ -104,19 +110,20 @@ public class EditQuadPolygonDialog {
    */
   public void open() {
     this.sShell.open();
-    Display display = this.sShell.getDisplay();
-    while (!this.sShell.isDisposed()) {
-      if (!display.readAndDispatch()) {
-        display.sleep();
-      }
-    }
+//    Display display = this.sShell.getDisplay();
+//    while (!this.sShell.isDisposed()) {
+//      if (!display.readAndDispatch()) {
+//        display.sleep();
+//      }
+//    }
   }
 
   /**
    * シェルを作成
    */
   private void createSShell() {
-    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    //this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 850));
@@ -126,10 +133,39 @@ public class EditQuadPolygonDialog {
     final Label groupLabel = new Label(this.sShell, SWT.LEFT);
     groupLabel.setText(Messages.getString("EditQuadPolygonDialog.1") + this.groupName); //$NON-NLS-1$
     setGridLayout(groupLabel, 1);
+    
+    addShellListener();
 
     createNewGroup();
 
     createButtonComp();
+  }
+  
+  /**
+   * Shellのリスナーを追加します。 
+   */
+  private void addShellListener() {
+    this.sShell.addShellListener(new ShellListener() {
+      public void shellIconified(ShellEvent arg0) {
+        // nothing to do
+      }
+      
+      public void shellDeiconified(ShellEvent arg0) {
+        // nothing to do
+      }
+      
+      public void shellDeactivated(ShellEvent arg0) {
+        // nothing to do
+      }
+      
+      public void shellClosed(ShellEvent arg0) {
+        SceneGraphTree.setIsModifyingObject(false);
+      }
+      
+      public void shellActivated(ShellEvent arg0) {
+        // nothing to do
+      }
+    });
   }
 
   private void createNewGroup() {

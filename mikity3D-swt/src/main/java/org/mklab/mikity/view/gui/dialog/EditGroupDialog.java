@@ -6,11 +6,11 @@
 package org.mklab.mikity.view.gui.dialog;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ShellEvent;
+import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
@@ -30,7 +30,6 @@ import org.mklab.mikity.view.gui.SceneGraphTree;
  * @version $Revision: 1.1 $.2005/02/03
  */
 public class EditGroupDialog {
-
   Shell sShell = null;
   private Shell parentShell = null;
   org.mklab.mikity.model.xml.simplexml.model.Group group;
@@ -54,7 +53,7 @@ public class EditGroupDialog {
   
   JoglModeler modeler;
   SceneGraphTree tree;
-
+  
   /**
    * コンストラクター
    * 
@@ -68,6 +67,9 @@ public class EditGroupDialog {
     this.editable = editable;
     this.tree = tree;
     this.modeler = modeler;
+    
+    SceneGraphTree.setIsModifyingObject(true);
+    
     createSShell();
   }
 
@@ -76,8 +78,9 @@ public class EditGroupDialog {
    */
   private void createSShell() {
     // SWT.APPLICATION_MODAL→このシェルを閉じないと、親シェルを編集できなくする
-    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 375));
+    //this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 420));
     this.sShell.setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
     final GridLayout layout = new GridLayout();
     layout.numColumns = 3;
@@ -88,6 +91,8 @@ public class EditGroupDialog {
     if (this.group.getName() != null) {
       this.groupName.setText(this.group.getName());
     }
+    
+    addShellListener();
 
     createLinkDataGroup();
 
@@ -98,6 +103,33 @@ public class EditGroupDialog {
     if (this.editable == false) {
       setStatus(Messages.getString("GroupConfigDialogLink.10")); //$NON-NLS-1$
     }
+  }
+
+  /**
+   * Shellのリスナーを追加します。 
+   */
+  private void addShellListener() {
+    this.sShell.addShellListener(new ShellListener() {
+      public void shellIconified(ShellEvent arg0) {
+        // nothing to do
+      }
+      
+      public void shellDeiconified(ShellEvent arg0) {
+        // nothing to do
+      }
+      
+      public void shellDeactivated(ShellEvent arg0) {
+        // nothing to do
+      }
+      
+      public void shellClosed(ShellEvent arg0) {
+        SceneGraphTree.setIsModifyingObject(false);
+      }
+      
+      public void shellActivated(ShellEvent arg0) {
+        // nothing to do
+      }
+    });
   }
 
   /**
@@ -211,12 +243,12 @@ public class EditGroupDialog {
   void updateGroupParameters() {
     this.group.setName(this.groupName.getText());
     this.group.clearLinkData();
-    addLinkData(this.translationX, this.translationXdataNumber);
-    addLinkData(this.translationY, this.translationYdataNumber);
-    addLinkData(this.translationZ, this.translationZdataNumber);
-    addLinkData(this.rotationX, this.rotationXdataNumber);
-    addLinkData(this.rotationY, this.rotationYdataNumber);
-    addLinkData(this.rotationZ, this.rotationZdataNumber);
+    addLinkData("translationX", this.translationXdataNumber); //$NON-NLS-1$
+    addLinkData("translationY", this.translationYdataNumber); //$NON-NLS-1$
+    addLinkData("translationZ", this.translationZdataNumber); //$NON-NLS-1$
+    addLinkData("rotationX", this.rotationXdataNumber); //$NON-NLS-1$
+    addLinkData("rotationY", this.rotationYdataNumber); //$NON-NLS-1$
+    addLinkData("rotationZ", this.rotationZdataNumber); //$NON-NLS-1$
     
     final Translation translation = new Translation(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue());
     final Rotation rotation = new Rotation(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue());
@@ -229,20 +261,20 @@ public class EditGroupDialog {
   /**
    * LinkDataを追加します。
    * 
-   * @param parameter パラメータ
+   * @param parameterName パラメータの名前
    * @param dataNumber データの番号
    */
-  void addLinkData(final ParameterInputBox parameter, final ParameterInputBox dataNumber) {
+  void addLinkData(final String parameterName, final ParameterInputBox dataNumber) {
     if (dataNumber.getIntValue() != 0) {
       final LinkData linkData = new LinkData();
-      linkData.setTarget(parameter.getLabelText());
+      linkData.setTarget(parameterName);
       linkData.setNumber(dataNumber.getIntValue());
       this.group.addLinkData(linkData);
     }
   }
 
   /**
-   * ステータスバーを作る
+   * ステータスバーを生成します。
    */
   private void createStatusBar() {
     this.statusLabel = new Label(this.sShell, SWT.BORDER);
@@ -253,7 +285,7 @@ public class EditGroupDialog {
   }
 
   /**
-   * ステータスを設定する
+   * ステータスバーにメッセージを設定します。
    * 
    * @param message メッセージ
    */
@@ -281,7 +313,7 @@ public class EditGroupDialog {
   /**
    * 角度をダイアログに設定します。
    * 
-   * @param rotation 回転
+   * @param rotation 回転角度
    */
   private void setRotationInDialog(Rotation rotation) {
     this.rotationX.setText("" + rotation.getX()); //$NON-NLS-1$
@@ -290,9 +322,9 @@ public class EditGroupDialog {
   }
 
   /**
-   * 並進量をダイアログに設定します。
+   * 並進距離をダイアログに設定します。
    * 
-   * @param translation 並進量
+   * @param translation 並進距離
    */
   private void setTranslationInDialog(Translation translation) {
     this.translationX.setText("" + translation.getX()); //$NON-NLS-1$
@@ -372,15 +404,17 @@ public class EditGroupDialog {
   }
 
   /**
-   * シェルを開く 開いている間、親シェルの処理を止める
+   * シェルを 開いている間、親シェルの処理を止める
    */
   public void open() {
     this.sShell.open();
-    final Display display = this.sShell.getDisplay();
-    while (!this.sShell.isDisposed()) {
-      if (!display.readAndDispatch()) {
-        display.sleep();
-      }
-    }
+//    final Display display = this.sShell.getDisplay();
+//    
+//    while (!this.sShell.isDisposed()) {
+//      if (!display.readAndDispatch()) {
+//        display.sleep();
+//      }
+//    }
   }
+
 }

@@ -1,5 +1,8 @@
 package org.mklab.mikity.view.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -28,11 +31,11 @@ import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.AddQuadPolygonDialog;
 import org.mklab.mikity.view.gui.dialog.AddTrianglePolygonDialog;
+import org.mklab.mikity.view.gui.dialog.EditGroupDialog;
+import org.mklab.mikity.view.gui.dialog.EditGroupWithDHParameterDialog;
 import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditQuadPolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditTrianglePolygonDialog;
-import org.mklab.mikity.view.gui.dialog.EditGroupDialog;
-import org.mklab.mikity.view.gui.dialog.EditGroupWithDHParameterDialog;
 import org.mklab.mikity.view.gui.dnd.DragAndDropEnabler;
 
 
@@ -68,7 +71,10 @@ public class SceneGraphTree {
   boolean usedDHParameter = false;
   /** */
   boolean usedCoordinateParameter = false;
-
+  
+  /** オブジェクトを修正中ならばtrue */
+  static boolean isModifyingObject = false;
+  
   /**
    * コンストラクター
    */
@@ -108,13 +114,16 @@ public class SceneGraphTree {
     new DragAndDropEnabler(this.xmlTree);
 
     this.xmlTree.addMouseListener(new MouseAdapter() {
-
       @Override
       public void mouseDoubleClick(MouseEvent arg0) {
-        // ダブルクリック
         SceneGraphTree.this.editable = true;
 
         final Object doubleClickObj = SceneGraphTree.this.xmlTree.getSelection()[0].getData();
+
+        if (SceneGraphTree.isModifyingObject) {
+          return;
+        }
+        
         if (doubleClickObj == null) {
           return;
         } else if (doubleClickObj instanceof Group) {
@@ -523,7 +532,6 @@ public class SceneGraphTree {
    * @param groups
    */
   private void addTreeItem(TreeItem item, Group[] groups) {
-    // Groupの長さだけ繰り返す
     for (int i = 0; i < groups.length; i++) {
       // 子となるTreeItem、childに名前をつけて接続
       TreeItem child = null;
@@ -679,5 +687,14 @@ public class SceneGraphTree {
       }
       checkUsedLinkType(groups[i].getGroups());
     }
+  }
+  
+  /**
+   * オブジェクトを修正中であるか設定します。
+   * 
+   * @param isModifyingObject オブジェクトを修正中ならばtrue
+   */
+  public static void setIsModifyingObject(boolean isModifyingObject) {
+    SceneGraphTree.isModifyingObject = isModifyingObject;
   }
 }
