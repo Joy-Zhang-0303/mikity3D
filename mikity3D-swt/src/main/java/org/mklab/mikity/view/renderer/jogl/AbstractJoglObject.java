@@ -37,8 +37,8 @@ public abstract class AbstractJoglObject implements JoglObject {
    * {@inheritDoc}
    */
   public void display(GL2 gl) {
-    applyColor(gl);
     applyTransparency(gl);
+    applyColor(gl);
     drawTrianglePolygons(gl);
   }
 
@@ -90,8 +90,11 @@ public abstract class AbstractJoglObject implements JoglObject {
    */
   private void applyTransparency(GL2 gl) {
     if (this.object.isTransparent()) {
-      gl.glEnable(GL.GL_BLEND);
+      gl.glEnable(GL.GL_BLEND); // ブレンドを有効にします
       gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+    } else {
+      gl.glEnable(GL.GL_BLEND); // ブレンドを有効にします
+      gl.glBlendFunc(GL.GL_ONE, GL.GL_ZERO);
     }
   }
   
