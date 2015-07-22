@@ -1,6 +1,5 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
@@ -13,26 +12,13 @@ import org.mklab.mikity.view.gui.ModelingWindow;
  * @author SHOGO
  * @version $Revision: 1.2 $.2005/11/21
  */
-public class ConeToolBarAction extends Action {
-
-  /** プログラム実行画面クラスMainWindowのフィールド  */
-  private ModelingWindow window;
-
+public class ConeToolBarAction extends AbstractToolBarAction {
   /**
    * 新しく生成された<code>ConeToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    */
   public ConeToolBarAction(final ModelingWindow window) {
-    this.window = window;
-    setText("Cone"); //$NON-NLS-1$
-  }
-
-  /**
-   * 追加した円錐の情報をキャンバスとツリーに追加します。
-   */
-  private void updateCone() {
-    this.window.fillTree();
-    this.window.createViewer();
+    super(window, "Cone"); //$NON-NLS-1$
   }
 
   /**
@@ -49,7 +35,7 @@ public class ConeToolBarAction extends Action {
     final Mikity3d root = this.window.getRoot();
     final Group rootGroup = root.getModel(0).getGroup(0);
     rootGroup.addXMLCone(cone);
-    updateCone();
+    update();
     
     this.window.setChanged(true);
   }

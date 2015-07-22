@@ -25,16 +25,16 @@ import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
  * @version $Revision: 1.22 $.2004/12/03
  */
 public class JoglModeler extends Composite {
-
   /** シーングラフツリー。 */
-  protected SceneGraphTree tree;
-  /** ルート。 */
-  protected Mikity3d root;
-  /** */
-  protected Frame awtFrame;
-  private Group treeViewerGroup;
-  
+  SceneGraphTree tree;
+  /** レンダラー。 */
   private JoglModelRenderer renderer;
+  /** ルート。 */
+  Mikity3d root;
+  /** */
+  Frame awtFrame;
+  
+  private Group treeViewerGroup;
 
   /**
    * 新しく生成された<code>AbstractModeler</code>オブジェクトを初期化します。
@@ -57,9 +57,9 @@ public class JoglModeler extends Composite {
   }
 
   /**
-   * 3Dグラフィックスを表示するcompositeを作成します。
+   * 3Dグラフィックスを表示するコンポジットを生成します。
    * 
-   * @param composite
+   * @param composite 親コンポジット
    */
   private void createViewerComposite(Composite composite) {
     final GridData gridData = new GridData(GridData.FILL_BOTH);
@@ -70,9 +70,9 @@ public class JoglModeler extends Composite {
   }
 
   /**
-   * Treeを表示するcompositeを作成します。
+   * Treeを表示するコンポジットを作成します。
    * 
-   * @param composite
+   * @param composite 親コンポジット
    */
   private void createTreeComposite(Composite composite) {
     final GridLayout layout = new GridLayout();
@@ -121,7 +121,7 @@ public class JoglModeler extends Composite {
    * 
    * @param viewerComposite ビュワーコンポジット
    */
-  public void createModelCanvas(Composite viewerComposite) {
+  private void createModelCanvas(Composite viewerComposite) {
     this.awtFrame = SWT_AWT.new_Frame(viewerComposite);
     this.renderer = new JoglModelRenderer();
     this.awtFrame.add(this.renderer);

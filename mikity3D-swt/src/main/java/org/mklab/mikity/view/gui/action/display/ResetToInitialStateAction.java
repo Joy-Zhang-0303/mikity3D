@@ -1,6 +1,7 @@
 package org.mklab.mikity.view.gui.action.display;
 
 import org.eclipse.jface.action.Action;
+import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ModelingWindow;
 import org.mklab.mikity.view.gui.action.Messages;
 
@@ -12,8 +13,11 @@ import org.mklab.mikity.view.gui.action.Messages;
  * @version $Revision$, 2015/07/18
  */
 public class ResetToInitialStateAction extends Action {
-
-  private ModelingWindow window;
+  /**　モデリングウィンドウ。   */
+  ModelingWindow window;
+  
+  /** モデラー。 */
+  JoglModeler modeler;
 
   /**
    * 新しく生成された<code>ResetOperationAction</code>オブジェクトを初期化します。
@@ -30,6 +34,14 @@ public class ResetToInitialStateAction extends Action {
    */
   @Override
   public void run() {
-    this.window.resetToInitialState();
+    this.modeler.resetToInitialState();
+  }
+  
+  /**
+   * モデラーを設定します。
+   * @param modeler モデラー
+   */
+  public void setModeler(JoglModeler modeler) {
+    this.modeler = modeler;
   }
 }

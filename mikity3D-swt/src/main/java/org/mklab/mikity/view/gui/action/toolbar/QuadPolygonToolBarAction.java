@@ -7,7 +7,6 @@ package org.mklab.mikity.view.gui.action.toolbar;
 
 import java.util.Arrays;
 
-import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.Vertex;
@@ -21,25 +20,13 @@ import org.mklab.mikity.view.gui.ModelingWindow;
  * @author SHOGO
  * @version $Revision: 1.5 $. 2007/11/14
  */
-public class QuadPolygonToolBarAction extends Action {
-  /**　プログラム実行画面クラスMainWindowのフィールド */
-  private ModelingWindow window;
-
+public class QuadPolygonToolBarAction extends AbstractToolBarAction {
   /**
    * 新しく生成された<code>QuadPolygonToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    */
   public QuadPolygonToolBarAction(final ModelingWindow window) {
-    this.window = window;
-    setText("QuadPolygon"); //$NON-NLS-1$
-  }
-
-  /**
-   * 追加した四角形ポリゴンの情報をキャンバスとツリーに追加します。
-   */
-  private void updateQuad() {
-    this.window.fillTree();
-    this.window.createViewer();
+    super(window, "QuadPolygon"); //$NON-NLS-1$
   }
 
   /**
@@ -59,7 +46,7 @@ public class QuadPolygonToolBarAction extends Action {
     final Group rootGroup = root.getModel(0).getGroup(0);
     rootGroup.addXMLQuadPolygon(polygon);
 
-    updateQuad();
+    update();
     
     this.window.setChanged(true);
   }

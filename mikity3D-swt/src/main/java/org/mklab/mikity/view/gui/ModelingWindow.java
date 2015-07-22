@@ -13,7 +13,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DMarshaller;
@@ -29,6 +28,7 @@ import org.mklab.mikity.view.gui.action.file.FileImportAction;
 import org.mklab.mikity.view.gui.action.file.FileOpenAction;
 import org.mklab.mikity.view.gui.action.file.FileSaveAction;
 import org.mklab.mikity.view.gui.action.file.FileSaveAsAction;
+import org.mklab.mikity.view.gui.action.toolbar.AbstractToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.BoxToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.ConeToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.CylinderToolBarAction;
@@ -44,8 +44,6 @@ import org.mklab.mikity.view.gui.action.toolbar.TrianglePolygonToolBarAction;
  */
 public class ModelingWindow extends ApplicationWindow {
   /** */
-  //Action FILE_NEW_ACTION = new FileNewAction(this);
-  /** */
   Action FILE_OPEN_ACTION = new FileOpenAction(this);
   /** */
   Action FILE_SAVE_ACTION = new FileSaveAction(this);
@@ -57,32 +55,26 @@ public class ModelingWindow extends ApplicationWindow {
   Action FILE_EXIT_ACTION = new FileExitAction(this);
   /** */
   Action CONFIGURATION_DIALOG_OPEN_ACTION = new ConfigurationDialogOpenAction(this);
-  
-  Action RESET_TO_INITIAL_STATE_ACTION = new ResetToInitialStateAction(this);
-  
+  /** */
+  ResetToInitialStateAction RESET_TO_INITIAL_STATE_ACTION = new ResetToInitialStateAction(this);
   /** */
   Action ANIMATION_WINDOW_OPEN_ACTION = new AnimationWindowOpenAction(this);
 
-  private Action TOOLBAR_BOX_ACTION = new BoxToolBarAction(this);
-  private Action TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this);
-  private Action TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this);
-  private Action TOOLBAR_CONE_ACTION = new ConeToolBarAction(this);
-  private Action TOOLBAR_TRIANGLE_ACTION = new TrianglePolygonToolBarAction(this);
-  private Action TOOLBAR_QUAD_ACTION = new QuadPolygonToolBarAction(this);
-
-  /** ファイル */
-  private File file;
+  private AbstractToolBarAction TOOLBAR_BOX_ACTION = new BoxToolBarAction(this);
+  private AbstractToolBarAction TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this);
+  private AbstractToolBarAction TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this);
+  private AbstractToolBarAction TOOLBAR_CONE_ACTION = new ConeToolBarAction(this);
+  private AbstractToolBarAction TOOLBAR_TRIANGLE_ACTION = new TrianglePolygonToolBarAction(this);
+  private AbstractToolBarAction TOOLBAR_QUAD_ACTION = new QuadPolygonToolBarAction(this);
   
   /** モデル。 */
   private Mikity3d root;
-  
-  /** */
-  Text filePathText;
-  
-  /** 変更されていればtrue */
-  private boolean isChanged;
   /** モデラー。 */
   private JoglModeler modeler;
+  /** ファイル。 */
+  private File file;
+  /** 変更されていればtrue。 */
+  private boolean isChanged;
 
   /**
    * 新しく生成された<code>ModelingWindow</code>オブジェクトを初期化します。
@@ -113,9 +105,15 @@ public class ModelingWindow extends ApplicationWindow {
     localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
     this.modeler = new JoglModeler(localComposite, this.root);
-    //this.modeler.setLayoutData(new GridData(GridData.FILL_BOTH));
     
     ((ConfigurationDialogOpenAction)this.CONFIGURATION_DIALOG_OPEN_ACTION).setModeler(this.modeler);
+    this.TOOLBAR_BOX_ACTION.setModeler(this.modeler);
+    this.TOOLBAR_SPHERE_ACTION.setModeler(this.modeler);
+    this.TOOLBAR_CYLINDER_ACTION.setModeler(this.modeler);
+    this.TOOLBAR_CONE_ACTION.setModeler(this.modeler);
+    this.TOOLBAR_TRIANGLE_ACTION.setModeler(this.modeler);
+    this.TOOLBAR_QUAD_ACTION.setModeler(this.modeler);
+    this.RESET_TO_INITIAL_STATE_ACTION.setModeler(this.modeler);
       
     return localComposite;
   }
@@ -152,7 +150,6 @@ public class ModelingWindow extends ApplicationWindow {
   @Override
   protected MenuManager createMenuManager() {
     final MenuManager fileMenu = new MenuManager(Messages.getString("MainWindow.8")); //$NON-NLS-1$
-    //fileMenu.add(this.FILE_NEW_ACTION);
     fileMenu.add(this.FILE_OPEN_ACTION);
     fileMenu.add(this.FILE_SAVE_ACTION);
     fileMenu.add(this.FILE_SAVE_AS_ACTION);
@@ -303,24 +300,24 @@ public class ModelingWindow extends ApplicationWindow {
     super.handleShellCloseEvent();
   }
 
-  /**
-   * シーングラフツリーにプリミティブのデータを追加します。
-   */
-  public void fillTree() {
-    this.modeler.fillTree();
-  }
+//  /**
+//   * シーングラフツリーにプリミティブのデータを追加します。
+//   */
+//  public void fillTree() {
+//    this.modeler.fillTree();
+//  }
 
-  /**
-   * GroupをsinsiCanvasに読み込ませ、Frameに追加します。
-   */
-  public void createViewer() {
-    this.modeler.createViewer();
-  }
-  
-  /**
-   * モデルへの操作をリセットし、初期状態に戻します。 
-   */
-  public void resetToInitialState() {
-    this.modeler.resetToInitialState();
-  }
+//  /**
+//   * GroupをsinsiCanvasに読み込ませ、Frameに追加します。
+//   */
+//  public void createViewer() {
+//    this.modeler.createViewer();
+//  }
+//  
+//  /**
+//   * モデルへの操作をリセットし、初期状態に戻します。 
+//   */
+//  public void resetToInitialState() {
+//    this.modeler.resetToInitialState();
+//  }
 }

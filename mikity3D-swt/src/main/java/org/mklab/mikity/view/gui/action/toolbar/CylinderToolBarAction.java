@@ -1,6 +1,5 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.eclipse.jface.action.Action;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
@@ -13,26 +12,14 @@ import org.mklab.mikity.view.gui.ModelingWindow;
  * @author SHOGO
  * @version $Revision: 1.2 $.2005/11/21
  */
-public class CylinderToolBarAction extends Action {
-  /** プログラム実行画面クラスMainWindowのフィールド  */
-  private ModelingWindow window;
-
+public class CylinderToolBarAction extends AbstractToolBarAction {
   /**
    * コンストラクター
    * 
    * @param window ウィンドウ
    */
   public CylinderToolBarAction(final ModelingWindow window) {
-    this.window = window;
-    setText("Cylinder"); //$NON-NLS-1$
-  }
-
-  /**
-   * 追加した円柱の情報をキャンバスとツリーに追加します。
-   */
-  private void updateCylinder() {
-    this.window.fillTree();
-    this.window.createViewer();
+    super(window, "Cylinder"); //$NON-NLS-1$
   }
 
   /**
@@ -50,7 +37,7 @@ public class CylinderToolBarAction extends Action {
     final Group rootGroup = root.getModel(0).getGroup(0);
     rootGroup.addXMLCylinder(cylinder);
     
-    updateCylinder();
+    update();
     
     this.window.setChanged(true);
   }
