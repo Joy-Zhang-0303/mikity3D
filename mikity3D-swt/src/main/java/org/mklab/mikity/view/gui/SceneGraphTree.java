@@ -3,6 +3,8 @@ package org.mklab.mikity.view.gui;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.MenuAdapter;
+import org.eclipse.swt.events.MenuEvent;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -38,6 +40,7 @@ import org.mklab.mikity.view.gui.dnd.DragAndDropEnabler;
  * シーングラフを表すクラスです。
  */
 public class SceneGraphTree {
+
   /** */
   Tree xmlTree;
   /** */
@@ -58,10 +61,10 @@ public class SceneGraphTree {
   boolean editable = true;
   /** */
   JoglModeler modeler;
-  
+
   /** オブジェクトを修正中ならばtrue */
   static boolean isModifyingObject = false;
-  
+
   /**
    * コンストラクター
    */
@@ -71,6 +74,7 @@ public class SceneGraphTree {
 
   /**
    * 新しく生成された<code>SceneGraphTree</code>オブジェクトを初期化します。
+   * 
    * @param composite コンポジット
    * @param modeler モデラー
    * @param model モデル
@@ -90,9 +94,8 @@ public class SceneGraphTree {
    */
   private void createTree(final Composite composite) {
     composite.setLayout(new GridLayout(1, true));
-    final GridData data1 = new GridData(GridData.FILL_BOTH);
+    //final GridData data1 = new GridData(GridData.FILL_BOTH);
     this.xmlTree = new Tree(composite, SWT.SINGLE | SWT.BORDER);
-
     final GridData data2 = new GridData(GridData.FILL_BOTH);
     this.xmlTree.setLayoutData(data2);
 
@@ -101,32 +104,36 @@ public class SceneGraphTree {
     new DragAndDropEnabler(this.xmlTree);
 
     this.xmlTree.addMouseListener(new MouseAdapter() {
+
       @Override
       public void mouseDoubleClick(MouseEvent arg0) {
         SceneGraphTree.this.editable = true;
 
-        final Object doubleClickObj = SceneGraphTree.this.xmlTree.getSelection()[0].getData();
+        final Object clickObject = SceneGraphTree.this.xmlTree.getSelection()[0].getData();
 
         if (SceneGraphTree.isModifyingObject) {
           return;
         }
-        
-        if (doubleClickObj == null) {
+        if (clickObject == null) {
           return;
-        } else if (doubleClickObj instanceof Group) {
+        }
+
+        if (clickObject instanceof Group) {
           final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
-        } else if (doubleClickObj instanceof XMLTrianglePolygon) {
-          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)doubleClickObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        } else if (clickObject instanceof XMLTrianglePolygon) {
+          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+              SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
-        } else if (doubleClickObj instanceof XMLQuadPolygon) {
-          final EditQuadPolygonDialog dialogy = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)doubleClickObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
-          dialogy.open();
+        } else if (clickObject instanceof XMLQuadPolygon) {
+          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+              SceneGraphTree.this.modeler);
+          dialog.open();
           updateTree();
         } else {
-          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), doubleClickObj, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         }
@@ -163,33 +170,36 @@ public class SceneGraphTree {
       }
     });
 
-    final Menu popup = new Menu(composite.getShell(), SWT.POP_UP);
-    this.xmlTree.setMenu(popup);
+    createPopupMenu(composite);
+  }
 
-//    final MenuItem addModel = new MenuItem(popup, SWT.CASCADE);
-//    addModel.setText(Messages.getString("SceneGraphTree.3")); //$NON-NLS-1$
+  /**
+   * ポップアップメニューを生成します。
+   * 
+   * @param composite コンポジット
+   */
+  private void createPopupMenu(final Composite composite) {
+    final Menu menu = new Menu(composite.getShell(), SWT.POP_UP);
+    this.xmlTree.setMenu(menu);
 
-//    final Menu modelingSub = new Menu(popup);
-//    addModel.setMenu(modelingSub);
-
-    final MenuItem addPrimitive = new MenuItem(popup, SWT.POP_UP);
+    final MenuItem addPrimitive = new MenuItem(menu, SWT.POP_UP);
     addPrimitive.setText(Messages.getString("SceneGraphTree.4")); //$NON-NLS-1$
 
-    final MenuItem addTrianglePolygon = new MenuItem(popup, SWT.POP_UP);
+    final MenuItem addTrianglePolygon = new MenuItem(menu, SWT.POP_UP);
     addTrianglePolygon.setText(Messages.getString("SceneGraphTree.5")); //$NON-NLS-1$
 
-    final MenuItem addQuadPolygon = new MenuItem(popup, SWT.POP_UP);
+    final MenuItem addQuadPolygon = new MenuItem(menu, SWT.POP_UP);
     addQuadPolygon.setText(Messages.getString("SceneGraphTree.6")); //$NON-NLS-1$
 
-    final MenuItem addGroup = new MenuItem(popup, SWT.POP_UP);
+    final MenuItem addGroup = new MenuItem(menu, SWT.POP_UP);
     addGroup.setText(Messages.getString("SceneGraphTree.7")); //$NON-NLS-1$
 
-    final MenuItem edit = new MenuItem(popup, SWT.POP_UP);
+    final MenuItem edit = new MenuItem(menu, SWT.POP_UP);
     edit.setText(Messages.getString("SceneGraphTree.12")); //$NON-NLS-1$
 
-    final MenuItem delete = new MenuItem(popup, SWT.POP_UP);
+    final MenuItem delete = new MenuItem(menu, SWT.POP_UP);
     delete.setText(Messages.getString("SceneGraphTree.13")); //$NON-NLS-1$
-
+    
     addPrimitive.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -238,15 +248,18 @@ public class SceneGraphTree {
           final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
         } else if (SceneGraphTree.this.targetObject instanceof XMLTrianglePolygon) {
-          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup,
+              SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (SceneGraphTree.this.targetObject instanceof XMLQuadPolygon) {
-          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+              SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else {
-          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+              SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         }
@@ -279,7 +292,6 @@ public class SceneGraphTree {
             updateTree();
           }
         } else {
-
           final MessageBox message = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           message.setMessage(Messages.getString("SceneGraphTree.20")); //$NON-NLS-1$
           message.setText(Messages.getString("SceneGraphTree.21")); //$NON-NLS-1$
@@ -292,6 +304,33 @@ public class SceneGraphTree {
         }
       }
     });
+    
+    menu.addMenuListener(new MenuAdapter() {
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public void menuShown(MenuEvent e) {
+        final Object clickedObject = SceneGraphTree.this.xmlTree.getSelection()[0].getData();
+        
+        if (clickedObject instanceof Group) {
+          addPrimitive.setEnabled(true);
+          addTrianglePolygon.setEnabled(true);
+          addQuadPolygon.setEnabled(true);
+          addGroup.setEnabled(true);
+          edit.setEnabled(true);
+          delete.setEnabled(true);
+        } else {
+          addPrimitive.setEnabled(false);
+          addTrianglePolygon.setEnabled(false);
+          addQuadPolygon.setEnabled(false);
+          addGroup.setEnabled(false);
+          edit.setEnabled(true);
+          delete.setEnabled(true);
+        }
+
+      }
+    });
   }
 
   /**
@@ -300,14 +339,14 @@ public class SceneGraphTree {
   void setSelectedObjectAsTarget() {
     this.targetObject = null;
     this.targetGroup = null;
-    
+
     this.targetParentGroup = null;
     if (this.xmlTree.getSelectionCount() == 0) {
       // 何も選択されていないとき
       setAllTransparent(this.model.getGroup(1), true);
       return;
     }
-    
+
     this.targetObject = this.xmlTree.getSelection()[0].getData();
     if (this.targetObject instanceof Group) {
       this.targetGroup = (Group)this.targetObject;
@@ -495,7 +534,7 @@ public class SceneGraphTree {
         child.setText("rootGroup : " + groups[i].getName()); //$NON-NLS-1$
       } else {
         child = new TreeItem(item, SWT.NONE);
-        child.setText("Group : " + groups[i].getName()); //$NON-NLS-1$
+        child.setText("group : " + groups[i].getName()); //$NON-NLS-1$
       }
       child.setData(groups[i]);
 
@@ -509,35 +548,35 @@ public class SceneGraphTree {
       final XMLCylinder[] cylinders = groups[i].getXMLCylinders();
       for (int j = 0; j < cylinders.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cylinder (" + cylinders[j].getRadius() + ", " + cylinders[j].getHeight() + ", " + cylinders[j].getDivision() + ", " + cylinders[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setText("cylinder (" + cylinders[j].getRadius() + ", " + cylinders[j].getHeight() + ", " + cylinders[j].getDivision() + ", " + cylinders[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cylinders[j]);
       }
 
       final XMLSphere[] spheres = groups[i].getXMLSpheres();
       for (int j = 0; j < spheres.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Sphere (" + spheres[j].getRadius() + ", " + spheres[j].getDivision() + ", " + spheres[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        boxChild.setText("sphere (" + spheres[j].getRadius() + ", " + spheres[j].getDivision() + ", " + spheres[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         boxChild.setData(spheres[j]);
       }
 
       final XMLCone[] cones = groups[i].getXMLCones();
       for (int j = 0; j < cones.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Cone (" + cones[j].getRadisu() + ", " + cones[j].getHeight() + ", " + cones[j].getDivision() + ", " + cones[j].getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        boxChild.setText("cone (" + cones[j].getRadisu() + ", " + cones[j].getHeight() + ", " + cones[j].getDivision() + ", " + cones[j].getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cones[j]);
       }
-      
+
       final XMLTrianglePolygon[] trianglePolygons = groups[i].getXMLTrianglePolygons();
       for (int j = 0; j < trianglePolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Triangle (" + trianglePolygons[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+        boxChild.setText("trianglePolygon (" + trianglePolygons[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
         boxChild.setData(trianglePolygons[j]);
       }
 
       final XMLQuadPolygon[] quadPolygons = groups[i].getXMLQuadPolygons();
       for (int j = 0; j < quadPolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("Quad (" + quadPolygons[j].getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$
+        boxChild.setText("quadPolygon (" + quadPolygons[j].getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$
         boxChild.setData(quadPolygons[j]);
       }
 
@@ -557,26 +596,25 @@ public class SceneGraphTree {
    */
   public void fillTree() {
     clearTree();
-    // addTreeItemメソッドに引数rootItemとgroupを渡す
     addTreeItem(null, this.model.getGroups());
   }
 
-//  /**
-//   * 抽出したデータを返します。
-//   * 
-//   * @return xmlTree.getSelection()[0].getData()
-//   */
-//  public Object getSelectedData() {
-//    if (this.xmlTree.getSelectionCount() == 0) {
-//      return null;
-//    } 
-//    
-//    if (this.xmlTree.getSelection()[0].getData() instanceof Group) {
-//      return null;
-//    }
-//    
-//    return this.xmlTree.getSelection()[0].getData();
-//  }
+  //  /**
+  //   * 抽出したデータを返します。
+  //   * 
+  //   * @return xmlTree.getSelection()[0].getData()
+  //   */
+  //  public Object getSelectedData() {
+  //    if (this.xmlTree.getSelectionCount() == 0) {
+  //      return null;
+  //    } 
+  //    
+  //    if (this.xmlTree.getSelection()[0].getData() instanceof Group) {
+  //      return null;
+  //    }
+  //    
+  //    return this.xmlTree.getSelection()[0].getData();
+  //  }
 
   /**
    * XMLのモデルデータを返します。
@@ -620,7 +658,7 @@ public class SceneGraphTree {
   public Tree getXMLTree() {
     return this.xmlTree;
   }
-  
+
   /**
    * オブジェクトを修正中であるか設定します。
    * 
