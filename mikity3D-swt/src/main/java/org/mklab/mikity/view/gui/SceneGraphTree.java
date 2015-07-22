@@ -36,10 +36,6 @@ import org.mklab.mikity.view.gui.dnd.DragAndDropEnabler;
 
 /**
  * シーングラフを表すクラスです。
- * 
- * ツリーの読み込み、書き込みを行います。
- * 
- * Displays a single-selection tree, a multi-selection tree, and a checkbox tree
  */
 public class SceneGraphTree {
   /** */
@@ -170,19 +166,19 @@ public class SceneGraphTree {
     final Menu popup = new Menu(composite.getShell(), SWT.POP_UP);
     this.xmlTree.setMenu(popup);
 
-    final MenuItem addModel = new MenuItem(popup, SWT.CASCADE);
-    addModel.setText(Messages.getString("SceneGraphTree.3")); //$NON-NLS-1$
+//    final MenuItem addModel = new MenuItem(popup, SWT.CASCADE);
+//    addModel.setText(Messages.getString("SceneGraphTree.3")); //$NON-NLS-1$
 
-    final Menu modelingSub = new Menu(popup);
-    addModel.setMenu(modelingSub);
+//    final Menu modelingSub = new Menu(popup);
+//    addModel.setMenu(modelingSub);
 
-    final MenuItem addPrimitive = new MenuItem(modelingSub, SWT.POP_UP);
+    final MenuItem addPrimitive = new MenuItem(popup, SWT.POP_UP);
     addPrimitive.setText(Messages.getString("SceneGraphTree.4")); //$NON-NLS-1$
 
-    final MenuItem addTrianglePolygon = new MenuItem(modelingSub, SWT.POP_UP);
+    final MenuItem addTrianglePolygon = new MenuItem(popup, SWT.POP_UP);
     addTrianglePolygon.setText(Messages.getString("SceneGraphTree.5")); //$NON-NLS-1$
 
-    final MenuItem addQuadPolygon = new MenuItem(modelingSub, SWT.POP_UP);
+    final MenuItem addQuadPolygon = new MenuItem(popup, SWT.POP_UP);
     addQuadPolygon.setText(Messages.getString("SceneGraphTree.6")); //$NON-NLS-1$
 
     final MenuItem addGroup = new MenuItem(popup, SWT.POP_UP);
