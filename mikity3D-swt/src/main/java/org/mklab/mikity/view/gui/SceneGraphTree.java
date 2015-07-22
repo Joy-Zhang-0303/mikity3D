@@ -182,8 +182,17 @@ public class SceneGraphTree {
     final Menu menu = new Menu(composite.getShell(), SWT.POP_UP);
     this.xmlTree.setMenu(menu);
 
-    final MenuItem addPrimitive = new MenuItem(menu, SWT.POP_UP);
-    addPrimitive.setText(Messages.getString("SceneGraphTree.4")); //$NON-NLS-1$
+    final MenuItem addBox = new MenuItem(menu, SWT.POP_UP);
+    addBox.setText(Messages.getString("SceneGraphTree.4")); //$NON-NLS-1$
+
+    final MenuItem addCylinder = new MenuItem(menu, SWT.POP_UP);
+    addCylinder.setText(Messages.getString("SceneGraphTree.0")); //$NON-NLS-1$
+
+    final MenuItem addSphere = new MenuItem(menu, SWT.POP_UP);
+    addSphere.setText(Messages.getString("SceneGraphTree.28")); //$NON-NLS-1$
+
+    final MenuItem addCone = new MenuItem(menu, SWT.POP_UP);
+    addCone.setText(Messages.getString("SceneGraphTree.31"));  //$NON-NLS-1$
 
     final MenuItem addTrianglePolygon = new MenuItem(menu, SWT.POP_UP);
     addTrianglePolygon.setText(Messages.getString("SceneGraphTree.5")); //$NON-NLS-1$
@@ -200,16 +209,46 @@ public class SceneGraphTree {
     final MenuItem delete = new MenuItem(menu, SWT.POP_UP);
     delete.setText(Messages.getString("SceneGraphTree.13")); //$NON-NLS-1$
     
-    addPrimitive.addSelectionListener(new SelectionAdapter() {
+    addBox.addSelectionListener(new SelectionAdapter() {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
+        final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.BOX);
         dialog.open();
         updateTree();
       }
     });
 
+    addCylinder.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.CYLINDER);
+        dialog.open();
+        updateTree();
+      }
+    });
+
+    addSphere.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.SPHERE);
+        dialog.open();
+        updateTree();
+      }
+    });
+
+    addCone.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.CONE);
+        dialog.open();
+        updateTree();
+      }
+    });
+    
     addTrianglePolygon.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -314,14 +353,20 @@ public class SceneGraphTree {
         final Object clickedObject = SceneGraphTree.this.xmlTree.getSelection()[0].getData();
         
         if (clickedObject instanceof Group) {
-          addPrimitive.setEnabled(true);
+          addBox.setEnabled(true);
+          addCylinder.setEnabled(true);
+          addSphere.setEnabled(true);
+          addCone.setEnabled(true);
           addTrianglePolygon.setEnabled(true);
           addQuadPolygon.setEnabled(true);
           addGroup.setEnabled(true);
           edit.setEnabled(true);
           delete.setEnabled(true);
         } else {
-          addPrimitive.setEnabled(false);
+          addBox.setEnabled(false);
+          addCylinder.setEnabled(false);
+          addSphere.setEnabled(false);
+          addCone.setEnabled(false);
           addTrianglePolygon.setEnabled(false);
           addQuadPolygon.setEnabled(false);
           addGroup.setEnabled(false);

@@ -56,24 +56,40 @@ public class AddPrimitiveDialog {
   private String angleUnit;
   private String lengthUnit;
 
-  int selectedIndex = boxFlag;
-  private static final int boxFlag = 0;
-  private static final int cylinderFlag = 1;
-  private static final int sphereFlag = 2;
-  private static final int coneFlag = 3;
+  int selectedIndex = BOX;
+  /** BOX */
+  public static final int BOX = 0;
+  /** CYLINDER */
+  public static final int CYLINDER = 1;
+  /** SPHERE */
+  public static final int SPHERE = 2;
+  /** CONE */
+  public static final int CONE = 3;
 
   /**
    * コンストラクター
    * 
    * @param parentShell 親シェル
    * @param group グループ
+   * @param selectedIndex プリミティブの選択
    */
-  public AddPrimitiveDialog(Shell parentShell, Group group) {
+  public AddPrimitiveDialog(Shell parentShell, Group group, int selectedIndex) {
     this.parentShell = parentShell;
     this.group = group;
+    this.selectedIndex = selectedIndex;
     this.angleUnit = UnitLabel.getUnit("modelAngle"); //$NON-NLS-1$
     this.lengthUnit = UnitLabel.getUnit("modelLength"); //$NON-NLS-1$
     createSShell();
+    
+    if (selectedIndex == BOX) {
+      boxLabel();
+    } else if (selectedIndex == CYLINDER) {
+      cylinderLabel();
+    } else if (selectedIndex == SPHERE) {
+      sphereLabel();
+    } else if (selectedIndex == CONE) {
+      coneLabel();
+    }
   }
 
   /**
@@ -93,12 +109,18 @@ public class AddPrimitiveDialog {
     gLabelData.horizontalSpan = 3;
     groupLabel.setLayoutData(gLabelData);
 
-    final Label primitiveLabel = new Label(this.sShell, SWT.RIGHT);
-    primitiveLabel.setText("primitive"); //$NON-NLS-1$
-    final GridData labelData = new GridData(GridData.FILL_HORIZONTAL);
-    labelData.widthHint = 80;
-    primitiveLabel.setLayoutData(labelData);
-    createPrimitiveCombo();
+//    final Label primitiveLabel = new Label(this.sShell, SWT.RIGHT);
+//    primitiveLabel.setText("primitive"); //$NON-NLS-1$
+//    final GridData labelData = new GridData(GridData.FILL_HORIZONTAL);
+//    labelData.widthHint = 80;
+//    primitiveLabel.setLayoutData(labelData);
+//    createPrimitiveCombo();
+    
+    final GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
+    final Label colorLabel = new Label(this.sShell, SWT.RIGHT);
+    colorLabel.setText(Messages.getString("AddPrimitiveDialog.34")); //$NON-NLS-1$
+    colorLabel.setLayoutData(labelData2);
+    createColorCombo();
 
     this.parameter1 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.2"), "0.2"); //$NON-NLS-1$//$NON-NLS-2$
     this.unitLabel1 = new Label(this.sShell, SWT.NONE);
@@ -244,7 +266,7 @@ public class AddPrimitiveDialog {
     final Translation translation;
     
     switch (this.selectedIndex) {
-      case boxFlag:
+      case BOX:
         final XMLBox box = new XMLBox();
         box.setWidth(this.parameter1.getFloatValue());
         box.setHeight(this.parameter2.getFloatValue());
@@ -260,7 +282,7 @@ public class AddPrimitiveDialog {
         box.setColor(this.colorCombo.getText());
         this.group.addXMLBox(box);
         break;
-      case cylinderFlag:
+      case CYLINDER:
         final XMLCylinder cylinder = new XMLCylinder();
         cylinder.setRadius(this.parameter1.getFloatValue());
         cylinder.setHeight(this.parameter2.getFloatValue());
@@ -276,7 +298,7 @@ public class AddPrimitiveDialog {
         cylinder.setColor(this.colorCombo.getText());
         this.group.addXMLCylinder(cylinder);
         break;
-      case sphereFlag:
+      case SPHERE:
         final XMLSphere sphere = new XMLSphere();
         sphere.setRadius(this.parameter1.getFloatValue());
         sphere.setDivision(getDivision(this.parameter2));
@@ -291,7 +313,7 @@ public class AddPrimitiveDialog {
         sphere.setColor(this.colorCombo.getText());
         this.group.addXMLSphere(sphere);
         break;
-      case coneFlag:
+      case CONE:
         final XMLCone cone = new XMLCone();
         cone.setRadius(this.parameter1.getFloatValue());
         cone.setHeight(this.parameter2.getFloatValue());
@@ -386,13 +408,13 @@ public class AddPrimitiveDialog {
       final Combo combo = (Combo)e.widget;
       AddPrimitiveDialog.this.selectedIndex = combo.getSelectionIndex();
 
-      if (AddPrimitiveDialog.this.selectedIndex == boxFlag) {
+      if (AddPrimitiveDialog.this.selectedIndex == BOX) {
         boxLabel();
-      } else if (AddPrimitiveDialog.this.selectedIndex == cylinderFlag) {
+      } else if (AddPrimitiveDialog.this.selectedIndex == CYLINDER) {
         cylinderLabel();
-      } else if (AddPrimitiveDialog.this.selectedIndex == sphereFlag) {
+      } else if (AddPrimitiveDialog.this.selectedIndex == SPHERE) {
         sphereLabel();
-      } else if (AddPrimitiveDialog.this.selectedIndex == coneFlag) {
+      } else if (AddPrimitiveDialog.this.selectedIndex == CONE) {
         coneLabel();
       }
     }
@@ -467,13 +489,7 @@ public class AddPrimitiveDialog {
     this.primitiveCombo = new Combo(this.sShell, SWT.READ_ONLY);
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
-    this.primitiveCombo.setLayoutData(gridData);
-    
-    final GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
-    final Label colorLabel = new Label(this.sShell, SWT.RIGHT);
-    colorLabel.setText(Messages.getString("AddPrimitiveDialog.34")); //$NON-NLS-1$
-    colorLabel.setLayoutData(labelData2);
-    createColorCombo();
+    this.primitiveCombo.setLayoutData(gridData);   
     
     final String[] primitives = {"Box", "Cylinder", "Sphere", "Cone"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     this.primitiveCombo.setItems(primitives);
