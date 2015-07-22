@@ -17,8 +17,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.Rotation;
+import org.mklab.mikity.model.xml.simplexml.model.Translation;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
@@ -240,20 +240,22 @@ public class AddPrimitiveDialog {
    * プリミティブを追加します。
    */
   void addPrimitive() {
-    final Rotation rotation = new Rotation();
-    final Translation location = new Translation();
-
+    final Rotation rotation;
+    final Translation translation;
+    
     switch (this.selectedIndex) {
       case boxFlag:
         final XMLBox box = new XMLBox();
         box.setWidth(this.parameter1.getFloatValue());
         box.setHeight(this.parameter2.getFloatValue());
         box.setDepth(this.parameter3.getFloatValue());
-        if (getRotation(rotation) != null) {
-          box.setRotation(getRotation(rotation));
+        rotation = getRotation(); 
+        if (rotation != null) {
+          box.setRotation(getRotation());
         }
-        if (getLocation(location) != null) {
-          box.setTranslation(getLocation(location));
+        translation = getTranslation();
+        if (translation != null) {
+          box.setTranslation(translation);
         }
         box.setColor(this.colorCombo.getText());
         this.group.addXMLBox(box);
@@ -263,11 +265,13 @@ public class AddPrimitiveDialog {
         cylinder.setRadius(this.parameter1.getFloatValue());
         cylinder.setHeight(this.parameter2.getFloatValue());
         cylinder.setDivision(getDivision(this.parameter3));
-        if (getRotation(rotation) != null) {
-          cylinder.setRotation(getRotation(rotation));
+        rotation = getRotation(); 
+        if (rotation != null) {
+          cylinder.setRotation(rotation);
         }
-        if (getLocation(location) != null) {
-          cylinder.setTranslation(getLocation(location));
+        translation = getTranslation();
+        if (translation != null) {
+          cylinder.setTranslation(translation);
         }
         cylinder.setColor(this.colorCombo.getText());
         this.group.addXMLCylinder(cylinder);
@@ -276,11 +280,13 @@ public class AddPrimitiveDialog {
         final XMLSphere sphere = new XMLSphere();
         sphere.setRadius(this.parameter1.getFloatValue());
         sphere.setDivision(getDivision(this.parameter2));
-        if (getRotation(rotation) != null) {
-          sphere.setRotation(getRotation(rotation));
+        rotation = getRotation(); 
+        if (rotation != null) {
+          sphere.setRotation(rotation);
         }
-        if (getLocation(location) != null) {
-          sphere.setTranslation(getLocation(location));
+        translation = getTranslation();
+        if (translation != null) {
+          sphere.setTranslation(translation);
         }
         sphere.setColor(this.colorCombo.getText());
         this.group.addXMLSphere(sphere);
@@ -290,11 +296,13 @@ public class AddPrimitiveDialog {
         cone.setRadius(this.parameter1.getFloatValue());
         cone.setHeight(this.parameter2.getFloatValue());
         cone.setDivision(getDivision(this.parameter3));
-        if (getRotation(rotation) != null) {
-          cone.setRotation(getRotation(rotation));
+        rotation = getRotation(); 
+        if (rotation != null) {
+          cone.setRotation(rotation);
         }
-        if (getLocation(location) != null) {
-          cone.setTranslation(getLocation(location));
+        translation = getTranslation();
+        if (translation != null) {
+          cone.setTranslation(translation);
         }
         cone.setColor(this.colorCombo.getText());
         this.group.addXMLCone(cone);
@@ -311,7 +319,9 @@ public class AddPrimitiveDialog {
    * @param rotation
    * @return rot
    */
-  private Rotation getRotation(Rotation rotation) {
+  private Rotation getRotation() {
+    final Rotation rotation = new Rotation();
+    
     if (this.rotationX.getFloatValue() == 0 && this.rotationY.getFloatValue() == 0 && this.rotationZ.getFloatValue() == 0) {
       return null;
     }
@@ -327,7 +337,9 @@ public class AddPrimitiveDialog {
    * @param translation
    * @return Location
    */
-  private Translation getLocation(Translation translation) {
+  private Translation getTranslation() {
+    final Translation translation = new Translation();
+    
     if (this.translationX.getFloatValue() == 0 && this.translationY.getFloatValue() == 0 && this.translationZ.getFloatValue() == 0) {
       return null;
     }
@@ -346,7 +358,7 @@ public class AddPrimitiveDialog {
   private int getDivision(ParameterInputBox parameter) {
     int division = (int)parameter.getDoubleValue();
     if (division < 3) {
-      // 3以下なので、30を返します
+      // 3以下なので、3を返します
       division = 3;
     }
     return division;
