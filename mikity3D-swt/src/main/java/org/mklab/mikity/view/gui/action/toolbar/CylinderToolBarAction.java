@@ -1,6 +1,5 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
 import org.mklab.mikity.view.gui.ModelingWindow;
@@ -33,8 +32,9 @@ public class CylinderToolBarAction extends AbstractToolBarAction {
     cylinder.setDivision(20);
     cylinder.setColor("blue"); //$NON-NLS-1$
     
-    final Mikity3d root = this.window.getRoot();
-    final Group rootGroup = root.getModel(0).getGroup(0);
+    //final Mikity3d root = this.window.getRoot();
+    //final Group rootGroup = root.getModel(0).getGroup(0);
+    final Group rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLCylinder(cylinder);
     
     update();

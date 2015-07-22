@@ -1,6 +1,5 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
 import org.mklab.mikity.view.gui.ModelingWindow;
@@ -32,8 +31,9 @@ public class BoxToolBarAction extends AbstractToolBarAction {
     box.setDepth(0.10f);
     box.setColor("red"); //$NON-NLS-1$
     
-    final Mikity3d root = this.window.getRoot();
-    final Group rootGroup = root.getModel(0).getGroup(0);
+    //final Mikity3d root = this.window.getRoot();
+    //final Group rootGroup = root.getModel(0).getGroup(0);
+    final Group rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLBox(box);
     update();
     

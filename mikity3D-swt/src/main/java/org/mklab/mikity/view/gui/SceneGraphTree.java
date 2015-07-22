@@ -50,11 +50,11 @@ public class SceneGraphTree {
   Composite comp;
   /** */
   TreeItem selectItem = null;
-  /** */
+  /** 選択されているオブジェクト。 */
   Object targetObject = null;
-  /** */
+  /** 選択されているグループ。 */
   Group targetGroup = null;
-  /** */
+  /** 選択されている物の親グループ。 */
   Group targetParentGroup = null;
   /** */
   Group root = null;
@@ -299,7 +299,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * 現在選択されているObjectを設定する。
+   * 選択されているオブジェクトを設定します。
    */
   void setSelectedObjectAsTarget() {
     this.targetObject = null;
@@ -337,7 +337,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * ターゲットを設定します。
+   * 選択されているオブジェクトを設定します。
    * 
    * @param object
    */
@@ -426,9 +426,9 @@ public class SceneGraphTree {
   }
 
   /**
-   * 抽出したグループを返します。
+   * 選択されているグループを返します。
    * 
-   * @return targetGroup
+   * @return 選択されているグループ
    */
   public Group getTargetGroup() {
     return this.targetGroup;
@@ -557,7 +557,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * Helper method to fill a tree with data シーングラフツリーにプリミティブのデータを追加させる。
+   * シーングラフツリーにプリミティブのデータを追加します。
    */
   public void fillTree() {
     clearTree();
@@ -565,22 +565,22 @@ public class SceneGraphTree {
     addTreeItem(null, this.model.getGroups());
   }
 
-  /**
-   * 抽出したデータを返します。
-   * 
-   * @return xmlTree.getSelection()[0].getData()
-   */
-  public Object getSelectedData() {
-    if (this.xmlTree.getSelectionCount() == 0) {
-      return null;
-    } 
-    
-    if (this.xmlTree.getSelection()[0].getData() instanceof Group) {
-      return null;
-    }
-    
-    return this.xmlTree.getSelection()[0].getData();
-  }
+//  /**
+//   * 抽出したデータを返します。
+//   * 
+//   * @return xmlTree.getSelection()[0].getData()
+//   */
+//  public Object getSelectedData() {
+//    if (this.xmlTree.getSelectionCount() == 0) {
+//      return null;
+//    } 
+//    
+//    if (this.xmlTree.getSelection()[0].getData() instanceof Group) {
+//      return null;
+//    }
+//    
+//    return this.xmlTree.getSelection()[0].getData();
+//  }
 
   /**
    * XMLのモデルデータを返します。

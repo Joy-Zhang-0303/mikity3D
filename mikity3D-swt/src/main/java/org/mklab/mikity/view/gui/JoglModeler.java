@@ -141,4 +141,13 @@ public class JoglModeler extends Composite {
   public void updateDisplay() {
     this.renderer.updateDisplay();
   }
+  
+  /**
+   * 選択されているグループを返します。
+   * 
+   * @return 選択されているグループ
+   */
+  public org.mklab.mikity.model.xml.simplexml.model.Group getTargetGroup() {
+    return this.tree.getTargetGroup();
+  }
 }

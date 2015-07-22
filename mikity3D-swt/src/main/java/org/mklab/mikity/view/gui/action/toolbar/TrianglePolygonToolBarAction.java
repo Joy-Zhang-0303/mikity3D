@@ -8,7 +8,6 @@ package org.mklab.mikity.view.gui.action.toolbar;
 import java.util.Arrays;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.Vertex;
 import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
@@ -43,8 +42,9 @@ public class TrianglePolygonToolBarAction extends AbstractToolBarAction {
     polygon.setVertices(vertices);
     polygon.setColor("red"); //$NON-NLS-1$
     
-    final Mikity3d root = this.window.getRoot();
-    final Group rootGroup = root.getModel(0).getGroup(0);
+    //final Mikity3d root = this.window.getRoot();
+    //final Group rootGroup = root.getModel(0).getGroup(0);
+    final Group rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLTrianglePolygon(polygon);
 
     update();

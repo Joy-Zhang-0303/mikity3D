@@ -7,7 +7,6 @@ package org.mklab.mikity.view.gui.action.toolbar;
 
 import java.util.Arrays;
 
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.Group;
 import org.mklab.mikity.model.xml.simplexml.model.Vertex;
 import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
@@ -42,8 +41,9 @@ public class QuadPolygonToolBarAction extends AbstractToolBarAction {
     polygon.setVertices(Arrays.asList(vertex0, vertex1, vertex2, vertex3));
     polygon.setColor("blue"); //$NON-NLS-1$
     
-    final Mikity3d root = this.window.getRoot();
-    final Group rootGroup = root.getModel(0).getGroup(0);
+    //final Mikity3d root = this.window.getRoot();
+    //final Group rootGroup = root.getModel(0).getGroup(0);
+    final Group rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLQuadPolygon(polygon);
 
     update();
