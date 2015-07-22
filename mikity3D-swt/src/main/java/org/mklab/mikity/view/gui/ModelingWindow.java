@@ -299,25 +299,4 @@ public class ModelingWindow extends ApplicationWindow {
     this.FILE_EXIT_ACTION.run();
     super.handleShellCloseEvent();
   }
-
-//  /**
-//   * シーングラフツリーにプリミティブのデータを追加します。
-//   */
-//  public void fillTree() {
-//    this.modeler.fillTree();
-//  }
-
-//  /**
-//   * GroupをsinsiCanvasに読み込ませ、Frameに追加します。
-//   */
-//  public void createViewer() {
-//    this.modeler.createViewer();
-//  }
-//  
-//  /**
-//   * モデルへの操作をリセットし、初期状態に戻します。 
-//   */
-//  public void resetToInitialState() {
-//    this.modeler.resetToInitialState();
-//  }
 }

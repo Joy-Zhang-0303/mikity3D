@@ -41,8 +41,6 @@ public class QuadPolygonToolBarAction extends AbstractToolBarAction {
     polygon.setVertices(Arrays.asList(vertex0, vertex1, vertex2, vertex3));
     polygon.setColor("blue"); //$NON-NLS-1$
     
-    //final Mikity3d root = this.window.getRoot();
-    //final Group rootGroup = root.getModel(0).getGroup(0);
     final Group rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLQuadPolygon(polygon);
 

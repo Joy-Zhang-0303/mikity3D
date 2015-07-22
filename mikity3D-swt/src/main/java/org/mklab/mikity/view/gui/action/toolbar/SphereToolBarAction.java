@@ -31,8 +31,6 @@ public class SphereToolBarAction extends AbstractToolBarAction {
     sphere.setDivision(20);
     sphere.setColor("yellow"); //$NON-NLS-1$
     
-    //final Mikity3d root = this.window.getRoot();
-    //final Group rootGroup = root.getModel(0).getGroup(0);
     final Group rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLSphere(sphere);
     
