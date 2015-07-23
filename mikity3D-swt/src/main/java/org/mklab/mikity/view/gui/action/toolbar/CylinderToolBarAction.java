@@ -1,7 +1,7 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -26,13 +26,13 @@ public class CylinderToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final XMLCylinder cylinder = new XMLCylinder();    
+    final CylinderModel cylinder = new CylinderModel();    
     cylinder.setRadius(0.10f);
     cylinder.setHeight(0.10f);
     cylinder.setDivision(20);
     cylinder.setColor("blue"); //$NON-NLS-1$
     
-    final Group rootGroup = this.modeler.getTargetGroup();
+    final GroupModel rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLCylinder(cylinder);
     
     update();

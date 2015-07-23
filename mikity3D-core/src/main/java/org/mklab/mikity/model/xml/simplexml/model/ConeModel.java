@@ -9,38 +9,41 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * 球を表すクラスです。
+ * Coneを表すクラスです。
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
-@Root(name="sphere")
-public class XMLSphere implements java.io.Serializable {
+@Root(name="cone")
+public class ConeModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** radius */
   @Attribute(name="radius")
   private float radius;
 
+  /** height */
+  @Attribute(name="height")
+  private float height;
+
   /** division */
   @Attribute(name="division")
   private int division;
 
-  /** translation */
+  /** location */
   @Element(name="translation", required=false)
-  private Translation translation;
+  private TranslationModel translation;
 
   /** rotation */
   @Element(name="rotation", required=false)
-  private Rotation rotation;
-  
+  private RotationModel rotation;
+
   /** color */
   @Attribute(name="color")
   private String color;
 
-  /**_ransparent */
+  /** transparent */
   @Attribute(name="transparent", required=false)
   private boolean transparent;
-
 
   /** propertyChangeListeners */
   private java.util.Vector<PropertyChangeListener> propertyChangeListeners;
@@ -48,12 +51,12 @@ public class XMLSphere implements java.io.Serializable {
   /**
    * コンストラクター
    */
-  public XMLSphere() {
+  public ConeModel() {
     this.color = "red"; //$NON-NLS-1$
     this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
   }
-
+  
   /**
    * Method addPropertyChangeListenerRegisters a PropertyChangeListener with this class.
    * 
@@ -81,6 +84,7 @@ public class XMLSphere implements java.io.Serializable {
     int result = 1;
     result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
     result = prime * result + this.division;
+    result = prime * result + Float.floatToIntBits(this.height);
     result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
     result = prime * result + Float.floatToIntBits(this.radius);
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
@@ -103,7 +107,7 @@ public class XMLSphere implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    XMLSphere other = (XMLSphere)obj;
+    ConeModel other = (ConeModel)obj;
     if (this.color == null) {
       if (other.color != null) {
         return false;
@@ -112,6 +116,9 @@ public class XMLSphere implements java.io.Serializable {
       return false;
     }
     if (this.division != other.division) {
+      return false;
+    }
+    if (Float.floatToIntBits(this.height) != Float.floatToIntBits(other.height)) {
       return false;
     }
     if (this.translation == null) {
@@ -154,11 +161,20 @@ public class XMLSphere implements java.io.Serializable {
   }
 
   /**
+   * Returns the value of field 'height'.
+   * 
+   * @return the value of field 'height'.
+   */
+  public float getHeight() {
+    return this.height;
+  }
+
+  /**
    * Returns the value of field 'location'.
    * 
    * @return the value of field 'location'.
    */
-  public Translation getTranslation() {
+  public TranslationModel getTranslation() {
     return this.translation;
   }
 
@@ -167,7 +183,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @return the value of field 'r'.
    */
-  public float getRadius() {
+  public float getRadisu() {
     return this.radius;
   }
 
@@ -176,7 +192,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @return the value of field 'rotation'.
    */
-  public Rotation getRotation() {
+  public RotationModel getRotation() {
     return this.rotation;
   }
 
@@ -234,11 +250,20 @@ public class XMLSphere implements java.io.Serializable {
   }
 
   /**
+   * Sets the value of field 'height'.
+   * 
+   * @param height the value of field 'height'.
+   */
+  public void setHeight(float height) {
+    this.height = height;
+  }
+
+  /**
    * Sets the value of field 'location'.
    * 
    * @param translation the value of field 'location'.
    */
-  public void setTranslation(Translation translation) {
+  public void setTranslation(TranslationModel translation) {
     this.translation = translation;
   }
 
@@ -256,7 +281,7 @@ public class XMLSphere implements java.io.Serializable {
    * 
    * @param rotation the value of field 'rotation'.
    */
-  public void setRotation(Rotation rotation) {
+  public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
   }
 
@@ -268,5 +293,4 @@ public class XMLSphere implements java.io.Serializable {
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
   }
-
 }

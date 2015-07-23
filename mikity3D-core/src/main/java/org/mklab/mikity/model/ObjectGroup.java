@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.model;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 
 /**
@@ -35,5 +35,5 @@ public interface ObjectGroup {
    * 
    * @return 関連するモデルデータのグループ
    */
-  Group getGroup();
+  GroupModel getGroup();
 }

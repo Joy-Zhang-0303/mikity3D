@@ -1,11 +1,11 @@
 package org.mklab.mikity.model.xml.simplexml;
 
-import org.mklab.mikity.model.xml.simplexml.config.Background;
-import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
-import org.mklab.mikity.model.xml.simplexml.config.Light;
-import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
-import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
-import org.mklab.mikity.model.xml.simplexml.config.Eye;
+import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
+import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
+import org.mklab.mikity.model.xml.simplexml.config.LightModel;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
+import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
+import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -16,32 +16,32 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.9 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="configuration")
-public class Mikity3dConfiguration implements java.io.Serializable {
+public class ConfigurationModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** 背景。 */
   @Element(name="background")
-  private Background background;
+  private BackgroundModel background;
 
   /** 光源。 */
   @Element(name="light")
-  private Light light;
+  private LightModel light;
   
   /** 視点。 */
   @Element(name="eye")
-  private Eye eye;
+  private EyeModel eye;
 
   /** 注視点。 */
   @Element(name="lookAtPoint")
-  private LookAtPoint lookAtPoint;
+  private LookAtPointModel lookAtPoint;
 
   /** モデルの単位。 */
   @Element(name="modelUnit")
-  private ModelUnit modelUnit;
+  private ModelUnitModel modelUnit;
 
   /** データの単位。 */
   @Element(name="dataUnit")
-  private DataUnit dataUnit;
+  private DataUnitModel dataUnit;
 
   /** データ。 */
   @Element(name="data", required=false)
@@ -50,13 +50,13 @@ public class Mikity3dConfiguration implements java.io.Serializable {
   /**
    * 新しく生成された<code>Mikity3dConfiguration</code>オブジェクトを初期化します。
    */
-  public Mikity3dConfiguration() {
-    this.background = new Background();
-    this.light = new Light();
-    this.eye = new Eye();
-    this.lookAtPoint = new LookAtPoint();
-    this.modelUnit = new ModelUnit();
-    this.dataUnit = new DataUnit();
+  public ConfigurationModel() {
+    this.background = new BackgroundModel();
+    this.light = new LightModel();
+    this.eye = new EyeModel();
+    this.lookAtPoint = new LookAtPointModel();
+    this.modelUnit = new ModelUnitModel();
+    this.dataUnit = new DataUnitModel();
   }
   
   /**
@@ -64,7 +64,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @return 背景
    */
-  public Background getBackground() {
+  public BackgroundModel getBackground() {
     return this.background;
   }
 
@@ -99,7 +99,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Mikity3dConfiguration other = (Mikity3dConfiguration)obj;
+    ConfigurationModel other = (ConfigurationModel)obj;
     if (this.background == null) {
       if (other.background != null) {
         return false;
@@ -167,7 +167,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @return データの単位
    */
-  public DataUnit getDataUnit() {
+  public DataUnitModel getDataUnit() {
     return this.dataUnit;
   }
 
@@ -176,7 +176,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @return 光源
    */
-  public Light getLight() {
+  public LightModel getLight() {
     return this.light;
   }
 
@@ -185,7 +185,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @return モデルの単位
    */
-  public ModelUnit getModelUnit() {
+  public ModelUnitModel getModelUnit() {
     return this.modelUnit;
   }
 
@@ -194,7 +194,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @return 視点
    */
-  public Eye getEye() {
+  public EyeModel getEye() {
     return this.eye;
   }
 
@@ -203,7 +203,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @return 注視点
    */
-  public LookAtPoint getLookAtPoint() {
+  public LookAtPointModel getLookAtPoint() {
     return this.lookAtPoint;
   }
   
@@ -212,7 +212,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @param background 背景
    */
-  public void setBackground(Background background) {
+  public void setBackground(BackgroundModel background) {
     this.background = background;
   }
 
@@ -230,7 +230,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @param dataUnit データの単位
    */
-  public void setDataUnit(DataUnit dataUnit) {
+  public void setDataUnit(DataUnitModel dataUnit) {
     this.dataUnit = dataUnit;
   }
 
@@ -239,7 +239,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @param light 光源
    */
-  public void setLight(Light light) {
+  public void setLight(LightModel light) {
     this.light = light;
   }
 
@@ -248,7 +248,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @param modelUnit モデル単位
    */
-  public void setModelUnit(ModelUnit modelUnit) {
+  public void setModelUnit(ModelUnitModel modelUnit) {
     this.modelUnit = modelUnit;
   }
 
@@ -257,7 +257,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @param eye 視点
    */
-  public void setEye(Eye eye) {
+  public void setEye(EyeModel eye) {
     this.eye = eye;
   }
   
@@ -266,7 +266,7 @@ public class Mikity3dConfiguration implements java.io.Serializable {
    * 
    * @param lookAtPoint 注視点
    */
-  public void setLookAtPoiint(LookAtPoint lookAtPoint) {
+  public void setLookAtPoiint(LookAtPointModel lookAtPoint) {
     this.lookAtPoint = lookAtPoint;
   }
 }

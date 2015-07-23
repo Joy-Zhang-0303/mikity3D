@@ -14,17 +14,17 @@ import java.io.InputStream;
 import org.junit.Before;
 import org.junit.Test;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.config.Background;
-import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
-import org.mklab.mikity.model.xml.simplexml.config.Light;
-import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
-import org.mklab.mikity.model.xml.simplexml.config.Eye;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.LinkData;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
+import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
+import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
+import org.mklab.mikity.model.xml.simplexml.config.LightModel;
+import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
+import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 
 
 /**
@@ -75,22 +75,22 @@ public class SimpleXmlUnmarshallerTest {
   @Test
   public void testGetRoot() {
     final Mikity3d actual = this.unmarshaler.getRoot();
-    final Mikity3dConfiguration actualConfiguration = actual.getConfiguration(0);
+    final ConfigurationModel actualConfiguration = actual.getConfiguration(0);
 
-    final Background actualBackground = actualConfiguration.getBackground();
-    final Background expectedBackground = new Background();
+    final BackgroundModel actualBackground = actualConfiguration.getBackground();
+    final BackgroundModel expectedBackground = new BackgroundModel();
     expectedBackground.setColor("white"); //$NON-NLS-1$ 
     assertThat(actualBackground, is(expectedBackground));
 
-    final Light actualLight = actualConfiguration.getLight();
-    final Light expectedLight = new Light();
+    final LightModel actualLight = actualConfiguration.getLight();
+    final LightModel expectedLight = new LightModel();
     expectedLight.setX(-0.8F);
     expectedLight.setY(0.2F);
     expectedLight.setZ(-0.8F);
     assertThat(actualLight, is(expectedLight));
 
-    final Eye actualEye = actualConfiguration.getEye();
-    final Eye expectedEye = new Eye();
+    final EyeModel actualEye = actualConfiguration.getEye();
+    final EyeModel expectedEye = new EyeModel();
     expectedEye.setX(5.0F);
     expectedEye.setY(0.0F);
     expectedEye.setZ(0.0F);
@@ -99,79 +99,79 @@ public class SimpleXmlUnmarshallerTest {
 //    expectedEye.setRotationZ(0.0);
     assertThat(actualEye, is(expectedEye));
 
-    final ModelUnit actualModelUnit = actualConfiguration.getModelUnit();
-    final ModelUnit expectedModelUnit = new ModelUnit();
+    final ModelUnitModel actualModelUnit = actualConfiguration.getModelUnit();
+    final ModelUnitModel expectedModelUnit = new ModelUnitModel();
     expectedModelUnit.setAngleUnit("radian"); //$NON-NLS-1$
     expectedModelUnit.setLengthUnit("m"); //$NON-NLS-1$
     assertThat(actualModelUnit, is(expectedModelUnit));
     
-    final DataUnit actualDataUnit = actualConfiguration.getDataUnit();
-    final DataUnit expectedDataUnit = new DataUnit();
+    final DataUnitModel actualDataUnit = actualConfiguration.getDataUnit();
+    final DataUnitModel expectedDataUnit = new DataUnitModel();
     expectedDataUnit.setAngle("radian"); //$NON-NLS-1$
     expectedDataUnit.setLength("m"); //$NON-NLS-1$
     assertThat(actualDataUnit, is(expectedDataUnit));
     
     final Mikity3dModel actualModel = actual.getModel(0);
-    final Group actualGroup = actualModel.getGroup(0);
+    final GroupModel actualGroup = actualModel.getGroup(0);
     
-    final Translation actualLocation = actualGroup.getTranslation();
-    final Translation expectedLocation = new Translation();
+    final TranslationModel actualLocation = actualGroup.getTranslation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.0F);
     assertThat(actualLocation, is(expectedLocation));
     
-    final Rotation actualRotation = actualGroup.getRotation();
-    final Rotation expectedRotation = new Rotation();
+    final RotationModel actualRotation = actualGroup.getRotation();
+    final RotationModel expectedRotation = new RotationModel();
     expectedRotation.setX(0.0F);
     expectedRotation.setY(0.0F);
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
-    final Group actualDodaiGroup = actualGroup.getGroup(0);
+    final GroupModel actualDodaiGroup = actualGroup.getGroup(0);
     assertDodaiGroup(actualDodaiGroup);
   }
 
-  private void assertDodaiGroup(Group actualGroup) {
-    final Translation actualLocation = actualGroup.getTranslation();
-    final Translation expectedLocation = new Translation();
+  private void assertDodaiGroup(GroupModel actualGroup) {
+    final TranslationModel actualLocation = actualGroup.getTranslation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.0F);
     assertThat(actualLocation, is(expectedLocation));
 
-    final Rotation actualRotation = actualGroup.getRotation();
-    final Rotation expectedRotation = new Rotation();
+    final RotationModel actualRotation = actualGroup.getRotation();
+    final RotationModel expectedRotation = new RotationModel();
     expectedRotation.setX(0.0F);
     expectedRotation.setY(0.0F);
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
-    final XMLBox actualBox1 = actualGroup.getXMLBox(0);
+    final BoxModel actualBox1 = actualGroup.getXMLBox(0);
     assertDodaiBox1(actualBox1);
 
-    final XMLBox actualBox2 = actualGroup.getXMLBox(1);
+    final BoxModel actualBox2 = actualGroup.getXMLBox(1);
     assertDodaiBox2(actualBox2);
 
-    final XMLBox actualBox3 = actualGroup.getXMLBox(2);
+    final BoxModel actualBox3 = actualGroup.getXMLBox(2);
     assertDodaiBox3(actualBox3);
 
-    final XMLBox actualBox4 = actualGroup.getXMLBox(3);
+    final BoxModel actualBox4 = actualGroup.getXMLBox(3);
     assertDodaiBox4(actualBox4);
 
-    final Group actualDaishaGroup = actualGroup.getGroup(0);
+    final GroupModel actualDaishaGroup = actualGroup.getGroup(0);
     assertDaishaGroup(actualDaishaGroup);
   }
 
-  private void assertDodaiBox1(XMLBox actualBox) {
-    final XMLBox expectedBox = new XMLBox();
+  private void assertDodaiBox1(BoxModel actualBox) {
+    final BoxModel expectedBox = new BoxModel();
     expectedBox.setTransparent(false);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
     expectedBox.setWidth(0.02F);
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
     
-    final Translation expectedLocation = new Translation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(-0.05F);
     expectedLocation.setZ(-0.21F);
@@ -182,15 +182,15 @@ public class SimpleXmlUnmarshallerTest {
     assertThat(actualBox, is(expectedBox));
   }
 
-  private void assertDodaiBox2(XMLBox actualBox) {
-    final XMLBox expectedBox = new XMLBox();
+  private void assertDodaiBox2(BoxModel actualBox) {
+    final BoxModel expectedBox = new BoxModel();
     expectedBox.setTransparent(false);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
     expectedBox.setWidth(0.3F);
     expectedBox.setHeight(0.005F);
     expectedBox.setDepth(0.1F);
     
-    final Translation expectedLocation = new Translation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(-0.3475F);
@@ -200,15 +200,15 @@ public class SimpleXmlUnmarshallerTest {
     assertThat(actualBox, is(expectedBox));
   }
 
-  private void assertDodaiBox3(XMLBox actualBox) {
-    final XMLBox expectedBox = new XMLBox();
+  private void assertDodaiBox3(BoxModel actualBox) {
+    final BoxModel expectedBox = new BoxModel();
     expectedBox.setTransparent(false);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
     expectedBox.setWidth(0.02F);
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
     
-    final Translation expectedLocation = new Translation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.05F);
     expectedLocation.setZ(-0.21F);
@@ -218,15 +218,15 @@ public class SimpleXmlUnmarshallerTest {
     assertThat(actualBox, is(expectedBox));
   }
 
-  private void assertDodaiBox4(XMLBox actualBox) {
-    final XMLBox expectedBox = new XMLBox();
+  private void assertDodaiBox4(BoxModel actualBox) {
+    final BoxModel expectedBox = new BoxModel();
     expectedBox.setTransparent(false);
     expectedBox.setColor("lightGray"); //$NON-NLS-1$
     expectedBox.setWidth(0.54F);
     expectedBox.setHeight(0.05F);
     expectedBox.setDepth(0.07F);
     
-    final Translation expectedLocation = new Translation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(-0.05F);
     expectedLocation.setX(0.0F);
@@ -237,43 +237,43 @@ public class SimpleXmlUnmarshallerTest {
   }
 
   
-  private void assertDaishaGroup(Group actualGroup) {
-    final Translation actualLocation = actualGroup.getTranslation();
-    final Translation expectedLocation = new Translation();
+  private void assertDaishaGroup(GroupModel actualGroup) {
+    final TranslationModel actualLocation = actualGroup.getTranslation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.0F);
     assertThat(actualLocation, is(expectedLocation));
 
-    final Rotation actualRotation = actualGroup.getRotation();
-    final Rotation expectedRotation = new Rotation();
+    final RotationModel actualRotation = actualGroup.getRotation();
+    final RotationModel expectedRotation = new RotationModel();
     expectedRotation.setX(0.0F);
     expectedRotation.setY(0.0F);
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
 
-    final LinkData actualLinkData = actualGroup.getLinkData(0);
-    final LinkData expectedLinkData = new LinkData();
+    final LinkDataModel actualLinkData = actualGroup.getLinkData(0);
+    final LinkDataModel expectedLinkData = new LinkDataModel();
     expectedLinkData.setNumber(2);
     expectedLinkData.setTarget("translationY"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
 
-    final XMLBox actualBox = actualGroup.getXMLBox(0);
+    final BoxModel actualBox = actualGroup.getXMLBox(0);
     assertDaishaBox(actualBox);
     
-    final Group actualSinsiGroup = actualGroup.getGroup(0);
+    final GroupModel actualSinsiGroup = actualGroup.getGroup(0);
     assertSinsiGroup(actualSinsiGroup);
   }
   
-  private void assertDaishaBox(XMLBox actualBox) {
-    final XMLBox expectedBox = new XMLBox();
+  private void assertDaishaBox(BoxModel actualBox) {
+    final BoxModel expectedBox = new BoxModel();
     expectedBox.setTransparent(false);
     expectedBox.setColor("yellow"); //$NON-NLS-1$
     expectedBox.setWidth(0.07F);
     expectedBox.setHeight(0.05F);
     expectedBox.setDepth(0.005F);
     
-    final Translation expectedLocation = new Translation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setZ(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setX(0.02F);
@@ -283,48 +283,48 @@ public class SimpleXmlUnmarshallerTest {
     assertThat(actualBox, is(expectedBox));
   }
   
-  private void assertSinsiGroup(Group actualGroup) {
-    final Translation actualLocation = actualGroup.getTranslation();
-    final Translation expectedLocation = new Translation();
+  private void assertSinsiGroup(GroupModel actualGroup) {
+    final TranslationModel actualLocation = actualGroup.getTranslation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setX(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.0F);
     assertThat(actualLocation, is(expectedLocation));
 
-    final Rotation actualRotation = actualGroup.getRotation();
-    final Rotation expectedRotation = new Rotation();
+    final RotationModel actualRotation = actualGroup.getRotation();
+    final RotationModel expectedRotation = new RotationModel();
     expectedRotation.setX(0.0F);
     expectedRotation.setY(0.0F);
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
-    final LinkData actualLinkData = actualGroup.getLinkData(0);
-    final LinkData expectedLinkData = new LinkData();
+    final LinkDataModel actualLinkData = actualGroup.getLinkData(0);
+    final LinkDataModel expectedLinkData = new LinkDataModel();
     expectedLinkData.setNumber(3);
     expectedLinkData.setTarget("rotationX"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
     
-    final XMLCylinder actualCylinder1 = actualGroup.getXMLCylinder(0);
+    final CylinderModel actualCylinder1 = actualGroup.getXMLCylinder(0);
     assertCylinder1(actualCylinder1);
     
-    final XMLCylinder actualCylinder2 = actualGroup.getXMLCylinder(1);
+    final CylinderModel actualCylinder2 = actualGroup.getXMLCylinder(1);
     assertCylinder2(actualCylinder2);
 
   }
 
-  private void assertCylinder1(XMLCylinder actualCylinder) {
-    final XMLCylinder expectedCylinder = new XMLCylinder();
+  private void assertCylinder1(CylinderModel actualCylinder) {
+    final CylinderModel expectedCylinder = new CylinderModel();
     expectedCylinder.setColor("red"); //$NON-NLS-1$
     expectedCylinder.setDivision(10);
     expectedCylinder.setHeight(0.018F);
     expectedCylinder.setRadius(0.01F);
     
-    final Translation expectedLocation = new Translation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setZ(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setX(0.0325F);
 
-    final Rotation expectedRotation = new Rotation();
+    final RotationModel expectedRotation = new RotationModel();
     expectedRotation.setY(1.5708F);
     expectedRotation.setX(0.0F);
     expectedRotation.setZ(0.0F);
@@ -335,14 +335,14 @@ public class SimpleXmlUnmarshallerTest {
     assertThat(actualCylinder, is(expectedCylinder));
   }
 
-  private void assertCylinder2(XMLCylinder actualCylinder) {
-    final XMLCylinder expectedCylinder = new XMLCylinder();
+  private void assertCylinder2(CylinderModel actualCylinder) {
+    final CylinderModel expectedCylinder = new CylinderModel();
     expectedCylinder.setColor("black"); //$NON-NLS-1$
     expectedCylinder.setDivision(10);
     expectedCylinder.setHeight(0.3F);
     expectedCylinder.setRadius(0.0025F);
     
-    final Translation expectedLocation = new Translation();
+    final TranslationModel expectedLocation = new TranslationModel();
     expectedLocation.setY(0.0F);
     expectedLocation.setZ(0.15F);
     expectedLocation.setX(0.037F);

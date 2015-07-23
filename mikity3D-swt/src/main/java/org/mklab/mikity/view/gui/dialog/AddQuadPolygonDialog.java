@@ -15,11 +15,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.Vertex;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
 
@@ -58,7 +58,7 @@ public class AddQuadPolygonDialog {
   private ParameterInputBox translationY;
   private ParameterInputBox translationZ;
 
-  private Group group;
+  private GroupModel group;
   private String angleUnit;
   private String lengthUnit;
   private Combo colorCombo;
@@ -69,7 +69,7 @@ public class AddQuadPolygonDialog {
    * @param parentShell 親シェル
    * @param group グループ
    */
-  public AddQuadPolygonDialog(Shell parentShell, Group group) {
+  public AddQuadPolygonDialog(Shell parentShell, GroupModel group) {
     this.parentShell = parentShell;
     this.group = group;
     this.angleUnit = UnitLabel.getUnit("modelAngle"); //$NON-NLS-1$
@@ -225,14 +225,14 @@ public class AddQuadPolygonDialog {
    * ポリゴンの生成
    */
   void addPolygon() {
-    final XMLQuadPolygon polygon = new XMLQuadPolygon();
-    final Rotation rotation = new Rotation();
-    final Translation translation = new Translation();
+    final QuadPolygonModel polygon = new QuadPolygonModel();
+    final RotationModel rotation = new RotationModel();
+    final TranslationModel translation = new TranslationModel();
 
-    final Vertex vertex0 = new Vertex(this.vertex0X.getFloatValue(), this.vertex0y.getFloatValue(), this.vertex0z.getFloatValue());
-    final Vertex vertex1 = new Vertex(this.vertex1x.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
-    final Vertex vertex2 = new Vertex(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
-    final Vertex vertex3 = new Vertex(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
+    final VertexModel vertex0 = new VertexModel(this.vertex0X.getFloatValue(), this.vertex0y.getFloatValue(), this.vertex0z.getFloatValue());
+    final VertexModel vertex1 = new VertexModel(this.vertex1x.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
+    final VertexModel vertex2 = new VertexModel(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
+    final VertexModel vertex3 = new VertexModel(this.vertex3x.getFloatValue(), this.vertex3y.getFloatValue(), this.vertex3z.getFloatValue());
     polygon.setVertices(vertex0, vertex1, vertex2, vertex3);
     if (getRotation(rotation) != null) {
       polygon.setRotation(getRotation(rotation));
@@ -262,7 +262,7 @@ public class AddQuadPolygonDialog {
    * @param rotation
    * @return rot
    */
-  private Rotation getRotation(Rotation rotation) {
+  private RotationModel getRotation(RotationModel rotation) {
     if (this.rotationX.getFloatValue() == 0 && this.rotationY.getFloatValue() == 0 && this.rotationZ.getFloatValue() == 0) {
       return null;
     }
@@ -279,7 +279,7 @@ public class AddQuadPolygonDialog {
    * @param location
    * @return loc
    */
-  private Translation getLocaion(Translation location) {
+  private TranslationModel getLocaion(TranslationModel location) {
     if (this.translationX.getFloatValue() == 0 && this.translationY.getFloatValue() == 0 && this.translationZ.getFloatValue() == 0) {
       return null;
     }

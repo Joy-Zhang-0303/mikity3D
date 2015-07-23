@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.model.xml.simplexml.blender;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -37,8 +37,8 @@ public class Geometry {
    * 
    * @return　Blenderデータからのポリゴンをまとめたグループ
    */
-  public Group getBlenderPolygonGroup() {
-    final Group group = this.mesh.getBlenderPolygonGroup();
+  public GroupModel getBlenderPolygonGroup() {
+    final GroupModel group = this.mesh.getBlenderPolygonGroup();
     if (this.name.indexOf("-G") != -1) { //$NON-NLS-1$
       this.name = this.name.substring(0, this.name.indexOf("-G")); //$NON-NLS-1$
     }

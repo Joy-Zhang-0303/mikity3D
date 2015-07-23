@@ -20,10 +20,10 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.Vertex;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.SceneGraphTree;
@@ -40,7 +40,7 @@ public class EditTrianglePolygonDialog {
 
   private Shell parentShell;
   Shell sShell;
-  private XMLTrianglePolygon triangle;
+  private TrianglePolygonModel triangle;
   private String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
 
   private String groupName;
@@ -78,7 +78,7 @@ public class EditTrianglePolygonDialog {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditTrianglePolygonDialog(Shell parentShell, XMLTrianglePolygon triangle, org.mklab.mikity.model.xml.simplexml.model.Group group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditTrianglePolygonDialog(Shell parentShell, TrianglePolygonModel triangle, org.mklab.mikity.model.xml.simplexml.model.GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parentShell;
     this.triangle = triangle;
     this.groupName = group.getName();
@@ -360,35 +360,35 @@ public class EditTrianglePolygonDialog {
    * オブジェクトのパラメータを更新します。
    */
   void updateObjectParameters() {
-    final Vertex[] vertices = new Vertex[3];
+    final VertexModel[] vertices = new VertexModel[3];
 
-    vertices[0] = new Vertex(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
-    vertices[1] = new Vertex(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
-    vertices[2] = new Vertex(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
+    vertices[0] = new VertexModel(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
+    vertices[1] = new VertexModel(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
+    vertices[2] = new VertexModel(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
 
     final String newColor = this.colorCombo.getColorComboBox().getText();
 
     this.triangle.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2]));
     this.triangle.setColor(newColor);
-    this.triangle.setRotation(new Rotation(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
-    this.triangle.setTranslation(new Translation(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
+    this.triangle.setRotation(new RotationModel(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
+    this.triangle.setTranslation(new TranslationModel(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
   }
 
   /**
    * 各頂点の座標値を色を入れる　変更後の欄にはデフォルトで変更前の値を入力
    */
   private void setParametersInDialog() {
-    final Vertex vertex0 = this.triangle.getVertex(0);
+    final VertexModel vertex0 = this.triangle.getVertex(0);
     this.newVertex1X.setText("" + vertex0.getX()); //$NON-NLS-1$
     this.newVertex1Y.setText("" + vertex0.getY()); //$NON-NLS-1$
     this.newVertex1Z.setText("" + vertex0.getZ()); //$NON-NLS-1$
 
-    final Vertex vertex1 = this.triangle.getVertex(1);
+    final VertexModel vertex1 = this.triangle.getVertex(1);
     this.newVertex2X.setText("" + vertex1.getX()); //$NON-NLS-1$
     this.newVertex2Y.setText("" + vertex1.getY()); //$NON-NLS-1$
     this.newVertex2Z.setText("" + vertex1.getZ()); //$NON-NLS-1$
 
-    final Vertex vertex2 = this.triangle.getVertex(2);
+    final VertexModel vertex2 = this.triangle.getVertex(2);
     this.newVertex3X.setText("" + vertex2.getX()); //$NON-NLS-1$
     this.newVertex3Y.setText("" + vertex2.getY()); //$NON-NLS-1$
     this.newVertex3Z.setText("" + vertex2.getZ()); //$NON-NLS-1$

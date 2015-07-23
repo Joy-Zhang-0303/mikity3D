@@ -7,7 +7,7 @@ package org.mklab.mikity.model.xml.simplexml.blender;
 
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.util.Matrix4;
 import org.simpleframework.xml.Element;
 
@@ -58,7 +58,7 @@ public class LibraryVisualScenes {
   /**
    * @return scene
    */
-  public Group getScene() {
+  public GroupModel getScene() {
     return this.visualScene.getScene();
   }
 }

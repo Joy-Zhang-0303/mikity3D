@@ -7,9 +7,9 @@ package org.mklab.mikity.model.xml.simplexml.blender;
 
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
 /**
  * Blenderのシーングラフの生成器です。
@@ -18,34 +18,34 @@ import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
  */
 public class BlenderSceneGraphCreater {
 
-  private Group sceneGraph;
+  private GroupModel sceneGraph;
 
   /**
    * 新しく生成された<code>BlenderSceneGraphCreater</code>オブジェクトを初期化します。
    */
   public BlenderSceneGraphCreater() {
-    this.sceneGraph = new Group();
+    this.sceneGraph = new GroupModel();
   }
 
   /**
    * @param rootGroup グループ
    * @param scene シーン
    */
-  public void checkGroupName(Group rootGroup, Group scene) {
-    final List<Group> groups = rootGroup.getGroupsAsReference();
+  public void checkGroupName(GroupModel rootGroup, GroupModel scene) {
+    final List<GroupModel> groups = rootGroup.getGroupsAsReference();
     
     for (int i = 0; i < groups.size(); i++) {
       if (groups.get(i).getName().equals(scene.getName())) {
-        final List<XMLTrianglePolygon> trianglePolygons = rootGroup.getGroups()[i].getXMLTrianglePolygonsAsReference();
-        final List<XMLQuadPolygon> quadPolygons = rootGroup.getGroups()[i].getXMLQuadPolygonsAsReference();
+        final List<TrianglePolygonModel> trianglePolygons = rootGroup.getGroups()[i].getXMLTrianglePolygonsAsReference();
+        final List<QuadPolygonModel> quadPolygons = rootGroup.getGroups()[i].getXMLQuadPolygonsAsReference();
         addTrianglePolygons(scene, trianglePolygons);
         addQuadPolygons(scene, quadPolygons);
       }
     }
 
-    final List<Group> children = scene.getGroupsAsReference();
+    final List<GroupModel> children = scene.getGroupsAsReference();
     if (children != null) {
-      for (final Group child : children) {
+      for (final GroupModel child : children) {
         checkGroupName(rootGroup, child);
       }
     }
@@ -56,8 +56,8 @@ public class BlenderSceneGraphCreater {
    * @param scene
    * @param polygons
    */
-  private void addTrianglePolygons(Group scene, List<XMLTrianglePolygon> polygons) {
-    for (final XMLTrianglePolygon polygon : polygons) {
+  private void addTrianglePolygons(GroupModel scene, List<TrianglePolygonModel> polygons) {
+    for (final TrianglePolygonModel polygon : polygons) {
       scene.addXMLTrianglePolygon(polygon);
     }
   }
@@ -66,8 +66,8 @@ public class BlenderSceneGraphCreater {
    * @param scene
    * @param polygons
    */
-  private void addQuadPolygons(Group scene, List<XMLQuadPolygon> polygons) {
-    for (final XMLQuadPolygon polygon : polygons) {
+  private void addQuadPolygons(GroupModel scene, List<QuadPolygonModel> polygons) {
+    for (final QuadPolygonModel polygon : polygons) {
       scene.addXMLQuadPolygon(polygon);
     }
   }
@@ -75,7 +75,7 @@ public class BlenderSceneGraphCreater {
   /**
    * @return scene
    */
-  public Group getSceneGraph() {
+  public GroupModel getSceneGraph() {
     return this.sceneGraph;
   }
 }

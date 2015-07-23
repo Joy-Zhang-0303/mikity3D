@@ -11,15 +11,15 @@ import java.io.InputStream;
 import org.mklab.mikity.model.xml.simplexml.ColladaUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
 
 /**
@@ -42,49 +42,49 @@ public class Mikity3dFactory {
     unmarshaller.unmarshalFromMikity3DFile(file);
     final Mikity3d root = unmarshaller.getRoot();
 
-    final Group parentGroup = parent.getModel(0).getGroup(0);
-    final Group rootGroup = root.getModel(0).getGroup(0);
+    final GroupModel parentGroup = parent.getModel(0).getGroup(0);
+    final GroupModel rootGroup = root.getModel(0).getGroup(0);
 
-    final XMLBox[] boxes = rootGroup.getXMLBoxes();
-    final XMLCone[] cones = rootGroup.getXMLCones();
-    final XMLCylinder[] cylinders = rootGroup.getXMLCylinders();
-    final XMLSphere[] spheres = rootGroup.getXMLSpheres();
-    final XMLTrianglePolygon[] trianglePolygons = rootGroup.getXMLTrianglePolygons();
-    final XMLQuadPolygon[] quadPolygons = rootGroup.getXMLQuadPolygons();
-    final Group[] groups = rootGroup.getGroups();
+    final BoxModel[] boxes = rootGroup.getXMLBoxes();
+    final ConeModel[] cones = rootGroup.getXMLCones();
+    final CylinderModel[] cylinders = rootGroup.getXMLCylinders();
+    final SphereModel[] spheres = rootGroup.getXMLSpheres();
+    final TrianglePolygonModel[] trianglePolygons = rootGroup.getXMLTrianglePolygons();
+    final QuadPolygonModel[] quadPolygons = rootGroup.getXMLQuadPolygons();
+    final GroupModel[] groups = rootGroup.getGroups();
 
     if (boxes != null) {
-      for (final XMLBox box : boxes) {
+      for (final BoxModel box : boxes) {
         parentGroup.addXMLBox(box);
       }
     }
     if (cones != null) {
-      for (final XMLCone cone : cones) {
+      for (final ConeModel cone : cones) {
         parentGroup.addXMLCone(cone);
       }
     }
     if (cylinders != null) {
-      for (final XMLCylinder cylinder : cylinders) {
+      for (final CylinderModel cylinder : cylinders) {
         parentGroup.addXMLCylinder(cylinder);
       }
     }
     if (spheres != null) {
-      for (final XMLSphere sphere : spheres) {
+      for (final SphereModel sphere : spheres) {
         parentGroup.addXMLSphere(sphere);
       }
     }
     if (trianglePolygons != null) {
-      for (final XMLTrianglePolygon polygon : trianglePolygons) {
+      for (final TrianglePolygonModel polygon : trianglePolygons) {
         parentGroup.addXMLTrianglePolygon(polygon);
       }
     }
     if (quadPolygons != null) {
-      for (final XMLQuadPolygon polygon : quadPolygons) {
+      for (final QuadPolygonModel polygon : quadPolygons) {
         parentGroup.addXMLQuadPolygon(polygon);
       }
     }
     if (groups != null) {
-      for (final Group group : groups) {
+      for (final GroupModel group : groups) {
         parentGroup.addGroup(group);
       }
     }
@@ -130,9 +130,9 @@ public class Mikity3dFactory {
     unmarshaller.unmarshalFromColladaFile(file);
 
     final Mikity3d newRoot = createEmptyModel();
-    final Group newGroup = newRoot.getModel(0).getGroup(0);
-    final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
-    for (final Group group : groups) {
+    final GroupModel newGroup = newRoot.getModel(0).getGroup(0);
+    final GroupModel[] groups = unmarshaller.getClolladaGroup().getGroups();
+    for (final GroupModel group : groups) {
       newGroup.addGroup(group);
     }
 
@@ -151,9 +151,9 @@ public class Mikity3dFactory {
     unmarshaller.unmarshalFromColladaFile(input);
 
     final Mikity3d newRoot = createEmptyModel();
-    final Group newGroup = newRoot.getModel(0).getGroup(0);
-    final Group[] groups = unmarshaller.getClolladaGroup().getGroups();
-    for (final Group group : groups) {
+    final GroupModel newGroup = newRoot.getModel(0).getGroup(0);
+    final GroupModel[] groups = unmarshaller.getClolladaGroup().getGroups();
+    for (final GroupModel group : groups) {
       newGroup.addGroup(group);
     }
 
@@ -166,9 +166,9 @@ public class Mikity3dFactory {
    * @return Mikity3Dモデル
    */
   public Mikity3d createEmptyModel() {
-    final Mikity3dConfiguration config = new Mikity3dConfiguration();
+    final ConfigurationModel config = new ConfigurationModel();
 
-    final Group group = new Group();
+    final GroupModel group = new GroupModel();
     group.setName("root"); //$NON-NLS-1$
 
     final Mikity3dModel model = new Mikity3dModel();

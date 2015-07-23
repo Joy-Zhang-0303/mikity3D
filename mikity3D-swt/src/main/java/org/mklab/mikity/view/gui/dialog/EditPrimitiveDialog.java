@@ -18,12 +18,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.SceneGraphTree;
@@ -78,7 +78,7 @@ public class EditPrimitiveDialog {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditPrimitiveDialog(Shell parent, Object primitive, org.mklab.mikity.model.xml.simplexml.model.Group group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditPrimitiveDialog(Shell parent, Object primitive, org.mklab.mikity.model.xml.simplexml.model.GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parent;
     this.primitive = primitive;
     this.groupName = group.getName();
@@ -328,65 +328,65 @@ public class EditPrimitiveDialog {
    * プリミティブのパラメータを更新します。
    */
   void updatePrimitiveParameters() {
-    if (this.primitive instanceof XMLBox) {
-      final XMLBox box = (XMLBox)this.primitive;
+    if (this.primitive instanceof BoxModel) {
+      final BoxModel box = (BoxModel)this.primitive;
 
       box.setColor(this.colorCombo.getColorComboBox().getText());
       box.setWidth(this.parameter1.getFloatValue());
       box.setHeight(this.parameter2.getFloatValue());
       box.setDepth(this.parameter3.getFloatValue());
       
-      final Translation translation = getTranslation();
+      final TranslationModel translation = getTranslation();
       if (translation.isZero() == false) {
         box.setTranslation(getTranslation());
       }
-      final Rotation rotation = getRotation();
+      final RotationModel rotation = getRotation();
       if (rotation.isZero() == false) {
         box.setRotation(getRotation());
       }
-    } else if (this.primitive instanceof XMLCylinder) {
-      final XMLCylinder cylinder = (XMLCylinder)this.primitive;
+    } else if (this.primitive instanceof CylinderModel) {
+      final CylinderModel cylinder = (CylinderModel)this.primitive;
       
       cylinder.setColor(this.colorCombo.getColorComboBox().getText());
       cylinder.setRadius(this.parameter1.getFloatValue());
       cylinder.setHeight(this.parameter2.getFloatValue());
       cylinder.setDivision(this.parameter3.getIntValue());
 
-      final Translation translation = getTranslation();
+      final TranslationModel translation = getTranslation();
       if (translation.isZero() == false) {
         cylinder.setTranslation(getTranslation());
       }
-      final Rotation rotation = getRotation();
+      final RotationModel rotation = getRotation();
       if (rotation.isZero() == false) {
         cylinder.setRotation(getRotation());
       }
-    } else if (this.primitive instanceof XMLSphere) {
-      final XMLSphere sphere = (XMLSphere)this.primitive;
+    } else if (this.primitive instanceof SphereModel) {
+      final SphereModel sphere = (SphereModel)this.primitive;
 
       sphere.setColor(this.colorCombo.getColorComboBox().getText());
       sphere.setRadius(this.parameter1.getFloatValue());
       sphere.setDivision(this.parameter2.getIntValue());
 
-      final Translation translation = getTranslation();
+      final TranslationModel translation = getTranslation();
       if (translation.isZero() == false) {
         sphere.setTranslation(getTranslation());
       }
-      final Rotation rotation = getRotation();
+      final RotationModel rotation = getRotation();
       if (rotation.isZero() == false) {
         sphere.setRotation(getRotation());
       }
-    } else if (this.primitive instanceof XMLCone) {
-      final XMLCone cone = (XMLCone)this.primitive;
+    } else if (this.primitive instanceof ConeModel) {
+      final ConeModel cone = (ConeModel)this.primitive;
       cone.setColor(this.colorCombo.getColorComboBox().getText());
       cone.setRadius(this.parameter1.getFloatValue());
       cone.setHeight(this.parameter2.getFloatValue());
       cone.setDivision(this.parameter3.getIntValue());
 
-      final Translation translation = getTranslation();
+      final TranslationModel translation = getTranslation();
       if (translation.isZero() == false) {
         cone.setTranslation(getTranslation());
       }
-      final Rotation rotation = getRotation();
+      final RotationModel rotation = getRotation();
       if (rotation.isZero() == false) {
         cone.setRotation(getRotation());
       }
@@ -398,8 +398,8 @@ public class EditPrimitiveDialog {
    * 
    * @return rotation
    */
-  private Rotation getRotation() {
-    final Rotation rotation = new Rotation();
+  private RotationModel getRotation() {
+    final RotationModel rotation = new RotationModel();
     rotation.setX(this.rotationX.getFloatValue());
     rotation.setY(this.rotationY.getFloatValue());
     rotation.setZ(this.rotationZ.getFloatValue());
@@ -411,8 +411,8 @@ public class EditPrimitiveDialog {
    * 
    * @return translation
    */
-  private Translation getTranslation() {
-    final Translation translation = new Translation();
+  private TranslationModel getTranslation() {
+    final TranslationModel translation = new TranslationModel();
     translation.setX(this.translationX.getFloatValue());
     translation.setY(this.translationY.getFloatValue());
     translation.setZ(this.translationZ.getFloatValue());
@@ -423,13 +423,13 @@ public class EditPrimitiveDialog {
    * primitiveの型を判断し、ダイアログにパラメータを設定します。
    */
   void setParametersInDialog() {
-    if (this.primitive instanceof XMLBox) {
-      final XMLBox box = (XMLBox)this.primitive;
+    if (this.primitive instanceof BoxModel) {
+      final BoxModel box = (BoxModel)this.primitive;
       this.parameter1.setText("" + box.getWidth()); //$NON-NLS-1$
       this.parameter2.setText("" + box.getHeight()); //$NON-NLS-1$
       this.parameter3.setText("" + box.getDepth()); //$NON-NLS-1$
-      final Rotation rotation = box.getRotation();
-      final Translation translation = box.getTranslation();
+      final RotationModel rotation = box.getRotation();
+      final TranslationModel translation = box.getTranslation();
       if (rotation != null) {
         setRotationInDialog(rotation);
       }
@@ -439,13 +439,13 @@ public class EditPrimitiveDialog {
       setBoxLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
       this.colorCombo.getColorComboBox().setText(box.getColor());
-    } else if (this.primitive instanceof XMLCylinder) {
-      final XMLCylinder cylinder = (XMLCylinder)this.primitive;
+    } else if (this.primitive instanceof CylinderModel) {
+      final CylinderModel cylinder = (CylinderModel)this.primitive;
       this.parameter1.setText("" + cylinder.getRadius()); //$NON-NLS-1$
       this.parameter2.setText("" + cylinder.getHeight()); //$NON-NLS-1$
       this.parameter3.setText("" + cylinder.getDivision()); //$NON-NLS-1$
-      final Rotation rotation = cylinder.getRotation();
-      final Translation translation = cylinder.getTranslation();
+      final RotationModel rotation = cylinder.getRotation();
+      final TranslationModel translation = cylinder.getTranslation();
       if (rotation != null) {
         setRotationInDialog(rotation);
       }
@@ -455,12 +455,12 @@ public class EditPrimitiveDialog {
       setCylinderLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
       this.colorCombo.getColorComboBox().setText(cylinder.getColor());
-    } else if (this.primitive instanceof XMLSphere) {
-      final XMLSphere sphere = (XMLSphere)this.primitive;
+    } else if (this.primitive instanceof SphereModel) {
+      final SphereModel sphere = (SphereModel)this.primitive;
       this.parameter1.setText("" + sphere.getRadius()); //$NON-NLS-1$
       this.parameter2.setText("" + sphere.getDivision()); //$NON-NLS-1$
-      final Rotation rotation = sphere.getRotation();
-      final Translation translation = sphere.getTranslation();
+      final RotationModel rotation = sphere.getRotation();
+      final TranslationModel translation = sphere.getTranslation();
       if (rotation != null) {
         setRotationInDialog(rotation);
       }
@@ -470,13 +470,13 @@ public class EditPrimitiveDialog {
       setSphereLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
       this.colorCombo.getColorComboBox().setText(sphere.getColor());
-    } else if (this.primitive instanceof XMLCone) {
-      final XMLCone cone = (XMLCone)this.primitive;
+    } else if (this.primitive instanceof ConeModel) {
+      final ConeModel cone = (ConeModel)this.primitive;
       this.parameter1.setText("" + cone.getRadisu()); //$NON-NLS-1$
       this.parameter2.setText("" + cone.getHeight()); //$NON-NLS-1$
       this.parameter3.setText("" + cone.getDivision()); //$NON-NLS-1$
-      final Rotation rotation = cone.getRotation();
-      final Translation translation = cone.getTranslation();
+      final RotationModel rotation = cone.getRotation();
+      final TranslationModel translation = cone.getTranslation();
       if (rotation != null) {
         setRotationInDialog(rotation);
       }
@@ -569,7 +569,7 @@ public class EditPrimitiveDialog {
    * 
    * @param rotation 角度
    */
-  private void setRotationInDialog(Rotation rotation) {
+  private void setRotationInDialog(RotationModel rotation) {
     this.rotationX.setText("" + rotation.getX()); //$NON-NLS-1$
     this.rotationY.setText("" + rotation.getY()); //$NON-NLS-1$
     this.rotationZ.setText("" + rotation.getZ()); //$NON-NLS-1$
@@ -580,7 +580,7 @@ public class EditPrimitiveDialog {
    * 
    * @param translation 並進量
    */
-  private void setTranslationInDialog(Translation translation) {
+  private void setTranslationInDialog(TranslationModel translation) {
     this.translationX.setText("" + translation.getX()); //$NON-NLS-1$
     this.translationY.setText("" + translation.getY()); //$NON-NLS-1$
     this.translationZ.setText("" + translation.getZ()); //$NON-NLS-1$

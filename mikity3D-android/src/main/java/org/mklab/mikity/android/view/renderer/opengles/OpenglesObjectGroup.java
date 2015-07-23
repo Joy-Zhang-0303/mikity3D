@@ -7,7 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.ObjectGroup;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 
 /**
@@ -29,7 +29,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   private int id = 0;
   /** シリアル番号。 */
   /** モデルデータ。 */
-  private Group group;
+  private GroupModel group;
   /** モデルデータ。 */
   private static int serialID = 0;
 
@@ -38,7 +38,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    * @param id ID
    * @param group モデルデータ
    */
-  private OpenglesObjectGroup(int id, Group group) {
+  private OpenglesObjectGroup(int id, GroupModel group) {
     this.id = id;
     this.group = group;
   }
@@ -56,14 +56,14 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    * @param group モデルデータ
    * @return {@OpenglesObjectGroup}
    */
-  public static OpenglesObjectGroup create(Group group) {
+  public static OpenglesObjectGroup create(GroupModel group) {
     return new OpenglesObjectGroup(serialID++, group);
   }
   
   /**
    * {@inheritDoc}
    */
-  public Group getGroup() {
+  public GroupModel getGroup() {
     return this.group;
   }
 

@@ -8,7 +8,7 @@ import org.simpleframework.xml.Attribute;
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
-public class Eye implements java.io.Serializable {
+public class EyeModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
   
   /** X座標。 */
@@ -26,7 +26,7 @@ public class Eye implements java.io.Serializable {
   /**
    * 新しく生成された<code>Eye</code>オブジェクトを初期化します。
    */
-  public Eye() {
+  public EyeModel() {
     this.x = 5;
     this.y = 0;
     this.z = 0;
@@ -38,7 +38,7 @@ public class Eye implements java.io.Serializable {
    * @param y Y座標
    * @param z Z座標
    */
-  public Eye(float x, float y, float z) {
+  public EyeModel(float x, float y, float z) {
     this.x = x;
     this.y = y;
     this.z = z;
@@ -80,7 +80,7 @@ public class Eye implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Eye other = (Eye)obj;
+    EyeModel other = (EyeModel)obj;
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }

@@ -7,7 +7,7 @@ import javax.media.opengl.GL2;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.ObjectGroup;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 /**
  * オブジェクトグループを表すクラスです。
@@ -29,14 +29,14 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
   /** シリアル番号。 */
   private static int serialID = 0;
   /** モデルデータ。 */
-  private Group group;
+  private GroupModel group;
 
   /**
    * 新しく生成された<code>JoglObjectGroup</code>オブジェクトを初期化します。
    * @param id ID
    * @param group モデルデータ
    */
-  private JoglObjectGroup(int id, Group group) {
+  private JoglObjectGroup(int id, GroupModel group) {
     this.id = id;
     this.group = group;
   }
@@ -54,14 +54,14 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
    * @param group モデルデータ
    * @return {@JoglObjectGroup}
    */
-  public static JoglObjectGroup create(Group group) {
+  public static JoglObjectGroup create(GroupModel group) {
     return new JoglObjectGroup(serialID++, group);
   }
   
   /**
    * {@inheritDoc}
    */
-  public Group getGroup() {
+  public GroupModel getGroup() {
     return this.group;
   }
 

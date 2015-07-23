@@ -1,7 +1,7 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -25,13 +25,13 @@ public class BoxToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final XMLBox box = new XMLBox();
+    final BoxModel box = new BoxModel();
     box.setWidth(0.10f);
     box.setHeight(0.10f);
     box.setDepth(0.10f);
     box.setColor("red"); //$NON-NLS-1$
     
-    final Group rootGroup = this.modeler.getTargetGroup();
+    final GroupModel rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLBox(box);
     update();
     

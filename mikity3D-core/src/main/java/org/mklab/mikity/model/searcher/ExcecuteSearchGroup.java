@@ -8,8 +8,8 @@ package org.mklab.mikity.model.searcher;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.LinkData;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
 
 /**
  * Mikity３Dモデルのグループを探索し、グループとリンクを管理するためのメソッドです。
@@ -25,13 +25,13 @@ public class ExcecuteSearchGroup {
    * @param parents サーチモデルリスト
    * @return GroupManager
    */
-  public GroupManager searchGroupRecursion(Group group, GroupManager parents) {
+  public GroupManager searchGroupRecursion(GroupModel group, GroupManager parents) {
     List<GroupManager> items = new ArrayList<>();
     int groupCount = 0;
     
     while (true) {
       try {
-        final Group newGroup = group.getGroup(groupCount);
+        final GroupModel newGroup = group.getGroup(groupCount);
         final String groupName = newGroup.getName();
         final GroupName groupNames = new GroupName(groupName, parents);
         parents.addItems(searchGroupRecursion(newGroup, groupNames));
@@ -79,8 +79,8 @@ public class ExcecuteSearchGroup {
    * @param parents 親リスト
    * @return links LinkSearchOfModel
    */
-  private GroupManager searchLinkData(Group group, int linkCount, GroupManager parents) {
-    final LinkData data = group.getLinkData(linkCount);
+  private GroupManager searchLinkData(GroupModel group, int linkCount, GroupManager parents) {
+    final LinkDataModel data = group.getLinkData(linkCount);
     final int column = data.getNumber();
     final String target = data.getTarget();
     final GroupLink links = new GroupLink(column, target, parents);

@@ -8,9 +8,9 @@ package org.mklab.mikity.view.gui.action.toolbar;
 import java.util.Arrays;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Vertex;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -34,15 +34,15 @@ public class TrianglePolygonToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final XMLTrianglePolygon polygon = new XMLTrianglePolygon();
-    final Vertex vertex0 = new Vertex(0.0f, -0.3f, 0.0f);
-    final Vertex vertex1 = new Vertex(0.0f, 0.3f, 0.0f);
-    final Vertex vertex2 = new Vertex(0.0f, 0.0f, 0.3f);
-    final List<Vertex> vertices = Arrays.asList(vertex0, vertex1, vertex2);
+    final TrianglePolygonModel polygon = new TrianglePolygonModel();
+    final VertexModel vertex0 = new VertexModel(0.0f, -0.3f, 0.0f);
+    final VertexModel vertex1 = new VertexModel(0.0f, 0.3f, 0.0f);
+    final VertexModel vertex2 = new VertexModel(0.0f, 0.0f, 0.3f);
+    final List<VertexModel> vertices = Arrays.asList(vertex0, vertex1, vertex2);
     polygon.setVertices(vertices);
     polygon.setColor("red"); //$NON-NLS-1$
     
-    final Group rootGroup = this.modeler.getTargetGroup();
+    final GroupModel rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLTrianglePolygon(polygon);
 
     update();

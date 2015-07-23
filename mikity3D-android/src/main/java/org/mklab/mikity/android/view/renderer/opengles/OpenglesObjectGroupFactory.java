@@ -7,15 +7,15 @@ package org.mklab.mikity.android.view.renderer.opengles;
 
 import org.mklab.mikity.model.Messages;
 import org.mklab.mikity.model.ObjectGroupManager;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
 
 
@@ -30,34 +30,34 @@ public class OpenglesObjectGroupFactory {
    * @param group オブジェクトのグループ
    * @return グループ
    */
-  public OpenglesObjectGroup create(final Group group) {
+  public OpenglesObjectGroup create(final GroupModel group) {
     final OpenglesObjectGroup objectGroup = OpenglesObjectGroup.create(group);
     
-    for (final XMLBox box : group.getXMLBoxes()) {
+    for (final BoxModel box : group.getXMLBoxes()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(box));
     }
 
-    for (final XMLCylinder cylinder : group.getXMLCylinders()) {
+    for (final CylinderModel cylinder : group.getXMLCylinders()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(cylinder));
     }
 
-    for (final XMLSphere sphere : group.getXMLSpheres()) {
+    for (final SphereModel sphere : group.getXMLSpheres()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(sphere));
     }
 
-    for (final XMLCone cone : group.getXMLCones()) {
+    for (final ConeModel cone : group.getXMLCones()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(cone));
     }
     
-    for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygons()) {
+    for (final TrianglePolygonModel polygon : group.getXMLTrianglePolygons()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon));
     }
 
-    for (final XMLQuadPolygon polygon : group.getXMLQuadPolygons()) {
+    for (final QuadPolygonModel polygon : group.getXMLQuadPolygons()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon));
     }
 
-    for (final Group child : group.getGroups()) {
+    for (final GroupModel child : group.getGroups()) {
       objectGroup.addChild(create(child));
     }
 
@@ -80,9 +80,9 @@ public class OpenglesObjectGroupFactory {
    * @param group オブジェクトのグループ
    * @return グループの座標
    */
-  private OpenglesCoordinate createBaseCoordinateOf(final Group group) {
-    final Translation translation = group.getTranslation();
-    final Rotation rotation = group.getRotation();
+  private OpenglesCoordinate createBaseCoordinateOf(final GroupModel group) {
+    final TranslationModel translation = group.getTranslation();
+    final RotationModel rotation = group.getRotation();
     
     if (translation != null && rotation != null) {
       final float translationX = translation.getX();

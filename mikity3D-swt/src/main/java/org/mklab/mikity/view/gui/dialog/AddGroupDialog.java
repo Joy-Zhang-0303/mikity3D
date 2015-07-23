@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
@@ -26,14 +26,14 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 public class AddGroupDialog extends ApplicationWindow {
 
   /** */
-  Group group;
+  GroupModel group;
 
   /**
    * 新しく生成された<code>AddGroupDialog</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
    * @param group グループ
    */
-  public AddGroupDialog(Shell parentShell, Group group) {
+  public AddGroupDialog(Shell parentShell, GroupModel group) {
     super(parentShell);
     this.group = group;
     setShellStyle(SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.CLOSE);
@@ -74,7 +74,7 @@ public class AddGroupDialog extends ApplicationWindow {
        */
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        final Group newGroup = new Group();
+        final GroupModel newGroup = new GroupModel();
         newGroup.setName(groupParam.getText());
         AddGroupDialog.this.group.addGroup(newGroup);
         close();

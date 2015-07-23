@@ -16,13 +16,13 @@ import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
 
 /**
@@ -107,42 +107,42 @@ public class DragAndDropEnabler {
       }
 
       // ここに来たらどろっぷ成功なはず。
-      Group group = null;
+      GroupModel group = null;
       TreeItem targetItem = null;
 
-      if (item.getData() instanceof Group) {
-        group = (Group)item.getData();
+      if (item.getData() instanceof GroupModel) {
+        group = (GroupModel)item.getData();
         targetItem = item;
-      } else if (item.getParentItem() != null && item.getParentItem().getData() instanceof Group) {
-        group = (Group)item.getParentItem().getData();
+      } else if (item.getParentItem() != null && item.getParentItem().getData() instanceof GroupModel) {
+        group = (GroupModel)item.getParentItem().getData();
         targetItem = item.getParentItem();
       } else {
         return;
       }
       final Object obj = DragAndDropEnabler.this.treeItem.getData();
-      final Group sourceGroup = (Group)DragAndDropEnabler.this.treeItem.getParentItem().getData();
+      final GroupModel sourceGroup = (GroupModel)DragAndDropEnabler.this.treeItem.getParentItem().getData();
 
-      if (obj instanceof XMLBox) {
-        sourceGroup.removeXMLBox((XMLBox)obj);
-        group.addXMLBox((XMLBox)obj);
-      } else if (obj instanceof XMLCylinder) {
-        sourceGroup.removeXMLCylinder((XMLCylinder)obj);
-        group.addXMLCylinder((XMLCylinder)obj);
-      } else if (obj instanceof XMLSphere) {
-        sourceGroup.removeXMLSphere((XMLSphere)obj);
-        group.addXMLSphere((XMLSphere)obj);
-      } else if (obj instanceof XMLCone) {
-        sourceGroup.removeXMLCone((XMLCone)obj);
-        group.addXMLCone((XMLCone)obj);
-      } else if (obj instanceof XMLTrianglePolygon) {
-        sourceGroup.removeXMLTrianglePolygon((XMLTrianglePolygon)obj);
-        group.addXMLTrianglePolygon((XMLTrianglePolygon)obj);
-      } else if (obj instanceof XMLQuadPolygon) {
-        sourceGroup.removeXMLQuadPolygon((XMLQuadPolygon)obj);
-        group.addXMLQuadPolygon((XMLQuadPolygon)obj);
-      } else if (obj instanceof Group) {
-        sourceGroup.removeGroup((Group)obj);
-        group.addGroup((Group)obj);
+      if (obj instanceof BoxModel) {
+        sourceGroup.removeXMLBox((BoxModel)obj);
+        group.addXMLBox((BoxModel)obj);
+      } else if (obj instanceof CylinderModel) {
+        sourceGroup.removeXMLCylinder((CylinderModel)obj);
+        group.addXMLCylinder((CylinderModel)obj);
+      } else if (obj instanceof SphereModel) {
+        sourceGroup.removeXMLSphere((SphereModel)obj);
+        group.addXMLSphere((SphereModel)obj);
+      } else if (obj instanceof ConeModel) {
+        sourceGroup.removeXMLCone((ConeModel)obj);
+        group.addXMLCone((ConeModel)obj);
+      } else if (obj instanceof TrianglePolygonModel) {
+        sourceGroup.removeXMLTrianglePolygon((TrianglePolygonModel)obj);
+        group.addXMLTrianglePolygon((TrianglePolygonModel)obj);
+      } else if (obj instanceof QuadPolygonModel) {
+        sourceGroup.removeXMLQuadPolygon((QuadPolygonModel)obj);
+        group.addXMLQuadPolygon((QuadPolygonModel)obj);
+      } else if (obj instanceof GroupModel) {
+        sourceGroup.removeGroup((GroupModel)obj);
+        group.addGroup((GroupModel)obj);
       } else {
         throw new RuntimeException(Messages.getString("DragAndDropEnabler.0")); //$NON-NLS-1$
       }

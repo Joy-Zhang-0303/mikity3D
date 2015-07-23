@@ -1,46 +1,44 @@
-package org.mklab.mikity.model.xml.simplexml.model;
+package org.mklab.mikity.model.xml.simplexml.config;
 
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Root;
 
 
 /**
- * 点を表すクラスです。
+ * 光を表すクラスです。
  * 
- * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
+ * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
-@Root(name="vertex")
-public class Vertex implements java.io.Serializable {
+public class LightModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** x成分 */
+  /** x */
   @Attribute(name="x")
   private float x;
 
-  /** y成分 */
+  /** y */
   @Attribute(name="y")
   private float y;
 
-  /** z成分 */
+  /** z */
   @Attribute(name="z")
   private float z;
-
+  
   /**
-   * 新しく生成された<code>XMLPoint</code>オブジェクトを初期化します。
+   * 新しく生成された<code>Light</code>オブジェクトを初期化します。
    */
-  public Vertex() {
-    this.x = 0;
-    this.y = 0;
-    this.z = 0;
+  public LightModel() {
+    this.x = 10;
+    this.y = 10;
+    this.z = 20;
   }
-
+  
   /**
-   * 新しく生成された<code>XMLPoint</code>オブジェクトを初期化します。
-   * @param x x
-   * @param y y
-   * @param z z
+   * 新しく生成された<code>Light</code>オブジェクトを初期化します。
+   * @param x X座標
+   * @param y Y座標
+   * @param z Z座標
    */
-  public Vertex(float x, float y, float z) {
+  public LightModel(float x, float y, float z) {
     this.x = x;
     this.y = y;
     this.z = z;
@@ -58,14 +56,13 @@ public class Vertex implements java.io.Serializable {
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("unqualified-field-access")
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + Float.floatToIntBits(x);
-    result = prime * result + Float.floatToIntBits(y);
-    result = prime * result + Float.floatToIntBits(z);
+    result = prime * result + Float.floatToIntBits(this.x);
+    result = prime * result + Float.floatToIntBits(this.y);
+    result = prime * result + Float.floatToIntBits(this.z);
     return result;
   }
 
@@ -83,7 +80,7 @@ public class Vertex implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Vertex other = (Vertex)obj;
+    LightModel other = (LightModel)obj;
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
@@ -139,13 +136,5 @@ public class Vertex implements java.io.Serializable {
    */
   public void setZ(float z) {
     this.z = z;
-  }
-  
-  /**
-   * (0,0,0)であるか判定します。
-   * @return (0,0,0)ならばtrue，そうでなければfalse
-   */
-  public boolean isZero() {
-    return this.x == 0 && this.y == 0 && this.z == 0;
   }
 }

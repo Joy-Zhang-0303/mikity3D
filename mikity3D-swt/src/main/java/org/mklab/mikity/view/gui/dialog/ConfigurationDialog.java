@@ -16,13 +16,13 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.config.Background;
-import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
-import org.mklab.mikity.model.xml.simplexml.config.Eye;
-import org.mklab.mikity.model.xml.simplexml.config.Light;
-import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
-import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
+import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
+import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
+import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
+import org.mklab.mikity.model.xml.simplexml.config.LightModel;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
+import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 
@@ -56,7 +56,7 @@ public class ConfigurationDialog {
   private ParameterInputBox lookAtPointY;
   private ParameterInputBox lookAtPointZ;
 
-  private Mikity3dConfiguration configuration;
+  private ConfigurationModel configuration;
   
   JoglModeler modeler;
 
@@ -67,7 +67,7 @@ public class ConfigurationDialog {
    * @param configuration 設定
    * @param modeler モデラー。
    */
-  public ConfigurationDialog(Shell parentShell, Mikity3dConfiguration configuration, JoglModeler modeler) {
+  public ConfigurationDialog(Shell parentShell, ConfigurationModel configuration, JoglModeler modeler) {
     this.parentShell = parentShell;
     this.configuration = configuration;
     this.modeler = modeler;
@@ -222,21 +222,21 @@ public class ConfigurationDialog {
    */
   private void setParametersToDialog() {
     if (this.configuration.getLight() != null) {
-      final Light light = this.configuration.getLight();
+      final LightModel light = this.configuration.getLight();
       this.lightX.setText("" + light.getX()); //$NON-NLS-1$
       this.lightY.setText("" + light.getY()); //$NON-NLS-1$
       this.lightZ.setText("" + light.getZ()); //$NON-NLS-1$
     }
 
     if (this.configuration.getEye() != null) {
-      final Eye eye = this.configuration.getEye();
+      final EyeModel eye = this.configuration.getEye();
       this.eyeX.setText("" + eye.getX()); //$NON-NLS-1$
       this.eyeY.setText("" + eye.getY()); //$NON-NLS-1$
       this.eyeZ.setText("" + eye.getZ()); //$NON-NLS-1$
     }
     
     if (this.configuration.getLookAtPoint() != null) {
-      final LookAtPoint lookAtPoint = this.configuration.getLookAtPoint();
+      final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
       this.lookAtPointX.setText("" + lookAtPoint.getX()); //$NON-NLS-1$
       this.lookAtPointY.setText("" + lookAtPoint.getY()); //$NON-NLS-1$
       this.lookAtPointZ.setText("" + lookAtPoint.getZ()); //$NON-NLS-1$
@@ -335,19 +335,19 @@ public class ConfigurationDialog {
    * 入力したパラメータの値をXMLファイルに書き込む
    */
   void getParametersFromDialog() {
-    final Light light = new Light();
+    final LightModel light = new LightModel();
     light.setX(this.lightX.getFloatValue());
     light.setY(this.lightY.getFloatValue());
     light.setZ(this.lightZ.getFloatValue());
     this.configuration.setLight(light);
 
-    final Eye eye = new Eye();
+    final EyeModel eye = new EyeModel();
     eye.setX(this.eyeX.getFloatValue());
     eye.setY(this.eyeY.getFloatValue());
     eye.setZ(this.eyeZ.getFloatValue());
     this.configuration.setEye(eye);
     
-    final LookAtPoint lookAtPoint = new LookAtPoint();
+    final LookAtPointModel lookAtPoint = new LookAtPointModel();
     lookAtPoint.setX(this.lookAtPointX.getFloatValue());
     lookAtPoint.setY(this.lookAtPointY.getFloatValue());
     lookAtPoint.setZ(this.lookAtPointZ.getFloatValue());
@@ -355,7 +355,7 @@ public class ConfigurationDialog {
 
     if (this.configuration.getBackground() == null) {
       if (this.colorCombo.getText() != "white") { //$NON-NLS-1$
-        final Background background = new Background();
+        final BackgroundModel background = new BackgroundModel();
         background.setColor(this.colorCombo.getText());
         this.configuration.setBackground(background);
       }
@@ -365,7 +365,7 @@ public class ConfigurationDialog {
 
     if (this.configuration.getModelUnit() == null) {
       if (this.modelAngleUnitCombo.getText() != "radian") { //$NON-NLS-1$
-        final ModelUnit modelUnit = new ModelUnit();
+        final ModelUnitModel modelUnit = new ModelUnitModel();
         modelUnit.setAngleUnit(this.modelAngleUnitCombo.getText());
         modelUnit.setLengthUnit(this.modelLengthUnitCombo.getText());
         this.configuration.setModelUnit(modelUnit);
@@ -377,7 +377,7 @@ public class ConfigurationDialog {
 
     if (this.configuration.getDataUnit() == null) {
       if (this.dataAngleUnitCombo.getText() != "radian") { //$NON-NLS-1$
-        final DataUnit dataUnit = new DataUnit();
+        final DataUnitModel dataUnit = new DataUnitModel();
         dataUnit.setAngle(this.dataAngleUnitCombo.getText());
         dataUnit.setLength(this.dataLengthUnitCombo.getText());
         this.configuration.setDataUnit(dataUnit);

@@ -18,13 +18,13 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
 import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.AddQuadPolygonDialog;
@@ -52,11 +52,11 @@ public class SceneGraphTree {
   /** 選択されているオブジェクト。 */
   Object targetObject = null;
   /** 選択されているグループ。 */
-  Group targetGroup = null;
+  GroupModel targetGroup = null;
   /** 選択されている物の親グループ。 */
-  Group targetParentGroup = null;
+  GroupModel targetParentGroup = null;
   /** */
-  Group root = null;
+  GroupModel root = null;
   /** */
   boolean editable = true;
   /** */
@@ -118,17 +118,17 @@ public class SceneGraphTree {
           return;
         }
 
-        if (clickObject instanceof Group) {
+        if (clickObject instanceof GroupModel) {
           final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
-        } else if (clickObject instanceof XMLTrianglePolygon) {
-          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+        } else if (clickObject instanceof TrianglePolygonModel) {
+          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (TrianglePolygonModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
               SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
-        } else if (clickObject instanceof XMLQuadPolygon) {
-          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+        } else if (clickObject instanceof QuadPolygonModel) {
+          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (QuadPolygonModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
               SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
@@ -160,7 +160,7 @@ public class SceneGraphTree {
             return;
           }
           final Object primitive = SceneGraphTree.this.selectItem.getData();
-          final Group group = (Group)groupNode.getData();
+          final GroupModel group = (GroupModel)groupNode.getData();
           if (removeObject(group, primitive)) {
             // 中身が消されれば、表示も削除
             SceneGraphTree.this.selectItem.dispose();
@@ -283,16 +283,16 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        if (SceneGraphTree.this.targetObject instanceof Group) {
+        if (SceneGraphTree.this.targetObject instanceof GroupModel) {
           final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
-        } else if (SceneGraphTree.this.targetObject instanceof XMLTrianglePolygon) {
-          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (XMLTrianglePolygon)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup,
+        } else if (SceneGraphTree.this.targetObject instanceof TrianglePolygonModel) {
+          final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (TrianglePolygonModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup,
               SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
-        } else if (SceneGraphTree.this.targetObject instanceof XMLQuadPolygon) {
-          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (XMLQuadPolygon)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+        } else if (SceneGraphTree.this.targetObject instanceof QuadPolygonModel) {
+          final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), (QuadPolygonModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
               SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
@@ -309,7 +309,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        if (SceneGraphTree.this.targetObject instanceof Group) {
+        if (SceneGraphTree.this.targetObject instanceof GroupModel) {
           if (SceneGraphTree.this.targetParentGroup == null) {
             final MessageBox message = new MessageBox(composite.getShell(), SWT.ICON_INFORMATION);
             message.setText(Messages.getString("SceneGraphTree.16")); //$NON-NLS-1$
@@ -320,7 +320,7 @@ public class SceneGraphTree {
             SceneGraphTree.this.xmlTree.getSelection()[0].dispose();
             updateTree();
           }
-        } else if (SceneGraphTree.this.targetObject instanceof XMLTrianglePolygon || SceneGraphTree.this.targetObject instanceof XMLQuadPolygon) {
+        } else if (SceneGraphTree.this.targetObject instanceof TrianglePolygonModel || SceneGraphTree.this.targetObject instanceof QuadPolygonModel) {
           final MessageBox message = new MessageBox(composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
           message.setMessage(Messages.getString("SceneGraphTree.18")); //$NON-NLS-1$
           message.setText(Messages.getString("SceneGraphTree.19")); //$NON-NLS-1$
@@ -352,7 +352,7 @@ public class SceneGraphTree {
       public void menuShown(MenuEvent e) {
         final Object clickedObject = SceneGraphTree.this.xmlTree.getSelection()[0].getData();
         
-        if (clickedObject instanceof Group) {
+        if (clickedObject instanceof GroupModel) {
           addBox.setEnabled(true);
           addCylinder.setEnabled(true);
           addSphere.setEnabled(true);
@@ -393,8 +393,8 @@ public class SceneGraphTree {
     }
 
     this.targetObject = this.xmlTree.getSelection()[0].getData();
-    if (this.targetObject instanceof Group) {
-      this.targetGroup = (Group)this.targetObject;
+    if (this.targetObject instanceof GroupModel) {
+      this.targetGroup = (GroupModel)this.targetObject;
       // targetObj = null;
       setTarget(this.targetGroup);
       if (this.xmlTree.getSelection()[0].getText().startsWith("root")) { //$NON-NLS-1$
@@ -404,12 +404,12 @@ public class SceneGraphTree {
       } else {
         this.editable = true;
         // 選択されたグループがルートグループでなければparentGroupを登録
-        this.targetParentGroup = (Group)this.xmlTree.getSelection()[0].getParentItem().getData();
+        this.targetParentGroup = (GroupModel)this.xmlTree.getSelection()[0].getParentItem().getData();
       }
     } else {
       // 選択されたものがプリミティブのとき
       this.editable = true;
-      this.targetGroup = (Group)this.xmlTree.getSelection()[0].getParentItem().getData();
+      this.targetGroup = (GroupModel)this.xmlTree.getSelection()[0].getParentItem().getData();
       this.targetParentGroup = null;
       setTarget(this.targetObject);
     }
@@ -424,41 +424,41 @@ public class SceneGraphTree {
   private void setTarget(Object object) {
     setAllTransparent(this.model.getGroup(0), true);
 
-    if (object instanceof XMLBox) {
-      ((XMLBox)object).setTransparent(false);
-    } else if (object instanceof XMLCone) {
-      ((XMLCone)object).setTransparent(false);
-    } else if (object instanceof XMLCylinder) {
-      ((XMLCylinder)object).setTransparent(false);
-    } else if (object instanceof XMLSphere) {
-      ((XMLSphere)object).setTransparent(false);
-    } else if (object instanceof XMLTrianglePolygon) {
-      ((XMLTrianglePolygon)object).setTransparent(false);
-    } else if (object instanceof XMLQuadPolygon) {
-      ((XMLQuadPolygon)object).setTransparent(false);
-    } else if (object instanceof Group) {
-      Group group = (Group)object;
-      final XMLBox[] boxes = group.getXMLBoxes();
+    if (object instanceof BoxModel) {
+      ((BoxModel)object).setTransparent(false);
+    } else if (object instanceof ConeModel) {
+      ((ConeModel)object).setTransparent(false);
+    } else if (object instanceof CylinderModel) {
+      ((CylinderModel)object).setTransparent(false);
+    } else if (object instanceof SphereModel) {
+      ((SphereModel)object).setTransparent(false);
+    } else if (object instanceof TrianglePolygonModel) {
+      ((TrianglePolygonModel)object).setTransparent(false);
+    } else if (object instanceof QuadPolygonModel) {
+      ((QuadPolygonModel)object).setTransparent(false);
+    } else if (object instanceof GroupModel) {
+      GroupModel group = (GroupModel)object;
+      final BoxModel[] boxes = group.getXMLBoxes();
       for (int i = 0; i < boxes.length; i++) {
         boxes[i].setTransparent(false);
       }
-      final XMLCylinder[] cylinders = group.getXMLCylinders();
+      final CylinderModel[] cylinders = group.getXMLCylinders();
       for (int i = 0; i < cylinders.length; i++) {
         cylinders[i].setTransparent(false);
       }
-      final XMLSphere[] spheres = group.getXMLSpheres();
+      final SphereModel[] spheres = group.getXMLSpheres();
       for (int i = 0; i < spheres.length; i++) {
         spheres[i].setTransparent(false);
       }
-      final XMLCone[] cones = group.getXMLCones();
+      final ConeModel[] cones = group.getXMLCones();
       for (int i = 0; i < cones.length; i++) {
         cones[i].setTransparent(false);
       }
-      final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygons();
+      final TrianglePolygonModel[] trianglePolygons = group.getXMLTrianglePolygons();
       for (int i = 0; i < trianglePolygons.length; i++) {
         trianglePolygons[i].setTransparent(false);
       }
-      final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygons();
+      final QuadPolygonModel[] quadPolygons = group.getXMLQuadPolygons();
       for (int i = 0; i < quadPolygons.length; i++) {
         quadPolygons[i].setTransparent(false);
       }
@@ -471,13 +471,13 @@ public class SceneGraphTree {
    * @param group グループ
    * @param transparent トランスピアレント
    */
-  public void setAllTransparent(final Group group, boolean transparent) {
-    final XMLBox[] boxes = group.getXMLBoxes();
-    final XMLCylinder[] cylinders = group.getXMLCylinders();
-    final XMLSphere[] spheres = group.getXMLSpheres();
-    final XMLCone[] cones = group.getXMLCones();
-    final XMLTrianglePolygon[] trianglePolygons = group.getXMLTrianglePolygons();
-    final XMLQuadPolygon[] quadPolygons = group.getXMLQuadPolygons();
+  public void setAllTransparent(final GroupModel group, boolean transparent) {
+    final BoxModel[] boxes = group.getXMLBoxes();
+    final CylinderModel[] cylinders = group.getXMLCylinders();
+    final SphereModel[] spheres = group.getXMLSpheres();
+    final ConeModel[] cones = group.getXMLCones();
+    final TrianglePolygonModel[] trianglePolygons = group.getXMLTrianglePolygons();
+    final QuadPolygonModel[] quadPolygons = group.getXMLQuadPolygons();
 
     for (int i = 0; i < boxes.length; i++) {
       boxes[i].setTransparent(transparent);
@@ -498,7 +498,7 @@ public class SceneGraphTree {
       quadPolygons[i].setTransparent(transparent);
     }
 
-    Group[] groups = group.getGroups();
+    GroupModel[] groups = group.getGroups();
 
     for (int i = 0; i < groups.length; i++) {
       setAllTransparent(groups[i], transparent);
@@ -510,7 +510,7 @@ public class SceneGraphTree {
    * 
    * @return 選択されているグループ
    */
-  public Group getTargetGroup() {
+  public GroupModel getTargetGroup() {
     return this.targetGroup;
   }
 
@@ -539,20 +539,20 @@ public class SceneGraphTree {
    * 
    * @return ノードを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
    */
-  protected boolean removeObject(Group group, Object primitive) {
-    if (primitive instanceof XMLBox) {
-      group.removeXMLBox((XMLBox)primitive);
-    } else if (primitive instanceof XMLCone) {
-      group.removeXMLCone((XMLCone)primitive);
-    } else if (primitive instanceof XMLCylinder) {
-      group.removeXMLCylinder((XMLCylinder)primitive);
-    } else if (primitive instanceof XMLSphere) {
-      group.removeXMLSphere((XMLSphere)primitive);
-    } else if (primitive instanceof XMLTrianglePolygon) {
-      group.removeXMLTrianglePolygon((XMLTrianglePolygon)primitive);
-    } else if (primitive instanceof XMLQuadPolygon) {
-      group.removeXMLQuadPolygon((XMLQuadPolygon)primitive);
-    } else if (primitive instanceof Group) {
+  protected boolean removeObject(GroupModel group, Object primitive) {
+    if (primitive instanceof BoxModel) {
+      group.removeXMLBox((BoxModel)primitive);
+    } else if (primitive instanceof ConeModel) {
+      group.removeXMLCone((ConeModel)primitive);
+    } else if (primitive instanceof CylinderModel) {
+      group.removeXMLCylinder((CylinderModel)primitive);
+    } else if (primitive instanceof SphereModel) {
+      group.removeXMLSphere((SphereModel)primitive);
+    } else if (primitive instanceof TrianglePolygonModel) {
+      group.removeXMLTrianglePolygon((TrianglePolygonModel)primitive);
+    } else if (primitive instanceof QuadPolygonModel) {
+      group.removeXMLQuadPolygon((QuadPolygonModel)primitive);
+    } else if (primitive instanceof GroupModel) {
       MessageBox box = new MessageBox(this.comp.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
       box.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
       box.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
@@ -560,7 +560,7 @@ public class SceneGraphTree {
       if (result == SWT.NO) {
         return false;
       }
-      group.removeGroup((Group)primitive);
+      group.removeGroup((GroupModel)primitive);
     }
     return true;
   }
@@ -570,7 +570,7 @@ public class SceneGraphTree {
    * @param item
    * @param groups
    */
-  private void addTreeItem(TreeItem item, Group[] groups) {
+  private void addTreeItem(TreeItem item, GroupModel[] groups) {
     for (int i = 0; i < groups.length; i++) {
       // 子となるTreeItem、childに名前をつけて接続
       TreeItem child = null;
@@ -583,42 +583,42 @@ public class SceneGraphTree {
       }
       child.setData(groups[i]);
 
-      final XMLBox[] boxes = groups[i].getXMLBoxes();
+      final BoxModel[] boxes = groups[i].getXMLBoxes();
       for (int j = 0; j < boxes.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("box (" + boxes[j].getWidth() + ", " + boxes[j].getHeight() + ", " + boxes[j].getDepth() + ", " + boxes[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(boxes[j]);
       }
 
-      final XMLCylinder[] cylinders = groups[i].getXMLCylinders();
+      final CylinderModel[] cylinders = groups[i].getXMLCylinders();
       for (int j = 0; j < cylinders.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("cylinder (" + cylinders[j].getRadius() + ", " + cylinders[j].getHeight() + ", " + cylinders[j].getDivision() + ", " + cylinders[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cylinders[j]);
       }
 
-      final XMLSphere[] spheres = groups[i].getXMLSpheres();
+      final SphereModel[] spheres = groups[i].getXMLSpheres();
       for (int j = 0; j < spheres.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("sphere (" + spheres[j].getRadius() + ", " + spheres[j].getDivision() + ", " + spheres[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         boxChild.setData(spheres[j]);
       }
 
-      final XMLCone[] cones = groups[i].getXMLCones();
+      final ConeModel[] cones = groups[i].getXMLCones();
       for (int j = 0; j < cones.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("cone (" + cones[j].getRadisu() + ", " + cones[j].getHeight() + ", " + cones[j].getDivision() + ", " + cones[j].getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         boxChild.setData(cones[j]);
       }
 
-      final XMLTrianglePolygon[] trianglePolygons = groups[i].getXMLTrianglePolygons();
+      final TrianglePolygonModel[] trianglePolygons = groups[i].getXMLTrianglePolygons();
       for (int j = 0; j < trianglePolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("trianglePolygon (" + trianglePolygons[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
         boxChild.setData(trianglePolygons[j]);
       }
 
-      final XMLQuadPolygon[] quadPolygons = groups[i].getXMLQuadPolygons();
+      final QuadPolygonModel[] quadPolygons = groups[i].getXMLQuadPolygons();
       for (int j = 0; j < quadPolygons.length; j++) {
         final TreeItem boxChild = new TreeItem(child, SWT.NONE);
         boxChild.setText("quadPolygon (" + quadPolygons[j].getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$
@@ -628,7 +628,7 @@ public class SceneGraphTree {
       if (item != null) {
         item.setExpanded(true);
       }
-      final Group[] childGroups = groups[i].getGroups();
+      final GroupModel[] childGroups = groups[i].getGroups();
       addTreeItem(child, childGroups);
     }
     if (item != null) {

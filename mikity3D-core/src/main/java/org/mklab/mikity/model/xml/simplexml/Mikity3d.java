@@ -21,8 +21,8 @@ public class Mikity3d implements java.io.Serializable {
   private List<Mikity3dModel> models;
 
   /** configurations */
-  @ElementList(type=Mikity3dConfiguration.class, inline=true)
-  private List<Mikity3dConfiguration> configurations;
+  @ElementList(type=ConfigurationModel.class, inline=true)
+  private List<ConfigurationModel> configurations;
 
   /**
    * 新しく生成された<code>Mikity3d</code>オブジェクトを初期化します。
@@ -37,7 +37,7 @@ public class Mikity3d implements java.io.Serializable {
    * 
    * @param configuration コンフィグ
    */
-  public void addConfiguration(Mikity3dConfiguration configuration) {
+  public void addConfiguration(ConfigurationModel configuration) {
     this.configurations.add(configuration);
   }
 
@@ -56,7 +56,7 @@ public class Mikity3d implements java.io.Serializable {
    * @param index インデックス
    * @return 指定された指数のConfiguration
    */
-  public Mikity3dConfiguration getConfiguration(int index) {
+  public ConfigurationModel getConfiguration(int index) {
     if ((index < 0) || (index > this.configurations.size())) {
       throw new IndexOutOfBoundsException();
     }

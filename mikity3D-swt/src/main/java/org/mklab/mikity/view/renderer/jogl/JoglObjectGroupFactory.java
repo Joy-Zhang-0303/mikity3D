@@ -1,15 +1,15 @@
 package org.mklab.mikity.view.renderer.jogl;
 
 import org.mklab.mikity.model.ObjectGroupManager;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
 
 /**
@@ -23,34 +23,34 @@ public class JoglObjectGroupFactory {
    * @param group オブジェクトのグループ
    * @return グループ
    */
-  public JoglObjectGroup create(final Group group) {
+  public JoglObjectGroup create(final GroupModel group) {
     final JoglObjectGroup objectGroup = JoglObjectGroup.create(group);
     
-    for (final XMLBox box : group.getXMLBoxes()) {
+    for (final BoxModel box : group.getXMLBoxes()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(box));
     }
 
-    for (final XMLCylinder cylinder : group.getXMLCylinders()) {
+    for (final CylinderModel cylinder : group.getXMLCylinders()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(cylinder));
     }
 
-    for (final XMLSphere sphere : group.getXMLSpheres()) {
+    for (final SphereModel sphere : group.getXMLSpheres()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(sphere));
     }
 
-    for (final XMLCone cone : group.getXMLCones()) {
+    for (final ConeModel cone : group.getXMLCones()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(cone));
     }
     
-    for (final XMLTrianglePolygon polygon : group.getXMLTrianglePolygons()) {
+    for (final TrianglePolygonModel polygon : group.getXMLTrianglePolygons()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(polygon));
     }
 
-    for (final XMLQuadPolygon polygon : group.getXMLQuadPolygons()) {
+    for (final QuadPolygonModel polygon : group.getXMLQuadPolygons()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(polygon));
     }
 
-    for (final Group child : group.getGroups()) {
+    for (final GroupModel child : group.getGroups()) {
       objectGroup.addChild(create(child));
     }
 
@@ -73,9 +73,9 @@ public class JoglObjectGroupFactory {
    * @param group オブジェクトのグループ
    * @return グループの座標系
    */
-  private JoglCoordinate createBaseCoordinateOf(final Group group) {
-    final Translation translation = group.getTranslation();
-    final Rotation rotation = group.getRotation();
+  private JoglCoordinate createBaseCoordinateOf(final GroupModel group) {
+    final TranslationModel translation = group.getTranslation();
+    final RotationModel rotation = group.getRotation();
     
     if (translation != null && rotation != null) {
       final float translationX = translation.getX();

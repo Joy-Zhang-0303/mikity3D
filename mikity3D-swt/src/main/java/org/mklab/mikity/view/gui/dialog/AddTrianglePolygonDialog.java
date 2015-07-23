@@ -15,11 +15,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.Vertex;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
 
@@ -55,7 +55,7 @@ public class AddTrianglePolygonDialog {
   private ParameterInputBox translationY;
   private ParameterInputBox translationZ;
 
-  private Group group;
+  private GroupModel group;
   private String angleUnit;
   private String lengthUnit;
   private Combo colorCombo;
@@ -66,7 +66,7 @@ public class AddTrianglePolygonDialog {
    * @param parentShell 親シェル
    * @param group グループ
    */
-  public AddTrianglePolygonDialog(Shell parentShell, Group group) {
+  public AddTrianglePolygonDialog(Shell parentShell, GroupModel group) {
     this.parentShell = parentShell;
     this.group = group;
     this.angleUnit = UnitLabel.getUnit("modelAngle"); //$NON-NLS-1$
@@ -217,13 +217,13 @@ public class AddTrianglePolygonDialog {
    * ポリゴンの生成
    */
   void addPolygon() {
-    final XMLTrianglePolygon triangle = new XMLTrianglePolygon();
-    final Rotation rotation = new Rotation();
-    final Translation location = new Translation();
+    final TrianglePolygonModel triangle = new TrianglePolygonModel();
+    final RotationModel rotation = new RotationModel();
+    final TranslationModel location = new TranslationModel();
 
-    final Vertex vertex0 = new Vertex(this.vertex0x.getFloatValue(), this.vertex0y.getFloatValue(), this.vertex0z.getFloatValue());
-    final Vertex vertex1 = new Vertex(this.vertex1x.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
-    final Vertex vertex2 = new Vertex(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
+    final VertexModel vertex0 = new VertexModel(this.vertex0x.getFloatValue(), this.vertex0y.getFloatValue(), this.vertex0z.getFloatValue());
+    final VertexModel vertex1 = new VertexModel(this.vertex1x.getFloatValue(), this.vertex1y.getFloatValue(), this.vertex1z.getFloatValue());
+    final VertexModel vertex2 = new VertexModel(this.vertex2x.getFloatValue(), this.vertex2y.getFloatValue(), this.vertex2z.getFloatValue());
     triangle.setVertices(vertex0, vertex1, vertex2);
     if (getRotation(rotation) != null) {
       triangle.setRotation(getRotation(rotation));
@@ -253,7 +253,7 @@ public class AddTrianglePolygonDialog {
    * @param rotation
    * @return rot
    */
-  private Rotation getRotation(Rotation rotation) {
+  private RotationModel getRotation(RotationModel rotation) {
     if (this.rotationX.getFloatValue() == 0 && this.rotationY.getFloatValue() == 0 && this.rotationZ.getFloatValue() == 0) {
       return null;
     }
@@ -270,7 +270,7 @@ public class AddTrianglePolygonDialog {
    * @param location
    * @return loc
    */
-  private Translation getLocation(Translation location) {
+  private TranslationModel getLocation(TranslationModel location) {
     if (this.translationX.getFloatValue() == 0 && this.translationY.getFloatValue() == 0 && this.translationZ.getFloatValue() == 0) {
       return null;
     }

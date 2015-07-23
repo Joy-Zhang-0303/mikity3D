@@ -8,7 +8,7 @@ package org.mklab.mikity.model.xml.simplexml.blender;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.util.Matrix4;
 import org.simpleframework.xml.ElementList;
 
@@ -28,7 +28,7 @@ public class VisualScene {
   /** 変換行列 */
   private List<Matrix4> transformMatrices;
 
-  private Group rootGroup;
+  private GroupModel rootGroup;
 
   /**
    * 新しく生成された<code>Visual_scene</code>オブジェクトを初期化します。
@@ -37,7 +37,7 @@ public class VisualScene {
     this.nodes = new ArrayList<>();
     this.nodeNames = new ArrayList<>();
     this.transformMatrices = new ArrayList<>();
-    this.rootGroup = new Group();
+    this.rootGroup = new GroupModel();
   }
 
   /**
@@ -89,7 +89,7 @@ public class VisualScene {
   /**
    * @return scene
    */
-  public Group getScene() {
+  public GroupModel getScene() {
     createScene();
     return this.rootGroup;
   }

@@ -25,7 +25,7 @@ import org.mklab.mikity.model.searcher.GroupName;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 import roboguice.fragment.RoboFragment;
 import android.database.Cursor;
@@ -348,8 +348,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   public GroupManager getGroupManager() {
     final Mikity3d root = this.canvasActivity.canvasFragment.root;
     final Mikity3dModel model = root.getModel(0);
-    final Group[] groupArray = model.getGroups();
-    final Group group = groupArray[0];
+    final GroupModel[] groupArray = model.getGroups();
+    final GroupModel group = groupArray[0];
     final ExcecuteSearchGroup search = new ExcecuteSearchGroup();
     final GroupName groupManager = new GroupName(group.getName(), null);
     final GroupManager result = search.searchGroupRecursion(group, groupManager);
@@ -492,8 +492,8 @@ public class NavigationDrawerFragment extends RoboFragment {
    */
   void changeModelColumnNumber(List<Integer> targetColumn, int childPosition, int columnNumber) {
     final Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
-    final Group[] groups = model.getGroups();
-    Group group = groups[0];
+    final GroupModel[] groups = model.getGroups();
+    GroupModel group = groups[0];
 
     for (Integer target : targetColumn) {
       group = group.getGroup(target.intValue());

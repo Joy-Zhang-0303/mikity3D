@@ -16,7 +16,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
 @Root(name="cylinder")
-public class XMLCylinder implements Serializable {
+public class CylinderModel implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** radius */
@@ -33,11 +33,11 @@ public class XMLCylinder implements Serializable {
 
   /** translation */
   @Element(name="translation", required=false)
-  protected Translation translation;
+  protected TranslationModel translation;
 
   /** rotation */
   @Element(name="rotation", required=false)
-  protected Rotation rotation;
+  protected RotationModel rotation;
 
   /** color */
   @Attribute(name="color")
@@ -53,7 +53,7 @@ public class XMLCylinder implements Serializable {
   /**
    * コンストラクター
    */
-  public XMLCylinder() {
+  public CylinderModel() {
     this.color = "red"; //$NON-NLS-1$
     this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
@@ -109,7 +109,7 @@ public class XMLCylinder implements Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    XMLCylinder other = (XMLCylinder)obj;
+    CylinderModel other = (CylinderModel)obj;
     if (this.color == null) {
       if (other.color != null) {
         return false;
@@ -176,7 +176,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @return the value of field 'location'.
    */
-  public Translation getTranslation() {
+  public TranslationModel getTranslation() {
     return this.translation;
   }
 
@@ -194,7 +194,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @return the value of field 'rotation'.
    */
-  public Rotation getRotation() {
+  public RotationModel getRotation() {
     return this.rotation;
   }
 
@@ -265,7 +265,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @param translation the value of field 'location'.
    */
-  public void setTranslation(Translation translation) {
+  public void setTranslation(TranslationModel translation) {
     this.translation = translation;
   }
 
@@ -283,7 +283,7 @@ public class XMLCylinder implements Serializable {
    * 
    * @param rotation the value of field 'rotation'.
    */
-  public void setRotation(Rotation rotation) {
+  public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
   }
 

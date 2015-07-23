@@ -14,7 +14,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
 @Root(name="box")
-public class XMLBox implements java.io.Serializable {
+public class BoxModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** width */
@@ -31,11 +31,11 @@ public class XMLBox implements java.io.Serializable {
 
   /** translation */
   @Element(name="translation", required=false)
-  private Translation translation;
+  private TranslationModel translation;
 
   /** rotation */
   @Element(name="rotation", required=false)
-  private Rotation rotation;
+  private RotationModel rotation;
 
   /** color */
   @Attribute(name="color")
@@ -52,7 +52,7 @@ public class XMLBox implements java.io.Serializable {
   /**
    * コンストラクター
    */
-  public XMLBox() {
+  public BoxModel() {
     this.color = "red"; //$NON-NLS-1$
     this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
@@ -108,7 +108,7 @@ public class XMLBox implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    XMLBox other = (XMLBox)obj;
+    BoxModel other = (BoxModel)obj;
     if (this.color == null) {
       if (other.color != null) {
         return false;
@@ -160,7 +160,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'location'.
    */
-  public Translation getTranslation() {
+  public TranslationModel getTranslation() {
     return this.translation;
   }
 
@@ -169,7 +169,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @return the value of field 'rotation'.
    */
-  public Rotation getRotation() {
+  public RotationModel getRotation() {
     return this.rotation;
   }
 
@@ -249,7 +249,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @param translation the value of field 'location'.
    */
-  public void setTranslation(Translation translation) {
+  public void setTranslation(TranslationModel translation) {
     this.translation = translation;
   }
 
@@ -258,7 +258,7 @@ public class XMLBox implements java.io.Serializable {
    * 
    * @param rotation the value of field 'rotation'.
    */
-  public void setRotation(Rotation rotation) {
+  public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
   }
 

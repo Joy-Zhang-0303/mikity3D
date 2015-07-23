@@ -8,7 +8,7 @@ import org.simpleframework.xml.Attribute;
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
-public class Background implements java.io.Serializable {
+public class BackgroundModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
   /** color */
   @Attribute(name="color")
@@ -17,7 +17,7 @@ public class Background implements java.io.Serializable {
   /**
    * 新しく生成された<code>Background</code>オブジェクトを初期化します。
    */
-  public Background() {
+  public BackgroundModel() {
     this.color = "white"; //$NON-NLS-1$
   }
   
@@ -46,7 +46,7 @@ public class Background implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Background other = (Background)obj;
+    BackgroundModel other = (BackgroundModel)obj;
     if (this.color == null) {
       if (other.color != null) {
         return false;

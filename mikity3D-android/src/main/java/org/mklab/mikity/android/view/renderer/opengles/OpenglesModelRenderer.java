@@ -5,11 +5,11 @@ import java.util.List;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.config.Eye;
-import org.mklab.mikity.model.xml.simplexml.config.Light;
-import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
+import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
+import org.mklab.mikity.model.xml.simplexml.config.LightModel;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
 import android.opengl.GLSurfaceView;
@@ -31,7 +31,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   private List<OpenglesObjectGroup> topGroups;
 
   /** 設定。 */
-  private Mikity3dConfiguration configuration;
+  private ConfigurationModel configuration;
 
   /** アスペクト比 。 */
   private float aspect;
@@ -63,10 +63,10 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    */
   public OpenglesModelRenderer(GLSurfaceView glView) {
     this.glView = glView;
-    this.configuration = new Mikity3dConfiguration();
-    this.configuration.setEye(new Eye(5.0f, 0.0f, 0.0f));
-    this.configuration.setLookAtPoiint(new LookAtPoint(0.0f, 0.0f, 0.0f));
-    this.configuration.setLight(new Light(10.0f, 10.0f, 20.0f));
+    this.configuration = new ConfigurationModel();
+    this.configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
+    this.configuration.setLookAtPoiint(new LookAtPointModel(0.0f, 0.0f, 0.0f));
+    this.configuration.setLight(new LightModel(10.0f, 10.0f, 20.0f));
   }
 
   /**
@@ -81,7 +81,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     gl.glEnable(GL10.GL_LIGHT0); //0番のライトを有効にします
     gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, 100.0f);
         
-    final Light light = this.configuration.getLight();
+    final LightModel light = this.configuration.getLight();
     final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f};
     gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
     gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
@@ -107,12 +107,12 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
     // 光源位置の指定
     gl.glMatrixMode(GL10.GL_MODELVIEW);
     gl.glLoadIdentity();
-    final Light light = this.configuration.getLight();
+    final LightModel light = this.configuration.getLight();
     final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f};
     gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
 
-    final Eye eye = this.configuration.getEye();
-    final LookAtPoint lookAtPoint = this.configuration.getLookAtPoint();
+    final EyeModel eye = this.configuration.getEye();
+    final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
     GLU.gluLookAt(gl, eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0F, 0.0F, 1.0F);
 
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
@@ -140,14 +140,14 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /**
    * {@inheritDoc}
    */
-  public void setChildren(Group[] children) {
+  public void setChildren(GroupModel[] children) {
     this.topGroups = new OpenglesModelCreater().create(children);
   }
 
   /**
    * {@inheritDoc}
    */
-  public void setConfiguration(Mikity3dConfiguration configuration) {
+  public void setConfiguration(ConfigurationModel configuration) {
     if (configuration == null) {
       return;
     }
@@ -159,7 +159,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /**
    * {@inheritDoc}
    */
-  public Mikity3dConfiguration getConfiguration() {
+  public ConfigurationModel getConfiguration() {
     return this.configuration;
   }
 

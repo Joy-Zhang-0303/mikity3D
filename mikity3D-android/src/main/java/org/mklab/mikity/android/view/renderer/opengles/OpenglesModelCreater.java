@@ -8,7 +8,7 @@ package org.mklab.mikity.android.view.renderer.opengles;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 /**
  * モデルの生成器です。
@@ -25,9 +25,9 @@ public class OpenglesModelCreater {
    * 
    * @return オブジェクトのグループ
    */
-  public List<OpenglesObjectGroup> create(final Group[] groups) {
+  public List<OpenglesObjectGroup> create(final GroupModel[] groups) {
     final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();
-    for (final Group group : groups) {
+    for (final GroupModel group : groups) {
       final OpenglesObjectGroup child = new OpenglesObjectGroupFactory().create(group);
       objectGroups.add(child);
     }

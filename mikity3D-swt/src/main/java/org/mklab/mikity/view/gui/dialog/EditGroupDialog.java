@@ -15,9 +15,9 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.LinkData;
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
+import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.SceneGraphTree;
@@ -32,7 +32,7 @@ import org.mklab.mikity.view.gui.SceneGraphTree;
 public class EditGroupDialog {
   Shell sShell = null;
   private Shell parentShell = null;
-  org.mklab.mikity.model.xml.simplexml.model.Group group;
+  org.mklab.mikity.model.xml.simplexml.model.GroupModel group;
 
   ParameterInputBox groupName;
   ParameterInputBox translationX;
@@ -61,7 +61,7 @@ public class EditGroupDialog {
    * @param group グループ
    * @param editable 編集可能性
    */
-  public EditGroupDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.Group group, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
+  public EditGroupDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.GroupModel group, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parentShell;
     this.group = group;
     this.editable = editable;
@@ -250,8 +250,8 @@ public class EditGroupDialog {
     addLinkData("rotationY", this.rotationYdataNumber); //$NON-NLS-1$
     addLinkData("rotationZ", this.rotationZdataNumber); //$NON-NLS-1$
     
-    final Translation translation = new Translation(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue());
-    final Rotation rotation = new Rotation(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue());
+    final TranslationModel translation = new TranslationModel(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue());
+    final RotationModel rotation = new RotationModel(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue());
     
     this.group.setTranslation(translation);
     this.group.setRotation(rotation);
@@ -266,7 +266,7 @@ public class EditGroupDialog {
    */
   void addLinkData(final String parameterName, final ParameterInputBox dataNumber) {
     if (dataNumber.getIntValue() != 0) {
-      final LinkData linkData = new LinkData();
+      final LinkDataModel linkData = new LinkDataModel();
       linkData.setTarget(parameterName);
       linkData.setNumber(dataNumber.getIntValue());
       this.group.addLinkData(linkData);
@@ -299,8 +299,8 @@ public class EditGroupDialog {
   private void setParametersInDialog() {
     setLinkDataInDialog();
 
-    final Rotation rotation = this.group.getRotation();
-    final Translation translation = this.group.getTranslation();
+    final RotationModel rotation = this.group.getRotation();
+    final TranslationModel translation = this.group.getTranslation();
 
     if (rotation != null) {
       setRotationInDialog(rotation);
@@ -315,7 +315,7 @@ public class EditGroupDialog {
    * 
    * @param rotation 回転角度
    */
-  private void setRotationInDialog(Rotation rotation) {
+  private void setRotationInDialog(RotationModel rotation) {
     this.rotationX.setText("" + rotation.getX()); //$NON-NLS-1$
     this.rotationY.setText("" + rotation.getY()); //$NON-NLS-1$
     this.rotationZ.setText("" + rotation.getZ()); //$NON-NLS-1$
@@ -326,7 +326,7 @@ public class EditGroupDialog {
    * 
    * @param translation 並進距離
    */
-  private void setTranslationInDialog(Translation translation) {
+  private void setTranslationInDialog(TranslationModel translation) {
     this.translationX.setText("" + translation.getX()); //$NON-NLS-1$
     this.translationY.setText("" + translation.getY()); //$NON-NLS-1$
     this.translationZ.setText("" + translation.getZ()); //$NON-NLS-1$
@@ -336,7 +336,7 @@ public class EditGroupDialog {
    * Linkdata の column を表示させる
    */
   private void setLinkDataInDialog() {
-    final LinkData[] linkData = this.group.getLinkData();
+    final LinkDataModel[] linkData = this.group.getLinkData();
 
     for (int i = 0; i < linkData.length; i++) {
       final String target = linkData[i].getTarget();

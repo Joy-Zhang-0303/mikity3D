@@ -111,7 +111,7 @@ public class JoglModeler extends Composite {
    * GroupをCanvasに読み込み、Frameに追加します。
    */
   public void createViewer() {
-    org.mklab.mikity.model.xml.simplexml.model.Group[] children = this.tree.getModel().getGroups();
+    org.mklab.mikity.model.xml.simplexml.model.GroupModel[] children = this.tree.getModel().getGroups();
     this.renderer.setChildren(children);
     this.renderer.setConfiguration(this.root.getConfiguration(0));
   }
@@ -147,7 +147,7 @@ public class JoglModeler extends Composite {
    * 
    * @return 選択されているグループ
    */
-  public org.mklab.mikity.model.xml.simplexml.model.Group getTargetGroup() {
+  public org.mklab.mikity.model.xml.simplexml.model.GroupModel getTargetGroup() {
     return this.tree.getTargetGroup();
   }
 }

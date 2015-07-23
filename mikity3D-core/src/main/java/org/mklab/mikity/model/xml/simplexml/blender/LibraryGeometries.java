@@ -8,7 +8,7 @@ package org.mklab.mikity.model.xml.simplexml.blender;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.simpleframework.xml.ElementList;
 
 
@@ -23,7 +23,7 @@ public class LibraryGeometries {
   @ElementList
   private List<Geometry> geometries;
 
-  private Group scene;
+  private GroupModel scene;
 
   private BlenderSceneGraphCreater creater;
 
@@ -40,8 +40,8 @@ public class LibraryGeometries {
    * 
    * @return　Blenderデータによるポリゴンをまとめたグループ一覧
    */
-  public Group getBlenderPolygonGroup() {
-    Group group = new Group();
+  public GroupModel getBlenderPolygonGroup() {
+    GroupModel group = new GroupModel();
     for (int i = 0; i < this.geometries.size(); i++) {
       group.addGroup(this.geometries.get(i).getBlenderPolygonGroup());
     }

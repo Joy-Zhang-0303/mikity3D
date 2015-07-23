@@ -3,7 +3,7 @@ package org.mklab.mikity.view.renderer.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 
 /**
@@ -21,9 +21,9 @@ public class JoglModelCreater {
    * 
    * @return オブジェクトのグループ
    */
-  public List<JoglObjectGroup> create(final Group[] groups) {
+  public List<JoglObjectGroup> create(final GroupModel[] groups) {
     final List<JoglObjectGroup> objectGroups = new ArrayList<>();
-    for (final Group group : groups) {
+    for (final GroupModel group : groups) {
       final JoglObjectGroup child = new JoglObjectGroupFactory().create(group);
       objectGroups.add(child);
     }

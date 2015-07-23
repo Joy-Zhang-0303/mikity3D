@@ -8,7 +8,7 @@ import org.simpleframework.xml.Attribute;
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:28 $
  */
-public class DataUnit implements java.io.Serializable {
+public class DataUnitModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** angle */
@@ -22,7 +22,7 @@ public class DataUnit implements java.io.Serializable {
   /**
    * 新しく生成された<code>DataUnit</code>オブジェクトを初期化します。
    */
-  public DataUnit() {
+  public DataUnitModel() {
     this.angle = "radian"; //$NON-NLS-1$
     this.length = "m"; //$NON-NLS-1$
   }
@@ -62,7 +62,7 @@ public class DataUnit implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    DataUnit other = (DataUnit)obj;
+    DataUnitModel other = (DataUnitModel)obj;
     if (this.angle == null) {
       if (other.angle != null) {
         return false;

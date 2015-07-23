@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.model.xml.simplexml.blender;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -37,7 +37,7 @@ public class Collada {
    * 
    * @return　ポリゴンをまとめたグループ
    */
-  public Group getColladaPolygonGroup() {
+  public GroupModel getColladaPolygonGroup() {
     this.libraryVisualScenes.createMatrix();
     this.libraryGeometries.setLibraryVisualScenes(this.libraryVisualScenes);
     return this.libraryGeometries.getBlenderPolygonGroup();

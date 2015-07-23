@@ -19,9 +19,9 @@ import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.LinkData;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
@@ -405,7 +405,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       callExceptionDialogFragment("Please select proper data file or set column number to data size or lower."); //$NON-NLS-1$
     }
 
-    final Group rootGroup = this.root.getModel(0).getGroup(0);
+    final GroupModel rootGroup = this.root.getModel(0).getGroup(0);
     checkLinkParameterType(rootGroup);
 
     final int dataSize = this.manager.getDataSize();
@@ -419,11 +419,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.setIllegalTimeData = false;
   }
 
-  private void checkLinkParameterType(Group parent) {
-    final Group[] groups = parent.getGroups();
-    for (final Group group : groups) {
-      final LinkData[] links = group.getLinkData();
-      for (final LinkData link : links) {
+  private void checkLinkParameterType(GroupModel parent) {
+    final GroupModel[] groups = parent.getGroups();
+    for (final GroupModel group : groups) {
+      final LinkDataModel[] links = group.getLinkData();
+      for (final LinkDataModel link : links) {
         if (link.hasCoordinateParameter()) {
           this.manager.setHasCoordinateParameter(true);
         }
@@ -621,9 +621,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * モデルデータにレンダーを登録します。
    */
   public void configurateModel() {
-    final Group[] children = this.root.getModel(0).getGroups();
+    final GroupModel[] children = this.root.getModel(0).getGroups();
     this.modelRenderer.setChildren(children);
-    Mikity3dConfiguration configuration = this.root.getConfiguration(0);
+    ConfigurationModel configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
   }
 

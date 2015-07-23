@@ -5,67 +5,59 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * 並進を表すクラスです。
+ * 回転を表すクラスです。
  * 
- * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
+ * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
-@Root(name="translation")
-public class Translation implements java.io.Serializable {
+@Root(name="rotation")
+public class RotationModel implements java.io.Serializable {
+
   private static final long serialVersionUID = 1L;
 
-  /** x軸方向の並進 */
-  @Attribute(name="x")
+  /** X軸周りの回転 */
+  @Attribute(name = "x")
   private float x;
 
-  /** y軸方向の併進 */
-  @Attribute(name="y")
+  /** Y軸周りの回転 */
+  @Attribute(name = "y")
   private float y;
 
-  /** z軸方向の併進 */
-  @Attribute(name="z")
+  /** Z軸周りの回転 */
+  @Attribute(name = "z")
   private float z;
 
   /**
-   * 新しく生成された<code>Translation</code>オブジェクトを初期化します。
+   * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
    */
-  public Translation() {
+  public RotationModel() {
     this.x = 0;
     this.y = 0;
     this.z = 0;
   }
 
   /**
-   * 新しく生成された<code>Translation</code>オブジェクトを初期化します。
-   * @param x x
-   * @param y y 
-   * @param z z
+   * 新しく生成された<code>Rotation</code>オブジェクトを初期化します。
+   * 
+   * @param x Ｘ軸周りの回転
+   * @param y Y軸周りの回転
+   * @param z Z軸周りの回転
    */
-  public Translation(float x, float y, float z) {
+  public RotationModel(float x, float y, float z) {
     this.x = x;
     this.y = y;
     this.z = z;
   }
 
   /**
-   * Returns the value of field 'x'.
-   * 
-   * @return the value of field 'x'.
-   */
-  public float getX() {
-    return this.x;
-  }
-
-  /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("unqualified-field-access")
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + Float.floatToIntBits(x);
-    result = prime * result + Float.floatToIntBits(y);
-    result = prime * result + Float.floatToIntBits(z);
+    result = prime * result + Float.floatToIntBits(this.x);
+    result = prime * result + Float.floatToIntBits(this.y);
+    result = prime * result + Float.floatToIntBits(this.z);
     return result;
   }
 
@@ -83,7 +75,7 @@ public class Translation implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Translation other = (Translation)obj;
+    RotationModel other = (RotationModel)obj;
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
@@ -96,46 +88,56 @@ public class Translation implements java.io.Serializable {
     return true;
   }
 
+
   /**
-   * Returns the value of field 'y'.
+   * X軸周りの回転を返します。
    * 
-   * @return the value of field 'y'.
+   * @return X軸周りの回転
+   */
+  public float getX() {
+    return this.x;
+  }
+
+  /**
+   * Y軸周りの回転を返します。
+   * 
+   * @return Y軸周りの回転
    */
   public float getY() {
     return this.y;
   }
 
   /**
-   * Returns the value of field 'z'.
+   * Z軸周りの回転を返します。
    * 
-   * @return the value of field 'z'.
+   * @return Z軸周りの回転
    */
   public float getZ() {
     return this.z;
   }
 
   /**
-   * Sets the value of field 'x'.
+   * X軸周りの回転を設定します。
    * 
-   * @param x the value of field 'x'.
+   * @param x X軸周りの回転
    */
   public void setX(float x) {
     this.x = x;
   }
 
   /**
-   * Sets the value of field 'y'.
+   * Y軸周りの回転を設定します。
    * 
-   * @param y the value of field 'y'.
+   * @param y Y軸ｋ周りの回転
    */
   public void setY(float y) {
     this.y = y;
   }
 
   /**
-   * Sets the value of field 'z'.
+   * Z軸周りの回転を設定します。
    * 
-   * @param z the value of field 'z'.
+   * @param z Z軸周りの回転
    */
   public void setZ(float z) {
     this.z = z;

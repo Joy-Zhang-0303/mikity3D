@@ -1,44 +1,46 @@
-package org.mklab.mikity.model.xml.simplexml.config;
+package org.mklab.mikity.model.xml.simplexml.model;
 
 import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Root;
 
 
 /**
- * 光を表すクラスです。
+ * 点を表すクラスです。
  * 
- * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
+ * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
  */
-public class Light implements java.io.Serializable {
+@Root(name="vertex")
+public class VertexModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  /** x */
+  /** x成分 */
   @Attribute(name="x")
   private float x;
 
-  /** y */
+  /** y成分 */
   @Attribute(name="y")
   private float y;
 
-  /** z */
+  /** z成分 */
   @Attribute(name="z")
   private float z;
-  
+
   /**
-   * 新しく生成された<code>Light</code>オブジェクトを初期化します。
+   * 新しく生成された<code>XMLPoint</code>オブジェクトを初期化します。
    */
-  public Light() {
-    this.x = 10;
-    this.y = 10;
-    this.z = 20;
+  public VertexModel() {
+    this.x = 0;
+    this.y = 0;
+    this.z = 0;
   }
-  
+
   /**
-   * 新しく生成された<code>Light</code>オブジェクトを初期化します。
-   * @param x X座標
-   * @param y Y座標
-   * @param z Z座標
+   * 新しく生成された<code>XMLPoint</code>オブジェクトを初期化します。
+   * @param x x
+   * @param y y
+   * @param z z
    */
-  public Light(float x, float y, float z) {
+  public VertexModel(float x, float y, float z) {
     this.x = x;
     this.y = y;
     this.z = z;
@@ -56,13 +58,14 @@ public class Light implements java.io.Serializable {
   /**
    * {@inheritDoc}
    */
+  @SuppressWarnings("unqualified-field-access")
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + Float.floatToIntBits(this.x);
-    result = prime * result + Float.floatToIntBits(this.y);
-    result = prime * result + Float.floatToIntBits(this.z);
+    result = prime * result + Float.floatToIntBits(x);
+    result = prime * result + Float.floatToIntBits(y);
+    result = prime * result + Float.floatToIntBits(z);
     return result;
   }
 
@@ -80,7 +83,7 @@ public class Light implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Light other = (Light)obj;
+    VertexModel other = (VertexModel)obj;
     if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) {
       return false;
     }
@@ -136,5 +139,13 @@ public class Light implements java.io.Serializable {
    */
   public void setZ(float z) {
     this.z = z;
+  }
+  
+  /**
+   * (0,0,0)であるか判定します。
+   * @return (0,0,0)ならばtrue，そうでなければfalse
+   */
+  public boolean isZero() {
+    return this.x == 0 && this.y == 0 && this.z == 0;
   }
 }

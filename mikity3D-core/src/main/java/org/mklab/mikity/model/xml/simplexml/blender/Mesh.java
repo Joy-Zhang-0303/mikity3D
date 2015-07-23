@@ -8,10 +8,10 @@ package org.mklab.mikity.model.xml.simplexml.blender;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Vertex;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 import org.mklab.mikity.util.Matrix4;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -37,7 +37,7 @@ public class Mesh {
   private Polylist polylist;
 
   /** ポリゴンをまとめるためのグループ */
-  private Group blenderGroup;
+  private GroupModel blenderGroup;
 
   private Matrix4 matrix;
 
@@ -49,7 +49,7 @@ public class Mesh {
     this.polygons = new Polygons();
     this.triangles = new Triangle();
     this.polylist = new Polylist();
-    this.blenderGroup = new Group();
+    this.blenderGroup = new GroupModel();
     this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
   }
 
@@ -58,7 +58,7 @@ public class Mesh {
    * 
    * @return　Blenderデータから作成したポリゴンをまとめたグループ
    */
-  public Group getBlenderPolygonGroup() {
+  public GroupModel getBlenderPolygonGroup() {
     createBlenderPolygon();
     return this.blenderGroup;
   }
@@ -67,8 +67,8 @@ public class Mesh {
    * 頂点座標を頂点の組み合わせからポリゴンを作成する。 作成したポリゴンはグループに追加します。
    */
   private void createBlenderPolygon() {
-    final List<Vertex> vertexLocations = this.sources.get(0).getVertexLocation();
-    final List<Vertex> normalVector = this.sources.get(1).getNormalLocation();
+    final List<VertexModel> vertexLocations = this.sources.get(0).getVertexLocation();
+    final List<VertexModel> normalVector = this.sources.get(1).getNormalLocation();
 
     if (this.polylist.getP() == null) {
       this.matrix.setElement(0, 3, 0.0f);
@@ -80,13 +80,13 @@ public class Mesh {
     for (int i = 0; i < indexNumber.size(); i++) {
       final int[] index = indexNumber.get(i);
       if (index.length == 3) {
-        final XMLTrianglePolygon triangle = new XMLTrianglePolygon();
+        final TrianglePolygonModel triangle = new TrianglePolygonModel();
         triangle.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]));
         //triangle.setMatrix(this.matrix);
         //triangle.setNormalVector(normalVector.get(i));
         this.blenderGroup.addXMLTrianglePolygon(triangle);
       } else if (index.length == 4) {
-        final XMLQuadPolygon quad = new XMLQuadPolygon();
+        final QuadPolygonModel quad = new QuadPolygonModel();
         quad.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]), vertexLocations.get(index[3]));
         //quad.setMatrix(this.matrix);
         //quad.setNormalVector(normalVector.get(i));
@@ -99,13 +99,13 @@ public class Mesh {
       for (int i = 0; i < indexNumber2.size(); i++) {
         int[] index = indexNumber2.get(i);
         if (index.length == 3) {
-          XMLTrianglePolygon triangle = new XMLTrianglePolygon();
+          TrianglePolygonModel triangle = new TrianglePolygonModel();
           triangle.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]));
           //triangle.setMatrix(this.matrix);
           //triangle.setNormalVector(normalVector.get(i));
           this.blenderGroup.addXMLTrianglePolygon(triangle);
         } else if (index.length == 4) {
-          XMLQuadPolygon quad = new XMLQuadPolygon();
+          QuadPolygonModel quad = new QuadPolygonModel();
           quad.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]), vertexLocations.get(index[3]));
           //quad.setMatrix(this.matrix);
           //quad.setNormalVector(normalVector.get(i));
@@ -117,7 +117,7 @@ public class Mesh {
     if (this.triangles.getP() != null) {
       final List<int[]> indexNumber3 = this.triangles.getTriangleIndices();
       for (int i = 0; i < indexNumber3.size(); i++) {
-        final XMLTrianglePolygon triangle = new XMLTrianglePolygon();
+        final TrianglePolygonModel triangle = new TrianglePolygonModel();
         final int[] index = indexNumber3.get(i);
         triangle.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]));
         //triangle.setMatrix(this.matrix);

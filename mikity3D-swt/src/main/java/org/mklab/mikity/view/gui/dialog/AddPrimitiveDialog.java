@@ -16,13 +16,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
 
@@ -52,7 +52,7 @@ public class AddPrimitiveDialog {
   private ParameterInputBox translationZ;
   //private Combo primitiveCombo;
   private Combo colorCombo;
-  private Group group;
+  private GroupModel group;
   private String angleUnit;
   private String lengthUnit;
 
@@ -73,7 +73,7 @@ public class AddPrimitiveDialog {
    * @param group グループ
    * @param selectedIndex プリミティブの選択
    */
-  public AddPrimitiveDialog(Shell parentShell, Group group, int selectedIndex) {
+  public AddPrimitiveDialog(Shell parentShell, GroupModel group, int selectedIndex) {
     this.parentShell = parentShell;
     this.group = group;
     this.selectedIndex = selectedIndex;
@@ -262,12 +262,12 @@ public class AddPrimitiveDialog {
    * プリミティブを追加します。
    */
   void addPrimitive() {
-    final Rotation rotation;
-    final Translation translation;
+    final RotationModel rotation;
+    final TranslationModel translation;
     
     switch (this.selectedIndex) {
       case BOX:
-        final XMLBox box = new XMLBox();
+        final BoxModel box = new BoxModel();
         box.setWidth(this.parameter1.getFloatValue());
         box.setHeight(this.parameter2.getFloatValue());
         box.setDepth(this.parameter3.getFloatValue());
@@ -283,7 +283,7 @@ public class AddPrimitiveDialog {
         this.group.addXMLBox(box);
         break;
       case CYLINDER:
-        final XMLCylinder cylinder = new XMLCylinder();
+        final CylinderModel cylinder = new CylinderModel();
         cylinder.setRadius(this.parameter1.getFloatValue());
         cylinder.setHeight(this.parameter2.getFloatValue());
         cylinder.setDivision(getDivision(this.parameter3));
@@ -299,7 +299,7 @@ public class AddPrimitiveDialog {
         this.group.addXMLCylinder(cylinder);
         break;
       case SPHERE:
-        final XMLSphere sphere = new XMLSphere();
+        final SphereModel sphere = new SphereModel();
         sphere.setRadius(this.parameter1.getFloatValue());
         sphere.setDivision(getDivision(this.parameter2));
         rotation = getRotation(); 
@@ -314,7 +314,7 @@ public class AddPrimitiveDialog {
         this.group.addXMLSphere(sphere);
         break;
       case CONE:
-        final XMLCone cone = new XMLCone();
+        final ConeModel cone = new ConeModel();
         cone.setRadius(this.parameter1.getFloatValue());
         cone.setHeight(this.parameter2.getFloatValue());
         cone.setDivision(getDivision(this.parameter3));
@@ -341,8 +341,8 @@ public class AddPrimitiveDialog {
    * @param rotation
    * @return rot
    */
-  private Rotation getRotation() {
-    final Rotation rotation = new Rotation();
+  private RotationModel getRotation() {
+    final RotationModel rotation = new RotationModel();
     
     if (this.rotationX.getFloatValue() == 0 && this.rotationY.getFloatValue() == 0 && this.rotationZ.getFloatValue() == 0) {
       return null;
@@ -359,8 +359,8 @@ public class AddPrimitiveDialog {
    * @param translation
    * @return Location
    */
-  private Translation getTranslation() {
-    final Translation translation = new Translation();
+  private TranslationModel getTranslation() {
+    final TranslationModel translation = new TranslationModel();
     
     if (this.translationX.getFloatValue() == 0 && this.translationY.getFloatValue() == 0 && this.translationZ.getFloatValue() == 0) {
       return null;

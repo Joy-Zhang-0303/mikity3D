@@ -10,7 +10,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.3 $ $Date: 2008/02/03 04:25:09 $
  */
 @Root(name="linkData")
-public class LinkData implements java.io.Serializable {
+public class LinkDataModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** 対象となるパラメータの名前 */
@@ -24,7 +24,7 @@ public class LinkData implements java.io.Serializable {
   /**
    * 新しく生成された<code>LinkData</code>オブジェクトを初期化します。
    */
-  public LinkData() {
+  public LinkDataModel() {
     this.target = ""; //$NON-NLS-1$
     this.number = 0;
   }
@@ -68,7 +68,7 @@ public class LinkData implements java.io.Serializable {
       return false;
     }
     
-    LinkData other = (LinkData)obj;
+    LinkDataModel other = (LinkDataModel)obj;
     if (this.number != other.number) {
       return false;
     }

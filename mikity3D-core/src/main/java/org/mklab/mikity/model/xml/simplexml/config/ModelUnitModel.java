@@ -8,7 +8,7 @@ import org.simpleframework.xml.Attribute;
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
-public class ModelUnit implements java.io.Serializable {
+public class ModelUnitModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
   /** 角度の単位 */
@@ -22,7 +22,7 @@ public class ModelUnit implements java.io.Serializable {
   /**
    * 新しく生成された<code>ModelUnit</code>オブジェクトを初期化します。
    */
-  public ModelUnit() {
+  public ModelUnitModel() {
     this.angleUnit = "radian"; //$NON-NLS-1$
     this.lengthUnit = "m"; //$NON-NLS-1$
   }
@@ -62,7 +62,7 @@ public class ModelUnit implements java.io.Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    ModelUnit other = (ModelUnit)obj;
+    ModelUnitModel other = (ModelUnitModel)obj;
     if (this.angleUnit == null) {
       if (other.angleUnit != null) {
         return false;

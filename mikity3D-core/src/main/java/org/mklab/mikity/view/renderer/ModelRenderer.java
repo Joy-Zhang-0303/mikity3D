@@ -5,8 +5,8 @@
  */
 package org.mklab.mikity.view.renderer;
 
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 /**
  * モデルを描画するレンダラーを表すインターフェースです。
@@ -20,20 +20,20 @@ public interface ModelRenderer {
    * 
    * @param children グループ群 
    */
-  void setChildren(Group[] children);
+  void setChildren(GroupModel[] children);
   
   /**
    * 環境データを設定します。
    * 
    * @param configuration 環境データ
    */
-  void setConfiguration(Mikity3dConfiguration configuration);
+  void setConfiguration(ConfigurationModel configuration);
   
   /**
    * 設定を返します。
    * @return 設定
    */
-  Mikity3dConfiguration getConfiguration();
+  ConfigurationModel getConfiguration();
   
   /**
    * 画面の更新のためにdisplayメソッドの呼び出しを必要とするか判定します。

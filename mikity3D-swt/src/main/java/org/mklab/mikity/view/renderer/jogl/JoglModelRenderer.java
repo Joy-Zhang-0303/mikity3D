@@ -17,11 +17,11 @@ import javax.media.opengl.fixedfunc.GLMatrixFunc;
 import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.config.Eye;
-import org.mklab.mikity.model.xml.simplexml.config.Light;
-import org.mklab.mikity.model.xml.simplexml.config.LookAtPoint;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
+import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
+import org.mklab.mikity.model.xml.simplexml.config.LightModel;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 
 /**
@@ -38,7 +38,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   private List<JoglObjectGroup> topGroups;
   
   /** 設定。 */
-  private Mikity3dConfiguration configuration;
+  private ConfigurationModel configuration;
 
   /** Y軸周りの回転角度 */
   private float rotationY = 0.0f;
@@ -82,10 +82,10 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   public JoglModelRenderer() {
     super(new GLCapabilities(null));
     
-    this.configuration = new Mikity3dConfiguration();
-    this.configuration.setEye(new Eye(5.0f, 0.0f, 0.0f));
-    this.configuration.setLookAtPoiint(new LookAtPoint(0.0f, 0.0f, 0.0f));
-    this.configuration.setLight(new Light(10.0f, 10.0f, 20.0f));
+    this.configuration = new ConfigurationModel();
+    this.configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
+    this.configuration.setLookAtPoiint(new LookAtPointModel(0.0f, 0.0f, 0.0f));
+    this.configuration.setLight(new LightModel(10.0f, 10.0f, 20.0f));
     
     addGLEventListener(this);
     addMouseListener(this);
@@ -119,7 +119,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     
     gl.glLoadIdentity();
     
-    final Light light = this.configuration.getLight();
+    final LightModel light = this.configuration.getLight();
     final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f};
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
@@ -128,8 +128,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
 
     gl.glLoadIdentity();
     
-    final Eye eye = this.configuration.getEye();
-    final LookAtPoint lookAtPoint = this.configuration.getLookAtPoint();
+    final EyeModel eye = this.configuration.getEye();
+    final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
     this.glu.gluLookAt(eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0, 0.0, 1.0);
     
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
@@ -148,7 +148,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /**
    * {@inheritDoc}
    */
-  public void setChildren(Group[] children) {
+  public void setChildren(GroupModel[] children) {
     this.topGroups = new JoglModelCreater().create(children);
     display();
   }
@@ -156,7 +156,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /**
    * {@inheritDoc}
    */
-  public void setConfiguration(Mikity3dConfiguration configuration) {
+  public void setConfiguration(ConfigurationModel configuration) {
     if (configuration == null) {
       return;
     }
@@ -169,7 +169,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    * 設定を返します。
    * @return 設定
    */
-  public Mikity3dConfiguration getConfiguration() {
+  public ConfigurationModel getConfiguration() {
     return this.configuration;
   }
 

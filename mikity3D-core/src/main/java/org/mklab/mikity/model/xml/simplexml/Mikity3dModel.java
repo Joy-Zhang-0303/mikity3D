@@ -3,7 +3,7 @@ package org.mklab.mikity.model.xml.simplexml;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -16,8 +16,8 @@ import org.simpleframework.xml.Root;
 public class Mikity3dModel implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
   /** groups */
-  @ElementList(type=Group.class, inline=true)
-  private List<Group> groups;
+  @ElementList(type=GroupModel.class, inline=true)
+  private List<GroupModel> groups;
 
   /**
    * 新しく生成された<code>Mikity3dModel</code>オブジェクトを初期化します。
@@ -31,7 +31,7 @@ public class Mikity3dModel implements java.io.Serializable {
    * 
    * @param argGroup グループ
    */
-  public void addGroup(Group argGroup) {
+  public void addGroup(GroupModel argGroup) {
     this.groups.add(argGroup);
   }
 
@@ -41,7 +41,7 @@ public class Mikity3dModel implements java.io.Serializable {
    * @param index グループのインデックス
    * @return (org.mklab.mikity.xml.Group) _groupList.get(index)
    */
-  public Group getGroup(int index) {
+  public GroupModel getGroup(int index) {
     if ((index < 0) || (index > this.groups.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -90,9 +90,9 @@ public class Mikity3dModel implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public Group[] getGroups() {
+  public GroupModel[] getGroups() {
     final int size = this.groups.size();
-    final Group[] localGroups = new Group[size];
+    final GroupModel[] localGroups = new GroupModel[size];
     for (int i = 0; i < size; i++) {
       localGroups[i] = this.groups.get(i);
     }

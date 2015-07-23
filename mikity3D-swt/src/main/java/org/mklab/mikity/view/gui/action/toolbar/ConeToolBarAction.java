@@ -1,7 +1,7 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -25,13 +25,13 @@ public class ConeToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final XMLCone cone = new XMLCone();
+    final ConeModel cone = new ConeModel();
     cone.setRadius(0.10f);
     cone.setHeight(0.10f);
     cone.setDivision(20);
     cone.setColor("green"); //$NON-NLS-1$
     
-    final Group rootGroup = this.modeler.getTargetGroup();
+    final GroupModel rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLCone(cone);
     update();
     

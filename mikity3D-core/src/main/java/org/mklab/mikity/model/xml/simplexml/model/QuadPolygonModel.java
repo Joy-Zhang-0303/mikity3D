@@ -22,18 +22,18 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2008/08/10
  */
 @Root(name="quadPolygon")
-public class XMLQuadPolygon {
+public class QuadPolygonModel {
   /** vertices */
-  @ElementList(type=Vertex.class, inline=true, required=true)
-  private List<Vertex> vertices;
+  @ElementList(type=VertexModel.class, inline=true, required=true)
+  private List<VertexModel> vertices;
   
   /** translation */
   @Element(name="translation", required=false)
-  private Translation translation;
+  private TranslationModel translation;
   
   /** rotation */
   @Element(name="rotation", required=false)
-  private Rotation rotation;
+  private RotationModel rotation;
 
   /** color */
   @Attribute(name="color")
@@ -52,7 +52,7 @@ public class XMLQuadPolygon {
   /**
    * 新しく生成された<code>XMLQuadPolygon</code>オブジェクトを初期化します。
    */
-  public XMLQuadPolygon() {
+  public QuadPolygonModel() {
     this.vertices = new ArrayList<>(4);
     this.color = "orange"; //$NON-NLS-1$
     this.transparent = false;
@@ -82,7 +82,7 @@ public class XMLQuadPolygon {
    * @param vertex2 頂点2
    * @param vertex3 頂点3
    */
-  public void setVertices(Vertex vertex0, Vertex vertex1, Vertex vertex2, Vertex vertex3) {
+  public void setVertices(VertexModel vertex0, VertexModel vertex1, VertexModel vertex2, VertexModel vertex3) {
     this.vertices.clear();
     this.vertices.add(vertex0);
     this.vertices.add(vertex1);
@@ -96,7 +96,7 @@ public class XMLQuadPolygon {
    * 
    * @param vertices 頂点
    */
-  public void setVertices(List<Vertex> vertices) {
+  public void setVertices(List<VertexModel> vertices) {
     this.vertices = vertices;
     updateNormalVector();
   }
@@ -111,14 +111,14 @@ public class XMLQuadPolygon {
   /**
    * @param translation 位置
    */
-  public void setTranslation(Translation translation) {
+  public void setTranslation(TranslationModel translation) {
     this.translation = translation;
   }
 
   /**
    * @param rotation 回転
    */
-  public void setRotation(Rotation rotation) {
+  public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
   }
 
@@ -155,7 +155,7 @@ public class XMLQuadPolygon {
    * @param number 頂点の番号(0-3)
    * @return 指定された頂点
    */
-  public Vertex getVertex(int number) {
+  public VertexModel getVertex(int number) {
     return this.vertices.get(number); 
   }
 
@@ -169,14 +169,14 @@ public class XMLQuadPolygon {
   /**
    * @return location
    */
-  public Translation getTranslation() {
+  public TranslationModel getTranslation() {
     return this.translation;
   }
 
   /**
    * @return rotation
    */
-  public Rotation getRotation() {
+  public RotationModel getRotation() {
     return this.rotation;
   }
 

@@ -1,7 +1,7 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -26,12 +26,12 @@ public class SphereToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final XMLSphere sphere = new XMLSphere();
+    final SphereModel sphere = new SphereModel();
     sphere.setRadius(0.10f);
     sphere.setDivision(20);
     sphere.setColor("yellow"); //$NON-NLS-1$
     
-    final Group rootGroup = this.modeler.getTargetGroup();
+    final GroupModel rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLSphere(sphere);
     
     update();

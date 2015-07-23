@@ -34,9 +34,9 @@ import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.LinkData;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
 import org.mklab.mikity.view.renderer.ModelRenderer;
 import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 import org.mklab.nfc.matrix.Matrix;
@@ -285,10 +285,10 @@ public class AnimationWindow extends ApplicationWindow {
   public void setModelData(final Frame frame) {
     frame.add((Component)this.modelRenderer);
 
-    final Group[] children = this.root.getModel(0).getGroups();
+    final GroupModel[] children = this.root.getModel(0).getGroups();
     this.modelRenderer.setChildren(children);
 
-    final Mikity3dConfiguration configuration = this.root.getConfiguration(0);
+    final ConfigurationModel configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
     //frame.invalidate();
     frame.validate();
@@ -569,11 +569,11 @@ public class AnimationWindow extends ApplicationWindow {
     });
   }
 
-  private void checkLinkParameterType(Group parent) {
-    final Group[] groups = parent.getGroups();
-    for (final Group group : groups) {
-      final LinkData[] links = group.getLinkData();
-      for (final LinkData link : links) {
+  private void checkLinkParameterType(GroupModel parent) {
+    final GroupModel[] groups = parent.getGroups();
+    for (final GroupModel group : groups) {
+      final LinkDataModel[] links = group.getLinkData();
+      for (final LinkDataModel link : links) {
         if (link.hasCoordinateParameter()) {
           this.manager.setHasCoordinateParameter(true);
         }
@@ -596,7 +596,7 @@ public class AnimationWindow extends ApplicationWindow {
       //this.manager.setData(this.data);
       this.manager.setData(this.timeSeriesData);
 
-      final Group rootGroup = this.root.getModel(0).getGroup(0);
+      final GroupModel rootGroup = this.root.getModel(0).getGroup(0);
       checkLinkParameterType(rootGroup);
 
       final int dataSize = this.manager.getDataSize();
@@ -631,7 +631,7 @@ public class AnimationWindow extends ApplicationWindow {
     //this.manager.setData(this.data);
     this.manager.setData(this.timeSeriesData);
 
-    final Group rootGroup = this.root.getModel(0).getGroup(0);
+    final GroupModel rootGroup = this.root.getModel(0).getGroup(0);
     checkLinkParameterType(rootGroup);
 
     final int dataSize = this.manager.getDataSize();

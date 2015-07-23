@@ -7,7 +7,7 @@ import java.io.InputStream;
 import org.mklab.mikity.model.xml.ColladaFileTransformer;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.blender.Collada;
-import org.mklab.mikity.model.xml.simplexml.model.Group;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
@@ -65,7 +65,7 @@ public class ColladaUnmarshaller {
    * 
    * @return Colladaのグループ
    */
-  public Group getClolladaGroup() {
+  public GroupModel getClolladaGroup() {
     return this.collada.getColladaPolygonGroup();
   }
 }

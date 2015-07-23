@@ -1,14 +1,14 @@
 package org.mklab.mikity.view.renderer.jogl;
 
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.Vertex;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 import org.mklab.mikity.util.Vector3;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglBox;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglCone;
@@ -31,7 +31,7 @@ public class JoglPrimitiveFactory {
    * @param box ボックス
    * @return 与えられたboxを含むグループ
    */
-  public static JoglObject create(XMLBox box) {
+  public static JoglObject create(BoxModel box) {
     final float width = box.getWidth();
     final float height = box.getHeight();
     final float depth = box.getDepth();
@@ -43,8 +43,8 @@ public class JoglPrimitiveFactory {
     child.setSize(width, height, depth);
     child.setTransparent(transparent);
 
-    final Translation translation = box.getTranslation();
-    final Rotation rotation = box.getRotation();
+    final TranslationModel translation = box.getTranslation();
+    final RotationModel rotation = box.getRotation();
 
     if (translation == null && rotation == null) {
       return child;
@@ -63,7 +63,7 @@ public class JoglPrimitiveFactory {
    * @param cylinder シリンダー
    * @return 与えられたcylinderを含むグループ
    */
-  public static JoglObject create(XMLCylinder cylinder) {
+  public static JoglObject create(CylinderModel cylinder) {
     final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
@@ -76,8 +76,8 @@ public class JoglPrimitiveFactory {
     child.setColor(color);
     child.setTransparent(transparent);
 
-    final Translation translation = cylinder.getTranslation();
-    final Rotation rotation = cylinder.getRotation();
+    final TranslationModel translation = cylinder.getTranslation();
+    final RotationModel rotation = cylinder.getRotation();
 
     if (translation == null && rotation == null) {
       return child;
@@ -96,7 +96,7 @@ public class JoglPrimitiveFactory {
    * @param sphere 球体
    * @return 与えられたsphereを含むグループ
    */
-  public static JoglObject create(XMLSphere sphere) {
+  public static JoglObject create(SphereModel sphere) {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
     final String color = sphere.getColor();
@@ -108,8 +108,8 @@ public class JoglPrimitiveFactory {
     child.setColor(color);
     child.setTransparent(transparent);
 
-    final Translation translation = sphere.getTranslation();
-    final Rotation rotation = sphere.getRotation();
+    final TranslationModel translation = sphere.getTranslation();
+    final RotationModel rotation = sphere.getRotation();
 
     if (translation == null && rotation == null) {
       return child;
@@ -128,7 +128,7 @@ public class JoglPrimitiveFactory {
    * @param cone コーン
    * @return 与えられたconeを含むグループ
    */
-  public static JoglObject create(XMLCone cone) {
+  public static JoglObject create(ConeModel cone) {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
@@ -141,8 +141,8 @@ public class JoglPrimitiveFactory {
     child.setDivision(division);
     child.setTransparent(transparent);
 
-    final Translation translation = cone.getTranslation();
-    final Rotation rotation = cone.getRotation();
+    final TranslationModel translation = cone.getTranslation();
+    final RotationModel rotation = cone.getRotation();
 
     if (translation == null && rotation == null) {
       return child;
@@ -161,10 +161,10 @@ public class JoglPrimitiveFactory {
    * @param polygon 三角形のポリゴン
    * @return 与えられた三角形ポリゴンを含むグループを生成します。
    */
-  public static JoglObject create(XMLTrianglePolygon polygon) {
+  public static JoglObject create(TrianglePolygonModel polygon) {
     final float[][] vertices = new float[3][3];
     for (int i = 0; i < 3; i++) {
-      final Vertex vertex = polygon.getVertex(i);
+      final VertexModel vertex = polygon.getVertex(i);
       vertices[i][0] = vertex.getX();
       vertices[i][1] = vertex.getY();
       vertices[i][2] = vertex.getZ();
@@ -185,8 +185,8 @@ public class JoglPrimitiveFactory {
     child.setNormalVector(normalVector);
     child.setTransparent(transparent);
 
-    final Translation translation = polygon.getTranslation();
-    final Rotation rotation = polygon.getRotation();
+    final TranslationModel translation = polygon.getTranslation();
+    final RotationModel rotation = polygon.getRotation();
     
     if (translation == null && rotation == null) {
       return child;
@@ -205,10 +205,10 @@ public class JoglPrimitiveFactory {
    * @param polygon 四角形のポリゴン
    * @return　与えられた四角形ポリゴンを含むグループ
    */
-  public static JoglObject create(XMLQuadPolygon polygon) {
+  public static JoglObject create(QuadPolygonModel polygon) {
     final float[][] vertices = new float[4][3];
     for (int i = 0; i < 4; i++) {
-      final Vertex vertex = polygon.getVertex(i);
+      final VertexModel vertex = polygon.getVertex(i);
       vertices[i][0] = vertex.getX();
       vertices[i][1] = vertex.getY();
       vertices[i][2] = vertex.getZ();
@@ -229,8 +229,8 @@ public class JoglPrimitiveFactory {
     child.setNormalVector(normalVector);
     child.setTransparent(transparent);
 
-    final Translation translation = polygon.getTranslation();
-    final Rotation rotation = polygon.getRotation();
+    final TranslationModel translation = polygon.getTranslation();
+    final RotationModel rotation = polygon.getRotation();
     
     if (translation == null && rotation == null) {
       return child;
@@ -252,7 +252,7 @@ public class JoglPrimitiveFactory {
    * @param rotation 回転変換
    * @return 基準座標系
    */
-  private static JoglCoordinate createBaseCoordinate(final Translation translation, final Rotation rotation) {
+  private static JoglCoordinate createBaseCoordinate(final TranslationModel translation, final RotationModel rotation) {
     if (translation != null && rotation != null) {
       final float translationx = translation.getX();
       final float translationY = translation.getY();

@@ -17,9 +17,9 @@ import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DMarshaller;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dConfiguration;
-import org.mklab.mikity.model.xml.simplexml.config.DataUnit;
-import org.mklab.mikity.model.xml.simplexml.config.ModelUnit;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
+import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
+import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
 import org.mklab.mikity.view.gui.action.AnimationWindowOpenAction;
 import org.mklab.mikity.view.gui.action.display.ConfigurationDialogOpenAction;
 import org.mklab.mikity.view.gui.action.display.ResetToInitialStateAction;
@@ -191,10 +191,10 @@ public class ModelingWindow extends ApplicationWindow {
    * 単位を設定します。
    */
   private void setUnit() {
-    final Mikity3dConfiguration config = this.root.getConfiguration(0);
+    final ConfigurationModel config = this.root.getConfiguration(0);
 
     if (config.getModelUnit() != null) {
-      final ModelUnit modelUnit = config.getModelUnit();
+      final ModelUnitModel modelUnit = config.getModelUnit();
       if (modelUnit.getAngleUnit() != null) {
         UnitLabel.setModelAngle(modelUnit.getAngleUnit());
       }
@@ -204,7 +204,7 @@ public class ModelingWindow extends ApplicationWindow {
     }
     
     if (config.getDataUnit() != null) {
-      final DataUnit dataUnit = config.getDataUnit();
+      final DataUnitModel dataUnit = config.getDataUnit();
       if (dataUnit.getAngle() != null) {
         UnitLabel.setDataAngle(dataUnit.getAngle());
       }

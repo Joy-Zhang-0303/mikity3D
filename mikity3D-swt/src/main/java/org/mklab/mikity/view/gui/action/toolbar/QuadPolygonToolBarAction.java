@@ -7,9 +7,9 @@ package org.mklab.mikity.view.gui.action.toolbar;
 
 import java.util.Arrays;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.Vertex;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -33,15 +33,15 @@ public class QuadPolygonToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final XMLQuadPolygon polygon = new XMLQuadPolygon();
-    final Vertex vertex0 = new Vertex(0.0f, -0.3f, 0.0f);
-    final Vertex vertex1 = new Vertex(0.0f, 0.3f, 0.0f);
-    final Vertex vertex2 = new Vertex(0.0f, 0.3f, 0.3f);
-    final Vertex vertex3 = new Vertex(0.0f, -0.3f, 0.3f);
+    final QuadPolygonModel polygon = new QuadPolygonModel();
+    final VertexModel vertex0 = new VertexModel(0.0f, -0.3f, 0.0f);
+    final VertexModel vertex1 = new VertexModel(0.0f, 0.3f, 0.0f);
+    final VertexModel vertex2 = new VertexModel(0.0f, 0.3f, 0.3f);
+    final VertexModel vertex3 = new VertexModel(0.0f, -0.3f, 0.3f);
     polygon.setVertices(Arrays.asList(vertex0, vertex1, vertex2, vertex3));
     polygon.setColor("blue"); //$NON-NLS-1$
     
-    final Group rootGroup = this.modeler.getTargetGroup();
+    final GroupModel rootGroup = this.modeler.getTargetGroup();
     rootGroup.addXMLQuadPolygon(polygon);
 
     update();

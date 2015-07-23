@@ -8,7 +8,7 @@ package org.mklab.mikity.model.xml.simplexml.blender;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Vertex;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.simpleframework.xml.Element;
 
 
@@ -28,9 +28,9 @@ public class Source {
   /** 座標の値を記したリスト */
   private List<Float> locations;
   /** 頂点座標をまとめたリスト  */
-  private List<Vertex> vertexLocations;
+  private List<VertexModel> vertexLocations;
   /** 法線ベクトルをまとめたリスト  */
-  private List<Vertex> normalVectors;
+  private List<VertexModel> normalVectors;
 
   /**
    * コンストラクタ
@@ -47,7 +47,7 @@ public class Source {
    * 
    * @return　頂点座標をまとめたリスト
    */
-  public List<Vertex> getVertexLocation() {
+  public List<VertexModel> getVertexLocation() {
     setVertexLocations();
     return this.vertexLocations;
   }
@@ -57,7 +57,7 @@ public class Source {
    * 
    * @return　法線ベクトルをまとめたリスト
    */
-  public List<Vertex> getNormalLocation() {
+  public List<VertexModel> getNormalLocation() {
     setNormalLocations();
     return this.normalVectors;
   }
@@ -70,7 +70,7 @@ public class Source {
     divideString();
 
     for (int i = 0; i < this.locations.size(); i += 3) {
-      this.vertexLocations.add(new Vertex(this.locations.get(i), this.locations.get(i + 1), this.locations.get(i + 2)));
+      this.vertexLocations.add(new VertexModel(this.locations.get(i), this.locations.get(i + 1), this.locations.get(i + 2)));
     }
 
   }
@@ -83,7 +83,7 @@ public class Source {
     divideString();
 
     for (int i = 0; i < this.locations.size(); i += 3) {
-      this.normalVectors.add(new Vertex(this.locations.get(i), this.locations.get(i + 1), this.locations.get(i + 2)));
+      this.normalVectors.add(new VertexModel(this.locations.get(i), this.locations.get(i + 1), this.locations.get(i + 2)));
     }
   }
 

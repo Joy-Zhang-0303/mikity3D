@@ -11,15 +11,15 @@ import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesCylinde
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesQuadPolygon;
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesSphere;
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesTrianglePolygon;
-import org.mklab.mikity.model.xml.simplexml.model.Rotation;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
-import org.mklab.mikity.model.xml.simplexml.model.Vertex;
-import org.mklab.mikity.model.xml.simplexml.model.XMLBox;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCone;
-import org.mklab.mikity.model.xml.simplexml.model.XMLCylinder;
-import org.mklab.mikity.model.xml.simplexml.model.XMLQuadPolygon;
-import org.mklab.mikity.model.xml.simplexml.model.XMLSphere;
-import org.mklab.mikity.model.xml.simplexml.model.XMLTrianglePolygon;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 import org.mklab.mikity.util.Vector3;
 
 
@@ -36,7 +36,7 @@ public class OpenglesPrimitiveFactory {
    * @param box ボックス
    * @return 与えられたboxを含むグループ
    */
-  public static OpenglesObject create(XMLBox box) {
+  public static OpenglesObject create(BoxModel box) {
     final float width = box.getWidth();
     final float height = box.getHeight();
     final float depth = box.getDepth();
@@ -48,8 +48,8 @@ public class OpenglesPrimitiveFactory {
     child.setSize(width, height, depth);
     child.setTransparent(transparent);
 
-    final Translation translation = box.getTranslation();
-    final Rotation rotation = box.getRotation();
+    final TranslationModel translation = box.getTranslation();
+    final RotationModel rotation = box.getRotation();
     
     if (translation == null && rotation == null) {
       return child;
@@ -68,7 +68,7 @@ public class OpenglesPrimitiveFactory {
    * @param cylinder シリンダー
    * @return 与えられたcylinderを含むグループ
    */
-  public static OpenglesObject create(XMLCylinder cylinder) {
+  public static OpenglesObject create(CylinderModel cylinder) {
     final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
@@ -81,8 +81,8 @@ public class OpenglesPrimitiveFactory {
     child.setColor(color);
     child.setTransparent(transparent);
 
-    final Translation translation = cylinder.getTranslation();
-    final Rotation rotation = cylinder.getRotation();
+    final TranslationModel translation = cylinder.getTranslation();
+    final RotationModel rotation = cylinder.getRotation();
     
     if (translation == null && rotation == null) {
       return child;
@@ -101,7 +101,7 @@ public class OpenglesPrimitiveFactory {
    * @param sphere 球体
    * @return 与えられたsphereを含むグループ
    */
-  public static OpenglesObject create(XMLSphere sphere) {
+  public static OpenglesObject create(SphereModel sphere) {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
     final String color = sphere.getColor();
@@ -113,8 +113,8 @@ public class OpenglesPrimitiveFactory {
     child.setColor(color);
     child.setTransparent(transparent);
 
-    final Translation translation = sphere.getTranslation();
-    final Rotation rotation = sphere.getRotation();
+    final TranslationModel translation = sphere.getTranslation();
+    final RotationModel rotation = sphere.getRotation();
     
     if (translation == null && rotation == null) {
       return child;
@@ -133,7 +133,7 @@ public class OpenglesPrimitiveFactory {
    * @param cone コーン
    * @return 与えられたconeを含むグループ
    */
-  public static OpenglesObject create(XMLCone cone) {
+  public static OpenglesObject create(ConeModel cone) {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
@@ -146,8 +146,8 @@ public class OpenglesPrimitiveFactory {
     child.setDivision(division);
     child.setTransparent(transparent);
 
-    final Translation translation = cone.getTranslation();
-    final Rotation rotation = cone.getRotation();
+    final TranslationModel translation = cone.getTranslation();
+    final RotationModel rotation = cone.getRotation();
     
     if (translation == null && rotation == null) {
       return child;
@@ -166,10 +166,10 @@ public class OpenglesPrimitiveFactory {
    * @param polygon 三角形のポリゴン
    * @return 与えられた三角形ポリゴンを含むグループを生成します。
    */
-  public static OpenglesObject create(XMLTrianglePolygon polygon) {
+  public static OpenglesObject create(TrianglePolygonModel polygon) {
     final float[][] vertices = new float[3][3];
     for (int i = 0; i < 3; i++) {
-      final Vertex vertex = polygon.getVertex(i);
+      final VertexModel vertex = polygon.getVertex(i);
       vertices[i][0] = vertex.getX();
       vertices[i][1] = vertex.getY();
       vertices[i][2] = vertex.getZ();
@@ -190,8 +190,8 @@ public class OpenglesPrimitiveFactory {
     child.setNormalVector(normalVector);
     child.setTransparent(transparent);
 
-    final Translation translation = polygon.getTranslation();
-    final Rotation rotation = polygon.getRotation();
+    final TranslationModel translation = polygon.getTranslation();
+    final RotationModel rotation = polygon.getRotation();
     
     if (translation == null && rotation == null) {
       return child;
@@ -210,10 +210,10 @@ public class OpenglesPrimitiveFactory {
    * @param polygon 四角形のポリゴン
    * @return　与えられた四角形ポリゴンを含むグループ
    */
-  public static OpenglesObject create(XMLQuadPolygon polygon) {
+  public static OpenglesObject create(QuadPolygonModel polygon) {
     final float[][] vertices = new float[4][3];
     for (int i = 0; i < 4; i++) {
-      final Vertex vertex = polygon.getVertex(i);
+      final VertexModel vertex = polygon.getVertex(i);
       vertices[i][0] = vertex.getX();
       vertices[i][1] = vertex.getY();
       vertices[i][2] = vertex.getZ();
@@ -234,8 +234,8 @@ public class OpenglesPrimitiveFactory {
     child.setNormalVector(normalVector);
     child.setTransparent(transparent);
 
-    final Translation translation = polygon.getTranslation();
-    final Rotation rotation = polygon.getRotation();
+    final TranslationModel translation = polygon.getTranslation();
+    final RotationModel rotation = polygon.getRotation();
     
     if (translation == null && rotation == null) {
       return child;
@@ -256,7 +256,7 @@ public class OpenglesPrimitiveFactory {
    * @param rotation 回転変換
    * @return 基準座標系
    */
-  private static OpenglesCoordinate createBaseCoordinate(final Translation translation, final Rotation rotation) {
+  private static OpenglesCoordinate createBaseCoordinate(final TranslationModel translation, final RotationModel rotation) {
     if (translation != null && rotation != null) {
       final float translationX = translation.getX();
       final float translationY = translation.getY();

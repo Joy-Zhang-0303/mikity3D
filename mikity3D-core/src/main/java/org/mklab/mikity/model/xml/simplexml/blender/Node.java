@@ -8,9 +8,9 @@ package org.mklab.mikity.model.xml.simplexml.blender;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.Group;
-import org.mklab.mikity.model.xml.simplexml.model.LinkData;
-import org.mklab.mikity.model.xml.simplexml.model.Translation;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.util.Matrix4;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -46,7 +46,7 @@ public class Node {
 
   private String geometryURL;
 
-  private Group group;
+  private GroupModel group;
 
   /** 列ベクトルリスト */
   private List<String> vectors;
@@ -78,7 +78,7 @@ public class Node {
     this.vectors = new ArrayList<>();
     this.matrix4f = new Matrix4();
     this.matrixNodes = new ArrayList<>();
-    this.group = new Group();
+    this.group = new GroupModel();
   }
 
   /**
@@ -361,15 +361,15 @@ public class Node {
     if (this.type != null) {
       if (this.type.equals("JOINT")) { //$NON-NLS-1$
         this.group.setName(this.name);
-        final Translation location = new Translation(this.matrix4f.getElement(0, 3), this.matrix4f.getElement(1, 3), this.matrix4f.getElement(2, 3));
+        final TranslationModel location = new TranslationModel(this.matrix4f.getElement(0, 3), this.matrix4f.getElement(1, 3), this.matrix4f.getElement(2, 3));
         this.group.setTranslation(location);
         
-        LinkData[] linkdata = new LinkData[3];
-        linkdata[0] = new LinkData();
+        LinkDataModel[] linkdata = new LinkDataModel[3];
+        linkdata[0] = new LinkDataModel();
         linkdata[0].setTarget("translationX"); //$NON-NLS-1$
-        linkdata[1] = new LinkData();
+        linkdata[1] = new LinkDataModel();
         linkdata[1].setTarget("translationY"); //$NON-NLS-1$
-        linkdata[2] = new LinkData();
+        linkdata[2] = new LinkDataModel();
         linkdata[2].setTarget("translationZ"); //$NON-NLS-1$
         this.group.setLinks(linkdata);
       }
@@ -379,7 +379,7 @@ public class Node {
   /**
    * @return group
    */
-  public Group getGroup() {
+  public GroupModel getGroup() {
     return this.group;
   }
 }
