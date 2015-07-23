@@ -42,7 +42,7 @@ public class ConfigurationDialogOpenAction extends Action {
    */
   @Override
   public void run() {
-    final ConfigurationDialog dialog = new ConfigurationDialog(this.window.getShell(), this.window.getRoot().getConfiguration(0), this.modeler);
+    final ConfigurationDialog dialog = new ConfigurationDialog(this.window.getShell(), this.modeler.getRoot().getConfiguration(0), this.modeler);
     dialog.open();
     this.window.setChanged(true);
   }

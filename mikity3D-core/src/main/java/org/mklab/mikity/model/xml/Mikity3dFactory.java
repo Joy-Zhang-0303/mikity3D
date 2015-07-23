@@ -166,7 +166,7 @@ public class Mikity3dFactory {
    * @return Mikity3Dモデル
    */
   public Mikity3d createEmptyModel() {
-    final ConfigurationModel config = new ConfigurationModel();
+    final ConfigurationModel configuration = new ConfigurationModel();
 
     final GroupModel group = new GroupModel();
     group.setName("root"); //$NON-NLS-1$
@@ -175,7 +175,7 @@ public class Mikity3dFactory {
     model.addGroup(group);
 
     final Mikity3d root = new Mikity3d();
-    root.addConfiguration(config);
+    root.addConfiguration(configuration);
     root.addModel(model);
     return root;
   }

@@ -17,8 +17,7 @@ import org.mklab.mikity.view.gui.ModelingWindow;
  * @version $Revision: 1.5 $.2005/02/18
  */
 public class AnimationWindowOpenAction extends Action {
-
-  /** ウィンドウ */
+  /** モデリングウィンドウ。 */
   private ModelingWindow window;
 
   /**
@@ -39,9 +38,6 @@ public class AnimationWindowOpenAction extends Action {
   @Override
   public void run() {
     final AnimationWindow viewer = new AnimationWindow(this.window.getShell(), this.window.getRoot(), this.window.getFile());
-//    final SceneGraphTree tree = new SceneGraphTree();
-//    tree.setAllTransparent(this.window.getRoot().getModel(0).getGroup(0), false);
     viewer.open();
-    this.window.setChanged(true);
   }
 }

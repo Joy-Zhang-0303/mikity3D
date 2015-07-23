@@ -13,18 +13,13 @@ import org.mklab.mikity.view.gui.action.Messages;
  * @version $Revision$, 2015/07/18
  */
 public class ResetToInitialStateAction extends Action {
-  /**　モデリングウィンドウ。   */
-  ModelingWindow window;
-  
   /** モデラー。 */
   JoglModeler modeler;
 
   /**
    * 新しく生成された<code>ResetOperationAction</code>オブジェクトを初期化します。
-   * @param window モデリングウィンドウ
    */
-  public ResetToInitialStateAction(final ModelingWindow window) {
-    this.window = window;
+  public ResetToInitialStateAction() {
     setText(Messages.getString("ResetToInitialStateAction.0")); //$NON-NLS-1$
     setToolTipText(Messages.getString("ResetToInitialStateAction.1")); //$NON-NLS-1$
   }

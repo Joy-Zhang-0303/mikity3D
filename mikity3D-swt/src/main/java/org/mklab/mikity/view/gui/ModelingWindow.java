@@ -56,7 +56,7 @@ public class ModelingWindow extends ApplicationWindow {
   /** */
   Action CONFIGURATION_DIALOG_OPEN_ACTION = new ConfigurationDialogOpenAction(this);
   /** */
-  ResetToInitialStateAction RESET_TO_INITIAL_STATE_ACTION = new ResetToInitialStateAction(this);
+  ResetToInitialStateAction RESET_TO_INITIAL_STATE_ACTION = new ResetToInitialStateAction();
   /** */
   Action ANIMATION_WINDOW_OPEN_ACTION = new AnimationWindowOpenAction(this);
 

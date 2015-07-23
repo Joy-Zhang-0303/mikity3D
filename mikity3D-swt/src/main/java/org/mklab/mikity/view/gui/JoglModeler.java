@@ -15,6 +15,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
 
 
@@ -147,7 +148,16 @@ public class JoglModeler extends Composite {
    * 
    * @return 選択されているグループ
    */
-  public org.mklab.mikity.model.xml.simplexml.model.GroupModel getTargetGroup() {
+  public GroupModel getTargetGroup() {
     return this.tree.getTargetGroup();
+  }
+  
+  /**
+   * シーングラフのルートを返します。
+   * 
+   * @return root
+   */
+  public Mikity3d getRoot() {
+    return this.root;
   }
 }
