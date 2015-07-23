@@ -512,7 +512,7 @@ public class EditPrimitiveDialog {
 
     int division = 0;
     if (this.parameter3.getIntValue() < 3) {
-      division = 30;
+      division = 3;
     } else {
       division = this.parameter3.getIntValue();
     }
@@ -532,7 +532,7 @@ public class EditPrimitiveDialog {
 
     int division = 0;
     if (this.parameter2.getIntValue() < 3) {
-      division = 30;
+      division = 3;
     } else {
       division = this.parameter2.getIntValue();
     }
@@ -553,7 +553,7 @@ public class EditPrimitiveDialog {
 
     int division = 0;
     if (this.parameter3.getIntValue() < 3) {
-      division = 30;
+      division = 3;
     } else {
       division = this.parameter3.getIntValue();
     }

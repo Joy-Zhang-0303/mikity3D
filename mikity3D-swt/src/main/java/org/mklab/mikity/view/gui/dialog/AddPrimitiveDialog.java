@@ -50,7 +50,7 @@ public class AddPrimitiveDialog {
   private ParameterInputBox translationX;
   private ParameterInputBox translationY;
   private ParameterInputBox translationZ;
-  private Combo primitiveCombo;
+  //private Combo primitiveCombo;
   private Combo colorCombo;
   private Group group;
   private String angleUnit;
@@ -82,13 +82,13 @@ public class AddPrimitiveDialog {
     createSShell();
     
     if (selectedIndex == BOX) {
-      boxLabel();
+      prepareBoxLabel();
     } else if (selectedIndex == CYLINDER) {
-      cylinderLabel();
+      prepareCylinderLabel();
     } else if (selectedIndex == SPHERE) {
-      sphereLabel();
+      prepareSphereLabel();
     } else if (selectedIndex == CONE) {
-      coneLabel();
+      prepareConeLabel();
     }
   }
 
@@ -380,7 +380,6 @@ public class AddPrimitiveDialog {
   private int getDivision(ParameterInputBox parameter) {
     int division = (int)parameter.getDoubleValue();
     if (division < 3) {
-      // 3以下なので、3を返します
       division = 3;
     }
     return division;
@@ -409,13 +408,13 @@ public class AddPrimitiveDialog {
       AddPrimitiveDialog.this.selectedIndex = combo.getSelectionIndex();
 
       if (AddPrimitiveDialog.this.selectedIndex == BOX) {
-        boxLabel();
+        prepareBoxLabel();
       } else if (AddPrimitiveDialog.this.selectedIndex == CYLINDER) {
-        cylinderLabel();
+        prepareCylinderLabel();
       } else if (AddPrimitiveDialog.this.selectedIndex == SPHERE) {
-        sphereLabel();
+        prepareSphereLabel();
       } else if (AddPrimitiveDialog.this.selectedIndex == CONE) {
-        coneLabel();
+        prepareConeLabel();
       }
     }
   }
@@ -423,7 +422,7 @@ public class AddPrimitiveDialog {
   /**
    * 選ばれているprimitiveがBoxのとき
    */
-  void boxLabel() {
+  void prepareBoxLabel() {
     this.parameter1.setLabelText(Messages.getString("AddPrimitiveDialog.22")); //$NON-NLS-1$
     this.parameter2.setLabelText(Messages.getString("AddPrimitiveDialog.23")); //$NON-NLS-1$
     this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
@@ -435,7 +434,7 @@ public class AddPrimitiveDialog {
   /**
    * Cylinderのとき
    */
-  void cylinderLabel() {
+  void prepareCylinderLabel() {
     this.parameter1.setLabelText(Messages.getString("AddPrimitiveDialog.25")); //$NON-NLS-1$
     this.parameter2.setLabelText(Messages.getString("AddPrimitiveDialog.26")); //$NON-NLS-1$
     this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
@@ -452,7 +451,7 @@ public class AddPrimitiveDialog {
   /**
    * Sphereのとき
    */
-  void sphereLabel() {
+  void prepareSphereLabel() {
     this.parameter1.setLabelText(Messages.getString("AddPrimitiveDialog.28")); //$NON-NLS-1$
     this.parameter2.setLabelText(Messages.getString("AddPrimitiveDialog.29")); //$NON-NLS-1$
     this.unitLabel2.setText(" "); //$NON-NLS-1$
@@ -468,7 +467,7 @@ public class AddPrimitiveDialog {
   /**
    * Coneのとき
    */
-  void coneLabel() {
+  void prepareConeLabel() {
     this.parameter1.setLabelText(Messages.getString("AddPrimitiveDialog.31")); //$NON-NLS-1$
     this.parameter2.setLabelText(Messages.getString("AddPrimitiveDialog.32")); //$NON-NLS-1$
     this.unitLabel2.setText(this.lengthUnit + " "); //$NON-NLS-1$
@@ -482,20 +481,20 @@ public class AddPrimitiveDialog {
     }
   }
 
-  /**
-   * コンボボックス primCombo プリミティブを選択
-   */
-  private void createPrimitiveCombo() {
-    this.primitiveCombo = new Combo(this.sShell, SWT.READ_ONLY);
-    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-    gridData.horizontalSpan = 2;
-    this.primitiveCombo.setLayoutData(gridData);   
-    
-    final String[] primitives = {"Box", "Cylinder", "Sphere", "Cone"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-    this.primitiveCombo.setItems(primitives);
-    this.primitiveCombo.setText("Box"); //$NON-NLS-1$
-    this.primitiveCombo.addSelectionListener(new PComboCheck());
-  }
+//  /**
+//   * コンボボックス primCombo プリミティブを選択
+//   */
+//  private void createPrimitiveCombo() {
+//    this.primitiveCombo = new Combo(this.sShell, SWT.READ_ONLY);
+//    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+//    gridData.horizontalSpan = 2;
+//    this.primitiveCombo.setLayoutData(gridData);   
+//    
+//    final String[] primitives = {"Box", "Cylinder", "Sphere", "Cone"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+//    this.primitiveCombo.setItems(primitives);
+//    this.primitiveCombo.setText("Box"); //$NON-NLS-1$
+//    this.primitiveCombo.addSelectionListener(new PComboCheck());
+//  }
 
   /**
    * コンボボックス colorCombo プリミティブの色を選択
