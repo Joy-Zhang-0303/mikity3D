@@ -94,14 +94,14 @@ public class SceneGraphTree {
    */
   private void createTree(final Composite composite) {
     composite.setLayout(new GridLayout(1, true));
-    //final GridData data1 = new GridData(GridData.FILL_BOTH);
     this.xmlTree = new Tree(composite, SWT.SINGLE | SWT.BORDER);
     final GridData data2 = new GridData(GridData.FILL_BOTH);
     this.xmlTree.setLayoutData(data2);
 
     fillTree();
 
-    new DragAndDropEnabler(this.xmlTree);
+    // TODO
+    // new DragAndDropEnabler(this.xmlTree);
 
     this.xmlTree.addMouseListener(new MouseAdapter() {
 
