@@ -6,6 +6,7 @@ package org.mklab.mikity.view.gui.action.file;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
+import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.MessagegUtil;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -17,9 +18,10 @@ import org.mklab.mikity.view.gui.ModelingWindow;
  * @version $Revision: 1.3 $.
  */
 public class FileExitAction extends Action {
-
   /** ウィンドウ */
   private ModelingWindow window;
+  /** モデラー。 */
+  private JoglModeler modeler;
 
   /**
    * 新しく生成された<code>FileExitAction</code>オブジェクトを初期化します。
@@ -36,8 +38,8 @@ public class FileExitAction extends Action {
    */
   @Override
   public void run() {
-    if (this.window.isChanged()) {
-      int yesNo = MessagegUtil.showYesNoCancel(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
+    if (this.modeler.isChanged()) {
+      final int yesNo = MessagegUtil.showYesNoCancel(this.window.getShell(), Messages.getString("FileExitAction.2")); //$NON-NLS-1$
       switch (yesNo) {
         case SWT.YES:
             new FileSaveAction(this.window).run();
@@ -51,5 +53,13 @@ public class FileExitAction extends Action {
       }
     }
     this.window.close();
+  }
+  
+  /**
+   * モデラーを設定します。
+   * @param modeler モデラー
+   */
+  public void setModeler(JoglModeler modeler) {
+    this.modeler = modeler;
   }
 }

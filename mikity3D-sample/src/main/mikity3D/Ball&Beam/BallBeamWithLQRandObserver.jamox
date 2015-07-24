@@ -284,7 +284,7 @@
             <port id="5385" name="u5385" type="input">
                 <figure x="1276" y="148" angle="0"/>
             </port>
-            <param name="matrix_file_name">C:\Users\koga\Desktop\ballbeamRad.mat</param>
+            <param name="matrix_file_name">C:\Users\koga\Desktop\ballBeamRad.mat</param>
             <param name="file_type">mat</param>
             <param name="exportable">true</param>
             <figure x="1355" y="151" height="40" width="153" angle="0" horizontalReflect="false" verticalReflect="false">

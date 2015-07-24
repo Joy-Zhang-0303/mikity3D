@@ -35,6 +35,9 @@ public class JoglModeler extends Composite {
   /** */
   Frame awtFrame;
   
+  /** 変更されていればtrue。 */
+  private boolean isChanged = false;
+  
   private Group treeViewerGroup;
 
   /**
@@ -97,6 +100,7 @@ public class JoglModeler extends Composite {
    */
   public void setModel(Mikity3d root) {
     this.root = root;
+    this.isChanged = false;
     this.tree.setModel(root.getModel(0));
     createViewer();
   }
@@ -159,5 +163,23 @@ public class JoglModeler extends Composite {
    */
   public Mikity3d getRoot() {
     return this.root;
+  }
+  
+  /**
+   * 変更されたか設定します。
+   * 
+   * @param isChanged 変更されている場合true
+   */
+  public void setChanged(final boolean isChanged) {
+    this.isChanged = isChanged;
+  }
+  
+  /**
+   * 変更されたか判定します。
+   * 
+   * @return 変更されている場合true
+   */
+  public boolean isChanged() {
+    return this.isChanged;
   }
 }

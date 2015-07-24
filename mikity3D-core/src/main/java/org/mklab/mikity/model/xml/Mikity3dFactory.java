@@ -9,17 +9,11 @@ import java.io.File;
 import java.io.InputStream;
 
 import org.mklab.mikity.model.xml.simplexml.ColladaUnmarshaller;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
-import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
-import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
-import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
-import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
-import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
 
 /**
@@ -40,54 +34,59 @@ public class Mikity3dFactory {
   public void importFile(File file, Mikity3d parent) throws Mikity3dSerializeDeserializeException {
     final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
     unmarshaller.unmarshalFromMikity3DFile(file);
-    final Mikity3d root = unmarshaller.getRoot();
+    final Mikity3d importedMikity3d = unmarshaller.getRoot();
+    final GroupModel[] rootGroups = importedMikity3d.getModel(0).getGroups();
+    
+    final Mikity3dModel parentMikity3d = parent.getModel(0);
+    
+    for (GroupModel rootGroup : rootGroups) {
+      parentMikity3d.addGroup(rootGroup);
+    }
+    
 
-    final GroupModel parentGroup = parent.getModel(0).getGroup(0);
-    final GroupModel rootGroup = root.getModel(0).getGroup(0);
-
-    final BoxModel[] boxes = rootGroup.getXMLBoxes();
-    final ConeModel[] cones = rootGroup.getXMLCones();
-    final CylinderModel[] cylinders = rootGroup.getXMLCylinders();
-    final SphereModel[] spheres = rootGroup.getXMLSpheres();
-    final TrianglePolygonModel[] trianglePolygons = rootGroup.getXMLTrianglePolygons();
-    final QuadPolygonModel[] quadPolygons = rootGroup.getXMLQuadPolygons();
-    final GroupModel[] groups = rootGroup.getGroups();
-
-    if (boxes != null) {
-      for (final BoxModel box : boxes) {
-        parentGroup.addXMLBox(box);
-      }
-    }
-    if (cones != null) {
-      for (final ConeModel cone : cones) {
-        parentGroup.addXMLCone(cone);
-      }
-    }
-    if (cylinders != null) {
-      for (final CylinderModel cylinder : cylinders) {
-        parentGroup.addXMLCylinder(cylinder);
-      }
-    }
-    if (spheres != null) {
-      for (final SphereModel sphere : spheres) {
-        parentGroup.addXMLSphere(sphere);
-      }
-    }
-    if (trianglePolygons != null) {
-      for (final TrianglePolygonModel polygon : trianglePolygons) {
-        parentGroup.addXMLTrianglePolygon(polygon);
-      }
-    }
-    if (quadPolygons != null) {
-      for (final QuadPolygonModel polygon : quadPolygons) {
-        parentGroup.addXMLQuadPolygon(polygon);
-      }
-    }
-    if (groups != null) {
-      for (final GroupModel group : groups) {
-        parentGroup.addGroup(group);
-      }
-    }
+//    final BoxModel[] boxes = rootGroup.getXMLBoxes();
+//    final ConeModel[] cones = rootGroup.getXMLCones();
+//    final CylinderModel[] cylinders = rootGroup.getXMLCylinders();
+//    final SphereModel[] spheres = rootGroup.getXMLSpheres();
+//    final TrianglePolygonModel[] trianglePolygons = rootGroup.getXMLTrianglePolygons();
+//    final QuadPolygonModel[] quadPolygons = rootGroup.getXMLQuadPolygons();
+//    final GroupModel[] groups = rootGroup.getGroups();
+//
+//    if (boxes != null) {
+//      for (final BoxModel box : boxes) {
+//        parentGroup.addXMLBox(box);
+//      }
+//    }
+//    if (cones != null) {
+//      for (final ConeModel cone : cones) {
+//        parentGroup.addXMLCone(cone);
+//      }
+//    }
+//    if (cylinders != null) {
+//      for (final CylinderModel cylinder : cylinders) {
+//        parentGroup.addXMLCylinder(cylinder);
+//      }
+//    }
+//    if (spheres != null) {
+//      for (final SphereModel sphere : spheres) {
+//        parentGroup.addXMLSphere(sphere);
+//      }
+//    }
+//    if (trianglePolygons != null) {
+//      for (final TrianglePolygonModel polygon : trianglePolygons) {
+//        parentGroup.addXMLTrianglePolygon(polygon);
+//      }
+//    }
+//    if (quadPolygons != null) {
+//      for (final QuadPolygonModel polygon : quadPolygons) {
+//        parentGroup.addXMLQuadPolygon(polygon);
+//      }
+//    }
+//    if (groups != null) {
+//      for (final GroupModel group : groups) {
+//        parentGroup.addGroup(group);
+//      }
+//    }
   }
 
   /**

@@ -35,6 +35,6 @@ public class ConeToolBarAction extends AbstractToolBarAction {
     rootGroup.addXMLCone(cone);
     update();
     
-    this.window.setChanged(true);
+    this.modeler.setChanged(true);
   }
 }

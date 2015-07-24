@@ -36,6 +36,6 @@ public class SphereToolBarAction extends AbstractToolBarAction {
     
     update();
     
-    this.window.setChanged(true);
+    this.modeler.setChanged(true);
   }
 }

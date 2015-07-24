@@ -35,6 +35,6 @@ public class BoxToolBarAction extends AbstractToolBarAction {
     rootGroup.addXMLBox(box);
     update();
     
-    this.window.setChanged(true);
+    this.modeler.setChanged(true);
   }
 }

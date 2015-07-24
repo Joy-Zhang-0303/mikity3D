@@ -1,6 +1,6 @@
 <mikity3d>
    <model>
-      <group name="Group0">
+      <group name="doublePendulum">
          <translation x="0.0" y="0.0" z="0.0"/>
          <rotation x="1.57" y="1.57" z="0.0"/>
          <group name="belt">

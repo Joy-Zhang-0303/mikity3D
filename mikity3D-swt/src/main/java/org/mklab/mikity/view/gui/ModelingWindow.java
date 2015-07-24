@@ -73,8 +73,8 @@ public class ModelingWindow extends ApplicationWindow {
   private JoglModeler modeler;
   /** ファイル。 */
   private File file;
-  /** 変更されていればtrue。 */
-  private boolean isChanged;
+//  /** 変更されていればtrue。 */
+//  private boolean isChanged;
 
   /**
    * 新しく生成された<code>ModelingWindow</code>オブジェクトを初期化します。
@@ -107,6 +107,7 @@ public class ModelingWindow extends ApplicationWindow {
     this.modeler = new JoglModeler(localComposite, this.root);
     
     ((ConfigurationDialogOpenAction)this.CONFIGURATION_DIALOG_OPEN_ACTION).setModeler(this.modeler);
+    ((FileExitAction)this.FILE_EXIT_ACTION).setModeler(this.modeler);
     this.TOOLBAR_BOX_ACTION.setModeler(this.modeler);
     this.TOOLBAR_SPHERE_ACTION.setModeler(this.modeler);
     this.TOOLBAR_CYLINDER_ACTION.setModeler(this.modeler);
@@ -234,7 +235,7 @@ public class ModelingWindow extends ApplicationWindow {
     this.root.getMikity3dData();
     final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
     marshaller.marshal(this.file);
-    this.isChanged = false;
+    this.modeler.setChanged(false);
   }
 
   /**
@@ -253,7 +254,6 @@ public class ModelingWindow extends ApplicationWindow {
     setUnit();
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
-    this.isChanged = false;
   }
 
   /**
@@ -272,24 +272,24 @@ public class ModelingWindow extends ApplicationWindow {
     setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
-    this.isChanged = false;
+    this.modeler.setChanged(true);
   }
 
-  /**
-   * 変更されているか判定します。
-   * @return 変更されている場合true
-   */
-  public boolean isChanged() {
-    return this.isChanged;
-  }
+//  /**
+//   * 変更されているか判定します。
+//   * @return 変更されている場合true
+//   */
+//  public boolean isChanged() {
+//    return this.isChanged;
+//  }
 
-  /**
-   * 変更されているか設定します。
-   * @param isChanged 変更されている場合true
-   */
-  public void setChanged(final boolean isChanged) {
-    this.isChanged = isChanged;
-  }
+//  /**
+//   * 変更されているか設定します。
+//   * @param isChanged 変更されている場合true
+//   */
+//  public void setChanged(final boolean isChanged) {
+//    this.isChanged = isChanged;
+//  }
 
   /**
    * {@inheritDoc}

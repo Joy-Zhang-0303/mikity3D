@@ -1,6 +1,6 @@
 <mikity3d>
    <model>
-      <group name="Group0">
+      <group name="robotArm2">
          <group name="dodai">
             <rotation x="0.0" y="0.0" z="-1.57"/>
             <cylinder radius="0.2" height="0.2" division="30" color="yellow" transparent="false">
