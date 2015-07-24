@@ -73,8 +73,6 @@ public class ModelingWindow extends ApplicationWindow {
   private JoglModeler modeler;
   /** ファイル。 */
   private File file;
-//  /** 変更されていればtrue。 */
-//  private boolean isChanged;
 
   /**
    * 新しく生成された<code>ModelingWindow</code>オブジェクトを初期化します。
@@ -192,10 +190,10 @@ public class ModelingWindow extends ApplicationWindow {
    * 単位を設定します。
    */
   private void setUnit() {
-    final ConfigurationModel config = this.root.getConfiguration(0);
+    final ConfigurationModel configuration = this.root.getConfiguration(0);
 
-    if (config.getModelUnit() != null) {
-      final ModelUnitModel modelUnit = config.getModelUnit();
+    if (configuration.getModelUnit() != null) {
+      final ModelUnitModel modelUnit = configuration.getModelUnit();
       if (modelUnit.getAngleUnit() != null) {
         UnitLabel.setModelAngle(modelUnit.getAngleUnit());
       }
@@ -204,8 +202,8 @@ public class ModelingWindow extends ApplicationWindow {
       }
     }
     
-    if (config.getDataUnit() != null) {
-      final DataUnitModel dataUnit = config.getDataUnit();
+    if (configuration.getDataUnit() != null) {
+      final DataUnitModel dataUnit = configuration.getDataUnit();
       if (dataUnit.getAngle() != null) {
         UnitLabel.setDataAngle(dataUnit.getAngle());
       }
@@ -249,8 +247,8 @@ public class ModelingWindow extends ApplicationWindow {
     
     this.root = new Mikity3dFactory().loadFile(this.file);
     
-    final SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);
+//    final SceneGraphTree tree = new SceneGraphTree();
+//    tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);
     setUnit();
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
@@ -267,29 +265,15 @@ public class ModelingWindow extends ApplicationWindow {
     
     new Mikity3dFactory().importFile(this.file, this.root);
 
-    final SceneGraphTree tree = new SceneGraphTree();
-    tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);
-    setUnit();
+//    final SceneGraphTree tree = new SceneGraphTree();
+//    tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);
+//    setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
-    this.modeler.setModel(this.root);
+//    this.modeler.setModel(this.root);
     this.modeler.setChanged(true);
+    this.modeler.fillTree();
+    this.modeler.updateRenderer();
   }
-
-//  /**
-//   * 変更されているか判定します。
-//   * @return 変更されている場合true
-//   */
-//  public boolean isChanged() {
-//    return this.isChanged;
-//  }
-
-//  /**
-//   * 変更されているか設定します。
-//   * @param isChanged 変更されている場合true
-//   */
-//  public void setChanged(final boolean isChanged) {
-//    this.isChanged = isChanged;
-//  }
 
   /**
    * {@inheritDoc}

@@ -31,8 +31,8 @@ public class BoxToolBarAction extends AbstractToolBarAction {
     box.setDepth(0.10f);
     box.setColor("red"); //$NON-NLS-1$
     
-    final GroupModel rootGroup = this.modeler.getTargetGroup();
-    rootGroup.addXMLBox(box);
+    final GroupModel group = this.modeler.getTargetGroup();
+    group.addXMLBox(box);
     update();
     
     this.modeler.setChanged(true);

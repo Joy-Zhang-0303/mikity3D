@@ -32,13 +32,9 @@ public class JoglModeler extends Composite {
   private JoglModelRenderer renderer;
   /** ルート。 */
   Mikity3d root;
-  /** */
-  Frame awtFrame;
   
   /** 変更されていればtrue。 */
   private boolean isChanged = false;
-  
-  private Group treeViewerGroup;
 
   /**
    * 新しく生成された<code>AbstractModeler</code>オブジェクトを初期化します。
@@ -56,21 +52,21 @@ public class JoglModeler extends Composite {
     sash.setLayoutData(new GridData(GridData.FILL_BOTH));
     sash.setLayout(new GridLayout());
 
-    createViewerComposite(sash);
+    createCanvasComposite(sash);
     createTreeComposite(sash);
   }
 
   /**
-   * 3Dグラフィックスを表示するコンポジットを生成します。
+   * 3Dグラフィックスを表示するキャンバスを生成します。
    * 
    * @param composite 親コンポジット
    */
-  private void createViewerComposite(Composite composite) {
+  private void createCanvasComposite(Composite composite) {
     final GridData gridData = new GridData(GridData.FILL_BOTH);
-    final Composite viewerComposite = new Composite(composite, SWT.EMBEDDED);
-    viewerComposite.setLayout(new GridLayout());
-    viewerComposite.setLayoutData(gridData);
-    createModelCanvas(viewerComposite);
+    final Composite canvasComposite = new Composite(composite, SWT.EMBEDDED);
+    canvasComposite.setLayout(new GridLayout());
+    canvasComposite.setLayoutData(gridData);
+    createModelCanvas(canvasComposite);
   }
 
   /**
@@ -81,16 +77,16 @@ public class JoglModeler extends Composite {
   private void createTreeComposite(Composite composite) {
     final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
-    this.treeViewerGroup = new Group(composite, SWT.NONE);
-    this.treeViewerGroup.setLayout(layout);
+    final Group group = new Group(composite, SWT.NONE);
+    group.setLayout(layout);
 
     final GridData data = new GridData(GridData.FILL_BOTH);
     data.widthHint = 10;
-    this.treeViewerGroup.setLayoutData(data);
-    this.treeViewerGroup.setText(Messages.getString("Modeler.0")); //$NON-NLS-1$
+    group.setLayoutData(data);
+    group.setText(Messages.getString("Modeler.0")); //$NON-NLS-1$
 
-    this.tree = new SceneGraphTree(this.treeViewerGroup, this, this.root.getModel(0));
-    createViewer();
+    this.tree = new SceneGraphTree(group, this, this.root.getModel(0));
+    updateRenderer();
   }
 
   /**
@@ -102,7 +98,7 @@ public class JoglModeler extends Composite {
     this.root = root;
     this.isChanged = false;
     this.tree.setModel(root.getModel(0));
-    createViewer();
+    updateRenderer();
   }
 
   /**
@@ -113,23 +109,22 @@ public class JoglModeler extends Composite {
   }
 
   /**
-   * GroupをCanvasに読み込み、Frameに追加します。
+   * RootGroupとConfigurationをCanvasに設定します。
    */
-  public void createViewer() {
-    org.mklab.mikity.model.xml.simplexml.model.GroupModel[] children = this.tree.getModel().getGroups();
-    this.renderer.setChildren(children);
+  public void updateRenderer() {
+    this.renderer.setRootGroups(this.tree.getModel().getGroups());
     this.renderer.setConfiguration(this.root.getConfiguration(0));
   }
 
   /**
    * キャンバスを生成します。
    * 
-   * @param viewerComposite ビュワーコンポジット
+   * @param canvasComposite ビュワーコンポジット
    */
-  private void createModelCanvas(Composite viewerComposite) {
-    this.awtFrame = SWT_AWT.new_Frame(viewerComposite);
+  private void createModelCanvas(Composite canvasComposite) {
     this.renderer = new JoglModelRenderer();
-    this.awtFrame.add(this.renderer);
+    final Frame frame = SWT_AWT.new_Frame(canvasComposite);
+    frame.add(this.renderer);
   }
   
   /**

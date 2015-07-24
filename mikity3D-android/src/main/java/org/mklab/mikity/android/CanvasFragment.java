@@ -622,7 +622,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    */
   public void configurateModel() {
     final GroupModel[] children = this.root.getModel(0).getGroups();
-    this.modelRenderer.setChildren(children);
+    this.modelRenderer.setRootGroups(children);
     ConfigurationModel configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
   }

@@ -41,13 +41,13 @@ import org.mklab.mikity.view.gui.dialog.EditTrianglePolygonDialog;
 public class SceneGraphTree {
 
   /** */
-  Tree xmlTree;
+  Tree tree;
   /** */
   Mikity3dModel model;
   /** */
   Composite comp;
   /** */
-  TreeItem selectItem = null;
+  TreeItem selectedItem = null;
   /** 選択されているオブジェクト。 */
   Object targetObject = null;
   /** 選択されているグループ。 */
@@ -93,22 +93,22 @@ public class SceneGraphTree {
    */
   private void createTree(final Composite composite) {
     composite.setLayout(new GridLayout(1, true));
-    this.xmlTree = new Tree(composite, SWT.SINGLE | SWT.BORDER);
+    this.tree = new Tree(composite, SWT.SINGLE | SWT.BORDER);
     final GridData data2 = new GridData(GridData.FILL_BOTH);
-    this.xmlTree.setLayoutData(data2);
+    this.tree.setLayoutData(data2);
 
     fillTree();
 
     // TODO
     // new DragAndDropEnabler(this.xmlTree);
 
-    this.xmlTree.addMouseListener(new MouseAdapter() {
+    this.tree.addMouseListener(new MouseAdapter() {
 
       @Override
       public void mouseDoubleClick(MouseEvent arg0) {
         SceneGraphTree.this.editable = true;
 
-        final Object clickObject = SceneGraphTree.this.xmlTree.getSelection()[0].getData();
+        final Object clickObject = SceneGraphTree.this.tree.getSelection()[0].getData();
 
         if (SceneGraphTree.isModifyingObject) {
           return;
@@ -139,7 +139,7 @@ public class SceneGraphTree {
       }
     });
 
-    this.xmlTree.addSelectionListener(new SelectionAdapter() {
+    this.tree.addSelectionListener(new SelectionAdapter() {
 
       @Override
       public void widgetSelected(SelectionEvent arg0) {
@@ -147,24 +147,24 @@ public class SceneGraphTree {
       }
     });
 
-    this.xmlTree.addKeyListener(new KeyAdapter() {
+    this.tree.addKeyListener(new KeyAdapter() {
 
       @Override
       public void keyPressed(KeyEvent arg0) {
         if (arg0.keyCode == SWT.DEL) {
-          SceneGraphTree.this.selectItem = SceneGraphTree.this.xmlTree.getSelection()[0];
-          final TreeItem groupNode = SceneGraphTree.this.selectItem.getParentItem();
+          SceneGraphTree.this.selectedItem = SceneGraphTree.this.tree.getSelection()[0];
+          final TreeItem groupNode = SceneGraphTree.this.selectedItem.getParentItem();
           // groupNodeがnullならrootノードなので削除不可能
           if (groupNode == null) {
             return;
           }
-          final Object primitive = SceneGraphTree.this.selectItem.getData();
+          final Object primitive = SceneGraphTree.this.selectedItem.getData();
           final GroupModel group = (GroupModel)groupNode.getData();
           if (removeObject(group, primitive)) {
             // 中身が消されれば、表示も削除
-            SceneGraphTree.this.selectItem.dispose();
+            SceneGraphTree.this.selectedItem.dispose();
           }
-          SceneGraphTree.this.modeler.createViewer();
+          SceneGraphTree.this.modeler.updateRenderer();
         }
       }
     });
@@ -179,7 +179,7 @@ public class SceneGraphTree {
    */
   private void createPopupMenu(final Composite composite) {
     final Menu menu = new Menu(composite.getShell(), SWT.POP_UP);
-    this.xmlTree.setMenu(menu);
+    this.tree.setMenu(menu);
 
     final MenuItem addBox = new MenuItem(menu, SWT.POP_UP);
     addBox.setText(Messages.getString("SceneGraphTree.4")); //$NON-NLS-1$
@@ -316,7 +316,7 @@ public class SceneGraphTree {
             message.open();
           } else {
             removeObject(SceneGraphTree.this.targetParentGroup, SceneGraphTree.this.targetGroup);
-            SceneGraphTree.this.xmlTree.getSelection()[0].dispose();
+            SceneGraphTree.this.tree.getSelection()[0].dispose();
             updateTree();
           }
         } else if (SceneGraphTree.this.targetObject instanceof TrianglePolygonModel || SceneGraphTree.this.targetObject instanceof QuadPolygonModel) {
@@ -326,7 +326,7 @@ public class SceneGraphTree {
           int result = message.open();
           if (result == SWT.YES) {
             removeObject(SceneGraphTree.this.targetGroup, SceneGraphTree.this.targetObject);
-            SceneGraphTree.this.xmlTree.getSelection()[0].dispose();
+            SceneGraphTree.this.tree.getSelection()[0].dispose();
             updateTree();
           }
         } else {
@@ -336,7 +336,7 @@ public class SceneGraphTree {
           int result = message.open();
           if (result == SWT.YES) {
             removeObject(SceneGraphTree.this.targetGroup, SceneGraphTree.this.targetObject);
-            SceneGraphTree.this.xmlTree.getSelection()[0].dispose();
+            SceneGraphTree.this.tree.getSelection()[0].dispose();
             updateTree();
           }
         }
@@ -349,7 +349,7 @@ public class SceneGraphTree {
        */
       @Override
       public void menuShown(MenuEvent e) {
-        final Object clickedObject = SceneGraphTree.this.xmlTree.getSelection()[0].getData();
+        final Object clickedObject = SceneGraphTree.this.tree.getSelection()[0].getData();
         
         if (clickedObject instanceof GroupModel) {
           addBox.setEnabled(true);
@@ -385,34 +385,34 @@ public class SceneGraphTree {
     this.targetGroup = null;
 
     this.targetParentGroup = null;
-    if (this.xmlTree.getSelectionCount() == 0) {
+    if (this.tree.getSelectionCount() == 0) {
       // 何も選択されていないとき
       setAllTransparent(this.model.getGroup(1), true);
       return;
     }
 
-    this.targetObject = this.xmlTree.getSelection()[0].getData();
+    this.targetObject = this.tree.getSelection()[0].getData();
     if (this.targetObject instanceof GroupModel) {
       this.targetGroup = (GroupModel)this.targetObject;
       // targetObj = null;
       setTarget(this.targetGroup);
-      if (this.xmlTree.getSelection()[0].getText().startsWith("root")) { //$NON-NLS-1$
+      if (this.tree.getSelection()[0].getText().startsWith("root")) { //$NON-NLS-1$
         // 選択されたものがrootであるとき
         this.editable = false;
         this.targetParentGroup = null;
       } else {
         this.editable = true;
         // 選択されたグループがルートグループでなければparentGroupを登録
-        this.targetParentGroup = (GroupModel)this.xmlTree.getSelection()[0].getParentItem().getData();
+        this.targetParentGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
       }
     } else {
       // 選択されたものがプリミティブのとき
       this.editable = true;
-      this.targetGroup = (GroupModel)this.xmlTree.getSelection()[0].getParentItem().getData();
+      this.targetGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
       this.targetParentGroup = null;
       setTarget(this.targetObject);
     }
-    this.modeler.createViewer();
+    this.modeler.updateRenderer();
   }
 
   /**
@@ -527,16 +527,16 @@ public class SceneGraphTree {
    */
   public void updateTree() {
     fillTree();
-    this.modeler.createViewer();
+    this.modeler.updateRenderer();
   }
 
   /**
-   * グループからPrimitiveを削除します。
+   * グループからモデルを削除します。
    * 
    * @param group グループ
    * @param primitive プリミティブ
    * 
-   * @return ノードを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
+   * @return モデルを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
    */
   protected boolean removeObject(GroupModel group, Object primitive) {
     if (primitive instanceof BoxModel) {
@@ -552,10 +552,10 @@ public class SceneGraphTree {
     } else if (primitive instanceof QuadPolygonModel) {
       group.removeXMLQuadPolygon((QuadPolygonModel)primitive);
     } else if (primitive instanceof GroupModel) {
-      MessageBox box = new MessageBox(this.comp.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
-      box.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
-      box.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
-      int result = box.open();
+      MessageBox message = new MessageBox(this.comp.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
+      message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
+      message.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
+      int result = message.open();
       if (result == SWT.NO) {
         return false;
       }
@@ -565,16 +565,16 @@ public class SceneGraphTree {
   }
 
   /**
-   * 
-   * @param item
-   * @param groups
+   * ツリーにオブジェクトを追加します。
+   * @param item ツリーアイテム
+   * @param groups グループ
    */
   private void addTreeItem(TreeItem item, GroupModel[] groups) {
     for (int i = 0; i < groups.length; i++) {
       // 子となるTreeItem、childに名前をつけて接続
       TreeItem child = null;
       if (item == null) {
-        child = new TreeItem(this.xmlTree, SWT.NONE);
+        child = new TreeItem(this.tree, SWT.NONE);
         child.setText("rootGroup : " + groups[i].getName()); //$NON-NLS-1$
       } else {
         child = new TreeItem(item, SWT.NONE);
@@ -636,7 +636,7 @@ public class SceneGraphTree {
   }
 
   /**
-   * シーングラフツリーにプリミティブのデータを追加します。
+   * シーングラフツリーにモデルを追加します。
    */
   public void fillTree() {
     clearTree();
@@ -661,9 +661,9 @@ public class SceneGraphTree {
   //  }
 
   /**
-   * XMLのモデルデータを返します。
+   * モデルデータを返します。
    * 
-   * @return XMLのモデルデータ
+   * @return モデルデータ
    */
   public Mikity3dModel getModel() {
     return this.model;
@@ -673,17 +673,28 @@ public class SceneGraphTree {
    * ツリーを消去します。
    */
   public void clearTree() {
-    if (this.xmlTree.getItemCount() == 0) {
+    if (this.tree.getItemCount() == 0) {
       return;
     }
-
-    final TreeItem rootNode = this.xmlTree.getItems()[0];
-
-    final TreeItem[] items = rootNode.getItems();
-    for (int i = 0; i < items.length; i++) {
-      items[i].dispose();
+    
+    for (TreeItem item : this.tree.getItems()) {
+      clearTreeItems(item);
+      item.dispose();
     }
-    rootNode.dispose();
+  }
+
+  /**
+   * ツリーのノードを削除します。
+   * 
+   * @param items ノード郡
+   */
+  private void clearTreeItems(TreeItem items) {
+    for (TreeItem item : items.getItems()) {
+      if (item.getItemCount() != 0) {
+        clearTreeItems(item);
+      }
+      item.dispose();
+    }
   }
 
   /**
@@ -700,13 +711,13 @@ public class SceneGraphTree {
    * @return XML tree
    */
   public Tree getXMLTree() {
-    return this.xmlTree;
+    return this.tree;
   }
 
   /**
-   * オブジェクトを修正中であるか設定します。
+   * モデルを修正中であるか設定します。
    * 
-   * @param isModifyingObject オブジェクトを修正中ならばtrue
+   * @param isModifyingObject モデルを修正中ならばtrue
    */
   public static void setIsModifyingObject(boolean isModifyingObject) {
     SceneGraphTree.isModifyingObject = isModifyingObject;

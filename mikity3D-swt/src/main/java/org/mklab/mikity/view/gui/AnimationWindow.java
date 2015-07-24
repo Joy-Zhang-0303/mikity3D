@@ -286,7 +286,7 @@ public class AnimationWindow extends ApplicationWindow {
     frame.add((Component)this.modelRenderer);
 
     final GroupModel[] children = this.root.getModel(0).getGroups();
-    this.modelRenderer.setChildren(children);
+    this.modelRenderer.setRootGroups(children);
 
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);

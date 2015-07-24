@@ -34,8 +34,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
 
-  /** オブジェクトのグループ。 */
-  private List<JoglObjectGroup> topGroups;
+  /** ルートグループ郡。 */
+  private List<JoglObjectGroup> rootGroups;
   
   /** 設定。 */
   private ConfigurationModel configuration;
@@ -138,8 +138,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     
     gl.glScalef(this.scale, this.scale, this.scale);
     
-    if (this.topGroups != null) {
-      for (final JoglObjectGroup topGroup : this.topGroups) {
+    if (this.rootGroups != null) {
+      for (final JoglObjectGroup topGroup : this.rootGroups) {
         topGroup.display(gl);
       }
     }
@@ -148,8 +148,8 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /**
    * {@inheritDoc}
    */
-  public void setChildren(GroupModel[] children) {
-    this.topGroups = new JoglModelCreater().create(children);
+  public void setRootGroups(GroupModel[] rootGroups) {
+    this.rootGroups = new JoglModelCreater().create(rootGroups);
     display();
   }
 

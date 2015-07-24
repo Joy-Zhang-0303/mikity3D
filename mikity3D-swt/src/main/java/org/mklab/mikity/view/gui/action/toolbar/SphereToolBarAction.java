@@ -31,8 +31,8 @@ public class SphereToolBarAction extends AbstractToolBarAction {
     sphere.setDivision(20);
     sphere.setColor("yellow"); //$NON-NLS-1$
     
-    final GroupModel rootGroup = this.modeler.getTargetGroup();
-    rootGroup.addXMLSphere(sphere);
+    final GroupModel group = this.modeler.getTargetGroup();
+    group.addXMLSphere(sphere);
     
     update();
     

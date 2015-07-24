@@ -73,10 +73,10 @@ public class UnitLabel extends Composite {
    * @param angle モデルの角度
    */
   public static void setModelAngle(String angle) {
-    if (angle.startsWith("radian")) { //$NON-NLS-1$
-      modelAngle = "[rad]"; //$NON-NLS-1$
-    } else {
+    if (angle.startsWith("degree")) { //$NON-NLS-1$
       modelAngle = "[deg]"; //$NON-NLS-1$
+    } else {
+      modelAngle = "[rad]"; //$NON-NLS-1$
     }
   }
 

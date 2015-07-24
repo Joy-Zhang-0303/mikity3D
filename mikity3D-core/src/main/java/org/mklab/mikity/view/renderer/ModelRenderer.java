@@ -16,11 +16,11 @@ import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
  */
 public interface ModelRenderer {
   /**
-   * 描画対象となるグループ群を設定します。
+   * 描画対象となるルートグループ群を設定します。
    * 
-   * @param children グループ群 
+   * @param rootGroups ルートグループ群 
    */
-  void setChildren(GroupModel[] children);
+  void setRootGroups(GroupModel[] rootGroups);
   
   /**
    * 環境データを設定します。

@@ -42,8 +42,8 @@ public class TrianglePolygonToolBarAction extends AbstractToolBarAction {
     polygon.setVertices(vertices);
     polygon.setColor("red"); //$NON-NLS-1$
     
-    final GroupModel rootGroup = this.modeler.getTargetGroup();
-    rootGroup.addXMLTrianglePolygon(polygon);
+    final GroupModel group = this.modeler.getTargetGroup();
+    group.addXMLTrianglePolygon(polygon);
 
     update();
     

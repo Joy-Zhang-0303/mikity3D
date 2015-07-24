@@ -140,7 +140,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
   /**
    * {@inheritDoc}
    */
-  public void setChildren(GroupModel[] children) {
+  public void setRootGroups(GroupModel[] children) {
     this.topGroups = new OpenglesModelCreater().create(children);
   }
 

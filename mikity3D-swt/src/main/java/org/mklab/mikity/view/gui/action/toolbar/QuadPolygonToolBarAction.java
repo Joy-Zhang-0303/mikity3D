@@ -41,8 +41,8 @@ public class QuadPolygonToolBarAction extends AbstractToolBarAction {
     polygon.setVertices(Arrays.asList(vertex0, vertex1, vertex2, vertex3));
     polygon.setColor("blue"); //$NON-NLS-1$
     
-    final GroupModel rootGroup = this.modeler.getTargetGroup();
-    rootGroup.addXMLQuadPolygon(polygon);
+    final GroupModel group = this.modeler.getTargetGroup();
+    group.addXMLQuadPolygon(polygon);
 
     update();
     
