@@ -39,13 +39,12 @@ import org.mklab.mikity.view.gui.dialog.EditTrianglePolygonDialog;
  * シーングラフを表すクラスです。
  */
 public class SceneGraphTree {
-
   /** */
   Tree tree;
   /** */
   Mikity3dModel model;
   /** */
-  Composite comp;
+  Composite composite;
   /** */
   TreeItem selectedItem = null;
   /** 選択されているオブジェクト。 */
@@ -55,7 +54,7 @@ public class SceneGraphTree {
   /** 選択されている物の親グループ。 */
   GroupModel targetParentGroup = null;
   /** */
-  GroupModel root = null;
+  //GroupModel root = null;
   /** */
   boolean editable = true;
   /** */
@@ -80,10 +79,11 @@ public class SceneGraphTree {
    */
   public SceneGraphTree(final Composite composite, final JoglModeler modeler, final Mikity3dModel model) {
     this.model = model;
+    this.targetGroup = this.model.getGroup(0);
+    this.targetObject= this.model.getGroup(0);
     this.modeler = modeler;
-    // ファイルの読み込みを行う
     createTree(composite);
-    this.comp = composite;
+    this.composite = composite;
   }
 
   /**
@@ -381,38 +381,35 @@ public class SceneGraphTree {
    * 選択されているオブジェクトを設定します。
    */
   void setSelectedObjectAsTarget() {
-    this.targetObject = null;
-    this.targetGroup = null;
-
-    this.targetParentGroup = null;
+    //this.targetObject = null;
+    //this.targetGroup = null;
+    //this.targetParentGroup = null;
+    
     if (this.tree.getSelectionCount() == 0) {
-      // 何も選択されていないとき
       setAllTransparent(this.model.getGroup(1), true);
       return;
     }
 
     this.targetObject = this.tree.getSelection()[0].getData();
+    
     if (this.targetObject instanceof GroupModel) {
       this.targetGroup = (GroupModel)this.targetObject;
-      // targetObj = null;
       setTarget(this.targetGroup);
       if (this.tree.getSelection()[0].getText().startsWith("root")) { //$NON-NLS-1$
-        // 選択されたものがrootであるとき
         this.editable = false;
         this.targetParentGroup = null;
       } else {
         this.editable = true;
-        // 選択されたグループがルートグループでなければparentGroupを登録
         this.targetParentGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
       }
     } else {
-      // 選択されたものがプリミティブのとき
       this.editable = true;
       this.targetGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
       this.targetParentGroup = null;
       setTarget(this.targetObject);
     }
-    this.modeler.updateRenderer();
+    
+    //this.modeler.updateRenderer();
   }
 
   /**
@@ -513,14 +510,14 @@ public class SceneGraphTree {
     return this.targetGroup;
   }
 
-  /**
-   * グループが編集可能か判定する。
-   * 
-   * @return editable 編集可能ならばtrue
-   */
-  public boolean isGroupEditable() {
-    return this.editable;
-  }
+//  /**
+//   * グループが編集可能か判定する。
+//   * 
+//   * @return editable 編集可能ならばtrue
+//   */
+//  public boolean isGroupEditable() {
+//    return this.editable;
+//  }
 
   /**
    * ツリーとビューアを更新します。
@@ -552,7 +549,7 @@ public class SceneGraphTree {
     } else if (primitive instanceof QuadPolygonModel) {
       group.removeXMLQuadPolygon((QuadPolygonModel)primitive);
     } else if (primitive instanceof GroupModel) {
-      MessageBox message = new MessageBox(this.comp.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
+      MessageBox message = new MessageBox(this.composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
       message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
       message.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
       int result = message.open();
