@@ -247,7 +247,7 @@ public class JoglPrimitiveFactory {
   /**
    * 基準座標を生成します。
    * 
-   * @param group オブジェクトグループ
+   * @param targetGroup オブジェクトグループ
    * @param translation 並進変換
    * @param rotation 回転変換
    * @return 基準座標系

@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -32,8 +33,8 @@ import org.mklab.mikity.view.gui.SceneGraphTree;
 public class EditGroupDialog {
   Shell sShell = null;
   private Shell parentShell = null;
-  org.mklab.mikity.model.xml.simplexml.model.GroupModel group;
-
+  GroupModel targetGroup;
+  
   ParameterInputBox groupName;
   ParameterInputBox translationX;
   ParameterInputBox translationY;
@@ -58,12 +59,14 @@ public class EditGroupDialog {
    * コンストラクター
    * 
    * @param parentShell 親のシェル
-   * @param group グループ
+   * @param targetGroup グループ
    * @param editable 編集可能性
+   * @param tree ツリー
+   * @param modeler モデラー
    */
-  public EditGroupDialog(Shell parentShell, org.mklab.mikity.model.xml.simplexml.model.GroupModel group, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
+  public EditGroupDialog(Shell parentShell, GroupModel targetGroup, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parentShell;
-    this.group = group;
+    this.targetGroup = targetGroup;
     this.editable = editable;
     this.tree = tree;
     this.modeler = modeler;
@@ -88,8 +91,8 @@ public class EditGroupDialog {
 
     this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    if (this.group.getName() != null) {
-      this.groupName.setText(this.group.getName());
+    if (this.targetGroup.getName() != null) {
+      this.groupName.setText(this.targetGroup.getName());
     }
     
     addShellListener();
@@ -241,8 +244,8 @@ public class EditGroupDialog {
    * グループのパラメータを更新します。
    */
   void updateGroupParameters() {
-    this.group.setName(this.groupName.getText());
-    this.group.clearLinkData();
+    this.targetGroup.setName(this.groupName.getText());
+    this.targetGroup.clearLinkData();
     addLinkData("translationX", this.translationXdataNumber); //$NON-NLS-1$
     addLinkData("translationY", this.translationYdataNumber); //$NON-NLS-1$
     addLinkData("translationZ", this.translationZdataNumber); //$NON-NLS-1$
@@ -253,8 +256,8 @@ public class EditGroupDialog {
     final TranslationModel translation = new TranslationModel(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue());
     final RotationModel rotation = new RotationModel(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue());
     
-    this.group.setTranslation(translation);
-    this.group.setRotation(rotation);
+    this.targetGroup.setTranslation(translation);
+    this.targetGroup.setRotation(rotation);
   }
 
 
@@ -269,7 +272,7 @@ public class EditGroupDialog {
       final LinkDataModel linkData = new LinkDataModel();
       linkData.setTarget(parameterName);
       linkData.setNumber(dataNumber.getIntValue());
-      this.group.addLinkData(linkData);
+      this.targetGroup.addLinkData(linkData);
     }
   }
 
@@ -299,8 +302,8 @@ public class EditGroupDialog {
   private void setParametersInDialog() {
     setLinkDataInDialog();
 
-    final RotationModel rotation = this.group.getRotation();
-    final TranslationModel translation = this.group.getTranslation();
+    final RotationModel rotation = this.targetGroup.getRotation();
+    final TranslationModel translation = this.targetGroup.getTranslation();
 
     if (rotation != null) {
       setRotationInDialog(rotation);
@@ -336,7 +339,7 @@ public class EditGroupDialog {
    * Linkdata の column を表示させる
    */
   private void setLinkDataInDialog() {
-    final LinkDataModel[] linkData = this.group.getLinkData();
+    final LinkDataModel[] linkData = this.targetGroup.getLinkData();
 
     for (int i = 0; i < linkData.length; i++) {
       final String target = linkData[i].getTarget();

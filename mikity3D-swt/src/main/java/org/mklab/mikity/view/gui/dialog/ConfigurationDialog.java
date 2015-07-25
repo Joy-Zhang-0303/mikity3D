@@ -61,11 +61,10 @@ public class ConfigurationDialog {
   JoglModeler modeler;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>ConfigurationDialog</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
    * @param configuration 設定
-   * @param modeler モデラー。
+   * @param modeler モデラー
    */
   public ConfigurationDialog(Shell parentShell, ConfigurationModel configuration, JoglModeler modeler) {
     this.parentShell = parentShell;
@@ -75,7 +74,7 @@ public class ConfigurationDialog {
   }
 
   /**
-   * Shellの作成
+   * Shellを生成します。
    */
   private void createSShell() {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
@@ -91,7 +90,7 @@ public class ConfigurationDialog {
   }
 
   /**
-   * <config>の中身を編集できるグループを作成する
+   * 編集用のグループを生成します。
    */
   private void createEditGroup() {
     this.editGroup = new Group(this.sShell, SWT.NONE);
@@ -151,12 +150,6 @@ public class ConfigurationDialog {
     final GridLayout lightLayout = new GridLayout(7, true);
     lightPointGroup.setLayout(lightLayout);
     lightPointGroup.setLayoutData(lightData);
-
-//    final Label lKakko = new Label(lightPointGroup, SWT.NONE);
-//    lKakko.setText(Messages.getString("ConfigDialog.9")); //$NON-NLS-1$
-//    final GridData xData = new GridData(GridData.FILL_HORIZONTAL);
-//    xData.horizontalSpan = 7;
-//    lKakko.setLayoutData(xData);
 
     this.lightX = new ParameterInputBox(lightPointGroup, SWT.NONE, "  (", "10.0"); //$NON-NLS-1$ //$NON-NLS-2$
     this.lightY = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "10.0"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -218,7 +211,7 @@ public class ConfigurationDialog {
   }
 
   /**
-   * XMLファイルから値を読み込む
+   * XMLファイルからデータをダイアログに設定します。
    */
   private void setParametersToDialog() {
     if (this.configuration.getLight() != null) {
@@ -268,7 +261,7 @@ public class ConfigurationDialog {
   }
 
   /**
-   * 視点座標に数字以外の文字が入っていたときに出すメッセージボックスの作成
+   * 視点座標に数字以外の文字が入っていたときに出すメッセージボックスを生成します。
    */
   void createMessageBox() {
     final MessageBox messsageBox = new MessageBox(this.sShell, SWT.ICON_WARNING);
@@ -278,7 +271,7 @@ public class ConfigurationDialog {
   }
 
   /**
-   * メインボタンのあるコンポジットを作成する
+   * メインボタンのあるコンポジットを生成します。
    */
   private void createMainButtonComp() {
     final Composite comp = new Composite(this.sShell, SWT.NONE);

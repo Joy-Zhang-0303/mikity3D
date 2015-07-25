@@ -52,7 +52,7 @@ public class AddPrimitiveDialog {
   private ParameterInputBox translationZ;
   //private Combo primitiveCombo;
   private Combo colorCombo;
-  private GroupModel group;
+  private GroupModel targetGroup;
   private String angleUnit;
   private String lengthUnit;
 
@@ -70,12 +70,12 @@ public class AddPrimitiveDialog {
    * コンストラクター
    * 
    * @param parentShell 親シェル
-   * @param group グループ
+   * @param targetGroup グループ
    * @param selectedIndex プリミティブの選択
    */
-  public AddPrimitiveDialog(Shell parentShell, GroupModel group, int selectedIndex) {
+  public AddPrimitiveDialog(Shell parentShell, GroupModel targetGroup, int selectedIndex) {
     this.parentShell = parentShell;
-    this.group = group;
+    this.targetGroup = targetGroup;
     this.selectedIndex = selectedIndex;
     this.angleUnit = UnitLabel.getUnit("modelAngle"); //$NON-NLS-1$
     this.lengthUnit = UnitLabel.getUnit("modelLength"); //$NON-NLS-1$
@@ -104,7 +104,7 @@ public class AddPrimitiveDialog {
     this.sShell.setLayout(layout1);
 
     final Label groupLabel = new Label(this.sShell, SWT.LEFT);
-    groupLabel.setText(Messages.getString("AddPrimitiveDialog.1") + this.group.getName()); //$NON-NLS-1$
+    groupLabel.setText(Messages.getString("AddPrimitiveDialog.1") + this.targetGroup.getName()); //$NON-NLS-1$
     final GridData gLabelData = new GridData(GridData.FILL_HORIZONTAL);
     gLabelData.horizontalSpan = 3;
     groupLabel.setLayoutData(gLabelData);
@@ -280,7 +280,7 @@ public class AddPrimitiveDialog {
           box.setTranslation(translation);
         }
         box.setColor(this.colorCombo.getText());
-        this.group.addXMLBox(box);
+        this.targetGroup.addXMLBox(box);
         break;
       case CYLINDER:
         final CylinderModel cylinder = new CylinderModel();
@@ -296,7 +296,7 @@ public class AddPrimitiveDialog {
           cylinder.setTranslation(translation);
         }
         cylinder.setColor(this.colorCombo.getText());
-        this.group.addXMLCylinder(cylinder);
+        this.targetGroup.addXMLCylinder(cylinder);
         break;
       case SPHERE:
         final SphereModel sphere = new SphereModel();
@@ -311,7 +311,7 @@ public class AddPrimitiveDialog {
           sphere.setTranslation(translation);
         }
         sphere.setColor(this.colorCombo.getText());
-        this.group.addXMLSphere(sphere);
+        this.targetGroup.addXMLSphere(sphere);
         break;
       case CONE:
         final ConeModel cone = new ConeModel();
@@ -327,7 +327,7 @@ public class AddPrimitiveDialog {
           cone.setTranslation(translation);
         }
         cone.setColor(this.colorCombo.getText());
-        this.group.addXMLCone(cone);
+        this.targetGroup.addXMLCone(cone);
         break;
       default:
         throw new IllegalArgumentException();

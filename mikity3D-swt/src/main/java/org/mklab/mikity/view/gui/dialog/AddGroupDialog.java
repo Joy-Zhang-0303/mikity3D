@@ -26,16 +26,16 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 public class AddGroupDialog extends ApplicationWindow {
 
   /** */
-  GroupModel group;
+  GroupModel targetGroup;
 
   /**
    * 新しく生成された<code>AddGroupDialog</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
-   * @param group グループ
+   * @param targetGroup グループ
    */
-  public AddGroupDialog(Shell parentShell, GroupModel group) {
+  public AddGroupDialog(Shell parentShell, GroupModel targetGroup) {
     super(parentShell);
-    this.group = group;
+    this.targetGroup = targetGroup;
     setShellStyle(SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.CLOSE);
     setBlockOnOpen(true);
   }
@@ -49,10 +49,10 @@ public class AddGroupDialog extends ApplicationWindow {
     final GridLayout layout = new GridLayout(2, false);
     composite.setLayout(layout);
 
-    new ParameterInputBox(composite, SWT.READ_ONLY, Messages.getString("AddGroupDialog.0"), this.group.getName()); //$NON-NLS-1$
-    final ParameterInputBox groupParam = new ParameterInputBox(composite, SWT.NONE, Messages.getString("AddGroupDialog.1"), Messages.getString("AddGroupDialog.2")); //$NON-NLS-1$ //$NON-NLS-2$
+    new ParameterInputBox(composite, SWT.READ_ONLY, Messages.getString("AddGroupDialog.0"), this.targetGroup.getName()); //$NON-NLS-1$
+    final ParameterInputBox parameter = new ParameterInputBox(composite, SWT.NONE, Messages.getString("AddGroupDialog.1"), Messages.getString("AddGroupDialog.2")); //$NON-NLS-1$ //$NON-NLS-2$
 
-    createButtons(composite, groupParam);
+    createButtons(composite, parameter);
     
     return composite;
   }
@@ -61,9 +61,9 @@ public class AddGroupDialog extends ApplicationWindow {
    * ボタンを生成します。
    * 
    * @param composite コンポジット
-   * @param groupParam グループ名
+   * @param parameter グループ名
    */
-  private void createButtons(final Composite composite, final ParameterInputBox groupParam) {
+  private void createButtons(final Composite composite, final ParameterInputBox parameter) {
     final Button okButton = new Button(composite, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("AddGroupDialog.3")); //$NON-NLS-1$
@@ -75,8 +75,8 @@ public class AddGroupDialog extends ApplicationWindow {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         final GroupModel newGroup = new GroupModel();
-        newGroup.setName(groupParam.getText());
-        AddGroupDialog.this.group.addGroup(newGroup);
+        newGroup.setName(parameter.getText());
+        AddGroupDialog.this.targetGroup.addGroup(newGroup);
         close();
       }
     });

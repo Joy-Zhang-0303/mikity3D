@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -77,7 +78,7 @@ public class EditPrimitiveDialog {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditPrimitiveDialog(Shell parent, Object primitive, org.mklab.mikity.model.xml.simplexml.model.GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditPrimitiveDialog(Shell parent, Object primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parent;
     this.primitive = primitive;
     this.groupName = group.getName();

@@ -15,15 +15,15 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
-import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.SceneGraphTree;
@@ -84,7 +84,7 @@ public class EditQuadPolygonDialog {
    * @param tree シーングラフツリー 
    * @param modeler モデラー
    */
-  public EditQuadPolygonDialog(Shell parentShell, QuadPolygonModel quad, org.mklab.mikity.model.xml.simplexml.model.GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditQuadPolygonDialog(Shell parentShell, QuadPolygonModel quad, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parentShell;
     this.quad = quad;
     this.groupName = group.getName();

@@ -55,7 +55,7 @@ public class AddTrianglePolygonDialog {
   private ParameterInputBox translationY;
   private ParameterInputBox translationZ;
 
-  private GroupModel group;
+  private GroupModel targetGroup;
   private String angleUnit;
   private String lengthUnit;
   private Combo colorCombo;
@@ -64,11 +64,11 @@ public class AddTrianglePolygonDialog {
    * コンストラクター
    * 
    * @param parentShell 親シェル
-   * @param group グループ
+   * @param targetGroup グループ
    */
-  public AddTrianglePolygonDialog(Shell parentShell, GroupModel group) {
+  public AddTrianglePolygonDialog(Shell parentShell, GroupModel targetGroup) {
     this.parentShell = parentShell;
-    this.group = group;
+    this.targetGroup = targetGroup;
     this.angleUnit = UnitLabel.getUnit("modelAngle"); //$NON-NLS-1$
     this.lengthUnit = UnitLabel.getUnit("modelLength"); //$NON-NLS-1$
     createSShell();
@@ -86,7 +86,7 @@ public class AddTrianglePolygonDialog {
     this.sShell.setLayout(layout1);
 
     final Label groupLabel = new Label(this.sShell, SWT.LEFT);
-    groupLabel.setText(Messages.getString("AddTrianglePolygonDialog.1") + this.group.getName()); //$NON-NLS-1$
+    groupLabel.setText(Messages.getString("AddTrianglePolygonDialog.1") + this.targetGroup.getName()); //$NON-NLS-1$
     GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 3;
     groupLabel.setLayoutData(gridData);
@@ -232,7 +232,7 @@ public class AddTrianglePolygonDialog {
       triangle.setTranslation(getLocation(location));
     }
     triangle.setColor(this.colorCombo.getText());
-    this.group.addXMLTrianglePolygon(triangle);
+    this.targetGroup.addXMLTrianglePolygon(triangle);
   }
 
   /**
