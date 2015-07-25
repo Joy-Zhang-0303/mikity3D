@@ -7,36 +7,36 @@ package org.mklab.mikity.model.searcher;
 
 
 /**
- * Mikity3Dモデルのリンクデータを管理するクラスです。
+ * Mikity3Dモデルのアニメーションデータを管理するクラスです。
  * 
  * @author soda
  * @version $Revision$, 2015/02/03
  */
-public class GroupLink extends GroupManager {
-  /** 列番号。 */
-  private int columnNumber;
+public class GroupAnimation extends GroupManager {
+  /** 番号。 */
+  private int number;
   /** ターゲット名。 */
   private String targetName;
 
   /**
    * 新しく生成された<code>GroupLink</code>オブジェクトを初期化します。
-   * @param columnNumber 列番号
+   * @param number 列番号
    * @param target ターゲット名
    * @param parent 親
    */
-  public GroupLink(int columnNumber, String target, GroupManager parent) {
+  public GroupAnimation(int number, String target, GroupManager parent) {
   	super(parent);
-    this.columnNumber = columnNumber;
+    this.number = number;
     this.targetName = target;
   }
   
   /**
-   * 列番号を返します。
+   * 番号を返します。
    * 
-   * @return columnNumber 列番号
+   * @return 番号
    */
-  public int getColumn() {
-    return this.columnNumber;
+  public int getNumber() {
+    return this.number;
   }
   
   /**
@@ -49,12 +49,12 @@ public class GroupLink extends GroupManager {
   }
   
   /**
-   * 列番号を設定すします。
+   * 番号を設定すします。
    * 
-   * @param columnNumber コラムナンバー
+   * @param number 番号
    */
-  public void setColumnNumber(int columnNumber) {
-  	this.columnNumber = columnNumber;
+  public void setNumber(int number) {
+  	this.number = number;
   }
   
 }

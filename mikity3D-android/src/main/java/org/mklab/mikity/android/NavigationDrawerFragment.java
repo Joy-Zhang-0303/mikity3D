@@ -113,7 +113,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** サンプルモデル読み込みのためのボタン */
   Button sampleModelButton;
   /** カラムを入れ替えるためのボタン */
-  Button setColumnButton;
+  Button setNumberButton;
   /** ストリーム */
   InputStream input;
   private Button unzipSaveButton;
@@ -138,14 +138,14 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.reloadButton = (Button)view.findViewById(R.id.reloadButton);
     this.timeDataDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
     //    this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
-    this.setColumnButton = (Button)view.findViewById(R.id.sampleSetColumnButton);
+    this.setNumberButton = (Button)view.findViewById(R.id.sampleSetColumnButton);
 
     this.selectButton.setEnabled(false);
     this.quickButton.setEnabled(false);
     this.slowButton.setEnabled(false);
     this.reloadButton.setEnabled(false);
     this.timeDataDeleteButton.setEnabled(false);
-    this.setColumnButton.setEnabled(false);
+    this.setNumberButton.setEnabled(false);
 
     this.loadModelButton.setOnClickListener(new View.OnClickListener() {
 
@@ -277,7 +277,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    this.setColumnButton.setOnClickListener(new OnClickListener() {
+    this.setNumberButton.setOnClickListener(new OnClickListener() {
 
       /**
        * {@inheritDoc}
@@ -477,28 +477,30 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.selectButton.setEnabled(flag);
     this.quickButton.setEnabled(flag);
     this.slowButton.setEnabled(flag);
-    this.setColumnButton.setEnabled((flag));
+    this.setNumberButton.setEnabled((flag));
     this.reloadButton.setEnabled(flag);
     this.timeDataDeleteButton.setEnabled(flag);
     this.assetsTimeButton.setEnabled(flag);
   }
 
   /**
-   * コラムナンバーを入れ替えます。
+   * 番号を入れ替えます。
    * 
-   * @param targetColumn グループの階層を所持したリスト
-   * @param childPosition リンクデータがある場所
-   * @param columnNumber 入れ替えるコラムナンバー
+   * @param targetNumbers グループの階層を所持したリスト
+   * @param childPosition アニメーションデータがある場所
+   * @param number 入れ替える番号
    */
-  void changeModelColumnNumber(List<Integer> targetColumn, int childPosition, int columnNumber) {
+  void changeModelNumber(List<Integer> targetNumbers, int childPosition, int number) {
     final Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
     final GroupModel[] groups = model.getGroups();
     GroupModel group = groups[0];
 
-    for (Integer target : targetColumn) {
-      group = group.getGroup(target.intValue());
+    for (Integer targetNumber : targetNumbers) {
+      //group = group.getGroup(targetNumber.intValue());
+      group = group.getGroups()[targetNumber.intValue()];
     }
-    group.getAnimation(childPosition).setNumber(columnNumber);
+    //group.getAnimation(childPosition).setNumber(number);
+    group.getAnimations()[childPosition].setNumber(number);
     this.canvasActivity.canvasFragment.configurateModel();
     this.canvasActivity.canvasFragment.setGroupManager();
   }

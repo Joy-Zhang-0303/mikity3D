@@ -44,7 +44,7 @@ public class ListColumnFragment extends RoboFragment {
   int groupPosition = 0;
   private Button backButton;
   private NavigationDrawerFragment fragment;
-  List<Integer> targetColumnNumbers = new ArrayList<Integer>();
+  List<Integer> targetNumbers = new ArrayList<Integer>();
 
   /**
    * {@inheritDoc}
@@ -69,8 +69,8 @@ public class ListColumnFragment extends RoboFragment {
 
         ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManager.getParent();
         ListColumnFragment.this.groupManageers = ListColumnFragment.this.groupManager.getItems();
-        int size = ListColumnFragment.this.targetColumnNumbers.size() - 1;
-        ListColumnFragment.this.targetColumnNumbers.remove(size);
+        int size = ListColumnFragment.this.targetNumbers.size() - 1;
+        ListColumnFragment.this.targetNumbers.remove(size);
         configureListView();
       }
     });
@@ -81,7 +81,7 @@ public class ListColumnFragment extends RoboFragment {
    * リストビューをアダプタに登録し、リストの処理します。
    */
   public void configureListView() {
-    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.list_groupname, this.groupManageers, this.fragment, this.targetColumnNumbers);
+    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.list_groupname, this.groupManageers, this.fragment, this.targetNumbers);
     this.listView.setAdapter(adapter);
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -98,7 +98,7 @@ public class ListColumnFragment extends RoboFragment {
         ListColumnFragment.this.groupPosition = position;
         ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManageers.get(ListColumnFragment.this.groupPosition);
         ListColumnFragment.this.groupManageers = ListColumnFragment.this.groupManager.getItems();
-        ListColumnFragment.this.targetColumnNumbers.add(position);
+        ListColumnFragment.this.targetNumbers.add(position);
         configureListView();
       }
     });

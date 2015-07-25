@@ -7,7 +7,7 @@ package org.mklab.mikity.android;
 
 import java.util.List;
 
-import org.mklab.mikity.model.searcher.GroupLink;
+import org.mklab.mikity.model.searcher.GroupAnimation;
 import org.mklab.mikity.model.searcher.GroupManager;
 import org.mklab.mikity.model.searcher.GroupName;
 
@@ -38,8 +38,8 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
   /** NavigationDrawer */
   NavigationDrawerFragment fragment;
 
-  /** 変更するカラムのターゲットリスト */
-  List<Integer> targetColumn;
+  /** 変更する番号のターゲットリスト */
+  List<Integer> targetNumbers;
 
   /** 現在のリストに登録されているグループの数 */
   int groupNameCount;
@@ -51,16 +51,16 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
    * @param resourceId id
    * @param localGroupManagers GroupManager
    * @param fragment NavigatioDrawerFragment
-   * @param targetColumn リンクの中の何番目のターゲットかを知るための変数
+   * @param targetNumber リンクの中の何番目のターゲットかを知るための変数
    */
-  public ColumnArrayAdapter(Context aContext, int resourceId, List<GroupManager> localGroupManagers, NavigationDrawerFragment fragment, List<Integer> targetColumn) {
+  public ColumnArrayAdapter(Context aContext, int resourceId, List<GroupManager> localGroupManagers, NavigationDrawerFragment fragment, List<Integer> targetNumber) {
     super(aContext, resourceId, localGroupManagers);
     this.context = aContext;
     this.viewResourceId = resourceId;
     this.layoutInflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     this.groupManagers = localGroupManagers;
     this.fragment = fragment;
-    this.targetColumn = targetColumn;
+    this.targetNumbers = targetNumber;
     this.groupNameCount = 0;
 
     int groupCount = 0;
@@ -90,12 +90,12 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
       return view;
     }
 
-    final GroupLink groupLink = (GroupLink)this.groupManagers.get(position);
+    final GroupAnimation groupAnimation = (GroupAnimation)this.groupManagers.get(position);
     final View view = this.layoutInflater.inflate(R.layout.list_link, null);
     final TextView targetText = (TextView)view.findViewById(R.id.list_target);
-    targetText.setText(groupLink.getTarget());
-    final EditText columnText = (EditText)view.findViewById(R.id.list_column);
-    columnText.setText(Integer.toString(groupLink.getColumn()));
+    targetText.setText(groupAnimation.getTarget());
+    final EditText numberText = (EditText)view.findViewById(R.id.list_column);
+    numberText.setText(Integer.toString(groupAnimation.getNumber()));
 
     final Button minusButton = (Button)view.findViewById(R.id.minusButton2);
     minusButton.setOnClickListener(new OnClickListener() {
@@ -103,11 +103,11 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        if (2 < groupLink.getColumn()) {
-          final int column = groupLink.getColumn() - 1;
-          groupLink.setColumnNumber(column);
-          columnText.setText(Integer.toString(column));
-          ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position - ColumnArrayAdapter.this.groupNameCount, column);
+        if (2 < groupAnimation.getNumber()) {
+          final int number = groupAnimation.getNumber() - 1;
+          groupAnimation.setNumber(number);
+          numberText.setText(Integer.toString(number));
+          ColumnArrayAdapter.this.fragment.changeModelNumber(ColumnArrayAdapter.this.targetNumbers, position - ColumnArrayAdapter.this.groupNameCount, number);
         }
       }
     });
@@ -118,11 +118,11 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        if (groupLink.getColumn() < 99) {
-          final int column = groupLink.getColumn() + 1;
-          groupLink.setColumnNumber(column);
-          columnText.setText(Integer.toString(column));
-          ColumnArrayAdapter.this.fragment.changeModelColumnNumber(ColumnArrayAdapter.this.targetColumn, position - ColumnArrayAdapter.this.groupNameCount, column);
+        if (groupAnimation.getNumber() < 99) {
+          final int number = groupAnimation.getNumber() + 1;
+          groupAnimation.setNumber(number);
+          numberText.setText(Integer.toString(number));
+          ColumnArrayAdapter.this.fragment.changeModelNumber(ColumnArrayAdapter.this.targetNumbers, position - ColumnArrayAdapter.this.groupNameCount, number);
         }
       }
     });

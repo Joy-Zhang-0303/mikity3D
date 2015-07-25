@@ -9,7 +9,7 @@ import java.util.List;
 
 
 /**
- * Mikity3Dモデルのグループとリンクを管理するためのクラスです。
+ * Mikity3Dモデルのグループとアニメーションを管理するためのクラスです。
  * 
  * @author soda
  * @version $Revision$, 2015/02/03
