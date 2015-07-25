@@ -166,9 +166,9 @@ public class Mikity3dFactory {
    */
   public Mikity3d createEmptyModel() {
     final ConfigurationModel configuration = new ConfigurationModel();
-
+    
     final GroupModel group = new GroupModel();
-    group.setName("root"); //$NON-NLS-1$
+    group.setName("object"); //$NON-NLS-1$
 
     final Mikity3dModel model = new Mikity3dModel();
     model.addGroup(group);

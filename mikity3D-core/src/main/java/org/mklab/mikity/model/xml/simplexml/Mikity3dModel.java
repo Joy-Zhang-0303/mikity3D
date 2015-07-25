@@ -47,7 +47,16 @@ public class Mikity3dModel implements java.io.Serializable {
     }
 
     return this.groups.get(index);
-  } 
+  }
+  
+  /**
+   * グループを削除します。
+   * 
+   * @param argGroup グループ
+   */
+  public void removeGroup(GroupModel argGroup) {
+    this.groups.remove(argGroup);
+  }
 
   /**
    * {@inheritDoc}
