@@ -32,7 +32,7 @@ public class BoxToolBarAction extends AbstractToolBarAction {
     box.setColor("red"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
-    group.addBox(box);
+    group.add(box);
     update();
     
     this.modeler.setChanged(true);

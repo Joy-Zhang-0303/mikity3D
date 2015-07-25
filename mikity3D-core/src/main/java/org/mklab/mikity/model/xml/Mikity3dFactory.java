@@ -132,7 +132,7 @@ public class Mikity3dFactory {
     final GroupModel newGroup = newRoot.getModel(0).getGroup(0);
     final GroupModel[] groups = unmarshaller.getClolladaGroup().getGroups();
     for (final GroupModel group : groups) {
-      newGroup.addGroup(group);
+      newGroup.add(group);
     }
 
     return newRoot;
@@ -153,7 +153,7 @@ public class Mikity3dFactory {
     final GroupModel newGroup = newRoot.getModel(0).getGroup(0);
     final GroupModel[] groups = unmarshaller.getClolladaGroup().getGroups();
     for (final GroupModel group : groups) {
-      newGroup.addGroup(group);
+      newGroup.add(group);
     }
 
     return newRoot;

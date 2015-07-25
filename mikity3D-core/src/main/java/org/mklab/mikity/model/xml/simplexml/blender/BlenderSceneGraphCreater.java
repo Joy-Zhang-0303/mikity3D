@@ -58,7 +58,7 @@ public class BlenderSceneGraphCreater {
    */
   private void addTrianglePolygons(GroupModel scene, TrianglePolygonModel[] polygons) {
     for (final TrianglePolygonModel polygon : polygons) {
-      scene.addTrianglePolygon(polygon);
+      scene.add(polygon);
     }
   }
 
@@ -68,7 +68,7 @@ public class BlenderSceneGraphCreater {
    */
   private void addQuadPolygons(GroupModel scene, QuadPolygonModel[] polygons) {
     for (final QuadPolygonModel polygon : polygons) {
-      scene.addQuadPolygon(polygon);
+      scene.add(polygon);
     }
   }
 

@@ -348,7 +348,7 @@ public class Node {
 
     for (final Node node : this.nodes) {
       if (node != null) {
-        this.group.addGroup(node.getGroup());
+        this.group.add(node.getGroup());
       }
     }
 
@@ -371,7 +371,10 @@ public class Node {
         linkdata[1].setTarget("translationY"); //$NON-NLS-1$
         linkdata[2] = new AnimationModel();
         linkdata[2].setTarget("translationZ"); //$NON-NLS-1$
-        this.group.setAnimations(linkdata);
+        this.group.add(linkdata[0]);
+        this.group.add(linkdata[1]);
+        this.group.add(linkdata[2]);
+        //this.group.setAnimations(linkdata);
       }
     }
   }

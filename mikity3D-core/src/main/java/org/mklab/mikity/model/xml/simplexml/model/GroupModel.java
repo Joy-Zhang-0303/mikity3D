@@ -62,7 +62,7 @@ public class GroupModel implements java.io.Serializable {
   private List<GroupModel> groups;
 
   /**
-   * コンストラクター
+   * 新しく生成された<code>GroupModel</code>オブジェクトを初期化します。
    */
   public GroupModel() {
     this.name = ""; //$NON-NLS-1$
@@ -84,7 +84,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param group グループ
    */
-  public void addGroup(GroupModel group) {
+  public void add(GroupModel group) {
     this.groups.add(group);
   } 
 
@@ -94,7 +94,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param group グループ
    */
-  public void addGroup(int index, GroupModel group) {
+  public void add(int index, GroupModel group) {
     this.groups.add(index, group);
   } 
 
@@ -103,7 +103,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param animation リンクデータ
    */
-  public void addAnimation(AnimationModel animation) {
+  public void add(AnimationModel animation) {
     this.animations.add(animation);
   } 
 
@@ -113,7 +113,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param animation リンクデータ
    */
-  public void addAnimation(int index, AnimationModel animation) {
+  public void add(int index, AnimationModel animation) {
     this.animations.add(index, animation);
   } 
 
@@ -122,7 +122,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param box ボックス
    */
-  public void addBox(BoxModel box) {
+  public void add(BoxModel box) {
     this.boxes.add(box);
   } 
 
@@ -132,7 +132,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param box ボックス
    */
-  public void addBox(int index, BoxModel box) {
+  public void add(int index, BoxModel box) {
     this.boxes.add(index, box);
   } 
 
@@ -141,7 +141,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param cone コーン
    */
-  public void addCone(ConeModel cone) {
+  public void add(ConeModel cone) {
     this.cones.add(cone);
   } 
 
@@ -151,7 +151,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param cone コーン
    */
-  public void addCone(int index, ConeModel cone) {
+  public void add(int index, ConeModel cone) {
     this.cones.add(index, cone);
   } 
   
@@ -160,7 +160,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param cylinder シリンダー
    */
-  public void addCylinder(CylinderModel cylinder) {
+  public void add(CylinderModel cylinder) {
     this.cylinders.add(cylinder);
   } 
 
@@ -170,7 +170,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param cylinder シリンダー
    */
-  public void addCylinder(int index, CylinderModel cylinder) {
+  public void add(int index, CylinderModel cylinder) {
     this.cylinders.add(index, cylinder);
   } 
 
@@ -179,7 +179,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param sphere スフィア
    */
-  public void addSphere(SphereModel sphere) {
+  public void add(SphereModel sphere) {
     this.spheres.add(sphere);
   } 
 
@@ -189,7 +189,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param sphere スフィア
    */
-  public void addSphere(int index, SphereModel sphere) {
+  public void add(int index, SphereModel sphere) {
     this.spheres.add(index, sphere);
   } 
 
@@ -198,7 +198,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param trianglePolygon 三角形のポリゴン
    */
-  public void addTrianglePolygon(TrianglePolygonModel trianglePolygon) {
+  public void add(TrianglePolygonModel trianglePolygon) {
     this.trianglePolygons.add(trianglePolygon);
   } 
   
@@ -208,7 +208,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param trianglePolygon 三角形のポリゴン
    */
-  public void addTrianglePolygon(int index, TrianglePolygonModel trianglePolygon) {
+  public void add(int index, TrianglePolygonModel trianglePolygon) {
     this.trianglePolygons.add(index, trianglePolygon);
   } 
 
@@ -217,7 +217,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param quadPolygon 四角形のポリゴン
    */
-  public void addQuadPolygon(QuadPolygonModel quadPolygon) {
+  public void add(QuadPolygonModel quadPolygon) {
     this.quadPolygons.add(quadPolygon);
   } 
 
@@ -227,7 +227,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param quadPolygon 四角形のポリゴン
    */
-  public void addQuadPolygon(int index, QuadPolygonModel quadPolygon) {
+  public void add(int index, QuadPolygonModel quadPolygon) {
     this.quadPolygons.add(index, quadPolygon);
   } 
 
@@ -660,7 +660,7 @@ public class GroupModel implements java.io.Serializable {
    * @param group グループ
    * @return removed
    */
-  public boolean removeGroup(GroupModel group) {
+  public boolean remove(GroupModel group) {
     boolean removed = this.groups.remove(group);
     return removed;
   } 
@@ -671,7 +671,7 @@ public class GroupModel implements java.io.Serializable {
    * @param box ボックス
    * @return removed
    */
-  public boolean removeBox(BoxModel box) {
+  public boolean remove(BoxModel box) {
     boolean removed = this.boxes.remove(box);
     return removed;
   } 
@@ -682,7 +682,7 @@ public class GroupModel implements java.io.Serializable {
    * @param cone コーン
    * @return removed
    */
-  public boolean removeCone(ConeModel cone) {
+  public boolean remove(ConeModel cone) {
     boolean removed = this.cones.remove(cone);
     return removed;
   } 
@@ -693,7 +693,7 @@ public class GroupModel implements java.io.Serializable {
    * @param cylinder シリンダー
    * @return removed
    */
-  public boolean removeCylinder(CylinderModel cylinder) {
+  public boolean remove(CylinderModel cylinder) {
     boolean removed = this.cylinders.remove(cylinder);
     return removed;
   } 
@@ -704,7 +704,7 @@ public class GroupModel implements java.io.Serializable {
    * @param sphere スフィア
    * @return removed
    */
-  public boolean removeSphere(SphereModel sphere) {
+  public boolean remove(SphereModel sphere) {
     boolean removed = this.spheres.remove(sphere);
     return removed;
   } 
@@ -714,7 +714,7 @@ public class GroupModel implements java.io.Serializable {
    * @param trianglePolygon 三角形のポリゴン
    * @return removed
    */
-  public boolean removeTrianglePolygon(TrianglePolygonModel trianglePolygon) {
+  public boolean remove(TrianglePolygonModel trianglePolygon) {
     boolean removed = this.trianglePolygons.remove(trianglePolygon);
     return removed;
   } 
@@ -725,72 +725,82 @@ public class GroupModel implements java.io.Serializable {
    * @param quadPolygon 四角形のポリゴン
    * @return removed
    */
-  public boolean removeQuadPolygon(QuadPolygonModel quadPolygon) {
+  public boolean remove(QuadPolygonModel quadPolygon) {
     boolean removed = this.quadPolygons.remove(quadPolygon);
     return removed;
   } 
-
+  
   /**
-   * Method setGroup
-   * 
-   * @param index インデックス
-   * @param group グループ
+   * Method removeXMLBox
+   * @param animation アニメーション 
+   * @return removed
    */
-  public void setGroup(int index, GroupModel group) {
-    if ((index < 0) || (index > this.groups.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-    this.groups.set(index, group);
+  public boolean remove(AnimationModel animation) {
+    boolean removed = this.animations.remove(animation);
+    return removed;
   } 
 
-  /**
-   * Method setGroup
-   * 
-   * @param argGroups グループの配列
-   */
-  public void setGroups(GroupModel[] argGroups) {
-    this.groups.clear();
-    for (int i = 0; i < argGroups.length; i++) {
-      this.groups.add(argGroups[i]);
-    }
-  } 
+//  /**
+//   * Method setGroup
+//   * 
+//   * @param index インデックス
+//   * @param group グループ
+//   */
+//  public void setGroup(int index, GroupModel group) {
+//    if ((index < 0) || (index > this.groups.size())) {
+//      throw new IndexOutOfBoundsException();
+//    }
+//    this.groups.set(index, group);
+//  } 
 
-  /**
-   * Method setGroupSets the value of 'group' by copying the given ArrayList.
-   * 
-   * @param argGroups the Vector to copy.
-   */
-  public void setGroups(List<GroupModel> argGroups) {
-    this.groups.clear();
-    for (int i = 0; i < argGroups.size(); i++) {
-      this.groups.add(argGroups.get(i));
-    }
-  } 
+//  /**
+//   * Method setGroup
+//   * 
+//   * @param argGroups グループの配列
+//   */
+//  public void setObjects(GroupModel[] argGroups) {
+//    this.groups.clear();
+//    for (int i = 0; i < argGroups.length; i++) {
+//      this.groups.add(argGroups[i]);
+//    }
+//  } 
 
-  /**
-   * Method setLinkdata
-   * 
-   * @param index インデックス
-   * @param animation リンクデータ
-   */
-  public void setAnimation(int index, AnimationModel animation) {
-    if ((index < 0) || (index > this.animations.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-    this.animations.set(index, animation);
-  } 
+//  /**
+//   * Method setGroupSets the value of 'group' by copying the given ArrayList.
+//   * 
+//   * @param argGroups the Vector to copy.
+//   */
+//  public void setGroups(List<GroupModel> argGroups) {
+//    this.groups.clear();
+//    for (int i = 0; i < argGroups.size(); i++) {
+//      this.groups.add(argGroups.get(i));
+//    }
+//  } 
 
-  /**
-   * Method setLinkdata
-   * 
-   * @param animations リンクデータの配列
-   */
-  public void setAnimations(AnimationModel[] animations) {
-    this.animations.clear();
-    for (int i = 0; i < animations.length; i++) {
-      this.animations.add(animations[i]);
-    }
-  } 
+//  /**
+//   * Method setLinkdata
+//   * 
+//   * @param index インデックス
+//   * @param animation リンクデータ
+//   */
+//  public void setAnimation(int index, AnimationModel animation) {
+//    if ((index < 0) || (index > this.animations.size())) {
+//      throw new IndexOutOfBoundsException();
+//    }
+//    this.animations.set(index, animation);
+//  } 
+
+//  /**
+//   * Method setLinkdata
+//   * 
+//   * @param animations リンクデータの配列
+//   */
+//  public void setAnimations(AnimationModel[] animations) {
+//    this.animations.clear();
+//    for (int i = 0; i < animations.length; i++) {
+//      this.animations.add(animations[i]);
+//    }
+//  } 
 
   /**
    * Sets the value of field 'translation'.
@@ -819,153 +829,153 @@ public class GroupModel implements java.io.Serializable {
     this.rotation = rotation;
   } 
 
-  /**
-   * Method setXMLBox
-   * 
-   * @param index インデックス
-   * @param box ボックス
-   */
-  public void setBox(int index, BoxModel box) {
-    if ((index < 0) || (index > this.boxes.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-    this.boxes.set(index, box);
-  } 
+//  /**
+//   * Method setXMLBox
+//   * 
+//   * @param index インデックス
+//   * @param box ボックス
+//   */
+//  public void setObject(int index, BoxModel box) {
+//    if ((index < 0) || (index > this.boxes.size())) {
+//      throw new IndexOutOfBoundsException();
+//    }
+//    this.boxes.set(index, box);
+//  } 
+//
+//  /**
+//   * Method setXMLBox
+//   * 
+//   * @param argBoxes ボックスの配列
+//   */
+//  public void setObjects(BoxModel[] argBoxes) {
+//    this.boxes.clear();
+//    for (int i = 0; i < argBoxes.length; i++) {
+//      this.boxes.add(argBoxes[i]);
+//    }
+//  } 
 
-  /**
-   * Method setXMLBox
-   * 
-   * @param argBoxes ボックスの配列
-   */
-  public void setBoxes(BoxModel[] argBoxes) {
-    this.boxes.clear();
-    for (int i = 0; i < argBoxes.length; i++) {
-      this.boxes.add(argBoxes[i]);
-    }
-  } 
+//  /**
+//   * Method setXMLCone
+//   * 
+//   * @param index インデックス
+//   * @param cone コーン
+//   */
+//  public void setObject(int index, ConeModel cone) {
+//    if ((index < 0) || (index > this.cones.size())) {
+//      throw new IndexOutOfBoundsException();
+//    }
+//    this.cones.set(index, cone);
+//  } 
 
-  /**
-   * Method setXMLCone
-   * 
-   * @param index インデックス
-   * @param cone コーン
-   */
-  public void setCone(int index, ConeModel cone) {
-    if ((index < 0) || (index > this.cones.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-    this.cones.set(index, cone);
-  } 
+//  /**
+//   * Method setXMLCone
+//   * 
+//   * @param argCones コーンの配列
+//   */
+//  public void setObjects(ConeModel[] argCones) {
+//    this.cones.clear();
+//    for (int i = 0; i < argCones.length; i++) {
+//      this.cones.add(argCones[i]);
+//    }
+//  } 
 
-  /**
-   * Method setXMLCone
-   * 
-   * @param argCones コーンの配列
-   */
-  public void setCones(ConeModel[] argCones) {
-    this.cones.clear();
-    for (int i = 0; i < argCones.length; i++) {
-      this.cones.add(argCones[i]);
-    }
-  } 
+//  /**
+//   * Method setXMLCylinder
+//   * 
+//   * @param index インデックス
+//   * @param cylinder シリンダー
+//   */
+//  public void setObject(int index, CylinderModel cylinder) {
+//    if ((index < 0) || (index > this.cylinders.size())) {
+//      throw new IndexOutOfBoundsException();
+//    }
+//    this.cylinders.set(index, cylinder);
+//  } 
+//
+//  /**
+//   * Method setXMLCylinder
+//   * 
+//   * @param argCylinders シリンダーの配列
+//   */
+//  public void setObjects(CylinderModel[] argCylinders) {
+//    this.cylinders.clear();
+//    for (int i = 0; i < argCylinders.length; i++) {
+//      this.cylinders.add(argCylinders[i]);
+//    }
+//  } 
 
-  /**
-   * Method setXMLCylinder
-   * 
-   * @param index インデックス
-   * @param cylinder シリンダー
-   */
-  public void setCylinder(int index, CylinderModel cylinder) {
-    if ((index < 0) || (index > this.cylinders.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-    this.cylinders.set(index, cylinder);
-  } 
+//  /**
+//   * Method setXMLSphere
+//   * 
+//   * @param index インデックス
+//   * @param sphere スフィア
+//   */
+//  public void setObject(int index, SphereModel sphere) {
+//    if ((index < 0) || (index > this.spheres.size())) {
+//      throw new IndexOutOfBoundsException();
+//    }
+//    this.spheres.set(index, sphere);
+//  } 
+//
+//  /**
+//   * Method setXMLSphere
+//   * 
+//   * @param argSpheres スフィア配列
+//   */
+//  public void setObjects(SphereModel[] argSpheres) {
+//    this.spheres.clear();
+//    for (int i = 0; i < argSpheres.length; i++) {
+//      this.spheres.add(argSpheres[i]);
+//    }
+//  } 
 
-  /**
-   * Method setXMLCylinder
-   * 
-   * @param argCylinders シリンダーの配列
-   */
-  public void setCylinders(CylinderModel[] argCylinders) {
-    this.cylinders.clear();
-    for (int i = 0; i < argCylinders.length; i++) {
-      this.cylinders.add(argCylinders[i]);
-    }
-  } 
+//  /**
+//   * Method setXMLTrianglePolygon
+//   * 
+//   * @param index インデックス
+//   * @param trianglePolygon 三角形のポリゴン
+//   */
+//  public void setObject(int index, TrianglePolygonModel trianglePolygon) {
+//    if ((index < 0) || (index > this.trianglePolygons.size())) {
+//      throw new IndexOutOfBoundsException();
+//    }
+//    this.trianglePolygons.set(index, trianglePolygon);
+//  } 
+//
+//  /**
+//   * Method setXMLTrianglePolygon
+//   * 
+//   * @param argTrianglePolygons 三角形のポリゴンの配列
+//   */
+//  public void setObjects(TrianglePolygonModel[] argTrianglePolygons) {
+//    this.trianglePolygons.clear();
+//    for (int i = 0; i < argTrianglePolygons.length; i++) {
+//      this.trianglePolygons.add(argTrianglePolygons[i]);
+//    }
+//  } 
 
-  /**
-   * Method setXMLSphere
-   * 
-   * @param index インデックス
-   * @param sphere スフィア
-   */
-  public void setSphere(int index, SphereModel sphere) {
-    if ((index < 0) || (index > this.spheres.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-    this.spheres.set(index, sphere);
-  } 
-
-  /**
-   * Method setXMLSphere
-   * 
-   * @param argSpheres スフィア配列
-   */
-  public void setSpheres(SphereModel[] argSpheres) {
-    this.spheres.clear();
-    for (int i = 0; i < argSpheres.length; i++) {
-      this.spheres.add(argSpheres[i]);
-    }
-  } 
-
-  /**
-   * Method setXMLTrianglePolygon
-   * 
-   * @param index インデックス
-   * @param trianglePolygon 三角形のポリゴン
-   */
-  public void setTrianglePolygon(int index, TrianglePolygonModel trianglePolygon) {
-    if ((index < 0) || (index > this.trianglePolygons.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-    this.trianglePolygons.set(index, trianglePolygon);
-  } 
-
-  /**
-   * Method setXMLTrianglePolygon
-   * 
-   * @param argTrianglePolygons 三角形のポリゴンの配列
-   */
-  public void setTrianglePolygons(TrianglePolygonModel[] argTrianglePolygons) {
-    this.trianglePolygons.clear();
-    for (int i = 0; i < argTrianglePolygons.length; i++) {
-      this.trianglePolygons.add(argTrianglePolygons[i]);
-    }
-  } 
-
-  /**
-   * Method setXMLQuadPolygon
-   * 
-   * @param index インデックス
-   * @param quadPolygon 四角形のポリゴン
-   */
-  public void setQuadPolygon(int index, QuadPolygonModel quadPolygon) {
-    if ((index < 0) || (index > this.quadPolygons.size())) {
-      throw new IndexOutOfBoundsException();
-    }
-    this.quadPolygons.set(index, quadPolygon);
-  } 
-
-  /**
-   * Method setXMLQuadPolygon
-   * 
-   * @param argQuadPolygons 四角形ポリゴンの配列
-   */
-  public void setQuadPolygons(QuadPolygonModel[] argQuadPolygons) {
-    this.quadPolygons.clear();
-    for (int i = 0; i < argQuadPolygons.length; i++) {
-      this.quadPolygons.add(argQuadPolygons[i]);
-    }
-  } 
+//  /**
+//   * Method setXMLQuadPolygon
+//   * 
+//   * @param index インデックス
+//   * @param quadPolygon 四角形のポリゴン
+//   */
+//  public void setObject(int index, QuadPolygonModel quadPolygon) {
+//    if ((index < 0) || (index > this.quadPolygons.size())) {
+//      throw new IndexOutOfBoundsException();
+//    }
+//    this.quadPolygons.set(index, quadPolygon);
+//  } 
+//
+//  /**
+//   * Method setXMLQuadPolygon
+//   * 
+//   * @param argQuadPolygons 四角形ポリゴンの配列
+//   */
+//  public void setObjects(QuadPolygonModel[] argQuadPolygons) {
+//    this.quadPolygons.clear();
+//    for (int i = 0; i < argQuadPolygons.length; i++) {
+//      this.quadPolygons.add(argQuadPolygons[i]);
+//    }
+//  } 
 }

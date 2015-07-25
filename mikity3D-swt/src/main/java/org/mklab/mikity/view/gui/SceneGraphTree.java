@@ -568,17 +568,17 @@ public class SceneGraphTree {
    */
   protected boolean removeObject(GroupModel group, Object object) {
     if (object instanceof BoxModel) {
-      group.removeBox((BoxModel)object);
+      group.remove((BoxModel)object);
     } else if (object instanceof ConeModel) {
-      group.removeCone((ConeModel)object);
+      group.remove((ConeModel)object);
     } else if (object instanceof CylinderModel) {
-      group.removeCylinder((CylinderModel)object);
+      group.remove((CylinderModel)object);
     } else if (object instanceof SphereModel) {
-      group.removeSphere((SphereModel)object);
+      group.remove((SphereModel)object);
     } else if (object instanceof TrianglePolygonModel) {
-      group.removeTrianglePolygon((TrianglePolygonModel)object);
+      group.remove((TrianglePolygonModel)object);
     } else if (object instanceof QuadPolygonModel) {
-      group.removeQuadPolygon((QuadPolygonModel)object);
+      group.remove((QuadPolygonModel)object);
     } else if (object instanceof GroupModel) {
       MessageBox message = new MessageBox(this.composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
       message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
@@ -587,7 +587,7 @@ public class SceneGraphTree {
       if (result == SWT.NO) {
         return false;
       }
-      group.removeGroup((GroupModel)object);
+      group.remove((GroupModel)object);
     }
     return true;
   }

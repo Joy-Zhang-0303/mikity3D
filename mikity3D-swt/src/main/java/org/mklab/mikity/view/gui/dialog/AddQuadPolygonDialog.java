@@ -241,7 +241,7 @@ public class AddQuadPolygonDialog {
       polygon.setTranslation(getLocaion(translation));
     }
     polygon.setColor(this.colorCombo.getText());
-    this.targetGroup.addQuadPolygon(polygon);
+    this.targetGroup.add(polygon);
   }
 
   /**

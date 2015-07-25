@@ -280,7 +280,7 @@ public class AddPrimitiveDialog {
           box.setTranslation(translation);
         }
         box.setColor(this.colorCombo.getText());
-        this.targetGroup.addBox(box);
+        this.targetGroup.add(box);
         break;
       case CYLINDER:
         final CylinderModel cylinder = new CylinderModel();
@@ -296,7 +296,7 @@ public class AddPrimitiveDialog {
           cylinder.setTranslation(translation);
         }
         cylinder.setColor(this.colorCombo.getText());
-        this.targetGroup.addCylinder(cylinder);
+        this.targetGroup.add(cylinder);
         break;
       case SPHERE:
         final SphereModel sphere = new SphereModel();
@@ -311,7 +311,7 @@ public class AddPrimitiveDialog {
           sphere.setTranslation(translation);
         }
         sphere.setColor(this.colorCombo.getText());
-        this.targetGroup.addSphere(sphere);
+        this.targetGroup.add(sphere);
         break;
       case CONE:
         final ConeModel cone = new ConeModel();
@@ -327,7 +327,7 @@ public class AddPrimitiveDialog {
           cone.setTranslation(translation);
         }
         cone.setColor(this.colorCombo.getText());
-        this.targetGroup.addCone(cone);
+        this.targetGroup.add(cone);
         break;
       default:
         throw new IllegalArgumentException();

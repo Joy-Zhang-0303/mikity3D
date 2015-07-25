@@ -272,7 +272,7 @@ public class EditGroupDialog {
       final AnimationModel linkData = new AnimationModel();
       linkData.setTarget(parameterName);
       linkData.setNumber(dataNumber.getIntValue());
-      this.targetGroup.addAnimation(linkData);
+      this.targetGroup.add(linkData);
     }
   }
 

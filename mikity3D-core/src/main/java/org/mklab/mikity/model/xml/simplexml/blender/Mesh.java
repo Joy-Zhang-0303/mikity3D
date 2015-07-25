@@ -84,13 +84,13 @@ public class Mesh {
         triangle.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]));
         //triangle.setMatrix(this.matrix);
         //triangle.setNormalVector(normalVector.get(i));
-        this.blenderGroup.addTrianglePolygon(triangle);
+        this.blenderGroup.add(triangle);
       } else if (index.length == 4) {
         final QuadPolygonModel quad = new QuadPolygonModel();
         quad.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]), vertexLocations.get(index[3]));
         //quad.setMatrix(this.matrix);
         //quad.setNormalVector(normalVector.get(i));
-        this.blenderGroup.addQuadPolygon(quad);
+        this.blenderGroup.add(quad);
       }
     }
 
@@ -103,13 +103,13 @@ public class Mesh {
           triangle.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]));
           //triangle.setMatrix(this.matrix);
           //triangle.setNormalVector(normalVector.get(i));
-          this.blenderGroup.addTrianglePolygon(triangle);
+          this.blenderGroup.add(triangle);
         } else if (index.length == 4) {
           QuadPolygonModel quad = new QuadPolygonModel();
           quad.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]), vertexLocations.get(index[3]));
           //quad.setMatrix(this.matrix);
           //quad.setNormalVector(normalVector.get(i));
-          this.blenderGroup.addQuadPolygon(quad);
+          this.blenderGroup.add(quad);
         }
       }
     }
@@ -122,7 +122,7 @@ public class Mesh {
         triangle.setVertices(vertexLocations.get(index[0]), vertexLocations.get(index[1]), vertexLocations.get(index[2]));
         //triangle.setMatrix(this.matrix);
         //triangle.setNormalVector(normalVector.get(i));
-        this.blenderGroup.addTrianglePolygon(triangle);
+        this.blenderGroup.add(triangle);
       }
     }
   }

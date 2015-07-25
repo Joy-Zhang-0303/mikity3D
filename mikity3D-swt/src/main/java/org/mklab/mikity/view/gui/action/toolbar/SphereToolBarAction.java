@@ -32,7 +32,7 @@ public class SphereToolBarAction extends AbstractToolBarAction {
     sphere.setColor("yellow"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
-    group.addSphere(sphere);
+    group.add(sphere);
     
     update();
     

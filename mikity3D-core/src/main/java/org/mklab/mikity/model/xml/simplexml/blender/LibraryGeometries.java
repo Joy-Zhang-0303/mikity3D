@@ -43,7 +43,7 @@ public class LibraryGeometries {
   public GroupModel getBlenderPolygonGroup() {
     GroupModel group = new GroupModel();
     for (int i = 0; i < this.geometries.size(); i++) {
-      group.addGroup(this.geometries.get(i).getBlenderPolygonGroup());
+      group.add(this.geometries.get(i).getBlenderPolygonGroup());
     }
 
     if (this.scene.getGroups().length != 0) {

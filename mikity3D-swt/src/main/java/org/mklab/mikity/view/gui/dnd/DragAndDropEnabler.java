@@ -123,26 +123,26 @@ public class DragAndDropEnabler {
       final GroupModel sourceGroup = (GroupModel)DragAndDropEnabler.this.treeItem.getParentItem().getData();
 
       if (obj instanceof BoxModel) {
-        sourceGroup.removeBox((BoxModel)obj);
-        group.addBox((BoxModel)obj);
+        sourceGroup.remove((BoxModel)obj);
+        group.add((BoxModel)obj);
       } else if (obj instanceof CylinderModel) {
-        sourceGroup.removeCylinder((CylinderModel)obj);
-        group.addCylinder((CylinderModel)obj);
+        sourceGroup.remove((CylinderModel)obj);
+        group.add((CylinderModel)obj);
       } else if (obj instanceof SphereModel) {
-        sourceGroup.removeSphere((SphereModel)obj);
-        group.addSphere((SphereModel)obj);
+        sourceGroup.remove((SphereModel)obj);
+        group.add((SphereModel)obj);
       } else if (obj instanceof ConeModel) {
-        sourceGroup.removeCone((ConeModel)obj);
-        group.addCone((ConeModel)obj);
+        sourceGroup.remove((ConeModel)obj);
+        group.add((ConeModel)obj);
       } else if (obj instanceof TrianglePolygonModel) {
-        sourceGroup.removeTrianglePolygon((TrianglePolygonModel)obj);
-        group.addTrianglePolygon((TrianglePolygonModel)obj);
+        sourceGroup.remove((TrianglePolygonModel)obj);
+        group.add((TrianglePolygonModel)obj);
       } else if (obj instanceof QuadPolygonModel) {
-        sourceGroup.removeQuadPolygon((QuadPolygonModel)obj);
-        group.addQuadPolygon((QuadPolygonModel)obj);
+        sourceGroup.remove((QuadPolygonModel)obj);
+        group.add((QuadPolygonModel)obj);
       } else if (obj instanceof GroupModel) {
-        sourceGroup.removeGroup((GroupModel)obj);
-        group.addGroup((GroupModel)obj);
+        sourceGroup.remove((GroupModel)obj);
+        group.add((GroupModel)obj);
       } else {
         throw new RuntimeException(Messages.getString("DragAndDropEnabler.0")); //$NON-NLS-1$
       }
