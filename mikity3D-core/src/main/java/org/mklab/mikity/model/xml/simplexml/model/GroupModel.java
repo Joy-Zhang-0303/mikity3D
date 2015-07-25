@@ -88,15 +88,6 @@ public class GroupModel implements java.io.Serializable {
     this.groups.add(group);
   } 
 
-//  /**
-//   * Method addGroup
-//   * 
-//   * @param index インデックス
-//   * @param group グループ
-//   */
-//  public void add(int index, GroupModel group) {
-//    this.groups.add(index, group);
-//  } 
 
   /**
    * Method addLinkdata
@@ -107,16 +98,6 @@ public class GroupModel implements java.io.Serializable {
     this.animations.add(animation);
   } 
 
-//  /**
-//   * Method addLinkdata
-//   * 
-//   * @param index インデックス
-//   * @param animation リンクデータ
-//   */
-//  public void add(int index, AnimationModel animation) {
-//    this.animations.add(index, animation);
-//  } 
-
   /**
    * Method addXMLBox
    * 
@@ -126,16 +107,6 @@ public class GroupModel implements java.io.Serializable {
     this.boxes.add(box);
   } 
 
-//  /**
-//   * Method addXMLBox
-//   * 
-//   * @param index インデックス
-//   * @param box ボックス
-//   */
-//  public void add(int index, BoxModel box) {
-//    this.boxes.add(index, box);
-//  } 
-
   /**
    * Method addXMLCone
    * 
@@ -144,16 +115,6 @@ public class GroupModel implements java.io.Serializable {
   public void add(ConeModel cone) {
     this.cones.add(cone);
   } 
-
-//  /**
-//   * Method addXMLCone
-//   * 
-//   * @param index インデックス
-//   * @param cone コーン
-//   */
-//  public void add(int index, ConeModel cone) {
-//    this.cones.add(index, cone);
-//  } 
   
   /**
    * Method addXMLCylinder
@@ -164,16 +125,6 @@ public class GroupModel implements java.io.Serializable {
     this.cylinders.add(cylinder);
   } 
 
-//  /**
-//   * Method addXMLCylinder
-//   * 
-//   * @param index インデックス
-//   * @param cylinder シリンダー
-//   */
-//  public void add(int index, CylinderModel cylinder) {
-//    this.cylinders.add(index, cylinder);
-//  } 
-
   /**
    * Method addXMLSphere
    * 
@@ -183,16 +134,6 @@ public class GroupModel implements java.io.Serializable {
     this.spheres.add(sphere);
   } 
 
-//  /**
-//   * Method addXMLSphere
-//   * 
-//   * @param index インデックス
-//   * @param sphere スフィア
-//   */
-//  public void add(int index, SphereModel sphere) {
-//    this.spheres.add(index, sphere);
-//  } 
-
   /**
    * Method addXMLTrianglePolygon
    * 
@@ -201,16 +142,6 @@ public class GroupModel implements java.io.Serializable {
   public void add(TrianglePolygonModel trianglePolygon) {
     this.trianglePolygons.add(trianglePolygon);
   } 
-  
-//  /**
-//   * Method addXMLTrianglePolygon
-//   * 
-//   * @param index インデックス
-//   * @param trianglePolygon 三角形のポリゴン
-//   */
-//  public void add(int index, TrianglePolygonModel trianglePolygon) {
-//    this.trianglePolygons.add(index, trianglePolygon);
-//  } 
 
   /**
    * Method addXMLQuadPolygon
@@ -222,83 +153,59 @@ public class GroupModel implements java.io.Serializable {
   } 
 
 //  /**
-//   * Method addXMLQuadPolygon
-//   * 
-//   * @param index インデックス
-//   * @param quadPolygon 四角形のポリゴン
+//   * Method clearGroup
 //   */
-//  public void add(int index, QuadPolygonModel quadPolygon) {
-//    this.quadPolygons.add(index, quadPolygon);
+//  public void clearGroup() {
+//    this.groups.clear();
 //  } 
-
-  /**
-   * Method clearGroup
-   */
-  public void clearGroup() {
-    this.groups.clear();
-  } 
 
   /**
    * Clear Linkdata.
    */
-  public void clearAnimation() {
+  public void clearAnimations() {
     this.animations.clear();
   } 
 
-  /**
-   * Method clearXMLBox
-   */
-  public void clearBox() {
-    this.boxes.clear();
-  } 
-
-  /**
-   * Method clearXMLCone
-   */
-  public void clearCone() {
-    this.cones.clear();
-  } 
-
-  /**
-   * Method clearXMLCylinder
-   */
-  public void clearCylinder() {
-    this.cylinders.clear();
-  } 
-
-  /**
-   * Method clearXMLSphere
-   */
-  public void clearSphere() {
-    this.spheres.clear();
-  } 
-
-  /**
-   * Method clearXMLTrianglePolygon
-   */
-  public void clearTrianglePolygon() {
-    this.trianglePolygons.clear();
-  } 
-
-  /**
-   * Method clearXMLQuadPolygon
-   */
-  public void clearQuadPolygon() {
-    this.quadPolygons.clear();
-  } 
+//  /**
+//   * Method clearXMLBox
+//   */
+//  public void clearBox() {
+//    this.boxes.clear();
+//  } 
+//
+//  /**
+//   * Method clearXMLCone
+//   */
+//  public void clearCone() {
+//    this.cones.clear();
+//  } 
 
 //  /**
-//   * Method getGroup
-//   * 
-//   * @param index インデックス
-//   * @return グループ
+//   * Method clearXMLCylinder
 //   */
-//  public GroupModel getGroup(int index) {
-//    if ((index < 0) || (index > this.groups.size())) {
-//      throw new IndexOutOfBoundsException();
-//    }
+//  public void clearCylinder() {
+//    this.cylinders.clear();
+//  } 
 //
-//    return this.groups.get(index);
+//  /**
+//   * Method clearXMLSphere
+//   */
+//  public void clearSphere() {
+//    this.spheres.clear();
+//  } 
+
+//  /**
+//   * Method clearXMLTrianglePolygon
+//   */
+//  public void clearTrianglePolygon() {
+//    this.trianglePolygons.clear();
+//  } 
+//
+//  /**
+//   * Method clearXMLQuadPolygon
+//   */
+//  public void clearQuadPolygon() {
+//    this.quadPolygons.clear();
 //  } 
 
   /**
@@ -431,20 +338,6 @@ public class GroupModel implements java.io.Serializable {
     return localGroups;
   } 
 
-//  /**
-//   * Method getLinkdata
-//   * 
-//   * @param index インデックス
-//   * @return _linkdataList.get(index)
-//   */
-//  public AnimationModel getAnimation(int index) {
-//    if ((index < 0) || (index > this.animations.size())) {
-//      throw new IndexOutOfBoundsException();
-//    }
-//
-//    return this.animations.get(index);
-//  } 
-
   /**
    * Method getLinkdata
    * 
@@ -486,20 +379,6 @@ public class GroupModel implements java.io.Serializable {
     return this.rotation;
   } 
 
-//  /**
-//   * Method getXMLBox
-//   * 
-//   * @param index インデックス
-//   * @return _XMLBoxList.get(index)
-//   */
-//  public BoxModel getBox(int index) {
-//    if ((index < 0) || (index > this.boxes.size())) {
-//      throw new IndexOutOfBoundsException();
-//    }
-//
-//    return this.boxes.get(index);
-//  } 
-
   /**
    * Method getXMLBox
    * 
@@ -513,20 +392,6 @@ public class GroupModel implements java.io.Serializable {
     }
     return localBoxes;
   } 
-
-//  /**
-//   * Method getXMLCone
-//   * 
-//   * @param index インデックス
-//   * @return _XMLConeList.get(index)
-//   */
-//  public ConeModel getCone(int index) {
-//    if ((index < 0) || (index > this.cones.size())) {
-//      throw new IndexOutOfBoundsException();
-//    }
-//
-//    return this.cones.get(index);
-//  } 
 
   /**
    * Method getXMLCone
@@ -542,20 +407,6 @@ public class GroupModel implements java.io.Serializable {
     return localCones;
   } 
 
-//  /**
-//   * Method getXMLCylinder
-//   * 
-//   * @param index インデックス
-//   * @return _XMLCylinderList.get(index)
-//   */
-//  public CylinderModel getCylinder(int index) {
-//    if ((index < 0) || (index > this.cylinders.size())) {
-//      throw new IndexOutOfBoundsException();
-//    }
-//
-//    return this.cylinders.get(index);
-//  } 
-
   /**
    * Method getXMLCylinder
    * 
@@ -569,20 +420,6 @@ public class GroupModel implements java.io.Serializable {
     }
     return localCylinders;
   } 
-
-//  /**
-//   * Method getXMLSphere
-//   * 
-//   * @param index インデックス
-//   * @return _XMLSphereList.get(index)
-//   */
-//  public SphereModel getSphere(int index) {
-//    if ((index < 0) || (index > this.spheres.size())) {
-//      throw new IndexOutOfBoundsException();
-//    }
-//
-//    return this.spheres.get(index);
-//  } 
 
   /**
    * Method getXMLSphere
@@ -598,20 +435,6 @@ public class GroupModel implements java.io.Serializable {
     return localSpheres;
   } 
 
-//  /**
-//   * Method getXMLTrianglePolygon
-//   * 
-//   * @param index インデックス
-//   * @return _XMLTrianglePolygonList.get(index)
-//   */
-//  public TrianglePolygonModel getTrianglePolygon(int index) {
-//    if ((index < 0) || (index > this.trianglePolygons.size())) {
-//      throw new IndexOutOfBoundsException();
-//    }
-//
-//    return this.trianglePolygons.get(index);
-//  } 
-
   /**
    * Method getXMLTrianglePolygon
    * 
@@ -625,20 +448,6 @@ public class GroupModel implements java.io.Serializable {
     }
     return localPolygons;
   } 
-
-//  /**
-//   * Method getXMLQuadPolygon
-//   * 
-//   * @param index インデックス
-//   * @return _XMLQuadPolygonList.get(index)
-//   */
-//  public QuadPolygonModel getQuadPolygon(int index) {
-//    if ((index < 0) || (index > this.quadPolygons.size())) {
-//      throw new IndexOutOfBoundsException();
-//    }
-//
-//    return this.quadPolygons.get(index);
-//  } 
 
   /**
    * Method getXMLQuadPolygon

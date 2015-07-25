@@ -245,13 +245,13 @@ public class EditGroupDialog {
    */
   void updateGroupParameters() {
     this.targetGroup.setName(this.groupName.getText());
-    this.targetGroup.clearAnimation();
-    addLinkData("translationX", this.translationXdataNumber); //$NON-NLS-1$
-    addLinkData("translationY", this.translationYdataNumber); //$NON-NLS-1$
-    addLinkData("translationZ", this.translationZdataNumber); //$NON-NLS-1$
-    addLinkData("rotationX", this.rotationXdataNumber); //$NON-NLS-1$
-    addLinkData("rotationY", this.rotationYdataNumber); //$NON-NLS-1$
-    addLinkData("rotationZ", this.rotationZdataNumber); //$NON-NLS-1$
+    this.targetGroup.clearAnimations();
+    addAnimation("translationX", this.translationXdataNumber); //$NON-NLS-1$
+    addAnimation("translationY", this.translationYdataNumber); //$NON-NLS-1$
+    addAnimation("translationZ", this.translationZdataNumber); //$NON-NLS-1$
+    addAnimation("rotationX", this.rotationXdataNumber); //$NON-NLS-1$
+    addAnimation("rotationY", this.rotationYdataNumber); //$NON-NLS-1$
+    addAnimation("rotationZ", this.rotationZdataNumber); //$NON-NLS-1$
     
     final TranslationModel translation = new TranslationModel(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue());
     final RotationModel rotation = new RotationModel(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue());
@@ -262,12 +262,12 @@ public class EditGroupDialog {
 
 
   /**
-   * LinkDataを追加します。
+   * Animationを追加します。
    * 
    * @param parameterName パラメータの名前
    * @param dataNumber データの番号
    */
-  void addLinkData(final String parameterName, final ParameterInputBox dataNumber) {
+  void addAnimation(final String parameterName, final ParameterInputBox dataNumber) {
     if (dataNumber.getIntValue() != 0) {
       final AnimationModel linkData = new AnimationModel();
       linkData.setTarget(parameterName);
