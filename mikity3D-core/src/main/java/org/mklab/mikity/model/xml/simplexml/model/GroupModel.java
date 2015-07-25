@@ -431,24 +431,6 @@ public class GroupModel implements java.io.Serializable {
     return localGroups;
   } 
 
-//  /**
-//   * Method getGroupAsReferenceReturns a reference to 'group'. No type checking is performed on any modications to the Collection.
-//   * 
-//   * @return returns a reference to the Collection.
-//   */
-//  public List<GroupModel> getGroupsAsReference() {
-//    return this.groups;
-//  } 
-
-  /**
-   * Method getGroupCount
-   * 
-   * @return _groupList.size()
-   */
-  public int getGroupSize() {
-    return this.groups.size();
-  } 
-
   /**
    * Method getLinkdata
    * 
@@ -476,24 +458,6 @@ public class GroupModel implements java.io.Serializable {
     }
     return linkDatas;
   } 
-
-//  /**
-//   * Method getLinkdataAsReferenceReturns a reference to 'linkdata'. No type checking is performed on any modications to the Collection.
-//   * 
-//   * @return returns a reference to the Collection.
-//   */
-//  public List<LinkData> getLinkDataAsReference() {
-//    return this.links;
-//  } 
-
-//  /**
-//   * Method getLinkdataCount
-//   * 
-//   * @return _linkdataList.size()
-//   */
-//  public int getLinkDataSize() {
-//    return this.linkData.size();
-//  } 
 
   /**
    * Returns the value of field 'translation'.
@@ -550,15 +514,6 @@ public class GroupModel implements java.io.Serializable {
     return localBoxes;
   } 
 
-//  /**
-//   * Method getXMLBoxCount
-//   * 
-//   * @return _XMLBoxList.size()
-//   */
-//  public int getBoxSize() {
-//    return this.boxes.size();
-//  } 
-
   /**
    * Method getXMLCone
    * 
@@ -586,15 +541,6 @@ public class GroupModel implements java.io.Serializable {
     }
     return localCones;
   } 
-
-//  /**
-//   * Method getXMLConeCount
-//   * 
-//   * @return _XMLConeList.size()
-//   */
-//  public int getConeSize() {
-//    return this.cones.size();
-//  } 
 
   /**
    * Method getXMLCylinder
@@ -624,15 +570,6 @@ public class GroupModel implements java.io.Serializable {
     return localCylinders;
   } 
 
-//  /**
-//   * Method getXMLCylinderCount
-//   * 
-//   * @return _XMLCylinderList.size()
-//   */
-//  public int getCylinderSize() {
-//    return this.cylinders.size();
-//  } 
-
   /**
    * Method getXMLSphere
    * 
@@ -660,24 +597,6 @@ public class GroupModel implements java.io.Serializable {
     }
     return localSpheres;
   } 
-
-//  /**
-//   * Method getXMLSphereAsReferenceReturns a reference to 'XMLSphere'. No type checking is performed on any modications to the Collection.
-//   * 
-//   * @return returns a reference to the Collection.
-//   */
-//  public List<SphereModel> getXMLSpheresAsReference() {
-//    return this.spheres;
-//  } 
-
-//  /**
-//   * Method getXMLSphereCount
-//   * 
-//   * @return _XMLSphereList.size()
-//   */
-//  public int getXMLSphereSize() {
-//    return this.spheres.size();
-//  } 
 
   /**
    * Method getXMLTrianglePolygon
@@ -707,24 +626,6 @@ public class GroupModel implements java.io.Serializable {
     return localPolygons;
   } 
 
-//  /**
-//   * Method getXMLTrianglePolygonAsReferenceReturns a reference to 'XMLTrianglePolygon'. No type checking is performed on any modications to the Collection.
-//   * 
-//   * @return returns a reference to the Collection.
-//   */
-//  public java.util.List<TrianglePolygonModel> getTrianglePolygonsAsReference() {
-//    return this.trianglePolygons;
-//  } 
-
-//  /**
-//   * Method getXMLTrianglePolygonCount
-//   * 
-//   * @return _XMLTrianglePolygonList.size()
-//   */
-//  public int getXMLTrianglePolygonSize() {
-//    return this.trianglePolygons.size();
-//  } 
-
   /**
    * Method getXMLQuadPolygon
    * 
@@ -752,24 +653,6 @@ public class GroupModel implements java.io.Serializable {
     }
     return localQuadPolygons;
   } 
-
-//  /**
-//   * Method getXMLQuadPolygonAsReferenceReturns a reference to 'XMLQuadPolygon'. No type checking is performed on any modications to the Collection.
-//   * 
-//   * @return returns a reference to the Collection.
-//   */
-//  public List<QuadPolygonModel> getQuadPolygonsAsReference() {
-//    return this.quadPolygons;
-//  } 
-
-//  /**
-//   * Method getXMLQuadPolygonCount
-//   * 
-//   * @return _XMLQuadPolygonList.size()
-//   */
-//  public int getXMLQuadPolygonSize() {
-//    return this.quadPolygons.size();
-//  } 
 
   /**
    * Method removeGroup
@@ -863,7 +746,7 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Method setGroup
    * 
-   * @param argGroups グループの文字列
+   * @param argGroups グループの配列
    */
   public void setGroups(GroupModel[] argGroups) {
     this.groups.clear();
@@ -900,7 +783,7 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Method setLinkdata
    * 
-   * @param links リンクデータの文字列
+   * @param links リンクデータの配列
    */
   public void setLinkData(LinkDataModel[] links) {
     this.linkData.clear();
@@ -952,7 +835,7 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Method setXMLBox
    * 
-   * @param argBoxes ボックスの文字列
+   * @param argBoxes ボックスの配列
    */
   public void setBoxes(BoxModel[] argBoxes) {
     this.boxes.clear();
@@ -977,7 +860,7 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Method setXMLCone
    * 
-   * @param argCones コーンの文字列
+   * @param argCones コーンの配列
    */
   public void setCones(ConeModel[] argCones) {
     this.cones.clear();
@@ -1002,7 +885,7 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Method setXMLCylinder
    * 
-   * @param argCylinders シリンダーの文字列
+   * @param argCylinders シリンダーの配列
    */
   public void setCylinders(CylinderModel[] argCylinders) {
     this.cylinders.clear();
@@ -1027,7 +910,7 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Method setXMLSphere
    * 
-   * @param argSpheres スフィアの文字列
+   * @param argSpheres スフィア配列
    */
   public void setSpheres(SphereModel[] argSpheres) {
     this.spheres.clear();
@@ -1052,7 +935,7 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Method setXMLTrianglePolygon
    * 
-   * @param argTrianglePolygons 三角形のポリゴンの文字列
+   * @param argTrianglePolygons 三角形のポリゴンの配列
    */
   public void setTrianglePolygons(TrianglePolygonModel[] argTrianglePolygons) {
     this.trianglePolygons.clear();
@@ -1077,7 +960,7 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Method setXMLQuadPolygon
    * 
-   * @param argQuadPolygons 四角形ポリゴンの文字列
+   * @param argQuadPolygons 四角形ポリゴンの配列
    */
   public void setQuadPolygons(QuadPolygonModel[] argQuadPolygons) {
     this.quadPolygons.clear();
