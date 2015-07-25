@@ -11,7 +11,7 @@ import java.util.List;
 import org.mklab.mikity.model.picker.ClosenessDataPicker;
 import org.mklab.mikity.model.picker.DataPicker;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
+import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.nfc.matrix.Matrix;
 
 
@@ -75,7 +75,7 @@ public class ObjectGroupManager {
         continue;
       }
       
-      final LinkDataModel[] links =   group.getLinkData();
+      final AnimationModel[] links =   group.getAnimations();
       if (links.length != 0) {
         final DataPicker picker = createPicker(data, links);
         addMovingGroup(objectGroup, picker);
@@ -89,9 +89,9 @@ public class ObjectGroupManager {
    * @param data 時系列データ
    * @param links リンクデータ
    */
-  private DataPicker createPicker(final Matrix data, final LinkDataModel[] links) {
+  private DataPicker createPicker(final Matrix data, final AnimationModel[] links) {
     final DataPicker picker = new ClosenessDataPicker(data);
-    for (final LinkDataModel link : links) {
+    for (final AnimationModel link : links) {
       if (link.hasCoordinateParameter()) {
         if (link.hasNumber()) {
           final int dataNumber = link.getNumber();

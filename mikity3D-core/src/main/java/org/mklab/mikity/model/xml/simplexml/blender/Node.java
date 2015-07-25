@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
+import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.util.Matrix4;
 import org.simpleframework.xml.Attribute;
@@ -364,14 +364,14 @@ public class Node {
         final TranslationModel location = new TranslationModel(this.matrix4f.getElement(0, 3), this.matrix4f.getElement(1, 3), this.matrix4f.getElement(2, 3));
         this.group.setTranslation(location);
         
-        LinkDataModel[] linkdata = new LinkDataModel[3];
-        linkdata[0] = new LinkDataModel();
+        AnimationModel[] linkdata = new AnimationModel[3];
+        linkdata[0] = new AnimationModel();
         linkdata[0].setTarget("translationX"); //$NON-NLS-1$
-        linkdata[1] = new LinkDataModel();
+        linkdata[1] = new AnimationModel();
         linkdata[1].setTarget("translationY"); //$NON-NLS-1$
-        linkdata[2] = new LinkDataModel();
+        linkdata[2] = new AnimationModel();
         linkdata[2].setTarget("translationZ"); //$NON-NLS-1$
-        this.group.setLinkData(linkdata);
+        this.group.setAnimations(linkdata);
       }
     }
   }

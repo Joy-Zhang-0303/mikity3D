@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
+import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.view.gui.JoglModeler;
@@ -245,7 +245,7 @@ public class EditGroupDialog {
    */
   void updateGroupParameters() {
     this.targetGroup.setName(this.groupName.getText());
-    this.targetGroup.clearLinkData();
+    this.targetGroup.clearAnimation();
     addLinkData("translationX", this.translationXdataNumber); //$NON-NLS-1$
     addLinkData("translationY", this.translationYdataNumber); //$NON-NLS-1$
     addLinkData("translationZ", this.translationZdataNumber); //$NON-NLS-1$
@@ -269,10 +269,10 @@ public class EditGroupDialog {
    */
   void addLinkData(final String parameterName, final ParameterInputBox dataNumber) {
     if (dataNumber.getIntValue() != 0) {
-      final LinkDataModel linkData = new LinkDataModel();
+      final AnimationModel linkData = new AnimationModel();
       linkData.setTarget(parameterName);
       linkData.setNumber(dataNumber.getIntValue());
-      this.targetGroup.addLinkData(linkData);
+      this.targetGroup.addAnimation(linkData);
     }
   }
 
@@ -339,7 +339,7 @@ public class EditGroupDialog {
    * Linkdata の column を表示させる
    */
   private void setLinkDataInDialog() {
-    final LinkDataModel[] linkData = this.targetGroup.getLinkData();
+    final AnimationModel[] linkData = this.targetGroup.getAnimations();
 
     for (int i = 0; i < linkData.length; i++) {
       final String target = linkData[i].getTarget();

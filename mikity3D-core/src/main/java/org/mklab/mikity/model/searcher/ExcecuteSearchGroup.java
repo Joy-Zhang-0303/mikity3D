@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
+import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 
 /**
  * Mikity３Dモデルのグループを探索し、グループとリンクを管理するためのメソッドです。
@@ -80,7 +80,7 @@ public class ExcecuteSearchGroup {
    * @return links LinkSearchOfModel
    */
   private GroupManager searchLinkData(GroupModel group, int linkCount, GroupManager parents) {
-    final LinkDataModel data = group.getLinkData(linkCount);
+    final AnimationModel data = group.getAnimation(linkCount);
     final int column = data.getNumber();
     final String target = data.getTarget();
     final GroupLink links = new GroupLink(column, target, parents);

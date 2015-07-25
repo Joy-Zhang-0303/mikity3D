@@ -21,17 +21,17 @@ public class GroupModel implements java.io.Serializable {
   @Attribute(name="name")
   private String name;
   
-  /** location */
+  /** Translations */
   @Element(name="translation", required=false)
   private TranslationModel translation;
 
-  /** rotation */
+  /** Rotations */
   @Element(name="rotation", required=false)
   private RotationModel rotation;
 
-  /** links */
-  @ElementList(type=LinkDataModel.class, inline=true, required=false)
-  private List<LinkDataModel> linkData;
+  /** Animations */
+  @ElementList(type=AnimationModel.class, inline=true, required=false)
+  private List<AnimationModel> animations;
   
   /** Boxes */
   @ElementList(type=BoxModel.class, inline=true, required=false)
@@ -57,7 +57,7 @@ public class GroupModel implements java.io.Serializable {
   @ElementList(type=QuadPolygonModel.class, inline=true, required=false)
   private List<QuadPolygonModel> quadPolygons;
 
-  /** groups */
+  /** Groups */
   @ElementList(type=GroupModel.class, inline=true, required=false)
   private List<GroupModel> groups;
 
@@ -73,7 +73,7 @@ public class GroupModel implements java.io.Serializable {
     this.trianglePolygons = new ArrayList<>();
     this.quadPolygons = new ArrayList<>(); 
 
-    this.linkData = new ArrayList<>();
+    this.animations = new ArrayList<>();
     this.groups = new ArrayList<>();
     this.translation = new TranslationModel();
     this.rotation = new RotationModel();
@@ -101,20 +101,20 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Method addLinkdata
    * 
-   * @param linkdata リンクデータ
+   * @param animation リンクデータ
    */
-  public void addLinkData(LinkDataModel linkdata) {
-    this.linkData.add(linkdata);
+  public void addAnimation(AnimationModel animation) {
+    this.animations.add(animation);
   } 
 
   /**
    * Method addLinkdata
    * 
    * @param index インデックス
-   * @param linkdata リンクデータ
+   * @param animation リンクデータ
    */
-  public void addLinkData(int index, LinkDataModel linkdata) {
-    this.linkData.add(index, linkdata);
+  public void addAnimation(int index, AnimationModel animation) {
+    this.animations.add(index, animation);
   } 
 
   /**
@@ -241,8 +241,8 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Clear Linkdata.
    */
-  public void clearLinkData() {
-    this.linkData.clear();
+  public void clearAnimation() {
+    this.animations.clear();
   } 
 
   /**
@@ -315,7 +315,7 @@ public class GroupModel implements java.io.Serializable {
     result = prime * result + ((this.spheres == null) ? 0 : this.spheres.hashCode());
     result = prime * result + ((this.trianglePolygons == null) ? 0 : this.trianglePolygons.hashCode());
     result = prime * result + ((this.groups == null) ? 0 : this.groups.hashCode());
-    result = prime * result + ((this.linkData == null) ? 0 : this.linkData.hashCode());
+    result = prime * result + ((this.animations == null) ? 0 : this.animations.hashCode());
     result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
     result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
     result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
@@ -386,11 +386,11 @@ public class GroupModel implements java.io.Serializable {
     } else if (!this.groups.equals(other.groups)) {
       return false;
     }
-    if (this.linkData == null) {
-      if (other.linkData != null) {
+    if (this.animations == null) {
+      if (other.animations != null) {
         return false;
       }
-    } else if (!this.linkData.equals(other.linkData)) {
+    } else if (!this.animations.equals(other.animations)) {
       return false;
     }
     if (this.translation == null) {
@@ -437,12 +437,12 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @return _linkdataList.get(index)
    */
-  public LinkDataModel getLinkData(int index) {
-    if ((index < 0) || (index > this.linkData.size())) {
+  public AnimationModel getAnimation(int index) {
+    if ((index < 0) || (index > this.animations.size())) {
       throw new IndexOutOfBoundsException();
     }
 
-    return this.linkData.get(index);
+    return this.animations.get(index);
   } 
 
   /**
@@ -450,11 +450,11 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public LinkDataModel[] getLinkData() {
-    final int size = this.linkData.size();
-    final LinkDataModel[] linkDatas = new LinkDataModel[size];
+  public AnimationModel[] getAnimations() {
+    final int size = this.animations.size();
+    final AnimationModel[] linkDatas = new AnimationModel[size];
     for (int i = 0; i < size; i++) {
-      linkDatas[i] = this.linkData.get(i);
+      linkDatas[i] = this.animations.get(i);
     }
     return linkDatas;
   } 
@@ -771,24 +771,24 @@ public class GroupModel implements java.io.Serializable {
    * Method setLinkdata
    * 
    * @param index インデックス
-   * @param link リンクデータ
+   * @param animation リンクデータ
    */
-  public void setLinkData(int index, LinkDataModel link) {
-    if ((index < 0) || (index > this.linkData.size())) {
+  public void setAnimation(int index, AnimationModel animation) {
+    if ((index < 0) || (index > this.animations.size())) {
       throw new IndexOutOfBoundsException();
     }
-    this.linkData.set(index, link);
+    this.animations.set(index, animation);
   } 
 
   /**
    * Method setLinkdata
    * 
-   * @param links リンクデータの配列
+   * @param animations リンクデータの配列
    */
-  public void setLinkData(LinkDataModel[] links) {
-    this.linkData.clear();
-    for (int i = 0; i < links.length; i++) {
-      this.linkData.add(links[i]);
+  public void setAnimations(AnimationModel[] animations) {
+    this.animations.clear();
+    for (int i = 0; i < animations.length; i++) {
+      this.animations.add(animations[i]);
     }
   } 
 

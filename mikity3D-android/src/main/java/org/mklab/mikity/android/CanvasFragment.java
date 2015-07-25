@@ -21,7 +21,7 @@ import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
+import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
@@ -422,8 +422,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private void checkLinkParameterType(GroupModel parent) {
     final GroupModel[] groups = parent.getGroups();
     for (final GroupModel group : groups) {
-      final LinkDataModel[] links = group.getLinkData();
-      for (final LinkDataModel link : links) {
+      final AnimationModel[] links = group.getAnimations();
+      for (final AnimationModel link : links) {
         if (link.hasCoordinateParameter()) {
           this.manager.setHasCoordinateParameter(true);
         }

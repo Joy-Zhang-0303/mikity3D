@@ -20,7 +20,7 @@ import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.LinkDataModel;
+import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
@@ -252,8 +252,8 @@ public class SimpleXmlUnmarshallerTest {
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
 
-    final LinkDataModel actualLinkData = actualGroup.getLinkData(0);
-    final LinkDataModel expectedLinkData = new LinkDataModel();
+    final AnimationModel actualLinkData = actualGroup.getAnimation(0);
+    final AnimationModel expectedLinkData = new AnimationModel();
     expectedLinkData.setNumber(2);
     expectedLinkData.setTarget("translationY"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
@@ -298,8 +298,8 @@ public class SimpleXmlUnmarshallerTest {
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
-    final LinkDataModel actualLinkData = actualGroup.getLinkData(0);
-    final LinkDataModel expectedLinkData = new LinkDataModel();
+    final AnimationModel actualLinkData = actualGroup.getAnimation(0);
+    final AnimationModel expectedLinkData = new AnimationModel();
     expectedLinkData.setNumber(3);
     expectedLinkData.setTarget("rotationX"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));

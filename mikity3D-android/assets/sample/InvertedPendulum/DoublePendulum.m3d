@@ -81,7 +81,7 @@
                   <vertex x="-0.125" y="0.1" z="-0.025"/>
                   <vertex x="-0.125" y="0.1" z="0.025"/>
                </quadPolygon>
-               <linkData target="translationX" number="2"/>
+               <animation target="translationX" number="2"/>
                <group name="sinsi1">
                   <translation x="0.0" y="0.0" z="0.035"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
@@ -405,7 +405,7 @@
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
                      <vertex x="0.00707" y="0.0" z="-0.00707"/>
                   </quadPolygon>
-                  <linkData target="rotationZ" number="3"/>
+                  <animation target="rotationZ" number="3"/>
                   <group name="sinsi2">
                      <translation x="0.0" y="0.389" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
@@ -729,7 +729,7 @@
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>
                         <vertex x="0.00707" y="0.354" z="0.00707"/>
                      </quadPolygon>
-                     <linkData target="rotationZ" number="4"/>
+                     <animation target="rotationZ" number="4"/>
                   </group>
                </group>
             </group>
