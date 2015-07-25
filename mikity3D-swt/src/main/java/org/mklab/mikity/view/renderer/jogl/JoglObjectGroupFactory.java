@@ -26,27 +26,27 @@ public class JoglObjectGroupFactory {
   public JoglObjectGroup create(final GroupModel group) {
     final JoglObjectGroup objectGroup = JoglObjectGroup.create(group);
     
-    for (final BoxModel box : group.getXMLBoxes()) {
+    for (final BoxModel box : group.getBoxes()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(box));
     }
 
-    for (final CylinderModel cylinder : group.getXMLCylinders()) {
+    for (final CylinderModel cylinder : group.getCylinders()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(cylinder));
     }
 
-    for (final SphereModel sphere : group.getXMLSpheres()) {
+    for (final SphereModel sphere : group.getSpheres()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(sphere));
     }
 
-    for (final ConeModel cone : group.getXMLCones()) {
+    for (final ConeModel cone : group.getCones()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(cone));
     }
     
-    for (final TrianglePolygonModel polygon : group.getXMLTrianglePolygons()) {
+    for (final TrianglePolygonModel polygon : group.getTrianglePolygons()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(polygon));
     }
 
-    for (final QuadPolygonModel polygon : group.getXMLQuadPolygons()) {
+    for (final QuadPolygonModel polygon : group.getQuadPolygons()) {
       objectGroup.addChild(JoglPrimitiveFactory.create(polygon));
     }
 

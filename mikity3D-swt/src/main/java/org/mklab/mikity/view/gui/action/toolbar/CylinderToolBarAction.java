@@ -33,7 +33,7 @@ public class CylinderToolBarAction extends AbstractToolBarAction {
     cylinder.setColor("blue"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
-    group.addXMLCylinder(cylinder);
+    group.addCylinder(cylinder);
     
     update();
     

@@ -122,7 +122,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param box ボックス
    */
-  public void addXMLBox(BoxModel box) {
+  public void addBox(BoxModel box) {
     this.boxes.add(box);
   } 
 
@@ -132,7 +132,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param box ボックス
    */
-  public void addXMLBox(int index, BoxModel box) {
+  public void addBox(int index, BoxModel box) {
     this.boxes.add(index, box);
   } 
 
@@ -141,7 +141,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param cone コーン
    */
-  public void addXMLCone(ConeModel cone) {
+  public void addCone(ConeModel cone) {
     this.cones.add(cone);
   } 
 
@@ -151,7 +151,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param cone コーン
    */
-  public void addXMLCone(int index, ConeModel cone) {
+  public void addCone(int index, ConeModel cone) {
     this.cones.add(index, cone);
   } 
   
@@ -160,7 +160,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param cylinder シリンダー
    */
-  public void addXMLCylinder(CylinderModel cylinder) {
+  public void addCylinder(CylinderModel cylinder) {
     this.cylinders.add(cylinder);
   } 
 
@@ -170,7 +170,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param cylinder シリンダー
    */
-  public void addXMLCylinder(int index, CylinderModel cylinder) {
+  public void addCylinder(int index, CylinderModel cylinder) {
     this.cylinders.add(index, cylinder);
   } 
 
@@ -179,7 +179,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param sphere スフィア
    */
-  public void addXMLSphere(SphereModel sphere) {
+  public void addSphere(SphereModel sphere) {
     this.spheres.add(sphere);
   } 
 
@@ -189,7 +189,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param sphere スフィア
    */
-  public void addXMLSphere(int index, SphereModel sphere) {
+  public void addSphere(int index, SphereModel sphere) {
     this.spheres.add(index, sphere);
   } 
 
@@ -198,7 +198,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param trianglePolygon 三角形のポリゴン
    */
-  public void addXMLTrianglePolygon(TrianglePolygonModel trianglePolygon) {
+  public void addTrianglePolygon(TrianglePolygonModel trianglePolygon) {
     this.trianglePolygons.add(trianglePolygon);
   } 
   
@@ -208,7 +208,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param trianglePolygon 三角形のポリゴン
    */
-  public void addXMLTrianglePolygon(int index, TrianglePolygonModel trianglePolygon) {
+  public void addTrianglePolygon(int index, TrianglePolygonModel trianglePolygon) {
     this.trianglePolygons.add(index, trianglePolygon);
   } 
 
@@ -217,7 +217,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param quadPolygon 四角形のポリゴン
    */
-  public void addXMLQuadPolygon(QuadPolygonModel quadPolygon) {
+  public void addQuadPolygon(QuadPolygonModel quadPolygon) {
     this.quadPolygons.add(quadPolygon);
   } 
 
@@ -227,7 +227,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param quadPolygon 四角形のポリゴン
    */
-  public void addXMLQuadPolygon(int index, QuadPolygonModel quadPolygon) {
+  public void addQuadPolygon(int index, QuadPolygonModel quadPolygon) {
     this.quadPolygons.add(index, quadPolygon);
   } 
 
@@ -248,42 +248,42 @@ public class GroupModel implements java.io.Serializable {
   /**
    * Method clearXMLBox
    */
-  public void clearXMLBox() {
+  public void clearBox() {
     this.boxes.clear();
   } 
 
   /**
    * Method clearXMLCone
    */
-  public void clearXMLCone() {
+  public void clearCone() {
     this.cones.clear();
   } 
 
   /**
    * Method clearXMLCylinder
    */
-  public void clearXMLCylinder() {
+  public void clearCylinder() {
     this.cylinders.clear();
   } 
 
   /**
    * Method clearXMLSphere
    */
-  public void clearXMLSphere() {
+  public void clearSphere() {
     this.spheres.clear();
   } 
 
   /**
    * Method clearXMLTrianglePolygon
    */
-  public void clearXMLTrianglePolygon() {
+  public void clearTrianglePolygon() {
     this.trianglePolygons.clear();
   } 
 
   /**
    * Method clearXMLQuadPolygon
    */
-  public void clearXMLQuadPolygon() {
+  public void clearQuadPolygon() {
     this.quadPolygons.clear();
   } 
 
@@ -431,14 +431,14 @@ public class GroupModel implements java.io.Serializable {
     return localGroups;
   } 
 
-  /**
-   * Method getGroupAsReferenceReturns a reference to 'group'. No type checking is performed on any modications to the Collection.
-   * 
-   * @return returns a reference to the Collection.
-   */
-  public List<GroupModel> getGroupsAsReference() {
-    return this.groups;
-  } 
+//  /**
+//   * Method getGroupAsReferenceReturns a reference to 'group'. No type checking is performed on any modications to the Collection.
+//   * 
+//   * @return returns a reference to the Collection.
+//   */
+//  public List<GroupModel> getGroupsAsReference() {
+//    return this.groups;
+//  } 
 
   /**
    * Method getGroupCount
@@ -486,14 +486,14 @@ public class GroupModel implements java.io.Serializable {
 //    return this.links;
 //  } 
 
-  /**
-   * Method getLinkdataCount
-   * 
-   * @return _linkdataList.size()
-   */
-  public int getLinkDataSize() {
-    return this.linkData.size();
-  } 
+//  /**
+//   * Method getLinkdataCount
+//   * 
+//   * @return _linkdataList.size()
+//   */
+//  public int getLinkDataSize() {
+//    return this.linkData.size();
+//  } 
 
   /**
    * Returns the value of field 'translation'.
@@ -528,7 +528,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLBoxList.get(index)
    */
-  public BoxModel getXMLBox(int index) {
+  public BoxModel getBox(int index) {
     if ((index < 0) || (index > this.boxes.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -541,7 +541,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public BoxModel[] getXMLBoxes() {
+  public BoxModel[] getBoxes() {
     final int size = this.boxes.size();
     final BoxModel[] localBoxes = new BoxModel[size];
     for (int i = 0; i < size; i++) {
@@ -551,22 +551,13 @@ public class GroupModel implements java.io.Serializable {
   } 
 
 //  /**
-//   * Method getXMLBoxAsReferenceReturns a reference to 'XMLBox'. No type checking is performed on any modications to the Collection.
+//   * Method getXMLBoxCount
 //   * 
-//   * @return returns a reference to the Collection.
+//   * @return _XMLBoxList.size()
 //   */
-//  public List<XMLBox> getXMLBoxesAsReference() {
-//    return this.boxes;
+//  public int getBoxSize() {
+//    return this.boxes.size();
 //  } 
-
-  /**
-   * Method getXMLBoxCount
-   * 
-   * @return _XMLBoxList.size()
-   */
-  public int getXMLBoxSize() {
-    return this.boxes.size();
-  } 
 
   /**
    * Method getXMLCone
@@ -574,7 +565,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLConeList.get(index)
    */
-  public ConeModel getXMLCone(int index) {
+  public ConeModel getCone(int index) {
     if ((index < 0) || (index > this.cones.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -587,7 +578,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public ConeModel[] getXMLCones() {
+  public ConeModel[] getCones() {
     final int size = this.cones.size();
     final ConeModel[] localCones = new ConeModel[size];
     for (int i = 0; i < size; i++) {
@@ -596,14 +587,14 @@ public class GroupModel implements java.io.Serializable {
     return localCones;
   } 
 
-  /**
-   * Method getXMLConeCount
-   * 
-   * @return _XMLConeList.size()
-   */
-  public int getXMLConeSize() {
-    return this.cones.size();
-  } 
+//  /**
+//   * Method getXMLConeCount
+//   * 
+//   * @return _XMLConeList.size()
+//   */
+//  public int getConeSize() {
+//    return this.cones.size();
+//  } 
 
   /**
    * Method getXMLCylinder
@@ -611,7 +602,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLCylinderList.get(index)
    */
-  public CylinderModel getXMLCylinder(int index) {
+  public CylinderModel getCylinder(int index) {
     if ((index < 0) || (index > this.cylinders.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -624,7 +615,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @return _XMLCylinderList.get(index)
    */
-  public CylinderModel[] getXMLCylinders() {
+  public CylinderModel[] getCylinders() {
     final int size = this.cylinders.size();
     final CylinderModel[] localCylinders = new CylinderModel[size];
     for (int i = 0; i < size; i++) {
@@ -633,14 +624,14 @@ public class GroupModel implements java.io.Serializable {
     return localCylinders;
   } 
 
-  /**
-   * Method getXMLCylinderCount
-   * 
-   * @return _XMLCylinderList.size()
-   */
-  public int getXMLCylinderSize() {
-    return this.cylinders.size();
-  } 
+//  /**
+//   * Method getXMLCylinderCount
+//   * 
+//   * @return _XMLCylinderList.size()
+//   */
+//  public int getCylinderSize() {
+//    return this.cylinders.size();
+//  } 
 
   /**
    * Method getXMLSphere
@@ -648,7 +639,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLSphereList.get(index)
    */
-  public SphereModel getXMLSphere(int index) {
+  public SphereModel getSphere(int index) {
     if ((index < 0) || (index > this.spheres.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -661,7 +652,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public SphereModel[] getXMLSpheres() {
+  public SphereModel[] getSpheres() {
     final int size = this.spheres.size();
     final SphereModel[] localSpheres = new SphereModel[size];
     for (int i = 0; i < size; i++) {
@@ -670,23 +661,23 @@ public class GroupModel implements java.io.Serializable {
     return localSpheres;
   } 
 
-  /**
-   * Method getXMLSphereAsReferenceReturns a reference to 'XMLSphere'. No type checking is performed on any modications to the Collection.
-   * 
-   * @return returns a reference to the Collection.
-   */
-  public List<SphereModel> getXMLSpheresAsReference() {
-    return this.spheres;
-  } 
+//  /**
+//   * Method getXMLSphereAsReferenceReturns a reference to 'XMLSphere'. No type checking is performed on any modications to the Collection.
+//   * 
+//   * @return returns a reference to the Collection.
+//   */
+//  public List<SphereModel> getXMLSpheresAsReference() {
+//    return this.spheres;
+//  } 
 
-  /**
-   * Method getXMLSphereCount
-   * 
-   * @return _XMLSphereList.size()
-   */
-  public int getXMLSphereSize() {
-    return this.spheres.size();
-  } 
+//  /**
+//   * Method getXMLSphereCount
+//   * 
+//   * @return _XMLSphereList.size()
+//   */
+//  public int getXMLSphereSize() {
+//    return this.spheres.size();
+//  } 
 
   /**
    * Method getXMLTrianglePolygon
@@ -694,7 +685,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLTrianglePolygonList.get(index)
    */
-  public TrianglePolygonModel getXMLTrianglePolygon(int index) {
+  public TrianglePolygonModel getTrianglePolygon(int index) {
     if ((index < 0) || (index > this.trianglePolygons.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -707,32 +698,32 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public TrianglePolygonModel[] getXMLTrianglePolygons() {
+  public TrianglePolygonModel[] getTrianglePolygons() {
     final int size = this.trianglePolygons.size();
-    final TrianglePolygonModel[] localTrianglePolygons = new TrianglePolygonModel[size];
+    final TrianglePolygonModel[] localPolygons = new TrianglePolygonModel[size];
     for (int i = 0; i < size; i++) {
-      localTrianglePolygons[i] = this.trianglePolygons.get(i);
+      localPolygons[i] = this.trianglePolygons.get(i);
     }
-    return localTrianglePolygons;
+    return localPolygons;
   } 
 
-  /**
-   * Method getXMLTrianglePolygonAsReferenceReturns a reference to 'XMLTrianglePolygon'. No type checking is performed on any modications to the Collection.
-   * 
-   * @return returns a reference to the Collection.
-   */
-  public java.util.List<TrianglePolygonModel> getXMLTrianglePolygonsAsReference() {
-    return this.trianglePolygons;
-  } 
+//  /**
+//   * Method getXMLTrianglePolygonAsReferenceReturns a reference to 'XMLTrianglePolygon'. No type checking is performed on any modications to the Collection.
+//   * 
+//   * @return returns a reference to the Collection.
+//   */
+//  public java.util.List<TrianglePolygonModel> getTrianglePolygonsAsReference() {
+//    return this.trianglePolygons;
+//  } 
 
-  /**
-   * Method getXMLTrianglePolygonCount
-   * 
-   * @return _XMLTrianglePolygonList.size()
-   */
-  public int getXMLTrianglePolygonSize() {
-    return this.trianglePolygons.size();
-  } 
+//  /**
+//   * Method getXMLTrianglePolygonCount
+//   * 
+//   * @return _XMLTrianglePolygonList.size()
+//   */
+//  public int getXMLTrianglePolygonSize() {
+//    return this.trianglePolygons.size();
+//  } 
 
   /**
    * Method getXMLQuadPolygon
@@ -740,7 +731,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @return _XMLQuadPolygonList.get(index)
    */
-  public QuadPolygonModel getXMLQuadPolygon(int index) {
+  public QuadPolygonModel getQuadPolygon(int index) {
     if ((index < 0) || (index > this.quadPolygons.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -753,7 +744,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @return mArray
    */
-  public QuadPolygonModel[] getXMLQuadPolygons() {
+  public QuadPolygonModel[] getQuadPolygons() {
     final int size = this.quadPolygons.size();
     final QuadPolygonModel[] localQuadPolygons = new QuadPolygonModel[size];
     for (int i = 0; i < size; i++) {
@@ -762,23 +753,23 @@ public class GroupModel implements java.io.Serializable {
     return localQuadPolygons;
   } 
 
-  /**
-   * Method getXMLQuadPolygonAsReferenceReturns a reference to 'XMLQuadPolygon'. No type checking is performed on any modications to the Collection.
-   * 
-   * @return returns a reference to the Collection.
-   */
-  public List<QuadPolygonModel> getXMLQuadPolygonsAsReference() {
-    return this.quadPolygons;
-  } 
+//  /**
+//   * Method getXMLQuadPolygonAsReferenceReturns a reference to 'XMLQuadPolygon'. No type checking is performed on any modications to the Collection.
+//   * 
+//   * @return returns a reference to the Collection.
+//   */
+//  public List<QuadPolygonModel> getQuadPolygonsAsReference() {
+//    return this.quadPolygons;
+//  } 
 
-  /**
-   * Method getXMLQuadPolygonCount
-   * 
-   * @return _XMLQuadPolygonList.size()
-   */
-  public int getXMLQuadPolygonSize() {
-    return this.quadPolygons.size();
-  } 
+//  /**
+//   * Method getXMLQuadPolygonCount
+//   * 
+//   * @return _XMLQuadPolygonList.size()
+//   */
+//  public int getXMLQuadPolygonSize() {
+//    return this.quadPolygons.size();
+//  } 
 
   /**
    * Method removeGroup
@@ -797,7 +788,7 @@ public class GroupModel implements java.io.Serializable {
    * @param box ボックス
    * @return removed
    */
-  public boolean removeXMLBox(BoxModel box) {
+  public boolean removeBox(BoxModel box) {
     boolean removed = this.boxes.remove(box);
     return removed;
   } 
@@ -808,7 +799,7 @@ public class GroupModel implements java.io.Serializable {
    * @param cone コーン
    * @return removed
    */
-  public boolean removeXMLCone(ConeModel cone) {
+  public boolean removeCone(ConeModel cone) {
     boolean removed = this.cones.remove(cone);
     return removed;
   } 
@@ -819,7 +810,7 @@ public class GroupModel implements java.io.Serializable {
    * @param cylinder シリンダー
    * @return removed
    */
-  public boolean removeXMLCylinder(CylinderModel cylinder) {
+  public boolean removeCylinder(CylinderModel cylinder) {
     boolean removed = this.cylinders.remove(cylinder);
     return removed;
   } 
@@ -830,7 +821,7 @@ public class GroupModel implements java.io.Serializable {
    * @param sphere スフィア
    * @return removed
    */
-  public boolean removeXMLSphere(SphereModel sphere) {
+  public boolean removeSphere(SphereModel sphere) {
     boolean removed = this.spheres.remove(sphere);
     return removed;
   } 
@@ -840,7 +831,7 @@ public class GroupModel implements java.io.Serializable {
    * @param trianglePolygon 三角形のポリゴン
    * @return removed
    */
-  public boolean removeXMLTrianglePolygon(TrianglePolygonModel trianglePolygon) {
+  public boolean removeTrianglePolygon(TrianglePolygonModel trianglePolygon) {
     boolean removed = this.trianglePolygons.remove(trianglePolygon);
     return removed;
   } 
@@ -851,7 +842,7 @@ public class GroupModel implements java.io.Serializable {
    * @param quadPolygon 四角形のポリゴン
    * @return removed
    */
-  public boolean removeXMLQuadPolygon(QuadPolygonModel quadPolygon) {
+  public boolean removeQuadPolygon(QuadPolygonModel quadPolygon) {
     boolean removed = this.quadPolygons.remove(quadPolygon);
     return removed;
   } 
@@ -911,7 +902,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param links リンクデータの文字列
    */
-  public void setLinks(LinkDataModel[] links) {
+  public void setLinkData(LinkDataModel[] links) {
     this.linkData.clear();
     for (int i = 0; i < links.length; i++) {
       this.linkData.add(links[i]);
@@ -951,7 +942,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param box ボックス
    */
-  public void setXMLBox(int index, BoxModel box) {
+  public void setBox(int index, BoxModel box) {
     if ((index < 0) || (index > this.boxes.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -963,7 +954,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param argBoxes ボックスの文字列
    */
-  public void setXMLBoxes(BoxModel[] argBoxes) {
+  public void setBoxes(BoxModel[] argBoxes) {
     this.boxes.clear();
     for (int i = 0; i < argBoxes.length; i++) {
       this.boxes.add(argBoxes[i]);
@@ -976,7 +967,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param cone コーン
    */
-  public void setXMLCone(int index, ConeModel cone) {
+  public void setCone(int index, ConeModel cone) {
     if ((index < 0) || (index > this.cones.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -988,7 +979,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param argCones コーンの文字列
    */
-  public void setXMLCones(ConeModel[] argCones) {
+  public void setCones(ConeModel[] argCones) {
     this.cones.clear();
     for (int i = 0; i < argCones.length; i++) {
       this.cones.add(argCones[i]);
@@ -1001,7 +992,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param cylinder シリンダー
    */
-  public void setXMLCylinder(int index, CylinderModel cylinder) {
+  public void setCylinder(int index, CylinderModel cylinder) {
     if ((index < 0) || (index > this.cylinders.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1013,7 +1004,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param argCylinders シリンダーの文字列
    */
-  public void setXMLCylinders(CylinderModel[] argCylinders) {
+  public void setCylinders(CylinderModel[] argCylinders) {
     this.cylinders.clear();
     for (int i = 0; i < argCylinders.length; i++) {
       this.cylinders.add(argCylinders[i]);
@@ -1026,7 +1017,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param sphere スフィア
    */
-  public void setXMLSphere(int index, SphereModel sphere) {
+  public void setSphere(int index, SphereModel sphere) {
     if ((index < 0) || (index > this.spheres.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1038,7 +1029,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param argSpheres スフィアの文字列
    */
-  public void setXMLSpheres(SphereModel[] argSpheres) {
+  public void setSpheres(SphereModel[] argSpheres) {
     this.spheres.clear();
     for (int i = 0; i < argSpheres.length; i++) {
       this.spheres.add(argSpheres[i]);
@@ -1051,7 +1042,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param trianglePolygon 三角形のポリゴン
    */
-  public void setXMLTrianglePolygon(int index, TrianglePolygonModel trianglePolygon) {
+  public void setTrianglePolygon(int index, TrianglePolygonModel trianglePolygon) {
     if ((index < 0) || (index > this.trianglePolygons.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1063,7 +1054,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param argTrianglePolygons 三角形のポリゴンの文字列
    */
-  public void setXMLTrianglePolygons(TrianglePolygonModel[] argTrianglePolygons) {
+  public void setTrianglePolygons(TrianglePolygonModel[] argTrianglePolygons) {
     this.trianglePolygons.clear();
     for (int i = 0; i < argTrianglePolygons.length; i++) {
       this.trianglePolygons.add(argTrianglePolygons[i]);
@@ -1076,7 +1067,7 @@ public class GroupModel implements java.io.Serializable {
    * @param index インデックス
    * @param quadPolygon 四角形のポリゴン
    */
-  public void setXMLQuadPolygon(int index, QuadPolygonModel quadPolygon) {
+  public void setQuadPolygon(int index, QuadPolygonModel quadPolygon) {
     if ((index < 0) || (index > this.quadPolygons.size())) {
       throw new IndexOutOfBoundsException();
     }
@@ -1088,7 +1079,7 @@ public class GroupModel implements java.io.Serializable {
    * 
    * @param argQuadPolygons 四角形ポリゴンの文字列
    */
-  public void setXMLQuadPolygons(QuadPolygonModel[] argQuadPolygons) {
+  public void setQuadPolygons(QuadPolygonModel[] argQuadPolygons) {
     this.quadPolygons.clear();
     for (int i = 0; i < argQuadPolygons.length; i++) {
       this.quadPolygons.add(argQuadPolygons[i]);

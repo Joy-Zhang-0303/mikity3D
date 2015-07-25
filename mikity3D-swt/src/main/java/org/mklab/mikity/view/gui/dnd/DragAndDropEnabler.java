@@ -123,23 +123,23 @@ public class DragAndDropEnabler {
       final GroupModel sourceGroup = (GroupModel)DragAndDropEnabler.this.treeItem.getParentItem().getData();
 
       if (obj instanceof BoxModel) {
-        sourceGroup.removeXMLBox((BoxModel)obj);
-        group.addXMLBox((BoxModel)obj);
+        sourceGroup.removeBox((BoxModel)obj);
+        group.addBox((BoxModel)obj);
       } else if (obj instanceof CylinderModel) {
-        sourceGroup.removeXMLCylinder((CylinderModel)obj);
-        group.addXMLCylinder((CylinderModel)obj);
+        sourceGroup.removeCylinder((CylinderModel)obj);
+        group.addCylinder((CylinderModel)obj);
       } else if (obj instanceof SphereModel) {
-        sourceGroup.removeXMLSphere((SphereModel)obj);
-        group.addXMLSphere((SphereModel)obj);
+        sourceGroup.removeSphere((SphereModel)obj);
+        group.addSphere((SphereModel)obj);
       } else if (obj instanceof ConeModel) {
-        sourceGroup.removeXMLCone((ConeModel)obj);
-        group.addXMLCone((ConeModel)obj);
+        sourceGroup.removeCone((ConeModel)obj);
+        group.addCone((ConeModel)obj);
       } else if (obj instanceof TrianglePolygonModel) {
-        sourceGroup.removeXMLTrianglePolygon((TrianglePolygonModel)obj);
-        group.addXMLTrianglePolygon((TrianglePolygonModel)obj);
+        sourceGroup.removeTrianglePolygon((TrianglePolygonModel)obj);
+        group.addTrianglePolygon((TrianglePolygonModel)obj);
       } else if (obj instanceof QuadPolygonModel) {
-        sourceGroup.removeXMLQuadPolygon((QuadPolygonModel)obj);
-        group.addXMLQuadPolygon((QuadPolygonModel)obj);
+        sourceGroup.removeQuadPolygon((QuadPolygonModel)obj);
+        group.addQuadPolygon((QuadPolygonModel)obj);
       } else if (obj instanceof GroupModel) {
         sourceGroup.removeGroup((GroupModel)obj);
         group.addGroup((GroupModel)obj);

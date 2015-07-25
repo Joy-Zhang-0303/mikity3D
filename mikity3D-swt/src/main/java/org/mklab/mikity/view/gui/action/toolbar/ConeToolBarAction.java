@@ -32,7 +32,7 @@ public class ConeToolBarAction extends AbstractToolBarAction {
     cone.setColor("green"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
-    group.addXMLCone(cone);
+    group.addCone(cone);
     update();
     
     this.modeler.setChanged(true);

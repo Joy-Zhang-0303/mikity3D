@@ -232,7 +232,7 @@ public class AddTrianglePolygonDialog {
       triangle.setTranslation(getLocation(location));
     }
     triangle.setColor(this.colorCombo.getText());
-    this.targetGroup.addXMLTrianglePolygon(triangle);
+    this.targetGroup.addTrianglePolygon(triangle);
   }
 
   /**

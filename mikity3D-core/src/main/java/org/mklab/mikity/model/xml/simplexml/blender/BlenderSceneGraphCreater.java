@@ -32,18 +32,18 @@ public class BlenderSceneGraphCreater {
    * @param scene シーン
    */
   public void checkGroupName(GroupModel rootGroup, GroupModel scene) {
-    final List<GroupModel> groups = rootGroup.getGroupsAsReference();
+    final GroupModel[] groups = rootGroup.getGroups();
     
-    for (int i = 0; i < groups.size(); i++) {
-      if (groups.get(i).getName().equals(scene.getName())) {
-        final List<TrianglePolygonModel> trianglePolygons = rootGroup.getGroups()[i].getXMLTrianglePolygonsAsReference();
-        final List<QuadPolygonModel> quadPolygons = rootGroup.getGroups()[i].getXMLQuadPolygonsAsReference();
+    for (int i = 0; i < groups.length; i++) {
+      if (groups[i].getName().equals(scene.getName())) {
+        final TrianglePolygonModel[] trianglePolygons = rootGroup.getGroups()[i].getTrianglePolygons();
+        final QuadPolygonModel[] quadPolygons = rootGroup.getGroups()[i].getQuadPolygons();
         addTrianglePolygons(scene, trianglePolygons);
         addQuadPolygons(scene, quadPolygons);
       }
     }
 
-    final List<GroupModel> children = scene.getGroupsAsReference();
+    final GroupModel[] children = scene.getGroups();
     if (children != null) {
       for (final GroupModel child : children) {
         checkGroupName(rootGroup, child);
@@ -56,9 +56,9 @@ public class BlenderSceneGraphCreater {
    * @param scene
    * @param polygons
    */
-  private void addTrianglePolygons(GroupModel scene, List<TrianglePolygonModel> polygons) {
+  private void addTrianglePolygons(GroupModel scene, TrianglePolygonModel[] polygons) {
     for (final TrianglePolygonModel polygon : polygons) {
-      scene.addXMLTrianglePolygon(polygon);
+      scene.addTrianglePolygon(polygon);
     }
   }
 
@@ -66,9 +66,9 @@ public class BlenderSceneGraphCreater {
    * @param scene
    * @param polygons
    */
-  private void addQuadPolygons(GroupModel scene, List<QuadPolygonModel> polygons) {
+  private void addQuadPolygons(GroupModel scene, QuadPolygonModel[] polygons) {
     for (final QuadPolygonModel polygon : polygons) {
-      scene.addXMLQuadPolygon(polygon);
+      scene.addQuadPolygon(polygon);
     }
   }
 

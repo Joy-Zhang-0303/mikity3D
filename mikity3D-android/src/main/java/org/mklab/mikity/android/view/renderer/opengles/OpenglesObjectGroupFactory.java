@@ -33,27 +33,27 @@ public class OpenglesObjectGroupFactory {
   public OpenglesObjectGroup create(final GroupModel group) {
     final OpenglesObjectGroup objectGroup = OpenglesObjectGroup.create(group);
     
-    for (final BoxModel box : group.getXMLBoxes()) {
+    for (final BoxModel box : group.getBoxes()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(box));
     }
 
-    for (final CylinderModel cylinder : group.getXMLCylinders()) {
+    for (final CylinderModel cylinder : group.getCylinders()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(cylinder));
     }
 
-    for (final SphereModel sphere : group.getXMLSpheres()) {
+    for (final SphereModel sphere : group.getSpheres()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(sphere));
     }
 
-    for (final ConeModel cone : group.getXMLCones()) {
+    for (final ConeModel cone : group.getCones()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(cone));
     }
     
-    for (final TrianglePolygonModel polygon : group.getXMLTrianglePolygons()) {
+    for (final TrianglePolygonModel polygon : group.getTrianglePolygons()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon));
     }
 
-    for (final QuadPolygonModel polygon : group.getXMLQuadPolygons()) {
+    for (final QuadPolygonModel polygon : group.getQuadPolygons()) {
       objectGroup.addChild(OpenglesPrimitiveFactory.create(polygon));
     }
 

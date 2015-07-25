@@ -147,16 +147,16 @@ public class SimpleXmlUnmarshallerTest {
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
-    final BoxModel actualBox1 = actualGroup.getXMLBox(0);
+    final BoxModel actualBox1 = actualGroup.getBox(0);
     assertDodaiBox1(actualBox1);
 
-    final BoxModel actualBox2 = actualGroup.getXMLBox(1);
+    final BoxModel actualBox2 = actualGroup.getBox(1);
     assertDodaiBox2(actualBox2);
 
-    final BoxModel actualBox3 = actualGroup.getXMLBox(2);
+    final BoxModel actualBox3 = actualGroup.getBox(2);
     assertDodaiBox3(actualBox3);
 
-    final BoxModel actualBox4 = actualGroup.getXMLBox(3);
+    final BoxModel actualBox4 = actualGroup.getBox(3);
     assertDodaiBox4(actualBox4);
 
     final GroupModel actualDaishaGroup = actualGroup.getGroup(0);
@@ -258,7 +258,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedLinkData.setTarget("translationY"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
 
-    final BoxModel actualBox = actualGroup.getXMLBox(0);
+    final BoxModel actualBox = actualGroup.getBox(0);
     assertDaishaBox(actualBox);
     
     final GroupModel actualSinsiGroup = actualGroup.getGroup(0);
@@ -304,10 +304,10 @@ public class SimpleXmlUnmarshallerTest {
     expectedLinkData.setTarget("rotationX"); //$NON-NLS-1$
     assertThat(actualLinkData, is(expectedLinkData));
     
-    final CylinderModel actualCylinder1 = actualGroup.getXMLCylinder(0);
+    final CylinderModel actualCylinder1 = actualGroup.getCylinder(0);
     assertCylinder1(actualCylinder1);
     
-    final CylinderModel actualCylinder2 = actualGroup.getXMLCylinder(1);
+    final CylinderModel actualCylinder2 = actualGroup.getCylinder(1);
     assertCylinder2(actualCylinder2);
 
   }

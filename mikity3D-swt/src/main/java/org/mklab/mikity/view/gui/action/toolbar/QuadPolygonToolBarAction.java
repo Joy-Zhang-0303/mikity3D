@@ -42,7 +42,7 @@ public class QuadPolygonToolBarAction extends AbstractToolBarAction {
     polygon.setColor("blue"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
-    group.addXMLQuadPolygon(polygon);
+    group.addQuadPolygon(polygon);
 
     update();
     

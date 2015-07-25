@@ -371,7 +371,7 @@ public class Node {
         linkdata[1].setTarget("translationY"); //$NON-NLS-1$
         linkdata[2] = new LinkDataModel();
         linkdata[2].setTarget("translationZ"); //$NON-NLS-1$
-        this.group.setLinks(linkdata);
+        this.group.setLinkData(linkdata);
       }
     }
   }
