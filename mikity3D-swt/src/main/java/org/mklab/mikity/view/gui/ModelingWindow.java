@@ -15,9 +15,9 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DMarshaller;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
 import org.mklab.mikity.view.gui.action.AnimationWindowOpenAction;
@@ -32,6 +32,7 @@ import org.mklab.mikity.view.gui.action.toolbar.AbstractToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.BoxToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.ConeToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.CylinderToolBarAction;
+import org.mklab.mikity.view.gui.action.toolbar.GroupToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.QuadPolygonToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.SphereToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.TrianglePolygonToolBarAction;
@@ -60,6 +61,7 @@ public class ModelingWindow extends ApplicationWindow {
   /** */
   Action ANIMATION_WINDOW_OPEN_ACTION = new AnimationWindowOpenAction(this);
 
+  private AbstractToolBarAction TOOLBAR_GROUP_ACTION = new GroupToolBarAction(this);
   private AbstractToolBarAction TOOLBAR_BOX_ACTION = new BoxToolBarAction(this);
   private AbstractToolBarAction TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this);
   private AbstractToolBarAction TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this);
@@ -106,6 +108,7 @@ public class ModelingWindow extends ApplicationWindow {
     
     ((ConfigurationDialogOpenAction)this.CONFIGURATION_DIALOG_OPEN_ACTION).setModeler(this.modeler);
     ((FileExitAction)this.FILE_EXIT_ACTION).setModeler(this.modeler);
+    this.TOOLBAR_GROUP_ACTION.setModeler(this.modeler);
     this.TOOLBAR_BOX_ACTION.setModeler(this.modeler);
     this.TOOLBAR_SPHERE_ACTION.setModeler(this.modeler);
     this.TOOLBAR_CYLINDER_ACTION.setModeler(this.modeler);
@@ -183,6 +186,7 @@ public class ModelingWindow extends ApplicationWindow {
     toolbar.add(this.TOOLBAR_CONE_ACTION);
     toolbar.add(this.TOOLBAR_TRIANGLE_ACTION);
     toolbar.add(this.TOOLBAR_QUAD_ACTION);
+    toolbar.add(this.TOOLBAR_GROUP_ACTION);
     return toolbar;
   }
 
