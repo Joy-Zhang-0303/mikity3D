@@ -45,7 +45,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   
   /**
    * ファクトリーメソッドです。
-   * @return {@OpenglesObjectGroup}
+   * @return グループ
    */
   public static OpenglesObjectGroup create() {
     return new OpenglesObjectGroup(serialID++, null);
@@ -54,7 +54,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   /**
    * ファクトリーメソッドです。
    * @param group モデルデータ
-   * @return {@OpenglesObjectGroup}
+   * @return グループ
    */
   public static OpenglesObjectGroup create(GroupModel group) {
     return new OpenglesObjectGroup(serialID++, group);

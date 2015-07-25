@@ -43,7 +43,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
   
   /**
    * ファクトリーメソッドです。
-   * @return {@JoglObjectGroup}
+   * @return グループ
    */
   public static JoglObjectGroup create() {
     return new JoglObjectGroup(serialID++, null);
@@ -52,7 +52,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
   /**
    * ファクトリーメソッドです。
    * @param group モデルデータ
-   * @return {@JoglObjectGroup}
+   * @return グループ
    */
   public static JoglObjectGroup create(GroupModel group) {
     return new JoglObjectGroup(serialID++, group);

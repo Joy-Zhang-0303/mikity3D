@@ -108,7 +108,7 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * @param message
+   * @param message メッセージ
    */
   protected void setExceptionDailogFragment(String message) {
     final DialogFragment dialogFragment = new ExceptionDialogFragment();
@@ -117,7 +117,7 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * @param folderName
+   * @param folderName フォルダーの名前
    * @return
    */
   String[] loadAssetsFolder(String folderName) {

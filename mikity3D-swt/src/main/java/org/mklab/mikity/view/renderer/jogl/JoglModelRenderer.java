@@ -173,14 +173,14 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
     return this.configuration;
   }
 
-  /**
-   * @param drawable
-   * @param modeChanged
-   * @param deviceChanged
-   */
-  public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
-    // nothing to do
-  }
+//  /**
+//   * @param drawable Drawable
+//   * @param modeChanged モデルに変更があればtrue
+//   * @param deviceChanged デバイスに変更があればtrue
+//   */
+//  public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
+//    // nothing to do
+//  }
 
   /**
    * {@inheritDoc}
