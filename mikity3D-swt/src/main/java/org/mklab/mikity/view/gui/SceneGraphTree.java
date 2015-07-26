@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
+import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
@@ -42,7 +42,7 @@ public class SceneGraphTree {
   /** */
   Tree tree;
   /** */
-  Mikity3dModel model;
+  SceneModel model;
   /** */
   Composite composite;
   /** */
@@ -85,7 +85,7 @@ public class SceneGraphTree {
    * @param modeler モデラー
    * @param model モデル
    */
-  public SceneGraphTree(final Composite composite, final JoglModeler modeler, final Mikity3dModel model) {
+  public SceneGraphTree(final Composite composite, final JoglModeler modeler, final SceneModel model) {
     this.model = model;
     this.targetGroup = this.model.getGroup(0);
     this.targetObject= this.model.getGroup(0);
@@ -757,7 +757,7 @@ public class SceneGraphTree {
    * 
    * @return モデルデータ
    */
-  public Mikity3dModel getModel() {
+  public SceneModel getModel() {
     return this.model;
   }
 
@@ -794,7 +794,7 @@ public class SceneGraphTree {
    * 
    * @param model モデル
    */
-  public void setModel(Mikity3dModel model) {
+  public void setModel(SceneModel model) {
     this.model = model;
     fillTree();
   }

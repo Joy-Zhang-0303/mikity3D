@@ -1,5 +1,5 @@
 <mikity3d>
-   <model>
+   <scene>
       <group name="base">
          <translation x="0.0" y="0.0" z="-0.02"/>
          <box width="0.01" height="0.03" depth="0.01" color="orange" transparent="false"/>
@@ -19,7 +19,7 @@
             </group>
          </group>
       </group>
-   </model>
+   </scene>
    <configuration>
       <background color="white"/>
       <light x="10.0" y="10.0" z="20.0"/>

@@ -1,5 +1,5 @@
 <mikity3d>
-   <model>
+   <scene>
       <group name="pendulum">
          <group name="dodai">
             <box width="0.02" height="0.27" depth="0.02" color="lightGray" transparent="false">
@@ -32,7 +32,7 @@
             </group>
          </group>
       </group>
-   </model>
+   </scene>
    <configuration>
       <background color="white"/>
       <light x="10.0" y="10.0" z="20.0"/>

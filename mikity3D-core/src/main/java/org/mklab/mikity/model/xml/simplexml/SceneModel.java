@@ -8,21 +8,21 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 /**
- * モデルを表すクラスです。
+ * シーンを表すクラスです。
  * 
  * @version $Revision: 1.15 $ $Date: 2007/08/03 03:30:27 $
  */
-@Root(name="model")
-public class Mikity3dModel implements java.io.Serializable, Cloneable {
+@Root(name="scene")
+public class SceneModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   /** groups */
   @ElementList(type=GroupModel.class, inline=true)
   private List<GroupModel> groups;
 
   /**
-   * 新しく生成された<code>Mikity3dModel</code>オブジェクトを初期化します。
+   * 新しく生成された<code>SceneModel</code>オブジェクトを初期化します。
    */
-  public Mikity3dModel() {
+  public SceneModel() {
     this.groups = new ArrayList<>();
   }
   
@@ -30,9 +30,9 @@ public class Mikity3dModel implements java.io.Serializable, Cloneable {
    * {@inheritDoc}
    */
   @Override
-  public Mikity3dModel clone() {
+  public SceneModel clone() {
     try {
-      final Mikity3dModel ans = (Mikity3dModel)super.clone();
+      final SceneModel ans = (SceneModel)super.clone();
       ans.groups = new ArrayList<>();
       for (final GroupModel group : this.groups) {
         ans.groups.add(group.clone());
@@ -100,7 +100,7 @@ public class Mikity3dModel implements java.io.Serializable, Cloneable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Mikity3dModel other = (Mikity3dModel)obj;
+    SceneModel other = (SceneModel)obj;
     if (this.groups == null) {
       if (other.groups != null) {
         return false;

@@ -85,7 +85,7 @@ public class JoglModeler extends Composite {
     group.setLayoutData(data);
     group.setText(Messages.getString("Modeler.0")); //$NON-NLS-1$
 
-    this.tree = new SceneGraphTree(group, this, this.root.getModel(0));
+    this.tree = new SceneGraphTree(group, this, this.root.getScene(0));
     updateRenderer();
   }
 
@@ -97,7 +97,7 @@ public class JoglModeler extends Composite {
   public void setModel(Mikity3d root) {
     this.root = root;
     this.isChanged = false;
-    this.tree.setModel(root.getModel(0));
+    this.tree.setModel(root.getScene(0));
     updateRenderer();
   }
 

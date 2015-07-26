@@ -285,7 +285,7 @@ public class AnimationWindow extends ApplicationWindow {
   public void setModelData(final Frame frame) {
     frame.add((Component)this.modelRenderer);
 
-    final GroupModel[] children = this.root.getModel(0).getGroups();
+    final GroupModel[] children = this.root.getScene(0).getGroups();
     this.modelRenderer.setRootGroups(children);
 
     final ConfigurationModel configuration = this.root.getConfiguration(0);
@@ -596,7 +596,7 @@ public class AnimationWindow extends ApplicationWindow {
       //this.manager.setData(this.data);
       this.manager.setData(this.timeSeriesData);
 
-      final GroupModel rootGroup = this.root.getModel(0).getGroup(0);
+      final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
       checkLinkParameterType(rootGroup);
 
       final int dataSize = this.manager.getDataSize();
@@ -631,7 +631,7 @@ public class AnimationWindow extends ApplicationWindow {
     //this.manager.setData(this.data);
     this.manager.setData(this.timeSeriesData);
 
-    final GroupModel rootGroup = this.root.getModel(0).getGroup(0);
+    final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
     checkLinkParameterType(rootGroup);
 
     final int dataSize = this.manager.getDataSize();

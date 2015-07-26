@@ -111,7 +111,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedDataUnit.setLength("m"); //$NON-NLS-1$
     assertThat(actualDataUnit, is(expectedDataUnit));
     
-    final Mikity3dModel actualModel = actual.getModel(0);
+    final SceneModel actualModel = actual.getScene(0);
     final GroupModel actualGroup = actualModel.getGroup(0);
     
     final TranslationModel actualLocation = actualGroup.getTranslation();

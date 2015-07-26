@@ -3,7 +3,6 @@ package org.mklab.mikity.model.xml.simplexml;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -17,9 +16,9 @@ import org.simpleframework.xml.Root;
 public class Mikity3d implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
-  /** models */
-  @ElementList(type=Mikity3dModel.class, inline=true)
-  private List<Mikity3dModel> models;
+  /** scenes */
+  @ElementList(type=SceneModel.class, inline=true)
+  private List<SceneModel> scenes;
 
   /** configurations */
   @ElementList(type=ConfigurationModel.class, inline=true)
@@ -29,7 +28,7 @@ public class Mikity3d implements java.io.Serializable, Cloneable {
    * 新しく生成された<code>Mikity3d</code>オブジェクトを初期化します。
    */
   public Mikity3d() {
-    this.models = new ArrayList<>();
+    this.scenes = new ArrayList<>();
     this.configurations = new ArrayList<>();
   }
   
@@ -40,9 +39,9 @@ public class Mikity3d implements java.io.Serializable, Cloneable {
   public Mikity3d clone() {
     try {
       final Mikity3d ans = (Mikity3d)super.clone();
-      ans.models = new ArrayList<>();
-      for (final Mikity3dModel model : this.models) {
-        ans.models.add(model.clone());
+      ans.scenes = new ArrayList<>();
+      for (final SceneModel scene : this.scenes) {
+        ans.scenes.add(scene.clone());
       }
       ans.configurations = new ArrayList<>();
       for (final ConfigurationModel configuration : this.configurations) {
@@ -67,10 +66,10 @@ public class Mikity3d implements java.io.Serializable, Cloneable {
   /**
    * Method addModel
    * 
-   * @param model モデル
+   * @param scene シーン
    */
-  public void addModel(Mikity3dModel model) {
-    this.models.add(model);
+  public void addScene(SceneModel scene) {
+    this.scenes.add(scene);
   }
 
   /**
@@ -96,7 +95,7 @@ public class Mikity3d implements java.io.Serializable, Cloneable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((configurations == null) ? 0 : configurations.hashCode());
-    result = prime * result + ((models == null) ? 0 : models.hashCode());
+    result = prime * result + ((scenes == null) ? 0 : scenes.hashCode());
     return result;
   }
 
@@ -122,28 +121,28 @@ public class Mikity3d implements java.io.Serializable, Cloneable {
     } else if (!this.configurations.equals(other.configurations)) {
       return false;
     }
-    if (this.models == null) {
-      if (other.models != null) {
+    if (this.scenes == null) {
+      if (other.scenes != null) {
         return false;
       }
-    } else if (!this.models.equals(other.models)) {
+    } else if (!this.scenes.equals(other.scenes)) {
       return false;
     }
     return true;
   }
 
   /**
-   * 指定された指数のモデルを返します。
+   * 指定された指数のシーンを返します。
    * 
    * @param index インデックス
-   * @return モデル
+   * @return シーン
    */
-  public Mikity3dModel getModel(int index) {
-    if ((index < 0) || (index > this.models.size())) {
+  public SceneModel getScene(int index) {
+    if ((index < 0) || (index > this.scenes.size())) {
       throw new IndexOutOfBoundsException();
     }
 
-    return this.models.get(index);
+    return this.scenes.get(index);
   }
 
   /**

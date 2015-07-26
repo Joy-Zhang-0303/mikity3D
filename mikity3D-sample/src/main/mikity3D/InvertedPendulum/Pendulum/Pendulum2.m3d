@@ -1,5 +1,5 @@
 <mikity3d>
-   <model>
+   <scene>
       <group name="pendulum1">
          <translation x="0.0" y="0.3" z="0.0"/>
          <group name="dodai">
@@ -67,7 +67,7 @@
          </group>
       </group>
       
-   </model>
+   </scene>
    <configuration>
       <background color="white"/>
       <light x="10.0" y="10.0" z="20.0"/>

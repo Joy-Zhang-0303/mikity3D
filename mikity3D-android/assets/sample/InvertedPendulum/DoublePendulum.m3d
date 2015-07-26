@@ -1,5 +1,5 @@
 <mikity3d>
-   <model>
+   <scene>
       <group name="Group0">
          <translation x="0.0" y="0.0" z="0.0"/>
          <rotation x="1.57" y="1.57" z="0.0"/>
@@ -735,7 +735,7 @@
             </group>
          </group>
       </group>
-   </model>
+   </scene>
    <configuration>
       <background color="white"/>
       <light x="10.0" y="10.0" z="20.0"/>

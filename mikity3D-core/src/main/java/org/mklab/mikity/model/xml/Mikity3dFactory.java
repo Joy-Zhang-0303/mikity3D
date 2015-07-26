@@ -12,7 +12,7 @@ import org.mklab.mikity.model.xml.simplexml.ColladaUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
+import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 
@@ -35,9 +35,9 @@ public class Mikity3dFactory {
     final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
     unmarshaller.unmarshalFromMikity3DFile(file);
     final Mikity3d importedMikity3d = unmarshaller.getRoot();
-    final GroupModel[] rootGroups = importedMikity3d.getModel(0).getGroups();
+    final GroupModel[] rootGroups = importedMikity3d.getScene(0).getGroups();
     
-    final Mikity3dModel parentMikity3d = parent.getModel(0);
+    final SceneModel parentMikity3d = parent.getScene(0);
     
     for (GroupModel rootGroup : rootGroups) {
       parentMikity3d.addGroup(rootGroup);
@@ -129,7 +129,7 @@ public class Mikity3dFactory {
     unmarshaller.unmarshalFromColladaFile(file);
 
     final Mikity3d newRoot = createEmptyModel();
-    final GroupModel newGroup = newRoot.getModel(0).getGroup(0);
+    final GroupModel newGroup = newRoot.getScene(0).getGroup(0);
     final GroupModel[] groups = unmarshaller.getClolladaGroup().getGroups();
     for (final GroupModel group : groups) {
       newGroup.add(group);
@@ -150,7 +150,7 @@ public class Mikity3dFactory {
     unmarshaller.unmarshalFromColladaFile(input);
 
     final Mikity3d newRoot = createEmptyModel();
-    final GroupModel newGroup = newRoot.getModel(0).getGroup(0);
+    final GroupModel newGroup = newRoot.getScene(0).getGroup(0);
     final GroupModel[] groups = unmarshaller.getClolladaGroup().getGroups();
     for (final GroupModel group : groups) {
       newGroup.add(group);
@@ -170,12 +170,12 @@ public class Mikity3dFactory {
     final GroupModel group = new GroupModel();
     group.setName("object"); //$NON-NLS-1$
 
-    final Mikity3dModel model = new Mikity3dModel();
+    final SceneModel model = new SceneModel();
     model.addGroup(group);
 
     final Mikity3d root = new Mikity3d();
     root.addConfiguration(configuration);
-    root.addModel(model);
+    root.addScene(model);
     return root;
   }
 }

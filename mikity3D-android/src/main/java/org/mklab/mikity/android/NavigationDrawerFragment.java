@@ -24,7 +24,7 @@ import org.mklab.mikity.model.searcher.GroupManager;
 import org.mklab.mikity.model.searcher.GroupName;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
-import org.mklab.mikity.model.xml.simplexml.Mikity3dModel;
+import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 import roboguice.fragment.RoboFragment;
@@ -347,7 +347,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    */
   public GroupManager getGroupManager() {
     final Mikity3d root = this.canvasActivity.canvasFragment.root;
-    final Mikity3dModel model = root.getModel(0);
+    final SceneModel model = root.getScene(0);
     final GroupModel[] groupArray = model.getGroups();
     final GroupModel group = groupArray[0];
     final ExcecuteSearchGroup search = new ExcecuteSearchGroup();
@@ -491,7 +491,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    * @param number 入れ替える番号
    */
   void changeModelNumber(List<Integer> targetNumbers, int childPosition, int number) {
-    final Mikity3dModel model = this.canvasActivity.canvasFragment.root.getModel(0);
+    final SceneModel model = this.canvasActivity.canvasFragment.root.getScene(0);
     final GroupModel[] groups = model.getGroups();
     GroupModel group = groups[0];
 

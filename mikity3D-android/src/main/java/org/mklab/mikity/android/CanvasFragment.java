@@ -405,7 +405,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       callExceptionDialogFragment("Please select proper data file or set column number to data size or lower."); //$NON-NLS-1$
     }
 
-    final GroupModel rootGroup = this.root.getModel(0).getGroup(0);
+    final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
     checkLinkParameterType(rootGroup);
 
     final int dataSize = this.manager.getDataSize();
@@ -621,7 +621,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * モデルデータにレンダーを登録します。
    */
   public void configurateModel() {
-    final GroupModel[] children = this.root.getModel(0).getGroups();
+    final GroupModel[] children = this.root.getScene(0).getGroups();
     this.modelRenderer.setRootGroups(children);
     ConfigurationModel configuration = this.root.getConfiguration(0);
     this.modelRenderer.setConfiguration(configuration);
