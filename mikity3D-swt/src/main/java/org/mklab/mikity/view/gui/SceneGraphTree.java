@@ -1,7 +1,5 @@
 package org.mklab.mikity.view.gui;
 
-import javafx.scene.Scene;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -335,6 +333,7 @@ public class SceneGraphTree {
         if (SceneGraphTree.this.targetObject instanceof GroupModel) {
           final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
+          updateTree();
         } else if (SceneGraphTree.this.targetObject instanceof TrianglePolygonModel) {
           final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), (TrianglePolygonModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup,
               SceneGraphTree.this, SceneGraphTree.this.modeler);
@@ -367,6 +366,41 @@ public class SceneGraphTree {
         }
         
         removeSelectedItem();
+      }
+    });
+    
+    paste.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        if ((SceneGraphTree.this.targetObject instanceof GroupModel) == false) {
+          return;
+        }
+        if (SceneGraphTree.this.bufferedGroup != null) {
+          SceneGraphTree.this.targetGroup.add(SceneGraphTree.this.bufferedGroup);
+          updateTree();
+        }
+        if (SceneGraphTree.this.bufferedObject != null) {
+          if (SceneGraphTree.this.bufferedObject instanceof BoxModel) {
+            SceneGraphTree.this.targetGroup.add((BoxModel)SceneGraphTree.this.bufferedObject);
+          }
+          if (SceneGraphTree.this.bufferedObject instanceof CylinderModel) {
+            SceneGraphTree.this.targetGroup.add((CylinderModel)SceneGraphTree.this.bufferedObject);
+          }
+          if (SceneGraphTree.this.bufferedObject instanceof ConeModel) {
+            SceneGraphTree.this.targetGroup.add((ConeModel)SceneGraphTree.this.bufferedObject);
+          }
+          if (SceneGraphTree.this.bufferedObject instanceof SphereModel) {
+            SceneGraphTree.this.targetGroup.add((SphereModel)SceneGraphTree.this.bufferedObject);
+          }
+          if (SceneGraphTree.this.bufferedObject instanceof TrianglePolygonModel) {
+            SceneGraphTree.this.targetGroup.add((TrianglePolygonModel)SceneGraphTree.this.bufferedObject);
+          }
+          if (SceneGraphTree.this.bufferedObject instanceof QuadPolygonModel) {
+            SceneGraphTree.this.targetGroup.add((QuadPolygonModel)SceneGraphTree.this.bufferedObject);
+          }
+          updateTree();
+        }
       }
     });
     

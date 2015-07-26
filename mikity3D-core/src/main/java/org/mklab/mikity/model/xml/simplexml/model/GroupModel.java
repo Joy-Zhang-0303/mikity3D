@@ -166,48 +166,6 @@ public class GroupModel implements java.io.Serializable {
     this.animations.clear();
   } 
 
-//  /**
-//   * Method clearXMLBox
-//   */
-//  public void clearBox() {
-//    this.boxes.clear();
-//  } 
-//
-//  /**
-//   * Method clearXMLCone
-//   */
-//  public void clearCone() {
-//    this.cones.clear();
-//  } 
-
-//  /**
-//   * Method clearXMLCylinder
-//   */
-//  public void clearCylinder() {
-//    this.cylinders.clear();
-//  } 
-//
-//  /**
-//   * Method clearXMLSphere
-//   */
-//  public void clearSphere() {
-//    this.spheres.clear();
-//  } 
-
-//  /**
-//   * Method clearXMLTrianglePolygon
-//   */
-//  public void clearTrianglePolygon() {
-//    this.trianglePolygons.clear();
-//  } 
-//
-//  /**
-//   * Method clearXMLQuadPolygon
-//   */
-//  public void clearQuadPolygon() {
-//    this.quadPolygons.clear();
-//  } 
-
   /**
    * {@inheritDoc}
    */

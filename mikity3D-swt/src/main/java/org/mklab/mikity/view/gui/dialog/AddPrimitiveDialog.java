@@ -34,7 +34,6 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision: 1.3 $.2005/02/09
  */
 public class AddPrimitiveDialog {
-
   private Shell parentShell;
   Shell sShell;
 
@@ -50,7 +49,6 @@ public class AddPrimitiveDialog {
   private ParameterInputBox translationX;
   private ParameterInputBox translationY;
   private ParameterInputBox translationZ;
-  //private Combo primitiveCombo;
   private Combo colorCombo;
   private GroupModel targetGroup;
   private String angleUnit;
@@ -67,8 +65,7 @@ public class AddPrimitiveDialog {
   public static final int CONE = 3;
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>AddPrimitiveDialog</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
    * @param targetGroup グループ
    * @param selectedIndex プリミティブの選択
@@ -93,7 +90,7 @@ public class AddPrimitiveDialog {
   }
 
   /**
-   * シェルの作成
+   * シェルを生成します。
    */
   private void createSShell() {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
@@ -108,13 +105,6 @@ public class AddPrimitiveDialog {
     final GridData gLabelData = new GridData(GridData.FILL_HORIZONTAL);
     gLabelData.horizontalSpan = 3;
     groupLabel.setLayoutData(gLabelData);
-
-//    final Label primitiveLabel = new Label(this.sShell, SWT.RIGHT);
-//    primitiveLabel.setText("primitive"); //$NON-NLS-1$
-//    final GridData labelData = new GridData(GridData.FILL_HORIZONTAL);
-//    labelData.widthHint = 80;
-//    primitiveLabel.setLayoutData(labelData);
-//    createPrimitiveCombo();
     
     final GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
     final Label colorLabel = new Label(this.sShell, SWT.RIGHT);
@@ -480,21 +470,6 @@ public class AddPrimitiveDialog {
       this.parameter3.setText("" + this.parameter3.getIntValue()); //$NON-NLS-1$
     }
   }
-
-//  /**
-//   * コンボボックス primCombo プリミティブを選択
-//   */
-//  private void createPrimitiveCombo() {
-//    this.primitiveCombo = new Combo(this.sShell, SWT.READ_ONLY);
-//    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-//    gridData.horizontalSpan = 2;
-//    this.primitiveCombo.setLayoutData(gridData);   
-//    
-//    final String[] primitives = {"Box", "Cylinder", "Sphere", "Cone"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-//    this.primitiveCombo.setItems(primitives);
-//    this.primitiveCombo.setText("Box"); //$NON-NLS-1$
-//    this.primitiveCombo.addSelectionListener(new PComboCheck());
-//  }
 
   /**
    * コンボボックス colorCombo プリミティブの色を選択
