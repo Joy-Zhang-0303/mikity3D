@@ -22,7 +22,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2008/08/10
  */
 @Root(name="quadPolygon")
-public class QuadPolygonModel {
+public class QuadPolygonModel implements Cloneable {
   /** vertices */
   @ElementList(type=VertexModel.class, inline=true, required=true)
   private List<VertexModel> vertices;
@@ -46,9 +46,6 @@ public class QuadPolygonModel {
   /** 法線ベクトル。 */
   private Vector3 normalVector;
 
-  //private Matrix4 matrix;
-
-
   /**
    * 新しく生成された<code>XMLQuadPolygon</code>オブジェクトを初期化します。
    */
@@ -56,7 +53,31 @@ public class QuadPolygonModel {
     this.vertices = new ArrayList<>(4);
     this.color = "orange"; //$NON-NLS-1$
     this.transparent = false;
-    //this.matrix = new Matrix4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public QuadPolygonModel clone() {
+    try {
+      final QuadPolygonModel ans = (QuadPolygonModel)super.clone();
+      if (this.translation != null) {
+        ans.translation = this.translation.clone();
+      }
+      if (this.rotation != null) {
+        ans.rotation = this.rotation.clone();
+      }
+
+      ans.normalVector = this.normalVector.clone();
+      ans.vertices = new ArrayList<>();
+      for (final VertexModel vertex : this.vertices) {
+        ans.vertices.add(vertex.clone());
+      }
+      return ans;
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
 
   /**

@@ -1,5 +1,6 @@
 package org.mklab.mikity.model.xml.simplexml.config;
 
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.simpleframework.xml.Attribute;
 
 
@@ -8,7 +9,7 @@ import org.simpleframework.xml.Attribute;
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
-public class ModelUnitModel implements java.io.Serializable {
+public class ModelUnitModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** 角度の単位 */
@@ -25,6 +26,18 @@ public class ModelUnitModel implements java.io.Serializable {
   public ModelUnitModel() {
     this.angleUnit = "radian"; //$NON-NLS-1$
     this.lengthUnit = "m"; //$NON-NLS-1$
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public ModelUnitModel clone() {
+    try {
+      return (ModelUnitModel)super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
 
   /**

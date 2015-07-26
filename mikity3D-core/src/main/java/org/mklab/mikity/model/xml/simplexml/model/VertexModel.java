@@ -10,7 +10,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
  */
 @Root(name="vertex")
-public class VertexModel implements java.io.Serializable {
+public class VertexModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** x成分 */
@@ -44,6 +44,18 @@ public class VertexModel implements java.io.Serializable {
     this.x = x;
     this.y = y;
     this.z = z;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public VertexModel clone() {
+    try {
+      return (VertexModel)super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
 
   /**

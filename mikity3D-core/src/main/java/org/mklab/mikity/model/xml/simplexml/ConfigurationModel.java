@@ -2,10 +2,10 @@ package org.mklab.mikity.model.xml.simplexml;
 
 import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
+import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
-import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -57,6 +57,26 @@ public class ConfigurationModel implements java.io.Serializable {
     this.lookAtPoint = new LookAtPointModel();
     this.modelUnit = new ModelUnitModel();
     this.dataUnit = new DataUnitModel();
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public ConfigurationModel clone() {
+    try {
+      final ConfigurationModel ans = (ConfigurationModel)super.clone();
+      ans.background = this.background.clone();
+      ans.light = this.light.clone();
+      ans.eye = this.eye.clone();
+      ans.lookAtPoint = this.lookAtPoint.clone();
+      ans.modelUnit = this.modelUnit.clone();
+      ans.dataUnit = this.dataUnit.clone();
+
+      return ans;
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
   
   /**

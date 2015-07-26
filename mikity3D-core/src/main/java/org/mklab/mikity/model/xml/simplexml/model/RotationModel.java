@@ -10,7 +10,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="rotation")
-public class RotationModel implements java.io.Serializable {
+public class RotationModel implements java.io.Serializable, Cloneable {
 
   private static final long serialVersionUID = 1L;
 
@@ -46,6 +46,18 @@ public class RotationModel implements java.io.Serializable {
     this.x = x;
     this.y = y;
     this.z = z;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public RotationModel clone() {
+    try {
+      return (RotationModel)super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
 
   /**

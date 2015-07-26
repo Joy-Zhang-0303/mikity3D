@@ -53,6 +53,10 @@ public class SceneGraphTree {
   GroupModel targetGroup = null;
   /** 選択されている物の親グループ。 */
   GroupModel targetParentGroup = null;
+  
+  /** シーンを表すグループ。 */
+  GroupModel scene;
+  
   /** */
   boolean editable = true;
   /** */
@@ -85,6 +89,8 @@ public class SceneGraphTree {
     this.model = model;
     this.targetGroup = this.model.getGroup(0);
     this.targetObject= this.model.getGroup(0);
+    this.scene = new GroupModel();
+    this.scene.setName("scene"); //$NON-NLS-1$
     this.modeler = modeler;
     createTree(composite);
     this.composite = composite;
@@ -369,6 +375,21 @@ public class SceneGraphTree {
       }
     });
     
+    copy.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        if (SceneGraphTree.this.targetObject instanceof GroupModel) {
+          SceneGraphTree.this.bufferedGroup = SceneGraphTree.this.targetGroup;
+          SceneGraphTree.this.bufferedObject = null;
+        } else {
+          SceneGraphTree.this.bufferedGroup = null;
+          SceneGraphTree.this.bufferedObject = SceneGraphTree.this.targetObject;
+        }
+      }
+    });
+    
+    
     paste.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -377,27 +398,31 @@ public class SceneGraphTree {
           return;
         }
         if (SceneGraphTree.this.bufferedGroup != null) {
-          SceneGraphTree.this.targetGroup.add(SceneGraphTree.this.bufferedGroup);
+          if (SceneGraphTree.this.targetGroup == SceneGraphTree.this.scene) {
+            SceneGraphTree.this.model.addGroup(SceneGraphTree.this.bufferedGroup.clone());
+          } else {
+            SceneGraphTree.this.targetGroup.add(SceneGraphTree.this.bufferedGroup.clone());
+          }
           updateTree();
         }
         if (SceneGraphTree.this.bufferedObject != null) {
           if (SceneGraphTree.this.bufferedObject instanceof BoxModel) {
-            SceneGraphTree.this.targetGroup.add((BoxModel)SceneGraphTree.this.bufferedObject);
+            SceneGraphTree.this.targetGroup.add(((BoxModel)SceneGraphTree.this.bufferedObject).clone());
           }
           if (SceneGraphTree.this.bufferedObject instanceof CylinderModel) {
-            SceneGraphTree.this.targetGroup.add((CylinderModel)SceneGraphTree.this.bufferedObject);
+            SceneGraphTree.this.targetGroup.add(((CylinderModel)SceneGraphTree.this.bufferedObject).clone());
           }
           if (SceneGraphTree.this.bufferedObject instanceof ConeModel) {
-            SceneGraphTree.this.targetGroup.add((ConeModel)SceneGraphTree.this.bufferedObject);
+            SceneGraphTree.this.targetGroup.add(((ConeModel)SceneGraphTree.this.bufferedObject).clone());
           }
           if (SceneGraphTree.this.bufferedObject instanceof SphereModel) {
-            SceneGraphTree.this.targetGroup.add((SphereModel)SceneGraphTree.this.bufferedObject);
+            SceneGraphTree.this.targetGroup.add(((SphereModel)SceneGraphTree.this.bufferedObject).clone());
           }
           if (SceneGraphTree.this.bufferedObject instanceof TrianglePolygonModel) {
-            SceneGraphTree.this.targetGroup.add((TrianglePolygonModel)SceneGraphTree.this.bufferedObject);
+            SceneGraphTree.this.targetGroup.add(((TrianglePolygonModel)SceneGraphTree.this.bufferedObject).clone());
           }
           if (SceneGraphTree.this.bufferedObject instanceof QuadPolygonModel) {
-            SceneGraphTree.this.targetGroup.add((QuadPolygonModel)SceneGraphTree.this.bufferedObject);
+            SceneGraphTree.this.targetGroup.add(((QuadPolygonModel)SceneGraphTree.this.bufferedObject).clone());
           }
           updateTree();
         }
@@ -456,22 +481,23 @@ public class SceneGraphTree {
     }
 
     this.targetObject = this.tree.getSelection()[0].getData();
-
-    if (this.tree.getSelection()[0].getText().equals("scene")) { //$NON-NLS-1$
+    
+    if (this.targetObject == this.scene) {
       this.editable = false;
-      this.targetParentGroup = null;
+      this.targetGroup = (GroupModel)this.targetObject;
+      setTarget(this.targetGroup);
       return;
     } 
-
-    this.editable = true;
     
     if (this.targetObject instanceof GroupModel) {
+      this.editable = true;
       this.targetGroup = (GroupModel)this.targetObject;
       this.targetParentGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
       setTarget(this.targetGroup);
       return;
     }
 
+    this.editable = true;
     this.targetGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
     this.targetParentGroup = null;
     setTarget(this.targetObject);
@@ -702,10 +728,11 @@ public class SceneGraphTree {
   public void fillTree() {
     clearTree();
     
-    TreeItem scene = new TreeItem(this.tree, SWT.NONE);
-    scene.setText("scene"); //$NON-NLS-1$
+    TreeItem sceneItem = new TreeItem(this.tree, SWT.NONE);
+    sceneItem.setText("scene"); //$NON-NLS-1$
+    sceneItem.setData(this.scene);
     
-    addTreeItem(scene, this.model.getGroups());
+    addTreeItem(sceneItem, this.model.getGroups());
   }
 
   //  /**

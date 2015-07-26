@@ -10,7 +10,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.3 $ $Date: 2008/02/03 04:25:09 $
  */
 @Root(name="animation")
-public class AnimationModel implements java.io.Serializable {
+public class AnimationModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** 対象となるパラメータの名前 */
@@ -27,6 +27,18 @@ public class AnimationModel implements java.io.Serializable {
   public AnimationModel() {
     this.target = ""; //$NON-NLS-1$
     this.number = 0;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public AnimationModel clone() {
+    try {
+      return (AnimationModel)super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
   
 

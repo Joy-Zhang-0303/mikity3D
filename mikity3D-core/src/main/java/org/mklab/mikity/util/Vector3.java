@@ -6,13 +6,14 @@
 package org.mklab.mikity.util;
 
 
+
 /**
  * 3次元ベクトルを表すクラスです。
  * 
  * @author koga
  * @version $Revision$, 2013/01/27
  */
-public class Vector3 {
+public class Vector3 implements Cloneable {
   /** x成分 */
   private float x;
   /** y成分 */
@@ -30,6 +31,18 @@ public class Vector3 {
     this.x = x;
     this.y = y;
     this.z = z;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Vector3 clone() {
+    try {
+      return (Vector3)super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
   
   /**

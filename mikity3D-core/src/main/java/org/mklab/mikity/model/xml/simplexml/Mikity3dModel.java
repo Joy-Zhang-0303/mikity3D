@@ -13,7 +13,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.15 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="model")
-public class Mikity3dModel implements java.io.Serializable {
+public class Mikity3dModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   /** groups */
   @ElementList(type=GroupModel.class, inline=true)
@@ -24,6 +24,23 @@ public class Mikity3dModel implements java.io.Serializable {
    */
   public Mikity3dModel() {
     this.groups = new ArrayList<>();
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Mikity3dModel clone() {
+    try {
+      final Mikity3dModel ans = (Mikity3dModel)super.clone();
+      ans.groups = new ArrayList<>();
+      for (final GroupModel group : this.groups) {
+        ans.groups.add(group.clone());
+      }
+      return ans;
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
 
   /**

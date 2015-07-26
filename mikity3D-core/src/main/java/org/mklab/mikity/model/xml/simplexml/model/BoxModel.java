@@ -14,7 +14,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
 @Root(name="box")
-public class BoxModel implements java.io.Serializable {
+public class BoxModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** width */
@@ -57,6 +57,25 @@ public class BoxModel implements java.io.Serializable {
     this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
   } 
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public BoxModel clone() {
+    try {
+      final BoxModel ans = (BoxModel)super.clone();
+      if (this.translation != null) {
+        ans.translation = this.translation.clone();
+      }
+      if (this.rotation != null) {
+        ans.rotation = this.rotation.clone();
+      }
+      return ans;
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
+  }
 
   /**
    * Method addPropertyChangeListenerRegisters a PropertyChangeListener with this class.

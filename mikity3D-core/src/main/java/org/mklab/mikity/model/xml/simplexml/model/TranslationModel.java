@@ -1,5 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml.model;
 
+import java.io.Serializable;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
@@ -10,7 +12,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
  */
 @Root(name="translation")
-public class TranslationModel implements java.io.Serializable {
+public class TranslationModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** x軸方向の並進 */
@@ -44,6 +46,18 @@ public class TranslationModel implements java.io.Serializable {
     this.x = x;
     this.y = y;
     this.z = z;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public TranslationModel clone() {
+    try {
+      return (TranslationModel)super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
 
   /**

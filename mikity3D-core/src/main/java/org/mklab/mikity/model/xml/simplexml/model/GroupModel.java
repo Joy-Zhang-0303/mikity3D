@@ -14,7 +14,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.4 $ $Date: 2007/12/13 10:01:55 $
  */
 @Root(name="group")
-public class GroupModel implements java.io.Serializable {
+public class GroupModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   
   /** name */
@@ -78,6 +78,66 @@ public class GroupModel implements java.io.Serializable {
     this.translation = new TranslationModel();
     this.rotation = new RotationModel();
   } 
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public GroupModel clone() {
+    try {
+      final GroupModel ans = (GroupModel)super.clone();
+      if (this.translation != null) {
+        ans.translation = this.translation.clone();
+      }
+      if (this.rotation != null) {
+        ans.rotation = this.rotation.clone();
+      }
+      
+      ans.boxes = new ArrayList<>();
+      for (final BoxModel box : this.boxes) {
+        ans.boxes.add(box.clone());
+      }
+      
+      ans.cylinders = new ArrayList<>();
+      for (final CylinderModel cylinder : this.cylinders) {
+        ans.cylinders.add(cylinder.clone());
+      }
+
+      ans.spheres = new ArrayList<>();
+      for (final SphereModel sphere : this.spheres) {
+        ans.spheres.add(sphere.clone());
+      }
+
+      ans.cones = new ArrayList<>();
+      for (final ConeModel cone : this.cones) {
+        ans.cones.add(cone.clone());
+      }
+
+      ans.trianglePolygons = new ArrayList<>();
+      for (final TrianglePolygonModel trianglePolygon : this.trianglePolygons) {
+        ans.trianglePolygons.add(trianglePolygon.clone());
+      }
+
+      ans.quadPolygons = new ArrayList<>();
+      for (final QuadPolygonModel quadPolygon : this.quadPolygons) {
+        ans.quadPolygons.add(quadPolygon.clone());
+      }
+
+      ans.animations = new ArrayList<>();
+      for (final AnimationModel animation : this.animations) {
+        ans.animations.add(animation.clone());
+      }
+
+      ans.groups = new ArrayList<>();
+      for (final GroupModel group : this.groups) {
+        ans.groups.add(group.clone());
+      }
+
+      return ans;
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
+  }
 
   /**
    * Method addGroup

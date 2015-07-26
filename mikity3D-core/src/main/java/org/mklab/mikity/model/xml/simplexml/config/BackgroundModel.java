@@ -1,5 +1,6 @@
 package org.mklab.mikity.model.xml.simplexml.config;
 
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.simpleframework.xml.Attribute;
 
 
@@ -8,7 +9,7 @@ import org.simpleframework.xml.Attribute;
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
-public class BackgroundModel implements java.io.Serializable {
+public class BackgroundModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   /** color */
   @Attribute(name="color")
@@ -19,6 +20,18 @@ public class BackgroundModel implements java.io.Serializable {
    */
   public BackgroundModel() {
     this.color = "white"; //$NON-NLS-1$
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public BackgroundModel clone() {
+    try {
+      return (BackgroundModel)super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
   
   /**

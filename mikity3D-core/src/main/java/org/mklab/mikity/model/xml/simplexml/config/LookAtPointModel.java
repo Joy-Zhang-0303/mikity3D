@@ -1,5 +1,6 @@
 package org.mklab.mikity.model.xml.simplexml.config;
 
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.simpleframework.xml.Attribute;
 
 
@@ -8,7 +9,7 @@ import org.simpleframework.xml.Attribute;
  * 
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
-public class LookAtPointModel implements java.io.Serializable {
+public class LookAtPointModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   
   /** X座標。 */
@@ -42,6 +43,18 @@ public class LookAtPointModel implements java.io.Serializable {
     this.x = x;
     this.y = y;
     this.z = z;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public LookAtPointModel clone() {
+    try {
+      return (LookAtPointModel)super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
   
   /**

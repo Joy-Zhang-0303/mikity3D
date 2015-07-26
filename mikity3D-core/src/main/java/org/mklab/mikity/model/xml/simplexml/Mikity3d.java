@@ -3,6 +3,7 @@ package org.mklab.mikity.model.xml.simplexml;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -13,7 +14,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="mikity3d")
-public class Mikity3d implements java.io.Serializable {
+public class Mikity3d implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** models */
@@ -30,6 +31,28 @@ public class Mikity3d implements java.io.Serializable {
   public Mikity3d() {
     this.models = new ArrayList<>();
     this.configurations = new ArrayList<>();
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Mikity3d clone() {
+    try {
+      final Mikity3d ans = (Mikity3d)super.clone();
+      ans.models = new ArrayList<>();
+      for (final Mikity3dModel model : this.models) {
+        ans.models.add(model.clone());
+      }
+      ans.configurations = new ArrayList<>();
+      for (final ConfigurationModel configuration : this.configurations) {
+        ans.configurations.add(configuration.clone());
+      }
+
+      return ans;
+    } catch (CloneNotSupportedException e) {
+      throw new InternalError(e);
+    }
   }
 
   /**
