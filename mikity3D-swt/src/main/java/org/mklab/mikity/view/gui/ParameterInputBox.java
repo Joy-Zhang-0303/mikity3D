@@ -159,6 +159,16 @@ public class ParameterInputBox extends Composite {
     }
     this.text.setText(string);
   }
+  
+  /**
+   * テキストボックスの幅を設定します。
+   * @param width テキストボックスの幅
+   */
+  public void setTextWidth(int width) {
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    data.widthHint = width;
+    this.text.setLayoutData(data);
+  }
 
   /**
    * テキストボックスの文字を返します。

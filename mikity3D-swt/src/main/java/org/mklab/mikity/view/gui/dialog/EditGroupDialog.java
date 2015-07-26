@@ -90,6 +90,7 @@ public class EditGroupDialog {
     this.sShell.setLayout(layout);
 
     this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.groupName.setTextWidth(150);
 
     if (this.targetGroup.getName() != null) {
       this.groupName.setText(this.targetGroup.getName());
