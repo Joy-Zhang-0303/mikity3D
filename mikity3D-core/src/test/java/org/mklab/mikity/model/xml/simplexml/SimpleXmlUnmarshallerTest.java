@@ -16,15 +16,16 @@ import org.junit.Test;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
+import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
-import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
-import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
-import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
 
 /**
@@ -256,7 +257,9 @@ public class SimpleXmlUnmarshallerTest {
 
     final AnimationModel actualAnimation = actualGroup.getAnimations()[0];
     final AnimationModel expectedAnimation = new AnimationModel();
-    expectedAnimation.setNumber(2);
+    final SourceModel expectedSource = new SourceModel();
+    expectedSource.setNumber(2);
+    expectedAnimation.setSource(expectedSource);
     expectedAnimation.setTarget("translationY"); //$NON-NLS-1$
     assertThat(actualAnimation, is(expectedAnimation));
 
@@ -302,7 +305,9 @@ public class SimpleXmlUnmarshallerTest {
     
     final AnimationModel actualAnimation = actualGroup.getAnimations()[0];
     final AnimationModel expectedAnimation = new AnimationModel();
-    expectedAnimation.setNumber(3);
+    final SourceModel expectedSource = new SourceModel();
+    expectedSource.setNumber(3);
+    expectedAnimation.setSource(expectedSource);
     expectedAnimation.setTarget("rotationX"); //$NON-NLS-1$
     assertThat(actualAnimation, is(expectedAnimation));
     

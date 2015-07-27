@@ -12,13 +12,19 @@
          <group name="beam">
             <translation x="0.0" y="0.0" z="0.02"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
-            <animation target="rotationX" number="4"/>
+            <animation target="rotationX">
+            <source id="" number="4"/>
+            </animation>
             <box width="0.2" height="0.01" depth="0.01" color="lightGray" transparent="false"/>
             <group name="ball">
                <translation x="0.0" y="0.0" z="0.015"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <animation target="translationY" number="2"/>
-               <animation target="rotationX" number="3"/>
+               <animation target="translationY">
+               <source id="" number="2"/>
+               </animation>
+               <animation target="rotationX">
+               <source id="" number="3"/>
+               </animation>
                <sphere radius="0.01" division="30" color="cyan" transparent="false"/>
             </group>
          </group>

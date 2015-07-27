@@ -7,7 +7,9 @@
 				<cylinder color="red" division="30" height="0.02" radius="0.1"/>
 				<group name="arm1">
 					<translation x="0.0" z="0.1" y="0.0" />
-					<animation number="2" target="rotationZ" />
+					<animation target="rotationZ">
+					<source id="" number="2"/>
+					</animation>
 					<cylinder color="red" division="30" height="0.2" radius="0.02"/>
 					<cylinder color="orange" division="30" height="0.08" radius="0.02">
 						<rotation x="0.0" z="0.0" y="1.5708" />
@@ -16,7 +18,9 @@
 					<group name="arm2">
 						<translation x="0.04" z="0.1" y="0.0" />
 						<rotation x="0.0" z="0.0" y="0.0" />
-						<animation number="3" target="rotationX" />
+						<animation target="rotationX">
+						<source id="" number="3"/>
+						</animation>
 						<cylinder color="red" division="30" height="0.1" radius="0.02">
 							<translation x="0.0" z="0.05" y="0.0" />
 						</cylinder>
@@ -26,7 +30,9 @@
 						</cylinder>
 						<group name="arm3">
 							<translation x="0.04" z="0.1" y="0.0" />
-							<animation number="4" target="rotationX" />
+							<animation target="rotationX">
+							<source id="" number="4"/>
+							</animation>
 							<cylinder color="red" division="30" height="0.1" radius="0.02">
 								<translation x="0.0" z="0.05" y="0.0" />
 							</cylinder>

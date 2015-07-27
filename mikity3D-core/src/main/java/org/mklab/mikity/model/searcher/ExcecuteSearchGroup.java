@@ -8,8 +8,9 @@ package org.mklab.mikity.model.searcher;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
 
 /**
  * Mikity３Dモデルのグループを探索し、グループとアニメーションを管理するためのクラスです。
@@ -82,7 +83,8 @@ public class ExcecuteSearchGroup {
    */
   private GroupManager searchAnimation(GroupModel group, int animationIndex, GroupManager parents) {
     final AnimationModel animation = group.getAnimations()[animationIndex];
-    final int number = animation.getNumber();
+    final SourceModel source = animation.getSource();
+    final int number = source.getNumber();
     final String target = animation.getTarget();
     final GroupAnimationManager groupAnimation = new GroupAnimationManager(number, target, parents);
     return groupAnimation;

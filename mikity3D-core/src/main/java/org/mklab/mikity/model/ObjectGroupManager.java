@@ -10,8 +10,9 @@ import java.util.List;
 
 import org.mklab.mikity.model.sampler.ClosenessDataSampler;
 import org.mklab.mikity.model.sampler.DataSampler;
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
 import org.mklab.nfc.matrix.Matrix;
 
 
@@ -94,7 +95,8 @@ public class ObjectGroupManager {
     final DataSampler sampler = new ClosenessDataSampler(data);
     for (final AnimationModel animation : animations) {
       if (animation.exists()) {
-        final int number = animation.getNumber();
+        final SourceModel source = animation.getSource();
+        final int number = source.getNumber();
         final String target = animation.getTarget();
         final CoordinateParameterType type;
 

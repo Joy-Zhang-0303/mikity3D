@@ -9,7 +9,9 @@
             <group name="arm1">
                <translation x="0.0" y="0.0" z="0.12"/>
                <rotation x="0.0" y="1.5708" z="0.0"/>
-               <animation target="rotationX" number="2"/>
+               <animation target="rotationX">
+               <source id="" number="2"/>
+               </animation>
                <cylinder radius="0.02" height="0.4" division="30" color="red" transparent="false">
                   <translation x="0.0" y="0.0" z="0.2"/>
                </cylinder>
@@ -19,7 +21,9 @@
                </cylinder>
                <group name="arm2">
                   <translation x="0.0" y="0.0" z="0.4"/>
-                  <animation target="rotationX" number="3"/>
+                  <animation target="rotationX">
+                  <source id="" number="3"/>
+                  </animation>
                   <cylinder radius="0.02" height="0.4" division="30" color="red" transparent="false">
                      <translation x="0.0" y="0.0" z="0.2"/>
                   </cylinder>

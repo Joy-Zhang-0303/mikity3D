@@ -24,7 +24,9 @@
                <box width="0.07" height="0.05" depth="0.005" color="yellow" transparent="false">
                   <translation x="0.02" y="0.0" z="0.0"/>
                </box>
-               <animation target="translationY" number="2"/>
+               <animation target="translationY">
+               <source id="" number="2"/>
+               </animation>
                <group name="sinsi">
                   <translation x="0.0" y="0.0" z="0.0"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
@@ -35,7 +37,9 @@
                   <cylinder radius="0.0025" height="0.3" division="10" color="black" transparent="false">
                      <translation x="0.037" y="0.0" z="0.15"/>
                   </cylinder>
-                  <animation target="rotationX" number="3"/>
+                  <animation target="rotationX">
+                  <source id="" number="3"/>
+                  </animation>
                </group>
             </group>
          </group>

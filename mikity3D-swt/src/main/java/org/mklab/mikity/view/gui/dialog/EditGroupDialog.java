@@ -15,9 +15,10 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -270,9 +271,12 @@ public class EditGroupDialog {
    */
   void addAnimation(final String parameterName, final ParameterInputBox dataNumber) {
     if (dataNumber.getIntValue() != 0) {
+      final SourceModel source = new SourceModel();
+      source.setNumber(dataNumber.getIntValue());
       final AnimationModel animation = new AnimationModel();
       animation.setTarget(parameterName);
-      animation.setNumber(dataNumber.getIntValue());
+      animation.setSource(source);
+      //animation.setNumber(dataNumber.getIntValue());
       this.targetGroup.add(animation);
     }
   }
@@ -344,7 +348,8 @@ public class EditGroupDialog {
 
     for (int i = 0; i < animations.length; i++) {
       final String target = animations[i].getTarget();
-      final String number = "" + animations[i].getNumber(); //$NON-NLS-1$
+      final SourceModel source = animations[i].getSource();
+      final String number = "" + source.getNumber(); //$NON-NLS-1$
 
       if (target.equals("translationX")) { //$NON-NLS-1$
         this.translationXdataNumber.setText(number);

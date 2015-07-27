@@ -496,11 +496,10 @@ public class NavigationDrawerFragment extends RoboFragment {
     GroupModel group = groups[0];
 
     for (Integer targetNumber : targetNumbers) {
-      //group = group.getGroup(targetNumber.intValue());
       group = group.getGroups()[targetNumber.intValue()];
     }
-    //group.getAnimation(childPosition).setNumber(number);
-    group.getAnimations()[childPosition].setNumber(number);
+
+    group.getAnimations()[childPosition].getSource().setNumber(number);
     this.canvasActivity.canvasFragment.configurateModel();
     this.canvasActivity.canvasFragment.setGroupManager();
   }
