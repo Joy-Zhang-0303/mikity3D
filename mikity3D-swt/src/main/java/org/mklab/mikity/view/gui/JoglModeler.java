@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
+import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
 
 
 /**
@@ -29,7 +29,7 @@ public class JoglModeler extends Composite {
   /** シーングラフツリー。 */
   SceneGraphTree tree;
   /** レンダラー。 */
-  private JoglModelRenderer renderer;
+  private JoglObjectRenderer renderer;
   /** ルート。 */
   Mikity3d root;
   
@@ -122,7 +122,7 @@ public class JoglModeler extends Composite {
    * @param canvasComposite ビュワーコンポジット
    */
   private void createModelCanvas(Composite canvasComposite) {
-    this.renderer = new JoglModelRenderer();
+    this.renderer = new JoglObjectRenderer();
     final Frame frame = SWT_AWT.new_Frame(canvasComposite);
     frame.add(this.renderer);
   }

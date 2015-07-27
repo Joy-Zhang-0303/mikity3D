@@ -10,7 +10,7 @@ import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.view.renderer.ModelRenderer;
+import org.mklab.mikity.view.renderer.ObjectRenderer;
 
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
@@ -23,7 +23,7 @@ import android.opengl.GLU;
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */
-public class OpenglesModelRenderer implements ModelRenderer, Renderer {
+public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   @SuppressWarnings("unused")
   private static final long serialVersionUID = 5653656698891675370L;
 
@@ -61,7 +61,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    * 
    * @param glView GLサーフェースビュー
    */
-  public OpenglesModelRenderer(GLSurfaceView glView) {
+  public OpenglesObjectRenderer(GLSurfaceView glView) {
     this.glView = glView;
     this.configuration = new ConfigurationModel();
     this.configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
@@ -141,7 +141,7 @@ public class OpenglesModelRenderer implements ModelRenderer, Renderer {
    * {@inheritDoc}
    */
   public void setRootGroups(GroupModel[] children) {
-    this.topGroups = new OpenglesModelCreater().create(children);
+    this.topGroups = new OpenglesObjectFactory().create(children);
   }
 
   /**

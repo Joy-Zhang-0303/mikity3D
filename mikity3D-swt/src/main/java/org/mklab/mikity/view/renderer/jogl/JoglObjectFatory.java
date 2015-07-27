@@ -7,12 +7,12 @@ import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 
 /**
- * treeに登録されているシーングラフのモデルからJoglのモデルを生成します。
+ * treeに登録されているシーングラフのモデルからJoglのオブジェクトを生成します。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/25
  */
-public class JoglModelCreater {
+public class JoglObjectFatory {
 
   /**
    * オブジェクトのグループを生成します。
@@ -24,8 +24,8 @@ public class JoglModelCreater {
   public List<JoglObjectGroup> create(final GroupModel[] groups) {
     final List<JoglObjectGroup> objectGroups = new ArrayList<>();
     for (final GroupModel group : groups) {
-      final JoglObjectGroup child = new JoglObjectGroupFactory().create(group);
-      objectGroups.add(child);
+      final JoglObjectGroup objectGroup = new JoglObjectGroupFactory().create(group);
+      objectGroups.add(objectGroup);
     }
 
     return objectGroups;

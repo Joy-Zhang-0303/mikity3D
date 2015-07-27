@@ -22,7 +22,7 @@ import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.view.renderer.ModelRenderer;
+import org.mklab.mikity.view.renderer.ObjectRenderer;
 
 /**
  * JOGL用のキャンバスを表すクラスです。
@@ -30,7 +30,7 @@ import org.mklab.mikity.view.renderer.ModelRenderer;
  * @author iwamoto
  * @version $Revision$, 2012/01/11
  */
-public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEventListener, MouseListener, MouseMotionListener {
+public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEventListener, MouseListener, MouseMotionListener {
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
 
@@ -79,7 +79,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
   /**
    * 新しく生成された<code>JoglModelCanvas</code>オブジェクトを初期化します。
    */
-  public JoglModelRenderer() {
+  public JoglObjectRenderer() {
     super(new GLCapabilities(null));
     
     this.configuration = new ConfigurationModel();
@@ -149,7 +149,7 @@ public class JoglModelRenderer extends GLJPanel implements ModelRenderer, GLEven
    * {@inheritDoc}
    */
   public void setRootGroups(GroupModel[] rootGroups) {
-    this.rootGroups = new JoglModelCreater().create(rootGroups);
+    this.rootGroups = new JoglObjectFatory().create(rootGroups);
     display();
   }
 

@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.ObjectGroupManager;
-import org.mklab.mikity.view.renderer.ModelRenderer;
+import org.mklab.mikity.view.renderer.ObjectRenderer;
 
 import android.os.SystemClock;
 
@@ -40,7 +40,7 @@ public class AnimationTask extends TimerTask {
   /** 最後の更新時間 */
 //  private long lastUpdatedTimeMillis = SystemClock.uptimeMillis();
   /** モデルキャンバス　 */
-  private ModelRenderer renderer;
+  private ObjectRenderer renderer;
   /** 遅延時間*/
   private long delayTime;
 
@@ -53,7 +53,7 @@ public class AnimationTask extends TimerTask {
    * @param canvas モデルキャンバス
    * @param delayTime 遅延時間
    */
-  public AnimationTask(double initialTime, double endTime, ObjectGroupManager manager, ModelRenderer canvas, long delayTime) {
+  public AnimationTask(double initialTime, double endTime, ObjectGroupManager manager, ObjectRenderer canvas, long delayTime) {
     this.endTime = endTime;
     this.currentTime = initialTime;
     this.manager = manager;

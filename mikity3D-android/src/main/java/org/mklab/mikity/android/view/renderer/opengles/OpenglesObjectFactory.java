@@ -11,12 +11,12 @@ import java.util.List;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 /**
- * モデルの生成器です。
+ * オブジェクトの生成器です。
  * 
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
-public class OpenglesModelCreater {
+public class OpenglesObjectFactory {
 
   /**
    * オブジェクトのグループを生成します。
@@ -28,8 +28,8 @@ public class OpenglesModelCreater {
   public List<OpenglesObjectGroup> create(final GroupModel[] groups) {
     final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();
     for (final GroupModel group : groups) {
-      final OpenglesObjectGroup child = new OpenglesObjectGroupFactory().create(group);
-      objectGroups.add(child);
+      final OpenglesObjectGroup objectGroup = new OpenglesObjectGroupFactory().create(group);
+      objectGroups.add(objectGroup);
     }
     
     return objectGroups;

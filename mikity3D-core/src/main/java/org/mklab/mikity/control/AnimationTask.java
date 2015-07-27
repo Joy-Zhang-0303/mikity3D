@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.TimerTask;
 
 import org.mklab.mikity.model.ObjectGroupManager;
-import org.mklab.mikity.view.renderer.ModelRenderer;
+import org.mklab.mikity.view.renderer.ObjectRenderer;
 
 
 /**
@@ -35,7 +35,7 @@ public class AnimationTask extends TimerTask {
   /** 最後の更新時間 */
   private long lastUpdatedTimeMillis = System.currentTimeMillis();
   /** モデルキャンバス　*/
-  private ModelRenderer renderer;
+  private ObjectRenderer renderer;
 
   /**
    * 新しく生成された<code>AnimationTask</code>オブジェクトを初期化します。
@@ -44,7 +44,7 @@ public class AnimationTask extends TimerTask {
    * @param manager グループマネージャー
    * @param canvas モデルキャンバス
    */
-  public AnimationTask(double initialTime, double endTime, ObjectGroupManager manager, ModelRenderer canvas) {
+  public AnimationTask(double initialTime, double endTime, ObjectGroupManager manager, ObjectRenderer canvas) {
     this.endTime = endTime;
     this.currentTime = initialTime;
     this.manager = manager;

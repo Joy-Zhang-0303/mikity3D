@@ -37,8 +37,8 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3d;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
-import org.mklab.mikity.view.renderer.ModelRenderer;
-import org.mklab.mikity.view.renderer.jogl.JoglModelRenderer;
+import org.mklab.mikity.view.renderer.ObjectRenderer;
+import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
@@ -99,7 +99,7 @@ public class AnimationWindow extends ApplicationWindow {
   ParameterInputBox playSpeed;
 
   /** ModelCanvas */
-  private ModelRenderer modelRenderer;
+  private ObjectRenderer modelRenderer;
 
   /** */
   private Frame frame;
@@ -160,7 +160,7 @@ public class AnimationWindow extends ApplicationWindow {
   public void setRoot(final Mikity3d root) {
     this.root = root;
     this.manager = new ObjectGroupManager();
-    this.modelRenderer = new JoglModelRenderer();
+    this.modelRenderer = new JoglObjectRenderer();
   }
 
   /**

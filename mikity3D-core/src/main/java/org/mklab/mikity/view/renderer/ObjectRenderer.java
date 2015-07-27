@@ -9,12 +9,12 @@ import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 /**
- * モデルを描画するレンダラーを表すインターフェースです。
+ * オブジェクトを描画するレンダラーを表すインターフェースです。
  * 
  * @author koga
  * @version $Revision$, 2012/02/19
  */
-public interface ModelRenderer {
+public interface ObjectRenderer {
   /**
    * 描画対象となるルートグループ群を設定します。
    * 

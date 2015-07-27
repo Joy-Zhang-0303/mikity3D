@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.android.view.renderer.opengles.OpenglesModelRenderer;
+import org.mklab.mikity.android.view.renderer.opengles.OpenglesObjectRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
@@ -62,7 +62,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   boolean mIsInitScreenSize;
   
   /** レンダー */
-  OpenglesModelRenderer modelRenderer;
+  OpenglesObjectRenderer modelRenderer;
   
   /** scaleGestureDetector */
   ScaleGestureDetector gesDetect = null;
@@ -154,7 +154,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.view = inflater.inflate(R.layout.canvas_fragment, container, false);
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
     this.getResources();
-    this.modelRenderer = new OpenglesModelRenderer(this.glView);
+    this.modelRenderer = new OpenglesObjectRenderer(this.glView);
     // 描画のクラスを登録する
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
@@ -446,7 +446,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * 
    * @return modelRenderer
    */
-  public OpenglesModelRenderer getModelRender() {
+  public OpenglesObjectRenderer getModelRender() {
     return this.modelRenderer;
   }
 
