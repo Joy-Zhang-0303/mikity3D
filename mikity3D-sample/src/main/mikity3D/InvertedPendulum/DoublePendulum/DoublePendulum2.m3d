@@ -1,0 +1,47 @@
+<mikity3d>
+   <scene>
+      <group name="root">
+         <translation x="0.0" y="0.0" z="0.0"/>
+         <rotation x="0.0" y="0.0" z="0.0"/>
+         <group name="fulcrum">
+            <translation x="0.0" y="0.0" z="0.0"/>
+            <rotation x="0.0" y="0.0" z="0.0"/>
+            <box width="0.5" height="0.05" depth="0.05" color="darkGray" transparent="true"/>
+            <cylinder radius="0.01" height="0.05" division="20" color="cyan" transparent="true">
+               <translation x="0.05" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="1.5708" z="0.0"/>
+            </cylinder>
+            <group name="pend1">
+               <translation x="0.05" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <animation target="rotationX" number="2"/>
+               <cylinder radius="0.003" height="0.3" division="20" color="orange" transparent="false">
+                  <translation x="0.0" y="0.0" z="-0.15"/>
+               </cylinder>
+               <sphere radius="0.01" division="20" color="cyan" transparent="false">
+                  <translation x="0.0" y="0.0" z="-0.3"/>
+               </sphere>
+               <group name="pend2">
+                  <translation x="0.0" y="0.0" z="-0.3"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+                  <animation target="rotationX" number="3"/>
+                  <cylinder radius="0.003" height="0.15" division="30" color="orange" transparent="true">
+                     <translation x="0.0" y="0.0" z="-0.075"/>
+                  </cylinder>
+                  <sphere radius="0.01" division="20" color="cyan" transparent="true">
+                     <translation x="0.0" y="0.0" z="-0.15"/>
+                  </sphere>
+               </group>
+            </group>
+         </group>
+      </group>
+   </scene>
+   <configuration>
+      <background color="white"/>
+      <light x="10.0" y="10.0" z="20.0"/>
+      <eye x="5.0" y="0.0" z="0.0"/>
+      <lookAtPoint x="0.0" y="0.0" z="0.0"/>
+      <modelUnit angle="radian" length="m"/>
+      <dataUnit angle="radian" length="m"/>
+   </configuration>
+</mikity3d>
