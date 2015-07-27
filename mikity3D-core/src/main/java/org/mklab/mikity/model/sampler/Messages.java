@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.model.picker;
+package org.mklab.mikity.model.sampler;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
  */
 public class Messages {
 
-  private static final String BUNDLE_NAME = "org.mklab.mikity.picker.messages"; //$NON-NLS-1$
+  private static final String BUNDLE_NAME = "org.mklab.mikity.sampler.messages"; //$NON-NLS-1$
 
   private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 

@@ -14,6 +14,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.CoordinateParameterType;
+import org.mklab.mikity.model.sampler.ClosenessDataSampler;
+import org.mklab.mikity.model.sampler.DataSampler;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 

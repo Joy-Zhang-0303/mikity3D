@@ -8,8 +8,8 @@ package org.mklab.mikity.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.picker.ClosenessDataSampler;
-import org.mklab.mikity.model.picker.DataSampler;
+import org.mklab.mikity.model.sampler.ClosenessDataSampler;
+import org.mklab.mikity.model.sampler.DataSampler;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.nfc.matrix.Matrix;

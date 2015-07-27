@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.model;
 
-import org.mklab.mikity.model.picker.DataSampler;
+import org.mklab.mikity.model.sampler.DataSampler;
 
 
 /**
