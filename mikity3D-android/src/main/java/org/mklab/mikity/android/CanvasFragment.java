@@ -18,7 +18,7 @@ import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
@@ -79,7 +79,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   Timer timer = new Timer();
 
   /** Mikity3dモデル */
-  Mikity3d root;
+  Mikity3DModel root;
   
   ObjectGroupManager manager;
   Matrix data;
@@ -613,7 +613,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * 
    * @return root
    */
-  public Mikity3d getRoot() {
+  public Mikity3DModel getRoot() {
     return this.root;
   }
 

@@ -33,7 +33,7 @@ import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
@@ -63,7 +63,7 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   private double endTime;
 
-  private Mikity3d root;
+  private Mikity3DModel root;
 
   /** */
   double speedRate = 1.0;
@@ -115,7 +115,7 @@ public class AnimationWindow extends ApplicationWindow {
    * @param parentShell 親シェル
    * @param root ルート
    */
-  public AnimationWindow(final Shell parentShell, final Mikity3d root) {
+  public AnimationWindow(final Shell parentShell, final Mikity3DModel root) {
     super(parentShell);
     setRoot(root);
   }
@@ -126,7 +126,7 @@ public class AnimationWindow extends ApplicationWindow {
    * @param root ルート
    * @param modelFile ファイルパス
    */
-  public AnimationWindow(final Shell parentShell, final Mikity3d root, File modelFile) {
+  public AnimationWindow(final Shell parentShell, final Mikity3DModel root, File modelFile) {
     this(parentShell, root);
     this.modelFile = modelFile;
   }
@@ -157,7 +157,7 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param root ルート
    */
-  public void setRoot(final Mikity3d root) {
+  public void setRoot(final Mikity3DModel root) {
     this.root = root;
     this.manager = new ObjectGroupManager();
     this.modelRenderer = new JoglObjectRenderer();
@@ -168,7 +168,7 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @return root ルート
    */
-  public Mikity3d getRoot() {
+  public Mikity3DModel getRoot() {
     return this.root;
   }
 
@@ -510,7 +510,7 @@ public class AnimationWindow extends ApplicationWindow {
       final File file = new File(filePath);
       this.modelFile = file;
       final Mikity3dFactory m3f = new Mikity3dFactory();
-      final Mikity3d mroot = m3f.loadFile(file);
+      final Mikity3DModel mroot = m3f.loadFile(file);
       setRoot(mroot);
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);

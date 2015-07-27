@@ -11,7 +11,7 @@ import java.io.InputStream;
 import org.mklab.mikity.model.xml.simplexml.ColladaUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DUnmarshaller;
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
@@ -31,10 +31,10 @@ public class Mikity3dFactory {
    * @param parent Jamastのroot
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
    */
-  public void importFile(File file, Mikity3d parent) throws Mikity3dSerializeDeserializeException {
+  public void importFile(File file, Mikity3DModel parent) throws Mikity3dSerializeDeserializeException {
     final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
     unmarshaller.unmarshalFromMikity3DFile(file);
-    final Mikity3d importedMikity3d = unmarshaller.getRoot();
+    final Mikity3DModel importedMikity3d = unmarshaller.getRoot();
     final GroupModel[] rootGroups = importedMikity3d.getScene(0).getGroups();
     
     final SceneModel parentMikity3d = parent.getScene(0);
@@ -96,10 +96,10 @@ public class Mikity3dFactory {
    * @return Mikity3Dモデル
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  public Mikity3d loadFile(final File file) throws Mikity3dSerializeDeserializeException {
+  public Mikity3DModel loadFile(final File file) throws Mikity3dSerializeDeserializeException {
     final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
     unmarshaller.unmarshalFromMikity3DFile(file);
-    final Mikity3d root = unmarshaller.getRoot();
+    final Mikity3DModel root = unmarshaller.getRoot();
     return root;
   }
 
@@ -110,10 +110,10 @@ public class Mikity3dFactory {
    * @return Mikity3Dモデル
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  public Mikity3d loadFile(final InputStream input) throws Mikity3dSerializeDeserializeException {
+  public Mikity3DModel loadFile(final InputStream input) throws Mikity3dSerializeDeserializeException {
     final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
     unmarshaller.unmarshalFromMikity3DFile(input);
-    final Mikity3d root = unmarshaller.getRoot();
+    final Mikity3DModel root = unmarshaller.getRoot();
     return root;
   }
 
@@ -124,11 +124,11 @@ public class Mikity3dFactory {
    * @return Mikity3Dモデル
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  public Mikity3d loadColladFile(final File file) throws Mikity3dSerializeDeserializeException {
+  public Mikity3DModel loadColladFile(final File file) throws Mikity3dSerializeDeserializeException {
     final ColladaUnmarshaller unmarshaller = new ColladaUnmarshaller();
     unmarshaller.unmarshalFromColladaFile(file);
 
-    final Mikity3d newRoot = createEmptyModel();
+    final Mikity3DModel newRoot = createEmptyModel();
     final GroupModel newGroup = newRoot.getScene(0).getGroup(0);
     final GroupModel[] groups = unmarshaller.getClolladaGroup().getGroups();
     for (final GroupModel group : groups) {
@@ -145,11 +145,11 @@ public class Mikity3dFactory {
    * @return Mikity3Dモデル
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  public Mikity3d loadColladaFile(final InputStream input) throws Mikity3dSerializeDeserializeException {
+  public Mikity3DModel loadColladaFile(final InputStream input) throws Mikity3dSerializeDeserializeException {
     final ColladaUnmarshaller unmarshaller = new ColladaUnmarshaller();
     unmarshaller.unmarshalFromColladaFile(input);
 
-    final Mikity3d newRoot = createEmptyModel();
+    final Mikity3DModel newRoot = createEmptyModel();
     final GroupModel newGroup = newRoot.getScene(0).getGroup(0);
     final GroupModel[] groups = unmarshaller.getClolladaGroup().getGroups();
     for (final GroupModel group : groups) {
@@ -164,7 +164,7 @@ public class Mikity3dFactory {
    * 
    * @return Mikity3Dモデル
    */
-  public Mikity3d createEmptyModel() {
+  public Mikity3DModel createEmptyModel() {
     final ConfigurationModel configuration = new ConfigurationModel();
     
     final GroupModel group = new GroupModel();
@@ -173,7 +173,7 @@ public class Mikity3dFactory {
     final SceneModel model = new SceneModel();
     model.addGroup(group);
 
-    final Mikity3d root = new Mikity3d();
+    final Mikity3DModel root = new Mikity3DModel();
     root.addConfiguration(configuration);
     root.addScene(model);
     return root;

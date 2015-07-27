@@ -14,7 +14,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 
 /**
  * {@link AnimationWindow}のテストケースクラスです。
@@ -41,7 +41,7 @@ public class AnimationWindowTest {
   @Test
   public void testGetRoot() {
     final String modelFileName = "src/test/resources/org/mklab/mikity/view/gui/pendulum.m3d"; //$NON-NLS-1$
-    final Mikity3d expected;
+    final Mikity3DModel expected;
     try {
       expected = new Mikity3dFactory().loadFile(new File(modelFileName));
     } catch (Mikity3dSerializeDeserializeException e) {
@@ -49,7 +49,7 @@ public class AnimationWindowTest {
     }
     
     this.am.setRoot(expected);
-    final Mikity3d actual = this.am.getRoot();
+    final Mikity3DModel actual = this.am.getRoot();
     
     assertTrue(actual.equals(expected));
   }
@@ -61,7 +61,7 @@ public class AnimationWindowTest {
   @Test
   public void testCreateRoot() {
     final String modelFileName = "src/test/resources/org/mklab/mikity/view/gui/pendulum.m3d"; //$NON-NLS-1$
-    final Mikity3d expected;
+    final Mikity3DModel expected;
     try {
       expected = new Mikity3dFactory().loadFile(new File(modelFileName));
     } catch (Mikity3dSerializeDeserializeException e) {
@@ -69,7 +69,7 @@ public class AnimationWindowTest {
     }
     
     this.am.createRoot(modelFileName);
-    final Mikity3d actual = this.am.getRoot();
+    final Mikity3DModel actual = this.am.getRoot();
     
     assertTrue(actual.equals(expected));
   }

@@ -74,7 +74,7 @@ public class SimpleXmlUnmarshallerTest {
    */
   @Test
   public void testGetRoot() {
-    final Mikity3d actual = this.unmarshaler.getRoot();
+    final Mikity3DModel actual = this.unmarshaler.getRoot();
     final ConfigurationModel actualConfiguration = actual.getConfiguration(0);
 
     final BackgroundModel actualBackground = actualConfiguration.getBackground();

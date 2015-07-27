@@ -17,7 +17,7 @@ import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DMarshaller;
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
 import org.mklab.mikity.view.gui.action.AnimationWindowOpenAction;
@@ -70,7 +70,7 @@ public class ModelingWindow extends ApplicationWindow {
   private AbstractToolBarAction TOOLBAR_QUAD_ACTION = new QuadPolygonToolBarAction(this);
   
   /** モデル。 */
-  private Mikity3d root;
+  private Mikity3DModel root;
   /** モデラー。 */
   private JoglModeler modeler;
   /** ファイル。 */
@@ -222,7 +222,7 @@ public class ModelingWindow extends ApplicationWindow {
    * 
    * @return root
    */
-  public Mikity3d getRoot() {
+  public Mikity3DModel getRoot() {
     return this.root;
   }
 
@@ -234,7 +234,7 @@ public class ModelingWindow extends ApplicationWindow {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
-    this.root.getMikity3dData();
+    //this.root.getMikity3dData();
     final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
     marshaller.marshal(this.file);
     this.modeler.setChanged(false);

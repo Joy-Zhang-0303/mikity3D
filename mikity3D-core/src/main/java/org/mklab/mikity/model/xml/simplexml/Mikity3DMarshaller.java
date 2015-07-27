@@ -15,13 +15,13 @@ import org.simpleframework.xml.core.Persister;
  */
 public class Mikity3DMarshaller {
   /** モデルデータのルート */
-  private Mikity3d root;
+  private Mikity3DModel root;
 
   /**
    * 新しく生成された<code>JAXBMarshaller</code>オブジェクトを初期化します。
    * @param root モデルデータのルート
    */
-  public Mikity3DMarshaller(Mikity3d root) {
+  public Mikity3DMarshaller(Mikity3DModel root) {
     this.root = root;
   }
 

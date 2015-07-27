@@ -13,7 +13,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="mikity3d")
-public class Mikity3d implements java.io.Serializable, Cloneable {
+public class Mikity3DModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** scenes */
@@ -25,9 +25,9 @@ public class Mikity3d implements java.io.Serializable, Cloneable {
   private List<ConfigurationModel> configurations;
 
   /**
-   * 新しく生成された<code>Mikity3d</code>オブジェクトを初期化します。
+   * 新しく生成された<code>Mikity3DModel</code>オブジェクトを初期化します。
    */
-  public Mikity3d() {
+  public Mikity3DModel() {
     this.scenes = new ArrayList<>();
     this.configurations = new ArrayList<>();
   }
@@ -36,9 +36,9 @@ public class Mikity3d implements java.io.Serializable, Cloneable {
    * {@inheritDoc}
    */
   @Override
-  public Mikity3d clone() {
+  public Mikity3DModel clone() {
     try {
-      final Mikity3d ans = (Mikity3d)super.clone();
+      final Mikity3DModel ans = (Mikity3DModel)super.clone();
       ans.scenes = new ArrayList<>();
       for (final SceneModel scene : this.scenes) {
         ans.scenes.add(scene.clone());
@@ -113,7 +113,7 @@ public class Mikity3d implements java.io.Serializable, Cloneable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Mikity3d other = (Mikity3d)obj;
+    Mikity3DModel other = (Mikity3DModel)obj;
     if (this.configurations == null) {
       if (other.configurations != null) {
         return false;
@@ -145,10 +145,10 @@ public class Mikity3d implements java.io.Serializable, Cloneable {
     return this.scenes.get(index);
   }
 
-  /**
-   * @return XML data
-   */
-  public Mikity3d getMikity3dData() {
-    return this;
-  }
+//  /**
+//   * @return XML data
+//   */
+//  public Mikity3DModel getMikity3dData() {
+//    return this;
+//  }
 }

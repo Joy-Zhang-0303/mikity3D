@@ -16,7 +16,7 @@ import org.simpleframework.xml.core.Persister;
  */
 public class Mikity3DUnmarshaller {
   /** モデルデータのルート */
-  private Mikity3d root;
+  private Mikity3DModel root;
 
   /**
    * 指定したMikity3DTファイルを読み込みます。
@@ -27,7 +27,7 @@ public class Mikity3DUnmarshaller {
   public void unmarshalFromMikity3DFile(File file) throws Mikity3dSerializeDeserializeException {
     try {
       final Serializer serializer = new Persister();
-      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3d.class, file);
+      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3DModel.class, file);
     } catch (Exception e) {
       throw new Mikity3dSerializeDeserializeException(e);
     }
@@ -42,7 +42,7 @@ public class Mikity3DUnmarshaller {
   public void unmarshalFromMikity3DFile(InputStream input) throws Mikity3dSerializeDeserializeException {
     try {
       final Serializer serializer = new Persister();
-      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3d.class, input);
+      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3DModel.class, input);
     } catch (Exception e) {
       throw new Mikity3dSerializeDeserializeException(e);
     }
@@ -53,7 +53,7 @@ public class Mikity3DUnmarshaller {
    * 
    * @return 現在のモデルデータのルート
    */
-  public Mikity3d getRoot() {
+  public Mikity3DModel getRoot() {
     return this.root;
   }
 }

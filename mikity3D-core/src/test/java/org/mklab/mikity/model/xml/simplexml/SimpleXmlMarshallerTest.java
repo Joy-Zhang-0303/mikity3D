@@ -40,7 +40,7 @@ public class SimpleXmlMarshallerTest {
       unmarshaller1.unmarshalFromMikity3DFile(input);
     }
 
-    final Mikity3d expected = unmarshaller1.getRoot();
+    final Mikity3DModel expected = unmarshaller1.getRoot();
     final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(expected);
     
     final File file = this.temporaryFolder.newFile("afo.m3d"); //$NON-NLS-1$
@@ -49,7 +49,7 @@ public class SimpleXmlMarshallerTest {
     final Mikity3DUnmarshaller unmarshaller2 = new Mikity3DUnmarshaller();
     unmarshaller2.unmarshalFromMikity3DFile(file);
     
-    final Mikity3d actual = unmarshaller2.getRoot();
+    final Mikity3DModel actual = unmarshaller2.getRoot();
 
     assertThat(actual, is(expected));
   }

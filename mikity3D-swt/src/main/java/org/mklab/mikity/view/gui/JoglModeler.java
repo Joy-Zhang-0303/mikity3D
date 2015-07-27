@@ -14,7 +14,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.mklab.mikity.model.xml.simplexml.Mikity3d;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
 
@@ -31,7 +31,7 @@ public class JoglModeler extends Composite {
   /** レンダラー。 */
   private JoglObjectRenderer renderer;
   /** ルート。 */
-  Mikity3d root;
+  Mikity3DModel root;
   
   /** 変更されていればtrue。 */
   private boolean isChanged = false;
@@ -41,7 +41,7 @@ public class JoglModeler extends Composite {
    * @param parent 親
    * @param root ルート
    */
-  public JoglModeler(Composite parent, final Mikity3d root) {
+  public JoglModeler(Composite parent, final Mikity3DModel root) {
     super(parent, SWT.None);
     this.root = root;
     this.setLayout(new GridLayout());
@@ -94,7 +94,7 @@ public class JoglModeler extends Composite {
    * 
    * @param root ツリーのルート
    */
-  public void setModel(Mikity3d root) {
+  public void setModel(Mikity3DModel root) {
     this.root = root;
     this.isChanged = false;
     this.tree.setModel(root.getScene(0));
@@ -156,7 +156,7 @@ public class JoglModeler extends Composite {
    * 
    * @return root
    */
-  public Mikity3d getRoot() {
+  public Mikity3DModel getRoot() {
     return this.root;
   }
   
