@@ -234,7 +234,6 @@ public class ModelingWindow extends ApplicationWindow {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
-    //this.root.getMikity3dData();
     final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
     marshaller.marshal(this.file);
     this.modeler.setChanged(false);
@@ -250,9 +249,7 @@ public class ModelingWindow extends ApplicationWindow {
     }
     
     this.root = new Mikity3dFactory().loadFile(this.file);
-    
-//    final SceneGraphTree tree = new SceneGraphTree();
-//    tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);
+
     setUnit();
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
@@ -269,11 +266,7 @@ public class ModelingWindow extends ApplicationWindow {
     
     new Mikity3dFactory().importFile(this.file, this.root);
 
-//    final SceneGraphTree tree = new SceneGraphTree();
-//    tree.setAllTransparent(this.root.getModel(0).getGroup(0), false);
-//    setUnit();
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
-//    this.modeler.setModel(this.root);
     this.modeler.setChanged(true);
     this.modeler.fillTree();
     this.modeler.updateRenderer();

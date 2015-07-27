@@ -17,7 +17,7 @@ import org.mklab.nfc.matrix.Matrix;
  * @author miki
  * @version $Revision: 1.7 $.2005/01/17
  */
-public abstract class AbstractDataPicker implements DataPicker {
+public abstract class AbstractDataSampler implements DataSampler {
   /** データ。 */
   private DoubleMatrix data;
   /** 座標パラメータ */
@@ -28,10 +28,10 @@ public abstract class AbstractDataPicker implements DataPicker {
   private static boolean dataIsRadian = true;
 
   /**
-   * 新しく生成された<code>AbstractDataPicker</code>オブジェクトを初期化します。
+   * 新しく生成された<code>AbstractDataSampler</code>オブジェクトを初期化します。
    * @param data data データ
    */
-  public AbstractDataPicker(Matrix data) {
+  public AbstractDataSampler(Matrix data) {
     this.data = (DoubleMatrix)data;
 
     final int movableObjectSize = data.getColumnSize();
@@ -45,7 +45,7 @@ public abstract class AbstractDataPicker implements DataPicker {
   /**
    * {@inheritDoc}
    */
-  public final void pickup(CoordinateParameterType type, int dataIndex) {
+  public final void sample(CoordinateParameterType type, int dataIndex) {
     if (this.data.getRowSize() < dataIndex) {
       throw new IllegalAccessError();
     }

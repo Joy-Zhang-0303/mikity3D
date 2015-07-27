@@ -144,11 +144,4 @@ public class Mikity3DModel implements java.io.Serializable, Cloneable {
 
     return this.scenes.get(index);
   }
-
-//  /**
-//   * @return XML data
-//   */
-//  public Mikity3DModel getMikity3dData() {
-//    return this;
-//  }
 }

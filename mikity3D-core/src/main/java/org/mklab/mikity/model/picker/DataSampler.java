@@ -10,12 +10,12 @@ import org.mklab.mikity.model.CoordinateParameterType;
 
 
 /**
- * データを抽出器を表すインターフェースです。
+ * データの抽出器を表すインターフェースです。
  * 
  * @author koga
  * @version $Revision$, 2012/11/05
  */
-public interface DataPicker {
+public interface DataSampler {
   /**
    * 指定された時刻の座標パラメータを返します。
    * @param t 時刻
@@ -24,11 +24,11 @@ public interface DataPicker {
   CoordinateParameter getCoordinateParameter(double t);
 
   /**
-   * データをピックアップし，パラメータを設定します。
+   * データをサンプルし，パラメータを設定します。
    * @param type パラメータのタイプ
    * @param dataIndex データ番号
    */
-  void pickup(CoordinateParameterType type, int dataIndex);
+  void sample(CoordinateParameterType type, int dataIndex);
 
   /**
    * 値を設定します。

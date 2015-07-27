@@ -5,19 +5,19 @@
  */
 package org.mklab.mikity.model;
 
-import org.mklab.mikity.model.picker.DataPicker;
+import org.mklab.mikity.model.picker.DataSampler;
 
 
 /**
- * {@link ObjectGroup}と{@link DataPicker}の組を表すクラスです。
+ * {@link ObjectGroup}と{@link DataSampler}の組を表すクラスです。
  * @author koga
  * @version $Revision$, 2015/07/14
  */
-class ObjectGroupDataPicker {
+class ObjectGroupDataSampler {
   /** オブジェクトグループ。 */
   public ObjectGroup objectGroup;
   /** データピッカー。 */
-  public DataPicker dataPicker;
+  public DataSampler dataPicker;
 
   /**
    * 新しく生成された<code>ObjectGroupDataPicker</code>オブジェクトを初期化します。
@@ -27,7 +27,7 @@ class ObjectGroupDataPicker {
    * @param objectGroup オブジェクトグループ
    * @param dataPicker データピッカー
    */
-  public ObjectGroupDataPicker(ObjectGroup objectGroup, DataPicker dataPicker) {
+  public ObjectGroupDataSampler(ObjectGroup objectGroup, DataSampler dataPicker) {
     this.objectGroup = objectGroup;
     this.dataPicker = dataPicker;
   }

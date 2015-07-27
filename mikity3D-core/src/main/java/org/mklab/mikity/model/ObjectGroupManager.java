@@ -8,8 +8,8 @@ package org.mklab.mikity.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.picker.ClosenessDataPicker;
-import org.mklab.mikity.model.picker.DataPicker;
+import org.mklab.mikity.model.picker.ClosenessDataSampler;
+import org.mklab.mikity.model.picker.DataSampler;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.nfc.matrix.Matrix;
@@ -25,7 +25,7 @@ public class ObjectGroupManager {
   /** オブジェクトグループ。 */
   private static List<ObjectGroup> OBJECT_GROUPS = new ArrayList<>();
   /** 可動グループ。 */
-  private List<ObjectGroupDataPicker> movingGroups = new ArrayList<>();
+  private List<ObjectGroupDataSampler> movingGroups = new ArrayList<>();
   
   /** データの個数 */
   private int dataSize;
@@ -43,8 +43,8 @@ public class ObjectGroupManager {
    * @param objectGroup オブジェクトグループ
    * @param picker データ抽出器
    */
-  private void addMovingGroup(final ObjectGroup objectGroup, final DataPicker picker) {
-    this.movingGroups.add(new ObjectGroupDataPicker(objectGroup, picker));
+  private void addMovingGroup(final ObjectGroup objectGroup, final DataSampler picker) {
+    this.movingGroups.add(new ObjectGroupDataSampler(objectGroup, picker));
     this.dataSize = Math.max(this.dataSize, picker.getDataSize());
     this.startTime = Math.min(this.startTime, picker.getStartTime());
     this.endTime = Math.max(this.endTime, picker.getEndTime());
@@ -56,9 +56,9 @@ public class ObjectGroupManager {
    * @param t 時刻
    */
   public void updateObjectGroups(final double t) {
-    for (final ObjectGroupDataPicker movingGroup: this.movingGroups) {
+    for (final ObjectGroupDataSampler movingGroup: this.movingGroups) {
       final ObjectGroup objectGroup = movingGroup.objectGroup;
-      final DataPicker dataPicker = movingGroup.dataPicker;
+      final DataSampler dataPicker = movingGroup.dataPicker;
       objectGroup.setCoordinateParameter(dataPicker.getCoordinateParameter(t));
     }
   }
@@ -77,7 +77,7 @@ public class ObjectGroupManager {
       
       final AnimationModel[] links =   group.getAnimations();
       if (links.length != 0) {
-        final DataPicker picker = createPicker(data, links);
+        final DataSampler picker = createPicker(data, links);
         addMovingGroup(objectGroup, picker);
       }
     }
@@ -89,8 +89,8 @@ public class ObjectGroupManager {
    * @param data 時系列データ
    * @param links リンクデータ
    */
-  private DataPicker createPicker(final Matrix data, final AnimationModel[] links) {
-    final DataPicker picker = new ClosenessDataPicker(data);
+  private DataSampler createPicker(final Matrix data, final AnimationModel[] links) {
+    final DataSampler picker = new ClosenessDataSampler(data);
     for (final AnimationModel link : links) {
       if (link.hasCoordinateParameter()) {
         if (link.hasNumber()) {
@@ -113,7 +113,7 @@ public class ObjectGroupManager {
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
-          picker.pickup(type, dataNumber);
+          picker.sample(type, dataNumber);
         }
       }
     }

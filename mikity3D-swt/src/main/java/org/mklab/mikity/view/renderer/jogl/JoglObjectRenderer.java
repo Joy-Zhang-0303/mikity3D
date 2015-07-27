@@ -173,15 +173,6 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     return this.configuration;
   }
 
-//  /**
-//   * @param drawable Drawable
-//   * @param modeChanged モデルに変更があればtrue
-//   * @param deviceChanged デバイスに変更があればtrue
-//   */
-//  public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
-//    // nothing to do
-//  }
-
   /**
    * {@inheritDoc}
    */

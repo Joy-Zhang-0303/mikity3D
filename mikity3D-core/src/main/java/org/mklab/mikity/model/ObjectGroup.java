@@ -31,9 +31,9 @@ public interface ObjectGroup {
   void setCoordinateParameter(CoordinateParameter parameter);
 
   /**
-   * 関連するモデルデータのグループを返します。
+   * 関連するオブジェクトのグループを返します。
    * 
-   * @return 関連するモデルデータのグループ
+   * @return 関連するオブジェクトのグループ
    */
   GroupModel getGroup();
 }

@@ -19,7 +19,7 @@ import org.mklab.nfc.matx.MatxMatrix;
 
 
 /**
- * {@link ClosenessDataPicker}のテストクラスです。
+ * {@link ClosenessDataSampler}のテストクラスです。
  * 
  * @author miki
  * @version $Revision: 1.6 $.2005/01/17
@@ -42,9 +42,9 @@ public class ClosenessDataPickerTest {
    */
   @Test
   public void testGetParameter() {
-    final DataPicker picker = new ClosenessDataPicker(this.data);
+    final DataSampler picker = new ClosenessDataSampler(this.data);
     
-    picker.pickup(CoordinateParameterType.TRANSLATION_X, 2);
+    picker.sample(CoordinateParameterType.TRANSLATION_X, 2);
     
     final double t1 = 13.59;
     CoordinateParameter param1 = picker.getCoordinateParameter(t1);
@@ -55,7 +55,7 @@ public class ClosenessDataPickerTest {
     assertTrue(8.921 == param2.getTranslationX());
     assertTrue(0.0 == param2.getRotationX());
 
-    picker.pickup(CoordinateParameterType.ROTATION_X, 3);
+    picker.sample(CoordinateParameterType.ROTATION_X, 3);
     
     assertTrue(-0.010995 == param2.getRotationX());
   }

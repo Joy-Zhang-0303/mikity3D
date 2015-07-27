@@ -1,6 +1,5 @@
 package org.mklab.mikity.model.xml.simplexml.config;
 
-import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.simpleframework.xml.Attribute;
 
 

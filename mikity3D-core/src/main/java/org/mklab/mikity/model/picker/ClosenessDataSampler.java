@@ -17,12 +17,12 @@ import org.mklab.nfc.matrix.Matrix;
  * @author miki
  * @version $Revision: 1.5 $.2005/01/12
  */
-public class ClosenessDataPicker extends AbstractDataPicker {
+public class ClosenessDataSampler extends AbstractDataSampler {
   /**
-   * 新しく生成された<code>ClosenessDataPicker</code>オブジェクトを初期化します。
+   * 新しく生成された<code>ClosenessDataSampler</code>オブジェクトを初期化します。
    * @param data データ
    */
-  public ClosenessDataPicker(Matrix data) {
+  public ClosenessDataSampler(Matrix data) {
     super(data);
   }
 
