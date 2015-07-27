@@ -406,7 +406,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     }
 
     final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
-    checkLinkParameterType(rootGroup);
+    checkAnimation(rootGroup);
 
     final int dataSize = this.manager.getDataSize();
 
@@ -419,16 +419,16 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.setIllegalTimeData = false;
   }
 
-  private void checkLinkParameterType(GroupModel parent) {
+  private void checkAnimation(GroupModel parent) {
     final GroupModel[] groups = parent.getGroups();
     for (final GroupModel group : groups) {
       final AnimationModel[] animations = group.getAnimations();
       for (final AnimationModel animation : animations) {
-        if (animation.hasCoordinateParameter()) {
-          this.manager.setHasCoordinateParameter(true);
+        if (animation.exists()) {
+          this.manager.setHasAnimation(true);
         }
       }
-      checkLinkParameterType(group);
+      checkAnimation(group);
     }
   }
 

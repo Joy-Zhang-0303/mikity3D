@@ -569,16 +569,16 @@ public class AnimationWindow extends ApplicationWindow {
     });
   }
 
-  private void checkAnimationType(GroupModel parent) {
+  private void checkAnimation(GroupModel parent) {
     final GroupModel[] groups = parent.getGroups();
     for (final GroupModel group : groups) {
       final AnimationModel[] animations = group.getAnimations();
       for (final AnimationModel animation : animations) {
-        if (animation.hasCoordinateParameter()) {
-          this.manager.setHasCoordinateParameter(true);
+        if (animation.exists()) {
+          this.manager.setHasAnimation(true);
         }
       }
-      checkAnimationType(group);
+      checkAnimation(group);
     }
   }
 
@@ -597,7 +597,7 @@ public class AnimationWindow extends ApplicationWindow {
       this.manager.setData(this.timeSeriesData);
 
       final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
-      checkAnimationType(rootGroup);
+      checkAnimation(rootGroup);
 
       final int dataSize = this.manager.getDataSize();
 
@@ -632,7 +632,7 @@ public class AnimationWindow extends ApplicationWindow {
     this.manager.setData(this.timeSeriesData);
 
     final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
-    checkAnimationType(rootGroup);
+    checkAnimation(rootGroup);
 
     final int dataSize = this.manager.getDataSize();
 

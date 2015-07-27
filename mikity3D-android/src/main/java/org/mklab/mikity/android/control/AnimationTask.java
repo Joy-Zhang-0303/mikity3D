@@ -102,7 +102,7 @@ public class AnimationTask extends TimerTask {
     final long ctime = SystemClock.uptimeMillis()-this.delayTime;
     this.currentTime = this.speedScale*(ctime- this.initialTime)/1000;
 
-    if (this.manager.hasCoordinateParameter()) {
+    if (this.manager.hasAnimation()) {
       try {
         this.manager.updateObjectGroups(this.currentTime);
       } catch(ConcurrentModificationException e) {

@@ -97,7 +97,7 @@ public class AnimationTask extends TimerTask {
     this.lastUpdatedTimeMillis = System.currentTimeMillis();
     this.currentTime += diffTime * this.speedScale;
 
-    if (this.manager.hasCoordinateParameter()) {
+    if (this.manager.hasAnimation()) {
       this.manager.updateObjectGroups(this.currentTime);
     }
 

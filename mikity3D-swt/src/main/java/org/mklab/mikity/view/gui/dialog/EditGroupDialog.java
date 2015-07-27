@@ -344,7 +344,7 @@ public class EditGroupDialog {
 
     for (int i = 0; i < animations.length; i++) {
       final String target = animations[i].getTarget();
-      final String number = animations[i].hasNumber() ? "" + animations[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+      final String number = "" + animations[i].getNumber(); //$NON-NLS-1$
 
       if (target.equals("translationX")) { //$NON-NLS-1$
         this.translationXdataNumber.setText(number);

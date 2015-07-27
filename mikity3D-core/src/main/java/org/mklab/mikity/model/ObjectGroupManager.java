@@ -22,11 +22,12 @@ import org.mklab.nfc.matrix.Matrix;
  * @version $Revision: 1.10 $.2005/01/14
  */
 public class ObjectGroupManager {
+
   /** オブジェクトグループ。 */
   private static List<ObjectGroup> OBJECT_GROUPS = new ArrayList<>();
   /** 可動グループ。 */
   private List<ObjectGroupDataSampler> movingGroups = new ArrayList<>();
-  
+
   /** データの個数 */
   private int dataSize;
   /** 開始時間 */
@@ -34,8 +35,8 @@ public class ObjectGroupManager {
   /** 終了時間 */
   private double endTime;
 
-  /** 座標パラメータを使用するならばtrue */
-  private boolean hasCoordinateParameter = false;
+  /** アニメーションが存在するならばtrue */
+  private boolean hasAnimation = false;
 
   /**
    * 可動グループを追加します。
@@ -56,7 +57,7 @@ public class ObjectGroupManager {
    * @param t 時刻
    */
   public void updateObjectGroups(final double t) {
-    for (final ObjectGroupDataSampler movingGroup: this.movingGroups) {
+    for (final ObjectGroupDataSampler movingGroup : this.movingGroups) {
       final ObjectGroup objectGroup = movingGroup.group;
       final DataSampler dataSampler = movingGroup.sampler;
       objectGroup.setCoordinateParameter(dataSampler.getCoordinateParameter(t));
@@ -74,8 +75,8 @@ public class ObjectGroupManager {
       if (group == null) {
         continue;
       }
-      
-      final AnimationModel[] animations =   group.getAnimations();
+
+      final AnimationModel[] animations = group.getAnimations();
       if (animations.length != 0) {
         final DataSampler sampler = createSampler(data, animations);
         addMovingGroup(objectGroup, sampler);
@@ -92,32 +93,31 @@ public class ObjectGroupManager {
   private DataSampler createSampler(final Matrix data, final AnimationModel[] animations) {
     final DataSampler sampler = new ClosenessDataSampler(data);
     for (final AnimationModel animation : animations) {
-      if (animation.hasCoordinateParameter()) {
-        if (animation.hasNumber()) {
-          final int dataNumber = animation.getNumber();
-          final String parameterName = animation.getTarget();
-          final CoordinateParameterType type;
+      if (animation.exists()) {
+        final int number = animation.getNumber();
+        final String target = animation.getTarget();
+        final CoordinateParameterType type;
 
-          if (parameterName.equals("translationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.TRANSLATION_X;
-          } else if (parameterName.equals("translationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.TRANSLATION_Y;
-          } else if (parameterName.equals("translationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.TRANSLATION_Z;
-          } else if (parameterName.equals("rotationX")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTATION_X;
-          } else if (parameterName.equals("rotationY")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTATION_Y;
-          } else if (parameterName.equals("rotationZ")) { //$NON-NLS-1$
-            type = CoordinateParameterType.ROTATION_Z;
-          } else {
-            throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
-          }
-          sampler.sample(type, dataNumber);
+        if (target.equals("translationX")) { //$NON-NLS-1$
+          type = CoordinateParameterType.TRANSLATION_X;
+        } else if (target.equals("translationY")) { //$NON-NLS-1$
+          type = CoordinateParameterType.TRANSLATION_Y;
+        } else if (target.equals("translationZ")) { //$NON-NLS-1$
+          type = CoordinateParameterType.TRANSLATION_Z;
+        } else if (target.equals("rotationX")) { //$NON-NLS-1$
+          type = CoordinateParameterType.ROTATION_X;
+        } else if (target.equals("rotationY")) { //$NON-NLS-1$
+          type = CoordinateParameterType.ROTATION_Y;
+        } else if (target.equals("rotationZ")) { //$NON-NLS-1$
+          type = CoordinateParameterType.ROTATION_Z;
+        } else {
+          throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
         }
+
+        sampler.sample(type, number);
       }
     }
-     
+
     return sampler;
   }
 
@@ -163,29 +163,30 @@ public class ObjectGroupManager {
   }
 
   /**
-   * 座標パラメータを使用しているか設定します。
+   * アニメーションが存在するか設定します。
    * 
-   * @param hasCoordinateParameter 座標パラメータ使用するならばtrue
+   * @param hasAnimation アニメーションが存在するならばtrue
    */
-  public void setHasCoordinateParameter(final boolean hasCoordinateParameter) {
-    this.hasCoordinateParameter = hasCoordinateParameter;
+  public void setHasAnimation(final boolean hasAnimation) {
+    this.hasAnimation = hasAnimation;
   }
 
   /**
-   * 座標パラメータを使用しているか判定します。
+   * アニメーションが存在するから判定します。
    * 
-   * @return　座標パラメータを使用するならばtrue
+   * @return　アニメーソンが存在するならばtrue
    */
-  public boolean hasCoordinateParameter() {
-    return this.hasCoordinateParameter;
+  public boolean hasAnimation() {
+    return this.hasAnimation;
   }
-  
+
   /**
    * グループとオブジェクトグループを対応付けします。
+   * 
    * @param objectGroup オブジェクトグループ
    */
   public static void addObjectGroup(final ObjectGroup objectGroup) {
     OBJECT_GROUPS.add(objectGroup);
   }
- 
+
 }

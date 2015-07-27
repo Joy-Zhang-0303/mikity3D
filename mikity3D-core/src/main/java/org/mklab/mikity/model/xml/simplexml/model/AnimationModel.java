@@ -105,18 +105,6 @@ public class AnimationModel implements java.io.Serializable, Cloneable {
   }
 
   /**
-   * データの番号をもつか判別します。
-   * 
-   * @return データの番号をもつならばtrue
-   */
-  public boolean hasNumber() {
-    if (this.number != 0) {
-      return true;
-    }
-    return false;
-  }
-
-  /**
    * データの番号を設定します。
    * 
    * @param number データの番号
@@ -135,14 +123,36 @@ public class AnimationModel implements java.io.Serializable, Cloneable {
   }
 
   /**
-   * 座標パラメータをもつか判別します。
-   * @return 座標パラメータをもつならばtrue
+   * データの番号をもつか判別します。
+   * 
+   * @return データの番号をもつならばtrue
    */
-  public boolean hasCoordinateParameter() {
+  private boolean hasNumber() {
+    if (this.number != 0) {
+      return true;
+    }
+    return false;
+  }
+  
+  /**
+   * ターゲットをもつか判別します。
+   * 
+   * @return ターゲットをもつならばtrue
+   */
+  private boolean hasTarget() {
     if (this.target.equals("translationX") || this.target.equals("translationY") || this.target.equals("translationZ") || this.target.equals("rotationX") || this.target.equals("rotationY") //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         || this.target.equals("rotationZ")) { //$NON-NLS-1$
       return true;
     }
     return false;
+  }
+  
+  /**
+   * アニメーションが存在するか判定します。
+   * 
+   * @return アニメーションが存在するならばtrue
+   */
+  public boolean exists() {
+    return hasTarget() && hasNumber();
   }
 }
