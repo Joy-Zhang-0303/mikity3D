@@ -12,7 +12,7 @@ package org.mklab.mikity.model.searcher;
  * @author soda
  * @version $Revision$, 2015/02/03
  */
-public class GroupAnimation extends GroupManager {
+public class GroupAnimationManager extends GroupManager {
   /** 番号。 */
   private int number;
   /** ターゲット名。 */
@@ -24,7 +24,7 @@ public class GroupAnimation extends GroupManager {
    * @param target ターゲット名
    * @param parent 親
    */
-  public GroupAnimation(int number, String target, GroupManager parent) {
+  public GroupAnimationManager(int number, String target, GroupManager parent) {
   	super(parent);
     this.number = number;
     this.targetName = target;

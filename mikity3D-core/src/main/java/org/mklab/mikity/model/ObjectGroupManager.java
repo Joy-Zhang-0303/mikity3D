@@ -41,13 +41,13 @@ public class ObjectGroupManager {
    * 可動グループを追加します。
    * 
    * @param objectGroup オブジェクトグループ
-   * @param picker データ抽出器
+   * @param sampler データ抽出器
    */
-  private void addMovingGroup(final ObjectGroup objectGroup, final DataSampler picker) {
-    this.movingGroups.add(new ObjectGroupDataSampler(objectGroup, picker));
-    this.dataSize = Math.max(this.dataSize, picker.getDataSize());
-    this.startTime = Math.min(this.startTime, picker.getStartTime());
-    this.endTime = Math.max(this.endTime, picker.getEndTime());
+  private void addMovingGroup(final ObjectGroup objectGroup, final DataSampler sampler) {
+    this.movingGroups.add(new ObjectGroupDataSampler(objectGroup, sampler));
+    this.dataSize = Math.max(this.dataSize, sampler.getDataSize());
+    this.startTime = Math.min(this.startTime, sampler.getStartTime());
+    this.endTime = Math.max(this.endTime, sampler.getEndTime());
   }
 
   /**
@@ -57,9 +57,9 @@ public class ObjectGroupManager {
    */
   public void updateObjectGroups(final double t) {
     for (final ObjectGroupDataSampler movingGroup: this.movingGroups) {
-      final ObjectGroup objectGroup = movingGroup.objectGroup;
-      final DataSampler dataPicker = movingGroup.dataPicker;
-      objectGroup.setCoordinateParameter(dataPicker.getCoordinateParameter(t));
+      final ObjectGroup objectGroup = movingGroup.group;
+      final DataSampler dataSampler = movingGroup.sampler;
+      objectGroup.setCoordinateParameter(dataSampler.getCoordinateParameter(t));
     }
   }
 
@@ -75,10 +75,10 @@ public class ObjectGroupManager {
         continue;
       }
       
-      final AnimationModel[] links =   group.getAnimations();
-      if (links.length != 0) {
-        final DataSampler picker = createPicker(data, links);
-        addMovingGroup(objectGroup, picker);
+      final AnimationModel[] animations =   group.getAnimations();
+      if (animations.length != 0) {
+        final DataSampler sampler = createSampler(data, animations);
+        addMovingGroup(objectGroup, sampler);
       }
     }
   }
@@ -87,15 +87,15 @@ public class ObjectGroupManager {
    * データ抽出器を生成します。
    * 
    * @param data 時系列データ
-   * @param links リンクデータ
+   * @param animations リンクデータ
    */
-  private DataSampler createPicker(final Matrix data, final AnimationModel[] links) {
-    final DataSampler picker = new ClosenessDataSampler(data);
-    for (final AnimationModel link : links) {
-      if (link.hasCoordinateParameter()) {
-        if (link.hasNumber()) {
-          final int dataNumber = link.getNumber();
-          final String parameterName = link.getTarget();
+  private DataSampler createSampler(final Matrix data, final AnimationModel[] animations) {
+    final DataSampler sampler = new ClosenessDataSampler(data);
+    for (final AnimationModel animation : animations) {
+      if (animation.hasCoordinateParameter()) {
+        if (animation.hasNumber()) {
+          final int dataNumber = animation.getNumber();
+          final String parameterName = animation.getTarget();
           final CoordinateParameterType type;
 
           if (parameterName.equals("translationX")) { //$NON-NLS-1$
@@ -113,12 +113,12 @@ public class ObjectGroupManager {
           } else {
             throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
           }
-          picker.sample(type, dataNumber);
+          sampler.sample(type, dataNumber);
         }
       }
     }
      
-    return picker;
+    return sampler;
   }
 
   /**

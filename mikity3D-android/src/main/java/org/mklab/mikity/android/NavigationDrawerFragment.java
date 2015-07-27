@@ -21,7 +21,7 @@ import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.searcher.ExcecuteSearchGroup;
 import org.mklab.mikity.model.searcher.GroupManager;
-import org.mklab.mikity.model.searcher.GroupName;
+import org.mklab.mikity.model.searcher.GroupNameManager;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
@@ -351,7 +351,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     final GroupModel[] groupArray = model.getGroups();
     final GroupModel group = groupArray[0];
     final ExcecuteSearchGroup search = new ExcecuteSearchGroup();
-    final GroupName groupManager = new GroupName(group.getName(), null);
+    final GroupNameManager groupManager = new GroupNameManager(group.getName(), null);
     final GroupManager result = search.searchGroupRecursion(group, groupManager);
     return result;
   }

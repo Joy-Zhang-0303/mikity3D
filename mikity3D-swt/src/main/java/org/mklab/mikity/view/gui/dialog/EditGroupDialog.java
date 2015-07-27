@@ -98,7 +98,7 @@ public class EditGroupDialog {
     
     addShellListener();
 
-    createLinkDataGroup();
+    createAnimationGroup();
 
     createButtonComposite();
 
@@ -139,7 +139,7 @@ public class EditGroupDialog {
   /**
    * グループのパラメータを表示させる
    */
-  private void createLinkDataGroup() {
+  private void createAnimationGroup() {
     final Group parameterGroup = new Group(this.sShell, SWT.NONE);
     final GridLayout layout = new GridLayout();
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
@@ -270,10 +270,10 @@ public class EditGroupDialog {
    */
   void addAnimation(final String parameterName, final ParameterInputBox dataNumber) {
     if (dataNumber.getIntValue() != 0) {
-      final AnimationModel linkData = new AnimationModel();
-      linkData.setTarget(parameterName);
-      linkData.setNumber(dataNumber.getIntValue());
-      this.targetGroup.add(linkData);
+      final AnimationModel animation = new AnimationModel();
+      animation.setTarget(parameterName);
+      animation.setNumber(dataNumber.getIntValue());
+      this.targetGroup.add(animation);
     }
   }
 
@@ -301,7 +301,7 @@ public class EditGroupDialog {
    * ダイアログにパラメータを設定します。
    */
   private void setParametersInDialog() {
-    setLinkDataInDialog();
+    setAnimationInDialog();
 
     final RotationModel rotation = this.targetGroup.getRotation();
     final TranslationModel translation = this.targetGroup.getTranslation();
@@ -337,27 +337,27 @@ public class EditGroupDialog {
   }
 
   /**
-   * Linkdata の column を表示させる
+   * アニメーションの 番号を表示させる
    */
-  private void setLinkDataInDialog() {
-    final AnimationModel[] linkData = this.targetGroup.getAnimations();
+  private void setAnimationInDialog() {
+    final AnimationModel[] animations = this.targetGroup.getAnimations();
 
-    for (int i = 0; i < linkData.length; i++) {
-      final String target = linkData[i].getTarget();
-      final String dataNumber = linkData[i].hasNumber() ? "" + linkData[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
+    for (int i = 0; i < animations.length; i++) {
+      final String target = animations[i].getTarget();
+      final String number = animations[i].hasNumber() ? "" + animations[i].getNumber() : "0"; //$NON-NLS-1$ //$NON-NLS-2$
 
       if (target.equals("translationX")) { //$NON-NLS-1$
-        this.translationXdataNumber.setText(dataNumber);
+        this.translationXdataNumber.setText(number);
       } else if (target.equals("translationY")) { //$NON-NLS-1$
-        this.translationYdataNumber.setText(dataNumber);
+        this.translationYdataNumber.setText(number);
       } else if (target.equals("translationZ")) { //$NON-NLS-1$
-        this.translationZdataNumber.setText(dataNumber);
+        this.translationZdataNumber.setText(number);
       } else if (target.equals("rotationX")) { //$NON-NLS-1$
-        this.rotationXdataNumber.setText(dataNumber);
+        this.rotationXdataNumber.setText(number);
       } else if (target.equals("rotationY")) { //$NON-NLS-1$
-        this.rotationYdataNumber.setText(dataNumber);
+        this.rotationYdataNumber.setText(number);
       } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-        this.rotationZdataNumber.setText(dataNumber);
+        this.rotationZdataNumber.setText(number);
       }
     }
   }

@@ -422,9 +422,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private void checkLinkParameterType(GroupModel parent) {
     final GroupModel[] groups = parent.getGroups();
     for (final GroupModel group : groups) {
-      final AnimationModel[] links = group.getAnimations();
-      for (final AnimationModel link : links) {
-        if (link.hasCoordinateParameter()) {
+      final AnimationModel[] animations = group.getAnimations();
+      for (final AnimationModel animation : animations) {
+        if (animation.hasCoordinateParameter()) {
           this.manager.setHasCoordinateParameter(true);
         }
       }

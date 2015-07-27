@@ -16,7 +16,7 @@ import java.util.List;
  * @author soda
  * @version $Revision$, 2015/02/03
  */
-public class GroupName extends GroupManager {
+public class GroupNameManager extends GroupManager {
   /** 要素。 */
   private List<GroupManager> items = new ArrayList<>();
   /** グループ名。 */
@@ -27,7 +27,7 @@ public class GroupName extends GroupManager {
    * @param name グループ名
    * @param parent 親
    */
-  public GroupName(String name, GroupManager parent) {
+  public GroupNameManager(String name, GroupManager parent) {
   	super(parent);
     this.groupName = name;
   }

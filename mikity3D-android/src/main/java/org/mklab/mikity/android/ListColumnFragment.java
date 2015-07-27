@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.model.searcher.GroupManager;
-import org.mklab.mikity.model.searcher.GroupName;
+import org.mklab.mikity.model.searcher.GroupNameManager;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -91,7 +91,7 @@ public class ListColumnFragment extends RoboFragment {
       @SuppressWarnings("boxing")
       public void onItemClick(AdapterView<?> parent, View view1, int position, long id) {
         final ListView listView1 = (ListView)parent;
-        if (listView1.getItemAtPosition(position).getClass() != GroupName.class) {
+        if (listView1.getItemAtPosition(position).getClass() != GroupNameManager.class) {
           return;
         }
 

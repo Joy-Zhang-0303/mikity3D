@@ -7,9 +7,9 @@ package org.mklab.mikity.android;
 
 import java.util.List;
 
-import org.mklab.mikity.model.searcher.GroupAnimation;
+import org.mklab.mikity.model.searcher.GroupAnimationManager;
 import org.mklab.mikity.model.searcher.GroupManager;
-import org.mklab.mikity.model.searcher.GroupName;
+import org.mklab.mikity.model.searcher.GroupNameManager;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -65,7 +65,7 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
 
     int groupCount = 0;
     for (GroupManager manager : localGroupManagers) {
-      if (manager.getClass() == GroupName.class) {
+      if (manager.getClass() == GroupNameManager.class) {
         groupCount++;
       }
     }
@@ -82,15 +82,15 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
       return convertView;
     }
 
-    if (this.groupManagers.get(position).getClass() == GroupName.class) {
-      final GroupName groupName = (GroupName)this.groupManagers.get(position);
+    if (this.groupManagers.get(position).getClass() == GroupNameManager.class) {
+      final GroupNameManager groupName = (GroupNameManager)this.groupManagers.get(position);
       final View view = this.layoutInflater.inflate(this.viewResourceId, null);
       final TextView columnText = (TextView)view.findViewById(R.id.groupNameText);
       columnText.setText(groupName.getGroupName());
       return view;
     }
 
-    final GroupAnimation groupAnimation = (GroupAnimation)this.groupManagers.get(position);
+    final GroupAnimationManager groupAnimation = (GroupAnimationManager)this.groupManagers.get(position);
     final View view = this.layoutInflater.inflate(R.layout.list_link, null);
     final TextView targetText = (TextView)view.findViewById(R.id.list_target);
     targetText.setText(groupAnimation.getTarget());

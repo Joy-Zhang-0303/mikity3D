@@ -12,7 +12,7 @@ import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 
 /**
- * Mikity３Dモデルのグループを探索し、グループとリンクを管理するためのメソッドです。
+ * Mikity３Dモデルのグループを探索し、グループとアニメーションを管理するためのクラスです。
  * 
  * @author soda
  * @version $Revision$, 2015/02/03
@@ -27,35 +27,35 @@ public class ExcecuteSearchGroup {
    */
   public GroupManager searchGroupRecursion(GroupModel group, GroupManager parents) {
     List<GroupManager> items = new ArrayList<>();
-    int groupCount = 0;
+    int groupIndex = 0;
     
     while (true) {
       try {
         //final GroupModel newGroup = group.getGroup(groupCount);
-        final GroupModel newGroup = group.getGroups()[groupCount];
+        final GroupModel newGroup = group.getGroups()[groupIndex];
         final String groupName = newGroup.getName();
-        final GroupName groupNames = new GroupName(groupName, parents);
+        final GroupNameManager groupNames = new GroupNameManager(groupName, parents);
         parents.addItems(searchGroupRecursion(newGroup, groupNames));
         
-        int animationCount = 0;
+        int animationIndex = 0;
         while (true) {
           try {
-            items.add(searchAnimation(group, animationCount, parents));
-            animationCount++;
+            items.add(searchAnimation(group, animationIndex, parents));
+            animationIndex++;
           } catch (Exception e) {
             break;
           }
         }
-        groupCount++;
+        groupIndex++;
       } catch (Exception e) {
         //"Index: 0, Size: 0" Windows上で発生
         //"Invalid index 0, size is 0" Android上で発生
         if (e.getMessage().equals("Index: 0, Size: 0") || e.getMessage().equals("Invalid index 0, size is 0")) { //$NON-NLS-1$ //$NON-NLS-2$
-          int animationCount = 0;
+          int animationIndex = 0;
           while (true) {
             try {
-              items.add(searchAnimation(group, animationCount, parents));
-              animationCount++;
+              items.add(searchAnimation(group, animationIndex, parents));
+              animationIndex++;
             } catch (Exception ee) {
               break;
             }
@@ -76,16 +76,15 @@ public class ExcecuteSearchGroup {
    * アニメーションデータリスト内を検索するメソッドです。
    * 
    * @param group グループリスト
-   * @param animationCount カウント
+   * @param animationIndex カウント
    * @param parents 親リスト
    * @return links LinkSearchOfModel
    */
-  private GroupManager searchAnimation(GroupModel group, int animationCount, GroupManager parents) {
-    //final AnimationModel data = group.getAnimation(animationCount);
-    final AnimationModel data = group.getAnimations()[animationCount];
-    final int number = data.getNumber();
-    final String target = data.getTarget();
-    final GroupAnimation links = new GroupAnimation(number, target, parents);
-    return links;
+  private GroupManager searchAnimation(GroupModel group, int animationIndex, GroupManager parents) {
+    final AnimationModel animation = group.getAnimations()[animationIndex];
+    final int number = animation.getNumber();
+    final String target = animation.getTarget();
+    final GroupAnimationManager groupAnimation = new GroupAnimationManager(number, target, parents);
+    return groupAnimation;
   }
 }
