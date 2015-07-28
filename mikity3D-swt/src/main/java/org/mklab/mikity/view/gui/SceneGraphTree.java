@@ -673,7 +673,7 @@ public class SceneGraphTree {
             }
           }
         } else {
-          groupItem.setText(group.getName());
+          groupItem.setText(group.getName() + " (group)"); //$NON-NLS-1$
         }
       }
       groupItem.setData(group);
