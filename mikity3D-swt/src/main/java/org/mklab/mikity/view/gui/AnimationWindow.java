@@ -77,14 +77,14 @@ public class AnimationWindow extends ApplicationWindow {
   /** 等間隔の時間を保存しとく配列 */
   double[] timeTable;
 
-  /** 時系列データ。 */
-  private Matrix timeSeriesData;
+  /** ソースデータ。 */
+  private Matrix sourceData;
 
   /** */
   Text modelFilePathText;
 
   /** */
-  Text filePathText;
+  Text sourceFilePathText;
 
   /** */
   ObjectGroupManager manager;
@@ -105,7 +105,7 @@ public class AnimationWindow extends ApplicationWindow {
   Frame frame;
 
   /** */
-  private Composite composite;
+  private Composite viewComposite;
   
   /** モデルファイル */
   private File modelFile;
@@ -181,7 +181,7 @@ public class AnimationWindow extends ApplicationWindow {
   @Override
   protected void configureShell(final Shell shell) {
     super.configureShell(shell);
-    shell.setSize(647, 500);
+    shell.setSize(800, 600);
     shell.setText("Animation Viewer"); //$NON-NLS-1$
   }
 
@@ -197,15 +197,16 @@ public class AnimationWindow extends ApplicationWindow {
     createView(form);
     createController(form);
 
-    form.setWeights(new int[] {70, 30}); // 70%:30%に分割点を設定
-
-    if (this.root != null && this.root.getConfiguration(0).getData() != null) {
-      setTimeSeriesData(new File(this.root.getConfiguration(0).getData()));
-    }
+    form.setWeights(new int[] {60, 40}); // 60:40に分割
 
     if (this.root != null) {
       setModelData();
       this.modelFilePathText.setText(this.modelFile.getAbsolutePath());
+      
+      final String timeSeriesDataFilePath = this.root.getConfiguration(0).getData();
+      if (timeSeriesDataFilePath != null) {
+        setSourceFilePath(timeSeriesDataFilePath);
+      }
     }
     
     return parent;
@@ -235,50 +236,13 @@ public class AnimationWindow extends ApplicationWindow {
    * @param parent 親コンポジット
    */
   private void createView(final Composite parent) {
-    final Composite viewComposite = new Composite(parent, SWT.EMBEDDED);
+    this.viewComposite = new Composite(parent, SWT.EMBEDDED);
     final GridData gridData = new GridData(GridData.FILL_BOTH);
-    viewComposite.setLayoutData(gridData);
+    this.viewComposite.setLayoutData(gridData);
 
     // AWTのフレームを作る。
-    this.frame = SWT_AWT.new_Frame(viewComposite);
-    this.composite = viewComposite;
+    this.frame = SWT_AWT.new_Frame(this.viewComposite);
   }
-
-//  /**
-//   * フレームを設定します。
-//   * 
-//   * @param composite コンポジット
-//   */
-//  private void setFrame(Composite composite) {
-//    this.frame = SWT_AWT.new_Frame(composite);
-//  }
-
-//  /**
-//   * コンポジットを設定します。
-//   * 
-//   * @param composite コンポジット
-//   */
-//  private void setComposite(Composite composite) {
-//    this.composite = composite;
-//  }
-
-//  /**
-//   * コンポジットを返します。
-//   * 
-//   * @return composite　コンポジット
-//   */
-//  public Composite getComposite() {
-//    return this.composite;
-//  }
-
-//  /**
-//   * フレームを返します。
-//   * 
-//   * @return frame フレーム
-//   */
-//  private Frame getFrame() {
-//    return this.frame;
-//  }
 
   /**
    * モデルデータを設定します。
@@ -302,14 +266,11 @@ public class AnimationWindow extends ApplicationWindow {
    * @param parent 親
    */
   private void createController(final Composite parent) {
-    final Composite controllerComposite = new Composite(parent, SWT.NONE);
-    controllerComposite.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.VERTICAL_ALIGN_END));
-    controllerComposite.setLayout(new GridLayout());
+    final Composite composite = new Composite(parent, SWT.NONE);
+    composite.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.VERTICAL_ALIGN_END));
+    composite.setLayout(new GridLayout());
 
-    createModelFileChooseComposite(controllerComposite);
-    createTimeDataChooseComposite(controllerComposite);
-
-    final Composite controller = new Composite(controllerComposite, SWT.NONE);
+    final Composite controller = new Composite(composite, SWT.NONE);
     controller.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     controller.setLayout(new GridLayout());
 
@@ -331,6 +292,10 @@ public class AnimationWindow extends ApplicationWindow {
     this.playSpeed = new ParameterInputBox(speedComposite, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     createTimeBar(controller);
+
+    createModeChooser(composite);
+    createSourceChooser(composite);
+    
 
     fasterButton.addSelectionListener(new SelectionAdapter() {
       /**
@@ -433,21 +398,21 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * モデルファイルを選択すチューザーを生成します。
+   * モデルを選択すチューザーを生成します。
    * 
    * @param parent 親コンポジット
    */
-  public void createModelFileChooseComposite(final Composite parent) {
-    final Composite modelChooseComposite = new Composite(parent, SWT.NONE);
+  public void createModeChooser(final Composite parent) {
+    final Composite composite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
-    modelChooseComposite.setLayout(layout);
-    modelChooseComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    composite.setLayout(layout);
+    composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-    final Label label = new Label(modelChooseComposite, SWT.NONE);
-    label.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
+    final Label label = new Label(composite, SWT.NONE);
+    label.setText(Messages.getString("AnimationWindow.0")); //$NON-NLS-1$
 
-    this.modelFilePathText = new Text(modelChooseComposite, SWT.BORDER);
+    this.modelFilePathText = new Text(composite, SWT.BORDER);
     this.modelFilePathText.setText(""); //$NON-NLS-1$
     this.modelFilePathText.addTraverseListener(new TraverseListener() {
 
@@ -462,10 +427,10 @@ public class AnimationWindow extends ApplicationWindow {
     gridData.horizontalSpan = 4;
     this.modelFilePathText.setLayoutData(gridData);
 
-    final Button refButton = new Button(modelChooseComposite, SWT.BORDER);
-    refButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
+    final Button referenceButton = new Button(composite, SWT.BORDER);
+    referenceButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
 
-    refButton.addSelectionListener(new SelectionAdapter() {
+    referenceButton.addSelectionListener(new SelectionAdapter() {
 
       /**
        * {@inheritDoc}
@@ -513,36 +478,36 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * 時系列データを選択するコンポジットを生成します。
+   * ソースを選択するコンポジットを生成します。
    * 
    * @param parent 親コンポジット
    */
-  public void createTimeDataChooseComposite(final Composite parent) {
-    final Composite timeDataComposite = new Composite(parent, SWT.NONE);
+  public void createSourceChooser(final Composite parent) {
+    final Composite composite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
-    timeDataComposite.setLayout(layout);
-    timeDataComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    composite.setLayout(layout);
+    composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-    final Label label = new Label(timeDataComposite, SWT.NONE);
+    final Label label = new Label(composite, SWT.NONE);
     label.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
 
-    this.filePathText = new Text(timeDataComposite, SWT.BORDER);
-    this.filePathText.setText(""); //$NON-NLS-1$
-    this.filePathText.addTraverseListener(new TraverseListener() {
+    this.sourceFilePathText = new Text(composite, SWT.BORDER);
+    this.sourceFilePathText.setText(""); //$NON-NLS-1$
+    this.sourceFilePathText.addTraverseListener(new TraverseListener() {
 
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          setTimeSeriesData(new File(AnimationWindow.this.filePathText.getText()));
+          setSourceFilePath(AnimationWindow.this.sourceFilePathText.getText());
         }
       }
     });
 
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 4;
-    this.filePathText.setLayoutData(gridData);
+    this.sourceFilePathText.setLayoutData(gridData);
 
-    final Button referenceButton = new Button(timeDataComposite, SWT.BORDER);
+    final Button referenceButton = new Button(composite, SWT.BORDER);
     referenceButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
 
     referenceButton.addSelectionListener(new SelectionAdapter() {
@@ -557,8 +522,8 @@ public class AnimationWindow extends ApplicationWindow {
         
         final String filePath = dialog.open();
         if (filePath != null) {
-          AnimationWindow.this.filePathText.setText(filePath);
-          setTimeSeriesData(new File(filePath));
+          AnimationWindow.this.sourceFilePathText.setText(filePath);
+          setSourceFilePath(filePath);
         }
       }
     });
@@ -582,13 +547,13 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param file 時系列データファイル
    */
-  void setTimeSeriesData(final File file) {
-    try (FileReader input = new FileReader(file);) {
-      this.timeSeriesData = MatxMatrix.readMatFormat(input);
+  void setSourceFilePath(String filePath) {
+    try (FileReader input = new FileReader(filePath);) {
+      this.sourceData = MatxMatrix.readMatFormat(input);
       input.close();
 
       this.timeSlider.setEnabled(true);
-      this.manager.setData(this.timeSeriesData);
+      this.manager.setData(this.sourceData);
 
       final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
       checkAnimation(rootGroup);
@@ -605,7 +570,7 @@ public class AnimationWindow extends ApplicationWindow {
       }
       this.timeSlider.setMaximum(dataSize);
 
-      this.filePathText.setText(file.getPath());
+      this.sourceFilePathText.setText(filePath);
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
@@ -619,10 +584,10 @@ public class AnimationWindow extends ApplicationWindow {
    * @param data 時系列データ
    */
   public void setTimeSeriesData(final Matrix data) {
-    this.timeSeriesData = data;
+    this.sourceData = data;
 
     this.timeSlider.setEnabled(true);
-    this.manager.setData(this.timeSeriesData);
+    this.manager.setData(this.sourceData);
 
     final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
     checkAnimation(rootGroup);
@@ -639,7 +604,7 @@ public class AnimationWindow extends ApplicationWindow {
     }
     this.timeSlider.setMaximum(dataSize);
 
-    this.filePathText.setText("data"); //$NON-NLS-1$
+    this.sourceFilePathText.setText("data"); //$NON-NLS-1$
   }
 
   /**
@@ -650,7 +615,7 @@ public class AnimationWindow extends ApplicationWindow {
       this.timer.cancel();
     }
 
-    if (this.timeSeriesData == null || this.timeTable == null) {
+    if (this.sourceData == null || this.timeTable == null) {
       MessagegUtil.show(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
       System.out.println(Messages.getString("SimulationViewer.5")); //$NON-NLS-1$
       return;
