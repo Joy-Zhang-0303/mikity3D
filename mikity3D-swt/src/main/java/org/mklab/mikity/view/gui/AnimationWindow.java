@@ -98,11 +98,11 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   ParameterInputBox playSpeed;
 
-  /** ModelCanvas */
-  private ObjectRenderer modelRenderer;
+  /** Canvas */
+  private ObjectRenderer objectRenderer;
 
   /** */
-  private Frame frame;
+  Frame frame;
 
   /** */
   private Composite composite;
@@ -112,6 +112,7 @@ public class AnimationWindow extends ApplicationWindow {
   
   /**
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
+   * 
    * @param parentShell 親シェル
    * @param root ルート
    */
@@ -122,6 +123,7 @@ public class AnimationWindow extends ApplicationWindow {
 
   /**
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
+   * 
    * @param parentShell 親シェル
    * @param root ルート
    * @param modelFile ファイルパス
@@ -133,6 +135,7 @@ public class AnimationWindow extends ApplicationWindow {
 
   /**
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
+   * 
    * @param parentShell 親シェル
    * @param modelFile モデルファイル
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
@@ -157,10 +160,10 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param root ルート
    */
-  public void setRoot(final Mikity3DModel root) {
+  void setRoot(final Mikity3DModel root) {
     this.root = root;
     this.manager = new ObjectGroupManager();
-    this.modelRenderer = new JoglObjectRenderer();
+    this.objectRenderer = new JoglObjectRenderer();
   }
 
   /**
@@ -168,7 +171,7 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @return root ルート
    */
-  public Mikity3DModel getRoot() {
+  Mikity3DModel getRoot() {
     return this.root;
   }
 
@@ -201,7 +204,7 @@ public class AnimationWindow extends ApplicationWindow {
     }
 
     if (this.root != null) {
-      setModelData(getFrame());
+      setModelData();
       this.modelFilePathText.setText(this.modelFile.getAbsolutePath());
     }
     
@@ -232,66 +235,63 @@ public class AnimationWindow extends ApplicationWindow {
    * @param parent 親コンポジット
    */
   private void createView(final Composite parent) {
-    final Composite createViewComposite = new Composite(parent, SWT.EMBEDDED);
+    final Composite viewComposite = new Composite(parent, SWT.EMBEDDED);
     final GridData gridData = new GridData(GridData.FILL_BOTH);
-    createViewComposite.setLayoutData(gridData);
+    viewComposite.setLayoutData(gridData);
 
     // AWTのフレームを作る。
-    setFrame(createViewComposite);
-    setComposite(createViewComposite);
+    this.frame = SWT_AWT.new_Frame(viewComposite);
+    this.composite = viewComposite;
   }
 
-  /**
-   * フレームを設定します。
-   * 
-   * @param composite コンポジット
-   */
-  private void setFrame(Composite composite) {
-    this.frame = SWT_AWT.new_Frame(composite);
-  }
+//  /**
+//   * フレームを設定します。
+//   * 
+//   * @param composite コンポジット
+//   */
+//  private void setFrame(Composite composite) {
+//    this.frame = SWT_AWT.new_Frame(composite);
+//  }
 
-  /**
-   * コンポジットを設定します。
-   * 
-   * @param composite コンポジット
-   */
-  private void setComposite(Composite composite) {
-    this.composite = composite;
-  }
+//  /**
+//   * コンポジットを設定します。
+//   * 
+//   * @param composite コンポジット
+//   */
+//  private void setComposite(Composite composite) {
+//    this.composite = composite;
+//  }
 
-  /**
-   * コンポジットを返します。
-   * 
-   * @return composite　コンポジット
-   */
-  public Composite getComposite() {
-    return this.composite;
-  }
+//  /**
+//   * コンポジットを返します。
+//   * 
+//   * @return composite　コンポジット
+//   */
+//  public Composite getComposite() {
+//    return this.composite;
+//  }
 
-  /**
-   * フレームを返します。
-   * 
-   * @return frame フレーム
-   */
-  public Frame getFrame() {
-    return this.frame;
-  }
+//  /**
+//   * フレームを返します。
+//   * 
+//   * @return frame フレーム
+//   */
+//  private Frame getFrame() {
+//    return this.frame;
+//  }
 
   /**
    * モデルデータを設定します。
-   * 
-   * @param frame フレーム
    */
-  public void setModelData(final Frame frame) {
-    frame.add((Component)this.modelRenderer);
-
-    final GroupModel[] children = this.root.getScene(0).getGroups();
-    this.modelRenderer.setRootGroups(children);
-
+  void setModelData() {
+    final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
-    this.modelRenderer.setConfiguration(configuration);
-    //frame.invalidate();
-    frame.validate();
+    
+    this.objectRenderer.setRootGroups(rootGroups);
+    this.objectRenderer.setConfiguration(configuration);
+    
+    this.frame.add((Component)this.objectRenderer);
+    this.frame.validate();
   }
 
   /**
@@ -324,8 +324,6 @@ public class AnimationWindow extends ApplicationWindow {
     final Button fasterButton = new Button(buttonComposite, SWT.NONE);
     fasterButton.setImage(ImageManager.getImage(ImageManager.FASTER));
 
-    // timeLabel.setText("" + task.getCurrentTime());
-
     final Composite speedComposite = new Composite(controller, SWT.NONE);
     final GridLayout speedLayout = new GridLayout();
     speedLayout.numColumns = 2;
@@ -333,9 +331,6 @@ public class AnimationWindow extends ApplicationWindow {
     this.playSpeed = new ParameterInputBox(speedComposite, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     createTimeBar(controller);
-
-    //final Composite composite2 = new Composite(controllerComposite, SWT.NONE);
-    //composite2.setLayout(new GridLayout(3, false));
 
     fasterButton.addSelectionListener(new SelectionAdapter() {
       /**
@@ -458,7 +453,7 @@ public class AnimationWindow extends ApplicationWindow {
 
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          setModelData(getFrame());
+          setModelData();
         }
       }
     });
@@ -491,27 +486,27 @@ public class AnimationWindow extends ApplicationWindow {
   
   /**
    * モデルデータを読み込みます。
+   * 
    * @param filePath モデルデータのファイルパス
    */
-  public void loadModelData(final String filePath) {
+  void loadModelData(final String filePath) {
     AnimationWindow.this.modelFilePathText.setText(filePath);
     createRoot(filePath);
-    setModelData(getFrame());
+    setModelData();
   }
 
 
   /**
-   * ルートを作ります。
+   * ルートを生成します。
    * 
    * @param filePath ファイルのパス
    */
-  public void createRoot(String filePath) {
+  void createRoot(String filePath) {
     try {
       final File file = new File(filePath);
       this.modelFile = file;
-      final Mikity3dFactory m3f = new Mikity3dFactory();
-      final Mikity3DModel mroot = m3f.loadFile(file);
-      setRoot(mroot);
+      final Mikity3DModel localRoot = new Mikity3dFactory().loadFile(file);
+      setRoot(localRoot);
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
@@ -547,10 +542,10 @@ public class AnimationWindow extends ApplicationWindow {
     gridData.horizontalSpan = 4;
     this.filePathText.setLayoutData(gridData);
 
-    final Button refButton = new Button(timeDataComposite, SWT.BORDER);
-    refButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
+    final Button referenceButton = new Button(timeDataComposite, SWT.BORDER);
+    referenceButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
 
-    refButton.addSelectionListener(new SelectionAdapter() {
+    referenceButton.addSelectionListener(new SelectionAdapter() {
 
       /**
        * {@inheritDoc}
@@ -587,13 +582,12 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param file 時系列データファイル
    */
-  public void setTimeSeriesData(final File file) {
+  void setTimeSeriesData(final File file) {
     try (FileReader input = new FileReader(file);) {
       this.timeSeriesData = MatxMatrix.readMatFormat(input);
       input.close();
 
       this.timeSlider.setEnabled(true);
-      //this.manager.setData(this.data);
       this.manager.setData(this.timeSeriesData);
 
       final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
@@ -628,7 +622,6 @@ public class AnimationWindow extends ApplicationWindow {
     this.timeSeriesData = data;
 
     this.timeSlider.setEnabled(true);
-    //this.manager.setData(this.data);
     this.manager.setData(this.timeSeriesData);
 
     final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
@@ -652,7 +645,7 @@ public class AnimationWindow extends ApplicationWindow {
   /**
    * アニメーションを開始します。
    */
-  public void runAnimation() {
+  void runAnimation() {
     if (playable == false) {
       this.timer.cancel();
     }
@@ -666,7 +659,7 @@ public class AnimationWindow extends ApplicationWindow {
     playable = false;
 
     this.endTime = this.manager.getEndTime();
-    this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.modelRenderer);
+    this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.objectRenderer);
     this.animationTask.setSpeedScale(this.playSpeed.getDoubleValue());// スピードの設定
     this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {

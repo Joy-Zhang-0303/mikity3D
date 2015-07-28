@@ -24,38 +24,38 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
  * AnimationWindowクラスのためのテストクラスです。
  */
 public class AnimationWindowTest {
-  private AnimationWindow am;
+  private AnimationWindow window;
 
   /**
    * 初期化メソッドです。
    */
   @Before
   public void setUp() {
-    this.am = new AnimationWindow(null);
+    this.window = new AnimationWindow(null);
   }
 
   /**
-   * {@link AnimationWindow#getRoot()}のテストメソッドです。
+   * {AnimationWindowgetRoot()}のテストメソッドです。
    */
   @Ignore
   @Test
   public void testGetRoot() {
-    final String modelFileName = "src/test/resources/org/mklab/mikity/view/gui/pendulum.m3d"; //$NON-NLS-1$
+    final String filePath = "src/test/resources/org/mklab/mikity/view/gui/pendulum.m3d"; //$NON-NLS-1$
     final Mikity3DModel expected;
     try {
-      expected = new Mikity3dFactory().loadFile(new File(modelFileName));
+      expected = new Mikity3dFactory().loadFile(new File(filePath));
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
     
-    this.am.setRoot(expected);
-    final Mikity3DModel actual = this.am.getRoot();
+    this.window.setRoot(expected);
+    final Mikity3DModel actual = this.window.getRoot();
     
     assertTrue(actual.equals(expected));
   }
   
   /**
-   * {@link AnimationWindow#createRoot(String)}のテストメソッドです。
+   * {AnimationWindow#createRoot(String)}のテストメソッドです。
    */
   @Ignore
   @Test
@@ -68,18 +68,18 @@ public class AnimationWindowTest {
       throw new RuntimeException(e);
     }
     
-    this.am.createRoot(modelFileName);
-    final Mikity3DModel actual = this.am.getRoot();
+    this.window.createRoot(modelFileName);
+    final Mikity3DModel actual = this.window.getRoot();
     
     assertTrue(actual.equals(expected));
   }
   
   /**
-   * {@link AnimationWindow#createRoot(String)}のテストメソッドです。
+   * {AnimationWindow#createRoot(String)}のテストメソッドです。
    */
   @Ignore
   @Test(expected=RuntimeException.class)
   public void testExceptionForCreateRoot() {
-    this.am.createRoot("filePath"); //$NON-NLS-1$
+    this.window.createRoot("filePath"); //$NON-NLS-1$
   }
 }
