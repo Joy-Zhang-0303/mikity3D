@@ -17,14 +17,14 @@
             </box>
             <group name="daisha">
                <animation target="translationY">
-               <source id="" number="2"/>
+               <source id="1" number="2"/>
                </animation>
                <box width="0.07" height="0.05" depth="0.005" color="yellow" transparent="false">
                   <translation x="0.02" y="0.0" z="0.0"/>
                </box>
                <group name="sinsi">
                   <animation target="rotationX">
-                  <source id="" number="3"/>
+                  <source id="1" number="3"/>
                   </animation>
                   <cylinder radius="0.01" height="0.018" division="10" color="cyan" transparent="false">
                      <translation x="0.0325" y="0.0" z="0.0"/>
@@ -54,14 +54,14 @@
             </box>
             <group name="daisha">
                <animation target="translationY">
-               <source id="" number="2"/>
+               <source id="1" number="2"/>
                </animation>
                <box width="0.07" height="0.05" depth="0.005" color="yellow" transparent="false">
                   <translation x="0.02" y="0.0" z="0.0"/>
                </box>
                <group name="sinsi">
                   <animation target="rotationX">
-                  <source id="" number="3"/>
+                  <source id="1" number="3"/>
                   </animation>
                   <cylinder radius="0.01" height="0.018" division="10" color="cyan" transparent="false">
                      <translation x="0.0325" y="0.0" z="0.0"/>

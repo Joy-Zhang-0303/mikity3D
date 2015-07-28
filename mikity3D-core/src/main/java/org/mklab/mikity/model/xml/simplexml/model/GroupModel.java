@@ -592,5 +592,19 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
-  } 
+  }
+  
+  /**
+   * アニメーションが存在するか判定します。
+   * @return アニメーションが存在すればtrue
+   */
+  public boolean hasAnimation() {
+    for (final AnimationModel animation : this.animations) {
+      if (animation != null && animation.exists()) {
+        return true;
+      }
+    }
+    
+    return false;
+  }
 }

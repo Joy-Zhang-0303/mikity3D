@@ -15,7 +15,7 @@
                <translation x="0.05" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
                <animation target="rotationX">
-               <source id="" number="2"/>
+               <source id="1" number="2"/>
                </animation>
                <cylinder radius="0.003" height="0.3" division="20" color="orange" transparent="false">
                   <translation x="0.0" y="0.0" z="-0.15"/>
@@ -27,7 +27,7 @@
                   <translation x="0.0" y="0.0" z="-0.3"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <animation target="rotationX">
-                  <source id="" number="3"/>
+                  <source id="1" number="3"/>
                   </animation>
                   <cylinder radius="0.003" height="0.15" division="30" color="orange" transparent="true">
                      <translation x="0.0" y="0.0" z="-0.075"/>

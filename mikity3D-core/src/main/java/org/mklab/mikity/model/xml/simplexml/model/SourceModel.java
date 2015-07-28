@@ -31,7 +31,7 @@ public class SourceModel implements java.io.Serializable, Cloneable {
    * 新しく生成された<code>SourceModel</code>オブジェクトを初期化します。
    */
   public SourceModel() {
-    this.id = ""; //$NON-NLS-1$
+    this.id = "1"; //$NON-NLS-1$
     this.number = 0;
   }
   

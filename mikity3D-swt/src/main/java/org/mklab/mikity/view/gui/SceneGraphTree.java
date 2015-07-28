@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
+import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
@@ -658,65 +659,74 @@ public class SceneGraphTree {
    * @param groups グループ
    */
   private void addTreeItem(TreeItem parent, GroupModel[] groups) {
-    for (int i = 0; i < groups.length; i++) {
-      final TreeItem child;
+    for (final GroupModel group : groups) {
+      final TreeItem groupItem;
       if (parent.getText().equals("scene")) { //$NON-NLS-1$
-        child = new TreeItem(parent, SWT.NONE);
-        child.setText("object : " + groups[i].getName()); //$NON-NLS-1$
+        groupItem = new TreeItem(parent, SWT.NONE);
+        groupItem.setText(group.getName());
       } else {
-        child = new TreeItem(parent, SWT.NONE);
-        child.setText("group : " + groups[i].getName()); //$NON-NLS-1$
+        groupItem = new TreeItem(parent, SWT.NONE);
+        if (group.hasAnimation()) {
+          for (final AnimationModel animation: group.getAnimations()) {
+            if (animation.exists()) {
+              groupItem.setText(group.getName() + " (animationTarget=" +   animation.getTarget() + ", sourceId=" + animation.getSource().getId() + ", sourceNumber=" + animation.getSource().getNumber() + ")");   //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+            }
+          }
+        } else {
+          groupItem.setText(group.getName());
+        }
       }
-      child.setData(groups[i]);
+      groupItem.setData(group);
 
-      final BoxModel[] boxes = groups[i].getBoxes();
-      for (int j = 0; j < boxes.length; j++) {
-        final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("box (" + boxes[j].getWidth() + ", " + boxes[j].getHeight() + ", " + boxes[j].getDepth() + ", " + boxes[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-        boxChild.setData(boxes[j]);
-      }
-
-      final CylinderModel[] cylinders = groups[i].getCylinders();
-      for (int j = 0; j < cylinders.length; j++) {
-        final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("cylinder (" + cylinders[j].getRadius() + ", " + cylinders[j].getHeight() + ", " + cylinders[j].getDivision() + ", " + cylinders[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-        boxChild.setData(cylinders[j]);
-      }
-
-      final SphereModel[] spheres = groups[i].getSpheres();
-      for (int j = 0; j < spheres.length; j++) {
-        final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("sphere (" + spheres[j].getRadius() + ", " + spheres[j].getDivision() + ", " + spheres[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-        boxChild.setData(spheres[j]);
+      final BoxModel[] boxes = group.getBoxes();
+      for (final BoxModel box :  boxes) {
+        final TreeItem child = new TreeItem(groupItem, SWT.NONE);
+        child.setText("box (width=" + box.getWidth() + ", height=" + box.getHeight() + ", depth=" + box.getDepth() + ", color=" + box.getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        child.setData(box);
       }
 
-      final ConeModel[] cones = groups[i].getCones();
-      for (int j = 0; j < cones.length; j++) {
-        final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("cone (" + cones[j].getRadisu() + ", " + cones[j].getHeight() + ", " + cones[j].getDivision() + ", " + cones[j].getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-        boxChild.setData(cones[j]);
+      final CylinderModel[] cylinders = group.getCylinders();
+      for (final CylinderModel cylinder :  cylinders) {
+        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
+        item.setText("cylinder (radius=" + cylinder.getRadius() + ", height=" + cylinder.getHeight() + ", division=" + cylinder.getDivision() + ", color=" + cylinder.getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        item.setData(cylinder);
       }
 
-      final TrianglePolygonModel[] trianglePolygons = groups[i].getTrianglePolygons();
-      for (int j = 0; j < trianglePolygons.length; j++) {
-        final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("trianglePolygon (" + trianglePolygons[j].getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
-        boxChild.setData(trianglePolygons[j]);
+      final SphereModel[] spheres = group.getSpheres();
+      for (final SphereModel sphere : spheres) {
+        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
+        item.setText("sphere (radius=" + sphere.getRadius() + ", division=" + sphere.getDivision() + ", color=" + sphere.getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        item.setData(sphere);
       }
 
-      final QuadPolygonModel[] quadPolygons = groups[i].getQuadPolygons();
-      for (int j = 0; j < quadPolygons.length; j++) {
-        final TreeItem boxChild = new TreeItem(child, SWT.NONE);
-        boxChild.setText("quadPolygon (" + quadPolygons[j].getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$
-        boxChild.setData(quadPolygons[j]);
+      final ConeModel[] cones = group.getCones();
+      for (final ConeModel cone :  cones) {
+        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
+        item.setText("cone (radius=" + cone.getRadisu() + ", height=" + cone.getHeight() + ", divison=" + cone.getDivision() + ", color=" + cone.getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        item.setData(cone);
       }
 
-      if (parent != null) {
-        parent.setExpanded(true);
+      final TrianglePolygonModel[] trianglePolygons = group.getTrianglePolygons();
+      for (final TrianglePolygonModel trianglePolygon : trianglePolygons) {
+        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
+        item.setText("trianglePolygon (color=" + trianglePolygon.getColor() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+        item.setData(trianglePolygon);
       }
-      final GroupModel[] childrenGroups = groups[i].getGroups();
-      addTreeItem(child, childrenGroups);
+
+      final QuadPolygonModel[] quadPolygons = group.getQuadPolygons();
+      for (final QuadPolygonModel quadPolygon :  quadPolygons) {
+        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
+        item.setText("quadPolygon (color=" + quadPolygon.getColor() + ")"); //$NON-NLS-1$//$NON-NLS-2$
+        item.setData(quadPolygon);
+      }
+
+//      if (parent != null) {
+//        parent.setExpanded(true);
+//      }
+      final GroupModel[] childrenGroups = group.getGroups();
+      addTreeItem(groupItem, childrenGroups);
     }
+    
     if (parent != null) {
       parent.setExpanded(true);
     }
