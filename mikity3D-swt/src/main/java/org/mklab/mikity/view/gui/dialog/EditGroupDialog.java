@@ -43,12 +43,20 @@ public class EditGroupDialog {
   ParameterInputBox rotationX;
   ParameterInputBox rotationY;
   ParameterInputBox rotationZ;
-  ParameterInputBox translationXdataNumber;
-  ParameterInputBox translationYdataNumber;
-  ParameterInputBox translationZdataNumber;
-  ParameterInputBox rotationXdataNumber;
-  ParameterInputBox rotationYdataNumber;
-  ParameterInputBox rotationZdataNumber;
+
+  ParameterInputBox translationXsourceId;
+  ParameterInputBox translationYsourceId;
+  ParameterInputBox translationZsourceId;
+  ParameterInputBox rotationXsourceId;
+  ParameterInputBox rotationYsourceId;
+  ParameterInputBox rotationZsourceId;
+
+  ParameterInputBox translationXsourceNumber;
+  ParameterInputBox translationYsourceNumber;
+  ParameterInputBox translationZsourceNumber;
+  ParameterInputBox rotationXsourceNumber;
+  ParameterInputBox rotationYsourceNumber;
+  ParameterInputBox rotationZsourceNumber;
 
   private boolean editable;
   private Label statusLabel;
@@ -144,8 +152,8 @@ public class EditGroupDialog {
     final Group parameterGroup = new Group(this.sShell, SWT.NONE);
     final GridLayout layout = new GridLayout();
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
-    data.horizontalSpan = 3;
-    layout.numColumns = 3;
+    data.horizontalSpan = 4;
+    layout.numColumns = 4;
     parameterGroup.setText(Messages.getString("GroupConfigDialogLink.11")); //$NON-NLS-1$
     parameterGroup.setLayout(layout);
     parameterGroup.setLayoutData(data);
@@ -163,10 +171,16 @@ public class EditGroupDialog {
     label2.setLayoutData(gridData2);
 
     final GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
-    gridData3.widthHint = 65;
+    gridData3.widthHint = 40;
     final Label label3 = new Label(parameterGroup, SWT.CENTER);
-    label3.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
+    label3.setText(Messages.getString("EditGroupDialog.7")); //$NON-NLS-1$
     label3.setLayoutData(gridData3);
+
+    final GridData gridData4 = new GridData(GridData.FILL_HORIZONTAL);
+    gridData4.widthHint = 40;
+    final Label label4 = new Label(parameterGroup, SWT.CENTER);
+    label4.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
+    label4.setLayoutData(gridData4);
 
     int style;
     if (this.editable == true) {
@@ -176,22 +190,28 @@ public class EditGroupDialog {
     }
 
     this.translationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.0"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.translationXdataNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationXsourceId = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationXsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
     this.translationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.1"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.translationYdataNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationYsourceId = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationYsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
     this.translationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.2"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.translationZdataNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationZsourceId = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationZsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
     this.rotationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.rotationXdataNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationXsourceId = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationXsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
     this.rotationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.rotationYdataNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationYsourceId = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationYsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
     this.rotationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    this.rotationZdataNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationZsourceId = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationZsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
     setParametersInDialog();
   }
@@ -248,12 +268,12 @@ public class EditGroupDialog {
   void updateGroupParameters() {
     this.targetGroup.setName(this.groupName.getText());
     this.targetGroup.clearAnimations();
-    addAnimation("translationX", this.translationXdataNumber); //$NON-NLS-1$
-    addAnimation("translationY", this.translationYdataNumber); //$NON-NLS-1$
-    addAnimation("translationZ", this.translationZdataNumber); //$NON-NLS-1$
-    addAnimation("rotationX", this.rotationXdataNumber); //$NON-NLS-1$
-    addAnimation("rotationY", this.rotationYdataNumber); //$NON-NLS-1$
-    addAnimation("rotationZ", this.rotationZdataNumber); //$NON-NLS-1$
+    addAnimation("translationX", this.translationXsourceId, this.translationXsourceNumber); //$NON-NLS-1$
+    addAnimation("translationY", this.translationYsourceId, this.translationYsourceNumber); //$NON-NLS-1$
+    addAnimation("translationZ", this.translationZsourceId, this.translationZsourceNumber); //$NON-NLS-1$
+    addAnimation("rotationX", this.rotationXsourceId, this.rotationXsourceNumber); //$NON-NLS-1$
+    addAnimation("rotationY", this.rotationYsourceId, this.rotationYsourceNumber); //$NON-NLS-1$
+    addAnimation("rotationZ", this.rotationZsourceId, this.rotationZsourceNumber); //$NON-NLS-1$
     
     final TranslationModel translation = new TranslationModel(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue());
     final RotationModel rotation = new RotationModel(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue());
@@ -267,16 +287,16 @@ public class EditGroupDialog {
    * Animationを追加します。
    * 
    * @param parameterName パラメータの名前
-   * @param dataNumber データの番号
+   * @param sourceNumber データの番号
    */
-  void addAnimation(final String parameterName, final ParameterInputBox dataNumber) {
-    if (dataNumber.getIntValue() != 0) {
+  void addAnimation(final String parameterName, final ParameterInputBox sourceId, final ParameterInputBox sourceNumber) {
+    if (sourceNumber.getIntValue() != 0) {
       final SourceModel source = new SourceModel();
-      source.setNumber(dataNumber.getIntValue());
+      source.setId(sourceId.getText());
+      source.setNumber(sourceNumber.getIntValue());
       final AnimationModel animation = new AnimationModel();
       animation.setTarget(parameterName);
       animation.setSource(source);
-      //animation.setNumber(dataNumber.getIntValue());
       this.targetGroup.add(animation);
     }
   }
@@ -346,23 +366,30 @@ public class EditGroupDialog {
   private void setAnimationInDialog() {
     final AnimationModel[] animations = this.targetGroup.getAnimations();
 
-    for (int i = 0; i < animations.length; i++) {
-      final String target = animations[i].getTarget();
-      final SourceModel source = animations[i].getSource();
+    for (final AnimationModel animation : animations) {
+      final String target = animation.getTarget();
+      final SourceModel source = animation.getSource();
+      final String id = source.getId();
       final String number = "" + source.getNumber(); //$NON-NLS-1$
 
       if (target.equals("translationX")) { //$NON-NLS-1$
-        this.translationXdataNumber.setText(number);
+        this.translationXsourceId.setText(id);
+        this.translationXsourceNumber.setText(number);
       } else if (target.equals("translationY")) { //$NON-NLS-1$
-        this.translationYdataNumber.setText(number);
+        this.translationYsourceId.setText(id);
+        this.translationYsourceNumber.setText(number);
       } else if (target.equals("translationZ")) { //$NON-NLS-1$
-        this.translationZdataNumber.setText(number);
+        this.translationZsourceId.setText(id);
+        this.translationZsourceNumber.setText(number);
       } else if (target.equals("rotationX")) { //$NON-NLS-1$
-        this.rotationXdataNumber.setText(number);
+        this.rotationXsourceId.setText(id);
+        this.rotationXsourceNumber.setText(number);
       } else if (target.equals("rotationY")) { //$NON-NLS-1$
-        this.rotationYdataNumber.setText(number);
+        this.rotationYsourceId.setText(id);
+        this.rotationYsourceNumber.setText(number);
       } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-        this.rotationZdataNumber.setText(number);
+        this.rotationZsourceId.setText(id);        
+        this.rotationZsourceNumber.setText(number);
       }
     }
   }
@@ -391,22 +418,22 @@ public class EditGroupDialog {
     if (this.rotationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.translationXdataNumber.containsOnlyNumbers() == false) {
+    if (this.translationXsourceNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.translationYdataNumber.containsOnlyNumbers() == false) {
+    if (this.translationYsourceNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.translationZdataNumber.containsOnlyNumbers() == false) {
+    if (this.translationZsourceNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationXdataNumber.containsOnlyNumbers() == false) {
+    if (this.rotationXsourceNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationYdataNumber.containsOnlyNumbers() == false) {
+    if (this.rotationYsourceNumber.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationZdataNumber.containsOnlyNumbers() == false) {
+    if (this.rotationZsourceNumber.containsOnlyNumbers() == false) {
       return false;
     }
     return true;
