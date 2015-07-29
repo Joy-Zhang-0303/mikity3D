@@ -59,9 +59,9 @@ public class ObjectGroupManager {
    */
   public void updateObjectGroups(final double t) {
     for (final ObjectGroupDataSampler movingGroup : this.movingGroups) {
-      final ObjectGroup objectGroup = movingGroup.group;
-      final DataSampler dataSampler = movingGroup.sampler;
-      objectGroup.setCoordinateParameter(dataSampler.getCoordinateParameter(t));
+      final ObjectGroup group = movingGroup.group;
+      final DataSampler sampler = movingGroup.sampler;
+      group.setCoordinateParameter(sampler.getCoordinateParameter(t));
     }
   }
 

@@ -14,18 +14,19 @@ import org.mklab.nfc.matrix.Matrix;
 
 /**
  * データを抽出するため抽象クラスです。
+ * 
  * @author miki
  * @version $Revision: 1.7 $.2005/01/17
  */
 public abstract class AbstractDataSampler implements DataSampler {
   /** データ。 */
   private DoubleMatrix data;
-  /** 座標パラメータ */
+  /** 座標パラメータ。  */
   protected CoordinateParameter[] coordinateParameters;
 
-  private static int dataScale = 1;
-  private static int modelScale = 1;
-  private static boolean dataIsRadian = true;
+  private int dataScale = 1;
+  private int modelScale = 1;
+  private boolean dataIsRadian = true;
 
   /**
    * 新しく生成された<code>AbstractDataSampler</code>オブジェクトを初期化します。
@@ -34,10 +35,10 @@ public abstract class AbstractDataSampler implements DataSampler {
   public AbstractDataSampler(Matrix data) {
     this.data = (DoubleMatrix)data;
 
-    final int movableObjectSize = data.getColumnSize();
+    final int objectSize = data.getColumnSize();
     
-    this.coordinateParameters = new CoordinateParameter[movableObjectSize];
-    for (int i = 0; i < movableObjectSize; i++) {
+    this.coordinateParameters = new CoordinateParameter[objectSize];
+    for (int i = 0; i < objectSize; i++) {
       this.coordinateParameters[i] = new CoordinateParameter();
     }
   }
@@ -54,25 +55,25 @@ public abstract class AbstractDataSampler implements DataSampler {
       case TRANSLATION_X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          this.coordinateParameters[i].setTranslationX(value / dataScale);
+          this.coordinateParameters[i].setTranslationX(value / this.dataScale);
         }
         break;
       case TRANSLATION_Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          this.coordinateParameters[i].setTranslationY(value / dataScale);
+          this.coordinateParameters[i].setTranslationY(value / this.dataScale);
         }
         break;
       case TRANSLATION_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          this.coordinateParameters[i].setTranslationZ(value / dataScale);
+          this.coordinateParameters[i].setTranslationZ(value / this.dataScale);
         }
         break;
       case ROTATION_X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          if (dataIsRadian) {
+          if (this.dataIsRadian) {
             this.coordinateParameters[i].setRotationX(value);
           } else {
             this.coordinateParameters[i].setRotationX(Math.toRadians(value));
@@ -82,7 +83,7 @@ public abstract class AbstractDataSampler implements DataSampler {
       case ROTATION_Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          if (dataIsRadian) {
+          if (this.dataIsRadian) {
             this.coordinateParameters[i].setRotationY(value);
           } else {
             this.coordinateParameters[i].setRotationY(Math.toRadians(value));
@@ -92,7 +93,7 @@ public abstract class AbstractDataSampler implements DataSampler {
       case ROTATION_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          if (dataIsRadian) {
+          if (this.dataIsRadian) {
             this.coordinateParameters[i].setRotationZ(value);
           } else {
             this.coordinateParameters[i].setRotationZ(Math.toRadians(value));
@@ -112,19 +113,19 @@ public abstract class AbstractDataSampler implements DataSampler {
       case TRANSLATION_X:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double x = this.coordinateParameters[i].getTranslationX();
-          this.coordinateParameters[i].setTranslationX(x + value / modelScale);
+          this.coordinateParameters[i].setTranslationX(x + value / this.modelScale);
         }
         break;
       case TRANSLATION_Y:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double y = this.coordinateParameters[i].getTranslationY();
-          this.coordinateParameters[i].setTranslationY(y + value / modelScale );
+          this.coordinateParameters[i].setTranslationY(y + value / this.modelScale );
         }
         break;
       case TRANSLATION_Z:
         for (int i = 0; i < this.coordinateParameters.length; i++) {
           final double z = this.coordinateParameters[i].getTranslationZ();
-          this.coordinateParameters[i].setTranslationZ(z + value / modelScale);
+          this.coordinateParameters[i].setTranslationZ(z + value / this.modelScale);
         }
         break;
       case ROTATION_X:
