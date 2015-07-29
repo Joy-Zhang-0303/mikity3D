@@ -17,6 +17,7 @@ import javax.media.opengl.fixedfunc.GLMatrixFunc;
 import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
@@ -149,6 +150,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * {@inheritDoc}
    */
   public void setRootGroups(GroupModel[] rootGroups) {
+    ObjectGroupManager.clearObjectGroups();
     this.rootGroups = new JoglObjectFatory().create(rootGroups);
     display();
   }

@@ -63,18 +63,19 @@ public class ObjectGroupManager {
     this.endTime = 0;
 
     this.movingGroups.clear();
-    
+
     for (final ObjectGroup objectGroup : OBJECT_GROUPS) {
       final GroupModel group = objectGroup.getGroup();
       if (group == null || group.hasAnimation() == false) {
         continue;
       }
 
+      
       final DataSampler sampler = createSampler(data, group.getAnimations());
       addMovingGroup(objectGroup, sampler);
     }
   }
-  
+
   /**
    * 可動グループを追加します。
    * 
@@ -92,36 +93,34 @@ public class ObjectGroupManager {
    * データ抽出器を生成します。
    * 
    * @param data 時系列データ
-   * @param animations リンクデータ
+   * @param animation アニメーション
    */
   private DataSampler createSampler(final Matrix data, final AnimationModel[] animations) {
     final DataSampler sampler = new ClosenessDataSampler(data);
-    
+
     for (final AnimationModel animation : animations) {
-      if (animation.exists()) {
-        final String target = animation.getTarget();
-        final SourceModel source = animation.getSource();
-        final int number = source.getNumber();
-        final CoordinateParameterType type;
-
-        if (target.equals("translationX")) { //$NON-NLS-1$
-          type = CoordinateParameterType.TRANSLATION_X;
-        } else if (target.equals("translationY")) { //$NON-NLS-1$
-          type = CoordinateParameterType.TRANSLATION_Y;
-        } else if (target.equals("translationZ")) { //$NON-NLS-1$
-          type = CoordinateParameterType.TRANSLATION_Z;
-        } else if (target.equals("rotationX")) { //$NON-NLS-1$
-          type = CoordinateParameterType.ROTATION_X;
-        } else if (target.equals("rotationY")) { //$NON-NLS-1$
-          type = CoordinateParameterType.ROTATION_Y;
-        } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-          type = CoordinateParameterType.ROTATION_Z;
-        } else {
-          throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
-        }
-
-        sampler.sample(type, number);
+      final String target = animation.getTarget();
+      final SourceModel source = animation.getSource();
+      final int number = source.getNumber();
+      final CoordinateParameterType type;
+      
+      if (target.equals("translationX")) { //$NON-NLS-1$
+        type = CoordinateParameterType.TRANSLATION_X;
+      } else if (target.equals("translationY")) { //$NON-NLS-1$
+        type = CoordinateParameterType.TRANSLATION_Y;
+      } else if (target.equals("translationZ")) { //$NON-NLS-1$
+        type = CoordinateParameterType.TRANSLATION_Z;
+      } else if (target.equals("rotationX")) { //$NON-NLS-1$
+        type = CoordinateParameterType.ROTATION_X;
+      } else if (target.equals("rotationY")) { //$NON-NLS-1$
+        type = CoordinateParameterType.ROTATION_Y;
+      } else if (target.equals("rotationZ")) { //$NON-NLS-1$
+        type = CoordinateParameterType.ROTATION_Z;
+      } else {
+        throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
       }
+      
+      sampler.sample(type, number);
     }
 
     return sampler;
@@ -173,12 +172,19 @@ public class ObjectGroupManager {
   }
 
   /**
-   * グループとオブジェクトグループを対応付けします。
+   * オブジェクトグループを登録します。
    * 
    * @param objectGroup オブジェクトグループ
    */
   public static void addObjectGroup(final ObjectGroup objectGroup) {
     OBJECT_GROUPS.add(objectGroup);
+  }
+  
+  /**
+   * 全ての登録されているオブジェクトグループを削除します。
+   */
+  public static void clearObjectGroups() {
+    OBJECT_GROUPS.clear();
   }
 
 }

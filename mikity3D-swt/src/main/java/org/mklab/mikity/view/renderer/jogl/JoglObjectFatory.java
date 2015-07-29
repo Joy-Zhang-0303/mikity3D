@@ -23,8 +23,8 @@ public class JoglObjectFatory {
    */
   public List<JoglObjectGroup> create(final GroupModel[] groups) {
     final List<JoglObjectGroup> objectGroups = new ArrayList<>();
-    for (final GroupModel group : groups) {
-      final JoglObjectGroup objectGroup = new JoglObjectGroupFactory().create(group);
+    for (final GroupModel rootGroup : groups) {
+      final JoglObjectGroup objectGroup = new JoglObjectGroupFactory().create(rootGroup);
       objectGroups.add(objectGroup);
     }
 

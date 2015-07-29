@@ -44,21 +44,23 @@ public class ClosenessDataPickerTest {
    */
   @Test
   public void testGetParameter() {
-    final DataSampler picker = new ClosenessDataSampler(this.data);
+    final DataSampler sampler = new ClosenessDataSampler(this.data);
     
-    picker.sample(CoordinateParameterType.TRANSLATION_X, 2);
+    sampler.sample(CoordinateParameterType.TRANSLATION_X, 2);
     
     final double t1 = 13.59;
-    CoordinateParameter param1 = picker.getCoordinateParameter(t1);
-    assertTrue(8.921 == param1.getTranslationX());
+    CoordinateParameter parameter1 = sampler.getCoordinateParameter(t1);
+    assertTrue(8.921 == parameter1.getTranslationX());
 
     final double t2 = 2.86033300E+00;
-    CoordinateParameter  param2 = picker.getCoordinateParameter(t2);
-    assertTrue(8.921 == param2.getTranslationX());
-    assertTrue(0.0 == param2.getRotationX());
+    CoordinateParameter parameter2 = sampler.getCoordinateParameter(t2);
+    assertTrue(8.921 == parameter2.getTranslationX());
+    assertTrue(0.0 == parameter2.getRotationX());
 
-    picker.sample(CoordinateParameterType.ROTATION_X, 3);
+    sampler.sample(CoordinateParameterType.ROTATION_X, 3);
     
-    assertTrue(-0.010995 == param2.getRotationX());
+    CoordinateParameter parameter3 = sampler.getCoordinateParameter(t2);
+    
+    assertTrue(-0.010995 == parameter3.getRotationX());
   }
 }

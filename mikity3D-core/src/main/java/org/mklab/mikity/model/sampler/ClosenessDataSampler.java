@@ -6,6 +6,7 @@
 package org.mklab.mikity.model.sampler;
 
 import org.mklab.mikity.model.CoordinateParameter;
+import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;
 
@@ -29,8 +30,42 @@ public class ClosenessDataSampler extends AbstractDataSampler {
    * {@inheritDoc}
    */
   public CoordinateParameter getCoordinateParameter(double t) {
-    final int number = getDataNumber(t);
-    return this.parameters[number - 1];
+    final CoordinateParameter parameter = new CoordinateParameter();
+    
+    final int timeNumber = getTimeNumber(t);
+    
+    for (int i = 0; i < this.types.size(); i++) {
+      final CoordinateParameterType type = this.types.get(i);
+      final int dataNumber = this.dataNumbers.get(i).intValue();
+      double value = this.data.getDoubleElement(dataNumber, timeNumber);
+      
+      switch (type) {
+        case TRANSLATION_X:
+          parameter.setTranslationX(value);
+          break;
+        case TRANSLATION_Y:
+          parameter.setTranslationY(value);
+          break;
+        case TRANSLATION_Z:
+          parameter.setTranslationZ(value);
+          break;
+        case ROTATION_X:
+          parameter.setRotationX(value);
+          break;
+        case ROTATION_Y:
+          parameter.setRotationY(value);
+          break;
+        case ROTATION_Z:
+          parameter.setRotationZ(value);
+          break;
+        default:
+          throw new AssertionError(Messages.getString("DataPicker.1")); //$NON-NLS-1$
+      }
+    }
+      
+    return parameter;
+    
+    //return this.parameters[timeNumber - 1];
   }
 
   /**
@@ -39,7 +74,7 @@ public class ClosenessDataSampler extends AbstractDataSampler {
    * @param t 時間
    * @return 与えられた時間に最も近いデータが存在する時刻に対応するデータ番号
    */
-  private int getDataNumber(double t) {
+  private int getTimeNumber(double t) {
     final DoubleMatrix times = getData().getRowVector(1);
     final DoubleMatrix timeDifferences = times.subtractElementWise(t).absElementWise();
     final int number = timeDifferences.minimumRowWise().getIndices().getIntElement(1);

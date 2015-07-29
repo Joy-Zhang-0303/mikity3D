@@ -5,6 +5,7 @@ import java.util.List;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
@@ -28,7 +29,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   private static final long serialVersionUID = 5653656698891675370L;
 
   /** オブジェクトのグループ。 */
-  private List<OpenglesObjectGroup> topGroups;
+  private List<OpenglesObjectGroup> rootGroups;
 
   /** 設定。 */
   private ConfigurationModel configuration;
@@ -121,8 +122,8 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
 
     gl.glScalef(this.scale, this.scale, this.scale);
 
-    if (this.topGroups != null) {
-      for (final OpenglesObjectGroup topGroup : this.topGroups) {
+    if (this.rootGroups != null) {
+      for (final OpenglesObjectGroup topGroup : this.rootGroups) {
         topGroup.display(gl);
       }
     }
@@ -141,7 +142,8 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
    * {@inheritDoc}
    */
   public void setRootGroups(GroupModel[] children) {
-    this.topGroups = new OpenglesObjectFactory().create(children);
+    ObjectGroupManager.clearObjectGroups();
+    this.rootGroups = new OpenglesObjectFactory().create(children);
   }
 
   /**
