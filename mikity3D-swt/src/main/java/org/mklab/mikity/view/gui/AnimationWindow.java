@@ -99,7 +99,7 @@ public class AnimationWindow extends ApplicationWindow {
   ParameterInputBox playSpeed;
 
   /** Canvas */
-  private ObjectRenderer objectRenderer;
+  private ObjectRenderer renderer;
 
   /** */
   Frame frame;
@@ -163,7 +163,7 @@ public class AnimationWindow extends ApplicationWindow {
   void setRoot(final Mikity3DModel root) {
     this.root = root;
     this.manager = new ObjectGroupManager();
-    this.objectRenderer = new JoglObjectRenderer();
+    this.renderer = new JoglObjectRenderer();
   }
 
   /**
@@ -251,10 +251,10 @@ public class AnimationWindow extends ApplicationWindow {
     final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     
-    this.objectRenderer.setRootGroups(rootGroups);
-    this.objectRenderer.setConfiguration(configuration);
+    this.renderer.setRootGroups(rootGroups);
+    this.renderer.setConfiguration(configuration);
     
-    this.frame.add((Component)this.objectRenderer);
+    this.frame.add((Component)this.renderer);
     this.frame.validate();
   }
 
@@ -625,7 +625,7 @@ public class AnimationWindow extends ApplicationWindow {
     playable = false;
 
     this.endTime = this.manager.getEndTime();
-    this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.objectRenderer);
+    this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.renderer);
     this.animationTask.setSpeedScale(this.playSpeed.getDoubleValue());// スピードの設定
     this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {

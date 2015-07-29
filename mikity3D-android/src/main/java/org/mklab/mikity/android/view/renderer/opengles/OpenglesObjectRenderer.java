@@ -1,5 +1,6 @@
 package org.mklab.mikity.android.view.renderer.opengles;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -141,9 +142,26 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   /**
    * {@inheritDoc}
    */
-  public void setRootGroups(GroupModel[] children) {
+  public void setRootGroups(GroupModel[] groups) {
     ObjectGroupManager.clearObjectGroups();
-    this.rootGroups = new OpenglesObjectFactory().create(children);
+    this.rootGroups = createObjectGroups(groups);
+  }
+  
+  /**
+   * オブジェクトのグループを生成します。
+   * 
+   * @param groups ルートグループ
+   * 
+   * @return オブジェクトのグループ
+   */
+  private List<OpenglesObjectGroup> createObjectGroups(final GroupModel[] groups) {
+    final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();
+    for (final GroupModel group : groups) {
+      final OpenglesObjectGroup objectGroup = new OpenglesObjectGroupFactory().create(group);
+      objectGroups.add(objectGroup);
+    }
+    
+    return objectGroups;
   }
 
   /**

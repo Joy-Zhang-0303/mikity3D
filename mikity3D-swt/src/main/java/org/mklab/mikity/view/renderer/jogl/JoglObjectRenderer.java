@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.media.opengl.GL;
@@ -151,8 +152,25 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    */
   public void setRootGroups(GroupModel[] rootGroups) {
     ObjectGroupManager.clearObjectGroups();
-    this.rootGroups = new JoglObjectFatory().create(rootGroups);
+    this.rootGroups = createObjectGroups(rootGroups);
     display();
+  }
+  
+  /**
+   * オブジェクトのグループを生成します。
+   * 
+   * @param groups ルートグループ
+   * 
+   * @return オブジェクトのグループ
+   */
+  private List<JoglObjectGroup> createObjectGroups(final GroupModel[] groups) {
+    final List<JoglObjectGroup> objectGroups = new ArrayList<>();
+    for (final GroupModel rootGroup : groups) {
+      final JoglObjectGroup objectGroup = new JoglObjectGroupFactory().create(rootGroup);
+      objectGroups.add(objectGroup);
+    }
+
+    return objectGroups;
   }
 
   /**

@@ -1,9 +1,5 @@
 package org.mklab.mikity.view.renderer.jogl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 
 /**
@@ -14,21 +10,21 @@ import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
  */
 public class JoglObjectFatory {
 
-  /**
-   * オブジェクトのグループを生成します。
-   * 
-   * @param groups グループ
-   * 
-   * @return オブジェクトのグループ
-   */
-  public List<JoglObjectGroup> create(final GroupModel[] groups) {
-    final List<JoglObjectGroup> objectGroups = new ArrayList<>();
-    for (final GroupModel rootGroup : groups) {
-      final JoglObjectGroup objectGroup = new JoglObjectGroupFactory().create(rootGroup);
-      objectGroups.add(objectGroup);
-    }
-
-    return objectGroups;
-  }
+//  /**
+//   * オブジェクトのグループを生成します。
+//   * 
+//   * @param rootGroups ルートグループ
+//   * 
+//   * @return オブジェクトのグループ
+//   */
+//  public List<JoglObjectGroup> createObjectGroups(final GroupModel[] rootGroups) {
+//    final List<JoglObjectGroup> objectGroups = new ArrayList<>();
+//    for (final GroupModel rootGroup : rootGroups) {
+//      final JoglObjectGroup objectGroup = new JoglObjectGroupFactory().create(rootGroup);
+//      objectGroups.add(objectGroup);
+//    }
+//
+//    return objectGroups;
+//  }
 
 }
