@@ -40,6 +40,42 @@ public class ObjectGroupManager {
   private boolean hasAnimation = false;
 
   /**
+   * 指定された時刻のデータでオブジェクトグループを更新します。
+   * 
+   * @param t 時刻
+   */
+  public void updateObjectGroups(final double t) {
+    for (final ObjectGroupDataSampler movingGroup : this.movingGroups) {
+      final ObjectGroup objectGroup = movingGroup.objectGroup;
+      final DataSampler sampler = movingGroup.sampler;
+      objectGroup.setCoordinateParameter(sampler.getCoordinateParameter(t));
+    }
+  }
+
+  /**
+   * 時系列データを設定します。
+   * 
+   * @param data 時系列データ
+   */
+  public void setData(final Matrix data) {
+    this.dataSize = 0;
+    this.startTime = 0;
+    this.endTime = 0;
+
+    this.movingGroups.clear();
+    
+    for (final ObjectGroup objectGroup : OBJECT_GROUPS) {
+      final GroupModel group = objectGroup.getGroup();
+      if (group == null || group.hasAnimation() == false) {
+        continue;
+      }
+
+      final DataSampler sampler = createSampler(data, group.getAnimations());
+      addMovingGroup(objectGroup, sampler);
+    }
+  }
+  
+  /**
    * 可動グループを追加します。
    * 
    * @param objectGroup オブジェクトグループ
@@ -53,39 +89,6 @@ public class ObjectGroupManager {
   }
 
   /**
-   * 指定された時刻のデータでオブジェクトグループを更新します。
-   * 
-   * @param t 時刻
-   */
-  public void updateObjectGroups(final double t) {
-    for (final ObjectGroupDataSampler movingGroup : this.movingGroups) {
-      final ObjectGroup group = movingGroup.group;
-      final DataSampler sampler = movingGroup.sampler;
-      group.setCoordinateParameter(sampler.getCoordinateParameter(t));
-    }
-  }
-
-  /**
-   * 可動グループを登録します。
-   * 
-   * @param data 時系列データ
-   */
-  private void registerMovingGroups(final Matrix data) {
-    for (final ObjectGroup objectGroup : OBJECT_GROUPS) {
-      final GroupModel group = objectGroup.getGroup();
-      if (group == null) {
-        continue;
-      }
-
-      final AnimationModel[] animations = group.getAnimations();
-      if (animations.length != 0) {
-        final DataSampler sampler = createSampler(data, animations);
-        addMovingGroup(objectGroup, sampler);
-      }
-    }
-  }
-
-  /**
    * データ抽出器を生成します。
    * 
    * @param data 時系列データ
@@ -93,11 +96,12 @@ public class ObjectGroupManager {
    */
   private DataSampler createSampler(final Matrix data, final AnimationModel[] animations) {
     final DataSampler sampler = new ClosenessDataSampler(data);
+    
     for (final AnimationModel animation : animations) {
       if (animation.exists()) {
+        final String target = animation.getTarget();
         final SourceModel source = animation.getSource();
         final int number = source.getNumber();
-        final String target = animation.getTarget();
         final CoordinateParameterType type;
 
         if (target.equals("translationX")) { //$NON-NLS-1$
@@ -148,20 +152,6 @@ public class ObjectGroupManager {
    */
   public double getStartTime() {
     return this.startTime;
-  }
-
-  /**
-   * 時系列データを設定します。
-   * 
-   * @param data 時系列データ
-   */
-  public void setData(final Matrix data) {
-    this.dataSize = 0;
-    this.startTime = 0;
-    this.endTime = 0;
-
-    this.movingGroups.clear();
-    registerMovingGroups(data);
   }
 
   /**

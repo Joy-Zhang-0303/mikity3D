@@ -385,6 +385,7 @@ public class AnimationWindow extends ApplicationWindow {
       public void widgetSelected(SelectionEvent e) {
         final double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
         AnimationWindow.this.manager.updateObjectGroups(t);
+        
         if (AnimationWindow.this.animationTask != null) {
           AnimationWindow.this.animationTask.setCurrentTime(t);
           String st = String.valueOf(t);

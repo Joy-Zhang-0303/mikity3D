@@ -7,7 +7,6 @@ package org.mklab.mikity.model.sampler;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.nfc.matrix.DoubleMatrix;
-import org.mklab.nfc.matrix.IntMatrix;
 import org.mklab.nfc.matrix.Matrix;
 
 
@@ -27,6 +26,14 @@ public class ClosenessDataSampler extends AbstractDataSampler {
   }
 
   /**
+   * {@inheritDoc}
+   */
+  public CoordinateParameter getCoordinateParameter(double t) {
+    final int number = getDataNumber(t);
+    return this.parameters[number - 1];
+  }
+
+  /**
    * 与えられた時間に最も近いデータが存在する時刻に対応するデータ番号を返します。
    * 
    * @param t 時間
@@ -35,16 +42,7 @@ public class ClosenessDataSampler extends AbstractDataSampler {
   private int getDataNumber(double t) {
     final DoubleMatrix times = getData().getRowVector(1);
     final DoubleMatrix timeDifferences = times.subtractElementWise(t).absElementWise();
-    final IntMatrix rowColumn = timeDifferences.minimumRowWise().getIndices();
-    return rowColumn.getIntElement(1);
+    final int number = timeDifferences.minimumRowWise().getIndices().getIntElement(1);
+    return number;
   }
-
-  /**
-   * {@inheritDoc}
-   */
-  public CoordinateParameter getCoordinateParameter(double t) {
-    final int number = getDataNumber(t);
-    return this.coordinateParameters[number - 1];
-  }
-
 }

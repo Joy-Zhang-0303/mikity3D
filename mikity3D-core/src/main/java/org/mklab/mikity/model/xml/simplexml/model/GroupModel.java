@@ -212,13 +212,6 @@ public class GroupModel implements java.io.Serializable, Cloneable {
     this.quadPolygons.add(quadPolygon);
   } 
 
-//  /**
-//   * Method clearGroup
-//   */
-//  public void clearGroup() {
-//    this.groups.clear();
-//  } 
-
   /**
    * Clear Linkdata.
    */
@@ -363,12 +356,27 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public AnimationModel[] getAnimations() {
     final int size = this.animations.size();
-    final AnimationModel[] linkDatas = new AnimationModel[size];
+    final AnimationModel[] localAnimations = new AnimationModel[size];
     for (int i = 0; i < size; i++) {
-      linkDatas[i] = this.animations.get(i);
+      localAnimations[i] = this.animations.get(i);
     }
-    return linkDatas;
+    return localAnimations;
   } 
+  
+  /**
+   * アニメーションが存在するか判定します。
+   * 
+   * @return アニメーションが存在すればtrue
+   */
+  public boolean hasAnimation() {
+    for (final AnimationModel animation : this.animations) {
+      if (animation != null && animation.exists()) {
+        return true;
+      }
+    }
+    
+    return false;
+  }
 
   /**
    * Returns the value of field 'translation'.
@@ -592,19 +600,5 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
-  }
-  
-  /**
-   * アニメーションが存在するか判定します。
-   * @return アニメーションが存在すればtrue
-   */
-  public boolean hasAnimation() {
-    for (final AnimationModel animation : this.animations) {
-      if (animation != null && animation.exists()) {
-        return true;
-      }
-    }
-    
-    return false;
   }
 }

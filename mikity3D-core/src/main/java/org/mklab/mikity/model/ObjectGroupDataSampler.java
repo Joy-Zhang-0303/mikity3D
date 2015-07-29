@@ -14,17 +14,17 @@ import org.mklab.mikity.model.sampler.DataSampler;
  */
 class ObjectGroupDataSampler {
   /** オブジェクトグループ。 */
-  public ObjectGroup group;
+  public ObjectGroup objectGroup;
   /** データピッカー。 */
   public DataSampler sampler;
 
   /**
    * 新しく生成された<code>ObjectGroupDataSampler</code>オブジェクトを初期化します。
-   * @param group オブジェクトグループ
+   * @param objectGroup オブジェクトグループ
    * @param sampler データ抽出器
    */
-  public ObjectGroupDataSampler(ObjectGroup group, DataSampler sampler) {
-    this.group = group;
+  public ObjectGroupDataSampler(ObjectGroup objectGroup, DataSampler sampler) {
+    this.objectGroup = objectGroup;
     this.sampler = sampler;
   }
 

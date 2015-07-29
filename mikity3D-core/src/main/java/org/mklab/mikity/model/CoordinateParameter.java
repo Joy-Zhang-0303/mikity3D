@@ -12,17 +12,17 @@ package org.mklab.mikity.model;
  * @version $Revision: 1.2 $. 2008/02/29
  */
 public class CoordinateParameter {
-  /** X座標方向への並進距離 */
+  /** X軸方向への並進距離。 */
   private double translationX;
-  /** Y座標方向への並進距離 */
+  /** Y軸方向への並進距離。 */
   private double translationY;
-  /** Z座標方向への並進距離 */
+  /** Z軸方向への並進距離。 */
   private double translationZ;
-  /** X軸周りの回転 */
+  /** X軸周りの回転角度。 */
   private double rotationX;
-  /** Y軸周りの回転 */
+  /** Y軸周りの回転角度。*/
   private double rotationY;
-  /** Z軸ｋ周りの回転 */
+  /** Z軸ｋ周りの回転角度。 */
   private double rotationZ;
 
   /**
@@ -34,12 +34,13 @@ public class CoordinateParameter {
 
   /**
    * 新しく生成された<code>CoordinateParameter</code>オブジェクトを初期化します。
+   * 
    * @param translationX X軸方向への並進距離
    * @param translationY Y軸方向への並進距離
    * @param translationZ Z軸方向への並進距離
-   * @param rotationX X軸周りの回転
-   * @param rotationY Y軸周りの回転
-   * @param rotationZ Z軸周りの回転
+   * @param rotationX X軸周りの回転角度
+   * @param rotationY Y軸周りの回転角度
+   * @param rotationZ Z軸周りの回転角度
    */
   public CoordinateParameter(double translationX, double translationY, double translationZ, double rotationX, double rotationY, double rotationZ) {
     this.translationX = translationX;
@@ -105,54 +106,54 @@ public class CoordinateParameter {
   }
 
   /**
-   * X軸周りの回転の値を返します。
+   * X軸周りの回転角度を返します。
    * 
-   * @return X軸周りの回転の値
+   * @return X軸周りの回転角度
    */
   public double getRotationX() {
     return this.rotationX;
   }
 
   /**
-   * X軸周りの回転の値を設定します。
+   * X軸周りの回転角度を設定します。
    * 
-   * @param rotationX X軸周りの回転の値
+   * @param rotationX X軸周りの回転角度
    */
   public void setRotationX(double rotationX) {
     this.rotationX = rotationX;
   }
 
   /**
-   * Y軸周りの回転の値を返します。
+   * Y軸周りの回転角度を返します。
    * 
-   * @return Y軸周りの回転の値
+   * @return Y軸周りの回転角度
    */
   public double getRotationY() {
     return this.rotationY;
   }
 
   /**
-   * Y軸周りの回転の値を設定します。
+   * Y軸周りの回転角度を設定します。
    * 
-   * @param rotationY Y軸周りの回転の値
+   * @param rotationY Y軸周りの回転角度
    */
   public void setRotationY(double rotationY) {
     this.rotationY = rotationY;
   }
 
   /**
-   * Z軸周りの回転の値を返します。
+   * Z軸周りの回転角度を返します。
    * 
-   * @return Z軸周りの回転の値
+   * @return Z軸周りの回角度
    */
   public double getRotationZ() {
     return this.rotationZ;
   }
 
   /**
-   * Z軸周りの転の値を設定します。
+   * Z軸周りの回転角度を設定します。
    * 
-   * @param rotationZ Z軸周りの回転の値
+   * @param rotationZ Z軸周りの回転角度
    */
   public void setRotationZ(double rotationZ) {
     this.rotationZ = rotationZ;

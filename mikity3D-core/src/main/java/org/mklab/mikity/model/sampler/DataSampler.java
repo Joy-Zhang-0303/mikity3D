@@ -18,6 +18,7 @@ import org.mklab.mikity.model.CoordinateParameterType;
 public interface DataSampler {
   /**
    * 指定された時刻の座標パラメータを返します。
+   * 
    * @param t 時刻
    * @return 指定された時刻の座標パラメータ
    */
@@ -25,10 +26,11 @@ public interface DataSampler {
 
   /**
    * データをサンプルし，パラメータを設定します。
+   * 
    * @param type パラメータのタイプ
-   * @param dataIndex データ番号
+   * @param index データ番号
    */
-  void sample(CoordinateParameterType type, int dataIndex);
+  void sample(CoordinateParameterType type, int index);
 
   /**
    * 値を設定します。

@@ -22,7 +22,7 @@ public abstract class AbstractDataSampler implements DataSampler {
   /** データ。 */
   private DoubleMatrix data;
   /** 座標パラメータ。  */
-  protected CoordinateParameter[] coordinateParameters;
+  protected CoordinateParameter[] parameters;
 
   private int dataScale = 1;
   private int modelScale = 1;
@@ -37,66 +37,66 @@ public abstract class AbstractDataSampler implements DataSampler {
 
     final int objectSize = data.getColumnSize();
     
-    this.coordinateParameters = new CoordinateParameter[objectSize];
+    this.parameters = new CoordinateParameter[objectSize];
     for (int i = 0; i < objectSize; i++) {
-      this.coordinateParameters[i] = new CoordinateParameter();
+      this.parameters[i] = new CoordinateParameter();
     }
   }
 
   /**
    * {@inheritDoc}
    */
-  public final void sample(CoordinateParameterType type, int dataIndex) {
-    if (this.data.getRowSize() < dataIndex) {
+  public final void sample(CoordinateParameterType type, int index) {
+    if (this.data.getRowSize() < index) {
       throw new IllegalAccessError();
     }
 
     switch (type) {
       case TRANSLATION_X:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          this.coordinateParameters[i].setTranslationX(value / this.dataScale);
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double value = this.data.getElement(index, i + 1).doubleValue();
+          this.parameters[i].setTranslationX(value / this.dataScale);
         }
         break;
       case TRANSLATION_Y:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          this.coordinateParameters[i].setTranslationY(value / this.dataScale);
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double value = this.data.getElement(index, i + 1).doubleValue();
+          this.parameters[i].setTranslationY(value / this.dataScale);
         }
         break;
       case TRANSLATION_Z:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
-          this.coordinateParameters[i].setTranslationZ(value / this.dataScale);
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double value = this.data.getElement(index, i + 1).doubleValue();
+          this.parameters[i].setTranslationZ(value / this.dataScale);
         }
         break;
       case ROTATION_X:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double value = this.data.getElement(index, i + 1).doubleValue();
           if (this.dataIsRadian) {
-            this.coordinateParameters[i].setRotationX(value);
+            this.parameters[i].setRotationX(value);
           } else {
-            this.coordinateParameters[i].setRotationX(Math.toRadians(value));
+            this.parameters[i].setRotationX(Math.toRadians(value));
           }
         }
         break;
       case ROTATION_Y:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double value = this.data.getElement(index, i + 1).doubleValue();
           if (this.dataIsRadian) {
-            this.coordinateParameters[i].setRotationY(value);
+            this.parameters[i].setRotationY(value);
           } else {
-            this.coordinateParameters[i].setRotationY(Math.toRadians(value));
+            this.parameters[i].setRotationY(Math.toRadians(value));
           }
         }
         break;
       case ROTATION_Z:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          final double value = this.data.getElement(dataIndex, i + 1).doubleValue();
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double value = this.data.getElement(index, i + 1).doubleValue();
           if (this.dataIsRadian) {
-            this.coordinateParameters[i].setRotationZ(value);
+            this.parameters[i].setRotationZ(value);
           } else {
-            this.coordinateParameters[i].setRotationZ(Math.toRadians(value));
+            this.parameters[i].setRotationZ(Math.toRadians(value));
           }
         }
         break;
@@ -111,50 +111,50 @@ public abstract class AbstractDataSampler implements DataSampler {
   public void setParameter(CoordinateParameterType type, double value) {
     switch (type) {
       case TRANSLATION_X:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          final double x = this.coordinateParameters[i].getTranslationX();
-          this.coordinateParameters[i].setTranslationX(x + value / this.modelScale);
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double translationX = this.parameters[i].getTranslationX();
+          this.parameters[i].setTranslationX(translationX + value / this.modelScale);
         }
         break;
       case TRANSLATION_Y:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          final double y = this.coordinateParameters[i].getTranslationY();
-          this.coordinateParameters[i].setTranslationY(y + value / this.modelScale );
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double translationY = this.parameters[i].getTranslationY();
+          this.parameters[i].setTranslationY(translationY + value / this.modelScale );
         }
         break;
       case TRANSLATION_Z:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          final double z = this.coordinateParameters[i].getTranslationZ();
-          this.coordinateParameters[i].setTranslationZ(z + value / this.modelScale);
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double translationZ = this.parameters[i].getTranslationZ();
+          this.parameters[i].setTranslationZ(translationZ + value / this.modelScale);
         }
         break;
       case ROTATION_X:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          final double angleX = this.coordinateParameters[i].getRotationX();
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double rotationX = this.parameters[i].getRotationX();
           if (Util.radian) {
-            this.coordinateParameters[i].setRotationX(angleX + value);
+            this.parameters[i].setRotationX(rotationX + value);
           } else {
-            this.coordinateParameters[i].setRotationX(angleX + Math.toRadians(value));
+            this.parameters[i].setRotationX(rotationX + Math.toRadians(value));
           }
         }
         break;
       case ROTATION_Y:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          double angleY = this.coordinateParameters[i].getRotationY();
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double rotationY = this.parameters[i].getRotationY();
           if (Util.radian) {
-            this.coordinateParameters[i].setRotationY(angleY + value);
+            this.parameters[i].setRotationY(rotationY + value);
           } else {
-            this.coordinateParameters[i].setRotationY(angleY + Math.toRadians(value));
+            this.parameters[i].setRotationY(rotationY + Math.toRadians(value));
           }
         }
         break;
       case ROTATION_Z:
-        for (int i = 0; i < this.coordinateParameters.length; i++) {
-          double angleZ = this.coordinateParameters[i].getRotationZ();
+        for (int i = 0; i < this.parameters.length; i++) {
+          final double rotationZ = this.parameters[i].getRotationZ();
           if (Util.radian) {
-            this.coordinateParameters[i].setRotationZ(angleZ + value);
+            this.parameters[i].setRotationZ(rotationZ + value);
           } else {
-            this.coordinateParameters[i].setRotationZ(angleZ + Math.toRadians(value));
+            this.parameters[i].setRotationZ(rotationZ + Math.toRadians(value));
           }
         }
         break;
