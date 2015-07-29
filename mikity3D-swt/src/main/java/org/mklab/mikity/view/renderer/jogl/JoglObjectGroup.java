@@ -157,17 +157,19 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
       return;
     }
     
-    final double translationX = parameter.getTranslationX();
-    final double translationY = parameter.getTranslationY();
-    final double translationZ = parameter.getTranslationZ();
+//    final double translationX = parameter.getTranslationX();
+//    final double translationY = parameter.getTranslationY();
+//    final double translationZ = parameter.getTranslationZ();
+//    this.coordinate.setTranslation((float)translationX, (float)translationY, (float)translationZ);
     
-    this.coordinate.setTranslation((float)translationX, (float)translationY, (float)translationZ);
-
-    final double rotationX = parameter.getRotationX();
-    final double rotationY = parameter.getRotationY();
-    final double rotationZ = parameter.getRotationZ();
+    this.coordinate.setTranslation(parameter.getTranslation());
+        
+//    final double rotationX = parameter.getRotationX();
+//    final double rotationY = parameter.getRotationY();
+//    final double rotationZ = parameter.getRotationZ();
+//    this.coordinate.setRotation((float)rotationX, (float)rotationY, (float)rotationZ);
     
-    this.coordinate.setRotation((float)rotationX, (float)rotationY, (float)rotationZ);
+    this.coordinate.setRotation(parameter.getRotation());
   }
 
   /**

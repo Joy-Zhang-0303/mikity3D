@@ -158,17 +158,20 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
       return;
     }
 
-    final double translationX = parameter.getTranslationX();
-    final double translationY = parameter.getTranslationY();
-    final double translatkonZ = parameter.getTranslationZ();
+//    final double translationX = parameter.getTranslationX();
+//    final double translationY = parameter.getTranslationY();
+//    final double translatkonZ = parameter.getTranslationZ();
+//    this.coordinate.setTranslation((float)translationX, (float)translationY, (float)translatkonZ);
+    
+    this.coordinate.setTranslation(parameter.getTranslation());
 
-    this.coordinate.setTranslation((float)translationX, (float)translationY, (float)translatkonZ);
+    //final double rotationX = parameter.getRotationX();
+    //final double rotationY = parameter.getRotationY();
+    //final double rotationZ = parameter.getRotationZ();
+    //this.coordinate.setRotation((float)rotationX, (float)rotationY, (float)rotationZ);
+    
+    this.coordinate.setRotation(parameter.getRotation());
 
-    final double rotationX = parameter.getRotationX();
-    final double rotationY = parameter.getRotationY();
-    final double rotationZ = parameter.getRotationZ();
-
-    this.coordinate.setRotation((float)rotationX, (float)rotationY, (float)rotationZ);
   }
 
   /**

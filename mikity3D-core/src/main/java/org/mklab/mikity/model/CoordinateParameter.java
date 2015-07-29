@@ -5,6 +5,9 @@
  */
 package org.mklab.mikity.model;
 
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+
 /**
  * 座標パラメータを表すクラスです。
  * 
@@ -158,4 +161,44 @@ public class CoordinateParameter {
   public void setRotationZ(double rotationZ) {
     this.rotationZ = rotationZ;
   }
+  
+  /**
+   * 並進を返します。
+   * 
+   * @return 並進
+   */
+  public TranslationModel getTranslation() {
+    return new TranslationModel((float)this.translationX, (float)this.translationY, (float)this.translationZ);
+  }
+  
+  /**
+   * 並進を設定します。
+   * @param translation 並進
+   */
+  public void setTranslation(TranslationModel translation) {
+    this.translationX = translation.getX();
+    this.translationY = translation.getY();
+    this.translationZ = translation.getZ();
+  }
+  
+  /**
+   * 回転を返します。
+   * 
+   * @return 回転
+   */
+  public RotationModel getRotation() {
+    return new RotationModel((float)this.rotationX, (float)this.rotationY, (float)this.rotationZ);
+  }
+  
+  /**
+   * 回転を設定します。
+   * 
+   * @param rotation 回転
+   */
+  public void setRotation(RotationModel rotation) {
+    this.rotationX = rotation.getX();
+    this.rotationY = rotation.getY();
+    this.rotationZ = rotation.getZ();
+  }
+
 }

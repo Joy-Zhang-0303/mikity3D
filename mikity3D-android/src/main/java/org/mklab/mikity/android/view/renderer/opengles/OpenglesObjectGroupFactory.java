@@ -85,33 +85,46 @@ public class OpenglesObjectGroupFactory {
     final RotationModel rotation = group.getRotation();
     
     if (translation != null && rotation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
+      
+//      final float translationX = translation.getX();
+//      final float translationY = translation.getY();
+//      final float translationZ = translation.getZ();
+//      final float rotationX = rotation.getX();
+//      final float rotationY = rotation.getY();
+//      final float rotationZ = rotation.getZ();
+//      coordinate.setTranslation(translationX, translationY, translationZ);
+//      coordinate.setRotation(rotationX, rotationY, rotationZ);
+      
+      coordinate.setRotation(rotation);
+      coordinate.setTranslation(translation);
+      
       return coordinate;
     } 
     
     if (translation != null) {
-      final float translationX = translation.getX();
-      final float translationY = translation.getY();
-      final float translationZ = translation.getZ();
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translationX, translationY, translationZ);
+      
+//      final float translationX = translation.getX();
+//      final float translationY = translation.getY();
+//      final float translationZ = translation.getZ();
+//      coordinate.setTranslation(translationX, translationY, translationZ);
+      
+      coordinate.setTranslation(translation);
+      
       return coordinate;
     }
     
     if (rotation != null) {
-      final float rotationX = rotation.getX();
-      final float rotationY = rotation.getY();
-      final float rotationZ = rotation.getZ();
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setRotation(rotationX, rotationY, rotationZ);
+      
+//      final float rotationX = rotation.getX();
+//      final float rotationY = rotation.getY();
+//      final float rotationZ = rotation.getZ();
+//      coordinate.setRotation(rotationX, rotationY, rotationZ);
+      
+      coordinate.setRotation(rotation);
+      
       return coordinate;
     }
 

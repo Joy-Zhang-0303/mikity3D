@@ -16,6 +16,8 @@ import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.mikity.model.sampler.ClosenessDataSampler;
 import org.mklab.mikity.model.sampler.DataSampler;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
@@ -50,12 +52,17 @@ public class ClosenessDataPickerTest {
     
     final double t1 = 13.59;
     CoordinateParameter parameter1 = sampler.getCoordinateParameter(t1);
-    assertTrue(8.921 == parameter1.getTranslationX());
+    TranslationModel translation1 = parameter1.getTranslation();
+    
+    assertTrue(8.921f == translation1.getX());
 
     final double t2 = 2.86033300E+00;
     CoordinateParameter parameter2 = sampler.getCoordinateParameter(t2);
-    assertTrue(8.921 == parameter2.getTranslationX());
-    assertTrue(0.0 == parameter2.getRotationX());
+    TranslationModel translation2 = parameter2.getTranslation();
+    RotationModel rotation2 = parameter2.getRotation();
+    
+    assertTrue(8.921f == translation2.getX());
+    assertTrue(0.0 == rotation2.getX());
 
     sampler.sample(CoordinateParameterType.ROTATION_X, 3);
     
