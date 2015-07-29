@@ -38,29 +38,7 @@ public class ClosenessDataSampler extends AbstractDataSampler {
       final CoordinateParameterType type = this.types.get(i);
       final int dataNumber = this.dataNumbers.get(i).intValue();
       final double value = this.data.getDoubleElement(dataNumber, timeNumber);
-      
-      switch (type) {
-        case TRANSLATION_X:
-          parameter.setTranslationX(value);
-          break;
-        case TRANSLATION_Y:
-          parameter.setTranslationY(value);
-          break;
-        case TRANSLATION_Z:
-          parameter.setTranslationZ(value);
-          break;
-        case ROTATION_X:
-          parameter.setRotationX(value);
-          break;
-        case ROTATION_Y:
-          parameter.setRotationY(value);
-          break;
-        case ROTATION_Z:
-          parameter.setRotationZ(value);
-          break;
-        default:
-          throw new AssertionError(Messages.getString("DataPicker.1")); //$NON-NLS-1$
-      }
+      parameter.setValue(value, type);
     }
       
     return parameter;

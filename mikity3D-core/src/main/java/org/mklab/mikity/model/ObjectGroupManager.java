@@ -102,24 +102,7 @@ public class ObjectGroupManager {
       final String target = animation.getTarget();
       final SourceModel source = animation.getSource();
       final int number = source.getNumber();
-      final CoordinateParameterType type;
-      
-      if (target.equals("translationX")) { //$NON-NLS-1$
-        type = CoordinateParameterType.TRANSLATION_X;
-      } else if (target.equals("translationY")) { //$NON-NLS-1$
-        type = CoordinateParameterType.TRANSLATION_Y;
-      } else if (target.equals("translationZ")) { //$NON-NLS-1$
-        type = CoordinateParameterType.TRANSLATION_Z;
-      } else if (target.equals("rotationX")) { //$NON-NLS-1$
-        type = CoordinateParameterType.ROTATION_X;
-      } else if (target.equals("rotationY")) { //$NON-NLS-1$
-        type = CoordinateParameterType.ROTATION_Y;
-      } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-        type = CoordinateParameterType.ROTATION_Z;
-      } else {
-        throw new IllegalAccessError(Messages.getString("MovableGroupManager.2")); //$NON-NLS-1$
-      }
-      
+      final CoordinateParameterType type = CoordinateParameterType.getType(target);
       sampler.sample(type, number);
     }
 
