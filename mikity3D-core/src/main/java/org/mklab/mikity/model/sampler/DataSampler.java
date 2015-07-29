@@ -32,13 +32,13 @@ public interface DataSampler {
    */
   void sample(CoordinateParameterType type, int index);
 
-  /**
-   * 値を設定します。
-   * 
-   * @param type パラメータのタイプ
-   * @param value 値
-   */
-  void setParameter(CoordinateParameterType type, double value);
+//  /**
+//   * 値を設定します。
+//   * 
+//   * @param type パラメータのタイプ
+//   * @param value 値
+//   */
+//  void setParameter(CoordinateParameterType type, double value);
 
   /**
    * データの個数を返します。

@@ -7,7 +7,6 @@ package org.mklab.mikity.model.sampler;
 
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.CoordinateParameterType;
-import org.mklab.mikity.util.Util;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;
 
@@ -25,7 +24,7 @@ public abstract class AbstractDataSampler implements DataSampler {
   protected CoordinateParameter[] parameters;
 
   private int dataScale = 1;
-  private int modelScale = 1;
+  //private int modelScale = 1;
   private boolean dataIsRadian = true;
 
   /**
@@ -105,63 +104,63 @@ public abstract class AbstractDataSampler implements DataSampler {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public void setParameter(CoordinateParameterType type, double value) {
-    switch (type) {
-      case TRANSLATION_X:
-        for (int i = 0; i < this.parameters.length; i++) {
-          final double translationX = this.parameters[i].getTranslationX();
-          this.parameters[i].setTranslationX(translationX + value / this.modelScale);
-        }
-        break;
-      case TRANSLATION_Y:
-        for (int i = 0; i < this.parameters.length; i++) {
-          final double translationY = this.parameters[i].getTranslationY();
-          this.parameters[i].setTranslationY(translationY + value / this.modelScale );
-        }
-        break;
-      case TRANSLATION_Z:
-        for (int i = 0; i < this.parameters.length; i++) {
-          final double translationZ = this.parameters[i].getTranslationZ();
-          this.parameters[i].setTranslationZ(translationZ + value / this.modelScale);
-        }
-        break;
-      case ROTATION_X:
-        for (int i = 0; i < this.parameters.length; i++) {
-          final double rotationX = this.parameters[i].getRotationX();
-          if (Util.radian) {
-            this.parameters[i].setRotationX(rotationX + value);
-          } else {
-            this.parameters[i].setRotationX(rotationX + Math.toRadians(value));
-          }
-        }
-        break;
-      case ROTATION_Y:
-        for (int i = 0; i < this.parameters.length; i++) {
-          final double rotationY = this.parameters[i].getRotationY();
-          if (Util.radian) {
-            this.parameters[i].setRotationY(rotationY + value);
-          } else {
-            this.parameters[i].setRotationY(rotationY + Math.toRadians(value));
-          }
-        }
-        break;
-      case ROTATION_Z:
-        for (int i = 0; i < this.parameters.length; i++) {
-          final double rotationZ = this.parameters[i].getRotationZ();
-          if (Util.radian) {
-            this.parameters[i].setRotationZ(rotationZ + value);
-          } else {
-            this.parameters[i].setRotationZ(rotationZ + Math.toRadians(value));
-          }
-        }
-        break;
-      default:
-        throw new AssertionError(Messages.getString("DataPicker.3")); //$NON-NLS-1$
-    }
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void setParameter(CoordinateParameterType type, double value) {
+//    switch (type) {
+//      case TRANSLATION_X:
+//        for (int i = 0; i < this.parameters.length; i++) {
+//          final double translationX = this.parameters[i].getTranslationX();
+//          this.parameters[i].setTranslationX(translationX + value / this.modelScale);
+//        }
+//        break;
+//      case TRANSLATION_Y:
+//        for (int i = 0; i < this.parameters.length; i++) {
+//          final double translationY = this.parameters[i].getTranslationY();
+//          this.parameters[i].setTranslationY(translationY + value / this.modelScale );
+//        }
+//        break;
+//      case TRANSLATION_Z:
+//        for (int i = 0; i < this.parameters.length; i++) {
+//          final double translationZ = this.parameters[i].getTranslationZ();
+//          this.parameters[i].setTranslationZ(translationZ + value / this.modelScale);
+//        }
+//        break;
+//      case ROTATION_X:
+//        for (int i = 0; i < this.parameters.length; i++) {
+//          final double rotationX = this.parameters[i].getRotationX();
+//          if (Util.radian) {
+//            this.parameters[i].setRotationX(rotationX + value);
+//          } else {
+//            this.parameters[i].setRotationX(rotationX + Math.toRadians(value));
+//          }
+//        }
+//        break;
+//      case ROTATION_Y:
+//        for (int i = 0; i < this.parameters.length; i++) {
+//          final double rotationY = this.parameters[i].getRotationY();
+//          if (Util.radian) {
+//            this.parameters[i].setRotationY(rotationY + value);
+//          } else {
+//            this.parameters[i].setRotationY(rotationY + Math.toRadians(value));
+//          }
+//        }
+//        break;
+//      case ROTATION_Z:
+//        for (int i = 0; i < this.parameters.length; i++) {
+//          final double rotationZ = this.parameters[i].getRotationZ();
+//          if (Util.radian) {
+//            this.parameters[i].setRotationZ(rotationZ + value);
+//          } else {
+//            this.parameters[i].setRotationZ(rotationZ + Math.toRadians(value));
+//          }
+//        }
+//        break;
+//      default:
+//        throw new AssertionError(Messages.getString("DataPicker.3")); //$NON-NLS-1$
+//    }
+//  }
 
   /**
    * {@inheritDoc}
