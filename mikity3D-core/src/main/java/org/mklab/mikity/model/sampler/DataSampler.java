@@ -25,27 +25,29 @@ public interface DataSampler {
   CoordinateParameter getCoordinateParameter(double t);
 
   /**
-   * データをサンプルし，パラメータを設定します。
+   * 抽出するパラメータの型と番号を設定します。
    * 
-   * @param type パラメータのタイプ
-   * @param index データ番号
+   * @param type パラメータの型
+   * @param index 番号
    */
   void sample(CoordinateParameterType type, int index);
 
   /**
    * データの個数を返します。
+   * 
    * @return データの個数
    */
   int getDataSize();
 
   /**
    * 終了時間を返します。
+   * 
    * @return 終了時間
    */
   double getEndTime();
 
   /**
-   * 開始時間を返す。
+   * 開始時間を返します。
    * 
    * @return 開始時間
    */

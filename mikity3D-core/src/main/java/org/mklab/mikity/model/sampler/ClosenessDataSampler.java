@@ -37,7 +37,7 @@ public class ClosenessDataSampler extends AbstractDataSampler {
     for (int i = 0; i < this.types.size(); i++) {
       final CoordinateParameterType type = this.types.get(i);
       final int dataNumber = this.dataNumbers.get(i).intValue();
-      double value = this.data.getDoubleElement(dataNumber, timeNumber);
+      final double value = this.data.getDoubleElement(dataNumber, timeNumber);
       
       switch (type) {
         case TRANSLATION_X:
@@ -64,8 +64,6 @@ public class ClosenessDataSampler extends AbstractDataSampler {
     }
       
     return parameter;
-    
-    //return this.parameters[timeNumber - 1];
   }
 
   /**
@@ -75,7 +73,7 @@ public class ClosenessDataSampler extends AbstractDataSampler {
    * @return 与えられた時間に最も近いデータが存在する時刻に対応するデータ番号
    */
   private int getTimeNumber(double t) {
-    final DoubleMatrix times = getData().getRowVector(1);
+    final DoubleMatrix times = this.data.getRowVector(1);
     final DoubleMatrix timeDifferences = times.subtractElementWise(t).absElementWise();
     final int number = timeDifferences.minimumRowWise().getIndices().getIntElement(1);
     return number;
