@@ -255,16 +255,6 @@ public class JoglPrimitiveFactory {
   private static JoglCoordinate createBaseCoordinate(final TranslationModel translation, final RotationModel rotation) {
     if (translation != null && rotation != null) {
       final JoglCoordinate coordinate = new JoglCoordinate();
-      
-//      final float translationx = translation.getX();
-//      final float translationY = translation.getY();
-//      final float translationZ = translation.getZ();
-//      final float rotationX = rotation.getX();
-//      final float rotationY = rotation.getY();
-//      final float rotationZ = rotation.getZ();
-//      coordinate.setTranslation(translationx, translationY, translationZ);
-//      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      
       coordinate.setTranslation(translation);
       coordinate.setRotation(rotation);
       
@@ -273,12 +263,6 @@ public class JoglPrimitiveFactory {
     
     if (translation != null) {
       final JoglCoordinate coordinate = new JoglCoordinate();
-      
-//      final float translationX = translation.getX();
-//      final float translationY = translation.getY();
-//      final float translationZ = translation.getZ();
-//      coordinate.setTranslation(translationX, translationY, translationZ);
-      
       coordinate.setTranslation(translation);
       
       return coordinate;
@@ -286,12 +270,6 @@ public class JoglPrimitiveFactory {
     
     if (rotation != null) {
       final JoglCoordinate coordinate = new JoglCoordinate();
-      
-//      final float rotationX = rotation.getX();
-//      final float rotationY = rotation.getY();
-//      final float rotationZ = rotation.getZ();
-//      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      
       coordinate.setRotation(rotation);
       
       return coordinate;

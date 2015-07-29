@@ -259,16 +259,6 @@ public class OpenglesPrimitiveFactory {
   private static OpenglesCoordinate createBaseCoordinate(final TranslationModel translation, final RotationModel rotation) {
     if (translation != null && rotation != null) {
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      
-//      final float translationX = translation.getX();
-//      final float translationY = translation.getY();
-//      final float translationZ = translation.getZ();
-//      final float rotationX = rotation.getX();
-//      final float rotationY = rotation.getY();
-//      final float rotationZ = rotation.getZ();
-//      coordinate.setTranslation(translationX, translationY, translationZ);
-//      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      
       coordinate.setTranslation(translation);
       coordinate.setRotation(rotation);
       
@@ -277,12 +267,6 @@ public class OpenglesPrimitiveFactory {
     
     if (translation != null) {
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      
-//      final float translationX = translation.getX();
-//      final float translationY = translation.getY();
-//      final float translationZ = translation.getZ();
-//      coordinate.setTranslation(translationX, translationY, translationZ);
-      
       coordinate.setTranslation(translation);
       
       return coordinate;
@@ -290,12 +274,6 @@ public class OpenglesPrimitiveFactory {
     
     if (rotation != null) {
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      
-//      final float rotationX = rotation.getX();
-//      final float rotationY = rotation.getY();
-//      final float rotationZ = rotation.getZ();
-//      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      
       coordinate.setRotation(rotation);
       
       return coordinate;

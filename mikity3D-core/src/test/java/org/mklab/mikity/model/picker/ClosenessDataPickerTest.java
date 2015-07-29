@@ -68,6 +68,7 @@ public class ClosenessDataPickerTest {
     
     CoordinateParameter parameter3 = sampler.getCoordinateParameter(t2);
     
-    assertTrue(-0.010995 == parameter3.getRotationX());
+    RotationModel rotation3 = parameter3.getRotation();
+    assertTrue(-0.010995f == rotation3.getX());
   }
 }
