@@ -112,16 +112,16 @@ public class AnimationWindow extends ApplicationWindow {
   /** モデルファイル */
   private File modelFile;
   
-  /**
-   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
-   * 
-   * @param parentShell 親シェル
-   * @param root ルート
-   */
-  public AnimationWindow(final Shell parentShell, final Mikity3DModel root) {
-    super(parentShell);
-    setRoot(root);
-  }
+//  /**
+//   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
+//   * 
+//   * @param parentShell 親シェル
+//   * @param root ルート
+//   */
+//  private AnimationWindow(final Shell parentShell, final Mikity3DModel root) {
+//    super(parentShell);
+//    setRoot(root);
+//  }
 
   /**
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
@@ -131,21 +131,23 @@ public class AnimationWindow extends ApplicationWindow {
    * @param modelFile ファイルパス
    */
   public AnimationWindow(final Shell parentShell, final Mikity3DModel root, File modelFile) {
-    this(parentShell, root);
+    super(parentShell);
+    setRoot(root);
     this.modelFile = modelFile;
   }
 
-  /**
-   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
-   * 
-   * @param parentShell 親シェル
-   * @param modelFile モデルファイル
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
-   */
-  public AnimationWindow(final Shell parentShell, File modelFile) throws Mikity3dSerializeDeserializeException {
-    this(parentShell, new Mikity3dFactory().loadFile(modelFile));
-    this.modelFile = modelFile;
-  }
+//  /**
+//   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
+//   * 
+//   * @param parentShell 親シェル
+//   * @param modelFile モデルファイル
+//   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
+//   */
+//  public AnimationWindow(final Shell parentShell, File modelFile) throws Mikity3dSerializeDeserializeException {
+//    super(parentShell);
+//    setRoot(new Mikity3dFactory().loadFile(modelFile));
+//    this.modelFile = modelFile;
+//  }
 
   /**
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
@@ -167,15 +169,24 @@ public class AnimationWindow extends ApplicationWindow {
     this.manager = new ObjectGroupManager();
     this.renderer = new JoglObjectRenderer();
     
-    final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
-    checkAnimation(rootGroup);
+    final List<SourceDataModel> sources = this.root.getConfiguration(0).getSources();
+    if (sources != null) {
+      for (final SourceDataModel source : sources) {
+        addSource(source.getId(), source.getFilePath());
+      }
+    }
+    
+    final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
+    for (GroupModel rootGroup : rootGroups) {
+      checkAnimation(rootGroup);
+    }
   }
 
 
   /**
-   * モデルをレンダラーに登録します。
+   * レンダラーを準備します。
    */
-  void configureModel() {
+  void prepareRenderer() {
     final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     
@@ -222,15 +233,8 @@ public class AnimationWindow extends ApplicationWindow {
     form.setWeights(new int[] {60, 40}); // 60:40に分割
 
     if (this.root != null) {
-      configureModel();
-      this.modelFilePathText.setText(this.modelFile.getAbsolutePath());
-      
-      final List<SourceDataModel> sources = this.root.getConfiguration(0).getSources();
-      if (sources != null) {
-        for (final SourceDataModel source : sources) {
-          addSource(source.getId(), source.getFilePath());
-        }
-      }
+      prepareRenderer();
+      this.modelFilePathText.setText(this.modelFile.getAbsolutePath());     
     }
     
     return parent;
@@ -432,7 +436,11 @@ public class AnimationWindow extends ApplicationWindow {
 
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          configureModel();
+          final String filePath = AnimationWindow.this.modelFilePathText.getText();
+          if (filePath != null && filePath.length() != 0) {
+            loadModel(filePath);
+            prepareRenderer();
+          }
         }
       }
     });
@@ -456,23 +464,25 @@ public class AnimationWindow extends ApplicationWindow {
         
         final String filePath = dialog.open();
         if (filePath != null) {
-          loadModelData(filePath);
+          AnimationWindow.this.modelFilePathText.setText(filePath);
+          loadModel(filePath);
+          prepareRenderer();
         }
       }
 
     });
   }
   
-  /**
-   * モデルデータを読み込みます。
-   * 
-   * @param filePath モデルデータのファイルパス
-   */
-  void loadModelData(final String filePath) {
-    AnimationWindow.this.modelFilePathText.setText(filePath);
-    createRoot(filePath);
-    configureModel();
-  }
+//  /**
+//   * モデルデータを読み込みます。
+//   * 
+//   * @param filePath モデルデータのファイルパス
+//   */
+//  void loadModelData(final String filePath) {
+//    AnimationWindow.this.modelFilePathText.setText(filePath);
+//    createRoot(filePath);
+//    configureModel();
+//  }
 
 
   /**
@@ -480,7 +490,7 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param filePath ファイルのパス
    */
-  void createRoot(String filePath) {
+  void loadModel(String filePath) {
     try {
       final File file = new File(filePath);
       this.modelFile = file;
@@ -514,7 +524,9 @@ public class AnimationWindow extends ApplicationWindow {
 
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          addSource(id, AnimationWindow.this.sourceFilePathText.getText());
+          final String filePath = AnimationWindow.this.sourceFilePathText.getText();
+          addSource(id, filePath);
+          AnimationWindow.this.sourceFilePathText.setText(filePath);
         }
       }
     });
@@ -570,7 +582,6 @@ public class AnimationWindow extends ApplicationWindow {
       input.close();
       
       this.manager.setData(sourceData);
-      this.sourceFilePathText.setText(filePath);
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {

@@ -14,6 +14,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
@@ -112,8 +113,11 @@ public class JoglModeler extends Composite {
    * RootGroupとConfigurationをCanvasに設定します。
    */
   public void updateRenderer() {
-    this.renderer.setRootGroups(this.tree.getModel().getGroups());
-    this.renderer.setConfiguration(this.root.getConfiguration(0));
+    final GroupModel[] rootGroups = this.tree.getModel().getGroups();
+    final ConfigurationModel configuration = this.root.getConfiguration(0);
+    
+    this.renderer.setRootGroups(rootGroups);
+    this.renderer.setConfiguration(configuration);
   }
 
   /**

@@ -290,7 +290,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    */
   public void loadModelData(InputStream input) throws Mikity3dSerializeDeserializeException {
     this.root = new Mikity3dFactory().loadFile(input);
-    configurateModel();
+    prepareRenderer();
     setGroupManager();
   }
 
@@ -618,9 +618,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * モデルをレンダーを登録します。
+   * レンダーを準備します。
    */
-  public void configurateModel() {
+  public void prepareRenderer() {
     final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
 

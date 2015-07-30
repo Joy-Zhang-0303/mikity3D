@@ -68,7 +68,7 @@ public class AnimationWindowTest {
       throw new RuntimeException(e);
     }
     
-    this.window.createRoot(modelFileName);
+    this.window.loadModel(modelFileName);
     final Mikity3DModel actual = this.window.getRoot();
     
     assertTrue(actual.equals(expected));
@@ -80,6 +80,6 @@ public class AnimationWindowTest {
   @Ignore
   @Test(expected=RuntimeException.class)
   public void testExceptionForCreateRoot() {
-    this.window.createRoot("filePath"); //$NON-NLS-1$
+    this.window.loadModel("filePath"); //$NON-NLS-1$
   }
 }
