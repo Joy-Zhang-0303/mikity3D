@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -40,6 +41,8 @@ import org.mklab.mikity.model.xml.simplexml.SourceDataModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.renderer.ObjectRenderer;
+import org.mklab.mikity.view.renderer.jogl.JoglObjectGroup;
+import org.mklab.mikity.view.renderer.jogl.JoglObjectGroupFactory;
 import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matx.MatxMatrix;
@@ -192,7 +195,7 @@ public class AnimationWindow extends ApplicationWindow {
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     
     this.manager.clearObjectGroups();
-    
+
     this.renderer.setRootGroups(rootGroups, this.manager);
     this.renderer.setConfiguration(configuration);
   }
