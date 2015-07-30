@@ -171,6 +171,23 @@ public class AnimationWindow extends ApplicationWindow {
     checkAnimation(rootGroup);
   }
 
+
+  /**
+   * モデルをレンダラーに登録します。
+   */
+  void configureModel() {
+    final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
+    final ConfigurationModel configuration = this.root.getConfiguration(0);
+    
+    ObjectGroupManager.clearObjectGroups();
+    
+    this.renderer.setRootGroups(rootGroups);
+    this.renderer.setConfiguration(configuration);
+    
+    this.frame.add((Component)this.renderer);
+    this.frame.validate();
+  }
+
   /**
    * ルートを返します。
    * 
@@ -249,22 +266,6 @@ public class AnimationWindow extends ApplicationWindow {
 
     // AWTのフレームを作る。
     this.frame = SWT_AWT.new_Frame(this.viewComposite);
-  }
-
-  /**
-   * モデルをレンダラーに登録します。
-   */
-  void configureModel() {
-    final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
-    final ConfigurationModel configuration = this.root.getConfiguration(0);
-    
-    ObjectGroupManager.clearObjectGroups();
-    
-    this.renderer.setRootGroups(rootGroups);
-    this.renderer.setConfiguration(configuration);
-    
-    this.frame.add((Component)this.renderer);
-    this.frame.validate();
   }
 
   /**

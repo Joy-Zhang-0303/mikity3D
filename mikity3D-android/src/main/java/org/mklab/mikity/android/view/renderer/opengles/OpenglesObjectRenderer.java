@@ -151,23 +151,6 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     }
   }
   
-//  /**
-//   * オブジェクトのグループを生成します。
-//   * 
-//   * @param groups ルートグループ
-//   * 
-//   * @return オブジェクトのグループ
-//   */
-//  private List<OpenglesObjectGroup> createObjectGroups(final GroupModel[] groups) {
-//    final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();
-//    for (final GroupModel group : groups) {
-//      final OpenglesObjectGroup objectGroup = new OpenglesObjectGroupFactory().create(group);
-//      objectGroups.add(objectGroup);
-//    }
-//    
-//    return objectGroups;
-//  }
-
   /**
    * {@inheritDoc}
    */
