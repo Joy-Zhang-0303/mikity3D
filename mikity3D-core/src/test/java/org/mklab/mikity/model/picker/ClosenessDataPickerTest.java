@@ -18,7 +18,7 @@ import org.mklab.mikity.model.sampler.ClosenessDataSampler;
 import org.mklab.mikity.model.sampler.DataSampler;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
-import org.mklab.nfc.matrix.Matrix;
+import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
 
@@ -29,7 +29,7 @@ import org.mklab.nfc.matx.MatxMatrix;
  * @version $Revision: 1.6 $.2005/01/17
  */
 public class ClosenessDataPickerTest {
-  private Matrix data;
+  private DoubleMatrix data;
 
   /**
    * @throws IOException ファイルが読み込めない場合
@@ -37,7 +37,7 @@ public class ClosenessDataPickerTest {
   @Before
   public void setUp() throws IOException {
     try (final InputStreamReader input = new InputStreamReader(getClass().getClassLoader().getResourceAsStream("data2.mat"))) { //$NON-NLS-1$
-      this.data = MatxMatrix.readMatFormat(input);
+      this.data = (DoubleMatrix)MatxMatrix.readMatFormat(input);
     }
   }
 

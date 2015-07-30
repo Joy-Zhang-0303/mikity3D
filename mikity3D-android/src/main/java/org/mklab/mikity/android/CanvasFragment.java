@@ -18,11 +18,11 @@ import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
-import org.mklab.nfc.matrix.Matrix;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
 import roboguice.fragment.RoboFragment;
@@ -44,8 +44,8 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.view.View;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -82,7 +82,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   Mikity3DModel root;
   
   ObjectGroupManager manager;
-  Matrix data;
+  DoubleMatrix data;
   private double[] timeTable;
   private double endTime;
   private int animationSpeed;
@@ -352,7 +352,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    */
   void readTimeData(final InputStream input) {
     try {
-      this.data = MatxMatrix.readMatFormat(new InputStreamReader(input));
+      this.data = (DoubleMatrix)MatxMatrix.readMatFormat(new InputStreamReader(input));
       this.setIllegalTimeData = false;
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
@@ -618,12 +618,15 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * モデルデータにレンダーを登録します。
+   * モデルをレンダーを登録します。
    */
   public void configurateModel() {
-    final GroupModel[] children = this.root.getScene(0).getGroups();
-    this.modelRenderer.setRootGroups(children);
-    ConfigurationModel configuration = this.root.getConfiguration(0);
+    final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
+    final ConfigurationModel configuration = this.root.getConfiguration(0);
+
+    ObjectGroupManager.clearObjectGroups();
+    
+    this.modelRenderer.setRootGroups(rootGroups);
     this.modelRenderer.setConfiguration(configuration);
   }
 

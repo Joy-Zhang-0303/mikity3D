@@ -9,7 +9,7 @@ import org.simpleframework.xml.Attribute;
 
 
 /**
- * データのソースを表すクラスです。
+ * ソースを表すクラスです。
  * 
  * @author koga
  * @version $Revision$, 2015/07/28

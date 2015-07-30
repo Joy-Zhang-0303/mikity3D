@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.nfc.matrix.DoubleMatrix;
-import org.mklab.nfc.matrix.Matrix;
 
 
 /**
@@ -33,8 +32,8 @@ public abstract class AbstractDataSampler implements DataSampler {
    * 新しく生成された<code>AbstractDataSampler</code>オブジェクトを初期化します。
    * @param data データ
    */
-  public AbstractDataSampler(Matrix data) {
-    this.data = (DoubleMatrix)data;
+  public AbstractDataSampler(DoubleMatrix data) {
+    this.data = data;
   }
 
   /**

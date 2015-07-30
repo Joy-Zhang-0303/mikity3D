@@ -143,7 +143,6 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
    * {@inheritDoc}
    */
   public void setRootGroups(GroupModel[] groups) {
-    ObjectGroupManager.clearObjectGroups();
     this.rootGroups = createObjectGroups(groups);
   }
   

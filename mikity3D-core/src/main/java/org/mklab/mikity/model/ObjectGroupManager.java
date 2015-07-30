@@ -6,13 +6,16 @@
 package org.mklab.mikity.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mklab.mikity.model.sampler.ClosenessDataSampler;
 import org.mklab.mikity.model.sampler.DataSampler;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
+import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;
 
 
@@ -38,6 +41,9 @@ public class ObjectGroupManager {
 
   /** アニメーションが存在するならばtrue */
   private boolean hasAnimation = false;
+  
+  /** ソース。 */
+  private Map<String, DoubleMatrix> sources = new HashMap<>();
 
   /**
    * 指定された時刻のデータでオブジェクトグループを更新します。
@@ -51,13 +57,23 @@ public class ObjectGroupManager {
       objectGroup.setCoordinateParameter(sampler.getCoordinateParameter(t));
     }
   }
+  
+  /**
+   * ソースを追加します。
+   * 
+   * @param id ID
+   * @param data データ
+   */
+  public void addSource(final String id, DoubleMatrix data) {
+    this.sources.put(id, data);
+  }
 
   /**
    * 時系列データを設定します。
    * 
    * @param data 時系列データ
    */
-  public void setData(final Matrix data) {
+  public void setData(final DoubleMatrix data) {
     this.dataSize = 0;
     this.startTime = 0;
     this.endTime = 0;
@@ -69,12 +85,13 @@ public class ObjectGroupManager {
       if (group == null || group.hasAnimation() == false) {
         continue;
       }
-
       
       final DataSampler sampler = createSampler(data, group.getAnimations());
       addMovingGroup(objectGroup, sampler);
     }
   }
+  
+  
 
   /**
    * 可動グループを追加します。
@@ -95,7 +112,7 @@ public class ObjectGroupManager {
    * @param data 時系列データ
    * @param animation アニメーション
    */
-  private DataSampler createSampler(final Matrix data, final AnimationModel[] animations) {
+  private DataSampler createSampler(final DoubleMatrix data, final AnimationModel[] animations) {
     final DataSampler sampler = new ClosenessDataSampler(data);
 
     for (final AnimationModel animation : animations) {

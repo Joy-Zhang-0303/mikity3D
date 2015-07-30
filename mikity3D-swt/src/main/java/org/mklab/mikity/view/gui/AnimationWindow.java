@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,13 +34,14 @@ import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
+import org.mklab.mikity.model.xml.simplexml.SourceDataModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.renderer.ObjectRenderer;
 import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
-import org.mklab.nfc.matrix.Matrix;
+import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
 
@@ -77,8 +79,8 @@ public class AnimationWindow extends ApplicationWindow {
   /** 等間隔の時間を保存しとく配列 */
   double[] timeTable;
 
-  /** ソースデータ。 */
-  private Matrix sourceData;
+//  /** ソースデータ。 */
+//  private Matrix sourceData;
 
   /** */
   Text modelFilePathText;
@@ -164,6 +166,9 @@ public class AnimationWindow extends ApplicationWindow {
     this.root = root;
     this.manager = new ObjectGroupManager();
     this.renderer = new JoglObjectRenderer();
+    
+    final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
+    checkAnimation(rootGroup);
   }
 
   /**
@@ -200,12 +205,14 @@ public class AnimationWindow extends ApplicationWindow {
     form.setWeights(new int[] {60, 40}); // 60:40に分割
 
     if (this.root != null) {
-      setModelData();
+      configureModel();
       this.modelFilePathText.setText(this.modelFile.getAbsolutePath());
       
-      final String timeSeriesDataFilePath = this.root.getConfiguration(0).getData();
-      if (timeSeriesDataFilePath != null) {
-        setSourceFilePath(timeSeriesDataFilePath);
+      final List<SourceDataModel> sources = this.root.getConfiguration(0).getSources();
+      if (sources != null) {
+        for (final SourceDataModel source : sources) {
+          addSource(source.getId(), source.getFilePath());
+        }
       }
     }
     
@@ -245,11 +252,13 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * モデルデータを設定します。
+   * モデルをレンダラーに登録します。
    */
-  void setModelData() {
+  void configureModel() {
     final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
+    
+    ObjectGroupManager.clearObjectGroups();
     
     this.renderer.setRootGroups(rootGroups);
     this.renderer.setConfiguration(configuration);
@@ -276,12 +285,16 @@ public class AnimationWindow extends ApplicationWindow {
 
     final Composite buttonComposite = new Composite(controller, SWT.NONE);
     buttonComposite.setLayout(new GridLayout(4, false));
-    final Button playbackButton = new Button(buttonComposite, SWT.NONE);
-    playbackButton.setImage(ImageManager.getImage(ImageManager.PLAYBACK));
+    
+    final Button playButton = new Button(buttonComposite, SWT.NONE);
+    playButton.setImage(ImageManager.getImage(ImageManager.PLAYBACK));
+    
     final Button stopButton = new Button(buttonComposite, SWT.NONE);
     stopButton.setImage(ImageManager.getImage(ImageManager.STOP));
+    
     final Button slowerButton = new Button(buttonComposite, SWT.NONE);
     slowerButton.setImage(ImageManager.getImage(ImageManager.SLOW));
+    
     final Button fasterButton = new Button(buttonComposite, SWT.NONE);
     fasterButton.setImage(ImageManager.getImage(ImageManager.FASTER));
 
@@ -292,10 +305,30 @@ public class AnimationWindow extends ApplicationWindow {
     this.playSpeed = new ParameterInputBox(speedComposite, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     createTimeBar(controller);
-
     createModeChooser(composite);
     createSourceChooser(composite);
-    
+
+    playButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        runAnimation();
+      }
+    });
+
+    stopButton.addSelectionListener(new SelectionAdapter() {
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        // スレッドを停止させる。復元不能
+        AnimationWindow.this.timer.cancel();
+        playable = true;
+      }
+    });
 
     fasterButton.addSelectionListener(new SelectionAdapter() {
       /**
@@ -329,27 +362,6 @@ public class AnimationWindow extends ApplicationWindow {
       }
     });
 
-    playbackButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-      /**
-       * {@inheritDoc}
-       */
-      @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        runAnimation();
-      }
-    });
-
-    stopButton.addSelectionListener(new SelectionAdapter() {
-      /**
-       * {@inheritDoc}
-       */
-      @Override
-      public void widgetSelected(SelectionEvent e) {
-        // スレッドを停止させる。復元不能
-        AnimationWindow.this.timer.cancel();
-        playable = true;
-      }
-    });
   }
 
   /**
@@ -419,7 +431,7 @@ public class AnimationWindow extends ApplicationWindow {
 
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          setModelData();
+          configureModel();
         }
       }
     });
@@ -458,7 +470,7 @@ public class AnimationWindow extends ApplicationWindow {
   void loadModelData(final String filePath) {
     AnimationWindow.this.modelFilePathText.setText(filePath);
     createRoot(filePath);
-    setModelData();
+    configureModel();
   }
 
 
@@ -493,13 +505,15 @@ public class AnimationWindow extends ApplicationWindow {
     final Label label = new Label(composite, SWT.NONE);
     label.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
 
+    final String id = "1"; //$NON-NLS-1$
+    
     this.sourceFilePathText = new Text(composite, SWT.BORDER);
     this.sourceFilePathText.setText(""); //$NON-NLS-1$
     this.sourceFilePathText.addTraverseListener(new TraverseListener() {
 
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          setSourceFilePath(AnimationWindow.this.sourceFilePathText.getText());
+          addSource(id, AnimationWindow.this.sourceFilePathText.getText());
         }
       }
     });
@@ -510,7 +524,7 @@ public class AnimationWindow extends ApplicationWindow {
 
     final Button referenceButton = new Button(composite, SWT.BORDER);
     referenceButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
-
+    
     referenceButton.addSelectionListener(new SelectionAdapter() {
 
       /**
@@ -524,7 +538,7 @@ public class AnimationWindow extends ApplicationWindow {
         final String filePath = dialog.open();
         if (filePath != null) {
           AnimationWindow.this.sourceFilePathText.setText(filePath);
-          setSourceFilePath(filePath);
+          addSource(id, filePath);
         }
       }
     });
@@ -544,33 +558,17 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * 時系列データのファイルを設定します。
+   * ソースのファイルを設定します。
    * 
-   * @param file 時系列データファイル
+   * @param id ソースのID
+   * @param file ソースのファイルパス
    */
-  void setSourceFilePath(String filePath) {
+  void addSource(String id, String filePath) {
     try (FileReader input = new FileReader(filePath);) {
-      this.sourceData = MatxMatrix.readMatFormat(input);
+      final DoubleMatrix sourceData = (DoubleMatrix)MatxMatrix.readMatFormat(input);
       input.close();
-
-      this.timeSlider.setEnabled(true);
-      this.manager.setData(this.sourceData);
-
-      final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
-      checkAnimation(rootGroup);
-
-      final int dataSize = this.manager.getDataSize();
-
-      this.timeTable = new double[dataSize];
-
-      this.endTime = this.manager.getEndTime();
-      this.startTimeLabel.setText("" + this.manager.getStartTime()); //$NON-NLS-1$
-      this.endTimeLabel.setText("" + this.endTime); //$NON-NLS-1$
-      for (int i = 0; i < this.timeTable.length; i++) {
-        this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
-      }
-      this.timeSlider.setMaximum(dataSize);
-
+      
+      this.manager.setData(sourceData);
       this.sourceFilePathText.setText(filePath);
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
@@ -580,33 +578,51 @@ public class AnimationWindow extends ApplicationWindow {
   }
 
   /**
-   * 時系列データを設定します。
-   * 
-   * @param data 時系列データ
+   * スライダーを準備します。
    */
-  public void setTimeSeriesData(final Matrix data) {
-    this.sourceData = data;
-
-    this.timeSlider.setEnabled(true);
-    this.manager.setData(this.sourceData);
-
-    final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
-    checkAnimation(rootGroup);
-
-    final int dataSize = this.manager.getDataSize();
-
-    this.timeTable = new double[dataSize];
-
+  private void prepareSlider() {
     this.endTime = this.manager.getEndTime();
     this.startTimeLabel.setText("" + this.manager.getStartTime()); //$NON-NLS-1$
     this.endTimeLabel.setText("" + this.endTime); //$NON-NLS-1$
+
+    final int dataSize = this.manager.getDataSize();
+    this.timeTable = new double[dataSize];
     for (int i = 0; i < this.timeTable.length; i++) {
       this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
     }
+    
+    this.timeSlider.setEnabled(true);
     this.timeSlider.setMaximum(dataSize);
-
-    this.sourceFilePathText.setText("data"); //$NON-NLS-1$
   }
+
+//  /**
+//   * 時系列データを設定します。
+//   * 
+//   * @param data 時系列データ
+//   */
+//  public void setTimeSeriesData(final Matrix data) {
+//    this.sourceData = data;
+//
+//    this.timeSlider.setEnabled(true);
+//    this.manager.setData(this.sourceData);
+//
+//    final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
+//    checkAnimation(rootGroup);
+//
+//    final int dataSize = this.manager.getDataSize();
+//
+//    this.timeTable = new double[dataSize];
+//
+//    this.endTime = this.manager.getEndTime();
+//    this.startTimeLabel.setText("" + this.manager.getStartTime()); //$NON-NLS-1$
+//    this.endTimeLabel.setText("" + this.endTime); //$NON-NLS-1$
+//    for (int i = 0; i < this.timeTable.length; i++) {
+//      this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
+//    }
+//    this.timeSlider.setMaximum(dataSize);
+//
+//    this.sourceFilePathText.setText("data"); //$NON-NLS-1$
+//  }
 
   /**
    * アニメーションを開始します。
@@ -616,9 +632,10 @@ public class AnimationWindow extends ApplicationWindow {
       this.timer.cancel();
     }
 
-    if (this.sourceData == null || this.timeTable == null) {
+    prepareSlider();
+    
+    if (this.timeTable == null) {
       MessagegUtil.show(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
-      System.out.println(Messages.getString("SimulationViewer.5")); //$NON-NLS-1$
       return;
     }
 

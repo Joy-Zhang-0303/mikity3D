@@ -1,5 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml;
 
+import java.util.List;
+
 import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
@@ -7,6 +9,7 @@ import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 
@@ -44,8 +47,8 @@ public class ConfigurationModel implements java.io.Serializable {
   private DataUnitModel dataUnit;
 
   /** データ。 */
-  @Element(name="data", required=false)
-  private String data;
+  @ElementList(type=SourceDataModel.class, inline=true, required=false)
+  private List<SourceDataModel> sources;
   
   /**
    * 新しく生成された<code>Mikity3dConfiguration</code>オブジェクトを初期化します。
@@ -79,6 +82,57 @@ public class ConfigurationModel implements java.io.Serializable {
     }
   }
   
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this.background == null) ? 0 : this.background.hashCode());
+    result = prime * result + ((this.dataUnit == null) ? 0 : this.dataUnit.hashCode());
+    result = prime * result + ((this.eye == null) ? 0 : this.eye.hashCode());
+    result = prime * result + ((this.light == null) ? 0 : this.light.hashCode());
+    result = prime * result + ((this.lookAtPoint == null) ? 0 : this.lookAtPoint.hashCode());
+    result = prime * result + ((this.modelUnit == null) ? 0 : this.modelUnit.hashCode());
+    result = prime * result + ((this.sources == null) ? 0 : this.sources.hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    ConfigurationModel other = (ConfigurationModel)obj;
+    if (this.background == null) {
+      if (other.background != null) return false;
+    } else if (!this.background.equals(other.background)) return false;
+    if (this.dataUnit == null) {
+      if (other.dataUnit != null) return false;
+    } else if (!this.dataUnit.equals(other.dataUnit)) return false;
+    if (this.eye == null) {
+      if (other.eye != null) return false;
+    } else if (!this.eye.equals(other.eye)) return false;
+    if (this.light == null) {
+      if (other.light != null) return false;
+    } else if (!this.light.equals(other.light)) return false;
+    if (this.lookAtPoint == null) {
+      if (other.lookAtPoint != null) return false;
+    } else if (!this.lookAtPoint.equals(other.lookAtPoint)) return false;
+    if (this.modelUnit == null) {
+      if (other.modelUnit != null) return false;
+    } else if (!this.modelUnit.equals(other.modelUnit)) return false;
+    if (this.sources == null) {
+      if (other.sources != null) return false;
+    } else if (!this.sources.equals(other.sources)) return false;
+    return true;
+  }
+
   /**
    * 背景を返します。
    * 
@@ -89,97 +143,12 @@ public class ConfigurationModel implements java.io.Serializable {
   }
 
   /**
-   * {@inheritDoc}
-   */
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((this.background == null) ? 0 : this.background.hashCode());
-    result = prime * result + ((this.data == null) ? 0 : this.data.hashCode());
-    result = prime * result + ((this.dataUnit == null) ? 0 : this.dataUnit.hashCode());
-    result = prime * result + ((this.light == null) ? 0 : this.light.hashCode());
-    result = prime * result + ((this.modelUnit == null) ? 0 : this.modelUnit.hashCode());
-    result = prime * result + ((this.eye == null) ? 0 : this.eye.hashCode());
-    result = prime * result + ((this.lookAtPoint == null) ? 0 : this.lookAtPoint.hashCode());
-    return result;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    ConfigurationModel other = (ConfigurationModel)obj;
-    if (this.background == null) {
-      if (other.background != null) {
-        return false;
-      }
-    } else if (!this.background.equals(other.background)) {
-      return false;
-    }
-    if (this.data == null) {
-      if (other.data != null) {
-        return false;
-      }
-    } else if (!this.data.equals(other.data)) {
-      return false;
-    }
-    if (this.dataUnit == null) {
-      if (other.dataUnit != null) {
-        return false;
-      }
-    } else if (!this.dataUnit.equals(other.dataUnit)) {
-      return false;
-    }
-    if (this.light == null) {
-      if (other.light != null) {
-        return false;
-      }
-    } else if (!this.light.equals(other.light)) {
-      return false;
-    }
-    if (this.modelUnit == null) {
-      if (other.modelUnit != null) {
-        return false;
-      }
-    } else if (!this.modelUnit.equals(other.modelUnit)) {
-      return false;
-    }
-    if (this.eye == null) {
-      if (other.eye != null) {
-        return false;
-      }
-    } else if (!this.eye.equals(other.eye)) {
-      return false;
-    }
-    if (this.lookAtPoint == null) {
-      if (other.lookAtPoint != null) {
-        return false;
-      }
-    } else if (!this.lookAtPoint.equals(other.lookAtPoint)) {
-      return false;
-    }
-
-    return true;
-  }
-
-  /**
    * データを返します。
    * 
    * @return データ
    */
-  public String getData() {
-    return this.data;
+  public List<SourceDataModel> getSources() {
+    return this.sources;
   }
 
   /**
@@ -237,12 +206,12 @@ public class ConfigurationModel implements java.io.Serializable {
   }
 
   /**
-   * データを設定します。
+   * ソースを設定します。
    * 
-   * @param data データ
+   * @param sources ソース
    */
-  public void setData(String data) {
-    this.data = data;
+  public void setSources(List<SourceDataModel> sources) {
+    this.sources = sources;
   }
 
   /**

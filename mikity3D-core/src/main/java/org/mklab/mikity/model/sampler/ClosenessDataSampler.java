@@ -8,7 +8,6 @@ package org.mklab.mikity.model.sampler;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.nfc.matrix.DoubleMatrix;
-import org.mklab.nfc.matrix.Matrix;
 
 
 /**
@@ -22,7 +21,7 @@ public class ClosenessDataSampler extends AbstractDataSampler {
    * 新しく生成された<code>ClosenessDataSampler</code>オブジェクトを初期化します。
    * @param data データ
    */
-  public ClosenessDataSampler(Matrix data) {
+  public ClosenessDataSampler(DoubleMatrix data) {
     super(data);
   }
 

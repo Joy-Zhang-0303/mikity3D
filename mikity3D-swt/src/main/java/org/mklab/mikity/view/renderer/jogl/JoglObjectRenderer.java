@@ -151,7 +151,6 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * {@inheritDoc}
    */
   public void setRootGroups(GroupModel[] rootGroups) {
-    ObjectGroupManager.clearObjectGroups();
     this.rootGroups = createObjectGroups(rootGroups);
     display();
   }
