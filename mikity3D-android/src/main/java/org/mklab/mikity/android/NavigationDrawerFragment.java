@@ -501,8 +501,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     }
 
     group.getAnimations()[childPosition].getSource().setNumber(number);
-    this.canvasActivity.canvasFragment.prepareRenderer();
     this.canvasActivity.canvasFragment.setGroupManager();
+    this.canvasActivity.canvasFragment.prepareRenderer();
   }
 
   /**

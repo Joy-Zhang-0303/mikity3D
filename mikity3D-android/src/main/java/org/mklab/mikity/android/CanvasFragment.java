@@ -290,8 +290,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    */
   public void loadModelData(InputStream input) throws Mikity3dSerializeDeserializeException {
     this.root = new Mikity3dFactory().loadFile(input);
-    prepareRenderer();
     setGroupManager();
+    prepareRenderer();
   }
 
   /**
