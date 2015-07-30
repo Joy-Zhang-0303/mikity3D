@@ -88,21 +88,18 @@ public class OpenglesObjectGroupFactory {
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
       coordinate.setRotation(rotation);
       coordinate.setTranslation(translation);
-      
       return coordinate;
     } 
     
     if (translation != null) {
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
       coordinate.setTranslation(translation);
-      
       return coordinate;
     }
     
     if (rotation != null) {
       final OpenglesCoordinate coordinate = new OpenglesCoordinate();
       coordinate.setRotation(rotation);
-      
       return coordinate;
     }
 

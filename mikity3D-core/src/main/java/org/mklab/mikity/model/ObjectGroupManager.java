@@ -16,7 +16,6 @@ import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
 import org.mklab.nfc.matrix.DoubleMatrix;
-import org.mklab.nfc.matrix.Matrix;
 
 
 /**
@@ -26,7 +25,6 @@ import org.mklab.nfc.matrix.Matrix;
  * @version $Revision: 1.10 $.2005/01/14
  */
 public class ObjectGroupManager {
-
   /** オブジェクトグループ。 */
   private static List<ObjectGroup> OBJECT_GROUPS = new ArrayList<>();
   /** 可動グループ。 */

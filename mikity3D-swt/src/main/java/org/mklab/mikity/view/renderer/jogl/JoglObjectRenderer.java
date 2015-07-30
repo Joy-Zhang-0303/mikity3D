@@ -151,26 +151,33 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * {@inheritDoc}
    */
   public void setRootGroups(GroupModel[] rootGroups) {
-    this.rootGroups = createObjectGroups(rootGroups);
+    final JoglObjectGroupFactory factory = new JoglObjectGroupFactory();
+    
+    this.rootGroups = new ArrayList<>();
+    for (final GroupModel rootGroup : rootGroups) {
+      final JoglObjectGroup objectGroup = factory.create(rootGroup);
+      this.rootGroups.add(objectGroup);
+    }
+    
     display();
   }
   
-  /**
-   * オブジェクトのグループを生成します。
-   * 
-   * @param groups ルートグループ
-   * 
-   * @return オブジェクトのグループ
-   */
-  private List<JoglObjectGroup> createObjectGroups(final GroupModel[] groups) {
-    final List<JoglObjectGroup> objectGroups = new ArrayList<>();
-    for (final GroupModel rootGroup : groups) {
-      final JoglObjectGroup objectGroup = new JoglObjectGroupFactory().create(rootGroup);
-      objectGroups.add(objectGroup);
-    }
-
-    return objectGroups;
-  }
+//  /**
+//   * オブジェクトのグループを生成します。
+//   * 
+//   * @param groups ルートグループ
+//   * 
+//   * @return オブジェクトのグループ
+//   */
+//  private List<JoglObjectGroup> createObjectGroups(final GroupModel[] groups) {
+//    final List<JoglObjectGroup> objectGroups = new ArrayList<>();
+//    for (final GroupModel rootGroup : groups) {
+//      final JoglObjectGroup objectGroup = new JoglObjectGroupFactory().create(rootGroup);
+//      objectGroups.add(objectGroup);
+//    }
+//
+//    return objectGroups;
+//  }
 
   /**
    * {@inheritDoc}

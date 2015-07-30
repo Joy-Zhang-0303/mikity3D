@@ -6,7 +6,6 @@ import java.util.List;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
@@ -142,26 +141,32 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   /**
    * {@inheritDoc}
    */
-  public void setRootGroups(GroupModel[] groups) {
-    this.rootGroups = createObjectGroups(groups);
+  public void setRootGroups(GroupModel[] rootGroups) {
+    final OpenglesObjectGroupFactory factory = new OpenglesObjectGroupFactory();
+    
+    this.rootGroups = new ArrayList<OpenglesObjectGroup>();
+    for (final GroupModel group : rootGroups) {
+      final OpenglesObjectGroup objectGroup = factory.create(group);
+      this.rootGroups.add(objectGroup);
+    }
   }
   
-  /**
-   * オブジェクトのグループを生成します。
-   * 
-   * @param groups ルートグループ
-   * 
-   * @return オブジェクトのグループ
-   */
-  private List<OpenglesObjectGroup> createObjectGroups(final GroupModel[] groups) {
-    final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();
-    for (final GroupModel group : groups) {
-      final OpenglesObjectGroup objectGroup = new OpenglesObjectGroupFactory().create(group);
-      objectGroups.add(objectGroup);
-    }
-    
-    return objectGroups;
-  }
+//  /**
+//   * オブジェクトのグループを生成します。
+//   * 
+//   * @param groups ルートグループ
+//   * 
+//   * @return オブジェクトのグループ
+//   */
+//  private List<OpenglesObjectGroup> createObjectGroups(final GroupModel[] groups) {
+//    final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();
+//    for (final GroupModel group : groups) {
+//      final OpenglesObjectGroup objectGroup = new OpenglesObjectGroupFactory().create(group);
+//      objectGroups.add(objectGroup);
+//    }
+//    
+//    return objectGroups;
+//  }
 
   /**
    * {@inheritDoc}

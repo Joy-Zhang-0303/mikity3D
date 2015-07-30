@@ -79,16 +79,7 @@ public class JoglObjectGroupFactory {
     
     if (translation != null && rotation != null) {
       final JoglCoordinate coordinate = new JoglCoordinate();
-      
-//      final float translationX = translation.getX();
-//      final float translationY = translation.getY();
-//      final float translationZ = translation.getZ();
-//      final float rotationX = rotation.getX();
-//      final float rotationY = rotation.getY();
-//      final float rotationZ = rotation.getZ();
-//      coordinate.setTranslation(translationX, translationY, translationZ);
-//      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      
+    
       coordinate.setTranslation(translation);
       coordinate.setRotation(rotation);
       
@@ -97,27 +88,13 @@ public class JoglObjectGroupFactory {
     
     if (translation != null) {
       final JoglCoordinate coordinate = new JoglCoordinate();
-      
-//      final float translationX = translation.getX();
-//      final float translationY = translation.getY();
-//      final float translationZ = translation.getZ();
-//      coordinate.setTranslation(translationX, translationY, translationZ);
-      
       coordinate.setTranslation(translation);
-      
       return coordinate;
     }
     
     if (rotation != null) {
       final JoglCoordinate coordinate = new JoglCoordinate();
-      
-//      final float rotationX = rotation.getX();
-//      final float rotationY = rotation.getY();
-//      final float rotationZ = rotation.getZ();
-//      coordinate.setRotation(rotationX, rotationY, rotationZ);
-      
       coordinate.setRotation(rotation);
-      
       return coordinate;
     }
 
