@@ -134,6 +134,7 @@ public class AnimationWindow extends ApplicationWindow {
     super(parentShell);
     setRoot(root);
     this.modelFile = modelFile;
+    this.renderer = new JoglObjectRenderer();
   }
 
 //  /**
@@ -155,6 +156,7 @@ public class AnimationWindow extends ApplicationWindow {
    */
   public AnimationWindow(final Shell parentShell) {
     super(parentShell);
+    this.renderer = new JoglObjectRenderer();
   }
 
   /**
@@ -167,7 +169,6 @@ public class AnimationWindow extends ApplicationWindow {
   void setRoot(final Mikity3DModel root) {
     this.root = root;
     this.manager = new ObjectGroupManager();
-    this.renderer = new JoglObjectRenderer();
     
     final List<SourceDataModel> sources = this.root.getConfiguration(0).getSources();
     if (sources != null) {
@@ -193,10 +194,7 @@ public class AnimationWindow extends ApplicationWindow {
     ObjectGroupManager.clearObjectGroups();
     
     this.renderer.setRootGroups(rootGroups);
-    this.renderer.setConfiguration(configuration);
-    
-    this.frame.add((Component)this.renderer);
-    this.frame.validate();
+    this.renderer.setConfiguration(configuration);   
   }
 
   /**
@@ -235,7 +233,7 @@ public class AnimationWindow extends ApplicationWindow {
     if (this.root != null) {
       prepareRenderer();
       this.modelFilePathText.setText(this.modelFile.getAbsolutePath());     
-    }
+    }  
     
     return parent;
   }
@@ -270,6 +268,8 @@ public class AnimationWindow extends ApplicationWindow {
 
     // AWTのフレームを作る。
     this.frame = SWT_AWT.new_Frame(this.viewComposite);
+    this.frame.add((Component)this.renderer);
+    this.frame.validate();
   }
 
   /**
