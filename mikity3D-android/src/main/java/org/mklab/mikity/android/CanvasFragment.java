@@ -328,7 +328,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
           throw new RuntimeException(e);
         }
         
-        setTimeData();
+        final String id = "1"; //$NON-NLS-1$
+        
+        setTimeData(id);
         return null;
       }
 
@@ -387,10 +389,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
   /**
    * MovableGroupManagerに時間データを登録します。
+   * @param id ID
    */
-  public void setTimeData() {
+  public void setTimeData(String id) {
     try {
-      this.manager.setData(this.data);
+      this.manager.addSource(id, this.data);
     } catch (IllegalAccessError e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
@@ -466,6 +469,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       return;
     }
     this.playable = false;
+    
+    this.manager.prepareMovingGroups();
+    
     this.endTime = this.manager.getEndTime();
     
     if (this.isPause) {
@@ -625,7 +631,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     final ConfigurationModel configuration = this.root.getConfiguration(0);
 
     this.manager.clearObjectGroups();
-    
     this.modelRenderer.setRootGroups(rootGroups, this.manager);
     this.modelRenderer.setConfiguration(configuration);
   }

@@ -67,11 +67,9 @@ public class ObjectGroupManager {
   }
 
   /**
-   * 時系列データを設定します。
-   * 
-   * @param data 時系列データ
+   * 可動グループを準備します。
    */
-  public void setData(final DoubleMatrix data) {
+  public void prepareMovingGroups() {
     this.dataSize = 0;
     this.startTime = 0;
     this.endTime = 0;
@@ -84,7 +82,7 @@ public class ObjectGroupManager {
         continue;
       }
       
-      final DataSampler sampler = createSampler(data, group.getAnimations());
+      final DataSampler sampler = createSampler(group.getAnimations());
       addMovingGroup(objectGroup, sampler);
     }
   }
@@ -105,11 +103,11 @@ public class ObjectGroupManager {
   /**
    * データ抽出器を生成します。
    * 
-   * @param data 時系列データ
    * @param animation アニメーション
    */
-  private DataSampler createSampler(final DoubleMatrix data, final AnimationModel[] animations) {
-    final DataSampler sampler = new ClosenessDataSampler(data);
+  private DataSampler createSampler(final AnimationModel[] animations) {
+    final String id = animations[0].getSource().getId();
+    final DataSampler sampler = new ClosenessDataSampler(this.sources.get(id));
 
     for (final AnimationModel animation : animations) {
       final String target = animation.getTarget();

@@ -121,7 +121,6 @@ public class JoglModeler extends Composite {
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     
     this.manager.clearObjectGroups();
-    
     this.renderer.setRootGroups(rootGroups, this.manager);
     this.renderer.setConfiguration(configuration);
   }
