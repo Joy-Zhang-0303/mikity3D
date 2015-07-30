@@ -191,10 +191,10 @@ public class AnimationWindow extends ApplicationWindow {
     final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     
-    ObjectGroupManager.clearObjectGroups();
+    this.manager.clearObjectGroups();
     
-    this.renderer.setRootGroups(rootGroups);
-    this.renderer.setConfiguration(configuration);   
+    this.renderer.setRootGroups(rootGroups, this.manager);
+    this.renderer.setConfiguration(configuration);
   }
 
   /**

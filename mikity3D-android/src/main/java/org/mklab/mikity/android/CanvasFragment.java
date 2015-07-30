@@ -624,9 +624,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
 
-    ObjectGroupManager.clearObjectGroups();
+    this.manager.clearObjectGroups();
     
-    this.modelRenderer.setRootGroups(rootGroups);
+    this.modelRenderer.setRootGroups(rootGroups, this.manager);
     this.modelRenderer.setConfiguration(configuration);
   }
 

@@ -26,7 +26,7 @@ import org.mklab.nfc.matrix.DoubleMatrix;
  */
 public class ObjectGroupManager {
   /** オブジェクトグループ。 */
-  private static List<ObjectGroup> OBJECT_GROUPS = new ArrayList<>();
+  private List<ObjectGroup> objectGroups = new ArrayList<>();
   /** 可動グループ。 */
   private List<ObjectGroupDataSampler> movingGroups = new ArrayList<>();
 
@@ -78,7 +78,7 @@ public class ObjectGroupManager {
 
     this.movingGroups.clear();
 
-    for (final ObjectGroup objectGroup : OBJECT_GROUPS) {
+    for (final ObjectGroup objectGroup : this.objectGroups) {
       final GroupModel group = objectGroup.getGroup();
       if (group == null || group.hasAnimation() == false) {
         continue;
@@ -88,8 +88,6 @@ public class ObjectGroupManager {
       addMovingGroup(objectGroup, sampler);
     }
   }
-  
-  
 
   /**
    * 可動グループを追加します。
@@ -174,15 +172,15 @@ public class ObjectGroupManager {
    * 
    * @param objectGroup オブジェクトグループ
    */
-  public static void addObjectGroup(final ObjectGroup objectGroup) {
-    OBJECT_GROUPS.add(objectGroup);
+  public void addObjectGroup(final ObjectGroup objectGroup) {
+    this.objectGroups.add(objectGroup);
   }
   
   /**
    * 全ての登録されているオブジェクトグループを削除します。
    */
-  public static void clearObjectGroups() {
-    OBJECT_GROUPS.clear();
+  public void clearObjectGroups() {
+    this.objectGroups.clear();
   }
 
 }

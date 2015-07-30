@@ -14,6 +14,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -31,6 +32,9 @@ public class JoglModeler extends Composite {
   SceneGraphTree tree;
   /** レンダラー。 */
   private JoglObjectRenderer renderer;
+  /** オブジェクトグループのマネージャ。 */
+  private ObjectGroupManager manager;
+  
   /** ルート。 */
   Mikity3DModel root;
   
@@ -116,7 +120,9 @@ public class JoglModeler extends Composite {
     final GroupModel[] rootGroups = this.tree.getModel().getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     
-    this.renderer.setRootGroups(rootGroups);
+    this.manager.clearObjectGroups();
+    
+    this.renderer.setRootGroups(rootGroups, this.manager);
     this.renderer.setConfiguration(configuration);
   }
 
@@ -127,6 +133,8 @@ public class JoglModeler extends Composite {
    */
   private void createModelCanvas(Composite canvasComposite) {
     this.renderer = new JoglObjectRenderer();
+    this.manager = new ObjectGroupManager();
+    
     final Frame frame = SWT_AWT.new_Frame(canvasComposite);
     frame.add(this.renderer);
   }

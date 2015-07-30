@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.view.renderer;
 
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
@@ -19,8 +20,9 @@ public interface ObjectRenderer {
    * 描画対象となるルートグループ群を設定します。
    * 
    * @param rootGroups ルートグループ群 
+   * @param manager オブジェクトグループマネージャ
    */
-  void setRootGroups(GroupModel[] rootGroups);
+  void setRootGroups(GroupModel[] rootGroups, ObjectGroupManager manager);
   
   /**
    * 環境データを設定します。

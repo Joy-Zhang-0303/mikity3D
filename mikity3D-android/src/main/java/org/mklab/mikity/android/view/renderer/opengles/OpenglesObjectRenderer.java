@@ -6,6 +6,7 @@ import java.util.List;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
@@ -141,8 +142,8 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   /**
    * {@inheritDoc}
    */
-  public void setRootGroups(GroupModel[] rootGroups) {
-    final OpenglesObjectGroupFactory factory = new OpenglesObjectGroupFactory();
+  public void setRootGroups(GroupModel[] rootGroups, ObjectGroupManager manager) {
+    final OpenglesObjectGroupFactory factory = new OpenglesObjectGroupFactory(manager);
     
     this.rootGroups = new ArrayList<OpenglesObjectGroup>();
     for (final GroupModel group : rootGroups) {

@@ -25,6 +25,17 @@ import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
  * @version $Revision$, 2013/02/12
  */
 public class OpenglesObjectGroupFactory {
+  /** オブジェクトグループマネージャ。 */
+  private ObjectGroupManager manager;
+  
+  /**
+   * 新しく生成された<code>OpenglesObjectGroupFactory</code>オブジェクトを初期化します。
+   * @param manager オブジェクトグループマネージャ
+   */
+  public OpenglesObjectGroupFactory(ObjectGroupManager manager) {
+    this.manager = manager;
+  }
+    
   /**
    * {@link OpenglesObjectGroup}を生成します。
    * @param group オブジェクトのグループ
@@ -58,7 +69,8 @@ public class OpenglesObjectGroupFactory {
     }
 
     for (final GroupModel child : group.getGroups()) {
-      objectGroup.addChild(create(child));
+      final OpenglesObjectGroup childObjectGroup = create(child);
+      objectGroup.addChild(childObjectGroup);
     }
 
     final OpenglesCoordinate baseCoordinate = createBaseCoordinateOf(group);
@@ -69,7 +81,7 @@ public class OpenglesObjectGroupFactory {
       objectGroup.setName(name);
     }
     
-    ObjectGroupManager.addObjectGroup(objectGroup);
+    this.manager.addObjectGroup(objectGroup);
 
     return objectGroup;
   }

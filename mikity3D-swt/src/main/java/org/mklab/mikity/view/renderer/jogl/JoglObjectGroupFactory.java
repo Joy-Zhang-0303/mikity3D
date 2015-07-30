@@ -18,6 +18,17 @@ import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
  * @version $Revision$, 2012/02/07
  */
 public class JoglObjectGroupFactory {
+  /** オブジェクトグループマネージャ。 */
+  private ObjectGroupManager manager;
+  
+  /**
+   * 新しく生成された<code>JoglObjectGroupFactory</code>オブジェクトを初期化します。
+   * @param manager オブジェクトグループマネージャ
+   */
+  public JoglObjectGroupFactory(ObjectGroupManager manager) {
+    this.manager = manager;
+  }
+  
   /**
    * {@link JoglObjectGroup}を生成します。
    * @param group オブジェクトのグループ
@@ -51,7 +62,8 @@ public class JoglObjectGroupFactory {
     }
 
     for (final GroupModel child : group.getGroups()) {
-      objectGroup.addChild(create(child));
+      final JoglObjectGroup childObjectGroup = create(child);
+      objectGroup.addChild(childObjectGroup);
     }
 
     final JoglCoordinate baseCoordinate = createBaseCoordinateOf(group);
@@ -62,7 +74,7 @@ public class JoglObjectGroupFactory {
       objectGroup.setName(name);
     }
     
-    ObjectGroupManager.addObjectGroup(objectGroup);
+    this.manager.addObjectGroup(objectGroup);
 
     return objectGroup;
   }
