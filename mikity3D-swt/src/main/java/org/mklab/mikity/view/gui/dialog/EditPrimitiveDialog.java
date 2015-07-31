@@ -335,15 +335,8 @@ public class EditPrimitiveDialog {
       box.setWidth(this.parameter1.getFloatValue());
       box.setHeight(this.parameter2.getFloatValue());
       box.setDepth(this.parameter3.getFloatValue());
-      
-      final TranslationModel translation = getTranslation();
-      if (translation.isZero() == false) {
-        box.setTranslation(getTranslation());
-      }
-      final RotationModel rotation = getRotation();
-      if (rotation.isZero() == false) {
-        box.setRotation(getRotation());
-      }
+      box.setTranslation(getTranslation());
+      box.setRotation(getRotation());
     } else if (this.primitive instanceof CylinderModel) {
       final CylinderModel cylinder = (CylinderModel)this.primitive;
       
@@ -351,45 +344,25 @@ public class EditPrimitiveDialog {
       cylinder.setRadius(this.parameter1.getFloatValue());
       cylinder.setHeight(this.parameter2.getFloatValue());
       cylinder.setDivision(this.parameter3.getIntValue());
-
-      final TranslationModel translation = getTranslation();
-      if (translation.isZero() == false) {
-        cylinder.setTranslation(getTranslation());
-      }
-      final RotationModel rotation = getRotation();
-      if (rotation.isZero() == false) {
-        cylinder.setRotation(getRotation());
-      }
+      cylinder.setTranslation(getTranslation());
+      cylinder.setRotation(getRotation());
     } else if (this.primitive instanceof SphereModel) {
       final SphereModel sphere = (SphereModel)this.primitive;
 
       sphere.setColor(this.colorCombo.getColorComboBox().getText());
       sphere.setRadius(this.parameter1.getFloatValue());
       sphere.setDivision(this.parameter2.getIntValue());
-
-      final TranslationModel translation = getTranslation();
-      if (translation.isZero() == false) {
-        sphere.setTranslation(getTranslation());
-      }
-      final RotationModel rotation = getRotation();
-      if (rotation.isZero() == false) {
-        sphere.setRotation(getRotation());
-      }
+      sphere.setTranslation(getTranslation());
+      sphere.setRotation(getRotation());
     } else if (this.primitive instanceof ConeModel) {
       final ConeModel cone = (ConeModel)this.primitive;
+
       cone.setColor(this.colorCombo.getColorComboBox().getText());
       cone.setRadius(this.parameter1.getFloatValue());
       cone.setHeight(this.parameter2.getFloatValue());
       cone.setDivision(this.parameter3.getIntValue());
-
-      final TranslationModel translation = getTranslation();
-      if (translation.isZero() == false) {
-        cone.setTranslation(getTranslation());
-      }
-      final RotationModel rotation = getRotation();
-      if (rotation.isZero() == false) {
-        cone.setRotation(getRotation());
-      }
+      cone.setTranslation(getTranslation());
+      cone.setRotation(getRotation());
     }
   }
 
@@ -510,7 +483,7 @@ public class EditPrimitiveDialog {
     this.parameter2.setLabelText(Messages.getString("EditPrimitiveDialog.36")); //$NON-NLS-1$
     this.parameter3.setLabelText(Messages.getString("EditPrimitiveDialog.37")); //$NON-NLS-1$
 
-    int division = 0;
+    int division;
     if (this.parameter3.getIntValue() < 3) {
       division = 3;
     } else {
@@ -530,7 +503,7 @@ public class EditPrimitiveDialog {
     this.parameter1.setLabelText(Messages.getString("EditPrimitiveDialog.38")); //$NON-NLS-1$
     this.parameter2.setLabelText(Messages.getString("EditPrimitiveDialog.39")); //$NON-NLS-1$
 
-    int division = 0;
+    int division;
     if (this.parameter2.getIntValue() < 3) {
       division = 3;
     } else {
