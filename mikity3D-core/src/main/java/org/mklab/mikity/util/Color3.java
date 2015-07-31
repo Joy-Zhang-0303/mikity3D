@@ -19,6 +19,8 @@ public class Color3 {
   private float g;
   /** 青成分 */
   private float b;
+  /** アルファ値 */
+  private float alpha = 1;
   
   /**
    * 新しく生成された<code>Color3</code>オブジェクトを初期化します。
@@ -30,6 +32,20 @@ public class Color3 {
     this.r = r;
     this.g = g;
     this.b = b;
+  }
+
+  /**
+   * 新しく生成された<code>Color3</code>オブジェクトを初期化します。
+   * @param r 赤成分
+   * @param g 緑成分
+   * @param b 青成分
+   * @param alpha アルファ値
+   */
+  public Color3(float r, float g, float b, float alpha) {
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.alpha = alpha;
   }
 
   
@@ -57,6 +73,14 @@ public class Color3 {
    */
   public float getB() {
     return this.b;
+  }
+  
+  /**
+   * アルファ値を返します。
+   * @return アルファ値
+   */
+  public float getAlpha() {
+    return this.alpha;
   }
 
 }

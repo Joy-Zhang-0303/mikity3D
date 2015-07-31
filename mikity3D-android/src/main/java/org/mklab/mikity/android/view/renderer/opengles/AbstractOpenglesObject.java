@@ -12,6 +12,8 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.graphic.GraphicObject;
+import org.mklab.mikity.util.Color3;
+import org.mklab.mikity.util.ColorConstant;
 
 /**
  * OpenGL ESのオブジェクトを表す抽象クラスです。
@@ -34,8 +36,8 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    * {@inheritDoc}
    */
   public void display(GL10 gl) {
-    applyColor(gl);
     applyTransparency(gl);
+    applyColor(gl);
     drawTrianglePolygons(gl);
   }
 
@@ -51,33 +53,37 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
       return;
     }
     
-    if (color.equals("white")) { //$NON-NLS-1$
-      gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-    } else if (color.equals("lightGray")) { //$NON-NLS-1$
-      gl.glColor4f(0.75f, 0.75f, 0.75f, 1.0f);
-    } else if (color.equals("gray")) { //$NON-NLS-1$
-      gl.glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
-    } else if (color.equals("darkGray")) { //$NON-NLS-1$
-      gl.glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
-    } else if (color.equals("black")) { //$NON-NLS-1$
-      gl.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
-    } else if (color.equals("red")) { //$NON-NLS-1$
-      gl.glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
-    } else if (color.equals("pink")) { //$NON-NLS-1$
-      gl.glColor4f(1.0f, 0.69f, 0.69f, 0.5f);
-    } else if (color.equals("orange")) { //$NON-NLS-1$
-      gl.glColor4f(1.0f, 0.78f, 0.0f, 1.0f);
-    } else if (color.equals("yellow")) { //$NON-NLS-1$
-      gl.glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
-    } else if (color.equals("green")) { //$NON-NLS-1$
-      gl.glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
-    } else if (color.equals("magenta")) { //$NON-NLS-1$
-      gl.glColor4f(1.0f, 0.0f, 1.0f, 1.0f);
-    } else if (color.equals("cyan")) { //$NON-NLS-1$
-      gl.glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
-    } else if (color.equals("blue")) { //$NON-NLS-1$
-      gl.glColor4f(0.0f, 0.0f, 1.0f, 0.0f);
-    }
+    final Color3 value = ColorConstant.getColor(color);
+    
+    gl.glColor4f(value.getR(), value.getG(), value.getB(), value.getAlpha());
+    
+//    if (color.equals("white")) { //$NON-NLS-1$
+//      gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+//    } else if (color.equals("lightGray")) { //$NON-NLS-1$
+//      gl.glColor4f(0.75f, 0.75f, 0.75f, 1.0f);
+//    } else if (color.equals("gray")) { //$NON-NLS-1$
+//      gl.glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
+//    } else if (color.equals("darkGray")) { //$NON-NLS-1$
+//      gl.glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
+//    } else if (color.equals("black")) { //$NON-NLS-1$
+//      gl.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
+//    } else if (color.equals("red")) { //$NON-NLS-1$
+//      gl.glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
+//    } else if (color.equals("pink")) { //$NON-NLS-1$
+//      gl.glColor4f(1.0f, 0.69f, 0.69f, 0.5f);
+//    } else if (color.equals("orange")) { //$NON-NLS-1$
+//      gl.glColor4f(1.0f, 0.78f, 0.0f, 1.0f);
+//    } else if (color.equals("yellow")) { //$NON-NLS-1$
+//      gl.glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
+//    } else if (color.equals("green")) { //$NON-NLS-1$
+//      gl.glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
+//    } else if (color.equals("magenta")) { //$NON-NLS-1$
+//      gl.glColor4f(1.0f, 0.0f, 1.0f, 1.0f);
+//    } else if (color.equals("cyan")) { //$NON-NLS-1$
+//      gl.glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
+//    } else if (color.equals("blue")) { //$NON-NLS-1$
+//      gl.glColor4f(0.0f, 0.0f, 1.0f, 0.0f);
+//    }
   }
   
   /**
@@ -87,9 +93,17 @@ public abstract class  AbstractOpenglesObject implements OpenglesObject {
    */
   private void applyTransparency(GL10 gl) {
     if (this.object.isTransparent()) {
-      gl.glEnable(GL10.GL_BLEND);
+      gl.glEnable(GL10.GL_BLEND); // ブレンドを有効にします
       gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+    } else {
+      gl.glEnable(GL10.GL_BLEND); // ブレンドを有効にします
+      gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ZERO);
     }
+    
+//    if (this.object.isTransparent()) {
+//      gl.glEnable(GL10.GL_BLEND);
+//      gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+//    }
   }
   
 

@@ -22,6 +22,14 @@ public class BackgroundModel implements java.io.Serializable, Cloneable {
   }
   
   /**
+   * 新しく生成された<code>Background</code>オブジェクトを初期化します。
+   * @param color 背景色
+   */
+  public BackgroundModel(String color) {
+    this.color = color;
+  }
+  
+  /**
    * {@inheritDoc}
    */
   @Override
