@@ -164,6 +164,15 @@ public class ObjectGroupManager {
   public boolean hasAnimation() {
     return this.hasAnimation;
   }
+  
+  /**
+   * ソースが登録されているか判定します。
+   * 
+   * @return ソースが登録されていればtrue
+   */
+  public boolean hasSource() {
+    return this.sources.size() != 0;
+  }
 
   /**
    * オブジェクトグループを登録します。

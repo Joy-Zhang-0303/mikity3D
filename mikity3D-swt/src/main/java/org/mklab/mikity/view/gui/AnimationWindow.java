@@ -287,26 +287,22 @@ public class AnimationWindow extends ApplicationWindow {
     controller.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     controller.setLayout(new GridLayout());
 
-    final Composite buttonComposite = new Composite(controller, SWT.NONE);
-    buttonComposite.setLayout(new GridLayout(4, false));
+    final Composite topComposite = new Composite(controller, SWT.NONE);
+    topComposite.setLayout(new GridLayout(6, false));
     
-    final Button playButton = new Button(buttonComposite, SWT.NONE);
+    final Button playButton = new Button(topComposite, SWT.NONE);
     playButton.setImage(ImageManager.getImage(ImageManager.PLAYBACK));
     
-    final Button stopButton = new Button(buttonComposite, SWT.NONE);
+    final Button stopButton = new Button(topComposite, SWT.NONE);
     stopButton.setImage(ImageManager.getImage(ImageManager.STOP));
     
-    final Button slowerButton = new Button(buttonComposite, SWT.NONE);
+    final Button slowerButton = new Button(topComposite, SWT.NONE);
     slowerButton.setImage(ImageManager.getImage(ImageManager.SLOW));
     
-    final Button fasterButton = new Button(buttonComposite, SWT.NONE);
+    final Button fasterButton = new Button(topComposite, SWT.NONE);
     fasterButton.setImage(ImageManager.getImage(ImageManager.FASTER));
 
-    final Composite speedComposite = new Composite(controller, SWT.NONE);
-    final GridLayout speedLayout = new GridLayout();
-    speedLayout.numColumns = 2;
-    speedComposite.setLayout(speedLayout);
-    this.playSpeed = new ParameterInputBox(speedComposite, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.playSpeed = new ParameterInputBox(topComposite, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     createTimeBar(controller);
     createModeChooser(composite);
@@ -375,20 +371,23 @@ public class AnimationWindow extends ApplicationWindow {
    */
   private void createTimeBar(final Composite parent) {
     final Composite tiemBarComposite = new Composite(parent, SWT.NONE);
-    tiemBarComposite.setLayout(new GridLayout(3, true));
-    final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
-
+    tiemBarComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    tiemBarComposite.setLayout(new GridLayout(3, false));
+    
     this.startTimeLabel = new Label(tiemBarComposite, SWT.NONE | SWT.LEFT);
+    this.startTimeLabel.setText("0.0"); //$NON-NLS-1$
+    this.startTimeLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    
     this.currentTimeLabel = new Label(tiemBarComposite, SWT.NONE | SWT.CENTER);
     this.currentTimeLabel.setText("0.0"); //$NON-NLS-1$
-    this.currentTimeLabel.setLayoutData(gridData1);
+    this.currentTimeLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    
     this.endTimeLabel = new Label(tiemBarComposite, SWT.NONE | SWT.RIGHT);
+    this.endTimeLabel.setText("0.0"); //$NON-NLS-1$
+    this.endTimeLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-    this.timeSlider = new Slider(tiemBarComposite, SWT.NONE);
-
-    final GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
-    gridData2.horizontalSpan = 3;
-    this.timeSlider.setLayoutData(gridData2);
+    this.timeSlider = new Slider(parent, SWT.NONE);
+    this.timeSlider.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     this.timeSlider.setMinimum(0);
     this.timeSlider.setMaximum(0);
 
@@ -592,14 +591,13 @@ public class AnimationWindow extends ApplicationWindow {
    * スライダーを準備します。
    */
   private void prepareSlider() {
-    this.endTime = this.manager.getEndTime();
     this.startTimeLabel.setText("" + this.manager.getStartTime()); //$NON-NLS-1$
-    this.endTimeLabel.setText("" + this.endTime); //$NON-NLS-1$
+    this.endTimeLabel.setText("" + this.manager.getEndTime()); //$NON-NLS-1$
 
     final int dataSize = this.manager.getDataSize();
     this.timeTable = new double[dataSize];
     for (int i = 0; i < this.timeTable.length; i++) {
-      this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
+      this.timeTable[i] = this.manager.getEndTime() * ((double)i / this.timeTable.length);
     }
     
     this.timeSlider.setEnabled(true);
@@ -642,15 +640,16 @@ public class AnimationWindow extends ApplicationWindow {
     if (playable == false) {
       this.timer.cancel();
     }
+
+    if (this.manager.hasSource() == false) {
+      MessagegUtil.show(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
+      return;
+    }
     
     this.manager.prepareMovingGroups();
 
     prepareSlider();
-    
-    if (this.timeTable == null) {
-      MessagegUtil.show(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
-      return;
-    }
+
 
     playable = false;
 
