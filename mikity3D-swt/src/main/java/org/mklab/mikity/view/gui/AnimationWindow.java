@@ -113,17 +113,6 @@ public class AnimationWindow extends ApplicationWindow {
   
   /** モデルファイル */
   private File modelFile;
-  
-//  /**
-//   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
-//   * 
-//   * @param parentShell 親シェル
-//   * @param root ルート
-//   */
-//  private AnimationWindow(final Shell parentShell, final Mikity3DModel root) {
-//    super(parentShell);
-//    setRoot(root);
-//  }
 
   /**
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
@@ -138,19 +127,6 @@ public class AnimationWindow extends ApplicationWindow {
     this.modelFile = modelFile;
     this.renderer = new JoglObjectRenderer();
   }
-
-//  /**
-//   * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
-//   * 
-//   * @param parentShell 親シェル
-//   * @param modelFile モデルファイル
-//   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
-//   */
-//  public AnimationWindow(final Shell parentShell, File modelFile) throws Mikity3dSerializeDeserializeException {
-//    super(parentShell);
-//    setRoot(new Mikity3dFactory().loadFile(modelFile));
-//    this.modelFile = modelFile;
-//  }
 
   /**
    * 新しく生成された<code>AnimationWindow</code>オブジェクトを初期化します。
@@ -476,18 +452,6 @@ public class AnimationWindow extends ApplicationWindow {
     });
   }
   
-//  /**
-//   * モデルデータを読み込みます。
-//   * 
-//   * @param filePath モデルデータのファイルパス
-//   */
-//  void loadModelData(final String filePath) {
-//    AnimationWindow.this.modelFilePathText.setText(filePath);
-//    createRoot(filePath);
-//    configureModel();
-//  }
-
-
   /**
    * ルートを生成します。
    * 
@@ -608,35 +572,6 @@ public class AnimationWindow extends ApplicationWindow {
     this.timeSlider.setEnabled(true);
     this.timeSlider.setMaximum(dataSize);
   }
-
-//  /**
-//   * 時系列データを設定します。
-//   * 
-//   * @param data 時系列データ
-//   */
-//  public void setTimeSeriesData(final Matrix data) {
-//    this.sourceData = data;
-//
-//    this.timeSlider.setEnabled(true);
-//    this.manager.setData(this.sourceData);
-//
-//    final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
-//    checkAnimation(rootGroup);
-//
-//    final int dataSize = this.manager.getDataSize();
-//
-//    this.timeTable = new double[dataSize];
-//
-//    this.endTime = this.manager.getEndTime();
-//    this.startTimeLabel.setText("" + this.manager.getStartTime()); //$NON-NLS-1$
-//    this.endTimeLabel.setText("" + this.endTime); //$NON-NLS-1$
-//    for (int i = 0; i < this.timeTable.length; i++) {
-//      this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
-//    }
-//    this.timeSlider.setMaximum(dataSize);
-//
-//    this.sourceFilePathText.setText("data"); //$NON-NLS-1$
-//  }
 
   /**
    * アニメーションを開始します。
