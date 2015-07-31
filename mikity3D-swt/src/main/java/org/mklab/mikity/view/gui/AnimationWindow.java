@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,6 +27,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
@@ -81,14 +84,11 @@ public class AnimationWindow extends ApplicationWindow {
   /** 等間隔の時間を保存しとく配列 */
   double[] timeTable;
 
-//  /** ソースデータ。 */
-//  private Matrix sourceData;
-
   /** */
   Text modelFilePathText;
 
   /** */
-  Text sourceFilePathText;
+  Map<String,Text> sourceFilePathText = new HashMap<>();
 
   /** */
   ObjectGroupManager manager;
@@ -110,6 +110,9 @@ public class AnimationWindow extends ApplicationWindow {
 
   /** */
   private Composite viewComposite;
+  
+  /** */
+  private Group sourceGroup;
   
   /** モデルファイル */
   private File modelFile;
@@ -284,7 +287,14 @@ public class AnimationWindow extends ApplicationWindow {
 
     createTimeBar(controller);
     createModeChooser(composite);
-    createSourceChooser(composite);
+    
+    this.sourceGroup = new Group(composite, SWT.None);
+    this.sourceGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    this.sourceGroup.setLayout(new GridLayout());
+    this.sourceGroup.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
+    
+    createSourceChooser(this.sourceGroup, "1"); //$NON-NLS-1$
+    createSourceChooser(this.sourceGroup, "2"); //$NON-NLS-1$
 
     playButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       /**
@@ -472,8 +482,9 @@ public class AnimationWindow extends ApplicationWindow {
    * ソースを選択するコンポジットを生成します。
    * 
    * @param parent 親コンポジット
+   * @param id IO
    */
-  public void createSourceChooser(final Composite parent) {
+  public void createSourceChooser(final Composite parent, final String id) {
     final Composite composite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
@@ -481,26 +492,26 @@ public class AnimationWindow extends ApplicationWindow {
     composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
     final Label label = new Label(composite, SWT.NONE);
-    label.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
-
-    final String id = "1"; //$NON-NLS-1$
+    label.setText(id + ":"); //$NON-NLS-1$
     
-    this.sourceFilePathText = new Text(composite, SWT.BORDER);
-    this.sourceFilePathText.setText(""); //$NON-NLS-1$
-    this.sourceFilePathText.addTraverseListener(new TraverseListener() {
+    Text filePathText = new Text(composite, SWT.BORDER);
+    this.sourceFilePathText.put(id,  filePathText);
+    
+    filePathText.setText(""); //$NON-NLS-1$
+    filePathText.addTraverseListener(new TraverseListener() {
 
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          final String filePath = AnimationWindow.this.sourceFilePathText.getText();
+          final String filePath =  AnimationWindow.this.sourceFilePathText.get(id).getText();
           addSource(id, filePath);
-          AnimationWindow.this.sourceFilePathText.setText(filePath);
+          AnimationWindow.this.sourceFilePathText.get(id).setText(filePath);
         }
       }
     });
 
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 4;
-    this.sourceFilePathText.setLayoutData(gridData);
+    filePathText.setLayoutData(gridData);
 
     final Button referenceButton = new Button(composite, SWT.BORDER);
     referenceButton.setText(Messages.getString("SimulationViewer.3")); //$NON-NLS-1$
@@ -517,7 +528,7 @@ public class AnimationWindow extends ApplicationWindow {
         
         final String filePath = dialog.open();
         if (filePath != null) {
-          AnimationWindow.this.sourceFilePathText.setText(filePath);
+          AnimationWindow.this.sourceFilePathText.get(id).setText(filePath);
           addSource(id, filePath);
         }
       }
