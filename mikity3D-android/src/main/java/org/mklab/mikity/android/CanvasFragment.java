@@ -415,7 +415,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
     this.timeTable = new double[dataSize];
 
-    this.endTime = this.manager.getEndTime();
+    this.endTime = this.manager.getStopTime();
     for (int i = 0; i < this.timeTable.length; i++) {
       this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
     }
@@ -472,7 +472,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     
     this.manager.prepareMovingGroups();
     
-    this.endTime = this.manager.getEndTime();
+    this.endTime = this.manager.getStopTime();
     
     if (this.isPause) {
       this.waitTime += SystemClock.uptimeMillis() - this.stopTime;

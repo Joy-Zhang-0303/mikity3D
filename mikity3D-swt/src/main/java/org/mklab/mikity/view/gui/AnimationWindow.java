@@ -62,8 +62,10 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   public static boolean playable = true;
 
-  /** */
-  private double endTime;
+  /** 現在の時刻。 */
+  double currentTime;
+  /** 終了の時刻。 */
+  private double stopTime;
 
   private Mikity3DModel root;
 
@@ -96,7 +98,7 @@ public class AnimationWindow extends ApplicationWindow {
   /** */
   Label currentTimeLabel;
   /** */
-  private Label endTimeLabel;
+  private Label stopTimeLabel;
   /** */
   ParameterInputBox playSpeed;
 
@@ -378,13 +380,15 @@ public class AnimationWindow extends ApplicationWindow {
     this.startTimeLabel.setText("0.0"); //$NON-NLS-1$
     this.startTimeLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     
+    this.currentTime = 0;
     this.currentTimeLabel = new Label(tiemBarComposite, SWT.NONE | SWT.CENTER);
     this.currentTimeLabel.setText("0.0"); //$NON-NLS-1$
     this.currentTimeLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     
-    this.endTimeLabel = new Label(tiemBarComposite, SWT.NONE | SWT.RIGHT);
-    this.endTimeLabel.setText("0.0"); //$NON-NLS-1$
-    this.endTimeLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    this.stopTime = 0;
+    this.stopTimeLabel = new Label(tiemBarComposite, SWT.NONE | SWT.RIGHT);
+    this.stopTimeLabel.setText("0.0"); //$NON-NLS-1$
+    this.stopTimeLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
     this.timeSlider = new Slider(parent, SWT.NONE);
     this.timeSlider.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -407,6 +411,7 @@ public class AnimationWindow extends ApplicationWindow {
           if (st.length() > 5) {
             st = st.substring(0, 4);
           }
+          AnimationWindow.this.currentTime = Double.parseDouble(st);
           AnimationWindow.this.currentTimeLabel.setText(st);
         }
       }
@@ -592,12 +597,12 @@ public class AnimationWindow extends ApplicationWindow {
    */
   private void prepareSlider() {
     this.startTimeLabel.setText("" + this.manager.getStartTime()); //$NON-NLS-1$
-    this.endTimeLabel.setText("" + this.manager.getEndTime()); //$NON-NLS-1$
+    this.stopTimeLabel.setText("" + this.manager.getStopTime()); //$NON-NLS-1$
 
     final int dataSize = this.manager.getDataSize();
     this.timeTable = new double[dataSize];
     for (int i = 0; i < this.timeTable.length; i++) {
-      this.timeTable[i] = this.manager.getEndTime() * ((double)i / this.timeTable.length);
+      this.timeTable[i] = this.manager.getStopTime() * ((double)i / this.timeTable.length);
     }
     
     this.timeSlider.setEnabled(true);
@@ -650,11 +655,10 @@ public class AnimationWindow extends ApplicationWindow {
 
     prepareSlider();
 
-
     playable = false;
 
-    this.endTime = this.manager.getEndTime();
-    this.animationTask = new AnimationTask(0, this.endTime, this.manager, this.renderer);
+    this.stopTime = this.manager.getStopTime();
+    this.animationTask = new AnimationTask(this.currentTime, this.stopTime, this.manager, this.renderer);
     this.animationTask.setSpeedScale(this.playSpeed.getDoubleValue());// スピードの設定
     this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
@@ -724,6 +728,7 @@ public class AnimationWindow extends ApplicationWindow {
           }
 
           AnimationWindow.this.currentTimeLabel.setText(timeString);
+          AnimationWindow.this.currentTime = Double.parseDouble(timeString);
           for (int i = 0; i < AnimationWindow.this.timeTable.length; i++) {
             if (AnimationWindow.this.timeTable[i] > time) {
               if (SliderPositionMoveTask.this.slider.isDisposed()) {

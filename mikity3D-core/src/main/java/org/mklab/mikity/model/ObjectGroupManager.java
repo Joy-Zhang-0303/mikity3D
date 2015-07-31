@@ -35,7 +35,7 @@ public class ObjectGroupManager {
   /** 開始時間 */
   private double startTime;
   /** 終了時間 */
-  private double endTime;
+  private double stopTime;
 
   /** アニメーションが存在するならばtrue */
   private boolean hasAnimation = false;
@@ -72,7 +72,7 @@ public class ObjectGroupManager {
   public void prepareMovingGroups() {
     this.dataSize = 0;
     this.startTime = 0;
-    this.endTime = 0;
+    this.stopTime = 0;
 
     this.movingGroups.clear();
 
@@ -97,7 +97,7 @@ public class ObjectGroupManager {
     this.movingGroups.add(new ObjectGroupDataSampler(objectGroup, sampler));
     this.dataSize = Math.max(this.dataSize, sampler.getDataSize());
     this.startTime = Math.min(this.startTime, sampler.getStartTime());
-    this.endTime = Math.max(this.endTime, sampler.getEndTime());
+    this.stopTime = Math.max(this.stopTime, sampler.getEndTime());
   }
 
   /**
@@ -134,8 +134,8 @@ public class ObjectGroupManager {
    * 
    * @return 終了時間
    */
-  public double getEndTime() {
-    return this.endTime;
+  public double getStopTime() {
+    return this.stopTime;
   }
 
   /**

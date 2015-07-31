@@ -29,9 +29,9 @@ public class AnimationTask extends TimerTask {
   /** 現在の時間　*/
   private double currentTime = 0.0;
   /** 開始時間　*/
-  private final double initialTime;
+  private final double startTime;
   /** 終了時間　*/
-  private double endTime = 0.0;
+  private double stopTime = 0.0;
   /** 最後の更新時間 */
   private long lastUpdatedTimeMillis = System.currentTimeMillis();
   /** モデルキャンバス　*/
@@ -39,16 +39,16 @@ public class AnimationTask extends TimerTask {
 
   /**
    * 新しく生成された<code>AnimationTask</code>オブジェクトを初期化します。
-   * @param initialTime 開始時間
-   * @param endTime 終了時間
+   * @param startTime 開始時間
+   * @param stopTime 終了時間
    * @param manager グループマネージャー
    * @param canvas モデルキャンバス
    */
-  public AnimationTask(double initialTime, double endTime, ObjectGroupManager manager, ObjectRenderer canvas) {
-    this.endTime = endTime;
-    this.currentTime = initialTime;
+  public AnimationTask(double startTime, double stopTime, ObjectGroupManager manager, ObjectRenderer canvas) {
+    this.stopTime = stopTime;
+    this.currentTime = startTime;
     this.manager = manager;
-    this.initialTime = initialTime;
+    this.startTime = startTime;
     this.renderer = canvas;
   }
 
@@ -89,7 +89,7 @@ public class AnimationTask extends TimerTask {
    */
   @Override
   public void run() {
-    if (this.currentTime == this.initialTime) {
+    if (this.currentTime == this.startTime) {
       setUpAnimation();
     }
 
@@ -105,7 +105,7 @@ public class AnimationTask extends TimerTask {
       this.renderer.updateDisplay();
     }
 
-    if (this.currentTime > this.endTime) {
+    if (this.currentTime > this.stopTime) {
       cancel();
       tearDownAnimation();
     }
