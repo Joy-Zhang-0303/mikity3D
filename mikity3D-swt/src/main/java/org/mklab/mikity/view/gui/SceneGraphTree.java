@@ -192,7 +192,7 @@ public class SceneGraphTree {
     if (parentItem.getText().equals("scene")) { //$NON-NLS-1$
       final MessageBox message = new MessageBox(this.composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
       message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
-      message.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
+      //message.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
       final int result = message.open();
       if (result == SWT.NO) {
         return;

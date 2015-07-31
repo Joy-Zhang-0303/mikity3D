@@ -126,7 +126,7 @@ public class ModelingWindow extends ApplicationWindow {
   @Override
   protected void configureShell(Shell shell) {
     super.configureShell(shell);
-    shell.setText("Modeler"); //$NON-NLS-1$
+    shell.setText("Mikity3D Modeler"); //$NON-NLS-1$
   }
 
   /**

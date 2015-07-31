@@ -265,7 +265,7 @@ public class EditPrimitiveDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         final MessageBox message = new MessageBox(EditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
-        message.setText(Messages.getString("EditPrimitiveDialog.27")); //$NON-NLS-1$
+        //message.setText(Messages.getString("EditPrimitiveDialog.27")); //$NON-NLS-1$
         int yesNo = message.open();
         if (yesNo == SWT.YES) {
           EditPrimitiveDialog.this.sShell.close();

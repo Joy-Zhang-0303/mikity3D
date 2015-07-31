@@ -92,13 +92,13 @@ public class EditGroupDialog {
     // SWT.APPLICATION_MODAL→このシェルを閉じないと、親シェルを編集できなくする
     //this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 420));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(450, 420));
     this.sShell.setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
     final GridLayout layout = new GridLayout();
     layout.numColumns = 3;
     this.sShell.setLayout(layout);
 
-    this.groupName = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.groupName = new ParameterInputBox(this.sShell, SWT.LEFT, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
     this.groupName.setTextWidth(150);
 
     if (this.targetGroup.getName() != null) {
@@ -159,7 +159,7 @@ public class EditGroupDialog {
     parameterGroup.setLayoutData(data);
 
     final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
-    data.widthHint = 40;
+    data.widthHint = 80;
     final Label label1 = new Label(parameterGroup, SWT.CENTER);
     label1.setText(Messages.getString("GroupConfigDialogLink.12")); //$NON-NLS-1$
     label1.setLayoutData(gridData1);
@@ -171,13 +171,13 @@ public class EditGroupDialog {
     label2.setLayoutData(gridData2);
 
     final GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
-    gridData3.widthHint = 40;
+    gridData3.widthHint = 30;
     final Label label3 = new Label(parameterGroup, SWT.CENTER);
     label3.setText(Messages.getString("EditGroupDialog.7")); //$NON-NLS-1$
     label3.setLayoutData(gridData3);
 
     final GridData gridData4 = new GridData(GridData.FILL_HORIZONTAL);
-    gridData4.widthHint = 40;
+    gridData4.widthHint = 30;
     final Label label4 = new Label(parameterGroup, SWT.CENTER);
     label4.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
     label4.setLayoutData(gridData4);

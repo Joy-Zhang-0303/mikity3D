@@ -96,7 +96,7 @@ public class AddPrimitiveDialog {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout1 = new GridLayout();
     layout1.numColumns = 3;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(280, 480));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 550));
     this.sShell.setText(Messages.getString("AddPrimitiveDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout1);
 
@@ -107,7 +107,7 @@ public class AddPrimitiveDialog {
     groupLabel.setLayoutData(gLabelData);
     
     final GridData labelData2 = new GridData(GridData.FILL_HORIZONTAL);
-    final Label colorLabel = new Label(this.sShell, SWT.RIGHT);
+    final Label colorLabel = new Label(this.sShell, SWT.LEFT);
     colorLabel.setText(Messages.getString("AddPrimitiveDialog.34")); //$NON-NLS-1$
     colorLabel.setLayoutData(labelData2);
     createColorCombo();
@@ -127,6 +127,7 @@ public class AddPrimitiveDialog {
     GridData translationData = new GridData(GridData.FILL_HORIZONTAL);
     org.eclipse.swt.widgets.Group translationGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
     translationGroup.setText(Messages.getString("AddPrimitiveDialog.12")); //$NON-NLS-1$
+    
     final GridLayout layout3 = new GridLayout();
     layout3.numColumns = 3;
     translationGroup.setLayout(layout3);
@@ -137,9 +138,11 @@ public class AddPrimitiveDialog {
     this.translationX = new ParameterInputBox(translationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.13"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLX = new Label(translationGroup, SWT.NONE);
     unitLabelLX.setText(this.lengthUnit + " "); //$NON-NLS-1$
+    
     this.translationY = new ParameterInputBox(translationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.14"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLY = new Label(translationGroup, SWT.NONE);
     unitLabelLY.setText(this.lengthUnit + " "); //$NON-NLS-1$
+    
     this.translationZ = new ParameterInputBox(translationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.15"), "0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelLZ = new Label(translationGroup, SWT.NONE);
     unitLabelLZ.setText(this.lengthUnit + " "); //$NON-NLS-1$
@@ -147,6 +150,7 @@ public class AddPrimitiveDialog {
     GridData rotationData = new GridData(GridData.FILL_HORIZONTAL);
     org.eclipse.swt.widgets.Group rotationGroup = new org.eclipse.swt.widgets.Group(this.sShell, SWT.NONE);
     rotationGroup.setText(Messages.getString("AddPrimitiveDialog.5")); //$NON-NLS-1$
+    
     final GridLayout layout2 = new GridLayout();
     layout2.numColumns = 3;
     rotationGroup.setLayout(layout2);
@@ -156,13 +160,15 @@ public class AddPrimitiveDialog {
 
     this.rotationX = new ParameterInputBox(rotationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.6"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelRX = new Label(rotationGroup, SWT.NONE);
-    unitLabelRX.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.7")); //$NON-NLS-1$
+    unitLabelRX.setText(this.angleUnit + " "); //$NON-NLS-1$
+    
     this.rotationY = new ParameterInputBox(rotationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.8"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelRY = new Label(rotationGroup, SWT.NONE);
-    unitLabelRY.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.9")); //$NON-NLS-1$
+    unitLabelRY.setText(this.angleUnit + " "); //$NON-NLS-1$
+    
     this.rotationZ = new ParameterInputBox(rotationGroup, SWT.NONE, Messages.getString("AddPrimitiveDialog.10"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
     final Label unitLabelRZ = new Label(rotationGroup, SWT.NONE);
-    unitLabelRZ.setText(this.angleUnit + Messages.getString("AddPrimitiveDialog.11")); //$NON-NLS-1$
+    unitLabelRZ.setText(this.angleUnit + " "); //$NON-NLS-1$
 
     final Label spaceLabel = new Label(this.sShell, SWT.NONE);
     spaceLabel.setText(" "); //$NON-NLS-1$
@@ -432,7 +438,7 @@ public class AddPrimitiveDialog {
     this.unitLabel3.setText(" "); //$NON-NLS-1$
     this.parameter3.setVisible(true);
     if (this.parameter3.getIntValue() < 3) {
-      this.parameter3.setText("30"); //$NON-NLS-1$
+      this.parameter3.setText("36"); //$NON-NLS-1$
     } else {
       this.parameter3.setText("" + this.parameter3.getIntValue()); //$NON-NLS-1$
     }
@@ -448,7 +454,7 @@ public class AddPrimitiveDialog {
     this.parameter3.setVisible(false);
     this.unitLabel3.setText(" "); //$NON-NLS-1$
     if (this.parameter2.getIntValue() < 3) {
-      this.parameter2.setText(Messages.getString("AddPrimitiveDialog.30")); //$NON-NLS-1$
+      this.parameter2.setText("36"); //$NON-NLS-1$
     } else {
       this.parameter2.setText("" + this.parameter2.getIntValue()); //$NON-NLS-1$
     }
@@ -465,7 +471,7 @@ public class AddPrimitiveDialog {
     this.unitLabel3.setText(" "); //$NON-NLS-1$
     this.parameter3.setVisible(true);
     if (this.parameter3.getIntValue() < 3) {
-      this.parameter3.setText("30"); //$NON-NLS-1$
+      this.parameter3.setText("36"); //$NON-NLS-1$
     } else {
       this.parameter3.setText("" + this.parameter3.getIntValue()); //$NON-NLS-1$
     }

@@ -129,7 +129,7 @@ public class EditTrianglePolygonDialog {
 
     addShellListener();
     
-    createNewGroup();
+    createNewPolygon();
 
     createButtonComp();
   }
@@ -161,7 +161,7 @@ public class EditTrianglePolygonDialog {
     });
   }
 
-  private void createNewGroup() {
+  private void createNewPolygon() {
     Group group = new Group(this.sShell, SWT.NONE);
     group.setText(Messages.getString("EditTrianglePolygonDialog.18")); //$NON-NLS-1$
     setGridLayout(group, 1);

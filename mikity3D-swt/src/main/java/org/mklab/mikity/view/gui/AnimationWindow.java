@@ -192,8 +192,8 @@ public class AnimationWindow extends ApplicationWindow {
   @Override
   protected void configureShell(final Shell shell) {
     super.configureShell(shell);
-    shell.setSize(800, 600);
-    shell.setText("Animation Viewer"); //$NON-NLS-1$
+    shell.setSize(900, 600);
+    shell.setText("Mikity3D Animation Viewer"); //$NON-NLS-1$
   }
 
   /**

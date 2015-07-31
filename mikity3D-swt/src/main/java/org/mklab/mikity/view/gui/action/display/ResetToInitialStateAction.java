@@ -2,7 +2,6 @@ package org.mklab.mikity.view.gui.action.display;
 
 import org.eclipse.jface.action.Action;
 import org.mklab.mikity.view.gui.JoglModeler;
-import org.mklab.mikity.view.gui.ModelingWindow;
 import org.mklab.mikity.view.gui.action.Messages;
 
 
