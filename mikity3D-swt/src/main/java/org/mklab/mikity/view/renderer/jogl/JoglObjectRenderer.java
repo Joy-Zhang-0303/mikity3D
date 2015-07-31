@@ -25,6 +25,8 @@ import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.util.Color3;
+import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.view.renderer.ObjectRenderer;
 
 /**
@@ -118,7 +120,9 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   public void display(GLAutoDrawable drawable) {
     final GL2 gl = (GL2)drawable.getGL();
 
-    gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    final Color3 background = ColorConstant.getColor(this.configuration.getBackground().getColor());
+    gl.glClearColor(background.getR(), background.getG(), background.getB(), background.getAlpha());
+    
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
     
     gl.glLoadIdentity();
