@@ -37,7 +37,7 @@ public class ConfigurationDialog {
 
   Shell sShell = null;
   private Shell parentShell = null;
-  private Group editGroup;
+  //private Group editGroup;
   private Combo colorCombo;
   private Combo modelLengthUnitCombo;
   private Combo modelAngleUnitCombo;
@@ -78,31 +78,47 @@ public class ConfigurationDialog {
    */
   private void createSShell() {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.sShell.setText("ConfigurationDialog"); //$NON-NLS-1$
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 450));
+    this.sShell.setText("Configuration Dialog"); //$NON-NLS-1$
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 560));
 
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
     this.sShell.setLayout(layout);
 
     createEditGroup();
-    createMainButtonComp();
+    createMainButtonComposite();
   }
 
   /**
    * 編集用のグループを生成します。
    */
   private void createEditGroup() {
-    this.editGroup = new Group(this.sShell, SWT.NONE);
+    final Group editGroup = new Group(this.sShell, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
-    this.editGroup.setLayout(layout);
+    editGroup.setLayout(layout);
     final GridData data = new GridData(GridData.FILL_BOTH);
-    this.editGroup.setLayoutData(data);
-    this.editGroup.setText(Messages.getString("ConfigDialog.0")); //$NON-NLS-1$
+    editGroup.setLayoutData(data);
+    editGroup.setText(Messages.getString("ConfigDialog.0")); //$NON-NLS-1$
 
-    // 取り扱うデータの単位の設定を行うグループ
-    final Group unitGroup = new Group(this.editGroup, SWT.NONE);
+    createUnitGroup(editGroup);
+
+    createLightGroup(editGroup);
+
+    createLookAtPointAndEyeGroup(editGroup);
+
+    final Label backgroundLabel = new Label(editGroup, SWT.NONE);
+    backgroundLabel.setText(Messages.getString("ConfigDialog.13")); //$NON-NLS-1$
+    createColorCombo(editGroup);
+
+    setParametersToDialog();
+  }
+
+  /**
+   * データの単位を設定するグループを生成します。
+   */
+  private void createUnitGroup(Group parent) {
+    final Group unitGroup = new Group(parent, SWT.NONE);
     final GridLayout unitLayout = new GridLayout();
     unitLayout.numColumns = 4;
     unitGroup.setText(Messages.getString("ConfigDialog.1")); //$NON-NLS-1$
@@ -140,74 +156,74 @@ public class ConfigurationDialog {
     final Label dataLengthLabel = new Label(unitGroup, SWT.NONE);
     dataLengthLabel.setText(Messages.getString("ConfigDialog.7")); //$NON-NLS-1$
     createDataLengthUnitCombo(unitGroup);
+  }
 
-    // 光源の位置の指定
-    final Group lightPointGroup = new Group(this.editGroup, SWT.NONE);
-    lightPointGroup.setText(Messages.getString("ConfigDialog.8")); //$NON-NLS-1$
+  /**
+   * 光源の位置を設定するグループを生成します。
+   */
+  private void createLightGroup(Group parent) {
+    final Group lightGroup = new Group(parent, SWT.NONE);
+    lightGroup.setText(Messages.getString("ConfigDialog.8")); //$NON-NLS-1$
 
     final GridData lightData = new GridData(GridData.FILL_HORIZONTAL);
     lightData.horizontalSpan = 2;
     final GridLayout lightLayout = new GridLayout(7, true);
-    lightPointGroup.setLayout(lightLayout);
-    lightPointGroup.setLayoutData(lightData);
+    lightGroup.setLayout(lightLayout);
+    lightGroup.setLayoutData(lightData);
 
-    this.lightX = new ParameterInputBox(lightPointGroup, SWT.NONE, "  (", "10.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lightY = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "10.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lightZ = new ParameterInputBox(lightPointGroup, SWT.NONE, ",  ", "20.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightX = new ParameterInputBox(lightGroup, SWT.NONE, "  (", "10.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightY = new ParameterInputBox(lightGroup, SWT.NONE, ",  ", "10.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightZ = new ParameterInputBox(lightGroup, SWT.NONE, ",  ", "20.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    final Label kakko = new Label(lightPointGroup, SWT.NONE);
-    final GridData labelData = new GridData();
-    labelData.widthHint = 10;
-    kakko.setLayoutData(labelData);
-    kakko.setText(")"); //$NON-NLS-1$
+    final Label lightRightLabel = new Label(lightGroup, SWT.NONE);
+    final GridData lightRightData = new GridData();
+    lightRightData.widthHint = 10;
+    lightRightLabel.setLayoutData(lightRightData);
+    lightRightLabel.setText(")"); //$NON-NLS-1$
+  }
 
-    // 視点の位置の指定
-    final Group eyePointGroup = new Group(this.editGroup, SWT.NONE);
-    eyePointGroup.setText(Messages.getString("ConfigDialog.10")); //$NON-NLS-1$
+  /**
+   * 注視点と視点の位置を設定するグループを生成します。
+   */
+  private void createLookAtPointAndEyeGroup(Group parent) {
+    final Group lookAtPointAndEyeGroup = new Group(parent, SWT.NONE);
+    lookAtPointAndEyeGroup.setText(Messages.getString("ConfigDialog.10")); //$NON-NLS-1$
 
-    final GridData eyeData = new GridData(GridData.FILL_HORIZONTAL);
-    eyeData.horizontalSpan = 2;
+    final GridData lookAtEyeData = new GridData(GridData.FILL_HORIZONTAL);
+    lookAtEyeData.horizontalSpan = 2;
     final GridLayout viewLayout = new GridLayout(7, true);
-    eyePointGroup.setLayout(viewLayout);
-    eyePointGroup.setLayoutData(eyeData);
+    lookAtPointAndEyeGroup.setLayout(viewLayout);
+    lookAtPointAndEyeGroup.setLayoutData(lookAtEyeData);
 
-    final Label vRollLabel = new Label(eyePointGroup, SWT.NONE);
-    vRollLabel.setText(Messages.getString("ConfigDialog.11")); //$NON-NLS-1$
-    final GridData vRollData = new GridData(GridData.FILL_HORIZONTAL);
-    vRollData.horizontalSpan = 7;
-    vRollLabel.setLayoutData(vRollData);
+    final Label lookAtPoitLabel = new Label(lookAtPointAndEyeGroup, SWT.NONE);
+    lookAtPoitLabel.setText(Messages.getString("ConfigDialog.11")); //$NON-NLS-1$
+    final GridData lookAtPointData = new GridData(GridData.FILL_HORIZONTAL);
+    lookAtPointData.horizontalSpan = 7;
+    lookAtPoitLabel.setLayoutData(lookAtPointData);
 
-    this.lookAtPointX = new ParameterInputBox(eyePointGroup, SWT.NONE, "  (", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    this.lookAtPointY = new ParameterInputBox(eyePointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lookAtPointZ = new ParameterInputBox(eyePointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lookAtPointX = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, "  (", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
+    this.lookAtPointY = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lookAtPointZ = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    final Label vKakko2 = new Label(eyePointGroup, SWT.NONE);
-    final GridData vKakkoData2 = new GridData();
-    vKakko2.setLayoutData(vKakkoData2);
-    vKakko2.setText(")"); //$NON-NLS-1$
+    final Label lookAtPointRightLabel = new Label(lookAtPointAndEyeGroup, SWT.NONE);
+    final GridData lookAtPointRightData = new GridData();
+    lookAtPointRightLabel.setLayoutData(lookAtPointRightData);
+    lookAtPointRightLabel.setText(")"); //$NON-NLS-1$
 
-    final Label vLabel = new Label(eyePointGroup, SWT.NONE);
-    vLabel.setText(Messages.getString("ConfigDialog.12")); //$NON-NLS-1$
-    final GridData vData = new GridData(GridData.FILL_HORIZONTAL);
-    vData.horizontalSpan = 7;
-    vLabel.setLayoutData(vData);
+    final Label eyeLabel = new Label(lookAtPointAndEyeGroup, SWT.NONE);
+    eyeLabel.setText(Messages.getString("ConfigDialog.12")); //$NON-NLS-1$
+    final GridData eyeData = new GridData(GridData.FILL_HORIZONTAL);
+    eyeData.horizontalSpan = 7;
+    eyeLabel.setLayoutData(eyeData);
 
-    this.eyeX = new ParameterInputBox(eyePointGroup, SWT.NONE, "  (", "5.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.eyeY = new ParameterInputBox(eyePointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.eyeZ = new ParameterInputBox(eyePointGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeX = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, "  (", "5.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeY = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeZ = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    final Label vKakko = new Label(eyePointGroup, SWT.NONE);
-    final GridData vKakkoData = new GridData();
-    vKakko.setLayoutData(vKakkoData);
-    vKakko.setText(")"); //$NON-NLS-1$
-
-    // 背景色の選択
-    final Label setColorLabel = new Label(this.editGroup, SWT.NONE);
-    setColorLabel.setText(Messages.getString("ConfigDialog.13")); //$NON-NLS-1$
-    createColorCombo();
-
-    setParametersToDialog();
-
+    final Label eyeRightLabel = new Label(lookAtPointAndEyeGroup, SWT.NONE);
+    final GridData eyePositionRightData = new GridData();
+    eyeRightLabel.setLayoutData(eyePositionRightData);
+    eyeRightLabel.setText(")"); //$NON-NLS-1$
   }
 
   /**
@@ -273,14 +289,14 @@ public class ConfigurationDialog {
   /**
    * メインボタンのあるコンポジットを生成します。
    */
-  private void createMainButtonComp() {
-    final Composite comp = new Composite(this.sShell, SWT.NONE);
+  private void createMainButtonComposite() {
+    final Composite composite = new Composite(this.sShell, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 3;
-    comp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    comp.setLayout(layout);
+    composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    composite.setLayout(layout);
 
-    final Button okButton = new Button(comp, SWT.NONE);
+    final Button okButton = new Button(composite, SWT.NONE);
     okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     okButton.setText(Messages.getString("ConfigDialog.16")); //$NON-NLS-1$
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
@@ -297,7 +313,7 @@ public class ConfigurationDialog {
 
     });
     
-    final Button cancelButton = new Button(comp, SWT.NONE);
+    final Button cancelButton = new Button(composite, SWT.NONE);
     cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     cancelButton.setText(Messages.getString("ConfigDialog.17")); //$NON-NLS-1$
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
@@ -307,7 +323,7 @@ public class ConfigurationDialog {
       }
     });
     
-    final Button applyButton = new Button(comp, SWT.NONE);
+    final Button applyButton = new Button(composite, SWT.NONE);
     applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     applyButton.setText(Messages.getString("ConfigurationDialog.0")); //$NON-NLS-1$
     applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
@@ -434,8 +450,8 @@ public class ConfigurationDialog {
   /**
    * 背景の色を指定するコンボボックスを作成します。
    */
-  private void createColorCombo() {
-    this.colorCombo = new Combo(this.editGroup, SWT.READ_ONLY);
+  private void createColorCombo(Group parent) {
+    this.colorCombo = new Combo(parent, SWT.READ_ONLY);
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     this.colorCombo.setLayoutData(gridData);
     final String[] colors = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
@@ -445,10 +461,10 @@ public class ConfigurationDialog {
   /**
    * モデルの長さの単位を指定するコンボボックスを作成します。
    * 
-   * @param group
+   * @param parent
    */
-  private void createModelLengthUnitCombo(Group group) {
-    this.modelLengthUnitCombo = new Combo(group, SWT.READ_ONLY);
+  private void createModelLengthUnitCombo(Group parent) {
+    this.modelLengthUnitCombo = new Combo(parent, SWT.READ_ONLY);
     final GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
     this.modelLengthUnitCombo.setLayoutData(lengthData);
     final String[] length = {"m"}; //$NON-NLS-1$
@@ -460,10 +476,10 @@ public class ConfigurationDialog {
   /**
    * データの長さの単位を指定するコンボボックスを作成します。
    * 
-   * @param group
+   * @param parent
    */
-  private void createDataLengthUnitCombo(Group group) {
-    this.dataLengthUnitCombo = new Combo(group, SWT.READ_ONLY);
+  private void createDataLengthUnitCombo(Group parent) {
+    this.dataLengthUnitCombo = new Combo(parent, SWT.READ_ONLY);
     final GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
     this.dataLengthUnitCombo.setLayoutData(lengthData);
     final String[] length = {"m"}; //$NON-NLS-1$

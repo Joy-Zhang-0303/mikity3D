@@ -32,7 +32,7 @@ public final class MessagegUtil {
     if (message != null) {
       final MessageBox box = new MessageBox(shell);
       box.setMessage(message);
-      box.setText("JAMAST"); //$NON-NLS-1$
+      box.setText("Mikity3D"); //$NON-NLS-1$
       box.open();
     }
   }
@@ -47,7 +47,7 @@ public final class MessagegUtil {
   public static int showYesNo(final Shell shell, final String message) {
     final MessageBox box = new MessageBox(shell, SWT.YES | SWT.NO);
     box.setMessage(message);
-    box.setText("JAMAST"); //$NON-NLS-1$
+    box.setText("Mikity3D"); //$NON-NLS-1$
     return box.open();
   }
 
@@ -61,7 +61,7 @@ public final class MessagegUtil {
   public static int showYesNoCancel(final Shell shell, final String message) {
     final MessageBox box = new MessageBox(shell, SWT.YES | SWT.NO | SWT.CANCEL);
     box.setMessage(message);
-    box.setText("JAMAST"); //$NON-NLS-1$
+    box.setText("Mikity3D"); //$NON-NLS-1$
     return box.open();
   }
 }
