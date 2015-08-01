@@ -160,7 +160,10 @@ public class AnimationWindow extends ApplicationWindow {
     
     final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
     for (GroupModel rootGroup : rootGroups) {
-      checkAnimation(rootGroup);
+      if (hasAnimation(rootGroup)) {
+        this.manager.setHasAnimation(true);
+        break;
+      }
     }
   }
 
@@ -286,15 +289,15 @@ public class AnimationWindow extends ApplicationWindow {
     this.playSpeed = new ParameterInputBox(topComposite, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     createTimeBar(controller);
-    createModeChooser(composite);
+    createModelChooser(composite);
     
     this.sourceGroup = new Group(composite, SWT.None);
     this.sourceGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     this.sourceGroup.setLayout(new GridLayout());
     this.sourceGroup.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
     
+    createSourceChooser(this.sourceGroup, "0"); //$NON-NLS-1$
     createSourceChooser(this.sourceGroup, "1"); //$NON-NLS-1$
-    createSourceChooser(this.sourceGroup, "2"); //$NON-NLS-1$
 
     playButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       /**
@@ -409,7 +412,7 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @param parent 親コンポジット
    */
-  public void createModeChooser(final Composite parent) {
+  public void createModelChooser(final Composite parent) {
     final Composite composite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
@@ -535,17 +538,27 @@ public class AnimationWindow extends ApplicationWindow {
     });
   }
 
-  private void checkAnimation(GroupModel parent) {
-    final GroupModel[] groups = parent.getGroups();
-    for (final GroupModel group : groups) {
-      final AnimationModel[] animations = group.getAnimations();
+  /**
+   * アニメーションが含まれるか判定します。
+   * 
+   * @param group グループ
+   * @return アニメーションが含まれればtrue
+   */
+  private boolean hasAnimation(GroupModel group) {
+    final GroupModel[] children = group.getGroups();
+    for (final GroupModel child : children) {
+      final AnimationModel[] animations = child.getAnimations();
       for (final AnimationModel animation : animations) {
         if (animation.exists()) {
-          this.manager.setHasAnimation(true);
+          return true;
         }
       }
-      checkAnimation(group);
+      if (hasAnimation(child)) {
+        return true;
+      }
     }
+    
+    return false;
   }
 
   /**

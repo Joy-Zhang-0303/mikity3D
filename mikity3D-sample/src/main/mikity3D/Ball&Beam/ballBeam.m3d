@@ -13,17 +13,17 @@
             <translation x="0.0" y="0.0" z="0.02"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
             <animation target="rotationX">
-            <source id="1" number="4"/>
+            <source id="0" number="4"/>
             </animation>
             <box width="0.2" height="0.01" depth="0.01" color="lightGray" transparent="false"/>
             <group name="ball">
                <translation x="0.0" y="0.0" z="0.015"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
                <animation target="translationY">
-               <source id="1" number="2"/>
+               <source id="0" number="2"/>
                </animation>
                <animation target="rotationX">
-               <source id="1" number="3"/>
+               <source id="0" number="3"/>
                </animation>
                <sphere radius="0.01" division="30" color="cyan" transparent="false"/>
             </group>
