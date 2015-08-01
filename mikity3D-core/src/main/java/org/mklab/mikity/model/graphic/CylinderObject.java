@@ -9,7 +9,7 @@ import org.mklab.mikity.util.Vector3;
  * @author iwamoto
  * @version $Revision$, 2012/01/31
  */
-public class CylinderObject extends GraphicObject {
+public class CylinderObject extends GraphicPrimitive {
   /** 底面の半径 */
   private float radius = 0;
 

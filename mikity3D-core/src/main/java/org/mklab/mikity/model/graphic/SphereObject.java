@@ -8,7 +8,7 @@ import org.mklab.mikity.util.Vector3;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class SphereObject extends GraphicObject {
+public class SphereObject extends GraphicPrimitive {
   /** 半径。 */
   private float radius = 0;
 

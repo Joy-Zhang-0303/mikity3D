@@ -6,7 +6,7 @@ package org.mklab.mikity.model.graphic;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class TrianglePolygonObject extends GraphicObject {
+public class TrianglePolygonObject extends GraphicPrimitive {
   /** 頂点 (v0, v1, v2)(反時計回り) */
   private float[][] vertices = new float[3][3];
   

@@ -13,7 +13,7 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 import javax.media.opengl.fixedfunc.GLPointerFunc;
 
-import org.mklab.mikity.model.graphic.GraphicObject;
+import org.mklab.mikity.model.graphic.GraphicPrimitive;
 import org.mklab.mikity.util.Color3;
 import org.mklab.mikity.util.ColorConstant;
 
@@ -25,13 +25,13 @@ import org.mklab.mikity.util.ColorConstant;
  */
 public abstract class AbstractJoglObject implements JoglObject {
   /** グラフィックオブジェクト。 */
-  protected GraphicObject object;
+  protected GraphicPrimitive object;
   
   /**
    * 新しく生成された<code>AbstractJoglObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
    */
-  public AbstractJoglObject(GraphicObject object) {
+  public AbstractJoglObject(GraphicPrimitive object) {
     this.object = object;
   }
   

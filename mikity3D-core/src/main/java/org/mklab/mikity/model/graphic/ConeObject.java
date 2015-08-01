@@ -8,7 +8,7 @@ import org.mklab.mikity.util.Vector3;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class ConeObject extends GraphicObject {
+public class ConeObject extends GraphicPrimitive {
   /** 底面の半径。 */
   private float radius = 0;
 

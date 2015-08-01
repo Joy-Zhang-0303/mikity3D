@@ -6,7 +6,7 @@ package org.mklab.mikity.model.graphic;
  * @author iwamoto
  * @version $Revision$, 2012/01/26
  */
-public class BoxObject extends GraphicObject {
+public class BoxObject extends GraphicPrimitive {
 
   /** 幅 */
   private float width;
