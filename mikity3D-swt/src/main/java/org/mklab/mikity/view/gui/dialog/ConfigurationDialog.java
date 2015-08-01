@@ -34,10 +34,8 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
  * @version $Revision: 1.1 $.2005/02/01
  */
 public class ConfigurationDialog {
-
   Shell sShell = null;
-  private Shell parentShell = null;
-  //private Group editGroup;
+  //private Shell parentShell = null;
   private Combo colorCombo;
   private Combo modelLengthUnitCombo;
   private Combo modelAngleUnitCombo;
@@ -67,17 +65,10 @@ public class ConfigurationDialog {
    * @param modeler モデラー
    */
   public ConfigurationDialog(Shell parentShell, ConfigurationModel configuration, JoglModeler modeler) {
-    this.parentShell = parentShell;
     this.configuration = configuration;
     this.modeler = modeler;
-    createSShell();
-  }
 
-  /**
-   * Shellを生成します。
-   */
-  private void createSShell() {
-    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.sShell = new Shell(parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     this.sShell.setText("Configuration Dialog"); //$NON-NLS-1$
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 560));
 
@@ -85,15 +76,15 @@ public class ConfigurationDialog {
     layout.numColumns = 1;
     this.sShell.setLayout(layout);
 
-    createEditGroup();
-    createMainButtonComposite();
+    createEditGroup(this.sShell);
+    createMainButtonComposite(this.sShell);
   }
 
   /**
    * 編集用のグループを生成します。
    */
-  private void createEditGroup() {
-    final Group editGroup = new Group(this.sShell, SWT.NONE);
+  private void createEditGroup(Shell parent) {
+    final Group editGroup = new Group(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     editGroup.setLayout(layout);
@@ -289,8 +280,8 @@ public class ConfigurationDialog {
   /**
    * メインボタンのあるコンポジットを生成します。
    */
-  private void createMainButtonComposite() {
-    final Composite composite = new Composite(this.sShell, SWT.NONE);
+  private void createMainButtonComposite(Shell parent) {
+    final Composite composite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 3;
     composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -302,7 +293,7 @@ public class ConfigurationDialog {
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (check()) {
+        if (containsOnlyNumbers()) {
           getParametersFromDialog();
           ConfigurationDialog.this.modeler.updateDisplay();
           ConfigurationDialog.this.sShell.close();
@@ -329,7 +320,7 @@ public class ConfigurationDialog {
     applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (check()) {
+        if (containsOnlyNumbers()) {
           getParametersFromDialog();
           ConfigurationDialog.this.modeler.updateDisplay();
         } else {
@@ -403,7 +394,7 @@ public class ConfigurationDialog {
    * 
    * @return boolean
    */
-  boolean check() {
+  boolean containsOnlyNumbers() {
     if (this.lightX.containsOnlyNumbers() == false) {
       return false;
     }
