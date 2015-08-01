@@ -1,7 +1,7 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
 import org.mklab.mikity.model.graphic.BoxObject;
-import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
+import org.mklab.mikity.view.renderer.jogl.AbstractJoglPrimitive;
 
 
 /**
@@ -10,7 +10,7 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
  * @author iwamoto
  * @version $Revision$, 2012/01/26
  */
-public class JoglBox extends AbstractJoglObject {
+public class JoglBox extends AbstractJoglPrimitive {
   /**
    * 新しく生成された<code>JoglBox</code>オブジェクトを初期化します。
    */

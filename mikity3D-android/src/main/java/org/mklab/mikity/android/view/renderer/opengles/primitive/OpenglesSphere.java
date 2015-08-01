@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
+import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesPrimitive;
 import org.mklab.mikity.model.graphic.SphereObject;
 
 /**
@@ -14,7 +14,7 @@ import org.mklab.mikity.model.graphic.SphereObject;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class OpenglesSphere extends AbstractOpenglesObject {
+public class OpenglesSphere extends AbstractOpenglesPrimitive {
   /**
    * 新しく生成された<code>OpenglesSphere</code>オブジェクトを初期化します。
    */

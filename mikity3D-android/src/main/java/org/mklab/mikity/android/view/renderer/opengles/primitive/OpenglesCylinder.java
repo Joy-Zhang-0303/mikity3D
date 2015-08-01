@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
+import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesPrimitive;
 import org.mklab.mikity.model.graphic.CylinderObject;
 
 
@@ -15,7 +15,7 @@ import org.mklab.mikity.model.graphic.CylinderObject;
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
-public class OpenglesCylinder extends AbstractOpenglesObject {
+public class OpenglesCylinder extends AbstractOpenglesPrimitive {
   /**
    * 新しく生成された<code>OpenglesCylinder</code>オブジェクトを初期化します。
    */

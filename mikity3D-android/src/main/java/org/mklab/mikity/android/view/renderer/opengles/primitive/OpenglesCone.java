@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
+import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesPrimitive;
 import org.mklab.mikity.model.graphic.ConeObject;
 
 
@@ -15,7 +15,7 @@ import org.mklab.mikity.model.graphic.ConeObject;
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
-public class OpenglesCone extends AbstractOpenglesObject {
+public class OpenglesCone extends AbstractOpenglesPrimitive {
   /**
    * 新しく生成された<code>OpenglesCone</code>オブジェクトを初期化します。
    */

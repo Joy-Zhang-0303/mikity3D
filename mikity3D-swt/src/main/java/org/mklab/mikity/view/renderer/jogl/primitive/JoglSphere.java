@@ -1,7 +1,7 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
 import org.mklab.mikity.model.graphic.SphereObject;
-import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
+import org.mklab.mikity.view.renderer.jogl.AbstractJoglPrimitive;
 
 /**
  * 球をJOGLで表したクラスです。
@@ -9,7 +9,7 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class JoglSphere extends AbstractJoglObject {
+public class JoglSphere extends AbstractJoglPrimitive {
   /**
    * 新しく生成された<code>JoglSphere</code>オブジェクトを初期化します。
    */

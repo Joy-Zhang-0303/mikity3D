@@ -1,7 +1,7 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
 import org.mklab.mikity.model.graphic.TrianglePolygonObject;
-import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
+import org.mklab.mikity.view.renderer.jogl.AbstractJoglPrimitive;
 
 
 /**
@@ -10,7 +10,7 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglObject;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class JoglTrianglePolygon extends AbstractJoglObject {
+public class JoglTrianglePolygon extends AbstractJoglPrimitive {
   /**
    * 新しく生成された<code>JoglTrianglePolygon</code>オブジェクトを初期化します。
    */

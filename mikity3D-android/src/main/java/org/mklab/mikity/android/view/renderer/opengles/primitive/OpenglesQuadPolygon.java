@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
+import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesPrimitive;
 import org.mklab.mikity.model.graphic.QuadPolygonObject;
 
 /**
@@ -14,7 +14,7 @@ import org.mklab.mikity.model.graphic.QuadPolygonObject;
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
-public class OpenglesQuadPolygon extends AbstractOpenglesObject {
+public class OpenglesQuadPolygon extends AbstractOpenglesPrimitive {
   /**
    * 新しく生成された<code>OpenglesQuadPolygon</code>オブジェクトを初期化します。
    */

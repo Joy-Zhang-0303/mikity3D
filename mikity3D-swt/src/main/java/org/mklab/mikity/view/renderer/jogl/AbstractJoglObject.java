@@ -1,6 +1,6 @@
 /*
- * Created on 2012/12/17
- * Copyright (C) 2012 Koga Laboratory. All rights reserved.
+ * Created on 2015/08/02
+ * Copyright (C) 2015 Koga Laboratory. All rights reserved.
  *
  */
 package org.mklab.mikity.view.renderer.jogl;
@@ -13,74 +13,33 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 import javax.media.opengl.fixedfunc.GLPointerFunc;
 
-import org.mklab.mikity.model.graphic.GraphicPrimitive;
-import org.mklab.mikity.util.Color3;
-import org.mklab.mikity.util.ColorConstant;
+import org.mklab.mikity.model.graphic.GraphicObject;
+
 
 /**
- * JOGLのオブジェクトを表すの抽象クラスです。
+ * JOGLのオブジェクトを表す抽象クラスです。
  * 
  * @author koga
- * @version $Revision$, 2012/12/17
+ * @version $Revision$, 2015/08/02
  */
 public abstract class AbstractJoglObject implements JoglObject {
-  /** グラフィックオブジェクト。 */
-  protected GraphicPrimitive object;
+  protected GraphicObject object;
   
   /**
    * 新しく生成された<code>AbstractJoglObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
    */
-  public AbstractJoglObject(GraphicPrimitive object) {
+  public AbstractJoglObject(GraphicObject object) {
     this.object = object;
   }
   
-  /**
-   * {@inheritDoc}
-   */
-  public void display(GL2 gl) {
-    applyTransparency(gl);
-    applyColor(gl);
-    drawTrianglePolygons(gl);
-  }
-
-  /**
-   * 色を適用します。
-   * 
-   * @param gl GL　
-   */
-  private void applyColor(GL2 gl) {
-    final String color = this.object.getColor();
-    
-    if (color == null) {
-      return;
-    }
-    
-    final Color3 value = ColorConstant.getColor(color);
-    gl.glColor4f(value.getR(), value.getG(), value.getB(), value.getAlpha());
-  }
-  
-  /**
-   * 透明性を適用します。
-   * 
-   * @param gl GL
-   */
-  private void applyTransparency(GL2 gl) {
-    if (this.object.isTransparent()) {
-      gl.glEnable(GL.GL_BLEND); // ブレンドを有効にします
-      gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-    } else {
-      gl.glEnable(GL.GL_BLEND); // ブレンドを有効にします
-      gl.glBlendFunc(GL.GL_ONE, GL.GL_ZERO);
-    }
-  }
   
   /**
    * 三角形ポリゴンを描画します。
    * 
    * @param gl GL
    */
-  private void drawTrianglePolygons(GL2 gl) {
+  protected void drawTrianglePolygons(GL2 gl) {
     final float[] vertexArray = this.object.getVertexArray();
     final float[] normalVectorArray = this.object.getNormalVectorArray();
     
@@ -125,23 +84,4 @@ public abstract class AbstractJoglObject implements JoglObject {
     buffer.put(array).position(0);
     return buffer;
   }
-
-  /**
-   * 色を設定します。
-   * 
-   * @param color 色
-   */
-  public void setColor(String color) {
-    this.object.setColor(color);
-  }
-  
-  /**
-   * 透明性を設定します。
-   * 
-   * @param transparent 透明性
-   */
-  public void setTransparent(boolean transparent) {
-    this.object.setTransparent(transparent);
-  }
-
 }

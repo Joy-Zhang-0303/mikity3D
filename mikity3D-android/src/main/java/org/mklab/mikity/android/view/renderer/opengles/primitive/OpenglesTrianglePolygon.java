@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
-import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesObject;
+import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesPrimitive;
 import org.mklab.mikity.model.graphic.TrianglePolygonObject;
 
 
@@ -15,7 +15,7 @@ import org.mklab.mikity.model.graphic.TrianglePolygonObject;
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
-public class OpenglesTrianglePolygon extends AbstractOpenglesObject {
+public class OpenglesTrianglePolygon extends AbstractOpenglesPrimitive {
   /**
    * 新しく生成された<code>OpenglesTrianglePolygon</code>オブジェクトを初期化します。
    */
