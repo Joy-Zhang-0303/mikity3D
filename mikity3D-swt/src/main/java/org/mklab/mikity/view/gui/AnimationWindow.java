@@ -6,11 +6,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.TreeSet;
 
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
@@ -151,19 +154,16 @@ public class AnimationWindow extends ApplicationWindow {
     this.root = root;
     this.manager = new ObjectGroupManager();
     
-    final List<SourceDataModel> sources = this.root.getConfiguration(0).getSources();
-    if (sources != null) {
-      for (final SourceDataModel source : sources) {
+    final List<SourceDataModel> sourcesInConfiguration = this.root.getConfiguration(0).getSources();
+    if (sourcesInConfiguration != null) {
+      for (final SourceDataModel source : sourcesInConfiguration) {
         addSource(source.getId(), source.getFilePath());
       }
     }
     
-    final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
-    for (GroupModel rootGroup : rootGroups) {
-      if (hasAnimation(rootGroup)) {
-        this.manager.setHasAnimation(true);
-        break;
-      }
+    final GroupModel[] rootGroups = this.root.getScene(0).getGroups();    
+    if (hasAnimation(rootGroups)) {
+      this.manager.setHasAnimation(true);
     }
   }
 
@@ -216,9 +216,22 @@ public class AnimationWindow extends ApplicationWindow {
     if (this.root != null) {
       prepareRenderer();
       this.modelFilePathText.setText(this.modelFile.getAbsolutePath());     
-    }  
+    
+      final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
+      createSourceChoosers(getAllIds(rootGroups), false);
+    }
     
     return parent;
+  }
+
+  private Set<String> getAllIds(final GroupModel[] rootGroups) {
+    final List<AnimationModel> allAnimations = getAllAnimation(rootGroups);
+    
+    final Set<String> ids = new TreeSet<>();
+    for (final AnimationModel animation : allAnimations) {
+      ids.add(animation.getSource().getId());
+    }
+    return ids;
   }
 
   /**
@@ -295,9 +308,6 @@ public class AnimationWindow extends ApplicationWindow {
     this.sourceGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     this.sourceGroup.setLayout(new GridLayout());
     this.sourceGroup.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
-    
-    createSourceChooser(this.sourceGroup, "0"); //$NON-NLS-1$
-    createSourceChooser(this.sourceGroup, "1"); //$NON-NLS-1$
 
     playButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       /**
@@ -476,8 +486,27 @@ public class AnimationWindow extends ApplicationWindow {
       this.modelFile = file;
       final Mikity3DModel localRoot = new Mikity3dFactory().loadFile(file);
       setRoot(localRoot);
+      
+      final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
+      createSourceChoosers(getAllIds(rootGroups), true);
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
+    }
+  }
+  
+
+  /**
+   * ソース選択を生成します。
+   * 
+   * @param ids ソースのID
+   */
+  private void createSourceChoosers(final Set<String> ids, boolean isPacking) {
+    for (final String id : ids) {
+      createSourceChooser(this.sourceGroup, id);
+    }
+    
+    if (isPacking) {
+      this.sourceGroup.pack();
     }
   }
 
@@ -544,21 +573,44 @@ public class AnimationWindow extends ApplicationWindow {
    * @param group グループ
    * @return アニメーションが含まれればtrue
    */
-  private boolean hasAnimation(GroupModel group) {
-    final GroupModel[] children = group.getGroups();
-    for (final GroupModel child : children) {
-      final AnimationModel[] animations = child.getAnimations();
+  private boolean hasAnimation(GroupModel[] groups) {
+    for (final GroupModel group : groups) {
+      final AnimationModel[] animations = group.getAnimations();
       for (final AnimationModel animation : animations) {
         if (animation.exists()) {
           return true;
         }
       }
-      if (hasAnimation(child)) {
+      if (hasAnimation(group.getGroups())) {
         return true;
       }
     }
     
     return false;
+  }
+  
+  /**
+   * 全ての含まれるアニメーソンを返します。
+   * 
+   * @param groups グループ
+   * 
+   * @return 全ての含まれるアニメーソン
+   */
+  private List<AnimationModel> getAllAnimation(GroupModel[] groups) {
+    final List<AnimationModel> allAnimations = new ArrayList<>();
+    
+    for (final GroupModel group : groups) {
+      final AnimationModel[] animations = group.getAnimations();
+      for (final AnimationModel animation : animations) {
+        if (animation.exists()) {
+          allAnimations.add(animation);
+        }
+      }
+
+      allAnimations.addAll(getAllAnimation(group.getGroups()));        
+    }
+    
+    return allAnimations;
   }
 
   /**
