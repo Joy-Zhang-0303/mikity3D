@@ -27,10 +27,9 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   private String name;
   /** ID。 */
   private int id = 0;
-  /** シリアル番号。 */
   /** モデルデータ。 */
   private GroupModel group;
-  /** モデルデータ。 */
+  /** シリアル番号。 */
   private static int serialID = 0;
 
   /**
@@ -91,7 +90,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    OpenglesObjectGroup other = (OpenglesObjectGroup)obj;
+    final OpenglesObjectGroup other = (OpenglesObjectGroup)obj;
     if (this.baseCoordinate == null) {
       if (other.baseCoordinate != null) return false;
     } else if (!this.baseCoordinate.equals(other.baseCoordinate)) return false;

@@ -26,10 +26,10 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
   private String name;
   /** ID。 */
   private int id = 0;
-  /** シリアル番号。 */
-  private static int serialID = 0;
   /** モデルデータ。 */
   private GroupModel group;
+  /** シリアル番号。 */
+  private static int serialID = 0;
 
   /**
    * 新しく生成された<code>JoglObjectGroup</code>オブジェクトを初期化します。
@@ -89,7 +89,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    JoglObjectGroup other = (JoglObjectGroup)obj;
+    final JoglObjectGroup other = (JoglObjectGroup)obj;
     if (this.baseCoordinate == null) {
       if (other.baseCoordinate != null) return false;
     } else if (!this.baseCoordinate.equals(other.baseCoordinate)) return false;
@@ -157,18 +157,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
       return;
     }
     
-//    final double translationX = parameter.getTranslationX();
-//    final double translationY = parameter.getTranslationY();
-//    final double translationZ = parameter.getTranslationZ();
-//    this.coordinate.setTranslation((float)translationX, (float)translationY, (float)translationZ);
-    
     this.coordinate.setTranslation(parameter.getTranslation());
-        
-//    final double rotationX = parameter.getRotationX();
-//    final double rotationY = parameter.getRotationY();
-//    final double rotationZ = parameter.getRotationZ();
-//    this.coordinate.setRotation((float)rotationX, (float)rotationY, (float)rotationZ);
-    
     this.coordinate.setRotation(parameter.getRotation());
   }
 
