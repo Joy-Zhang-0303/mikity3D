@@ -1,5 +1,6 @@
 package org.mklab.mikity.view.renderer.jogl;
 
+import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
@@ -66,7 +67,7 @@ public class JoglObjectGroupFactory {
       objectGroup.addChild(childObjectGroup);
     }
 
-    final JoglCoordinate baseCoordinate = createCoordinateOf(group);
+    final Coordinate baseCoordinate = createCoordinateOf(group);
     objectGroup.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
@@ -85,20 +86,20 @@ public class JoglObjectGroupFactory {
    * @param group オブジェクトのグループ
    * @return グループの座標系
    */
-  private JoglCoordinate createCoordinateOf(final GroupModel group) {
+  private Coordinate createCoordinateOf(final GroupModel group) {
     final TranslationModel translation = group.getTranslation();
     final RotationModel rotation = group.getRotation();
     
     if (translation != null && rotation != null) {
-      return new JoglCoordinate(translation, rotation);
+      return new Coordinate(translation, rotation);
     } 
     
     if (translation != null) {
-      return new JoglCoordinate(translation);
+      return new Coordinate(translation);
     }
     
     if (rotation != null) {
-      return new JoglCoordinate(rotation);
+      return new Coordinate(rotation);
     }
 
     throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$

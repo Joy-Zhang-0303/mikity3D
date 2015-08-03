@@ -5,16 +5,17 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles;
 
+import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.Messages;
 import org.mklab.mikity.model.ObjectGroupManager;
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
-import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
 /**
@@ -71,7 +72,7 @@ public class OpenglesObjectGroupFactory {
       objectGroup.addChild(childObjectGroup);
     }
 
-    final OpenglesCoordinate baseCoordinate = createCoordinateOf(group);
+    final Coordinate baseCoordinate = createCoordinateOf(group);
     objectGroup.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
@@ -90,20 +91,20 @@ public class OpenglesObjectGroupFactory {
    * @param group オブジェクトのグループ
    * @return グループの座標
    */
-  private OpenglesCoordinate createCoordinateOf(final GroupModel group) {
+  private Coordinate createCoordinateOf(final GroupModel group) {
     final TranslationModel translation = group.getTranslation();
     final RotationModel rotation = group.getRotation();
     
     if (translation != null && rotation != null) {
-      return new OpenglesCoordinate(translation, rotation);
+      return new Coordinate(translation, rotation);
     } 
     
     if (translation != null) {
-      return new OpenglesCoordinate(translation);
+      return new Coordinate(translation);
     }
     
     if (rotation != null) {
-      return new OpenglesCoordinate(rotation);
+      return new Coordinate(rotation);
     }
 
     throw new IllegalArgumentException(Messages.getString("OpenglesTransformGroupFactory.0")); //$NON-NLS-1$

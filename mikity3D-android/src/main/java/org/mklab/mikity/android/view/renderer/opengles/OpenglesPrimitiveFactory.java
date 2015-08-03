@@ -11,15 +11,16 @@ import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesCylinde
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesQuadPolygon;
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesSphere;
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesTrianglePolygon;
-import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
-import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
-import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.util.Vector3;
 
 
@@ -256,17 +257,17 @@ public class OpenglesPrimitiveFactory {
    * @param rotation 回転変換
    * @return 基準座標系
    */
-  private static OpenglesCoordinate createCoordinate(final TranslationModel translation, final RotationModel rotation) {
+  private static Coordinate createCoordinate(final TranslationModel translation, final RotationModel rotation) {
     if (translation != null && rotation != null) {
-      return new OpenglesCoordinate(translation, rotation);
+      return new Coordinate(translation, rotation);
     } 
     
     if (translation != null) {
-      return new OpenglesCoordinate(translation);
+      return new Coordinate(translation);
     } 
     
     if (rotation != null) {
-      return new OpenglesCoordinate(rotation);
+      return new Coordinate(rotation);
     }
     
     throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$

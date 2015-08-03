@@ -1,14 +1,15 @@
 package org.mklab.mikity.view.renderer.jogl;
 
-import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
-import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
-import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.util.Vector3;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglBox;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglCone;
@@ -252,17 +253,17 @@ public class JoglPrimitiveFactory {
    * @param rotation 回転変換
    * @return 座標系
    */
-  private static JoglCoordinate createCoordinate(final TranslationModel translation, final RotationModel rotation) {
+  private static Coordinate createCoordinate(final TranslationModel translation, final RotationModel rotation) {
     if (translation != null && rotation != null) {
-      return new JoglCoordinate(translation, rotation);
+      return new Coordinate(translation, rotation);
     }
     
     if (translation != null) {
-      return new JoglCoordinate(translation);
+      return new Coordinate(translation);
     }
     
     if (rotation != null) {
-      return new JoglCoordinate(rotation);
+      return new Coordinate(rotation);
     }
     
     throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$

@@ -5,9 +5,12 @@ import java.util.List;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.ObjectGroup;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
 
 /**
@@ -20,9 +23,9 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   /** オブジェクト。 */
   private List<OpenglesObject> objects = new ArrayList<OpenglesObject>();
   /** 座標系の基準。 */
-  private OpenglesCoordinate baseCoordinate;
+  private Coordinate baseCoordinate;
   /** 座標系。 */
-  private OpenglesCoordinate coordinate = new OpenglesCoordinate();
+  private Coordinate coordinate = new Coordinate();
   /** 名前。 */
   private String name;
   /** ID。 */
@@ -124,29 +127,46 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    * 
    * @param coordinate 座標系の基準
    */
-  public void setBaseCoordinate(OpenglesCoordinate coordinate) {
+  public void setBaseCoordinate(Coordinate coordinate) {
     this.baseCoordinate = coordinate;
   }
 
   /**
    * {@inheritDoc}
    */
-  public void display(GL10 gl10) {
-    gl10.glPushMatrix();
+  public void display(GL10 gl) {
+    gl.glPushMatrix();
 
     if (this.baseCoordinate != null) {
-      this.baseCoordinate.apply(gl10);
+      applyCoordinate(gl, this.baseCoordinate);
+      //this.baseCoordinate.apply(gl);
     }
 
     if (this.coordinate != null) {
-      this.coordinate.apply(gl10);
+      applyCoordinate(gl, this.coordinate);
+      //this.coordinate.apply(gl);
     }
 
     for (final OpenglesObject object : this.objects) {
-      object.display(gl10);
+      object.display(gl);
     }
 
-    gl10.glPopMatrix();
+    gl.glPopMatrix();
+  }
+  
+  /**
+   * GLによる座標変換を適用します。
+   * 
+   * @param gl GL
+   * @param coordinateArg 座標
+   */
+  private void applyCoordinate(GL10 gl, Coordinate coordinateArg) {
+    final TranslationModel translation = coordinateArg.getTranslation();
+    final RotationModel rotation = coordinateArg.getRotation();
+    gl.glTranslatef(translation.getX(), translation.getY(), translation.getZ());
+    gl.glRotatef((float)Math.toDegrees(rotation.getX()), 1.0f, 0.0f, 0.0f);
+    gl.glRotatef((float)Math.toDegrees(rotation.getY()), 0.0f, 1.0f, 0.0f);
+    gl.glRotatef((float)Math.toDegrees(rotation.getZ()), 0.0f, 0.0f, 1.0f);
   }
 
   /**

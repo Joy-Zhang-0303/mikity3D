@@ -5,9 +5,12 @@ import java.util.List;
 
 import javax.media.opengl.GL2;
 
+import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.ObjectGroup;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
 /**
  * オブジェクトグループを表すクラスです。
@@ -19,9 +22,9 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
   /** オブジェクト。 */
   private List<JoglObject> objects = new ArrayList<>();
   /** 座標系の基準。 */
-  private JoglCoordinate baseCoordinate;
+  private Coordinate baseCoordinate;
   /** 座標系。 */
-  private JoglCoordinate coordinate = new JoglCoordinate();
+  private Coordinate coordinate = new Coordinate();
   /** 名前。 */
   private String name;
   /** ID。 */
@@ -124,7 +127,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
    * 
    * @param coordinate 座標系の基準
    */
-  public void setBaseCoordinate(JoglCoordinate coordinate) {
+  public void setBaseCoordinate(Coordinate coordinate) {
     this.baseCoordinate = coordinate; 
   }
 
@@ -135,11 +138,13 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
     gl.glPushMatrix();
     
     if (this.baseCoordinate != null) {
-      this.baseCoordinate.apply(gl);
+      applyCoordinate(gl, this.baseCoordinate);
+      //this.baseCoordinate.apply(gl);
     }
 
     if (this.coordinate != null) {
-      this.coordinate.apply(gl);
+      applyCoordinate(gl, this.coordinate);
+      //this.coordinate.apply(gl);
     }
 
     for (final JoglObject object : this.objects) {
@@ -147,6 +152,21 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
     }
     
     gl.glPopMatrix();
+  }
+  
+  /**
+   * GLによる座標変換を適用します。
+   * @param gl GL
+   * @param coordinateArg 座標
+   */
+  private void applyCoordinate(GL2 gl, Coordinate coordinateArg) {
+    final TranslationModel translation = coordinateArg.getTranslation();
+    final RotationModel rotation = coordinateArg.getRotation();
+    
+    gl.glTranslatef(translation.getX(), translation.getY(), translation.getZ());
+    gl.glRotatef((float)Math.toDegrees(rotation.getX()), 1.0f, 0.0f, 0.0f);
+    gl.glRotatef((float)Math.toDegrees(rotation.getY()), 0.0f, 1.0f, 0.0f);
+    gl.glRotatef((float)Math.toDegrees(rotation.getZ()), 0.0f, 0.0f, 1.0f);
   }
 
   /**

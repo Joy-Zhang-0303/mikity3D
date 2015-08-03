@@ -111,5 +111,24 @@ public class Coordinate {
   public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
   }
+  
+  /**
+   * 並進を返します。
+   * 
+   * @return 並進
+   */
+  public TranslationModel getTranslation() {
+    return this.translation;
+  }
+  
+  /**
+   * 回転を返します。
+   * 
+   * @return 回転
+   */
+  public RotationModel getRotation() {
+    return this.rotation;
+  }
+   
 
 }
