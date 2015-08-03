@@ -169,8 +169,6 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    */
   public void setCoordinate(Coordinate coordinate) {
     this.coordinate = coordinate;
-    //this.coordinate.setTranslation(parameter.getTranslation());
-    //this.coordinate.setRotation(parameter.getRotation());
   }
 
   /**
