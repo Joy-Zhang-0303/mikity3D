@@ -40,7 +40,7 @@ public class JoglCoordinate {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    JoglCoordinate other = (JoglCoordinate)obj;
+    final JoglCoordinate other = (JoglCoordinate)obj;
     if (this.rotation == null) {
       if (other.rotation != null) return false;
     } else if (!this.rotation.equals(other.rotation)) return false;
