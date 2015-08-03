@@ -52,7 +52,7 @@ public class JoglPrimitiveFactory {
 
     final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
     
     return group;
   }
@@ -85,7 +85,7 @@ public class JoglPrimitiveFactory {
 
     final JoglObjectGroup group =  JoglObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
@@ -117,7 +117,7 @@ public class JoglPrimitiveFactory {
 
     final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
@@ -150,7 +150,7 @@ public class JoglPrimitiveFactory {
 
     final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
@@ -194,7 +194,7 @@ public class JoglPrimitiveFactory {
     
     final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
@@ -238,41 +238,31 @@ public class JoglPrimitiveFactory {
     
     final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
   
 
   /**
-   * 基準座標を生成します。
+   * 座標を生成します。
    * 
    * @param targetGroup オブジェクトグループ
    * @param translation 並進変換
    * @param rotation 回転変換
-   * @return 基準座標系
+   * @return 座標系
    */
-  private static JoglCoordinate createBaseCoordinate(final TranslationModel translation, final RotationModel rotation) {
+  private static JoglCoordinate createCoordinate(final TranslationModel translation, final RotationModel rotation) {
     if (translation != null && rotation != null) {
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translation);
-      coordinate.setRotation(rotation);
-      
-      return coordinate;
+      return new JoglCoordinate(translation, rotation);
     }
     
     if (translation != null) {
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translation);
-      
-      return coordinate;
+      return new JoglCoordinate(translation);
     }
     
     if (rotation != null) {
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(rotation);
-      
-      return coordinate;
+      return new JoglCoordinate(rotation);
     }
     
     throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$

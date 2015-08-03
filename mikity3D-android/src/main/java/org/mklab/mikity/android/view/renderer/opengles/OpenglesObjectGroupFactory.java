@@ -17,8 +17,6 @@ import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
-
-
 /**
  * {@link OpenglesObjectGroup}のファクトリークラスです。
  * @author ohashi
@@ -73,7 +71,7 @@ public class OpenglesObjectGroupFactory {
       objectGroup.addChild(childObjectGroup);
     }
 
-    final OpenglesCoordinate baseCoordinate = createBaseCoordinateOf(group);
+    final OpenglesCoordinate baseCoordinate = createCoordinateOf(group);
     objectGroup.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
@@ -92,27 +90,20 @@ public class OpenglesObjectGroupFactory {
    * @param group オブジェクトのグループ
    * @return グループの座標
    */
-  private OpenglesCoordinate createBaseCoordinateOf(final GroupModel group) {
+  private OpenglesCoordinate createCoordinateOf(final GroupModel group) {
     final TranslationModel translation = group.getTranslation();
     final RotationModel rotation = group.getRotation();
     
     if (translation != null && rotation != null) {
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setRotation(rotation);
-      coordinate.setTranslation(translation);
-      return coordinate;
+      return new OpenglesCoordinate(translation, rotation);
     } 
     
     if (translation != null) {
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translation);
-      return coordinate;
+      return new OpenglesCoordinate(translation);
     }
     
     if (rotation != null) {
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setRotation(rotation);
-      return coordinate;
+      return new OpenglesCoordinate(rotation);
     }
 
     throw new IllegalArgumentException(Messages.getString("OpenglesTransformGroupFactory.0")); //$NON-NLS-1$

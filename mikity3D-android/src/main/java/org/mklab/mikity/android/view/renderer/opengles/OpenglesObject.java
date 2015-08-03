@@ -6,6 +6,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 /**
  * OpenGLESのオブジェクトを表すインターフェースです。
+ * 
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */

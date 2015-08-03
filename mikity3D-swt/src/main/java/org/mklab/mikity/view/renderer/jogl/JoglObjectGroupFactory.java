@@ -66,7 +66,7 @@ public class JoglObjectGroupFactory {
       objectGroup.addChild(childObjectGroup);
     }
 
-    final JoglCoordinate baseCoordinate = createBaseCoordinateOf(group);
+    final JoglCoordinate baseCoordinate = createCoordinateOf(group);
     objectGroup.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
@@ -85,29 +85,20 @@ public class JoglObjectGroupFactory {
    * @param group オブジェクトのグループ
    * @return グループの座標系
    */
-  private JoglCoordinate createBaseCoordinateOf(final GroupModel group) {
+  private JoglCoordinate createCoordinateOf(final GroupModel group) {
     final TranslationModel translation = group.getTranslation();
     final RotationModel rotation = group.getRotation();
     
     if (translation != null && rotation != null) {
-      final JoglCoordinate coordinate = new JoglCoordinate();
-    
-      coordinate.setTranslation(translation);
-      coordinate.setRotation(rotation);
-      
-      return coordinate;
+      return new JoglCoordinate(translation, rotation);
     } 
     
     if (translation != null) {
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setTranslation(translation);
-      return coordinate;
+      return new JoglCoordinate(translation);
     }
     
     if (rotation != null) {
-      final JoglCoordinate coordinate = new JoglCoordinate();
-      coordinate.setRotation(rotation);
-      return coordinate;
+      return new JoglCoordinate(rotation);
     }
 
     throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$

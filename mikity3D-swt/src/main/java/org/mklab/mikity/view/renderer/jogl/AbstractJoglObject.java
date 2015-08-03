@@ -23,6 +23,7 @@ import org.mklab.mikity.model.graphic.GraphicObject;
  * @version $Revision$, 2015/08/02
  */
 public abstract class AbstractJoglObject implements JoglObject {
+  /** グラフィックオブジェクト。 */
   protected GraphicObject object;
   
   /**
@@ -32,7 +33,6 @@ public abstract class AbstractJoglObject implements JoglObject {
   public AbstractJoglObject(GraphicObject object) {
     this.object = object;
   }
-  
   
   /**
    * 三角形ポリゴンを描画します。

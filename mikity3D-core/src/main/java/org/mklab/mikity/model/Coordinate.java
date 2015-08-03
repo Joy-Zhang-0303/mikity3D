@@ -10,17 +10,51 @@ import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
 
 /**
- * 座標系を表す抽象クラスです。
+ * 座標系を表すクラスです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/03
  */
-public abstract class AbstractCoordinate {
+public class Coordinate {
   /** 並進。 */
   protected TranslationModel translation = new TranslationModel();
   /** 回転。 */
   protected RotationModel rotation = new RotationModel();
+  
+  /**
+   * 新しく生成された<code>Coordinate</code>オブジェクトを初期化します。
+   */
+  public Coordinate() {
+    // nothing to do
+  }
+  
+  /**
+   * 新しく生成された<code>Coordinate</code>オブジェクトを初期化します。
+   * @param translation 並進
+   */
+  public Coordinate(TranslationModel translation) {
+    this.translation = translation; 
+  }
+  
+  /**
+   * 新しく生成された<code>Coordinate</code>オブジェクトを初期化します。
+   * @param rotation 回転
+   */
+  public Coordinate(RotationModel rotation) {
+    this.rotation = rotation;
+  }
+  
+  /**
+   * 新しく生成された<code>Coordinate</code>オブジェクトを初期化します。
+   * @param translation 並進
+   * @param rotation 回転
+   */
+  public Coordinate(TranslationModel translation, RotationModel rotation) {
+    this.translation = translation;
+    this.rotation = rotation;
+  }
 
+  
   /**
    * {@inheritDoc}
    */
@@ -41,7 +75,7 @@ public abstract class AbstractCoordinate {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    final AbstractCoordinate other = (AbstractCoordinate)obj;
+    final Coordinate other = (Coordinate)obj;
     if (this.rotation == null) {
       if (other.rotation != null) return false;
     } else if (!this.rotation.equals(other.rotation)) return false;

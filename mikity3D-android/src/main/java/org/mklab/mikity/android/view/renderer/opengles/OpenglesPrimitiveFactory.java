@@ -57,7 +57,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
@@ -90,7 +90,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
@@ -122,7 +122,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
@@ -155,7 +155,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
@@ -199,7 +199,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
@@ -243,7 +243,7 @@ public class OpenglesPrimitiveFactory {
     
     final OpenglesObjectGroup group = OpenglesObjectGroup.create();
     group.addChild(child);
-    group.setBaseCoordinate(createBaseCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
 
     return group;
   }
@@ -256,27 +256,17 @@ public class OpenglesPrimitiveFactory {
    * @param rotation 回転変換
    * @return 基準座標系
    */
-  private static OpenglesCoordinate createBaseCoordinate(final TranslationModel translation, final RotationModel rotation) {
+  private static OpenglesCoordinate createCoordinate(final TranslationModel translation, final RotationModel rotation) {
     if (translation != null && rotation != null) {
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translation);
-      coordinate.setRotation(rotation);
-      
-      return coordinate;
+      return new OpenglesCoordinate(translation, rotation);
     } 
     
     if (translation != null) {
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setTranslation(translation);
-      
-      return coordinate;
+      return new OpenglesCoordinate(translation);
     } 
     
     if (rotation != null) {
-      final OpenglesCoordinate coordinate = new OpenglesCoordinate();
-      coordinate.setRotation(rotation);
-      
-      return coordinate;
+      return new OpenglesCoordinate(rotation);
     }
     
     throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$
