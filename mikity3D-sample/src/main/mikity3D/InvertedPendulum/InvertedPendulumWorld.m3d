@@ -45,7 +45,7 @@
          </group>
       </group>
       <group name="rotatingPendulum">
-         <translation x="-3.0" y="0.0" z="-0.21"/>
+         <translation x="-3.0" y="-1.2" z="-0.21"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
          <group name="base">
             <translation x="0.0" y="0.0" z="0.0"/>
@@ -946,7 +946,7 @@
          </group>
       </group>
       <group name="doublePendulum">
-         <translation x="-3.0" y="-1.5" z="-0.05"/>
+         <translation x="-3.0" y="0.0" z="-0.2"/>
          <rotation x="1.57" y="1.57" z="0.0"/>
          <group name="belt">
             <translation x="0.0" y="0.0" z="-0.15"/>
@@ -1692,7 +1692,7 @@
    <configuration>
       <background color="white"/>
       <light x="10.0" y="10.0" z="20.0"/>
-      <eye x="15.0" y="0.0" z="0.0"/>
+      <eye x="15.0" y="0.0" z="3.0"/>
       <lookAtPoint x="0.0" y="0.0" z="0.0"/>
       <modelUnit angle="radian" length="m"/>
       <dataUnit angle="radian" length="m"/>
