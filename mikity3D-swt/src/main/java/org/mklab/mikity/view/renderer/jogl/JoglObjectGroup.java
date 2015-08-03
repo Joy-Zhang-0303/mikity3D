@@ -6,7 +6,6 @@ import java.util.List;
 import javax.media.opengl.GL2;
 
 import org.mklab.mikity.model.Coordinate;
-import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.ObjectGroup;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
@@ -139,13 +138,9 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
     
     if (this.baseCoordinate != null) {
       applyCoordinate(gl, this.baseCoordinate);
-      //this.baseCoordinate.apply(gl);
     }
 
-    if (this.coordinate != null) {
-      applyCoordinate(gl, this.coordinate);
-      //this.coordinate.apply(gl);
-    }
+    applyCoordinate(gl, this.coordinate);
 
     for (final JoglObject object : this.objects) {
       object.display(gl);
@@ -172,13 +167,10 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
   /**
    * {@inheritDoc}
    */
-  public void setCoordinateParameter(CoordinateParameter parameter) {
-    if (this.coordinate == null) {
-      return;
-    }
-    
-    this.coordinate.setTranslation(parameter.getTranslation());
-    this.coordinate.setRotation(parameter.getRotation());
+  public void setCoordinate(Coordinate coordinate) {
+    this.coordinate = coordinate;
+    //this.coordinate.setTranslation(parameter.getTranslation());
+    //this.coordinate.setRotation(parameter.getRotation());
   }
 
   /**

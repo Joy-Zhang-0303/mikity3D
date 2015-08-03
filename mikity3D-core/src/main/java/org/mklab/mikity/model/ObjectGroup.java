@@ -24,11 +24,11 @@ public interface ObjectGroup {
   void setName(String name);
 
   /**
-   * グループの座標パラメータを設定します。
+   * グループの座標を設定します。
    * 
-   * @param parameter 座標パラメータ
+   * @param coordinate 座標
    */
-  void setCoordinateParameter(CoordinateParameter parameter);
+  void setCoordinate(Coordinate coordinate);
 
   /**
    * 関連するオブジェクトのグループを返します。

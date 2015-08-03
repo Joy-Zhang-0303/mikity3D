@@ -12,10 +12,9 @@ import java.io.InputStreamReader;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.CoordinateParameter;
 import org.mklab.mikity.model.CoordinateParameterType;
-import org.mklab.mikity.model.sampler.ClosenessDataSampler;
-import org.mklab.mikity.model.sampler.DataSampler;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.nfc.matrix.DoubleMatrix;
@@ -52,14 +51,18 @@ public class ClosenessDataPickerTest {
     
     final double t1 = 13.59;
     CoordinateParameter parameter1 = sampler.getCoordinateParameter(t1);
-    TranslationModel translation1 = parameter1.getTranslation();
+    Coordinate coordinate1 = parameter1.getCoordinate();
+    
+    TranslationModel translation1 = coordinate1.getTranslation();
     
     assertTrue(8.921f == translation1.getX());
 
     final double t2 = 2.86033300E+00;
     CoordinateParameter parameter2 = sampler.getCoordinateParameter(t2);
-    TranslationModel translation2 = parameter2.getTranslation();
-    RotationModel rotation2 = parameter2.getRotation();
+    Coordinate coordinate2 = parameter2.getCoordinate();
+    
+    TranslationModel translation2 = coordinate2.getTranslation();
+    RotationModel rotation2 = coordinate2.getRotation();
     
     assertTrue(8.921f == translation2.getX());
     assertTrue(0.0 == rotation2.getX());
@@ -67,8 +70,9 @@ public class ClosenessDataPickerTest {
     sampler.sample(CoordinateParameterType.ROTATION_X, 3);
     
     CoordinateParameter parameter3 = sampler.getCoordinateParameter(t2);
+    Coordinate coordinate3 = parameter3.getCoordinate();
     
-    RotationModel rotation3 = parameter3.getRotation();
+    RotationModel rotation3 = coordinate3.getRotation();
     assertTrue(-0.010995f == rotation3.getX());
   }
 }

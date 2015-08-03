@@ -102,6 +102,17 @@ public class CoordinateParameter {
   }
   
   /**
+   * 座標を返します。
+   * 
+   * @return 座標
+   */
+  public Coordinate getCoordinate() {
+    final TranslationModel translation = new TranslationModel((float)this.translationX, (float)this.translationY, (float)this.translationZ);
+    final RotationModel rotation = new RotationModel((float)this.rotationX, (float)this.rotationY, (float)this.rotationZ);
+    return new Coordinate(translation, rotation);
+  }
+  
+  /**
    * 値を設定します。
    * 
    * @param value 値
