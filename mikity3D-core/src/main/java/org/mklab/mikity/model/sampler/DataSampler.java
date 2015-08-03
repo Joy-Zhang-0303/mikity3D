@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.model.sampler;
 
-import org.mklab.mikity.model.CoordinateParameter;
+import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.CoordinateParameterType;
 
 
@@ -22,7 +22,7 @@ public interface DataSampler {
    * @param t 時刻
    * @return 指定された時刻の座標パラメータ
    */
-  CoordinateParameter getCoordinateParameter(double t);
+  Coordinate getCoordinate(double t);
 
   /**
    * 抽出するパラメータの型と番号を設定します。

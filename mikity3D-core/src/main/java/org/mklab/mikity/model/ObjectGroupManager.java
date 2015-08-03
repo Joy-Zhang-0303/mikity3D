@@ -52,8 +52,8 @@ public class ObjectGroupManager {
     for (final ObjectGroupDataSampler movingGroup : this.movingGroups) {
       final ObjectGroup objectGroup = movingGroup.objectGroup;
       final DataSampler sampler = movingGroup.sampler;
-      final CoordinateParameter coordinteParameter = sampler.getCoordinateParameter(t);
-      objectGroup.setCoordinate(coordinteParameter.getCoordinate());
+      final Coordinate coordinte = sampler.getCoordinate(t);
+      objectGroup.setCoordinate(coordinte);
     }
   }
   

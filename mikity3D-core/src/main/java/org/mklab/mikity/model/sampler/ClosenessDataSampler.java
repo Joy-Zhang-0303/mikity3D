@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.model.sampler;
 
-import org.mklab.mikity.model.CoordinateParameter;
+import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.CoordinateParameterType;
 import org.mklab.nfc.matrix.DoubleMatrix;
 
@@ -28,8 +28,8 @@ public class ClosenessDataSampler extends AbstractDataSampler {
   /**
    * {@inheritDoc}
    */
-  public CoordinateParameter getCoordinateParameter(double t) {
-    final CoordinateParameter parameter = new CoordinateParameter();
+  public Coordinate getCoordinate(double t) {
+    final Coordinate parameter = new Coordinate();
     
     final int timeNumber = getTimeNumber(t);
     
