@@ -151,6 +151,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
         topGroup.display(gl);
       }
     }
+
   }
 
   /**
