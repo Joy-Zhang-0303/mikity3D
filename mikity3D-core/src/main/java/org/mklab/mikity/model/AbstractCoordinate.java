@@ -3,7 +3,7 @@
  * Copyright (C) 2015 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.android.view.renderer.opengles;
+package org.mklab.mikity.model;
 
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -50,6 +50,14 @@ public abstract class AbstractCoordinate {
     } else if (!this.translation.equals(other.translation)) return false;
     return true;
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "(" + this.translation.getX() + ", " + this.translation.getY() + ", " + this.translation.getZ() + ", " + this.rotation.getX() + ", " + this.rotation.getY() + ", " + this.rotation.getZ() +  ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+  }
   
   /**
    * 並進を設定します。
@@ -59,15 +67,7 @@ public abstract class AbstractCoordinate {
   public void setTranslation(TranslationModel translation) {
     this.translation = translation;
   }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public String toString() {
-    return "(" + this.translation.getX() + ", " + this.translation.getY() + ", " + this.translation.getZ() + ", " + this.rotation.getX() + ", " + this.rotation.getY() + ", " + this.rotation.getZ() +  ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
-  }
-
+  
   /**
    * 回転を設定します。
    * 

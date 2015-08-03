@@ -2,6 +2,8 @@ package org.mklab.mikity.android.view.renderer.opengles;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import org.mklab.mikity.model.AbstractCoordinate;
+
 
 /**
  * OpenGL ESの座標系を表すクラスです。
