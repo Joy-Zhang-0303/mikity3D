@@ -3,7 +3,7 @@
  * Copyright (C) 2005 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.model.picker;
+package org.mklab.mikity.model.sampler;
 
 import static org.junit.Assert.assertTrue;
 
