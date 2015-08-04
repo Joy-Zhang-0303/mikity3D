@@ -7,16 +7,6 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GL2;
-import javax.media.opengl.GL2GL3;
-import javax.media.opengl.GLAutoDrawable;
-import javax.media.opengl.GLCapabilities;
-import javax.media.opengl.GLEventListener;
-import javax.media.opengl.awt.GLJPanel;
-import javax.media.opengl.fixedfunc.GLLightingFunc;
-import javax.media.opengl.fixedfunc.GLMatrixFunc;
-import javax.media.opengl.glu.GLU;
 import javax.swing.SwingUtilities;
 
 import org.mklab.mikity.model.ObjectGroupManager;
@@ -29,6 +19,17 @@ import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.util.Color3;
 import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.view.renderer.ObjectRenderer;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GL2GL3;
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLEventListener;
+import com.jogamp.opengl.awt.GLJPanel;
+import com.jogamp.opengl.fixedfunc.GLLightingFunc;
+import com.jogamp.opengl.fixedfunc.GLMatrixFunc;
+import com.jogamp.opengl.glu.GLU;
 
 /**
  * JOGL用のキャンバスを表すクラスです。

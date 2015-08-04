@@ -9,11 +9,11 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GL2;
-import javax.media.opengl.fixedfunc.GLPointerFunc;
-
 import org.mklab.mikity.model.graphic.GraphicObject;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.fixedfunc.GLPointerFunc;
 
 
 /**

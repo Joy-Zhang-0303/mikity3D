@@ -3,13 +3,13 @@ package org.mklab.mikity.view.renderer.jogl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.media.opengl.GL2;
-
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.ObjectGroup;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+
+import com.jogamp.opengl.GL2;
 
 /**
  * オブジェクトグループを表すクラスです。

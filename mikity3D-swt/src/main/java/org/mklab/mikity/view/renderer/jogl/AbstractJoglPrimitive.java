@@ -5,12 +5,12 @@
  */
 package org.mklab.mikity.view.renderer.jogl;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GL2;
-
 import org.mklab.mikity.model.graphic.GraphicPrimitive;
 import org.mklab.mikity.util.Color3;
 import org.mklab.mikity.util.ColorConstant;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
 
 /**
  * JOGLのプリミティブを表すの抽象クラスです。

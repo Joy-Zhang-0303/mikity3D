@@ -1,6 +1,6 @@
 package org.mklab.mikity.view.renderer.jogl;
 
-import javax.media.opengl.GL2;
+import com.jogamp.opengl.GL2;
 
 
 /**
