@@ -12,15 +12,15 @@ package org.mklab.mikity.util;
  * @author koga
  * @version $Revision$, 2013/01/27
  */
-public class Color3 {
+public class Color4 {
   /** 赤成分 */
-  private float r;
+  private int r;
   /** 緑成分 */
-  private float g;
+  private int g;
   /** 青成分 */
-  private float b;
+  private int b;
   /** アルファ値 */
-  private float alpha = 1;
+  private int alpha = 1;
   
   /**
    * 新しく生成された<code>Color3</code>オブジェクトを初期化します。
@@ -28,7 +28,7 @@ public class Color3 {
    * @param g 緑成分
    * @param b 青成分
    */
-  public Color3(float r, float g, float b) {
+  public Color4(int r, int g, int b) {
     this.r = r;
     this.g = g;
     this.b = b;
@@ -41,7 +41,7 @@ public class Color3 {
    * @param b 青成分
    * @param alpha アルファ値
    */
-  public Color3(float r, float g, float b, float alpha) {
+  public Color4(int r, int g, int b, int alpha) {
     this.r = r;
     this.g = g;
     this.b = b;
@@ -51,36 +51,40 @@ public class Color3 {
   
   /**
    * 赤成分を返します。
+   * 
    * @return 赤成分
    */
-  public float getR() {
-    return this.r;
+  public float getRf() {
+    return this.r/255f;
   }
 
   
   /**
    * 緑成分を返します。
+   * 
    * @return 緑成分
    */
-  public float getG() {
-    return this.g;
+  public float getGf() {
+    return this.g/255f;
   }
 
   
   /**
    * 青成分を返します。
+   * 
    * @return 青成分
    */
-  public float getB() {
-    return this.b;
+  public float getBf() {
+    return this.b/255f;
   }
   
   /**
    * アルファ値を返します。
+   * 
    * @return アルファ値
    */
-  public float getAlpha() {
-    return this.alpha;
+  public float getAlphaf() {
+    return this.alpha/255f;
   }
 
 }

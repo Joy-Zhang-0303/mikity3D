@@ -6,7 +6,7 @@
 package org.mklab.mikity.view.renderer.jogl;
 
 import org.mklab.mikity.model.graphic.GraphicPrimitive;
-import org.mklab.mikity.util.Color3;
+import org.mklab.mikity.util.Color4;
 import org.mklab.mikity.util.ColorConstant;
 
 import com.jogamp.opengl.GL;
@@ -48,8 +48,8 @@ public abstract class AbstractJoglPrimitive extends AbstractJoglObject {
       return;
     }
     
-    final Color3 value = ColorConstant.getColor(color);
-    gl.glColor4f(value.getR(), value.getG(), value.getB(), value.getAlpha());
+    final Color4 value = ColorConstant.getColor(color);
+    gl.glColor4f(value.getRf(), value.getGf(), value.getBf(), value.getAlphaf());
   }
   
   /**

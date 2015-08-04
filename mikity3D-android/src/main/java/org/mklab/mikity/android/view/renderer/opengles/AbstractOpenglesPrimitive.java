@@ -8,7 +8,7 @@ package org.mklab.mikity.android.view.renderer.opengles;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.graphic.GraphicPrimitive;
-import org.mklab.mikity.util.Color3;
+import org.mklab.mikity.util.Color4;
 import org.mklab.mikity.util.ColorConstant;
 
 /**
@@ -46,8 +46,8 @@ public abstract class  AbstractOpenglesPrimitive extends AbstractOpenglesObject 
       return;
     }
     
-    final Color3 value = ColorConstant.getColor(color);
-    gl.glColor4f(value.getR(), value.getG(), value.getB(), value.getAlpha());
+    final Color4 value = ColorConstant.getColor(color);
+    gl.glColor4f(value.getRf(), value.getGf(), value.getBf(), value.getAlphaf());
   }
   
   /**
