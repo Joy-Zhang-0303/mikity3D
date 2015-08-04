@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
+import javax.media.opengl.GL2GL3;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
@@ -106,6 +107,11 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
     gl.glEnable(GL.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     gl.glEnable(GL.GL_CULL_FACE); // 背面除去
+    
+//    gl.glEnable(GL.GL_BLEND);
+//    gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+//    gl.glHint(GL2GL3.GL_POLYGON_SMOOTH_HINT, GL.GL_NICEST);
+//    gl.glEnable(GL2GL3.GL_POLYGON_SMOOTH);
     
     gl.glEnable(GLLightingFunc.GL_LIGHTING); //光源を有効にします 
     gl.glEnable(GLLightingFunc.GL_COLOR_MATERIAL); //(光源がある場合の)カラーを有効にします 
