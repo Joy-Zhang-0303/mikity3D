@@ -46,7 +46,6 @@ public class SceneGraphTree {
   SceneModel model;
   /** */
   Composite composite;
-  /** */
 
   /** 選択されているオブジェクト。 */
   Object targetObject = null;
@@ -59,18 +58,15 @@ public class SceneGraphTree {
   GroupModel scene;
   
   /** */
-  boolean editable = true;
-  /** */
   JoglModeler modeler;
 
   /** 記憶されたオブジェクト。 */
   Object bufferedObject = null;
   /** 記憶されたグループ。 */
   GroupModel bufferedGroup = null;
-
   
   /** オブジェクトを修正中ならばtrue */
-  static boolean isModifyingObject = false;
+  boolean isModifyingObject = false;
 
   /**
    * コンストラクター
@@ -117,19 +113,22 @@ public class SceneGraphTree {
 
       @Override
       public void mouseDoubleClick(MouseEvent arg0) {
-        SceneGraphTree.this.editable = true;
-
         final Object clickObject = SceneGraphTree.this.tree.getSelection()[0].getData();
 
-        if (SceneGraphTree.isModifyingObject) {
+        if (SceneGraphTree.this.isModifyingObject) {
           return;
         }
+       
+        if (clickObject == SceneGraphTree.this.scene) {
+          return;
+        }
+        
         if (clickObject == null) {
           return;
         }
 
         if (clickObject instanceof GroupModel) {
-          final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, true, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (clickObject instanceof TrianglePolygonModel) {
@@ -155,6 +154,7 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(SelectionEvent arg0) {
         setSelectedObjectAsTarget();
+        SceneGraphTree.this.modeler.updateRenderer(); 
       }
     });
 
@@ -338,7 +338,7 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(SelectionEvent e) {
         if (SceneGraphTree.this.targetObject instanceof GroupModel) {
-          final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this.editable, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, true, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (SceneGraphTree.this.targetObject instanceof TrianglePolygonModel) {
@@ -446,6 +446,22 @@ public class SceneGraphTree {
       public void menuShown(MenuEvent e) {
         final Object clickedObject = SceneGraphTree.this.tree.getSelection()[0].getData();
         
+        if (clickedObject == SceneGraphTree.this.scene) {
+          addBox.setEnabled(false);
+          addCylinder.setEnabled(false);
+          addSphere.setEnabled(false);
+          addCone.setEnabled(false);
+          addTrianglePolygon.setEnabled(false);
+          addQuadPolygon.setEnabled(false);
+          addGroup.setEnabled(false);
+          copy.setEnabled(false);
+          cut.setEnabled(false);
+          paste.setEnabled(false);
+          edit.setEnabled(false);
+          delete.setEnabled(false);
+          return;
+        } 
+        
         if (clickedObject instanceof GroupModel) {
           addBox.setEnabled(true);
           addCylinder.setEnabled(true);
@@ -454,20 +470,26 @@ public class SceneGraphTree {
           addTrianglePolygon.setEnabled(true);
           addQuadPolygon.setEnabled(true);
           addGroup.setEnabled(true);
+          copy.setEnabled(true);
+          cut.setEnabled(true);
+          paste.setEnabled(true);
           edit.setEnabled(true);
           delete.setEnabled(true);
-        } else {
-          addBox.setEnabled(false);
-          addCylinder.setEnabled(false);
-          addSphere.setEnabled(false);
-          addCone.setEnabled(false);
-          addTrianglePolygon.setEnabled(false);
-          addQuadPolygon.setEnabled(false);
-          addGroup.setEnabled(false);
-          edit.setEnabled(true);
-          delete.setEnabled(true);
+          return;
         }
 
+        addBox.setEnabled(false);
+        addCylinder.setEnabled(false);
+        addSphere.setEnabled(false);
+        addCone.setEnabled(false);
+        addTrianglePolygon.setEnabled(false);
+        addQuadPolygon.setEnabled(false);
+        addGroup.setEnabled(false);
+        copy.setEnabled(true);
+        cut.setEnabled(true);
+        paste.setEnabled(true);
+        edit.setEnabled(true);
+        delete.setEnabled(true);
       }
     });
   }
@@ -477,28 +499,24 @@ public class SceneGraphTree {
    */
   void setSelectedObjectAsTarget() {
     if (this.tree.getSelectionCount() == 0) {
-      setAllTransparent(this.model.getGroup(1), true);
       return;
     }
 
     this.targetObject = this.tree.getSelection()[0].getData();
     
     if (this.targetObject == this.scene) {
-      this.editable = false;
       this.targetGroup = (GroupModel)this.targetObject;
       setTarget(this.targetGroup);
       return;
     } 
     
     if (this.targetObject instanceof GroupModel) {
-      this.editable = true;
       this.targetGroup = (GroupModel)this.targetObject;
       this.targetParentGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
       setTarget(this.targetGroup);
       return;
     }
 
-    this.editable = true;
     this.targetGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
     this.targetParentGroup = null;
     setTarget(this.targetObject);
@@ -510,8 +528,17 @@ public class SceneGraphTree {
    * @param object
    */
   private void setTarget(Object object) {
-    setAllTransparent(this.model.getGroup(0), true);
+    if (object == this.scene) {
+      for (GroupModel group : this.model.getGroups()) {
+        setAllTransparent(group, false);
+      }
+      return;
+    }
 
+    for (GroupModel group : this.model.getGroups()) {
+      setAllTransparent(group, true);
+    }
+    
     if (object instanceof BoxModel) {
       ((BoxModel)object).setTransparent(false);
     } else if (object instanceof ConeModel) {
@@ -525,31 +552,8 @@ public class SceneGraphTree {
     } else if (object instanceof QuadPolygonModel) {
       ((QuadPolygonModel)object).setTransparent(false);
     } else if (object instanceof GroupModel) {
-      GroupModel group = (GroupModel)object;
-      final BoxModel[] boxes = group.getBoxes();
-      for (int i = 0; i < boxes.length; i++) {
-        boxes[i].setTransparent(false);
-      }
-      final CylinderModel[] cylinders = group.getCylinders();
-      for (int i = 0; i < cylinders.length; i++) {
-        cylinders[i].setTransparent(false);
-      }
-      final SphereModel[] spheres = group.getSpheres();
-      for (int i = 0; i < spheres.length; i++) {
-        spheres[i].setTransparent(false);
-      }
-      final ConeModel[] cones = group.getCones();
-      for (int i = 0; i < cones.length; i++) {
-        cones[i].setTransparent(false);
-      }
-      final TrianglePolygonModel[] trianglePolygons = group.getTrianglePolygons();
-      for (int i = 0; i < trianglePolygons.length; i++) {
-        trianglePolygons[i].setTransparent(false);
-      }
-      final QuadPolygonModel[] quadPolygons = group.getQuadPolygons();
-      for (int i = 0; i < quadPolygons.length; i++) {
-        quadPolygons[i].setTransparent(false);
-      }
+      final GroupModel group = (GroupModel)object;
+      setAllTransparent(group, false);
     }
   }
 
@@ -586,7 +590,7 @@ public class SceneGraphTree {
       quadPolygons[i].setTransparent(transparent);
     }
 
-    GroupModel[] groups = group.getGroups();
+    final GroupModel[] groups = group.getGroups();
 
     for (int i = 0; i < groups.length; i++) {
       setAllTransparent(groups[i], transparent);
@@ -821,7 +825,7 @@ public class SceneGraphTree {
    * 
    * @param isModifyingObject モデルを修正中ならばtrue
    */
-  public static void setIsModifyingObject(boolean isModifyingObject) {
-    SceneGraphTree.isModifyingObject = isModifyingObject;
+  public void setIsModifyingObject(boolean isModifyingObject) {
+    this.isModifyingObject = isModifyingObject;
   }
 }

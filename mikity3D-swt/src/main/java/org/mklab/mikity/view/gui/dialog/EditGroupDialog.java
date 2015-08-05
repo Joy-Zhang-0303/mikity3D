@@ -80,7 +80,7 @@ public class EditGroupDialog {
     this.tree = tree;
     this.modeler = modeler;
     
-    SceneGraphTree.setIsModifyingObject(true);
+    this.tree.setIsModifyingObject(true);
     
     createSShell();
   }
@@ -136,7 +136,7 @@ public class EditGroupDialog {
       }
       
       public void shellClosed(ShellEvent arg0) {
-        SceneGraphTree.setIsModifyingObject(false);
+        EditGroupDialog.this.tree.setIsModifyingObject(false);
       }
       
       public void shellActivated(ShellEvent arg0) {
@@ -232,6 +232,8 @@ public class EditGroupDialog {
         }
 
         updateGroupParameters();
+        EditGroupDialog.this.tree.updateTree();
+        EditGroupDialog.this.modeler.updateDisplay();
         EditGroupDialog.this.sShell.close();
       }
 

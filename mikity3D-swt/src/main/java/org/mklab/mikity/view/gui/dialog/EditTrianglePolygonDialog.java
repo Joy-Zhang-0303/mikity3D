@@ -85,7 +85,7 @@ public class EditTrianglePolygonDialog {
     this.tree = tree;
     this.modeler = modeler;
     
-    SceneGraphTree.setIsModifyingObject(true);
+    this.tree.setIsModifyingObject(true);
     
     createSShell();
     setParametersInDialog();
@@ -152,7 +152,7 @@ public class EditTrianglePolygonDialog {
       }
       
       public void shellClosed(ShellEvent arg0) {
-        SceneGraphTree.setIsModifyingObject(false);
+        EditTrianglePolygonDialog.this.tree.setIsModifyingObject(false);
       }
       
       public void shellActivated(ShellEvent arg0) {
@@ -256,6 +256,8 @@ public class EditTrianglePolygonDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containOnlyNumbers()) {
           updateObjectParameters();
+          EditTrianglePolygonDialog.this.tree.updateTree();
+          EditTrianglePolygonDialog.this.modeler.updateDisplay();
           EditTrianglePolygonDialog.this.sShell.close();
         } else {
           final MessageBox message = new MessageBox(EditTrianglePolygonDialog.this.sShell, SWT.ICON_WARNING);

@@ -85,7 +85,7 @@ public class EditPrimitiveDialog {
     this.tree = tree;
     this.modeler = modeler;
     
-    SceneGraphTree.setIsModifyingObject(true);
+    this.tree.setIsModifyingObject(true);
     
     createSShell();
     setParametersInDialog();
@@ -116,7 +116,7 @@ public class EditPrimitiveDialog {
       }
       
       public void shellClosed(ShellEvent arg0) {
-        SceneGraphTree.setIsModifyingObject(false);
+        EditPrimitiveDialog.this.tree.setIsModifyingObject(false);
       }
       
       public void shellActivated(ShellEvent arg0) {
@@ -253,6 +253,8 @@ public class EditPrimitiveDialog {
         }
 
         updatePrimitiveParameters();
+        EditPrimitiveDialog.this.tree.updateTree();
+        EditPrimitiveDialog.this.modeler.updateDisplay();
         EditPrimitiveDialog.this.sShell.close();
       }
     });
@@ -280,7 +282,7 @@ public class EditPrimitiveDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         updatePrimitiveParameters();
-        setParametersInDialog();
+        //setParametersInDialog();
         EditPrimitiveDialog.this.tree.updateTree();
         EditPrimitiveDialog.this.modeler.updateDisplay();
       }

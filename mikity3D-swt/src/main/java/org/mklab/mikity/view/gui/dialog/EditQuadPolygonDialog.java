@@ -91,8 +91,7 @@ public class EditQuadPolygonDialog {
     this.tree = tree;
     this.modeler = modeler;
     
-    SceneGraphTree.setIsModifyingObject(true);
-    
+    this.tree.setIsModifyingObject(true);
     
     createSShell();
     detectPrim();
@@ -159,7 +158,7 @@ public class EditQuadPolygonDialog {
       }
       
       public void shellClosed(ShellEvent arg0) {
-        SceneGraphTree.setIsModifyingObject(false);
+        EditQuadPolygonDialog.this.tree.setIsModifyingObject(false);
       }
       
       public void shellActivated(ShellEvent arg0) {
@@ -273,6 +272,8 @@ public class EditQuadPolygonDialog {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containOnlyNumbers()) {
           updateObjectParameters();
+          EditQuadPolygonDialog.this.tree.updateTree();
+          EditQuadPolygonDialog.this.modeler.updateDisplay();
           EditQuadPolygonDialog.this.sShell.close();
         } else {
           final MessageBox message = new MessageBox(EditQuadPolygonDialog.this.sShell, SWT.ICON_WARNING);
