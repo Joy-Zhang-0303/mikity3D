@@ -34,8 +34,8 @@ public class SphereModel implements java.io.Serializable, Cloneable {
   private RotationModel rotation;
   
   /** color */
-  @Attribute(name="color")
-  private String color;
+  @Element(name="color")
+  private ColorModel color;
 
   /**_ransparent */
   @Attribute(name="transparent", required=false)
@@ -49,7 +49,7 @@ public class SphereModel implements java.io.Serializable, Cloneable {
    * コンストラクター
    */
   public SphereModel() {
-    this.color = "red"; //$NON-NLS-1$
+    this.color = new ColorModel("red"); //$NON-NLS-1$
     this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
   }
@@ -67,11 +67,57 @@ public class SphereModel implements java.io.Serializable, Cloneable {
       if (this.rotation != null) {
         ans.rotation = this.rotation.clone();
       }
+      
+      ans.color = this.color.clone();
 
       return ans;
     } catch (CloneNotSupportedException e) {
       throw new InternalError(e);
     }
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
+    result = prime * result + this.division;
+    result = prime * result + ((this.propertyChangeListeners == null) ? 0 : this.propertyChangeListeners.hashCode());
+    result = prime * result + Float.floatToIntBits(this.radius);
+    result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
+    result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
+    result = prime * result + (this.transparent ? 1231 : 1237);
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    SphereModel other = (SphereModel)obj;
+    if (this.color == null) {
+      if (other.color != null) return false;
+    } else if (!this.color.equals(other.color)) return false;
+    if (this.division != other.division) return false;
+    if (this.propertyChangeListeners == null) {
+      if (other.propertyChangeListeners != null) return false;
+    } else if (!this.propertyChangeListeners.equals(other.propertyChangeListeners)) return false;
+    if (Float.floatToIntBits(this.radius) != Float.floatToIntBits(other.radius)) return false;
+    if (this.rotation == null) {
+      if (other.rotation != null) return false;
+    } else if (!this.rotation.equals(other.rotation)) return false;
+    if (this.translation == null) {
+      if (other.translation != null) return false;
+    } else if (!this.translation.equals(other.translation)) return false;
+    if (this.transparent != other.transparent) return false;
+    return true;
   }
 
   /**
@@ -89,79 +135,7 @@ public class SphereModel implements java.io.Serializable, Cloneable {
    * @return the value of field 'color'.
    */
   public java.lang.String getColor() {
-    return this.color;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
-    result = prime * result + this.division;
-    result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
-    result = prime * result + Float.floatToIntBits(this.radius);
-    result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
-    result = prime * result + (this.transparent ? 1231 : 1237);
-    result = prime * result + ((this.propertyChangeListeners == null) ? 0 : this.propertyChangeListeners.hashCode());
-    return result;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    SphereModel other = (SphereModel)obj;
-    if (this.color == null) {
-      if (other.color != null) {
-        return false;
-      }
-    } else if (!this.color.equals(other.color)) {
-      return false;
-    }
-    if (this.division != other.division) {
-      return false;
-    }
-    if (this.translation == null) {
-      if (other.translation != null) {
-        return false;
-      }
-    } else if (!this.translation.equals(other.translation)) {
-      return false;
-    }
-    if (Float.floatToIntBits(this.radius) != Float.floatToIntBits(other.radius)) {
-      return false;
-    }
-    if (this.rotation == null) {
-      if (other.rotation != null) {
-        return false;
-      }
-    } else if (!this.rotation.equals(other.rotation)) {
-      return false;
-    }
-    if (this.transparent != other.transparent) {
-      return false;
-    }
-    if (this.propertyChangeListeners == null) {
-      if (other.propertyChangeListeners != null) {
-        return false;
-      }
-    } else if (!this.propertyChangeListeners.equals(other.propertyChangeListeners)) {
-      return false;
-    }
-    return true;
+    return this.color.getName();
   }
 
   /**
@@ -241,7 +215,7 @@ public class SphereModel implements java.io.Serializable, Cloneable {
    * @param color the value of field 'color'.
    */
   public void setColor(java.lang.String color) {
-    this.color = color;
+    this.color = new ColorModel(color);
   }
 
   /**

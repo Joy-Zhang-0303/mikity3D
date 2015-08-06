@@ -17,10 +17,6 @@ public class AnimationModel implements java.io.Serializable, Cloneable {
   /** 対象となるパラメータの名前 */
   @Attribute(name="target", required=true)
   private String target;
-
-//  /** データの番号 */
-//  @Attribute(name="number")
-//  private int number;
   
   /** Source */
   @Element(name="source", required=true)
@@ -31,7 +27,6 @@ public class AnimationModel implements java.io.Serializable, Cloneable {
    */
   public AnimationModel() {
     this.target = ""; //$NON-NLS-1$
-    //this.number = 0;
     this.source = new SourceModel();
   }
   
@@ -48,59 +43,6 @@ public class AnimationModel implements java.io.Serializable, Cloneable {
       throw new InternalError(e);
     }
   }
-
-//  /**
-//   * データの番号を返します。
-//   * 
-//   * @return データの番号
-//   */
-//  public int getNumber() {
-//    return this.number;
-//  }
-
-//  /**
-//   * {@inheritDoc}
-//   */
-//  @Override
-//  public int hashCode() {
-//    final int prime = 31;
-//    int result = 1;
-//    result = prime * result + this.number;
-//    result = prime * result + ((this.target == null) ? 0 : this.target.hashCode());
-//    return result;
-//  }
-//
-//  /**
-//   * {@inheritDoc}
-//   */
-//  @Override
-//  public boolean equals(Object obj) {
-//    if (this == obj) {
-//      return true;
-//    }
-//    
-//    if (obj == null) {
-//      return false;
-//    }
-//    
-//    if (getClass() != obj.getClass()) {
-//      return false;
-//    }
-//    
-//    AnimationModel other = (AnimationModel)obj;
-//    if (this.number != other.number) {
-//      return false;
-//    }
-//
-//    if (this.target == null) {
-//      if (other.target != null) {
-//        return false;
-//      }
-//    } else if (!this.target.equals(other.target)) {
-//      return false;
-//    }
-//    return true;
-//  }
 
   /**
    * {@inheritDoc}
@@ -141,15 +83,6 @@ public class AnimationModel implements java.io.Serializable, Cloneable {
     return this.target;
   }
 
-//  /**
-//   * データの番号を設定します。
-//   * 
-//   * @param number データの番号
-//   */
-//  public void setNumber(int number) {
-//    this.number = number;
-//  }
-
   /**
    * 対象となるパラメータの名前を設定します。
    * 
@@ -159,18 +92,6 @@ public class AnimationModel implements java.io.Serializable, Cloneable {
     this.target = target;
   }
 
-//  /**
-//   * データの番号をもつか判別します。
-//   * 
-//   * @return データの番号をもつならばtrue
-//   */
-//  private boolean hasNumber() {
-//    if (this.number != 0) {
-//      return true;
-//    }
-//    return false;
-//  }
-  
   /**
    * ターゲットをもつか判別します。
    * 

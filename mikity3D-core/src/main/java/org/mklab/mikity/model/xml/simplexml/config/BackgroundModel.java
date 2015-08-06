@@ -1,6 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml.config;
 
-import org.simpleframework.xml.Attribute;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
+import org.simpleframework.xml.Element;
 
 
 /**
@@ -10,15 +11,16 @@ import org.simpleframework.xml.Attribute;
  */
 public class BackgroundModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
+
   /** color */
-  @Attribute(name="color")
-  private String color;
+  @Element(name="color")
+  private ColorModel color;
   
   /**
    * 新しく生成された<code>Background</code>オブジェクトを初期化します。
    */
   public BackgroundModel() {
-    this.color = "white"; //$NON-NLS-1$
+    this.color = new ColorModel("white"); //$NON-NLS-1$
   }
   
   /**
@@ -26,7 +28,7 @@ public class BackgroundModel implements java.io.Serializable, Cloneable {
    * @param color 背景色
    */
   public BackgroundModel(String color) {
-    this.color = color;
+    this.color = new ColorModel(color);
   }
   
   /**
@@ -35,12 +37,14 @@ public class BackgroundModel implements java.io.Serializable, Cloneable {
   @Override
   public BackgroundModel clone() {
     try {
-      return (BackgroundModel)super.clone();
+      final BackgroundModel ans = (BackgroundModel)super.clone();
+      ans.color = this.color.clone();
+      return ans;
     } catch (CloneNotSupportedException e) {
       throw new InternalError(e);
     }
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -57,23 +61,13 @@ public class BackgroundModel implements java.io.Serializable, Cloneable {
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
     BackgroundModel other = (BackgroundModel)obj;
     if (this.color == null) {
-      if (other.color != null) {
-        return false;
-      }
-    } else if (!this.color.equals(other.color)) {
-      return false;
-    }
+      if (other.color != null) return false;
+    } else if (!this.color.equals(other.color)) return false;
     return true;
   }
 
@@ -83,7 +77,7 @@ public class BackgroundModel implements java.io.Serializable, Cloneable {
    * @return 色
    */
   public String getColor() {
-    return this.color;
+    return this.color.getName();
   }
 
   /**
@@ -92,6 +86,6 @@ public class BackgroundModel implements java.io.Serializable, Cloneable {
    * @param color 色
    */
   public void setColor(String color) {
-    this.color = color;
+    this.color = new ColorModel(color);
   }
 }

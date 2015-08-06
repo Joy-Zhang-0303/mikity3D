@@ -15,7 +15,7 @@
             <animation target="rotationX">
             <source id="1" number="4"/>
             </animation>
-            <box width="0.2" height="0.01" depth="0.01" color="lightGray" transparent="false"/>
+            <box width="0.2" height="0.01" depth="0.01" transparent="false"/>
             <group name="ball">
                <translation x="0.0" y="0.0" z="0.015"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
@@ -32,7 +32,7 @@
       </group>
    </scene>
    <configuration>
-      <background color="white"/>
+      <background/>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="1.5" y="0.0" z="0.0"/>
       <lookAtPoint x="0.0" y="0.0" z="0.0"/>

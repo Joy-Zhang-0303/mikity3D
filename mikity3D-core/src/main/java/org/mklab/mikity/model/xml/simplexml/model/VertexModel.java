@@ -59,15 +59,6 @@ public class VertexModel implements java.io.Serializable, Cloneable {
   }
 
   /**
-   * Returns the value of field 'x'.
-   * 
-   * @return the value of field 'x'.
-   */
-  public float getX() {
-    return this.x;
-  }
-
-  /**
    * {@inheritDoc}
    */
   @SuppressWarnings("unqualified-field-access")
@@ -108,6 +99,15 @@ public class VertexModel implements java.io.Serializable, Cloneable {
     return true;
   }
 
+  /**
+   * Returns the value of field 'x'.
+   * 
+   * @return the value of field 'x'.
+   */
+  public float getX() {
+    return this.x;
+  }
+  
   /**
    * Returns the value of field 'y'.
    * 

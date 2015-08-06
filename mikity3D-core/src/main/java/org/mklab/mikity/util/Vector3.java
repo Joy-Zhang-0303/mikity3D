@@ -13,7 +13,9 @@ package org.mklab.mikity.util;
  * @author koga
  * @version $Revision$, 2013/01/27
  */
-public class Vector3 implements Cloneable {
+public class Vector3 implements java.io.Serializable, Cloneable {
+  /** */
+  private static final long serialVersionUID = 1L;
   /** x成分 */
   private float x;
   /** y成分 */
@@ -45,6 +47,34 @@ public class Vector3 implements Cloneable {
     }
   }
   
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + Float.floatToIntBits(this.x);
+    result = prime * result + Float.floatToIntBits(this.y);
+    result = prime * result + Float.floatToIntBits(this.z);
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    Vector3 other = (Vector3)obj;
+    if (Float.floatToIntBits(this.x) != Float.floatToIntBits(other.x)) return false;
+    if (Float.floatToIntBits(this.y) != Float.floatToIntBits(other.y)) return false;
+    if (Float.floatToIntBits(this.z) != Float.floatToIntBits(other.z)) return false;
+    return true;
+  }
+
   /**
    * 外積を返します。
    * @param b 第二ベクトル

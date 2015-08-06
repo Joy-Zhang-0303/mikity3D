@@ -1,69 +1,88 @@
 <mikity3d>
-	<scene>
-		<group name="robotArm3">
-			<translation x="0.0" z="-0.2" y="0.0" />
-			<rotation x="0.0" z="2.0" y="0.0" />
-			<group name="dodai">
-				<cylinder color="red" division="30" height="0.02" radius="0.1"/>
-				<group name="arm1">
-					<translation x="0.0" z="0.1" y="0.0" />
-					<animation target="rotationZ">
-					<source id="0" number="2"/>
-					</animation>
-					<cylinder color="red" division="30" height="0.2" radius="0.02"/>
-					<cylinder color="orange" division="30" height="0.08" radius="0.02">
-						<rotation x="0.0" z="0.0" y="1.5708" />
-						<translation x="0.02" z="0.1" y="0.0" />
-					</cylinder>
-					<group name="arm2">
-						<translation x="0.04" z="0.1" y="0.0" />
-						<rotation x="0.0" z="0.0" y="0.0" />
-						<animation target="rotationX">
-						<source id="0" number="3"/>
-						</animation>
-						<cylinder color="red" division="30" height="0.1" radius="0.02">
-							<translation x="0.0" z="0.05" y="0.0" />
-						</cylinder>
-						<cylinder color="orange" division="30" height="0.08" radius="0.02">
-							<rotation x="0.0" z="0.0" y="1.5708" />
-							<translation x="0.02" z="0.1" y="0.0" />
-						</cylinder>
-						<group name="arm3">
-							<translation x="0.04" z="0.1" y="0.0" />
-							<animation target="rotationX">
-							<source id="0" number="4"/>
-							</animation>
-							<cylinder color="red" division="30" height="0.1" radius="0.02">
-								<translation x="0.0" z="0.05" y="0.0" />
-							</cylinder>
-							<cylinder color="red" division="30" height="0.02" radius="0.01">
-								<translation x="0.0" z="0.135" y="0.04" />
-							</cylinder>
-							<cylinder color="red" division="30" height="0.02" radius="0.01">
-								<translation x="0.0" z="0.135" y="-0.04" />
-							</cylinder>
-							<cylinder color="red" division="30" height="0.02" radius="0.01">
-								<translation x="0.04" z="0.135" y="0.0" />
-							</cylinder>
-							<cylinder color="red" division="30" height="0.02" radius="0.01">
-								<translation x="-0.04" z="0.135" y="0.0" />
-							</cylinder>
-							<cone color="yellow" division="30" height="0.05" radius="0.05">
-								<rotation x="0.0" z="0.0" y="3.1415" />
-								<translation x="0.0" z="0.1" y="0.0" />
-							</cone>
-						</group>
-					</group>
-				</group>
-			</group>
-		</group>
-	</scene>
-	<configuration>
-		<background color="white"/>
-		<light x="10.0" z="20.0" y="10.0"/>
-		<eye x="5.0" z="0.0" y="0.0"/>
-		<lookAtPoint x="0.0" y="0.0" z="0.0"/>
-		<modelUnit length="m" angle="radian"/>
-		<dataUnit length="m" angle="radian"/>
-	</configuration>
+   <scene>
+      <group name="robotArm3">
+         <translation x="0.0" y="0.0" z="-0.2"/>
+         <rotation x="0.0" y="0.0" z="2.0"/>
+         <group name="dodai">
+            <translation x="0.0" y="0.0" z="0.0"/>
+            <rotation x="0.0" y="0.0" z="0.0"/>
+            <cylinder radius="0.1" height="0.02" division="30" transparent="false">
+               <color r="255" g="0" b="0" alpha="255" name="red"/>
+            </cylinder>
+            <group name="arm1">
+               <translation x="0.0" y="0.0" z="0.1"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <animation target="rotationZ">
+                  <source id="0" number="2"/>
+               </animation>
+               <cylinder radius="0.02" height="0.2" division="30" transparent="false">
+                  <color r="255" g="0" b="0" alpha="255" name="red"/>
+               </cylinder>
+               <cylinder radius="0.02" height="0.08" division="30" transparent="false">
+                  <translation x="0.02" y="0.0" z="0.1"/>
+                  <rotation x="0.0" y="1.5708" z="0.0"/>
+                  <color r="255" g="211" b="0" alpha="255" name="orange"/>
+               </cylinder>
+               <group name="arm2">
+                  <translation x="0.04" y="0.0" z="0.1"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+                  <animation target="rotationX">
+                     <source id="0" number="3"/>
+                  </animation>
+                  <cylinder radius="0.02" height="0.1" division="30" transparent="false">
+                     <translation x="0.0" y="0.0" z="0.05"/>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
+                  </cylinder>
+                  <cylinder radius="0.02" height="0.08" division="30" transparent="false">
+                     <translation x="0.02" y="0.0" z="0.1"/>
+                     <rotation x="0.0" y="1.5708" z="0.0"/>
+                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                  </cylinder>
+                  <group name="arm3">
+                     <translation x="0.04" y="0.0" z="0.1"/>
+                     <rotation x="0.0" y="0.0" z="0.0"/>
+                     <animation target="rotationX">
+                        <source id="0" number="4"/>
+                     </animation>
+                     <cylinder radius="0.02" height="0.1" division="30" transparent="false">
+                        <translation x="0.0" y="0.0" z="0.05"/>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
+                     </cylinder>
+                     <cylinder radius="0.01" height="0.02" division="30" transparent="false">
+                        <translation x="0.0" y="0.04" z="0.135"/>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
+                     </cylinder>
+                     <cylinder radius="0.01" height="0.02" division="30" transparent="false">
+                        <translation x="0.0" y="-0.04" z="0.135"/>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
+                     </cylinder>
+                     <cylinder radius="0.01" height="0.02" division="30" transparent="false">
+                        <translation x="0.04" y="0.0" z="0.135"/>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
+                     </cylinder>
+                     <cylinder radius="0.01" height="0.02" division="30" transparent="false">
+                        <translation x="-0.04" y="0.0" z="0.135"/>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
+                     </cylinder>
+                     <cone radius="0.05" height="0.05" division="30" transparent="false">
+                        <translation x="0.0" y="0.0" z="0.1"/>
+                        <rotation x="0.0" y="3.1415" z="0.0"/>
+                        <color r="255" g="255" b="0" alpha="255" name="yellow"/>
+                     </cone>
+                  </group>
+               </group>
+            </group>
+         </group>
+      </group>
+   </scene>
+   <configuration>
+      <background>
+         <color r="255" g="255" b="255" alpha="255" name="white"/>
+      </background>
+      <light x="10.0" y="10.0" z="20.0"/>
+      <eye x="5.0" y="0.0" z="0.0"/>
+      <lookAtPoint x="0.0" y="0.0" z="0.0"/>
+      <modelUnit angle="radian" length="m"/>
+      <dataUnit angle="radian" length="m"/>
+   </configuration>
 </mikity3d>

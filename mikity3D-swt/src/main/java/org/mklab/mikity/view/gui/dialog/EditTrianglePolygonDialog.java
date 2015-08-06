@@ -119,7 +119,7 @@ public class EditTrianglePolygonDialog {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 700));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 740));
     this.sShell.setText(Messages.getString("EditTrianglePolygonDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
 

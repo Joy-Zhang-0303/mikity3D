@@ -26,10 +26,10 @@ public class TrianglePolygonModel implements Cloneable {
   /** vertices */
   @ElementList(type=VertexModel.class, inline=true, required=true)
   private List<VertexModel> vertices;
- 
+   
   /** color */
-  @Attribute(name="color")
-  private String color;
+  @Element(name="color")
+  private ColorModel color;
 
   /** transparent */
   @Attribute(name="transparent", required=false)
@@ -51,7 +51,7 @@ public class TrianglePolygonModel implements Cloneable {
    */
   public TrianglePolygonModel() {
     this.vertices = new ArrayList<>(3);
-    this.color = "orange"; //$NON-NLS-1$
+     this.color = new ColorModel("orange"); //$NON-NLS-1$
     this.transparent = false;
   }
   
@@ -68,6 +68,8 @@ public class TrianglePolygonModel implements Cloneable {
       if (this.rotation != null) {
         ans.rotation = this.rotation.clone();
       }
+
+      ans.color = this.color.clone();
       
       ans.normalVector = this.normalVector.clone();
       ans.vertices = new ArrayList<>();
@@ -78,6 +80,50 @@ public class TrianglePolygonModel implements Cloneable {
     } catch (CloneNotSupportedException e) {
       throw new InternalError(e);
     }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
+    result = prime * result + ((this.normalVector == null) ? 0 : this.normalVector.hashCode());
+    result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
+    result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
+    result = prime * result + (this.transparent ? 1231 : 1237);
+    result = prime * result + ((this.vertices == null) ? 0 : this.vertices.hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    TrianglePolygonModel other = (TrianglePolygonModel)obj;
+    if (this.color == null) {
+      if (other.color != null) return false;
+    } else if (!this.color.equals(other.color)) return false;
+    if (this.normalVector == null) {
+      if (other.normalVector != null) return false;
+    } else if (!this.normalVector.equals(other.normalVector)) return false;
+    if (this.rotation == null) {
+      if (other.rotation != null) return false;
+    } else if (!this.rotation.equals(other.rotation)) return false;
+    if (this.translation == null) {
+      if (other.translation != null) return false;
+    } else if (!this.translation.equals(other.translation)) return false;
+    if (this.transparent != other.transparent) return false;
+    if (this.vertices == null) {
+      if (other.vertices != null) return false;
+    } else if (!this.vertices.equals(other.vertices)) return false;
+    return true;
   }
 
   /**
@@ -126,7 +172,7 @@ public class TrianglePolygonModel implements Cloneable {
    * @param color 色
    */
   public void setColor(String color) {
-    this.color = color;
+    this.color = new ColorModel(color);
   }
 
   /**
@@ -186,7 +232,7 @@ public class TrianglePolygonModel implements Cloneable {
    * @return 色
    */
   public String getColor() {
-    return this.color;
+    return this.color.getName();
   }
 
   /**

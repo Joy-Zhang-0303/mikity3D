@@ -20,7 +20,7 @@ public class Color4 {
   /** 青成分 */
   private int b;
   /** アルファ値 */
-  private int alpha = 1;
+  private int alpha = 255;
   
   /**
    * 新しく生成された<code>Color3</code>オブジェクトを初期化します。
@@ -86,5 +86,42 @@ public class Color4 {
   public float getAlphaf() {
     return this.alpha/255f;
   }
+  
+  /**
+   * 赤成分を返します。
+   * 
+   * @return 赤成分
+   */
+  public int getR() {
+    return this.r;
+  }
 
+  
+  /**
+   * 緑成分を返します。
+   * 
+   * @return 緑成分
+   */
+  public int getG() {
+    return this.g;
+  }
+
+  
+  /**
+   * 青成分を返します。
+   * 
+   * @return 青成分
+   */
+  public int getB() {
+    return this.b;
+  }
+  
+  /**
+   * アルファ値を返します。
+   * 
+   * @return アルファ値
+   */
+  public int getAlpha() {
+    return this.alpha;
+  }
 }

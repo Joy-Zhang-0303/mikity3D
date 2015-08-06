@@ -1,31 +1,39 @@
 <mikity3d>
    <scene>
       <group name="robotArm2">
+         <translation x="0.0" y="0.0" z="0.0"/>
+         <rotation x="0.0" y="0.0" z="0.0"/>
          <group name="dodai">
+            <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="-1.57"/>
-            <cylinder radius="0.2" height="0.2" division="30" color="yellow" transparent="false">
+            <cylinder radius="0.2" height="0.2" division="30" transparent="false">
                <translation x="0.0" y="0.0" z="0.0"/>
+               <color r="255" g="255" b="0" alpha="255" name="yellow"/>
             </cylinder>
             <group name="arm1">
                <translation x="0.0" y="0.0" z="0.12"/>
                <rotation x="0.0" y="1.5708" z="0.0"/>
                <animation target="rotationX">
-               <source id="0" number="2"/>
+                  <source id="0" number="2"/>
                </animation>
-               <cylinder radius="0.02" height="0.4" division="30" color="red" transparent="false">
+               <cylinder radius="0.02" height="0.4" division="30" transparent="false">
                   <translation x="0.0" y="0.0" z="0.2"/>
+                  <color r="255" g="0" b="0" alpha="255" name="red"/>
                </cylinder>
-               <cylinder radius="0.02" height="0.04" division="30" color="orange" transparent="false">
+               <cylinder radius="0.02" height="0.04" division="30" transparent="false">
                   <translation x="0.0" y="0.0" z="0.42"/>
                   <rotation x="0.0" y="1.5708" z="0.0"/>
+                  <color r="255" g="211" b="0" alpha="255" name="orange"/>
                </cylinder>
                <group name="arm2">
                   <translation x="0.0" y="0.0" z="0.4"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
                   <animation target="rotationX">
-                  <source id="0" number="3"/>
+                     <source id="0" number="3"/>
                   </animation>
-                  <cylinder radius="0.02" height="0.4" division="30" color="red" transparent="false">
+                  <cylinder radius="0.02" height="0.4" division="30" transparent="false">
                      <translation x="0.0" y="0.0" z="0.2"/>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </cylinder>
                </group>
             </group>
@@ -33,7 +41,9 @@
       </group>
    </scene>
    <configuration>
-      <background color="white"/>
+      <background>
+         <color r="255" g="255" b="255" alpha="255" name="white"/>
+      </background>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="5.0" y="0.0" z="2.0"/>
       <lookAtPoint x="0.0" y="0.0" z="0.0"/>

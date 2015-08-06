@@ -6,37 +6,37 @@
          <group name="belt">
             <translation x="0.0" y="0.0" z="-0.15"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
-            <quadPolygon color="lightGray" transparent="false">
+            <quadPolygon transparent="false">
                <vertex x="0.75" y="0.05" z="-0.05"/>
                <vertex x="0.75" y="-0.05" z="-0.05"/>
                <vertex x="-0.75" y="-0.05" z="-0.05"/>
                <vertex x="-0.75" y="0.05" z="-0.05"/>
             </quadPolygon>
-            <quadPolygon color="lightGray" transparent="false">
+            <quadPolygon transparent="false">
                <vertex x="0.75" y="0.05" z="0.05"/>
                <vertex x="-0.75" y="0.05" z="0.05"/>
                <vertex x="-0.75" y="-0.05" z="0.05"/>
                <vertex x="0.75" y="-0.05" z="0.05"/>
             </quadPolygon>
-            <quadPolygon color="lightGray" transparent="false">
+            <quadPolygon transparent="false">
                <vertex x="0.75" y="0.05" z="-0.05"/>
                <vertex x="0.75" y="0.05" z="0.05"/>
                <vertex x="0.75" y="-0.05" z="0.05"/>
                <vertex x="0.75" y="-0.05" z="-0.05"/>
             </quadPolygon>
-            <quadPolygon color="lightGray" transparent="false">
+            <quadPolygon transparent="false">
                <vertex x="0.75" y="-0.05" z="-0.05"/>
                <vertex x="0.75" y="-0.05" z="0.05"/>
                <vertex x="-0.75" y="-0.05" z="0.05"/>
                <vertex x="-0.75" y="-0.05" z="-0.05"/>
             </quadPolygon>
-            <quadPolygon color="lightGray" transparent="false">
+            <quadPolygon transparent="false">
                <vertex x="-0.75" y="-0.05" z="-0.05"/>
                <vertex x="-0.75" y="-0.05" z="0.05"/>
                <vertex x="-0.75" y="0.05" z="0.05"/>
                <vertex x="-0.75" y="0.05" z="-0.05"/>
             </quadPolygon>
-            <quadPolygon color="lightGray" transparent="false">
+            <quadPolygon transparent="false">
                <vertex x="0.75" y="0.05" z="0.05"/>
                <vertex x="0.75" y="0.05" z="-0.05"/>
                <vertex x="-0.75" y="0.05" z="-0.05"/>
@@ -743,7 +743,7 @@
       </group>
    </scene>
    <configuration>
-      <background color="white"/>
+      <background/>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="10.0" y="0.0" z="0.0"/>
       <lookAtPoint x="0.0" y="0.0" z="0.0"/>

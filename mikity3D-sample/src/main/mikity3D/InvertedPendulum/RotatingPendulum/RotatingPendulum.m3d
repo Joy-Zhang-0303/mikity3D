@@ -1,39 +1,57 @@
 <mikity3d>
    <scene>
-   <group name="rotatingPendulum">
-      <group name="base">
-         <box width="0.8" height="0.01" depth="0.8" color="green" transparent="false"/>
-         <box width="0.4" height="0.12" depth="0.4" color="blue" transparent="false">
-            <translation x="0.0" y="0.0" z="0.065"/>
-         </box>
-         <cylinder radius="0.2" height="0.2" division="30" color="cyan" transparent="false">
-            <translation x="0.0" y="0.0" z="0.22"/>
-         </cylinder>
-         <group name="link1">         
-            <translation x="0.0" y="0.0" z="0.34"/>
-            <rotation x="0.0" y="1.5708" z="0.0"/>
-            <animation target="rotationX">
-            <source id="0" number="2"/>
-            </animation>
-            <cylinder radius="0.02" height="0.3" division="30" color="yellow" transparent="false">
-               <translation x="0.0" y="0.0" z="0.15"/>
+      <group name="rotatingPendulum">
+         <translation x="0.0" y="0.0" z="0.0"/>
+         <rotation x="0.0" y="0.0" z="0.0"/>
+         <group name="base">
+            <translation x="0.0" y="0.0" z="0.0"/>
+            <rotation x="0.0" y="0.0" z="0.0"/>
+            <box width="0.8" height="0.01" depth="0.8" transparent="false">
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <color r="0" g="255" b="0" alpha="255" name="green"/>
+            </box>
+            <box width="0.4" height="0.12" depth="0.4" transparent="false">
+               <translation x="0.0" y="0.0" z="0.065"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <color r="0" g="0" b="255" alpha="255" name="blue"/>
+            </box>
+            <cylinder radius="0.2" height="0.2" division="30" transparent="false">
+               <translation x="0.0" y="0.0" z="0.22"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <color r="0" g="255" b="255" alpha="255" name="cyan"/>
             </cylinder>
-            <group name="link2">
-               <translation x="0.0" y="0.0" z="0.3"/>
+            <group name="link1">
+               <translation x="0.0" y="0.0" z="0.34"/>
                <rotation x="0.0" y="1.5708" z="0.0"/>
                <animation target="rotationX">
-               <source id="0" number="3"/>
+                  <source id="0" number="2"/>
                </animation>
-               <cylinder radius="0.02" height="0.3" division="30" color="yellow" transparent="false">
+               <cylinder radius="0.02" height="0.3" division="30" transparent="false">
                   <translation x="0.0" y="0.0" z="0.15"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </cylinder>
+               <group name="link2">
+                  <translation x="0.0" y="0.0" z="0.3"/>
+                  <rotation x="0.0" y="1.5708" z="0.0"/>
+                  <animation target="rotationX">
+                     <source id="0" number="3"/>
+                  </animation>
+                  <cylinder radius="0.02" height="0.3" division="30" transparent="false">
+                     <translation x="0.0" y="0.0" z="0.15"/>
+                     <rotation x="0.0" y="0.0" z="0.0"/>
+                     <color r="255" g="255" b="0" alpha="255" name="yellow"/>
+                  </cylinder>
+               </group>
             </group>
          </group>
       </group>
-      </group>
    </scene>
    <configuration>
-      <background color="white"/>
+      <background>
+         <color r="255" g="255" b="255" alpha="255" name="white"/>
+      </background>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="8.0" y="0.0" z="2.0"/>
       <lookAtPoint x="0.0" y="0.0" z="0.2"/>

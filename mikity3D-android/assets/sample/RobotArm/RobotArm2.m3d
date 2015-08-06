@@ -33,7 +33,7 @@
       </group>
    </scene>
    <configuration>
-      <background color="white"/>
+      <background/>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="5.0" y="0.0" z="2.0"/>
       <lookAtPoint x="0.0" y="0.0" z="0.0"/>

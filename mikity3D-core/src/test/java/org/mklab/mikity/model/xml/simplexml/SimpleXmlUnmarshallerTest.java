@@ -85,9 +85,9 @@ public class SimpleXmlUnmarshallerTest {
 
     final LightModel actualLight = actualConfiguration.getLight();
     final LightModel expectedLight = new LightModel();
-    expectedLight.setX(-0.8F);
-    expectedLight.setY(0.2F);
-    expectedLight.setZ(-0.8F);
+    expectedLight.setX(10F);
+    expectedLight.setY(10F);
+    expectedLight.setZ(20F);
     assertThat(actualLight, is(expectedLight));
 
     final EyeModel actualEye = actualConfiguration.getEye();
@@ -174,13 +174,15 @@ public class SimpleXmlUnmarshallerTest {
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
     
-    final TranslationModel expectedLocation = new TranslationModel();
-    expectedLocation.setX(0.0F);
-    expectedLocation.setY(-0.05F);
-    expectedLocation.setZ(-0.21F);
+    final TranslationModel expectedTranslation = new TranslationModel();
+    expectedTranslation.setX(0.0F);
+    expectedTranslation.setY(-0.05F);
+    expectedTranslation.setZ(-0.21F);
 
+    expectedBox.setTranslation(expectedTranslation);
 
-    expectedBox.setTranslation(expectedLocation);
+    final RotationModel expectedRotation = new RotationModel();
+    expectedBox.setRotation(expectedRotation);
     
     assertThat(actualBox, is(expectedBox));
   }
@@ -199,7 +201,10 @@ public class SimpleXmlUnmarshallerTest {
     expectedLocation.setZ(-0.3475F);
 
     expectedBox.setTranslation(expectedLocation);
-    
+
+    final RotationModel expectedRotation = new RotationModel();
+    expectedBox.setRotation(expectedRotation);
+
     assertThat(actualBox, is(expectedBox));
   }
 
@@ -218,6 +223,9 @@ public class SimpleXmlUnmarshallerTest {
 
     expectedBox.setTranslation(expectedLocation);
     
+    final RotationModel expectedRotation = new RotationModel();
+    expectedBox.setRotation(expectedRotation);
+    
     assertThat(actualBox, is(expectedBox));
   }
 
@@ -235,7 +243,10 @@ public class SimpleXmlUnmarshallerTest {
     expectedLocation.setX(0.0F);
 
     expectedBox.setTranslation(expectedLocation);
-    
+
+    final RotationModel expectedRotation = new RotationModel();
+    expectedBox.setRotation(expectedRotation);
+   
     assertThat(actualBox, is(expectedBox));
   }
 
@@ -258,6 +269,7 @@ public class SimpleXmlUnmarshallerTest {
     final AnimationModel actualAnimation = actualGroup.getAnimations()[0];
     final AnimationModel expectedAnimation = new AnimationModel();
     final SourceModel expectedSource = new SourceModel();
+    expectedSource.setId("0"); //$NON-NLS-1$
     expectedSource.setNumber(2);
     expectedAnimation.setSource(expectedSource);
     expectedAnimation.setTarget("translationY"); //$NON-NLS-1$
@@ -282,8 +294,11 @@ public class SimpleXmlUnmarshallerTest {
     expectedLocation.setZ(0.0F);
     expectedLocation.setY(0.0F);
     expectedLocation.setX(0.02F);
-
+   
     expectedBox.setTranslation(expectedLocation);
+   
+    final RotationModel expectedRotation = new RotationModel();
+    expectedBox.setRotation(expectedRotation);
     
     assertThat(actualBox, is(expectedBox));
   }
@@ -322,7 +337,7 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertCylinder1(CylinderModel actualCylinder) {
     final CylinderModel expectedCylinder = new CylinderModel();
-    expectedCylinder.setColor("red"); //$NON-NLS-1$
+    expectedCylinder.setColor("cyan"); //$NON-NLS-1$
     expectedCylinder.setDivision(10);
     expectedCylinder.setHeight(0.018F);
     expectedCylinder.setRadius(0.01F);
@@ -345,7 +360,7 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertCylinder2(CylinderModel actualCylinder) {
     final CylinderModel expectedCylinder = new CylinderModel();
-    expectedCylinder.setColor("black"); //$NON-NLS-1$
+    expectedCylinder.setColor("orange"); //$NON-NLS-1$
     expectedCylinder.setDivision(10);
     expectedCylinder.setHeight(0.3F);
     expectedCylinder.setRadius(0.0025F);
@@ -356,6 +371,9 @@ public class SimpleXmlUnmarshallerTest {
     expectedLocation.setX(0.037F);
     
     expectedCylinder.setTranslation(expectedLocation);
+
+    final RotationModel expectedRotation = new RotationModel();
+    expectedCylinder.setRotation(expectedRotation);
     
     assertThat(actualCylinder, is(expectedCylinder));
   }

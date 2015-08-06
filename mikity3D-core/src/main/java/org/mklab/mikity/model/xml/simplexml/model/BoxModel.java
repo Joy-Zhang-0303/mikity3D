@@ -36,15 +36,14 @@ public class BoxModel implements java.io.Serializable, Cloneable {
   /** rotation */
   @Element(name="rotation", required=false)
   private RotationModel rotation;
-
+  
   /** color */
-  @Attribute(name="color")
-  private String color;
+  @Element(name="color")
+  private ColorModel color;
 
   /** transparent */
   @Attribute(name="transparent", required=false)
   private boolean transparent;
-
 
   /** propertyChangeListeners */
   private Vector<PropertyChangeListener> propertyChangeListeners;
@@ -53,7 +52,7 @@ public class BoxModel implements java.io.Serializable, Cloneable {
    * コンストラクター
    */
   public BoxModel() {
-    this.color = "red"; //$NON-NLS-1$
+    this.color = new ColorModel("red"); //$NON-NLS-1$
     this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
   } 
@@ -71,10 +70,60 @@ public class BoxModel implements java.io.Serializable, Cloneable {
       if (this.rotation != null) {
         ans.rotation = this.rotation.clone();
       }
+      if (this.color != null) {
+        ans.color = this.color.clone();
+      }
       return ans;
     } catch (CloneNotSupportedException e) {
       throw new InternalError(e);
     }
+  }
+  
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + Float.floatToIntBits(this.depth);
+    result = prime * result + Float.floatToIntBits(this.height);
+    result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
+    result = prime * result + ((this.propertyChangeListeners == null) ? 0 : this.propertyChangeListeners.hashCode());
+    result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
+    result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
+    result = prime * result + (this.transparent ? 1231 : 1237);
+    result = prime * result + Float.floatToIntBits(this.width);
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    BoxModel other = (BoxModel)obj;
+    if (Float.floatToIntBits(this.depth) != Float.floatToIntBits(other.depth)) return false;
+    if (Float.floatToIntBits(this.height) != Float.floatToIntBits(other.height)) return false;
+    if (this.color == null) {
+      if (other.color != null) return false;
+    } else if (!this.color.equals(other.color)) return false;
+    if (this.propertyChangeListeners == null) {
+      if (other.propertyChangeListeners != null) return false;
+    } else if (!this.propertyChangeListeners.equals(other.propertyChangeListeners)) return false;
+    if (this.rotation == null) {
+      if (other.rotation != null) return false;
+    } else if (!this.rotation.equals(other.rotation)) return false;
+    if (this.translation == null) {
+      if (other.translation != null) return false;
+    } else if (!this.translation.equals(other.translation)) return false;
+    if (this.transparent != other.transparent) return false;
+    if (Float.floatToIntBits(this.width) != Float.floatToIntBits(other.width)) return false;
+    return true;
   }
 
   /**
@@ -92,86 +141,7 @@ public class BoxModel implements java.io.Serializable, Cloneable {
    * @return the value of field 'color'.
    */
   public String getColor() {
-    return this.color;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
-    result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
-    result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
-    //result = prime * result + (this.transparent ? 1231 : 1237);
-    result = prime * result + Float.floatToIntBits(this.width);
-    result = prime * result + Float.floatToIntBits(this.height);
-    result = prime * result + Float.floatToIntBits(this.depth);
-    result = prime * result + ((this.propertyChangeListeners == null) ? 0 : this.propertyChangeListeners.hashCode());
-    return result;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    BoxModel other = (BoxModel)obj;
-    if (this.color == null) {
-      if (other.color != null) {
-        return false;
-      }
-    } else if (!this.color.equals(other.color)) {
-      return false;
-    }
-    
-    if (this.translation == null) {
-      if (other.translation != null) {
-        return false;
-      }
-    } else if (!this.translation.equals(other.translation)) {
-      return false;
-    }
-    
-    if (this.rotation == null) {
-      if (other.rotation != null) {
-        return false;
-      }
-    } else if (!this.rotation.equals(other.rotation)) {
-      return false;
-    }
-    
-    if (this.transparent != other.transparent) {
-      return false;
-    }
-    if (Float.floatToIntBits(this.width) != Float.floatToIntBits(other.width)) {
-      return false;
-    }
-    if (Float.floatToIntBits(this.height) != Float.floatToIntBits(other.height)) {
-      return false;
-    }
-    if (Float.floatToIntBits(this.depth) != Float.floatToIntBits(other.depth)) {
-      return false;
-    }
-    if (this.propertyChangeListeners == null) {
-      if (other.propertyChangeListeners != null) {
-        return false;
-      }
-    } else if (!this.propertyChangeListeners.equals(other.propertyChangeListeners)) {
-      return false;
-    }
-    return true;
+    return this.color.getName();
   }
 
   /**
@@ -260,7 +230,7 @@ public class BoxModel implements java.io.Serializable, Cloneable {
    * @param color the value of field 'color'.
    */
   public void setColor(String color) {
-    this.color = color;
+    this.color = new ColorModel(color);
   }
 
   /**

@@ -23,8 +23,8 @@ public class ColorConstant {
     COLOR_MAP.put("WHITE", new Color4(255, 255, 255)); //$NON-NLS-1$
     COLOR_MAP.put("black", new Color4(0, 0, 0)); //$NON-NLS-1$
     COLOR_MAP.put("BLACK", new Color4(0, 0, 0)); //$NON-NLS-1$
-    COLOR_MAP.put("red", new Color4(1, 0, 0)); //$NON-NLS-1$
-    COLOR_MAP.put("RED", new Color4(1, 0, 0)); //$NON-NLS-1$
+    COLOR_MAP.put("red", new Color4(255, 0, 0)); //$NON-NLS-1$
+    COLOR_MAP.put("RED", new Color4(255, 0, 0)); //$NON-NLS-1$
     COLOR_MAP.put("lightGray", new Color4(211, 211, 211)); //$NON-NLS-1$
     COLOR_MAP.put("LIGHTGRAY", new Color4(211, 211, 211)); //$NON-NLS-1$
     COLOR_MAP.put("darkGray", new Color4(169, 169, 169)); //$NON-NLS-1$
