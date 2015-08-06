@@ -30,7 +30,7 @@ public class CylinderToolBarAction extends AbstractToolBarAction {
     cylinder.setRadius(0.10f);
     cylinder.setHeight(0.10f);
     cylinder.setDivision(20);
-    cylinder.setColor("blue"); //$NON-NLS-1$
+    cylinder.setColorName("blue"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
     group.add(cylinder);

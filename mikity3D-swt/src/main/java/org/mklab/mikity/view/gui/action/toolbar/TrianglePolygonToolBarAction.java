@@ -40,7 +40,7 @@ public class TrianglePolygonToolBarAction extends AbstractToolBarAction {
     final VertexModel vertex2 = new VertexModel(0.0f, 0.0f, 0.3f);
     final List<VertexModel> vertices = Arrays.asList(vertex0, vertex1, vertex2);
     polygon.setVertices(vertices);
-    polygon.setColor("red"); //$NON-NLS-1$
+    polygon.setColorName("red"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
     group.add(polygon);

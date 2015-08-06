@@ -134,9 +134,19 @@ public class SphereModel implements java.io.Serializable, Cloneable {
    * 
    * @return the value of field 'color'.
    */
-  public java.lang.String getColor() {
+  public String getColorName() {
     return this.color.getName();
   }
+  
+  /**
+   * Returns the value of field 'color'.
+   * 
+   * @return the value of field 'color'.
+   */
+  public ColorModel getColor() {
+    return this.color;
+  }
+
 
   /**
    * Returns the value of field 'div'.
@@ -214,9 +224,19 @@ public class SphereModel implements java.io.Serializable, Cloneable {
    * 
    * @param color the value of field 'color'.
    */
-  public void setColor(java.lang.String color) {
+  public void setColorName(String color) {
     this.color = new ColorModel(color);
   }
+  
+  /**
+   * Sets the value of field 'color'.
+   * 
+   * @param color the value of field 'color'.
+   */
+  public void setColor(ColorModel color) {
+    this.color = color;
+  }
+
 
   /**
    * Sets the value of field 'div'.

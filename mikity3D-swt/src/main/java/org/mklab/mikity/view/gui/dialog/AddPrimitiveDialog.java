@@ -275,7 +275,7 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           box.setTranslation(translation);
         }
-        box.setColor(this.colorCombo.getText());
+        box.setColorName(this.colorCombo.getText());
         this.targetGroup.add(box);
         break;
       case CYLINDER:
@@ -291,7 +291,7 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           cylinder.setTranslation(translation);
         }
-        cylinder.setColor(this.colorCombo.getText());
+        cylinder.setColorName(this.colorCombo.getText());
         this.targetGroup.add(cylinder);
         break;
       case SPHERE:
@@ -306,7 +306,7 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           sphere.setTranslation(translation);
         }
-        sphere.setColor(this.colorCombo.getText());
+        sphere.setColorName(this.colorCombo.getText());
         this.targetGroup.add(sphere);
         break;
       case CONE:
@@ -322,7 +322,7 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           cone.setTranslation(translation);
         }
-        cone.setColor(this.colorCombo.getText());
+        cone.setColorName(this.colorCombo.getText());
         this.targetGroup.add(cone);
         break;
       default:

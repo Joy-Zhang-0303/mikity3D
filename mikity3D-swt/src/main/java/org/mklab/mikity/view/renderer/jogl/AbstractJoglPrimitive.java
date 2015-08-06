@@ -6,6 +6,7 @@
 package org.mklab.mikity.view.renderer.jogl;
 
 import org.mklab.mikity.model.graphic.GraphicPrimitive;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.util.Color4;
 import org.mklab.mikity.util.ColorConstant;
 
@@ -42,7 +43,7 @@ public abstract class AbstractJoglPrimitive extends AbstractJoglObject {
    * @param gl GL　
    */
   private void applyColor(GL2 gl) {
-    final String color = ((GraphicPrimitive)this.object).getColor();
+    final String color = ((GraphicPrimitive)this.object).getColorName();
     
     if (color == null) {
       return;
@@ -70,11 +71,21 @@ public abstract class AbstractJoglPrimitive extends AbstractJoglObject {
   /**
    * 色を設定します。
    * 
+   * @param colorName 色
+   */
+  public void setColorName(String colorName) {
+    ((GraphicPrimitive)this.object).setColorName(colorName);
+  }
+  
+  /**
+   * 色を設定します。
+   * 
    * @param color 色
    */
-  public void setColor(String color) {
+  public void setColor(ColorModel color) {
     ((GraphicPrimitive)this.object).setColor(color);
   }
+
   
   /**
    * 透明性を設定します。

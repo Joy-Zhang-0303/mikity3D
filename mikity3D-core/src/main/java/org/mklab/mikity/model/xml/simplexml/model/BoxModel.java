@@ -140,8 +140,17 @@ public class BoxModel implements java.io.Serializable, Cloneable {
    * 
    * @return the value of field 'color'.
    */
-  public String getColor() {
+  public String getColorName() {
     return this.color.getName();
+  }
+  
+  /**
+   * Returns the value of field 'color'.
+   * 
+   * @return the value of field 'color'.
+   */
+  public ColorModel getColor() {
+    return this.color;
   }
 
   /**
@@ -227,12 +236,22 @@ public class BoxModel implements java.io.Serializable, Cloneable {
   /**
    * Sets the value of field 'color'.
    * 
-   * @param color the value of field 'color'.
+   * @param colorName the value of field 'color'.
    */
-  public void setColor(String color) {
-    this.color = new ColorModel(color);
+  public void setColorName(String colorName) {
+    this.color = new ColorModel(colorName);
   }
 
+  /**
+   * Sets the value of field 'color'.
+   * 
+   * @param color the value of field 'color'.
+   */
+  public void setColor(ColorModel color) {
+    this.color = color;
+  }
+
+  
   /**
    * Sets the value of field 'location'.
    * 

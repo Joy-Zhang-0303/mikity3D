@@ -29,7 +29,7 @@ public class ConeToolBarAction extends AbstractToolBarAction {
     cone.setRadius(0.10f);
     cone.setHeight(0.10f);
     cone.setDivision(20);
-    cone.setColor("green"); //$NON-NLS-1$
+    cone.setColorName("green"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
     group.add(cone);

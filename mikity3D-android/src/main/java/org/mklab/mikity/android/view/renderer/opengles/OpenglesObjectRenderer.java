@@ -98,7 +98,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
    */
   public void onDrawFrame(GL10 gl) {
     // 画面のクリア　追加した
-    final Color4 background = ColorConstant.getColor(this.configuration.getBackground().getColor());
+    final Color4 background = ColorConstant.getColor(this.configuration.getBackground().getColorName());
     gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());  
  
     gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);

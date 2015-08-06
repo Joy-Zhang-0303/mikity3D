@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.model.graphic;
 
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
+
 /**
  * グラフィックプリミティブを表すクラスです。
  * 
@@ -13,7 +15,10 @@ package org.mklab.mikity.model.graphic;
  */
 public class GraphicPrimitive implements GraphicObject {
   /** 色。 */
-  private String color;
+  private String colorName;
+  
+  /** 色。 */
+  private ColorModel color;
   
   /** 透明性。 */
   private boolean transparent = false;
@@ -61,9 +66,27 @@ public class GraphicPrimitive implements GraphicObject {
   /**
    * 色を設定します。
    * 
+   * @param colorName 色
+   */
+  public void setColorName(String colorName) {
+    this.colorName = colorName;
+  }
+  
+  /**
+   * 色を返します。
+   * 
+   * @return 色
+   */
+  public String getColorName() {
+    return this.colorName;
+  }
+  
+  /**
+   * 色を設定します。
+   * 
    * @param color 色
    */
-  public void setColor(String color) {
+  public void setColor(ColorModel color) {
     this.color = color;
   }
   
@@ -72,9 +95,10 @@ public class GraphicPrimitive implements GraphicObject {
    * 
    * @return 色
    */
-  public String getColor() {
+  public ColorModel getColor() {
     return this.color;
   }
+
   
   /**
    * 透明性を設定します。

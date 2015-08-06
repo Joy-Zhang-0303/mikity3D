@@ -41,7 +41,7 @@ public class OpenglesPrimitiveFactory {
     final float width = box.getWidth();
     final float height = box.getHeight();
     final float depth = box.getDepth();
-    final String color = box.getColor();
+    final String color = box.getColorName();
     final boolean transparent = box.getTransparent();
 
     final OpenglesBox child = new OpenglesBox();
@@ -73,7 +73,7 @@ public class OpenglesPrimitiveFactory {
     final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
-    final String color = cylinder.getColor();
+    final String color = cylinder.getColorName();
     final boolean transparent = cylinder.getTransparent();
 
     final OpenglesCylinder child = new OpenglesCylinder();
@@ -105,7 +105,7 @@ public class OpenglesPrimitiveFactory {
   public static OpenglesObject create(SphereModel sphere) {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
-    final String color = sphere.getColor();
+    final String color = sphere.getColorName();
     final boolean transparent = sphere.getTransparent();
 
     final OpenglesSphere child = new OpenglesSphere();
@@ -138,7 +138,7 @@ public class OpenglesPrimitiveFactory {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
-    final String color = cone.getColor();
+    final String color = cone.getColorName();
     final boolean transparent = cone.getTransparent();
 
     final OpenglesCone child = new OpenglesCone();
@@ -182,7 +182,7 @@ public class OpenglesPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
 
-    final String color = polygon.getColor();
+    final String color = polygon.getColorName();
     final boolean transparent = polygon.getTransparent();
 
     final OpenglesTrianglePolygon child = new OpenglesTrianglePolygon();
@@ -226,7 +226,7 @@ public class OpenglesPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
 
-    final String color = polygon.getColor();
+    final String color = polygon.getColorName();
     final boolean transparent = polygon.getTransparent();
 
     final OpenglesQuadPolygon child = new OpenglesQuadPolygon();

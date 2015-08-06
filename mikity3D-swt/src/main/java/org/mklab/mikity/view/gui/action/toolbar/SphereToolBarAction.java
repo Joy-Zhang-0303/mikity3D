@@ -29,7 +29,7 @@ public class SphereToolBarAction extends AbstractToolBarAction {
     final SphereModel sphere = new SphereModel();
     sphere.setRadius(0.10f);
     sphere.setDivision(20);
-    sphere.setColor("yellow"); //$NON-NLS-1$
+    sphere.setColorName("yellow"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
     group.add(sphere);

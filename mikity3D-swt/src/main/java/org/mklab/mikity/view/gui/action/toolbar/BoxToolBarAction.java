@@ -29,7 +29,7 @@ public class BoxToolBarAction extends AbstractToolBarAction {
     box.setWidth(0.10f);
     box.setHeight(0.10f);
     box.setDepth(0.10f);
-    box.setColor("red"); //$NON-NLS-1$
+    box.setColorName("red"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
     group.add(box);

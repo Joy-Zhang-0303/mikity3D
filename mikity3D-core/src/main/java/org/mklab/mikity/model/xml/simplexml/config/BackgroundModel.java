@@ -76,16 +76,36 @@ public class BackgroundModel implements java.io.Serializable, Cloneable {
    * 
    * @return 色
    */
-  public String getColor() {
+  public String getColorName() {
     return this.color.getName();
   }
+  
+  /**
+   * 色を返します。
+   * 
+   * @return 色
+   */
+  public ColorModel getColor() {
+    return this.color;
+  }
+
 
   /**
    * 色を設定します。
    * 
    * @param color 色
    */
-  public void setColor(String color) {
+  public void setColorName(String color) {
     this.color = new ColorModel(color);
   }
+  
+  /**
+   * 色を設定します。
+   * 
+   * @param color 色
+   */
+  public void setColor(ColorModel color) {
+    this.color = color;
+  }
+
 }

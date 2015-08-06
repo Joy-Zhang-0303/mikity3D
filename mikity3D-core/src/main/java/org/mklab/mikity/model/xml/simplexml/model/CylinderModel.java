@@ -141,8 +141,17 @@ public class CylinderModel implements Serializable, Cloneable {
    * 
    * @return the value of field 'color'.
    */
-  public String getColor() {
+  public String getColorName() {
     return this.color.getName();
+  }
+
+  /**
+   * Returns the value of field 'color'.
+   * 
+   * @return the value of field 'color'.
+   */
+  public ColorModel getColor() {
+    return this.color;
   }
 
   /**
@@ -230,9 +239,19 @@ public class CylinderModel implements Serializable, Cloneable {
    * 
    * @param color the value of field 'color'.
    */
-  public void setColor(String color) {
+  public void setColorName(String color) {
     this.color = new ColorModel(color);
   }
+  
+  /**
+   * Sets the value of field 'color'.
+   * 
+   * @param color the value of field 'color'.
+   */
+  public void setColor(ColorModel color) {
+    this.color = color;
+  }
+
 
   /**
    * Sets the value of field 'div'.

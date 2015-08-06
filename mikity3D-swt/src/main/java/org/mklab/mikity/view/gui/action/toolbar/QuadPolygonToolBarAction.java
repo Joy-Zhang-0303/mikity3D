@@ -39,7 +39,7 @@ public class QuadPolygonToolBarAction extends AbstractToolBarAction {
     final VertexModel vertex2 = new VertexModel(0.0f, 0.3f, 0.3f);
     final VertexModel vertex3 = new VertexModel(0.0f, -0.3f, 0.3f);
     polygon.setVertices(Arrays.asList(vertex0, vertex1, vertex2, vertex3));
-    polygon.setColor("blue"); //$NON-NLS-1$
+    polygon.setColorName("blue"); //$NON-NLS-1$
     
     final GroupModel group = this.modeler.getTargetGroup();
     group.add(polygon);

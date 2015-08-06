@@ -235,7 +235,7 @@ public class AddTrianglePolygonDialog {
     if (getLocation(location) != null) {
       triangle.setTranslation(getLocation(location));
     }
-    triangle.setColor(this.colorCombo.getText());
+    triangle.setColorName(this.colorCombo.getText());
     this.targetGroup.add(triangle);
   }
 

@@ -170,9 +170,17 @@ public class QuadPolygonModel implements Cloneable {
   /**
    * @param color 色
    */
-  public void setColor(String color) {
+  public void setColorName(String color) {
     this.color = new ColorModel(color);
+  }
+  
+  /**
+   * @param color 色
+   */
+  public void setColor(ColorModel color) {
+    this.color = color;
   } 
+
 
   /**
    * @param translation 位置
@@ -228,9 +236,17 @@ public class QuadPolygonModel implements Cloneable {
   /**
    * @return color
    */
-  public String getColor() {
+  public String getColorName() {
     return this.color.getName();
   }
+  
+  /**
+   * @return color
+   */
+  public ColorModel getColor() {
+    return this.color;
+  }
+
 
   /**
    * @return location

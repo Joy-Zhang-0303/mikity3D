@@ -397,7 +397,7 @@ public class EditQuadPolygonDialog {
     String newColor = this.colorCombo.getColorComboBox().getText();
 
     this.quad.setVertices(Arrays.asList(newVertices[0], newVertices[1], newVertices[2], newVertices[3]));
-    this.quad.setColor(newColor);
+    this.quad.setColorName(newColor);
     this.quad.setRotation(new RotationModel(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
     this.quad.setTranslation(new TranslationModel(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
   }
@@ -425,7 +425,7 @@ public class EditQuadPolygonDialog {
     this.newVertex4X.setText("" + vertex3.getX()); //$NON-NLS-1$
     this.newVertex4Y.setText("" + vertex3.getY()); //$NON-NLS-1$
     this.newVertex4Z.setText("" + vertex3.getZ()); //$NON-NLS-1$
-    this.colorCombo.getColorComboBox().setText(this.quad.getColor());
+    this.colorCombo.getColorComboBox().setText(this.quad.getColorName());
 
     if (this.quad.getRotation() != null) {
       this.newRightVertexX.setText("" + this.quad.getRotation().getX()); //$NON-NLS-1$

@@ -40,7 +40,7 @@ public abstract class  AbstractOpenglesPrimitive extends AbstractOpenglesObject 
    * @param gl GL　
    */
   private void applyColor(GL10 gl) {
-    final String color = ((GraphicPrimitive)this.object).getColor();
+    final String color = ((GraphicPrimitive)this.object).getColorName();
     
     if (color == null) {
       return;
@@ -71,7 +71,7 @@ public abstract class  AbstractOpenglesPrimitive extends AbstractOpenglesObject 
    * @param color 色
    */
   public void setColor(String color) {
-    ((GraphicPrimitive)this.object).setColor(color);
+    ((GraphicPrimitive)this.object).setColorName(color);
   }
   
   /**

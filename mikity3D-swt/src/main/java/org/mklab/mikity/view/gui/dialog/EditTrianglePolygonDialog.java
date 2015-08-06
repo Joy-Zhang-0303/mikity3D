@@ -371,7 +371,7 @@ public class EditTrianglePolygonDialog {
     final String newColor = this.colorCombo.getColorComboBox().getText();
 
     this.triangle.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2]));
-    this.triangle.setColor(newColor);
+    this.triangle.setColorName(newColor);
     this.triangle.setRotation(new RotationModel(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
     this.triangle.setTranslation(new TranslationModel(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
   }
@@ -395,7 +395,7 @@ public class EditTrianglePolygonDialog {
     this.newVertex3Y.setText("" + vertex2.getY()); //$NON-NLS-1$
     this.newVertex3Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
 
-    this.colorCombo.getColorComboBox().setText(this.triangle.getColor());
+    this.colorCombo.getColorComboBox().setText(this.triangle.getColorName());
 
     if (this.triangle.getRotation() != null) {
       this.newRightVertexX.setText("" + this.triangle.getRotation().getX()); //$NON-NLS-1$

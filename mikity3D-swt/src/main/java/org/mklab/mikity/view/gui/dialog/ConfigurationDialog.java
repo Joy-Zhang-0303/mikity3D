@@ -263,7 +263,7 @@ public class ConfigurationDialog {
     if (this.configuration.getBackground() == null) {
       this.colorCombo.setText("white"); //$NON-NLS-1$
     } else {
-      this.colorCombo.setText(this.configuration.getBackground().getColor());
+      this.colorCombo.setText(this.configuration.getBackground().getColorName());
     }
   }
 
@@ -356,11 +356,11 @@ public class ConfigurationDialog {
     if (this.configuration.getBackground() == null) {
       if (this.colorCombo.getText() != "white") { //$NON-NLS-1$
         final BackgroundModel background = new BackgroundModel();
-        background.setColor(this.colorCombo.getText());
+        background.setColorName(this.colorCombo.getText());
         this.configuration.setBackground(background);
       }
     } else {
-      this.configuration.getBackground().setColor(this.colorCombo.getText());
+      this.configuration.getBackground().setColorName(this.colorCombo.getText());
     }
 
     if (this.configuration.getModelUnit() == null) {
