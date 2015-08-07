@@ -427,7 +427,7 @@ public class EditQuadPolygonDialog {
     this.newVertex4X.setText("" + vertex3.getX()); //$NON-NLS-1$
     this.newVertex4Y.setText("" + vertex3.getY()); //$NON-NLS-1$
     this.newVertex4Z.setText("" + vertex3.getZ()); //$NON-NLS-1$
-    this.colorCombo.getColorComboBox().setText(this.quad.getColor().getName());
+    this.colorCombo.getColorComboBox().setText(this.quad.getColor().toString());
 
     if (this.quad.getRotation() != null) {
       this.newRightVertexX.setText("" + this.quad.getRotation().getX()); //$NON-NLS-1$

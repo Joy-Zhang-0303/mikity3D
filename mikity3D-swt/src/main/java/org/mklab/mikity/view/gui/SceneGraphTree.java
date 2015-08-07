@@ -730,23 +730,23 @@ public class SceneGraphTree {
     }
   }
 
-  /**
-   * 色の属性を返します。
-   * 
-   * @param box オブジェクト
-   * @return　色に属性
-   */
-  private String getColorProperty(final BoxModel box) {
-    final ColorModel color = box.getColor();
-    final String colorName = color.getName();
-    final String colorProperty;
-    if (colorName.length() == 0) {
-      colorProperty = "(" + color.getR() + ", " + color.getG() + ", " + color.getB() + ", " + color.getAlpha() + ")";      //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$//$NON-NLS-4$//$NON-NLS-5$
-    } else {
-      colorProperty = colorName;
-    }
-    return colorProperty;
-  }
+//  /**
+//   * 色の属性を返します。
+//   * 
+//   * @param box オブジェクト
+//   * @return　色に属性
+//   */
+//  private String getColorProperty(final BoxModel box) {
+//    final ColorModel color = box.getColor();
+//    final String colorName = color.getName();
+//    final String colorProperty;
+//    if (colorName.length() == 0) {
+//      colorProperty = "(" + color.getR() + ", " + color.getG() + ", " + color.getB() + ", " + color.getAlpha() + ")";      //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$//$NON-NLS-4$//$NON-NLS-5$
+//    } else {
+//      colorProperty = colorName;
+//    }
+//    return colorProperty;
+//  }
 
   /**
    * シーングラフツリーにモデルを追加します。

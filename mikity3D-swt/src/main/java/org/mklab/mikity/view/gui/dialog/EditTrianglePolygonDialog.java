@@ -397,7 +397,7 @@ public class EditTrianglePolygonDialog {
     this.newVertex3Y.setText("" + vertex2.getY()); //$NON-NLS-1$
     this.newVertex3Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
 
-    this.colorCombo.getColorComboBox().setText(this.triangle.getColor().getName());
+    this.colorCombo.getColorComboBox().setText(this.triangle.getColor().toString());
 
     if (this.triangle.getRotation() != null) {
       this.newRightVertexX.setText("" + this.triangle.getRotation().getX()); //$NON-NLS-1$

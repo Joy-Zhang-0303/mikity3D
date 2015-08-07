@@ -129,24 +129,12 @@ public class SphereModel implements PrimitiveModel, java.io.Serializable, Clonea
     this.propertyChangeListeners.addElement(pcl);
   }
 
-//  /**
-//   * Returns the value of field 'color'.
-//   * 
-//   * @return the value of field 'color'.
-//   */
-//  public String getColorName() {
-//    return this.color.getName();
-//  }
-  
   /**
-   * Returns the value of field 'color'.
-   * 
-   * @return the value of field 'color'.
+   * {@inheritDoc}
    */
   public ColorModel getColor() {
     return this.color;
   }
-
 
   /**
    * Returns the value of field 'div'.
@@ -158,9 +146,7 @@ public class SphereModel implements PrimitiveModel, java.io.Serializable, Clonea
   }
 
   /**
-   * Returns the value of field 'location'.
-   * 
-   * @return the value of field 'location'.
+   * {@inheritDoc}
    */
   public TranslationModel getTranslation() {
     return this.translation;
@@ -176,18 +162,14 @@ public class SphereModel implements PrimitiveModel, java.io.Serializable, Clonea
   }
 
   /**
-   * Returns the value of field 'rotation'.
-   * 
-   * @return the value of field 'rotation'.
+   * {@inheritDoc}
    */
   public RotationModel getRotation() {
     return this.rotation;
   }
 
   /**
-   * Returns the value of field 'transparent'.
-   * 
-   * @return the value of field 'transparent'.
+   * {@inheritDoc}
    */
   public boolean isTransparent() {
     return this.transparent;
@@ -219,24 +201,12 @@ public class SphereModel implements PrimitiveModel, java.io.Serializable, Clonea
     return this.propertyChangeListeners.removeElement(pcl);
   }
 
-//  /**
-//   * Sets the value of field 'color'.
-//   * 
-//   * @param color the value of field 'color'.
-//   */
-//  public void setColorName(String color) {
-//    this.color = new ColorModel(color);
-//  }
-  
   /**
-   * Sets the value of field 'color'.
-   * 
-   * @param color the value of field 'color'.
+   * {@inheritDoc}
    */
   public void setColor(ColorModel color) {
     this.color = color;
   }
-
 
   /**
    * Sets the value of field 'div'.
@@ -248,9 +218,7 @@ public class SphereModel implements PrimitiveModel, java.io.Serializable, Clonea
   }
 
   /**
-   * Sets the value of field 'location'.
-   * 
-   * @param translation the value of field 'location'.
+   * {@inheritDoc}
    */
   public void setTranslation(TranslationModel translation) {
     this.translation = translation;
@@ -266,18 +234,14 @@ public class SphereModel implements PrimitiveModel, java.io.Serializable, Clonea
   }
 
   /**
-   * Sets the value of field 'rotation'.
-   * 
-   * @param rotation the value of field 'rotation'.
+   * {@inheritDoc}
    */
   public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
   }
 
   /**
-   * Sets the value of field 'transparent'.
-   * 
-   * @param transparent the value of field 'transparent'.
+   * {@inheritDoc}
    */
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;

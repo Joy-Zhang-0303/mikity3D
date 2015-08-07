@@ -134,20 +134,8 @@ public class ConeModel implements PrimitiveModel, java.io.Serializable, Cloneabl
     this.propertyChangeListeners.addElement(pcl);
   }
 
-//  /**
-//   * Returns the value of field 'color'.
-//   * 
-//   * @return the value of field 'color'.
-//   */
-//  public String getColorName() {
-//    return this.color.getName();
-//  }
-
-  
   /**
-   * Returns the value of field 'color'.
-   * 
-   * @return the value of field 'color'.
+   * {@inheritDoc}
    */
   public ColorModel getColor() {
     return this.color;
@@ -172,9 +160,7 @@ public class ConeModel implements PrimitiveModel, java.io.Serializable, Cloneabl
   }
 
   /**
-   * Returns the value of field 'location'.
-   * 
-   * @return the value of field 'location'.
+   * {@inheritDoc}
    */
   public TranslationModel getTranslation() {
     return this.translation;
@@ -190,18 +176,14 @@ public class ConeModel implements PrimitiveModel, java.io.Serializable, Cloneabl
   }
 
   /**
-   * Returns the value of field 'rotation'.
-   * 
-   * @return the value of field 'rotation'.
+   * {@inheritDoc}
    */
   public RotationModel getRotation() {
     return this.rotation;
   }
-
+   
   /**
-   * Returns the value of field 'transparent'.
-   * 
-   * @return the value of field 'transparent'.
+   * {@inheritDoc}
    */
   public boolean isTransparent() {
     return this.transparent;
@@ -233,24 +215,12 @@ public class ConeModel implements PrimitiveModel, java.io.Serializable, Cloneabl
     return this.propertyChangeListeners.removeElement(pcl);
   }
 
-//  /**
-//   * Sets the value of field 'color'.
-//   * 
-//   * @param color the value of field 'color'.
-//   */
-//  public void setColorName(String color) {
-//    this.color = new ColorModel(color);
-//  }
-  
   /**
-   * Sets the value of field 'color'.
-   * 
-   * @param color the value of field 'color'.
+   * {@inheritDoc}
    */
   public void setColor(ColorModel color) {
     this.color = color;
   }
-
 
   /**
    * Sets the value of field 'div'.
@@ -271,9 +241,7 @@ public class ConeModel implements PrimitiveModel, java.io.Serializable, Cloneabl
   }
 
   /**
-   * Sets the value of field 'location'.
-   * 
-   * @param translation the value of field 'location'.
+   * {@inheritDoc}
    */
   public void setTranslation(TranslationModel translation) {
     this.translation = translation;
@@ -289,9 +257,7 @@ public class ConeModel implements PrimitiveModel, java.io.Serializable, Cloneabl
   }
 
   /**
-   * Sets the value of field 'rotation'.
-   * 
-   * @param rotation the value of field 'rotation'.
+   * {@inheritDoc}
    */
   public void setRotation(RotationModel rotation) {
     this.rotation = rotation;

@@ -166,33 +166,22 @@ public class TrianglePolygonModel implements PrimitiveModel, Cloneable {
     updateNormalVector();
   }
 
-//  /**
-//   * 色を設定します。
-//   * 
-//   * @param color 色
-//   */
-//  public void setColorName(String color) {
-//    this.color = new ColorModel(color);
-//  }
-  
   /**
-   * 色を設定します。
-   * 
-   * @param color 色
+   * {@inheritDoc}
    */
   public void setColor(ColorModel color) {
     this.color = color;
   }
 
   /**
-   * @param translation 位置
+   * {@inheritDoc}
    */
   public void setTranslation(TranslationModel translation) {
     this.translation = translation;
   }
 
   /**
-   * @param rotation 回転
+   * {@inheritDoc}
    */
   public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
@@ -218,16 +207,10 @@ public class TrianglePolygonModel implements PrimitiveModel, Cloneable {
     final Vector3 v2 = new Vector3(x2 - x0, y2 - y0, z2 - z0);
     this.normalVector = v1.cross(v2).normalize();
   }
-
-//  /**
-//   * @param matrix 行列
-//   */
-//  public void setMatrix(Matrix4 matrix) {
-//    this.matrix = matrix;
-//  }
   
   /**
    * 指定された頂点を返します。
+   * 
    * @param number 頂点の番号(0-2)
    * @return 指定された頂点
    */
@@ -235,34 +218,22 @@ public class TrianglePolygonModel implements PrimitiveModel, Cloneable {
     return this.vertices.get(number); 
   }
 
-//  /**
-//   * 色を返します。
-//   * 
-//   * @return 色
-//   */
-//  public String getColorName() {
-//    return this.color.getName();
-//  }
-  
   /**
-   * 色を返します。
-   * 
-   * @return 色
+   * {@inheritDoc}
    */
   public ColorModel getColor() {
     return this.color;
   }
 
-
   /**
-   * @return location
+   * {@inheritDoc}
    */
   public TranslationModel getTranslation() {
     return this.translation;
   }
-
+  
   /**
-   * @return rotation
+   * {@inheritDoc}
    */
   public RotationModel getRotation() {
     return this.rotation;
@@ -280,26 +251,15 @@ public class TrianglePolygonModel implements PrimitiveModel, Cloneable {
     return this.normalVector;
   }
 
-//  /**
-//   * @return matrix
-//   */
-//  public Matrix4 getMatrix() {
-//    return this.matrix;
-//  }
-
   /**
-   * Sets the value of field 'transparent'.
-   * 
-   * @param transparent the value of field 'transparent'.
+   * {@inheritDoc}
    */
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
   }
 
   /**
-   * Returns the value of field 'transparent'.
-   * 
-   * @return the value of field 'transparent'.
+   * {@inheritDoc}
    */
   public boolean isTransparent() {
     return this.transparent;

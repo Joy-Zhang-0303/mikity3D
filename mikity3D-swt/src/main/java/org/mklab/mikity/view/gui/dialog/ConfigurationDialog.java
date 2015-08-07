@@ -264,7 +264,8 @@ public class ConfigurationDialog {
     if (this.configuration.getBackground() == null) {
       this.colorCombo.setText("white"); //$NON-NLS-1$
     } else {
-      final String colorName = this.configuration.getBackground().getColor().getName();
+      //final String colorName = this.configuration.getBackground().getColor().getName();
+      final String colorName = this.configuration.getBackground().getColor().toString();
       this.colorCombo.setText(colorName);
     }
   }
