@@ -71,14 +71,14 @@ public class BackgroundModel implements java.io.Serializable, Cloneable {
     return true;
   }
 
-  /**
-   * 色を返します。
-   * 
-   * @return 色
-   */
-  public String getColorName() {
-    return this.color.getName();
-  }
+//  /**
+//   * 色を返します。
+//   * 
+//   * @return 色
+//   */
+//  public String getColorName() {
+//    return this.color.getName();
+//  }
   
   /**
    * 色を返します。
@@ -90,14 +90,14 @@ public class BackgroundModel implements java.io.Serializable, Cloneable {
   }
 
 
-  /**
-   * 色を設定します。
-   * 
-   * @param color 色
-   */
-  public void setColorName(String color) {
-    this.color = new ColorModel(color);
-  }
+//  /**
+//   * 色を設定します。
+//   * 
+//   * @param color 色
+//   */
+//  public void setColorName(String color) {
+//    this.color = new ColorModel(color);
+//  }
   
   /**
    * 色を設定します。

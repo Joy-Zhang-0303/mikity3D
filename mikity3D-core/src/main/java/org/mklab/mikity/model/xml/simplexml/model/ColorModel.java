@@ -168,8 +168,40 @@ public class ColorModel implements java.io.Serializable, Cloneable {
    * alpha値を返します。
    * @return アルファ値
    */
-  public int getAalpha() {
+  public int getAlpha() {
     return this.alpha;
+  }
+  
+  /**
+   * R成分を返します。
+   * @return R成分
+   */
+  public float getRf() {
+    return this.r/255f;
+  }
+  
+  /**
+   * G成分を返します。
+   * @return G成分
+   */
+  public float getGf() {
+    return this.g/255f;
+  }
+  
+  /**
+   * B成分を返します。
+   * @return B成分
+   */
+  public float getBf() {
+    return this.b/255f;
+  }
+  
+  /**
+   * alpha値を返します。
+   * @return アルファ値
+   */
+  public float getAlphaf() {
+    return this.alpha/255f;
   }
   
   /**

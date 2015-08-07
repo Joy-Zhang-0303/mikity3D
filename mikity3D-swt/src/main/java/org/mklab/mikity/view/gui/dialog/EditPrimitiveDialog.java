@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -332,8 +333,10 @@ public class EditPrimitiveDialog {
   void updatePrimitiveParameters() {
     if (this.primitive instanceof BoxModel) {
       final BoxModel box = (BoxModel)this.primitive;
-
-      box.setColorName(this.colorCombo.getColorComboBox().getText());
+      
+      final String colorName = this.colorCombo.getColorComboBox().getText();
+      final ColorModel color = new ColorModel(colorName);
+      box.setColor(color);
       box.setWidth(this.parameter1.getFloatValue());
       box.setHeight(this.parameter2.getFloatValue());
       box.setDepth(this.parameter3.getFloatValue());
@@ -342,7 +345,9 @@ public class EditPrimitiveDialog {
     } else if (this.primitive instanceof CylinderModel) {
       final CylinderModel cylinder = (CylinderModel)this.primitive;
       
-      cylinder.setColorName(this.colorCombo.getColorComboBox().getText());
+      final String colorName = this.colorCombo.getColorComboBox().getText();
+      final ColorModel color = new ColorModel(colorName);
+      cylinder.setColor(color);
       cylinder.setRadius(this.parameter1.getFloatValue());
       cylinder.setHeight(this.parameter2.getFloatValue());
       cylinder.setDivision(this.parameter3.getIntValue());
@@ -351,7 +356,9 @@ public class EditPrimitiveDialog {
     } else if (this.primitive instanceof SphereModel) {
       final SphereModel sphere = (SphereModel)this.primitive;
 
-      sphere.setColorName(this.colorCombo.getColorComboBox().getText());
+      final String colorName = this.colorCombo.getColorComboBox().getText();
+      final ColorModel color = new ColorModel(colorName);
+      sphere.setColor(color);
       sphere.setRadius(this.parameter1.getFloatValue());
       sphere.setDivision(this.parameter2.getIntValue());
       sphere.setTranslation(getTranslation());
@@ -359,7 +366,9 @@ public class EditPrimitiveDialog {
     } else if (this.primitive instanceof ConeModel) {
       final ConeModel cone = (ConeModel)this.primitive;
 
-      cone.setColorName(this.colorCombo.getColorComboBox().getText());
+      final String colorName = this.colorCombo.getColorComboBox().getText();
+      final ColorModel color = new ColorModel(colorName);
+      cone.setColor(color);
       cone.setRadius(this.parameter1.getFloatValue());
       cone.setHeight(this.parameter2.getFloatValue());
       cone.setDivision(this.parameter3.getIntValue());
@@ -413,7 +422,7 @@ public class EditPrimitiveDialog {
       }
       setBoxLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
-      this.colorCombo.getColorComboBox().setText(box.getColorName());
+      this.colorCombo.getColorComboBox().setText(box.getColor().getName());
     } else if (this.primitive instanceof CylinderModel) {
       final CylinderModel cylinder = (CylinderModel)this.primitive;
       this.parameter1.setText("" + cylinder.getRadius()); //$NON-NLS-1$
@@ -429,7 +438,7 @@ public class EditPrimitiveDialog {
       }
       setCylinderLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
-      this.colorCombo.getColorComboBox().setText(cylinder.getColorName());
+      this.colorCombo.getColorComboBox().setText(cylinder.getColor().getName());
     } else if (this.primitive instanceof SphereModel) {
       final SphereModel sphere = (SphereModel)this.primitive;
       this.parameter1.setText("" + sphere.getRadius()); //$NON-NLS-1$
@@ -444,7 +453,7 @@ public class EditPrimitiveDialog {
       }
       setSphereLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
-      this.colorCombo.getColorComboBox().setText(sphere.getColorName());
+      this.colorCombo.getColorComboBox().setText(sphere.getColor().getName());
     } else if (this.primitive instanceof ConeModel) {
       final ConeModel cone = (ConeModel)this.primitive;
       this.parameter1.setText("" + cone.getRadisu()); //$NON-NLS-1$
@@ -460,7 +469,7 @@ public class EditPrimitiveDialog {
       }
       setConeLabel();
       this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
-      this.colorCombo.getColorComboBox().setText(cone.getColorName());
+      this.colorCombo.getColorComboBox().setText(cone.getColor().getName());
     }
   }
 

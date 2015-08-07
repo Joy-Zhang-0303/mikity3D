@@ -8,8 +8,7 @@ package org.mklab.mikity.android.view.renderer.opengles;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.graphic.GraphicPrimitive;
-import org.mklab.mikity.util.Color4;
-import org.mklab.mikity.util.ColorConstant;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
 /**
  * OpenGL ESのプリミティブを表す抽象クラスです。
@@ -40,14 +39,18 @@ public abstract class  AbstractOpenglesPrimitive extends AbstractOpenglesObject 
    * @param gl GL　
    */
   private void applyColor(GL10 gl) {
-    final String color = ((GraphicPrimitive)this.object).getColorName();
+//    final String color = ((GraphicPrimitive)this.object).getColorName();
+//    
+//    if (color == null) {
+//      return;
+//    }
+//    
+//    final Color4 value = ColorConstant.getColor(color);
+//    gl.glColor4f(value.getRf(), value.getGf(), value.getBf(), value.getAlphaf());
     
-    if (color == null) {
-      return;
-    }
-    
-    final Color4 value = ColorConstant.getColor(color);
-    gl.glColor4f(value.getRf(), value.getGf(), value.getBf(), value.getAlphaf());
+    final ColorModel color = ((GraphicPrimitive)this.object).getColor();
+    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
+
   }
   
   /**
@@ -65,14 +68,24 @@ public abstract class  AbstractOpenglesPrimitive extends AbstractOpenglesObject 
     }
   }
   
+//  /**
+//   * 色を設定します。
+//   * 
+//   * @param color 色
+//   */
+//  public void setColorName(String color) {
+//    ((GraphicPrimitive)this.object).setColorName(color);
+//  }
+  
   /**
    * 色を設定します。
    * 
    * @param color 色
    */
-  public void setColor(String color) {
-    ((GraphicPrimitive)this.object).setColorName(color);
+  public void setColor(ColorModel color) {
+    ((GraphicPrimitive)this.object).setColor(color);
   }
+
   
   /**
    * 透明性を設定します。

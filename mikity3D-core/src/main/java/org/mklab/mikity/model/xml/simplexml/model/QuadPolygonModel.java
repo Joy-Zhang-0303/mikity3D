@@ -167,12 +167,12 @@ public class QuadPolygonModel implements Cloneable {
     updateNormalVector();
   }
 
-  /**
-   * @param color 色
-   */
-  public void setColorName(String color) {
-    this.color = new ColorModel(color);
-  }
+//  /**
+//   * @param color 色
+//   */
+//  public void setColorName(String color) {
+//    this.color = new ColorModel(color);
+//  }
   
   /**
    * @param color 色
@@ -233,12 +233,12 @@ public class QuadPolygonModel implements Cloneable {
     return this.vertices.get(number); 
   }
 
-  /**
-   * @return color
-   */
-  public String getColorName() {
-    return this.color.getName();
-  }
+//  /**
+//   * @return color
+//   */
+//  public String getColorName() {
+//    return this.color.getName();
+//  }
   
   /**
    * @return color

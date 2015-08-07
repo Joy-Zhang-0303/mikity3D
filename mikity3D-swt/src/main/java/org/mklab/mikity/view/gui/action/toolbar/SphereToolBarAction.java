@@ -1,5 +1,6 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
@@ -29,7 +30,8 @@ public class SphereToolBarAction extends AbstractToolBarAction {
     final SphereModel sphere = new SphereModel();
     sphere.setRadius(0.10f);
     sphere.setDivision(20);
-    sphere.setColorName("yellow"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("yellow"); //$NON-NLS-1$
+    sphere.setColor(color);
     
     final GroupModel group = this.modeler.getTargetGroup();
     group.add(sphere);

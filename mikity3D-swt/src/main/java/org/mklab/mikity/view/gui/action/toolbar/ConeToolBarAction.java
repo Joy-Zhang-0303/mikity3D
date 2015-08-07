@@ -1,7 +1,8 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -29,7 +30,8 @@ public class ConeToolBarAction extends AbstractToolBarAction {
     cone.setRadius(0.10f);
     cone.setHeight(0.10f);
     cone.setDivision(20);
-    cone.setColorName("green"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("green"); //$NON-NLS-1$
+    cone.setColor(color);
     
     final GroupModel group = this.modeler.getTargetGroup();
     group.add(cone);

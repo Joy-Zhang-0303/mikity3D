@@ -13,6 +13,7 @@ import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesSphere;
 import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesTrianglePolygon;
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
@@ -41,7 +42,7 @@ public class OpenglesPrimitiveFactory {
     final float width = box.getWidth();
     final float height = box.getHeight();
     final float depth = box.getDepth();
-    final String color = box.getColorName();
+    final ColorModel color = box.getColor();
     final boolean transparent = box.getTransparent();
 
     final OpenglesBox child = new OpenglesBox();
@@ -73,7 +74,7 @@ public class OpenglesPrimitiveFactory {
     final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
-    final String color = cylinder.getColorName();
+    final ColorModel color = cylinder.getColor();
     final boolean transparent = cylinder.getTransparent();
 
     final OpenglesCylinder child = new OpenglesCylinder();
@@ -105,7 +106,7 @@ public class OpenglesPrimitiveFactory {
   public static OpenglesObject create(SphereModel sphere) {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
-    final String color = sphere.getColorName();
+    final ColorModel color = sphere.getColor();
     final boolean transparent = sphere.getTransparent();
 
     final OpenglesSphere child = new OpenglesSphere();
@@ -138,7 +139,7 @@ public class OpenglesPrimitiveFactory {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
-    final String color = cone.getColorName();
+    final ColorModel color = cone.getColor();
     final boolean transparent = cone.getTransparent();
 
     final OpenglesCone child = new OpenglesCone();
@@ -182,7 +183,7 @@ public class OpenglesPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
 
-    final String color = polygon.getColorName();
+    final ColorModel color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
 
     final OpenglesTrianglePolygon child = new OpenglesTrianglePolygon();
@@ -226,7 +227,7 @@ public class OpenglesPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
 
-    final String color = polygon.getColorName();
+    final ColorModel color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
 
     final OpenglesQuadPolygon child = new OpenglesQuadPolygon();

@@ -23,6 +23,7 @@ import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 
@@ -263,7 +264,8 @@ public class ConfigurationDialog {
     if (this.configuration.getBackground() == null) {
       this.colorCombo.setText("white"); //$NON-NLS-1$
     } else {
-      this.colorCombo.setText(this.configuration.getBackground().getColorName());
+      final String colorName = this.configuration.getBackground().getColor().getName();
+      this.colorCombo.setText(colorName);
     }
   }
 
@@ -356,11 +358,15 @@ public class ConfigurationDialog {
     if (this.configuration.getBackground() == null) {
       if (this.colorCombo.getText() != "white") { //$NON-NLS-1$
         final BackgroundModel background = new BackgroundModel();
-        background.setColorName(this.colorCombo.getText());
+        final String colorName = this.colorCombo.getText();
+        final ColorModel color = new ColorModel(colorName);
+        background.setColor(color);
         this.configuration.setBackground(background);
       }
     } else {
-      this.configuration.getBackground().setColorName(this.colorCombo.getText());
+      final String colorName = this.colorCombo.getText();
+      final ColorModel color = new ColorModel(colorName);
+      this.configuration.getBackground().setColor(color);
     }
 
     if (this.configuration.getModelUnit() == null) {

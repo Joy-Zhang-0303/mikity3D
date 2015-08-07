@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -368,10 +369,11 @@ public class EditTrianglePolygonDialog {
     vertices[1] = new VertexModel(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
     vertices[2] = new VertexModel(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
 
-    final String newColor = this.colorCombo.getColorComboBox().getText();
+    final String colorName = this.colorCombo.getColorComboBox().getText();
+    final ColorModel color = new ColorModel(colorName);
 
     this.triangle.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2]));
-    this.triangle.setColorName(newColor);
+    this.triangle.setColor(color);
     this.triangle.setRotation(new RotationModel(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
     this.triangle.setTranslation(new TranslationModel(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
   }
@@ -395,7 +397,7 @@ public class EditTrianglePolygonDialog {
     this.newVertex3Y.setText("" + vertex2.getY()); //$NON-NLS-1$
     this.newVertex3Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
 
-    this.colorCombo.getColorComboBox().setText(this.triangle.getColorName());
+    this.colorCombo.getColorComboBox().setText(this.triangle.getColor().getName());
 
     if (this.triangle.getRotation() != null) {
       this.newRightVertexX.setText("" + this.triangle.getRotation().getX()); //$NON-NLS-1$

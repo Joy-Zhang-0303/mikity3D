@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -606,15 +607,6 @@ public class SceneGraphTree {
     return this.targetGroup;
   }
 
-//  /**
-//   * グループが編集可能か判定する。
-//   * 
-//   * @return editable 編集可能ならばtrue
-//   */
-//  public boolean isGroupEditable() {
-//    return this.editable;
-//  }
-
   /**
    * ツリーとビューアを更新します。
    */
@@ -685,42 +677,43 @@ public class SceneGraphTree {
       final BoxModel[] boxes = group.getBoxes();
       for (final BoxModel box :  boxes) {
         final TreeItem child = new TreeItem(groupItem, SWT.NONE);
-        child.setText("box (width=" + box.getWidth() + ", height=" + box.getHeight() + ", depth=" + box.getDepth() + ", color=" + box.getColorName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        final String colorProperty = getColorProperty(box);
+        child.setText("box (width=" + box.getWidth() + ", height=" + box.getHeight() + ", depth=" + box.getDepth() + ", color=" + colorProperty + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         child.setData(box);
       }
 
       final CylinderModel[] cylinders = group.getCylinders();
       for (final CylinderModel cylinder :  cylinders) {
         final TreeItem item = new TreeItem(groupItem, SWT.NONE);
-        item.setText("cylinder (radius=" + cylinder.getRadius() + ", height=" + cylinder.getHeight() + ", division=" + cylinder.getDivision() + ", color=" + cylinder.getColorName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        item.setText("cylinder (radius=" + cylinder.getRadius() + ", height=" + cylinder.getHeight() + ", division=" + cylinder.getDivision() + ", color=" + cylinder.getColor().getName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         item.setData(cylinder);
       }
 
       final SphereModel[] spheres = group.getSpheres();
       for (final SphereModel sphere : spheres) {
         final TreeItem item = new TreeItem(groupItem, SWT.NONE);
-        item.setText("sphere (radius=" + sphere.getRadius() + ", division=" + sphere.getDivision() + ", color=" + sphere.getColorName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        item.setText("sphere (radius=" + sphere.getRadius() + ", division=" + sphere.getDivision() + ", color=" + sphere.getColor().getName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         item.setData(sphere);
       }
 
       final ConeModel[] cones = group.getCones();
       for (final ConeModel cone :  cones) {
         final TreeItem item = new TreeItem(groupItem, SWT.NONE);
-        item.setText("cone (radius=" + cone.getRadisu() + ", height=" + cone.getHeight() + ", divison=" + cone.getDivision() + ", color=" + cone.getColorName() + ")"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        item.setText("cone (radius=" + cone.getRadisu() + ", height=" + cone.getHeight() + ", divison=" + cone.getDivision() + ", color=" + cone.getColor().getName() + ")"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         item.setData(cone);
       }
 
       final TrianglePolygonModel[] trianglePolygons = group.getTrianglePolygons();
       for (final TrianglePolygonModel trianglePolygon : trianglePolygons) {
         final TreeItem item = new TreeItem(groupItem, SWT.NONE);
-        item.setText("trianglePolygon (color=" + trianglePolygon.getColorName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+        item.setText("trianglePolygon (color=" + trianglePolygon.getColor().getName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
         item.setData(trianglePolygon);
       }
 
       final QuadPolygonModel[] quadPolygons = group.getQuadPolygons();
       for (final QuadPolygonModel quadPolygon :  quadPolygons) {
         final TreeItem item = new TreeItem(groupItem, SWT.NONE);
-        item.setText("quadPolygon (color=" + quadPolygon.getColorName() + ")"); //$NON-NLS-1$//$NON-NLS-2$
+        item.setText("quadPolygon (color=" + quadPolygon.getColor().getName() + ")"); //$NON-NLS-1$//$NON-NLS-2$
         item.setData(quadPolygon);
       }
 
@@ -737,6 +730,24 @@ public class SceneGraphTree {
   }
 
   /**
+   * 色の属性を返します。
+   * 
+   * @param box オブジェクト
+   * @return　色に属性
+   */
+  private String getColorProperty(final BoxModel box) {
+    final ColorModel color = box.getColor();
+    final String colorName = color.getName();
+    final String colorProperty;
+    if (colorName.length() == 0) {
+      colorProperty = "(" + color.getR() + ", " + color.getG() + ", " + color.getB() + ", " + color.getAlpha() + ")";      //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$//$NON-NLS-4$//$NON-NLS-5$
+    } else {
+      colorProperty = colorName;
+    }
+    return colorProperty;
+  }
+
+  /**
    * シーングラフツリーにモデルを追加します。
    */
   public void fillTree() {
@@ -748,23 +759,6 @@ public class SceneGraphTree {
     
     addTreeItem(sceneItem, this.model.getGroups());
   }
-
-  //  /**
-  //   * 抽出したデータを返します。
-  //   * 
-  //   * @return xmlTree.getSelection()[0].getData()
-  //   */
-  //  public Object getSelectedData() {
-  //    if (this.xmlTree.getSelectionCount() == 0) {
-  //      return null;
-  //    } 
-  //    
-  //    if (this.xmlTree.getSelection()[0].getData() instanceof Group) {
-  //      return null;
-  //    }
-  //    
-  //    return this.xmlTree.getSelection()[0].getData();
-  //  }
 
   /**
    * モデルデータを返します。

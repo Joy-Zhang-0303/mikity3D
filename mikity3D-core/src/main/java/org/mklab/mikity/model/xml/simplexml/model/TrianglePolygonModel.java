@@ -166,14 +166,14 @@ public class TrianglePolygonModel implements Cloneable {
     updateNormalVector();
   }
 
-  /**
-   * 色を設定します。
-   * 
-   * @param color 色
-   */
-  public void setColorName(String color) {
-    this.color = new ColorModel(color);
-  }
+//  /**
+//   * 色を設定します。
+//   * 
+//   * @param color 色
+//   */
+//  public void setColorName(String color) {
+//    this.color = new ColorModel(color);
+//  }
   
   /**
    * 色を設定します。
@@ -235,14 +235,14 @@ public class TrianglePolygonModel implements Cloneable {
     return this.vertices.get(number); 
   }
 
-  /**
-   * 色を返します。
-   * 
-   * @return 色
-   */
-  public String getColorName() {
-    return this.color.getName();
-  }
+//  /**
+//   * 色を返します。
+//   * 
+//   * @return 色
+//   */
+//  public String getColorName() {
+//    return this.color.getName();
+//  }
   
   /**
    * 色を返します。

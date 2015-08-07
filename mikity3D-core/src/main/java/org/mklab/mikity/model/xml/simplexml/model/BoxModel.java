@@ -135,14 +135,14 @@ public class BoxModel implements java.io.Serializable, Cloneable {
     this.propertyChangeListeners.addElement(pcl);
   } 
 
-  /**
-   * Returns the value of field 'color'.
-   * 
-   * @return the value of field 'color'.
-   */
-  public String getColorName() {
-    return this.color.getName();
-  }
+//  /**
+//   * Returns the value of field 'color'.
+//   * 
+//   * @return the value of field 'color'.
+//   */
+//  public String getColorName() {
+//    return this.color.getName();
+//  }
   
   /**
    * Returns the value of field 'color'.
@@ -233,14 +233,14 @@ public class BoxModel implements java.io.Serializable, Cloneable {
     return this.propertyChangeListeners.removeElement(pcl);
   }
 
-  /**
-   * Sets the value of field 'color'.
-   * 
-   * @param colorName the value of field 'color'.
-   */
-  public void setColorName(String colorName) {
-    this.color = new ColorModel(colorName);
-  }
+//  /**
+//   * Sets the value of field 'color'.
+//   * 
+//   * @param colorName the value of field 'color'.
+//   */
+//  public void setColorName(String colorName) {
+//    this.color = new ColorModel(colorName);
+//  }
 
   /**
    * Sets the value of field 'color'.

@@ -21,6 +21,7 @@ import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
@@ -80,7 +81,8 @@ public class SimpleXmlUnmarshallerTest {
 
     final BackgroundModel actualBackground = actualConfiguration.getBackground();
     final BackgroundModel expectedBackground = new BackgroundModel();
-    expectedBackground.setColorName("white"); //$NON-NLS-1$ 
+    final ColorModel expectedColor = new ColorModel("white"); //$NON-NLS-1$
+    expectedBackground.setColor(expectedColor);
     assertThat(actualBackground, is(expectedBackground));
 
     final LightModel actualLight = actualConfiguration.getLight();
@@ -169,7 +171,8 @@ public class SimpleXmlUnmarshallerTest {
   private void assertDodaiBox1(BoxModel actualBox) {
     final BoxModel expectedBox = new BoxModel();
     expectedBox.setTransparent(false);
-    expectedBox.setColorName("lightGray"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("lightGray"); //$NON-NLS-1$
+    expectedBox.setColor(color);
     expectedBox.setWidth(0.02F);
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
@@ -190,7 +193,8 @@ public class SimpleXmlUnmarshallerTest {
   private void assertDodaiBox2(BoxModel actualBox) {
     final BoxModel expectedBox = new BoxModel();
     expectedBox.setTransparent(false);
-    expectedBox.setColorName("lightGray"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("lightGray"); //$NON-NLS-1$
+    expectedBox.setColor(color);
     expectedBox.setWidth(0.3F);
     expectedBox.setHeight(0.005F);
     expectedBox.setDepth(0.1F);
@@ -211,7 +215,8 @@ public class SimpleXmlUnmarshallerTest {
   private void assertDodaiBox3(BoxModel actualBox) {
     final BoxModel expectedBox = new BoxModel();
     expectedBox.setTransparent(false);
-    expectedBox.setColorName("lightGray"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("lightGray"); //$NON-NLS-1$
+    expectedBox.setColor(color);
     expectedBox.setWidth(0.02F);
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
@@ -232,7 +237,8 @@ public class SimpleXmlUnmarshallerTest {
   private void assertDodaiBox4(BoxModel actualBox) {
     final BoxModel expectedBox = new BoxModel();
     expectedBox.setTransparent(false);
-    expectedBox.setColorName("lightGray"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("lightGray"); //$NON-NLS-1$
+    expectedBox.setColor(color);
     expectedBox.setWidth(0.54F);
     expectedBox.setHeight(0.05F);
     expectedBox.setDepth(0.07F);
@@ -285,7 +291,8 @@ public class SimpleXmlUnmarshallerTest {
   private void assertDaishaBox(BoxModel actualBox) {
     final BoxModel expectedBox = new BoxModel();
     expectedBox.setTransparent(false);
-    expectedBox.setColorName("yellow"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("yellow"); //$NON-NLS-1$
+    expectedBox.setColor(color);
     expectedBox.setWidth(0.07F);
     expectedBox.setHeight(0.05F);
     expectedBox.setDepth(0.005F);
@@ -337,7 +344,8 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertCylinder1(CylinderModel actualCylinder) {
     final CylinderModel expectedCylinder = new CylinderModel();
-    expectedCylinder.setColorName("cyan"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("cyan"); //$NON-NLS-1$
+    expectedCylinder.setColor(color);
     expectedCylinder.setDivision(10);
     expectedCylinder.setHeight(0.018F);
     expectedCylinder.setRadius(0.01F);
@@ -360,7 +368,8 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertCylinder2(CylinderModel actualCylinder) {
     final CylinderModel expectedCylinder = new CylinderModel();
-    expectedCylinder.setColorName("orange"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("orange"); //$NON-NLS-1$
+    expectedCylinder.setColor(color);
     expectedCylinder.setDivision(10);
     expectedCylinder.setHeight(0.3F);
     expectedCylinder.setRadius(0.0025F);

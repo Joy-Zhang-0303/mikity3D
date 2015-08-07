@@ -2,6 +2,7 @@ package org.mklab.mikity.view.renderer.jogl;
 
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
@@ -36,11 +37,11 @@ public class JoglPrimitiveFactory {
     final float width = box.getWidth();
     final float height = box.getHeight();
     final float depth = box.getDepth();
-    final String color = box.getColorName();
+    final ColorModel color = box.getColor();
     final boolean transparent = box.getTransparent();
 
     final JoglBox child = new JoglBox();
-    child.setColorName(color);
+    child.setColor(color);
     child.setSize(width, height, depth);
     child.setTransparent(transparent);
 
@@ -68,13 +69,13 @@ public class JoglPrimitiveFactory {
     final int division = cylinder.getDivision();
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
-    final String color = cylinder.getColorName();
+    final ColorModel color = cylinder.getColor();
     final boolean transparent = cylinder.getTransparent();
 
     final JoglCylinder child = new JoglCylinder();
     child.setSize(radius, hight);
     child.setDivision(division);
-    child.setColorName(color);
+    child.setColor(color);
     child.setTransparent(transparent);
 
     final TranslationModel translation = cylinder.getTranslation();
@@ -100,13 +101,13 @@ public class JoglPrimitiveFactory {
   public static JoglObject create(SphereModel sphere) {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
-    final String color = sphere.getColorName();
+    final ColorModel color = sphere.getColor();
     final boolean transparent = sphere.getTransparent();
 
     final JoglSphere child = new JoglSphere();
     child.setSize(radius);
     child.setDivision(division);
-    child.setColorName(color);
+    child.setColor(color);
     child.setTransparent(transparent);
 
     final TranslationModel translation = sphere.getTranslation();
@@ -133,11 +134,11 @@ public class JoglPrimitiveFactory {
     final float radius = cone.getRadisu();
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
-    final String color = cone.getColorName();
+    final ColorModel color = cone.getColor();
     final boolean transparent = cone.getTransparent();
 
     final JoglCone child = new JoglCone();
-    child.setColorName(color);
+    child.setColor(color);
     child.setSize(radius, hight);
     child.setDivision(division);
     child.setTransparent(transparent);
@@ -177,11 +178,11 @@ public class JoglPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
 
-    final String color = polygon.getColorName();
+    final ColorModel color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
 
     final JoglTrianglePolygon child = new JoglTrianglePolygon();
-    child.setColorName(color);
+    child.setColor(color);
     child.setVertices(vertices);
     child.setNormalVector(normalVector);
     child.setTransparent(transparent);
@@ -221,11 +222,11 @@ public class JoglPrimitiveFactory {
     normalVector[1] = vector.getY();
     normalVector[2] = vector.getZ();
 
-    final String color = polygon.getColorName();
+    final ColorModel color = polygon.getColor();
     final boolean transparent = polygon.getTransparent();
 
     final JoglQuadPolygon child = new JoglQuadPolygon();
-    child.setColorName(color);
+    child.setColor(color);
     child.setVertices(vertices);
     child.setNormalVector(normalVector);
     child.setTransparent(transparent);

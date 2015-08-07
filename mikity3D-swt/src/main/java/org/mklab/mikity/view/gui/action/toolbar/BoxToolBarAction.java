@@ -1,7 +1,8 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -29,7 +30,8 @@ public class BoxToolBarAction extends AbstractToolBarAction {
     box.setWidth(0.10f);
     box.setHeight(0.10f);
     box.setDepth(0.10f);
-    box.setColorName("red"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("red"); //$NON-NLS-1$
+    box.setColor(color);
     
     final GroupModel group = this.modeler.getTargetGroup();
     group.add(box);

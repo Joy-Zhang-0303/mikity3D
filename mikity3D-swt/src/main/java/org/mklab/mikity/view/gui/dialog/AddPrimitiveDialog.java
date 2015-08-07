@@ -16,13 +16,14 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
-import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.UnitLabel;
 
@@ -260,6 +261,8 @@ public class AddPrimitiveDialog {
   void addPrimitive() {
     final RotationModel rotation;
     final TranslationModel translation;
+    final String colorName;
+    final ColorModel color;
     
     switch (this.selectedIndex) {
       case BOX:
@@ -275,7 +278,9 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           box.setTranslation(translation);
         }
-        box.setColorName(this.colorCombo.getText());
+        colorName = this.colorCombo.getText();
+        color = new ColorModel(colorName);
+        box.setColor(color);
         this.targetGroup.add(box);
         break;
       case CYLINDER:
@@ -291,7 +296,9 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           cylinder.setTranslation(translation);
         }
-        cylinder.setColorName(this.colorCombo.getText());
+        colorName = this.colorCombo.getText();
+        color = new ColorModel(colorName);
+        cylinder.setColor(color);
         this.targetGroup.add(cylinder);
         break;
       case SPHERE:
@@ -306,7 +313,9 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           sphere.setTranslation(translation);
         }
-        sphere.setColorName(this.colorCombo.getText());
+        colorName = this.colorCombo.getText();
+        color = new ColorModel(colorName);        
+        sphere.setColor(color);
         this.targetGroup.add(sphere);
         break;
       case CONE:
@@ -322,7 +331,9 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           cone.setTranslation(translation);
         }
-        cone.setColorName(this.colorCombo.getText());
+        colorName = this.colorCombo.getText();
+        color = new ColorModel(colorName);        
+        cone.setColor(color);
         this.targetGroup.add(cone);
         break;
       default:
@@ -485,8 +496,8 @@ public class AddPrimitiveDialog {
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 2;
     this.colorCombo.setLayoutData(gridData);
-    final String[] colors = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
-    this.colorCombo.setItems(colors);
+    final String[] colorNames = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
+    this.colorCombo.setItems(colorNames);
     this.colorCombo.setText("red"); //$NON-NLS-1$
   }
 }

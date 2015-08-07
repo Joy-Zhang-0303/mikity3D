@@ -8,9 +8,10 @@ package org.mklab.mikity.view.gui.action.toolbar;
 import java.util.Arrays;
 import java.util.List;
 
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -40,7 +41,8 @@ public class TrianglePolygonToolBarAction extends AbstractToolBarAction {
     final VertexModel vertex2 = new VertexModel(0.0f, 0.0f, 0.3f);
     final List<VertexModel> vertices = Arrays.asList(vertex0, vertex1, vertex2);
     polygon.setVertices(vertices);
-    polygon.setColorName("red"); //$NON-NLS-1$
+    final ColorModel color = new ColorModel("red"); //$NON-NLS-1$
+    polygon.setColor(color);
     
     final GroupModel group = this.modeler.getTargetGroup();
     group.add(polygon);

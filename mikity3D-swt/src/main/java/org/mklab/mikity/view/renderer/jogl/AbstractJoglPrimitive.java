@@ -7,8 +7,6 @@ package org.mklab.mikity.view.renderer.jogl;
 
 import org.mklab.mikity.model.graphic.GraphicPrimitive;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
-import org.mklab.mikity.util.Color4;
-import org.mklab.mikity.util.ColorConstant;
 
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
@@ -43,14 +41,17 @@ public abstract class AbstractJoglPrimitive extends AbstractJoglObject {
    * @param gl GL　
    */
   private void applyColor(GL2 gl) {
-    final String color = ((GraphicPrimitive)this.object).getColorName();
+//    final String color = ((GraphicPrimitive)this.object).getColorName();
+//    
+//    if (color == null) {
+//      return;
+//    }
+//    
+//    final Color4 value = ColorConstant.getColor(color);
+//    gl.glColor4f(value.getRf(), value.getGf(), value.getBf(), value.getAlphaf());
     
-    if (color == null) {
-      return;
-    }
-    
-    final Color4 value = ColorConstant.getColor(color);
-    gl.glColor4f(value.getRf(), value.getGf(), value.getBf(), value.getAlphaf());
+    final ColorModel color = ((GraphicPrimitive)this.object).getColor();
+    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
   }
   
   /**
@@ -68,14 +69,14 @@ public abstract class AbstractJoglPrimitive extends AbstractJoglObject {
     }
   }
 
-  /**
-   * 色を設定します。
-   * 
-   * @param colorName 色
-   */
-  public void setColorName(String colorName) {
-    ((GraphicPrimitive)this.object).setColorName(colorName);
-  }
+//  /**
+//   * 色を設定します。
+//   * 
+//   * @param colorName 色
+//   */
+//  public void setColorName(String colorName) {
+//    ((GraphicPrimitive)this.object).setColorName(colorName);
+//  }
   
   /**
    * 色を設定します。

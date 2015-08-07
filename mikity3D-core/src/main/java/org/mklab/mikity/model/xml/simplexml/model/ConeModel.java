@@ -134,14 +134,14 @@ public class ConeModel implements java.io.Serializable, Cloneable {
     this.propertyChangeListeners.addElement(pcl);
   }
 
-  /**
-   * Returns the value of field 'color'.
-   * 
-   * @return the value of field 'color'.
-   */
-  public String getColorName() {
-    return this.color.getName();
-  }
+//  /**
+//   * Returns the value of field 'color'.
+//   * 
+//   * @return the value of field 'color'.
+//   */
+//  public String getColorName() {
+//    return this.color.getName();
+//  }
 
   
   /**
@@ -233,14 +233,14 @@ public class ConeModel implements java.io.Serializable, Cloneable {
     return this.propertyChangeListeners.removeElement(pcl);
   }
 
-  /**
-   * Sets the value of field 'color'.
-   * 
-   * @param color the value of field 'color'.
-   */
-  public void setColorName(String color) {
-    this.color = new ColorModel(color);
-  }
+//  /**
+//   * Sets the value of field 'color'.
+//   * 
+//   * @param color the value of field 'color'.
+//   */
+//  public void setColorName(String color) {
+//    this.color = new ColorModel(color);
+//  }
   
   /**
    * Sets the value of field 'color'.

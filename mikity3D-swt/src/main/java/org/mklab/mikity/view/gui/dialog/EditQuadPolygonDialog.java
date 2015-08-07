@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
@@ -394,10 +395,11 @@ public class EditQuadPolygonDialog {
     newVertices[2] = new VertexModel(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
     newVertices[3] = new VertexModel(this.newVertex4X.getFloatValue(), this.newVertex4Y.getFloatValue(), this.newVertex4Z.getFloatValue());
 
-    String newColor = this.colorCombo.getColorComboBox().getText();
+    final String colorName = this.colorCombo.getColorComboBox().getText();
+    final ColorModel color = new ColorModel(colorName);
 
     this.quad.setVertices(Arrays.asList(newVertices[0], newVertices[1], newVertices[2], newVertices[3]));
-    this.quad.setColorName(newColor);
+    this.quad.setColor(color);
     this.quad.setRotation(new RotationModel(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
     this.quad.setTranslation(new TranslationModel(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
   }
@@ -425,7 +427,7 @@ public class EditQuadPolygonDialog {
     this.newVertex4X.setText("" + vertex3.getX()); //$NON-NLS-1$
     this.newVertex4Y.setText("" + vertex3.getY()); //$NON-NLS-1$
     this.newVertex4Z.setText("" + vertex3.getZ()); //$NON-NLS-1$
-    this.colorCombo.getColorComboBox().setText(this.quad.getColorName());
+    this.colorCombo.getColorComboBox().setText(this.quad.getColor().getName());
 
     if (this.quad.getRotation() != null) {
       this.newRightVertexX.setText("" + this.quad.getRotation().getX()); //$NON-NLS-1$
