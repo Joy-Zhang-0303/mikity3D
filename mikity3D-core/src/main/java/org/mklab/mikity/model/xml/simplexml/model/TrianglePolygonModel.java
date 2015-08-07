@@ -22,7 +22,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2008/08/10
  */
 @Root(name="trianglePolygon")
-public class TrianglePolygonModel implements Cloneable {
+public class TrianglePolygonModel implements PrimitiveModel, Cloneable {
   /** vertices */
   @ElementList(type=VertexModel.class, inline=true, required=true)
   private List<VertexModel> vertices;
@@ -301,7 +301,7 @@ public class TrianglePolygonModel implements Cloneable {
    * 
    * @return the value of field 'transparent'.
    */
-  public boolean getTransparent() {
+  public boolean isTransparent() {
     return this.transparent;
   }
 }

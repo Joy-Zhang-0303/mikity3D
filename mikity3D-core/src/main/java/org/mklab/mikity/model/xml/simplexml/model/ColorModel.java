@@ -46,11 +46,11 @@ public class ColorModel implements java.io.Serializable, Cloneable {
    * 新しく生成された<code>ColorModel</code>オブジェクトを初期化します。
    */
   public ColorModel() {
-    this.r = 255;
-    this.g = 255;
-    this.b = 255;
+    this.r = 0;
+    this.g = 0;
+    this.b = 0;
     this.alpha = 255;
-    this.name = "white"; //$NON-NLS-1$
+    this.name = "black"; //$NON-NLS-1$
   }
   
   /**
@@ -258,4 +258,14 @@ public class ColorModel implements java.io.Serializable, Cloneable {
     this.name = name;
   }
   
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    if (this.name != null && this.name.length() > 0) {
+      return this.name;
+    }
+    return "(" + this.r + ", " + this.g + ", " + this.b + ", " + this.alpha + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+  }
 }

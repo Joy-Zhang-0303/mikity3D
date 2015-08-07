@@ -43,7 +43,7 @@ public class OpenglesPrimitiveFactory {
     final float height = box.getHeight();
     final float depth = box.getDepth();
     final ColorModel color = box.getColor();
-    final boolean transparent = box.getTransparent();
+    final boolean transparent = box.isTransparent();
 
     final OpenglesBox child = new OpenglesBox();
     child.setColor(color);
@@ -75,7 +75,7 @@ public class OpenglesPrimitiveFactory {
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
     final ColorModel color = cylinder.getColor();
-    final boolean transparent = cylinder.getTransparent();
+    final boolean transparent = cylinder.isTransparent();
 
     final OpenglesCylinder child = new OpenglesCylinder();
     child.setSize(radius, hight);
@@ -107,7 +107,7 @@ public class OpenglesPrimitiveFactory {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
     final ColorModel color = sphere.getColor();
-    final boolean transparent = sphere.getTransparent();
+    final boolean transparent = sphere.isTransparent();
 
     final OpenglesSphere child = new OpenglesSphere();
     child.setSize(radius);
@@ -140,7 +140,7 @@ public class OpenglesPrimitiveFactory {
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
     final ColorModel color = cone.getColor();
-    final boolean transparent = cone.getTransparent();
+    final boolean transparent = cone.isTransparent();
 
     final OpenglesCone child = new OpenglesCone();
     child.setColor(color);
@@ -184,7 +184,7 @@ public class OpenglesPrimitiveFactory {
     normalVector[2] = vector.getZ();
 
     final ColorModel color = polygon.getColor();
-    final boolean transparent = polygon.getTransparent();
+    final boolean transparent = polygon.isTransparent();
 
     final OpenglesTrianglePolygon child = new OpenglesTrianglePolygon();
     child.setColor(color);
@@ -228,7 +228,7 @@ public class OpenglesPrimitiveFactory {
     normalVector[2] = vector.getZ();
 
     final ColorModel color = polygon.getColor();
-    final boolean transparent = polygon.getTransparent();
+    final boolean transparent = polygon.isTransparent();
 
     final OpenglesQuadPolygon child = new OpenglesQuadPolygon();
     child.setColor(color);

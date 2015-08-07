@@ -22,7 +22,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2008/08/10
  */
 @Root(name="quadPolygon")
-public class QuadPolygonModel implements Cloneable {
+public class QuadPolygonModel implements PrimitiveModel, Cloneable {
   /** vertices */
   @ElementList(type=VertexModel.class, inline=true, required=true)
   private List<VertexModel> vertices;
@@ -293,7 +293,7 @@ public class QuadPolygonModel implements Cloneable {
    * 
    * @return the value of field 'transparent'.
    */
-  public boolean getTransparent() {
+  public boolean isTransparent() {
     return this.transparent;
   }
 }

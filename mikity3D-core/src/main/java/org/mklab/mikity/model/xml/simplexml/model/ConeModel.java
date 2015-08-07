@@ -14,7 +14,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
 @Root(name="cone")
-public class ConeModel implements java.io.Serializable, Cloneable {
+public class ConeModel implements PrimitiveModel, java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** radius */
@@ -203,7 +203,7 @@ public class ConeModel implements java.io.Serializable, Cloneable {
    * 
    * @return the value of field 'transparent'.
    */
-  public boolean getTransparent() {
+  public boolean isTransparent() {
     return this.transparent;
   }
 

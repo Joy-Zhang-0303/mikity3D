@@ -38,7 +38,7 @@ public class JoglPrimitiveFactory {
     final float height = box.getHeight();
     final float depth = box.getDepth();
     final ColorModel color = box.getColor();
-    final boolean transparent = box.getTransparent();
+    final boolean transparent = box.isTransparent();
 
     final JoglBox child = new JoglBox();
     child.setColor(color);
@@ -70,7 +70,7 @@ public class JoglPrimitiveFactory {
     final float radius = cylinder.getRadius();
     final float hight = cylinder.getHeight();
     final ColorModel color = cylinder.getColor();
-    final boolean transparent = cylinder.getTransparent();
+    final boolean transparent = cylinder.isTransparent();
 
     final JoglCylinder child = new JoglCylinder();
     child.setSize(radius, hight);
@@ -102,7 +102,7 @@ public class JoglPrimitiveFactory {
     final int division = sphere.getDivision();
     final float radius = sphere.getRadius();
     final ColorModel color = sphere.getColor();
-    final boolean transparent = sphere.getTransparent();
+    final boolean transparent = sphere.isTransparent();
 
     final JoglSphere child = new JoglSphere();
     child.setSize(radius);
@@ -135,7 +135,7 @@ public class JoglPrimitiveFactory {
     final float hight = cone.getHeight();
     final int division = cone.getDivision();
     final ColorModel color = cone.getColor();
-    final boolean transparent = cone.getTransparent();
+    final boolean transparent = cone.isTransparent();
 
     final JoglCone child = new JoglCone();
     child.setColor(color);
@@ -179,7 +179,7 @@ public class JoglPrimitiveFactory {
     normalVector[2] = vector.getZ();
 
     final ColorModel color = polygon.getColor();
-    final boolean transparent = polygon.getTransparent();
+    final boolean transparent = polygon.isTransparent();
 
     final JoglTrianglePolygon child = new JoglTrianglePolygon();
     child.setColor(color);
@@ -223,7 +223,7 @@ public class JoglPrimitiveFactory {
     normalVector[2] = vector.getZ();
 
     final ColorModel color = polygon.getColor();
-    final boolean transparent = polygon.getTransparent();
+    final boolean transparent = polygon.isTransparent();
 
     final JoglQuadPolygon child = new JoglQuadPolygon();
     child.setColor(color);

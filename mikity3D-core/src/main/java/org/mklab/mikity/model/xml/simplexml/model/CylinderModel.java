@@ -16,7 +16,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
 @Root(name="cylinder")
-public class CylinderModel implements Serializable, Cloneable {
+public class CylinderModel implements PrimitiveModel, Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** radius */
@@ -204,7 +204,7 @@ public class CylinderModel implements Serializable, Cloneable {
    * 
    * @return the value of field 'transparent'.
    */
-  public boolean getTransparent() {
+  public boolean isTransparent() {
     return this.transparent;
   }
 
