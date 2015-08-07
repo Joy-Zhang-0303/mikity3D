@@ -13,6 +13,7 @@ import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -42,12 +43,11 @@ public class EditQuadPolygonDialog {
   private Shell parentShell;
   Shell sShell;
   private QuadPolygonModel quad;
-  private String[] colors = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
 
   private String groupName;
   private Group afterGroup;
 
-  private ColorComboBox colorCombo;
+  private Combo colorCombo;
 
   private ParameterInputBox newVertex1X;
   private ParameterInputBox newVertex1Y;
@@ -179,8 +179,7 @@ public class EditQuadPolygonDialog {
     colorLabel4.setText(Messages.getString("EditQuadPolygonDialog.22")); //$NON-NLS-1$
     setGridLayout(colorLabel4, 1);
     
-    this.colorCombo = new ColorComboBox(this.afterGroup, this.colors);
-    this.colorCombo.createColorCombo();
+    this.colorCombo = ColorComboBoxFactory.create(this.afterGroup);
     
     Label label9 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label9, 3);
@@ -395,7 +394,7 @@ public class EditQuadPolygonDialog {
     newVertices[2] = new VertexModel(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
     newVertices[3] = new VertexModel(this.newVertex4X.getFloatValue(), this.newVertex4Y.getFloatValue(), this.newVertex4Z.getFloatValue());
 
-    final String colorName = this.colorCombo.getColorComboBox().getText();
+    final String colorName = this.colorCombo.getText();
     final ColorModel color = new ColorModel(colorName);
 
     this.quad.setVertices(Arrays.asList(newVertices[0], newVertices[1], newVertices[2], newVertices[3]));
@@ -427,7 +426,7 @@ public class EditQuadPolygonDialog {
     this.newVertex4X.setText("" + vertex3.getX()); //$NON-NLS-1$
     this.newVertex4Y.setText("" + vertex3.getY()); //$NON-NLS-1$
     this.newVertex4Z.setText("" + vertex3.getZ()); //$NON-NLS-1$
-    this.colorCombo.getColorComboBox().setText(this.quad.getColor().toString());
+    this.colorCombo.setText(this.quad.getColor().toString());
 
     if (this.quad.getRotation() != null) {
       this.newRightVertexX.setText("" + this.quad.getRotation().getX()); //$NON-NLS-1$

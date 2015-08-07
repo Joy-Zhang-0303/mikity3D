@@ -13,6 +13,7 @@ import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -42,10 +43,9 @@ public class EditTrianglePolygonDialog {
   private Shell parentShell;
   Shell sShell;
   private TrianglePolygonModel triangle;
-  private String[] COLORS = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
 
   private String groupName;
-  private ColorComboBox colorCombo;
+  private Combo colorCombo;
 
   private ParameterInputBox newVertex1X;
   private ParameterInputBox newVertex1Y;
@@ -173,8 +173,7 @@ public class EditTrianglePolygonDialog {
     colorLabel.setText(Messages.getString("EditTrianglePolygonDialog.20")); //$NON-NLS-1$
     setGridLayout(colorLabel, 1);
     
-    this.colorCombo = new ColorComboBox(group, this.COLORS);
-    this.colorCombo.createColorCombo();
+    this.colorCombo = ColorComboBoxFactory.create(group);
 
     final Label label7 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label7, 3);
@@ -369,7 +368,7 @@ public class EditTrianglePolygonDialog {
     vertices[1] = new VertexModel(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
     vertices[2] = new VertexModel(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
 
-    final String colorName = this.colorCombo.getColorComboBox().getText();
+    final String colorName = this.colorCombo.getText();
     final ColorModel color = new ColorModel(colorName);
 
     this.triangle.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2]));
@@ -397,7 +396,7 @@ public class EditTrianglePolygonDialog {
     this.newVertex3Y.setText("" + vertex2.getY()); //$NON-NLS-1$
     this.newVertex3Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
 
-    this.colorCombo.getColorComboBox().setText(this.triangle.getColor().toString());
+    this.colorCombo.setText(this.triangle.getColor().toString());
 
     if (this.triangle.getRotation() != null) {
       this.newRightVertexX.setText("" + this.triangle.getRotation().getX()); //$NON-NLS-1$

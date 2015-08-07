@@ -449,11 +449,13 @@ public class ConfigurationDialog {
    * 背景の色を指定するコンボボックスを作成します。
    */
   private void createColorCombo(Group parent) {
-    this.colorCombo = new Combo(parent, SWT.READ_ONLY);
-    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-    this.colorCombo.setLayoutData(gridData);
-    final String[] colors = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
-    this.colorCombo.setItems(colors);
+    this.colorCombo = ColorComboBoxFactory.create(parent);
+    
+//    this.colorCombo = new Combo(parent, SWT.READ_ONLY);
+//    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+//    this.colorCombo.setLayoutData(gridData);
+//    final String[] colors = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
+//    this.colorCombo.setItems(colors);
   }
 
   /**
