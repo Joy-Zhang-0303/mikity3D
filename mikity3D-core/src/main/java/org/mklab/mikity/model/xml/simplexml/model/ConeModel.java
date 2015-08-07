@@ -305,4 +305,12 @@ public class ConeModel implements PrimitiveModel, java.io.Serializable, Cloneabl
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "cone (radius=" + this.radius + ", height=" + this.height + ", divison=" + this.division + ", color=" + this.color + ")"; //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+  }
 }

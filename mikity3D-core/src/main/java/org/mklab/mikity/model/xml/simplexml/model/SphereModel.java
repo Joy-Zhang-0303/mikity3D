@@ -283,4 +283,11 @@ public class SphereModel implements PrimitiveModel, java.io.Serializable, Clonea
     this.transparent = transparent;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "sphere (radius=" + this.radius + ", division=" + this.division + ", color=" + this.color + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+  }
 }

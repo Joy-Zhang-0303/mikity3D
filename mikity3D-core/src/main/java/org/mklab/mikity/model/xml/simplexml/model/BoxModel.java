@@ -305,5 +305,12 @@ public class BoxModel implements PrimitiveModel, java.io.Serializable, Cloneable
   public void setDepth(float depth) {
     this.depth = depth;
   }
-
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "box (width=" + this.width + ", height=" + this.height + ", depth=" + this.depth + ", color=" + this.color + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+  }
 }

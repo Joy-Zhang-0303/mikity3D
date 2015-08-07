@@ -601,4 +601,25 @@ public class GroupModel implements java.io.Serializable, Cloneable {
   public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    if (hasAnimation() == false) {
+      return getName() + " (group)"; //$NON-NLS-1$
+    }
+    
+    String animationProperty = ""; //$NON-NLS-1$
+    for (final AnimationModel animation: getAnimations()) {
+      if (animation.exists()) {
+        if (animationProperty.length() > 0) {
+          animationProperty += ", "; //$NON-NLS-1$
+        }
+        animationProperty += "animation(target=" +  animation.getTarget() + ", source(id=" + animation.getSource().getId() + ", number=" + animation.getSource().getNumber() + "))";   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$ //$NON-NLS-4$
+      }
+    }
+    return getName() + " (" + animationProperty + ")";  //$NON-NLS-1$//$NON-NLS-2$
+  }
 }

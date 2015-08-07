@@ -296,4 +296,12 @@ public class QuadPolygonModel implements PrimitiveModel, Cloneable {
   public boolean isTransparent() {
     return this.transparent;
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "quadPolygon (color=" + this.color + ")"; //$NON-NLS-1$//$NON-NLS-2$ 
+  }
 }

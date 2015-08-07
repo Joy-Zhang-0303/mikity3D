@@ -306,4 +306,12 @@ public class CylinderModel implements PrimitiveModel, Serializable, Cloneable {
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "cylinder (radius=" + this.radius + ", height=" + this.height + ", division=" + this.division + ", color=" + this.color + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+  }
 }

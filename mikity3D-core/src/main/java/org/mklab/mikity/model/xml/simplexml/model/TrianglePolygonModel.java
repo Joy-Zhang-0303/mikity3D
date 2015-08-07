@@ -304,4 +304,12 @@ public class TrianglePolygonModel implements PrimitiveModel, Cloneable {
   public boolean isTransparent() {
     return this.transparent;
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "trianglePolygon (color=" + this.color + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+  }
 }
