@@ -245,6 +245,11 @@ public class SphereModel implements PrimitiveModel, java.io.Serializable, Clonea
    */
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
+    if (transparent) {
+      this.color.setAlpha(127);
+    } else {
+      this.color.setAlpha(255);
+    }
   }
 
   /**

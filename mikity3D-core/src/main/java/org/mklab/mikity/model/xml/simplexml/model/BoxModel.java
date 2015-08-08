@@ -242,6 +242,11 @@ public class BoxModel implements PrimitiveModel, java.io.Serializable, Cloneable
    */
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
+    if (transparent) {
+      this.color.setAlpha(127);
+    } else {
+      this.color.setAlpha(255);
+    }
   }
 
   /**
