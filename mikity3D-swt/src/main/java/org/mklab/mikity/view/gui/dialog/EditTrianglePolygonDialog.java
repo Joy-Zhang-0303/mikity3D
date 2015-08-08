@@ -45,7 +45,7 @@ public class EditTrianglePolygonDialog {
   private TrianglePolygonModel triangle;
 
   private String groupName;
-  private Combo colorCombo;
+  private ColorSelectorButton colorSelector;
 
   private ParameterInputBox newVertex1X;
   private ParameterInputBox newVertex1Y;
@@ -163,7 +163,7 @@ public class EditTrianglePolygonDialog {
   }
 
   private void createNewPolygon() {
-    Group group = new Group(this.sShell, SWT.NONE);
+    final Group group = new Group(this.sShell, SWT.NONE);
     group.setText(Messages.getString("EditTrianglePolygonDialog.18")); //$NON-NLS-1$
     setGridLayout(group, 1);
     final GridLayout layout = new GridLayout(3, false);
@@ -173,7 +173,7 @@ public class EditTrianglePolygonDialog {
     colorLabel.setText(Messages.getString("EditTrianglePolygonDialog.20")); //$NON-NLS-1$
     setGridLayout(colorLabel, 1);
     
-    this.colorCombo = ColorComboBoxFactory.create(group);
+    this.colorSelector = new ColorSelectorButton(group);
 
     final Label label7 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label7, 3);
@@ -368,8 +368,7 @@ public class EditTrianglePolygonDialog {
     vertices[1] = new VertexModel(this.newVertex2X.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
     vertices[2] = new VertexModel(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
 
-    final String colorName = this.colorCombo.getText();
-    final ColorModel color = new ColorModel(colorName);
+    final ColorModel color =this.colorSelector.getColor();
 
     this.triangle.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2]));
     this.triangle.setColor(color);
@@ -396,7 +395,7 @@ public class EditTrianglePolygonDialog {
     this.newVertex3Y.setText("" + vertex2.getY()); //$NON-NLS-1$
     this.newVertex3Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
 
-    this.colorCombo.setText(this.triangle.getColor().toString());
+    this.colorSelector.setColor(this.triangle.getColor());
 
     if (this.triangle.getRotation() != null) {
       this.newRightVertexX.setText("" + this.triangle.getRotation().getX()); //$NON-NLS-1$

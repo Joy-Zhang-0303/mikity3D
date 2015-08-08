@@ -50,7 +50,7 @@ public class AddPrimitiveDialog {
   private ParameterInputBox translationX;
   private ParameterInputBox translationY;
   private ParameterInputBox translationZ;
-  private Combo colorCombo;
+  private ColorSelectorButton colorSelecttor;
   private GroupModel targetGroup;
   private String angleUnit;
   private String lengthUnit;
@@ -111,7 +111,7 @@ public class AddPrimitiveDialog {
     final Label colorLabel = new Label(this.sShell, SWT.LEFT);
     colorLabel.setText(Messages.getString("AddPrimitiveDialog.34")); //$NON-NLS-1$
     colorLabel.setLayoutData(labelData2);
-    createColorCombo();
+    createColorSelector();
 
     this.parameter1 = new ParameterInputBox(this.sShell, SWT.NONE, Messages.getString("AddPrimitiveDialog.2"), "0.2"); //$NON-NLS-1$//$NON-NLS-2$
     this.unitLabel1 = new Label(this.sShell, SWT.NONE);
@@ -261,7 +261,6 @@ public class AddPrimitiveDialog {
   void addPrimitive() {
     final RotationModel rotation;
     final TranslationModel translation;
-    final String colorName;
     final ColorModel color;
     
     switch (this.selectedIndex) {
@@ -278,8 +277,7 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           box.setTranslation(translation);
         }
-        colorName = this.colorCombo.getText();
-        color = new ColorModel(colorName);
+        color = this.colorSelecttor.getColor();
         box.setColor(color);
         this.targetGroup.add(box);
         break;
@@ -296,8 +294,7 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           cylinder.setTranslation(translation);
         }
-        colorName = this.colorCombo.getText();
-        color = new ColorModel(colorName);
+        color = this.colorSelecttor.getColor();
         cylinder.setColor(color);
         this.targetGroup.add(cylinder);
         break;
@@ -313,8 +310,7 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           sphere.setTranslation(translation);
         }
-        colorName = this.colorCombo.getText();
-        color = new ColorModel(colorName);        
+        color = this.colorSelecttor.getColor();
         sphere.setColor(color);
         this.targetGroup.add(sphere);
         break;
@@ -331,8 +327,7 @@ public class AddPrimitiveDialog {
         if (translation != null) {
           cone.setTranslation(translation);
         }
-        colorName = this.colorCombo.getText();
-        color = new ColorModel(colorName);        
+        color = this.colorSelecttor.getColor();
         cone.setColor(color);
         this.targetGroup.add(cone);
         break;
@@ -489,18 +484,10 @@ public class AddPrimitiveDialog {
   }
 
   /**
-   * コンボボックス colorCombo プリミティブの色を選択
+   * 色を選択するためのボタンを生成します。
    */
-  private void createColorCombo() {
-    this.colorCombo = ColorComboBoxFactory.create(this.sShell);
-    this.colorCombo.setText("red"); //$NON-NLS-1$
-    
-//    this.colorCombo = new Combo(this.sShell, SWT.READ_ONLY);
-//    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-//    gridData.horizontalSpan = 2;
-//    this.colorCombo.setLayoutData(gridData);
-//    final String[] colorNames = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
-//    this.colorCombo.setItems(colorNames);
-//    this.colorCombo.setText("red"); //$NON-NLS-1$
+  private void createColorSelector() {
+    this.colorSelecttor = new ColorSelectorButton(this.sShell);
+    this.colorSelecttor.setColor(new ColorModel("red")); //$NON-NLS-1$
   }
 }

@@ -59,7 +59,7 @@ public class AddTrianglePolygonDialog {
   private GroupModel targetGroup;
   private String angleUnit;
   private String lengthUnit;
-  private Combo colorCombo;
+  private ColorSelectorButton colorSelector;
 
   /**
    * コンストラクター
@@ -236,8 +236,7 @@ public class AddTrianglePolygonDialog {
     if (getLocation(location) != null) {
       triangle.setTranslation(getLocation(location));
     }
-    final String colorName = this.colorCombo.getText();
-    final ColorModel color = new ColorModel(colorName);
+    final ColorModel color = this.colorSelector.getColor();
     triangle.setColor(color);
     this.targetGroup.add(triangle);
   }
@@ -345,15 +344,8 @@ public class AddTrianglePolygonDialog {
    * コンボボックス colorCombo プリミティブの色を選択
    */
   private void createColorCombo() {
-    this.colorCombo = ColorComboBoxFactory.create(this.sShell);
-    this.colorCombo.setText("red"); //$NON-NLS-1$
-//    
-//    this.colorCombo = new Combo(this.sShell, SWT.READ_ONLY);
-//    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-//    this.colorCombo.setLayoutData(gridData);
-//    final String[] colorNames = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
-//    this.colorCombo.setItems(colorNames);
-//    this.colorCombo.setText("red"); //$NON-NLS-1$
+    this.colorSelector = new ColorSelectorButton(this.sShell);
+    this.colorSelector.setColor(new ColorModel("red")); //$NON-NLS-1$
   }
 
   /**

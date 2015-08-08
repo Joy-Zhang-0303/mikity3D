@@ -50,7 +50,6 @@ public class ColorModel implements java.io.Serializable, Cloneable {
     this.g = 0;
     this.b = 0;
     this.alpha = 255;
-    this.name = "black"; //$NON-NLS-1$
   }
   
   /**

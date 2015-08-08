@@ -1,0 +1,86 @@
+/*
+ * $Id: ColorComboBox.java,v 1.2 2008/02/29 13:51:56 morimune Exp $
+ * Copyright (C) 2004-2005 Koga Laboratoy. All rights reserved.
+ *
+ */
+package org.mklab.mikity.view.gui.dialog;
+
+import org.eclipse.jface.preference.ColorSelector;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
+import org.mklab.mikity.util.Color4;
+import org.mklab.mikity.util.ColorConstant;
+
+
+/**
+ * 色を選択するためのボタンを表すクラスです。
+ * 
+ * @author SHOGO
+ * @version $Revision: 1.2 $. 2008/02/29
+ */
+public class ColorSelectorButton {
+  /** 親。 */
+  private Composite parent;
+  
+  /** 色。 */
+  private ColorModel color;
+  
+  /** 選択器。 */
+  ColorSelector selector;
+
+  /**
+   * 新しく生成された<code>ColorComboBox</code>オブジェクトを初期化します。
+   * @param parent 親
+   */
+  public ColorSelectorButton(Composite parent) {
+    this.parent = parent;
+    this.color = new ColorModel("red"); //$NON-NLS-1$
+
+    this.selector = new ColorSelector(this.parent);
+    
+    final RGB rgb = new RGB(this.color.getR(), this.color.getG(), this.color.getB());
+    this.selector.setColorValue(rgb);
+    
+    final Button button = this.selector.getButton();
+    button.addSelectionListener(new SelectionAdapter() {
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public void widgetSelected(@SuppressWarnings("unused") final SelectionEvent e) {
+        final RGB selectedColor = ColorSelectorButton.this.selector.getColorValue();
+        final Color4 color4 = new Color4(selectedColor.red, selectedColor.green, selectedColor.blue);
+        if (ColorConstant.contain(color4)) {
+          setColor(new ColorModel(ColorConstant.getColorName(color4)));
+        } else {
+          setColor(new ColorModel(selectedColor.red, selectedColor.green, selectedColor.blue));
+        }
+      }
+    });
+  }
+  
+  /**
+   * 色を返します。
+   * 
+   * @return 色
+   */
+  public ColorModel getColor() {
+    return this.color;
+  }
+  
+  /**
+   * 色を設定します。
+   * 
+   * @param color 色
+   */
+  public void setColor(ColorModel color) {
+    this.color = color;
+    if (this.selector != null) {
+      this.selector.setColorValue(new RGB(color.getR(),color.getG(),color.getB()));
+    }
+  }
+}

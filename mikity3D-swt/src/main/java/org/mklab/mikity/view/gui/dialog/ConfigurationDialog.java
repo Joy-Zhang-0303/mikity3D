@@ -37,7 +37,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 public class ConfigurationDialog {
   Shell sShell = null;
   //private Shell parentShell = null;
-  private Combo colorCombo;
+  private ColorSelectorButton colorSelector;
   private Combo modelLengthUnitCombo;
   private Combo modelAngleUnitCombo;
   private Combo dataLengthUnitCombo;
@@ -101,7 +101,7 @@ public class ConfigurationDialog {
 
     final Label backgroundLabel = new Label(editGroup, SWT.NONE);
     backgroundLabel.setText(Messages.getString("ConfigDialog.13")); //$NON-NLS-1$
-    createColorCombo(editGroup);
+    createColorSelectorButton(editGroup);
 
     setParametersToDialog();
   }
@@ -262,11 +262,10 @@ public class ConfigurationDialog {
     }
 
     if (this.configuration.getBackground() == null) {
-      this.colorCombo.setText("white"); //$NON-NLS-1$
+      this.colorSelector.setColor(new ColorModel("white")); //$NON-NLS-1$
     } else {
-      //final String colorName = this.configuration.getBackground().getColor().getName();
-      final String colorName = this.configuration.getBackground().getColor().toString();
-      this.colorCombo.setText(colorName);
+      final ColorModel color = this.configuration.getBackground().getColor();
+      this.colorSelector.setColor(color);
     }
   }
 
@@ -357,16 +356,14 @@ public class ConfigurationDialog {
     this.configuration.setLookAtPoiint(lookAtPoint);
 
     if (this.configuration.getBackground() == null) {
-      if (this.colorCombo.getText() != "white") { //$NON-NLS-1$
+      if (this.colorSelector.getColor().toString() != "white") { //$NON-NLS-1$
         final BackgroundModel background = new BackgroundModel();
-        final String colorName = this.colorCombo.getText();
-        final ColorModel color = new ColorModel(colorName);
+        final ColorModel color = this.colorSelector.getColor();
         background.setColor(color);
         this.configuration.setBackground(background);
       }
     } else {
-      final String colorName = this.colorCombo.getText();
-      final ColorModel color = new ColorModel(colorName);
+      final ColorModel color = this.colorSelector.getColor();
       this.configuration.getBackground().setColor(color);
     }
 
@@ -446,16 +443,10 @@ public class ConfigurationDialog {
   }
 
   /**
-   * 背景の色を指定するコンボボックスを作成します。
+   * 背景の色を指定するボタンを生成します。
    */
-  private void createColorCombo(Group parent) {
-    this.colorCombo = ColorComboBoxFactory.create(parent);
-    
-//    this.colorCombo = new Combo(parent, SWT.READ_ONLY);
-//    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-//    this.colorCombo.setLayoutData(gridData);
-//    final String[] colors = {"white", "black", "red", "lightGray", "darkGray", "pink", "orange", "yellow", "green", "magenta", "cyan", "blue"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$
-//    this.colorCombo.setItems(colors);
+  private void createColorSelectorButton(Group parent) {
+    this.colorSelector = new ColorSelectorButton(parent);
   }
 
   /**

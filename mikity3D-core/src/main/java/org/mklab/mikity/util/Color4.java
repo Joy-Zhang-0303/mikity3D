@@ -49,6 +49,37 @@ public class Color4 {
   }
 
   
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + this.alpha;
+    result = prime * result + this.b;
+    result = prime * result + this.g;
+    result = prime * result + this.r;
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    Color4 other = (Color4)obj;
+    if (this.alpha != other.alpha) return false;
+    if (this.b != other.b) return false;
+    if (this.g != other.g) return false;
+    if (this.r != other.r) return false;
+    return true;
+  }
+
   /**
    * 赤成分を返します。
    * 
