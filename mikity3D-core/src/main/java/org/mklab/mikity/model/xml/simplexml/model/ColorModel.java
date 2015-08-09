@@ -263,6 +263,6 @@ public class ColorModel implements java.io.Serializable, Cloneable {
     if (this.name != null && this.name.length() > 0) {
       return this.name;
     }
-    return "(" + this.r + ", " + this.g + ", " + this.b + ", " + this.alpha + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    return "(" + this.r + ", " + this.g + ", " + this.b + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
   }
 }
