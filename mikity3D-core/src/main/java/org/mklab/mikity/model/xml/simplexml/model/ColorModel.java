@@ -5,8 +5,6 @@
  */
 package org.mklab.mikity.model.xml.simplexml.model;
 
-import org.mklab.mikity.util.Color4;
-import org.mklab.mikity.util.ColorConstant;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
@@ -59,7 +57,7 @@ public class ColorModel implements java.io.Serializable, Cloneable {
   public ColorModel(String name) {
     this.name = name;
     
-    final Color4 color = ColorConstant.getColor(name);
+    final ColorModel color = ColorConstants.getColor(name);
     this.r = color.getR();
     this.g = color.getG();
     this.b = color.getB();

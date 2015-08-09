@@ -11,9 +11,9 @@ import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
+import org.mklab.mikity.model.xml.simplexml.model.ColorConstants;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.util.ColorConstant;
 import org.mklab.mikity.view.renderer.ObjectRenderer;
 
 import android.opengl.GLSurfaceView;

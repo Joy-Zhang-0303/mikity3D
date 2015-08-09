@@ -11,9 +11,8 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.mklab.mikity.model.xml.simplexml.model.ColorConstants;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
-import org.mklab.mikity.util.Color4;
-import org.mklab.mikity.util.ColorConstant;
 
 
 /**
@@ -52,13 +51,14 @@ public class ColorSelectorButton {
        */
       @Override
       public void widgetSelected(@SuppressWarnings("unused") final SelectionEvent e) {
-        final RGB selectedColor = ColorSelectorButton.this.selector.getColorValue();
-        final Color4 color4 = new Color4(selectedColor.red, selectedColor.green, selectedColor.blue);
-        if (ColorConstant.contain(color4)) {
-          setColor(new ColorModel(ColorConstant.getColorName(color4)));
-        } else {
-          setColor(new ColorModel(selectedColor.red, selectedColor.green, selectedColor.blue));
+        final RGB selectedRGB = ColorSelectorButton.this.selector.getColorValue();
+        final ColorModel selectedColor = new ColorModel(selectedRGB.red, selectedRGB.green, selectedRGB.blue);
+
+        if (ColorConstants.contain(selectedColor)) {
+          selectedColor.setName(ColorConstants.getColorName(selectedColor));
         }
+        
+        setColor(selectedColor);
       }
     });
   }
