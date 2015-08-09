@@ -25,7 +25,7 @@
                <cylinder radius="0.003" height="0.3" division="20" transparent="false">
                   <translation x="0.0" y="0.0" z="-0.15"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
-                  <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                  <color r="255" g="165" b="0" alpha="255" name="orange"/>
                </cylinder>
                <sphere radius="0.01" division="20" transparent="false">
                   <translation x="0.0" y="0.0" z="-0.3"/>
@@ -41,7 +41,7 @@
                   <cylinder radius="0.003" height="0.15" division="30" transparent="false">
                      <translation x="0.0" y="0.0" z="-0.075"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </cylinder>
                   <sphere radius="0.01" division="20" transparent="false">
                      <translation x="0.0" y="0.0" z="-0.15"/>

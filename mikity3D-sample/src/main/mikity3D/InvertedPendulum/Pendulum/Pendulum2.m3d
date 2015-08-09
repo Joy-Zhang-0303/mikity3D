@@ -9,22 +9,22 @@
             <box width="0.02" height="0.27" depth="0.02" transparent="false">
                <translation x="0.0" y="-0.05" z="-0.21"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <box width="0.3" height="0.005" depth="0.1" transparent="false">
                <translation x="0.0" y="0.0" z="-0.3475"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <box width="0.02" height="0.27" depth="0.02" transparent="false">
                <translation x="0.0" y="0.05" z="-0.21"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <box width="0.54" height="0.05" depth="0.07" transparent="false">
                <translation x="0.0" y="0.0" z="-0.05"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <group name="daisha">
                <translation x="0.0" y="0.0" z="0.0"/>
@@ -51,7 +51,7 @@
                   <cylinder radius="0.0025" height="0.3" division="10" transparent="false">
                      <translation x="0.037" y="0.0" z="0.15"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </cylinder>
                </group>
             </group>
@@ -66,22 +66,22 @@
             <box width="0.02" height="0.27" depth="0.02" transparent="false">
                <translation x="0.0" y="-0.05" z="-0.21"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <box width="0.3" height="0.005" depth="0.1" transparent="false">
                <translation x="0.0" y="0.0" z="-0.3475"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <box width="0.02" height="0.27" depth="0.02" transparent="false">
                <translation x="0.0" y="0.05" z="-0.21"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <box width="0.54" height="0.05" depth="0.07" transparent="false">
                <translation x="0.0" y="0.0" z="-0.05"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <group name="daisha">
                <translation x="0.0" y="0.0" z="0.0"/>
@@ -108,7 +108,7 @@
                   <cylinder radius="0.0025" height="0.3" division="10" transparent="false">
                      <translation x="0.037" y="0.0" z="0.15"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </cylinder>
                </group>
             </group>

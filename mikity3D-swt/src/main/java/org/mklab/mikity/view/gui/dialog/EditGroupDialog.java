@@ -37,6 +37,7 @@ public class EditGroupDialog {
   GroupModel targetGroup;
   
   ParameterInputBox groupName;
+  
   ParameterInputBox translationX;
   ParameterInputBox translationY;
   ParameterInputBox translationZ;
@@ -63,10 +64,9 @@ public class EditGroupDialog {
   
   JoglModeler modeler;
   SceneGraphTree tree;
-  
+
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>EditGroupDialog</code>オブジェクトを初期化します。
    * @param parentShell 親のシェル
    * @param targetGroup グループ
    * @param editable 編集可能性
@@ -86,7 +86,7 @@ public class EditGroupDialog {
   }
 
   /**
-   * sShellの作成、変更を保存、キャンセルする
+   * シェルを生成します。
    */
   private void createSShell() {
     // SWT.APPLICATION_MODAL→このシェルを閉じないと、親シェルを編集できなくする

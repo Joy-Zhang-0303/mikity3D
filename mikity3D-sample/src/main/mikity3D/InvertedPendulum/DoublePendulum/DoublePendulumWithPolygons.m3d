@@ -13,7 +13,7 @@
                <vertex x="-0.75" y="0.05" z="-0.05"/>
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
             <quadPolygon transparent="false">
                <vertex x="0.75" y="0.05" z="0.05"/>
@@ -22,7 +22,7 @@
                <vertex x="0.75" y="-0.05" z="0.05"/>
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
             <quadPolygon transparent="false">
                <vertex x="0.75" y="0.05" z="-0.05"/>
@@ -31,7 +31,7 @@
                <vertex x="0.75" y="-0.05" z="-0.05"/>
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
             <quadPolygon transparent="false">
                <vertex x="0.75" y="-0.05" z="-0.05"/>
@@ -40,7 +40,7 @@
                <vertex x="-0.75" y="-0.05" z="-0.05"/>
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
             <quadPolygon transparent="false">
                <vertex x="-0.75" y="-0.05" z="-0.05"/>
@@ -49,7 +49,7 @@
                <vertex x="-0.75" y="0.05" z="-0.05"/>
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
             <quadPolygon transparent="false">
                <vertex x="0.75" y="0.05" z="0.05"/>
@@ -58,7 +58,7 @@
                <vertex x="-0.75" y="0.05" z="0.05"/>
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
             <group name="daisha">
                <translation x="0.0" y="0.15" z="0.0"/>
@@ -379,140 +379,140 @@
                      <vertex x="0.00707" y="0.00707" z="0.01"/>
                      <vertex x="0.00988" y="0.00156" z="0.01"/>
                      <vertex x="0.00988" y="0.00156" z="-0.01"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="0.00988" y="0.00156" z="-0.01"/>
                      <vertex x="0.00988" y="0.00156" z="0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="-0.01"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="-0.01"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="-0.01"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="-0.01"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="0.01"/>
                      <vertex x="0.00156" y="0.00988" z="0.01"/>
                      <vertex x="0.00156" y="0.00988" z="-0.01"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="0.00707" y="0.00707" z="0.01"/>
                      <vertex x="0.00707" y="0.00707" z="-0.01"/>
                      <vertex x="0.00156" y="0.00988" z="-0.01"/>
                      <vertex x="0.00156" y="0.00988" z="0.01"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="0.00707" y="0.0" z="-0.00707"/>
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
                      <vertex x="0.00988" y="0.379" z="-0.00156"/>
                      <vertex x="0.00988" y="0.0" z="-0.00156"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="0.00988" y="0.0" z="-0.00156"/>
                      <vertex x="0.00988" y="0.379" z="-0.00156"/>
                      <vertex x="0.00891" y="0.379" z="0.00454"/>
                      <vertex x="0.00891" y="0.0" z="0.00454"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="0.00891" y="0.0" z="0.00454"/>
                      <vertex x="0.00891" y="0.379" z="0.00454"/>
                      <vertex x="0.00454" y="0.379" z="0.00891"/>
                      <vertex x="0.00454" y="0.0" z="0.00891"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="0.00454" y="0.0" z="0.00891"/>
                      <vertex x="0.00454" y="0.379" z="0.00891"/>
                      <vertex x="-0.00156" y="0.379" z="0.00988"/>
                      <vertex x="-0.00156" y="0.0" z="0.00988"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="-0.00156" y="0.0" z="0.00988"/>
                      <vertex x="-0.00156" y="0.379" z="0.00988"/>
                      <vertex x="-0.00707" y="0.379" z="0.00707"/>
                      <vertex x="-0.00707" y="0.0" z="0.00707"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="-0.00707" y="0.0" z="0.00707"/>
                      <vertex x="-0.00707" y="0.379" z="0.00707"/>
                      <vertex x="-0.00988" y="0.379" z="0.00156"/>
                      <vertex x="-0.00988" y="0.0" z="0.00156"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="-0.00988" y="0.0" z="0.00156"/>
                      <vertex x="-0.00988" y="0.379" z="0.00156"/>
                      <vertex x="-0.00891" y="0.379" z="-0.00454"/>
                      <vertex x="-0.00891" y="0.0" z="-0.00454"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="-0.00891" y="0.0" z="-0.00454"/>
                      <vertex x="-0.00891" y="0.379" z="-0.00454"/>
                      <vertex x="-0.00454" y="0.379" z="-0.00891"/>
                      <vertex x="-0.00454" y="0.0" z="-0.00891"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="-0.00454" y="0.0" z="-0.00891"/>
                      <vertex x="-0.00454" y="0.379" z="-0.00891"/>
                      <vertex x="0.00156" y="0.379" z="-0.00988"/>
                      <vertex x="0.00156" y="0.0" z="-0.00988"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <quadPolygon transparent="false">
                      <vertex x="0.00156" y="0.0" z="-0.00988"/>
                      <vertex x="0.00156" y="0.379" z="-0.00988"/>
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
                      <vertex x="0.00707" y="0.0" z="-0.00707"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
                   <group name="sinsi2">
                      <translation x="0.0" y="0.389" z="0.0"/>
@@ -765,140 +765,140 @@
                         <vertex x="0.00707" y="0.00707" z="0.01"/>
                         <vertex x="0.00988" y="0.00156" z="0.01"/>
                         <vertex x="0.00988" y="0.00156" z="-0.01"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="0.00988" y="0.00156" z="-0.01"/>
                         <vertex x="0.00988" y="0.00156" z="0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="-0.01"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="-0.01"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="-0.01"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="-0.01"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="0.01"/>
                         <vertex x="0.00156" y="0.00988" z="0.01"/>
                         <vertex x="0.00156" y="0.00988" z="-0.01"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="0.00707" y="0.00707" z="0.01"/>
                         <vertex x="0.00707" y="0.00707" z="-0.01"/>
                         <vertex x="0.00156" y="0.00988" z="-0.01"/>
                         <vertex x="0.00156" y="0.00988" z="0.01"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="0.00707" y="0.354" z="0.00707"/>
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>
                         <vertex x="0.00988" y="-0.0" z="0.00156"/>
                         <vertex x="0.00988" y="0.354" z="0.00156"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="0.00988" y="0.354" z="0.00156"/>
                         <vertex x="0.00988" y="-0.0" z="0.00156"/>
                         <vertex x="0.00891" y="-0.0" z="-0.00454"/>
                         <vertex x="0.00891" y="0.354" z="-0.00454"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="0.00891" y="0.354" z="-0.00454"/>
                         <vertex x="0.00891" y="-0.0" z="-0.00454"/>
                         <vertex x="0.00454" y="-0.0" z="-0.00891"/>
                         <vertex x="0.00454" y="0.354" z="-0.00891"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="0.00454" y="0.354" z="-0.00891"/>
                         <vertex x="0.00454" y="-0.0" z="-0.00891"/>
                         <vertex x="-0.00156" y="-0.0" z="-0.00988"/>
                         <vertex x="-0.00156" y="0.354" z="-0.00988"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="-0.00156" y="0.354" z="-0.00988"/>
                         <vertex x="-0.00156" y="-0.0" z="-0.00988"/>
                         <vertex x="-0.00707" y="-0.0" z="-0.00707"/>
                         <vertex x="-0.00707" y="0.354" z="-0.00707"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="-0.00707" y="0.354" z="-0.00707"/>
                         <vertex x="-0.00707" y="-0.0" z="-0.00707"/>
                         <vertex x="-0.00988" y="-0.0" z="-0.00156"/>
                         <vertex x="-0.00988" y="0.354" z="-0.00156"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="-0.00988" y="0.354" z="-0.00156"/>
                         <vertex x="-0.00988" y="-0.0" z="-0.00156"/>
                         <vertex x="-0.00891" y="-0.0" z="0.00454"/>
                         <vertex x="-0.00891" y="0.354" z="0.00454"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="-0.00891" y="0.354" z="0.00454"/>
                         <vertex x="-0.00891" y="-0.0" z="0.00454"/>
                         <vertex x="-0.00454" y="-0.0" z="0.00891"/>
                         <vertex x="-0.00454" y="0.354" z="0.00891"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="-0.00454" y="0.354" z="0.00891"/>
                         <vertex x="-0.00454" y="-0.0" z="0.00891"/>
                         <vertex x="0.00156" y="-0.0" z="0.00988"/>
                         <vertex x="0.00156" y="0.354" z="0.00988"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                      <quadPolygon transparent="false">
                         <vertex x="0.00156" y="0.354" z="0.00988"/>
                         <vertex x="0.00156" y="-0.0" z="0.00988"/>
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>
                         <vertex x="0.00707" y="0.354" z="0.00707"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
                   </group>
                </group>

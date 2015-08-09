@@ -9,17 +9,17 @@
             <box width="2.0" height="0.1" depth="0.1" transparent="false">
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <box width="0.08" height="0.6" depth="0.08" transparent="false">
                <translation x="0.0" y="-0.5" z="-0.3"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <box width="0.08" height="0.6" depth="0.08" transparent="false">
                <translation x="0.0" y="0.5" z="-0.3"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </box>
             <group name="daisha">
                <translation x="0.0" y="0.0" z="0.15"/>
@@ -46,7 +46,7 @@
                   <cylinder radius="0.01" height="0.6" division="36" transparent="false">
                      <translation x="0.05" y="0.0" z="0.3"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
-                     <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </cylinder>
                   <group name="shinshi2">
                      <translation x="0.0" y="0.0" z="0.6"/>
@@ -62,7 +62,7 @@
                      <cylinder radius="0.01" height="0.6" division="36" transparent="false">
                         <translation x="0.05" y="0.0" z="0.3"/>
                         <rotation x="0.0" y="0.0" z="0.0"/>
-                        <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </cylinder>
                   </group>
                </group>

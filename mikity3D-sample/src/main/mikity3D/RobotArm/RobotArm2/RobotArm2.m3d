@@ -23,7 +23,7 @@
                <cylinder radius="0.02" height="0.04" division="30" transparent="false">
                   <translation x="0.0" y="0.0" z="0.42"/>
                   <rotation x="0.0" y="1.5708" z="0.0"/>
-                  <color r="255" g="211" b="0" alpha="255" name="orange"/>
+                  <color r="255" g="165" b="0" alpha="255" name="orange"/>
                </cylinder>
                <group name="arm2">
                   <translation x="0.0" y="0.0" z="0.4"/>

@@ -572,6 +572,15 @@ public class ColorConstants {
   }
   
   /**
+   * 色が登録されているか判定します。
+   * @param name 色の名前
+   * @return 色が登録されていればtrue
+   */
+  public static boolean contain(String name) {
+    return COLOR_MAP.containsKey(name);
+  }
+  
+  /**
    * 色に対応する色の名前を返します。
    * 
    * @param color 色

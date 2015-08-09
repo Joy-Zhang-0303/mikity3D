@@ -7,12 +7,12 @@
             <translation x="0.0" y="0.0" z="-0.02"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
             <box width="0.01" height="0.03" depth="0.01" transparent="false">
-               <color r="255" g="211" b="0" alpha="255" name="orange"/>
+               <color r="255" g="165" b="0" alpha="255" name="orange"/>
             </box>
             <cylinder radius="0.005" height="0.012" division="20" transparent="false">
                <translation x="0.0" y="0.0" z="0.02"/>
                <rotation x="0.0" y="1.5708" z="0.0"/>
-               <color r="255" g="211" b="0" alpha="255" name="orange"/>
+               <color r="255" g="165" b="0" alpha="255" name="orange"/>
             </cylinder>
             <group name="beam">
                <translation x="0.0" y="0.0" z="0.02"/>
@@ -21,7 +21,7 @@
                   <source id="0" number="4"/>
                </animation>
                <box width="0.2" height="0.01" depth="0.01" transparent="false">
-                  <color r="211" g="211" b="211" alpha="255" name="lightGray"/>
+                  <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
                </box>
                <group name="ball">
                   <translation x="0.0" y="0.0" z="0.015"/>

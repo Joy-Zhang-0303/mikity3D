@@ -41,15 +41,6 @@ public abstract class AbstractJoglPrimitive extends AbstractJoglObject {
    * @param gl GL　
    */
   private void applyColor(GL2 gl) {
-//    final String color = ((GraphicPrimitive)this.object).getColorName();
-//    
-//    if (color == null) {
-//      return;
-//    }
-//    
-//    final Color4 value = ColorConstant.getColor(color);
-//    gl.glColor4f(value.getRf(), value.getGf(), value.getBf(), value.getAlphaf());
-    
     final ColorModel color = ((GraphicPrimitive)this.object).getColor();
     gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
   }
@@ -68,15 +59,6 @@ public abstract class AbstractJoglPrimitive extends AbstractJoglObject {
       gl.glBlendFunc(GL.GL_ONE, GL.GL_ZERO);
     }
   }
-
-//  /**
-//   * 色を設定します。
-//   * 
-//   * @param colorName 色
-//   */
-//  public void setColorName(String colorName) {
-//    ((GraphicPrimitive)this.object).setColorName(colorName);
-//  }
   
   /**
    * 色を設定します。
@@ -86,7 +68,6 @@ public abstract class AbstractJoglPrimitive extends AbstractJoglObject {
   public void setColor(ColorModel color) {
     ((GraphicPrimitive)this.object).setColor(color);
   }
-
   
   /**
    * 透明性を設定します。
@@ -96,5 +77,4 @@ public abstract class AbstractJoglPrimitive extends AbstractJoglObject {
   public void setTransparent(boolean transparent) {
     ((GraphicPrimitive)this.object).setTransparent(transparent);
   }
-
 }

@@ -125,9 +125,6 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   public void display(GLAutoDrawable drawable) {
     final GL2 gl = (GL2)drawable.getGL();
 
-//    final Color4 background = ColorConstant.getColor(this.configuration.getBackground().getColorName());
-//    gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());
-
     final ColorModel background = this.configuration.getBackground().getColor();
     gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());
 
