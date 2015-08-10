@@ -6,34 +6,47 @@
          <group name="fulcrum">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
-            <box width="0.5" height="0.05" depth="0.05" color="darkGray" transparent="true"/>
-            <cylinder radius="0.01" height="0.05" division="20" color="cyan" transparent="true">
+            <box width="0.5" height="0.05" depth="0.05" transparent="false">
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <color r="169" g="169" b="169" alpha="255" name="darkGray"/>
+            </box>
+            <cylinder radius="0.01" height="0.05" division="20" transparent="false">
                <translation x="0.05" y="0.0" z="0.0"/>
                <rotation x="0.0" y="1.5708" z="0.0"/>
+               <color r="0" g="255" b="255" alpha="255" name="cyan"/>
             </cylinder>
             <group name="pend1">
                <translation x="0.05" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
                <animation target="rotationX">
-               <source id="1" number="2"/>
+                  <source id="0" number="2"/>
                </animation>
-               <cylinder radius="0.003" height="0.3" division="20" color="orange" transparent="false">
+               <cylinder radius="0.003" height="0.3" division="20" transparent="false">
                   <translation x="0.0" y="0.0" z="-0.15"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+                  <color r="255" g="165" b="0" alpha="255" name="orange"/>
                </cylinder>
-               <sphere radius="0.01" division="20" color="cyan" transparent="false">
+               <sphere radius="0.01" division="20" transparent="false">
                   <translation x="0.0" y="0.0" z="-0.3"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+                  <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                </sphere>
                <group name="pend2">
                   <translation x="0.0" y="0.0" z="-0.3"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <animation target="rotationX">
-                  <source id="1" number="3"/>
+                     <source id="0" number="3"/>
                   </animation>
-                  <cylinder radius="0.003" height="0.15" division="30" color="orange" transparent="true">
+                  <cylinder radius="0.003" height="0.15" division="30" transparent="false">
                      <translation x="0.0" y="0.0" z="-0.075"/>
+                     <rotation x="0.0" y="0.0" z="0.0"/>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </cylinder>
-                  <sphere radius="0.01" division="20" color="cyan" transparent="true">
+                  <sphere radius="0.01" division="20" transparent="false">
                      <translation x="0.0" y="0.0" z="-0.15"/>
+                     <rotation x="0.0" y="0.0" z="0.0"/>
+                     <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                   </sphere>
                </group>
             </group>
@@ -41,7 +54,9 @@
       </group>
    </scene>
    <configuration>
-      <background/>
+      <background>
+         <color r="255" g="255" b="255" alpha="255" name="white"/>
+      </background>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="5.0" y="0.0" z="0.0"/>
       <lookAtPoint x="0.0" y="0.0" z="0.0"/>

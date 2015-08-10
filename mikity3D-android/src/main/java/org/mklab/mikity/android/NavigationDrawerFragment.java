@@ -203,7 +203,7 @@ public class NavigationDrawerFragment extends RoboFragment {
        */
       public void onClick(View view1) {
         if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
-          final String id = "1"; //$NON-NLS-1$
+          final String id = "0"; //$NON-NLS-1$
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.setTimeData(id);
         }
       }

@@ -11,7 +11,6 @@ import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
-import org.mklab.mikity.model.xml.simplexml.model.ColorConstants;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.renderer.ObjectRenderer;
@@ -97,10 +96,6 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
    * {@inheritDoc}
    */
   public void onDrawFrame(GL10 gl) {
-    // 画面のクリア　追加した
-//    final Color4 background = ColorConstant.getColor(this.configuration.getBackground().getColorName());
-//    gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());  
-
     final ColorModel background = this.configuration.getBackground().getColor();
     gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());  
 

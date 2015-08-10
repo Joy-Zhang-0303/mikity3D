@@ -204,7 +204,7 @@
                <translation x="0.0" y="0.0" z="0.15"/>
                <rotation x="0.0" y="3.14" z="0.0"/>
                <animation target="rotationZ">
-                  <source id="2" number="2"/>
+                  <source id="0" number="2"/>
                </animation>
                <quadPolygon transparent="false">
                   <vertex x="0.29" y="0.05" z="-0.05"/>
@@ -254,7 +254,7 @@
                   <translation x="-0.3" y="0.0" z="0.0"/>
                   <rotation x="-1.57" y="1.57" z="0.0"/>
                   <animation target="rotationZ">
-                     <source id="2" number="3"/>
+                     <source id="0" number="3"/>
                   </animation>
                   <trianglePolygon transparent="false">
                      <vertex x="0.0" y="0.0" z="-0.01"/>
@@ -643,7 +643,7 @@
                   <translation x="0.3" y="0.0" z="0.0"/>
                   <rotation x="-1.57" y="-1.57" z="0.0"/>
                   <animation target="rotationZ">
-                     <source id="2" number="4"/>
+                     <source id="0" number="4"/>
                   </animation>
                   <trianglePolygon transparent="false">
                      <vertex x="0.0" y="0.0" z="-0.01"/>

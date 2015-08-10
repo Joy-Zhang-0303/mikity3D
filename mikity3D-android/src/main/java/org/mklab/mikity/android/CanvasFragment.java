@@ -328,7 +328,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
           throw new RuntimeException(e);
         }
         
-        final String id = "1"; //$NON-NLS-1$
+        final String id = "0"; //$NON-NLS-1$
         
         setTimeData(id);
         return null;

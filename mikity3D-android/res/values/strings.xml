@@ -22,15 +22,15 @@
 	<string name="accelerToggleButton">accelerToggleButton</string>
 	<string name="rotateLayoutTextView">Rotating</string>
 	<string name="rotateLayoutButton">rotateLayoutButton</string>
-	<string name="setModelColumnNumberView">Model Column Number</string>
+	<string name="setModelColumnNumberView">Source Number</string>
 	<string name="setModelColumnNumberButton">Edit</string>
 	<string name="setSampleModelView">サンプルモデル</string>
 	<string name="setSampleModelButton">ダウンロード</string>
 	<string name="back">Back</string>
 	<string name="pause">Pause</string>
 	<string name="sampleText">Sample</string>
-	<string name="assetsModelText">3D Model</string>
+	<string name="assetsModelText">Model</string>
 	<string name="assetsModelButtonText">Open</string>
-	<string name="assetsTimeText">Time Series</string>
+	<string name="assetsTimeText">Source</string>
 	<string name="assetsTimeButtonText">Open</string>
 </resources>
