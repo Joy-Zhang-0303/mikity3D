@@ -10,17 +10,17 @@
     <string name="drawer_close">close</string>
 	<string name="filePathView">...</string>
 	<string name="fileSelectButton">Open</string>
-	<string name="animationSpeedTextView">Rate</string>
+	<string name="animationSpeedTextView">Speed Rate</string>
 	<string name="minusButton">&lt;&lt;</string>
 	<string name="plusButton">>></string>
-	<string name="textView2">3D Model</string>
-	<string name="timePath">Time Series</string>
+	<string name="textView2">Model</string>
+	<string name="timePath">Source(0)</string>
 	<string name="timeDataDeleteButton">×</string>
 	<string name="useGyroTextView">Gyro</string>
 	<string name="gyroToggleButton">gyroToggleButton</string>
 	<string name="UseAccelerTextView">Acceler</string>
 	<string name="accelerToggleButton">accelerToggleButton</string>
-	<string name="rotateLayoutTextView">Rotating</string>
+	<string name="rotateLayoutTextView">Rotation</string>
 	<string name="rotateLayoutButton">rotateLayoutButton</string>
 	<string name="setModelColumnNumberView">Source Number</string>
 	<string name="setModelColumnNumberButton">Edit</string>
@@ -31,6 +31,6 @@
 	<string name="sampleText">Sample</string>
 	<string name="assetsModelText">Model</string>
 	<string name="assetsModelButtonText">Open</string>
-	<string name="assetsTimeText">Source</string>
+	<string name="assetsTimeText">Source(0)</string>
 	<string name="assetsTimeButtonText">Open</string>
 </resources>

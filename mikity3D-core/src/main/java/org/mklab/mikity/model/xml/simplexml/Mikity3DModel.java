@@ -3,6 +3,7 @@ package org.mklab.mikity.model.xml.simplexml;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -16,6 +17,10 @@ import org.simpleframework.xml.Root;
 public class Mikity3DModel implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
+  /** バージョン番号 */
+  @Attribute(name="version", required=false)
+  private String version;
+  
   /** scenes */
   @ElementList(type=SceneModel.class, inline=true)
   private List<SceneModel> scenes;
@@ -28,6 +33,7 @@ public class Mikity3DModel implements java.io.Serializable, Cloneable {
    * 新しく生成された<code>Mikity3DModel</code>オブジェクトを初期化します。
    */
   public Mikity3DModel() {
+    this.version = "0.3"; //$NON-NLS-1$
     this.scenes = new ArrayList<>();
     this.configurations = new ArrayList<>();
   }
