@@ -374,7 +374,7 @@ public class AddPrimitiveDialog {
   }
 
   /**
-   * 分割数が3より小さいときに変わりに30にする
+   * 分割数が3より小さいときに変わりに3にする
    * 
    * @param parameter
    * @return division

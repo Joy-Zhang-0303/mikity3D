@@ -1,4 +1,4 @@
-<mikity3d>
+<mikity3d version="0.3">
    <scene>
       <group name="rotatingPendulum">
          <translation x="0.0" y="0.0" z="0.0"/>
@@ -16,7 +16,7 @@
                <rotation x="0.0" y="0.0" z="0.0"/>
                <color r="0" g="0" b="255" alpha="255" name="blue"/>
             </box>
-            <cylinder radius="0.2" height="0.2" division="30" transparent="false">
+            <cylinder radius="0.2" height="0.2" division="180" transparent="false">
                <translation x="0.0" y="0.0" z="0.22"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
                <color r="0" g="255" b="255" alpha="255" name="cyan"/>
@@ -27,7 +27,7 @@
                <animation target="rotationX">
                   <source id="0" number="2"/>
                </animation>
-               <cylinder radius="0.02" height="0.3" division="30" transparent="false">
+               <cylinder radius="0.02" height="0.3" division="36" transparent="false">
                   <translation x="0.0" y="0.0" z="0.15"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
@@ -38,7 +38,7 @@
                   <animation target="rotationX">
                      <source id="0" number="3"/>
                   </animation>
-                  <cylinder radius="0.02" height="0.3" division="30" transparent="false">
+                  <cylinder radius="0.02" height="0.3" division="36" transparent="false">
                      <translation x="0.0" y="0.0" z="0.15"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                      <color r="255" g="255" b="0" alpha="255" name="yellow"/>
