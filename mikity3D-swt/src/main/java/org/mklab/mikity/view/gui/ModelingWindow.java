@@ -249,9 +249,11 @@ public class ModelingWindow extends ApplicationWindow {
     }
     
     this.root = new Mikity3dFactory().loadFile(this.file);
+    setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
+    
+    getShell().setText("Mikity3D Modeler : " + this.file.getName()); //$NON-NLS-1$    
 
     setUnit();
-    setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     this.modeler.setModel(this.root);
   }
 
@@ -265,8 +267,8 @@ public class ModelingWindow extends ApplicationWindow {
     }
     
     new Mikity3dFactory().importFile(this.file, this.root);
-
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
+    
     this.modeler.setChanged(true);
     this.modeler.fillTree();
     this.modeler.updateRenderer();

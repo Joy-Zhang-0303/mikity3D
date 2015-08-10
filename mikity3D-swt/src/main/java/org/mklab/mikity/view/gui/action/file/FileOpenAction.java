@@ -42,13 +42,13 @@ public class FileOpenAction extends Action {
     final FileDialog dialog = new FileDialog(this.window.getShell());
     dialog.setFilterExtensions(new String[] {"*.m3d", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
     
-    final String fileName = dialog.open();
-    if (fileName == null) {
+    final String filePath = dialog.open();
+    if (filePath == null) {
       return;
     }
     
     try {
-      final File file = new File(fileName);
+      final File file = new File(filePath);
       this.window.setFile(file);
       this.window.loadFile();
     } catch (Mikity3dSerializeDeserializeException e) {
