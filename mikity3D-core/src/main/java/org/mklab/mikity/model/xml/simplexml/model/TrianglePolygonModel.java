@@ -51,8 +51,19 @@ public class TrianglePolygonModel implements PrimitiveModel, Cloneable {
    */
   public TrianglePolygonModel() {
     this.vertices = new ArrayList<>(3);
-     this.color = new ColorModel("orange"); //$NON-NLS-1$
+    this.color = new ColorModel("orange"); //$NON-NLS-1$
     this.transparent = false;
+  }
+  
+  /**
+   * 新しく生成された<code>TrianglePolygonModel</code>オブジェクトを初期化します。
+   * @param vertex0 頂点0
+   * @param vertex1 頂点1
+   * @param vertex2 頂点2
+   */
+  public TrianglePolygonModel(VertexModel vertex0, VertexModel vertex1, VertexModel vertex2) {
+    this();
+    setVertices(vertex0, vertex1, vertex2);
   }
   
   /**

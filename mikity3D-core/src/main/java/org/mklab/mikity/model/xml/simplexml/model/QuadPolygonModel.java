@@ -56,6 +56,18 @@ public class QuadPolygonModel implements PrimitiveModel, Cloneable {
   }
   
   /**
+   * 新しく生成された<code>QuadPolygonModel</code>オブジェクトを初期化します。
+   * @param vertex0 頂点0
+   * @param vertex1 頂点1
+   * @param vertex2 頂点2
+   * @param vertex3 頂点3
+   */
+  public QuadPolygonModel(VertexModel vertex0, VertexModel vertex1, VertexModel vertex2, VertexModel vertex3) {
+    this();
+    setVertices(vertex0, vertex1, vertex2, vertex3);
+  }
+  
+  /**
    * {@inheritDoc}
    */
   @Override

@@ -55,7 +55,20 @@ public class BoxModel implements PrimitiveModel, java.io.Serializable, Cloneable
     this.color = new ColorModel("red"); //$NON-NLS-1$
     this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
-  } 
+  }
+  
+  /**
+   * 新しく生成された<code>BoxModel</code>オブジェクトを初期化します。
+   * @param width 幅
+   * @param height 高さ
+   * @param depth 奥行き
+   */
+  public BoxModel(float width, float height, float depth) {
+    this();
+    this.width = width;
+    this.height = height;
+    this.depth = depth;
+  }
   
   /**
    * {@inheritDoc}

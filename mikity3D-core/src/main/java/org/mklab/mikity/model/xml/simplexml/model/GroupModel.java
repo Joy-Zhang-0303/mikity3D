@@ -65,7 +65,15 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    * 新しく生成された<code>GroupModel</code>オブジェクトを初期化します。
    */
   public GroupModel() {
-    this.name = ""; //$NON-NLS-1$
+    this(""); //$NON-NLS-1$
+  }
+  
+  /**
+   * 新しく生成された<code>GroupModel</code>オブジェクトを初期化します。
+   * @param name 名前
+   */
+  public GroupModel(String name) {
+    this.name = name;
     this.boxes = new ArrayList<>();
     this.cylinders = new ArrayList<>();
     this.spheres = new ArrayList<>();
@@ -77,7 +85,7 @@ public class GroupModel implements java.io.Serializable, Cloneable {
     this.groups = new ArrayList<>();
     this.translation = new TranslationModel();
     this.rotation = new RotationModel();
-  } 
+  }
   
   /**
    * {@inheritDoc}

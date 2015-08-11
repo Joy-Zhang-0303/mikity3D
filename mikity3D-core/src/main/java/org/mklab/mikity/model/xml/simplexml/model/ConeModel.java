@@ -58,6 +58,19 @@ public class ConeModel implements PrimitiveModel, java.io.Serializable, Cloneabl
   }
   
   /**
+   * 新しく生成された<code>ConeModel</code>オブジェクトを初期化します。
+   * @param radius 半径
+   * @param height 高さ
+   * @param division 分割数
+   */
+  public ConeModel(float radius, float height, int division) {
+    this();
+    this.radius = radius;
+    this.height = height;
+    this.division = division;
+  }
+  
+  /**
    * {@inheritDoc}
    */
   @Override

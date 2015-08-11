@@ -55,7 +55,7 @@ public class AddPrimitiveDialog {
   private String angleUnit;
   private String lengthUnit;
 
-  int selectedIndex = BOX;
+  int primitiveType = BOX;
   /** BOX */
   public static final int BOX = 0;
   /** CYLINDER */
@@ -69,23 +69,23 @@ public class AddPrimitiveDialog {
    * 新しく生成された<code>AddPrimitiveDialog</code>オブジェクトを初期化します。
    * @param parentShell 親シェル
    * @param targetGroup グループ
-   * @param selectedIndex プリミティブの選択
+   * @param primitiveType プリミティブの選択
    */
-  public AddPrimitiveDialog(Shell parentShell, GroupModel targetGroup, int selectedIndex) {
+  public AddPrimitiveDialog(Shell parentShell, GroupModel targetGroup, int primitiveType) {
     this.parentShell = parentShell;
     this.targetGroup = targetGroup;
-    this.selectedIndex = selectedIndex;
+    this.primitiveType = primitiveType;
     this.angleUnit = UnitLabel.getUnit("modelAngle"); //$NON-NLS-1$
     this.lengthUnit = UnitLabel.getUnit("modelLength"); //$NON-NLS-1$
     createSShell();
     
-    if (selectedIndex == BOX) {
+    if (primitiveType == BOX) {
       prepareBoxLabel();
-    } else if (selectedIndex == CYLINDER) {
+    } else if (primitiveType == CYLINDER) {
       prepareCylinderLabel();
-    } else if (selectedIndex == SPHERE) {
+    } else if (primitiveType == SPHERE) {
       prepareSphereLabel();
-    } else if (selectedIndex == CONE) {
+    } else if (primitiveType == CONE) {
       prepareConeLabel();
     }
   }
@@ -263,7 +263,7 @@ public class AddPrimitiveDialog {
     final TranslationModel translation;
     final ColorModel color;
     
-    switch (this.selectedIndex) {
+    switch (this.primitiveType) {
       case BOX:
         final BoxModel box = new BoxModel();
         box.setWidth(this.parameter1.getFloatValue());
@@ -407,15 +407,15 @@ public class AddPrimitiveDialog {
     @Override
     public void widgetSelected(SelectionEvent e) {
       final Combo combo = (Combo)e.widget;
-      AddPrimitiveDialog.this.selectedIndex = combo.getSelectionIndex();
+      AddPrimitiveDialog.this.primitiveType = combo.getSelectionIndex();
 
-      if (AddPrimitiveDialog.this.selectedIndex == BOX) {
+      if (AddPrimitiveDialog.this.primitiveType == BOX) {
         prepareBoxLabel();
-      } else if (AddPrimitiveDialog.this.selectedIndex == CYLINDER) {
+      } else if (AddPrimitiveDialog.this.primitiveType == CYLINDER) {
         prepareCylinderLabel();
-      } else if (AddPrimitiveDialog.this.selectedIndex == SPHERE) {
+      } else if (AddPrimitiveDialog.this.primitiveType == SPHERE) {
         prepareSphereLabel();
-      } else if (AddPrimitiveDialog.this.selectedIndex == CONE) {
+      } else if (AddPrimitiveDialog.this.primitiveType == CONE) {
         prepareConeLabel();
       }
     }

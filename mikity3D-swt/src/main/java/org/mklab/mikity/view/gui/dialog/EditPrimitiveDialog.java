@@ -22,6 +22,7 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -42,7 +43,7 @@ public class EditPrimitiveDialog {
   private Shell parentShell;
   /** */
   Shell sShell;
-  private Object primitive;
+  private PrimitiveModel primitive;
   private String groupName;
 
   private ColorSelectorButton colorSelector;
@@ -73,14 +74,14 @@ public class EditPrimitiveDialog {
   /**
    * コンストラクター
    * 
-   * @param parent 親のシェル
+   * @param parentShell 親のシェル
    * @param primitive プリミティブ
    * @param group グループ
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditPrimitiveDialog(Shell parent, Object primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
-    this.parentShell = parent;
+  public EditPrimitiveDialog(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+    this.parentShell = parentShell;
     this.primitive = primitive;
     this.groupName = group.getName();
     this.tree = tree;

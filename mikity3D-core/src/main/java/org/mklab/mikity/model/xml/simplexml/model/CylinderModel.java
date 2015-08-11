@@ -60,6 +60,19 @@ public class CylinderModel implements PrimitiveModel, Serializable, Cloneable {
   }
   
   /**
+   * 新しく生成された<code>CylinderModel</code>オブジェクトを初期化します。
+   * @param radius 半径
+   * @param height 高さ
+   * @param division 分割数
+   */
+  public CylinderModel(float radius, float height, int division) {
+    this();
+    this.radius = radius;
+    this.height = height;
+    this.division = division;
+  }
+  
+  /**
    * {@inheritDoc}
    */
   @Override

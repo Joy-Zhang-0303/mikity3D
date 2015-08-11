@@ -26,8 +26,8 @@ import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.view.gui.dialog.AddGroupDialog;
-import org.mklab.mikity.view.gui.dialog.AddPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.AddQuadPolygonDialog;
 import org.mklab.mikity.view.gui.dialog.AddTrianglePolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditGroupDialog;
@@ -141,7 +141,7 @@ public class SceneGraphTree {
           dialog.open();
           updateTree();
         } else {
-          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), (PrimitiveModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         }
@@ -265,7 +265,12 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.BOX);
+        //final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.BOX);
+        
+        final PrimitiveModel primitive = new BoxModel(0.2f, 0.2f, 0.2f);
+        SceneGraphTree.this.targetGroup.add(primitive);
+        final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        
         dialog.open();
         updateTree();
       }
@@ -275,7 +280,12 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.CYLINDER);
+        //final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.CYLINDER);
+        
+        final PrimitiveModel primitive = new CylinderModel(0.2f, 0.2f, 36);
+        SceneGraphTree.this.targetGroup.add(primitive);
+        final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        
         dialog.open();
         updateTree();
       }
@@ -285,7 +295,12 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.SPHERE);
+        //final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.SPHERE);
+        
+        final PrimitiveModel primitive = new SphereModel(0.2f, 36);
+        SceneGraphTree.this.targetGroup.add(primitive);
+        final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        
         dialog.open();
         updateTree();
       }
@@ -295,7 +310,12 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.CONE);
+        //final AddPrimitiveDialog dialog = new AddPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetGroup, AddPrimitiveDialog.CONE);
+        
+        final PrimitiveModel primitive = new ConeModel(0.2f, 0.2f, 36);
+        SceneGraphTree.this.targetGroup.add(primitive);
+        final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        
         dialog.open();
         updateTree();
       }
@@ -305,7 +325,15 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final AddTrianglePolygonDialog dialog = new AddTrianglePolygonDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
+        //final AddTrianglePolygonDialog dialog = new AddTrianglePolygonDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
+        
+        final VertexModel vertex0 = new VertexModel(0.0f, -0.3f, 0.0f);
+        final VertexModel vertex1 = new VertexModel(0.0f, 0.3f, 0.0f);
+        final VertexModel vertex2 = new VertexModel(0.0f, 0.0f, 0.3f);
+        final TrianglePolygonModel primitive = new TrianglePolygonModel(vertex0, vertex1, vertex2);
+        SceneGraphTree.this.targetGroup.add(primitive);
+        final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        
         dialog.open();
         updateTree();
       }
@@ -315,7 +343,16 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final AddQuadPolygonDialog dialog = new AddQuadPolygonDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
+        //final AddQuadPolygonDialog dialog = new AddQuadPolygonDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
+
+        final VertexModel vertex0 = new VertexModel(0.0f, -0.3f, 0.0f);
+        final VertexModel vertex1 = new VertexModel(0.0f, 0.3f, 0.0f);
+        final VertexModel vertex2 = new VertexModel(0.0f, 0.3f, 0.3f);
+        final VertexModel vertex3 = new VertexModel(0.0f, -0.3f, 0.3f);
+        final QuadPolygonModel primitive = new QuadPolygonModel(vertex0, vertex1, vertex2, vertex3);
+        SceneGraphTree.this.targetGroup.add(primitive);
+        final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        
         dialog.open();
         updateTree();
       }
@@ -325,8 +362,13 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final AddGroupDialog dialog = new AddGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
+        //final AddGroupDialog dialog = new AddGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup);
+        
+        final GroupModel group = new GroupModel("group");  //$NON-NLS-1$
+        SceneGraphTree.this.targetGroup.add(group);
+        final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), group, true, SceneGraphTree.this, SceneGraphTree.this.modeler);
         dialog.open();
+
         updateTree();
       }
     });
@@ -350,7 +392,7 @@ public class SceneGraphTree {
           dialog.open();
           updateTree();
         } else {
-          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+          final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), (PrimitiveModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
               SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
