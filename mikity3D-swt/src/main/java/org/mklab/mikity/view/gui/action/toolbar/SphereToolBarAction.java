@@ -27,9 +27,7 @@ public class SphereToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final SphereModel sphere = new SphereModel();
-    sphere.setRadius(0.10f);
-    sphere.setDivision(20);
+    final SphereModel sphere = new SphereModel(0.1f, 36);
     final ColorModel color = new ColorModel("yellow"); //$NON-NLS-1$
     sphere.setColor(color);
     

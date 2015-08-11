@@ -27,10 +27,7 @@ public class CylinderToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final CylinderModel cylinder = new CylinderModel();    
-    cylinder.setRadius(0.10f);
-    cylinder.setHeight(0.10f);
-    cylinder.setDivision(20);
+    final CylinderModel cylinder = new CylinderModel(0.1f, 0.1f, 36);    
     final ColorModel color = new ColorModel("blue"); //$NON-NLS-1$
     cylinder.setColor(color);
     

@@ -262,7 +262,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = new BoxModel(0.2f, 0.2f, 0.2f);
+        final PrimitiveModel primitive = new BoxModel(0.1f, 0.1f, 0.1f);
         SceneGraphTree.this.targetGroup.add(primitive);
         final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
@@ -275,7 +275,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = new CylinderModel(0.2f, 0.2f, 36);
+        final PrimitiveModel primitive = new CylinderModel(0.1f, 0.1f, 36);
         SceneGraphTree.this.targetGroup.add(primitive);
         final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
@@ -288,7 +288,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = new SphereModel(0.2f, 36);
+        final PrimitiveModel primitive = new SphereModel(0.1f, 36);
         SceneGraphTree.this.targetGroup.add(primitive);
         final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
@@ -301,7 +301,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = new ConeModel(0.2f, 0.2f, 36);
+        final PrimitiveModel primitive = new ConeModel(0.1f, 0.1f, 36);
         SceneGraphTree.this.targetGroup.add(primitive);
         final EditPrimitiveDialog dialog = new EditPrimitiveDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         

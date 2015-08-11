@@ -26,10 +26,7 @@ public class ConeToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final ConeModel cone = new ConeModel();
-    cone.setRadius(0.10f);
-    cone.setHeight(0.10f);
-    cone.setDivision(20);
+    final ConeModel cone = new ConeModel(0.1f, 0.1f, 36);
     final ColorModel color = new ColorModel("green"); //$NON-NLS-1$
     cone.setColor(color);
     

@@ -26,10 +26,7 @@ public class BoxToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final BoxModel box = new BoxModel();
-    box.setWidth(0.10f);
-    box.setHeight(0.10f);
-    box.setDepth(0.10f);
+    final BoxModel box = new BoxModel(0.1f, 0.1f, 0.1f);
     final ColorModel color = new ColorModel("red"); //$NON-NLS-1$
     box.setColor(color);
     
