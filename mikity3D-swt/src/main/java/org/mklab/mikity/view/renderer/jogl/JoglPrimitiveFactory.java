@@ -5,6 +5,7 @@ import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
@@ -27,6 +28,35 @@ import org.mklab.mikity.view.renderer.jogl.primitive.JoglTrianglePolygon;
  * @version $Revision$, 2012/02/07
  */
 public class JoglPrimitiveFactory {
+  /**
+   * 与えられたプリミティブを含むグループを生成します。
+   * 
+   * @param primitive プリミティブ
+   * @return 与えられたプリミティブを含むグループ
+   */
+  public static JoglObject create(PrimitiveModel primitive) {
+    if (primitive instanceof BoxModel) {
+      return create((BoxModel)primitive);
+    }
+    if (primitive instanceof CylinderModel) {
+      return create((CylinderModel)primitive);
+    }
+    if (primitive instanceof ConeModel) {
+      return create((ConeModel)primitive);
+    }
+    if (primitive instanceof SphereModel) {
+      return create((SphereModel)primitive);
+    }
+    if (primitive instanceof TrianglePolygonModel) {
+      return create((TrianglePolygonModel)primitive);
+    }
+    if (primitive instanceof QuadPolygonModel) {
+      return create((QuadPolygonModel)primitive);
+    }
+    
+    throw new IllegalArgumentException(primitive.getClass().toString());
+  }
+  
   /**
    * 与えられたboxを含むグループを生成します。
    * 

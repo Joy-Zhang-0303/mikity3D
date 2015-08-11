@@ -562,36 +562,27 @@ public class SceneGraphTree {
    * @param transparent トランスピアレント
    */
   public void setAllTransparent(final GroupModel group, boolean transparent) {
-    final BoxModel[] boxes = group.getBoxes();
-    final CylinderModel[] cylinders = group.getCylinders();
-    final SphereModel[] spheres = group.getSpheres();
-    final ConeModel[] cones = group.getCones();
-    final TrianglePolygonModel[] trianglePolygons = group.getTrianglePolygons();
-    final QuadPolygonModel[] quadPolygons = group.getQuadPolygons();
-
-    for (int i = 0; i < boxes.length; i++) {
-      boxes[i].setTransparent(transparent);
+    for (BoxModel box : group.getBoxes()) {
+      box.setTransparent(transparent);
     }
-    for (int i = 0; i < cylinders.length; i++) {
-      cylinders[i].setTransparent(transparent);
+    for (CylinderModel cylinder : group.getCylinders()) {
+      cylinder.setTransparent(transparent);
     }
-    for (int i = 0; i < spheres.length; i++) {
-      spheres[i].setTransparent(transparent);
+    for (SphereModel sphere : group.getSpheres()) {
+      sphere.setTransparent(transparent);
     }
-    for (int i = 0; i < cones.length; i++) {
-      cones[i].setTransparent(transparent);
+    for (ConeModel cone : group.getCones()) {
+      cone.setTransparent(transparent);
     }
-    for (int i = 0; i < trianglePolygons.length; i++) {
-      trianglePolygons[i].setTransparent(transparent);
+    for (TrianglePolygonModel trianglePolygon : group.getTrianglePolygons()) {
+      trianglePolygon.setTransparent(transparent);
     }
-    for (int i = 0; i < quadPolygons.length; i++) {
-      quadPolygons[i].setTransparent(transparent);
+    for (QuadPolygonModel quadPolygon : group.getQuadPolygons()) {
+      quadPolygon.setTransparent(transparent);
     }
 
-    final GroupModel[] groups = group.getGroups();
-
-    for (int i = 0; i < groups.length; i++) {
-      setAllTransparent(groups[i], transparent);
+    for (GroupModel childGroup : group.getGroups()) {
+      setAllTransparent(childGroup, transparent);
     }
   }
 
@@ -653,49 +644,42 @@ public class SceneGraphTree {
       }
       groupItem.setData(group);
 
-      final BoxModel[] boxes = group.getBoxes();
-      for (final BoxModel box :  boxes) {
+      for (final BoxModel box :  group.getBoxes()) {
         final TreeItem child = new TreeItem(groupItem, SWT.NONE);
         child.setText(box.toString());
         child.setData(box);
       }
 
-      final CylinderModel[] cylinders = group.getCylinders();
-      for (final CylinderModel cylinder :  cylinders) {
+      for (final CylinderModel cylinder :  group.getCylinders()) {
         final TreeItem item = new TreeItem(groupItem, SWT.NONE);
         item.setText(cylinder.toString());
         item.setData(cylinder);
       }
 
-      final SphereModel[] spheres = group.getSpheres();
-      for (final SphereModel sphere : spheres) {
+      for (final SphereModel sphere : group.getSpheres()) {
         final TreeItem item = new TreeItem(groupItem, SWT.NONE);
         item.setText(sphere.toString());
         item.setData(sphere);
       }
 
-      final ConeModel[] cones = group.getCones();
-      for (final ConeModel cone :  cones) {
+      for (final ConeModel cone :  group.getCones()) {
         final TreeItem item = new TreeItem(groupItem, SWT.NONE);
         item.setText(cone.toString());
         item.setData(cone);
       }
 
-      final TrianglePolygonModel[] trianglePolygons = group.getTrianglePolygons();
-      for (final TrianglePolygonModel trianglePolygon : trianglePolygons) {
+      for (final TrianglePolygonModel trianglePolygon : group.getTrianglePolygons()) {
         final TreeItem item = new TreeItem(groupItem, SWT.NONE);
         item.setText(trianglePolygon.toString());
         item.setData(trianglePolygon);
       }
 
-      final QuadPolygonModel[] quadPolygons = group.getQuadPolygons();
-      for (final QuadPolygonModel quadPolygon :  quadPolygons) {
+      for (final QuadPolygonModel quadPolygon :  group.getQuadPolygons()) {
         final TreeItem item = new TreeItem(groupItem, SWT.NONE);
         item.setText(quadPolygon.toString());
         item.setData(quadPolygon);
       }
-      final GroupModel[] childrenGroups = group.getGroups();
-      addTreeItem(groupItem, childrenGroups);
+      addTreeItem(groupItem, group.getGroups());
     }
     
     if (parent != null) {
