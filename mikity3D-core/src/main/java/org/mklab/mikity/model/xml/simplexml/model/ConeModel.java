@@ -82,6 +82,13 @@ public class ConeModel implements PrimitiveModel, java.io.Serializable, Cloneabl
   /**
    * {@inheritDoc}
    */
+  public PrimitiveModel createClone() {
+    return clone();
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public int hashCode() {
     final int prime = 31;

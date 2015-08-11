@@ -79,6 +79,13 @@ public class SphereModel implements PrimitiveModel, java.io.Serializable, Clonea
   /**
    * {@inheritDoc}
    */
+  public PrimitiveModel createClone() {
+    return clone();
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public int hashCode() {
     final int prime = 31;

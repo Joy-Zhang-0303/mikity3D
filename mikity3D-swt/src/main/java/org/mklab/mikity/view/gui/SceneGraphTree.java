@@ -22,6 +22,7 @@ import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
@@ -59,7 +60,7 @@ public class SceneGraphTree {
   JoglModeler modeler;
 
   /** 記憶されたオブジェクト。 */
-  Object bufferedObject = null;
+  PrimitiveModel bufferedObject = null;
   /** 記憶されたグループ。 */
   GroupModel bufferedGroup = null;
   
@@ -367,7 +368,7 @@ public class SceneGraphTree {
           SceneGraphTree.this.bufferedObject = null;
         } else {
           SceneGraphTree.this.bufferedGroup = null;
-          SceneGraphTree.this.bufferedObject = SceneGraphTree.this.targetObject;
+          SceneGraphTree.this.bufferedObject = (PrimitiveModel)SceneGraphTree.this.targetObject;
         }
         
         removeSelectedItem();
@@ -383,7 +384,7 @@ public class SceneGraphTree {
           SceneGraphTree.this.bufferedObject = null;
         } else {
           SceneGraphTree.this.bufferedGroup = null;
-          SceneGraphTree.this.bufferedObject = SceneGraphTree.this.targetObject;
+          SceneGraphTree.this.bufferedObject = (PrimitiveModel)SceneGraphTree.this.targetObject;
         }
       }
     });
@@ -405,24 +406,24 @@ public class SceneGraphTree {
           updateTree();
         }
         if (SceneGraphTree.this.bufferedObject != null) {
-          if (SceneGraphTree.this.bufferedObject instanceof BoxModel) {
-            SceneGraphTree.this.targetGroup.add(((BoxModel)SceneGraphTree.this.bufferedObject).clone());
-          }
-          if (SceneGraphTree.this.bufferedObject instanceof CylinderModel) {
-            SceneGraphTree.this.targetGroup.add(((CylinderModel)SceneGraphTree.this.bufferedObject).clone());
-          }
-          if (SceneGraphTree.this.bufferedObject instanceof ConeModel) {
-            SceneGraphTree.this.targetGroup.add(((ConeModel)SceneGraphTree.this.bufferedObject).clone());
-          }
-          if (SceneGraphTree.this.bufferedObject instanceof SphereModel) {
-            SceneGraphTree.this.targetGroup.add(((SphereModel)SceneGraphTree.this.bufferedObject).clone());
-          }
-          if (SceneGraphTree.this.bufferedObject instanceof TrianglePolygonModel) {
-            SceneGraphTree.this.targetGroup.add(((TrianglePolygonModel)SceneGraphTree.this.bufferedObject).clone());
-          }
-          if (SceneGraphTree.this.bufferedObject instanceof QuadPolygonModel) {
-            SceneGraphTree.this.targetGroup.add(((QuadPolygonModel)SceneGraphTree.this.bufferedObject).clone());
-          }
+          //if (SceneGraphTree.this.bufferedObject instanceof PrimitiveModel) {
+            SceneGraphTree.this.targetGroup.add(SceneGraphTree.this.bufferedObject.createClone());
+          //}
+//          if (SceneGraphTree.this.bufferedObject instanceof CylinderModel) {
+//            SceneGraphTree.this.targetGroup.add(((CylinderModel)SceneGraphTree.this.bufferedObject).clone());
+//          }
+//          if (SceneGraphTree.this.bufferedObject instanceof ConeModel) {
+//            SceneGraphTree.this.targetGroup.add(((ConeModel)SceneGraphTree.this.bufferedObject).clone());
+//          }
+//          if (SceneGraphTree.this.bufferedObject instanceof SphereModel) {
+//            SceneGraphTree.this.targetGroup.add(((SphereModel)SceneGraphTree.this.bufferedObject).clone());
+//          }
+//          if (SceneGraphTree.this.bufferedObject instanceof TrianglePolygonModel) {
+//            SceneGraphTree.this.targetGroup.add(((TrianglePolygonModel)SceneGraphTree.this.bufferedObject).clone());
+//          }
+//          if (SceneGraphTree.this.bufferedObject instanceof QuadPolygonModel) {
+//            SceneGraphTree.this.targetGroup.add(((QuadPolygonModel)SceneGraphTree.this.bufferedObject).clone());
+//          }
           updateTree();
         }
       }
@@ -537,19 +538,22 @@ public class SceneGraphTree {
       setAllTransparent(group, true);
     }
     
-    if (object instanceof BoxModel) {
-      ((BoxModel)object).setTransparent(false);
-    } else if (object instanceof ConeModel) {
-      ((ConeModel)object).setTransparent(false);
-    } else if (object instanceof CylinderModel) {
-      ((CylinderModel)object).setTransparent(false);
-    } else if (object instanceof SphereModel) {
-      ((SphereModel)object).setTransparent(false);
-    } else if (object instanceof TrianglePolygonModel) {
-      ((TrianglePolygonModel)object).setTransparent(false);
-    } else if (object instanceof QuadPolygonModel) {
-      ((QuadPolygonModel)object).setTransparent(false);
-    } else if (object instanceof GroupModel) {
+    if (object instanceof PrimitiveModel) {
+      ((PrimitiveModel)object).setTransparent(false);
+    } 
+    
+//    else if (object instanceof ConeModel) {
+//      ((ConeModel)object).setTransparent(false);
+//    } else if (object instanceof CylinderModel) {
+//      ((CylinderModel)object).setTransparent(false);
+//    } else if (object instanceof SphereModel) {
+//      ((SphereModel)object).setTransparent(false);
+//    } else if (object instanceof TrianglePolygonModel) {
+//      ((TrianglePolygonModel)object).setTransparent(false);
+//    } else if (object instanceof QuadPolygonModel) {
+//      ((QuadPolygonModel)object).setTransparent(false);
+//    } 
+    else if (object instanceof GroupModel) {
       final GroupModel group = (GroupModel)object;
       setAllTransparent(group, false);
     }
@@ -621,18 +625,18 @@ public class SceneGraphTree {
    * @return モデルを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
    */
   protected boolean removeObject(GroupModel group, Object object) {
-    if (object instanceof BoxModel) {
-      group.remove((BoxModel)object);
-    } else if (object instanceof ConeModel) {
-      group.remove((ConeModel)object);
-    } else if (object instanceof CylinderModel) {
-      group.remove((CylinderModel)object);
-    } else if (object instanceof SphereModel) {
-      group.remove((SphereModel)object);
-    } else if (object instanceof TrianglePolygonModel) {
-      group.remove((TrianglePolygonModel)object);
-    } else if (object instanceof QuadPolygonModel) {
-      group.remove((QuadPolygonModel)object);
+    if (object instanceof PrimitiveModel) {
+      group.remove((PrimitiveModel)object);
+//    } else if (object instanceof ConeModel) {
+//      group.remove((ConeModel)object);
+//    } else if (object instanceof CylinderModel) {
+//      group.remove((CylinderModel)object);
+//    } else if (object instanceof SphereModel) {
+//      group.remove((SphereModel)object);
+//    } else if (object instanceof TrianglePolygonModel) {
+//      group.remove((TrianglePolygonModel)object);
+//    } else if (object instanceof QuadPolygonModel) {
+//      group.remove((QuadPolygonModel)object);
     } else if (object instanceof GroupModel) {
       MessageBox message = new MessageBox(this.composite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
       message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$

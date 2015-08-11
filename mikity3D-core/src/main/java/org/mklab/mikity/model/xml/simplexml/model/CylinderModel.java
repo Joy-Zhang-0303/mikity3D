@@ -80,6 +80,13 @@ public class CylinderModel implements PrimitiveModel, Serializable, Cloneable {
       throw new InternalError(e);
     }
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public PrimitiveModel createClone() {
+    return clone();
+  }
 
   /**
    * {@inheritDoc}

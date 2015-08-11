@@ -159,6 +159,27 @@ public class GroupModel implements java.io.Serializable, Cloneable {
   } 
 
   /**
+   * プリミティブを追加します。
+   * 
+   * @param primitive プリミティブ
+   */
+  public void add(PrimitiveModel primitive) {
+    if (primitive instanceof BoxModel) {
+      this.boxes.add((BoxModel)primitive);
+    } else if (primitive instanceof ConeModel) {
+      this.cones.add((ConeModel)primitive);
+    } else if (primitive instanceof CylinderModel) {
+      this.cylinders.add((CylinderModel)primitive);
+    } else if (primitive instanceof SphereModel) {
+      this.spheres.add((SphereModel)primitive);
+    } else if (primitive instanceof TrianglePolygonModel) {
+      this.trianglePolygons.add((TrianglePolygonModel)primitive);
+    } else if (primitive instanceof QuadPolygonModel) {
+      this.quadPolygons.add((QuadPolygonModel)primitive);
+    }  
+  } 
+  
+  /**
    * Method addXMLBox
    * 
    * @param box ボックス
@@ -497,6 +518,34 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public boolean remove(GroupModel group) {
     boolean removed = this.groups.remove(group);
+    return removed;
+  } 
+  
+  /**
+   * プリミティブを削除します。
+   * 
+   * @param primitive プリミティブ
+   * @return removed
+   */
+  public boolean remove(PrimitiveModel primitive) {
+    boolean removed = false;
+    
+    if (primitive instanceof BoxModel) {
+      removed = this.boxes.remove(primitive);
+    } else if (primitive instanceof ConeModel) {
+      removed = this.cones.remove(primitive);
+    } else if (primitive instanceof CylinderModel) {
+      removed = this.cylinders.remove(primitive);
+    } else if (primitive instanceof SphereModel) {
+      removed = this.spheres.remove(primitive);
+    } else if (primitive instanceof TrianglePolygonModel) {
+      removed = this.trianglePolygons.remove(primitive);
+    } else if (primitive instanceof QuadPolygonModel) {
+      removed = this.quadPolygons.remove(primitive);
+    } else {
+      throw new IllegalArgumentException(primitive.getClass().toString());
+    }
+
     return removed;
   } 
 

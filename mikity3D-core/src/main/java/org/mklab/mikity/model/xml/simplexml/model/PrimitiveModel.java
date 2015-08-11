@@ -67,4 +67,12 @@ public interface PrimitiveModel {
    * @param isTransparent 透明ならばtrue
    */
   void setTransparent(boolean isTransparent);
+  
+  
+  /**
+   * クローンを生成します。
+   * 
+   * @return クローン
+   */
+  PrimitiveModel createClone();
 }

@@ -79,6 +79,13 @@ public class BoxModel implements PrimitiveModel, java.io.Serializable, Cloneable
     }
   }
   
+  /**
+   * {@inheritDoc}
+   */
+  public PrimitiveModel createClone() {
+    return clone();
+  }
+  
   
   /**
    * {@inheritDoc}

@@ -81,6 +81,13 @@ public class TrianglePolygonModel implements PrimitiveModel, Cloneable {
       throw new InternalError(e);
     }
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public PrimitiveModel createClone() {
+    return clone();
+  }
 
   /**
    * {@inheritDoc}
