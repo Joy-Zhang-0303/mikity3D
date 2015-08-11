@@ -33,7 +33,7 @@ public class ExcecuteSearchGroup {
     while (true) {
       try {
         //final GroupModel newGroup = group.getGroup(groupCount);
-        final GroupModel newGroup = group.getGroups()[groupIndex];
+        final GroupModel newGroup = group.getGroups().get(groupIndex);
         final String groupName = newGroup.getName();
         final GroupNameManager groupNames = new GroupNameManager(groupName, parents);
         parents.addItems(searchGroupRecursion(newGroup, groupNames));

@@ -163,7 +163,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /**
    * {@inheritDoc}
    */
-  public void setRootGroups(GroupModel[] rootGroups, ObjectGroupManager manager) {
+  public void setRootGroups(List<GroupModel> rootGroups, ObjectGroupManager manager) {
     this.rootGroups = createObjectGroups(rootGroups, manager);
     display();
   }
@@ -175,7 +175,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * @param manager オブジェクトグループマネージャ
    * @return オブジェクトグループ
    */
-  private List<JoglObjectGroup> createObjectGroups(GroupModel[] groups, ObjectGroupManager manager) {
+  private List<JoglObjectGroup> createObjectGroups(List<GroupModel> groups, ObjectGroupManager manager) {
     final JoglObjectGroupFactory factory = new JoglObjectGroupFactory(manager);
     
     final List<JoglObjectGroup> objectGroups = new ArrayList<>();

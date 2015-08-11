@@ -1,5 +1,7 @@
 package org.mklab.mikity.view.gui;
 
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -632,7 +634,7 @@ public class SceneGraphTree {
    * @param parent 親
    * @param groups グループ
    */
-  private void addTreeItem(TreeItem parent, GroupModel[] groups) {
+  private void addTreeItem(TreeItem parent, List<GroupModel> groups) {
     for (final GroupModel group : groups) {
       final TreeItem groupItem;
       if (parent.getText().equals("scene")) { //$NON-NLS-1$

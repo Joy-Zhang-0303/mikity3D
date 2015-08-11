@@ -144,7 +144,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   /**
    * {@inheritDoc}
    */
-  public void setRootGroups(GroupModel[] rootGroups, ObjectGroupManager manager) {
+  public void setRootGroups(List<GroupModel> rootGroups, ObjectGroupManager manager) {
     this.rootGroups = createObjectGroups(rootGroups, manager);
   }
 
@@ -155,7 +155,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
    * @param manager オブジェクトグループマネージャ
    * @return オブジェクトグループ
    */
-  private List<OpenglesObjectGroup> createObjectGroups(GroupModel[] ｇroups, ObjectGroupManager manager) {
+  private List<OpenglesObjectGroup> createObjectGroups(List<GroupModel> ｇroups, ObjectGroupManager manager) {
     final OpenglesObjectGroupFactory factory = new OpenglesObjectGroupFactory(manager);
     
     final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();

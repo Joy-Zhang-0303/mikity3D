@@ -161,7 +161,7 @@ public class AnimationWindow extends ApplicationWindow {
       }
     }
     
-    final GroupModel[] rootGroups = this.root.getScene(0).getGroups();    
+    final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();    
     if (hasAnimation(rootGroups)) {
       this.manager.setHasAnimation(true);
     }
@@ -172,7 +172,7 @@ public class AnimationWindow extends ApplicationWindow {
    * レンダラーを準備します。
    */
   void prepareRenderer() {
-    final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
+    final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     
     this.manager.clearObjectGroups();
@@ -217,14 +217,14 @@ public class AnimationWindow extends ApplicationWindow {
       prepareRenderer();
       this.modelFilePathText.setText(this.modelFile.getAbsolutePath());     
     
-      final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
+      final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
       createSourceChoosers(getAllIds(rootGroups), false);
     }
     
     return parent;
   }
 
-  private Set<String> getAllIds(final GroupModel[] rootGroups) {
+  private Set<String> getAllIds(final List<GroupModel> rootGroups) {
     final List<AnimationModel> allAnimations = getAllAnimation(rootGroups);
     
     final Set<String> ids = new TreeSet<>();
@@ -487,7 +487,7 @@ public class AnimationWindow extends ApplicationWindow {
       final Mikity3DModel localRoot = new Mikity3dFactory().loadFile(file);
       setRoot(localRoot);
       
-      final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
+      final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
       createSourceChoosers(getAllIds(rootGroups), true);
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
@@ -573,7 +573,7 @@ public class AnimationWindow extends ApplicationWindow {
    * @param group グループ
    * @return アニメーションが含まれればtrue
    */
-  private boolean hasAnimation(GroupModel[] groups) {
+  private boolean hasAnimation(List<GroupModel> groups) {
     for (final GroupModel group : groups) {
       final AnimationModel[] animations = group.getAnimations();
       for (final AnimationModel animation : animations) {
@@ -596,7 +596,7 @@ public class AnimationWindow extends ApplicationWindow {
    * 
    * @return 全ての含まれるアニメーソン
    */
-  private List<AnimationModel> getAllAnimation(GroupModel[] groups) {
+  private List<AnimationModel> getAllAnimation(List<GroupModel> groups) {
     final List<AnimationModel> allAnimations = new ArrayList<>();
     
     for (final GroupModel group : groups) {

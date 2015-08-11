@@ -116,12 +116,14 @@ public class SceneModel implements java.io.Serializable, Cloneable {
    * 
    * @return mArray
    */
-  public GroupModel[] getGroups() {
-    final int size = this.groups.size();
-    final GroupModel[] localGroups = new GroupModel[size];
-    for (int i = 0; i < size; i++) {
-      localGroups[i] = this.groups.get(i);
-    }
-    return localGroups;
+  public List<GroupModel> getGroups() {
+    return this.groups;
+    
+//    final int size = this.groups.size();
+//    final GroupModel[] localGroups = new GroupModel[size];
+//    for (int i = 0; i < size; i++) {
+//      localGroups[i] = this.groups.get(i);
+//    }
+//    return localGroups;
   } 
 }

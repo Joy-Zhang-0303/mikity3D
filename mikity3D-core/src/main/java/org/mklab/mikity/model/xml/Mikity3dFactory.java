@@ -7,11 +7,12 @@ package org.mklab.mikity.model.xml;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.ColladaUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
-import org.mklab.mikity.model.xml.simplexml.Mikity3DUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
@@ -35,7 +36,7 @@ public class Mikity3dFactory {
     final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
     unmarshaller.unmarshalFromMikity3DFile(file);
     final Mikity3DModel importedMikity3d = unmarshaller.getRoot();
-    final GroupModel[] rootGroups = importedMikity3d.getScene(0).getGroups();
+    final List<GroupModel> rootGroups = importedMikity3d.getScene(0).getGroups();
     
     final SceneModel parentMikity3d = parent.getScene(0);
     
@@ -130,7 +131,7 @@ public class Mikity3dFactory {
 
     final Mikity3DModel newRoot = createEmptyModel();
     final GroupModel newGroup = newRoot.getScene(0).getGroup(0);
-    final GroupModel[] groups = unmarshaller.getClolladaGroup().getGroups();
+    final List<GroupModel> groups = unmarshaller.getClolladaGroup().getGroups();
     for (final GroupModel group : groups) {
       newGroup.add(group);
     }
@@ -151,7 +152,7 @@ public class Mikity3dFactory {
 
     final Mikity3DModel newRoot = createEmptyModel();
     final GroupModel newGroup = newRoot.getScene(0).getGroup(0);
-    final GroupModel[] groups = unmarshaller.getClolladaGroup().getGroups();
+    final List<GroupModel> groups = unmarshaller.getClolladaGroup().getGroups();
     for (final GroupModel group : groups) {
       newGroup.add(group);
     }

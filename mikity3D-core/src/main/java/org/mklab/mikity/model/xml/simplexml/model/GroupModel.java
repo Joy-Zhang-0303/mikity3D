@@ -8,6 +8,8 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
+import com.sun.javafx.collections.ArrayListenerHelper;
+
 /**
  * Class Group.
  * 
@@ -369,13 +371,15 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    * 
    * @return mArray
    */
-  public GroupModel[] getGroups() {
-    final int size = this.groups.size();
-    final GroupModel[] localGroups = new GroupModel[size];
-    for (int i = 0; i < size; i++) {
-      localGroups[i] = this.groups.get(i);
-    }
-    return localGroups;
+  public List<GroupModel> getGroups() {
+    return this.groups;
+    
+//    final int size = this.groups.size();
+//    final GroupModel[] localGroups = new GroupModel[size];
+//    for (int i = 0; i < size; i++) {
+//      localGroups[i] = this.groups.get(i);
+//    }
+//    return localGroups;
   } 
 
   /**
@@ -439,13 +443,15 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    * 
    * @return mArray
    */
-  public BoxModel[] getBoxes() {
-    final int size = this.boxes.size();
-    final BoxModel[] localBoxes = new BoxModel[size];
-    for (int i = 0; i < size; i++) {
-      localBoxes[i] = this.boxes.get(i);
-    }
-    return localBoxes;
+  public List<BoxModel> getBoxes() {
+    return this.boxes;
+    
+//    final int size = this.boxes.size();
+//    final BoxModel[] localBoxes = new BoxModel[size];
+//    for (int i = 0; i < size; i++) {
+//      localBoxes[i] = this.boxes.get(i);
+//    }
+//    return localBoxes;
   } 
 
   /**
@@ -453,13 +459,15 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    * 
    * @return mArray
    */
-  public ConeModel[] getCones() {
-    final int size = this.cones.size();
-    final ConeModel[] localCones = new ConeModel[size];
-    for (int i = 0; i < size; i++) {
-      localCones[i] = this.cones.get(i);
-    }
-    return localCones;
+  public List<ConeModel> getCones() {
+    return this.cones;
+    
+//    final int size = this.cones.size();
+//    final ConeModel[] localCones = new ConeModel[size];
+//    for (int i = 0; i < size; i++) {
+//      localCones[i] = this.cones.get(i);
+//    }
+//    return localCones;
   } 
 
   /**
@@ -467,13 +475,15 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    * 
    * @return _XMLCylinderList.get(index)
    */
-  public CylinderModel[] getCylinders() {
-    final int size = this.cylinders.size();
-    final CylinderModel[] localCylinders = new CylinderModel[size];
-    for (int i = 0; i < size; i++) {
-      localCylinders[i] = this.cylinders.get(i);
-    }
-    return localCylinders;
+  public List<CylinderModel> getCylinders() {
+    return this.cylinders;
+    
+//    final int size = this.cylinders.size();
+//    final CylinderModel[] localCylinders = new CylinderModel[size];
+//    for (int i = 0; i < size; i++) {
+//      localCylinders[i] = this.cylinders.get(i);
+//    }
+//    return localCylinders;
   } 
 
   /**
@@ -481,13 +491,15 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    * 
    * @return mArray
    */
-  public SphereModel[] getSpheres() {
-    final int size = this.spheres.size();
-    final SphereModel[] localSpheres = new SphereModel[size];
-    for (int i = 0; i < size; i++) {
-      localSpheres[i] = this.spheres.get(i);
-    }
-    return localSpheres;
+  public List<SphereModel> getSpheres() {
+    return this.spheres;
+    
+//    final int size = this.spheres.size();
+//    final SphereModel[] localSpheres = new SphereModel[size];
+//    for (int i = 0; i < size; i++) {
+//      localSpheres[i] = this.spheres.get(i);
+//    }
+//    return localSpheres;
   } 
 
   /**
@@ -495,13 +507,15 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    * 
    * @return mArray
    */
-  public TrianglePolygonModel[] getTrianglePolygons() {
-    final int size = this.trianglePolygons.size();
-    final TrianglePolygonModel[] localPolygons = new TrianglePolygonModel[size];
-    for (int i = 0; i < size; i++) {
-      localPolygons[i] = this.trianglePolygons.get(i);
-    }
-    return localPolygons;
+  public List<TrianglePolygonModel> getTrianglePolygons() {
+    return this.trianglePolygons;
+    
+//    final int size = this.trianglePolygons.size();
+//    final TrianglePolygonModel[] localPolygons = new TrianglePolygonModel[size];
+//    for (int i = 0; i < size; i++) {
+//      localPolygons[i] = this.trianglePolygons.get(i);
+//    }
+//    return localPolygons;
   } 
 
   /**
@@ -509,13 +523,15 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    * 
    * @return mArray
    */
-  public QuadPolygonModel[] getQuadPolygons() {
-    final int size = this.quadPolygons.size();
-    final QuadPolygonModel[] localQuadPolygons = new QuadPolygonModel[size];
-    for (int i = 0; i < size; i++) {
-      localQuadPolygons[i] = this.quadPolygons.get(i);
-    }
-    return localQuadPolygons;
+  public List<QuadPolygonModel> getQuadPolygons() {
+    return this.quadPolygons;
+    
+//    final int size = this.quadPolygons.size();
+//    final QuadPolygonModel[] localQuadPolygons = new QuadPolygonModel[size];
+//    for (int i = 0; i < size; i++) {
+//      localQuadPolygons[i] = this.quadPolygons.get(i);
+//    }
+//    return localQuadPolygons;
   } 
 
   /**

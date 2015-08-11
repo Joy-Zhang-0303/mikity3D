@@ -46,7 +46,7 @@ public class LibraryGeometries {
       group.add(this.geometries.get(i).getBlenderPolygonGroup());
     }
 
-    if (this.scene.getGroups().length != 0) {
+    if (this.scene.getGroups().size() != 0) {
       this.creater.checkGroupName(group, this.scene);
       group = this.creater.getSceneGraph();
     }

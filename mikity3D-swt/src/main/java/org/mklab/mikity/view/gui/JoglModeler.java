@@ -6,6 +6,7 @@
 package org.mklab.mikity.view.gui;
 
 import java.awt.Frame;
+import java.util.List;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
@@ -117,7 +118,7 @@ public class JoglModeler extends Composite {
    * RootGroupとConfigurationをCanvasに設定します。
    */
   public void updateRenderer() {
-    final GroupModel[] rootGroups = this.tree.getModel().getGroups();
+    final List<GroupModel> rootGroups = this.tree.getModel().getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     
     this.manager.clearObjectGroups();

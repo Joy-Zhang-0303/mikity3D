@@ -10,6 +10,7 @@ import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -131,7 +132,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
-    final GroupModel actualDodaiGroup = actualGroup.getGroups()[0];
+    final GroupModel actualDodaiGroup = actualGroup.getGroups().get(0);
     assertDodaiGroup(actualDodaiGroup);
   }
 
@@ -150,21 +151,21 @@ public class SimpleXmlUnmarshallerTest {
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
-    final BoxModel[] actualBoxes = actualGroup.getBoxes();
+    final List<BoxModel> actualBoxes = actualGroup.getBoxes();
     
-    final BoxModel actualBox1 = actualBoxes[0];
+    final BoxModel actualBox1 = actualBoxes.get(0);
     assertDodaiBox1(actualBox1);
 
-    final BoxModel actualBox2 = actualBoxes[1];
+    final BoxModel actualBox2 = actualBoxes.get(1);
     assertDodaiBox2(actualBox2);
 
-    final BoxModel actualBox3 = actualBoxes[2];
+    final BoxModel actualBox3 = actualBoxes.get(2);
     assertDodaiBox3(actualBox3);
 
-    final BoxModel actualBox4 = actualBoxes[3];
+    final BoxModel actualBox4 = actualBoxes.get(3);
     assertDodaiBox4(actualBox4);
 
-    final GroupModel actualDaishaGroup = actualGroup.getGroups()[0];
+    final GroupModel actualDaishaGroup = actualGroup.getGroups().get(0);
     assertDaishaGroup(actualDaishaGroup);
   }
 
@@ -281,10 +282,10 @@ public class SimpleXmlUnmarshallerTest {
     expectedAnimation.setTarget("translationY"); //$NON-NLS-1$
     assertThat(actualAnimation, is(expectedAnimation));
 
-    final BoxModel actualBox = actualGroup.getBoxes()[0];
+    final BoxModel actualBox = actualGroup.getBoxes().get(0);
     assertDaishaBox(actualBox);
     
-    final GroupModel actualSinsiGroup = actualGroup.getGroups()[0];
+    final GroupModel actualSinsiGroup = actualGroup.getGroups().get(0);
     assertSinsiGroup(actualSinsiGroup);
   }
   
@@ -333,11 +334,11 @@ public class SimpleXmlUnmarshallerTest {
     expectedAnimation.setTarget("rotationX"); //$NON-NLS-1$
     assertThat(actualAnimation, is(expectedAnimation));
     
-    final CylinderModel[] actualCylinders = actualGroup.getCylinders();
-    final CylinderModel actualCylinder1 = actualCylinders[0];
+    final List<CylinderModel> actualCylinders = actualGroup.getCylinders();
+    final CylinderModel actualCylinder1 = actualCylinders.get(0);
     assertCylinder1(actualCylinder1);
     
-    final CylinderModel actualCylinder2 = actualCylinders[1];
+    final CylinderModel actualCylinder2 = actualCylinders.get(1);
     assertCylinder2(actualCylinder2);
 
   }

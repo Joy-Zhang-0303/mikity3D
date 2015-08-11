@@ -349,8 +349,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   public GroupManager getGroupManager() {
     final Mikity3DModel root = this.canvasActivity.canvasFragment.root;
     final SceneModel model = root.getScene(0);
-    final GroupModel[] groupArray = model.getGroups();
-    final GroupModel group = groupArray[0];
+    final List<GroupModel> groupArray = model.getGroups();
+    final GroupModel group = groupArray.get(0);
     final ExcecuteSearchGroup search = new ExcecuteSearchGroup();
     final GroupNameManager groupManager = new GroupNameManager(group.getName(), null);
     final GroupManager result = search.searchGroupRecursion(group, groupManager);
@@ -493,11 +493,11 @@ public class NavigationDrawerFragment extends RoboFragment {
    */
   void changeModelNumber(List<Integer> targetNumbers, int childPosition, int number) {
     final SceneModel model = this.canvasActivity.canvasFragment.root.getScene(0);
-    final GroupModel[] groups = model.getGroups();
-    GroupModel group = groups[0];
+    final List<GroupModel> groups = model.getGroups();
+    GroupModel group = groups.get(0);
 
     for (Integer targetNumber : targetNumbers) {
-      group = group.getGroups()[targetNumber.intValue()];
+      group = group.getGroups().get(targetNumber.intValue());
     }
 
     group.getAnimations()[childPosition].getSource().setNumber(number);

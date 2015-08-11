@@ -423,7 +423,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   private void checkAnimation(GroupModel parent) {
-    final GroupModel[] groups = parent.getGroups();
+    final List<GroupModel> groups = parent.getGroups();
     for (final GroupModel group : groups) {
       final AnimationModel[] animations = group.getAnimations();
       for (final AnimationModel animation : animations) {
@@ -627,7 +627,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * レンダーを準備します。
    */
   public void prepareRenderer() {
-    final GroupModel[] rootGroups = this.root.getScene(0).getGroups();
+    final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
 
     this.manager.clearObjectGroups();
