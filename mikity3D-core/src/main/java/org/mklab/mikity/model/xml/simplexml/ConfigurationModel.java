@@ -1,5 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
@@ -19,7 +21,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.9 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="configuration")
-public class ConfigurationModel implements java.io.Serializable {
+public class ConfigurationModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** 背景。 */
@@ -76,6 +78,13 @@ public class ConfigurationModel implements java.io.Serializable {
       ans.modelUnit = this.modelUnit.clone();
       ans.dataUnit = this.dataUnit.clone();
 
+      if (this.sources != null) {
+        ans.sources = new ArrayList<>();
+        for (SourceDataModel source : this.sources) {
+          ans.sources.add(source.clone());
+        }
+      }
+      
       return ans;
     } catch (CloneNotSupportedException e) {
       throw new InternalError(e);

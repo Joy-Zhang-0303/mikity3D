@@ -1,6 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml.model;
 
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.util.Vector;
 
 import org.simpleframework.xml.Attribute;
@@ -14,7 +15,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
 @Root(name="box")
-public class BoxModel implements PrimitiveModel, java.io.Serializable, Cloneable {
+public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** width */

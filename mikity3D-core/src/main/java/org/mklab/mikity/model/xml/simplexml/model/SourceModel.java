@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.model.xml.simplexml.model;
 
+import java.io.Serializable;
+
 import org.simpleframework.xml.Attribute;
 
 
@@ -14,7 +16,7 @@ import org.simpleframework.xml.Attribute;
  * @author koga
  * @version $Revision$, 2015/07/28
  */
-public class SourceModel implements java.io.Serializable, Cloneable {
+public class SourceModel implements Serializable, Cloneable {
   /** */
   private static final long serialVersionUID = 1L;
 

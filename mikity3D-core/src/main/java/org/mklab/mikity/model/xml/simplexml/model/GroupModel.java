@@ -1,5 +1,6 @@
 package org.mklab.mikity.model.xml.simplexml.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,15 +9,13 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import com.sun.javafx.collections.ArrayListenerHelper;
-
 /**
  * Class Group.
  * 
  * @version $Revision: 1.4 $ $Date: 2007/12/13 10:01:55 $
  */
 @Root(name="group")
-public class GroupModel implements java.io.Serializable, Cloneable {
+public class GroupModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   
   /** name */
@@ -373,13 +372,6 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public List<GroupModel> getGroups() {
     return this.groups;
-    
-//    final int size = this.groups.size();
-//    final GroupModel[] localGroups = new GroupModel[size];
-//    for (int i = 0; i < size; i++) {
-//      localGroups[i] = this.groups.get(i);
-//    }
-//    return localGroups;
   } 
 
   /**
@@ -445,13 +437,6 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public List<BoxModel> getBoxes() {
     return this.boxes;
-    
-//    final int size = this.boxes.size();
-//    final BoxModel[] localBoxes = new BoxModel[size];
-//    for (int i = 0; i < size; i++) {
-//      localBoxes[i] = this.boxes.get(i);
-//    }
-//    return localBoxes;
   } 
 
   /**
@@ -461,14 +446,7 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public List<ConeModel> getCones() {
     return this.cones;
-    
-//    final int size = this.cones.size();
-//    final ConeModel[] localCones = new ConeModel[size];
-//    for (int i = 0; i < size; i++) {
-//      localCones[i] = this.cones.get(i);
-//    }
-//    return localCones;
-  } 
+  }
 
   /**
    * Method getXMLCylinder
@@ -477,13 +455,6 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public List<CylinderModel> getCylinders() {
     return this.cylinders;
-    
-//    final int size = this.cylinders.size();
-//    final CylinderModel[] localCylinders = new CylinderModel[size];
-//    for (int i = 0; i < size; i++) {
-//      localCylinders[i] = this.cylinders.get(i);
-//    }
-//    return localCylinders;
   } 
 
   /**
@@ -493,14 +464,7 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public List<SphereModel> getSpheres() {
     return this.spheres;
-    
-//    final int size = this.spheres.size();
-//    final SphereModel[] localSpheres = new SphereModel[size];
-//    for (int i = 0; i < size; i++) {
-//      localSpheres[i] = this.spheres.get(i);
-//    }
-//    return localSpheres;
-  } 
+  }
 
   /**
    * Method getXMLTrianglePolygon
@@ -509,13 +473,6 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public List<TrianglePolygonModel> getTrianglePolygons() {
     return this.trianglePolygons;
-    
-//    final int size = this.trianglePolygons.size();
-//    final TrianglePolygonModel[] localPolygons = new TrianglePolygonModel[size];
-//    for (int i = 0; i < size; i++) {
-//      localPolygons[i] = this.trianglePolygons.get(i);
-//    }
-//    return localPolygons;
   } 
 
   /**
@@ -525,13 +482,6 @@ public class GroupModel implements java.io.Serializable, Cloneable {
    */
   public List<QuadPolygonModel> getQuadPolygons() {
     return this.quadPolygons;
-    
-//    final int size = this.quadPolygons.size();
-//    final QuadPolygonModel[] localQuadPolygons = new QuadPolygonModel[size];
-//    for (int i = 0; i < size; i++) {
-//      localQuadPolygons[i] = this.quadPolygons.get(i);
-//    }
-//    return localQuadPolygons;
   } 
 
   /**

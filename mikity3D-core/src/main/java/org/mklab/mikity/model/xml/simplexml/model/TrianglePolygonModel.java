@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.model.xml.simplexml.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,10 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2008/08/10
  */
 @Root(name="trianglePolygon")
-public class TrianglePolygonModel implements PrimitiveModel, Cloneable {
+public class TrianglePolygonModel implements PrimitiveModel, Serializable, Cloneable {
+  /** */
+  private static final long serialVersionUID = 1L;
+
   /** vertices */
   @ElementList(type=VertexModel.class, inline=true, required=true)
   private List<VertexModel> vertices;

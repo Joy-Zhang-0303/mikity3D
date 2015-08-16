@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.model.xml.simplexml.model;
 
+import java.io.Serializable;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
@@ -16,7 +18,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2015/08/05
  */
 @Root(name="color")
-public class ColorModel implements java.io.Serializable, Cloneable {
+public class ColorModel implements Serializable, Cloneable {
   /** */
   private static final long serialVersionUID = 1L;
 

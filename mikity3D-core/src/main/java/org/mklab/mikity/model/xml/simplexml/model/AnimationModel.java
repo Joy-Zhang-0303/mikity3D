@@ -1,5 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml.model;
 
+import java.io.Serializable;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -11,7 +13,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.3 $ $Date: 2008/02/03 04:25:09 $
  */
 @Root(name="animation")
-public class AnimationModel implements java.io.Serializable, Cloneable {
+public class AnimationModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** 対象となるパラメータの名前 */

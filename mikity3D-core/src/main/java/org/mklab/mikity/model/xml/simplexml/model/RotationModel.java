@@ -1,5 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml.model;
 
+import java.io.Serializable;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
@@ -10,7 +12,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.1 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="rotation")
-public class RotationModel implements java.io.Serializable, Cloneable {
+public class RotationModel implements Serializable, Cloneable {
 
   private static final long serialVersionUID = 1L;
 

@@ -1,5 +1,6 @@
 package org.mklab.mikity.model.xml.simplexml;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.15 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="scene")
-public class SceneModel implements java.io.Serializable, Cloneable {
+public class SceneModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   /** groups */
   @ElementList(type=GroupModel.class, inline=true)

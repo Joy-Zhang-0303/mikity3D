@@ -1,5 +1,7 @@
 package org.mklab.mikity.model.xml.simplexml.model;
 
+import java.io.Serializable;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
@@ -10,7 +12,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
  */
 @Root(name="vertex")
-public class VertexModel implements java.io.Serializable, Cloneable {
+public class VertexModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** x成分 */

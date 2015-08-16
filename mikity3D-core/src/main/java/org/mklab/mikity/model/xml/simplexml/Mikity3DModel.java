@@ -1,5 +1,6 @@
 package org.mklab.mikity.model.xml.simplexml;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/08/03 03:30:27 $
  */
 @Root(name="mikity3d")
-public class Mikity3DModel implements java.io.Serializable, Cloneable {
+public class Mikity3DModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
 
   /** バージョン番号 */
