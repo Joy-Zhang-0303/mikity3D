@@ -1,5 +1,7 @@
 package org.mklab.mikity.model.graphic;
 
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+
 /**
  * BOXを表わすクラスです
  * 
@@ -7,16 +9,27 @@ package org.mklab.mikity.model.graphic;
  * @version $Revision$, 2012/01/26
  */
 public class BoxObject extends GraphicPrimitive {
+//  /** モデル。 */
+//  private BoxModel box;
 
   /** 幅 */
-  private float width;
+//  private float width;
+//
+//  /** 高さ */
+//  private float height;
+//
+//  /** 奥行 */
+//  private float depth;
 
-  /** 高さ */
-  private float height;
-
-  /** 奥行 */
-  private float depth;
-
+  /**
+   * 新しく生成された<code>BoxObject</code>オブジェクトを初期化します。
+   * @param box モデル
+   */
+  public BoxObject(BoxModel box) {
+    super(box);
+    updatePolygons();
+  }
+  
   /**
    * ポリゴンを更新します。
    */
@@ -32,37 +45,41 @@ public class BoxObject extends GraphicPrimitive {
     //  /      /
     // v2 -- v3
     
-    float x0 = this.depth / 2;
-    float y0 = this.width / 2;
-    float z0 = this.height / 2;
+    float width = ((BoxModel)this.primitive).getWidth();
+    float height = ((BoxModel)this.primitive).getHeight();
+    float depth = ((BoxModel)this.primitive).getDepth();
     
-    float x1 = this.depth / 2;
-    float y1 = -this.width / 2;
-    float z1 = this.height / 2;
+    float x0 = depth / 2;
+    float y0 = width / 2;
+    float z0 = height / 2;
+    
+    float x1 = depth / 2;
+    float y1 = -width / 2;
+    float z1 = height / 2;
 
-    float x2 = this.depth / 2;
-    float y2 = -this.width / 2;
-    float z2 = -this.height / 2;
+    float x2 = depth / 2;
+    float y2 = -width / 2;
+    float z2 = -height / 2;
     
-    float x3 = this.depth / 2;
-    float y3 = this.width / 2;
-    float z3 = -this.height / 2;
+    float x3 = depth / 2;
+    float y3 = width / 2;
+    float z3 = -height / 2;
     
-    float x4 = -this.depth / 2;
-    float y4 = this.width / 2;
-    float z4 = this.height / 2;
+    float x4 = -depth / 2;
+    float y4 = width / 2;
+    float z4 = height / 2;
     
-    float x5 = -this.depth / 2;
-    float y5 = -this.width / 2;
-    float z5 = this.height / 2;
+    float x5 = -depth / 2;
+    float y5 = -width / 2;
+    float z5 = height / 2;
     
-    float x6 = -this.depth / 2;
-    float y6 = -this.width / 2;
-    float z6 = -this.height / 2;
+    float x6 = -depth / 2;
+    float y6 = -width / 2;
+    float z6 = -height / 2;
     
-    float x7 = -this.depth / 2;
-    float y7 = this.width / 2;
-    float z7 = -this.height / 2;  
+    float x7 = -depth / 2;
+    float y7 = width / 2;
+    float z7 = -height / 2;  
 
     final float[][] vertices = new float[][]{
         {x0, y0, z0}, {x4, y4, z4}, {x1, y1, z1},
@@ -120,19 +137,19 @@ public class BoxObject extends GraphicPrimitive {
     appendNormalVector(normalVector);
   }
 
-  /**
-   * 大きさを設定します。
-   * 
-   * @param width 幅
-   * @param height 高さ
-   * @param depth 奥行
-   */
-  public void setSize(float width, float height, float depth) {
-    this.width = width;
-    this.height = height;
-    this.depth = depth;
-    
-    updatePolygons();
-  }
+//  /**
+//   * 大きさを設定します。
+//   * 
+//   * @param width 幅
+//   * @param height 高さ
+//   * @param depth 奥行
+//   */
+//  public void setSize(float width, float height, float depth) {
+//    this.width = width;
+//    this.height = height;
+//    this.depth = depth;
+//    
+//    updatePolygons();
+//  }
 
 }

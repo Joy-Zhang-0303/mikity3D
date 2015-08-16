@@ -1,5 +1,6 @@
 package org.mklab.mikity.model.graphic;
 
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.util.Vector3;
 
 /**
@@ -9,51 +10,64 @@ import org.mklab.mikity.util.Vector3;
  * @version $Revision$, 2012/02/09
  */
 public class ConeObject extends GraphicPrimitive {
-  /** 底面の半径。 */
-  private float radius = 0;
-
-  /** 高さ。 */
-  private float height = 0;
-
-  /** 分割数。 */
-  private int division = 0;
+//  /** 底面の半径。 */
+//  private float radius = 0;
+//
+//  /** 高さ。 */
+//  private float height = 0;
+//
+//  /** 分割数。 */
+//  private int division = 0;
+  
+  /**
+   * 新しく生成された<code>ConeObject</code>オブジェクトを初期化します。
+   * @param cone コーン
+   */
+  public ConeObject(ConeModel cone) {
+    super(cone);
+    updatePolygons();
+  }
 
   /**
    * ポリゴンを更新します。
    */
   private void updatePolygons() {
-    if (this.radius == 0 || this.height == 0 || this.division == 0) {
+    float radius = ((ConeModel)this.primitive).getRadisu();
+    float height = ((ConeModel)this.primitive).getHeight();
+    int division = ((ConeModel)this.primitive).getDivision();
+    
+    if (radius == 0 || height == 0 || division == 0) {
       return;
     }
 
-    final int lowerPolygonNumber = this.division;
-    final int sidePolygonNumber = this.division;
+    final int lowerPolygonNumber = division;
+    final int sidePolygonNumber = division;
     final int polygonNumber = lowerPolygonNumber + sidePolygonNumber;
     initializeArrays(polygonNumber);
 
     final float[] topPoint = new float[3];
     topPoint[0] = 0;
     topPoint[1] = 0;
-    topPoint[2] = this.height / 2;
+    topPoint[2] = height / 2;
     
     final float[] centerPoint = new float[3];
     centerPoint[0] = 0;
     centerPoint[1] = 0;
-    centerPoint[2]= -this.height / 2;
+    centerPoint[2]= -height / 2;
     
-    final float[][] lowerPoints = new float[this.division+1][3];
-    for (int i = 0; i <= this.division; i++) {
-      final double theta = 2.0 * Math.PI / this.division * i;
-      lowerPoints[i][0] = this.radius * (float)Math.cos(theta);
-      lowerPoints[i][1] = this.radius * (float)Math.sin(theta); 
-      lowerPoints[i][2] = -this.height / 2; 
+    final float[][] lowerPoints = new float[division+1][3];
+    for (int i = 0; i <= division; i++) {
+      final double theta = 2.0 * Math.PI / division * i;
+      lowerPoints[i][0] = radius * (float)Math.cos(theta);
+      lowerPoints[i][1] = radius * (float)Math.sin(theta); 
+      lowerPoints[i][2] = -height / 2; 
     }
-    lowerPoints[this.division][0] = this.radius * (float)Math.cos(0);
-    lowerPoints[this.division][1] = this.radius * (float)Math.sin(0); 
-    lowerPoints[this.division][2] = -this.height / 2; 
+    lowerPoints[division][0] = radius * (float)Math.cos(0);
+    lowerPoints[division][1] = radius * (float)Math.sin(0); 
+    lowerPoints[division][2] = -height / 2; 
     
-    updateLowerPolygons(centerPoint, lowerPoints);
-    updateSidePolygons(topPoint, lowerPoints);
+    updateLowerPolygons(centerPoint, lowerPoints, division);
+    updateSidePolygons(topPoint, lowerPoints, division);
   }
 
   /**
@@ -61,8 +75,8 @@ public class ConeObject extends GraphicPrimitive {
    * @param topPoint 上の点
    * @param lowerPoints 底面の周囲の頂点
    */
-  private void updateSidePolygons(final float[] topPoint, final float[][] lowerPoints) {
-    for (int i = 0; i < this.division; i++) {
+  private void updateSidePolygons(final float[] topPoint, final float[][] lowerPoints, int division) {
+    for (int i = 0; i < division; i++) {
       final float[][] vertices = new float[3][3];
       vertices[0][0] = topPoint[0];
       vertices[0][1] = topPoint[1];
@@ -91,8 +105,8 @@ public class ConeObject extends GraphicPrimitive {
    * @param centerPoint 底面の中心
    * @param lowerPoints 底面の周囲の頂点
    */
-  private void updateLowerPolygons(final float[] centerPoint, final float[][] lowerPoints) {
-    for (int i = 0; i < this.division; i++) {
+  private void updateLowerPolygons(final float[] centerPoint, final float[][] lowerPoints, int division) {
+    for (int i = 0; i < division; i++) {
       final float[][] vertices = new float[3][3];
       vertices[0][0] = centerPoint[0];
       vertices[0][1] = centerPoint[1];
@@ -115,26 +129,26 @@ public class ConeObject extends GraphicPrimitive {
     }
   }
 
-  /**
-   * 大きさを設定します。
-   * 
-   * @param radius 底面の半径
-   * @param hight 高さ
-   */
-  public void setSize(float radius, float hight) {
-    this.radius = radius;
-    this.height = hight;
-    updatePolygons();
-  }
-
-  /**
-   * 分割数を設定します。
-   * 
-   * @param division 分割数
-   */
-  public void setDivision(int division) {
-    this.division = division;
-    updatePolygons();
-  }
+//  /**
+//   * 大きさを設定します。
+//   * 
+//   * @param radius 底面の半径
+//   * @param hight 高さ
+//   */
+//  public void setSize(float radius, float hight) {
+//    this.radius = radius;
+//    this.height = hight;
+//    updatePolygons();
+//  }
+//
+//  /**
+//   * 分割数を設定します。
+//   * 
+//   * @param division 分割数
+//   */
+//  public void setDivision(int division) {
+//    this.division = division;
+//    updatePolygons();
+//  }
 
 }

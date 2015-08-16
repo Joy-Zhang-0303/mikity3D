@@ -6,6 +6,7 @@
 package org.mklab.mikity.model.graphic;
 
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 
 /**
  * グラフィックプリミティブを表すクラスです。
@@ -15,11 +16,11 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
  */
 public class GraphicPrimitive implements GraphicObject {
 
-  /** 色。 */
-  private ColorModel color;
-  
-  /** 透明性。 */
-  private boolean transparent = false;
+//  /** 色。 */
+//  private ColorModel color;
+//  
+//  /** 透明性。 */
+//  private boolean isTransparent = false;
   
   /** 頂点配列の参照位置。 */
   private int vertexPosition = 0;
@@ -32,6 +33,24 @@ public class GraphicPrimitive implements GraphicObject {
   
   /** 法線ベクトル配列。 */
   private float normalVectorArray[];
+  
+  /** プリミティブ。 */
+  protected PrimitiveModel primitive;
+  
+//  /**
+//   * 新しく生成された<code>GraphicPrimitive</code>オブジェクトを初期化します。
+//   */
+//  public GraphicPrimitive() {
+//    super();
+//  }
+  
+  /**
+   * 新しく生成された<code>GraphicPrimitive</code>オブジェクトを初期化します。
+   * @param primitive プリミティブ
+   */
+  public GraphicPrimitive(PrimitiveModel primitive) {
+    this.primitive = primitive;
+  }
   
   /**
    * {@inheritDoc}
@@ -67,7 +86,7 @@ public class GraphicPrimitive implements GraphicObject {
    * @param color 色
    */
   public void setColor(ColorModel color) {
-    this.color = color;
+    this.primitive.setColor(color);
   }
   
   /**
@@ -76,17 +95,17 @@ public class GraphicPrimitive implements GraphicObject {
    * @return 色
    */
   public ColorModel getColor() {
-    return this.color;
+    return this.primitive.getColor();
   }
 
   
   /**
    * 透明性を設定します。
    * 
-   * @param transparent 透明性
+   * @param isTransparent 透明性
    */
-  public void setTransparent(boolean transparent) {
-    this.transparent = transparent;
+  public void setTransparent(boolean isTransparent) {
+    this.primitive.setTransparent(isTransparent);
   }
   
   /**
@@ -95,7 +114,7 @@ public class GraphicPrimitive implements GraphicObject {
    * @return 透明ならばtrue、そうでなければfalse
    */
   public boolean isTransparent() {
-    return this.transparent;
+    return this.primitive.isTransparent();
   }
 
   /**

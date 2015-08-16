@@ -1,6 +1,7 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
 import org.mklab.mikity.model.graphic.QuadPolygonObject;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglPrimitive;
 
 
@@ -13,25 +14,26 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglPrimitive;
 public class JoglQuadPolygon extends AbstractJoglPrimitive {
   /**
    * 新しく生成された<code>JoglQuadPolygon</code>オブジェクトを初期化します。
+   * @param polygon 四角形ポリゴン
    */
-  public JoglQuadPolygon() {
-    super(new QuadPolygonObject());
+  public JoglQuadPolygon(QuadPolygonModel polygon) {
+    super(new QuadPolygonObject(polygon));
   }
 
-  /**
-   * 4個の頂点を設定します。
-   * 
-   * @param vertices 4個の頂点
-   */
-  public void setVertices(float[][] vertices) {
-    ((QuadPolygonObject)this.object).setVertices(vertices);
-  }
-  
-  /**
-   * 法線ベクトルを設定します。
-   * @param normalVector 法線ベクトル
-   */
-  public void setNormalVector(float[] normalVector) {
-    ((QuadPolygonObject)this.object).setNormalVector(normalVector);
-  }
+//  /**
+//   * 4個の頂点を設定します。
+//   * 
+//   * @param vertices 4個の頂点
+//   */
+//  public void setVertices(float[][] vertices) {
+//    ((QuadPolygonObject)this.object).setVertices(vertices);
+//  }
+//  
+//  /**
+//   * 法線ベクトルを設定します。
+//   * @param normalVector 法線ベクトル
+//   */
+//  public void setNormalVector(float[] normalVector) {
+//    ((QuadPolygonObject)this.object).setNormalVector(normalVector);
+//  }
 }

@@ -1,6 +1,7 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
 import org.mklab.mikity.model.graphic.ConeObject;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglPrimitive;
 
 /**
@@ -12,28 +13,29 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglPrimitive;
 public class JoglCone extends AbstractJoglPrimitive {
   /**
    * 新しく生成された<code>JoglCone</code>オブジェクトを初期化します。
+   * @param cone モデル
    */
-  public JoglCone() {
-    super(new ConeObject());
+  public JoglCone(ConeModel cone) {
+    super(new ConeObject(cone));
   }
 
-  /**
-   * 大きさを設定します。
-   * 
-   * @param radius 底面の半径
-   * @param hight 高さ
-   */
-  public void setSize(float radius, float hight) {
-    ((ConeObject)this.object).setSize(radius, hight);
-  }
-
-  /**
-   * 分割数を設定します。
-   * 
-   * @param division 分割数
-   */
-  public void setDivision(int division) {
-    ((ConeObject)this.object).setDivision(division);
-  }
+//  /**
+//   * 大きさを設定します。
+//   * 
+//   * @param radius 底面の半径
+//   * @param hight 高さ
+//   */
+//  public void setSize(float radius, float hight) {
+//    ((ConeObject)this.object).setSize(radius, hight);
+//  }
+//
+//  /**
+//   * 分割数を設定します。
+//   * 
+//   * @param division 分割数
+//   */
+//  public void setDivision(int division) {
+//    ((ConeObject)this.object).setDivision(division);
+//  }
 
 }

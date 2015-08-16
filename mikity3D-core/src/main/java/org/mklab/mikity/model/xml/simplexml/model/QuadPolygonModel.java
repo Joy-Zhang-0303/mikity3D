@@ -189,6 +189,15 @@ public class QuadPolygonModel implements PrimitiveModel, Serializable, Cloneable
     this.vertices = vertices;
     updateNormalVector();
   }
+  
+  /**
+   * 頂点を返します。
+   * 
+   * @return 頂点
+   */
+  public List<VertexModel> getVertices() {
+    return this.vertices;
+  }
 
   /**
    * {@inheritDoc}

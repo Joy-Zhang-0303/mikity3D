@@ -39,16 +39,16 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたboxを含むグループ
    */
   public static OpenglesObject create(BoxModel box) {
-    final float width = box.getWidth();
-    final float height = box.getHeight();
-    final float depth = box.getDepth();
-    final ColorModel color = box.getColor();
-    final boolean transparent = box.isTransparent();
+//    final float width = box.getWidth();
+//    final float height = box.getHeight();
+//    final float depth = box.getDepth();
+//    final ColorModel color = box.getColor();
+//    final boolean transparent = box.isTransparent();
 
-    final OpenglesBox child = new OpenglesBox();
-    child.setColor(color);
-    child.setSize(width, height, depth);
-    child.setTransparent(transparent);
+    final OpenglesBox child = new OpenglesBox(box);
+//    child.setColor(color);
+//    child.setSize(width, height, depth);
+//    child.setTransparent(transparent);
 
     final TranslationModel translation = box.getTranslation();
     final RotationModel rotation = box.getRotation();
@@ -71,17 +71,17 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたcylinderを含むグループ
    */
   public static OpenglesObject create(CylinderModel cylinder) {
-    final int division = cylinder.getDivision();
-    final float radius = cylinder.getRadius();
-    final float hight = cylinder.getHeight();
-    final ColorModel color = cylinder.getColor();
-    final boolean transparent = cylinder.isTransparent();
+//    final int division = cylinder.getDivision();
+//    final float radius = cylinder.getRadius();
+//    final float hight = cylinder.getHeight();
+//    final ColorModel color = cylinder.getColor();
+//    final boolean transparent = cylinder.isTransparent();
 
-    final OpenglesCylinder child = new OpenglesCylinder();
-    child.setSize(radius, hight);
-    child.setDivision(division);
-    child.setColor(color);
-    child.setTransparent(transparent);
+    final OpenglesCylinder child = new OpenglesCylinder(cylinder);
+//    child.setSize(radius, hight);
+//    child.setDivision(division);
+//    child.setColor(color);
+//    child.setTransparent(transparent);
 
     final TranslationModel translation = cylinder.getTranslation();
     final RotationModel rotation = cylinder.getRotation();
@@ -104,16 +104,16 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたsphereを含むグループ
    */
   public static OpenglesObject create(SphereModel sphere) {
-    final int division = sphere.getDivision();
-    final float radius = sphere.getRadius();
-    final ColorModel color = sphere.getColor();
-    final boolean transparent = sphere.isTransparent();
+//    final int division = sphere.getDivision();
+//    final float radius = sphere.getRadius();
+//    final ColorModel color = sphere.getColor();
+//    final boolean transparent = sphere.isTransparent();
 
-    final OpenglesSphere child = new OpenglesSphere();
-    child.setSize(radius);
-    child.setDivision(division);
-    child.setColor(color);
-    child.setTransparent(transparent);
+    final OpenglesSphere child = new OpenglesSphere(sphere);
+//    child.setSize(radius);
+//    child.setDivision(division);
+//    child.setColor(color);
+//    child.setTransparent(transparent);
 
     final TranslationModel translation = sphere.getTranslation();
     final RotationModel rotation = sphere.getRotation();
@@ -136,17 +136,17 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたconeを含むグループ
    */
   public static OpenglesObject create(ConeModel cone) {
-    final float radius = cone.getRadisu();
-    final float hight = cone.getHeight();
-    final int division = cone.getDivision();
-    final ColorModel color = cone.getColor();
-    final boolean transparent = cone.isTransparent();
+//    final float radius = cone.getRadisu();
+//    final float hight = cone.getHeight();
+//    final int division = cone.getDivision();
+//    final ColorModel color = cone.getColor();
+//    final boolean transparent = cone.isTransparent();
 
-    final OpenglesCone child = new OpenglesCone();
-    child.setColor(color);
-    child.setSize(radius, hight);
-    child.setDivision(division);
-    child.setTransparent(transparent);
+    final OpenglesCone child = new OpenglesCone(cone);
+//    child.setColor(color);
+//    child.setSize(radius, hight);
+//    child.setDivision(division);
+//    child.setTransparent(transparent);
 
     final TranslationModel translation = cone.getTranslation();
     final RotationModel rotation = cone.getRotation();
@@ -169,28 +169,28 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられた三角形ポリゴンを含むグループを生成します。
    */
   public static OpenglesObject create(TrianglePolygonModel polygon) {
-    final float[][] vertices = new float[3][3];
-    for (int i = 0; i < 3; i++) {
-      final VertexModel vertex = polygon.getVertex(i);
-      vertices[i][0] = vertex.getX();
-      vertices[i][1] = vertex.getY();
-      vertices[i][2] = vertex.getZ();
-    }
+//    final float[][] vertices = new float[3][3];
+//    for (int i = 0; i < 3; i++) {
+//      final VertexModel vertex = polygon.getVertex(i);
+//      vertices[i][0] = vertex.getX();
+//      vertices[i][1] = vertex.getY();
+//      vertices[i][2] = vertex.getZ();
+//    }
+//
+//    final float[] normalVector = new float[3];
+//    final Vector3 vector = polygon.getNormalVector();
+//    normalVector[0] = vector.getX();
+//    normalVector[1] = vector.getY();
+//    normalVector[2] = vector.getZ();
+//
+//    final ColorModel color = polygon.getColor();
+//    final boolean transparent = polygon.isTransparent();
 
-    final float[] normalVector = new float[3];
-    final Vector3 vector = polygon.getNormalVector();
-    normalVector[0] = vector.getX();
-    normalVector[1] = vector.getY();
-    normalVector[2] = vector.getZ();
-
-    final ColorModel color = polygon.getColor();
-    final boolean transparent = polygon.isTransparent();
-
-    final OpenglesTrianglePolygon child = new OpenglesTrianglePolygon();
-    child.setColor(color);
-    child.setVertices(vertices);
-    child.setNormalVector(normalVector);
-    child.setTransparent(transparent);
+    final OpenglesTrianglePolygon child = new OpenglesTrianglePolygon(polygon);
+//    child.setColor(color);
+//    child.setVertices(vertices);
+//    child.setNormalVector(normalVector);
+//    child.setTransparent(transparent);
 
     final TranslationModel translation = polygon.getTranslation();
     final RotationModel rotation = polygon.getRotation();
@@ -213,28 +213,28 @@ public class OpenglesPrimitiveFactory {
    * @return　与えられた四角形ポリゴンを含むグループ
    */
   public static OpenglesObject create(QuadPolygonModel polygon) {
-    final float[][] vertices = new float[4][3];
-    for (int i = 0; i < 4; i++) {
-      final VertexModel vertex = polygon.getVertex(i);
-      vertices[i][0] = vertex.getX();
-      vertices[i][1] = vertex.getY();
-      vertices[i][2] = vertex.getZ();
-    }
+//    final float[][] vertices = new float[4][3];
+//    for (int i = 0; i < 4; i++) {
+//      final VertexModel vertex = polygon.getVertex(i);
+//      vertices[i][0] = vertex.getX();
+//      vertices[i][1] = vertex.getY();
+//      vertices[i][2] = vertex.getZ();
+//    }
+//
+//    final float[] normalVector = new float[3];
+//    final Vector3 vector = polygon.getNormalVector();
+//    normalVector[0] = vector.getX();
+//    normalVector[1] = vector.getY();
+//    normalVector[2] = vector.getZ();
+//
+//    final ColorModel color = polygon.getColor();
+//    final boolean transparent = polygon.isTransparent();
 
-    final float[] normalVector = new float[3];
-    final Vector3 vector = polygon.getNormalVector();
-    normalVector[0] = vector.getX();
-    normalVector[1] = vector.getY();
-    normalVector[2] = vector.getZ();
-
-    final ColorModel color = polygon.getColor();
-    final boolean transparent = polygon.isTransparent();
-
-    final OpenglesQuadPolygon child = new OpenglesQuadPolygon();
-    child.setColor(color);
-    child.setVertices(vertices);
-    child.setNormalVector(normalVector);
-    child.setTransparent(transparent);
+    final OpenglesQuadPolygon child = new OpenglesQuadPolygon(polygon);
+//    child.setColor(color);
+//    child.setVertices(vertices);
+//    child.setNormalVector(normalVector);
+//    child.setTransparent(transparent);
 
     final TranslationModel translation = polygon.getTranslation();
     final RotationModel rotation = polygon.getRotation();

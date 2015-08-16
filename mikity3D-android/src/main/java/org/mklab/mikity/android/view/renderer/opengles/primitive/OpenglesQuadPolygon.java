@@ -7,6 +7,7 @@ package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
 import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesPrimitive;
 import org.mklab.mikity.model.graphic.QuadPolygonObject;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 
 /**
  * 四角ポリゴンをOpenGLESで表したクラスです。
@@ -17,27 +18,28 @@ import org.mklab.mikity.model.graphic.QuadPolygonObject;
 public class OpenglesQuadPolygon extends AbstractOpenglesPrimitive {
   /**
    * 新しく生成された<code>OpenglesQuadPolygon</code>オブジェクトを初期化します。
+   * @param polygon 四角形ポリゴン
    */
-  public OpenglesQuadPolygon() {
-    super(new QuadPolygonObject());
+  public OpenglesQuadPolygon(QuadPolygonModel polygon) {
+    super(new QuadPolygonObject(polygon));
   }
 
-  /**
-   * 4個の頂点を設定します。
-   * 
-   * @param vertices 4個の頂点
-   */
-  public void setVertices(float[][] vertices) {
-    ((QuadPolygonObject)this.object).setVertices(vertices);
-  }
-  
-  /**
-   * 法線ベクトルを設定します。
-   * @param normalVector 法線ベクトル
-   */
-  public void setNormalVector(float[] normalVector) {
-    ((QuadPolygonObject)this.object).setNormalVector(normalVector);
-  }
+//  /**
+//   * 4個の頂点を設定します。
+//   * 
+//   * @param vertices 4個の頂点
+//   */
+//  public void setVertices(float[][] vertices) {
+//    ((QuadPolygonObject)this.object).setVertices(vertices);
+//  }
+//  
+//  /**
+//   * 法線ベクトルを設定します。
+//   * @param normalVector 法線ベクトル
+//   */
+//  public void setNormalVector(float[] normalVector) {
+//    ((QuadPolygonObject)this.object).setNormalVector(normalVector);
+//  }
 }
 
 

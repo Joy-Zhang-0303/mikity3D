@@ -177,6 +177,15 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
     this.vertices.add(vertex2);
     updateNormalVector();
   }
+  
+  /**
+   * 3個の頂点を返します。
+   * 
+   * @return 3個の頂点
+   */
+  public List<VertexModel> getVerties() {
+    return this.vertices;
+  }
 
   /**
    * 頂点を設定します。

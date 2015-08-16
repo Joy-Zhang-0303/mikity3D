@@ -7,6 +7,7 @@ package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
 import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesPrimitive;
 import org.mklab.mikity.model.graphic.TrianglePolygonObject;
+import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
 
 /**
@@ -18,24 +19,25 @@ import org.mklab.mikity.model.graphic.TrianglePolygonObject;
 public class OpenglesTrianglePolygon extends AbstractOpenglesPrimitive {
   /**
    * 新しく生成された<code>OpenglesTrianglePolygon</code>オブジェクトを初期化します。
+   * @param polygon 三角形ポリゴン
    */
-  public OpenglesTrianglePolygon() {
-    super(new TrianglePolygonObject());
+  public OpenglesTrianglePolygon(TrianglePolygonModel polygon) {
+    super(new TrianglePolygonObject(polygon));
   }
 
-  /**
-   * 3個の頂点を設定します。
-   * @param vertices 3個の頂点
-   */
-  public void setVertices(float[][] vertices) {
-    ((TrianglePolygonObject)this.object).setVertices(vertices);
-  }
-  
-  /**
-   * 法線ベクトルを設定します。
-   * @param normalVector 法線ベクトル
-   */
-  public void setNormalVector(float[] normalVector) {
-    ((TrianglePolygonObject)this.object).setNormalVector(normalVector);
-  }
+//  /**
+//   * 3個の頂点を設定します。
+//   * @param vertices 3個の頂点
+//   */
+//  public void setVertices(float[][] vertices) {
+//    ((TrianglePolygonObject)this.object).setVertices(vertices);
+//  }
+//  
+//  /**
+//   * 法線ベクトルを設定します。
+//   * @param normalVector 法線ベクトル
+//   */
+//  public void setNormalVector(float[] normalVector) {
+//    ((TrianglePolygonObject)this.object).setNormalVector(normalVector);
+//  }
 }

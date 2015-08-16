@@ -7,6 +7,7 @@ package org.mklab.mikity.android.view.renderer.opengles.primitive;
 
 import org.mklab.mikity.android.view.renderer.opengles.AbstractOpenglesPrimitive;
 import org.mklab.mikity.model.graphic.ConeObject;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 
 
 /**
@@ -18,27 +19,28 @@ import org.mklab.mikity.model.graphic.ConeObject;
 public class OpenglesCone extends AbstractOpenglesPrimitive {
   /**
    * 新しく生成された<code>OpenglesCone</code>オブジェクトを初期化します。
+   * @param cone モデル
    */
-  public OpenglesCone() {
-    super(new ConeObject());
+  public OpenglesCone(ConeModel cone) {
+    super(new ConeObject(cone));
   }
 
-  /**
-   * 大きさを設定します。
-   * 
-   * @param radius 底面の半径
-   * @param hight 高さ
-   */
-  public void setSize(float radius, float hight) {
-    ((ConeObject)this.object).setSize(radius, hight);
-  }
-
-  /**
-   * 分割数を設定します。
-   * 
-   * @param division 分割数
-   */
-  public void setDivision(int division) {
-    ((ConeObject)this.object).setDivision(division);
-  }
+//  /**
+//   * 大きさを設定します。
+//   * 
+//   * @param radius 底面の半径
+//   * @param hight 高さ
+//   */
+//  public void setSize(float radius, float hight) {
+//    ((ConeObject)this.object).setSize(radius, hight);
+//  }
+//
+//  /**
+//   * 分割数を設定します。
+//   * 
+//   * @param division 分割数
+//   */
+//  public void setDivision(int division) {
+//    ((ConeObject)this.object).setDivision(division);
+//  }
 }

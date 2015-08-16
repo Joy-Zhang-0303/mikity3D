@@ -1,6 +1,7 @@
 package org.mklab.mikity.view.renderer.jogl.primitive;
 
 import org.mklab.mikity.model.graphic.BoxObject;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.view.renderer.jogl.AbstractJoglPrimitive;
 
 
@@ -13,20 +14,21 @@ import org.mklab.mikity.view.renderer.jogl.AbstractJoglPrimitive;
 public class JoglBox extends AbstractJoglPrimitive {
   /**
    * 新しく生成された<code>JoglBox</code>オブジェクトを初期化します。
+   * @param box モデル
    */
-  public JoglBox() {
-    super(new BoxObject());
+  public JoglBox(BoxModel box) {
+    super(new BoxObject(box));
   }
 
-  /**
-   * 大きさを設定します。
-   * 
-   * @param width 幅
-   * @param height 高さ
-   * @param depth 奥行
-   */
-  public void setSize(float width, float height, float depth) {
-    ((BoxObject)this.object).setSize(width, height, depth);
-  }
+//  /**
+//   * 大きさを設定します。
+//   * 
+//   * @param width 幅
+//   * @param height 高さ
+//   * @param depth 奥行
+//   */
+//  public void setSize(float width, float height, float depth) {
+//    ((BoxObject)this.object).setSize(width, height, depth);
+//  }
 
 }
