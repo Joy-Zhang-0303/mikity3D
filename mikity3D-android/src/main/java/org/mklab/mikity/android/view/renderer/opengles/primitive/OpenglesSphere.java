@@ -23,21 +23,4 @@ public class OpenglesSphere extends AbstractOpenglesPrimitive {
   public OpenglesSphere(SphereModel sphere) {
     super(new SphereObject(sphere));
   }
-
-//  /**
-//   * 大きさを設定します。
-//   * 
-//   * @param radius 半径
-//   */
-//  public void setSize(float radius) {
-//    ((SphereObject)this.object).setSize(radius);
-//  }
-//  
-//  /**
-//   * 分割数を設定します。
-//   * @param division 分割数
-//   */
-//  public void setDivision(int division) {
-//    ((SphereObject)this.object).setDivision(division);
-//  }
 }

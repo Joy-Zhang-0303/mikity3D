@@ -19,21 +19,4 @@ public class JoglTrianglePolygon extends AbstractJoglPrimitive {
   public JoglTrianglePolygon(TrianglePolygonModel triangle) {
     super(new TrianglePolygonObject(triangle));
   }
-
-//  /**
-//   * 3個の頂点を設定します。
-//   * @param vertices 3個の頂点
-//   */
-//  public void setVertices(float[][] vertices) {
-//    ((TrianglePolygonObject)this.object).setVertices(vertices);
-//  }
-//  
-//  /**
-//   * 法線ベクトルを設定します。
-//   * @param normalVector 法線ベクトル
-//   */
-//  public void setNormalVector(float[] normalVector) {
-//    ((TrianglePolygonObject)this.object).setNormalVector(normalVector);
-//  }
-
 }

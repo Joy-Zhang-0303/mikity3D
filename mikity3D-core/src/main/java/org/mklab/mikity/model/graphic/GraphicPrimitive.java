@@ -15,13 +15,6 @@ import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
  * @version $Revision$, 2015/07/11
  */
 public class GraphicPrimitive implements GraphicObject {
-
-//  /** 色。 */
-//  private ColorModel color;
-//  
-//  /** 透明性。 */
-//  private boolean isTransparent = false;
-  
   /** 頂点配列の参照位置。 */
   private int vertexPosition = 0;
   
@@ -36,13 +29,6 @@ public class GraphicPrimitive implements GraphicObject {
   
   /** プリミティブ。 */
   protected PrimitiveModel primitive;
-  
-//  /**
-//   * 新しく生成された<code>GraphicPrimitive</code>オブジェクトを初期化します。
-//   */
-//  public GraphicPrimitive() {
-//    super();
-//  }
   
   /**
    * 新しく生成された<code>GraphicPrimitive</code>オブジェクトを初期化します。

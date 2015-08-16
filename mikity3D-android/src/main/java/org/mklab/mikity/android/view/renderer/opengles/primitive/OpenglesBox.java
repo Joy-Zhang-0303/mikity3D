@@ -24,15 +24,4 @@ public class OpenglesBox extends AbstractOpenglesPrimitive {
   public OpenglesBox(BoxModel box) {
     super(new BoxObject(box));
   }
-
-//  /**
-//   * 大きさを設定します。
-//   * 
-//   * @param width 幅
-//   * @param height 高さ
-//   * @param depth 奥行
-//   */
-//  public void setSize(float width, float height, float depth) {
-//    ((BoxObject)this.object).setSize(width, height, depth);
-//  }
 }

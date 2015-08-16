@@ -10,15 +10,6 @@ import org.mklab.mikity.util.Vector3;
  * @version $Revision$, 2012/02/09
  */
 public class ConeObject extends GraphicPrimitive {
-//  /** 底面の半径。 */
-//  private float radius = 0;
-//
-//  /** 高さ。 */
-//  private float height = 0;
-//
-//  /** 分割数。 */
-//  private int division = 0;
-  
   /**
    * 新しく生成された<code>ConeObject</code>オブジェクトを初期化します。
    * @param cone コーン
@@ -128,27 +119,4 @@ public class ConeObject extends GraphicPrimitive {
       appendNormalVectorsOfTriangle(normalVector);
     }
   }
-
-//  /**
-//   * 大きさを設定します。
-//   * 
-//   * @param radius 底面の半径
-//   * @param hight 高さ
-//   */
-//  public void setSize(float radius, float hight) {
-//    this.radius = radius;
-//    this.height = hight;
-//    updatePolygons();
-//  }
-//
-//  /**
-//   * 分割数を設定します。
-//   * 
-//   * @param division 分割数
-//   */
-//  public void setDivision(int division) {
-//    this.division = division;
-//    updatePolygons();
-//  }
-
 }

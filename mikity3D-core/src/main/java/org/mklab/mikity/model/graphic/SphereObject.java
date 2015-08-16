@@ -10,12 +10,6 @@ import org.mklab.mikity.util.Vector3;
  * @version $Revision$, 2012/02/09
  */
 public class SphereObject extends GraphicPrimitive {
-//  /** 半径。 */
-//  private float radius = 0;
-//
-//  /** 分割数。 */
-//  private int division = 0;
-  
   /**
    * 新しく生成された<code>SphereObject</code>オブジェクトを初期化します。
    * @param sphere 球
@@ -130,24 +124,4 @@ public class SphereObject extends GraphicPrimitive {
       }
     }
   }
-
-//  /**
-//   * 大きさを設定します。
-//   * 
-//   * @param radius 半径
-//   */
-//  public void setSize(float radius) {
-//    this.radius = radius;
-//    updatePolygons();
-//  }
-//  
-//  /**
-//   * 分割数を設定します。
-//   * @param division 分割数
-//   */
-//  public void setDivision(int division) {
-//    this.division = division;
-//    updatePolygons();
-//  }
-
 }

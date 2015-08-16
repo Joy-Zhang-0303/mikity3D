@@ -2,7 +2,6 @@ package org.mklab.mikity.view.renderer.jogl;
 
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
-import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
@@ -11,8 +10,6 @@ import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
-import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
-import org.mklab.mikity.util.Vector3;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglBox;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglCone;
 import org.mklab.mikity.view.renderer.jogl.primitive.JoglCylinder;
@@ -64,16 +61,7 @@ public class JoglPrimitiveFactory {
    * @return 与えられたboxを含むグループ
    */
   public static JoglObject create(BoxModel box) {
-//    final float width = box.getWidth();
-//    final float height = box.getHeight();
-//    final float depth = box.getDepth();
-//    final ColorModel color = box.getColor();
-//    final boolean transparent = box.isTransparent();
-
     final JoglBox child = new JoglBox(box);
-//    child.setColor(color);
-//    child.setSize(width, height, depth);
-//    child.setTransparent(transparent);
 
     final TranslationModel translation = box.getTranslation();
     final RotationModel rotation = box.getRotation();
@@ -96,17 +84,7 @@ public class JoglPrimitiveFactory {
    * @return 与えられたcylinderを含むグループ
    */
   public static JoglObject create(CylinderModel cylinder) {
-//    final int division = cylinder.getDivision();
-//    final float radius = cylinder.getRadius();
-//    final float hight = cylinder.getHeight();
-//    final ColorModel color = cylinder.getColor();
-//    final boolean transparent = cylinder.isTransparent();
-
     final JoglCylinder child = new JoglCylinder(cylinder);
-//    child.setSize(radius, hight);
-//    child.setDivision(division);
-//    child.setColor(color);
-//    child.setTransparent(transparent);
 
     final TranslationModel translation = cylinder.getTranslation();
     final RotationModel rotation = cylinder.getRotation();
@@ -129,16 +107,7 @@ public class JoglPrimitiveFactory {
    * @return 与えられたsphereを含むグループ
    */
   public static JoglObject create(SphereModel sphere) {
-//    final int division = sphere.getDivision();
-//    final float radius = sphere.getRadius();
-//    final ColorModel color = sphere.getColor();
-//    final boolean transparent = sphere.isTransparent();
-
     final JoglSphere child = new JoglSphere(sphere);
-//    child.setSize(radius);
-//    child.setDivision(division);
-//    child.setColor(color);
-//    child.setTransparent(transparent);
 
     final TranslationModel translation = sphere.getTranslation();
     final RotationModel rotation = sphere.getRotation();
@@ -161,17 +130,7 @@ public class JoglPrimitiveFactory {
    * @return 与えられたconeを含むグループ
    */
   public static JoglObject create(ConeModel cone) {
-//    final float radius = cone.getRadisu();
-//    final float hight = cone.getHeight();
-//    final int division = cone.getDivision();
-//    final ColorModel color = cone.getColor();
-//    final boolean transparent = cone.isTransparent();
-
     final JoglCone child = new JoglCone(cone);
-//    child.setColor(color);
-//    child.setSize(radius, hight);
-//    child.setDivision(division);
-//    child.setTransparent(transparent);
 
     final TranslationModel translation = cone.getTranslation();
     final RotationModel rotation = cone.getRotation();
@@ -194,28 +153,7 @@ public class JoglPrimitiveFactory {
    * @return 与えられた三角形ポリゴンを含むグループを生成します。
    */
   public static JoglObject create(TrianglePolygonModel polygon) {
-//    final float[][] vertices = new float[3][3];
-//    for (int i = 0; i < 3; i++) {
-//      final VertexModel vertex = polygon.getVertex(i);
-//      vertices[i][0] = vertex.getX();
-//      vertices[i][1] = vertex.getY();
-//      vertices[i][2] = vertex.getZ();
-//    }
-//
-//    final float[] normalVector = new float[3];
-//    final Vector3 vector = polygon.getNormalVector();
-//    normalVector[0] = vector.getX();
-//    normalVector[1] = vector.getY();
-//    normalVector[2] = vector.getZ();
-//
-//    final ColorModel color = polygon.getColor();
-//    final boolean transparent = polygon.isTransparent();
-
     final JoglTrianglePolygon child = new JoglTrianglePolygon(polygon);
-//    child.setColor(color);
-//    child.setVertices(vertices);
-//    child.setNormalVector(normalVector);
-//    child.setTransparent(transparent);
 
     final TranslationModel translation = polygon.getTranslation();
     final RotationModel rotation = polygon.getRotation();
@@ -238,28 +176,7 @@ public class JoglPrimitiveFactory {
    * @return　与えられた四角形ポリゴンを含むグループ
    */
   public static JoglObject create(QuadPolygonModel polygon) {
-//    final float[][] vertices = new float[4][3];
-//    for (int i = 0; i < 4; i++) {
-//      final VertexModel vertex = polygon.getVertex(i);
-//      vertices[i][0] = vertex.getX();
-//      vertices[i][1] = vertex.getY();
-//      vertices[i][2] = vertex.getZ();
-//    }
-//
-//    final float[] normalVector = new float[3];
-//    final Vector3 vector = polygon.getNormalVector();
-//    normalVector[0] = vector.getX();
-//    normalVector[1] = vector.getY();
-//    normalVector[2] = vector.getZ();
-//
-//    final ColorModel color = polygon.getColor();
-//    final boolean transparent = polygon.isTransparent();
-
     final JoglQuadPolygon child = new JoglQuadPolygon(polygon);
-//    child.setColor(color);
-//    child.setVertices(vertices);
-//    child.setNormalVector(normalVector);
-//    child.setTransparent(transparent);
 
     final TranslationModel translation = polygon.getTranslation();
     final RotationModel rotation = polygon.getRotation();

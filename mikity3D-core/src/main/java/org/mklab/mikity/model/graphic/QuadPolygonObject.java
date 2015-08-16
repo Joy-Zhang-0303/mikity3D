@@ -13,12 +13,6 @@ import org.mklab.mikity.util.Vector3;
  * @version $Revision$, 2012/02/09
  */
 public class QuadPolygonObject extends GraphicPrimitive {
-//  /** 頂点 (v0,v1,v2,v3)(反時計回り) */
-//  private float[][] vertices = new float[4][3];
-//  
-//  /** 法線ベクトル */
-//  private float[] normalVector = new float[3];
-  
   /**
    * 新しく生成された<code>QuadPolygonObject</code>オブジェクトを初期化します。
    * @param polygon 四角形ポリゴン
@@ -27,7 +21,6 @@ public class QuadPolygonObject extends GraphicPrimitive {
     super(polygon);
     updatePolygons();
   }
-  
 
   /**
    * ポリゴンを更新します。
@@ -73,23 +66,4 @@ public class QuadPolygonObject extends GraphicPrimitive {
     appendVertices(vertices2);
     appendNormalVector(normalVector2);
   }
-
-//  /**
-//   * 4個の頂点を設定します。
-//   * 
-//   * @param vertices 4個の頂点
-//   */
-//  public void setVertices(float[][] vertices) {
-//    this.vertices = vertices;
-//    updatePolygons();
-//  }
-//  
-//  /**
-//   * 法線ベクトルを設定します。
-//   * @param normalVector 法線ベクトル
-//   */
-//  public void setNormalVector(float[] normalVector) {
-//    this.normalVector = normalVector;
-//    updatePolygons();
-//  }
 }

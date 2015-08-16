@@ -9,18 +9,6 @@ import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
  * @version $Revision$, 2012/01/26
  */
 public class BoxObject extends GraphicPrimitive {
-//  /** モデル。 */
-//  private BoxModel box;
-
-  /** 幅 */
-//  private float width;
-//
-//  /** 高さ */
-//  private float height;
-//
-//  /** 奥行 */
-//  private float depth;
-
   /**
    * 新しく生成された<code>BoxObject</code>オブジェクトを初期化します。
    * @param box モデル
@@ -136,20 +124,4 @@ public class BoxObject extends GraphicPrimitive {
     appendVertices(vertices);
     appendNormalVector(normalVector);
   }
-
-//  /**
-//   * 大きさを設定します。
-//   * 
-//   * @param width 幅
-//   * @param height 高さ
-//   * @param depth 奥行
-//   */
-//  public void setSize(float width, float height, float depth) {
-//    this.width = width;
-//    this.height = height;
-//    this.depth = depth;
-//    
-//    updatePolygons();
-//  }
-
 }

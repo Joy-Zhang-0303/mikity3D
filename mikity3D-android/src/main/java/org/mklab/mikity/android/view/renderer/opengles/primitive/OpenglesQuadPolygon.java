@@ -23,23 +23,6 @@ public class OpenglesQuadPolygon extends AbstractOpenglesPrimitive {
   public OpenglesQuadPolygon(QuadPolygonModel polygon) {
     super(new QuadPolygonObject(polygon));
   }
-
-//  /**
-//   * 4個の頂点を設定します。
-//   * 
-//   * @param vertices 4個の頂点
-//   */
-//  public void setVertices(float[][] vertices) {
-//    ((QuadPolygonObject)this.object).setVertices(vertices);
-//  }
-//  
-//  /**
-//   * 法線ベクトルを設定します。
-//   * @param normalVector 法線ベクトル
-//   */
-//  public void setNormalVector(float[] normalVector) {
-//    ((QuadPolygonObject)this.object).setNormalVector(normalVector);
-//  }
 }
 
 
