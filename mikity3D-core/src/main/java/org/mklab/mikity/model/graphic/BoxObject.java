@@ -1,7 +1,7 @@
 package org.mklab.mikity.model.graphic;
 
 /**
- * BOXをJOGLで表したクラスです
+ * BOXを表わすクラスです
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/26

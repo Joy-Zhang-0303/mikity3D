@@ -1,7 +1,7 @@
 package org.mklab.mikity.model.graphic;
 
 /**
- * 三角形ポリゴンをJOGLで表したクラスです。
+ * 三角形ポリゴンを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09

@@ -4,7 +4,7 @@ import org.mklab.mikity.util.Vector3;
 
 
 /**
- * シリンダーをJOGLで表すクラスです。
+ * シリンダーを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/31

@@ -3,7 +3,7 @@ package org.mklab.mikity.model.graphic;
 import org.mklab.mikity.util.Vector3;
 
 /**
- * 球をJOGLで表したクラスです。
+ * 球を表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09

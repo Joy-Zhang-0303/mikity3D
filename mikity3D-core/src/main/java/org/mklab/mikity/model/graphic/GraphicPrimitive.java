@@ -14,9 +14,7 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
  * @version $Revision$, 2015/07/11
  */
 public class GraphicPrimitive implements GraphicObject {
-//  /** 色。 */
-//  private String colorName;
-  
+
   /** 色。 */
   private ColorModel color;
   
@@ -62,24 +60,6 @@ public class GraphicPrimitive implements GraphicObject {
   public int getNormalVectorArrayLength() {
     return this.normalVectorArray.length;
   }
-  
-//  /**
-//   * 色を設定します。
-//   * 
-//   * @param colorName 色
-//   */
-//  public void setColorName(String colorName) {
-//    this.colorName = colorName;
-//  }
-  
-//  /**
-//   * 色を返します。
-//   * 
-//   * @return 色
-//   */
-//  public String getColorName() {
-//    return this.colorName;
-//  }
   
   /**
    * 色を設定します。
