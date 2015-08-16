@@ -59,22 +59,22 @@ public class OpenglesPrimitive extends AbstractOpenglesObject {
     }
   }
   
-  /**
-   * 色を設定します。
-   * 
-   * @param color 色
-   */
-  public void setColor(ColorModel color) {
-    ((GraphicPrimitive)this.object).setColor(color);
-  }
-  
-  /**
-   * 透明性を設定します。
-   * 
-   * @param transparent 透明性
-   */
-  public void setTransparent(boolean transparent) {
-    ((GraphicPrimitive)this.object).setTransparent(transparent);
-  }
+//  /**
+//   * 色を設定します。
+//   * 
+//   * @param color 色
+//   */
+//  public void setColor(ColorModel color) {
+//    ((GraphicPrimitive)this.object).setColor(color);
+//  }
+//  
+//  /**
+//   * 透明性を設定します。
+//   * 
+//   * @param transparent 透明性
+//   */
+//  public void setTransparent(boolean transparent) {
+//    ((GraphicPrimitive)this.object).setTransparent(transparent);
+//  }
 }
 
