@@ -32,165 +32,175 @@ public class JoglPrimitiveFactory {
    * @return 与えられたプリミティブを含むグループ
    */
   public static JoglObject create(PrimitiveModel primitive) {
-    if (primitive instanceof BoxModel) {
-      return create((BoxModel)primitive);
-    }
-    if (primitive instanceof CylinderModel) {
-      return create((CylinderModel)primitive);
-    }
-    if (primitive instanceof ConeModel) {
-      return create((ConeModel)primitive);
-    }
-    if (primitive instanceof SphereModel) {
-      return create((SphereModel)primitive);
-    }
-    if (primitive instanceof TrianglePolygonModel) {
-      return create((TrianglePolygonModel)primitive);
-    }
-    if (primitive instanceof QuadPolygonModel) {
-      return create((QuadPolygonModel)primitive);
-    }
+    final JoglPrimitive child;
     
-    throw new IllegalArgumentException(primitive.getClass().toString());
+    if (primitive instanceof BoxModel) {
+      child = new JoglPrimitive(new BoxObject((BoxModel)primitive));
+    } else if (primitive instanceof CylinderModel) {
+      child = new JoglPrimitive(new CylinderObject((CylinderModel)primitive));
+    } else if (primitive instanceof ConeModel) {
+      child = new JoglPrimitive(new ConeObject((ConeModel)primitive));
+    } else if (primitive instanceof SphereModel) {
+      child = new JoglPrimitive(new SphereObject((SphereModel)primitive));
+    } else if (primitive instanceof TrianglePolygonModel) {
+      child = new JoglPrimitive(new TrianglePolygonObject((TrianglePolygonModel)primitive));
+    } else if (primitive instanceof QuadPolygonModel) {
+      child = new JoglPrimitive(new QuadPolygonObject((QuadPolygonModel)primitive));
+    } else {
+      throw new IllegalArgumentException(primitive.getClass().toString());
+    }
+   
+    final TranslationModel translation = primitive.getTranslation();
+    final RotationModel rotation = primitive.getRotation();
+
+    if (translation == null && rotation == null) {
+      return child;
+    }
+
+    final JoglObjectGroup group = JoglObjectGroup.create();
+    group.addChild(child);
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
+    
+    return group;
   }
   
-  /**
-   * 与えられたboxを含むグループを生成します。
-   * 
-   * @param box ボックス
-   * @return 与えられたboxを含むグループ
-   */
-  public static JoglObject create(BoxModel box) {
-    final JoglPrimitive child = new JoglPrimitive(new BoxObject(box));
-
-    final TranslationModel translation = box.getTranslation();
-    final RotationModel rotation = box.getRotation();
-
-    if (translation == null && rotation == null) {
-      return child;
-    }
-
-    final JoglObjectGroup group = JoglObjectGroup.create();
-    group.addChild(child);
-    group.setBaseCoordinate(createCoordinate(translation, rotation));
-    
-    return group;
-  }
-
-  /**
-   * 与えられたcylinderを含むなグループを生成します。
-   * 
-   * @param cylinder シリンダー
-   * @return 与えられたcylinderを含むグループ
-   */
-  public static JoglObject create(CylinderModel cylinder) {
-    final JoglPrimitive child = new JoglPrimitive(new CylinderObject(cylinder));
-
-    final TranslationModel translation = cylinder.getTranslation();
-    final RotationModel rotation = cylinder.getRotation();
-
-    if (translation == null && rotation == null) {
-      return child;
-    }
-
-    final JoglObjectGroup group =  JoglObjectGroup.create();
-    group.addChild(child);
-    group.setBaseCoordinate(createCoordinate(translation, rotation));
-
-    return group;
-  }
-
-  /**
-   * 与えられたsphereを含むグループを生成します。
-   * 
-   * @param sphere 球体
-   * @return 与えられたsphereを含むグループ
-   */
-  public static JoglObject create(SphereModel sphere) {
-    final JoglPrimitive child = new JoglPrimitive(new SphereObject(sphere));
-
-    final TranslationModel translation = sphere.getTranslation();
-    final RotationModel rotation = sphere.getRotation();
-
-    if (translation == null && rotation == null) {
-      return child;
-    }
-
-    final JoglObjectGroup group = JoglObjectGroup.create();
-    group.addChild(child);
-    group.setBaseCoordinate(createCoordinate(translation, rotation));
-
-    return group;
-  }
-
-  /**
-   * 与えられたconeを含むグループを生成します。
-   * 
-   * @param cone コーン
-   * @return 与えられたconeを含むグループ
-   */
-  public static JoglObject create(ConeModel cone) {
-    final JoglPrimitive child = new JoglPrimitive(new ConeObject(cone));
-
-    final TranslationModel translation = cone.getTranslation();
-    final RotationModel rotation = cone.getRotation();
-
-    if (translation == null && rotation == null) {
-      return child;
-    }
-
-    final JoglObjectGroup group = JoglObjectGroup.create();
-    group.addChild(child);
-    group.setBaseCoordinate(createCoordinate(translation, rotation));
-
-    return group;
-  }
-
-  /**
-   * 与えられた三角形ポリゴンを含むグループを生成します。
-   * 
-   * @param polygon 三角形のポリゴン
-   * @return 与えられた三角形ポリゴンを含むグループを生成します。
-   */
-  public static JoglObject create(TrianglePolygonModel polygon) {
-    final JoglPrimitive child = new JoglPrimitive(new TrianglePolygonObject(polygon));
-
-    final TranslationModel translation = polygon.getTranslation();
-    final RotationModel rotation = polygon.getRotation();
-    
-    if (translation == null && rotation == null) {
-      return child;
-    }
-    
-    final JoglObjectGroup group = JoglObjectGroup.create();
-    group.addChild(child);
-    group.setBaseCoordinate(createCoordinate(translation, rotation));
-
-    return group;
-  }
-
-  /**
-   * 与えられた四角形ポリゴンを含むグループを生成します。
-   * 
-   * @param polygon 四角形のポリゴン
-   * @return　与えられた四角形ポリゴンを含むグループ
-   */
-  public static JoglObject create(QuadPolygonModel polygon) {
-    final JoglPrimitive child = new JoglPrimitive(new QuadPolygonObject(polygon));
-
-    final TranslationModel translation = polygon.getTranslation();
-    final RotationModel rotation = polygon.getRotation();
-    
-    if (translation == null && rotation == null) {
-      return child;
-    }
-    
-    final JoglObjectGroup group = JoglObjectGroup.create();
-    group.addChild(child);
-    group.setBaseCoordinate(createCoordinate(translation, rotation));
-
-    return group;
-  }
+//  /**
+//   * 与えられたboxを含むグループを生成します。
+//   * 
+//   * @param primitive ボックス
+//   * @return 与えられたboxを含むグループ
+//   */
+//  public static JoglObject create(BoxModel primitive) {
+//    final JoglPrimitive child = new JoglPrimitive(new BoxObject(primitive));
+//
+//    final TranslationModel translation = primitive.getTranslation();
+//    final RotationModel rotation = primitive.getRotation();
+//
+//    if (translation == null && rotation == null) {
+//      return child;
+//    }
+//
+//    final JoglObjectGroup group = JoglObjectGroup.create();
+//    group.addChild(child);
+//    group.setBaseCoordinate(createCoordinate(translation, rotation));
+//    
+//    return group;
+//  }
+//
+//  /**
+//   * 与えられたcylinderを含むなグループを生成します。
+//   * 
+//   * @param cylinder シリンダー
+//   * @return 与えられたcylinderを含むグループ
+//   */
+//  public static JoglObject create(CylinderModel cylinder) {
+//    final JoglPrimitive child = new JoglPrimitive(new CylinderObject(cylinder));
+//
+//    final TranslationModel translation = cylinder.getTranslation();
+//    final RotationModel rotation = cylinder.getRotation();
+//
+//    if (translation == null && rotation == null) {
+//      return child;
+//    }
+//
+//    final JoglObjectGroup group =  JoglObjectGroup.create();
+//    group.addChild(child);
+//    group.setBaseCoordinate(createCoordinate(translation, rotation));
+//
+//    return group;
+//  }
+//
+//  /**
+//   * 与えられたsphereを含むグループを生成します。
+//   * 
+//   * @param sphere 球体
+//   * @return 与えられたsphereを含むグループ
+//   */
+//  public static JoglObject create(SphereModel sphere) {
+//    final JoglPrimitive child = new JoglPrimitive(new SphereObject(sphere));
+//
+//    final TranslationModel translation = sphere.getTranslation();
+//    final RotationModel rotation = sphere.getRotation();
+//
+//    if (translation == null && rotation == null) {
+//      return child;
+//    }
+//
+//    final JoglObjectGroup group = JoglObjectGroup.create();
+//    group.addChild(child);
+//    group.setBaseCoordinate(createCoordinate(translation, rotation));
+//
+//    return group;
+//  }
+//
+//  /**
+//   * 与えられたconeを含むグループを生成します。
+//   * 
+//   * @param cone コーン
+//   * @return 与えられたconeを含むグループ
+//   */
+//  public static JoglObject create(ConeModel cone) {
+//    final JoglPrimitive child = new JoglPrimitive(new ConeObject(cone));
+//
+//    final TranslationModel translation = cone.getTranslation();
+//    final RotationModel rotation = cone.getRotation();
+//
+//    if (translation == null && rotation == null) {
+//      return child;
+//    }
+//
+//    final JoglObjectGroup group = JoglObjectGroup.create();
+//    group.addChild(child);
+//    group.setBaseCoordinate(createCoordinate(translation, rotation));
+//
+//    return group;
+//  }
+//
+//  /**
+//   * 与えられた三角形ポリゴンを含むグループを生成します。
+//   * 
+//   * @param polygon 三角形のポリゴン
+//   * @return 与えられた三角形ポリゴンを含むグループを生成します。
+//   */
+//  public static JoglObject create(TrianglePolygonModel polygon) {
+//    final JoglPrimitive child = new JoglPrimitive(new TrianglePolygonObject(polygon));
+//
+//    final TranslationModel translation = polygon.getTranslation();
+//    final RotationModel rotation = polygon.getRotation();
+//    
+//    if (translation == null && rotation == null) {
+//      return child;
+//    }
+//    
+//    final JoglObjectGroup group = JoglObjectGroup.create();
+//    group.addChild(child);
+//    group.setBaseCoordinate(createCoordinate(translation, rotation));
+//
+//    return group;
+//  }
+//
+//  /**
+//   * 与えられた四角形ポリゴンを含むグループを生成します。
+//   * 
+//   * @param polygon 四角形のポリゴン
+//   * @return　与えられた四角形ポリゴンを含むグループ
+//   */
+//  public static JoglObject create(QuadPolygonModel polygon) {
+//    final JoglPrimitive child = new JoglPrimitive(new QuadPolygonObject(polygon));
+//
+//    final TranslationModel translation = polygon.getTranslation();
+//    final RotationModel rotation = polygon.getRotation();
+//    
+//    if (translation == null && rotation == null) {
+//      return child;
+//    }
+//    
+//    final JoglObjectGroup group = JoglObjectGroup.create();
+//    group.addChild(child);
+//    group.setBaseCoordinate(createCoordinate(translation, rotation));
+//
+//    return group;
+//  }
   
 
   /**
