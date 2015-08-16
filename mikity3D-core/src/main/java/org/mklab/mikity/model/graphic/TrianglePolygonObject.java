@@ -15,10 +15,10 @@ import org.mklab.mikity.util.Vector3;
 public class TrianglePolygonObject extends GraphicPrimitive {
   /**
    * 新しく生成された<code>TrianglePolygonObject</code>オブジェクトを初期化します。
-   * @param triangle 三角形ポリゴン
+   * @param polygon 三角形ポリゴン
    */
-  public TrianglePolygonObject(TrianglePolygonModel triangle) {
-    super(triangle);
+  public TrianglePolygonObject(TrianglePolygonModel polygon) {
+    super(polygon);
     updatePolygons();
   }
 

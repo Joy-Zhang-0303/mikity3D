@@ -15,12 +15,12 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
  * @author ohashi
  * @version $Revision$, 2013/02/12
  */
-public abstract class  AbstractOpenglesPrimitive extends AbstractOpenglesObject {
+public class OpenglesPrimitive extends AbstractOpenglesObject {
   /**
    * 新しく生成された<code>AbstractJoglObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
    */
-  public AbstractOpenglesPrimitive(GraphicPrimitive object) {
+  public OpenglesPrimitive(GraphicPrimitive object) {
     super(object);
   }
   

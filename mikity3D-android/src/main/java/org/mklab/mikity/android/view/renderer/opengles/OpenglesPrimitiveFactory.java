@@ -5,13 +5,13 @@
  */
 package org.mklab.mikity.android.view.renderer.opengles;
 
-import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesBox;
-import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesCone;
-import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesCylinder;
-import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesQuadPolygon;
-import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesSphere;
-import org.mklab.mikity.android.view.renderer.opengles.primitive.OpenglesTrianglePolygon;
 import org.mklab.mikity.model.Coordinate;
+import org.mklab.mikity.model.graphic.BoxObject;
+import org.mklab.mikity.model.graphic.ConeObject;
+import org.mklab.mikity.model.graphic.CylinderObject;
+import org.mklab.mikity.model.graphic.QuadPolygonObject;
+import org.mklab.mikity.model.graphic.SphereObject;
+import org.mklab.mikity.model.graphic.TrianglePolygonObject;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
@@ -36,7 +36,7 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたboxを含むグループ
    */
   public static OpenglesObject create(BoxModel box) {
-    final OpenglesBox child = new OpenglesBox(box);
+    final OpenglesPrimitive child = new OpenglesPrimitive(new BoxObject(box));
 
     final TranslationModel translation = box.getTranslation();
     final RotationModel rotation = box.getRotation();
@@ -59,7 +59,7 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたcylinderを含むグループ
    */
   public static OpenglesObject create(CylinderModel cylinder) {
-    final OpenglesCylinder child = new OpenglesCylinder(cylinder);
+    final OpenglesPrimitive child = new OpenglesPrimitive(new CylinderObject(cylinder));
 
     final TranslationModel translation = cylinder.getTranslation();
     final RotationModel rotation = cylinder.getRotation();
@@ -82,7 +82,7 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたsphereを含むグループ
    */
   public static OpenglesObject create(SphereModel sphere) {
-    final OpenglesSphere child = new OpenglesSphere(sphere);
+    final OpenglesPrimitive child = new OpenglesPrimitive(new SphereObject(sphere));
 
     final TranslationModel translation = sphere.getTranslation();
     final RotationModel rotation = sphere.getRotation();
@@ -105,7 +105,7 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられたconeを含むグループ
    */
   public static OpenglesObject create(ConeModel cone) {
-    final OpenglesCone child = new OpenglesCone(cone);
+    final OpenglesPrimitive child = new OpenglesPrimitive(new ConeObject(cone));
 
     final TranslationModel translation = cone.getTranslation();
     final RotationModel rotation = cone.getRotation();
@@ -128,7 +128,7 @@ public class OpenglesPrimitiveFactory {
    * @return 与えられた三角形ポリゴンを含むグループを生成します。
    */
   public static OpenglesObject create(TrianglePolygonModel polygon) {
-    final OpenglesTrianglePolygon child = new OpenglesTrianglePolygon(polygon);
+    final OpenglesPrimitive child = new OpenglesPrimitive(new TrianglePolygonObject(polygon));
 
     final TranslationModel translation = polygon.getTranslation();
     final RotationModel rotation = polygon.getRotation();
@@ -151,7 +151,7 @@ public class OpenglesPrimitiveFactory {
    * @return　与えられた四角形ポリゴンを含むグループ
    */
   public static OpenglesObject create(QuadPolygonModel polygon) {
-    final OpenglesQuadPolygon child = new OpenglesQuadPolygon(polygon);
+    final OpenglesPrimitive child = new OpenglesPrimitive(new QuadPolygonObject(polygon));
 
     final TranslationModel translation = polygon.getTranslation();
     final RotationModel rotation = polygon.getRotation();

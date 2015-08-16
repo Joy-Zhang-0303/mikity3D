@@ -17,12 +17,12 @@ import com.jogamp.opengl.GL2;
  * @author koga
  * @version $Revision$, 2012/12/17
  */
-public abstract class AbstractJoglPrimitive extends AbstractJoglObject {
+public class JoglPrimitive extends AbstractJoglObject {
   /**
    * 新しく生成された<code>AbstractJoglObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
    */
-  public AbstractJoglPrimitive(GraphicPrimitive object) {
+  public JoglPrimitive(GraphicPrimitive object) {
     super(object);
   }
   
