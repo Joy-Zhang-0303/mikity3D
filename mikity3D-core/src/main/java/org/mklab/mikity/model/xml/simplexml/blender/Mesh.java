@@ -68,7 +68,7 @@ public class Mesh {
    */
   private void createBlenderPolygon() {
     final List<VertexModel> vertexLocations = this.sources.get(0).getVertexLocation();
-    final List<VertexModel> normalVector = this.sources.get(1).getNormalLocation();
+    //final List<VertexModel> normalVector = this.sources.get(1).getNormalLocation();
 
     if (this.polylist.getP() == null) {
       this.matrix.setElement(0, 3, 0.0f);

@@ -260,28 +260,28 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /**
    * {@inheritDoc}
    */
-  public void mouseClicked(MouseEvent e) {
+  public void mouseClicked(@SuppressWarnings("unused") MouseEvent e) {
     // nothing to do
   }
 
   /**
    * {@inheritDoc}
    */
-  public void mouseEntered(MouseEvent e) {
+  public void mouseEntered(@SuppressWarnings("unused") MouseEvent e) {
     // nothing to do
   }
 
   /**
    * {@inheritDoc}
    */
-  public void mouseExited(MouseEvent e) {
+  public void mouseExited(@SuppressWarnings("unused") MouseEvent e) {
     // nothing to do
   }
 
   /**
    * {@inheritDoc}
    */
-  public void mouseReleased(MouseEvent e) {
+  public void mouseReleased(@SuppressWarnings("unused") MouseEvent e) {
     // nothing to do
   }
 
@@ -333,7 +333,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /**
    * {@inheritDoc}
    */
-  public void mouseMoved(MouseEvent e) {
+  public void mouseMoved(@SuppressWarnings("unused") MouseEvent e) {
     // nothing to do
   }
 
@@ -354,7 +354,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /**
    * {@inheritDoc}
    */
-  public void dispose(GLAutoDrawable arg0) {
+  public void dispose(@SuppressWarnings("unused") GLAutoDrawable arg0) {
     // TODO 自動生成されたメソッド・スタブ
   }
   

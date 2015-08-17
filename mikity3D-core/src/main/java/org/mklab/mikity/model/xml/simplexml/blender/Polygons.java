@@ -27,7 +27,7 @@ public class Polygons {
   /** 文字列の空白の位置を記したリスト */
   private List<int[]> spaceIndices;
   /** 使用する頂点の番号を記したリスト  */
-  private List<int[]> vertexNumbers;
+  //private List<int[]> vertexNumbers;
 
   /**
    * 新しく生成された<code>Polygons</code>オブジェクトを初期化します。
@@ -36,7 +36,7 @@ public class Polygons {
     this.p = new ArrayList<>();
     this.vertices = new ArrayList<>();
     this.spaceIndices = new ArrayList<>();
-    this.vertexNumbers = new ArrayList<>();
+    //this.vertexNumbers = new ArrayList<>();
   }
 
   /**
