@@ -106,31 +106,6 @@ public class JoglObjectFactory {
     return group;
   }
 
-//  /**
-//   * グループの座標系を生成します。
-//   * 
-//   * @param group オブジェクトのグループ
-//   * @return グループの座標系
-//   */
-//  private Coordinate createCoordinateOf(final GroupModel group) {
-//    final TranslationModel translation = group.getTranslation();
-//    final RotationModel rotation = group.getRotation();
-//    
-//    if (translation != null && rotation != null) {
-//      return new Coordinate(translation, rotation);
-//    } 
-//    
-//    if (translation != null) {
-//      return new Coordinate(translation);
-//    }
-//    
-//    if (rotation != null) {
-//      return new Coordinate(rotation);
-//    }
-//
-//    throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$
-//  }
-
   /**
    * 座標を生成します。
    * 
