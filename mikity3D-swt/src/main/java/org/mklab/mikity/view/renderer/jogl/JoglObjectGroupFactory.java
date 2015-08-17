@@ -2,10 +2,12 @@ package org.mklab.mikity.view.renderer.jogl;
 
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.ObjectGroupManager;
+import org.mklab.mikity.model.graphic.GraphicPrimitiveFactory;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
@@ -39,27 +41,27 @@ public class JoglObjectGroupFactory {
     final JoglObjectGroup objectGroup = JoglObjectGroup.create(group);
     
     for (final BoxModel box : group.getBoxes()) {
-      objectGroup.addChild(JoglPrimitiveFactory.create(box));
+      objectGroup.addChild(create(box));
     }
 
     for (final CylinderModel cylinder : group.getCylinders()) {
-      objectGroup.addChild(JoglPrimitiveFactory.create(cylinder));
+      objectGroup.addChild(create(cylinder));
     }
 
     for (final SphereModel sphere : group.getSpheres()) {
-      objectGroup.addChild(JoglPrimitiveFactory.create(sphere));
+      objectGroup.addChild(create(sphere));
     }
 
     for (final ConeModel cone : group.getCones()) {
-      objectGroup.addChild(JoglPrimitiveFactory.create(cone));
+      objectGroup.addChild(create(cone));
     }
     
     for (final TrianglePolygonModel polygon : group.getTrianglePolygons()) {
-      objectGroup.addChild(JoglPrimitiveFactory.create(polygon));
+      objectGroup.addChild(create(polygon));
     }
 
     for (final QuadPolygonModel polygon : group.getQuadPolygons()) {
-      objectGroup.addChild(JoglPrimitiveFactory.create(polygon));
+      objectGroup.addChild(create(polygon));
     }
 
     for (final GroupModel child : group.getGroups()) {
@@ -102,6 +104,53 @@ public class JoglObjectGroupFactory {
       return new Coordinate(rotation);
     }
 
+    throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$
+  }
+  
+  /**
+   * 与えられたモデルを含むプリミティブを生成します。
+   * 
+   * @param model モデル
+   * @return 与えられたモデルを含むプリミティブ
+   */
+  private JoglObject create(PrimitiveModel model) {
+    final JoglPrimitive primitive = new JoglPrimitive(GraphicPrimitiveFactory.create(model));
+   
+    final TranslationModel translation = model.getTranslation();
+    final RotationModel rotation = model.getRotation();
+
+    if (translation == null && rotation == null) {
+      return primitive;
+    }
+
+    final JoglObjectGroup group = JoglObjectGroup.create();
+    group.addChild(primitive);
+    group.setBaseCoordinate(createCoordinate(translation, rotation));
+    
+    return group;
+  }
+
+  /**
+   * 座標を生成します。
+   * 
+   * @param targetGroup オブジェクトグループ
+   * @param translation 並進変換
+   * @param rotation 回転変換
+   * @return 座標系
+   */
+  private Coordinate createCoordinate(final TranslationModel translation, final RotationModel rotation) {
+    if (translation != null && rotation != null) {
+      return new Coordinate(translation, rotation);
+    }
+    
+    if (translation != null) {
+      return new Coordinate(translation);
+    }
+    
+    if (rotation != null) {
+      return new Coordinate(rotation);
+    }
+    
     throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$
   }
 }
