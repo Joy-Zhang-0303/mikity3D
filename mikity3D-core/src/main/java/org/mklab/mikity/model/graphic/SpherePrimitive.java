@@ -9,12 +9,12 @@ import org.mklab.mikity.util.Vector3;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class SphereObject extends GraphicPrimitive {
+public class SpherePrimitive extends AbstractGraphicPrimitive {
   /**
    * 新しく生成された<code>SphereObject</code>オブジェクトを初期化します。
    * @param sphere 球
    */
-  public SphereObject(SphereModel sphere) {
+  public SpherePrimitive(SphereModel sphere) {
     super(sphere);
     updatePolygons();
   }

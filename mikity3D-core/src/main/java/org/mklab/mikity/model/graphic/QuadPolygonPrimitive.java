@@ -2,22 +2,22 @@ package org.mklab.mikity.model.graphic;
 
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.util.Vector3;
 
 /**
- * 三角形ポリゴンを表すクラスです。
+ * 四角形ポリゴンを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class TrianglePolygonObject extends GraphicPrimitive {
+public class QuadPolygonPrimitive extends AbstractGraphicPrimitive {
   /**
-   * 新しく生成された<code>TrianglePolygonObject</code>オブジェクトを初期化します。
-   * @param polygon 三角形ポリゴン
+   * 新しく生成された<code>QuadPolygonObject</code>オブジェクトを初期化します。
+   * @param polygon 四角形ポリゴン
    */
-  public TrianglePolygonObject(TrianglePolygonModel polygon) {
+  public QuadPolygonPrimitive(QuadPolygonModel polygon) {
     super(polygon);
     updatePolygons();
   }
@@ -26,14 +26,14 @@ public class TrianglePolygonObject extends GraphicPrimitive {
    * ポリゴンを更新します。
    */
   private void updatePolygons() {
-    List<VertexModel> vertices = ((TrianglePolygonModel)this.primitive).getVerties();
-    Vector3 normalVector = ((TrianglePolygonModel)this.primitive).getNormalVector();
+    List<VertexModel> vertices = ((QuadPolygonModel)this.primitive).getVertices();
+    Vector3 normalVector = ((QuadPolygonModel)this.primitive).getNormalVector();
     
     if (vertices == null || normalVector == null) {
       return;
     }
-
-    final int polygonNumber = 1;
+    
+    final int polygonNumber = 2;
     initializeArrays(polygonNumber);
     
     float x0 = vertices.get(0).getX();
@@ -42,22 +42,27 @@ public class TrianglePolygonObject extends GraphicPrimitive {
     
     float x1 = vertices.get(1).getX();
     float y1 = vertices.get(1).getY();
-    float z1 = vertices.get(1).getY();
+    float z1 = vertices.get(1).getZ();
     
     float x2 = vertices.get(2).getX();
     float y2 = vertices.get(2).getY();
     float z2 = vertices.get(2).getZ();
-   
-    final float[][] vertices2 = new float[][]
-        {{x0, y0, z0}, {x1, y1, z1}, {x2, y2, z2}};
+    
+    float x3 = vertices.get(3).getX();
+    float y3 = vertices.get(3).getY();
+    float z3 = vertices.get(3).getZ();
 
     final float nx = normalVector.getX();
     final float ny = normalVector.getY();
     final float nz = normalVector.getZ();
     
+    final float[][] vertices2 = new float[][]{
+        {x0, y0, z0}, {x1, y1, z1}, {x2, y2, z2},
+        {x0, y0, z0}, {x2, y2, z2}, {x3, y3, z3}};
+    
     final float[][] normalVector2 = new float[][]
-        {{nx,ny,nz},{nx,ny,nz},{nx,ny,nz}};
-   
+        {{nx,ny,nz},{nx,ny,nz},{nx,ny,nz},{nx,ny,nz},{nx,ny,nz},{nx,ny,nz}};
+    
     appendVertices(vertices2);
     appendNormalVector(normalVector2);
   }

@@ -10,12 +10,12 @@ import org.mklab.mikity.util.Vector3;
  * @author iwamoto
  * @version $Revision$, 2012/01/31
  */
-public class CylinderObject extends GraphicPrimitive {
+public class CylinderPrimitive extends AbstractGraphicPrimitive {
   /**
    * 新しく生成された<code>CylinderObject</code>オブジェクトを初期化します。
    * @param cylinder シリンダー
    */
-  public CylinderObject(CylinderModel cylinder) {
+  public CylinderPrimitive(CylinderModel cylinder) {
     super(cylinder);
     updatePolygons();
   }

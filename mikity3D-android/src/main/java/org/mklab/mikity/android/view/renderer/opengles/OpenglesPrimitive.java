@@ -11,8 +11,8 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import org.mklab.mikity.model.graphic.GraphicObject;
 import org.mklab.mikity.model.graphic.GraphicPrimitive;
+import org.mklab.mikity.model.graphic.AbstractGraphicPrimitive;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
 /**
@@ -23,13 +23,13 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
  */
 public class OpenglesPrimitive implements OpenglesObject {
   /** グラフィックオブジェクト。 */
-  private GraphicObject object;
+  private GraphicPrimitive object;
   
   /**
    * 新しく生成された<code>AbstractOpenglesObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
    */
-  public OpenglesPrimitive(GraphicObject object) {
+  public OpenglesPrimitive(GraphicPrimitive object) {
     this.object = object;
   }
   
@@ -48,7 +48,7 @@ public class OpenglesPrimitive implements OpenglesObject {
    * @param gl GL　
    */
   private void applyColor(GL10 gl) {
-    final ColorModel color = ((GraphicPrimitive)this.object).getColor();
+    final ColorModel color = ((AbstractGraphicPrimitive)this.object).getColor();
     gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
 
   }
@@ -59,7 +59,7 @@ public class OpenglesPrimitive implements OpenglesObject {
    * @param gl GL
    */
   private void applyTransparency(GL10 gl) {
-    if (((GraphicPrimitive)this.object).isTransparent()) {
+    if (((AbstractGraphicPrimitive)this.object).isTransparent()) {
       gl.glEnable(GL10.GL_BLEND); // ブレンドを有効にします
       gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
     } else {

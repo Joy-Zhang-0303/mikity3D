@@ -6,12 +6,12 @@
 package org.mklab.mikity.android.view.renderer.opengles;
 
 import org.mklab.mikity.model.Coordinate;
-import org.mklab.mikity.model.graphic.BoxObject;
-import org.mklab.mikity.model.graphic.ConeObject;
-import org.mklab.mikity.model.graphic.CylinderObject;
-import org.mklab.mikity.model.graphic.QuadPolygonObject;
-import org.mklab.mikity.model.graphic.SphereObject;
-import org.mklab.mikity.model.graphic.TrianglePolygonObject;
+import org.mklab.mikity.model.graphic.BoxPrimitive;
+import org.mklab.mikity.model.graphic.ConePrimitive;
+import org.mklab.mikity.model.graphic.CylinderPrimitive;
+import org.mklab.mikity.model.graphic.QuadPolygonPrimitive;
+import org.mklab.mikity.model.graphic.SpherePrimitive;
+import org.mklab.mikity.model.graphic.TrianglePolygonPrimitive;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
@@ -40,17 +40,17 @@ public class OpenglesPrimitiveFactory {
     final OpenglesPrimitive child;
     
     if (primitive instanceof BoxModel) {
-      child = new OpenglesPrimitive(new BoxObject((BoxModel)primitive));
+      child = new OpenglesPrimitive(new BoxPrimitive((BoxModel)primitive));
     } else if (primitive instanceof CylinderModel) {
-      child = new OpenglesPrimitive(new CylinderObject((CylinderModel)primitive));
+      child = new OpenglesPrimitive(new CylinderPrimitive((CylinderModel)primitive));
     } else if (primitive instanceof ConeModel) {
-      child = new OpenglesPrimitive(new ConeObject((ConeModel)primitive));
+      child = new OpenglesPrimitive(new ConePrimitive((ConeModel)primitive));
     } else if (primitive instanceof SphereModel) {
-      child = new OpenglesPrimitive(new SphereObject((SphereModel)primitive));
+      child = new OpenglesPrimitive(new SpherePrimitive((SphereModel)primitive));
     } else if (primitive instanceof TrianglePolygonModel) {
-      child = new OpenglesPrimitive(new TrianglePolygonObject((TrianglePolygonModel)primitive));
+      child = new OpenglesPrimitive(new TrianglePolygonPrimitive((TrianglePolygonModel)primitive));
     } else if (primitive instanceof QuadPolygonModel) {
-      child = new OpenglesPrimitive(new QuadPolygonObject((QuadPolygonModel)primitive));
+      child = new OpenglesPrimitive(new QuadPolygonPrimitive((QuadPolygonModel)primitive));
     } else {
       throw new IllegalArgumentException(primitive.getClass().toString());
     }

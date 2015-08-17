@@ -9,8 +9,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import org.mklab.mikity.model.graphic.GraphicObject;
 import org.mklab.mikity.model.graphic.GraphicPrimitive;
+import org.mklab.mikity.model.graphic.AbstractGraphicPrimitive;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
 import com.jogamp.opengl.GL;
@@ -26,13 +26,13 @@ import com.jogamp.opengl.fixedfunc.GLPointerFunc;
  */
 public class JoglPrimitive implements JoglObject {
   /** グラフィックオブジェクト。 */
-  private GraphicObject object;
+  private GraphicPrimitive object;
   
   /**
    * 新しく生成された<code>AbstractJoglObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
    */
-  public JoglPrimitive(GraphicObject object) {
+  public JoglPrimitive(GraphicPrimitive object) {
     this.object = object;
   }
   
@@ -51,7 +51,7 @@ public class JoglPrimitive implements JoglObject {
    * @param gl GL　
    */
   private void applyColor(GL2 gl) {
-    final ColorModel color = ((GraphicPrimitive)this.object).getColor();
+    final ColorModel color = ((AbstractGraphicPrimitive)this.object).getColor();
     gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
   }
   
@@ -61,7 +61,7 @@ public class JoglPrimitive implements JoglObject {
    * @param gl GL
    */
   private void applyTransparency(GL2 gl) {
-    if (((GraphicPrimitive)this.object).isTransparent()) {
+    if (((AbstractGraphicPrimitive)this.object).isTransparent()) {
       gl.glEnable(GL.GL_BLEND); // ブレンドを有効にします
       gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
     } else {

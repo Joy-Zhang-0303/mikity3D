@@ -8,12 +8,12 @@ import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
  * @author iwamoto
  * @version $Revision$, 2012/01/26
  */
-public class BoxObject extends GraphicPrimitive {
+public class BoxPrimitive extends AbstractGraphicPrimitive {
   /**
    * 新しく生成された<code>BoxObject</code>オブジェクトを初期化します。
    * @param box モデル
    */
-  public BoxObject(BoxModel box) {
+  public BoxPrimitive(BoxModel box) {
     super(box);
     updatePolygons();
   }

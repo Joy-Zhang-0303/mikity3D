@@ -9,12 +9,12 @@ import org.mklab.mikity.util.Vector3;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class ConeObject extends GraphicPrimitive {
+public class ConePrimitive extends AbstractGraphicPrimitive {
   /**
    * 新しく生成された<code>ConeObject</code>オブジェクトを初期化します。
    * @param cone コーン
    */
-  public ConeObject(ConeModel cone) {
+  public ConePrimitive(ConeModel cone) {
     super(cone);
     updatePolygons();
   }
