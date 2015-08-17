@@ -156,7 +156,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
    * @return オブジェクトグループ
    */
   private List<OpenglesObjectGroup> createObjectGroups(List<GroupModel> ｇroups, ObjectGroupManager manager) {
-    final OpenglesObjectGroupFactory factory = new OpenglesObjectGroupFactory(manager);
+    final OpenglesObjectFactory factory = new OpenglesObjectFactory(manager);
     
     final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();
     for (final GroupModel group : ｇroups) {

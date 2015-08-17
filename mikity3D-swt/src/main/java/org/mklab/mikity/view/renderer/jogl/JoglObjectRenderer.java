@@ -176,7 +176,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * @return オブジェクトグループ
    */
   private List<JoglObjectGroup> createObjectGroups(List<GroupModel> groups, ObjectGroupManager manager) {
-    final JoglObjectGroupFactory factory = new JoglObjectGroupFactory(manager);
+    final JoglObjectFactory factory = new JoglObjectFactory(manager);
     
     final List<JoglObjectGroup> objectGroups = new ArrayList<>();
     for (final GroupModel rootGroup : groups) {

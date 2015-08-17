@@ -1,12 +1,6 @@
-/*
- * Created on 2013/02/12
- * Copyright (C) 2013 Koga Laboratory. All rights reserved.
- *
- */
-package org.mklab.mikity.android.view.renderer.opengles;
+package org.mklab.mikity.view.renderer.jogl;
 
 import org.mklab.mikity.model.Coordinate;
-import org.mklab.mikity.model.Messages;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.graphic.GraphicPrimitiveFactory;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
@@ -20,30 +14,32 @@ import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
+
 /**
- * {@link OpenglesObjectGroup}のファクトリークラスです。
- * @author ohashi
- * @version $Revision$, 2013/02/12
+ * {@link JoglObject}のファクトリークラスです。
+ * 
+ * @author iwamoto
+ * @version $Revision$, 2012/02/07
  */
-public class OpenglesObjectGroupFactory {
+public class JoglObjectFactory {
   /** オブジェクトグループマネージャ。 */
   private ObjectGroupManager manager;
   
   /**
-   * 新しく生成された<code>OpenglesObjectGroupFactory</code>オブジェクトを初期化します。
+   * 新しく生成された<code>JoglObjectGroupFactory</code>オブジェクトを初期化します。
    * @param manager オブジェクトグループマネージャ
    */
-  public OpenglesObjectGroupFactory(ObjectGroupManager manager) {
+  public JoglObjectFactory(ObjectGroupManager manager) {
     this.manager = manager;
   }
-    
+  
   /**
-   * {@link OpenglesObjectGroup}を生成します。
+   * {@link JoglObjectGroup}を生成します。
    * @param group オブジェクトのグループ
    * @return グループ
    */
-  public OpenglesObjectGroup create(final GroupModel group) {
-    final OpenglesObjectGroup objectGroup = OpenglesObjectGroup.create(group);
+  public JoglObjectGroup create(final GroupModel group) {
+    final JoglObjectGroup objectGroup = JoglObjectGroup.create(group);
     
     for (final BoxModel box : group.getBoxes()) {
       objectGroup.addChild(create(box));
@@ -70,11 +66,11 @@ public class OpenglesObjectGroupFactory {
     }
 
     for (final GroupModel child : group.getGroups()) {
-      final OpenglesObjectGroup childObjectGroup = create(child);
+      final JoglObjectGroup childObjectGroup = create(child);
       objectGroup.addChild(childObjectGroup);
     }
 
-    final Coordinate baseCoordinate = createCoordinateOf(group);
+    final Coordinate baseCoordinate = createCoordinateOf(group.getTranslation(), group.getRotation());
     objectGroup.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
@@ -86,40 +82,15 @@ public class OpenglesObjectGroupFactory {
 
     return objectGroup;
   }
-
-  /**
-   * グループの座標系を生成します。
-   * 
-   * @param group オブジェクトのグループ
-   * @return グループの座標
-   */
-  private Coordinate createCoordinateOf(final GroupModel group) {
-    final TranslationModel translation = group.getTranslation();
-    final RotationModel rotation = group.getRotation();
-    
-    if (translation != null && rotation != null) {
-      return new Coordinate(translation, rotation);
-    } 
-    
-    if (translation != null) {
-      return new Coordinate(translation);
-    }
-    
-    if (rotation != null) {
-      return new Coordinate(rotation);
-    }
-
-    throw new IllegalArgumentException(Messages.getString("OpenglesTransformGroupFactory.0")); //$NON-NLS-1$
-  }
   
   /**
-   * 与えられたプリミティブを含むグループを生成します。
+   * 与えられたモデルを含むプリミティブを生成します。
    * 
-   * @param model プリミティブ
-   * @return 与えられたプリミティブを含むグループ
+   * @param model モデル
+   * @return 与えられたモデルを含むプリミティブ
    */
-  private OpenglesObject create(PrimitiveModel model) {
-    final OpenglesPrimitive primitive = new OpenglesPrimitive(GraphicPrimitiveFactory.create(model));
+  public JoglObject create(PrimitiveModel model) {
+    final JoglPrimitive primitive = new JoglPrimitive(GraphicPrimitiveFactory.create(model));
    
     final TranslationModel translation = model.getTranslation();
     final RotationModel rotation = model.getRotation();
@@ -128,28 +99,54 @@ public class OpenglesObjectGroupFactory {
       return primitive;
     }
 
-    final OpenglesObjectGroup group = OpenglesObjectGroup.create();
+    final JoglObjectGroup group = JoglObjectGroup.create();
     group.addChild(primitive);
-    group.setBaseCoordinate(createCoordinate(translation, rotation));
+    group.setBaseCoordinate(createCoordinateOf(translation, rotation));
     
     return group;
   }
 
+//  /**
+//   * グループの座標系を生成します。
+//   * 
+//   * @param group オブジェクトのグループ
+//   * @return グループの座標系
+//   */
+//  private Coordinate createCoordinateOf(final GroupModel group) {
+//    final TranslationModel translation = group.getTranslation();
+//    final RotationModel rotation = group.getRotation();
+//    
+//    if (translation != null && rotation != null) {
+//      return new Coordinate(translation, rotation);
+//    } 
+//    
+//    if (translation != null) {
+//      return new Coordinate(translation);
+//    }
+//    
+//    if (rotation != null) {
+//      return new Coordinate(rotation);
+//    }
+//
+//    throw new IllegalArgumentException(Messages.getString("JoglTransformGroupFactory.0")); //$NON-NLS-1$
+//  }
+
   /**
-   * 基準座標を生成します。
+   * 座標を生成します。
    * 
+   * @param targetGroup オブジェクトグループ
    * @param translation 並進変換
    * @param rotation 回転変換
-   * @return 基準座標系
+   * @return 座標系
    */
-  private Coordinate createCoordinate(final TranslationModel translation, final RotationModel rotation) {
+  private Coordinate createCoordinateOf(final TranslationModel translation, final RotationModel rotation) {
     if (translation != null && rotation != null) {
       return new Coordinate(translation, rotation);
-    } 
+    }
     
     if (translation != null) {
       return new Coordinate(translation);
-    } 
+    }
     
     if (rotation != null) {
       return new Coordinate(rotation);
