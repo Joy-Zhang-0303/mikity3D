@@ -3,6 +3,7 @@
       <group name="pendulum">
          <translation x="0.0" y="0.0" z="0.0"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
+         <null/>
          <group name="dodai">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
@@ -54,6 +55,7 @@
       <group name="rotatingPendulum">
          <translation x="-3.0" y="-1.2" z="-0.21"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
+         <null/>
          <group name="base">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
@@ -93,9 +95,10 @@
             </group>
          </group>
       </group>
-      <group name="rotatingTwoPendulum">
+      <group name="rotatingTwoPendulum">      
          <translation x="-3.0" y="1.0" z="-0.15"/>
          <rotation x="0.0" y="-1.57" z="0.0"/>
+         <null/>
          <group name="dodai1">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="1.57" z="1.57"/>
@@ -1117,6 +1120,7 @@
       <group name="doublePendulum">
          <translation x="-3.0" y="0.0" z="-0.2"/>
          <rotation x="1.57" y="1.57" z="0.0"/>
+         <null/>
          <group name="belt">
             <translation x="0.0" y="0.0" z="-0.15"/>
             <rotation x="0.0" y="0.0" z="0.0"/>

@@ -25,6 +25,7 @@ import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -151,18 +152,18 @@ public class SimpleXmlUnmarshallerTest {
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
-    final List<BoxModel> actualBoxes = actualGroup.getBoxes();
+    final List<PrimitiveModel> actualBoxes = actualGroup.getPrimitives();
     
-    final BoxModel actualBox1 = actualBoxes.get(0);
+    final BoxModel actualBox1 = (BoxModel)actualBoxes.get(0);
     assertDodaiBox1(actualBox1);
 
-    final BoxModel actualBox2 = actualBoxes.get(1);
+    final BoxModel actualBox2 = (BoxModel)actualBoxes.get(1);
     assertDodaiBox2(actualBox2);
 
-    final BoxModel actualBox3 = actualBoxes.get(2);
+    final BoxModel actualBox3 = (BoxModel)actualBoxes.get(2);
     assertDodaiBox3(actualBox3);
 
-    final BoxModel actualBox4 = actualBoxes.get(3);
+    final BoxModel actualBox4 = (BoxModel)actualBoxes.get(3);
     assertDodaiBox4(actualBox4);
 
     final GroupModel actualDaishaGroup = actualGroup.getGroups().get(0);
@@ -282,7 +283,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedAnimation.setTarget("translationY"); //$NON-NLS-1$
     assertThat(actualAnimation, is(expectedAnimation));
 
-    final BoxModel actualBox = actualGroup.getBoxes().get(0);
+    final BoxModel actualBox = (BoxModel)actualGroup.getPrimitives().get(0);
     assertDaishaBox(actualBox);
     
     final GroupModel actualSinsiGroup = actualGroup.getGroups().get(0);
@@ -334,11 +335,11 @@ public class SimpleXmlUnmarshallerTest {
     expectedAnimation.setTarget("rotationX"); //$NON-NLS-1$
     assertThat(actualAnimation, is(expectedAnimation));
     
-    final List<CylinderModel> actualCylinders = actualGroup.getCylinders();
-    final CylinderModel actualCylinder1 = actualCylinders.get(0);
+    final List<PrimitiveModel> actualCylinders = actualGroup.getPrimitives();
+    final CylinderModel actualCylinder1 = (CylinderModel)actualCylinders.get(0);
     assertCylinder1(actualCylinder1);
     
-    final CylinderModel actualCylinder2 = actualCylinders.get(1);
+    final CylinderModel actualCylinder2 = (CylinderModel)actualCylinders.get(1);
     assertCylinder2(actualCylinder2);
 
   }

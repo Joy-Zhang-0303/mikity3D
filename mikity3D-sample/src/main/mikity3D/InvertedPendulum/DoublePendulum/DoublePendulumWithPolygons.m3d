@@ -3,6 +3,7 @@
       <group name="doublePendulum">
          <translation x="0.0" y="0.0" z="-0.05"/>
          <rotation x="1.57" y="1.57" z="0.0"/>
+         <null/>
          <group name="belt">
             <translation x="0.0" y="0.0" z="-0.15"/>
             <rotation x="0.0" y="0.0" z="0.0"/>

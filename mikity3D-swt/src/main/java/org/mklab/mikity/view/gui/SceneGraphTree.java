@@ -24,6 +24,7 @@ import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.NullModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
@@ -564,24 +565,31 @@ public class SceneGraphTree {
    * @param transparent トランスピアレント
    */
   public void setAllTransparent(final GroupModel group, boolean transparent) {
-    for (BoxModel box : group.getBoxes()) {
-      box.setTransparent(transparent);
+    for (PrimitiveModel primitive : group.getPrimitives()) {
+      if (primitive instanceof NullModel) {
+        continue;
+      }
+      primitive.setTransparent(transparent);
     }
-    for (CylinderModel cylinder : group.getCylinders()) {
-      cylinder.setTransparent(transparent);
-    }
-    for (SphereModel sphere : group.getSpheres()) {
-      sphere.setTransparent(transparent);
-    }
-    for (ConeModel cone : group.getCones()) {
-      cone.setTransparent(transparent);
-    }
-    for (TrianglePolygonModel trianglePolygon : group.getTrianglePolygons()) {
-      trianglePolygon.setTransparent(transparent);
-    }
-    for (QuadPolygonModel quadPolygon : group.getQuadPolygons()) {
-      quadPolygon.setTransparent(transparent);
-    }
+    
+//    for (BoxModel box : group.getBoxes()) {
+//      box.setTransparent(transparent);
+//    }
+//    for (CylinderModel cylinder : group.getCylinders()) {
+//      cylinder.setTransparent(transparent);
+//    }
+//    for (SphereModel sphere : group.getSpheres()) {
+//      sphere.setTransparent(transparent);
+//    }
+//    for (ConeModel cone : group.getCones()) {
+//      cone.setTransparent(transparent);
+//    }
+//    for (TrianglePolygonModel trianglePolygon : group.getTrianglePolygons()) {
+//      trianglePolygon.setTransparent(transparent);
+//    }
+//    for (QuadPolygonModel quadPolygon : group.getQuadPolygons()) {
+//      quadPolygon.setTransparent(transparent);
+//    }
 
     for (GroupModel childGroup : group.getGroups()) {
       setAllTransparent(childGroup, transparent);
@@ -646,41 +654,52 @@ public class SceneGraphTree {
       }
       groupItem.setData(group);
 
-      for (final BoxModel box :  group.getBoxes()) {
+      for (final PrimitiveModel primitive :  group.getPrimitives()) {
+        if (primitive instanceof NullModel) {
+          continue;
+        }
+        
         final TreeItem child = new TreeItem(groupItem, SWT.NONE);
-        child.setText(box.toString());
-        child.setData(box);
+        child.setText(primitive.toString());
+        child.setData(primitive);
       }
-
-      for (final CylinderModel cylinder :  group.getCylinders()) {
-        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
-        item.setText(cylinder.toString());
-        item.setData(cylinder);
-      }
-
-      for (final SphereModel sphere : group.getSpheres()) {
-        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
-        item.setText(sphere.toString());
-        item.setData(sphere);
-      }
-
-      for (final ConeModel cone :  group.getCones()) {
-        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
-        item.setText(cone.toString());
-        item.setData(cone);
-      }
-
-      for (final TrianglePolygonModel trianglePolygon : group.getTrianglePolygons()) {
-        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
-        item.setText(trianglePolygon.toString());
-        item.setData(trianglePolygon);
-      }
-
-      for (final QuadPolygonModel quadPolygon :  group.getQuadPolygons()) {
-        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
-        item.setText(quadPolygon.toString());
-        item.setData(quadPolygon);
-      }
+      
+//      for (final BoxModel box :  group.getBoxes()) {
+//        final TreeItem child = new TreeItem(groupItem, SWT.NONE);
+//        child.setText(box.toString());
+//        child.setData(box);
+//      }
+//
+//      for (final CylinderModel cylinder :  group.getCylinders()) {
+//        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
+//        item.setText(cylinder.toString());
+//        item.setData(cylinder);
+//      }
+//
+//      for (final SphereModel sphere : group.getSpheres()) {
+//        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
+//        item.setText(sphere.toString());
+//        item.setData(sphere);
+//      }
+//
+//      for (final ConeModel cone :  group.getCones()) {
+//        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
+//        item.setText(cone.toString());
+//        item.setData(cone);
+//      }
+//
+//      for (final TrianglePolygonModel trianglePolygon : group.getTrianglePolygons()) {
+//        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
+//        item.setText(trianglePolygon.toString());
+//        item.setData(trianglePolygon);
+//      }
+//
+//      for (final QuadPolygonModel quadPolygon :  group.getQuadPolygons()) {
+//        final TreeItem item = new TreeItem(groupItem, SWT.NONE);
+//        item.setText(quadPolygon.toString());
+//        item.setData(quadPolygon);
+//      }
+      
       addTreeItem(groupItem, group.getGroups());
     }
     

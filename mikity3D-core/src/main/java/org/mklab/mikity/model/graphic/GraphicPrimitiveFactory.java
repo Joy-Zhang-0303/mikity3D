@@ -8,6 +8,7 @@ package org.mklab.mikity.model.graphic;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.NullModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
@@ -50,6 +51,10 @@ public class GraphicPrimitiveFactory {
 
     if (model instanceof QuadPolygonModel) {
       return new QuadPolygonPrimitive((QuadPolygonModel)model);
+    } 
+
+    if (model instanceof NullModel) {
+      return new NullPrimitive((NullModel)model);
     } 
 
     throw new IllegalArgumentException(model.getClass().toString());

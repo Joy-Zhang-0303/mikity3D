@@ -42,7 +42,7 @@ public class TrianglePolygonPrimitive extends AbstractGraphicPrimitive {
     
     float x1 = vertices.get(1).getX();
     float y1 = vertices.get(1).getY();
-    float z1 = vertices.get(1).getY();
+    float z1 = vertices.get(1).getZ();
     
     float x2 = vertices.get(2).getX();
     float y2 = vertices.get(2).getY();

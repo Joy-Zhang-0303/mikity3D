@@ -3,6 +3,7 @@
       <group name="pendulum1">
          <translation x="0.0" y="0.3" z="0.0"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
+         <null/>
          <group name="dodai">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
@@ -60,6 +61,7 @@
       <group name="pendulum2">
          <translation x="0.0" y="-0.3" z="0.0"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
+         <null/>
          <group name="dodai">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>

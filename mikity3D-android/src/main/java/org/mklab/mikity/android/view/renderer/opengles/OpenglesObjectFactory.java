@@ -9,16 +9,11 @@ import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.Messages;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.graphic.GraphicPrimitiveFactory;
-import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
-import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
-import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.NullModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
-import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
-import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
-import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 
 /**
  * {@link OpenglesObject}のファクトリークラスです。
@@ -45,30 +40,37 @@ public class OpenglesObjectFactory {
    */
   public OpenglesObjectGroup create(final GroupModel group) {
     final OpenglesObjectGroup objectGroup = OpenglesObjectGroup.create(group);
-    
-    for (final BoxModel box : group.getBoxes()) {
-      objectGroup.addChild(create(box));
-    }
 
-    for (final CylinderModel cylinder : group.getCylinders()) {
-      objectGroup.addChild(create(cylinder));
-    }
-
-    for (final SphereModel sphere : group.getSpheres()) {
-      objectGroup.addChild(create(sphere));
-    }
-
-    for (final ConeModel cone : group.getCones()) {
-      objectGroup.addChild(create(cone));
+    for (final PrimitiveModel primitive : group.getPrimitives()) {
+      if (primitive instanceof NullModel) {
+        continue;
+      }
+      objectGroup.addChild(create(primitive));
     }
     
-    for (final TrianglePolygonModel polygon : group.getTrianglePolygons()) {
-      objectGroup.addChild(create(polygon));
-    }
-
-    for (final QuadPolygonModel polygon : group.getQuadPolygons()) {
-      objectGroup.addChild(create(polygon));
-    }
+//    for (final BoxModel box : group.getBoxes()) {
+//      objectGroup.addChild(create(box));
+//    }
+//
+//    for (final CylinderModel cylinder : group.getCylinders()) {
+//      objectGroup.addChild(create(cylinder));
+//    }
+//
+//    for (final SphereModel sphere : group.getSpheres()) {
+//      objectGroup.addChild(create(sphere));
+//    }
+//
+//    for (final ConeModel cone : group.getCones()) {
+//      objectGroup.addChild(create(cone));
+//    }
+//    
+//    for (final TrianglePolygonModel polygon : group.getTrianglePolygons()) {
+//      objectGroup.addChild(create(polygon));
+//    }
+//
+//    for (final QuadPolygonModel polygon : group.getQuadPolygons()) {
+//      objectGroup.addChild(create(polygon));
+//    }
 
     for (final GroupModel child : group.getGroups()) {
       final OpenglesObjectGroup childObjectGroup = create(child);
