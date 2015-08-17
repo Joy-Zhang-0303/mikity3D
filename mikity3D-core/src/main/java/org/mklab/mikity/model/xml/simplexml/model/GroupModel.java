@@ -38,30 +38,6 @@ public class GroupModel implements Serializable, Cloneable {
   @ElementList(type = AnimationModel.class, inline = true, required = false)
   private List<AnimationModel> animations;
 
-//  /** Boxes */
-//  @ElementList(type = BoxModel.class, inline = true, required = false)
-//  private List<BoxModel> boxes;
-//
-//  /** Cylinders */
-//  @ElementList(type = CylinderModel.class, inline = true, required = false)
-//  private List<CylinderModel> cylinders;
-//
-//  /** Spheres */
-//  @ElementList(type = SphereModel.class, inline = true, required = false)
-//  private List<SphereModel> spheres;
-//
-//  /** Cones */
-//  @ElementList(type = ConeModel.class, inline = true, required = false)
-//  private List<ConeModel> cones;
-//
-//  /** TrianglePolygons */
-//  @ElementList(type = TrianglePolygonModel.class, inline = true, required = false)
-//  private List<TrianglePolygonModel> trianglePolygons;
-//
-//  /** QuadPolygons */
-//  @ElementList(type = QuadPolygonModel.class, inline = true, required = false)
-//  private List<QuadPolygonModel> quadPolygons;
-
   /** Primitives */
   @ElementListUnion({
     @ElementList(entry = "box", inline = true, type = BoxModel.class), 
@@ -93,14 +69,6 @@ public class GroupModel implements Serializable, Cloneable {
     this.name = name;
     this.primitives = new ArrayList<>();
     this.groups = new ArrayList<>();
-        
-//    this.boxes = new ArrayList<>();
-//    this.cylinders = new ArrayList<>();
-//    this.spheres = new ArrayList<>();
-//    this.cones = new ArrayList<>();
-//    this.trianglePolygons = new ArrayList<>();
-//    this.quadPolygons = new ArrayList<>();
-
     this.animations = new ArrayList<>();
     this.translation = new TranslationModel();
     this.rotation = new RotationModel();
@@ -124,36 +92,6 @@ public class GroupModel implements Serializable, Cloneable {
       for (final PrimitiveModel primitive : this.primitives) {
         ans.primitives.add(primitive.createClone());
       }
-
-//      ans.boxes = new ArrayList<>();
-//      for (final BoxModel box : this.boxes) {
-//        ans.boxes.add(box.clone());
-//      }
-//
-//      ans.cylinders = new ArrayList<>();
-//      for (final CylinderModel cylinder : this.cylinders) {
-//        ans.cylinders.add(cylinder.clone());
-//      }
-//
-//      ans.spheres = new ArrayList<>();
-//      for (final SphereModel sphere : this.spheres) {
-//        ans.spheres.add(sphere.clone());
-//      }
-//
-//      ans.cones = new ArrayList<>();
-//      for (final ConeModel cone : this.cones) {
-//        ans.cones.add(cone.clone());
-//      }
-//
-//      ans.trianglePolygons = new ArrayList<>();
-//      for (final TrianglePolygonModel trianglePolygon : this.trianglePolygons) {
-//        ans.trianglePolygons.add(trianglePolygon.clone());
-//      }
-//
-//      ans.quadPolygons = new ArrayList<>();
-//      for (final QuadPolygonModel quadPolygon : this.quadPolygons) {
-//        ans.quadPolygons.add(quadPolygon.clone());
-//      }
 
       ans.animations = new ArrayList<>();
       for (final AnimationModel animation : this.animations) {
@@ -189,27 +127,6 @@ public class GroupModel implements Serializable, Cloneable {
     this.animations.add(animation);
   }
 
-  ///**
-  //* プリミティブを追加します。
-  //* 
-  //* @param primitive プリミティブ
-  //*/
-  //  public void add(PrimitiveModel primitive) {
-  //    if (primitive instanceof BoxModel) {
-  //      this.boxes.add((BoxModel)primitive);
-  //    } else if (primitive instanceof ConeModel) {
-  //      this.cones.add((ConeModel)primitive);
-  //    } else if (primitive instanceof CylinderModel) {
-  //      this.cylinders.add((CylinderModel)primitive);
-  //    } else if (primitive instanceof SphereModel) {
-  //      this.spheres.add((SphereModel)primitive);
-  //    } else if (primitive instanceof TrianglePolygonModel) {
-  //      this.trianglePolygons.add((TrianglePolygonModel)primitive);
-  //    } else if (primitive instanceof QuadPolygonModel) {
-  //      this.quadPolygons.add((QuadPolygonModel)primitive);
-  //    }  
-  //  } 
-
   /**
    * プリミティブを追加します。
    * 
@@ -243,60 +160,6 @@ public class GroupModel implements Serializable, Cloneable {
     }
   }
 
-//  /**
-//   * Method addXMLBox
-//   * 
-//   * @param box ボックス
-//   */
-//  public void add(BoxModel box) {
-//    this.boxes.add(box);
-//  }
-//
-//  /**
-//   * Method addXMLCone
-//   * 
-//   * @param cone コーン
-//   */
-//  public void add(ConeModel cone) {
-//    this.cones.add(cone);
-//  }
-//
-//  /**
-//   * Method addXMLCylinder
-//   * 
-//   * @param cylinder シリンダー
-//   */
-//  public void add(CylinderModel cylinder) {
-//    this.cylinders.add(cylinder);
-//  }
-//
-//  /**
-//   * Method addXMLSphere
-//   * 
-//   * @param sphere スフィア
-//   */
-//  public void add(SphereModel sphere) {
-//    this.spheres.add(sphere);
-//  }
-//
-//  /**
-//   * Method addXMLTrianglePolygon
-//   * 
-//   * @param trianglePolygon 三角形のポリゴン
-//   */
-//  public void add(TrianglePolygonModel trianglePolygon) {
-//    this.trianglePolygons.add(trianglePolygon);
-//  }
-//
-//  /**
-//   * Method addXMLQuadPolygon
-//   * 
-//   * @param quadPolygon 四角形のポリゴン
-//   */
-//  public void add(QuadPolygonModel quadPolygon) {
-//    this.quadPolygons.add(quadPolygon);
-//  }
-
   /**
    * Clear Linkdata.
    */
@@ -311,15 +174,7 @@ public class GroupModel implements Serializable, Cloneable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((this.primitives == null) ? 0 : this.primitives.hashCode());
-    
-//    result = prime * result + ((this.boxes == null) ? 0 : this.boxes.hashCode());
-//    result = prime * result + ((this.cones == null) ? 0 : this.cones.hashCode());
-//    result = prime * result + ((this.cylinders == null) ? 0 : this.cylinders.hashCode());
-//    result = prime * result + ((this.quadPolygons == null) ? 0 : this.quadPolygons.hashCode());
-//    result = prime * result + ((this.spheres == null) ? 0 : this.spheres.hashCode());
-//    result = prime * result + ((this.trianglePolygons == null) ? 0 : this.trianglePolygons.hashCode());
-    
+    result = prime * result + ((this.primitives == null) ? 0 : this.primitives.hashCode());  
     result = prime * result + ((this.groups == null) ? 0 : this.groups.hashCode());
     result = prime * result + ((this.animations == null) ? 0 : this.animations.hashCode());
     result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
@@ -350,50 +205,6 @@ public class GroupModel implements Serializable, Cloneable {
     } else if (!this.primitives.equals(other.primitives)) {
       return false;
     }
-    
-//    if (this.boxes == null) {
-//      if (other.boxes != null) {
-//        return false;
-//      }
-//    } else if (!this.boxes.equals(other.boxes)) {
-//      return false;
-//    }
-//    
-//    if (this.cones == null) {
-//      if (other.cones != null) {
-//        return false;
-//      }
-//    } else if (!this.cones.equals(other.cones)) {
-//      return false;
-//    }
-//    if (this.cylinders == null) {
-//      if (other.cylinders != null) {
-//        return false;
-//      }
-//    } else if (!this.cylinders.equals(other.cylinders)) {
-//      return false;
-//    }
-//    if (this.quadPolygons == null) {
-//      if (other.quadPolygons != null) {
-//        return false;
-//      }
-//    } else if (!this.quadPolygons.equals(other.quadPolygons)) {
-//      return false;
-//    }
-//    if (this.spheres == null) {
-//      if (other.spheres != null) {
-//        return false;
-//      }
-//    } else if (!this.spheres.equals(other.spheres)) {
-//      return false;
-//    }
-//    if (this.trianglePolygons == null) {
-//      if (other.trianglePolygons != null) {
-//        return false;
-//      }
-//    } else if (!this.trianglePolygons.equals(other.trianglePolygons)) {
-//      return false;
-//    }
     
     if (this.groups == null) {
       if (other.groups != null) {
@@ -507,60 +318,6 @@ public class GroupModel implements Serializable, Cloneable {
     return this.primitives;
   }
 
-//  /**
-//   * Method getXMLBox
-//   * 
-//   * @return mArray
-//   */
-//  public List<BoxModel> getBoxes() {
-//    return this.boxes;
-//  }
-//
-//  /**
-//   * Method getXMLCone
-//   * 
-//   * @return mArray
-//   */
-//  public List<ConeModel> getCones() {
-//    return this.cones;
-//  }
-//
-//  /**
-//   * Method getXMLCylinder
-//   * 
-//   * @return _XMLCylinderList.get(index)
-//   */
-//  public List<CylinderModel> getCylinders() {
-//    return this.cylinders;
-//  }
-//
-//  /**
-//   * Method getXMLSphere
-//   * 
-//   * @return mArray
-//   */
-//  public List<SphereModel> getSpheres() {
-//    return this.spheres;
-//  }
-//
-//  /**
-//   * Method getXMLTrianglePolygon
-//   * 
-//   * @return mArray
-//   */
-//  public List<TrianglePolygonModel> getTrianglePolygons() {
-//    return this.trianglePolygons;
-//  }
-//
-//  /**
-//   * Method getXMLQuadPolygon
-//   * 
-//   * @return mArray
-//   */
-//  public List<QuadPolygonModel> getQuadPolygons() {
-//    return this.quadPolygons;
-//  }
-
   /**
    * Method removeGroup
    * 
@@ -582,72 +339,6 @@ public class GroupModel implements Serializable, Cloneable {
     boolean removed = this.primitives.remove(primitive);
     return removed;
   }
-
-//  /**
-//   * Method removeXMLBox
-//   * 
-//   * @param box ボックス
-//   * @return removed
-//   */
-//  public boolean remove(BoxModel box) {
-//    boolean removed = this.boxes.remove(box);
-//    return removed;
-//  }
-//
-//  /**
-//   * Method removeXMLCone
-//   * 
-//   * @param cone コーン
-//   * @return removed
-//   */
-//  public boolean remove(ConeModel cone) {
-//    boolean removed = this.cones.remove(cone);
-//    return removed;
-//  }
-//
-//  /**
-//   * Method removeXMLCylinder
-//   * 
-//   * @param cylinder シリンダー
-//   * @return removed
-//   */
-//  public boolean remove(CylinderModel cylinder) {
-//    boolean removed = this.cylinders.remove(cylinder);
-//    return removed;
-//  }
-//
-//  /**
-//   * Method removeXMLSphere
-//   * 
-//   * @param sphere スフィア
-//   * @return removed
-//   */
-//  public boolean remove(SphereModel sphere) {
-//    boolean removed = this.spheres.remove(sphere);
-//    return removed;
-//  }
-//
-//  /**
-//   * Method removeXMLTrianglePolygon
-//   * 
-//   * @param trianglePolygon 三角形のポリゴン
-//   * @return removed
-//   */
-//  public boolean remove(TrianglePolygonModel trianglePolygon) {
-//    boolean removed = this.trianglePolygons.remove(trianglePolygon);
-//    return removed;
-//  }
-//
-//  /**
-//   * Method removeXMLQuadPolygon
-//   * 
-//   * @param quadPolygon 四角形のポリゴン
-//   * @return removed
-//   */
-//  public boolean remove(QuadPolygonModel quadPolygon) {
-//    boolean removed = this.quadPolygons.remove(quadPolygon);
-//    return removed;
-//  }
 
   /**
    * Method removeXMLBox

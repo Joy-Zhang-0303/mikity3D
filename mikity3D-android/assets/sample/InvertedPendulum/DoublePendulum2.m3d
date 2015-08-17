@@ -3,6 +3,7 @@
       <group name="root">
          <translation x="0.0" y="0.0" z="0.0"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
+         <null/>
          <group name="fulcrum">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>

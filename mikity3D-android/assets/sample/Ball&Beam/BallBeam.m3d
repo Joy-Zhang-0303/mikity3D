@@ -3,6 +3,7 @@
       <group name="ballBeam">
          <translation x="0.0" y="0.0" z="0.0"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
+         <null/>
          <group name="base">
             <translation x="0.0" y="0.0" z="-0.02"/>
             <rotation x="0.0" y="0.0" z="0.0"/>

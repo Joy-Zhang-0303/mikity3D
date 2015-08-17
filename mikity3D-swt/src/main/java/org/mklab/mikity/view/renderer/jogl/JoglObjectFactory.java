@@ -42,30 +42,6 @@ public class JoglObjectFactory {
       }
       objectGroup.addChild(create(primitive));
     }
-    
-//    for (final BoxModel box : group.getBoxes()) {
-//      objectGroup.addChild(create(box));
-//    }
-//
-//    for (final CylinderModel cylinder : group.getCylinders()) {
-//      objectGroup.addChild(create(cylinder));
-//    }
-//
-//    for (final SphereModel sphere : group.getSpheres()) {
-//      objectGroup.addChild(create(sphere));
-//    }
-//
-//    for (final ConeModel cone : group.getCones()) {
-//      objectGroup.addChild(create(cone));
-//    }
-//    
-//    for (final TrianglePolygonModel polygon : group.getTrianglePolygons()) {
-//      objectGroup.addChild(create(polygon));
-//    }
-//
-//    for (final QuadPolygonModel polygon : group.getQuadPolygons()) {
-//      objectGroup.addChild(create(polygon));
-//    }
 
     for (final GroupModel child : group.getGroups()) {
       final JoglObjectGroup childObjectGroup = create(child);

@@ -1,8 +1,9 @@
-<mikity3d>
+<mikity3d version="0.3">
    <scene>
       <group name="pendulum">
          <translation x="0.0" y="0.0" z="0.0"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
+         <null/>
          <group name="dodai">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
@@ -32,6 +33,7 @@
                <animation target="translationY">
                   <source id="0" number="2"/>
                </animation>
+               <null/>
                <box width="0.07" height="0.05" depth="0.005" transparent="false">
                   <translation x="0.02" y="0.0" z="0.0"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
@@ -43,12 +45,13 @@
                   <animation target="rotationX">
                      <source id="0" number="3"/>
                   </animation>
-                  <cylinder radius="0.01" height="0.018" division="10" transparent="false">
+                  <null/>
+                  <cylinder radius="0.01" height="0.018" division="36" transparent="false">
                      <translation x="0.0325" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="1.5708" z="0.0"/>
                      <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                   </cylinder>
-                  <cylinder radius="0.0025" height="0.3" division="10" transparent="false">
+                  <cylinder radius="0.0025" height="0.3" division="36" transparent="false">
                      <translation x="0.037" y="0.0" z="0.15"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>

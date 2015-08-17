@@ -3,12 +3,14 @@
       <group name="robotArm3">
          <translation x="0.0" y="0.0" z="-0.2"/>
          <rotation x="0.0" y="0.0" z="2.0"/>
+         <null/>
          <group name="dodai">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
             <cylinder radius="0.1" height="0.02" division="30" transparent="false">
                <color r="255" g="0" b="0" alpha="255" name="red"/>
             </cylinder>
+            <null/>
             <group name="arm1">
                <translation x="0.0" y="0.0" z="0.1"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
