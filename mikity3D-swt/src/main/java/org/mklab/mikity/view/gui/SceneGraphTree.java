@@ -351,7 +351,11 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(SelectionEvent e) {
         final GroupModel group = new GroupModel("group");  //$NON-NLS-1$
-        SceneGraphTree.this.targetGroup.add(group);
+        if (SceneGraphTree.this.targetGroup == SceneGraphTree.this.scene) {
+          SceneGraphTree.this.model.addGroup(group);
+        } else {
+          SceneGraphTree.this.targetGroup.add(group);
+        }
         final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), group, true, SceneGraphTree.this, SceneGraphTree.this.modeler);
         dialog.open();
 
@@ -464,7 +468,7 @@ public class SceneGraphTree {
           addCone.setEnabled(false);
           addTrianglePolygon.setEnabled(false);
           addQuadPolygon.setEnabled(false);
-          addGroup.setEnabled(false);
+          addGroup.setEnabled(true);
           copy.setEnabled(false);
           cut.setEnabled(false);
           paste.setEnabled(true);
