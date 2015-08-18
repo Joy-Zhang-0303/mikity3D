@@ -38,6 +38,11 @@
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </sphere>
+               <sphere radius="0.03" division="36">
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
+               </sphere>
                <group name="link2">
                   <translation x="0.0" y="0.0" z="0.3"/>
                   <rotation x="0.0" y="1.5708" z="0.0"/>
