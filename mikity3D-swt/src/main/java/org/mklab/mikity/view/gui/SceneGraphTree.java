@@ -467,7 +467,7 @@ public class SceneGraphTree {
           addGroup.setEnabled(false);
           copy.setEnabled(false);
           cut.setEnabled(false);
-          paste.setEnabled(false);
+          paste.setEnabled(true);
           edit.setEnabled(false);
           delete.setEnabled(false);
           return;
