@@ -46,6 +46,17 @@ public class AssetsListViewFragment extends RoboFragment {
   AssetManager assetManager;
   boolean isModel;
   FragmentManager fragmentManager;
+  
+  /** ソースID。 */
+  String sourceId;
+  
+  /**
+   * 新しく生成された<code>AssetsListViewFragment</code>オブジェクトを初期化します。
+   * @param sourceID ソースID
+   */
+  public AssetsListViewFragment(String sourceID) {
+    this.sourceId = sourceID;
+  }
 
   /**
    * {@inheritDoc}
@@ -91,9 +102,12 @@ public class AssetsListViewFragment extends RoboFragment {
               AssetsListViewFragment.this.canvasActivity.canvasFragment.loadModelData(input);
               AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
               AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
-              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSourceButton.setEnabled(true);
+              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource0Button.setEnabled(true);
+              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource1Button.setEnabled(true);
+              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource2Button.setEnabled(true);
+              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource3Button.setEnabled(true);
             } else {
-              AssetsListViewFragment.this.canvasActivity.canvasFragment.loadTimeData(input);
+              AssetsListViewFragment.this.canvasActivity.canvasFragment.loadSourceData(input, AssetsListViewFragment.this.sourceId);
             }
 
             AssetsListViewFragment.this.fragmentManager.popBackStack();

@@ -127,8 +127,17 @@ public class NavigationDrawerFragment extends RoboFragment {
 
   /** Assetsのモデルを読み込むためのボタン。 */
   Button assetsModelButton;
-  /** Assetsのソースを読み込むためのボタン。 */
-  Button assetsSourceButton;
+  /** Assets0のソースを読み込むためのボタン。 */
+  Button assetsSource0Button;
+  /** Assets1のソースを読み込むためのボタン。 */
+  Button assetsSource1Button;
+  /** Assets2のソースを読み込むためのボタン。 */
+  Button assetsSource2Button;
+  /** Assets3のソースを読み込むためのボタン。 */
+  Button assetsSource3Button;
+  
+  /** ソースID。 */
+  String sourceId = null;
 
   /**
    * {@inheritDoc}
@@ -212,9 +221,9 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
+        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData != null) {
           final String id = "0"; //$NON-NLS-1$
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.setTimeData(id);
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.addSource(id);
         }
       }
     });
@@ -225,8 +234,8 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.data = null;
+        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData != null) {
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData = null;
           NavigationDrawerFragment.this.sourceFileName = "..."; //$NON-NLS-1$
           NavigationDrawerFragment.this.sourceFilePathView.setText(NavigationDrawerFragment.this.sourceFileName);
         }
@@ -314,9 +323,11 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
+        NavigationDrawerFragment.this.sourceId = null;
+        
         final FragmentManager manager = getFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
-        final AssetsListViewFragment fragment = new AssetsListViewFragment();
+        final AssetsListViewFragment fragment = new AssetsListViewFragment(null);
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setIsModelData(true);
         fragment.setFragmentManager(manager);
@@ -326,17 +337,20 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    this.assetsSourceButton = (Button)view.findViewById(R.id.assetsTimeButtonView);
-    this.assetsSourceButton.setEnabled(false);
-    this.assetsSourceButton.setOnClickListener(new OnClickListener() {
+    this.assetsSource0Button = (Button)view.findViewById(R.id.assetsSource0ButtonView);
+    this.assetsSource0Button.setEnabled(false);
+    this.assetsSource0Button.setOnClickListener(new OnClickListener() {
 
       /**
        * {@inheritDoc}
        */
       public void onClick(View view) {
+        NavigationDrawerFragment.this.sourceId = "0"; //$NON-NLS-1$
+        
         final FragmentManager manager = getFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
-        final AssetsListViewFragment fragment = new AssetsListViewFragment();
+        final String id = "0"; //$NON-NLS-1$
+        final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setIsModelData(false);
         fragment.setFragmentManager(manager);
@@ -345,6 +359,77 @@ public class NavigationDrawerFragment extends RoboFragment {
         transaction.commit();
       }
     });
+    
+    this.assetsSource1Button = (Button)view.findViewById(R.id.assetsSource1ButtonView);
+    this.assetsSource1Button.setEnabled(false);
+    this.assetsSource1Button.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View view) {
+        NavigationDrawerFragment.this.sourceId = "1"; //$NON-NLS-1$
+        
+        final FragmentManager manager = getFragmentManager();
+        final FragmentTransaction transaction = manager.beginTransaction();
+        final String sourceId = "1"; //$NON-NLS-1$
+        final AssetsListViewFragment fragment = new AssetsListViewFragment(sourceId);
+        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
+        fragment.setIsModelData(false);
+        fragment.setFragmentManager(manager);
+        transaction.replace(R.id.fragment_navigation_drawer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+      }
+    });
+    
+    this.assetsSource2Button = (Button)view.findViewById(R.id.assetsSource2ButtonView);
+    this.assetsSource2Button.setEnabled(false);
+    this.assetsSource2Button.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View view) {
+        NavigationDrawerFragment.this.sourceId = "2"; //$NON-NLS-1$
+        
+        final FragmentManager manager = getFragmentManager();
+        final FragmentTransaction transaction = manager.beginTransaction();
+        final String sourceId = "2"; //$NON-NLS-1$
+        final AssetsListViewFragment fragment = new AssetsListViewFragment(sourceId);
+        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
+        fragment.setIsModelData(false);
+        fragment.setFragmentManager(manager);
+        transaction.replace(R.id.fragment_navigation_drawer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+      }
+    });
+    
+    this.assetsSource3Button = (Button)view.findViewById(R.id.assetsSource3ButtonView);
+    this.assetsSource3Button.setEnabled(false);
+    this.assetsSource3Button.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View view) {
+        NavigationDrawerFragment.this.sourceId = "3"; //$NON-NLS-1$
+        
+        final FragmentManager manager = getFragmentManager();
+        final FragmentTransaction transaction = manager.beginTransaction();
+        final String sourceId = "3"; //$NON-NLS-1$
+        final AssetsListViewFragment fragment = new AssetsListViewFragment(sourceId);
+        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
+        fragment.setIsModelData(false);
+        fragment.setFragmentManager(manager);
+        transaction.replace(R.id.fragment_navigation_drawer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+      }
+    });
+
+    
     // fragmentの値をactivityで保持。
     //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
     this.canvasActivity.ndFragment = this;
@@ -399,7 +484,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
       final String timeDataFilePath = uri.getPath();
-      this.canvasActivity.canvasFragment.setTimeDataPath(timeDataFilePath);
+      this.canvasActivity.canvasFragment.setSourceFilePath(timeDataFilePath);
       try {
         this.sourceStream = new FileInputStream(timeDataFilePath);
       } catch (FileNotFoundException e) {
@@ -411,8 +496,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     
     this.sourceFilePathView.setText(this.sourceFileName);
     
-    this.canvasActivity.canvasFragment.setTimeDataUri(uri);
-    this.canvasActivity.canvasFragment.loadTimeData(this.sourceStream);
+    this.canvasActivity.canvasFragment.setSourceUri(uri);
+    this.canvasActivity.canvasFragment.loadSourceData(this.sourceStream, this.sourceId);
     // inputTimeDataFile has been already closed in the loadTimeData method. 
     // this.inputTimeDataFile.close();
     this.sourceStream = null;
@@ -460,8 +545,8 @@ public class NavigationDrawerFragment extends RoboFragment {
       this.canvasActivity.canvasFragment.loadModelData(this.modelStream);
       setButtonEnabled(true);
       this.modelStream.close();
-      if (this.canvasActivity.canvasFragment.data != null) {
-        this.canvasActivity.canvasFragment.data = null;
+      if (this.canvasActivity.canvasFragment.sourceData != null) {
+        this.canvasActivity.canvasFragment.sourceData = null;
       }
     } catch (Mikity3dSerializeDeserializeException e) {
       setExceptionDailogFragment("please select model file."); //$NON-NLS-1$
@@ -491,7 +576,10 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.sourceNumberChangeButton.setEnabled((enabled));
     this.sourceReloadButton.setEnabled(enabled);
     this.sourceDeleteButton.setEnabled(enabled);
-    this.assetsSourceButton.setEnabled(enabled);
+    this.assetsSource0Button.setEnabled(enabled);
+    this.assetsSource1Button.setEnabled(enabled);
+    this.assetsSource2Button.setEnabled(enabled);
+    this.assetsSource3Button.setEnabled(enabled);
   }
 
   /**

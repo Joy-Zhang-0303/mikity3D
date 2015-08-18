@@ -9,7 +9,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
@@ -82,11 +84,14 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   Mikity3DModel root;
   
   ObjectGroupManager manager;
-  DoubleMatrix data;
+  
+  Map<String,DoubleMatrix> sourceData = new HashMap<String,DoubleMatrix>();
+  //DoubleMatrix sourceData;
+  
   private double[] timeTable;
   private double endTime;
   private int animationSpeed;
-  boolean playable;
+  boolean playable = true;
   AnimationTask animationTask;
   /** センサーマネージャー */
   SensorManager sensorManager;
@@ -118,10 +123,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   List<Sensor> sensors;
   /** モデルデータパス */
   private String modelFilePath;
-  /** 時間データパス */
-  private String timeDataPath;
+  /** ソースデータパス */
+  private String sourceDataPath;
   /** 時間データURI */
-  protected Uri timeDataUri;
+  protected Uri sourceUri;
   /** 画面回転時に、時間データを読み込み中ならばtrue */
   protected boolean rotateTimeDataFlag = false;
   /** ビュー */
@@ -130,7 +135,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /** プログレスダイアログ */
   ProgressDialog progressDialog;
   /** 無効な時間データが読み込まれたならばtrue */
-  private boolean setIllegalTimeData = false;
+  private boolean setIllegalSourceData = false;
   /** ポーズボタンが押されたならばtrue */
   boolean isPause = false;
   /** アニメーションの開始時間 */
@@ -292,14 +297,20 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.root = new Mikity3dFactory().loadFile(input);
     setGroupManager();
     prepareRenderer();
+    
+    final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
+    if (hasAnimation(rootGroups)) {
+      this.manager.setHasAnimation(true);
+    }
   }
 
   /**
-   * ストリームから時間データを取り出します。
+   * ストリームからソースデータを取り出します。
    * 
-   * @param input 時間データのパス
+   * @param input ソースデータのパス
+   * @param sourceId ソースID
    */
-  public void loadTimeData(final InputStream input) {
+  public void loadSourceData(final InputStream input, final String sourceId) {
     final AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
 
       /**
@@ -319,7 +330,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
        */
       @Override
       protected Void doInBackground(String... arg0) {
-        readTimeData(input);
+        readSourceData(sourceId, input);
         
         // input is closed in order to complete reading the data from the input stream.
         try {
@@ -328,9 +339,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
           throw new RuntimeException(e);
         }
         
-        final String id = "0"; //$NON-NLS-1$
-        
-        setTimeData(id);
+        addSource(sourceId);
         return null;
       }
 
@@ -348,14 +357,14 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * 時系列データを読み込みます。
+   * ソースデータを読み込みます。
    * 
-   * @param input 時系列データのインプットストリーム
+   * @param input ソースデータのインプットストリーム
    */
-  void readTimeData(final InputStream input) {
+  void readSourceData(final String sourceId, final InputStream input) {
     try {
-      this.data = (DoubleMatrix)MatxMatrix.readMatFormat(new InputStreamReader(input));
-      this.setIllegalTimeData = false;
+      this.sourceData.put(sourceId, (DoubleMatrix)MatxMatrix.readMatFormat(new InputStreamReader(input)));
+      this.setIllegalSourceData = false;
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
@@ -364,15 +373,15 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
       callExceptionDialogFragment("Please select data file."); //$NON-NLS-1$
     } catch (IllegalArgumentException e) {
-      callExceptionDialogFragment("Please select proper data file or set column number size to data size or lower."); //$NON-NLS-1$
+      callExceptionDialogFragment("Please select proper data file or set source number size to data size or lower."); //$NON-NLS-1$
     } catch (IllegalAccessError e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      final String message = "Time data size is not match model's column number." //$NON-NLS-1$
-          + "\nPlease select proper time data or set proper column number."; //$NON-NLS-1$
+      final String message = "Source data size is not match model's source number." //$NON-NLS-1$
+          + "\nPlease select proper source data or set proper source number."; //$NON-NLS-1$
       callExceptionDialogFragment(message);
-      this.setIllegalTimeData = true;
+      this.setIllegalSourceData = true;
     }
   }
 
@@ -389,50 +398,51 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
   /**
    * MovableGroupManagerに時間データを登録します。
-   * @param id ID
+   * @param sourceId ソースID
    */
-  public void setTimeData(String id) {
+  public void addSource(String sourceId) {
     try {
-      this.manager.addSource(id, this.data);
+      this.manager.addSource(sourceId, this.sourceData.get(sourceId));
     } catch (IllegalAccessError e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      final String message = "Time data size is not match model's column number." //$NON-NLS-1$
-          + "\nPlease select proper time data or set proper column number."; //$NON-NLS-1$
+      final String message = "Source data size is not match model's source number." //$NON-NLS-1$
+          + "\nPlease select proper source data or set proper source number."; //$NON-NLS-1$
       final DialogFragment dialogFragment = new ExceptionDialogFragment();
       ((ExceptionDialogFragment)dialogFragment).setMessage(message);
       dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
-      this.setIllegalTimeData = true;
+      this.setIllegalSourceData = true;
     } catch (IllegalArgumentException e) {
-      callExceptionDialogFragment("Please select proper data file or set column number to data size or lower."); //$NON-NLS-1$
+      callExceptionDialogFragment("Please select proper data file or set source number to data size or lower."); //$NON-NLS-1$
     }
+    
+    this.setIllegalSourceData = false;
+  }
 
-    final GroupModel rootGroup = this.root.getScene(0).getGroup(0);
-    checkAnimation(rootGroup);
-
+  private void prepareTimeTable() {
     final int dataSize = this.manager.getDataSize();
-
     this.timeTable = new double[dataSize];
-
     this.endTime = this.manager.getStopTime();
     for (int i = 0; i < this.timeTable.length; i++) {
       this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
     }
-    this.setIllegalTimeData = false;
   }
 
-  private void checkAnimation(GroupModel parent) {
-    final List<GroupModel> groups = parent.getGroups();
+  private boolean hasAnimation(List<GroupModel> groups) {
     for (final GroupModel group : groups) {
       final AnimationModel[] animations = group.getAnimations();
       for (final AnimationModel animation : animations) {
         if (animation.exists()) {
-          this.manager.setHasAnimation(true);
+          return true;
         }
       }
-      checkAnimation(group);
+      if (hasAnimation(group.getGroups())) {
+        return true;
+      }
     }
+    
+    return false;
   }
 
   /**
@@ -465,12 +475,19 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     if (this.playable == false) {
       this.timer.cancel();
     }
-    if (this.data == null || this.timeTable == null) {
-      return;
-    }
     this.playable = false;
     
+    if (this.sourceData.size() == 0) {
+      return;
+    }
+    
     this.manager.prepareMovingGroups();
+    
+    prepareTimeTable();
+
+    if (this.timeTable == null) {
+      return;
+    }
     
     this.endTime = this.manager.getStopTime();
     
@@ -652,21 +669,21 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * 時間データパスを設定します。
+   * ソースデータパスを設定します。
    * 
-   * @param timeDataPath 時間データパス
+   * @param sourceFilePath ソースデータパス
    */
-  public void setTimeDataPath(String timeDataPath) {
-    this.timeDataPath = timeDataPath;
+  public void setSourceFilePath(String sourceFilePath) {
+    this.sourceDataPath = sourceFilePath;
   }
 
   /**
-   * 時間データのURIを設定します。
+   * ソースデータのURIを設定します。
    * 
    * @param uri 時間データのURI
    */
-  public void setTimeDataUri(Uri uri) {
-    this.timeDataUri = uri;
+  public void setSourceUri(Uri uri) {
+    this.sourceUri = uri;
   }
 
   /**
