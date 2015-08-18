@@ -38,8 +38,8 @@ public class SphereModel implements PrimitiveModel, Serializable, Cloneable {
   @Element(name="color")
   private ColorModel color;
 
-  /**_ransparent */
-  @Attribute(name="transparent", required=false)
+  /** transparent */
+  //@Attribute(name="transparent", required=false)
   private boolean transparent;
 
 

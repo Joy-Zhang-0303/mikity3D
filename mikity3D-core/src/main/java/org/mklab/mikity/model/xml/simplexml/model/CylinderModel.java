@@ -44,7 +44,7 @@ public class CylinderModel implements PrimitiveModel, Serializable, Cloneable {
   private ColorModel color;
 
   /** transparent */
-  @Attribute(name="transparent", required=false)
+  //@Attribute(name="transparent", required=false)
   protected boolean transparent;
 
   /** Field propertyChangeListeners */

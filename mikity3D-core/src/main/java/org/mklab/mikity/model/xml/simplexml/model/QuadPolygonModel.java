@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.util.Vector3;
-import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -44,7 +43,7 @@ public class QuadPolygonModel implements PrimitiveModel, Serializable, Cloneable
   private ColorModel color;
   
   /** transparent */
-  @Attribute(name="transparent", required=false)
+  //@Attribute(name="transparent", required=false)
   protected boolean transparent;
 
   /** 法線ベクトル。 */

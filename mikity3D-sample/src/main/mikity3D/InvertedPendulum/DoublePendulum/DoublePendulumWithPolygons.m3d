@@ -7,7 +7,7 @@
          <group name="belt">
             <translation x="0.0" y="0.0" z="-0.15"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
-            <quadPolygon transparent="false">
+            <quadPolygon>
                <vertex x="0.75" y="0.05" z="-0.05"/>
                <vertex x="0.75" y="-0.05" z="-0.05"/>
                <vertex x="-0.75" y="-0.05" z="-0.05"/>
@@ -16,7 +16,7 @@
                <rotation x="0.0" y="0.0" z="0.0"/>
                <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
-            <quadPolygon transparent="false">
+            <quadPolygon>
                <vertex x="0.75" y="0.05" z="0.05"/>
                <vertex x="-0.75" y="0.05" z="0.05"/>
                <vertex x="-0.75" y="-0.05" z="0.05"/>
@@ -25,7 +25,7 @@
                <rotation x="0.0" y="0.0" z="0.0"/>
                <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
-            <quadPolygon transparent="false">
+            <quadPolygon>
                <vertex x="0.75" y="0.05" z="-0.05"/>
                <vertex x="0.75" y="0.05" z="0.05"/>
                <vertex x="0.75" y="-0.05" z="0.05"/>
@@ -34,7 +34,7 @@
                <rotation x="0.0" y="0.0" z="0.0"/>
                <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
-            <quadPolygon transparent="false">
+            <quadPolygon>
                <vertex x="0.75" y="-0.05" z="-0.05"/>
                <vertex x="0.75" y="-0.05" z="0.05"/>
                <vertex x="-0.75" y="-0.05" z="0.05"/>
@@ -43,7 +43,7 @@
                <rotation x="0.0" y="0.0" z="0.0"/>
                <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
-            <quadPolygon transparent="false">
+            <quadPolygon>
                <vertex x="-0.75" y="-0.05" z="-0.05"/>
                <vertex x="-0.75" y="-0.05" z="0.05"/>
                <vertex x="-0.75" y="0.05" z="0.05"/>
@@ -52,7 +52,7 @@
                <rotation x="0.0" y="0.0" z="0.0"/>
                <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadPolygon>
-            <quadPolygon transparent="false">
+            <quadPolygon>
                <vertex x="0.75" y="0.05" z="0.05"/>
                <vertex x="0.75" y="0.05" z="-0.05"/>
                <vertex x="-0.75" y="0.05" z="-0.05"/>
@@ -67,7 +67,7 @@
                <animation target="translationX">
                   <source id="0" number="2"/>
                </animation>
-               <quadPolygon transparent="false">
+               <quadPolygon>
                   <vertex x="0.125" y="0.1" z="-0.025"/>
                   <vertex x="0.125" y="-0.1" z="-0.025"/>
                   <vertex x="-0.125" y="-0.1" z="-0.025"/>
@@ -76,7 +76,7 @@
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadPolygon>
-               <quadPolygon transparent="false">
+               <quadPolygon>
                   <vertex x="0.125" y="0.1" z="0.025"/>
                   <vertex x="-0.125" y="0.1" z="0.025"/>
                   <vertex x="-0.125" y="-0.1" z="0.025"/>
@@ -85,7 +85,7 @@
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadPolygon>
-               <quadPolygon transparent="false">
+               <quadPolygon>
                   <vertex x="0.125" y="0.1" z="-0.025"/>
                   <vertex x="0.125" y="0.1" z="0.025"/>
                   <vertex x="0.125" y="-0.1" z="0.025"/>
@@ -94,7 +94,7 @@
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadPolygon>
-               <quadPolygon transparent="false">
+               <quadPolygon>
                   <vertex x="0.125" y="-0.1" z="-0.025"/>
                   <vertex x="0.125" y="-0.1" z="0.025"/>
                   <vertex x="-0.125" y="-0.1" z="0.025"/>
@@ -103,7 +103,7 @@
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadPolygon>
-               <quadPolygon transparent="false">
+               <quadPolygon>
                   <vertex x="-0.125" y="-0.1" z="-0.025"/>
                   <vertex x="-0.125" y="-0.1" z="0.025"/>
                   <vertex x="-0.125" y="0.1" z="0.025"/>
@@ -112,7 +112,7 @@
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadPolygon>
-               <quadPolygon transparent="false">
+               <quadPolygon>
                   <vertex x="0.125" y="0.1" z="0.025"/>
                   <vertex x="0.125" y="0.1" z="-0.025"/>
                   <vertex x="-0.125" y="0.1" z="-0.025"/>
@@ -127,7 +127,7 @@
                   <animation target="rotationZ">
                      <source id="0" number="3"/>
                   </animation>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="0.00707" y="0.00707" z="-0.01"/>
                      <vertex x="0.00988" y="0.00156" z="-0.01"/>
@@ -135,7 +135,7 @@
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="0.00988" y="0.00156" z="0.01"/>
                      <vertex x="0.00707" y="0.00707" z="0.01"/>
@@ -143,13 +143,13 @@
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="0.00988" y="0.00156" z="-0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="0.01"/>
                      <vertex x="0.00988" y="0.00156" z="0.01"/>
@@ -157,7 +157,7 @@
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="-0.01"/>
@@ -165,350 +165,350 @@
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                      <vertex x="0.00156" y="0.00988" z="-0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="0.00156" y="0.00988" z="0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.00156" y="0.00988" z="-0.01"/>
                      <vertex x="0.00707" y="0.00707" z="-0.01"/>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="0.00707" y="0.00707" z="0.01"/>
                      <vertex x="0.00156" y="0.00988" z="0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="0.00707" y="0.0" z="-0.00707"/>
                      <vertex x="0.00988" y="0.0" z="-0.00156"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="0.00988" y="0.379" z="-0.00156"/>
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="0.00988" y="0.0" z="-0.00156"/>
                      <vertex x="0.00891" y="0.0" z="0.00454"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="0.00891" y="0.379" z="0.00454"/>
                      <vertex x="0.00988" y="0.379" z="-0.00156"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="0.00891" y="0.0" z="0.00454"/>
                      <vertex x="0.00454" y="0.0" z="0.00891"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="0.00454" y="0.379" z="0.00891"/>
                      <vertex x="0.00891" y="0.379" z="0.00454"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="0.00454" y="0.0" z="0.00891"/>
                      <vertex x="-0.00156" y="0.0" z="0.00988"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="-0.00156" y="0.379" z="0.00988"/>
                      <vertex x="0.00454" y="0.379" z="0.00891"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="-0.00156" y="0.0" z="0.00988"/>
                      <vertex x="-0.00707" y="0.0" z="0.00707"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="-0.00707" y="0.379" z="0.00707"/>
                      <vertex x="-0.00156" y="0.379" z="0.00988"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="-0.00707" y="0.0" z="0.00707"/>
                      <vertex x="-0.00988" y="0.0" z="0.00156"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="-0.00988" y="0.379" z="0.00156"/>
                      <vertex x="-0.00707" y="0.379" z="0.00707"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="-0.00988" y="0.0" z="0.00156"/>
                      <vertex x="-0.00891" y="0.0" z="-0.00454"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="-0.00891" y="0.379" z="-0.00454"/>
                      <vertex x="-0.00988" y="0.379" z="0.00156"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="-0.00891" y="0.0" z="-0.00454"/>
                      <vertex x="-0.00454" y="0.0" z="-0.00891"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="-0.00454" y="0.379" z="-0.00891"/>
                      <vertex x="-0.00891" y="0.379" z="-0.00454"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="-0.00454" y="0.0" z="-0.00891"/>
                      <vertex x="0.00156" y="0.0" z="-0.00988"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="0.00156" y="0.379" z="-0.00988"/>
                      <vertex x="-0.00454" y="0.379" z="-0.00891"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="0.00156" y="0.0" z="-0.00988"/>
                      <vertex x="0.00707" y="0.0" z="-0.00707"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <trianglePolygon transparent="false">
+                  <trianglePolygon>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
                      <vertex x="0.00156" y="0.379" z="-0.00988"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </trianglePolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="0.00707" y="0.00707" z="-0.01"/>
                      <vertex x="0.00707" y="0.00707" z="0.01"/>
                      <vertex x="0.00988" y="0.00156" z="0.01"/>
                      <vertex x="0.00988" y="0.00156" z="-0.01"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="0.00988" y="0.00156" z="-0.01"/>
                      <vertex x="0.00988" y="0.00156" z="0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="0.01"/>
                      <vertex x="0.00156" y="0.00988" z="0.01"/>
                      <vertex x="0.00156" y="0.00988" z="-0.01"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="0.00707" y="0.00707" z="0.01"/>
                      <vertex x="0.00707" y="0.00707" z="-0.01"/>
                      <vertex x="0.00156" y="0.00988" z="-0.01"/>
                      <vertex x="0.00156" y="0.00988" z="0.01"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="0.00707" y="0.0" z="-0.00707"/>
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
                      <vertex x="0.00988" y="0.379" z="-0.00156"/>
                      <vertex x="0.00988" y="0.0" z="-0.00156"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="0.00988" y="0.0" z="-0.00156"/>
                      <vertex x="0.00988" y="0.379" z="-0.00156"/>
                      <vertex x="0.00891" y="0.379" z="0.00454"/>
                      <vertex x="0.00891" y="0.0" z="0.00454"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="0.00891" y="0.0" z="0.00454"/>
                      <vertex x="0.00891" y="0.379" z="0.00454"/>
                      <vertex x="0.00454" y="0.379" z="0.00891"/>
                      <vertex x="0.00454" y="0.0" z="0.00891"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="0.00454" y="0.0" z="0.00891"/>
                      <vertex x="0.00454" y="0.379" z="0.00891"/>
                      <vertex x="-0.00156" y="0.379" z="0.00988"/>
                      <vertex x="-0.00156" y="0.0" z="0.00988"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="-0.00156" y="0.0" z="0.00988"/>
                      <vertex x="-0.00156" y="0.379" z="0.00988"/>
                      <vertex x="-0.00707" y="0.379" z="0.00707"/>
                      <vertex x="-0.00707" y="0.0" z="0.00707"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="-0.00707" y="0.0" z="0.00707"/>
                      <vertex x="-0.00707" y="0.379" z="0.00707"/>
                      <vertex x="-0.00988" y="0.379" z="0.00156"/>
                      <vertex x="-0.00988" y="0.0" z="0.00156"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="-0.00988" y="0.0" z="0.00156"/>
                      <vertex x="-0.00988" y="0.379" z="0.00156"/>
                      <vertex x="-0.00891" y="0.379" z="-0.00454"/>
                      <vertex x="-0.00891" y="0.0" z="-0.00454"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="-0.00891" y="0.0" z="-0.00454"/>
                      <vertex x="-0.00891" y="0.379" z="-0.00454"/>
                      <vertex x="-0.00454" y="0.379" z="-0.00891"/>
                      <vertex x="-0.00454" y="0.0" z="-0.00891"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="-0.00454" y="0.0" z="-0.00891"/>
                      <vertex x="-0.00454" y="0.379" z="-0.00891"/>
                      <vertex x="0.00156" y="0.379" z="-0.00988"/>
                      <vertex x="0.00156" y="0.0" z="-0.00988"/>
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadPolygon>
-                  <quadPolygon transparent="false">
+                  <quadPolygon>
                      <vertex x="0.00156" y="0.0" z="-0.00988"/>
                      <vertex x="0.00156" y="0.379" z="-0.00988"/>
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
@@ -521,380 +521,380 @@
                      <animation target="rotationZ">
                         <source id="0" number="4"/>
                      </animation>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="0.00707" y="0.00707" z="-0.01"/>
                         <vertex x="0.00988" y="0.00156" z="-0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="0.00988" y="0.00156" z="0.01"/>
                         <vertex x="0.00707" y="0.00707" z="0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="0.00988" y="0.00156" z="-0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="0.01"/>
                         <vertex x="0.00988" y="0.00156" z="0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                         <vertex x="0.00156" y="0.00988" z="-0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="0.00156" y="0.00988" z="0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.00156" y="0.00988" z="-0.01"/>
                         <vertex x="0.00707" y="0.00707" z="-0.01"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="0.00707" y="0.00707" z="0.01"/>
                         <vertex x="0.00156" y="0.00988" z="0.01"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="0.00707" y="0.354" z="0.00707"/>
                         <vertex x="0.00988" y="0.354" z="0.00156"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="0.00988" y="-0.0" z="0.00156"/>
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="0.00988" y="0.354" z="0.00156"/>
                         <vertex x="0.00891" y="0.354" z="-0.00454"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="0.00891" y="-0.0" z="-0.00454"/>
                         <vertex x="0.00988" y="-0.0" z="0.00156"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="0.00891" y="0.354" z="-0.00454"/>
                         <vertex x="0.00454" y="0.354" z="-0.00891"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="0.00454" y="-0.0" z="-0.00891"/>
                         <vertex x="0.00891" y="-0.0" z="-0.00454"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="0.00454" y="0.354" z="-0.00891"/>
                         <vertex x="-0.00156" y="0.354" z="-0.00988"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="-0.00156" y="-0.0" z="-0.00988"/>
                         <vertex x="0.00454" y="-0.0" z="-0.00891"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="-0.00156" y="0.354" z="-0.00988"/>
                         <vertex x="-0.00707" y="0.354" z="-0.00707"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="-0.00707" y="-0.0" z="-0.00707"/>
                         <vertex x="-0.00156" y="-0.0" z="-0.00988"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="-0.00707" y="0.354" z="-0.00707"/>
                         <vertex x="-0.00988" y="0.354" z="-0.00156"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="-0.00988" y="-0.0" z="-0.00156"/>
                         <vertex x="-0.00707" y="-0.0" z="-0.00707"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="-0.00988" y="0.354" z="-0.00156"/>
                         <vertex x="-0.00891" y="0.354" z="0.00454"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="-0.00891" y="-0.0" z="0.00454"/>
                         <vertex x="-0.00988" y="-0.0" z="-0.00156"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="-0.00891" y="0.354" z="0.00454"/>
                         <vertex x="-0.00454" y="0.354" z="0.00891"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="-0.00454" y="-0.0" z="0.00891"/>
                         <vertex x="-0.00891" y="-0.0" z="0.00454"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="-0.00454" y="0.354" z="0.00891"/>
                         <vertex x="0.00156" y="0.354" z="0.00988"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="0.00156" y="-0.0" z="0.00988"/>
                         <vertex x="-0.00454" y="-0.0" z="0.00891"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="0.00156" y="0.354" z="0.00988"/>
                         <vertex x="0.00707" y="0.354" z="0.00707"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <trianglePolygon transparent="false">
+                     <trianglePolygon>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>
                         <vertex x="0.00156" y="-0.0" z="0.00988"/>
                         <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </trianglePolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="0.00707" y="0.00707" z="-0.01"/>
                         <vertex x="0.00707" y="0.00707" z="0.01"/>
                         <vertex x="0.00988" y="0.00156" z="0.01"/>
                         <vertex x="0.00988" y="0.00156" z="-0.01"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="0.00988" y="0.00156" z="-0.01"/>
                         <vertex x="0.00988" y="0.00156" z="0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="0.01"/>
                         <vertex x="0.00156" y="0.00988" z="0.01"/>
                         <vertex x="0.00156" y="0.00988" z="-0.01"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="0.00707" y="0.00707" z="0.01"/>
                         <vertex x="0.00707" y="0.00707" z="-0.01"/>
                         <vertex x="0.00156" y="0.00988" z="-0.01"/>
                         <vertex x="0.00156" y="0.00988" z="0.01"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="0.00707" y="0.354" z="0.00707"/>
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>
                         <vertex x="0.00988" y="-0.0" z="0.00156"/>
                         <vertex x="0.00988" y="0.354" z="0.00156"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="0.00988" y="0.354" z="0.00156"/>
                         <vertex x="0.00988" y="-0.0" z="0.00156"/>
                         <vertex x="0.00891" y="-0.0" z="-0.00454"/>
                         <vertex x="0.00891" y="0.354" z="-0.00454"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="0.00891" y="0.354" z="-0.00454"/>
                         <vertex x="0.00891" y="-0.0" z="-0.00454"/>
                         <vertex x="0.00454" y="-0.0" z="-0.00891"/>
                         <vertex x="0.00454" y="0.354" z="-0.00891"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="0.00454" y="0.354" z="-0.00891"/>
                         <vertex x="0.00454" y="-0.0" z="-0.00891"/>
                         <vertex x="-0.00156" y="-0.0" z="-0.00988"/>
                         <vertex x="-0.00156" y="0.354" z="-0.00988"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="-0.00156" y="0.354" z="-0.00988"/>
                         <vertex x="-0.00156" y="-0.0" z="-0.00988"/>
                         <vertex x="-0.00707" y="-0.0" z="-0.00707"/>
                         <vertex x="-0.00707" y="0.354" z="-0.00707"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="-0.00707" y="0.354" z="-0.00707"/>
                         <vertex x="-0.00707" y="-0.0" z="-0.00707"/>
                         <vertex x="-0.00988" y="-0.0" z="-0.00156"/>
                         <vertex x="-0.00988" y="0.354" z="-0.00156"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="-0.00988" y="0.354" z="-0.00156"/>
                         <vertex x="-0.00988" y="-0.0" z="-0.00156"/>
                         <vertex x="-0.00891" y="-0.0" z="0.00454"/>
                         <vertex x="-0.00891" y="0.354" z="0.00454"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="-0.00891" y="0.354" z="0.00454"/>
                         <vertex x="-0.00891" y="-0.0" z="0.00454"/>
                         <vertex x="-0.00454" y="-0.0" z="0.00891"/>
                         <vertex x="-0.00454" y="0.354" z="0.00891"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="-0.00454" y="0.354" z="0.00891"/>
                         <vertex x="-0.00454" y="-0.0" z="0.00891"/>
                         <vertex x="0.00156" y="-0.0" z="0.00988"/>
                         <vertex x="0.00156" y="0.354" z="0.00988"/>
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadPolygon>
-                     <quadPolygon transparent="false">
+                     <quadPolygon>
                         <vertex x="0.00156" y="0.354" z="0.00988"/>
                         <vertex x="0.00156" y="-0.0" z="0.00988"/>
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>

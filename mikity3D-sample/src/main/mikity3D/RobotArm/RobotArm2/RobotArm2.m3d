@@ -7,7 +7,7 @@
          <group name="dodai">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="-1.57"/>
-            <cylinder radius="0.2" height="0.2" division="30" transparent="false">
+            <cylinder radius="0.2" height="0.2" division="30">
                <translation x="0.0" y="0.0" z="0.0"/>
                <color r="255" g="255" b="0" alpha="255" name="yellow"/>
             </cylinder>
@@ -17,11 +17,11 @@
                <animation target="rotationX">
                   <source id="0" number="2"/>
                </animation>
-               <cylinder radius="0.02" height="0.4" division="30" transparent="false">
+               <cylinder radius="0.02" height="0.4" division="30">
                   <translation x="0.0" y="0.0" z="0.2"/>
                   <color r="255" g="0" b="0" alpha="255" name="red"/>
                </cylinder>
-               <cylinder radius="0.02" height="0.04" division="30" transparent="false">
+               <cylinder radius="0.02" height="0.04" division="30">
                   <translation x="0.0" y="0.0" z="0.42"/>
                   <rotation x="0.0" y="1.5708" z="0.0"/>
                   <color r="255" g="165" b="0" alpha="255" name="orange"/>
@@ -32,7 +32,7 @@
                   <animation target="rotationX">
                      <source id="0" number="3"/>
                   </animation>
-                  <cylinder radius="0.02" height="0.4" division="30" transparent="false">
+                  <cylinder radius="0.02" height="0.4" division="30">
                      <translation x="0.0" y="0.0" z="0.2"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </cylinder>

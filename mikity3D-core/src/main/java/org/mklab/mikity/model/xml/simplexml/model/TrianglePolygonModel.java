@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.util.Vector3;
-import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -30,14 +29,6 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
   /** vertices */
   @ElementList(type=VertexModel.class, inline=true, required=true)
   private List<VertexModel> vertices;
-   
-  /** color */
-  @Element(name="color")
-  private ColorModel color;
-
-  /** transparent */
-  @Attribute(name="transparent", required=false)
-  private boolean transparent;
 
   /** translation */
   @Element(name="translation", required=false)
@@ -46,7 +37,15 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
   /** rotation */
   @Element(name="rotation", required=false)
   private RotationModel rotation;
-  
+   
+  /** color */
+  @Element(name="color")
+  private ColorModel color;
+
+  /** transparent */
+  //@Attribute(name="transparent", required=false)
+  private boolean transparent;
+ 
   /** 法線ベクトル。 */
   private Vector3 normalVector;
 

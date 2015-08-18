@@ -43,7 +43,7 @@ public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
   private ColorModel color;
 
   /** transparent */
-  @Attribute(name="transparent", required=false)
+  //@Attribute(name="transparent", required=false)
   private boolean transparent;
 
   /** propertyChangeListeners */
