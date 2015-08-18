@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.model.xml.simplexml.model;
 
+import java.io.Serializable;
+
 import org.simpleframework.xml.Root;
 
 
@@ -15,7 +17,9 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2015/08/17
  */
 @Root(name="null")
-public class NullModel implements PrimitiveModel {
+public class NullModel implements PrimitiveModel, Serializable, Cloneable {
+  /** */
+  private static final long serialVersionUID = 1L;
   private static final NullModel instancel = new NullModel();
   
   /**
@@ -32,6 +36,14 @@ public class NullModel implements PrimitiveModel {
    */
   public static NullModel getInstance() {
     return NullModel.instancel;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public NullModel clone() {
+    return this;
   }
 
   /**
@@ -115,7 +127,7 @@ public class NullModel implements PrimitiveModel {
    * {@inheritDoc}
    */
   public PrimitiveModel createClone() {
-    return null;
+    return this;
   }
 
 }
