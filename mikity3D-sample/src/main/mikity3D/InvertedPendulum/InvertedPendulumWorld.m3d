@@ -160,7 +160,7 @@
                <translation x="0.0" y="0.15" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
                <animation target="translationX">
-                  <source id="3" number="2"/>
+                  <source id="2" number="2"/>
                </animation>
                <quadPolygon>
                   <vertex x="0.125" y="0.1" z="-0.025"/>
@@ -208,7 +208,7 @@
                   <translation x="0.0" y="0.0" z="0.035"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <animation target="rotationZ">
-                     <source id="3" number="3"/>
+                     <source id="2" number="3"/>
                   </animation>
                   <trianglePolygon>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
@@ -594,7 +594,7 @@
                      <translation x="0.0" y="0.389" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                      <animation target="rotationZ">
-                        <source id="3" number="4"/>
+                        <source id="2" number="4"/>
                      </animation>
                      <trianglePolygon>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
@@ -997,7 +997,7 @@
                <translation x="0.0" y="0.0" z="0.15"/>
                <rotation x="0.0" y="3.14" z="0.0"/>
                <animation target="rotationZ">
-                  <source id="0" number="2"/>
+                  <source id="3" number="2"/>
                </animation>
                <box width="0.58" height="0.1" depth="0.1">
                   <translation x="0.0" y="0.0" z="0.0"/>
@@ -1008,7 +1008,7 @@
                   <translation x="0.0" y="-0.3" z="0.0"/>
                   <rotation x="-1.57" y="0.0" z="0.0"/>
                   <animation target="rotationZ">
-                     <source id="0" number="3"/>
+                     <source id="3" number="3"/>
                   </animation>
                   <cylinder radius="0.01" height="0.3" division="36">
                      <translation x="0.0" y="0.15" z="0.0"/>
@@ -1025,7 +1025,7 @@
                   <translation x="0.0" y="0.3" z="0.0"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <animation target="rotationZ">
-                     <source id="0" number="4"/>
+                     <source id="3" number="4"/>
                   </animation>
                   <cylinder radius="0.01" height="0.2" division="36">
                      <translation x="0.0" y="0.0" z="-0.1"/>
