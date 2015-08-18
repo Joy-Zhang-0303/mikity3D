@@ -250,7 +250,7 @@ public class CanvasActivity extends RoboFragmentActivity {
       case 3:
         if (resultCode == RESULT_OK && data != null) {
           final Uri uri = data.getData();
-          this.ndFragment.unzipSaveFile(uri);
+          this.ndFragment.unzipFile(uri);
         }
         break;
       default:
@@ -264,7 +264,7 @@ public class CanvasActivity extends RoboFragmentActivity {
    * @param uri 時間データのURI
    */
   private void loadTimeData(Uri uri) {
-    this.ndFragment.loadTimeData(uri);
+    this.ndFragment.loadSourceData(uri);
 
 //    try {
 //      this.canvasFragment.setTimeDataUri(uri);

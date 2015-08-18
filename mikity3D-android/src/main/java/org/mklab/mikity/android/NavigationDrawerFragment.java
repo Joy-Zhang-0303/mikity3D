@@ -67,9 +67,9 @@ public class NavigationDrawerFragment extends RoboFragment {
   Timer timer = new Timer();
 
   /** */
-  ObjectGroupManager manager;
+  ObjectGroupManager groupManager;
 
-  TextView dataFilePathView;
+  TextView sourceFilePathView;
   TextView modelFilePathView;
 
   /** 前回のタッチのｘ座標 */
@@ -81,44 +81,54 @@ public class NavigationDrawerFragment extends RoboFragment {
 
   /** アニメーションスピードを表示するエディットテキスト */
   EditText animationSpeedTextEdit;
-  /** 3Dモデルのインプットストリーム */
-  private InputStream inputModelDataFile;
+  
+  /** モデルの入力ストリーム。 */
+  InputStream modelStream;
+  /** ソースの入力ストリーム。   */
+  InputStream sourceStream;
+  
   /** 3Dモデルが選ばれて表示されたかどうかのフラグ */
   boolean isSelectedModelFile;
-  /** モデルを参照するときに押されるボタン */
-  Button selectButton;
   /** アニメーションスピードを早くするときに押されるボタン */
   Button quickButton;
   /** アニメーションスピードを遅くするときに押されるボタン */
   Button slowButton;
-  /** モデルファイル読み込むときに押されるボタン */
-  Button loadModelButton;
+  
+  /** モデルを選択するときに押されるボタン */
+  Button modelSelectButton;
+  /** モデルデータ読み込むときに押されるボタン */
+  Button modelLoadButton;
+
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton gyroToggleButton;
   /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton accelerToggleButton;
   ToggleButton rotateTogguleButton;
-  InputStream inputTimeDataFile;
-  String timeDataName;
-  private String modelFileName;
+  
+  String sourceFileName;
+  String modelFileName;
+  
   CanvasActivity canvasActivity;
   /** アニメーションスピードテキスト用のスピード */
   int animationTextSpeed;
-  /** 時間データ再読み込みのためのボタン */
-  Button reloadButton;
-  /** 時間データを削除するためのボタン */
-  Button timeDataDeleteButton;
+
+  /** ソースデータ再読み込みのためのボタン */
+  Button sourceReloadButton;
+  /** ソースデータを削除するためのボタン */
+  Button sourceDeleteButton;
+  /** ソース番号を変更するためのボタン */
+  Button sourceNumberChangeButton;
+  
   private Cursor cursor;
   private Cursor cursor2;
-  /** サンプルモデル読み込みのためのボタン */
-  Button sampleModelButton;
-  /** カラムを入れ替えるためのボタン */
-  Button setNumberButton;
+  
   /** ストリーム */
   InputStream input;
-  private Button unzipSaveButton;
-  private Button assetsModelButton;
-  Button assetsTimeButton;
+
+  /** Assetsのモデルを読み込むためのボタン。 */
+  Button assetsModelButton;
+  /** Assetsのソースを読み込むためのボタン。 */
+  Button assetsSourceButton;
 
   /**
    * {@inheritDoc}
@@ -129,25 +139,25 @@ public class NavigationDrawerFragment extends RoboFragment {
 
     this.canvasActivity = (CanvasActivity)getActivity();
 
-    //モデルデータ選択ボタンの表示
-    this.loadModelButton = (Button)view.findViewById(R.id.modelSelectButton);
-    //時系列選択ボタンの配置
-    this.selectButton = (Button)view.findViewById(R.id.timeSelectButton);
+    //モデル選択ボタンの表示
+    this.modelLoadButton = (Button)view.findViewById(R.id.modelSelectButton);
+    //ソース選択ボタンの配置
+    this.modelSelectButton = (Button)view.findViewById(R.id.timeSelectButton);
     this.quickButton = (Button)view.findViewById(R.id.quickButton);
     this.slowButton = (Button)view.findViewById(R.id.slowButton);
-    this.reloadButton = (Button)view.findViewById(R.id.reloadButton);
-    this.timeDataDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
-    //    this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
-    this.setNumberButton = (Button)view.findViewById(R.id.sampleSetColumnButton);
+    this.sourceReloadButton = (Button)view.findViewById(R.id.reloadButton);
+    this.sourceDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
+    // this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
+    this.sourceNumberChangeButton = (Button)view.findViewById(R.id.sampleSetColumnButton);
 
-    this.selectButton.setEnabled(false);
+    this.modelSelectButton.setEnabled(false);
     this.quickButton.setEnabled(false);
     this.slowButton.setEnabled(false);
-    this.reloadButton.setEnabled(false);
-    this.timeDataDeleteButton.setEnabled(false);
-    this.setNumberButton.setEnabled(false);
+    this.sourceReloadButton.setEnabled(false);
+    this.sourceDeleteButton.setEnabled(false);
+    this.sourceNumberChangeButton.setEnabled(false);
 
-    this.loadModelButton.setOnClickListener(new View.OnClickListener() {
+    this.modelLoadButton.setOnClickListener(new View.OnClickListener() {
 
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_FILE_OR_DIRECTORY;
 
@@ -165,7 +175,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.animationSpeedTextEdit.clearFocus();
 
     //ファイルパスビューの配置
-    this.dataFilePathView = (TextView)view.findViewById(R.id.filePathView);
+    this.sourceFilePathView = (TextView)view.findViewById(R.id.filePathView);
     this.modelFilePathView = (TextView)view.findViewById(R.id.modelPathView);
     this.modelFilePathView.setMovementMethod(ScrollingMovementMethod.getInstance());
 
@@ -184,7 +194,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    this.selectButton.setOnClickListener(new View.OnClickListener() {
+    this.modelSelectButton.setOnClickListener(new View.OnClickListener() {
 
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_TIME_DATA_FILE;
 
@@ -196,12 +206,12 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    this.reloadButton.setOnClickListener(new View.OnClickListener() {
+    this.sourceReloadButton.setOnClickListener(new View.OnClickListener() {
 
       /**
        * {@inheritDoc}
        */
-      public void onClick(View view1) {
+      public void onClick(View view) {
         if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
           final String id = "0"; //$NON-NLS-1$
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.setTimeData(id);
@@ -209,16 +219,16 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    this.timeDataDeleteButton.setOnClickListener(new View.OnClickListener() {
+    this.sourceDeleteButton.setOnClickListener(new View.OnClickListener() {
 
       /**
        * {@inheritDoc}
        */
-      public void onClick(View view1) {
+      public void onClick(View view) {
         if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.data != null) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.data = null;
-          NavigationDrawerFragment.this.timeDataName = "..."; //$NON-NLS-1$
-          NavigationDrawerFragment.this.dataFilePathView.setText(NavigationDrawerFragment.this.timeDataName);
+          NavigationDrawerFragment.this.sourceFileName = "..."; //$NON-NLS-1$
+          NavigationDrawerFragment.this.sourceFilePathView.setText(NavigationDrawerFragment.this.sourceFileName);
         }
       }
     });
@@ -228,7 +238,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       /**
        * {@inheritDoc}
        */
-      public void onClick(View v) {
+      public void onClick(View view) {
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
         NavigationDrawerFragment.this.animationSpeed -= 1;
         if (NavigationDrawerFragment.this.animationSpeed < 0) NavigationDrawerFragment.this.animationSpeed = 0;
@@ -244,7 +254,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       /**
        * {@inheritDoc}
        */
-      public void onClick(View v) {
+      public void onClick(View view) {
         if (NavigationDrawerFragment.this.gyroToggleButton.isChecked()) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.useOrientationSensor = true;
         } else NavigationDrawerFragment.this.canvasActivity.canvasFragment.useOrientationSensor = false;
@@ -257,7 +267,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       /**
        * {@inheritDoc}
        */
-      public void onClick(View v) {
+      public void onClick(View view) {
         if (NavigationDrawerFragment.this.accelerToggleButton.isChecked()) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerSensor = true;
 
@@ -273,27 +283,27 @@ public class NavigationDrawerFragment extends RoboFragment {
       /**
        * {@inheritDoc}
        */
-      public void onClick(View v) {
+      public void onClick(View view) {
         NavigationDrawerFragment.this.canvasActivity.controlRotation();
       }
     });
 
-    this.setNumberButton.setOnClickListener(new OnClickListener() {
+    this.sourceNumberChangeButton.setOnClickListener(new OnClickListener() {
 
       /**
        * {@inheritDoc}
        */
-      public void onClick(View v) {
-        final FragmentManager fragmentManager = getFragmentManager();
-        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        final ListColumnFragment fragment = new ListColumnFragment();
+      public void onClick(View view) {
+        final FragmentManager manager = getFragmentManager();
+        final FragmentTransaction transaction = manager.beginTransaction();
+        final SourceNumberFragment fragment = new SourceNumberFragment();
         if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
           fragment.setGroupManager(getGroupManager());
           fragment.setNavigationDrawerFragment(NavigationDrawerFragment.this);
 
-          fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
-          fragmentTransaction.addToBackStack(null);
-          fragmentTransaction.commit();
+          transaction.replace(R.id.fragment_navigation_drawer, fragment);
+          transaction.addToBackStack(null);
+          transaction.commit();
         }
       }
     });
@@ -303,36 +313,36 @@ public class NavigationDrawerFragment extends RoboFragment {
       /**
        * {@inheritDoc}
        */
-      public void onClick(View v) {
-        final FragmentManager fragmentManager = getFragmentManager();
-        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+      public void onClick(View view) {
+        final FragmentManager manager = getFragmentManager();
+        final FragmentTransaction transaction = manager.beginTransaction();
         final AssetsListViewFragment fragment = new AssetsListViewFragment();
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setIsModelData(true);
-        fragment.setFragmentManager(fragmentManager);
-        fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        fragment.setFragmentManager(manager);
+        transaction.replace(R.id.fragment_navigation_drawer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
       }
     });
 
-    this.assetsTimeButton = (Button)view.findViewById(R.id.assetsTimeButtonView);
-    this.assetsTimeButton.setEnabled(false);
-    this.assetsTimeButton.setOnClickListener(new OnClickListener() {
+    this.assetsSourceButton = (Button)view.findViewById(R.id.assetsTimeButtonView);
+    this.assetsSourceButton.setEnabled(false);
+    this.assetsSourceButton.setOnClickListener(new OnClickListener() {
 
       /**
        * {@inheritDoc}
        */
-      public void onClick(View v) {
-        final FragmentManager fragmentManager = getFragmentManager();
-        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+      public void onClick(View view) {
+        final FragmentManager manager = getFragmentManager();
+        final FragmentTransaction transaction = manager.beginTransaction();
         final AssetsListViewFragment fragment = new AssetsListViewFragment();
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setIsModelData(false);
-        fragment.setFragmentManager(fragmentManager);
-        fragmentTransaction.replace(R.id.fragment_navigation_drawer, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        fragment.setFragmentManager(manager);
+        transaction.replace(R.id.fragment_navigation_drawer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
       }
     });
     // fragmentの値をactivityで保持。
@@ -352,8 +362,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     final List<GroupModel> groupArray = model.getGroups();
     final GroupModel group = groupArray.get(0);
     final ExcecuteSearchGroup search = new ExcecuteSearchGroup();
-    final GroupNameManager groupManager = new GroupNameManager(group.getName(), null);
-    final GroupManager result = search.searchGroupRecursion(group, groupManager);
+    final GroupNameManager manager = new GroupNameManager(group.getName(), null);
+    final GroupManager result = search.searchGroupRecursion(group, manager);
     return result;
   }
 
@@ -371,7 +381,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    * 
    * @param uri 時間データURI
    */
-  void loadTimeData(Uri uri) {
+  void loadSourceData(Uri uri) {
     if (uri == null) {
       return;
     }
@@ -379,33 +389,33 @@ public class NavigationDrawerFragment extends RoboFragment {
     if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        this.inputTimeDataFile = this.canvasActivity.getContentResolver().openInputStream(uri);
+        this.sourceStream = this.canvasActivity.getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
       this.cursor2 = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
       this.cursor2.moveToFirst();
-      this.timeDataName = this.cursor2.getString(this.cursor2.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      this.sourceFileName = this.cursor2.getString(this.cursor2.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
       final String timeDataFilePath = uri.getPath();
       this.canvasActivity.canvasFragment.setTimeDataPath(timeDataFilePath);
       try {
-        this.inputTimeDataFile = new FileInputStream(timeDataFilePath);
+        this.sourceStream = new FileInputStream(timeDataFilePath);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
       final String[] parts = timeDataFilePath.split("/"); //$NON-NLS-1$
-      this.timeDataName = parts[parts.length - 1];
+      this.sourceFileName = parts[parts.length - 1];
     }
     
-    this.dataFilePathView.setText(this.timeDataName);
+    this.sourceFilePathView.setText(this.sourceFileName);
     
     this.canvasActivity.canvasFragment.setTimeDataUri(uri);
-    this.canvasActivity.canvasFragment.loadTimeData(this.inputTimeDataFile);
+    this.canvasActivity.canvasFragment.loadTimeData(this.sourceStream);
     // inputTimeDataFile has been already closed in the loadTimeData method. 
     // this.inputTimeDataFile.close();
-    this.inputTimeDataFile = null;
+    this.sourceStream = null;
 
   }
 
@@ -422,7 +432,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        this.inputModelDataFile = this.canvasActivity.getContentResolver().openInputStream(uri);
+        this.modelStream = this.canvasActivity.getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
@@ -431,25 +441,25 @@ public class NavigationDrawerFragment extends RoboFragment {
       this.modelFileName = this.cursor.getString(this.cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
-      final String modelDataFilePath = uri.getPath();
-      this.canvasActivity.canvasFragment.setModelFilePath(modelDataFilePath);
+      final String modelFilePath = uri.getPath();
+      this.canvasActivity.canvasFragment.setModelFilePath(modelFilePath);
       try {
-        this.inputModelDataFile = new FileInputStream(modelDataFilePath);
+        this.modelStream = new FileInputStream(modelFilePath);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      final String[] parts = modelDataFilePath.split("/"); //$NON-NLS-1$
+      final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
       this.modelFileName = parts[parts.length - 1];
     }
 
     this.modelFilePathView.setText(this.modelFileName);
-    this.timeDataName = "..."; //$NON-NLS-1$
-    this.dataFilePathView.setText(this.timeDataName);
+    this.sourceFileName = "..."; //$NON-NLS-1$
+    this.sourceFilePathView.setText(this.sourceFileName);
 
     try {
-      this.canvasActivity.canvasFragment.loadModelData(this.inputModelDataFile);
+      this.canvasActivity.canvasFragment.loadModelData(this.modelStream);
       setButtonEnabled(true);
-      this.inputModelDataFile.close();
+      this.modelStream.close();
       if (this.canvasActivity.canvasFragment.data != null) {
         this.canvasActivity.canvasFragment.data = null;
       }
@@ -465,36 +475,36 @@ public class NavigationDrawerFragment extends RoboFragment {
    * @param message 例外メッセージ
    */
   void setExceptionDailogFragment(String message) {
-    final DialogFragment dialogFragment = new ExceptionDialogFragment();
-    ((ExceptionDialogFragment)dialogFragment).setMessage(message);
-    dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
+    final DialogFragment fragment = new ExceptionDialogFragment();
+    ((ExceptionDialogFragment)fragment).setMessage(message);
+    fragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
 
   /**
-   * @param flag
+   * @param enabled
    */
-  void setButtonEnabled(boolean flag) {
-    this.isSelectedModelFile = flag;
-    this.selectButton.setEnabled(flag);
-    this.quickButton.setEnabled(flag);
-    this.slowButton.setEnabled(flag);
-    this.setNumberButton.setEnabled((flag));
-    this.reloadButton.setEnabled(flag);
-    this.timeDataDeleteButton.setEnabled(flag);
-    this.assetsTimeButton.setEnabled(flag);
+  void setButtonEnabled(boolean enabled) {
+    this.isSelectedModelFile = enabled;
+    this.modelSelectButton.setEnabled(enabled);
+    this.quickButton.setEnabled(enabled);
+    this.slowButton.setEnabled(enabled);
+    this.sourceNumberChangeButton.setEnabled((enabled));
+    this.sourceReloadButton.setEnabled(enabled);
+    this.sourceDeleteButton.setEnabled(enabled);
+    this.assetsSourceButton.setEnabled(enabled);
   }
 
   /**
-   * 番号を入れ替えます。
+   * ソース番号を変更します。
    * 
    * @param targetNumbers グループの階層を所持したリスト
    * @param childPosition アニメーションデータがある場所
-   * @param number 入れ替える番号
+   * @param number 設定する番号
    */
-  void changeModelNumber(List<Integer> targetNumbers, int childPosition, int number) {
-    final SceneModel model = this.canvasActivity.canvasFragment.root.getScene(0);
-    final List<GroupModel> groups = model.getGroups();
-    GroupModel group = groups.get(0);
+  void changeSourceNumber(List<Integer> targetNumbers, int childPosition, int number) {
+    final SceneModel scene = this.canvasActivity.canvasFragment.root.getScene(0);
+    final List<GroupModel> topGroups = scene.getGroups();
+    GroupModel group = topGroups.get(0);
 
     for (Integer targetNumber : targetNumbers) {
       group = group.getGroups().get(targetNumber.intValue());
@@ -506,16 +516,16 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
 
   /**
-   * @param uri URL
+   * @param inputURL URL
    */
-  void unzipSaveFile(Uri uri) {
-    if (uri == null) {
+  void unzipFile(Uri inputURL) {
+    if (inputURL == null) {
       return;
     }
 
     // ストリームを直接URIから取り出します。
     try {
-      final InputStream zipFile = this.canvasActivity.getContentResolver().openInputStream(uri);
+      final InputStream zipFile = this.canvasActivity.getContentResolver().openInputStream(inputURL);
       final ZipInputStream zipInput = new ZipInputStream(new BufferedInputStream(zipFile));
 
       ZipEntry zipEntry;

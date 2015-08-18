@@ -28,7 +28,7 @@ import android.widget.TextView;
  * @author soda
  * @version $Revision$, 2015/02/03
  */
-public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
+public class SourceNumberAdapter extends ArrayAdapter<GroupManager> {
 
   private Context context;
   private int viewResourceId;
@@ -45,7 +45,7 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
   int groupNameCount;
 
   /**
-   * 新しく生成された<code>ColumnArrayAdapter</code>オブジェクトを初期化します。
+   * 新しく生成された<code>SourceNumberAdapter</code>オブジェクトを初期化します。
    * 
    * @param aContext Context
    * @param resourceId id
@@ -53,7 +53,7 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
    * @param fragment NavigatioDrawerFragment
    * @param targetNumber リンクの中の何番目のターゲットかを知るための変数
    */
-  public ColumnArrayAdapter(Context aContext, int resourceId, List<GroupManager> localGroupManagers, NavigationDrawerFragment fragment, List<Integer> targetNumber) {
+  public SourceNumberAdapter(Context aContext, int resourceId, List<GroupManager> localGroupManagers, NavigationDrawerFragment fragment, List<Integer> targetNumber) {
     super(aContext, resourceId, localGroupManagers);
     this.context = aContext;
     this.viewResourceId = resourceId;
@@ -85,8 +85,8 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
     if (this.groupManagers.get(position).getClass() == GroupNameManager.class) {
       final GroupNameManager groupName = (GroupNameManager)this.groupManagers.get(position);
       final View view = this.layoutInflater.inflate(this.viewResourceId, null);
-      final TextView columnText = (TextView)view.findViewById(R.id.groupNameText);
-      columnText.setText(groupName.getGroupName());
+      final TextView sourceNumberText = (TextView)view.findViewById(R.id.groupNameText);
+      sourceNumberText.setText(groupName.getGroupName());
       return view;
     }
 
@@ -107,7 +107,7 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
           final int number = groupAnimation.getNumber() - 1;
           groupAnimation.setNumber(number);
           numberText.setText(Integer.toString(number));
-          ColumnArrayAdapter.this.fragment.changeModelNumber(ColumnArrayAdapter.this.targetNumbers, position - ColumnArrayAdapter.this.groupNameCount, number);
+          SourceNumberAdapter.this.fragment.changeSourceNumber(SourceNumberAdapter.this.targetNumbers, position - SourceNumberAdapter.this.groupNameCount, number);
         }
       }
     });
@@ -122,7 +122,7 @@ public class ColumnArrayAdapter extends ArrayAdapter<GroupManager> {
           final int number = groupAnimation.getNumber() + 1;
           groupAnimation.setNumber(number);
           numberText.setText(Integer.toString(number));
-          ColumnArrayAdapter.this.fragment.changeModelNumber(ColumnArrayAdapter.this.targetNumbers, position - ColumnArrayAdapter.this.groupNameCount, number);
+          SourceNumberAdapter.this.fragment.changeSourceNumber(SourceNumberAdapter.this.targetNumbers, position - SourceNumberAdapter.this.groupNameCount, number);
         }
       }
     });

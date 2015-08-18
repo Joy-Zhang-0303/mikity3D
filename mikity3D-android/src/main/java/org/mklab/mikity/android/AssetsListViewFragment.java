@@ -32,6 +32,8 @@ import android.widget.ListView;
 
 
 /**
+ * Assets中のファイルを操作するためのフラグメントです。
+ * 
  * @author koga
  * @version $Revision$, 2015/03/26
  */
@@ -55,7 +57,7 @@ public class AssetsListViewFragment extends RoboFragment {
 
     this.assetManager = getResources().getAssets();
     this.listView = (ListView)this.view.findViewById(R.id.assetsListView);
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.canvasActivity, android.R.layout.simple_list_item_1, loadAssetsFolder(this.currentPath));
+    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.canvasActivity, android.R.layout.simple_list_item_1, getFilesInAssets(this.currentPath));
     this.listView.setAdapter(adapter);
 
     // リスト項目がクリックされた時の処理
@@ -64,13 +66,13 @@ public class AssetsListViewFragment extends RoboFragment {
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final String item = (String)AssetsListViewFragment.this.listView.getItemAtPosition(position);
         final String nextFile = AssetsListViewFragment.this.currentPath + File.separator + item;
-        String[] nextFiles = loadAssetsFolder(nextFile);
+        String[] nextFiles = getFilesInAssets(nextFile);
         List<String> nextFileLimits = new ArrayList<String>();
 
         if (AssetsListViewFragment.this.isModel) {
-          nextFileLimits = getLimitList("m3d", nextFiles); //$NON-NLS-1$
+          nextFileLimits = getLimitList(nextFiles, "m3d"); //$NON-NLS-1$
         } else {
-          nextFileLimits = getLimitList("mat", nextFiles); //$NON-NLS-1$
+          nextFileLimits = getLimitList(nextFiles, "mat"); //$NON-NLS-1$
         }
 
         nextFiles = nextFileLimits.toArray(new String[nextFileLimits.size()]);
@@ -89,7 +91,7 @@ public class AssetsListViewFragment extends RoboFragment {
               AssetsListViewFragment.this.canvasActivity.canvasFragment.loadModelData(input);
               AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
               AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
-              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsTimeButton.setEnabled(true);
+              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSourceButton.setEnabled(true);
             } else {
               AssetsListViewFragment.this.canvasActivity.canvasFragment.loadTimeData(input);
             }
@@ -108,19 +110,23 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
+   * 例外メッセージを出力するダイアログを表示します。
+   * 
    * @param message メッセージ
    */
-  protected void setExceptionDailogFragment(String message) {
+  void showExceptionDailogFragment(String message) {
     final DialogFragment dialogFragment = new ExceptionDialogFragment();
     ((ExceptionDialogFragment)dialogFragment).setMessage(message);
     dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
   }
 
   /**
+   * Assets中のファイルを返します。
+   * 
    * @param folderName フォルダーの名前
-   * @return
+   * @return Assets中のファイル
    */
-  String[] loadAssetsFolder(String folderName) {
+  String[] getFilesInAssets(String folderName) {
     String[] files = null;
     try {
       files = this.assetManager.list(folderName);
@@ -131,11 +137,14 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * @param filePath
-   * @return
+   * Assets中のファイルを読み込みます。
+   * 
+   * @param filePath ファイルパス
+   * 
+   * @return 読み込んだファイルの内容
    */
   @SuppressWarnings("resource")
-  String loadAssetsFile(String filePath) {
+  String loadFileInAssets(String filePath) {
     String text = ""; //$NON-NLS-1$
     try {
       final InputStream input = this.assetManager.open(filePath);
@@ -151,16 +160,18 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * @param parentPath
-   * @param filename
-   * @param folder
+   * Assets中のファイルをコピーします。
+   * 
+   * @param parentPath 親パス
+   * @param filePath ファイルパス
+   * @param folder フォルダー
    */
-  void copyAssetsFiles(final String parentPath, final String filename, File folder) {
+  void copyFilesInAssets(final String parentPath, final String filePath, File folder) {
     if (!folder.exists()) {
       folder.mkdirs();
     }
 
-    final File file = new File(folder, filename);
+    final File file = new File(folder, filePath);
     if (file.exists()) {
       file.delete();
     }
@@ -169,7 +180,7 @@ public class AssetsListViewFragment extends RoboFragment {
       final OutputStream output = new FileOutputStream(file);
       final byte[] buffer = new byte[1024];
       int length = 0;
-      final InputStream input = this.canvasActivity.getAssets().open(parentPath + File.separator + filename);
+      final InputStream input = this.canvasActivity.getAssets().open(parentPath + File.separator + filePath);
       while ((length = input.read(buffer)) >= 0) {
         output.write(buffer, 0, length);
       }
@@ -200,6 +211,7 @@ public class AssetsListViewFragment extends RoboFragment {
 
   /**
    * 拡張子を返します。
+   * 
    * 拡張子がない場合、そのままファイル名を返します。
    * 
    * @param fileName ファイル名
@@ -221,11 +233,11 @@ public class AssetsListViewFragment extends RoboFragment {
   /**
    * 指定された拡張子をもつファイルのみのリストを返します。
    * 
+   * @param files ファイルのリスト  
    * @param extension 拡張子
-   * @param files ファイルのリスト
    * @return 指定された拡張子をもつファイルのみのリスト
    */
-  public List<String> getLimitList(String extension, String[] files) {
+  public List<String> getLimitList(String[] files, String extension) {
     final List<String> nextFileLimits = new ArrayList<String>();
     
     for (int i = 0; i < files.length; i++) {

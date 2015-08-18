@@ -23,23 +23,23 @@ import roboguice.fragment.RoboFragment;
 
 
 /**
- * モデルのグループデータをListViewとして表示するためのFragmentです。
+ * モデルのグループをListViewとして表示するためのFragmentです。
  * 
  * @author soda
  * @version $Revision$, 2015/02/03
  */
-public class ListColumnFragment extends RoboFragment {
+public class SourceNumberFragment extends RoboFragment {
 
   /** リストビュー */
-  ListView listView;
+  private ListView listView;
 
-  View view;
+  private View view;
 
   /** グループリスト */
-  List<GroupManager> groupManageers;
+  List<GroupManager> groupManagers;
 
-  /** GroupNamerの親の管理のためのグループマネージャー */
-  GroupManager groupManager;
+  /** GroupManagerの親を管理するためのグループマネージャー */
+  GroupManager parentGroupManager;
 
   int groupPosition = 0;
   private Button backButton;
@@ -48,8 +48,6 @@ public class ListColumnFragment extends RoboFragment {
 
   /**
    * {@inheritDoc}
-   * 
-   * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,14 +61,14 @@ public class ListColumnFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        if (ListColumnFragment.this.groupManager.getParent() == null) {
+        if (SourceNumberFragment.this.parentGroupManager.getParent() == null) {
           return;
         }
 
-        ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManager.getParent();
-        ListColumnFragment.this.groupManageers = ListColumnFragment.this.groupManager.getItems();
-        int size = ListColumnFragment.this.targetNumbers.size() - 1;
-        ListColumnFragment.this.targetNumbers.remove(size);
+        SourceNumberFragment.this.parentGroupManager = SourceNumberFragment.this.parentGroupManager.getParent();
+        SourceNumberFragment.this.groupManagers = SourceNumberFragment.this.parentGroupManager.getItems();
+        final int size = SourceNumberFragment.this.targetNumbers.size() - 1;
+        SourceNumberFragment.this.targetNumbers.remove(size);
         configureListView();
       }
     });
@@ -80,8 +78,8 @@ public class ListColumnFragment extends RoboFragment {
   /**
    * リストビューをアダプタに登録し、リストの処理します。
    */
-  public void configureListView() {
-    ColumnArrayAdapter adapter = new ColumnArrayAdapter(this.getActivity(), R.layout.list_groupname, this.groupManageers, this.fragment, this.targetNumbers);
+  void configureListView() {
+    final SourceNumberAdapter adapter = new SourceNumberAdapter(this.getActivity(), R.layout.list_groupname, this.groupManagers, this.fragment, this.targetNumbers);
     this.listView.setAdapter(adapter);
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -95,10 +93,10 @@ public class ListColumnFragment extends RoboFragment {
           return;
         }
 
-        ListColumnFragment.this.groupPosition = position;
-        ListColumnFragment.this.groupManager = ListColumnFragment.this.groupManageers.get(ListColumnFragment.this.groupPosition);
-        ListColumnFragment.this.groupManageers = ListColumnFragment.this.groupManager.getItems();
-        ListColumnFragment.this.targetNumbers.add(position);
+        SourceNumberFragment.this.groupPosition = position;
+        SourceNumberFragment.this.parentGroupManager = SourceNumberFragment.this.groupManagers.get(SourceNumberFragment.this.groupPosition);
+        SourceNumberFragment.this.groupManagers = SourceNumberFragment.this.parentGroupManager.getItems();
+        SourceNumberFragment.this.targetNumbers.add(position);
         configureListView();
       }
     });
@@ -110,8 +108,8 @@ public class ListColumnFragment extends RoboFragment {
    * @param groupManager GroupManager
    */
   public void setGroupManager(GroupManager groupManager) {
-    this.groupManager = groupManager;
-    this.groupManageers = groupManager.getItems();
+    this.parentGroupManager = groupManager;
+    this.groupManagers = groupManager.getItems();
   }
 
   /**
