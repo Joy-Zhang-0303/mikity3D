@@ -307,10 +307,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /**
    * ストリームからソースデータを取り出します。
    * 
-   * @param input ソースデータのパス
+   * @param input ソースの入力ストリーム
+   * @param filePath ソースのファイルパス
    * @param sourceId ソースID
    */
-  public void loadSourceData(final InputStream input, final String sourceId) {
+  public void loadSourceData(final InputStream input, final String filePath, final String sourceId) {
     final AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
 
       /**
@@ -330,7 +331,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
        */
       @Override
       protected Void doInBackground(String... arg0) {
-        readSourceData(sourceId, input);
+        readSourceData(sourceId, input, filePath);
         
         // input is closed in order to complete reading the data from the input stream.
         try {
@@ -361,9 +362,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * 
    * @param input ソースデータのインプットストリーム
    */
-  void readSourceData(final String sourceId, final InputStream input) {
+  void readSourceData(final String sourceId, final InputStream input, final String sourceFilePath) {
     try {
-      this.sourceData.put(sourceId, (DoubleMatrix)MatxMatrix.readMatFormat(new InputStreamReader(input)));
+      if (sourceFilePath.toLowerCase().endsWith(".mat") || sourceFilePath.startsWith("/document")) { //$NON-NLS-1$ //$NON-NLS-2$
+        this.sourceData.put(sourceId, (DoubleMatrix)MatxMatrix.readMatFormat(new InputStreamReader(input)));
+      } else {
+        this.sourceData.put(sourceId, DoubleMatrix.readCsvFormat(new InputStreamReader(input)).transpose());
+      }
       this.setIllegalSourceData = false;
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);

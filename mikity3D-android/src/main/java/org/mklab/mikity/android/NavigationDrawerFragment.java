@@ -95,9 +95,9 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button slowButton;
   
   /** モデルを選択するときに押されるボタン */
-  Button modelSelectButton;
+  Button sourceSelectButton;
   /** モデルデータ読み込むときに押されるボタン */
-  Button modelLoadButton;
+  Button modelSelectionButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton gyroToggleButton;
@@ -148,25 +148,22 @@ public class NavigationDrawerFragment extends RoboFragment {
 
     this.canvasActivity = (CanvasActivity)getActivity();
 
-    //モデル選択ボタンの表示
-    this.modelLoadButton = (Button)view.findViewById(R.id.modelSelectButton);
-    //ソース選択ボタンの配置
-    this.modelSelectButton = (Button)view.findViewById(R.id.timeSelectButton);
+    this.modelSelectionButton = (Button)view.findViewById(R.id.modelSelectButton);
+    this.sourceSelectButton = (Button)view.findViewById(R.id.timeSelectButton);
     this.quickButton = (Button)view.findViewById(R.id.quickButton);
     this.slowButton = (Button)view.findViewById(R.id.slowButton);
     this.sourceReloadButton = (Button)view.findViewById(R.id.reloadButton);
     this.sourceDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
-    // this.sampleModelButton = (Button)view.findViewById(R.id.setSampleModelButton);
     this.sourceNumberChangeButton = (Button)view.findViewById(R.id.sampleSetColumnButton);
 
-    this.modelSelectButton.setEnabled(false);
+    this.sourceSelectButton.setEnabled(false);
     this.quickButton.setEnabled(false);
     this.slowButton.setEnabled(false);
     this.sourceReloadButton.setEnabled(false);
     this.sourceDeleteButton.setEnabled(false);
     this.sourceNumberChangeButton.setEnabled(false);
 
-    this.modelLoadButton.setOnClickListener(new View.OnClickListener() {
+    this.modelSelectionButton.setOnClickListener(new View.OnClickListener() {
 
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_FILE_OR_DIRECTORY;
 
@@ -203,9 +200,9 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    this.modelSelectButton.setOnClickListener(new View.OnClickListener() {
+    this.sourceSelectButton.setOnClickListener(new View.OnClickListener() {
 
-      final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_TIME_DATA_FILE;
+      final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_SOURCE_DATA_FILE;
 
       /**
        * {@inheritDoc}
@@ -221,7 +218,7 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData != null) {
+        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData.size() != 0) {
           final String id = "0"; //$NON-NLS-1$
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.addSource(id);
         }
@@ -234,8 +231,8 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData != null) {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData = null;
+        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData.size() != 0) {
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData.clear();
           NavigationDrawerFragment.this.sourceFileName = "..."; //$NON-NLS-1$
           NavigationDrawerFragment.this.sourceFilePathView.setText(NavigationDrawerFragment.this.sourceFileName);
         }
@@ -483,22 +480,22 @@ public class NavigationDrawerFragment extends RoboFragment {
       this.sourceFileName = this.cursor2.getString(this.cursor2.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
-      final String timeDataFilePath = uri.getPath();
-      this.canvasActivity.canvasFragment.setSourceFilePath(timeDataFilePath);
+      final String sourceDataFilePath = uri.getPath();
+      this.canvasActivity.canvasFragment.setSourceFilePath(sourceDataFilePath);
       try {
-        this.sourceStream = new FileInputStream(timeDataFilePath);
+        this.sourceStream = new FileInputStream(sourceDataFilePath);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      final String[] parts = timeDataFilePath.split("/"); //$NON-NLS-1$
+      final String[] parts = sourceDataFilePath.split("/"); //$NON-NLS-1$
       this.sourceFileName = parts[parts.length - 1];
     }
     
     this.sourceFilePathView.setText(this.sourceFileName);
     
     this.canvasActivity.canvasFragment.setSourceUri(uri);
-    this.canvasActivity.canvasFragment.loadSourceData(this.sourceStream, this.sourceId);
-    // inputTimeDataFile has been already closed in the loadTimeData method. 
+    this.canvasActivity.canvasFragment.loadSourceData(this.sourceStream,  uri.getPath(), this.sourceId);
+    // inputTimeDataFile has been already closed in the loadSourceData method. 
     // this.inputTimeDataFile.close();
     this.sourceStream = null;
 
@@ -545,8 +542,8 @@ public class NavigationDrawerFragment extends RoboFragment {
       this.canvasActivity.canvasFragment.loadModelData(this.modelStream);
       setButtonEnabled(true);
       this.modelStream.close();
-      if (this.canvasActivity.canvasFragment.sourceData != null) {
-        this.canvasActivity.canvasFragment.sourceData = null;
+      if (this.canvasActivity.canvasFragment.sourceData.size() != 0) {
+        this.canvasActivity.canvasFragment.sourceData.clear();
       }
     } catch (Mikity3dSerializeDeserializeException e) {
       setExceptionDailogFragment("please select model file."); //$NON-NLS-1$
@@ -570,7 +567,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    */
   void setButtonEnabled(boolean enabled) {
     this.isSelectedModelFile = enabled;
-    this.modelSelectButton.setEnabled(enabled);
+    this.sourceSelectButton.setEnabled(enabled);
     this.quickButton.setEnabled(enabled);
     this.slowButton.setEnabled(enabled);
     this.sourceNumberChangeButton.setEnabled((enabled));

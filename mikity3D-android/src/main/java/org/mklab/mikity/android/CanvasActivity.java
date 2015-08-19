@@ -37,7 +37,7 @@ import android.widget.LinearLayout;
 public class CanvasActivity extends RoboFragmentActivity {
 
   final static int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
-  final static int REQUEST_CODE_PICK_TIME_DATA_FILE = 1;
+  final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
   private boolean registerAccerlerometer;
   private boolean registerMagneticFieldSensor;
 
@@ -105,7 +105,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     }
       
     final Uri dPath = bundle.getParcelable(intentDataPath);
-    loadTimeData(dPath);
+    loadSourceData(dPath);
   }
 
   /**
@@ -241,10 +241,10 @@ public class CanvasActivity extends RoboFragmentActivity {
           loadModelData(uri);
         }
         break;
-      case REQUEST_CODE_PICK_TIME_DATA_FILE:
+      case REQUEST_CODE_PICK_SOURCE_DATA_FILE:
         if (resultCode == RESULT_OK && data != null) {
           final Uri uri = data.getData();
-          loadTimeData(uri);
+          loadSourceData(uri);
         }
         break;
       case 3:
@@ -263,9 +263,10 @@ public class CanvasActivity extends RoboFragmentActivity {
    * 
    * @param uri 時間データのURI
    */
-  private void loadTimeData(Uri uri) {
+  private void loadSourceData(Uri uri) {
+    this.ndFragment.sourceId = "0"; //$NON-NLS-1$
     this.ndFragment.loadSourceData(uri);
-
+    
 //    try {
 //      this.canvasFragment.setTimeDataUri(uri);
 //      this.canvasFragment.loadTimeData(this.ndFragment.inputTimeDataFile);
@@ -285,6 +286,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     this.ndFragment.loadModelData(uri);
 
     this.canvasFragment.sourceUri = null;
+    this.ndFragment.sourceId = null;
     this.canvasFragment.modelRenderer.updateDisplay();
   }
 

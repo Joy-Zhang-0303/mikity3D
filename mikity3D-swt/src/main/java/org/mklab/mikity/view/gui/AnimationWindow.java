@@ -621,7 +621,13 @@ public class AnimationWindow extends ApplicationWindow {
    */
   void addSource(String id, String filePath) {
     try (FileReader input = new FileReader(filePath);) {
-      final DoubleMatrix sourceData = (DoubleMatrix)MatxMatrix.readMatFormat(input);
+      DoubleMatrix sourceData;
+      if (filePath.toLowerCase().endsWith(".mat")) { //$NON-NLS-1$
+        sourceData = (DoubleMatrix)MatxMatrix.readMatFormat(input);
+      } else {
+        sourceData = DoubleMatrix.readCsvFormat(input).transpose();
+      }
+
       input.close();
       
       this.manager.addSource(id, sourceData);

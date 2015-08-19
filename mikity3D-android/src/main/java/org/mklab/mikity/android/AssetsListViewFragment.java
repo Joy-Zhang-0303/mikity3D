@@ -81,9 +81,9 @@ public class AssetsListViewFragment extends RoboFragment {
         List<String> nextFileLimits = new ArrayList<String>();
 
         if (AssetsListViewFragment.this.isModel) {
-          nextFileLimits = getLimitList(nextFiles, "m3d"); //$NON-NLS-1$
+          nextFileLimits = getLimitList(nextFiles, new String[]{"m3d"}); //$NON-NLS-1$
         } else {
-          nextFileLimits = getLimitList(nextFiles, "mat"); //$NON-NLS-1$
+          nextFileLimits = getLimitList(nextFiles, new String[]{"mat", "csv", "txt"}); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
 
         nextFiles = nextFileLimits.toArray(new String[nextFileLimits.size()]);
@@ -107,7 +107,7 @@ public class AssetsListViewFragment extends RoboFragment {
               AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource2Button.setEnabled(true);
               AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource3Button.setEnabled(true);
             } else {
-              AssetsListViewFragment.this.canvasActivity.canvasFragment.loadSourceData(input, AssetsListViewFragment.this.sourceId);
+              AssetsListViewFragment.this.canvasActivity.canvasFragment.loadSourceData(input, nextFile, AssetsListViewFragment.this.sourceId);
             }
 
             AssetsListViewFragment.this.fragmentManager.popBackStack();
@@ -248,15 +248,17 @@ public class AssetsListViewFragment extends RoboFragment {
    * 指定された拡張子をもつファイルのみのリストを返します。
    * 
    * @param files ファイルのリスト  
-   * @param extension 拡張子
+   * @param extensions 拡張子
    * @return 指定された拡張子をもつファイルのみのリスト
    */
-  public List<String> getLimitList(String[] files, String extension) {
+  public List<String> getLimitList(String[] files, String[] extensions) {
     final List<String> nextFileLimits = new ArrayList<String>();
     
-    for (int i = 0; i < files.length; i++) {
-      if (getSuffix(files[i]).equals(extension)) {
-        nextFileLimits.add(files[i]);
+    for (String file : files) {
+      for (String extension : extensions) {
+        if (getSuffix(file).toLowerCase().equals(extension)) {
+          nextFileLimits.add(file);
+        }
       }
     }
     return nextFileLimits;
