@@ -100,6 +100,10 @@ public class AssetsListViewFragment extends RoboFragment {
 
             if (AssetsListViewFragment.this.isModel) {
               AssetsListViewFragment.this.canvasActivity.canvasFragment.loadModelData(input);
+              if (AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.size() != 0) {
+                AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.clear();
+              }
+              
               AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
               AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
               AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource0Button.setEnabled(true);

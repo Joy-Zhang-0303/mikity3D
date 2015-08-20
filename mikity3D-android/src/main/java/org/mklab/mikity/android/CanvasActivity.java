@@ -38,6 +38,7 @@ public class CanvasActivity extends RoboFragmentActivity {
 
   final static int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
+  
   private boolean registerAccerlerometer;
   private boolean registerMagneticFieldSensor;
 
@@ -48,7 +49,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   private DrawerLayout mDrawer;
 
   /** アクティビティのconfiguration */
-  private Configuration config;
+  private Configuration configuration;
 
   /** CanvasFragment */
   @InjectFragment(R.id.fragment_canvas)
@@ -57,15 +58,14 @@ public class CanvasActivity extends RoboFragmentActivity {
   /** NavigationDrawerFragment */
   NavigationDrawerFragment ndFragment;
 
-  /** 停止ボタンが押されたかの判定 */
-  private boolean isPushedStopButton;
+  /** 停止ボタンが押すことができるならばtrue */
+  private boolean isStopButtonPushable;
 
   /**
    * {@inheritDoc}
    */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-
     super.onCreate(savedInstanceState);
     setContentView(R.layout.canvas);
 
@@ -138,21 +138,21 @@ public class CanvasActivity extends RoboFragmentActivity {
     switch (item.getItemId()) {
       case R.id.menu_play:
         CanvasActivity.this.canvasFragment.runAnimation();
-        this.isPushedStopButton = false;
+        this.isStopButtonPushable = false;
         break;
       case R.id.menu_stop:
         CanvasActivity.this.canvasFragment.timer.cancel();
         CanvasActivity.this.canvasFragment.playable = false;
-        this.isPushedStopButton = true;
-        CanvasActivity.this.canvasFragment.isPause = false;
+        this.isStopButtonPushable = true;
+        CanvasActivity.this.canvasFragment.isPaused = false;
         break;
       case R.id.menu_pause:
-        if (this.isPushedStopButton == false) {
-          if (CanvasActivity.this.canvasFragment.isPause == false) {
+        if (this.isStopButtonPushable == false) {
+          if (CanvasActivity.this.canvasFragment.isPaused == false) {
             if (CanvasActivity.this.canvasFragment.animationTask != null) {
               CanvasActivity.this.canvasFragment.timer.cancel();
-              CanvasActivity.this.canvasFragment.isPause = true;
-              this.canvasFragment.setStopTime(SystemClock.uptimeMillis());
+              CanvasActivity.this.canvasFragment.isPaused = true;
+              this.canvasFragment.setPuasedTime(SystemClock.uptimeMillis());
             }
           }
         }
@@ -160,6 +160,7 @@ public class CanvasActivity extends RoboFragmentActivity {
       default:
         break;
     }
+    
     return super.onOptionsItemSelected(item);
   }
 
@@ -294,7 +295,7 @@ public class CanvasActivity extends RoboFragmentActivity {
    * 画面回転時の処理を行います。
    */
   public void controlRotation() {
-    this.config = getResources().getConfiguration();
+    this.configuration = getResources().getConfiguration();
     final int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
     boolean isReverse = false;
     
@@ -309,7 +310,7 @@ public class CanvasActivity extends RoboFragmentActivity {
           break;
       }
 
-      if (CanvasActivity.this.config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+      if (CanvasActivity.this.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
         if (isReverse) {
           setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
         } else {

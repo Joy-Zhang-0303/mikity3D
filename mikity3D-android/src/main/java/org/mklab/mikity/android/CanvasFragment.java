@@ -69,7 +69,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /** scaleGestureDetector */
   ScaleGestureDetector gesDetect = null;
   
-  boolean rotationing;
+  boolean rotating;
   boolean scaling;
   double scaleValue = 1;
   float prevX = 0;
@@ -86,7 +86,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   ObjectGroupManager manager;
   
   Map<String,DoubleMatrix> sourceData = new HashMap<String,DoubleMatrix>();
-  //DoubleMatrix sourceData;
   
   private double[] timeTable;
   private double endTime;
@@ -137,11 +136,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /** 無効な時間データが読み込まれたならばtrue */
   private boolean setIllegalSourceData = false;
   /** ポーズボタンが押されたならばtrue */
-  boolean isPause = false;
+  boolean isPaused = false;
   /** アニメーションの開始時間 */
   private long startTime;
   /** アニメーションの一時停止時間 */
-  private long stopTime;
+  private long pausedTime;
   /** アニメーションの待ち時間 */
   private long waitTime;
 
@@ -187,7 +186,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
         switch (event.getAction()) {
         // タッチした
           case MotionEvent.ACTION_DOWN:
-            CanvasFragment.this.rotationing = true;
+            CanvasFragment.this.rotating = true;
             CanvasFragment.this.prevX = event.getX();
             CanvasFragment.this.prevY = event.getY();
             break;
@@ -199,17 +198,17 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
             CanvasFragment.this.prevX = event.getX();
             CanvasFragment.this.prevY = event.getY();
 
-            if ((CanvasFragment.this.rotationing) && (touchCount == 1)) {
+            if ((CanvasFragment.this.rotating) && (touchCount == 1)) {
               CanvasFragment.this.modelRenderer.setRotationY(-transferAmountY);
               CanvasFragment.this.modelRenderer.setRotationZ(-transferAmountX);
             }
             if ((touchCount == 2) && (!CanvasFragment.this.scaling)) {
-              final float Touch3DModelProportion = 1000.0f;
-              CanvasFragment.this.modelRenderer.setTranslationY(transferAmountX / Touch3DModelProportion);
-              CanvasFragment.this.modelRenderer.setTranslationZ(transferAmountY / Touch3DModelProportion);
-              CanvasFragment.this.rotationing = false;
+              final float touch3DModelProportion = 1000.0f;
+              CanvasFragment.this.modelRenderer.setTranslationY(transferAmountX / touch3DModelProportion);
+              CanvasFragment.this.modelRenderer.setTranslationZ(transferAmountY / touch3DModelProportion);
+              CanvasFragment.this.rotating = false;
             }
-            CanvasFragment.this.rotationing = true;
+            CanvasFragment.this.rotating = true;
             break;
 
           // タッチが離れた
@@ -250,7 +249,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
      */
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
-      CanvasFragment.this.rotationing = false;
+      CanvasFragment.this.rotating = false;
       CanvasFragment.this.scaling = true;
       final double scalingFactor = 0.5;
       final double newScale = Math.max(0.01, CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gesDetect.getScaleFactor())) / scalingFactor;
@@ -472,11 +471,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * アニメーションを開始します。
    */
   public void runAnimation() {
-    if (this.isPause == false) {
+    if (this.isPaused == false) {
       this.startTime = SystemClock.uptimeMillis();
       this.waitTime = 0;
     }
+    
     this.animationSpeed = this.activity.ndFragment.animationSpeed;
+    
     if (this.playable == false) {
       this.timer.cancel();
     }
@@ -496,11 +497,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     
     this.endTime = this.manager.getStopTime();
     
-    if (this.isPause) {
-      this.waitTime += SystemClock.uptimeMillis() - this.stopTime;
+    if (this.isPaused) {
+      this.waitTime += SystemClock.uptimeMillis() - this.pausedTime;
     }
     
-    this.isPause = false;
+    this.isPaused = false;
     this.animationTask = new AnimationTask(this.startTime, this.endTime, getManager(), getModelRender(), this.waitTime);
     this.animationTask.setSpeedScale((double)this.animationSpeed / 10);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
@@ -695,10 +696,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * アクティビティの画面のレイアウトを取得し、設定します。
    */
   public void configurateDirection() {
-    final DisplayMetrics displaymetrics = new DisplayMetrics();
-    getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-    final int width = displaymetrics.widthPixels;
-    final int height = displaymetrics.heightPixels;
+    final DisplayMetrics displayMetrics = new DisplayMetrics();
+    getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+    final int width = displayMetrics.widthPixels;
+    final int height = displayMetrics.heightPixels;
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
     this.glView.setLayoutParams(params);
   }
@@ -717,9 +718,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /**
    * 一時停止が押された時間を設定します。
    * 
-   * @param stopTime 一時停止が押された時間
+   * @param pausedTime 一時停止が押された時間
    */
-  public void setStopTime(long stopTime) {
-    this.stopTime = stopTime;
+  public void setPuasedTime(long pausedTime) {
+    this.pausedTime = pausedTime;
   }
 }
