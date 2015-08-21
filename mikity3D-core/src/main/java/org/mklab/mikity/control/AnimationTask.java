@@ -45,10 +45,10 @@ public class AnimationTask extends TimerTask {
    * @param canvas モデルキャンバス
    */
   public AnimationTask(double startTime, double stopTime, ObjectGroupManager manager, ObjectRenderer canvas) {
-    this.stopTime = stopTime;
-    this.currentTime = startTime;
-    this.manager = manager;
     this.startTime = startTime;
+    this.currentTime = startTime;
+    this.stopTime = stopTime;
+    this.manager = manager;
     this.renderer = canvas;
   }
 
@@ -84,7 +84,6 @@ public class AnimationTask extends TimerTask {
   }
 
   /**
-   * 再生ボタンが押されるとされます。
    * {@inheritDoc}
    */
   @Override
@@ -96,6 +95,8 @@ public class AnimationTask extends TimerTask {
     final double diffTime = (scheduledExecutionTime() - this.lastUpdatedTimeMillis) / 1000.0;
     this.lastUpdatedTimeMillis = System.currentTimeMillis();
     this.currentTime += diffTime * this.speedScale;
+    
+    this.currentTime = Math.max(this.currentTime, this.startTime);
 
     if (this.manager.hasAnimation()) {
       this.manager.updateObjectGroups(this.currentTime);
@@ -122,10 +123,10 @@ public class AnimationTask extends TimerTask {
   /**
    * アニメーションの現在の時刻を設定します。
    * 
-   * @param t 現在の時刻
+   * @param currentTime 現在の時刻
    */
-  public void setCurrentTime(double t) {
-    this.currentTime = t;
+  public void setCurrentTime(double currentTime) {
+    this.currentTime = currentTime;
   }
 
   /**

@@ -63,7 +63,7 @@ public class AnimationWindow extends ApplicationWindow {
   /** アニメーション用タスク */
   AnimationTask animationTask;
   /** */
-  private SliderPositionMoveTask sliderTask;
+  SliderPositionMoveTask sliderTask;
 
   /** */
   public static boolean playable = true;
@@ -401,17 +401,22 @@ public class AnimationWindow extends ApplicationWindow {
        */
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final double t = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
-        AnimationWindow.this.manager.updateObjectGroups(t);
+        if (AnimationWindow.this.timeTable == null) {
+          return;
+        }
+        
+        final double time = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
+        AnimationWindow.this.manager.updateObjectGroups(time);
+
+        String timeString = String.valueOf(time);
+        if (timeString.length() > 5) {
+          timeString = timeString.substring(0, 4);
+        }
+        AnimationWindow.this.currentTime = time;
+        AnimationWindow.this.currentTimeLabel.setText(timeString);
         
         if (AnimationWindow.this.animationTask != null) {
-          AnimationWindow.this.animationTask.setCurrentTime(t);
-          String st = String.valueOf(t);
-          if (st.length() > 5) {
-            st = st.substring(0, 4);
-          }
-          AnimationWindow.this.currentTime = Double.parseDouble(st);
-          AnimationWindow.this.currentTimeLabel.setText(st);
+          AnimationWindow.this.animationTask.setCurrentTime(time);
         }
       }
     });
@@ -677,13 +682,16 @@ public class AnimationWindow extends ApplicationWindow {
     this.stopTime = this.manager.getStopTime();
     this.animationTask = new AnimationTask(this.currentTime, this.stopTime, this.manager, this.renderer);
     this.animationTask.setSpeedScale(this.playSpeed.getDoubleValue());// スピードの設定
-    this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
+    //this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**
        * {@inheritDoc}
        */
       public void tearDownAnimation() {
+        AnimationWindow.this.sliderTask.run();
+        AnimationWindow.this.sliderTask.cancel();
+        AnimationWindow.this.timer.cancel();
         playable = true;
       }
 
@@ -702,7 +710,13 @@ public class AnimationWindow extends ApplicationWindow {
     this.timer.schedule(this.sliderTask, 0, 10);
   }
 
-  private class SliderPositionMoveTask extends TimerTask {
+  /**
+   * スライダーの位置を管理するタスクを表すクラスです。
+   * 
+   * @author koga
+   * @version $Revision$, 2015/08/21
+   */
+  public class SliderPositionMoveTask extends TimerTask {
     AnimationTask localTask;
     Slider slider;
 
@@ -746,6 +760,7 @@ public class AnimationWindow extends ApplicationWindow {
 
           AnimationWindow.this.currentTimeLabel.setText(timeString);
           AnimationWindow.this.currentTime = Double.parseDouble(timeString);
+          
           for (int i = 0; i < AnimationWindow.this.timeTable.length; i++) {
             if (AnimationWindow.this.timeTable[i] > time) {
               if (SliderPositionMoveTask.this.slider.isDisposed()) {
