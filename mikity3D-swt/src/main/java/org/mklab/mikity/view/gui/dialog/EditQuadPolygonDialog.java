@@ -41,36 +41,36 @@ public class EditQuadPolygonDialog {
 
   private Shell parentShell;
   Shell sShell;
-  private QuadPolygonModel quad;
+  private QuadPolygonModel polygon;
 
   private String groupName;
   private Group afterGroup;
 
   private ColorSelectorButton colorSelector;
 
-  private ParameterInputBox newVertex1X;
-  private ParameterInputBox newVertex1Y;
-  private ParameterInputBox newVertex1Z;
+  private ParameterInputBox vertex1X;
+  private ParameterInputBox vertex1Y;
+  private ParameterInputBox vertex1Z;
   
-  private ParameterInputBox newVertexX2;
-  private ParameterInputBox newVertex2Y;
-  private ParameterInputBox newVertex2Z;
+  private ParameterInputBox vertexX2;
+  private ParameterInputBox vertex2Y;
+  private ParameterInputBox vertex2Z;
   
-  private ParameterInputBox newVertex3X;
-  private ParameterInputBox newVertex3Y;
-  private ParameterInputBox newVertex3Z;
+  private ParameterInputBox vertex3X;
+  private ParameterInputBox vertex3Y;
+  private ParameterInputBox vertex3Z;
   
-  private ParameterInputBox newVertex4X;
-  private ParameterInputBox newVertex4Y;
-  private ParameterInputBox newVertex4Z;
+  private ParameterInputBox vertex4X;
+  private ParameterInputBox vertex4Y;
+  private ParameterInputBox vertex4Z;
   
-  private ParameterInputBox newLeftVertexX;
-  private ParameterInputBox newLeftVertexY;
-  private ParameterInputBox newLeftVertexZ;
+  private ParameterInputBox leftVertexX;
+  private ParameterInputBox leftVertexY;
+  private ParameterInputBox leftVertexZ;
   
-  private ParameterInputBox newRightVertexX;
-  private ParameterInputBox newRightVertexY;
-  private ParameterInputBox newRightVertexZ;
+  private ParameterInputBox rightVertexX;
+  private ParameterInputBox rightVertexY;
+  private ParameterInputBox rightVertexZ;
 
   SceneGraphTree tree;
   JoglModeler modeler;
@@ -86,7 +86,7 @@ public class EditQuadPolygonDialog {
    */
   public EditQuadPolygonDialog(Shell parentShell, QuadPolygonModel quad, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parentShell;
-    this.quad = quad;
+    this.polygon = quad;
     this.groupName = group.getName();
     this.tree = tree;
     this.modeler = modeler;
@@ -183,61 +183,61 @@ public class EditQuadPolygonDialog {
     Label label9 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label9, 3);
     
-    this.newVertex1X = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1X = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex1Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex1Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     final Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
 
-    this.newVertexX2 = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertexX2 = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex2Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.7"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.7"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex2Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     final Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label6, 3);
 
-    this.newVertex3X = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.21"), "0.0");    //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3X = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.21"), "0.0");    //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex3Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.9"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.9"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex3Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.10"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.10"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     final Label label7 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label7, 3);
 
-    this.newVertex4X = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex4X = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex4Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.12"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex4Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.12"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newVertex4Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.13"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex4Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.13"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
 
     Label label8 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label8, 3);
 
-    this.newLeftVertexX = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.leftVertexX = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newLeftVertexY = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.18"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.leftVertexY = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.18"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.newLeftVertexZ = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.19"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.leftVertexZ = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.19"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
    
     final Label labelR2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(labelR2, 3);
 
-    this.newRightVertexX = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rightVertexX = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.newRightVertexY = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rightVertexY = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.newRightVertexZ = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.16"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rightVertexZ = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.16"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
   }
 
@@ -325,58 +325,58 @@ public class EditQuadPolygonDialog {
    * @return boolean
    */
   boolean containOnlyNumbers() {
-    if (this.newVertex1X.containsOnlyNumbers() == false) {
+    if (this.vertex1X.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex1Y.containsOnlyNumbers() == false) {
+    if (this.vertex1Y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex1Z.containsOnlyNumbers() == false) {
+    if (this.vertex1Z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertexX2.containsOnlyNumbers() == false) {
+    if (this.vertexX2.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex2Y.containsOnlyNumbers() == false) {
+    if (this.vertex2Y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex2Z.containsOnlyNumbers() == false) {
+    if (this.vertex2Z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex3X.containsOnlyNumbers() == false) {
+    if (this.vertex3X.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex3Y.containsOnlyNumbers() == false) {
+    if (this.vertex3Y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex3Z.containsOnlyNumbers() == false) {
+    if (this.vertex3Z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex4X.containsOnlyNumbers() == false) {
+    if (this.vertex4X.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex4Y.containsOnlyNumbers() == false) {
+    if (this.vertex4Y.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newVertex4Z.containsOnlyNumbers() == false) {
+    if (this.vertex4Z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newRightVertexX.containsOnlyNumbers() == false) {
+    if (this.rightVertexX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newRightVertexY.containsOnlyNumbers() == false) {
+    if (this.rightVertexY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newRightVertexZ.containsOnlyNumbers() == false) {
+    if (this.rightVertexZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newLeftVertexX.containsOnlyNumbers() == false) {
+    if (this.leftVertexX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newLeftVertexY.containsOnlyNumbers() == false) {
+    if (this.leftVertexY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.newLeftVertexZ.containsOnlyNumbers() == false) {
+    if (this.leftVertexZ.containsOnlyNumbers() == false) {
       return false;
     }
     return true;
@@ -386,64 +386,64 @@ public class EditQuadPolygonDialog {
    * パラメータを変更する
    */
   void updateObjectParameters() {
-    final VertexModel[] newVertices = new VertexModel[4];
+    final VertexModel[] vertices = new VertexModel[4];
 
-    newVertices[0] = new VertexModel(this.newVertex1X.getFloatValue(), this.newVertex1Y.getFloatValue(), this.newVertex1Z.getFloatValue());
-    newVertices[1] = new VertexModel(this.newVertexX2.getFloatValue(), this.newVertex2Y.getFloatValue(), this.newVertex2Z.getFloatValue());
-    newVertices[2] = new VertexModel(this.newVertex3X.getFloatValue(), this.newVertex3Y.getFloatValue(), this.newVertex3Z.getFloatValue());
-    newVertices[3] = new VertexModel(this.newVertex4X.getFloatValue(), this.newVertex4Y.getFloatValue(), this.newVertex4Z.getFloatValue());
+    vertices[0] = new VertexModel(this.vertex1X.getFloatValue(), this.vertex1Y.getFloatValue(), this.vertex1Z.getFloatValue());
+    vertices[1] = new VertexModel(this.vertexX2.getFloatValue(), this.vertex2Y.getFloatValue(), this.vertex2Z.getFloatValue());
+    vertices[2] = new VertexModel(this.vertex3X.getFloatValue(), this.vertex3Y.getFloatValue(), this.vertex3Z.getFloatValue());
+    vertices[3] = new VertexModel(this.vertex4X.getFloatValue(), this.vertex4Y.getFloatValue(), this.vertex4Z.getFloatValue());
 
     final ColorModel color = this.colorSelector.getColor();
 
-    this.quad.setVertices(Arrays.asList(newVertices[0], newVertices[1], newVertices[2], newVertices[3]));
-    this.quad.setColor(color);
-    this.quad.setRotation(new RotationModel(this.newRightVertexX.getFloatValue(), this.newRightVertexY.getFloatValue(), this.newRightVertexZ.getFloatValue()));
-    this.quad.setTranslation(new TranslationModel(this.newLeftVertexX.getFloatValue(), this.newLeftVertexY.getFloatValue(), this.newLeftVertexZ.getFloatValue()));
+    this.polygon.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2], vertices[3]));
+    this.polygon.setColor(color);
+    this.polygon.setRotation(new RotationModel(this.rightVertexX.getFloatValue(), this.rightVertexY.getFloatValue(), this.rightVertexZ.getFloatValue()));
+    this.polygon.setTranslation(new TranslationModel(this.leftVertexX.getFloatValue(), this.leftVertexY.getFloatValue(), this.leftVertexZ.getFloatValue()));
   }
 
   /**
    * 各頂点の座標値を色を入れる　変更後の欄にはデフォルトで変更前の値を入力
    */
   private void detectPrim() {
-    final VertexModel vertex0 = this.quad.getVertex(0);
-    this.newVertex1X.setText("" + vertex0.getX()); //$NON-NLS-1$
-    this.newVertex1Y.setText("" + vertex0.getY()); //$NON-NLS-1$
-    this.newVertex1Z.setText("" + vertex0.getZ()); //$NON-NLS-1$
+    final VertexModel vertex1 = this.polygon.getVertex(0);
+    this.vertex1X.setText("" + vertex1.getX()); //$NON-NLS-1$
+    this.vertex1Y.setText("" + vertex1.getY()); //$NON-NLS-1$
+    this.vertex1Z.setText("" + vertex1.getZ()); //$NON-NLS-1$
 
-    final VertexModel vertex1 = this.quad.getVertex(1);
-    this.newVertexX2.setText("" + vertex1.getX()); //$NON-NLS-1$
-    this.newVertex2Y.setText("" + vertex1.getY()); //$NON-NLS-1$
-    this.newVertex2Z.setText("" + vertex1.getZ()); //$NON-NLS-1$
+    final VertexModel vertex2 = this.polygon.getVertex(1);
+    this.vertexX2.setText("" + vertex2.getX()); //$NON-NLS-1$
+    this.vertex2Y.setText("" + vertex2.getY()); //$NON-NLS-1$
+    this.vertex2Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
 
-    final VertexModel vertex2 = this.quad.getVertex(2);
-    this.newVertex3X.setText("" + vertex2.getX()); //$NON-NLS-1$
-    this.newVertex3Y.setText("" + vertex2.getY()); //$NON-NLS-1$
-    this.newVertex3Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
+    final VertexModel vertex3 = this.polygon.getVertex(2);
+    this.vertex3X.setText("" + vertex3.getX()); //$NON-NLS-1$
+    this.vertex3Y.setText("" + vertex3.getY()); //$NON-NLS-1$
+    this.vertex3Z.setText("" + vertex3.getZ()); //$NON-NLS-1$
 
-    final VertexModel vertex3 = this.quad.getVertex(3);
-    this.newVertex4X.setText("" + vertex3.getX()); //$NON-NLS-1$
-    this.newVertex4Y.setText("" + vertex3.getY()); //$NON-NLS-1$
-    this.newVertex4Z.setText("" + vertex3.getZ()); //$NON-NLS-1$
-    this.colorSelector.setColor(this.quad.getColor());
+    final VertexModel vertex4 = this.polygon.getVertex(3);
+    this.vertex4X.setText("" + vertex4.getX()); //$NON-NLS-1$
+    this.vertex4Y.setText("" + vertex4.getY()); //$NON-NLS-1$
+    this.vertex4Z.setText("" + vertex4.getZ()); //$NON-NLS-1$
+    this.colorSelector.setColor(this.polygon.getColor());
 
-    if (this.quad.getRotation() != null) {
-      this.newRightVertexX.setText("" + this.quad.getRotation().getX()); //$NON-NLS-1$
-      this.newRightVertexY.setText("" + this.quad.getRotation().getY()); //$NON-NLS-1$
-      this.newRightVertexZ.setText("" + this.quad.getRotation().getZ()); //$NON-NLS-1$
+    if (this.polygon.getRotation() != null) {
+      this.rightVertexX.setText("" + this.polygon.getRotation().getX()); //$NON-NLS-1$
+      this.rightVertexY.setText("" + this.polygon.getRotation().getY()); //$NON-NLS-1$
+      this.rightVertexZ.setText("" + this.polygon.getRotation().getZ()); //$NON-NLS-1$
     } else {
-      this.newRightVertexX.setText("" + 0.0); //$NON-NLS-1$
-      this.newRightVertexY.setText("" + 0.0); //$NON-NLS-1$
-      this.newRightVertexZ.setText("" + 0.0); //$NON-NLS-1$
+      this.rightVertexX.setText("" + 0.0); //$NON-NLS-1$
+      this.rightVertexY.setText("" + 0.0); //$NON-NLS-1$
+      this.rightVertexZ.setText("" + 0.0); //$NON-NLS-1$
     }
 
-    if (this.quad.getTranslation() != null) {
-      this.newLeftVertexX.setText("" + this.quad.getTranslation().getX()); //$NON-NLS-1$
-      this.newLeftVertexY.setText("" + this.quad.getTranslation().getY()); //$NON-NLS-1$
-      this.newLeftVertexZ.setText("" + this.quad.getTranslation().getZ()); //$NON-NLS-1$
+    if (this.polygon.getTranslation() != null) {
+      this.leftVertexX.setText("" + this.polygon.getTranslation().getX()); //$NON-NLS-1$
+      this.leftVertexY.setText("" + this.polygon.getTranslation().getY()); //$NON-NLS-1$
+      this.leftVertexZ.setText("" + this.polygon.getTranslation().getZ()); //$NON-NLS-1$
     } else {
-      this.newLeftVertexX.setText("" + 0.0); //$NON-NLS-1$
-      this.newLeftVertexY.setText("" + 0.0); //$NON-NLS-1$
-      this.newLeftVertexZ.setText("" + 0.0); //$NON-NLS-1$
+      this.leftVertexX.setText("" + 0.0); //$NON-NLS-1$
+      this.leftVertexY.setText("" + 0.0); //$NON-NLS-1$
+      this.leftVertexZ.setText("" + 0.0); //$NON-NLS-1$
     }
 
   }

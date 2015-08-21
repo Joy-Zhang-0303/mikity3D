@@ -6,7 +6,6 @@
 package org.mklab.mikity.view.gui;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.swt.graphics.Image;
@@ -53,10 +52,10 @@ public class ImageManager {
    * リソースを全て破棄します。
    */
   public static void dispose() {
-    for (Iterator<String> iterator = images.keySet().iterator(); iterator.hasNext();) {
-      final Image name = images.get(iterator.next());
-      if (!name.isDisposed()) {
-        name.dispose();
+    for (final String name : images.keySet()) {
+      final Image image = images.get(name);
+      if (image.isDisposed() == false) {
+        image.dispose();
       }
       images.remove(name);
     }
