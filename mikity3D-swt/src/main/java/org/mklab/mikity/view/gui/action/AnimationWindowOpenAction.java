@@ -23,12 +23,12 @@ public class AnimationWindowOpenAction extends Action {
 
   /**
    * 新しく生成された<code>AnimationWindowOpenAction</code>オブジェクトを初期化します。
-   * @param window ウィンドウ
+   * @param modelingWindow ウィンドウ
    */
-  public AnimationWindowOpenAction(ModelingWindow window) {
+  public AnimationWindowOpenAction(ModelingWindow modelingWindow) {
     setText(Messages.getString("AnimationWindowOpenAction.0")); //$NON-NLS-1$
     setToolTipText(Messages.getString("AnimationWindowOpenAction.1")); //$NON-NLS-1$
-    this.modelingWindow = window;
+    this.modelingWindow = modelingWindow;
   }
 
   /**
@@ -42,7 +42,8 @@ public class AnimationWindowOpenAction extends Action {
       return;
     }
     
-    final AnimationWindow viewer = new AnimationWindow(this.modelingWindow.getShell(), this.modelingWindow.getRoot(), this.modelingWindow.getFile());
-    viewer.open();
+    final AnimationWindow animationWindow = new AnimationWindow(this.modelingWindow.getShell(), this.modelingWindow.getRoot(), this.modelingWindow.getFile());
+    this.modelingWindow.setAnimationWindow(animationWindow);
+    animationWindow.open();
   }
 }

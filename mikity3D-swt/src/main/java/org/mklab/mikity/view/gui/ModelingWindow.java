@@ -76,6 +76,9 @@ public class ModelingWindow extends ApplicationWindow {
   /** ファイル。 */
   private File file;
 
+  /** アニメーションウィンドウ。 */
+  private AnimationWindow animationWindow;
+  
   /**
    * 新しく生成された<code>ModelingWindow</code>オブジェクトを初期化します。
    */
@@ -281,6 +284,21 @@ public class ModelingWindow extends ApplicationWindow {
   @Override
   protected void handleShellCloseEvent() {
     this.FILE_EXIT_ACTION.run();
+    
+    if (this.animationWindow != null) {
+      this.animationWindow.handleShellCloseEvent();
+    }
+    
     super.handleShellCloseEvent();
   }
+  
+  /**
+   * アニメーションウィンドウを設定します。
+   * 
+   * @param animationWindow アニメーションウィンドウ
+   */
+  public void setAnimationWindow(AnimationWindow animationWindow) {
+    this.animationWindow = animationWindow;
+  }
+  
 }

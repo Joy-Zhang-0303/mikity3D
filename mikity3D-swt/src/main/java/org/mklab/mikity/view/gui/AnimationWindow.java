@@ -241,12 +241,15 @@ public class AnimationWindow extends ApplicationWindow {
   protected void handleShellCloseEvent() {
     if (this.animationTask != null) {
       this.animationTask.cancel();
+      this.animationTask = null;
     }
     if (this.sliderTask != null) {
       this.sliderTask.cancel();
+      this.sliderTask = null;
     }
     if (this.timer != null) {
       this.timer.cancel();
+      this.timer = null;
     }
 
     super.handleShellCloseEvent();
