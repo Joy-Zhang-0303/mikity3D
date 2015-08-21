@@ -24,6 +24,8 @@ import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
  * @version $Revision$, 2012/12/01
  */
 public class Mikity3dFactory {
+  /** 空モデル。 */
+  private static Mikity3DModel EMPTY_MODEL;
 
   /**
    * ファイルを読み込み，データをrootに追加します。
@@ -43,51 +45,6 @@ public class Mikity3dFactory {
     for (GroupModel rootGroup : rootGroups) {
       parentMikity3d.addGroup(rootGroup);
     }
-    
-
-//    final BoxModel[] boxes = rootGroup.getXMLBoxes();
-//    final ConeModel[] cones = rootGroup.getXMLCones();
-//    final CylinderModel[] cylinders = rootGroup.getXMLCylinders();
-//    final SphereModel[] spheres = rootGroup.getXMLSpheres();
-//    final TrianglePolygonModel[] trianglePolygons = rootGroup.getXMLTrianglePolygons();
-//    final QuadPolygonModel[] quadPolygons = rootGroup.getXMLQuadPolygons();
-//    final GroupModel[] groups = rootGroup.getGroups();
-//
-//    if (boxes != null) {
-//      for (final BoxModel box : boxes) {
-//        parentGroup.addXMLBox(box);
-//      }
-//    }
-//    if (cones != null) {
-//      for (final ConeModel cone : cones) {
-//        parentGroup.addXMLCone(cone);
-//      }
-//    }
-//    if (cylinders != null) {
-//      for (final CylinderModel cylinder : cylinders) {
-//        parentGroup.addXMLCylinder(cylinder);
-//      }
-//    }
-//    if (spheres != null) {
-//      for (final SphereModel sphere : spheres) {
-//        parentGroup.addXMLSphere(sphere);
-//      }
-//    }
-//    if (trianglePolygons != null) {
-//      for (final TrianglePolygonModel polygon : trianglePolygons) {
-//        parentGroup.addXMLTrianglePolygon(polygon);
-//      }
-//    }
-//    if (quadPolygons != null) {
-//      for (final QuadPolygonModel polygon : quadPolygons) {
-//        parentGroup.addXMLQuadPolygon(polygon);
-//      }
-//    }
-//    if (groups != null) {
-//      for (final GroupModel group : groups) {
-//        parentGroup.addGroup(group);
-//      }
-//    }
   }
 
   /**
@@ -129,14 +86,24 @@ public class Mikity3dFactory {
     final ColladaUnmarshaller unmarshaller = new ColladaUnmarshaller();
     unmarshaller.unmarshalFromColladaFile(file);
 
-    final Mikity3DModel newRoot = createEmptyModel();
-    final GroupModel newGroup = newRoot.getScene(0).getGroup(0);
+    final Mikity3DModel root = new Mikity3DModel();
+    
+    final ConfigurationModel configuration = new ConfigurationModel();
+    root.addConfiguration(configuration);
+
+    final GroupModel rootGroup = new GroupModel();
+    rootGroup.setName("object"); //$NON-NLS-1$
+
+    final SceneModel scene = new SceneModel();
+    scene.addGroup(rootGroup);
+
+
     final List<GroupModel> groups = unmarshaller.getClolladaGroup().getGroups();
     for (final GroupModel group : groups) {
-      newGroup.add(group);
+      rootGroup.add(group);
     }
 
-    return newRoot;
+    return root;
   }
 
   /**
@@ -150,14 +117,23 @@ public class Mikity3dFactory {
     final ColladaUnmarshaller unmarshaller = new ColladaUnmarshaller();
     unmarshaller.unmarshalFromColladaFile(input);
 
-    final Mikity3DModel newRoot = createEmptyModel();
-    final GroupModel newGroup = newRoot.getScene(0).getGroup(0);
+    final Mikity3DModel root = new Mikity3DModel();
+    
+    final ConfigurationModel configuration = new ConfigurationModel();
+    root.addConfiguration(configuration);
+
+    final GroupModel rootGroup = new GroupModel();
+    rootGroup.setName("object"); //$NON-NLS-1$
+
+    final SceneModel scene = new SceneModel();
+    scene.addGroup(rootGroup);
+    
     final List<GroupModel> groups = unmarshaller.getClolladaGroup().getGroups();
     for (final GroupModel group : groups) {
-      newGroup.add(group);
+      rootGroup.add(group);
     }
 
-    return newRoot;
+    return root;
   }
   
   /**
@@ -165,18 +141,22 @@ public class Mikity3dFactory {
    * 
    * @return Mikity3Dモデル
    */
-  public Mikity3DModel createEmptyModel() {
+  public static Mikity3DModel getEmptyModel() {
+    if (EMPTY_MODEL != null) {
+      return EMPTY_MODEL;
+    }
+    
     final ConfigurationModel configuration = new ConfigurationModel();
     
     final GroupModel group = new GroupModel();
     group.setName("object"); //$NON-NLS-1$
 
-    final SceneModel model = new SceneModel();
-    model.addGroup(group);
+    final SceneModel scene = new SceneModel();
+    scene.addGroup(group);
 
-    final Mikity3DModel root = new Mikity3DModel();
-    root.addConfiguration(configuration);
-    root.addScene(model);
-    return root;
+    EMPTY_MODEL = new Mikity3DModel();
+    EMPTY_MODEL.addConfiguration(configuration);
+    EMPTY_MODEL.addScene(scene);
+    return EMPTY_MODEL;
   }
 }

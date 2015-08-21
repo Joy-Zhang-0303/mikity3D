@@ -6,6 +6,7 @@
 package org.mklab.mikity.view.gui.action;
 
 import org.eclipse.jface.action.Action;
+import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.view.gui.AnimationWindow;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -18,7 +19,7 @@ import org.mklab.mikity.view.gui.ModelingWindow;
  */
 public class AnimationWindowOpenAction extends Action {
   /** モデリングウィンドウ。 */
-  private ModelingWindow window;
+  private ModelingWindow modelingWindow;
 
   /**
    * 新しく生成された<code>AnimationWindowOpenAction</code>オブジェクトを初期化します。
@@ -27,7 +28,7 @@ public class AnimationWindowOpenAction extends Action {
   public AnimationWindowOpenAction(ModelingWindow window) {
     setText(Messages.getString("AnimationWindowOpenAction.0")); //$NON-NLS-1$
     setToolTipText(Messages.getString("AnimationWindowOpenAction.1")); //$NON-NLS-1$
-    this.window = window;
+    this.modelingWindow = window;
   }
 
   /**
@@ -37,7 +38,11 @@ public class AnimationWindowOpenAction extends Action {
    */
   @Override
   public void run() {
-    final AnimationWindow viewer = new AnimationWindow(this.window.getShell(), this.window.getRoot(), this.window.getFile());
+    if (this.modelingWindow.getRoot() == Mikity3dFactory.getEmptyModel()) {
+      return;
+    }
+    
+    final AnimationWindow viewer = new AnimationWindow(this.modelingWindow.getShell(), this.modelingWindow.getRoot(), this.modelingWindow.getFile());
     viewer.open();
   }
 }

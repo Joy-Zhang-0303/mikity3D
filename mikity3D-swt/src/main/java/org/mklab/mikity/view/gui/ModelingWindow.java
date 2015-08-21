@@ -89,7 +89,7 @@ public class ModelingWindow extends ApplicationWindow {
    */
   public ModelingWindow(final Shell shell) {
     super(shell);
-    this.root = new Mikity3dFactory().createEmptyModel();
+    this.root = Mikity3dFactory.getEmptyModel();
     addMenuBar();
     addToolBar(SWT.FLAT);
     addStatusLine();
@@ -241,6 +241,7 @@ public class ModelingWindow extends ApplicationWindow {
 
   /**
    * ファイルを読み込みます。
+   * 
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
    */
   public void loadFile() throws Mikity3dSerializeDeserializeException {
