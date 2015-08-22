@@ -245,7 +245,6 @@ public class EditGroupDialog {
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        // キャンセルが選択されたら、変更しないでシェルを閉じる
         EditGroupDialog.this.sShell.close();
       }
     });

@@ -258,6 +258,8 @@ public abstract class AbstractEditPrimitiveDialog {
           message.open();
           return;
         }
+        
+        AbstractEditPrimitiveDialog.this.modeler.setChanged(AbstractEditPrimitiveDialog.this.isChanged());
 
         updatePrimitiveParameters();
         AbstractEditPrimitiveDialog.this.tree.updateTree();
@@ -276,6 +278,8 @@ public abstract class AbstractEditPrimitiveDialog {
           AbstractEditPrimitiveDialog.this.sShell.close();
           return;
         }
+        
+        AbstractEditPrimitiveDialog.this.modeler.setChanged(true);
         
         final MessageBox message = new MessageBox(AbstractEditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
