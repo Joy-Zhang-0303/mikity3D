@@ -9,12 +9,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
-import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
-import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.SceneGraphTree;
@@ -48,23 +45,49 @@ public class EditConeDialog extends AbstractEditPrimitiveDialog {
    */
   @Override
   public void createPrameterBoxes(Group parameterGroup) {
-    this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, "", ""); //$NON-NLS-1$//$NON-NLS-2$
+    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
+    
+    final ConeModel cone = (ConeModel)this.primitive;
+    
+    this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.40"), "" + cone.getRadisu()); //$NON-NLS-1$//$NON-NLS-2$
+    //this.parameter1.setName(); //$NON-NLS-1$
+    //this.parameter1.setStringValue(); //$NON-NLS-1$
+    
+    
     this.unitLabel1 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel1.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel1, 1);
 
-    this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, "", ""); //$NON-NLS-1$//$NON-NLS-2$
+    this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.41"), "" + cone.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
+    //this.parameter2.setName(); //$NON-NLS-1$
+    //this.parameter2.setStringValue(); //$NON-NLS-1$
+    
+    
     this.unitLabel2 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel2.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel2, 1);
 
-    this.parameter3 = new ParameterInputBox(parameterGroup, SWT.NONE, "", ""); //$NON-NLS-1$//$NON-NLS-2$
-    this.unitLabel3 = new Label(parameterGroup, SWT.NONE);
-    this.unitLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.unitLabel3, 1);
+    this.parameter3 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.42"), "" + cone.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
+    //this.parameter3.setName(); //$NON-NLS-1$
+    //this.parameter3.setStringValue(); //$NON-NLS-1$
+    
+    
+//    this.unitLabel3 = new Label(parameterGroup, SWT.NONE);
+//    this.unitLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+//    setGridLayout(this.unitLabel3, 1);
     
     final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
+  }
+
+  /**
+   * ボックスにパラメータを設定します。
+   */
+  @Override
+  void setParametersInBoxes() {
+//    this.parameter3.setVisible(true);
+//    this.unitLabel2.setVisible(true);
+//    this.unitLabel3.setVisible(false);
   }
 
 
@@ -80,36 +103,25 @@ public class EditConeDialog extends AbstractEditPrimitiveDialog {
   }
 
   /**
-   * ボックスにパラメータを設定します。
+   * {@inheritDoc}
    */
   @Override
-  void setParametersInBoxes() {
-    final ConeModel cone = (ConeModel)this.primitive;
-    this.parameter1.setStringValue("" + cone.getRadisu()); //$NON-NLS-1$
-    this.parameter2.setStringValue("" + cone.getHeight()); //$NON-NLS-1$
-    this.parameter3.setStringValue("" + cone.getDivision()); //$NON-NLS-1$
-    setConeLabel();
-    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
-  }
-
-  /**
-   * primitiveがConeのとき
-   */
-  public void setConeLabel() {
-    this.parameter1.setName(Messages.getString("EditPrimitiveDialog.40")); //$NON-NLS-1$
-    this.parameter2.setName(Messages.getString("EditPrimitiveDialog.41")); //$NON-NLS-1$
-    this.parameter3.setName(Messages.getString("EditPrimitiveDialog.42")); //$NON-NLS-1$
-
-    int division = 0;
-    if (this.parameter3.getIntValue() < 3) {
-      division = 3;
-    } else {
-      division = this.parameter3.getIntValue();
+  public boolean isChanged() {
+    if (super.isChanged()) {
+      return true;
     }
-    this.parameter3.setStringValue("" + division); //$NON-NLS-1$
-
-    this.parameter3.setVisible(true);
-    this.unitLabel2.setVisible(true);
-    this.unitLabel3.setVisible(false);
+    
+    if (this.parameter1.isChanged()) {
+      return true;
+    }
+    if (this.parameter2.isChanged()) {
+      return true;
+    }
+    if (this.parameter3.isChanged()) {
+      return true;
+    }
+    
+    return false;
   }
+
 }

@@ -360,45 +360,6 @@ public abstract class AbstractEditPrimitiveDialog {
   }
 
   /**
-   * 変更されているか判定します。
-   * @return 変更されている場合true
-   */
-  public boolean isChanged() {
-    if (this.parameter1.isChanged()) {
-      return true;
-    }
-    if (this.parameter2.isChanged()) {
-      return true;
-    }
-    if (this.parameter3.isChanged()) {
-      return true;
-    }
-    if (this.colorSelector.isChanged) {
-      return true;
-    }
-    if (this.translationX.isChanged()) {
-      return true;
-    }
-    if (this.translationY.isChanged()) {
-      return true;
-    }
-    if (this.translationZ.isChanged()) {
-      return true;
-    }
-    if (this.rotationX.isChanged()) {
-      return true;
-    }
-    if (this.rotationY.isChanged()) {
-      return true;
-    }
-    if (this.rotationZ.isChanged()) {
-      return true;
-    }
-    
-    return false;
-  }
-
-  /**
    * プリミティブのパラメータを更新します。
    */
   void updatePrimitiveParameters() {
@@ -434,5 +395,36 @@ public abstract class AbstractEditPrimitiveDialog {
     translation.setY(this.translationY.getFloatValue());
     translation.setZ(this.translationZ.getFloatValue());
     return translation;
+  }
+
+  /**
+   * パラメータが変更されているか判定します。
+   * 
+   * @return パラメータが変更されていればtrue
+   */
+  public boolean isChanged() {
+    if (this.colorSelector.isChanged) {
+      return true;
+    }
+    if (this.translationX.isChanged()) {
+      return true;
+    }
+    if (this.translationY.isChanged()) {
+      return true;
+    }
+    if (this.translationZ.isChanged()) {
+      return true;
+    }
+    if (this.rotationX.isChanged()) {
+      return true;
+    }
+    if (this.rotationY.isChanged()) {
+      return true;
+    }
+    if (this.rotationZ.isChanged()) {
+      return true;
+    }
+    
+    return false;
   }
 }

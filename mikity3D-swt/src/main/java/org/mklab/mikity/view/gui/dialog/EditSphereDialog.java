@@ -9,9 +9,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
-import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
-import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
@@ -48,25 +45,44 @@ public class EditSphereDialog extends AbstractEditPrimitiveDialog {
    */
   @Override
   public void createPrameterBoxes(Group parameterGroup) {
-    this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, "", ""); //$NON-NLS-1$//$NON-NLS-2$
+    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
+    final SphereModel sphere = (SphereModel)this.primitive;
+    
+    this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.38"), "" + sphere.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
+    //this.parameter1.setName(); //$NON-NLS-1$
+    //this.parameter1.setStringValue(); //$NON-NLS-1$
+
     this.unitLabel1 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel1.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel1, 1);
 
-    this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, "", ""); //$NON-NLS-1$//$NON-NLS-2$
-    this.unitLabel2 = new Label(parameterGroup, SWT.NONE);
-    this.unitLabel2.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.unitLabel2, 1);
-
-    this.parameter3 = new ParameterInputBox(parameterGroup, SWT.NONE, "", ""); //$NON-NLS-1$//$NON-NLS-2$
-    this.unitLabel3 = new Label(parameterGroup, SWT.NONE);
-    this.unitLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.unitLabel3, 1);
+    this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.39"), "" + sphere.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
+    //this.parameter2.setName(); //$NON-NLS-1$
+    //this.parameter2.setStringValue(); //$NON-NLS-1$
+    
+//    this.unitLabel2 = new Label(parameterGroup, SWT.NONE);
+//    this.unitLabel2.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+//    setGridLayout(this.unitLabel2, 1);
+//
+//    this.parameter3 = new ParameterInputBox(parameterGroup, SWT.NONE, "", ""); //$NON-NLS-1$//$NON-NLS-2$
+//    
+//    this.unitLabel3 = new Label(parameterGroup, SWT.NONE);
+//    this.unitLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+//    setGridLayout(this.unitLabel3, 1);
     
     final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
   }
 
+  /**
+   * ボックスにパラメータを設定します。
+   */
+  @Override
+  void setParametersInBoxes() {
+//    this.parameter3.setVisible(false);
+//    this.unitLabel2.setVisible(false);
+//    this.unitLabel3.setVisible(false);
+  }
 
   /**
    * プリミティブのパラメータを更新します。
@@ -79,34 +95,22 @@ public class EditSphereDialog extends AbstractEditPrimitiveDialog {
   }
 
   /**
-   * ボックスにパラメータを設定します。
+   * {@inheritDoc}
    */
   @Override
-  void setParametersInBoxes() {
-    final SphereModel sphere = (SphereModel)this.primitive;
-    this.parameter1.setStringValue("" + sphere.getRadius()); //$NON-NLS-1$
-    this.parameter2.setStringValue("" + sphere.getDivision()); //$NON-NLS-1$
-    setSphereLabel();
-    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
-  }
-
-  /**
-   * primitiveがSphereのとき
-   */
-  public void setSphereLabel() {
-    this.parameter1.setName(Messages.getString("EditPrimitiveDialog.38")); //$NON-NLS-1$
-    this.parameter2.setName(Messages.getString("EditPrimitiveDialog.39")); //$NON-NLS-1$
-
-    int division;
-    if (this.parameter2.getIntValue() < 3) {
-      division = 3;
-    } else {
-      division = this.parameter2.getIntValue();
+  public boolean isChanged() {
+    if (super.isChanged()) {
+      return true;
     }
-    this.parameter2.setStringValue("" + division); //$NON-NLS-1$
-
-    this.parameter3.setVisible(false);
-    this.unitLabel2.setVisible(false);
-    this.unitLabel3.setVisible(false);
+    
+    if (this.parameter1.isChanged()) {
+      return true;
+    }
+    if (this.parameter2.isChanged()) {
+      return true;
+    }
+    
+    return false;
   }
+
 }

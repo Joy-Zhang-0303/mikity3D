@@ -148,15 +148,15 @@ public class SceneGraphTree {
           dialog.open();
           updateTree();
         } else if (clickObject instanceof CylinderModel) {
-          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (CylinderModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (CylinderModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (clickObject instanceof SphereModel) {
-          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (SphereModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (SphereModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (clickObject instanceof ConeModel) {
-          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (ConeModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditConeDialog dialog = new EditConeDialog(composite.getShell(), (ConeModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         }

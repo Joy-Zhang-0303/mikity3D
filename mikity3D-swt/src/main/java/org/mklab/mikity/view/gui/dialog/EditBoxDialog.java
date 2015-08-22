@@ -45,17 +45,30 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
    */
   @Override
   public void createPrameterBoxes(Group parameterGroup) {
-    this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, "", ""); //$NON-NLS-1$//$NON-NLS-2$
+    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
+    
+    final BoxModel box = (BoxModel)this.primitive;
+    
+    this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.32"), "" + box.getWidth()); //$NON-NLS-1$//$NON-NLS-2$
+    //this.parameter1.setName(); //$NON-NLS-1$
+    //this.parameter1.setStringValue("" + box.getWidth()); //$NON-NLS-1$
+    
     this.unitLabel1 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel1.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel1, 1);
 
-    this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, "", ""); //$NON-NLS-1$//$NON-NLS-2$
+    this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.33"), "" + box.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
+    //this.parameter2.setName(); //$NON-NLS-1$
+    //this.parameter2.setStringValue(); //$NON-NLS-1$
+    
     this.unitLabel2 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel2.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel2, 1);
 
-    this.parameter3 = new ParameterInputBox(parameterGroup, SWT.NONE, "", ""); //$NON-NLS-1$//$NON-NLS-2$
+    this.parameter3 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.34"), "" + box.getDepth()); //$NON-NLS-1$//$NON-NLS-2$
+    //this.parameter3.setName(); //$NON-NLS-1$
+    //this.parameter3.setStringValue(); //$NON-NLS-1$
+    
     this.unitLabel3 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel3, 1);
@@ -63,7 +76,17 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
     final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
   }
-
+  
+  /**
+   * ボックスにパラメータを設定します。
+   */
+  @Override
+  void setParametersInBoxes() {
+//    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
+//    this.parameter3.setVisible(true);
+//    this.unitLabel2.setVisible(true);
+//    this.unitLabel3.setVisible(true);
+  }
 
   /**
    * プリミティブのパラメータを更新します。
@@ -77,24 +100,24 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
   }
 
   /**
-   * ボックスにパラメータを設定します。
+   * {@inheritDoc}
    */
   @Override
-  void setParametersInBoxes() {
-    final BoxModel box = (BoxModel)this.primitive;
+  public boolean isChanged() {
+    if (super.isChanged()) {
+      return true;
+    }
     
-    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
+    if (this.parameter1.isChanged()) {
+      return true;
+    }
+    if (this.parameter2.isChanged()) {
+      return true;
+    }
+    if (this.parameter3.isChanged()) {
+      return true;
+    }
     
-    this.parameter1.setName(Messages.getString("EditPrimitiveDialog.32")); //$NON-NLS-1$
-    this.parameter2.setName(Messages.getString("EditPrimitiveDialog.33")); //$NON-NLS-1$
-    this.parameter3.setName(Messages.getString("EditPrimitiveDialog.34")); //$NON-NLS-1$
-
-    this.parameter1.setStringValue("" + box.getWidth()); //$NON-NLS-1$
-    this.parameter2.setStringValue("" + box.getHeight()); //$NON-NLS-1$
-    this.parameter3.setStringValue("" + box.getDepth()); //$NON-NLS-1$
-
-    this.parameter3.setVisible(true);
-    this.unitLabel2.setVisible(true);
-    this.unitLabel3.setVisible(true);
+    return false;
   }
 }
