@@ -72,28 +72,6 @@ public class ParameterInputBox extends Composite {
     this.setLayoutData(data2);
   }
 
-//  /**
-//   * ラベルとボタンを作る コンストラクター
-//   * 
-//   * @param c コンポジット
-//   * @param lab ラベル
-//   * @param but ボタンのラベル
-//   */
-//  public ParameterInputBox(Composite c, String lab, String but) {
-//    super(c, SWT.NONE);
-//    final GridLayout layout = new GridLayout();
-//    layout.numColumns = 2;
-//    layout.marginHeight = 0;
-//    layout.marginWidth = 0;
-//    this.setLayout(layout);
-//    this.label1 = new Label(this, SWT.NONE);
-//    this.label1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//    this.label1.setAlignment(SWT.RIGHT);
-//    this.label1.setText(lab);
-//    final Button button = new Button(this, SWT.NONE);
-//    button.setText(but);
-//  }
-
   /**
    * コンストラクター
    * 
@@ -108,6 +86,16 @@ public class ParameterInputBox extends Composite {
     layout.marginWidth = 0;
     this.setLayout(layout);
     this.valueText = new Text(this, SWT.BORDER | SWT.RIGHT | style);
+    this.valueText.addModifyListener(new ModifyListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void modifyText(ModifyEvent arg0) {
+        ParameterInputBox.this.isChanged = true;
+      }
+    });
+    
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 65;
     this.valueText.setLayoutData(data);
@@ -220,5 +208,14 @@ public class ParameterInputBox extends Composite {
    */
   public boolean isChanged() {
     return this.isChanged;
+  }
+  
+  /**
+   * 値が変更されたか設定します。
+   * 
+   * @param isChanged 値が変更されていればtrue
+   */
+  public void setIsChanged(boolean isChanged) {
+    this.isChanged = isChanged;
   }
 }

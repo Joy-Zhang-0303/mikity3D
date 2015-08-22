@@ -103,6 +103,7 @@ public class EditGroupDialog {
 
     if (this.targetGroup.getName() != null) {
       this.groupName.setStringValue(this.targetGroup.getName());
+      this.groupName.setIsChanged(false);
     }
     
     addShellListener();
@@ -189,31 +190,109 @@ public class EditGroupDialog {
       style = SWT.READ_ONLY;
     }
 
-    this.translationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.0"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    final TranslationModel translation = this.targetGroup.getTranslation();
+    final String tX, tY, tZ;
+    
+    if (translation != null) {
+      tX = "" + translation.getX(); //$NON-NLS-1$
+      tY = "" + translation.getY(); //$NON-NLS-1$
+      tZ = "" + translation.getZ(); //$NON-NLS-1$
+    } else {
+      tX = "0"; //$NON-NLS-1$
+      tY = "0"; //$NON-NLS-1$
+      tZ = "0"; //$NON-NLS-1$
+    }
+
+    final RotationModel rotation = this.targetGroup.getRotation();
+    final String rX, rY, rZ;
+    
+    if (rotation != null) {
+      rX = "" + rotation.getX(); //$NON-NLS-1$
+      rY = "" + rotation.getY(); //$NON-NLS-1$
+      rZ = "" + rotation.getZ(); //$NON-NLS-1$
+    } else {
+      rX = "0"; //$NON-NLS-1$
+      rY = "0"; //$NON-NLS-1$
+      rZ = "0"; //$NON-NLS-1$
+    }
+
+    this.translationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.0"), tX);  //$NON-NLS-1$
     this.translationXsourceId = new ParameterInputBox(parameterGroup, style, 0);
     this.translationXsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.translationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.1"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.translationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.1"), tY);  //$NON-NLS-1$
     this.translationYsourceId = new ParameterInputBox(parameterGroup, style, 0);
     this.translationYsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
-
-    this.translationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.2"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    
+    this.translationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.2"), tZ);  //$NON-NLS-1$
     this.translationZsourceId = new ParameterInputBox(parameterGroup, style, 0);
     this.translationZsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.rotationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.3"), rX);  //$NON-NLS-1$
     this.rotationXsourceId = new ParameterInputBox(parameterGroup, style, 0);
     this.rotationXsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.rotationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.4"), rY);  //$NON-NLS-1$
     this.rotationYsourceId = new ParameterInputBox(parameterGroup, style, 0);
     this.rotationYsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.rotationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+    this.rotationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.5"), rZ);  //$NON-NLS-1$
     this.rotationZsourceId = new ParameterInputBox(parameterGroup, style, 0);
     this.rotationZsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    setParametersInDialog();
+    setAnimationInDialog();
+  }
+
+  /**
+   * アニメーションの 番号を表示させる
+   */
+  private void setAnimationInDialog() {
+    final AnimationModel[] animations = this.targetGroup.getAnimations();
+
+    for (final AnimationModel animation : animations) {
+      final String target = animation.getTarget();
+      final SourceModel source = animation.getSource();
+      final String id = source.getId();
+      final String number = "" + source.getNumber(); //$NON-NLS-1$
+
+      if (target.equals("translationX")) { //$NON-NLS-1$
+        this.translationXsourceId.setStringValue(id);
+        this.translationXsourceNumber.setStringValue(number);
+        
+        this.translationXsourceId.setIsChanged(false);
+        this.translationXsourceNumber.setIsChanged(false);
+      } else if (target.equals("translationY")) { //$NON-NLS-1$
+        this.translationYsourceId.setStringValue(id);
+        this.translationYsourceNumber.setStringValue(number);
+        
+        this.translationYsourceId.setIsChanged(false);
+        this.translationYsourceNumber.setIsChanged(false);
+      } else if (target.equals("translationZ")) { //$NON-NLS-1$
+        this.translationZsourceId.setStringValue(id);
+        this.translationZsourceNumber.setStringValue(number);
+        
+        this.translationZsourceId.setIsChanged(false);
+        this.translationZsourceNumber.setIsChanged(false);
+      } else if (target.equals("rotationX")) { //$NON-NLS-1$
+        this.rotationXsourceId.setStringValue(id);
+        this.rotationXsourceNumber.setStringValue(number);
+        
+        this.rotationXsourceId.setIsChanged(false);
+        this.rotationXsourceNumber.setIsChanged(false);
+      } else if (target.equals("rotationY")) { //$NON-NLS-1$
+        this.rotationYsourceId.setStringValue(id);
+        this.rotationYsourceNumber.setStringValue(number);
+        
+        this.rotationYsourceId.setIsChanged(false);
+        this.rotationYsourceNumber.setIsChanged(false);
+      } else if (target.equals("rotationZ")) { //$NON-NLS-1$
+        this.rotationZsourceId.setStringValue(id);        
+        this.rotationZsourceNumber.setStringValue(number);
+        
+        this.rotationZsourceId.setIsChanged(false);
+        this.rotationZsourceNumber.setIsChanged(false);
+      }
+    }
   }
 
   private void createButtonComposite() {
@@ -231,6 +310,8 @@ public class EditGroupDialog {
           return;
         }
 
+        EditGroupDialog.this.modeler.setChanged(EditGroupDialog.this.isChanged());
+        
         updateGroupParameters();
         EditGroupDialog.this.tree.updateTree();
         EditGroupDialog.this.modeler.updateDisplay();
@@ -245,7 +326,20 @@ public class EditGroupDialog {
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        EditGroupDialog.this.sShell.close();
+        if (EditGroupDialog.this.isChanged() == false) {
+          EditGroupDialog.this.sShell.close();
+          return;
+        }
+        
+        EditGroupDialog.this.modeler.setChanged(true);        
+
+        final MessageBox message = new MessageBox(EditGroupDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
+        final int yesNo = message.open();
+        if (yesNo == SWT.YES) {
+          EditGroupDialog.this.sShell.close();
+        }
+        
       }
     });
     
@@ -323,79 +417,6 @@ public class EditGroupDialog {
   }
 
   /**
-   * ダイアログにパラメータを設定します。
-   */
-  private void setParametersInDialog() {
-    setAnimationInDialog();
-
-    final RotationModel rotation = this.targetGroup.getRotation();
-    final TranslationModel translation = this.targetGroup.getTranslation();
-
-    if (rotation != null) {
-      setRotationInDialog(rotation);
-    }
-    if (translation != null) {
-      setTranslationInDialog(translation);
-    }
-  }
-
-  /**
-   * 角度をダイアログに設定します。
-   * 
-   * @param rotation 回転角度
-   */
-  private void setRotationInDialog(RotationModel rotation) {
-    this.rotationX.setStringValue("" + rotation.getX()); //$NON-NLS-1$
-    this.rotationY.setStringValue("" + rotation.getY()); //$NON-NLS-1$
-    this.rotationZ.setStringValue("" + rotation.getZ()); //$NON-NLS-1$
-  }
-
-  /**
-   * 並進距離をダイアログに設定します。
-   * 
-   * @param translation 並進距離
-   */
-  private void setTranslationInDialog(TranslationModel translation) {
-    this.translationX.setStringValue("" + translation.getX()); //$NON-NLS-1$
-    this.translationY.setStringValue("" + translation.getY()); //$NON-NLS-1$
-    this.translationZ.setStringValue("" + translation.getZ()); //$NON-NLS-1$
-  }
-
-  /**
-   * アニメーションの 番号を表示させる
-   */
-  private void setAnimationInDialog() {
-    final AnimationModel[] animations = this.targetGroup.getAnimations();
-
-    for (final AnimationModel animation : animations) {
-      final String target = animation.getTarget();
-      final SourceModel source = animation.getSource();
-      final String id = source.getId();
-      final String number = "" + source.getNumber(); //$NON-NLS-1$
-
-      if (target.equals("translationX")) { //$NON-NLS-1$
-        this.translationXsourceId.setStringValue(id);
-        this.translationXsourceNumber.setStringValue(number);
-      } else if (target.equals("translationY")) { //$NON-NLS-1$
-        this.translationYsourceId.setStringValue(id);
-        this.translationYsourceNumber.setStringValue(number);
-      } else if (target.equals("translationZ")) { //$NON-NLS-1$
-        this.translationZsourceId.setStringValue(id);
-        this.translationZsourceNumber.setStringValue(number);
-      } else if (target.equals("rotationX")) { //$NON-NLS-1$
-        this.rotationXsourceId.setStringValue(id);
-        this.rotationXsourceNumber.setStringValue(number);
-      } else if (target.equals("rotationY")) { //$NON-NLS-1$
-        this.rotationYsourceId.setStringValue(id);
-        this.rotationYsourceNumber.setStringValue(number);
-      } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-        this.rotationZsourceId.setStringValue(id);        
-        this.rotationZsourceNumber.setStringValue(number);
-      }
-    }
-  }
-
-  /**
    * 数字のみが入力されているか判定します。
    * 
    * @return 数字のみが入力されていればtrue，そうでなければfalse
@@ -452,6 +473,79 @@ public class EditGroupDialog {
 //        display.sleep();
 //      }
 //    }
+  }
+  
+  /**
+   * パラメータが変更されたか判定します。
+   * 
+   * @return パラメータが変更されていればtrue
+   */
+  public boolean isChanged() {
+    if (this.groupName.isChanged()) {
+      return true;
+    }
+    
+    if (this.translationX.isChanged()) {
+      return true;
+    }
+    
+    if (this.translationY.isChanged()) {
+      return true;
+    }
+    
+    if (this.translationZ.isChanged()) {
+      return true;
+    }
+    
+    if (this.rotationX.isChanged()) {
+      return true;
+    }
+    if (this.rotationY.isChanged()) {
+      return true;
+    }
+    if (this.rotationZ.isChanged()) {
+      return true;
+    }
+
+    if (this.translationXsourceId.isChanged()) {
+      return true;
+    }
+    if (this.translationYsourceId.isChanged()) {
+      return true;
+    }
+    if (this.translationZsourceId.isChanged()) {
+      return true;
+    }
+    if (this.rotationXsourceId.isChanged()) {
+      return true;
+    }
+    if (this.rotationYsourceId.isChanged()) {
+      return true;
+    }
+    if (this.rotationZsourceId.isChanged()) {
+      return true;
+    }
+
+    if (this.translationXsourceNumber.isChanged()) {
+      return true;
+    }
+    if (this.translationYsourceNumber.isChanged()) {
+      return true;
+    }
+    if (this.translationZsourceNumber.isChanged()) {
+      return true;
+    }
+    if (this.rotationXsourceNumber.isChanged()) {
+      return true;
+    }
+    if (this.rotationYsourceNumber.isChanged()) {
+      return true;
+    }
+    if (this.rotationZsourceNumber.isChanged()) {
+      return true;
+    }
+    
+    return false;
   }
 
 }
