@@ -19,15 +19,14 @@ import org.mklab.mikity.view.gui.UnitLabel;
 
 
 /**
- * プリミティブの編集を行うクラスです。
+ * 直方体の編集を行うダイアログを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.5 $.2005/02/09
  */
 public class EditBoxDialog extends AbstractEditPrimitiveDialog {
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>EditBoxDialog</code>オブジェクトを初期化します。
    * @param parentShell 親のシェル
    * @param primitive プリミティブ
    * @param group グループ
@@ -39,9 +38,7 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
   }
 
   /**
-   * パラメータのボックスを生成します。
-   * 
-   * @param parameterGroup パラメータグループ
+   * {@inheritDoc}
    */
   @Override
   public void createPrameterBoxes(Group parameterGroup) {
@@ -50,24 +47,18 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
     final BoxModel box = (BoxModel)this.primitive;
     
     this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.32"), "" + box.getWidth()); //$NON-NLS-1$//$NON-NLS-2$
-    //this.parameter1.setName(); //$NON-NLS-1$
-    //this.parameter1.setStringValue("" + box.getWidth()); //$NON-NLS-1$
     
     this.unitLabel1 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel1.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel1, 1);
 
     this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.33"), "" + box.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
-    //this.parameter2.setName(); //$NON-NLS-1$
-    //this.parameter2.setStringValue(); //$NON-NLS-1$
     
     this.unitLabel2 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel2.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.unitLabel2, 1);
 
     this.parameter3 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.34"), "" + box.getDepth()); //$NON-NLS-1$//$NON-NLS-2$
-    //this.parameter3.setName(); //$NON-NLS-1$
-    //this.parameter3.setStringValue(); //$NON-NLS-1$
     
     this.unitLabel3 = new Label(parameterGroup, SWT.NONE);
     this.unitLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
@@ -78,15 +69,15 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
   }
   
   /**
-   * ボックスにパラメータを設定します。
-   */
-  @Override
-  void setParametersInBoxes() {
-//    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
-//    this.parameter3.setVisible(true);
-//    this.unitLabel2.setVisible(true);
-//    this.unitLabel3.setVisible(true);
-  }
+//   * ボックスにパラメータを設定します。
+//   */
+//  @Override
+//  void setParametersInBoxes() {
+////    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
+////    this.parameter3.setVisible(true);
+////    this.unitLabel2.setVisible(true);
+////    this.unitLabel3.setVisible(true);
+//  }
 
   /**
    * プリミティブのパラメータを更新します。

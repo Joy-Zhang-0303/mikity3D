@@ -68,10 +68,10 @@ public abstract class AbstractEditPrimitiveDialog {
    */
   abstract void createPrameterBoxes(Group group);
 
-  /**
-   * ボックスにパラメータを設定します。
-   */
-  abstract void setParametersInBoxes();
+//  /**
+//   * ボックスにパラメータを設定します。
+//   */
+//  abstract void setParametersInBoxes();
   
   /**
    * プリミティブのパラメータを更新します。
@@ -97,7 +97,7 @@ public abstract class AbstractEditPrimitiveDialog {
     this.tree.setIsModifyingObject(true);
     
     createSShell();
-    setParametersInDialog();
+    //setParametersInDialog();
   }
   
   /**
@@ -286,7 +286,7 @@ public abstract class AbstractEditPrimitiveDialog {
     
     this.colorSelector.setColor(this.primitive.getColor());
     
-    setParametersInBoxes();
+    //setParametersInBoxes();
   }
   
   /**
