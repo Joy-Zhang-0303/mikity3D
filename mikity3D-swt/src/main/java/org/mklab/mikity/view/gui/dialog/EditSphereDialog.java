@@ -10,7 +10,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -25,6 +24,11 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision: 1.5 $.2005/02/09
  */
 public class EditSphereDialog extends AbstractEditPrimitiveDialog {
+  private ParameterInputBox radius;
+  private ParameterInputBox division;
+  
+  private Label radiusUnit;
+  
   /**
    * コンストラクター
    * 
@@ -34,50 +38,38 @@ public class EditSphereDialog extends AbstractEditPrimitiveDialog {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditSphereDialog(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditSphereDialog(Shell parentShell, SphereModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     super(parentShell, primitive, group, tree, modeler);
   }
-
+  
   /**
-   * パラメータのボックスを生成します。
-   * 
-   * @param parameterGroup パラメータグループ
+   * {@inheritDoc}
    */
   @Override
   public void createPrameterBoxes(Group parameterGroup) {
-    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
+    this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
     final SphereModel sphere = (SphereModel)this.primitive;
     
-    this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.38"), "" + sphere.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
+    this.radius = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.38"), "" + sphere.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
 
-    this.unitLabel1 = new Label(parameterGroup, SWT.NONE);
-    this.unitLabel1.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.unitLabel1, 1);
+    this.radiusUnit = new Label(parameterGroup, SWT.NONE);
+    this.radiusUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+    setGridLayout(this.radiusUnit, 1);
 
-    this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.39"), "" + sphere.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
+    this.division = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.39"), "" + sphere.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
     
     final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
   }
 
-//  /**
-//   * ボックスにパラメータを設定します。
-//   */
-//  @Override
-//  void setParametersInBoxes() {
-////    this.parameter3.setVisible(false);
-////    this.unitLabel2.setVisible(false);
-////    this.unitLabel3.setVisible(false);
-//  }
-
   /**
-   * プリミティブのパラメータを更新します。
+   * {@inheritDoc}
    */
   @Override
   void updateModelParameters() {
     final SphereModel sphere = (SphereModel)this.primitive;
-    sphere.setRadius(this.parameter1.getFloatValue());
-    sphere.setDivision(this.parameter2.getIntValue());
+    sphere.setRadius(this.radius.getFloatValue());
+    sphere.setDivision(this.division.getIntValue());
   }
 
   /**
@@ -89,14 +81,33 @@ public class EditSphereDialog extends AbstractEditPrimitiveDialog {
       return true;
     }
     
-    if (this.parameter1.isChanged()) {
+    if (this.radius.isChanged()) {
       return true;
     }
-    if (this.parameter2.isChanged()) {
+    if (this.division.isChanged()) {
       return true;
     }
     
     return false;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  boolean containsOnlyNumbers() {
+    if (super.containsOnlyNumbers() == false) {
+      return false;
+    }
+    
+    if (this.radius.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.division.containsOnlyNumbers() == false) {
+      return false;
+    }
+
+    return true;
   }
 
 }

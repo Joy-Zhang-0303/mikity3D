@@ -36,7 +36,6 @@ import org.mklab.mikity.view.gui.UnitLabel;
  */
 public abstract class AbstractEditPrimitiveDialog {
   Shell parentShell;
-  /** */
   Shell sShell;
   PrimitiveModel primitive;
   String groupName;
@@ -46,32 +45,22 @@ public abstract class AbstractEditPrimitiveDialog {
   
   ColorSelectorButton colorSelector;
   
-  Label primitiveLabel;
-  Label unitLabel1;
-  Label unitLabel2;
-  Label unitLabel3;
-
-  ParameterInputBox parameter1;
-  ParameterInputBox parameter2;
-  ParameterInputBox parameter3;
-
-  ParameterInputBox rotationX;
-  ParameterInputBox rotationY;
-  ParameterInputBox rotationZ;
+  Label primitiveType;
 
   ParameterInputBox translationX;
   ParameterInputBox translationY;
   ParameterInputBox translationZ;
+  
+  ParameterInputBox rotationX;
+  ParameterInputBox rotationY;
+  ParameterInputBox rotationZ;
 
   /**
-   * @param group
+   * パラメータを設定するボックスを生成します。
+   * 
+   * @param group グループ
    */
   abstract void createPrameterBoxes(Group group);
-
-//  /**
-//   * ボックスにパラメータを設定します。
-//   */
-//  abstract void setParametersInBoxes();
   
   /**
    * プリミティブのパラメータを更新します。
@@ -97,7 +86,6 @@ public abstract class AbstractEditPrimitiveDialog {
     this.tree.setIsModifyingObject(true);
     
     createSShell();
-    //setParametersInDialog();
   }
   
   /**
@@ -115,9 +103,8 @@ public abstract class AbstractEditPrimitiveDialog {
   
   
   /**
-   * シェルを作成
+   * シェルを生成します。
    */
-  @SuppressWarnings({"unused"})
   private void createSShell() {
     //this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
@@ -133,15 +120,15 @@ public abstract class AbstractEditPrimitiveDialog {
     groupLabel.setText(Messages.getString("EditPrimitiveDialog.1") + this.groupName); //$NON-NLS-1$
     setGridLayout(groupLabel, 2);
 
-    this.primitiveLabel = new Label(this.sShell, SWT.NONE);
-    setGridLayout(this.primitiveLabel, 2);
+    this.primitiveType = new Label(this.sShell, SWT.NONE);
+    setGridLayout(this.primitiveType, 2);
 
     Group parameterGroup = new Group(this.sShell, SWT.NONE);
     parameterGroup.setText(Messages.getString("EditPrimitiveDialog.9")); //$NON-NLS-1$
     setGridLayout(parameterGroup, 1);
 
-    final GridLayout newValueLayout = new GridLayout(3, false);
-    parameterGroup.setLayout(newValueLayout);
+    final GridLayout parameterLayout = new GridLayout(3, false);
+    parameterGroup.setLayout(parameterLayout);
     
     final Label colorLabel = new Label(parameterGroup, SWT.LEFT);
     colorLabel.setText(Messages.getString("EditPrimitiveDialog.10")); //$NON-NLS-1$
@@ -151,6 +138,7 @@ public abstract class AbstractEditPrimitiveDialog {
     setGridLayout(colorLabel, 1);
 
     this.colorSelector = new ColorSelectorButton(parameterGroup);
+    this.colorSelector.setColor(this.primitive.getColor());
     
     final Label spaceLabel = new Label(parameterGroup, SWT.NONE);
     spaceLabel.setText(" "); //$NON-NLS-1$
@@ -158,23 +146,65 @@ public abstract class AbstractEditPrimitiveDialog {
     
     createPrameterBoxes(parameterGroup);
 
-    this.translationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.6"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.translationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.7"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.translationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.8"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    createTranslationBoxes(parameterGroup);
+    
     final Label label6 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label6, 3);
 
-    this.rotationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.3"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
-    this.rotationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.4"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
-    this.rotationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.5"), "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
-
+    createRotationBoxes(parameterGroup);
+    
     createButtonComposite();
+  }
+
+  @SuppressWarnings("unused")
+  private void createRotationBoxes(Group parameterGroup) {
+    final RotationModel rotation = this.primitive.getRotation();
+    
+    final String x;
+    final String y;
+    final String z;
+    
+    if (rotation != null) {
+      x = "" + rotation.getX(); //$NON-NLS-1$
+      y = "" + rotation.getY(); //$NON-NLS-1$
+      z = "" + rotation.getZ(); //$NON-NLS-1$
+    } else {
+      x = "0"; //$NON-NLS-1$
+      y = "0"; //$NON-NLS-1$
+      z = "0"; //$NON-NLS-1$
+    }
+    
+    this.rotationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.3"), x); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
+    this.rotationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.4"), y); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
+    this.rotationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.5"), z); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
+  }
+
+  @SuppressWarnings("unused")
+  private void createTranslationBoxes(Group parameterGroup) {
+    final TranslationModel translation = this.primitive.getTranslation();
+    
+    final String x;
+    final String y;
+    final String z;
+    if (translation != null) {
+      x = "" + translation.getX(); //$NON-NLS-1$
+      y = "" + translation.getY(); //$NON-NLS-1$
+      z = "" + translation.getZ(); //$NON-NLS-1$
+    } else {
+      x = "0"; //$NON-NLS-1$
+      y = "0"; //$NON-NLS-1$
+      z = "0"; //$NON-NLS-1$
+    }
+
+    this.translationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.6"), x); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.translationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.7"), y); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.translationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.8"), z); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
   }
   
   /**
@@ -269,47 +299,6 @@ public abstract class AbstractEditPrimitiveDialog {
 
     });
   }
-
-  
-  /**
-   * ダイアログにパラメータを設定します。
-   */
-  void setParametersInDialog() {
-    final RotationModel rotation = this.primitive.getRotation();
-    final TranslationModel translation = this.primitive.getTranslation();
-    if (rotation != null) {
-      setRotationInDialog(rotation);
-    }
-    if (translation != null) {
-      setTranslationInDialog(translation);
-    }
-    
-    this.colorSelector.setColor(this.primitive.getColor());
-    
-    //setParametersInBoxes();
-  }
-  
-  /**
-   * 角度をダイアログに設定します。
-   * 
-   * @param rotation 角度
-   */
-  private void setRotationInDialog(RotationModel rotation) {
-    this.rotationX.setStringValue("" + rotation.getX()); //$NON-NLS-1$
-    this.rotationY.setStringValue("" + rotation.getY()); //$NON-NLS-1$
-    this.rotationZ.setStringValue("" + rotation.getZ()); //$NON-NLS-1$
-  }
-
-  /**
-   * 並進量をダイアログに設定します。
-   * 
-   * @param translation 並進量
-   */
-  private void setTranslationInDialog(TranslationModel translation) {
-    this.translationX.setStringValue("" + translation.getX()); //$NON-NLS-1$
-    this.translationY.setStringValue("" + translation.getY()); //$NON-NLS-1$
-    this.translationZ.setStringValue("" + translation.getZ()); //$NON-NLS-1$
-  }
   
   /**
    * レイアウトマネージャGridLayoutを設定
@@ -329,15 +318,6 @@ public abstract class AbstractEditPrimitiveDialog {
    * @return boolean 数字のみが入力されていればtrue、そうでなければfalse
    */
   boolean containsOnlyNumbers() {
-    if (this.parameter1.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.parameter2.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.parameter3.isVisible() && this.parameter3.containsOnlyNumbers() == false) {
-      return false;
-    }
     if (this.rotationX.containsOnlyNumbers() == false) {
       return false;
     }

@@ -282,7 +282,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = new BoxModel(0.1f, 0.1f, 0.1f);
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (BoxModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
         dialog.open();
         updateTree();
@@ -295,7 +295,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = new CylinderModel(0.1f, 0.1f, 36);
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (CylinderModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
         dialog.open();
         updateTree();
@@ -308,7 +308,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = new SphereModel(0.1f, 36);
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (SphereModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
         dialog.open();
         updateTree();
@@ -321,7 +321,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = new ConeModel(0.1f, 0.1f, 36);
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditConeDialog dialog = new EditConeDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final EditConeDialog dialog = new EditConeDialog(composite.getShell(), (ConeModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
         dialog.open();
         updateTree();
@@ -402,17 +402,17 @@ public class SceneGraphTree {
           dialog.open();
           updateTree();
         } else if (SceneGraphTree.this.targetObject instanceof CylinderModel) {
-          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (CylinderModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+          final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (CylinderModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
               SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (SceneGraphTree.this.targetObject instanceof SphereModel) {
-          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (SphereModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+          final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (SphereModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
               SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (SceneGraphTree.this.targetObject instanceof ConeModel) {
-          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (ConeModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+          final EditConeDialog dialog = new EditConeDialog(composite.getShell(), (ConeModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
               SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();

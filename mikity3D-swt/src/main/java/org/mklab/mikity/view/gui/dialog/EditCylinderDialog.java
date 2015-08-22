@@ -11,7 +11,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.SceneGraphTree;
@@ -25,6 +24,13 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision: 1.5 $.2005/02/09
  */
 public class EditCylinderDialog extends AbstractEditPrimitiveDialog {
+  private ParameterInputBox radius;
+  private ParameterInputBox height;
+  private ParameterInputBox depth;
+  
+  private Label radiusUnit;
+  private Label heightUnit;
+  
   /**
    * コンストラクター
    * 
@@ -34,59 +40,46 @@ public class EditCylinderDialog extends AbstractEditPrimitiveDialog {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditCylinderDialog(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditCylinderDialog(Shell parentShell, CylinderModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     super(parentShell, primitive, group, tree, modeler);
   }
 
   /**
-   * パラメータのボックスを生成します。
-   * 
-   * @param parameterGroup パラメータグループ
+   * {@inheritDoc}
    */
   @Override
   public void createPrameterBoxes(Group parameterGroup) {
-    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
+    this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
     
     final CylinderModel cylinder = (CylinderModel)this.primitive;
     
-    this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.35"), "" + cylinder.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
+    this.radius = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.35"), "" + cylinder.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
 
-    this.unitLabel1 = new Label(parameterGroup, SWT.NONE);
-    this.unitLabel1.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.unitLabel1, 1);
+    this.radiusUnit = new Label(parameterGroup, SWT.NONE);
+    this.radiusUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+    setGridLayout(this.radiusUnit, 1);
 
-    this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.36"), "" + cylinder.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
+    this.height = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.36"), "" + cylinder.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
 
-    this.unitLabel2 = new Label(parameterGroup, SWT.NONE);
-    this.unitLabel2.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.unitLabel2, 1);
+    this.heightUnit = new Label(parameterGroup, SWT.NONE);
+    this.heightUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+    setGridLayout(this.heightUnit, 1);
 
-    this.parameter3 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.37"), "" + cylinder.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
+    this.depth = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.37"), "" + cylinder.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
     
     final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
   }
 
-//  /**
-//   * ボックスにパラメータを設定します。
-//   */
-//  @Override
-//  void setParametersInBoxes() {
-////    this.parameter3.setVisible(true);
-////    this.unitLabel2.setVisible(true);
-////    this.unitLabel3.setVisible(false);
-//  }
-
-
   /**
-   * プリミティブのパラメータを更新します。
+   * {@inheritDoc}
    */
   @Override
   void updateModelParameters() {
     final CylinderModel cylinder = (CylinderModel)this.primitive;
-    cylinder.setRadius(this.parameter1.getFloatValue());
-    cylinder.setHeight(this.parameter2.getFloatValue());
-    cylinder.setDivision(this.parameter3.getIntValue());
+    cylinder.setRadius(this.radius.getFloatValue());
+    cylinder.setHeight(this.height.getFloatValue());
+    cylinder.setDivision(this.depth.getIntValue());
   }
   
   /**
@@ -98,18 +91,39 @@ public class EditCylinderDialog extends AbstractEditPrimitiveDialog {
       return true;
     }
     
-    if (this.parameter1.isChanged()) {
+    if (this.radius.isChanged()) {
       return true;
     }
-    if (this.parameter2.isChanged()) {
+    if (this.height.isChanged()) {
       return true;
     }
-    if (this.parameter3.isChanged()) {
+    if (this.depth.isChanged()) {
       return true;
     }
     
     return false;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  boolean containsOnlyNumbers() {
+    if (super.containsOnlyNumbers() == false) {
+      return false;
+    }
+    
+    if (this.radius.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.height.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.depth.containsOnlyNumbers() == false) {
+      return false;
+    }
+
+    return true;
+  }
 
 }

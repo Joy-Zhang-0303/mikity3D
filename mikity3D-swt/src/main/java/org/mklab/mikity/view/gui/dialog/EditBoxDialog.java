@@ -11,7 +11,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.SceneGraphTree;
@@ -25,6 +24,14 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision: 1.5 $.2005/02/09
  */
 public class EditBoxDialog extends AbstractEditPrimitiveDialog {
+  private ParameterInputBox width;
+  private ParameterInputBox height;
+  private ParameterInputBox depth;
+  
+  private Label widthUnit;
+  private Label heightUnit;
+  private Label depthUnit;
+
   /**
    * 新しく生成された<code>EditBoxDialog</code>オブジェクトを初期化します。
    * @param parentShell 親のシェル
@@ -33,7 +40,7 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditBoxDialog(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditBoxDialog(Shell parentShell, BoxModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     super(parentShell, primitive, group, tree, modeler);
   }
 
@@ -42,52 +49,41 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
    */
   @Override
   public void createPrameterBoxes(Group parameterGroup) {
-    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
+    this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
     
     final BoxModel box = (BoxModel)this.primitive;
     
-    this.parameter1 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.32"), "" + box.getWidth()); //$NON-NLS-1$//$NON-NLS-2$
+    this.width = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.32"), "" + box.getWidth()); //$NON-NLS-1$//$NON-NLS-2$
     
-    this.unitLabel1 = new Label(parameterGroup, SWT.NONE);
-    this.unitLabel1.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.unitLabel1, 1);
+    this.widthUnit = new Label(parameterGroup, SWT.NONE);
+    this.widthUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+    setGridLayout(this.widthUnit, 1);
 
-    this.parameter2 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.33"), "" + box.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
+    this.height = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.33"), "" + box.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
     
-    this.unitLabel2 = new Label(parameterGroup, SWT.NONE);
-    this.unitLabel2.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.unitLabel2, 1);
+    this.heightUnit = new Label(parameterGroup, SWT.NONE);
+    this.heightUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+    setGridLayout(this.heightUnit, 1);
 
-    this.parameter3 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.34"), "" + box.getDepth()); //$NON-NLS-1$//$NON-NLS-2$
+    this.depth = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.34"), "" + box.getDepth()); //$NON-NLS-1$//$NON-NLS-2$
     
-    this.unitLabel3 = new Label(parameterGroup, SWT.NONE);
-    this.unitLabel3.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.unitLabel3, 1);
+    this.depthUnit = new Label(parameterGroup, SWT.NONE);
+    this.depthUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+    setGridLayout(this.depthUnit, 1);
     
     final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
     setGridLayout(label5, 3);
   }
-  
-  /**
-//   * ボックスにパラメータを設定します。
-//   */
-//  @Override
-//  void setParametersInBoxes() {
-////    this.primitiveLabel.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
-////    this.parameter3.setVisible(true);
-////    this.unitLabel2.setVisible(true);
-////    this.unitLabel3.setVisible(true);
-//  }
 
   /**
-   * プリミティブのパラメータを更新します。
+   * {@inheritDoc}
    */
   @Override
   void updateModelParameters() {
     final BoxModel box = (BoxModel)this.primitive;
-    box.setWidth(this.parameter1.getFloatValue());
-    box.setHeight(this.parameter2.getFloatValue());
-    box.setDepth(this.parameter3.getFloatValue());
+    box.setWidth(this.width.getFloatValue());
+    box.setHeight(this.height.getFloatValue());
+    box.setDepth(this.depth.getFloatValue());
   }
 
   /**
@@ -99,16 +95,38 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
       return true;
     }
     
-    if (this.parameter1.isChanged()) {
+    if (this.width.isChanged()) {
       return true;
     }
-    if (this.parameter2.isChanged()) {
+    if (this.height.isChanged()) {
       return true;
     }
-    if (this.parameter3.isChanged()) {
+    if (this.depth.isChanged()) {
       return true;
     }
     
     return false;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  boolean containsOnlyNumbers() {
+    if (super.containsOnlyNumbers() == false) {
+      return false;
+    }
+    
+    if (this.width.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.height.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.depth.containsOnlyNumbers() == false) {
+      return false;
+    }
+
+    return true;
   }
 }
