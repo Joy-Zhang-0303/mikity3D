@@ -224,23 +224,23 @@ public class ConfigurationDialog {
   private void setParametersToDialog() {
     if (this.configuration.getLight() != null) {
       final LightModel light = this.configuration.getLight();
-      this.lightX.setText("" + light.getX()); //$NON-NLS-1$
-      this.lightY.setText("" + light.getY()); //$NON-NLS-1$
-      this.lightZ.setText("" + light.getZ()); //$NON-NLS-1$
+      this.lightX.setStringValue("" + light.getX()); //$NON-NLS-1$
+      this.lightY.setStringValue("" + light.getY()); //$NON-NLS-1$
+      this.lightZ.setStringValue("" + light.getZ()); //$NON-NLS-1$
     }
 
     if (this.configuration.getEye() != null) {
       final EyeModel eye = this.configuration.getEye();
-      this.eyeX.setText("" + eye.getX()); //$NON-NLS-1$
-      this.eyeY.setText("" + eye.getY()); //$NON-NLS-1$
-      this.eyeZ.setText("" + eye.getZ()); //$NON-NLS-1$
+      this.eyeX.setStringValue("" + eye.getX()); //$NON-NLS-1$
+      this.eyeY.setStringValue("" + eye.getY()); //$NON-NLS-1$
+      this.eyeZ.setStringValue("" + eye.getZ()); //$NON-NLS-1$
     }
     
     if (this.configuration.getLookAtPoint() != null) {
       final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
-      this.lookAtPointX.setText("" + lookAtPoint.getX()); //$NON-NLS-1$
-      this.lookAtPointY.setText("" + lookAtPoint.getY()); //$NON-NLS-1$
-      this.lookAtPointZ.setText("" + lookAtPoint.getZ()); //$NON-NLS-1$
+      this.lookAtPointX.setStringValue("" + lookAtPoint.getX()); //$NON-NLS-1$
+      this.lookAtPointY.setStringValue("" + lookAtPoint.getY()); //$NON-NLS-1$
+      this.lookAtPointZ.setStringValue("" + lookAtPoint.getZ()); //$NON-NLS-1$
     }
 
     if (this.configuration.getModelUnit() != null) {

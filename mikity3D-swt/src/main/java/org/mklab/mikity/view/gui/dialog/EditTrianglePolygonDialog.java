@@ -380,40 +380,40 @@ public class EditTrianglePolygonDialog {
    */
   private void setParametersInDialog() {
     final VertexModel vertex1 = this.polygon.getVertex(0);
-    this.vertex1X.setText("" + vertex1.getX()); //$NON-NLS-1$
-    this.vertex1Y.setText("" + vertex1.getY()); //$NON-NLS-1$
-    this.vertex1Z.setText("" + vertex1.getZ()); //$NON-NLS-1$
+    this.vertex1X.setStringValue("" + vertex1.getX()); //$NON-NLS-1$
+    this.vertex1Y.setStringValue("" + vertex1.getY()); //$NON-NLS-1$
+    this.vertex1Z.setStringValue("" + vertex1.getZ()); //$NON-NLS-1$
 
     final VertexModel vertex2 = this.polygon.getVertex(1);
-    this.vertex2X.setText("" + vertex2.getX()); //$NON-NLS-1$
-    this.vertex2Y.setText("" + vertex2.getY()); //$NON-NLS-1$
-    this.vertex2Z.setText("" + vertex2.getZ()); //$NON-NLS-1$
+    this.vertex2X.setStringValue("" + vertex2.getX()); //$NON-NLS-1$
+    this.vertex2Y.setStringValue("" + vertex2.getY()); //$NON-NLS-1$
+    this.vertex2Z.setStringValue("" + vertex2.getZ()); //$NON-NLS-1$
 
     final VertexModel vertex3 = this.polygon.getVertex(2);
-    this.vertex3X.setText("" + vertex3.getX()); //$NON-NLS-1$
-    this.vertex3Y.setText("" + vertex3.getY()); //$NON-NLS-1$
-    this.vertex3Z.setText("" + vertex3.getZ()); //$NON-NLS-1$
+    this.vertex3X.setStringValue("" + vertex3.getX()); //$NON-NLS-1$
+    this.vertex3Y.setStringValue("" + vertex3.getY()); //$NON-NLS-1$
+    this.vertex3Z.setStringValue("" + vertex3.getZ()); //$NON-NLS-1$
 
     this.colorSelector.setColor(this.polygon.getColor());
 
     if (this.polygon.getRotation() != null) {
-      this.rightVertexX.setText("" + this.polygon.getRotation().getX()); //$NON-NLS-1$
-      this.rightVertexY.setText("" + this.polygon.getRotation().getY()); //$NON-NLS-1$
-      this.rightVertexZ.setText("" + this.polygon.getRotation().getZ()); //$NON-NLS-1$
+      this.rightVertexX.setStringValue("" + this.polygon.getRotation().getX()); //$NON-NLS-1$
+      this.rightVertexY.setStringValue("" + this.polygon.getRotation().getY()); //$NON-NLS-1$
+      this.rightVertexZ.setStringValue("" + this.polygon.getRotation().getZ()); //$NON-NLS-1$
     } else {
-      this.rightVertexX.setText("" + 0.0); //$NON-NLS-1$
-      this.rightVertexY.setText("" + 0.0); //$NON-NLS-1$
-      this.rightVertexZ.setText("" + 0.0); //$NON-NLS-1$
+      this.rightVertexX.setStringValue("" + 0.0); //$NON-NLS-1$
+      this.rightVertexY.setStringValue("" + 0.0); //$NON-NLS-1$
+      this.rightVertexZ.setStringValue("" + 0.0); //$NON-NLS-1$
     }
 
     if (this.polygon.getTranslation() != null) {
-      this.leftVertexX.setText("" + this.polygon.getTranslation().getX()); //$NON-NLS-1$
-      this.leftVertexY.setText("" + this.polygon.getTranslation().getY()); //$NON-NLS-1$
-      this.leftVertexZ.setText("" + this.polygon.getTranslation().getZ()); //$NON-NLS-1$
+      this.leftVertexX.setStringValue("" + this.polygon.getTranslation().getX()); //$NON-NLS-1$
+      this.leftVertexY.setStringValue("" + this.polygon.getTranslation().getY()); //$NON-NLS-1$
+      this.leftVertexZ.setStringValue("" + this.polygon.getTranslation().getZ()); //$NON-NLS-1$
     } else {
-      this.leftVertexX.setText("" + 0.0); //$NON-NLS-1$
-      this.leftVertexY.setText("" + 0.0); //$NON-NLS-1$
-      this.leftVertexZ.setText("" + 0.0); //$NON-NLS-1$
+      this.leftVertexX.setStringValue("" + 0.0); //$NON-NLS-1$
+      this.leftVertexY.setStringValue("" + 0.0); //$NON-NLS-1$
+      this.leftVertexZ.setStringValue("" + 0.0); //$NON-NLS-1$
     }
   }
 }

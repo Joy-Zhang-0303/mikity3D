@@ -30,6 +30,9 @@ public class ColorSelectorButton {
   
   /** 選択器。 */
   ColorSelector selector;
+  
+  /** 変更されていればtrue */
+  boolean isChanged = false;
 
   /**
    * 新しく生成された<code>ColorComboBox</code>オブジェクトを初期化します。
@@ -59,6 +62,7 @@ public class ColorSelectorButton {
         }
         
         setColor(selectedColor);
+        ColorSelectorButton.this.isChanged = true;
       }
     });
   }
@@ -82,5 +86,13 @@ public class ColorSelectorButton {
     if (this.selector != null) {
       this.selector.setColorValue(new RGB(color.getR(),color.getG(),color.getB()));
     }
+  }
+  
+  /**
+   * 値が変更されたか判定します。
+   * @return 値が変更されれいればtrue
+   */
+  public boolean isChanged() {
+    return this.isChanged;
   }
 }

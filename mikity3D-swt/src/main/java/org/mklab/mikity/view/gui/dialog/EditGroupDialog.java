@@ -102,7 +102,7 @@ public class EditGroupDialog {
     this.groupName.setTextWidth(150);
 
     if (this.targetGroup.getName() != null) {
-      this.groupName.setText(this.targetGroup.getName());
+      this.groupName.setStringValue(this.targetGroup.getName());
     }
     
     addShellListener();
@@ -268,7 +268,7 @@ public class EditGroupDialog {
    * グループのパラメータを更新します。
    */
   void updateGroupParameters() {
-    this.targetGroup.setName(this.groupName.getText());
+    this.targetGroup.setName(this.groupName.getStringValue());
     this.targetGroup.clearAnimations();
     addAnimation("translationX", this.translationXsourceId, this.translationXsourceNumber); //$NON-NLS-1$
     addAnimation("translationY", this.translationYsourceId, this.translationYsourceNumber); //$NON-NLS-1$
@@ -294,7 +294,7 @@ public class EditGroupDialog {
   void addAnimation(final String parameterName, final ParameterInputBox sourceId, final ParameterInputBox sourceNumber) {
     if (sourceNumber.getIntValue() != 0) {
       final SourceModel source = new SourceModel();
-      source.setId(sourceId.getText());
+      source.setId(sourceId.getStringValue());
       source.setNumber(sourceNumber.getIntValue());
       final AnimationModel animation = new AnimationModel();
       animation.setTarget(parameterName);
@@ -346,9 +346,9 @@ public class EditGroupDialog {
    * @param rotation 回転角度
    */
   private void setRotationInDialog(RotationModel rotation) {
-    this.rotationX.setText("" + rotation.getX()); //$NON-NLS-1$
-    this.rotationY.setText("" + rotation.getY()); //$NON-NLS-1$
-    this.rotationZ.setText("" + rotation.getZ()); //$NON-NLS-1$
+    this.rotationX.setStringValue("" + rotation.getX()); //$NON-NLS-1$
+    this.rotationY.setStringValue("" + rotation.getY()); //$NON-NLS-1$
+    this.rotationZ.setStringValue("" + rotation.getZ()); //$NON-NLS-1$
   }
 
   /**
@@ -357,9 +357,9 @@ public class EditGroupDialog {
    * @param translation 並進距離
    */
   private void setTranslationInDialog(TranslationModel translation) {
-    this.translationX.setText("" + translation.getX()); //$NON-NLS-1$
-    this.translationY.setText("" + translation.getY()); //$NON-NLS-1$
-    this.translationZ.setText("" + translation.getZ()); //$NON-NLS-1$
+    this.translationX.setStringValue("" + translation.getX()); //$NON-NLS-1$
+    this.translationY.setStringValue("" + translation.getY()); //$NON-NLS-1$
+    this.translationZ.setStringValue("" + translation.getZ()); //$NON-NLS-1$
   }
 
   /**
@@ -375,23 +375,23 @@ public class EditGroupDialog {
       final String number = "" + source.getNumber(); //$NON-NLS-1$
 
       if (target.equals("translationX")) { //$NON-NLS-1$
-        this.translationXsourceId.setText(id);
-        this.translationXsourceNumber.setText(number);
+        this.translationXsourceId.setStringValue(id);
+        this.translationXsourceNumber.setStringValue(number);
       } else if (target.equals("translationY")) { //$NON-NLS-1$
-        this.translationYsourceId.setText(id);
-        this.translationYsourceNumber.setText(number);
+        this.translationYsourceId.setStringValue(id);
+        this.translationYsourceNumber.setStringValue(number);
       } else if (target.equals("translationZ")) { //$NON-NLS-1$
-        this.translationZsourceId.setText(id);
-        this.translationZsourceNumber.setText(number);
+        this.translationZsourceId.setStringValue(id);
+        this.translationZsourceNumber.setStringValue(number);
       } else if (target.equals("rotationX")) { //$NON-NLS-1$
-        this.rotationXsourceId.setText(id);
-        this.rotationXsourceNumber.setText(number);
+        this.rotationXsourceId.setStringValue(id);
+        this.rotationXsourceNumber.setStringValue(number);
       } else if (target.equals("rotationY")) { //$NON-NLS-1$
-        this.rotationYsourceId.setText(id);
-        this.rotationYsourceNumber.setText(number);
+        this.rotationYsourceId.setStringValue(id);
+        this.rotationYsourceNumber.setStringValue(number);
       } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-        this.rotationZsourceId.setText(id);        
-        this.rotationZsourceNumber.setText(number);
+        this.rotationZsourceId.setStringValue(id);        
+        this.rotationZsourceNumber.setStringValue(number);
       }
     }
   }
