@@ -93,61 +93,68 @@ public class ConfigurationDialog {
     editGroup.setLayoutData(data);
     editGroup.setText(Messages.getString("ConfigDialog.0")); //$NON-NLS-1$
 
-    createUnitGroup(editGroup);
-
+    createEye(editGroup);
+    
+    createLookAtPoint(editGroup);
+    
     createLightGroup(editGroup);
+    
+    createModelUnit(editGroup);
+    
+    createDataUnit(editGroup);
 
-    createLookAtPointAndEyeGroup(editGroup);
-
-    final Label backgroundLabel = new Label(editGroup, SWT.NONE);
-    backgroundLabel.setText(Messages.getString("ConfigDialog.13")); //$NON-NLS-1$
-    createColorSelectorButton(editGroup);
+    createBackground(editGroup);
 
     setParametersToDialog();
   }
 
   /**
-   * データの単位を設定するグループを生成します。
+   * 背景色を設定するグループを生成します。
+   * 
+   * @param editGroup 親
    */
-  private void createUnitGroup(Group parent) {
-    final Group unitGroup = new Group(parent, SWT.NONE);
-    final GridLayout unitLayout = new GridLayout();
-    unitLayout.numColumns = 4;
-    unitGroup.setText(Messages.getString("ConfigDialog.1")); //$NON-NLS-1$
-    final GridData unitData = new GridData(GridData.FILL_HORIZONTAL);
-    unitData.horizontalSpan = 2;
-    unitGroup.setLayoutData(unitData);
-    unitGroup.setLayout(unitLayout);
+  private void createBackground(final Group editGroup) {
+    final Label backgroundLabel = new Label(editGroup, SWT.NONE);
+    backgroundLabel.setText(Messages.getString("ConfigDialog.13")); //$NON-NLS-1$
+    createColorSelectorButton(editGroup);
+  }
 
-    // モデルの単位
-    final Label modelUnitLabel = new Label(unitGroup, SWT.NONE);
-    final GridData modelData = new GridData(GridData.FILL_HORIZONTAL);
-    modelData.horizontalSpan = 4;
-    modelUnitLabel.setText(Messages.getString("ConfigDialog.2")); //$NON-NLS-1$
-    modelUnitLabel.setLayoutData(modelData);
+  /**
+   * ソースデータの単位を設定するグループを生成します。
+   * 
+   * @param parent 親
+   */
+  private void createDataUnit(Group parent) {
+    final Group dataUnitGroup = new Group(parent, SWT.NONE);
+    final GridLayout dataUnitLayout = new GridLayout();
+    dataUnitLayout.numColumns = 4;
+    dataUnitGroup.setText(Messages.getString("ConfigDialog.5")); //$NON-NLS-1$
+    final GridData dataUnitData = new GridData(GridData.FILL_HORIZONTAL);
+    dataUnitData.horizontalSpan = 2;
+    dataUnitGroup.setLayoutData(dataUnitData);
+    dataUnitGroup.setLayout(dataUnitLayout);
 
-    final Label modelAngleLabel = new Label(unitGroup, SWT.NONE);
-    modelAngleLabel.setText(Messages.getString("ConfigDialog.3")); //$NON-NLS-1$
-    createModelAngleUnitCombo(unitGroup);
+    createDataLengthUnitCombo(dataUnitGroup);
+    createDataAngleUnitCombo(dataUnitGroup);
+  }
 
-    final Label modelLengthLabel = new Label(unitGroup, SWT.NONE);
-    modelLengthLabel.setText(Messages.getString("ConfigDialog.4")); //$NON-NLS-1$
-    createModelLengthUnitCombo(unitGroup);
+  /**
+   * モデルの単位を設定するグループを生成しまうｓ。
+   * 
+   * @param parent 親
+   */
+  private void createModelUnit(Group parent) {
+    final Group modelUnitGroup = new Group(parent, SWT.NONE);
+    final GridLayout modeUnitLayout = new GridLayout();
+    modeUnitLayout.numColumns = 4;
+    modelUnitGroup.setText(Messages.getString("ConfigDialog.2")); //$NON-NLS-1$
+    final GridData modelUnitData = new GridData(GridData.FILL_HORIZONTAL);
+    modelUnitData.horizontalSpan = 2;
+    modelUnitGroup.setLayoutData(modelUnitData);
+    modelUnitGroup.setLayout(modeUnitLayout);
 
-    // 時系列データの単位
-    final Label dataUnitLabel = new Label(unitGroup, SWT.NONE);
-    final GridData dataData = new GridData(GridData.FILL_HORIZONTAL);
-    dataData.horizontalSpan = 4;
-    dataUnitLabel.setText(Messages.getString("ConfigDialog.5")); //$NON-NLS-1$
-    dataUnitLabel.setLayoutData(dataData);
-
-    final Label dataAngleLabel = new Label(unitGroup, SWT.NONE);
-    dataAngleLabel.setText(Messages.getString("ConfigDialog.6")); //$NON-NLS-1$
-    createDataAngleUnitCombo(unitGroup);
-
-    final Label dataLengthLabel = new Label(unitGroup, SWT.NONE);
-    dataLengthLabel.setText(Messages.getString("ConfigDialog.7")); //$NON-NLS-1$
-    createDataLengthUnitCombo(unitGroup);
+    createModelLengthUnit(modelUnitGroup);
+    createModelAngleUnit(modelUnitGroup);
   }
 
   /**
@@ -163,9 +170,11 @@ public class ConfigurationDialog {
     lightGroup.setLayout(lightLayout);
     lightGroup.setLayoutData(lightData);
 
-    this.lightX = new ParameterInputBox(lightGroup, SWT.NONE, "  (", "10.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lightY = new ParameterInputBox(lightGroup, SWT.NONE, ",  ", "10.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lightZ = new ParameterInputBox(lightGroup, SWT.NONE, ",  ", "20.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    final LightModel light = this.configuration.getLight();
+    
+    this.lightX = new ParameterInputBox(lightGroup, SWT.NONE, "  (", "" + light.getX()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightY = new ParameterInputBox(lightGroup, SWT.NONE, ",  ", "" + light.getY()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightZ = new ParameterInputBox(lightGroup, SWT.NONE, ",  ", "" + light.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
 
     final Label lightRightLabel = new Label(lightGroup, SWT.NONE);
     final GridData lightRightData = new GridData();
@@ -175,44 +184,50 @@ public class ConfigurationDialog {
   }
 
   /**
-   * 注視点と視点の位置を設定するグループを生成します。
+   * 注視点の位置を設定するグループを生成します。
    */
-  private void createLookAtPointAndEyeGroup(Group parent) {
-    final Group lookAtPointAndEyeGroup = new Group(parent, SWT.NONE);
-    lookAtPointAndEyeGroup.setText(Messages.getString("ConfigDialog.10")); //$NON-NLS-1$
+  private void createLookAtPoint(Group parent) {
+    final Group lookAtPointGroup = new Group(parent, SWT.NONE);
+    lookAtPointGroup.setText(Messages.getString("ConfigDialog.11")); //$NON-NLS-1$
 
-    final GridData lookAtEyeData = new GridData(GridData.FILL_HORIZONTAL);
-    lookAtEyeData.horizontalSpan = 2;
+    final GridData lookAtPointGroupData = new GridData(GridData.FILL_HORIZONTAL);
+    lookAtPointGroupData.horizontalSpan = 2;
     final GridLayout viewLayout = new GridLayout(7, true);
-    lookAtPointAndEyeGroup.setLayout(viewLayout);
-    lookAtPointAndEyeGroup.setLayoutData(lookAtEyeData);
+    lookAtPointGroup.setLayout(viewLayout);
+    lookAtPointGroup.setLayoutData(lookAtPointGroupData);
 
-    final Label lookAtPoitLabel = new Label(lookAtPointAndEyeGroup, SWT.NONE);
-    lookAtPoitLabel.setText(Messages.getString("ConfigDialog.11")); //$NON-NLS-1$
-    final GridData lookAtPointData = new GridData(GridData.FILL_HORIZONTAL);
-    lookAtPointData.horizontalSpan = 7;
-    lookAtPoitLabel.setLayoutData(lookAtPointData);
+    final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
 
-    this.lookAtPointX = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, "  (", "0.0"); //$NON-NLS-1$//$NON-NLS-2$
-    this.lookAtPointY = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lookAtPointZ = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lookAtPointX = new ParameterInputBox(lookAtPointGroup, SWT.NONE, "  (", "" + lookAtPoint.getX()); //$NON-NLS-1$//$NON-NLS-2$
+    this.lookAtPointY = new ParameterInputBox(lookAtPointGroup, SWT.NONE, ",  ", "" + lookAtPoint.getY()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lookAtPointZ = new ParameterInputBox(lookAtPointGroup, SWT.NONE, ",  ", "" + lookAtPoint.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
 
-    final Label lookAtPointRightLabel = new Label(lookAtPointAndEyeGroup, SWT.NONE);
+    final Label lookAtPointRightLabel = new Label(lookAtPointGroup, SWT.NONE);
     final GridData lookAtPointRightData = new GridData();
     lookAtPointRightLabel.setLayoutData(lookAtPointRightData);
     lookAtPointRightLabel.setText(")"); //$NON-NLS-1$
+  }
 
-    final Label eyeLabel = new Label(lookAtPointAndEyeGroup, SWT.NONE);
-    eyeLabel.setText(Messages.getString("ConfigDialog.12")); //$NON-NLS-1$
-    final GridData eyeData = new GridData(GridData.FILL_HORIZONTAL);
-    eyeData.horizontalSpan = 7;
-    eyeLabel.setLayoutData(eyeData);
+  /**
+   * 視点の位置を設定するグループを生成します。
+   */
+  private void createEye(Group parent) {
+    final Group eyeGroup = new Group(parent, SWT.NONE);
+    eyeGroup.setText(Messages.getString("ConfigDialog.12")); //$NON-NLS-1$
 
-    this.eyeX = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, "  (", "5.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.eyeY = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
-    this.eyeZ = new ParameterInputBox(lookAtPointAndEyeGroup, SWT.NONE, ",  ", "0.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    final GridData eyeGroupData = new GridData(GridData.FILL_HORIZONTAL);
+    eyeGroupData.horizontalSpan = 2;
+    final GridLayout viewLayout2 = new GridLayout(7, true);
+    eyeGroup.setLayout(viewLayout2);
+    eyeGroup.setLayoutData(eyeGroupData);
 
-    final Label eyeRightLabel = new Label(lookAtPointAndEyeGroup, SWT.NONE);
+    final EyeModel eye = this.configuration.getEye();
+    
+    this.eyeX = new ParameterInputBox(eyeGroup, SWT.NONE, "  (", "" + eye.getX()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeY = new ParameterInputBox(eyeGroup, SWT.NONE, ",  ", "" + eye.getY()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeZ = new ParameterInputBox(eyeGroup, SWT.NONE, ",  ", "" + eye.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
+
+    final Label eyeRightLabel = new Label(eyeGroup, SWT.NONE);
     final GridData eyePositionRightData = new GridData();
     eyeRightLabel.setLayoutData(eyePositionRightData);
     eyeRightLabel.setText(")"); //$NON-NLS-1$
@@ -222,51 +237,14 @@ public class ConfigurationDialog {
    * XMLファイルからデータをダイアログに設定します。
    */
   private void setParametersToDialog() {
-    if (this.configuration.getLight() != null) {
-      final LightModel light = this.configuration.getLight();
-      this.lightX.setStringValue("" + light.getX()); //$NON-NLS-1$
-      this.lightY.setStringValue("" + light.getY()); //$NON-NLS-1$
-      this.lightZ.setStringValue("" + light.getZ()); //$NON-NLS-1$
-    }
+    this.modelAngleUnitCombo.setText(this.configuration.getModelUnit().getAngleUnit());
+    this.modelLengthUnitCombo.setText(this.configuration.getModelUnit().getLengthUnit());
 
-    if (this.configuration.getEye() != null) {
-      final EyeModel eye = this.configuration.getEye();
-      this.eyeX.setStringValue("" + eye.getX()); //$NON-NLS-1$
-      this.eyeY.setStringValue("" + eye.getY()); //$NON-NLS-1$
-      this.eyeZ.setStringValue("" + eye.getZ()); //$NON-NLS-1$
-    }
-    
-    if (this.configuration.getLookAtPoint() != null) {
-      final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
-      this.lookAtPointX.setStringValue("" + lookAtPoint.getX()); //$NON-NLS-1$
-      this.lookAtPointY.setStringValue("" + lookAtPoint.getY()); //$NON-NLS-1$
-      this.lookAtPointZ.setStringValue("" + lookAtPoint.getZ()); //$NON-NLS-1$
-    }
+    this.dataAngleUnitCombo.setText(this.configuration.getDataUnit().getAngle());
+    this.dataLengthUnitCombo.setText(this.configuration.getDataUnit().getLength());
 
-    if (this.configuration.getModelUnit() != null) {
-      if (this.configuration.getModelUnit().getAngleUnit() != null) {
-        this.modelAngleUnitCombo.setText(this.configuration.getModelUnit().getAngleUnit());
-      }
-      if (this.configuration.getModelUnit().getLengthUnit() != null) {
-        this.modelLengthUnitCombo.setText(this.configuration.getModelUnit().getLengthUnit());
-      }
-    }
-
-    if (this.configuration.getDataUnit() != null) {
-      if (this.configuration.getDataUnit().getAngle() != null) {
-        this.dataAngleUnitCombo.setText(this.configuration.getDataUnit().getAngle());
-      }
-      if (this.configuration.getDataUnit().getLength() != null) {
-        this.dataLengthUnitCombo.setText(this.configuration.getDataUnit().getLength());
-      }
-    }
-
-    if (this.configuration.getBackground() == null) {
-      this.colorSelector.setColor(new ColorModel("white")); //$NON-NLS-1$
-    } else {
-      final ColorModel color = this.configuration.getBackground().getColor();
-      this.colorSelector.setColor(color);
-    }
+    final ColorModel color = this.configuration.getBackground().getColor();
+    this.colorSelector.setColor(color);
   }
 
   /**
@@ -299,9 +277,10 @@ public class ConfigurationDialog {
           getParametersFromDialog();
           ConfigurationDialog.this.modeler.updateDisplay();
           ConfigurationDialog.this.sShell.close();
-        } else {
-          createMessageBox();
-        }
+          return;
+        } 
+          
+        createMessageBox();
       }
 
     });
@@ -325,9 +304,10 @@ public class ConfigurationDialog {
         if (containsOnlyNumbers()) {
           getParametersFromDialog();
           ConfigurationDialog.this.modeler.updateDisplay();
-        } else {
-          createMessageBox();
+          return;
         }
+
+        createMessageBox();
       }
 
     });
@@ -454,7 +434,10 @@ public class ConfigurationDialog {
    * 
    * @param parent
    */
-  private void createModelLengthUnitCombo(Group parent) {
+  private void createModelLengthUnit(Group parent) {
+    final Label modelLengthLabel = new Label(parent, SWT.NONE);
+    modelLengthLabel.setText(Messages.getString("ConfigDialog.4")); //$NON-NLS-1$
+    
     this.modelLengthUnitCombo = new Combo(parent, SWT.READ_ONLY);
     final GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
     this.modelLengthUnitCombo.setLayoutData(lengthData);
@@ -465,11 +448,32 @@ public class ConfigurationDialog {
   }
 
   /**
+   * モデルの角度の単位を指定するコンボボックスを作成します。
+   * 
+   * @param group
+   */
+  private void createModelAngleUnit(Group group) {
+    final Label modelAngleLabel = new Label(group, SWT.NONE);
+    modelAngleLabel.setText(Messages.getString("ConfigDialog.3")); //$NON-NLS-1$
+    
+    this.modelAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
+    final GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
+    this.modelAngleUnitCombo.setLayoutData(angleData);
+    final String[] angles = {"radian"}; //$NON-NLS-1$
+    // String[] ANGLES = {"degree", "radian"};
+    this.modelAngleUnitCombo.setItems(angles);
+    this.modelAngleUnitCombo.setText("radian"); //$NON-NLS-1$
+  }
+  
+  /**
    * データの長さの単位を指定するコンボボックスを作成します。
    * 
    * @param parent
    */
   private void createDataLengthUnitCombo(Group parent) {
+    final Label dataLengthLabel = new Label(parent, SWT.NONE);
+    dataLengthLabel.setText(Messages.getString("ConfigDialog.7")); //$NON-NLS-1$
+    
     this.dataLengthUnitCombo = new Combo(parent, SWT.READ_ONLY);
     final GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
     this.dataLengthUnitCombo.setLayoutData(lengthData);
@@ -480,26 +484,14 @@ public class ConfigurationDialog {
   }
 
   /**
-   * モデルの角度の単位を指定するコンボボックスを作成します。
-   * 
-   * @param group
-   */
-  private void createModelAngleUnitCombo(Group group) {
-    this.modelAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
-    final GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
-    this.modelAngleUnitCombo.setLayoutData(angleData);
-    final String[] angles = {"radian"}; //$NON-NLS-1$
-    // String[] ANGLES = {"degree", "radian"};
-    this.modelAngleUnitCombo.setItems(angles);
-    this.modelAngleUnitCombo.setText("radian"); //$NON-NLS-1$
-  }
-
-  /**
    * データの角度の単位を指定するコンボボックスを作成します。
    * 
    * @param group
    */
   private void createDataAngleUnitCombo(Group group) {
+    final Label dataAngleLabel = new Label(group, SWT.NONE);
+    dataAngleLabel.setText(Messages.getString("ConfigDialog.6")); //$NON-NLS-1$
+    
     this.dataAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
     final GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
     this.dataAngleUnitCombo.setLayoutData(angleData);
