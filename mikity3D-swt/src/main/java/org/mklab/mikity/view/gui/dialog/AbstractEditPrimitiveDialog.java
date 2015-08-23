@@ -278,9 +278,7 @@ public abstract class AbstractEditPrimitiveDialog {
           AbstractEditPrimitiveDialog.this.sShell.close();
           return;
         }
-        
-        AbstractEditPrimitiveDialog.this.modeler.setChanged(true);
-        
+               
         final MessageBox message = new MessageBox(AbstractEditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
         final int yesNo = message.open();
@@ -296,6 +294,9 @@ public abstract class AbstractEditPrimitiveDialog {
     applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        
+        AbstractEditPrimitiveDialog.this.modeler.setChanged(AbstractEditPrimitiveDialog.this.isChanged());
+        
         updatePrimitiveParameters();
         AbstractEditPrimitiveDialog.this.tree.updateTree();
         AbstractEditPrimitiveDialog.this.modeler.updateDisplay();

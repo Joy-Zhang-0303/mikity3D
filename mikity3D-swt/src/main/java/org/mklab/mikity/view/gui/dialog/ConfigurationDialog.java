@@ -250,7 +250,7 @@ public class ConfigurationDialog {
   /**
    * 視点座標に数字以外の文字が入っていたときに出すメッセージボックスを生成します。
    */
-  void createMessageBox() {
+  void createMessageBoxForNonNumericInput() {
     final MessageBox messsageBox = new MessageBox(this.sShell, SWT.ICON_WARNING);
     messsageBox.setMessage(Messages.getString("ConfigDialog.14")); //$NON-NLS-1$
     messsageBox.setText(Messages.getString("ConfigDialog.15")); //$NON-NLS-1$
@@ -273,14 +273,16 @@ public class ConfigurationDialog {
     okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (containsOnlyNumbers()) {
-          getParametersFromDialog();
-          ConfigurationDialog.this.modeler.updateDisplay();
-          ConfigurationDialog.this.sShell.close();
+        if (containsOnlyNumbers() == false) {
+          createMessageBoxForNonNumericInput();          
           return;
-        } 
-          
-        createMessageBox();
+        }
+
+        ConfigurationDialog.this.modeler.setChanged(ConfigurationDialog.this.isChanged());
+        
+        updateConfigurationParameters();
+        ConfigurationDialog.this.modeler.updateDisplay();
+        ConfigurationDialog.this.sShell.close();
       }
 
     });
@@ -291,7 +293,17 @@ public class ConfigurationDialog {
     cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        ConfigurationDialog.this.sShell.close();
+        if (ConfigurationDialog.this.isChanged() == false) {
+          ConfigurationDialog.this.sShell.close();
+          return;
+        }
+        
+        final MessageBox message = new MessageBox(ConfigurationDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
+        final int yesNo = message.open();
+        if (yesNo == SWT.YES) {
+         ConfigurationDialog.this.sShell.close();
+        }
       }
     });
     
@@ -301,22 +313,24 @@ public class ConfigurationDialog {
     applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (containsOnlyNumbers()) {
-          getParametersFromDialog();
-          ConfigurationDialog.this.modeler.updateDisplay();
+        if (containsOnlyNumbers() == false) {
+          createMessageBoxForNonNumericInput();
           return;
         }
-
-        createMessageBox();
+        
+        ConfigurationDialog.this.modeler.setChanged(ConfigurationDialog.this.isChanged());
+        
+        updateConfigurationParameters();
+        ConfigurationDialog.this.modeler.updateDisplay();
       }
 
     });
   }
 
   /**
-   * 入力したパラメータの値をXMLファイルに書き込む
+   * Configurationのパラメータを更新します。
    */
-  void getParametersFromDialog() {
+  void updateConfigurationParameters() {
     final LightModel light = new LightModel();
     light.setX(this.lightX.getFloatValue());
     light.setY(this.lightY.getFloatValue());
@@ -501,4 +515,48 @@ public class ConfigurationDialog {
     this.dataAngleUnitCombo.setText("radian"); //$NON-NLS-1$
   }
 
+  /**
+   * パラメータが変更されたか判定します。
+   * 
+   * @return パラメータが変更されていればtrue
+   */
+  public boolean isChanged() {
+    if (this.colorSelector.isChanged) {
+      return true;
+    }
+    
+    if (this.lightX.isChanged()) {
+      return true;
+    }
+    if (this.lightY.isChanged()) {
+      return true;
+    }
+    if (this.lightZ.isChanged()) {
+      return true;
+    }
+
+    if (this.eyeX.isChanged()) {
+      return true;
+    }
+    
+    if (this.eyeY.isChanged()) {
+      return true;
+    }
+    
+    if (this.eyeZ.isChanged()) {
+      return true;
+    }
+
+    if (this.lookAtPointX.isChanged()) {
+      return true;
+    }
+    if (this.lookAtPointY.isChanged()) {
+      return true;
+    }
+    if (this.lookAtPointZ.isChanged()) {
+      return true;
+    }
+    
+    return false;
+  }
 }

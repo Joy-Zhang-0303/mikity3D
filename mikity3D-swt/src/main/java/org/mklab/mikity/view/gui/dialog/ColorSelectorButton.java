@@ -26,7 +26,7 @@ public class ColorSelectorButton {
   private Composite parent;
   
   /** 色。 */
-  private ColorModel color;
+  ColorModel color;
   
   /** 選択器。 */
   ColorSelector selector;
@@ -59,6 +59,10 @@ public class ColorSelectorButton {
 
         if (ColorConstants.contain(selectedColor)) {
           selectedColor.setName(ColorConstants.getColorName(selectedColor));
+        }
+        
+        if (ColorSelectorButton.this.color.equals(selectedColor)) {
+         return; 
         }
         
         setColor(selectedColor);

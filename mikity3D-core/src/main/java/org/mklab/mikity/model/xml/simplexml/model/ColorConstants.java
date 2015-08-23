@@ -339,7 +339,6 @@ public class ColorConstants {
     COLOR_MAP.put("gray",   new ColorModel(190, 190, 190)); //$NON-NLS-1$
     COLOR_MAP.put("gray1",  new ColorModel(3, 3, 3)); //$NON-NLS-1$
     COLOR_MAP.put("gray10", new ColorModel(26, 26, 26)); //$NON-NLS-1$
-    COLOR_MAP.put("gray100",    new ColorModel(255, 255, 255)); //$NON-NLS-1$
     COLOR_MAP.put("gray11", new ColorModel(28, 28, 28)); //$NON-NLS-1$
     COLOR_MAP.put("gray12", new ColorModel(31, 31, 31)); //$NON-NLS-1$
     COLOR_MAP.put("gray13", new ColorModel(33, 33, 33)); //$NON-NLS-1$
