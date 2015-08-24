@@ -127,7 +127,7 @@ public class ConfigurationDialog {
   private void createDataUnit(Group parent) {
     final Group dataUnitGroup = new Group(parent, SWT.NONE);
     final GridLayout dataUnitLayout = new GridLayout();
-    dataUnitLayout.numColumns = 4;
+    dataUnitLayout.numColumns = 5;
     dataUnitGroup.setText(Messages.getString("ConfigDialog.5")); //$NON-NLS-1$
     final GridData dataUnitData = new GridData(GridData.FILL_HORIZONTAL);
     dataUnitData.horizontalSpan = 2;
@@ -135,6 +135,12 @@ public class ConfigurationDialog {
     dataUnitGroup.setLayout(dataUnitLayout);
 
     createDataLengthUnitCombo(dataUnitGroup);
+    
+    final Label space = new Label(dataUnitGroup, SWT.NONE);
+    final GridData data = new GridData();
+    data.widthHint = 60;
+    space.setLayoutData(data);
+    
     createDataAngleUnitCombo(dataUnitGroup);
   }
 
@@ -146,7 +152,7 @@ public class ConfigurationDialog {
   private void createModelUnit(Group parent) {
     final Group modelUnitGroup = new Group(parent, SWT.NONE);
     final GridLayout modeUnitLayout = new GridLayout();
-    modeUnitLayout.numColumns = 4;
+    modeUnitLayout.numColumns = 5;
     modelUnitGroup.setText(Messages.getString("ConfigDialog.2")); //$NON-NLS-1$
     final GridData modelUnitData = new GridData(GridData.FILL_HORIZONTAL);
     modelUnitData.horizontalSpan = 2;
@@ -154,6 +160,12 @@ public class ConfigurationDialog {
     modelUnitGroup.setLayout(modeUnitLayout);
 
     createModelLengthUnit(modelUnitGroup);
+    
+    final Label space = new Label(modelUnitGroup, SWT.NONE);
+    final GridData data = new GridData();
+    data.widthHint = 60;
+    space.setLayoutData(data);
+    
     createModelAngleUnit(modelUnitGroup);
   }
 
@@ -449,12 +461,12 @@ public class ConfigurationDialog {
    * @param parent
    */
   private void createModelLengthUnit(Group parent) {
-    final Label modelLengthLabel = new Label(parent, SWT.NONE);
-    modelLengthLabel.setText(Messages.getString("ConfigDialog.4")); //$NON-NLS-1$
+    final Label name = new Label(parent, SWT.NONE);
+    name.setText(Messages.getString("ConfigDialog.4")); //$NON-NLS-1$
     
     this.modelLengthUnitCombo = new Combo(parent, SWT.READ_ONLY);
-    final GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
-    this.modelLengthUnitCombo.setLayoutData(lengthData);
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    this.modelLengthUnitCombo.setLayoutData(data);
     final String[] length = {"m"}; //$NON-NLS-1$
     // String[] LENGTH = {"m", "cm", "mm"};
     this.modelLengthUnitCombo.setItems(length);
@@ -467,12 +479,12 @@ public class ConfigurationDialog {
    * @param group
    */
   private void createModelAngleUnit(Group group) {
-    final Label modelAngleLabel = new Label(group, SWT.NONE);
-    modelAngleLabel.setText(Messages.getString("ConfigDialog.3")); //$NON-NLS-1$
+    final Label name = new Label(group, SWT.NONE);
+    name.setText(Messages.getString("ConfigDialog.3")); //$NON-NLS-1$
     
     this.modelAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
-    final GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
-    this.modelAngleUnitCombo.setLayoutData(angleData);
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    this.modelAngleUnitCombo.setLayoutData(data);
     final String[] angles = {"radian"}; //$NON-NLS-1$
     // String[] ANGLES = {"degree", "radian"};
     this.modelAngleUnitCombo.setItems(angles);
@@ -485,12 +497,12 @@ public class ConfigurationDialog {
    * @param parent
    */
   private void createDataLengthUnitCombo(Group parent) {
-    final Label dataLengthLabel = new Label(parent, SWT.NONE);
-    dataLengthLabel.setText(Messages.getString("ConfigDialog.7")); //$NON-NLS-1$
+    final Label name = new Label(parent, SWT.NONE);
+    name.setText(Messages.getString("ConfigDialog.7")); //$NON-NLS-1$
     
     this.dataLengthUnitCombo = new Combo(parent, SWT.READ_ONLY);
-    final GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
-    this.dataLengthUnitCombo.setLayoutData(lengthData);
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    this.dataLengthUnitCombo.setLayoutData(data);
     final String[] length = {"m"}; //$NON-NLS-1$
     // String[] LENGTH = {"m", "cm", "mm"};
     this.dataLengthUnitCombo.setItems(length);
@@ -503,12 +515,12 @@ public class ConfigurationDialog {
    * @param group
    */
   private void createDataAngleUnitCombo(Group group) {
-    final Label dataAngleLabel = new Label(group, SWT.NONE);
-    dataAngleLabel.setText(Messages.getString("ConfigDialog.6")); //$NON-NLS-1$
+    final Label name = new Label(group, SWT.NONE);
+    name.setText(Messages.getString("ConfigDialog.6")); //$NON-NLS-1$
     
     this.dataAngleUnitCombo = new Combo(group, SWT.READ_ONLY);
-    final GridData angleData = new GridData(GridData.FILL_HORIZONTAL);
-    this.dataAngleUnitCombo.setLayoutData(angleData);
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    this.dataAngleUnitCombo.setLayoutData(data);
     final String[] angles = {"radian"}; //$NON-NLS-1$
     // String[] ANGLES = {"degree", "radian"};
     this.dataAngleUnitCombo.setItems(angles);
