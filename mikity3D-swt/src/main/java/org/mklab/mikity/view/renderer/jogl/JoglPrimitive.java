@@ -61,13 +61,13 @@ public class JoglPrimitive implements JoglObject {
    * @param gl GL
    */
   private void applyTransparency(GL2 gl) {
-    if (((AbstractGraphicPrimitive)this.object).isTransparent()) {
-      gl.glEnable(GL.GL_BLEND); // ブレンドを有効にします
+//    if (((AbstractGraphicPrimitive)this.object).isTransparent()) {
+      gl.glEnable(GL.GL_BLEND);
       gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-    } else {
-      gl.glEnable(GL.GL_BLEND); // ブレンドを有効にします
-      gl.glBlendFunc(GL.GL_ONE, GL.GL_ZERO);
-    }
+//    } else {
+//      gl.glEnable(GL.GL_BLEND);
+//      gl.glBlendFunc(GL.GL_ONE, GL.GL_ZERO);
+//    }
   }
   
   /**

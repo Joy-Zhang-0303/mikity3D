@@ -66,9 +66,6 @@ public class EditCylinderDialog extends AbstractEditPrimitiveDialog {
     setGridLayout(this.heightUnit, 1);
 
     this.depth = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.37"), "" + cylinder.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
-    
-    final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label5, 3);
   }
 
   /**

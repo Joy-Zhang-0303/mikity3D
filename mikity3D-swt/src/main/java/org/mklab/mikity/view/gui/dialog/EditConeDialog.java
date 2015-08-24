@@ -67,9 +67,6 @@ public class EditConeDialog extends AbstractEditPrimitiveDialog {
     setGridLayout(this.heightUnit, 1);
 
     this.division = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.42"), "" + cone.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
-    
-    final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label5, 3);
   }
 
   /**

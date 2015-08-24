@@ -43,8 +43,9 @@ public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
   private ColorModel color;
 
   /** transparent */
-  //@Attribute(name="transparent", required=false)
   private boolean transparent;
+  
+  private int preservedAlpha;
 
   /** propertyChangeListeners */
   private Vector<PropertyChangeListener> propertyChangeListeners;
@@ -54,6 +55,7 @@ public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
    */
   public BoxModel() {
     this.color = new ColorModel("red"); //$NON-NLS-1$
+    this.preservedAlpha = this.color.getAlpha();
     this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
   }
@@ -242,6 +244,7 @@ public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
    */
   public void setColor(ColorModel color) {
     this.color = color;
+    this.preservedAlpha = color.getAlpha();
   }
 
   /**
@@ -264,9 +267,9 @@ public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
     if (transparent) {
-      this.color.setAlpha(127);
+      this.color.setAlpha(this.preservedAlpha/2);
     } else {
-      this.color.setAlpha(255);
+      this.color.setAlpha(this.preservedAlpha);
     }
   }
 

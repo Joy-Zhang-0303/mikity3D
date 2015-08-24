@@ -10,7 +10,7 @@
             <box width="0.02" height="0.27" depth="0.02">
                <translation x="0.0" y="-0.05" z="-0.21"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
+               <color r="211" g="211" b="211" alpha="127" name="LightGray"/>
             </box>
             <box width="0.3" height="0.005" depth="0.1">
                <translation x="0.0" y="0.0" z="-0.3475"/>

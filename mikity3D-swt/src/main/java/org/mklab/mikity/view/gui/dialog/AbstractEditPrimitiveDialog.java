@@ -44,6 +44,7 @@ public abstract class AbstractEditPrimitiveDialog {
   SceneGraphTree tree;
   
   ColorSelectorButton colorSelector;
+  ParameterInputBox alpha;
   
   Label primitiveType;
 
@@ -110,15 +111,15 @@ public abstract class AbstractEditPrimitiveDialog {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 550));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 560));
     this.sShell.setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
     
     addShellListener();
 
-    final Label groupLabel = new Label(this.sShell, SWT.LEFT);
-    groupLabel.setText(Messages.getString("EditPrimitiveDialog.1") + this.groupName); //$NON-NLS-1$
-    setGridLayout(groupLabel, 2);
+//    final Label groupLabel = new Label(this.sShell, SWT.LEFT);
+//    groupLabel.setText(Messages.getString("EditPrimitiveDialog.1") + this.groupName); //$NON-NLS-1$
+//    setGridLayout(groupLabel, 2);
 
     this.primitiveType = new Label(this.sShell, SWT.NONE);
     setGridLayout(this.primitiveType, 2);
@@ -139,17 +140,18 @@ public abstract class AbstractEditPrimitiveDialog {
 
     this.colorSelector = new ColorSelectorButton(parameterGroup);
     this.colorSelector.setColor(this.primitive.getColor());
-    
-    final Label spaceLabel = new Label(parameterGroup, SWT.NONE);
-    spaceLabel.setText(" "); //$NON-NLS-1$
-    setGridLayout(spaceLabel, 1);
+
+    this.alpha = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.primitive.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
+
+    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
     
     createPrameterBoxes(parameterGroup);
 
+    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
+    
     createTranslationBoxes(parameterGroup);
     
-    final Label label6 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label6, 3);
+    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
     createRotationBoxes(parameterGroup);
     
@@ -233,7 +235,6 @@ public abstract class AbstractEditPrimitiveDialog {
       }
     });
   }
-
   
   /**
    * 変更を決定するButtonを作成します。
@@ -349,6 +350,7 @@ public abstract class AbstractEditPrimitiveDialog {
    */
   void updatePrimitiveParameters() {
     final ColorModel color = this.colorSelector.getColor();
+    color.setAlpha(this.alpha.getIntValue());
     this.primitive.setColor(color);
     this.primitive.setTranslation(getTranslation());
     this.primitive.setRotation(getRotation());
@@ -391,6 +393,10 @@ public abstract class AbstractEditPrimitiveDialog {
     if (this.colorSelector.isChanged) {
       return true;
     }
+    if (this.alpha.isChanged()) {
+      return true;
+    }
+    
     if (this.translationX.isChanged()) {
       return true;
     }

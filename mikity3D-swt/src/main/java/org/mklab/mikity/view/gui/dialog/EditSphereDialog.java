@@ -57,9 +57,6 @@ public class EditSphereDialog extends AbstractEditPrimitiveDialog {
     setGridLayout(this.radiusUnit, 1);
 
     this.division = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.39"), "" + sphere.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
-    
-    final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label5, 3);
   }
 
   /**

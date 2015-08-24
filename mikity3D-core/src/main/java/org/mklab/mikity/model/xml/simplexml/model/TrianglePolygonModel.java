@@ -43,9 +43,10 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
   private ColorModel color;
 
   /** transparent */
-  //@Attribute(name="transparent", required=false)
   private boolean transparent;
- 
+
+  private int preservedAlpha;
+  
   /** 法線ベクトル。 */
   private Vector3 normalVector;
 
@@ -55,6 +56,7 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
   public TrianglePolygonModel() {
     this.vertices = new ArrayList<>(3);
     this.color = new ColorModel("orange"); //$NON-NLS-1$
+    this.preservedAlpha = this.color.getAlpha();
     this.transparent = false;
   }
   
@@ -201,6 +203,7 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
    */
   public void setColor(ColorModel color) {
     this.color = color;
+    this.preservedAlpha = color.getAlpha();
   }
 
   /**
@@ -287,9 +290,9 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
     if (transparent) {
-      this.color.setAlpha(127);
+      this.color.setAlpha(this.preservedAlpha/2);
     } else {
-      this.color.setAlpha(255);
+      this.color.setAlpha(this.preservedAlpha);
     }
   }
 

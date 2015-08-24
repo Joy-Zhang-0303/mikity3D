@@ -174,8 +174,7 @@ public class EditTrianglePolygonDialog {
     
     this.colorSelector = new ColorSelectorButton(group);
 
-    final Label label7 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label7, 3);
+    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
     
     this.vertex1X = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelLength"); //$NON-NLS-1$
@@ -184,8 +183,7 @@ public class EditTrianglePolygonDialog {
     this.vertex1Z = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelLength"); //$NON-NLS-1$
 
-    final Label label4 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label4, 3);
+    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
     this.vertex2X = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelLength"); //$NON-NLS-1$
@@ -194,8 +192,7 @@ public class EditTrianglePolygonDialog {
     this.vertex2Z = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelLength"); //$NON-NLS-1$
 
-    final Label label5 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label5, 3);
+    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
     this.vertex3X = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.9"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelLength"); //$NON-NLS-1$
@@ -204,8 +201,7 @@ public class EditTrianglePolygonDialog {
     this.vertex3Z = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelLength"); //$NON-NLS-1$
 
-    final Label label6 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label6, 3);
+    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
    
     this.leftVertexX = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelLength"); //$NON-NLS-1$
@@ -214,8 +210,7 @@ public class EditTrianglePolygonDialog {
     this.leftVertexZ = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelLength"); //$NON-NLS-1$
 
-    final Label labelR2 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(labelR2, 3);
+    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
     this.rightVertexX = new ParameterInputBox(group, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.12"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(group, "modelAngle"); //$NON-NLS-1$

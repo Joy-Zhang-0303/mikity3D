@@ -69,10 +69,7 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
     
     this.depthUnit = new Label(parameterGroup, SWT.NONE);
     this.depthUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.depthUnit, 1);
-    
-    final Label label5 = new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label5, 3);
+    setGridLayout(this.depthUnit, 1);   
   }
 
   /**
