@@ -22,7 +22,7 @@ public class SphereModel extends AbstractPrimitiveModel {
   private int division;
 
   /**
-   * コンストラクター
+   * 新しく生成された<code>SphereModel</code>オブジェクトを初期化します。
    */
   public SphereModel() {
     this.color = new ColorModel("red"); //$NON-NLS-1$
@@ -78,36 +78,36 @@ public class SphereModel extends AbstractPrimitiveModel {
   }
 
   /**
-   * Returns the value of field 'div'.
+   * 分割数を返します。
    * 
-   * @return the value of field 'div'.
+   * @return 分割数
    */
   public int getDivision() {
     return this.division;
   }
 
   /**
-   * Returns the value of field 'r'.
+   * 半径を返します。
    * 
-   * @return the value of field 'r'.
+   * @return 半径
    */
   public float getRadius() {
     return this.radius;
   }
 
   /**
-   * Sets the value of field 'div'.
+   * 分割数を設定します。
    * 
-   * @param division the value of field 'div'.
+   * @param division 分割数
    */
   public void setDivision(int division) {
     this.division = division;
   }
 
   /**
-   * Sets the value of field 'r'.
+   * 半径を設定します。
    * 
-   * @param radius the value of field 'r'.
+   * @param radius 半径
    */
   public void setRadius(float radius) {
     this.radius = radius;

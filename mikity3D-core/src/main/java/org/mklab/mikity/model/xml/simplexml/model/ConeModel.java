@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * Coneを表すクラスです。
+ * 円錐(正多角錘)を表すクラスです。
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
@@ -26,7 +26,7 @@ public class ConeModel extends AbstractPrimitiveModel {
   private int division;
 
   /**
-   * コンストラクター
+   * 新しく生成された<code>ConeModel</code>オブジェクトを初期化します。
    */
   public ConeModel() {
     this.color = new ColorModel("red"); //$NON-NLS-1$
@@ -35,7 +35,7 @@ public class ConeModel extends AbstractPrimitiveModel {
   
   /**
    * 新しく生成された<code>ConeModel</code>オブジェクトを初期化します。
-   * @param radius 半径
+   * @param radius 底面の半径
    * @param height 高さ
    * @param division 分割数
    */
@@ -86,54 +86,54 @@ public class ConeModel extends AbstractPrimitiveModel {
   }
 
   /**
-   * Returns the value of field 'div'.
+   * 分割数を返します。
    * 
-   * @return the value of field 'div'.
+   * @return 分割数
    */
   public int getDivision() {
     return this.division;
   }
 
   /**
-   * Returns the value of field 'height'.
+   * 高さを返します。
    * 
-   * @return the value of field 'height'.
+   * @return 高さ
    */
   public float getHeight() {
     return this.height;
   }
 
   /**
-   * Returns the value of field 'r'.
+   * 底面を半径を返します。
    * 
-   * @return the value of field 'r'.
+   * @return 底面の半径
    */
   public float getRadisu() {
     return this.radius;
   }
 
   /**
-   * Sets the value of field 'div'.
+   * 分割数を設定します。
    * 
-   * @param division the value of field 'div'.
+   * @param division 分割数
    */
   public void setDivision(int division) {
     this.division = division;
   }
 
   /**
-   * Sets the value of field 'height'.
+   * 高さを設定します。
    * 
-   * @param height the value of field 'height'.
+   * @param height 高さ
    */
   public void setHeight(float height) {
     this.height = height;
   }
 
   /**
-   * Sets the value of field 'r'.
+   * 底面の半径を設定します。
    * 
-   * @param radius the value of field 'r'.
+   * @param radius 底面の半径
    */
   public void setRadius(float radius) {
     this.radius = radius;

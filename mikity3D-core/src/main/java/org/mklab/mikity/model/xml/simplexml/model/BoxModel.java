@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * BOXを表すクラスです。
+ * 直方体を表すクラスです。
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
@@ -87,54 +87,54 @@ public class BoxModel extends AbstractPrimitiveModel {
   }
 
   /**
-   * Returns the value of field 'xsize'.
+   * 幅を返します。
    * 
-   * @return the value of field 'xsize'.
+   * @return 幅
    */
   public float getWidth() {
     return this.width;
   }
 
   /**
-   * Returns the value of field 'ysize'.
+   * 高さを返します。
    * 
-   * @return the value of field 'ysize'.
+   * @return 高さ
    */
   public float getHeight() {
     return this.height;
   }
 
   /**
-   * Returns the value of field 'zsize'.
+   * 奥行きを返します。
    * 
-   * @return the value of field 'zsize'.
+   * @return 奥行き
    */
   public float getDepth() {
     return this.depth;
   }
 
   /**
-   * Sets the value of field 'xsize'.
+   * 幅を設定します。
    * 
-   * @param width the value of field 'xsize'.
+   * @param width 幅
    */
   public void setWidth(float width) {
     this.width = width;
   }
 
   /**
-   * Sets the value of field 'ysize'.
+   * 高さを設定します。
    * 
-   * @param height the value of field 'ysize'.
+   * @param height 高さ
    */
   public void setHeight(float height) {
     this.height = height;
   }
 
   /**
-   * Sets the value of field 'zsize'.
+   * 奥行きを設定します。
    * 
-   * @param depth the value of field 'zsize'.
+   * @param depth 奥行き
    */
   public void setDepth(float depth) {
     this.depth = depth;
