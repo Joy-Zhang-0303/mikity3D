@@ -7,7 +7,7 @@ import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.util.Vector3;
 
 /**
- * 三角形ポリゴンを表すクラスです。
+ * 三角形ポリゴンプリミティブを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09

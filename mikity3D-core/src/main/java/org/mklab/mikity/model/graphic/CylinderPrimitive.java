@@ -6,7 +6,7 @@ import org.mklab.mikity.util.Vector3;
 
 
 /**
- * シリンダーを表すクラスです。
+ * 円柱(正多角柱)プリミティブを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/31

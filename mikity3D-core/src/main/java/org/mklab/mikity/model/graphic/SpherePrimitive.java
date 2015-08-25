@@ -5,7 +5,7 @@ import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.util.Vector3;
 
 /**
- * 球を表すクラスです。
+ * 球プリミティブを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09

@@ -4,7 +4,7 @@ import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 
 /**
- * BOXを表わすクラスです
+ * 直方体プリミティブを表わすクラスです
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/26

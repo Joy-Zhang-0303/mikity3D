@@ -30,7 +30,6 @@ import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
-import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.view.gui.dialog.EditBoxDialog;
 import org.mklab.mikity.view.gui.dialog.EditConeDialog;
 import org.mklab.mikity.view.gui.dialog.EditCylinderDialog;
@@ -281,7 +280,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = new BoxModel(0.1f, 0.1f, 0.1f);
+        final PrimitiveModel primitive = new BoxModel();
         SceneGraphTree.this.targetGroup.add(primitive);
         final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (AbstractPrimitiveModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
@@ -294,7 +293,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = new CylinderModel(0.1f, 0.1f, 36);
+        final PrimitiveModel primitive = new CylinderModel();
         SceneGraphTree.this.targetGroup.add(primitive);
         final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (AbstractPrimitiveModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
@@ -307,7 +306,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = new SphereModel(0.1f, 36);
+        final PrimitiveModel primitive = new SphereModel();
         SceneGraphTree.this.targetGroup.add(primitive);
         final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (AbstractPrimitiveModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
@@ -320,7 +319,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = new ConeModel(0.1f, 0.1f, 36);
+        final PrimitiveModel primitive = new ConeModel();
         SceneGraphTree.this.targetGroup.add(primitive);
         final EditConeDialog dialog = new EditConeDialog(composite.getShell(), (ConeModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
@@ -333,10 +332,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final VertexModel vertex0 = new VertexModel(0.0f, -0.3f, 0.0f);
-        final VertexModel vertex1 = new VertexModel(0.0f, 0.3f, 0.0f);
-        final VertexModel vertex2 = new VertexModel(0.0f, 0.0f, 0.3f);
-        final TrianglePolygonModel primitive = new TrianglePolygonModel(vertex0, vertex1, vertex2);
+        final TrianglePolygonModel primitive = new TrianglePolygonModel();
         SceneGraphTree.this.targetGroup.add(primitive);
         final EditTrianglePolygonDialog dialog = new EditTrianglePolygonDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
@@ -349,11 +345,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final VertexModel vertex0 = new VertexModel(0.0f, -0.3f, 0.0f);
-        final VertexModel vertex1 = new VertexModel(0.0f, 0.3f, 0.0f);
-        final VertexModel vertex2 = new VertexModel(0.0f, 0.3f, 0.3f);
-        final VertexModel vertex3 = new VertexModel(0.0f, -0.3f, 0.3f);
-        final QuadPolygonModel primitive = new QuadPolygonModel(vertex0, vertex1, vertex2, vertex3);
+        final QuadPolygonModel primitive = new QuadPolygonModel();
         SceneGraphTree.this.targetGroup.add(primitive);
         final EditQuadPolygonDialog dialog = new EditQuadPolygonDialog(composite.getShell(), primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         

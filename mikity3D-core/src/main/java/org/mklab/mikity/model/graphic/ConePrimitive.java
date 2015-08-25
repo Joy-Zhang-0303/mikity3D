@@ -4,7 +4,7 @@ import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.util.Vector3;
 
 /**
- * コーンを表すクラスです。
+ * 円錐(正多角錘)プリミティブを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09

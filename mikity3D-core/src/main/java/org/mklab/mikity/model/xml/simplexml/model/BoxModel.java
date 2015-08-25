@@ -30,6 +30,9 @@ public class BoxModel extends AbstractPrimitiveModel {
    * 新しく生成された<code>BoxModel</code>オブジェクトを初期化します。
    */
   public BoxModel() {
+    this.width = 0.1f;
+    this.height = 0.1f;
+    this.depth = 0.1f;
     this.color = new ColorModel("red"); //$NON-NLS-1$
     this.preservedAlpha = this.color.getAlpha();
   }
@@ -41,10 +44,11 @@ public class BoxModel extends AbstractPrimitiveModel {
    * @param depth 奥行き
    */
   public BoxModel(float width, float height, float depth) {
-    this();
     this.width = width;
     this.height = height;
     this.depth = depth;
+    this.color = new ColorModel("red"); //$NON-NLS-1$
+    this.preservedAlpha = this.color.getAlpha();
   }
   
   /**

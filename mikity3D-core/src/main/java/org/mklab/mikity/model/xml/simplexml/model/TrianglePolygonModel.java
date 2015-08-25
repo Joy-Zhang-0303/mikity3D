@@ -36,7 +36,12 @@ public class TrianglePolygonModel extends AbstractPrimitiveModel {
    * 新しく生成された<code>XMLTrianglePolygon</code>オブジェクトを初期化します。
    */
   public TrianglePolygonModel() {
+    final VertexModel vertex0 = new VertexModel(0.0f, -0.3f, 0.0f);
+    final VertexModel vertex1 = new VertexModel(0.0f, 0.3f, 0.0f);
+    final VertexModel vertex2 = new VertexModel(0.0f, 0.0f, 0.3f);
+
     this.vertices = new ArrayList<>(3);
+    setVertices(vertex0, vertex1, vertex2);
     this.color = new ColorModel("orange"); //$NON-NLS-1$
     this.preservedAlpha = this.color.getAlpha();
   }
@@ -49,8 +54,10 @@ public class TrianglePolygonModel extends AbstractPrimitiveModel {
    * @param vertex2 頂点2
    */
   public TrianglePolygonModel(VertexModel vertex0, VertexModel vertex1, VertexModel vertex2) {
-    this();
+    this.vertices = new ArrayList<>(3);
     setVertices(vertex0, vertex1, vertex2);
+    this.color = new ColorModel("orange"); //$NON-NLS-1$
+    this.preservedAlpha = this.color.getAlpha();
   }
 
   /**
