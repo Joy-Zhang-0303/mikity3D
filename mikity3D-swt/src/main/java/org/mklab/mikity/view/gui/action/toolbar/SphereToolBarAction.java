@@ -1,5 +1,6 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
+import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
@@ -27,7 +28,7 @@ public class SphereToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final SphereModel sphere = new SphereModel(0.1f, 36);
+    final AbstractPrimitiveModel sphere = new SphereModel(0.1f, 36);
     final ColorModel color = new ColorModel("yellow"); //$NON-NLS-1$
     sphere.setColor(color);
     

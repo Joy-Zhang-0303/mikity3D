@@ -9,6 +9,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.gui.JoglModeler;
@@ -40,7 +41,7 @@ public class EditCylinderDialog extends AbstractEditPrimitiveDialog {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditCylinderDialog(Shell parentShell, CylinderModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditCylinderDialog(Shell parentShell, AbstractPrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     super(parentShell, primitive, group, tree, modeler);
   }
 

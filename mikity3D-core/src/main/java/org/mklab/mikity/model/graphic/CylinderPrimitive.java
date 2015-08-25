@@ -1,5 +1,6 @@
 package org.mklab.mikity.model.graphic;
 
+import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.util.Vector3;
 
@@ -15,7 +16,7 @@ public class CylinderPrimitive extends AbstractGraphicPrimitive {
    * 新しく生成された<code>CylinderObject</code>オブジェクトを初期化します。
    * @param cylinder シリンダー
    */
-  public CylinderPrimitive(CylinderModel cylinder) {
+  public CylinderPrimitive(AbstractPrimitiveModel cylinder) {
     super(cylinder);
     updatePolygons();
   }

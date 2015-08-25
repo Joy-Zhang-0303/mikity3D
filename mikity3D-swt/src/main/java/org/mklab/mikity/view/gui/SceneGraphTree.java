@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
+import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
@@ -144,15 +145,15 @@ public class SceneGraphTree {
           dialog.open();
           updateTree();
         } else if (clickObject instanceof BoxModel) {
-          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (BoxModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (AbstractPrimitiveModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (clickObject instanceof CylinderModel) {
-          final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (CylinderModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (AbstractPrimitiveModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (clickObject instanceof SphereModel) {
-          final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (SphereModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (AbstractPrimitiveModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (clickObject instanceof ConeModel) {
@@ -282,7 +283,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = new BoxModel(0.1f, 0.1f, 0.1f);
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (BoxModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (AbstractPrimitiveModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
         dialog.open();
         updateTree();
@@ -295,7 +296,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = new CylinderModel(0.1f, 0.1f, 36);
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (CylinderModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (AbstractPrimitiveModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
         dialog.open();
         updateTree();
@@ -308,7 +309,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = new SphereModel(0.1f, 36);
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (SphereModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (AbstractPrimitiveModel)primitive, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         
         dialog.open();
         updateTree();
@@ -397,17 +398,17 @@ public class SceneGraphTree {
           dialog.open();
           updateTree();
         } else if (SceneGraphTree.this.targetObject instanceof BoxModel) {
-          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (BoxModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (AbstractPrimitiveModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
               SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (SceneGraphTree.this.targetObject instanceof CylinderModel) {
-          final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (CylinderModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+          final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (AbstractPrimitiveModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
               SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (SceneGraphTree.this.targetObject instanceof SphereModel) {
-          final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (SphereModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
+          final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (AbstractPrimitiveModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this,
               SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();

@@ -1,5 +1,6 @@
 package org.mklab.mikity.model.graphic;
 
+import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 
 /**
@@ -13,7 +14,7 @@ public class BoxPrimitive extends AbstractGraphicPrimitive {
    * 新しく生成された<code>BoxObject</code>オブジェクトを初期化します。
    * @param box モデル
    */
-  public BoxPrimitive(BoxModel box) {
+  public BoxPrimitive(AbstractPrimitiveModel box) {
     super(box);
     updatePolygons();
   }

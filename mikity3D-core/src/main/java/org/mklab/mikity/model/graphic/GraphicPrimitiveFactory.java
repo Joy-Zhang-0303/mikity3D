@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.model.graphic;
 
+import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
@@ -30,11 +31,11 @@ public class GraphicPrimitiveFactory {
    */
   public static GraphicPrimitive create(PrimitiveModel model) {
     if (model instanceof BoxModel) {
-      return new BoxPrimitive((BoxModel)model);
+      return new BoxPrimitive((AbstractPrimitiveModel)model);
     } 
     
     if (model instanceof CylinderModel) {
-      return new CylinderPrimitive((CylinderModel)model);
+      return new CylinderPrimitive((AbstractPrimitiveModel)model);
     } 
     
     if (model instanceof ConeModel) {
@@ -42,7 +43,7 @@ public class GraphicPrimitiveFactory {
     } 
     
     if (model instanceof SphereModel) {
-      return new SpherePrimitive((SphereModel)model);
+      return new SpherePrimitive((AbstractPrimitiveModel)model);
     } 
     
     if (model instanceof TrianglePolygonModel) {

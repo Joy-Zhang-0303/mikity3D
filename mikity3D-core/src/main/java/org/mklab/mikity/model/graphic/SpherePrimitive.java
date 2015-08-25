@@ -1,5 +1,6 @@
 package org.mklab.mikity.model.graphic;
 
+import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.util.Vector3;
 
@@ -14,7 +15,7 @@ public class SpherePrimitive extends AbstractGraphicPrimitive {
    * 新しく生成された<code>SphereObject</code>オブジェクトを初期化します。
    * @param sphere 球
    */
-  public SpherePrimitive(SphereModel sphere) {
+  public SpherePrimitive(AbstractPrimitiveModel sphere) {
     super(sphere);
     updatePolygons();
   }

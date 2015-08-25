@@ -1,5 +1,6 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
+import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -26,7 +27,7 @@ public class BoxToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final BoxModel box = new BoxModel(0.1f, 0.1f, 0.1f);
+    final AbstractPrimitiveModel box = new BoxModel(0.1f, 0.1f, 0.1f);
     final ColorModel color = new ColorModel("red"); //$NON-NLS-1$
     box.setColor(color);
     

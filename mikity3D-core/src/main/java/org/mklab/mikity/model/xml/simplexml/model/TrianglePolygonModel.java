@@ -5,12 +5,10 @@
  */
 package org.mklab.mikity.model.xml.simplexml.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.util.Vector3;
-import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -21,32 +19,16 @@ import org.simpleframework.xml.Root;
  * @author koga
  * @version $Revision$, 2008/08/10
  */
-@Root(name="trianglePolygon")
-public class TrianglePolygonModel implements PrimitiveModel, Serializable, Cloneable {
+@Root(name = "trianglePolygon")
+public class TrianglePolygonModel extends AbstractPrimitiveModel {
+
   /** */
   private static final long serialVersionUID = 1L;
 
   /** vertices */
-  @ElementList(type=VertexModel.class, inline=true, required=true)
+  @ElementList(type = VertexModel.class, inline = true, required = true)
   private List<VertexModel> vertices;
 
-  /** translation */
-  @Element(name="translation", required=false)
-  private TranslationModel translation;
-  
-  /** rotation */
-  @Element(name="rotation", required=false)
-  private RotationModel rotation;
-   
-  /** color */
-  @Element(name="color")
-  private ColorModel color;
-
-  /** transparent */
-  private boolean transparent;
-
-  private int preservedAlpha;
-  
   /** 法線ベクトル。 */
   private Vector3 normalVector;
 
@@ -57,11 +39,11 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
     this.vertices = new ArrayList<>(3);
     this.color = new ColorModel("orange"); //$NON-NLS-1$
     this.preservedAlpha = this.color.getAlpha();
-    this.transparent = false;
   }
-  
+
   /**
    * 新しく生成された<code>TrianglePolygonModel</code>オブジェクトを初期化します。
+   * 
    * @param vertex0 頂点0
    * @param vertex1 頂点1
    * @param vertex2 頂点2
@@ -70,39 +52,20 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
     this();
     setVertices(vertex0, vertex1, vertex2);
   }
-  
+
   /**
    * {@inheritDoc}
    */
   @Override
   public TrianglePolygonModel clone() {
-    try {
-      final TrianglePolygonModel ans = (TrianglePolygonModel)super.clone();
-      if (this.translation != null) {
-        ans.translation = this.translation.clone();
-      }
-      if (this.rotation != null) {
-        ans.rotation = this.rotation.clone();
-      }
+    final TrianglePolygonModel ans = (TrianglePolygonModel)super.clone();
 
-      ans.color = this.color.clone();
-      
-      ans.normalVector = this.normalVector.clone();
-      ans.vertices = new ArrayList<>();
-      for (final VertexModel vertex : this.vertices) {
-        ans.vertices.add(vertex.clone());
-      }
-      return ans;
-    } catch (CloneNotSupportedException e) {
-      throw new InternalError(e);
+    ans.normalVector = this.normalVector.clone();
+    ans.vertices = new ArrayList<>();
+    for (final VertexModel vertex : this.vertices) {
+      ans.vertices.add(vertex.clone());
     }
-  }
-  
-  /**
-   * {@inheritDoc}
-   */
-  public PrimitiveModel createClone() {
-    return clone();
+    return ans;
   }
 
   /**
@@ -111,12 +74,8 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
   @Override
   public int hashCode() {
     final int prime = 31;
-    int result = 1;
-    result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
+    int result = super.hashCode();
     result = prime * result + ((this.normalVector == null) ? 0 : this.normalVector.hashCode());
-    result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
-    result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
-    result = prime * result + (this.transparent ? 1231 : 1237);
     result = prime * result + ((this.vertices == null) ? 0 : this.vertices.hashCode());
     return result;
   }
@@ -129,20 +88,12 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
+    if (super.equals(obj) == false) return false;
+    
     TrianglePolygonModel other = (TrianglePolygonModel)obj;
-    if (this.color == null) {
-      if (other.color != null) return false;
-    } else if (!this.color.equals(other.color)) return false;
     if (this.normalVector == null) {
       if (other.normalVector != null) return false;
     } else if (!this.normalVector.equals(other.normalVector)) return false;
-    if (this.rotation == null) {
-      if (other.rotation != null) return false;
-    } else if (!this.rotation.equals(other.rotation)) return false;
-    if (this.translation == null) {
-      if (other.translation != null) return false;
-    } else if (!this.translation.equals(other.translation)) return false;
-    if (this.transparent != other.transparent) return false;
     if (this.vertices == null) {
       if (other.vertices != null) return false;
     } else if (!this.vertices.equals(other.vertices)) return false;
@@ -178,7 +129,7 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
     this.vertices.add(vertex2);
     updateNormalVector();
   }
-  
+
   /**
    * 3個の頂点を返します。
    * 
@@ -199,35 +150,13 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
   }
 
   /**
-   * {@inheritDoc}
-   */
-  public void setColor(ColorModel color) {
-    this.color = color;
-    this.preservedAlpha = color.getAlpha();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void setTranslation(TranslationModel translation) {
-    this.translation = translation;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void setRotation(RotationModel rotation) {
-    this.rotation = rotation;
-  }
-
-  /**
    * 法線ベクトルを更新します。
    */
   private void updateNormalVector() {
     float x0 = this.vertices.get(0).getX();
     float y0 = this.vertices.get(0).getY();
     float z0 = this.vertices.get(0).getZ();
-    
+
     float x1 = this.vertices.get(1).getX();
     float y1 = this.vertices.get(1).getY();
     float z1 = this.vertices.get(1).getZ();
@@ -235,12 +164,12 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
     float x2 = this.vertices.get(2).getX();
     float y2 = this.vertices.get(2).getY();
     float z2 = this.vertices.get(2).getZ();
-    
+
     final Vector3 v1 = new Vector3(x1 - x0, y1 - y0, z1 - z0);
     final Vector3 v2 = new Vector3(x2 - x0, y2 - y0, z2 - z0);
     this.normalVector = v1.cross(v2).normalize();
   }
-  
+
   /**
    * 指定された頂点を返します。
    * 
@@ -248,28 +177,7 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
    * @return 指定された頂点
    */
   public VertexModel getVertex(int number) {
-    return this.vertices.get(number); 
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public ColorModel getColor() {
-    return this.color;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public TranslationModel getTranslation() {
-    return this.translation;
-  }
-  
-  /**
-   * {@inheritDoc}
-   */
-  public RotationModel getRotation() {
-    return this.rotation;
+    return this.vertices.get(number);
   }
 
   /**
@@ -284,25 +192,6 @@ public class TrianglePolygonModel implements PrimitiveModel, Serializable, Clone
     return this.normalVector;
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public void setTransparent(boolean transparent) {
-    this.transparent = transparent;
-    if (transparent) {
-      this.color.setAlpha(this.preservedAlpha/2);
-    } else {
-      this.color.setAlpha(this.preservedAlpha);
-    }
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public boolean isTransparent() {
-    return this.transparent;
-  }
-  
   /**
    * {@inheritDoc}
    */

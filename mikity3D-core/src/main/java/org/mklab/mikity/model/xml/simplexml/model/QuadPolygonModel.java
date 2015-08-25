@@ -5,12 +5,10 @@
  */
 package org.mklab.mikity.model.xml.simplexml.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.util.Vector3;
-import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -22,7 +20,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2008/08/10
  */
 @Root(name="quadPolygon")
-public class QuadPolygonModel implements PrimitiveModel, Serializable, Cloneable {
+public class QuadPolygonModel extends AbstractPrimitiveModel {
   /** */
   private static final long serialVersionUID = 1L;
 
@@ -30,26 +28,9 @@ public class QuadPolygonModel implements PrimitiveModel, Serializable, Cloneable
   @ElementList(type=VertexModel.class, inline=true, required=true)
   private List<VertexModel> vertices;
   
-  /** translation */
-  @Element(name="translation", required=false)
-  private TranslationModel translation;
-  
-  /** rotation */
-  @Element(name="rotation", required=false)
-  private RotationModel rotation;
-
-  /** color */
-  @Element(name="color")
-  private ColorModel color;
-  
-  /** transparent */
-  protected boolean transparent;
-
-  private int preservedAlpha;
-  
   /** 法線ベクトル。 */
   private Vector3 normalVector;
-
+  
   /**
    * 新しく生成された<code>XMLQuadPolygon</code>オブジェクトを初期化します。
    */
@@ -57,7 +38,6 @@ public class QuadPolygonModel implements PrimitiveModel, Serializable, Cloneable
     this.vertices = new ArrayList<>(4);
     this.color = new ColorModel("orange"); //$NON-NLS-1$
     this.preservedAlpha = this.color.getAlpha();
-    this.transparent = false;
   }
   
   /**
@@ -77,46 +57,24 @@ public class QuadPolygonModel implements PrimitiveModel, Serializable, Cloneable
    */
   @Override
   public QuadPolygonModel clone() {
-    try {
-      final QuadPolygonModel ans = (QuadPolygonModel)super.clone();
-      if (this.translation != null) {
-        ans.translation = this.translation.clone();
-      }
-      if (this.rotation != null) {
-        ans.rotation = this.rotation.clone();
-      }
+    final QuadPolygonModel ans = (QuadPolygonModel)super.clone();
 
-      ans.color = this.color.clone();
-      ans.normalVector = this.normalVector.clone();
-      ans.vertices = new ArrayList<>();
-      for (final VertexModel vertex : this.vertices) {
-        ans.vertices.add(vertex.clone());
-      }
-      return ans;
-    } catch (CloneNotSupportedException e) {
-      throw new InternalError(e);
+    ans.normalVector = this.normalVector.clone();
+    ans.vertices = new ArrayList<>();
+    for (final VertexModel vertex : this.vertices) {
+      ans.vertices.add(vertex.clone());
     }
+    return ans;
   }
   
-  /**
-   * {@inheritDoc}
-   */
-  public PrimitiveModel createClone() {
-    return clone();
-  }
-
   /**
    * {@inheritDoc}
    */
   @Override
   public int hashCode() {
     final int prime = 31;
-    int result = 1;
-    result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
+    int result = super.hashCode();
     result = prime * result + ((this.normalVector == null) ? 0 : this.normalVector.hashCode());
-    result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
-    result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
-    result = prime * result + (this.transparent ? 1231 : 1237);
     result = prime * result + ((this.vertices == null) ? 0 : this.vertices.hashCode());
     return result;
   }
@@ -129,20 +87,12 @@ public class QuadPolygonModel implements PrimitiveModel, Serializable, Cloneable
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
+    if (super.equals(obj) == false) return false;
+    
     QuadPolygonModel other = (QuadPolygonModel)obj;
-    if (this.color == null) {
-      if (other.color != null) return false;
-    } else if (!this.color.equals(other.color)) return false;
     if (this.normalVector == null) {
       if (other.normalVector != null) return false;
     } else if (!this.normalVector.equals(other.normalVector)) return false;
-    if (this.rotation == null) {
-      if (other.rotation != null) return false;
-    } else if (!this.rotation.equals(other.rotation)) return false;
-    if (this.translation == null) {
-      if (other.translation != null) return false;
-    } else if (!this.translation.equals(other.translation)) return false;
-    if (this.transparent != other.transparent) return false;
     if (this.vertices == null) {
       if (other.vertices != null) return false;
     } else if (!this.vertices.equals(other.vertices)) return false;
@@ -201,28 +151,6 @@ public class QuadPolygonModel implements PrimitiveModel, Serializable, Cloneable
   }
 
   /**
-   * {@inheritDoc}
-   */
-  public void setColor(ColorModel color) {
-    this.color = color;
-    this.preservedAlpha = color.getAlpha();
-  } 
-
-  /**
-   * {@inheritDoc}
-   */
-  public void setTranslation(TranslationModel translation) {
-    this.translation = translation;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void setRotation(RotationModel rotation) {
-    this.rotation = rotation;
-  }
-
-  /**
    * 法線ベクトルを更新します。 
    */
   public void updateNormalVector() {
@@ -254,27 +182,6 @@ public class QuadPolygonModel implements PrimitiveModel, Serializable, Cloneable
   }
 
   /**
-   * {@inheritDoc}
-   */
-  public ColorModel getColor() {
-    return this.color;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public TranslationModel getTranslation() {
-    return this.translation;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public RotationModel getRotation() {
-    return this.rotation;
-  }
-
-  /**
    * 法線ベクトルを返します。
    * 
    * @return 法線ベクトル
@@ -286,25 +193,6 @@ public class QuadPolygonModel implements PrimitiveModel, Serializable, Cloneable
     return this.normalVector;
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public void setTransparent(boolean transparent) {
-    this.transparent = transparent;
-    if (transparent) {
-      this.color.setAlpha(this.preservedAlpha/2);
-    } else {
-      this.color.setAlpha(this.preservedAlpha);
-    }
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public boolean isTransparent() {
-    return this.transparent;
-  }
-  
   /**
    * {@inheritDoc}
    */

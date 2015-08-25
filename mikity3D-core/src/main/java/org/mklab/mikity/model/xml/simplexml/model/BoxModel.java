@@ -1,11 +1,6 @@
 package org.mklab.mikity.model.xml.simplexml.model;
 
-import java.beans.PropertyChangeListener;
-import java.io.Serializable;
-import java.util.Vector;
-
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 
@@ -15,7 +10,8 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
 @Root(name="box")
-public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
+public class BoxModel extends AbstractPrimitiveModel {
+  /** */
   private static final long serialVersionUID = 1L;
 
   /** width */
@@ -30,34 +26,12 @@ public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
   @Attribute(name="depth")
   private float depth;
 
-  /** translation */
-  @Element(name="translation", required=false)
-  private TranslationModel translation;
-
-  /** rotation */
-  @Element(name="rotation", required=false)
-  private RotationModel rotation;
-  
-  /** color */
-  @Element(name="color")
-  private ColorModel color;
-
-  /** transparent */
-  private boolean transparent;
-  
-  private int preservedAlpha;
-
-  /** propertyChangeListeners */
-  private Vector<PropertyChangeListener> propertyChangeListeners;
-
   /**
-   * コンストラクター
+   * 新しく生成された<code>BoxModel</code>オブジェクトを初期化します。
    */
   public BoxModel() {
     this.color = new ColorModel("red"); //$NON-NLS-1$
     this.preservedAlpha = this.color.getAlpha();
-    this.transparent = false;
-    this.propertyChangeListeners = new Vector<>();
   }
   
   /**
@@ -78,30 +52,9 @@ public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
    */
   @Override
   public BoxModel clone() {
-    try {
-      final BoxModel ans = (BoxModel)super.clone();
-      if (this.translation != null) {
-        ans.translation = this.translation.clone();
-      }
-      if (this.rotation != null) {
-        ans.rotation = this.rotation.clone();
-      }
-      if (this.color != null) {
-        ans.color = this.color.clone();
-      }
-      return ans;
-    } catch (CloneNotSupportedException e) {
-      throw new InternalError(e);
-    }
+    final BoxModel ans = (BoxModel)super.clone();
+    return ans;
   }
-  
-  /**
-   * {@inheritDoc}
-   */
-  public PrimitiveModel createClone() {
-    return clone();
-  }
-  
   
   /**
    * {@inheritDoc}
@@ -109,14 +62,9 @@ public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
   @Override
   public int hashCode() {
     final int prime = 31;
-    int result = 1;
+    int result = super.hashCode();
     result = prime * result + Float.floatToIntBits(this.depth);
     result = prime * result + Float.floatToIntBits(this.height);
-    result = prime * result + ((this.color == null) ? 0 : this.color.hashCode());
-    result = prime * result + ((this.propertyChangeListeners == null) ? 0 : this.propertyChangeListeners.hashCode());
-    result = prime * result + ((this.rotation == null) ? 0 : this.rotation.hashCode());
-    result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
-    result = prime * result + (this.transparent ? 1231 : 1237);
     result = prime * result + Float.floatToIntBits(this.width);
     return result;
   }
@@ -129,61 +77,13 @@ public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
+    if (super.equals(obj) == false) return false;
+
     BoxModel other = (BoxModel)obj;
     if (Float.floatToIntBits(this.depth) != Float.floatToIntBits(other.depth)) return false;
     if (Float.floatToIntBits(this.height) != Float.floatToIntBits(other.height)) return false;
-    if (this.color == null) {
-      if (other.color != null) return false;
-    } else if (!this.color.equals(other.color)) return false;
-    if (this.propertyChangeListeners == null) {
-      if (other.propertyChangeListeners != null) return false;
-    } else if (!this.propertyChangeListeners.equals(other.propertyChangeListeners)) return false;
-    if (this.rotation == null) {
-      if (other.rotation != null) return false;
-    } else if (!this.rotation.equals(other.rotation)) return false;
-    if (this.translation == null) {
-      if (other.translation != null) return false;
-    } else if (!this.translation.equals(other.translation)) return false;
-    if (this.transparent != other.transparent) return false;
     if (Float.floatToIntBits(this.width) != Float.floatToIntBits(other.width)) return false;
     return true;
-  }
-
-  /**
-   * Method addPropertyChangeListenerRegisters a PropertyChangeListener with this class.
-   * 
-   * @param pcl The PropertyChangeListener to register.
-   */
-  public void addPropertyChangeListener(java.beans.PropertyChangeListener pcl) {
-    this.propertyChangeListeners.addElement(pcl);
-  } 
-
-  /**
-   * {@inheritDoc}
-   */
-  public ColorModel getColor() {
-    return this.color;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public TranslationModel getTranslation() {
-    return this.translation;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public RotationModel getRotation() {
-    return this.rotation;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public boolean isTransparent() {
-    return this.transparent;
   }
 
   /**
@@ -211,66 +111,6 @@ public class BoxModel implements PrimitiveModel, Serializable, Cloneable {
    */
   public float getDepth() {
     return this.depth;
-  }
-
-  /**
-   * Method notifyPropertyChangeListenersNotifies all registered PropertyChangeListeners when a bound property's value changes.
-   * 
-   * @param fieldName the name of the property that has changed.
-   * @param newValue the new value of the property.
-   * @param oldValue the old value of the property.
-   */
-  protected void notifyPropertyChangeListeners(String fieldName, Object oldValue, Object newValue) {
-    if (this.propertyChangeListeners == null) return;
-    java.beans.PropertyChangeEvent event = new java.beans.PropertyChangeEvent(this, fieldName, oldValue, newValue);
-
-    for (int i = 0; i < this.propertyChangeListeners.size(); i++) {
-      (this.propertyChangeListeners.elementAt(i)).propertyChange(event);
-    }
-  }
-
-  /**
-   * Method removePropertyChangeListenerRemoves the given PropertyChangeListener from this classes list of ProperyChangeListeners.
-   * 
-   * @param pcl The PropertyChangeListener to remove.
-   * @return true if the given PropertyChangeListener was removed.
-   */
-  public boolean removePropertyChangeListener(java.beans.PropertyChangeListener pcl) {
-    return this.propertyChangeListeners.removeElement(pcl);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void setColor(ColorModel color) {
-    this.color = color;
-    this.preservedAlpha = color.getAlpha();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void setTranslation(TranslationModel translation) {
-    this.translation = translation;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void setRotation(RotationModel rotation) {
-    this.rotation = rotation;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void setTransparent(boolean transparent) {
-    this.transparent = transparent;
-    if (transparent) {
-      this.color.setAlpha(this.preservedAlpha/2);
-    } else {
-      this.color.setAlpha(this.preservedAlpha);
-    }
   }
 
   /**
