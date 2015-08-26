@@ -73,7 +73,7 @@ public class EditCylinderDialog extends AbstractEditPrimitiveDialog {
    * {@inheritDoc}
    */
   @Override
-  void updateModelParameters() {
+  public void updateModelParameters() {
     final CylinderModel cylinder = (CylinderModel)this.primitive;
     cylinder.setRadius(this.radius.getFloatValue());
     cylinder.setHeight(this.height.getFloatValue());

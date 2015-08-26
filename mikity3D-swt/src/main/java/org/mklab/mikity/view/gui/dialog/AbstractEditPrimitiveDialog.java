@@ -34,7 +34,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @author koga
  * @version $Revision$, 2015/08/22
  */
-public abstract class AbstractEditPrimitiveDialog {
+public abstract class AbstractEditPrimitiveDialog implements EditPrimitiveDialog {
   Shell parentShell;
   Shell sShell;
   PrimitiveModel primitive;
@@ -57,19 +57,7 @@ public abstract class AbstractEditPrimitiveDialog {
   ParameterInputBox rotationZ;
 
   /**
-   * パラメータを設定するボックスを生成します。
-   * 
-   * @param group グループ
-   */
-  abstract void createPrameterBoxes(Group group);
-  
-  /**
-   * プリミティブのパラメータを更新します。
-   */
-  abstract void updateModelParameters();
-  
-  /**
-   * コンストラクター
+   * 新しく生成された<code>AbstractEditPrimitiveDialog</code>オブジェクトを初期化します。
    * 
    * @param parentShell 親のシェル
    * @param primitive プリミティブ
@@ -88,9 +76,9 @@ public abstract class AbstractEditPrimitiveDialog {
     
     createSShell();
   }
-  
+
   /**
-   * シェルを開く
+   * {@inheritDoc}
    */
   public void open() {
     this.sShell.open();
@@ -116,10 +104,6 @@ public abstract class AbstractEditPrimitiveDialog {
     this.sShell.setLayout(layout);
     
     addShellListener();
-
-//    final Label groupLabel = new Label(this.sShell, SWT.LEFT);
-//    groupLabel.setText(Messages.getString("EditPrimitiveDialog.1") + this.groupName); //$NON-NLS-1$
-//    setGridLayout(groupLabel, 2);
 
     this.primitiveType = new Label(this.sShell, SWT.NONE);
     setGridLayout(this.primitiveType, 2);
@@ -385,9 +369,7 @@ public abstract class AbstractEditPrimitiveDialog {
   }
 
   /**
-   * パラメータが変更されているか判定します。
-   * 
-   * @return パラメータが変更されていればtrue
+   * {@inheritDoc}
    */
   public boolean isChanged() {
     if (this.colorSelector.isChanged) {

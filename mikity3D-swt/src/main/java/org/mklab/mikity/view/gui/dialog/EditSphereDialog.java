@@ -64,7 +64,7 @@ public class EditSphereDialog extends AbstractEditPrimitiveDialog {
    * {@inheritDoc}
    */
   @Override
-  void updateModelParameters() {
+  public void updateModelParameters() {
     final SphereModel sphere = (SphereModel)this.primitive;
     sphere.setRadius(this.radius.getFloatValue());
     sphere.setDivision(this.division.getIntValue());

@@ -77,7 +77,7 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
    * {@inheritDoc}
    */
   @Override
-  void updateModelParameters() {
+  public void updateModelParameters() {
     final BoxModel box = (BoxModel)this.primitive;
     box.setWidth(this.width.getFloatValue());
     box.setHeight(this.height.getFloatValue());

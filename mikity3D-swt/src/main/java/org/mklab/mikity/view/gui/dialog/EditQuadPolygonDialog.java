@@ -32,21 +32,21 @@ import org.mklab.mikity.view.gui.UnitLabel;
 
 
 /**
- * 四角形ポリゴンの編集を行うクラス
+ * 四角形ポリゴンを編集するダイアログを表すクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.7 $. 2007/11/15
  */
 public class EditQuadPolygonDialog {
-
-  private Shell parentShell;
+  Shell parentShell;
   Shell sShell;
-  private QuadPolygonModel polygon;
+  QuadPolygonModel primitive;
+  String groupName;
 
-  private String groupName;
-  private Group afterGroup;
+  JoglModeler modeler;
+  SceneGraphTree tree;
 
-  private ColorSelectorButton colorSelector;
+  ColorSelectorButton colorSelector;
 
   private ParameterInputBox vertex1X;
   private ParameterInputBox vertex1Y;
@@ -64,20 +64,16 @@ public class EditQuadPolygonDialog {
   private ParameterInputBox vertex4Y;
   private ParameterInputBox vertex4Z;
   
-  private ParameterInputBox leftVertexX;
-  private ParameterInputBox leftVertexY;
-  private ParameterInputBox leftVertexZ;
+  private ParameterInputBox translationX;
+  private ParameterInputBox translationY;
+  private ParameterInputBox translationZ;
   
-  private ParameterInputBox rightVertexX;
-  private ParameterInputBox rightVertexY;
-  private ParameterInputBox rightVertexZ;
+  private ParameterInputBox rotationX;
+  private ParameterInputBox rotationY;
+  private ParameterInputBox rotationZ;
 
-  SceneGraphTree tree;
-  JoglModeler modeler;
-  
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>EditQuadPolygonDialog</code>オブジェクトを初期化します。
    * @param parentShell 親のシェル
    * @param quad ポリゴン
    * @param group グループ
@@ -86,7 +82,7 @@ public class EditQuadPolygonDialog {
    */
   public EditQuadPolygonDialog(Shell parentShell, QuadPolygonModel quad, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parentShell;
-    this.polygon = quad;
+    this.primitive = quad;
     this.groupName = group.getName();
     this.tree = tree;
     this.modeler = modeler;
@@ -94,11 +90,12 @@ public class EditQuadPolygonDialog {
     this.tree.setIsModifyingObject(true);
     
     createSShell();
-    detectPrim();
+    
+    //setParametersinDialog();
   }
 
   /**
-   * コンストラクター
+   * 
    */
   public void EditTrianglePolygonDialog() {
   // nothing to do
@@ -135,9 +132,9 @@ public class EditQuadPolygonDialog {
     
     addShellListener();
 
-    createNewGroup();
+    createParameterBoxes();
 
-    createButtonComp();
+    createButtonComposite();
   }
   
   /**
@@ -167,78 +164,136 @@ public class EditQuadPolygonDialog {
     });
   }
 
-  private void createNewGroup() {
-    this.afterGroup = new Group(this.sShell, SWT.NONE);
-    this.afterGroup.setText(Messages.getString("EditQuadPolygonDialog.20")); //$NON-NLS-1$
-    setGridLayout(this.afterGroup, 1);
+  @SuppressWarnings("unused")
+  private void createParameterBoxes() {
+    final Group parameterGroup = new Group(this.sShell, SWT.NONE);
+    parameterGroup.setText(Messages.getString("EditQuadPolygonDialog.20")); //$NON-NLS-1$
+    setGridLayout(parameterGroup, 1);
     final GridLayout afterLayout = new GridLayout(3, false);
-    this.afterGroup.setLayout(afterLayout);
+    parameterGroup.setLayout(afterLayout);
 
-    final Label colorLabel4 = new Label(this.afterGroup, SWT.LEFT);
-    colorLabel4.setText(Messages.getString("EditQuadPolygonDialog.22")); //$NON-NLS-1$
-    setGridLayout(colorLabel4, 1);
+    final Label colorLabel = new Label(parameterGroup, SWT.LEFT);
+    colorLabel.setText(Messages.getString("EditQuadPolygonDialog.22")); //$NON-NLS-1$
+    setGridLayout(colorLabel, 1);
     
-    this.colorSelector = new ColorSelectorButton(this.afterGroup);
+    this.colorSelector = new ColorSelectorButton(parameterGroup);
+    this.colorSelector.setColor(this.primitive.getColor());
     
-    Label label9 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label9, 3);
+    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
+
+    final QuadPolygonModel polygon = this.primitive;
     
-    this.vertex1X = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.3"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex1Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.4"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex1Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.5"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    final VertexModel vertex1 = polygon.getVertex(0);
+    this.vertex1X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.3"), "" + vertex1.getX());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.vertex1Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.4"), "" + vertex1.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.vertex1Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.5"), "" + vertex1.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
 
-    final Label label5 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label5, 3);
+    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
-    this.vertexX2 = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.6"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex2Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.7"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex2Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.8"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    final VertexModel vertex2 = polygon.getVertex(1);
+    this.vertexX2 = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.6"), "" +vertex2.getX());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.vertex2Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.7"),  "" + vertex2.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.vertex2Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.8"), "" + vertex2.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
 
-    final Label label6 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label6, 3);
+    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
-    this.vertex3X = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.21"), "0.0");    //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex3Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.9"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex3Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.10"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    final VertexModel vertex3 = polygon.getVertex(2);
+    this.vertex3X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.21"), "" + vertex3.getX());    //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.vertex3Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.9"), "" + vertex3.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.vertex3Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.10"), "" + vertex3.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
 
-    final Label label7 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label7, 3);
+    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
-    this.vertex4X = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.11"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex4Y = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.12"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex4Z = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.13"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    final VertexModel vertex4 = polygon.getVertex(3);
+    this.vertex4X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.11"), "" + vertex4.getX());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.vertex4Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.12"), "" + vertex4.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.vertex4Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.13"), "" + vertex4.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
 
-    Label label8 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(label8, 3);
+    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
-    this.leftVertexX = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.leftVertexY = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.18"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
-    this.leftVertexZ = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.19"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelLength"); //$NON-NLS-1$
+    createTranslationBoxes(parameterGroup);
+    
+//    this.translationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.17"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+//    this.translationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.18"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+//    this.translationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.19"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
    
-    final Label labelR2 = new Label(this.afterGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-    setGridLayout(labelR2, 3);
+    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
-    this.rightVertexX = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.rightVertexY = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
-    this.rightVertexZ = new ParameterInputBox(this.afterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.16"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
-    new UnitLabel(this.afterGroup, "modelAngle"); //$NON-NLS-1$
+    createRotationBoxes(parameterGroup);
+    
+//    this.rotationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.14"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
+//    this.rotationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.15"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
+//    this.rotationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.16"), "0.0");  //$NON-NLS-1$//$NON-NLS-2$
+//    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
+  }
+  
+  @SuppressWarnings("unused")
+  private void createTranslationBoxes(Group parameterGroup) {
+    final TranslationModel translation = this.primitive.getTranslation();
+    
+    final String x;
+    final String y;
+    final String z;
+    if (translation != null) {
+      x = "" + translation.getX(); //$NON-NLS-1$
+      y = "" + translation.getY(); //$NON-NLS-1$
+      z = "" + translation.getZ(); //$NON-NLS-1$
+    } else {
+      x = "0"; //$NON-NLS-1$
+      y = "0"; //$NON-NLS-1$
+      z = "0"; //$NON-NLS-1$
+    }
+
+    this.translationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.6"), x); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.translationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.7"), y); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+    this.translationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.8"), z); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
+  }
+
+  
+  @SuppressWarnings("unused")
+  private void createRotationBoxes(Group parameterGroup) {
+    final RotationModel rotation = this.primitive.getRotation();
+    
+    final String x;
+    final String y;
+    final String z;
+    
+    if (rotation != null) {
+      x = "" + rotation.getX(); //$NON-NLS-1$
+      y = "" + rotation.getY(); //$NON-NLS-1$
+      z = "" + rotation.getZ(); //$NON-NLS-1$
+    } else {
+      x = "0"; //$NON-NLS-1$
+      y = "0"; //$NON-NLS-1$
+      z = "0"; //$NON-NLS-1$
+    }
+    
+    this.rotationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.3"), x); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
+    this.rotationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.4"), y); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
+    this.rotationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.5"), z); //$NON-NLS-1$
+    new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
   }
 
   /**
@@ -256,7 +311,7 @@ public class EditQuadPolygonDialog {
   /**
    * 変更を決定するButtonを作成
    */
-  private void createButtonComp() {
+  private void createButtonComposite() {
     final Composite composite = new Composite(this.sShell, SWT.NONE);
     setGridLayout(composite, 3);
 
@@ -270,7 +325,7 @@ public class EditQuadPolygonDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containOnlyNumbers()) {
-          updateObjectParameters();
+          updateModelParameters();
           EditQuadPolygonDialog.this.tree.updateTree();
           EditQuadPolygonDialog.this.modeler.updateDisplay();
           EditQuadPolygonDialog.this.sShell.close();
@@ -306,7 +361,7 @@ public class EditQuadPolygonDialog {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containOnlyNumbers()) {
-          updateObjectParameters();
+          updateModelParameters();
           EditQuadPolygonDialog.this.tree.updateTree();
           EditQuadPolygonDialog.this.modeler.updateDisplay();
         } else {
@@ -361,22 +416,22 @@ public class EditQuadPolygonDialog {
     if (this.vertex4Z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rightVertexX.containsOnlyNumbers() == false) {
+    if (this.rotationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rightVertexY.containsOnlyNumbers() == false) {
+    if (this.rotationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rightVertexZ.containsOnlyNumbers() == false) {
+    if (this.rotationZ.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.leftVertexX.containsOnlyNumbers() == false) {
+    if (this.translationX.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.leftVertexY.containsOnlyNumbers() == false) {
+    if (this.translationY.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.leftVertexZ.containsOnlyNumbers() == false) {
+    if (this.translationZ.containsOnlyNumbers() == false) {
       return false;
     }
     return true;
@@ -385,7 +440,7 @@ public class EditQuadPolygonDialog {
   /**
    * パラメータを変更する
    */
-  void updateObjectParameters() {
+  void updateModelParameters() {
     final VertexModel[] vertices = new VertexModel[4];
 
     vertices[0] = new VertexModel(this.vertex1X.getFloatValue(), this.vertex1Y.getFloatValue(), this.vertex1Z.getFloatValue());
@@ -393,58 +448,58 @@ public class EditQuadPolygonDialog {
     vertices[2] = new VertexModel(this.vertex3X.getFloatValue(), this.vertex3Y.getFloatValue(), this.vertex3Z.getFloatValue());
     vertices[3] = new VertexModel(this.vertex4X.getFloatValue(), this.vertex4Y.getFloatValue(), this.vertex4Z.getFloatValue());
 
+    this.primitive.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2], vertices[3]));
+    
     final ColorModel color = this.colorSelector.getColor();
-
-    this.polygon.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2], vertices[3]));
-    this.polygon.setColor(color);
-    this.polygon.setRotation(new RotationModel(this.rightVertexX.getFloatValue(), this.rightVertexY.getFloatValue(), this.rightVertexZ.getFloatValue()));
-    this.polygon.setTranslation(new TranslationModel(this.leftVertexX.getFloatValue(), this.leftVertexY.getFloatValue(), this.leftVertexZ.getFloatValue()));
+    this.primitive.setColor(color);
+    this.primitive.setRotation(new RotationModel(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue()));
+    this.primitive.setTranslation(new TranslationModel(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue()));
   }
 
-  /**
-   * 各頂点の座標値を色を入れる　変更後の欄にはデフォルトで変更前の値を入力
-   */
-  private void detectPrim() {
-    final VertexModel vertex1 = this.polygon.getVertex(0);
-    this.vertex1X.setStringValue("" + vertex1.getX()); //$NON-NLS-1$
-    this.vertex1Y.setStringValue("" + vertex1.getY()); //$NON-NLS-1$
-    this.vertex1Z.setStringValue("" + vertex1.getZ()); //$NON-NLS-1$
-
-    final VertexModel vertex2 = this.polygon.getVertex(1);
-    this.vertexX2.setStringValue("" + vertex2.getX()); //$NON-NLS-1$
-    this.vertex2Y.setStringValue("" + vertex2.getY()); //$NON-NLS-1$
-    this.vertex2Z.setStringValue("" + vertex2.getZ()); //$NON-NLS-1$
-
-    final VertexModel vertex3 = this.polygon.getVertex(2);
-    this.vertex3X.setStringValue("" + vertex3.getX()); //$NON-NLS-1$
-    this.vertex3Y.setStringValue("" + vertex3.getY()); //$NON-NLS-1$
-    this.vertex3Z.setStringValue("" + vertex3.getZ()); //$NON-NLS-1$
-
-    final VertexModel vertex4 = this.polygon.getVertex(3);
-    this.vertex4X.setStringValue("" + vertex4.getX()); //$NON-NLS-1$
-    this.vertex4Y.setStringValue("" + vertex4.getY()); //$NON-NLS-1$
-    this.vertex4Z.setStringValue("" + vertex4.getZ()); //$NON-NLS-1$
-    this.colorSelector.setColor(this.polygon.getColor());
-
-    if (this.polygon.getRotation() != null) {
-      this.rightVertexX.setStringValue("" + this.polygon.getRotation().getX()); //$NON-NLS-1$
-      this.rightVertexY.setStringValue("" + this.polygon.getRotation().getY()); //$NON-NLS-1$
-      this.rightVertexZ.setStringValue("" + this.polygon.getRotation().getZ()); //$NON-NLS-1$
-    } else {
-      this.rightVertexX.setStringValue("" + 0.0); //$NON-NLS-1$
-      this.rightVertexY.setStringValue("" + 0.0); //$NON-NLS-1$
-      this.rightVertexZ.setStringValue("" + 0.0); //$NON-NLS-1$
-    }
-
-    if (this.polygon.getTranslation() != null) {
-      this.leftVertexX.setStringValue("" + this.polygon.getTranslation().getX()); //$NON-NLS-1$
-      this.leftVertexY.setStringValue("" + this.polygon.getTranslation().getY()); //$NON-NLS-1$
-      this.leftVertexZ.setStringValue("" + this.polygon.getTranslation().getZ()); //$NON-NLS-1$
-    } else {
-      this.leftVertexX.setStringValue("" + 0.0); //$NON-NLS-1$
-      this.leftVertexY.setStringValue("" + 0.0); //$NON-NLS-1$
-      this.leftVertexZ.setStringValue("" + 0.0); //$NON-NLS-1$
-    }
-
-  }
+//  /**
+//   * 各頂点の座標値を色を入れる　変更後の欄にはデフォルトで変更前の値を入力
+//   */
+//  private void setParametersinDialog() {
+//    final VertexModel vertex1 = this.primitive.getVertex(0);
+//    this.vertex1X.setStringValue("" + vertex1.getX()); //$NON-NLS-1$
+//    this.vertex1Y.setStringValue("" + vertex1.getY()); //$NON-NLS-1$
+//    this.vertex1Z.setStringValue("" + vertex1.getZ()); //$NON-NLS-1$
+//
+//    final VertexModel vertex2 = this.primitive.getVertex(1);
+//    this.vertexX2.setStringValue("" + vertex2.getX()); //$NON-NLS-1$
+//    this.vertex2Y.setStringValue("" + vertex2.getY()); //$NON-NLS-1$
+//    this.vertex2Z.setStringValue("" + vertex2.getZ()); //$NON-NLS-1$
+//
+//    final VertexModel vertex3 = this.primitive.getVertex(2);
+//    this.vertex3X.setStringValue("" + vertex3.getX()); //$NON-NLS-1$
+//    this.vertex3Y.setStringValue("" + vertex3.getY()); //$NON-NLS-1$
+//    this.vertex3Z.setStringValue("" + vertex3.getZ()); //$NON-NLS-1$
+//
+//    final VertexModel vertex4 = this.primitive.getVertex(3);
+//    this.vertex4X.setStringValue("" + vertex4.getX()); //$NON-NLS-1$
+//    this.vertex4Y.setStringValue("" + vertex4.getY()); //$NON-NLS-1$
+//    this.vertex4Z.setStringValue("" + vertex4.getZ()); //$NON-NLS-1$
+//    
+//    this.colorSelector.setColor(this.primitive.getColor());
+//
+//    if (this.primitive.getRotation() != null) {
+//      this.rotationX.setStringValue("" + this.primitive.getRotation().getX()); //$NON-NLS-1$
+//      this.rotationY.setStringValue("" + this.primitive.getRotation().getY()); //$NON-NLS-1$
+//      this.rotationZ.setStringValue("" + this.primitive.getRotation().getZ()); //$NON-NLS-1$
+//    } else {
+//      this.rotationX.setStringValue("" + 0.0); //$NON-NLS-1$
+//      this.rotationY.setStringValue("" + 0.0); //$NON-NLS-1$
+//      this.rotationZ.setStringValue("" + 0.0); //$NON-NLS-1$
+//    }
+//
+//    if (this.primitive.getTranslation() != null) {
+//      this.translationX.setStringValue("" + this.primitive.getTranslation().getX()); //$NON-NLS-1$
+//      this.translationY.setStringValue("" + this.primitive.getTranslation().getY()); //$NON-NLS-1$
+//      this.translationZ.setStringValue("" + this.primitive.getTranslation().getZ()); //$NON-NLS-1$
+//    } else {
+//      this.translationX.setStringValue("" + 0.0); //$NON-NLS-1$
+//      this.translationY.setStringValue("" + 0.0); //$NON-NLS-1$
+//      this.translationZ.setStringValue("" + 0.0); //$NON-NLS-1$
+//    }
+//  }
 }

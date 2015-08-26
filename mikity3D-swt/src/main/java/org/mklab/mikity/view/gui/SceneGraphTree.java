@@ -34,6 +34,8 @@ import org.mklab.mikity.view.gui.dialog.EditBoxDialog;
 import org.mklab.mikity.view.gui.dialog.EditConeDialog;
 import org.mklab.mikity.view.gui.dialog.EditCylinderDialog;
 import org.mklab.mikity.view.gui.dialog.EditGroupDialog;
+import org.mklab.mikity.view.gui.dialog.EditModelDialog;
+import org.mklab.mikity.view.gui.dialog.EditPrimitiveDialog;
 import org.mklab.mikity.view.gui.dialog.EditQuadPolygonDialog;
 import org.mklab.mikity.view.gui.dialog.EditSphereDialog;
 import org.mklab.mikity.view.gui.dialog.EditTrianglePolygonDialog;
@@ -130,7 +132,7 @@ public class SceneGraphTree {
         }
 
         if (clickObject instanceof GroupModel) {
-          final EditGroupDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, true, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditModelDialog dialog = new EditGroupDialog(composite.getShell(), SceneGraphTree.this.targetGroup, true, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (clickObject instanceof TrianglePolygonModel) {
@@ -144,19 +146,19 @@ public class SceneGraphTree {
           dialog.open();
           updateTree();
         } else if (clickObject instanceof BoxModel) {
-          final EditBoxDialog dialog = new EditBoxDialog(composite.getShell(), (AbstractPrimitiveModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditPrimitiveDialog dialog = new EditBoxDialog(composite.getShell(), (AbstractPrimitiveModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (clickObject instanceof CylinderModel) {
-          final EditCylinderDialog dialog = new EditCylinderDialog(composite.getShell(), (AbstractPrimitiveModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditPrimitiveDialog dialog = new EditCylinderDialog(composite.getShell(), (AbstractPrimitiveModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (clickObject instanceof SphereModel) {
-          final EditSphereDialog dialog = new EditSphereDialog(composite.getShell(), (AbstractPrimitiveModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditPrimitiveDialog dialog = new EditSphereDialog(composite.getShell(), (AbstractPrimitiveModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         } else if (clickObject instanceof ConeModel) {
-          final EditConeDialog dialog = new EditConeDialog(composite.getShell(), (ConeModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+          final EditPrimitiveDialog dialog = new EditConeDialog(composite.getShell(), (ConeModel)clickObject, SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         }

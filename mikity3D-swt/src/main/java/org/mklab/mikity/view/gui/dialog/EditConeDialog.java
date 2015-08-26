@@ -73,7 +73,7 @@ public class EditConeDialog extends AbstractEditPrimitiveDialog {
    * {@inheritDoc}
    */
   @Override
-  void updateModelParameters() {
+  public void updateModelParameters() {
     final ConeModel cone = (ConeModel)this.primitive;
     cone.setRadius(this.radius.getFloatValue());
     cone.setHeight(this.height.getFloatValue());

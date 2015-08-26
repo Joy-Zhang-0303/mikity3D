@@ -31,7 +31,7 @@ import org.mklab.mikity.view.gui.SceneGraphTree;
  * @author miki
  * @version $Revision: 1.1 $.2005/02/03
  */
-public class EditGroupDialog {
+public class EditGroupDialog implements EditModelDialog {
   Shell sShell = null;
   private Shell parentShell = null;
   GroupModel targetGroup;
@@ -108,7 +108,7 @@ public class EditGroupDialog {
     
     addShellListener();
 
-    createAnimationGroup();
+    createParameterBoxes();
 
     createButtonComposite();
 
@@ -147,9 +147,9 @@ public class EditGroupDialog {
   }
 
   /**
-   * グループのパラメータを表示させる
+   * パラメータを設定するボックスを生成します。
    */
-  private void createAnimationGroup() {
+  private void createParameterBoxes() {
     final Group parameterGroup = new Group(this.sShell, SWT.NONE);
     final GridLayout layout = new GridLayout();
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
@@ -312,7 +312,7 @@ public class EditGroupDialog {
 
         EditGroupDialog.this.modeler.setChanged(EditGroupDialog.this.isChanged());
         
-        updateGroupParameters();
+        updateModelParameters();
         EditGroupDialog.this.tree.updateTree();
         EditGroupDialog.this.modeler.updateDisplay();
         EditGroupDialog.this.sShell.close();
@@ -349,18 +349,18 @@ public class EditGroupDialog {
     applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        updateGroupParameters();
+        updateModelParameters();
         EditGroupDialog.this.tree.updateTree();
         EditGroupDialog.this.modeler.updateDisplay();
       }
 
     });
   }
-  
+
   /**
-   * グループのパラメータを更新します。
+   * {@inheritDoc}
    */
-  void updateGroupParameters() {
+  public void updateModelParameters() {
     this.targetGroup.setName(this.groupName.getStringValue());
     this.targetGroup.clearAnimations();
     addAnimation("translationX", this.translationXsourceId, this.translationXsourceNumber); //$NON-NLS-1$
@@ -462,7 +462,7 @@ public class EditGroupDialog {
   }
 
   /**
-   * シェルを 開いている間、親シェルの処理を止める
+   * {@inheritDoc}
    */
   public void open() {
     this.sShell.open();
@@ -474,11 +474,9 @@ public class EditGroupDialog {
 //      }
 //    }
   }
-  
+
   /**
-   * パラメータが変更されたか判定します。
-   * 
-   * @return パラメータが変更されていればtrue
+   * {@inheritDoc}
    */
   public boolean isChanged() {
     if (this.groupName.isChanged()) {
