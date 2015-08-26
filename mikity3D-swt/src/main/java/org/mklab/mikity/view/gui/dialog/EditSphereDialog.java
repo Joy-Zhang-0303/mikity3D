@@ -47,7 +47,7 @@ public class EditSphereDialog extends AbstractEditPrimitiveDialog {
    * {@inheritDoc}
    */
   @Override
-  public void createPrameterBoxes(Group parameterGroup) {
+  public void createParameterBoxes(Group parameterGroup) {
     this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
     final SphereModel sphere = (SphereModel)this.primitive;
     

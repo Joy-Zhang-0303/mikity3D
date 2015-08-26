@@ -49,7 +49,7 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
    * {@inheritDoc}
    */
   @Override
-  public void createPrameterBoxes(Group parameterGroup) {
+  public void createParameterBoxes(Group parameterGroup) {
     this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
     
     final BoxModel box = (BoxModel)this.primitive;

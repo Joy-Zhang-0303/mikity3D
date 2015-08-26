@@ -49,7 +49,7 @@ public class EditConeDialog extends AbstractEditPrimitiveDialog {
    * {@inheritDoc}
    */
   @Override
-  public void createPrameterBoxes(Group parameterGroup) {
+  public void createParameterBoxes(Group parameterGroup) {
     this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
     
     final ConeModel cone = (ConeModel)this.primitive;

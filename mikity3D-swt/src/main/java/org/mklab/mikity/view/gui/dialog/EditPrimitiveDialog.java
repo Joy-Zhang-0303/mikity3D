@@ -20,5 +20,5 @@ public interface EditPrimitiveDialog extends EditModelDialog {
    * 
    * @param group グループ
    */
-  void createPrameterBoxes(Group group);
+  void createParameterBoxes(Group group);
 }
