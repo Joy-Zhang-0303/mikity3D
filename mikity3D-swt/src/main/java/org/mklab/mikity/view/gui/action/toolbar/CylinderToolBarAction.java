@@ -1,9 +1,8 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
-import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -28,12 +27,9 @@ public class CylinderToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final AbstractPrimitiveModel cylinder = new CylinderModel(0.1f, 0.1f, 36);    
-    final ColorModel color = new ColorModel("blue"); //$NON-NLS-1$
-    cylinder.setColor(color);
-    
     final GroupModel group = this.modeler.getTargetGroup();
-    group.add(cylinder);
+    final PrimitiveModel primitive = CylinderModel.createDefault();    
+    group.add(primitive);
     
     update();
     

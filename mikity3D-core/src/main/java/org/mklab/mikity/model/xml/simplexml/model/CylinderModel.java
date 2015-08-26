@@ -29,11 +29,7 @@ public class CylinderModel extends AbstractPrimitiveModel {
    * 新しく生成された<code>CylinderModel</code>オブジェクトを初期化します。
    */
   public CylinderModel() {
-    this.radius = 0.1f;
-    this.height = 0.1f;
-    this.division = 36;
-    this.color = new ColorModel("red"); //$NON-NLS-1$
-    this.preservedAlpha = this.color.getAlpha();
+    // nothing to do
   }
   
   /**
@@ -46,9 +42,19 @@ public class CylinderModel extends AbstractPrimitiveModel {
     this.radius = radius;
     this.height = height;
     this.division = division;
-    this.color = new ColorModel("red"); //$NON-NLS-1$
+    this.color = new ColorModel("blue"); //$NON-NLS-1$
     this.preservedAlpha = this.color.getAlpha();
   }
+  
+  /**
+   * デフォルトのモデルを生成します。
+   * 
+   * @return デフォルトのモデル
+   */
+  public static CylinderModel createDefault() {
+    return new CylinderModel(0.1f, 0.1f, 36);
+  }
+  
   
   /**
    * {@inheritDoc}

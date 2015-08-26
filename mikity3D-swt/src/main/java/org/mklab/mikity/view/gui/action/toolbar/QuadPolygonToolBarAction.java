@@ -5,12 +5,9 @@
  */
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import java.util.Arrays;
-
-import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
-import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -34,17 +31,9 @@ public class QuadPolygonToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final QuadPolygonModel polygon = new QuadPolygonModel();
-    final VertexModel vertex0 = new VertexModel(0.0f, -0.3f, 0.0f);
-    final VertexModel vertex1 = new VertexModel(0.0f, 0.3f, 0.0f);
-    final VertexModel vertex2 = new VertexModel(0.0f, 0.3f, 0.3f);
-    final VertexModel vertex3 = new VertexModel(0.0f, -0.3f, 0.3f);
-    polygon.setVertices(Arrays.asList(vertex0, vertex1, vertex2, vertex3));
-    final ColorModel color = new ColorModel("blue"); //$NON-NLS-1$
-    polygon.setColor(color);
-    
     final GroupModel group = this.modeler.getTargetGroup();
-    group.add(polygon);
+    final PrimitiveModel primitive = QuadPolygonModel.createDefault();
+    group.add(primitive);
 
     update();
     

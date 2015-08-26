@@ -11,6 +11,7 @@ import java.util.List;
 import org.mklab.mikity.util.Vector3;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.simpleframework.xml.core.Commit;
 
 
 /**
@@ -26,7 +27,7 @@ public class TrianglePolygonModel extends AbstractPrimitiveModel {
   private static final long serialVersionUID = 1L;
 
   /** vertices */
-  @ElementList(type = VertexModel.class, inline = true, required = true)
+  @ElementList(name="vertices",  type = VertexModel.class, inline = true, required = true)
   private List<VertexModel> vertices;
 
   /** 法線ベクトル。 */
@@ -36,14 +37,7 @@ public class TrianglePolygonModel extends AbstractPrimitiveModel {
    * 新しく生成された<code>XMLTrianglePolygon</code>オブジェクトを初期化します。
    */
   public TrianglePolygonModel() {
-    final VertexModel vertex0 = new VertexModel(0.0f, -0.3f, 0.0f);
-    final VertexModel vertex1 = new VertexModel(0.0f, 0.3f, 0.0f);
-    final VertexModel vertex2 = new VertexModel(0.0f, 0.0f, 0.3f);
-
-    this.vertices = new ArrayList<>(3);
-    setVertices(vertex0, vertex1, vertex2);
-    this.color = new ColorModel("orange"); //$NON-NLS-1$
-    this.preservedAlpha = this.color.getAlpha();
+    // nothing to do
   }
 
   /**
@@ -56,10 +50,18 @@ public class TrianglePolygonModel extends AbstractPrimitiveModel {
   public TrianglePolygonModel(VertexModel vertex0, VertexModel vertex1, VertexModel vertex2) {
     this.vertices = new ArrayList<>(3);
     setVertices(vertex0, vertex1, vertex2);
-    this.color = new ColorModel("orange"); //$NON-NLS-1$
-    this.preservedAlpha = this.color.getAlpha();
+    setColor(new ColorModel("orange")); //$NON-NLS-1$
   }
-
+  
+  /**
+   * デフォルトのモデルを生成します。
+   * 
+   * @return デフォルトのモデル
+   */
+  public static TrianglePolygonModel createDefault() {
+    return new TrianglePolygonModel(new VertexModel(0.0f, -0.3f, 0.0f), new VertexModel(0.0f, 0.3f, 0.0f), new VertexModel(0.0f, 0.0f, 0.3f));
+  }
+  
   /**
    * {@inheritDoc}
    */
@@ -142,7 +144,7 @@ public class TrianglePolygonModel extends AbstractPrimitiveModel {
    * 
    * @return 3個の頂点
    */
-  public List<VertexModel> getVerties() {
+  public List<VertexModel> getVertices() {
     return this.vertices;
   }
 
@@ -157,9 +159,17 @@ public class TrianglePolygonModel extends AbstractPrimitiveModel {
   }
 
   /**
+   * デシリアライズの後処理をします。
+   */
+  @Commit
+  private void buildAfterDeserialization() {
+    updateNormalVector();
+  }
+  
+  /**
    * 法線ベクトルを更新します。
    */
-  private void updateNormalVector() {
+  public void updateNormalVector() {
     float x0 = this.vertices.get(0).getX();
     float y0 = this.vertices.get(0).getY();
     float z0 = this.vertices.get(0).getZ();

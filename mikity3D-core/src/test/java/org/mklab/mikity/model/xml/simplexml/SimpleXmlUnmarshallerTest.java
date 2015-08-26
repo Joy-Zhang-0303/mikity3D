@@ -119,12 +119,12 @@ public class SimpleXmlUnmarshallerTest {
     final SceneModel actualModel = actual.getScene(0);
     final GroupModel actualGroup = actualModel.getGroup(0);
     
-    final TranslationModel actualLocation = actualGroup.getTranslation();
-    final TranslationModel expectedLocation = new TranslationModel();
-    expectedLocation.setX(0.0F);
-    expectedLocation.setY(0.0F);
-    expectedLocation.setZ(0.0F);
-    assertThat(actualLocation, is(expectedLocation));
+    final TranslationModel actualTranslation = actualGroup.getTranslation();
+    final TranslationModel expectedTranslation = new TranslationModel();
+    expectedTranslation.setX(0.0F);
+    expectedTranslation.setY(0.0F);
+    expectedTranslation.setZ(0.0F);
+    assertThat(actualTranslation, is(expectedTranslation));
     
     final RotationModel actualRotation = actualGroup.getRotation();
     final RotationModel expectedRotation = new RotationModel();
@@ -172,9 +172,9 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertDodaiBox1(BoxModel actualBox) {
     final BoxModel expectedBox = new BoxModel();
-    expectedBox.setTransparent(false);
     final ColorModel color = new ColorModel("LightGray"); //$NON-NLS-1$
     expectedBox.setColor(color);
+    expectedBox.setTransparent(false);
     expectedBox.setWidth(0.02F);
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
@@ -194,9 +194,9 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertDodaiBox2(BoxModel actualBox) {
     final BoxModel expectedBox = new BoxModel();
-    expectedBox.setTransparent(false);
     final ColorModel color = new ColorModel("LightGray"); //$NON-NLS-1$
     expectedBox.setColor(color);
+    expectedBox.setTransparent(false);
     expectedBox.setWidth(0.3F);
     expectedBox.setHeight(0.005F);
     expectedBox.setDepth(0.1F);
@@ -216,9 +216,9 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertDodaiBox3(BoxModel actualBox) {
     final BoxModel expectedBox = new BoxModel();
-    expectedBox.setTransparent(false);
     final ColorModel color = new ColorModel("LightGray"); //$NON-NLS-1$
     expectedBox.setColor(color);
+    expectedBox.setTransparent(false);
     expectedBox.setWidth(0.02F);
     expectedBox.setHeight(0.27F);
     expectedBox.setDepth(0.02F);
@@ -238,9 +238,9 @@ public class SimpleXmlUnmarshallerTest {
 
   private void assertDodaiBox4(BoxModel actualBox) {
     final BoxModel expectedBox = new BoxModel();
-    expectedBox.setTransparent(false);
     final ColorModel color = new ColorModel("LightGray"); //$NON-NLS-1$
     expectedBox.setColor(color);
+    expectedBox.setTransparent(false);
     expectedBox.setWidth(0.54F);
     expectedBox.setHeight(0.05F);
     expectedBox.setDepth(0.07F);
@@ -292,9 +292,9 @@ public class SimpleXmlUnmarshallerTest {
   
   private void assertDaishaBox(BoxModel actualBox) {
     final BoxModel expectedBox = new BoxModel();
-    expectedBox.setTransparent(false);
     final ColorModel color = new ColorModel("yellow"); //$NON-NLS-1$
     expectedBox.setColor(color);
+    expectedBox.setTransparent(false);
     expectedBox.setWidth(0.07F);
     expectedBox.setHeight(0.05F);
     expectedBox.setDepth(0.005F);

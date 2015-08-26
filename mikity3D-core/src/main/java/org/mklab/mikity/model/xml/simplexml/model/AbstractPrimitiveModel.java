@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Vector;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.core.Commit;
 
 
 /**
@@ -49,6 +50,14 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   public AbstractPrimitiveModel() {
     this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
+  }
+  
+  /**
+   * デシリアライズの後処理をします。
+   */
+  @Commit
+  private void buildAfterDeserialization() {
+    this.preservedAlpha = getColor().getAlpha();
   }
 
   /**

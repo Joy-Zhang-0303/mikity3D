@@ -1,8 +1,7 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
-import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
-import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -28,12 +27,9 @@ public class SphereToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final AbstractPrimitiveModel sphere = new SphereModel(0.1f, 36);
-    final ColorModel color = new ColorModel("yellow"); //$NON-NLS-1$
-    sphere.setColor(color);
-    
     final GroupModel group = this.modeler.getTargetGroup();
-    group.add(sphere);
+    final PrimitiveModel primitive = SphereModel.createDefault();
+    group.add(primitive);
     
     update();
     

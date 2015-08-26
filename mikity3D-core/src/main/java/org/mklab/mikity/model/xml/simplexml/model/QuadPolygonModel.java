@@ -11,6 +11,7 @@ import java.util.List;
 import org.mklab.mikity.util.Vector3;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.simpleframework.xml.core.Commit;
 
 
 /**
@@ -35,15 +36,7 @@ public class QuadPolygonModel extends AbstractPrimitiveModel {
    * 新しく生成された<code>XMLQuadPolygon</code>オブジェクトを初期化します。
    */
   public QuadPolygonModel() {
-    final VertexModel vertex0 = new VertexModel(0.0f, -0.3f, 0.0f);
-    final VertexModel vertex1 = new VertexModel(0.0f, 0.3f, 0.0f);
-    final VertexModel vertex2 = new VertexModel(0.0f, 0.3f, 0.3f);
-    final VertexModel vertex3 = new VertexModel(0.0f, -0.3f, 0.3f);
-    
-    this.vertices = new ArrayList<>(4);
-    setVertices(vertex0, vertex1, vertex2, vertex3);
-    this.color = new ColorModel("orange"); //$NON-NLS-1$
-    this.preservedAlpha = this.color.getAlpha();
+    // nothing to do
   }
   
   /**
@@ -56,8 +49,17 @@ public class QuadPolygonModel extends AbstractPrimitiveModel {
   public QuadPolygonModel(VertexModel vertex0, VertexModel vertex1, VertexModel vertex2, VertexModel vertex3) {
     this.vertices = new ArrayList<>(4);
     setVertices(vertex0, vertex1, vertex2, vertex3);
-    this.color = new ColorModel("orange"); //$NON-NLS-1$
+    this.color = new ColorModel("blue"); //$NON-NLS-1$
     this.preservedAlpha = this.color.getAlpha();
+  }
+
+  /**
+   * デフォルトのモデルを生成します。
+   * 
+   * @return デフォルトのモデル
+   */
+  public static QuadPolygonModel createDefault() {
+    return new QuadPolygonModel(new VertexModel(0.0f, -0.3f, 0.0f), new VertexModel(0.0f, 0.3f, 0.0f), new VertexModel(0.0f, 0.3f, 0.3f), new VertexModel(0.0f, -0.3f, 0.3f)); 
   }
   
   /**
@@ -156,6 +158,14 @@ public class QuadPolygonModel extends AbstractPrimitiveModel {
    */
   public List<VertexModel> getVertices() {
     return this.vertices;
+  }
+  
+  /**
+   * デシリアライズの後処理をします。
+   */
+  @Commit
+  private void buildAfterDeserialization() {
+    updateNormalVector();
   }
 
   /**

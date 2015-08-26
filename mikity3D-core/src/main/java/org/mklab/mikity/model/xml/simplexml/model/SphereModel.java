@@ -25,10 +25,7 @@ public class SphereModel extends AbstractPrimitiveModel {
    * 新しく生成された<code>SphereModel</code>オブジェクトを初期化します。
    */
   public SphereModel() {
-    this.radius = 0.1f;
-    this.division = 36;
-    this.color = new ColorModel("red"); //$NON-NLS-1$
-    this.preservedAlpha = this.color.getAlpha();
+    // nothing to do
   }
   
   /**
@@ -39,8 +36,17 @@ public class SphereModel extends AbstractPrimitiveModel {
   public SphereModel(float radius, int division) {
     this.radius = radius;
     this.division = division;
-    this.color = new ColorModel("red"); //$NON-NLS-1$
+    this.color = new ColorModel("yellow"); //$NON-NLS-1$
     this.preservedAlpha = this.color.getAlpha();
+  }
+  
+  /**
+   * デフォルトのモデルを生成します。
+   * 
+   * @return デフォルトのモデル
+   */
+  public static SphereModel createDefault() {
+    return new SphereModel(0.1f, 36);
   }
   
   /**

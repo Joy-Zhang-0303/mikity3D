@@ -29,11 +29,7 @@ public class ConeModel extends AbstractPrimitiveModel {
    * 新しく生成された<code>ConeModel</code>オブジェクトを初期化します。
    */
   public ConeModel() {
-    this.radius = 0.1f;
-    this.height = 0.1f;
-    this.division = 36;
-    this.color = new ColorModel("red"); //$NON-NLS-1$
-    this.preservedAlpha = this.color.getAlpha();
+    // nothing to do
   }
   
   /**
@@ -46,8 +42,17 @@ public class ConeModel extends AbstractPrimitiveModel {
     this.radius = radius;
     this.height = height;
     this.division = division;
-    this.color = new ColorModel("red"); //$NON-NLS-1$
+    this.color = new ColorModel("green"); //$NON-NLS-1$
     this.preservedAlpha = this.color.getAlpha();
+  }
+  
+  /**
+   * デフォルトのモデルを生成します。
+   * 
+   * @return デフォルトのモデル
+   */
+  public static ConeModel createDefault() {
+    return new ConeModel(0.1f, 0.1f, 36);
   }
   
   /**

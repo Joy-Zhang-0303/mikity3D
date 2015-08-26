@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.view.gui.JoglModeler;
@@ -51,7 +52,7 @@ public class EditQuadPolygonDialog extends AbstractEditPrimitiveDialog {
    * @param tree シーングラフツリー 
    * @param modeler モデラー
    */
-  public EditQuadPolygonDialog(Shell parentShell, QuadPolygonModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditQuadPolygonDialog(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     super(parentShell, primitive, group, tree, modeler);
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 890));
   }

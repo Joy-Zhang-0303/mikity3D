@@ -26,7 +26,7 @@ public class TrianglePolygonPrimitive extends AbstractGraphicPrimitive {
    * ポリゴンを更新します。
    */
   private void updatePolygons() {
-    List<VertexModel> vertices = ((TrianglePolygonModel)this.primitive).getVerties();
+    List<VertexModel> vertices = ((TrianglePolygonModel)this.primitive).getVertices();
     Vector3 normalVector = ((TrianglePolygonModel)this.primitive).getNormalVector();
     
     if (vertices == null || normalVector == null) {
