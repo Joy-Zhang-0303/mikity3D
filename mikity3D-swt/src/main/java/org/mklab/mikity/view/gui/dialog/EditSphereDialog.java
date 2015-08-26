@@ -9,8 +9,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -39,7 +39,7 @@ public class EditSphereDialog extends AbstractEditPrimitiveDialog {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditSphereDialog(Shell parentShell, AbstractPrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditSphereDialog(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     super(parentShell, primitive, group, tree, modeler);
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 530));
   }

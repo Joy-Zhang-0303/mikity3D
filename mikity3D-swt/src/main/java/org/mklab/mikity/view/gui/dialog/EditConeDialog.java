@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.SceneGraphTree;
@@ -41,7 +42,7 @@ public class EditConeDialog extends AbstractEditPrimitiveDialog {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditConeDialog(Shell parentShell, ConeModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public EditConeDialog(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     super(parentShell, primitive, group, tree, modeler);
   }
 
