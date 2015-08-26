@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
@@ -39,7 +40,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
 public class EditTrianglePolygonDialog {
   Shell parentShell;
   Shell sShell;
-  TrianglePolygonModel primitive;
+  PrimitiveModel primitive;
   String groupName;
   
   JoglModeler modeler;
@@ -91,12 +92,12 @@ public class EditTrianglePolygonDialog {
     createSShell();
   }
 
-  /**
-   * 新しく生成された<code>EditTrianglePolygonDialog</code>オブジェクトを初期化します。
-   */
-  public EditTrianglePolygonDialog() {
-  // nothing to do
-  }
+//  /**
+//   * 新しく生成された<code>EditTrianglePolygonDialog</code>オブジェクトを初期化します。
+//   */
+//  public EditTrianglePolygonDialog() {
+//  // nothing to do
+//  }
 
   /**
    * シェルを開く
@@ -119,19 +120,17 @@ public class EditTrianglePolygonDialog {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 740));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 780));
     this.sShell.setText(Messages.getString("EditTrianglePolygonDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
-
-//    final Label groupLabel = new Label(this.sShell, SWT.LEFT);
-//    groupLabel.setText(Messages.getString("EditTrianglePolygonDialog.1") + this.groupName); //$NON-NLS-1$
-//    setGridLayout(groupLabel, 1);
 
     addShellListener();
     
     createParameterBoxes();
 
     createButtonComposite();
+    
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 780));
   }
   
   private void createParameterBoxes() {
@@ -141,11 +140,15 @@ public class EditTrianglePolygonDialog {
     final Group parameterGroup = new Group(this.sShell, SWT.NONE);
     parameterGroup.setText(Messages.getString("EditTrianglePolygonDialog.18")); //$NON-NLS-1$
     setGridLayout(parameterGroup, 1);
-    final GridLayout layout = new GridLayout(3, false);
-    parameterGroup.setLayout(layout);
+    
+    final GridLayout parameterLayout = new GridLayout(3, false);
+    parameterGroup.setLayout(parameterLayout);
 
     final Label colorLabel = new Label(parameterGroup, SWT.LEFT);
     colorLabel.setText(Messages.getString("EditTrianglePolygonDialog.20")); //$NON-NLS-1$
+    final GridData gridData = new GridData();
+    gridData.minimumWidth = 200;
+    colorLabel.setLayoutData(gridData);
     setGridLayout(colorLabel, 1);
     
     this.colorSelector = new ColorSelectorButton(parameterGroup);
@@ -173,7 +176,7 @@ public class EditTrianglePolygonDialog {
   public void createParameterBoxes(final Group parameterGroup) {
     this.primitiveType.setText(Messages.getString("EditTrianglePolygonDialog.21")); //$NON-NLS-1$
     
-    final TrianglePolygonModel polygon = this.primitive;
+    final TrianglePolygonModel polygon = (TrianglePolygonModel)this.primitive;
     
     final VertexModel vertex1 = polygon.getVertex(0);
     this.vertex1X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.3"), "" + vertex1.getX());  //$NON-NLS-1$//$NON-NLS-2$
@@ -370,6 +373,25 @@ public class EditTrianglePolygonDialog {
    * @return boolean
    */
   boolean containOnlyNumbers() {
+    if (this.rotationX.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.rotationY.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.rotationZ.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.translationX.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.translationY.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.translationZ.containsOnlyNumbers() == false) {
+      return false;
+    }
+    
     if (this.vertex1X.containsOnlyNumbers() == false) {
       return false;
     }
@@ -397,24 +419,7 @@ public class EditTrianglePolygonDialog {
     if (this.vertex3Z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationX.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.rotationY.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.rotationZ.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.translationX.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.translationY.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.translationZ.containsOnlyNumbers() == false) {
-      return false;
-    }
+
     return true;
   }
 
@@ -425,20 +430,22 @@ public class EditTrianglePolygonDialog {
     final ColorModel color =this.colorSelector.getColor();
     color.setAlpha(this.alpha.getIntValue());
     this.primitive.setColor(color);
-    this.primitive.setRotation(getRotation());
     this.primitive.setTranslation(getTranslation());
+    this.primitive.setRotation(getRotation());
 
     updateModelParameters();
   }
 
   public void updateModelParameters() {
+    final TrianglePolygonModel polygon = (TrianglePolygonModel)this.primitive;
+    
     final VertexModel[] vertices = new VertexModel[3];
 
     vertices[0] = new VertexModel(this.vertex1X.getFloatValue(), this.vertex1Y.getFloatValue(), this.vertex1Z.getFloatValue());
     vertices[1] = new VertexModel(this.vertex2X.getFloatValue(), this.vertex2Y.getFloatValue(), this.vertex2Z.getFloatValue());
     vertices[2] = new VertexModel(this.vertex3X.getFloatValue(), this.vertex3Y.getFloatValue(), this.vertex3Z.getFloatValue());
 
-    this.primitive.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2]));
+    polygon.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2]));
   }
   
   /**

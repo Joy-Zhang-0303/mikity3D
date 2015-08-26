@@ -41,6 +41,7 @@ public class EditSphereDialog extends AbstractEditPrimitiveDialog {
    */
   public EditSphereDialog(Shell parentShell, AbstractPrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     super(parentShell, primitive, group, tree, modeler);
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 530));
   }
   
   /**

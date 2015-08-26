@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -40,7 +41,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
 public class EditQuadPolygonDialog {
   Shell parentShell;
   Shell sShell;
-  QuadPolygonModel primitive;
+  PrimitiveModel primitive;
   String groupName;
 
   JoglModeler modeler;
@@ -96,12 +97,12 @@ public class EditQuadPolygonDialog {
     createSShell();
   }
 
-  /**
-   * 
-   */
-  public void EditTrianglePolygonDialog() {
-  // nothing to do
-  }
+//  /**
+//   * 
+//   */
+//  public void EditTrianglePolygonDialog() {
+//  // nothing to do
+//  }
 
   /**
    * シェルを開く
@@ -124,19 +125,17 @@ public class EditQuadPolygonDialog {
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 850));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 890));
     this.sShell.setText(Messages.getString("EditQuadPolygonDialog.0")); //$NON-NLS-1$
     this.sShell.setLayout(layout);
-
-    //final Label groupLabel = new Label(this.sShell, SWT.LEFT);
-    //groupLabel.setText(Messages.getString("EditQuadPolygonDialog.1") + this.groupName); //$NON-NLS-1$
-    //setGridLayout(groupLabel, 1);
     
     addShellListener();
 
     createParameterBoxes();
 
     createButtonComposite();
+    
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 890));
   }
 
   private void createParameterBoxes() {
@@ -146,11 +145,15 @@ public class EditQuadPolygonDialog {
     final Group parameterGroup = new Group(this.sShell, SWT.NONE);
     parameterGroup.setText(Messages.getString("EditQuadPolygonDialog.20")); //$NON-NLS-1$
     setGridLayout(parameterGroup, 1);
-    final GridLayout afterLayout = new GridLayout(3, false);
-    parameterGroup.setLayout(afterLayout);
+    
+    final GridLayout parameterLayout = new GridLayout(3, false);
+    parameterGroup.setLayout(parameterLayout);
 
     final Label colorLabel = new Label(parameterGroup, SWT.LEFT);
     colorLabel.setText(Messages.getString("EditQuadPolygonDialog.22")); //$NON-NLS-1$
+    final GridData gridData = new GridData();
+    gridData.minimumWidth = 200;
+    colorLabel.setLayoutData(gridData);
     setGridLayout(colorLabel, 1);
     
     this.colorSelector = new ColorSelectorButton(parameterGroup);
@@ -178,7 +181,7 @@ public class EditQuadPolygonDialog {
   public void createParameterBoxes(final Group parameterGroup) {
     this.primitiveType.setText(Messages.getString("EditQuadPolygonDialog.23")); //$NON-NLS-1$
     
-    final QuadPolygonModel polygon = this.primitive;
+    final QuadPolygonModel polygon = (QuadPolygonModel)this.primitive;
     
     final VertexModel vertex1 = polygon.getVertex(0);
     this.vertex1X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.3"), "" + vertex1.getX());  //$NON-NLS-1$//$NON-NLS-2$
@@ -384,6 +387,25 @@ public class EditQuadPolygonDialog {
    * @return boolean
    */
   boolean containOnlyNumbers() {
+    if (this.rotationX.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.rotationY.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.rotationZ.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.translationX.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.translationY.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.translationZ.containsOnlyNumbers() == false) {
+      return false;
+    }
+    
     if (this.vertex1X.containsOnlyNumbers() == false) {
       return false;
     }
@@ -420,24 +442,7 @@ public class EditQuadPolygonDialog {
     if (this.vertex4Z.containsOnlyNumbers() == false) {
       return false;
     }
-    if (this.rotationX.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.rotationY.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.rotationZ.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.translationX.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.translationY.containsOnlyNumbers() == false) {
-      return false;
-    }
-    if (this.translationZ.containsOnlyNumbers() == false) {
-      return false;
-    }
+
     return true;
   }
 
@@ -448,13 +453,41 @@ public class EditQuadPolygonDialog {
     final ColorModel color = this.colorSelector.getColor();
     color.setAlpha(this.alpha.getIntValue());
     this.primitive.setColor(color);
-    this.primitive.setRotation(new RotationModel(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue()));
-    this.primitive.setTranslation(new TranslationModel(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue()));
+    this.primitive.setTranslation(getTranslation());
+    this.primitive.setRotation(getRotation());
 
     updateModelParameters();
   }
+  
+  /**
+   * Rotationを設定 受け取ったRotationを変更に応じて設定
+   * 
+   * @return rotation
+   */
+  private RotationModel getRotation() {
+    final RotationModel rotation = new RotationModel();
+    rotation.setX(this.rotationX.getFloatValue());
+    rotation.setY(this.rotationY.getFloatValue());
+    rotation.setZ(this.rotationZ.getFloatValue());
+    return rotation;
+  }
+
+  /**
+   * Translationを返します。
+   * 
+   * @return translation
+   */
+  private TranslationModel getTranslation() {
+    final TranslationModel translation = new TranslationModel();
+    translation.setX(this.translationX.getFloatValue());
+    translation.setY(this.translationY.getFloatValue());
+    translation.setZ(this.translationZ.getFloatValue());
+    return translation;
+  }
 
   public void updateModelParameters() {
+    final QuadPolygonModel polygon = (QuadPolygonModel)this.primitive;
+    
     final VertexModel[] vertices = new VertexModel[4];
 
     vertices[0] = new VertexModel(this.vertex1X.getFloatValue(), this.vertex1Y.getFloatValue(), this.vertex1Z.getFloatValue());
@@ -462,7 +495,7 @@ public class EditQuadPolygonDialog {
     vertices[2] = new VertexModel(this.vertex3X.getFloatValue(), this.vertex3Y.getFloatValue(), this.vertex3Z.getFloatValue());
     vertices[3] = new VertexModel(this.vertex4X.getFloatValue(), this.vertex4Y.getFloatValue(), this.vertex4Z.getFloatValue());
 
-    this.primitive.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2], vertices[3]));
+    polygon.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2], vertices[3]));
   }
   
   public boolean isChanged() {
