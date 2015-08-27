@@ -676,6 +676,10 @@ public class AnimationWindow extends ApplicationWindow {
       return;
     }
     
+    if (this.manager.areMovingGroupsRead() == false) {
+      return;
+    }
+    
     this.manager.prepareMovingGroups();
 
     prepareSlider();

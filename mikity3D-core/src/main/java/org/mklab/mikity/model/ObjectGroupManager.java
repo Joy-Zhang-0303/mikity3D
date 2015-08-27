@@ -71,6 +71,26 @@ public class ObjectGroupManager {
   }
 
   /**
+   * 可動グループの準備ができるか判定します。
+   * 
+   * @return 可動グループの準備ができるならばtrue
+   */
+  public boolean areMovingGroupsRead() {
+    for (final ObjectGroup objectGroup : this.objectGroups) {
+      final GroupModel group = objectGroup.getGroup();
+      if (group == null || group.hasAnimation() == false) {
+        continue;
+      }
+      
+      if (areAnimationsRead(group.getAnimations()) == false) {
+        return false;
+      }
+    }
+    
+    return true;
+  }
+
+  /**
    * 可動グループを準備します。
    */
   public void prepareMovingGroups() {
@@ -121,6 +141,24 @@ public class ObjectGroupManager {
     }
 
     return sampler;
+  }
+  
+  /**
+   * アニメーションのソースが登録されているか判定します。
+   * 
+   * @param animation アニメーション
+   * @return アニメーションのソースが登録されていればtrue
+   */
+  private boolean areAnimationsRead(final AnimationModel[] animations) {
+    for (final AnimationModel animation : animations) {
+      final SourceModel source = animation.getSource();
+      final DoubleMatrix data = this.sources.get(source.getId());
+      if (data.getRowSize() < source.getNumber()) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   /**

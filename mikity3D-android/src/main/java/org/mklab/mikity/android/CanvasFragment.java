@@ -490,6 +490,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       return;
     }
     
+    if (this.manager.areMovingGroupsRead() == false) {
+      return;
+    }
+    
     this.manager.prepareMovingGroups();
     
     prepareTimeTable();

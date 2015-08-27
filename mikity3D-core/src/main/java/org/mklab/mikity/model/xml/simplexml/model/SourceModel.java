@@ -124,5 +124,13 @@ public class SourceModel implements Serializable, Cloneable {
   public void setId(String id) {
     this.id = id;
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "SourceModel(id=" + this.id + ", number=" + this.number + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+  }
 
 }
