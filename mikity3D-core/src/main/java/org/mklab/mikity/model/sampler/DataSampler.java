@@ -7,6 +7,7 @@ package org.mklab.mikity.model.sampler;
 
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.CoordinateParameterType;
+import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
 
 
 /**
@@ -28,9 +29,9 @@ public interface DataSampler {
    * 抽出するパラメータの型と番号を設定します。
    * 
    * @param type パラメータの型
-   * @param index 番号
+   * @param source ソース
    */
-  void sample(CoordinateParameterType type, int index);
+  void sample(CoordinateParameterType type, SourceModel source);
 
   /**
    * データの個数を返します。

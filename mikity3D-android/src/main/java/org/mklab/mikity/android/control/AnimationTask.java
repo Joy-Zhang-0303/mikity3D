@@ -24,7 +24,6 @@ import android.os.SystemClock;
  * @version $Revision: 1.6 $.2005/01/24
  */
 public class AnimationTask extends TimerTask {
-
   /** アニメーションの速度倍率(1.0のときに実時間で再生) */
   private double speedScale = 1.0;
   /** グループマネージャ　 */
@@ -34,31 +33,29 @@ public class AnimationTask extends TimerTask {
   /** 現在の時間　 */
   private double currentTime = 0.0;
   /** 開始時間　 */
-  private final double initialTime;
+  private final double startTime;
   /** 終了時間　 */
   private double endTime = 0.0;
-  /** 最後の更新時間 */
-//  private long lastUpdatedTimeMillis = SystemClock.uptimeMillis();
-  /** モデルキャンバス　 */
+  /** レンダラー */
   private ObjectRenderer renderer;
-  /** 遅延時間*/
+  /** 遅延時間。 */
   private long delayTime;
 
   /**
-   * コンストラクター
+   * 新しく生成された<code>AnimationTask</code>オブジェクトを初期化します。
    * 
-   * @param initialTime 開始時間
+   * @param startTime 開始時間
    * @param endTime 終了時間
    * @param manager グループマネージャー
-   * @param canvas モデルキャンバス
+   * @param renderer レンダラー
    * @param delayTime 遅延時間
    */
-  public AnimationTask(double initialTime, double endTime, ObjectGroupManager manager, ObjectRenderer canvas, long delayTime) {
+  public AnimationTask(double startTime, double endTime, ObjectGroupManager manager, ObjectRenderer renderer, long delayTime) {
+    this.startTime = startTime;
     this.endTime = endTime;
-    this.currentTime = initialTime;
+    this.currentTime = startTime;
     this.manager = manager;
-    this.initialTime = initialTime;
-    this.renderer = canvas;
+    this.renderer = renderer;
     this.delayTime = delayTime;
   }
 
@@ -73,7 +70,9 @@ public class AnimationTask extends TimerTask {
   }
 
   /**
-   * アニメーションの速度倍率を返します。 速度は1.0のときに実時間で再生します。
+   * アニメーションの速度倍率を返します。 
+   * 
+   * 速度は1.0のときに実時間で再生します。
    * 
    * @return アニメーションの速度倍率
    */
@@ -82,7 +81,9 @@ public class AnimationTask extends TimerTask {
   }
 
   /**
-   * アニメーションの速度倍率を設定します。 速度が1.0のときに実時間で再生します。
+   * アニメーションの速度倍率を設定します。
+   * 
+   * 速度が1.0のときに実時間で再生します。
    * 
    * @param speedScale アニメーションの速度倍率
    */
@@ -91,16 +92,18 @@ public class AnimationTask extends TimerTask {
   }
 
   /**
-   * 再生ボタンが押されるとされます。 {@inheritDoc}
+   * 再生ボタンが押されると実行されます。
+   * 
+   * {@inheritDoc}
    */
   @Override
   public void run() {
-    if (this.currentTime == this.initialTime) {
+    if (this.currentTime == this.startTime) {
       setUpAnimation();
     }
     
-    final long ctime = SystemClock.uptimeMillis()-this.delayTime;
-    this.currentTime = this.speedScale*(ctime- this.initialTime)/1000;
+    final long ctime = SystemClock.uptimeMillis() - this.delayTime;
+    this.currentTime = this.speedScale*(ctime - this.startTime)/1000;
 
     if (this.manager.hasAnimation()) {
       try {

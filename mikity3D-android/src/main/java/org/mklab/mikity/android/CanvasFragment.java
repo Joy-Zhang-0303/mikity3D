@@ -59,6 +59,9 @@ import android.widget.LinearLayout;
  * @version $Revision$, 2014/10/10 
  */
 public class CanvasFragment extends RoboFragment implements SensorEventListener {
+  /** ビュー */
+  @InjectView(R.id.layout_fragment_canvas)
+  View view;
 
   GLSurfaceView glView;
   boolean mIsInitScreenSize;
@@ -87,8 +90,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   
   Map<String,DoubleMatrix> sourceData = new HashMap<String,DoubleMatrix>();
   
-  private double[] timeTable;
-  private double endTime;
   private int animationSpeed;
   boolean playable = true;
   AnimationTask animationTask;
@@ -128,21 +129,23 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   protected Uri sourceUri;
   /** 画面回転時に、時間データを読み込み中ならばtrue */
   protected boolean rotateTimeDataFlag = false;
-  /** ビュー */
-  @InjectView(R.id.layout_fragment_canvas)
-  View view;
   /** プログレスダイアログ */
   ProgressDialog progressDialog;
   /** 無効な時間データが読み込まれたならばtrue */
   private boolean setIllegalSourceData = false;
   /** ポーズボタンが押されたならばtrue */
   boolean isPaused = false;
+
+  private double[] timeTable;
+
   /** アニメーションの開始時間 */
   private long startTime;
+  /** アニメーションの終了時間。 */
+  private double endTime;
   /** アニメーションの一時停止時間 */
   private long pausedTime;
-  /** アニメーションの待ち時間 */
-  private long waitTime;
+  /** アニメーションの遅延時間 */
+  private long delayTime;
 
   /**
    * {@inheritDoc}
@@ -473,7 +476,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public void runAnimation() {
     if (this.isPaused == false) {
       this.startTime = SystemClock.uptimeMillis();
-      this.waitTime = 0;
+      this.delayTime = 0;
     }
     
     this.animationSpeed = this.activity.ndFragment.animationSpeed;
@@ -498,11 +501,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.endTime = this.manager.getStopTime();
     
     if (this.isPaused) {
-      this.waitTime += SystemClock.uptimeMillis() - this.pausedTime;
+      this.delayTime += SystemClock.uptimeMillis() - this.pausedTime;
     }
     
     this.isPaused = false;
-    this.animationTask = new AnimationTask(this.startTime, this.endTime, getManager(), getModelRender(), this.waitTime);
+    this.animationTask = new AnimationTask(this.startTime, this.endTime, getManager(), getModelRender(), this.delayTime);
     this.animationTask.setSpeedScale((double)this.animationSpeed / 10);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 

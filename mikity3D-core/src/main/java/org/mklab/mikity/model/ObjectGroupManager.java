@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.mklab.mikity.model.sampler.AbstractDataSampler;
 import org.mklab.mikity.model.sampler.ClosenessDataSampler;
 import org.mklab.mikity.model.sampler.DataSampler;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
@@ -49,6 +50,8 @@ public class ObjectGroupManager {
    * @param t 時刻
    */
   public void updateObjectGroups(final double t) {
+    AbstractDataSampler.clearTimeNumbers();
+    
     for (final ObjectGroupDataSampler movingGroup : this.movingGroups) {
       final ObjectGroup objectGroup = movingGroup.objectGroup;
       final DataSampler sampler = movingGroup.sampler;
@@ -107,15 +110,14 @@ public class ObjectGroupManager {
    * @param animation アニメーション
    */
   private DataSampler createSampler(final AnimationModel[] animations) {
-    final String id = animations[0].getSource().getId();
-    final DataSampler sampler = new ClosenessDataSampler(this.sources.get(id));
+    final DataSampler sampler = new ClosenessDataSampler(this.sources);
 
     for (final AnimationModel animation : animations) {
       final String target = animation.getTarget();
-      final SourceModel source = animation.getSource();
-      final int number = source.getNumber();
       final CoordinateParameterType type = CoordinateParameterType.getType(target);
-      sampler.sample(type, number);
+      
+      final SourceModel source = animation.getSource();
+      sampler.sample(type, source);
     }
 
     return sampler;

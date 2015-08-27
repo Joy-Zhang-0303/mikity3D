@@ -187,10 +187,10 @@ public class Coordinate {
   /**
    * 値を設定します。
    * 
-   * @param value 値
    * @param type パラメータの型
+   * @param value 値
    */
-  public void setValue(double value, CoordinateParameterType type) {
+  public void setValue(CoordinateParameterType type, double value) {
     switch (type) {
       case TRANSLATION_X:
         setTranslationX(value);
