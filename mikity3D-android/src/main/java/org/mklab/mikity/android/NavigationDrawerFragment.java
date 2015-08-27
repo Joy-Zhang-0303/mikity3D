@@ -97,7 +97,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** モデルを選択するときに押されるボタン */
   Button sourceSelectButton;
   /** モデルデータ読み込むときに押されるボタン */
-  Button modelSelectionButton;
+  Button modelSelectButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton gyroToggleButton;
@@ -148,13 +148,13 @@ public class NavigationDrawerFragment extends RoboFragment {
 
     this.canvasActivity = (CanvasActivity)getActivity();
 
-    this.modelSelectionButton = (Button)view.findViewById(R.id.modelSelectButton);
-    this.sourceSelectButton = (Button)view.findViewById(R.id.timeSelectButton);
+    this.modelSelectButton = (Button)view.findViewById(R.id.modelSelectButton);
+    this.sourceSelectButton = (Button)view.findViewById(R.id.sourceSelectButton);
     this.quickButton = (Button)view.findViewById(R.id.quickButton);
     this.slowButton = (Button)view.findViewById(R.id.slowButton);
-    this.sourceReloadButton = (Button)view.findViewById(R.id.reloadButton);
-    this.sourceDeleteButton = (Button)view.findViewById(R.id.timeDataDeleteButton);
-    this.sourceNumberChangeButton = (Button)view.findViewById(R.id.sampleSetColumnButton);
+    this.sourceReloadButton = (Button)view.findViewById(R.id.sourceReloadButton);
+    this.sourceDeleteButton = (Button)view.findViewById(R.id.sourceDeleteButton);
+    this.sourceNumberChangeButton = (Button)view.findViewById(R.id.sourceNumberChangeButton);
 
     this.sourceSelectButton.setEnabled(false);
     this.quickButton.setEnabled(false);
@@ -163,7 +163,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.sourceDeleteButton.setEnabled(false);
     this.sourceNumberChangeButton.setEnabled(false);
 
-    this.modelSelectionButton.setOnClickListener(new View.OnClickListener() {
+    this.modelSelectButton.setOnClickListener(new View.OnClickListener() {
 
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_FILE_OR_DIRECTORY;
 
