@@ -40,9 +40,10 @@ public class GroupModel implements Serializable, Cloneable {
 
   /** Primitives */
   @ElementListUnion({
-    @ElementList(entry = "box", inline = true, type = BoxModel.class), 
-    @ElementList(entry = "cylinder", inline = true, type = CylinderModel.class),
+    @ElementList(entry = "box", inline = true, type = BoxModel.class),
+    @ElementList(entry = "capsule", inline = true, type = CapsuleModel.class),
     @ElementList(entry = "cone", inline = true, type = ConeModel.class), 
+    @ElementList(entry = "cylinder", inline = true, type = CylinderModel.class),
     @ElementList(entry = "sphere", inline = true, type = SphereModel.class),
     @ElementList(entry = "trianglePolygon", inline = true, type = TrianglePolygonModel.class), 
     @ElementList(entry = "quadPolygon", inline = true, type = QuadPolygonModel.class),
