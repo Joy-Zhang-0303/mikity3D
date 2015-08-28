@@ -10,13 +10,13 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/animationSpeedTextView"
+                android:id="@+id/animationSpeedText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:text="@string/animationSpeedTextView" />
+                android:text="@string/animationSpeedText" />
 
             <Button
                 android:id="@+id/slowButton"
@@ -51,11 +51,11 @@
             android:layout_height="match_parent" >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/modelPathLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/textView2" />
+                android:text="@string/modelPathLabel" />
 
             <Button
                 android:id="@+id/modelSelectButton"
@@ -79,10 +79,10 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/sourcePath"
+                android:id="@+id/sourcePathLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sourcePath"
+                android:text="@string/sourcePathLabel"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <Button
@@ -93,7 +93,7 @@
                 android:text="@string/fileSelectButton" />
 
             <TextView
-                android:id="@+id/filePathView"
+                android:id="@+id/sourcePathView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="20"
@@ -135,11 +135,11 @@
                 android:text="@string/gyroToggleButton" />
 
             <TextView
-                android:id="@+id/UseAccelerTextView"
+                android:id="@+id/useAccelerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/UseAccelerTextView" />
+                android:text="@string/useAccelerTextView" />
 
             <ToggleButton
                 android:id="@+id/accelerToggleButton"
@@ -153,18 +153,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
     		<TextView
-    		    android:id="@+id/rotateLayoutTextView"
+    		    android:id="@+id/rotateToggleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/rotateLayoutTextView" />
+                android:text="@string/rotateToggleTextView" />
     		
     		<ToggleButton
-                android:id="@+id/rotateLayoutButton"
+                android:id="@+id/rotateToggleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/rotateLayoutButton" />
+                android:text="@string/rotateToggleButton" />
     	</LinearLayout>
  <!--         
     	<LinearLayout
@@ -232,7 +232,7 @@
                 android:text="@string/assetsModelText" />
 
             <Button
-                android:id="@+id/assetsModelButtonView"
+                android:id="@+id/assetsModelButton"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -244,14 +244,14 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/assetsSource0TextView"
+                android:id="@+id/assetsSource0Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/assetsSource0Text" />
 
             <Button
-                android:id="@+id/assetsSource0ButtonView"
+                android:id="@+id/assetsSource0Button"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -262,14 +262,14 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/assetsSource1TextView"
+                android:id="@+id/assetsSource1Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/assetsSource1Text" />
 
             <Button
-                android:id="@+id/assetsSource1ButtonView"
+                android:id="@+id/assetsSource1Button"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -280,14 +280,14 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/assetsSource2TextView"
+                android:id="@+id/assetsSource2Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/assetsSource2Text" />
 
             <Button
-                android:id="@+id/assetsSource2ButtonView"
+                android:id="@+id/assetsSource2Button"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -298,14 +298,14 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/assetsSource3TextView"
+                android:id="@+id/assetsSource3Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/assetsSource3Text" />
 
             <Button
-                android:id="@+id/assetsSource3ButtonView"
+                android:id="@+id/assetsSource3Button"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
