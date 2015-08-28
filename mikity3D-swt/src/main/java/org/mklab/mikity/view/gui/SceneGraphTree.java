@@ -208,40 +208,6 @@ public class SceneGraphTree {
 
     final MenuItem addBox = new MenuItem(menu, SWT.POP_UP);
     addBox.setText(Messages.getString("SceneGraphTree.4")); //$NON-NLS-1$
-
-    final MenuItem addCylinder = new MenuItem(menu, SWT.POP_UP);
-    addCylinder.setText(Messages.getString("SceneGraphTree.0")); //$NON-NLS-1$
-
-    final MenuItem addSphere = new MenuItem(menu, SWT.POP_UP);
-    addSphere.setText(Messages.getString("SceneGraphTree.28")); //$NON-NLS-1$
-
-    final MenuItem addCone = new MenuItem(menu, SWT.POP_UP);
-    addCone.setText(Messages.getString("SceneGraphTree.31"));  //$NON-NLS-1$
-
-    final MenuItem addTrianglePolygon = new MenuItem(menu, SWT.POP_UP);
-    addTrianglePolygon.setText(Messages.getString("SceneGraphTree.5")); //$NON-NLS-1$
-
-    final MenuItem addQuadPolygon = new MenuItem(menu, SWT.POP_UP);
-    addQuadPolygon.setText(Messages.getString("SceneGraphTree.6")); //$NON-NLS-1$
-
-    final MenuItem addGroup = new MenuItem(menu, SWT.POP_UP);
-    addGroup.setText(Messages.getString("SceneGraphTree.7")); //$NON-NLS-1$
-
-    final MenuItem cut = new MenuItem(menu, SWT.POP_UP);
-    cut.setText(Messages.getString("SceneGraphTree.32")); //$NON-NLS-1$
-
-    final MenuItem copy = new MenuItem(menu, SWT.POP_UP);
-    copy.setText(Messages.getString("SceneGraphTree.33")); //$NON-NLS-1$
-
-    final MenuItem paste = new MenuItem(menu, SWT.POP_UP);
-    paste.setText(Messages.getString("SceneGraphTree.34")); //$NON-NLS-1$
-
-    final MenuItem edit = new MenuItem(menu, SWT.POP_UP);
-    edit.setText(Messages.getString("SceneGraphTree.12")); //$NON-NLS-1$
-
-    final MenuItem delete = new MenuItem(menu, SWT.POP_UP);
-    delete.setText(Messages.getString("SceneGraphTree.13")); //$NON-NLS-1$
-    
     addBox.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -254,6 +220,8 @@ public class SceneGraphTree {
       }
     });
 
+    final MenuItem addCylinder = new MenuItem(menu, SWT.POP_UP);
+    addCylinder.setText(Messages.getString("SceneGraphTree.0")); //$NON-NLS-1$
     addCylinder.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -266,6 +234,8 @@ public class SceneGraphTree {
       }
     });
 
+    final MenuItem addSphere = new MenuItem(menu, SWT.POP_UP);
+    addSphere.setText(Messages.getString("SceneGraphTree.28")); //$NON-NLS-1$
     addSphere.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -278,6 +248,8 @@ public class SceneGraphTree {
       }
     });
 
+    final MenuItem addCone = new MenuItem(menu, SWT.POP_UP);
+    addCone.setText(Messages.getString("SceneGraphTree.31"));  //$NON-NLS-1$
     addCone.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -289,7 +261,9 @@ public class SceneGraphTree {
         updateTree();
       }
     });
-    
+
+    final MenuItem addTrianglePolygon = new MenuItem(menu, SWT.POP_UP);
+    addTrianglePolygon.setText(Messages.getString("SceneGraphTree.5")); //$NON-NLS-1$
     addTrianglePolygon.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -302,6 +276,8 @@ public class SceneGraphTree {
       }
     });
 
+    final MenuItem addQuadPolygon = new MenuItem(menu, SWT.POP_UP);
+    addQuadPolygon.setText(Messages.getString("SceneGraphTree.6")); //$NON-NLS-1$
     addQuadPolygon.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -314,6 +290,8 @@ public class SceneGraphTree {
       }
     });
 
+    final MenuItem addGroup = new MenuItem(menu, SWT.POP_UP);
+    addGroup.setText(Messages.getString("SceneGraphTree.7")); //$NON-NLS-1$
     addGroup.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -330,16 +308,8 @@ public class SceneGraphTree {
       }
     });
 
-    edit.addSelectionListener(new SelectionAdapter() {
-
-      @Override
-      public void widgetSelected(SelectionEvent e) {
-        final EditModelDialog dialog = EditModelDialogFactory.create(SceneGraphTree.this.targetObject, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
-        dialog.open();
-        updateTree();
-      }
-    });
-
+    final MenuItem cut = new MenuItem(menu, SWT.POP_UP);
+    cut.setText(Messages.getString("SceneGraphTree.32")); //$NON-NLS-1$
     cut.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -355,7 +325,9 @@ public class SceneGraphTree {
         removeSelectedItem();
       }
     });
-    
+
+    final MenuItem copy = new MenuItem(menu, SWT.POP_UP);
+    copy.setText(Messages.getString("SceneGraphTree.33")); //$NON-NLS-1$
     copy.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -369,8 +341,9 @@ public class SceneGraphTree {
         }
       }
     });
-    
-    
+
+    final MenuItem paste = new MenuItem(menu, SWT.POP_UP);
+    paste.setText(Messages.getString("SceneGraphTree.34")); //$NON-NLS-1$
     paste.addSelectionListener(new SelectionAdapter() {
 
       @Override
@@ -394,7 +367,21 @@ public class SceneGraphTree {
         }
       }
     });
-    
+
+    final MenuItem edit = new MenuItem(menu, SWT.POP_UP);
+    edit.setText(Messages.getString("SceneGraphTree.12")); //$NON-NLS-1$
+    edit.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        final EditModelDialog dialog = EditModelDialogFactory.create(SceneGraphTree.this.targetObject, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        dialog.open();
+        updateTree();
+      }
+    });
+
+    final MenuItem delete = new MenuItem(menu, SWT.POP_UP);
+    delete.setText(Messages.getString("SceneGraphTree.13")); //$NON-NLS-1$
     delete.addSelectionListener(new SelectionAdapter() {
 
       @Override
