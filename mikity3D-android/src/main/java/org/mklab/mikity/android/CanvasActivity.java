@@ -39,17 +39,14 @@ public class CanvasActivity extends RoboFragmentActivity {
   final static int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
   
+  /** 加速度センサーを利用するならばtrue。 */
   private boolean registerAccerlerometer;
+  
+  /** 磁気センサーを利用するならばtrue。 */
   private boolean registerMagneticFieldSensor;
 
   /** NavigationDrawer用のアクションバートグル */
   private ActionBarDrawerToggle mDrawerToggle;
-
-  /** NavigationDrawerのレイアウト */
-  private DrawerLayout mDrawer;
-
-  /** アクティビティのconfiguration */
-  private Configuration configuration;
 
   /** CanvasFragment */
   @InjectFragment(R.id.fragment_canvas)
@@ -69,10 +66,10 @@ public class CanvasActivity extends RoboFragmentActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.canvas);
 
-    this.mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
-    this.mDrawerToggle = new ActionBarDrawerToggle(this, this.mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
+    final DrawerLayout mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
+    this.mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
     this.mDrawerToggle.syncState();
-    this.mDrawer.setDrawerListener(this.mDrawerToggle);
+    mDrawer.setDrawerListener(this.mDrawerToggle);
     getActionBar().setDisplayHomeAsUpEnabled(true);
     getActionBar().setLogo(getResources().getDrawable(R.drawable.icon));
     getActionBar().setHomeButtonEnabled(true);
@@ -286,7 +283,7 @@ public class CanvasActivity extends RoboFragmentActivity {
    * 画面回転時の処理を行います。
    */
   public void controlRotation() {
-    this.configuration = getResources().getConfiguration();
+    final Configuration configuration = getResources().getConfiguration();
     final int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
     boolean isReverse = false;
     
@@ -301,7 +298,7 @@ public class CanvasActivity extends RoboFragmentActivity {
           break;
       }
 
-      if (CanvasActivity.this.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+      if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
         if (isReverse) {
           setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
         } else {

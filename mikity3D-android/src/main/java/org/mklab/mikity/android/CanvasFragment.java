@@ -90,7 +90,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   
   Map<String,DoubleMatrix> sourceData = new HashMap<String,DoubleMatrix>();
   
-  private int animationSpeed;
+
   boolean playable = true;
   AnimationTask animationTask;
   /** センサーマネージャー */
@@ -479,7 +479,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       this.delayTime = 0;
     }
     
-    this.animationSpeed = this.activity.ndFragment.animationSpeed;
+    final int animationSpeed = this.activity.ndFragment.animationSpeed;
     
     if (this.playable == false) {
       this.timer.cancel();
@@ -510,7 +510,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     
     this.isPaused = false;
     this.animationTask = new AnimationTask(this.startTime, this.endTime, getManager(), getModelRender(), this.delayTime);
-    this.animationTask.setSpeedScale((double)this.animationSpeed / 10);
+    this.animationTask.setSpeedScale(((double)animationSpeed) / 10);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**
