@@ -13,10 +13,13 @@ import android.support.v4.app.DialogFragment;
 
 
 /**
+ * 例外を表示するダイアログを表すクラスです。
+ * 
  * @author soda
  * @version $Revision$, 2015/01/16
  */
 public class ExceptionDialogFragment extends DialogFragment {
+  /** ダイアログに表示するメッセージ。 */
   private String message;
 
   /**
@@ -25,7 +28,7 @@ public class ExceptionDialogFragment extends DialogFragment {
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
     final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setMessage(this.message).setPositiveButton("閉じる", new DialogInterface.OnClickListener() { //$NON-NLS-1$
+    builder.setMessage(this.message).setPositiveButton("Close", new DialogInterface.OnClickListener() { //$NON-NLS-1$
           /**
            * {@inheritDoc}
            */

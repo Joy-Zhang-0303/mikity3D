@@ -17,8 +17,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.util.Log;
-
 
 /**
  * モデルデータを別のスレッドでダウンロードするためのクラスです。
@@ -27,7 +25,6 @@ import android.util.Log;
  * @version $Revision$, 2015/02/03
  */
 public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> {
-
   /** ストリーム */
   private InputStream input;
   /** NavigationDrawer */
@@ -57,10 +54,8 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> 
         this.input = httpResponse.getEntity().getContent();
       }
     } catch (ClientProtocolException e1) {
-      Log.d("HttpSampleActivity", e1.getMessage()); //$NON-NLS-1$
       throw new RuntimeException(e1);
     } catch (IOException e1) {
-      Log.d("HttpSampleActivity", e1.getMessage()); //$NON-NLS-1$
       throw new RuntimeException(e1);
     }
     
@@ -80,7 +75,7 @@ public class DownloadFileFromURL extends AsyncTask<String, String, InputStream> 
    */
   @Override
   protected void onPostExecute(InputStream anInput) {
-    this.fragment.input = anInput;
+    // this.fragment.input = anInput;
     final Drawable d = Drawable.createFromStream(anInput, "webimage"); //$NON-NLS-1$
   }
 }

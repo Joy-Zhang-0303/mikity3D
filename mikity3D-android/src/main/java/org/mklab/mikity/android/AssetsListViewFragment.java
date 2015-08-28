@@ -38,9 +38,6 @@ import android.widget.ListView;
  * @version $Revision$, 2015/03/26
  */
 public class AssetsListViewFragment extends RoboFragment {
-
-  private View view;
-  ListView listView;
   String currentPath = "sample"; //$NON-NLS-1$
   CanvasActivity canvasActivity;
   AssetManager assetManager;
@@ -64,18 +61,19 @@ public class AssetsListViewFragment extends RoboFragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-    this.view = inflater.inflate(R.layout.list_assets, container, false);
+    final View view = inflater.inflate(R.layout.list_assets, container, false);
 
     this.assetManager = getResources().getAssets();
-    this.listView = (ListView)this.view.findViewById(R.id.assetsListView);
+    
+    final ListView listView = (ListView)view.findViewById(R.id.assetsListView);
     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.canvasActivity, android.R.layout.simple_list_item_1, getFilesInAssets(this.currentPath));
-    this.listView.setAdapter(adapter);
+    listView.setAdapter(adapter);
 
     // リスト項目がクリックされた時の処理
-    this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        final String item = (String)AssetsListViewFragment.this.listView.getItemAtPosition(position);
+        final String item = (String)listView.getItemAtPosition(position);
         final String nextFile = AssetsListViewFragment.this.currentPath + File.separator + item;
         String[] nextFiles = getFilesInAssets(nextFile);
         List<String> nextFileLimits = new ArrayList<String>();
@@ -90,7 +88,7 @@ public class AssetsListViewFragment extends RoboFragment {
 
         if (nextFiles.length > 0) {
           AssetsListViewFragment.this.currentPath = nextFile;
-          AssetsListViewFragment.this.listView.setAdapter(new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, android.R.layout.simple_list_item_1, nextFiles));
+          listView.setAdapter(new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, android.R.layout.simple_list_item_1, nextFiles));
         } else {
           //copyAssetsFiles(AssetsListViewFragment.this.currentPath, item, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + File.separator + "org.mklab.mikity")); //$NON-NLS-1$
 
@@ -124,7 +122,8 @@ public class AssetsListViewFragment extends RoboFragment {
         }
       }
     });
-    return this.view;
+    
+    return view;
   }
 
   /**
@@ -271,14 +270,14 @@ public class AssetsListViewFragment extends RoboFragment {
   /**
    * 
    */
-  public void fragmentTransaction() {
-    final FragmentManager localFragmentManager = getFragmentManager();
-    final FragmentTransaction fragmentTransaction = localFragmentManager.beginTransaction();
+  public void commitFragmentTransaction() {
+    final FragmentManager manager = getFragmentManager();
+    final FragmentTransaction transaction = manager.beginTransaction();
     final NavigationDrawerFragment fragment = new NavigationDrawerFragment();
 
-    fragmentTransaction.replace(R.id.assets_list_layput, fragment);
-    fragmentTransaction.addToBackStack(null);
-    fragmentTransaction.commit();
+    transaction.replace(R.id.assets_list_layput, fragment);
+    transaction.addToBackStack(null);
+    transaction.commit();
   }
 
   /**

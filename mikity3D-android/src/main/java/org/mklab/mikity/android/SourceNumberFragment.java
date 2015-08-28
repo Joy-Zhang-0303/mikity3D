@@ -29,20 +29,15 @@ import roboguice.fragment.RoboFragment;
  * @version $Revision$, 2015/02/03
  */
 public class SourceNumberFragment extends RoboFragment {
-
   /** リストビュー */
   private ListView listView;
-
-  private View view;
-
   /** グループリスト */
   List<GroupManager> groupManagers;
 
   /** GroupManagerの親を管理するためのグループマネージャー */
   GroupManager parentGroupManager;
 
-  int groupPosition = 0;
-  private Button backButton;
+  /** NavigationDrawerFragment */
   private NavigationDrawerFragment fragment;
   List<Integer> targetNumbers = new ArrayList<Integer>();
 
@@ -51,11 +46,11 @@ public class SourceNumberFragment extends RoboFragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    this.view = inflater.inflate(R.layout.set_column_fragment, container, false);
-    this.listView = (ListView)this.view.findViewById(R.id.list_view_column);
+    final View view = inflater.inflate(R.layout.set_column_fragment, container, false);
+    this.listView = (ListView)view.findViewById(R.id.list_view_column);
     configureListView();
-    this.backButton = (Button)this.view.findViewById(R.id.rootButton);
-    this.backButton.setOnClickListener(new OnClickListener() {
+    final Button backButton = (Button)view.findViewById(R.id.rootButton);
+    backButton.setOnClickListener(new OnClickListener() {
 
       /**
        * {@inheritDoc}
@@ -72,7 +67,8 @@ public class SourceNumberFragment extends RoboFragment {
         configureListView();
       }
     });
-    return this.view;
+    
+    return view;
   }
 
   /**
@@ -93,8 +89,8 @@ public class SourceNumberFragment extends RoboFragment {
           return;
         }
 
-        SourceNumberFragment.this.groupPosition = position;
-        SourceNumberFragment.this.parentGroupManager = SourceNumberFragment.this.groupManagers.get(SourceNumberFragment.this.groupPosition);
+        final int groupPosition = position;
+        SourceNumberFragment.this.parentGroupManager = SourceNumberFragment.this.groupManagers.get(groupPosition);
         SourceNumberFragment.this.groupManagers = SourceNumberFragment.this.parentGroupManager.getItems();
         SourceNumberFragment.this.targetNumbers.add(position);
         configureListView();

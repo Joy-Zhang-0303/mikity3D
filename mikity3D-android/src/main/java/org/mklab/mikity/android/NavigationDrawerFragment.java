@@ -13,12 +13,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Timer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.searcher.ExcecuteSearchGroup;
 import org.mklab.mikity.model.searcher.GroupManager;
 import org.mklab.mikity.model.searcher.GroupNameManager;
@@ -53,42 +51,30 @@ import android.widget.ToggleButton;
  * @version $Revision$, 2015/01/16
  */
 public class NavigationDrawerFragment extends RoboFragment {
-
   static final String LOGTAG = null;
+  
+  CanvasActivity canvasActivity;
+
+  /** モデルのファイルパス。 */
+  TextView modelFilePathView;
+  /** ソースのファイルパス。 */
+  TextView sourceFilePathView;
+
+  /** ソースID。 */
+  String sourceId = null;
+
   /** アニメーション用タスク */
   AnimationTask animationTask;
-
-  /** */
-  static boolean playable = true;
-
-  /** 等間隔の時間を保存しとく配列 */
-  double[] timeTable;
-
-  Timer timer = new Timer();
-
-  /** */
-  ObjectGroupManager groupManager;
-
-  TextView sourceFilePathView;
-  TextView modelFilePathView;
-
-  /** 前回のタッチのｘ座標 */
-  float prevX = 0;
-  /** 前回のタッチのｙ座標 */
-  float prevY = 0;
-  /** アニメーションの再生速度 丸め誤差を防ぐために１０で割る必要があります。 */
+  
+  /** アニメーションの再生速度 丸め誤差を防ぐために10で割る必要があります。 */
   int animationSpeed = 10;
 
   /** アニメーションスピードを表示するエディットテキスト */
   EditText animationSpeedTextEdit;
   
-  /** モデルの入力ストリーム。 */
-  InputStream modelStream;
-  /** ソースの入力ストリーム。   */
-  InputStream sourceStream;
-  
   /** 3Dモデルが選ばれて表示されたかどうかのフラグ */
   boolean isSelectedModelFile;
+   
   /** アニメーションスピードを早くするときに押されるボタン */
   Button quickButton;
   /** アニメーションスピードを遅くするときに押されるボタン */
@@ -103,14 +89,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   ToggleButton gyroToggleButton;
   /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton accelerToggleButton;
-  ToggleButton rotateTogguleButton;
-  
-  String sourceFileName;
-  String modelFileName;
-  
-  CanvasActivity canvasActivity;
-  /** アニメーションスピードテキスト用のスピード */
-  int animationTextSpeed;
+  /** */
+  ToggleButton rotateTogguleButton;  
 
   /** ソースデータ再読み込みのためのボタン */
   Button sourceReloadButton;
@@ -118,12 +98,6 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button sourceDeleteButton;
   /** ソース番号を変更するためのボタン */
   Button sourceNumberChangeButton;
-  
-  private Cursor cursor;
-  private Cursor cursor2;
-  
-  /** ストリーム */
-  InputStream input;
 
   /** Assetsのモデルを読み込むためのボタン。 */
   Button assetsModelButton;
@@ -135,9 +109,6 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button assetsSource2Button;
   /** Assets3のソースを読み込むためのボタン。 */
   Button assetsSource3Button;
-  
-  /** ソースID。 */
-  String sourceId = null;
 
   /**
    * {@inheritDoc}
@@ -233,8 +204,8 @@ public class NavigationDrawerFragment extends RoboFragment {
       public void onClick(View view) {
         if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData.size() != 0) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData.clear();
-          NavigationDrawerFragment.this.sourceFileName = "..."; //$NON-NLS-1$
-          NavigationDrawerFragment.this.sourceFilePathView.setText(NavigationDrawerFragment.this.sourceFileName);
+          final String sourceFileName = "..."; //$NON-NLS-1$
+          NavigationDrawerFragment.this.sourceFilePathView.setText(sourceFileName);
         }
       }
     });
@@ -468,37 +439,38 @@ public class NavigationDrawerFragment extends RoboFragment {
       return;
     }
 
+    final String sourceFileName;
+    final InputStream sourceStream;
+    
     if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        this.sourceStream = this.canvasActivity.getContentResolver().openInputStream(uri);
+        sourceStream = this.canvasActivity.getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      this.cursor2 = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
-      this.cursor2.moveToFirst();
-      this.sourceFileName = this.cursor2.getString(this.cursor2.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      final Cursor cursor2 = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
+      cursor2.moveToFirst();
+      sourceFileName = cursor2.getString(cursor2.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      cursor2.close();
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
       final String sourceDataFilePath = uri.getPath();
       this.canvasActivity.canvasFragment.setSourceFilePath(sourceDataFilePath);
       try {
-        this.sourceStream = new FileInputStream(sourceDataFilePath);
+        sourceStream = new FileInputStream(sourceDataFilePath);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
       final String[] parts = sourceDataFilePath.split("/"); //$NON-NLS-1$
-      this.sourceFileName = parts[parts.length - 1];
+      sourceFileName = parts[parts.length - 1];
     }
     
-    this.sourceFilePathView.setText(this.sourceFileName);
+    this.sourceFilePathView.setText(sourceFileName);
     
     this.canvasActivity.canvasFragment.setSourceUri(uri);
-    this.canvasActivity.canvasFragment.loadSourceData(this.sourceStream,  uri.getPath(), this.sourceId);
-    // inputTimeDataFile has been already closed in the loadSourceData method. 
-    // this.inputTimeDataFile.close();
-    this.sourceStream = null;
-
+    this.canvasActivity.canvasFragment.loadSourceData(sourceStream,  uri.getPath(), this.sourceId);
+    // source has been already closed in the loadSourceData method. 
   }
 
   /**
@@ -510,38 +482,43 @@ public class NavigationDrawerFragment extends RoboFragment {
     if (uri == null) {
       return;
     }
-
+    
+    final String modelFileName;
+    final InputStream modelStream;
+    
     if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        this.modelStream = this.canvasActivity.getContentResolver().openInputStream(uri);
+        modelStream = this.canvasActivity.getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      this.cursor = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
-      this.cursor.moveToFirst();
-      this.modelFileName = this.cursor.getString(this.cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      final  Cursor cursor = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
+      cursor.moveToFirst();
+      modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      cursor.close();
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
       final String modelFilePath = uri.getPath();
       this.canvasActivity.canvasFragment.setModelFilePath(modelFilePath);
       try {
-        this.modelStream = new FileInputStream(modelFilePath);
+        modelStream = new FileInputStream(modelFilePath);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
       final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
-      this.modelFileName = parts[parts.length - 1];
+      modelFileName = parts[parts.length - 1];
     }
 
-    this.modelFilePathView.setText(this.modelFileName);
-    this.sourceFileName = "..."; //$NON-NLS-1$
-    this.sourceFilePathView.setText(this.sourceFileName);
+    this.modelFilePathView.setText(modelFileName);
+    final String sourceFileName = "..."; //$NON-NLS-1$
+    this.sourceFilePathView.setText(sourceFileName);
 
     try {
-      this.canvasActivity.canvasFragment.loadModelData(this.modelStream);
+      this.canvasActivity.canvasFragment.loadModelData(modelStream);
       setButtonEnabled(true);
-      this.modelStream.close();
+      modelStream.close();
+      
       if (this.canvasActivity.canvasFragment.sourceData.size() != 0) {
         this.canvasActivity.canvasFragment.sourceData.clear();
       }
