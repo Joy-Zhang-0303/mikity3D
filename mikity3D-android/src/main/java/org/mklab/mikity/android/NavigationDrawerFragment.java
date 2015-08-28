@@ -216,6 +216,27 @@ public class NavigationDrawerFragment extends RoboFragment {
         }
       }
     });
+    
+    this.sourceNumberChangeButton = (Button)mainView.findViewById(R.id.sourceNumberChangeButton);
+    this.sourceNumberChangeButton.setEnabled(false);
+    this.sourceNumberChangeButton.setOnClickListener(new OnClickListener() {
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View view) {
+        final FragmentManager manager = getFragmentManager();
+        final FragmentTransaction transaction = manager.beginTransaction();
+        final SourceNumberFragment fragment = new SourceNumberFragment();
+        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
+          fragment.setGroupManager(getGroupManager());
+          fragment.setNavigationDrawerFragment(NavigationDrawerFragment.this);
+
+          transaction.replace(R.id.fragment_navigation_drawer, fragment);
+          transaction.addToBackStack(null);
+          transaction.commit();
+        }
+      }
+    });
 
     this.gyroToggleButton = (ToggleButton)mainView.findViewById(R.id.gyroToggleButton);
     this.gyroToggleButton.setOnClickListener(new OnClickListener() {
@@ -238,7 +259,6 @@ public class NavigationDrawerFragment extends RoboFragment {
       public void onClick(View view) {
         if (NavigationDrawerFragment.this.accelerToggleButton.isChecked()) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerSensor = true;
-
         } else {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerSensor = false;
         }
@@ -247,33 +267,13 @@ public class NavigationDrawerFragment extends RoboFragment {
     });
 
     this.rotateTogguleButton = (ToggleButton)mainView.findViewById(R.id.rotateToggleButton);
+    this.rotateTogguleButton.setChecked(true);
     this.rotateTogguleButton.setOnClickListener(new OnClickListener() {
       /**
        * {@inheritDoc}
        */
       public void onClick(View view) {
         NavigationDrawerFragment.this.canvasActivity.controlRotation();
-      }
-    });
-
-    this.sourceNumberChangeButton = (Button)mainView.findViewById(R.id.sourceNumberChangeButton);
-    this.sourceNumberChangeButton.setEnabled(false);
-    this.sourceNumberChangeButton.setOnClickListener(new OnClickListener() {
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View view) {
-        final FragmentManager manager = getFragmentManager();
-        final FragmentTransaction transaction = manager.beginTransaction();
-        final SourceNumberFragment fragment = new SourceNumberFragment();
-        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
-          fragment.setGroupManager(getGroupManager());
-          fragment.setNavigationDrawerFragment(NavigationDrawerFragment.this);
-
-          transaction.replace(R.id.fragment_navigation_drawer, fragment);
-          transaction.addToBackStack(null);
-          transaction.commit();
-        }
       }
     });
 

@@ -288,6 +288,8 @@ public class CanvasActivity extends RoboFragmentActivity {
     boolean isReverse = false;
     
     if (this.ndFragment.rotateTogguleButton.isChecked()) {
+      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+    } else {
       switch (rotation) {
         case Surface.ROTATION_180:
         case Surface.ROTATION_270:
@@ -312,8 +314,6 @@ public class CanvasActivity extends RoboFragmentActivity {
         }
       }
       CanvasActivity.this.canvasFragment.modelRenderer.updateDisplay();
-    } else {
-      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
     }
   }
 
