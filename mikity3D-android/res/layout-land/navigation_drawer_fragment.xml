@@ -70,8 +70,25 @@
                 android:layout_height="wrap_content"
                 android:maxLength="20"
                 android:text="@string/filePathView" />
+        </LinearLayout>
+        
+       	<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
+            <TextView
+                android:id="@+id/sourceNumberChangeView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sourceNumberChangeView" />
 
+            <Button
+                android:id="@+id/sourceNumberChangeButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sourceNumberChangeButton" />
         </LinearLayout>
 
         <LinearLayout
@@ -98,7 +115,6 @@
                 android:layout_height="wrap_content"
                 android:maxLength="20"
                 android:text="@string/filePathView" />
-
                 
             <Button
                 android:id="@+id/sourceDeleteButton"
@@ -114,25 +130,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="@string/sourceReloadButton" />
-        </LinearLayout>
-
-       	<LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/sourceNumberChangeView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/sourceNumberChangeView" />
-
-            <Button
-                android:id="@+id/sourceNumberChangeButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sourceNumberChangeButton" />
         </LinearLayout>
         
         <LinearLayout
@@ -185,26 +182,7 @@
                 android:layout_weight="0"
                 android:text="@string/rotationLockButton" />
     	</LinearLayout>
- <!--         
-    	<LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/setSampleModelView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/setSampleModelView" />
-
-            <Button
-                android:id="@+id/setSampleModelButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/setSampleModelButton" />
-        </LinearLayout>
--->
 	    <Space android:layout_width="match_parent" android:layout_height="25dip"/>
 	
     	<LinearLayout

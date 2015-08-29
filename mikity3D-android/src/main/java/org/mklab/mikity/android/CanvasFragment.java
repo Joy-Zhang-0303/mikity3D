@@ -162,15 +162,15 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
     this.getResources();
     this.modelRenderer = new OpenglesObjectRenderer(this.glView);
-    // 描画のクラスを登録する
+
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
     initField();
+
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     this.activity = (CanvasActivity)getActivity();
 
-    // ScaleGestureDetecotorクラスのインスタンス生成
     this.gesDetect = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
     
     // タッチ操作の種類によってイベントを取得する
@@ -180,8 +180,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
        * {@inheritDoc}
        */
       public boolean onTouch(View v, MotionEvent event) {
-        final float transferAmountX;
-        final float transferAmountY;
         final int touchCount = event.getPointerCount();
         // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
         CanvasFragment.this.gesDetect.onTouchEvent(event);
@@ -196,8 +194,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
           // タッチしたまま移動
           case MotionEvent.ACTION_MOVE:
-            transferAmountX = event.getX() - CanvasFragment.this.prevX;
-            transferAmountY = event.getY() - CanvasFragment.this.prevY;
+            final float transferAmountX = event.getX() - CanvasFragment.this.prevX;
+            final float transferAmountY = event.getY() - CanvasFragment.this.prevY;
             CanvasFragment.this.prevX = event.getX();
             CanvasFragment.this.prevY = event.getY();
 

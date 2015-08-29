@@ -99,8 +99,6 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** ソース番号を変更するためのボタン */
   Button sourceNumberChangeButton;
 
-  /** Assetsのモデルを読み込むためのボタン。 */
-  Button assetsModelButton;
   /** Assets0のソースを読み込むためのボタン。 */
   Button assetsSource0Button;
   /** Assets1のソースを読み込むためのボタン。 */
@@ -119,6 +117,22 @@ public class NavigationDrawerFragment extends RoboFragment {
 
     this.canvasActivity = (CanvasActivity)getActivity();
 
+    createAnimationSpeedComponent(mainView);
+
+    createModelComponent(mainView);
+    
+    createSourceComponent(mainView);
+
+    createSensorComponent(mainView);
+
+    createSampleComponent(mainView);
+    
+    //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
+    this.canvasActivity.ndFragment = this;
+    return mainView;
+  }
+  
+  private void createAnimationSpeedComponent(final View mainView) {
     this.slowButton = (Button)mainView.findViewById(R.id.slowButton);
     this.slowButton.setEnabled(false);
     this.slowButton.setOnClickListener(new View.OnClickListener() {
@@ -156,8 +170,9 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
       }
     });
-    
+  }
 
+  private void createModelComponent(final View mainView) {
     this.modelSelectButton = (Button)mainView.findViewById(R.id.modelSelectButton);
     this.modelSelectButton.setOnClickListener(new View.OnClickListener() {
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_FILE_OR_DIRECTORY;
@@ -172,7 +187,9 @@ public class NavigationDrawerFragment extends RoboFragment {
     
     this.modelPathView = (TextView)mainView.findViewById(R.id.modelPathView);
     this.modelPathView.setMovementMethod(ScrollingMovementMethod.getInstance());
-    
+  }
+
+  private void createSourceComponent(final View mainView) {
     this.sourceSelectButton = (Button)mainView.findViewById(R.id.sourceSelectButton);
     this.sourceSelectButton.setEnabled(false);
     this.sourceSelectButton.setOnClickListener(new View.OnClickListener() {
@@ -237,7 +254,9 @@ public class NavigationDrawerFragment extends RoboFragment {
         }
       }
     });
+  }
 
+  private void createSensorComponent(final View mainView) {
     this.gyroscopeButton = (ToggleButton)mainView.findViewById(R.id.gyroscopeButton);
     this.gyroscopeButton.setOnClickListener(new OnClickListener() {
       /**
@@ -275,9 +294,11 @@ public class NavigationDrawerFragment extends RoboFragment {
         NavigationDrawerFragment.this.canvasActivity.controlRotation();
       }
     });
+  }
 
-    this.assetsModelButton = (Button)mainView.findViewById(R.id.assetsModelButton);
-    this.assetsModelButton.setOnClickListener(new OnClickListener() {
+  private void createSampleComponent(final View mainView) {
+    final Button assetsModelButton = (Button)mainView.findViewById(R.id.assetsModelButton);
+    assetsModelButton.setOnClickListener(new OnClickListener() {
       /**
        * {@inheritDoc}
        */
@@ -384,12 +405,6 @@ public class NavigationDrawerFragment extends RoboFragment {
         transaction.commit();
       }
     });
-
-    
-    // fragmentの値をactivityで保持。
-    //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
-    this.canvasActivity.ndFragment = this;
-    return mainView;
   }
 
   /**
