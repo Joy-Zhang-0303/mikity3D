@@ -139,50 +139,53 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/useGyroTextView"
+                android:id="@+id/gyroscopeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/useGyroTextView" />
+                android:text="@string/gyroscopeTextView" />
 
             <ToggleButton
-                android:id="@+id/gyroToggleButton"
+                android:id="@+id/gyroscopeButton"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/gyroToggleButton" />
+                android:text="@string/gyroscopeButton" />
 
             <TextView
-                android:id="@+id/useAccelerTextView"
+                android:id="@+id/accelerometerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/useAccelerTextView" />
+                android:text="@string/accelerometerTextView" />
 
             <ToggleButton
-                android:id="@+id/accelerToggleButton"
+                android:id="@+id/accelerometerButton"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/accelerToggleButton" />
+                android:text="@string/accelerometerButton" />
         </LinearLayout>
         
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
     		<TextView
-    		    android:id="@+id/rotateToggleTextView"
+    		    android:id="@+id/rotationLockTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/rotateToggleTextView" />
+                android:text="@string/rotationLockTextView" />
     		
     		<ToggleButton
-                android:id="@+id/rotateToggleButton"
+                android:id="@+id/rotationLockButton"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/rotateToggleButton" />
+                android:text="@string/rotationLockButton" />
     	</LinearLayout>
  <!--         
     	<LinearLayout

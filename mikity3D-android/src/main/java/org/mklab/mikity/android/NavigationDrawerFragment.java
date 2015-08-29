@@ -86,11 +86,11 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button modelSelectButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
-  ToggleButton gyroToggleButton;
+  ToggleButton gyroscopeButton;
   /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
-  ToggleButton accelerToggleButton;
+  ToggleButton accelerometerButton;
   /** */
-  ToggleButton rotateTogguleButton;  
+  ToggleButton rotationLockButton;  
 
   /** ソースデータ再読み込みのためのボタン */
   Button sourceReloadButton;
@@ -238,26 +238,26 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    this.gyroToggleButton = (ToggleButton)mainView.findViewById(R.id.gyroToggleButton);
-    this.gyroToggleButton.setOnClickListener(new OnClickListener() {
+    this.gyroscopeButton = (ToggleButton)mainView.findViewById(R.id.gyroscopeButton);
+    this.gyroscopeButton.setOnClickListener(new OnClickListener() {
       /**
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        if (NavigationDrawerFragment.this.gyroToggleButton.isChecked()) {
+        if (NavigationDrawerFragment.this.gyroscopeButton.isChecked()) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.useOrientationSensor = true;
         } else NavigationDrawerFragment.this.canvasActivity.canvasFragment.useOrientationSensor = false;
 
       }
     });
     
-    this.accelerToggleButton = (ToggleButton)mainView.findViewById(R.id.accelerToggleButton);
-    this.accelerToggleButton.setOnClickListener(new OnClickListener() {
+    this.accelerometerButton = (ToggleButton)mainView.findViewById(R.id.accelerometerButton);
+    this.accelerometerButton.setOnClickListener(new OnClickListener() {
       /**
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        if (NavigationDrawerFragment.this.accelerToggleButton.isChecked()) {
+        if (NavigationDrawerFragment.this.accelerometerButton.isChecked()) {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerSensor = true;
         } else {
           NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerSensor = false;
@@ -266,9 +266,8 @@ public class NavigationDrawerFragment extends RoboFragment {
 
     });
 
-    this.rotateTogguleButton = (ToggleButton)mainView.findViewById(R.id.rotateToggleButton);
-    this.rotateTogguleButton.setChecked(true);
-    this.rotateTogguleButton.setOnClickListener(new OnClickListener() {
+    this.rotationLockButton = (ToggleButton)mainView.findViewById(R.id.rotationLockButton);
+    this.rotationLockButton.setOnClickListener(new OnClickListener() {
       /**
        * {@inheritDoc}
        */
