@@ -46,9 +46,10 @@ public class SourceNumberFragment extends RoboFragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.set_column_fragment, container, false);
-    this.listView = (ListView)view.findViewById(R.id.list_view_column);
+    final View view = inflater.inflate(R.layout.set_source_number_fragment, container, false);
+    this.listView = (ListView)view.findViewById(R.id.list_view_source_number);
     configureListView();
+    
     final Button backButton = (Button)view.findViewById(R.id.rootButton);
     backButton.setOnClickListener(new OnClickListener() {
 
@@ -75,7 +76,7 @@ public class SourceNumberFragment extends RoboFragment {
    * リストビューをアダプタに登録し、リストの処理します。
    */
   void configureListView() {
-    final SourceNumberAdapter adapter = new SourceNumberAdapter(this.getActivity(), R.layout.list_groupname, this.groupManagers, this.fragment, this.targetNumbers);
+    final SourceNumberAdapter adapter = new SourceNumberAdapter(this.getActivity(), R.layout.list_group_name, this.groupManagers, this.fragment, this.targetNumbers);
     this.listView.setAdapter(adapter);
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

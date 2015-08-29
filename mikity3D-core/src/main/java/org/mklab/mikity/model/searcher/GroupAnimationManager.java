@@ -20,7 +20,7 @@ public class GroupAnimationManager extends GroupManager {
 
   /**
    * 新しく生成された<code>GroupLink</code>オブジェクトを初期化します。
-   * @param number 列番号
+   * @param number 番号
    * @param target ターゲット名
    * @param parent 親
    */
