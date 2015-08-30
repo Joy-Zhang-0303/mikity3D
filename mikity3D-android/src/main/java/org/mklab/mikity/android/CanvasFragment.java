@@ -132,22 +132,12 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /** センサー */
   List<Sensor> sensors;
   
-  /** モデルデータパス */
-  //private String modelFilePath;
-  /** ソースデータパス */
-  //private String sourceDataPath;
-  /** 時間データURI */
-  //protected Uri sourceUri;
-  
-  /** 画面回転時に、時間データを読み込み中ならばtrue */
-  //protected boolean rotateTimeDataFlag = false;
   /** プログレスダイアログ */
   ProgressDialog progressDialog;
   /** 無効な時間データが読み込まれたならばtrue */
   private boolean setIllegalSourceData = false;
   /** ポーズボタンが押されたならばtrue */
   boolean isPaused = false;
-
 
   /**
    * {@inheritDoc}
@@ -672,39 +662,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.manager = new ObjectGroupManager();
   }
 
-//  /**
-//   * モデルファイルパスを設定します。
-//   * 
-//   * @param modelFilePath モデルファイルパス
-//   */
-//  public void setModelFilePath(String modelFilePath) {
-//    this.modelFilePath = modelFilePath;
-//  }
-
-//  /**
-//   * ソースデータパスを設定します。
-//   * 
-//   * @param sourceFilePath ソースデータパス
-//   */
-//  public void setSourceFilePath(String sourceFilePath) {
-//    this.sourceDataPath = sourceFilePath;
-//  }
-
-//  /**
-//   * ソースデータのURIを設定します。
-//   * 
-//   * @param uri 時間データのURI
-//   */
-//  public void setSourceUri(Uri uri) {
-//    this.sourceUri = uri;
-//  }
-
   /**
    * アクティビティの画面のレイアウトを取得し、設定します。
    */
   public void configurateDirection() {
     final DisplayMetrics displayMetrics = new DisplayMetrics();
     getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+    
     final int width = displayMetrics.widthPixels;
     final int height = displayMetrics.heightPixels;
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);

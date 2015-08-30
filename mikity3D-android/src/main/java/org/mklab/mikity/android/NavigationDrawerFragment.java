@@ -459,7 +459,6 @@ public class NavigationDrawerFragment extends RoboFragment {
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
       final String sourceDataFilePath = uri.getPath();
-      //this.canvasActivity.canvasFragment.setSourceFilePath(sourceDataFilePath);
       try {
         sourceStream = new FileInputStream(sourceDataFilePath);
       } catch (FileNotFoundException e) {
@@ -471,7 +470,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     
     this.sourcePathView.setText(sourceFileName);
     
-    //this.canvasActivity.canvasFragment.setSourceUri(uri);
     this.canvasActivity.canvasFragment.loadSourceData(sourceStream,  uri.getPath(), this.sourceId);
     // sourceStream has been already closed in the loadSourceData method. 
   }
@@ -503,7 +501,6 @@ public class NavigationDrawerFragment extends RoboFragment {
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
       final String modelFilePath = uri.getPath();
-      //this.canvasActivity.canvasFragment.setModelFilePath(modelFilePath);
       try {
         modelStream = new FileInputStream(modelFilePath);
       } catch (FileNotFoundException e) {

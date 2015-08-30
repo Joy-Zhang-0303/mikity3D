@@ -274,7 +274,6 @@ public class CanvasActivity extends RoboFragmentActivity {
   private void loadModelData(Uri uri) {
     this.ndFragment.loadModelData(uri);
 
-    //this.canvasFragment.sourceUri = null;
     this.ndFragment.sourceId = null;
     this.canvasFragment.modelRenderer.updateDisplay();
   }
