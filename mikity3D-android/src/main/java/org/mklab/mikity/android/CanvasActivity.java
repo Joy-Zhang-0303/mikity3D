@@ -40,10 +40,10 @@ public class CanvasActivity extends RoboFragmentActivity {
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
   
   /** 加速度センサーを利用するならばtrue。 */
-  private boolean registerAccerlerometer;
+  private boolean useAccerlerometer;
   
   /** 磁気センサーを利用するならばtrue。 */
-  private boolean registerMagneticFieldSensor;
+  private boolean useMagneticFieldSensor;
 
   /** NavigationDrawer用のアクションバートグル */
   private ActionBarDrawerToggle mDrawerToggle;
@@ -180,17 +180,17 @@ public class CanvasActivity extends RoboFragmentActivity {
    */
   @Override
   public void onResume() {
-    if (!this.registerAccerlerometer) {
+    if (!this.useAccerlerometer) {
       this.canvasFragment.setSensor();
       if (this.canvasFragment.sensors.size() > 0) {
-        this.registerAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, this.canvasFragment.sensors.get(0), SensorManager.SENSOR_DELAY_UI);
+        this.useAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, this.canvasFragment.sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
 
-    if (!this.registerMagneticFieldSensor) {
+    if (!this.useMagneticFieldSensor) {
       final List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
       if (sensors.size() > 0) {
-        this.registerMagneticFieldSensor = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
+        this.useMagneticFieldSensor = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
         this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
@@ -205,11 +205,11 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   public void onPause() {
     this.canvasFragment.glView.onPause();
-    if (this.registerAccerlerometer || this.registerMagneticFieldSensor) {
+    if (this.useAccerlerometer || this.useMagneticFieldSensor) {
       this.canvasFragment.sensorManager.unregisterListener(this.canvasFragment);
 
-      this.registerAccerlerometer = false;
-      this.registerMagneticFieldSensor = false;
+      this.useAccerlerometer = false;
+      this.useMagneticFieldSensor = false;
     }
 
     super.onPause();
@@ -274,7 +274,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   private void loadModelData(Uri uri) {
     this.ndFragment.loadModelData(uri);
 
-    this.canvasFragment.sourceUri = null;
+    //this.canvasFragment.sourceUri = null;
     this.ndFragment.sourceId = null;
     this.canvasFragment.modelRenderer.updateDisplay();
   }

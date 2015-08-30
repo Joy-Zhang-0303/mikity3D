@@ -36,7 +36,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -83,16 +82,27 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   
   Timer timer = new Timer();
 
+  private double[] timeTable;
+
+  /** アニメーションの開始時間 */
+  private long startTime;
+  /** アニメーションの終了時間。 */
+  private double endTime;
+  /** アニメーションの一時停止時間 */
+  private long pausedTime;
+  /** アニメーションの遅延時間 */
+  private long delayTime;
+  
   /** Mikity3dモデル */
   Mikity3DModel root;
   
   ObjectGroupManager manager;
   
   Map<String,DoubleMatrix> sourceData = new HashMap<String,DoubleMatrix>();
-  
 
   boolean playable = true;
   AnimationTask animationTask;
+  
   /** センサーマネージャー */
   SensorManager sensorManager;
   /** センサーからの加速度を格納する配列 */
@@ -121,14 +131,16 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   boolean useAccelerSensor = false;
   /** センサー */
   List<Sensor> sensors;
+  
   /** モデルデータパス */
-  private String modelFilePath;
+  //private String modelFilePath;
   /** ソースデータパス */
-  private String sourceDataPath;
+  //private String sourceDataPath;
   /** 時間データURI */
-  protected Uri sourceUri;
+  //protected Uri sourceUri;
+  
   /** 画面回転時に、時間データを読み込み中ならばtrue */
-  protected boolean rotateTimeDataFlag = false;
+  //protected boolean rotateTimeDataFlag = false;
   /** プログレスダイアログ */
   ProgressDialog progressDialog;
   /** 無効な時間データが読み込まれたならばtrue */
@@ -136,16 +148,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /** ポーズボタンが押されたならばtrue */
   boolean isPaused = false;
 
-  private double[] timeTable;
-
-  /** アニメーションの開始時間 */
-  private long startTime;
-  /** アニメーションの終了時間。 */
-  private double endTime;
-  /** アニメーションの一時停止時間 */
-  private long pausedTime;
-  /** アニメーションの遅延時間 */
-  private long delayTime;
 
   /**
    * {@inheritDoc}
@@ -670,32 +672,32 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.manager = new ObjectGroupManager();
   }
 
-  /**
-   * モデルファイルパスを設定します。
-   * 
-   * @param modelFilePath モデルファイルパス
-   */
-  public void setModelFilePath(String modelFilePath) {
-    this.modelFilePath = modelFilePath;
-  }
+//  /**
+//   * モデルファイルパスを設定します。
+//   * 
+//   * @param modelFilePath モデルファイルパス
+//   */
+//  public void setModelFilePath(String modelFilePath) {
+//    this.modelFilePath = modelFilePath;
+//  }
 
-  /**
-   * ソースデータパスを設定します。
-   * 
-   * @param sourceFilePath ソースデータパス
-   */
-  public void setSourceFilePath(String sourceFilePath) {
-    this.sourceDataPath = sourceFilePath;
-  }
+//  /**
+//   * ソースデータパスを設定します。
+//   * 
+//   * @param sourceFilePath ソースデータパス
+//   */
+//  public void setSourceFilePath(String sourceFilePath) {
+//    this.sourceDataPath = sourceFilePath;
+//  }
 
-  /**
-   * ソースデータのURIを設定します。
-   * 
-   * @param uri 時間データのURI
-   */
-  public void setSourceUri(Uri uri) {
-    this.sourceUri = uri;
-  }
+//  /**
+//   * ソースデータのURIを設定します。
+//   * 
+//   * @param uri 時間データのURI
+//   */
+//  public void setSourceUri(Uri uri) {
+//    this.sourceUri = uri;
+//  }
 
   /**
    * アクティビティの画面のレイアウトを取得し、設定します。
