@@ -264,8 +264,10 @@ public class NavigationDrawerFragment extends RoboFragment {
        */
       public void onClick(View view) {
         if (NavigationDrawerFragment.this.gyroscopeButton.isChecked()) {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useOrientationSensor = true;
-        } else NavigationDrawerFragment.this.canvasActivity.canvasFragment.useOrientationSensor = false;
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useGyroscope = true;
+        } else {
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useGyroscope = false;
+        }
 
       }
     });
@@ -277,9 +279,9 @@ public class NavigationDrawerFragment extends RoboFragment {
        */
       public void onClick(View view) {
         if (NavigationDrawerFragment.this.accelerometerButton.isChecked()) {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerSensor = true;
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerometer = true;
         } else {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerSensor = false;
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerometer = false;
         }
       }
 

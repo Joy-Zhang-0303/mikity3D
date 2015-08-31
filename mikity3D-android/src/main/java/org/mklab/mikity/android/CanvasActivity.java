@@ -9,6 +9,7 @@ import java.util.List;
 
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectFragment;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -43,7 +44,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   private boolean useAccerlerometer;
   
   /** 磁気センサーを利用するならばtrue。 */
-  private boolean useMagneticFieldSensor;
+  private boolean useGyroscope;
 
   /** NavigationDrawer用のアクションバートグル */
   private ActionBarDrawerToggle mDrawerToggle;
@@ -70,10 +71,12 @@ public class CanvasActivity extends RoboFragmentActivity {
     this.mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
     this.mDrawerToggle.syncState();
     mDrawer.setDrawerListener(this.mDrawerToggle);
-    getActionBar().setDisplayHomeAsUpEnabled(true);
-    getActionBar().setLogo(getResources().getDrawable(R.drawable.icon));
-    getActionBar().setHomeButtonEnabled(true);
-    getActionBar().setDisplayUseLogoEnabled(true);
+    
+    ActionBar actionBar = getActionBar();
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setLogo(getResources().getDrawable(R.drawable.icon));
+    actionBar.setHomeButtonEnabled(true);
+    actionBar.setDisplayUseLogoEnabled(true);
 
     startIntentByExternalActivity();
   }
@@ -181,17 +184,16 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   public void onResume() {
     if (!this.useAccerlerometer) {
-      this.canvasFragment.setSensor();
-      if (this.canvasFragment.sensors.size() > 0) {
-        this.useAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, this.canvasFragment.sensors.get(0), SensorManager.SENSOR_DELAY_UI);
+      final List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+      if (sensors.size() > 0) {
+        this.useAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
 
-    if (!this.useMagneticFieldSensor) {
+    if (!this.useGyroscope) {
       final List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
       if (sensors.size() > 0) {
-        this.useMagneticFieldSensor = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
-        this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
+        this.useGyroscope = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
       }
     }
 
@@ -205,11 +207,11 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   public void onPause() {
     this.canvasFragment.glView.onPause();
-    if (this.useAccerlerometer || this.useMagneticFieldSensor) {
+    if (this.useAccerlerometer || this.useGyroscope) {
       this.canvasFragment.sensorManager.unregisterListener(this.canvasFragment);
 
       this.useAccerlerometer = false;
-      this.useMagneticFieldSensor = false;
+      this.useGyroscope = false;
     }
 
     super.onPause();

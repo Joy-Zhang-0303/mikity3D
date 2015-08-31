@@ -39,13 +39,13 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   /** アスペクト比 。 */
   private float aspect;
   
-  /** Y軸周りの回転角度 */
+  /** Y軸周りの回転角度[rad] */
   private float rotationY = 0.0f;
-  /** Z軸周りの回転角度 */
+  /** Z軸周りの回転角度[rad] */
   private float rotationZ = 0.0f;
-  /** Y軸方向への移動距離 */
+  /** Y軸方向への移動距離[m] */
   private float translationY = 0.0f;
-  /** Z軸方向への移動距離 */
+  /** Z軸方向への移動距離[m] */
   private float translationZ = 0.0f;
   /** 拡大縮小比。 */
   private float scale = 1.0F;
@@ -200,21 +200,39 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   }
   
   /**
-   * 回転角度を設定します。
+   * Y軸周りの回転角度[rad]を返します。
    * 
-   * @param rotationY Y軸周りの回転角度
+   * @return Y軸周りの回転角度[rad]
    */
-  public void setRotationY(float rotationY) {
-    this.rotationY -= rotationY / 5;
+  public float getRotationY() {
+    return this.rotationY;
+  }
+
+  /**
+   * Z軸周りの回転角度[rad]を返します。
+   * 
+   * @return Z軸周りの回転角度[rad]
+   */
+  public float getRotationZ() {
+    return this.rotationZ;
+  }
+
+  /**
+   * Y軸周りの回転角度[rad]を設定します。
+   * 
+   * @param rotation Y軸周りの回転角度[rad]
+   */
+  public void rotateY(float rotation) {
+    this.rotationY = this.rotationY + rotation;
   }
   
   /**
-   * 回転角度を設定します。
+   * Z軸周りの回転角度[rad]を設定します。
    * 
-   * @param rotationZ Z軸周りの回転角度
+   * @param rotation Z軸周りの回転角度[rad]
    */
-  public void setRotationZ(float rotationZ) {
-    this.rotationZ -= rotationZ / 5;
+  public void rotateZ(float rotation) {
+    this.rotationZ = this.rotationZ + rotation;
   }
 
   /**
@@ -238,19 +256,19 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   /**
    * Y軸方向の移動量を設定します。
    * 
-   * @param translationY Y軸方向の移動量
+   * @param translation Y軸方向の移動量
    */
-  public void setTranslationY(float translationY) {
-    this.translationY = (translationY/2 + this.translationY);
+  public void translateY(float translation) {
+    this.translationY = this.translationY + translation;
   }
 
   /**
    * Z軸方向の移動量を設定します。
    * 
-   * @param translationZ Z軸方向の移動量
+   * @param translation Z軸方向の移動量
    */
-  public void setTranslationZ(float translationZ) {
-    this.translationZ = (translationZ/2 + this.translationZ);
+  public void translateZ(float translation) {
+    this.translationZ = this.translationZ + translation;
   }
   
   /**

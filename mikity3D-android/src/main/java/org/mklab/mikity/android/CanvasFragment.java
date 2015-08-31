@@ -55,31 +55,32 @@ import android.widget.LinearLayout;
  * モデル描画用のフラグメントを表すクラスです。
  * 
  * @author soda
- * @version $Revision$, 2014/10/10 
+ * @version $Revision$, 2014/10/10
  */
 public class CanvasFragment extends RoboFragment implements SensorEventListener {
+
   /** ビュー */
   @InjectView(R.id.layout_fragment_canvas)
   View view;
 
   GLSurfaceView glView;
   boolean mIsInitScreenSize;
-  
+
   /** レンダー */
   OpenglesObjectRenderer modelRenderer;
-  
+
   /** scaleGestureDetector */
   ScaleGestureDetector gesDetect = null;
-  
+
   boolean rotating;
   boolean scaling;
   double scaleValue = 1;
   float prevX = 0;
   float prevY = 0;
-  
+
   /** CanvasActivity */
   private CanvasActivity activity;
-  
+
   Timer timer = new Timer();
 
   private double[] timeTable;
@@ -92,31 +93,32 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private long pausedTime;
   /** アニメーションの遅延時間 */
   private long delayTime;
-  
+
   /** Mikity3dモデル */
   Mikity3DModel root;
-  
+
   ObjectGroupManager manager;
-  
-  Map<String,DoubleMatrix> sourceData = new HashMap<String,DoubleMatrix>();
+
+  Map<String, DoubleMatrix> sourceData = new HashMap<String, DoubleMatrix>();
 
   boolean playable = true;
   AnimationTask animationTask;
-  
+
   /** センサーマネージャー */
   SensorManager sensorManager;
-  /** センサーからの加速度を格納する配列 */
-  private float[] accels = new float[3];
+  /** センサー */
+  //List<Sensor> sensors;
   /** センサーからの地磁気を格納する配列 */
   private float[] magneticFields = new float[3];
-  /** センサーから算出した端末の角度を格納する配列 */
-  private float[] orientations = new float[3];
+  /** センサーからの加速度を格納する配列 */
+  private float[] accelerometers = new float[3];
+
   /** 角度の基準値 */
   private float[] prevOrientations = new float[3];
-  /** 端末の角度を3Dオブジェクトに反映させるならばtrue */
-  boolean useOrientationSensor = false;
-  /** */
-  private float[] prevAccerlerometer = new float[3];
+  
+  /** 角度センサー(ジャイロ)を利用するならばtrue */
+  boolean useGyroscope = false;
+
   /** 加速度のローパスフィルターのxの値 */
   private double lowPassX;
   /** 加速度のローパスフィルターのｙの値 */
@@ -127,11 +129,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   private double rawAz;
   /** 前回加速度センサーを3Dオブジェクトに使用したときの時間 */
   private long useAccelerOldTime = 0L;
-  /** 加速度センサーの値を3Dオブジェクトに反映させるならばtrue */
-  boolean useAccelerSensor = false;
-  /** センサー */
-  List<Sensor> sensors;
-  
+
+  /** 加速度センサーを利用するならばtrue */
+  boolean useAccelerometer = false;
+
   /** プログレスダイアログ */
   ProgressDialog progressDialog;
   /** 無効な時間データが読み込まれたならばtrue */
@@ -157,6 +158,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
+
     initField();
 
     // 任意のタイミングで再描画する設定
@@ -164,7 +166,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.activity = (CanvasActivity)getActivity();
 
     this.gesDetect = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
-    
+
     // タッチ操作の種類によってイベントを取得する
     this.view.setOnTouchListener(new View.OnTouchListener() {
 
@@ -186,19 +188,22 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
           // タッチしたまま移動
           case MotionEvent.ACTION_MOVE:
-            final float transferAmountX = event.getX() - CanvasFragment.this.prevX;
-            final float transferAmountY = event.getY() - CanvasFragment.this.prevY;
+            final float moveX = event.getX() - CanvasFragment.this.prevX;
+            final float moveY = event.getY() - CanvasFragment.this.prevY;
             CanvasFragment.this.prevX = event.getX();
             CanvasFragment.this.prevY = event.getY();
 
             if ((CanvasFragment.this.rotating) && (touchCount == 1)) {
-              CanvasFragment.this.modelRenderer.setRotationY(-transferAmountY);
-              CanvasFragment.this.modelRenderer.setRotationZ(-transferAmountX);
+              float rotationY = moveY / 5;
+              float rotationZ = moveX / 5;
+              CanvasFragment.this.modelRenderer.rotateY(rotationY);
+              CanvasFragment.this.modelRenderer.rotateZ(rotationZ);
             }
             if ((touchCount == 2) && (!CanvasFragment.this.scaling)) {
-              final float touch3DModelProportion = 1000.0f;
-              CanvasFragment.this.modelRenderer.setTranslationY(transferAmountX / touch3DModelProportion);
-              CanvasFragment.this.modelRenderer.setTranslationZ(transferAmountY / touch3DModelProportion);
+              float translationY = moveX / 2000;
+              float translationZ = moveY / 2000;
+              CanvasFragment.this.modelRenderer.translateY(translationY);
+              CanvasFragment.this.modelRenderer.translateZ(translationZ);
               CanvasFragment.this.rotating = false;
             }
             CanvasFragment.this.rotating = true;
@@ -222,6 +227,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
         return true;
       }
     });
+
     return this.view;
   }
 
@@ -289,7 +295,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.root = new Mikity3dFactory().loadFile(input);
     setGroupManager();
     prepareRenderer();
-    
+
     final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
     if (hasAnimation(rootGroups)) {
       this.manager.setHasAnimation(true);
@@ -324,14 +330,14 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       @Override
       protected Void doInBackground(String... arg0) {
         readSourceData(sourceId, input, filePath);
-        
+
         // input is closed in order to complete reading the data from the input stream.
         try {
           input.close();
         } catch (IOException e) {
           throw new RuntimeException(e);
         }
-        
+
         addSource(sourceId);
         return null;
       }
@@ -345,7 +351,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
 
     };
-    
+
     task.execute();
   }
 
@@ -395,6 +401,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
   /**
    * MovableGroupManagerに時間データを登録します。
+   * 
    * @param sourceId ソースID
    */
   public void addSource(String sourceId) {
@@ -413,7 +420,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     } catch (IllegalArgumentException e) {
       callExceptionDialogFragment("Please select proper data file or set source number to data size or lower."); //$NON-NLS-1$
     }
-    
+
     this.setIllegalSourceData = false;
   }
 
@@ -438,7 +445,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
         return true;
       }
     }
-    
+
     return false;
   }
 
@@ -468,36 +475,36 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       this.startTime = SystemClock.uptimeMillis();
       this.delayTime = 0;
     }
-    
+
     final int animationSpeed = this.activity.ndFragment.animationSpeed;
-    
+
     if (this.playable == false) {
       this.timer.cancel();
     }
     this.playable = false;
-    
+
     if (this.sourceData.size() == 0) {
       return;
     }
-    
+
     if (this.manager.areMovingGroupsRead() == false) {
       return;
     }
-    
+
     this.manager.prepareMovingGroups();
-    
+
     prepareTimeTable();
 
     if (this.timeTable == null) {
       return;
     }
-    
+
     this.endTime = this.manager.getStopTime();
-    
+
     if (this.isPaused) {
       this.delayTime += SystemClock.uptimeMillis() - this.pausedTime;
     }
-    
+
     this.isPaused = false;
     this.animationTask = new AnimationTask(this.startTime, this.endTime, getManager(), getModelRender(), this.delayTime);
     this.animationTask.setSpeedScale(((double)animationSpeed) / 10);
@@ -526,82 +533,80 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * {@inheritDoc}
    */
   public void onSensorChanged(SensorEvent event) {
+    final int sensorType = event.sensor.getType();
 
-    if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+    if (sensorType == Sensor.TYPE_ACCELEROMETER) {
       for (int i = 0; i < 3; i++) {
-        this.accels[i] = event.values[i];
+        this.accelerometers[i] = event.values[i];
       }
+    }
 
-      if (this.useAccelerSensor) {
-        // Low Pass Filter
-        this.lowPassX = this.lowPassX + event.values[0];
-        this.lowPassY = this.lowPassY + event.values[1];
-        this.lowPassZ = (0.1 * event.values[2] + 0.9 * this.lowPassZ);
-
-        this.rawAz = event.values[2] - this.lowPassZ;
-
-        long nowTime = SystemClock.uptimeMillis();
-        long interval = nowTime - this.useAccelerOldTime;
-
-        if (interval > 300) {
-          final int accelerSensorThreshold = 5;
-          if (this.rawAz > accelerSensorThreshold) {
-            for (int i = 0; i < 10000; i++) {
-              if (this.scaleValue < 20.0) {
-                this.scaleValue += 0.00002;
-                this.modelRenderer.setScale((float)this.scaleValue);
-                this.modelRenderer.updateDisplay();
-              }
-            }
-            this.useAccelerOldTime = nowTime;
-          }
-
-          if (this.rawAz < -accelerSensorThreshold) {
-            for (int i = 0; i < 10000; i++) {
-              if (this.scaleValue > 0.05) {
-                this.scaleValue -= 0.00002;
-                this.modelRenderer.setScale((float)this.scaleValue);
-                this.modelRenderer.updateDisplay();
-              }
-            }
-            this.useAccelerOldTime = nowTime;
-          }
-        }
-
-        this.modelRenderer.setScale((float)this.scaleValue);
-
-      }
-
-    } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+    if (sensorType == Sensor.TYPE_MAGNETIC_FIELD) {
       for (int i = 0; i < 3; i++) {
         this.magneticFields[i] = event.values[i];
       }
     }
 
-    if (this.useOrientationSensor) {
-      final float[] R = new float[9];
-      final float[] I = new float[9];
-      SensorManager.getRotationMatrix(R, I, this.accels, this.magneticFields);
+    if (this.useAccelerometer) {
+      // Low Pass Filter
+      this.lowPassX = this.lowPassX + event.values[0];
+      this.lowPassY = this.lowPassY + event.values[1];
+      this.lowPassZ = (0.1 * event.values[2] + 0.9 * this.lowPassZ);
 
-      SensorManager.getOrientation(R, this.orientations);
+      this.rawAz = event.values[2] - this.lowPassZ;
 
-      final float[] diffOrientations = new float[3];
+      long nowTime = SystemClock.uptimeMillis();
+      long interval = nowTime - this.useAccelerOldTime;
 
-      for (int i = 0; i < this.orientations.length; i++) {
-        diffOrientations[i] = this.orientations[i] - this.prevOrientations[i];
-        if (Math.abs(diffOrientations[i]) < 0.05) {
-          diffOrientations[i] = (float)0.0;
+      if (interval > 300) {
+        final int accelerSensorThreshold = 5;
+        if (this.rawAz > accelerSensorThreshold) {
+          for (int i = 0; i < 10000; i++) {
+            if (this.scaleValue < 20.0) {
+              this.scaleValue += 0.00002;
+              this.modelRenderer.setScale((float)this.scaleValue);
+              this.modelRenderer.updateDisplay();
+            }
+          }
+          this.useAccelerOldTime = nowTime;
+        }
+
+        if (this.rawAz < -accelerSensorThreshold) {
+          for (int i = 0; i < 10000; i++) {
+            if (this.scaleValue > 0.05) {
+              this.scaleValue -= 0.00002;
+              this.modelRenderer.setScale((float)this.scaleValue);
+              this.modelRenderer.updateDisplay();
+            }
+          }
+          this.useAccelerOldTime = nowTime;
         }
       }
 
-      for (int i = 0; i < this.orientations.length; i++) {
-        this.prevOrientations[i] = this.orientations[i];
-
-      }
-
-      this.modelRenderer.setRotationY((float)Math.toDegrees(diffOrientations[2] * 3.5));
-      this.modelRenderer.setRotationZ(0.0f);
+      this.modelRenderer.setScale((float)this.scaleValue);
     }
+
+    if (this.useGyroscope) {
+      float[] matrixR = new float[9];
+      float[] matrixI = new float[9];
+      SensorManager.getRotationMatrix(matrixR, matrixI, this.accelerometers, this.magneticFields);
+      
+      // センサーから算出した端末の角度を格納する配列 
+      float[] orientations = new float[3];
+      SensorManager.getOrientation(matrixR, orientations);
+      
+      final float[] diffOrientations = new float[3];
+      for (int i = 0; i < orientations.length; i++) {
+        diffOrientations[i] = orientations[i] - this.prevOrientations[i];
+      }
+      
+      for (int i = 0; i < orientations.length; i++) {
+        this.prevOrientations[i] = orientations[i];
+      }
+      
+      this.modelRenderer.rotateY(diffOrientations[2]*10);
+    }
+
     this.modelRenderer.updateDisplay();
   }
 
@@ -615,24 +620,23 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /**
    * フィールドを初期化します。
    */
-  public void initField() {
+  private void initField() {
     this.sensorManager = (SensorManager)this.getActivity().getSystemService(Context.SENSOR_SERVICE);
-    this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+    //this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+
     for (int i = 0; i < 3; i++) {
-      this.accels[i] = 0.0f;
-      this.magneticFields[i] = 0.0f;
-      this.orientations[i] = 0.0f;
       this.prevOrientations[i] = 0.0f;
-      this.prevAccerlerometer[i] = 0.0f;
+      this.magneticFields[i] = 0;
+      this.accelerometers[i] = 0;
     }
   }
 
-  /**
-   * センサーを設定します。
-   */
-  public void setSensor() {
-    this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
-  }
+  //  /**
+  //   * センサーを設定します。
+  //   */
+  //  public void setSensor() {
+  //    this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+  //  }
 
   /**
    * Mikity3dを返します。
@@ -668,7 +672,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   public void configurateDirection() {
     final DisplayMetrics displayMetrics = new DisplayMetrics();
     getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-    
+
     final int width = displayMetrics.widthPixels;
     final int height = displayMetrics.heightPixels;
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
