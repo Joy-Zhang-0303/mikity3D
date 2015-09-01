@@ -86,7 +86,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button modelSelectButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
-  ToggleButton gyroscopeButton;
+  ToggleButton rotationSensorButton;
   /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton accelerometerButton;
   /** */
@@ -257,16 +257,16 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
 
   private void createSensorComponent(final View mainView) {
-    this.gyroscopeButton = (ToggleButton)mainView.findViewById(R.id.gyroscopeButton);
-    this.gyroscopeButton.setOnClickListener(new OnClickListener() {
+    this.rotationSensorButton = (ToggleButton)mainView.findViewById(R.id.rotationSensorButton);
+    this.rotationSensorButton.setOnClickListener(new OnClickListener() {
       /**
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        if (NavigationDrawerFragment.this.gyroscopeButton.isChecked()) {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useGyroscope = true;
+        if (NavigationDrawerFragment.this.rotationSensorButton.isChecked()) {
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useRotationSensor = true;
         } else {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useGyroscope = false;
+          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useRotationSensor = false;
         }
 
       }

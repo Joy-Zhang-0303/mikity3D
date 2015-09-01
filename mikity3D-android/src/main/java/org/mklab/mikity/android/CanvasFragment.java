@@ -116,13 +116,13 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /** 角度の基準値 */
   private float[] prevOrientations = new float[3];
   
-  /** 角度センサー(ジャイロ)を利用するならばtrue */
-  boolean useGyroscope = false;
+  /** 回転センサーを利用するならばtrue */
+  boolean useRotationSensor = false;
 
   /** 加速度のローパスフィルターのxの値 */
-  private double lowPassX;
+  private double lowPassX = 0;
   /** 加速度のローパスフィルターのｙの値 */
-  private double lowPassY;
+  private double lowPassY = 0;
   /** 加速度のローパスフィルターのzの値 */
   private double lowPassZ = 9.45;
   /** 加速度のハイパスフィルターのZの値 */
@@ -159,7 +159,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.glView.setRenderer(this.modelRenderer);
     this.mIsInitScreenSize = false;
 
-    initField();
+    initSensors();
 
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
@@ -547,7 +547,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       }
     }
 
-    if (this.useAccelerometer) {
+    if (this.useAccelerometer && sensorType == Sensor.TYPE_ACCELEROMETER) {
       // Low Pass Filter
       this.lowPassX = this.lowPassX + event.values[0];
       this.lowPassY = this.lowPassY + event.values[1];
@@ -555,11 +555,12 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
       this.rawAz = event.values[2] - this.lowPassZ;
 
-      long nowTime = SystemClock.uptimeMillis();
-      long interval = nowTime - this.useAccelerOldTime;
+      final long nowTime = SystemClock.uptimeMillis();
+      final long interval = nowTime - this.useAccelerOldTime;
 
       if (interval > 300) {
         final int accelerSensorThreshold = 5;
+        
         if (this.rawAz > accelerSensorThreshold) {
           for (int i = 0; i < 10000; i++) {
             if (this.scaleValue < 20.0) {
@@ -586,7 +587,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       this.modelRenderer.setScale((float)this.scaleValue);
     }
 
-    if (this.useGyroscope) {
+    if (this.useRotationSensor) {
       float[] matrixR = new float[9];
       float[] matrixI = new float[9];
       SensorManager.getRotationMatrix(matrixR, matrixI, this.accelerometers, this.magneticFields);
@@ -604,7 +605,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
         this.prevOrientations[i] = orientations[i];
       }
       
-      this.modelRenderer.rotateY(diffOrientations[2]*10);
+      this.modelRenderer.rotateY(diffOrientations[2]*60);
+      this.modelRenderer.rotateZ(diffOrientations[0]*60);
     }
 
     this.modelRenderer.updateDisplay();
@@ -620,7 +622,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   /**
    * フィールドを初期化します。
    */
-  private void initField() {
+  private void initSensors() {
     this.sensorManager = (SensorManager)this.getActivity().getSystemService(Context.SENSOR_SERVICE);
     //this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
 

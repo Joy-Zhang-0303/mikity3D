@@ -44,7 +44,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   private boolean useAccerlerometer;
   
   /** 磁気センサーを利用するならばtrue。 */
-  private boolean useGyroscope;
+  private boolean useMagneticField;
 
   /** NavigationDrawer用のアクションバートグル */
   private ActionBarDrawerToggle mDrawerToggle;
@@ -183,18 +183,14 @@ public class CanvasActivity extends RoboFragmentActivity {
    */
   @Override
   public void onResume() {
-    if (!this.useAccerlerometer) {
-      final List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
-      if (sensors.size() > 0) {
-        this.useAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
-      }
+    final List<Sensor> accelerometers = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+    if (accelerometers.size() > 0) {
+      this.useAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, accelerometers.get(0), SensorManager.SENSOR_DELAY_UI);
     }
 
-    if (!this.useGyroscope) {
-      final List<Sensor> sensors = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
-      if (sensors.size() > 0) {
-        this.useGyroscope = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, sensors.get(0), SensorManager.SENSOR_DELAY_UI);
-      }
+    final List<Sensor> magneticFields = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
+    if (magneticFields.size() > 0) {
+      this.useMagneticField = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, magneticFields.get(0), SensorManager.SENSOR_DELAY_UI);
     }
 
     this.canvasFragment.glView.onResume();
@@ -207,12 +203,8 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   public void onPause() {
     this.canvasFragment.glView.onPause();
-    if (this.useAccerlerometer || this.useGyroscope) {
-      this.canvasFragment.sensorManager.unregisterListener(this.canvasFragment);
-
-      this.useAccerlerometer = false;
-      this.useGyroscope = false;
-    }
+    
+    this.canvasFragment.sensorManager.unregisterListener(this.canvasFragment);
 
     super.onPause();
   }
