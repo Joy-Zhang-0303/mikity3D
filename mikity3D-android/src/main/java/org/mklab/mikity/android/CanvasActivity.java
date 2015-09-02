@@ -52,9 +52,6 @@ public class CanvasActivity extends RoboFragmentActivity {
   
   private SensorService sensorService;
   
-  /** センサーマネージャー */
-  //SensorManager sensorManager;
-
   /**
    * {@inheritDoc}
    */
@@ -182,16 +179,6 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   public void onResume() {
     this.sensorService.registerSensorListener();
-    
-//    final List<Sensor> accelerometers = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
-//    if (accelerometers.size() > 0) {
-//      this.sensorManager.registerListener(this.canvasFragment, accelerometers.get(0), SensorManager.SENSOR_DELAY_UI);
-//    }
-//
-//    final List<Sensor> magneticFields = this.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
-//    if (magneticFields.size() > 0) {
-//      this.sensorManager.registerListener(this.canvasFragment, magneticFields.get(0), SensorManager.SENSOR_DELAY_UI);
-//    }
 
     this.canvasFragment.glView.onResume();
     super.onResume();
@@ -202,12 +189,9 @@ public class CanvasActivity extends RoboFragmentActivity {
    */
   @Override
   public void onPause() {
-    this.canvasFragment.glView.onPause();
-
     this.sensorService.unregisterSensorListener();
     
-    //this.sensorManager.unregisterListener(this.canvasFragment);
-
+    this.canvasFragment.glView.onPause();
     super.onPause();
   }
 
