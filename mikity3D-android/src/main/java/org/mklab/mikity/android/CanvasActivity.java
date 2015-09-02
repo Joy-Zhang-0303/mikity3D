@@ -52,6 +52,9 @@ public class CanvasActivity extends RoboFragmentActivity {
 
   /** 停止ボタンが押すことができるならばtrue */
   private boolean isStopButtonPushable;
+  
+  /** センサーマネージャー */
+  SensorManager sensorManager;
 
   /**
    * {@inheritDoc}
@@ -71,7 +74,9 @@ public class CanvasActivity extends RoboFragmentActivity {
     actionBar.setLogo(getResources().getDrawable(R.drawable.icon));
     actionBar.setHomeButtonEnabled(true);
     actionBar.setDisplayUseLogoEnabled(true);
-
+    
+    this.sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+    
     startIntentByExternalActivity();
   }
 
@@ -177,14 +182,14 @@ public class CanvasActivity extends RoboFragmentActivity {
    */
   @Override
   public void onResume() {
-    final List<Sensor> accelerometers = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+    final List<Sensor> accelerometers = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
     if (accelerometers.size() > 0) {
-      this.canvasFragment.sensorManager.registerListener(this.canvasFragment, accelerometers.get(0), SensorManager.SENSOR_DELAY_UI);
+      this.sensorManager.registerListener(this.canvasFragment, accelerometers.get(0), SensorManager.SENSOR_DELAY_UI);
     }
 
-    final List<Sensor> magneticFields = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
+    final List<Sensor> magneticFields = this.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
     if (magneticFields.size() > 0) {
-      this.canvasFragment.sensorManager.registerListener(this.canvasFragment, magneticFields.get(0), SensorManager.SENSOR_DELAY_UI);
+      this.sensorManager.registerListener(this.canvasFragment, magneticFields.get(0), SensorManager.SENSOR_DELAY_UI);
     }
 
     this.canvasFragment.glView.onResume();
@@ -198,7 +203,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   public void onPause() {
     this.canvasFragment.glView.onPause();
     
-    this.canvasFragment.sensorManager.unregisterListener(this.canvasFragment);
+    this.sensorManager.unregisterListener(this.canvasFragment);
 
     super.onPause();
   }

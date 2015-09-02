@@ -30,7 +30,6 @@ import org.mklab.nfc.matx.MatxMatrix;
 import roboguice.fragment.RoboFragment;
 import roboguice.inject.InjectView;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -105,8 +104,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   boolean playable = true;
   AnimationTask animationTask;
 
-  /** センサーマネージャー */
-  SensorManager sensorManager;
   /** センサーからの地磁気を格納する配列 */
   private float[] magneticFields = new float[3];
   /** センサーからの加速度を格納する配列 */
@@ -158,7 +155,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.glView.setRenderer(this.objectRenderer);
     this.isInitialScreenSize = false;
 
-    initSensors();
+    initSensorValues();
 
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
@@ -587,12 +584,12 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     }
 
     if (this.useRotationSensor) {
-      float[] matrixR = new float[9];
-      float[] matrixI = new float[9];
+      final float[] matrixR = new float[9];
+      final float[] matrixI = new float[9];
       SensorManager.getRotationMatrix(matrixR, matrixI, this.accelerometers, this.magneticFields);
       
       // センサーから算出した端末の角度を格納する配列 
-      float[] orientations = new float[3];
+      final float[] orientations = new float[3];
       SensorManager.getOrientation(matrixR, orientations);
       
       final float[] diffOrientations = new float[3];
@@ -619,11 +616,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * フィールドを初期化します。
+   * センサー関係の値を初期化します。
    */
-  private void initSensors() {
-    this.sensorManager = (SensorManager)this.getActivity().getSystemService(Context.SENSOR_SERVICE);
-
+  private void initSensorValues() {
     for (int i = 0; i < 3; i++) {
       this.prevOrientations[i] = 0.0f;
       this.magneticFields[i] = 0;
