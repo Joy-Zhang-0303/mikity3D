@@ -41,7 +41,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
 
   /** NavigationDrawer用のアクションバートグル */
-  private ActionBarDrawerToggle mDrawerToggle;
+  private ActionBarDrawerToggle drawerToggle;
 
   /** CanvasFragment */
   @InjectFragment(R.id.fragment_canvas)
@@ -61,12 +61,12 @@ public class CanvasActivity extends RoboFragmentActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.canvas);
 
-    final DrawerLayout mDrawer = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
-    this.mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
-    this.mDrawerToggle.syncState();
-    mDrawer.setDrawerListener(this.mDrawerToggle);
+    final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
+    this.drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
+    this.drawerToggle.syncState();
+    drawerLayout.setDrawerListener(this.drawerToggle);
     
-    ActionBar actionBar = getActionBar();
+    final ActionBar actionBar = getActionBar();
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setLogo(getResources().getDrawable(R.drawable.icon));
     actionBar.setHomeButtonEnabled(true);
@@ -92,14 +92,14 @@ public class CanvasActivity extends RoboFragmentActivity {
       return;
     }
 
-    final Uri mPath = bundle.getParcelable(intentPath);
-    loadModelData(mPath);
+    final Uri modelPath = bundle.getParcelable(intentPath);
+    loadModelData(modelPath);
     if (bundle.getParcelable(intentDataPath) == null) {
       return;
     }
       
-    final Uri dPath = bundle.getParcelable(intentDataPath);
-    loadSourceData(dPath);
+    final Uri sourcePath = bundle.getParcelable(intentDataPath);
+    loadSourceData(sourcePath);
   }
 
   /**
@@ -108,16 +108,16 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   protected void onPostCreate(Bundle savedInstanceState) {
     super.onPostCreate(savedInstanceState);
-    this.mDrawerToggle.syncState();
+    this.drawerToggle.syncState();
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public void onConfigurationChanged(Configuration newConfig) {
-    super.onConfigurationChanged(newConfig);
-    this.mDrawerToggle.onConfigurationChanged(newConfig);
+  public void onConfigurationChanged(Configuration configuration) {
+    super.onConfigurationChanged(configuration);
+    this.drawerToggle.onConfigurationChanged(configuration);
   }
 
   /**
@@ -125,7 +125,7 @@ public class CanvasActivity extends RoboFragmentActivity {
    */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    if (this.mDrawerToggle.onOptionsItemSelected(item)) {
+    if (this.drawerToggle.onOptionsItemSelected(item)) {
       return true;
     }
 
@@ -165,8 +165,8 @@ public class CanvasActivity extends RoboFragmentActivity {
   public void onWindowFocusChanged(boolean hasFocus) {
     // スクリーンサイズ調整が済んでいない場合は調整する
     if (this.canvasFragment.isInitialScreenSize == false) {
-      GLSurfaceView glSurfaceView = (GLSurfaceView)findViewById(R.id.glview1);
-      LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(glSurfaceView.getWidth(), glSurfaceView.getHeight());
+      final GLSurfaceView glSurfaceView = (GLSurfaceView)findViewById(R.id.glview1);
+      final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(glSurfaceView.getWidth(), glSurfaceView.getHeight());
       glSurfaceView.setLayoutParams(params);
     }
     super.onWindowFocusChanged(hasFocus);
@@ -247,20 +247,20 @@ public class CanvasActivity extends RoboFragmentActivity {
   /**
    * 時間データを読み込みます。
    * 
-   * @param uri 時間データのURI
+   * @param path 時間データのパス
    */
-  private void loadSourceData(Uri uri) {
+  private void loadSourceData(Uri path) {
     this.ndFragment.sourceId = "0"; //$NON-NLS-1$
-    this.ndFragment.loadSourceData(uri);
+    this.ndFragment.loadSourceData(path);
   }
 
   /**
    * モデルデータを読み込みます。
    * 
-   * @param uri モデルデータのURI
+   * @param path モデルデータのパス
    */
-  private void loadModelData(Uri uri) {
-    this.ndFragment.loadModelData(uri);
+  private void loadModelData(Uri path) {
+    this.ndFragment.loadModelData(path);
 
     this.ndFragment.sourceId = null;
     this.canvasFragment.objectRenderer.updateDisplay();
