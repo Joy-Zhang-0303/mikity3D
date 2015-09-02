@@ -64,13 +64,14 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   View view;
 
   GLSurfaceView glView;
-  boolean mIsInitScreenSize;
+  /** 初期のスクリーンサイズならばtrue */
+  boolean isInitialScreenSize;
 
   /** レンダー */
-  OpenglesObjectRenderer modelRenderer;
+  OpenglesObjectRenderer objectRenderer;
 
   /** scaleGestureDetector */
-  ScaleGestureDetector gesDetect = null;
+  ScaleGestureDetector gestureDetector = null;
 
   boolean rotating;
   boolean scaling;
@@ -106,8 +107,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
 
   /** センサーマネージャー */
   SensorManager sensorManager;
-  /** センサー */
-  //List<Sensor> sensors;
   /** センサーからの地磁気を格納する配列 */
   private float[] magneticFields = new float[3];
   /** センサーからの加速度を格納する配列 */
@@ -146,7 +145,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     if (this.view != null) {
-      ViewGroup parent = (ViewGroup)this.view.getParent();
+      final ViewGroup parent = (ViewGroup)this.view.getParent();
       parent.removeView(this.view);
       return this.view;
     }
@@ -154,10 +153,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.view = inflater.inflate(R.layout.canvas_fragment, container, false);
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
     this.getResources();
-    this.modelRenderer = new OpenglesObjectRenderer(this.glView);
+    this.objectRenderer = new OpenglesObjectRenderer(this.glView);
 
-    this.glView.setRenderer(this.modelRenderer);
-    this.mIsInitScreenSize = false;
+    this.glView.setRenderer(this.objectRenderer);
+    this.isInitialScreenSize = false;
 
     initSensors();
 
@@ -165,7 +164,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     this.activity = (CanvasActivity)getActivity();
 
-    this.gesDetect = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
+    this.gestureDetector = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
 
     // タッチ操作の種類によってイベントを取得する
     this.view.setOnTouchListener(new View.OnTouchListener() {
@@ -176,7 +175,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       public boolean onTouch(View v, MotionEvent event) {
         final int touchCount = event.getPointerCount();
         // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
-        CanvasFragment.this.gesDetect.onTouchEvent(event);
+        CanvasFragment.this.gestureDetector.onTouchEvent(event);
 
         switch (event.getAction()) {
         // タッチした
@@ -196,14 +195,14 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
             if ((CanvasFragment.this.rotating) && (touchCount == 1)) {
               float rotationY = moveY / 5;
               float rotationZ = moveX / 5;
-              CanvasFragment.this.modelRenderer.rotateY(rotationY);
-              CanvasFragment.this.modelRenderer.rotateZ(rotationZ);
+              CanvasFragment.this.objectRenderer.rotateY(rotationY);
+              CanvasFragment.this.objectRenderer.rotateZ(rotationZ);
             }
             if ((touchCount == 2) && (!CanvasFragment.this.scaling)) {
               float translationY = moveX / 2000;
               float translationZ = moveY / 2000;
-              CanvasFragment.this.modelRenderer.translateY(translationY);
-              CanvasFragment.this.modelRenderer.translateZ(translationZ);
+              CanvasFragment.this.objectRenderer.translateY(translationY);
+              CanvasFragment.this.objectRenderer.translateZ(translationZ);
               CanvasFragment.this.rotating = false;
             }
             CanvasFragment.this.rotating = true;
@@ -223,7 +222,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
             break;
         }
 
-        CanvasFragment.this.modelRenderer.updateDisplay();
+        CanvasFragment.this.objectRenderer.updateDisplay();
         return true;
       }
     });
@@ -251,10 +250,10 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       CanvasFragment.this.rotating = false;
       CanvasFragment.this.scaling = true;
       final double scalingFactor = 0.5;
-      final double newScale = Math.max(0.01, CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gesDetect.getScaleFactor())) / scalingFactor;
-      CanvasFragment.this.modelRenderer.setScale((float)newScale);
-      CanvasFragment.this.prevX = CanvasFragment.this.gesDetect.getFocusX();
-      CanvasFragment.this.prevY = CanvasFragment.this.gesDetect.getFocusY();
+      final double newScale = Math.max(0.01, CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor())) / scalingFactor;
+      CanvasFragment.this.objectRenderer.setScale((float)newScale);
+      CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
+      CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
 
       return super.onScale(detector);
     }
@@ -274,9 +273,9 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
       CanvasFragment.this.scaling = false;
-      setScaleValue(CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gesDetect.getScaleFactor()));
-      CanvasFragment.this.prevX = CanvasFragment.this.gesDetect.getFocusX();
-      CanvasFragment.this.prevY = CanvasFragment.this.gesDetect.getFocusY();
+      setScaleValue(CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor()));
+      CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
+      CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
       super.onScaleEnd(detector);
     }
   };
@@ -293,7 +292,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    */
   public void loadModelData(InputStream input) throws Mikity3dSerializeDeserializeException {
     this.root = new Mikity3dFactory().loadFile(input);
-    setGroupManager();
+    prepareObjectGroupManager();
     prepareRenderer();
 
     final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
@@ -450,21 +449,21 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * MovableGroupManagerを返します。
+   * ObjectGroupManagerを返します。
    * 
-   * @return manager
+   * @return ObjectGroupManager
    */
-  public ObjectGroupManager getManager() {
+  public ObjectGroupManager getObjectGroupManager() {
     return this.manager;
   }
 
   /**
    * モデルレンダラーを返します。
    * 
-   * @return modelRenderer
+   * @return モデルレンダラー
    */
-  public OpenglesObjectRenderer getModelRender() {
-    return this.modelRenderer;
+  public OpenglesObjectRenderer getObjectRender() {
+    return this.objectRenderer;
   }
 
   /**
@@ -506,7 +505,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     }
 
     this.isPaused = false;
-    this.animationTask = new AnimationTask(this.startTime, this.endTime, getManager(), getModelRender(), this.delayTime);
+    this.animationTask = new AnimationTask(this.startTime, this.endTime, getObjectGroupManager(), getObjectRender(), this.delayTime);
     this.animationTask.setSpeedScale(((double)animationSpeed) / 10);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
@@ -565,8 +564,8 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
           for (int i = 0; i < 10000; i++) {
             if (this.scaleValue < 20.0) {
               this.scaleValue += 0.00002;
-              this.modelRenderer.setScale((float)this.scaleValue);
-              this.modelRenderer.updateDisplay();
+              this.objectRenderer.setScale((float)this.scaleValue);
+              this.objectRenderer.updateDisplay();
             }
           }
           this.useAccelerOldTime = nowTime;
@@ -576,15 +575,15 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
           for (int i = 0; i < 10000; i++) {
             if (this.scaleValue > 0.05) {
               this.scaleValue -= 0.00002;
-              this.modelRenderer.setScale((float)this.scaleValue);
-              this.modelRenderer.updateDisplay();
+              this.objectRenderer.setScale((float)this.scaleValue);
+              this.objectRenderer.updateDisplay();
             }
           }
           this.useAccelerOldTime = nowTime;
         }
       }
 
-      this.modelRenderer.setScale((float)this.scaleValue);
+      this.objectRenderer.setScale((float)this.scaleValue);
     }
 
     if (this.useRotationSensor) {
@@ -605,11 +604,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
         this.prevOrientations[i] = orientations[i];
       }
       
-      this.modelRenderer.rotateY(diffOrientations[2]*60);
-      this.modelRenderer.rotateZ(diffOrientations[0]*60);
+      this.objectRenderer.rotateY(diffOrientations[2]*60);
+      this.objectRenderer.rotateZ(diffOrientations[0]*60);
     }
 
-    this.modelRenderer.updateDisplay();
+    this.objectRenderer.updateDisplay();
   }
 
   /**
@@ -624,7 +623,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    */
   private void initSensors() {
     this.sensorManager = (SensorManager)this.getActivity().getSystemService(Context.SENSOR_SERVICE);
-    //this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
 
     for (int i = 0; i < 3; i++) {
       this.prevOrientations[i] = 0.0f;
@@ -632,13 +630,6 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
       this.accelerometers[i] = 0;
     }
   }
-
-  //  /**
-  //   * センサーを設定します。
-  //   */
-  //  public void setSensor() {
-  //    this.sensors = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
-  //  }
 
   /**
    * Mikity3dを返します。
@@ -657,14 +648,14 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     final ConfigurationModel configuration = this.root.getConfiguration(0);
 
     this.manager.clearObjectGroups();
-    this.modelRenderer.setRootGroups(rootGroups, this.manager);
-    this.modelRenderer.setConfiguration(configuration);
+    this.objectRenderer.setRootGroups(rootGroups, this.manager);
+    this.objectRenderer.setConfiguration(configuration);
   }
 
   /**
-   * MovableGroupManagerを設定します。
+   * ObjectGroupManagerを準備します。
    */
-  protected void setGroupManager() {
+  protected void prepareObjectGroupManager() {
     this.manager = new ObjectGroupManager();
   }
 

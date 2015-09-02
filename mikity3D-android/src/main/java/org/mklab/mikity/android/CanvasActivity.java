@@ -39,12 +39,6 @@ public class CanvasActivity extends RoboFragmentActivity {
 
   final static int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
-  
-  /** 加速度センサーを利用するならばtrue。 */
-  private boolean useAccerlerometer;
-  
-  /** 磁気センサーを利用するならばtrue。 */
-  private boolean useMagneticField;
 
   /** NavigationDrawer用のアクションバートグル */
   private ActionBarDrawerToggle mDrawerToggle;
@@ -170,7 +164,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
     // スクリーンサイズ調整が済んでいない場合は調整する
-    if (this.canvasFragment.mIsInitScreenSize == false) {
+    if (this.canvasFragment.isInitialScreenSize == false) {
       GLSurfaceView glSurfaceView = (GLSurfaceView)findViewById(R.id.glview1);
       LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(glSurfaceView.getWidth(), glSurfaceView.getHeight());
       glSurfaceView.setLayoutParams(params);
@@ -185,12 +179,12 @@ public class CanvasActivity extends RoboFragmentActivity {
   public void onResume() {
     final List<Sensor> accelerometers = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
     if (accelerometers.size() > 0) {
-      this.useAccerlerometer = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, accelerometers.get(0), SensorManager.SENSOR_DELAY_UI);
+      this.canvasFragment.sensorManager.registerListener(this.canvasFragment, accelerometers.get(0), SensorManager.SENSOR_DELAY_UI);
     }
 
     final List<Sensor> magneticFields = this.canvasFragment.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
     if (magneticFields.size() > 0) {
-      this.useMagneticField = this.canvasFragment.sensorManager.registerListener(this.canvasFragment, magneticFields.get(0), SensorManager.SENSOR_DELAY_UI);
+      this.canvasFragment.sensorManager.registerListener(this.canvasFragment, magneticFields.get(0), SensorManager.SENSOR_DELAY_UI);
     }
 
     this.canvasFragment.glView.onResume();
@@ -269,7 +263,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     this.ndFragment.loadModelData(uri);
 
     this.ndFragment.sourceId = null;
-    this.canvasFragment.modelRenderer.updateDisplay();
+    this.canvasFragment.objectRenderer.updateDisplay();
   }
 
   /**
@@ -304,7 +298,7 @@ public class CanvasActivity extends RoboFragmentActivity {
           setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
       }
-      CanvasActivity.this.canvasFragment.modelRenderer.updateDisplay();
+      CanvasActivity.this.canvasFragment.objectRenderer.updateDisplay();
     } else {
       setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
     }
