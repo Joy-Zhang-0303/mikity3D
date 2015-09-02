@@ -216,9 +216,11 @@ public class CanvasFragment extends RoboFragment {
     public boolean onScale(ScaleGestureDetector detector) {
       CanvasFragment.this.rotating = false;
       CanvasFragment.this.scaling = true;
-      final double scalingFactor = 0.5;
-      final double newScale = Math.max(0.01, CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor())) / scalingFactor;
-      CanvasFragment.this.objectRenderer.setScale((float)newScale);
+      
+      final double scalingRate = 0.5;
+      final double newScale = (CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor()))/scalingRate;
+      CanvasFragment.this.objectRenderer.setScale((float)Math.min(20.0, Math.max(0.05, newScale)));
+      
       CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
       CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
 
@@ -240,16 +242,18 @@ public class CanvasFragment extends RoboFragment {
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
       CanvasFragment.this.scaling = false;
-      setScaleValue(CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor()));
+      
+      CanvasFragment.this.scaleValue = CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor());
+
       CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
       CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
       super.onScaleEnd(detector);
     }
   };
 
-  protected void setScaleValue(double d) {
-    this.scaleValue = d;
-  }
+//  protected void setScaleValue(double d) {
+//    this.scaleValue = d;
+//  }
 
   /**
    * モデルデータをストリームから読み込みます。
