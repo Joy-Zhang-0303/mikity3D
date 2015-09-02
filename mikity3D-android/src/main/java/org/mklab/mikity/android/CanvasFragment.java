@@ -24,6 +24,7 @@ import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.view.renderer.ObjectRenderer;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
@@ -455,11 +456,11 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   }
 
   /**
-   * モデルレンダラーを返します。
+   * オブジェクトレンダラーを返します。
    * 
-   * @return モデルレンダラー
+   * @return オブジェクトレンダラー
    */
-  public OpenglesObjectRenderer getObjectRender() {
+  public ObjectRenderer getObjectRender() {
     return this.objectRenderer;
   }
 

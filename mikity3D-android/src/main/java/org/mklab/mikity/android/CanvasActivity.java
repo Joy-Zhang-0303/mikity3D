@@ -5,15 +5,12 @@
  */
 package org.mklab.mikity.android;
 
-import java.util.List;
-
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectFragment;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
@@ -53,8 +50,10 @@ public class CanvasActivity extends RoboFragmentActivity {
   /** 停止ボタンが押すことができるならばtrue */
   private boolean isStopButtonPushable;
   
+  private SensorService sensorService;
+  
   /** センサーマネージャー */
-  SensorManager sensorManager;
+  //SensorManager sensorManager;
 
   /**
    * {@inheritDoc}
@@ -75,7 +74,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     actionBar.setHomeButtonEnabled(true);
     actionBar.setDisplayUseLogoEnabled(true);
     
-    this.sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+    this.sensorService = new SensorService((SensorManager)getSystemService(SENSOR_SERVICE), this.canvasFragment);
     
     startIntentByExternalActivity();
   }
@@ -182,15 +181,17 @@ public class CanvasActivity extends RoboFragmentActivity {
    */
   @Override
   public void onResume() {
-    final List<Sensor> accelerometers = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
-    if (accelerometers.size() > 0) {
-      this.sensorManager.registerListener(this.canvasFragment, accelerometers.get(0), SensorManager.SENSOR_DELAY_UI);
-    }
-
-    final List<Sensor> magneticFields = this.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
-    if (magneticFields.size() > 0) {
-      this.sensorManager.registerListener(this.canvasFragment, magneticFields.get(0), SensorManager.SENSOR_DELAY_UI);
-    }
+    this.sensorService.registerSensorListener();
+    
+//    final List<Sensor> accelerometers = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+//    if (accelerometers.size() > 0) {
+//      this.sensorManager.registerListener(this.canvasFragment, accelerometers.get(0), SensorManager.SENSOR_DELAY_UI);
+//    }
+//
+//    final List<Sensor> magneticFields = this.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
+//    if (magneticFields.size() > 0) {
+//      this.sensorManager.registerListener(this.canvasFragment, magneticFields.get(0), SensorManager.SENSOR_DELAY_UI);
+//    }
 
     this.canvasFragment.glView.onResume();
     super.onResume();
@@ -202,8 +203,10 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   public void onPause() {
     this.canvasFragment.glView.onPause();
+
+    this.sensorService.unregisterSensorListener();
     
-    this.sensorManager.unregisterListener(this.canvasFragment);
+    //this.sensorManager.unregisterListener(this.canvasFragment);
 
     super.onPause();
   }
