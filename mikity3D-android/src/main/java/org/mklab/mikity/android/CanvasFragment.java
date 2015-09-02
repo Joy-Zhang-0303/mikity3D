@@ -57,7 +57,7 @@ import android.widget.LinearLayout;
  * @author soda
  * @version $Revision$, 2014/10/10
  */
-public class CanvasFragment extends RoboFragment implements SensorEventListener {
+public class CanvasFragment extends RoboFragment {
 
   /** ビュー */
   @InjectView(R.id.layout_fragment_canvas)
@@ -105,30 +105,30 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
   boolean playable = true;
   AnimationTask animationTask;
 
-  /** センサーからの地磁気を格納する配列 */
-  private float[] magneticFields = new float[3];
-  /** センサーからの加速度を格納する配列 */
-  private float[] accelerometers = new float[3];
-
-  /** 角度の基準値 */
-  private float[] prevOrientations = new float[3];
-  
-  /** 回転センサーを利用するならばtrue */
-  boolean useRotationSensor = false;
-
-  /** 加速度のローパスフィルターのxの値 */
-  private double lowPassX = 0;
-  /** 加速度のローパスフィルターのｙの値 */
-  private double lowPassY = 0;
-  /** 加速度のローパスフィルターのzの値 */
-  private double lowPassZ = 9.45;
-  /** 加速度のハイパスフィルターのZの値 */
-  private double rawAz;
-  /** 前回加速度センサーを3Dオブジェクトに使用したときの時間 */
-  private long useAccelerOldTime = 0L;
-
-  /** 加速度センサーを利用するならばtrue */
-  boolean useAccelerometer = false;
+//  /** センサーからの地磁気を格納する配列 */
+//  private float[] magneticFields = new float[3];
+//  /** センサーからの加速度を格納する配列 */
+//  private float[] accelerometers = new float[3];
+//
+//  /** 角度の基準値 */
+//  private float[] prevOrientations = new float[3];
+//  
+//  /** 回転センサーを利用するならばtrue */
+//  boolean useRotationSensor = false;
+//
+//  /** 加速度のローパスフィルターのxの値 */
+//  private double lowPassX = 0;
+//  /** 加速度のローパスフィルターのｙの値 */
+//  private double lowPassY = 0;
+//  /** 加速度のローパスフィルターのzの値 */
+//  private double lowPassZ = 9.45;
+//  /** 加速度のハイパスフィルターのZの値 */
+//  private double rawAz;
+//  /** 前回加速度センサーを3Dオブジェクトに使用したときの時間 */
+//  private long useAccelerOldTime = 0L;
+//
+//  /** 加速度センサーを利用するならばtrue */
+//  boolean useAccelerometer = false;
 
   /** プログレスダイアログ */
   ProgressDialog progressDialog;
@@ -156,7 +156,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.glView.setRenderer(this.objectRenderer);
     this.isInitialScreenSize = false;
 
-    initSensorValues();
+    //initSensorValues();
 
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
@@ -460,7 +460,7 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
    * 
    * @return オブジェクトレンダラー
    */
-  public ObjectRenderer getObjectRender() {
+  public OpenglesObjectRenderer getObjectRender() {
     return this.objectRenderer;
   }
 
@@ -526,106 +526,106 @@ public class CanvasFragment extends RoboFragment implements SensorEventListener 
     this.timer.schedule(this.animationTask, 0, 30);
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public void onSensorChanged(SensorEvent event) {
-    final int sensorType = event.sensor.getType();
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void onSensorChanged(SensorEvent event) {
+//    final int sensorType = event.sensor.getType();
+//
+//    if (sensorType == Sensor.TYPE_ACCELEROMETER) {
+//      for (int i = 0; i < 3; i++) {
+//        this.accelerometers[i] = event.values[i];
+//      }
+//    }
+//
+//    if (sensorType == Sensor.TYPE_MAGNETIC_FIELD) {
+//      for (int i = 0; i < 3; i++) {
+//        this.magneticFields[i] = event.values[i];
+//      }
+//    }
+//
+//    if (this.useAccelerometer && sensorType == Sensor.TYPE_ACCELEROMETER) {
+//      // Low Pass Filter
+//      this.lowPassX = this.lowPassX + event.values[0];
+//      this.lowPassY = this.lowPassY + event.values[1];
+//      this.lowPassZ = (0.1 * event.values[2] + 0.9 * this.lowPassZ);
+//
+//      this.rawAz = event.values[2] - this.lowPassZ;
+//
+//      final long nowTime = SystemClock.uptimeMillis();
+//      final long interval = nowTime - this.useAccelerOldTime;
+//
+//      if (interval > 300) {
+//        final int accelerSensorThreshold = 5;
+//        
+//        if (this.rawAz > accelerSensorThreshold) {
+//          for (int i = 0; i < 10000; i++) {
+//            if (this.scaleValue < 20.0) {
+//              this.scaleValue += 0.00002;
+//              this.objectRenderer.setScale((float)this.scaleValue);
+//              this.objectRenderer.updateDisplay();
+//            }
+//          }
+//          this.useAccelerOldTime = nowTime;
+//        }
+//
+//        if (this.rawAz < -accelerSensorThreshold) {
+//          for (int i = 0; i < 10000; i++) {
+//            if (this.scaleValue > 0.05) {
+//              this.scaleValue -= 0.00002;
+//              this.objectRenderer.setScale((float)this.scaleValue);
+//              this.objectRenderer.updateDisplay();
+//            }
+//          }
+//          this.useAccelerOldTime = nowTime;
+//        }
+//      }
+//
+//      this.objectRenderer.setScale((float)this.scaleValue);
+//    }
+//
+//    if (this.useRotationSensor) {
+//      final float[] matrixR = new float[9];
+//      final float[] matrixI = new float[9];
+//      SensorManager.getRotationMatrix(matrixR, matrixI, this.accelerometers, this.magneticFields);
+//      
+//      // センサーから算出した端末の角度を格納する配列 
+//      final float[] orientations = new float[3];
+//      SensorManager.getOrientation(matrixR, orientations);
+//      
+//      final float[] diffOrientations = new float[3];
+//      for (int i = 0; i < orientations.length; i++) {
+//        diffOrientations[i] = orientations[i] - this.prevOrientations[i];
+//      }
+//      
+//      for (int i = 0; i < orientations.length; i++) {
+//        this.prevOrientations[i] = orientations[i];
+//      }
+//      
+//      this.objectRenderer.rotateY(diffOrientations[2]*60);
+//      this.objectRenderer.rotateZ(diffOrientations[0]*60);
+//    }
+//
+//    this.objectRenderer.updateDisplay();
+//  }
+//
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void onAccuracyChanged(Sensor sensor, int accuracy) {
+//    //nothing to do
+//  }
 
-    if (sensorType == Sensor.TYPE_ACCELEROMETER) {
-      for (int i = 0; i < 3; i++) {
-        this.accelerometers[i] = event.values[i];
-      }
-    }
-
-    if (sensorType == Sensor.TYPE_MAGNETIC_FIELD) {
-      for (int i = 0; i < 3; i++) {
-        this.magneticFields[i] = event.values[i];
-      }
-    }
-
-    if (this.useAccelerometer && sensorType == Sensor.TYPE_ACCELEROMETER) {
-      // Low Pass Filter
-      this.lowPassX = this.lowPassX + event.values[0];
-      this.lowPassY = this.lowPassY + event.values[1];
-      this.lowPassZ = (0.1 * event.values[2] + 0.9 * this.lowPassZ);
-
-      this.rawAz = event.values[2] - this.lowPassZ;
-
-      final long nowTime = SystemClock.uptimeMillis();
-      final long interval = nowTime - this.useAccelerOldTime;
-
-      if (interval > 300) {
-        final int accelerSensorThreshold = 5;
-        
-        if (this.rawAz > accelerSensorThreshold) {
-          for (int i = 0; i < 10000; i++) {
-            if (this.scaleValue < 20.0) {
-              this.scaleValue += 0.00002;
-              this.objectRenderer.setScale((float)this.scaleValue);
-              this.objectRenderer.updateDisplay();
-            }
-          }
-          this.useAccelerOldTime = nowTime;
-        }
-
-        if (this.rawAz < -accelerSensorThreshold) {
-          for (int i = 0; i < 10000; i++) {
-            if (this.scaleValue > 0.05) {
-              this.scaleValue -= 0.00002;
-              this.objectRenderer.setScale((float)this.scaleValue);
-              this.objectRenderer.updateDisplay();
-            }
-          }
-          this.useAccelerOldTime = nowTime;
-        }
-      }
-
-      this.objectRenderer.setScale((float)this.scaleValue);
-    }
-
-    if (this.useRotationSensor) {
-      final float[] matrixR = new float[9];
-      final float[] matrixI = new float[9];
-      SensorManager.getRotationMatrix(matrixR, matrixI, this.accelerometers, this.magneticFields);
-      
-      // センサーから算出した端末の角度を格納する配列 
-      final float[] orientations = new float[3];
-      SensorManager.getOrientation(matrixR, orientations);
-      
-      final float[] diffOrientations = new float[3];
-      for (int i = 0; i < orientations.length; i++) {
-        diffOrientations[i] = orientations[i] - this.prevOrientations[i];
-      }
-      
-      for (int i = 0; i < orientations.length; i++) {
-        this.prevOrientations[i] = orientations[i];
-      }
-      
-      this.objectRenderer.rotateY(diffOrientations[2]*60);
-      this.objectRenderer.rotateZ(diffOrientations[0]*60);
-    }
-
-    this.objectRenderer.updateDisplay();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void onAccuracyChanged(Sensor sensor, int accuracy) {
-    //nothing to do
-  }
-
-  /**
-   * センサー関係の値を初期化します。
-   */
-  private void initSensorValues() {
-    for (int i = 0; i < 3; i++) {
-      this.prevOrientations[i] = 0.0f;
-      this.magneticFields[i] = 0;
-      this.accelerometers[i] = 0;
-    }
-  }
+//  /**
+//   * センサー関係の値を初期化します。
+//   */
+//  private void initSensorValues() {
+//    for (int i = 0; i < 3; i++) {
+//      this.prevOrientations[i] = 0.0f;
+//      this.magneticFields[i] = 0;
+//      this.accelerometers[i] = 0;
+//    }
+//  }
 
   /**
    * Mikity3dを返します。

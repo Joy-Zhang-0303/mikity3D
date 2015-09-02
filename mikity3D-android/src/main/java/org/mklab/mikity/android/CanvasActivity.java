@@ -50,7 +50,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   /** 停止ボタンが押すことができるならばtrue */
   private boolean isStopButtonPushable;
   
-  private SensorService sensorService;
+  SensorService sensorService;
   
   /**
    * {@inheritDoc}

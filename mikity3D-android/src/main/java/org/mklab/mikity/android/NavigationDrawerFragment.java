@@ -264,9 +264,9 @@ public class NavigationDrawerFragment extends RoboFragment {
        */
       public void onClick(View view) {
         if (NavigationDrawerFragment.this.rotationSensorButton.isChecked()) {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useRotationSensor = true;
+          NavigationDrawerFragment.this.canvasActivity.sensorService.useRotationSensor = true;
         } else {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useRotationSensor = false;
+          NavigationDrawerFragment.this.canvasActivity.sensorService.useRotationSensor = false;
         }
 
       }
@@ -279,9 +279,9 @@ public class NavigationDrawerFragment extends RoboFragment {
        */
       public void onClick(View view) {
         if (NavigationDrawerFragment.this.accelerometerButton.isChecked()) {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerometer = true;
+          NavigationDrawerFragment.this.canvasActivity.sensorService.useAccelerometer = true;
         } else {
-          NavigationDrawerFragment.this.canvasActivity.canvasFragment.useAccelerometer = false;
+          NavigationDrawerFragment.this.canvasActivity.sensorService.useAccelerometer = false;
         }
       }
 
