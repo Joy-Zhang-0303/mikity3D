@@ -40,6 +40,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -126,7 +127,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     createSensorComponent(mainView);
 
     createSampleComponent(mainView);
-    
+       
     //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
     this.canvasActivity.ndFragment = this;
     return mainView;
@@ -305,8 +306,6 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        NavigationDrawerFragment.this.sourceId = null;
-        
         final FragmentManager manager = getFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
         final AssetsListViewFragment fragment = new AssetsListViewFragment(null);
@@ -318,7 +317,7 @@ public class NavigationDrawerFragment extends RoboFragment {
         transaction.commit();
       }
     });
-
+    
     this.assetsSource0Button = (Button)mainView.findViewById(R.id.assetsSource0Button);
     this.assetsSource0Button.setEnabled(false);
     this.assetsSource0Button.setOnClickListener(new OnClickListener() {
@@ -327,8 +326,6 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        NavigationDrawerFragment.this.sourceId = "0"; //$NON-NLS-1$
-        
         final FragmentManager manager = getFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
         final String id = "0"; //$NON-NLS-1$
@@ -350,11 +347,10 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        NavigationDrawerFragment.this.sourceId = "1"; //$NON-NLS-1$
-        
         final FragmentManager manager = getFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
-        final AssetsListViewFragment fragment = new AssetsListViewFragment(NavigationDrawerFragment.this.sourceId);
+        final String id = "1"; //$NON-NLS-1$
+        final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setIsModelData(false);
         fragment.setFragmentManager(manager);
@@ -372,11 +368,10 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        NavigationDrawerFragment.this.sourceId = "2"; //$NON-NLS-1$
-        
         final FragmentManager manager = getFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
-        final AssetsListViewFragment fragment = new AssetsListViewFragment(NavigationDrawerFragment.this.sourceId);
+        final String id = "2"; //$NON-NLS-1$
+        final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setIsModelData(false);
         fragment.setFragmentManager(manager);
@@ -394,11 +389,10 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        NavigationDrawerFragment.this.sourceId = "3"; //$NON-NLS-1$
-        
         final FragmentManager manager = getFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
-        final AssetsListViewFragment fragment = new AssetsListViewFragment(NavigationDrawerFragment.this.sourceId);
+        final String id = "3"; //$NON-NLS-1$
+        final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setIsModelData(false);
         fragment.setFragmentManager(manager);
@@ -407,6 +401,38 @@ public class NavigationDrawerFragment extends RoboFragment {
         transaction.commit();
       }
     });
+    
+    final TextView assetsSourceTextView = new TextView(getActivity());
+    assetsSourceTextView.setText("Source(4)"); //$NON-NLS-1$
+    
+    final Button assetsSourceButton = new Button(getActivity());
+    assetsSourceButton.setEnabled(false);
+    assetsSourceButton.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View view) {
+        final FragmentManager manager = getFragmentManager();
+        final FragmentTransaction transaction = manager.beginTransaction();
+        final String id = "4"; //$NON-NLS-1$
+        final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
+        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
+        fragment.setIsModelData(false);
+        fragment.setFragmentManager(manager);
+        transaction.replace(R.id.fragment_navigation_drawer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+      }
+    });
+    
+    
+    
+    final LinearLayout assetsSourceLayout = new LinearLayout(getActivity());
+    assetsSourceLayout.addView(assetsSourceTextView);
+    assetsSourceLayout.addView(assetsSourceButton);
+    
+    ((LinearLayout)mainView.findViewById(R.id.layout_fragment_navigation_drawer)).addView(assetsSourceLayout);
   }
 
   /**

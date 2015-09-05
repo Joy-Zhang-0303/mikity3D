@@ -24,10 +24,10 @@ import android.os.SystemClock;
  */
 public class SensorService implements SensorEventListener {
   /** センサーマネージャー */
-  SensorManager sensorManager;
+  private SensorManager sensorManager;
   
   /** キャンバスフラグメント。 */
-  CanvasFragment canvasFragment;
+  private CanvasFragment canvasFragment;
   
   /** センサーからの地磁気を格納する配列 */
   private float[] magneticFieldValues = new float[3];
@@ -53,8 +53,6 @@ public class SensorService implements SensorEventListener {
 
   /** 加速度センサーを利用するならばtrue */
   boolean useAccelerometer = false;
-  
-  //double scaleValue = 1;
 
   /**
    * 新しく生成された<code>SensorService</code>オブジェクトを初期化します。
@@ -85,12 +83,12 @@ public class SensorService implements SensorEventListener {
   public void registerSensorListener() {
     final List<Sensor> accelerometers = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
     if (accelerometers.size() > 0) {
-      this.sensorManager.registerListener(this, accelerometers.get(0), SensorManager.SENSOR_DELAY_UI);
+      this.sensorManager.registerListener(this, accelerometers.get(0), SensorManager.SENSOR_DELAY_NORMAL);
     }
-
+    
     final List<Sensor> magneticFields = this.sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
     if (magneticFields.size() > 0) {
-      this.sensorManager.registerListener(this, magneticFields.get(0), SensorManager.SENSOR_DELAY_UI);
+      this.sensorManager.registerListener(this, magneticFields.get(0), SensorManager.SENSOR_DELAY_NORMAL);
     }
   }
   
