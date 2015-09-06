@@ -31,6 +31,8 @@
 	<string name="sampleText">Sample</string>
 	<string name="assetsModelText">Model</string>
 	<string name="assetsModelButtonText">Open</string>
+	<string name="assetsSourceText">Source</string>
+	<string name="assetsSourceButtonText">Open</string>
 	<string name="assetsSource0Text">Source(0)</string>
 	<string name="assetsSource0ButtonText">Open</string>
 	<string name="assetsSource1Text">Source(1)</string>

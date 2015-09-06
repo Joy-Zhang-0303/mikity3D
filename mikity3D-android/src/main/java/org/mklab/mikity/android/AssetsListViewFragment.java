@@ -104,11 +104,8 @@ public class AssetsListViewFragment extends RoboFragment {
               }
               
               AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
+              
               AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
-              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource0Button.setEnabled(true);
-              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource1Button.setEnabled(true);
-              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource2Button.setEnabled(true);
-              AssetsListViewFragment.this.canvasActivity.ndFragment.assetsSource3Button.setEnabled(true);
             } else {
               AssetsListViewFragment.this.canvasActivity.canvasFragment.loadSourceData(input, nextFile, AssetsListViewFragment.this.sourceId);
             }

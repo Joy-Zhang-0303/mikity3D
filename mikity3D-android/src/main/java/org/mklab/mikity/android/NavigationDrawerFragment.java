@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -100,15 +101,17 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** ソース番号を変更するためのボタン */
   Button sourceNumberChangeButton;
 
-  /** Assets0のソースを読み込むためのボタン。 */
-  Button assetsSource0Button;
-  /** Assets1のソースを読み込むためのボタン。 */
-  Button assetsSource1Button;
-  /** Assets2のソースを読み込むためのボタン。 */
-  Button assetsSource2Button;
-  /** Assets3のソースを読み込むためのボタン。 */
-  Button assetsSource3Button;
+//  /** Assets0のソースを読み込むためのボタン。 */
+//  Button assetsSource0Button;
+//  /** Assets1のソースを読み込むためのボタン。 */
+//  Button assetsSource1Button;
+//  /** Assets2のソースを読み込むためのボタン。 */
+//  Button assetsSource2Button;
+//  /** Assets3のソースを読み込むためのボタン。 */
+//  Button assetsSource3Button;
 
+  List<Button> assetsSourceButtons = new ArrayList<Button>();
+  
   /**
    * {@inheritDoc}
    */
@@ -318,121 +321,49 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
     
-    this.assetsSource0Button = (Button)mainView.findViewById(R.id.assetsSource0Button);
-    this.assetsSource0Button.setEnabled(false);
-    this.assetsSource0Button.setOnClickListener(new OnClickListener() {
+    final List<String> sources = new ArrayList<String>();
+    sources.add("0"); //$NON-NLS-1$
+    sources.add("1"); //$NON-NLS-1$
+    sources.add("2"); //$NON-NLS-1$
+    sources.add("3"); //$NON-NLS-1$
+    
+    createSampleSource(mainView, sources);
+  }
 
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View view) {
-        final FragmentManager manager = getFragmentManager();
-        final FragmentTransaction transaction = manager.beginTransaction();
-        final String id = "0"; //$NON-NLS-1$
-        final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
-        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
-        fragment.setIsModelData(false);
-        fragment.setFragmentManager(manager);
-        transaction.replace(R.id.fragment_navigation_drawer, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-      }
-    });
-    
-    this.assetsSource1Button = (Button)mainView.findViewById(R.id.assetsSource1Button);
-    this.assetsSource1Button.setEnabled(false);
-    this.assetsSource1Button.setOnClickListener(new OnClickListener() {
+  private void createSampleSource(final View mainView, List<String> sources) {
+    for (final String id : sources) {
+      final TextView assetsSourceTextView = new TextView(getActivity());
+      assetsSourceTextView.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View view) {
-        final FragmentManager manager = getFragmentManager();
-        final FragmentTransaction transaction = manager.beginTransaction();
-        final String id = "1"; //$NON-NLS-1$
-        final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
-        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
-        fragment.setIsModelData(false);
-        fragment.setFragmentManager(manager);
-        transaction.replace(R.id.fragment_navigation_drawer, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-      }
-    });
-    
-    this.assetsSource2Button = (Button)mainView.findViewById(R.id.assetsSource2Button);
-    this.assetsSource2Button.setEnabled(false);
-    this.assetsSource2Button.setOnClickListener(new OnClickListener() {
+      final Button assetsSourceButton = new Button(getActivity());
+      this.assetsSourceButtons.add(assetsSourceButton);
+      
+      assetsSourceButton.setEnabled(false);
+      assetsSourceButton.setText("OPEN"); //$NON-NLS-1$
+      assetsSourceButton.setOnClickListener(new OnClickListener() {
 
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View view) {
-        final FragmentManager manager = getFragmentManager();
-        final FragmentTransaction transaction = manager.beginTransaction();
-        final String id = "2"; //$NON-NLS-1$
-        final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
-        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
-        fragment.setIsModelData(false);
-        fragment.setFragmentManager(manager);
-        transaction.replace(R.id.fragment_navigation_drawer, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-      }
-    });
-    
-    this.assetsSource3Button = (Button)mainView.findViewById(R.id.assetsSource3Button);
-    this.assetsSource3Button.setEnabled(false);
-    this.assetsSource3Button.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View view) {
-        final FragmentManager manager = getFragmentManager();
-        final FragmentTransaction transaction = manager.beginTransaction();
-        final String id = "3"; //$NON-NLS-1$
-        final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
-        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
-        fragment.setIsModelData(false);
-        fragment.setFragmentManager(manager);
-        transaction.replace(R.id.fragment_navigation_drawer, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-      }
-    });
-    
-    final TextView assetsSourceTextView = new TextView(getActivity());
-    assetsSourceTextView.setText("Source(4)"); //$NON-NLS-1$
-    
-    final Button assetsSourceButton = new Button(getActivity());
-    assetsSourceButton.setEnabled(false);
-    assetsSourceButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View view) {
-        final FragmentManager manager = getFragmentManager();
-        final FragmentTransaction transaction = manager.beginTransaction();
-        final String id = "4"; //$NON-NLS-1$
-        final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
-        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
-        fragment.setIsModelData(false);
-        fragment.setFragmentManager(manager);
-        transaction.replace(R.id.fragment_navigation_drawer, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-      }
-    });
-    
-    
-    
-    final LinearLayout assetsSourceLayout = new LinearLayout(getActivity());
-    assetsSourceLayout.addView(assetsSourceTextView);
-    assetsSourceLayout.addView(assetsSourceButton);
-    
-    ((LinearLayout)mainView.findViewById(R.id.layout_fragment_navigation_drawer)).addView(assetsSourceLayout);
+        /**
+         * {@inheritDoc}
+         */
+        public void onClick(View view) {
+          final FragmentManager manager = getFragmentManager();
+          final FragmentTransaction transaction = manager.beginTransaction();
+          final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
+          fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
+          fragment.setIsModelData(false);
+          fragment.setFragmentManager(manager);
+          transaction.replace(R.id.fragment_navigation_drawer, fragment);
+          transaction.addToBackStack(null);
+          transaction.commit();
+        }
+      });
+      
+      final LinearLayout assetsSourceLayout = new LinearLayout(getActivity());
+      assetsSourceLayout.addView(assetsSourceTextView);
+      assetsSourceLayout.addView(assetsSourceButton);
+      
+      ((LinearLayout)mainView.findViewById(R.id.layout_sample_source)).addView(assetsSourceLayout);
+    }
   }
 
   /**
@@ -578,10 +509,10 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.sourceNumberChangeButton.setEnabled((enabled));
     this.sourceReloadButton.setEnabled(enabled);
     this.sourceDeleteButton.setEnabled(enabled);
-    this.assetsSource0Button.setEnabled(enabled);
-    this.assetsSource1Button.setEnabled(enabled);
-    this.assetsSource2Button.setEnabled(enabled);
-    this.assetsSource3Button.setEnabled(enabled);
+    
+    for (Button assetSourceButton : this.assetsSourceButtons) {
+      assetSourceButton.setEnabled(enabled);
+    }
   }
 
   /**

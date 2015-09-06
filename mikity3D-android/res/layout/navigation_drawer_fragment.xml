@@ -3,294 +3,231 @@
     android:id="@+id/layout_fragment_navigation_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >    
+    android:orientation="vertical" >
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/animationSpeedText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:text="@string/animationSpeedText" />
 
-            <TextView
-                android:id="@+id/animationSpeedText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:text="@string/animationSpeedText" />
-
-            <Button
-                android:id="@+id/slowButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxWidth="2dp"
-                android:text="@string/minusButton" />
-
-            <EditText
-                android:id="@+id/animationSpeedEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:maxLength="4" >
-
-                <requestFocus />
-            </EditText>
-
-            <Button
-                android:id="@+id/quickButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxWidth="2dp"
-                android:text="@string/plusButton" />
-        </LinearLayout>
-
-        <LinearLayout
+        <Button
+            android:id="@+id/slowButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxWidth="2dp"
+            android:text="@string/minusButton" />
 
-            <TextView
-                android:id="@+id/modelPathlabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/modelPathLabel" />
-
-            <Button
-                android:id="@+id/modelSelectButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fileSelectButton" />
-
-	        <TextView
-                android:id="@+id/modelPathView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="20"
-                android:text="@string/filePathView" />
-
-        </LinearLayout>
-
-       	<LinearLayout
+        <EditText
+            android:id="@+id/animationSpeedEditText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:maxLength="4" >
 
-            <TextView
-                android:id="@+id/sourceNumberChangeView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/sourceNumberChangeView" />
+            <requestFocus />
+        </EditText>
 
-            <Button
-                android:id="@+id/sourceNumberChangeButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sourceNumberChangeButton" />
-        </LinearLayout>
-        
-        <LinearLayout
+        <Button
+            android:id="@+id/quickButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxWidth="2dp"
+            android:text="@string/plusButton" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/sourcePathLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sourcePathLabel"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
 
-            <Button
-                android:id="@+id/sourceSelectButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fileSelectButton" />
+        <TextView
+            android:id="@+id/modelPathlabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/modelPathLabel" />
 
-            <TextView
-                android:id="@+id/sourcePathView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="20"
-                android:text="@string/filePathView" />
-
-                
-            <Button
-                android:id="@+id/sourceDeleteButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sourceDeleteButton" />
-            
-            <Button
-                android:id="@+id/sourceReloadButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/sourceReloadButton" />
-        </LinearLayout>
-                
-        <LinearLayout
+        <Button
+            android:id="@+id/modelSelectButton"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:text="@string/fileSelectButton" />
 
-            <TextView
-                android:id="@+id/rotationSensorTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/rotationSensorTextView" />
+        <TextView
+            android:id="@+id/modelPathView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="20"
+            android:text="@string/filePathView" />
+    </LinearLayout>
 
-            <ToggleButton
-                android:id="@+id/rotationSensorButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/rotationSensorButton" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/accelerometerTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/accelerometerTextView" />
+        <TextView
+            android:id="@+id/sourceNumberChangeView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sourceNumberChangeView" />
 
-            <ToggleButton
-                android:id="@+id/accelerometerButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/accelerometerButton" />
-        </LinearLayout>
-        
-        <LinearLayout
+        <Button
+            android:id="@+id/sourceNumberChangeButton"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-    		<TextView
-    		    android:id="@+id/rotationLockTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/rotationLockTextView" />
-    		
-    		<ToggleButton
-                android:id="@+id/rotationLockButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/rotationLockButton" />
-    	</LinearLayout>
-       
-    	<Space android:layout_width="match_parent" android:layout_height="25dip"/>
-	
-	   	<LinearLayout
+            android:layout_height="wrap_content"
+            android:text="@string/sourceNumberChangeButton" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/sourcePathLabel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:text="@string/sourcePathLabel"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <TextView
-                android:id="@+id/sampleTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/sampleText" />
-        </LinearLayout>
-        
-    	<LinearLayout
+        <Button
+            android:id="@+id/sourceSelectButton"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:text="@string/fileSelectButton" />
 
-            <TextView
-                android:id="@+id/assetsModelTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/assetsModelText" />
+        <TextView
+            android:id="@+id/sourcePathView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="20"
+            android:text="@string/filePathView" />
 
-            <Button
-                android:id="@+id/assetsModelButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/assetsModelButtonText" />
-        </LinearLayout>
-        
-    	<LinearLayout
+        <Button
+            android:id="@+id/sourceDeleteButton"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:text="@string/sourceDeleteButton" />
 
-            <TextView
-                android:id="@+id/assetsSource0Text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/assetsSource0Text" />
-
-            <Button
-                android:id="@+id/assetsSource0Button"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/assetsSource0ButtonText" />
-        </LinearLayout>
-       	<LinearLayout
+        <Button
+            android:id="@+id/sourceReloadButton"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/sourceReloadButton" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/assetsSource1Text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/assetsSource1Text" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
-            <Button
-                android:id="@+id/assetsSource1Button"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/assetsSource1ButtonText" />
-        </LinearLayout>
-       	<LinearLayout
+        <TextView
+            android:id="@+id/rotationSensorTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/rotationSensorTextView" />
 
-            <TextView
-                android:id="@+id/assetsSource2Text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/assetsSource2Text" />
-
-            <Button
-                android:id="@+id/assetsSource2Button"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/assetsSource2ButtonText" />
-        </LinearLayout>
-       	<LinearLayout
+        <ToggleButton
+            android:id="@+id/rotationSensorButton"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/rotationSensorButton" />
 
-            <TextView
-                android:id="@+id/assetsSource3Text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/assetsSource3Text" />
+        <TextView
+            android:id="@+id/accelerometerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/accelerometerTextView" />
 
-            <Button
-                android:id="@+id/assetsSource3Button"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/assetsSource3ButtonText" />
-        </LinearLayout>
+        <ToggleButton
+            android:id="@+id/accelerometerButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/accelerometerButton" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/rotationLockTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/rotationLockTextView" />
+
+        <ToggleButton
+            android:id="@+id/rotationLockButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/rotationLockButton" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dip" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/sampleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sampleText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/assetsModelTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/assetsModelText" />
+
+        <Button
+            android:id="@+id/assetsModelButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/assetsModelButtonText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_sample_source"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
 </LinearLayout>
