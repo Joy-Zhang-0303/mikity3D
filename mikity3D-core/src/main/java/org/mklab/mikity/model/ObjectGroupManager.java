@@ -75,14 +75,14 @@ public class ObjectGroupManager {
    * 
    * @return 可動グループの準備ができるならばtrue
    */
-  public boolean areMovingGroupsRead() {
+  public boolean areMovingGroupsReady() {
     for (final ObjectGroup objectGroup : this.objectGroups) {
       final GroupModel group = objectGroup.getGroup();
       if (group == null || group.hasAnimation() == false) {
         continue;
       }
       
-      if (areAnimationsRead(group.getAnimations()) == false) {
+      if (areAnimationsReady(group.getAnimations()) == false) {
         return false;
       }
     }
@@ -149,7 +149,7 @@ public class ObjectGroupManager {
    * @param animation アニメーション
    * @return アニメーションのソースが登録されていればtrue
    */
-  private boolean areAnimationsRead(final AnimationModel[] animations) {
+  private boolean areAnimationsReady(final AnimationModel[] animations) {
     for (final AnimationModel animation : animations) {
       final SourceModel source = animation.getSource();
       final DoubleMatrix data = this.sources.get(source.getId());

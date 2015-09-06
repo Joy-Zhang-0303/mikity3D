@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -24,6 +26,7 @@ import org.mklab.mikity.model.searcher.GroupNameManager;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
+import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 import roboguice.fragment.RoboFragment;
@@ -100,15 +103,6 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button sourceDeleteButton;
   /** ソース番号を変更するためのボタン */
   Button sourceNumberChangeButton;
-
-//  /** Assets0のソースを読み込むためのボタン。 */
-//  Button assetsSource0Button;
-//  /** Assets1のソースを読み込むためのボタン。 */
-//  Button assetsSource1Button;
-//  /** Assets2のソースを読み込むためのボタン。 */
-//  Button assetsSource2Button;
-//  /** Assets3のソースを読み込むためのボタン。 */
-//  Button assetsSource3Button;
 
   List<Button> assetsSourceButtons = new ArrayList<Button>();
   
@@ -320,18 +314,58 @@ public class NavigationDrawerFragment extends RoboFragment {
         transaction.commit();
       }
     });
+  }
+  
+  /**
+   * 全ての含まれるアニメーソンを返します。
+   * 
+   * @param groups グループ
+   * 
+   * @return 全ての含まれるアニメーソン
+   */
+  private List<AnimationModel> getAllAnimation(List<GroupModel> groups) {
+    final List<AnimationModel> allAnimations = new ArrayList<AnimationModel>();
     
-    final List<String> sources = new ArrayList<String>();
-    sources.add("0"); //$NON-NLS-1$
-    sources.add("1"); //$NON-NLS-1$
-    sources.add("2"); //$NON-NLS-1$
-    sources.add("3"); //$NON-NLS-1$
+    for (final GroupModel group : groups) {
+      final AnimationModel[] animations = group.getAnimations();
+      for (final AnimationModel animation : animations) {
+        if (animation.exists()) {
+          allAnimations.add(animation);
+        }
+      }
+
+      allAnimations.addAll(getAllAnimation(group.getGroups()));        
+    }
     
-    createSampleSource(mainView, sources);
+    return allAnimations;
+  }
+  
+  /**
+   * グループ以下に含まれるアニメーションのソースIDを返します。
+   * 
+   * @param ｇroups グループ
+   * @return グループ以下に含まれるアニメーションのソースIDを返します。
+   */
+  private Set<String> getAllIds(final List<GroupModel> ｇroups) {
+    final List<AnimationModel> allAnimations = getAllAnimation(ｇroups);
+    
+    final Set<String> ids = new TreeSet<String>();
+    for (final AnimationModel animation : allAnimations) {
+      ids.add(animation.getSource().getId());
+    }
+    return ids;
   }
 
-  private void createSampleSource(final View mainView, List<String> sources) {
-    for (final String id : sources) {
+  /**
+   * サンプルのソースを読み込むボタンを生成します。 
+   */
+  void createSampleSource() {
+    final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();
+    final Set<String> ids = getAllIds(rootGroups);  
+    
+    ((LinearLayout)getActivity().findViewById(R.id.layout_sample_source)).removeAllViews();
+    
+    for (final String id : ids) {
       final TextView assetsSourceTextView = new TextView(getActivity());
       assetsSourceTextView.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 
@@ -362,7 +396,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       assetsSourceLayout.addView(assetsSourceTextView);
       assetsSourceLayout.addView(assetsSourceButton);
       
-      ((LinearLayout)mainView.findViewById(R.id.layout_sample_source)).addView(assetsSourceLayout);
+      ((LinearLayout)getActivity().findViewById(R.id.layout_sample_source)).addView(assetsSourceLayout);
     }
   }
 
@@ -481,6 +515,9 @@ public class NavigationDrawerFragment extends RoboFragment {
       if (this.canvasActivity.canvasFragment.sourceData.size() != 0) {
         this.canvasActivity.canvasFragment.sourceData.clear();
       }
+      
+      //createSampleSource();
+      
     } catch (Mikity3dSerializeDeserializeException e) {
       setExceptionDailogFragment("please select model file."); //$NON-NLS-1$
       setButtonEnabled(false);

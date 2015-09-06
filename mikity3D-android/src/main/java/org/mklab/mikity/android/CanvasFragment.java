@@ -457,7 +457,7 @@ public class CanvasFragment extends RoboFragment {
       return;
     }
 
-    if (this.manager.areMovingGroupsRead() == false) {
+    if (this.manager.areMovingGroupsReady() == false) {
       return;
     }
 
