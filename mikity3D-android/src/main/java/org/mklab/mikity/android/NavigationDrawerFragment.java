@@ -363,19 +363,22 @@ public class NavigationDrawerFragment extends RoboFragment {
     final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();
     final Set<String> ids = getAllIds(rootGroups);  
     
-    ((LinearLayout)getActivity().findViewById(R.id.layout_sample_source)).removeAllViews();
+    final LinearLayout sampleSources = ((LinearLayout)getActivity().findViewById(R.id.layout_sample_source));
+    sampleSources.removeAllViews();
+    this.assetsSourceButtons.clear();
     
     for (final String id : ids) {
-      final TextView assetsSourceTextView = new TextView(getActivity());
+      final LinearLayout sampleSource = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.sample_source, null);
+      sampleSources.addView(sampleSource);
+      
+      final TextView assetsSourceTextView = (TextView)sampleSource.findViewById(R.id.assetsSourceText);
       assetsSourceTextView.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
-
-      final Button assetsSourceButton = new Button(getActivity());
+      
+      final Button assetsSourceButton = (Button)sampleSource.findViewById(R.id.assetsSourceButton); 
       this.assetsSourceButtons.add(assetsSourceButton);
       
       assetsSourceButton.setEnabled(false);
-      assetsSourceButton.setText("OPEN"); //$NON-NLS-1$
       assetsSourceButton.setOnClickListener(new OnClickListener() {
-
         /**
          * {@inheritDoc}
          */
@@ -391,12 +394,6 @@ public class NavigationDrawerFragment extends RoboFragment {
           transaction.commit();
         }
       });
-      
-      final LinearLayout assetsSourceLayout = new LinearLayout(getActivity());
-      assetsSourceLayout.addView(assetsSourceTextView);
-      assetsSourceLayout.addView(assetsSourceButton);
-      
-      ((LinearLayout)getActivity().findViewById(R.id.layout_sample_source)).addView(assetsSourceLayout);
     }
   }
 
