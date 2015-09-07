@@ -242,7 +242,6 @@ public class CanvasActivity extends RoboFragmentActivity {
    * @param path 時間データのパス
    */
   private void loadSourceData(Uri path) {
-    this.ndFragment.sourceId = "0"; //$NON-NLS-1$
     this.ndFragment.loadSourceData(path);
   }
 

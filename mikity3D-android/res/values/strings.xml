@@ -14,7 +14,7 @@
 	<string name="minusButton">&lt;&lt;</string>
 	<string name="plusButton">>></string>
 	<string name="modelPathLabel">Model</string>
-	<string name="sourcePathLabel">Source(0)</string>
+	<string name="sourcePathLabel">Source</string>
 	<string name="sourceDeleteButton">×</string>
 	<string name="rotationSensorTextView">RotationSensor</string>
 	<string name="rotationSensorButton">rotationSensorButton</string>
@@ -33,12 +33,4 @@
 	<string name="assetsModelButtonText">Open</string>
 	<string name="assetsSourceText">Source</string>
 	<string name="assetsSourceButtonText">Open</string>
-	<string name="assetsSource0Text">Source(0)</string>
-	<string name="assetsSource0ButtonText">Open</string>
-	<string name="assetsSource1Text">Source(1)</string>
-	<string name="assetsSource1ButtonText">Open</string>
-	<string name="assetsSource2Text">Source(2)</string>
-	<string name="assetsSource2ButtonText">Open</string>
-	<string name="assetsSource3Text">Source(3)</string>
-	<string name="assetsSource3ButtonText">Open</string>
 </resources>
