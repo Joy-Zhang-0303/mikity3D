@@ -6,8 +6,8 @@
     <string name="button1">Play</string>
     <string name="button2">Stop</string>
     <string name="sourceReloadButton">↻</string>
-    <string name="drawer_open">open</string>
-    <string name="drawer_close">close</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 	<string name="filePathView">...</string>
 	<string name="fileSelectButton">Open</string>
 	<string name="animationSpeedText">Speed Rate</string>
@@ -16,7 +16,7 @@
 	<string name="modelPathLabel">Model</string>
 	<string name="sourcePathLabel">Source</string>
 	<string name="sourceDeleteButton">×</string>
-	<string name="rotationSensorTextView">RotationSensor</string>
+	<string name="rotationSensorTextView">Rotation Sensor</string>
 	<string name="rotationSensorButton">rotationSensorButton</string>
 	<string name="accelerometerTextView">Accelerometer</string>
 	<string name="accelerometerButton">accelerometerButton</string>
@@ -24,8 +24,6 @@
 	<string name="rotationLockButton">rotationLockButton</string>
 	<string name="sourceNumberChangeView">Source Number</string>
 	<string name="sourceNumberChangeButton">Edit</string>
-	<string name="setSampleModelView">サンプルモデル</string>
-	<string name="setSampleModelButton">ダウンロード</string>
 	<string name="back">Back</string>
 	<string name="pause">Pause</string>
 	<string name="sampleText">Sample</string>

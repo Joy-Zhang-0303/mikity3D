@@ -87,21 +87,15 @@ public class NavigationDrawerFragment extends RoboFragment {
   
   /** モデルデータ読み込むときに押されるボタン */
   Button modelButton;
-  /** モデルを選択するときに押されるボタン */
-  //Button sourceSelectButton;
-  /** ソースデータ再読み込みのためのボタン */
-  //Button sourceReloadButton;
-  /** ソースデータを削除するためのボタン */
-  //Button sourceDeleteButton;
   
+  /** モデルを選択するときに押されるボタン */
   List<Button> sourceSelectButtons = new ArrayList<Button>();
+  /** ソースデータ再読み込みのためのボタン */
   List<Button> sourceReloadButtons = new ArrayList<Button>();
+  /** ソースデータを削除するためのボタン */
   List<Button> sourceDeleteButtons = new ArrayList<Button>();
-  Map<String,TextView> sourcePathViews = new HashMap<String,TextView>();
-
   /** ソースのファイルパス。 */
-  //TextView sourcePathView;
-
+  Map<String,TextView> sourcePathViews = new HashMap<String,TextView>();
   
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton rotationSensorButton;
