@@ -93,7 +93,7 @@ public class EditGroupDialog implements EditModelDialog {
     // SWT.APPLICATION_MODAL→このシェルを閉じないと、親シェルを編集できなくする
     //this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(450, 420));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(450, 680));
     this.sShell.setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
     final GridLayout layout = new GridLayout();
     layout.numColumns = 3;
@@ -109,7 +109,9 @@ public class EditGroupDialog implements EditModelDialog {
     
     addShellListener();
 
-    createParameterBoxes();
+    createCoordinateParameterBoxes();
+    
+    createAnimationParameterBoxes();
 
     createButtonComposite();
   }
@@ -142,14 +144,14 @@ public class EditGroupDialog implements EditModelDialog {
   }
 
   /**
-   * パラメータを設定するボックスを生成します。
+   * 座標系のパラメータを設定するボックスを生成します。
    */
-  private void createParameterBoxes() {
+  private void createCoordinateParameterBoxes() {
     final Group parameterGroup = new Group(this.sShell, SWT.NONE);
     final GridLayout layout = new GridLayout();
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
-    data.horizontalSpan = 4;
-    layout.numColumns = 4;
+    data.horizontalSpan = 2;
+    layout.numColumns = 2;
     parameterGroup.setText(Messages.getString("GroupConfigDialogLink.11")); //$NON-NLS-1$
     parameterGroup.setLayout(layout);
     parameterGroup.setLayoutData(data);
@@ -165,18 +167,6 @@ public class EditGroupDialog implements EditModelDialog {
     final Label label2 = new Label(parameterGroup, SWT.CENTER);
     label2.setText(Messages.getString("GroupConfigDialogLink.13")); //$NON-NLS-1$
     label2.setLayoutData(gridData2);
-
-    final GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
-    gridData3.widthHint = 30;
-    final Label label3 = new Label(parameterGroup, SWT.CENTER);
-    label3.setText(Messages.getString("EditGroupDialog.7")); //$NON-NLS-1$
-    label3.setLayoutData(gridData3);
-
-    final GridData gridData4 = new GridData(GridData.FILL_HORIZONTAL);
-    gridData4.widthHint = 30;
-    final Label label4 = new Label(parameterGroup, SWT.CENTER);
-    label4.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
-    label4.setLayoutData(gridData4);
 
     int style;
     if (this.editable == true) {
@@ -212,31 +202,73 @@ public class EditGroupDialog implements EditModelDialog {
     }
 
     this.translationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.0"), tX);  //$NON-NLS-1$
-    this.translationXsourceId = new ParameterInputBox(parameterGroup, style, 0);
-    this.translationXsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
-
     this.translationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.1"), tY);  //$NON-NLS-1$
-    this.translationYsourceId = new ParameterInputBox(parameterGroup, style, 0);
-    this.translationYsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
-    
     this.translationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.2"), tZ);  //$NON-NLS-1$
-    this.translationZsourceId = new ParameterInputBox(parameterGroup, style, 0);
-    this.translationZsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
     this.rotationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.3"), rX);  //$NON-NLS-1$
-    this.rotationXsourceId = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.4"), rY);  //$NON-NLS-1$
+    this.rotationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.5"), rZ);  //$NON-NLS-1$
+  }
+  
+  /**
+   * アニメーションのパラメータを設定するボックスを生成します。
+   */
+  private void createAnimationParameterBoxes() {
+    final Group parameterGroup = new Group(this.sShell, SWT.NONE);
+    final GridLayout layout = new GridLayout();
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    data.horizontalSpan = 3;
+    layout.numColumns = 3;
+    parameterGroup.setText(Messages.getString("EditGroupDialog.8")); //$NON-NLS-1$
+    parameterGroup.setLayout(layout);
+    parameterGroup.setLayoutData(data);
+
+    final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
+    data.widthHint = 80;
+    final Label label1 = new Label(parameterGroup, SWT.CENTER);
+    label1.setText(Messages.getString("GroupConfigDialogLink.12")); //$NON-NLS-1$
+    label1.setLayoutData(gridData1);
+
+    final GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
+    gridData3.widthHint = 30;
+    final Label label3 = new Label(parameterGroup, SWT.CENTER);
+    label3.setText(Messages.getString("EditGroupDialog.7")); //$NON-NLS-1$
+    label3.setLayoutData(gridData3);
+
+    final GridData gridData4 = new GridData(GridData.FILL_HORIZONTAL);
+    gridData4.widthHint = 30;
+    final Label label4 = new Label(parameterGroup, SWT.CENTER);
+    label4.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
+    label4.setLayoutData(gridData4);
+
+    int style;
+    if (this.editable == true) {
+      style = SWT.NONE;
+    } else {
+      style = SWT.READ_ONLY;
+    }
+
+    this.translationXsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.0"), 0); //$NON-NLS-1$
+    this.translationXsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
+
+    this.translationYsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.1"), 0); //$NON-NLS-1$
+    this.translationYsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
+    
+    this.translationZsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.2"), 0); //$NON-NLS-1$
+    this.translationZsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
+
+    this.rotationXsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.3"), 0); //$NON-NLS-1$
     this.rotationXsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.rotationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.4"), rY);  //$NON-NLS-1$
-    this.rotationYsourceId = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationYsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.4"), 0); //$NON-NLS-1$
     this.rotationYsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
-    this.rotationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.5"), rZ);  //$NON-NLS-1$
-    this.rotationZsourceId = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationZsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.5"), 0); //$NON-NLS-1$
     this.rotationZsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
 
     setAnimationInDialog();
   }
+
 
   /**
    * アニメーションの 番号を表示させる
