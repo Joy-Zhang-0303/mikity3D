@@ -102,12 +102,12 @@ public class ModelingWindow extends ApplicationWindow {
    * {@inheritDoc}
    */
   @Override
-  protected Control createContents(Composite composite) {
-    final Composite localComposite = new Composite(composite, SWT.NONE);
-    localComposite.setLayout(new GridLayout());
-    localComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
+  protected Control createContents(Composite parent) {
+    final Composite composite = new Composite(parent, SWT.NONE);
+    composite.setLayout(new GridLayout());
+    composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-    this.modeler = new JoglModeler(localComposite, this.root);
+    this.modeler = new JoglModeler(composite, this.root);
     
     ((ConfigurationDialogOpenAction)this.CONFIGURATION_DIALOG_OPEN_ACTION).setModeler(this.modeler);
     ((FileExitAction)this.FILE_EXIT_ACTION).setModeler(this.modeler);
@@ -120,7 +120,7 @@ public class ModelingWindow extends ApplicationWindow {
     this.TOOLBAR_QUAD_ACTION.setModeler(this.modeler);
     this.RESET_TO_INITIAL_STATE_ACTION.setModeler(this.modeler);
       
-    return localComposite;
+    return composite;
   }
 
   /**

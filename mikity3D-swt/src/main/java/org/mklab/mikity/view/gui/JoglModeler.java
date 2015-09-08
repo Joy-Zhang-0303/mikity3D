@@ -57,33 +57,35 @@ public class JoglModeler extends Composite {
     final SashForm sash = new SashForm(this, SWT.NONE);
     sash.setLayoutData(new GridData(GridData.FILL_BOTH));
     sash.setLayout(new GridLayout());
-
-    createCanvasComposite(sash);
+    
     createTreeComposite(sash);
+    createCanvasComposite(sash);
+    
+    updateRenderer();
   }
 
   /**
    * 3Dグラフィックスを表示するキャンバスを生成します。
    * 
-   * @param composite 親コンポジット
+   * @param parent 親コンポジット
    */
-  private void createCanvasComposite(Composite composite) {
+  private void createCanvasComposite(Composite parent) {
     final GridData gridData = new GridData(GridData.FILL_BOTH);
-    final Composite canvasComposite = new Composite(composite, SWT.EMBEDDED);
-    canvasComposite.setLayout(new GridLayout());
-    canvasComposite.setLayoutData(gridData);
-    createModelCanvas(canvasComposite);
+    final Composite composite = new Composite(parent, SWT.EMBEDDED);
+    composite.setLayout(new GridLayout());
+    composite.setLayoutData(gridData);
+    createModelCanvas(composite);
   }
 
   /**
    * Treeを表示するコンポジットを作成します。
    * 
-   * @param composite 親コンポジット
+   * @param parent 親コンポジット
    */
-  private void createTreeComposite(Composite composite) {
+  private void createTreeComposite(Composite parent) {
     final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
-    final Group group = new Group(composite, SWT.NONE);
+    final Group group = new Group(parent, SWT.NONE);
     group.setLayout(layout);
 
     final GridData data = new GridData(GridData.FILL_BOTH);
@@ -92,7 +94,6 @@ public class JoglModeler extends Composite {
     group.setText(Messages.getString("Modeler.0")); //$NON-NLS-1$
 
     this.tree = new SceneGraphTree(group, this, this.root.getScene(0));
-    updateRenderer();
   }
 
   /**
