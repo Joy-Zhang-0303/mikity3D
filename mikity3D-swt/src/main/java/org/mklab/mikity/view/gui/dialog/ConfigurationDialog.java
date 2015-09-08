@@ -36,7 +36,6 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
  */
 public class ConfigurationDialog {
   Shell sShell = null;
-  //private Shell parentShell = null;
   private ColorSelectorButton colorSelector;
   private Combo modelLengthUnitCombo;
   private Combo modelAngleUnitCombo;
@@ -278,26 +277,6 @@ public class ConfigurationDialog {
     layout.numColumns = 2;
     composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     composite.setLayout(layout);
-
-//    final Button okButton = new Button(composite, SWT.NONE);
-//    okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//    okButton.setText(Messages.getString("ConfigDialog.16")); //$NON-NLS-1$
-//    okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-//      @Override
-//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-//        if (containsOnlyNumbers() == false) {
-//          createMessageBoxForNonNumericInput();          
-//          return;
-//        }
-//
-//        ConfigurationDialog.this.modeler.setChanged(ConfigurationDialog.this.isChanged());
-//        
-//        updateConfigurationParameters();
-//        ConfigurationDialog.this.modeler.updateDisplay();
-//        ConfigurationDialog.this.sShell.close();
-//      }
-//
-//    });
     
     final Button applyButton = new Button(composite, SWT.NONE);
     applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));

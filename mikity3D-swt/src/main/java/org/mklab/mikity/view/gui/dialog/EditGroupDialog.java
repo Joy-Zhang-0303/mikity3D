@@ -112,12 +112,6 @@ public class EditGroupDialog implements EditModelDialog {
     createParameterBoxes();
 
     createButtonComposite();
-
-//    createStatusBar();
-//
-//    if (this.editable == false) {
-//      setStatus(Messages.getString("GroupConfigDialogLink.10")); //$NON-NLS-1$
-//    }
   }
 
   /**
@@ -305,31 +299,6 @@ public class EditGroupDialog implements EditModelDialog {
 
     final GridLayout compLayout = new GridLayout(2, true);
     composite.setLayout(compLayout);
-    
-//    final Button okButton = new Button(this.sShell, SWT.NONE);
-//    okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//    okButton.setText(Messages.getString("GroupConfigDialogLink.4")); //$NON-NLS-1$
-//    okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-//      @Override
-//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-//        if (containsOnlyNumbers() == false) {
-//          final MessageBox message = new MessageBox(EditGroupDialog.this.sShell, SWT.ICON_WARNING);
-//          message.setMessage(Messages.getString("GroupConfigDialogLink.7")); //$NON-NLS-1$
-//          message.setText(Messages.getString("GroupConfigDialogLink.8")); //$NON-NLS-1$
-//          message.open();
-//          return;
-//        }
-//
-//        EditGroupDialog.this.modeler.setChanged(EditGroupDialog.this.isChanged());
-//        
-//        updateModelParameters();
-//        EditGroupDialog.this.tree.updateTree();
-//        EditGroupDialog.this.modeler.updateDisplay();
-//        
-//        EditGroupDialog.this.sShell.close();
-//      }
-//
-//    });
   
     final Button applyButton = new Button(this.sShell, SWT.NONE);
     applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -356,8 +325,6 @@ public class EditGroupDialog implements EditModelDialog {
           EditGroupDialog.this.sShell.close();
           return;
         }
-        
-        //EditGroupDialog.this.modeler.setChanged(true);
 
         final MessageBox message = new MessageBox(EditGroupDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
@@ -408,26 +375,6 @@ public class EditGroupDialog implements EditModelDialog {
       this.targetGroup.add(animation);
     }
   }
-
-//  /**
-//   * ステータスバーを生成します。
-//   */
-//  private void createStatusBar() {
-//    this.statusLabel = new Label(this.sShell, SWT.BORDER);
-//    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-//    gridData.horizontalSpan = 2;
-//    this.statusLabel.setLayoutData(gridData);
-//    setStatus(""); //$NON-NLS-1$
-//  }
-
-//  /**
-//   * ステータスバーにメッセージを設定します。
-//   * 
-//   * @param message メッセージ
-//   */
-//  public void setStatus(String message) {
-//    this.statusLabel.setText(Messages.getString("GroupConfigDialogLink.15") + message); //$NON-NLS-1$
-//  }
 
   /**
    * 数字のみが入力されているか判定します。

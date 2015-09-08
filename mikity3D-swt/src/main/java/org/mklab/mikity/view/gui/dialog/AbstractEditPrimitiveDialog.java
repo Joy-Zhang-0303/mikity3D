@@ -235,30 +235,6 @@ public abstract class AbstractEditPrimitiveDialog implements EditPrimitiveDialog
     final GridLayout compLayout = new GridLayout(2, true);
     composite.setLayout(compLayout);
     
-//    final Button okButton = new Button(composite, SWT.NONE);
-//    okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//    okButton.setText(Messages.getString("EditPrimitiveDialog.20")); //$NON-NLS-1$
-//    okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-//      @Override
-//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-//        if (containsOnlyNumbers() == false) {
-//          final MessageBox message = new MessageBox(AbstractEditPrimitiveDialog.this.sShell, SWT.ICON_WARNING);
-//          message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
-//          message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
-//          message.open();
-//          return;
-//        }
-//        
-//        AbstractEditPrimitiveDialog.this.modeler.setChanged(AbstractEditPrimitiveDialog.this.isChanged());
-//
-//        updatePrimitiveParameters();
-//        AbstractEditPrimitiveDialog.this.tree.updateTree();
-//        AbstractEditPrimitiveDialog.this.modeler.updateDisplay();
-//        
-//        AbstractEditPrimitiveDialog.this.sShell.close();
-//      }
-//    });
-    
     final Button applyButton = new Button(composite, SWT.NONE);
     applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     applyButton.setText(Messages.getString("EditPrimitiveDialog.11")); //$NON-NLS-1$
