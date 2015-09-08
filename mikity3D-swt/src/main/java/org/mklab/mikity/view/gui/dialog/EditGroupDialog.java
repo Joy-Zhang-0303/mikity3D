@@ -11,6 +11,7 @@ import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
@@ -60,7 +61,7 @@ public class EditGroupDialog implements EditModelDialog {
   ParameterInputBox rotationZsourceNumber;
 
   private boolean editable;
-  private Label statusLabel;
+  //private Label statusLabel;
   
   JoglModeler modeler;
   SceneGraphTree tree;
@@ -112,11 +113,11 @@ public class EditGroupDialog implements EditModelDialog {
 
     createButtonComposite();
 
-    createStatusBar();
-
-    if (this.editable == false) {
-      setStatus(Messages.getString("GroupConfigDialogLink.10")); //$NON-NLS-1$
-    }
+//    createStatusBar();
+//
+//    if (this.editable == false) {
+//      setStatus(Messages.getString("GroupConfigDialogLink.10")); //$NON-NLS-1$
+//    }
   }
 
   /**
@@ -296,34 +297,59 @@ public class EditGroupDialog implements EditModelDialog {
   }
 
   private void createButtonComposite() {
-    final Button okButton = new Button(this.sShell, SWT.NONE);
-    okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    okButton.setText(Messages.getString("GroupConfigDialogLink.4")); //$NON-NLS-1$
-    okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    final Composite composite = new Composite(this.sShell, SWT.NONE);
+    
+    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    gridData.horizontalSpan = 3;
+    composite.setLayoutData(gridData);
+
+    final GridLayout compLayout = new GridLayout(2, true);
+    composite.setLayout(compLayout);
+    
+//    final Button okButton = new Button(this.sShell, SWT.NONE);
+//    okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+//    okButton.setText(Messages.getString("GroupConfigDialogLink.4")); //$NON-NLS-1$
+//    okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+//      @Override
+//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+//        if (containsOnlyNumbers() == false) {
+//          final MessageBox message = new MessageBox(EditGroupDialog.this.sShell, SWT.ICON_WARNING);
+//          message.setMessage(Messages.getString("GroupConfigDialogLink.7")); //$NON-NLS-1$
+//          message.setText(Messages.getString("GroupConfigDialogLink.8")); //$NON-NLS-1$
+//          message.open();
+//          return;
+//        }
+//
+//        EditGroupDialog.this.modeler.setChanged(EditGroupDialog.this.isChanged());
+//        
+//        updateModelParameters();
+//        EditGroupDialog.this.tree.updateTree();
+//        EditGroupDialog.this.modeler.updateDisplay();
+//        
+//        EditGroupDialog.this.sShell.close();
+//      }
+//
+//    });
+  
+    final Button applyButton = new Button(this.sShell, SWT.NONE);
+    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    applyButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
+    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (containsOnlyNumbers() == false) {
-          final MessageBox message = new MessageBox(EditGroupDialog.this.sShell, SWT.ICON_WARNING);
-          message.setMessage(Messages.getString("GroupConfigDialogLink.7")); //$NON-NLS-1$
-          message.setText(Messages.getString("GroupConfigDialogLink.8")); //$NON-NLS-1$
-          message.open();
-          return;
-        }
-
         EditGroupDialog.this.modeler.setChanged(EditGroupDialog.this.isChanged());
         
         updateModelParameters();
         EditGroupDialog.this.tree.updateTree();
         EditGroupDialog.this.modeler.updateDisplay();
-        EditGroupDialog.this.sShell.close();
       }
 
     });
-
-    final Button cancelButton = new Button(this.sShell, SWT.NONE);
-    cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    cancelButton.setText(Messages.getString("GroupConfigDialogLink.9")); //$NON-NLS-1$
-    cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    
+    final Button closeButton = new Button(this.sShell, SWT.NONE);
+    closeButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    closeButton.setText(Messages.getString("GroupConfigDialogLink.9")); //$NON-NLS-1$
+    closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (EditGroupDialog.this.isChanged() == false) {
@@ -331,7 +357,7 @@ public class EditGroupDialog implements EditModelDialog {
           return;
         }
         
-        EditGroupDialog.this.modeler.setChanged(true);        
+        //EditGroupDialog.this.modeler.setChanged(true);
 
         final MessageBox message = new MessageBox(EditGroupDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
@@ -341,19 +367,6 @@ public class EditGroupDialog implements EditModelDialog {
         }
         
       }
-    });
-    
-    final Button applyButton = new Button(this.sShell, SWT.NONE);
-    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    applyButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
-    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-      @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        updateModelParameters();
-        EditGroupDialog.this.tree.updateTree();
-        EditGroupDialog.this.modeler.updateDisplay();
-      }
-
     });
   }
 
@@ -396,25 +409,25 @@ public class EditGroupDialog implements EditModelDialog {
     }
   }
 
-  /**
-   * ステータスバーを生成します。
-   */
-  private void createStatusBar() {
-    this.statusLabel = new Label(this.sShell, SWT.BORDER);
-    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-    gridData.horizontalSpan = 2;
-    this.statusLabel.setLayoutData(gridData);
-    setStatus(""); //$NON-NLS-1$
-  }
+//  /**
+//   * ステータスバーを生成します。
+//   */
+//  private void createStatusBar() {
+//    this.statusLabel = new Label(this.sShell, SWT.BORDER);
+//    final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+//    gridData.horizontalSpan = 2;
+//    this.statusLabel.setLayoutData(gridData);
+//    setStatus(""); //$NON-NLS-1$
+//  }
 
-  /**
-   * ステータスバーにメッセージを設定します。
-   * 
-   * @param message メッセージ
-   */
-  public void setStatus(String message) {
-    this.statusLabel.setText(Messages.getString("GroupConfigDialogLink.15") + message); //$NON-NLS-1$
-  }
+//  /**
+//   * ステータスバーにメッセージを設定します。
+//   * 
+//   * @param message メッセージ
+//   */
+//  public void setStatus(String message) {
+//    this.statusLabel.setText(Messages.getString("GroupConfigDialogLink.15") + message); //$NON-NLS-1$
+//  }
 
   /**
    * 数字のみが入力されているか判定します。

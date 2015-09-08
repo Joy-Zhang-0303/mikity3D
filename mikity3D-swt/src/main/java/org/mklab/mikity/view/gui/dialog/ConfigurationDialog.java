@@ -275,49 +275,29 @@ public class ConfigurationDialog {
   private void createMainButtonComposite(Shell parent) {
     final Composite composite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
-    layout.numColumns = 3;
+    layout.numColumns = 2;
     composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     composite.setLayout(layout);
 
-    final Button okButton = new Button(composite, SWT.NONE);
-    okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    okButton.setText(Messages.getString("ConfigDialog.16")); //$NON-NLS-1$
-    okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-      @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (containsOnlyNumbers() == false) {
-          createMessageBoxForNonNumericInput();          
-          return;
-        }
-
-        ConfigurationDialog.this.modeler.setChanged(ConfigurationDialog.this.isChanged());
-        
-        updateConfigurationParameters();
-        ConfigurationDialog.this.modeler.updateDisplay();
-        ConfigurationDialog.this.sShell.close();
-      }
-
-    });
-    
-    final Button cancelButton = new Button(composite, SWT.NONE);
-    cancelButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    cancelButton.setText(Messages.getString("ConfigDialog.17")); //$NON-NLS-1$
-    cancelButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-      @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (ConfigurationDialog.this.isChanged() == false) {
-          ConfigurationDialog.this.sShell.close();
-          return;
-        }
-        
-        final MessageBox message = new MessageBox(ConfigurationDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-        message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
-        final int yesNo = message.open();
-        if (yesNo == SWT.YES) {
-         ConfigurationDialog.this.sShell.close();
-        }
-      }
-    });
+//    final Button okButton = new Button(composite, SWT.NONE);
+//    okButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+//    okButton.setText(Messages.getString("ConfigDialog.16")); //$NON-NLS-1$
+//    okButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+//      @Override
+//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+//        if (containsOnlyNumbers() == false) {
+//          createMessageBoxForNonNumericInput();          
+//          return;
+//        }
+//
+//        ConfigurationDialog.this.modeler.setChanged(ConfigurationDialog.this.isChanged());
+//        
+//        updateConfigurationParameters();
+//        ConfigurationDialog.this.modeler.updateDisplay();
+//        ConfigurationDialog.this.sShell.close();
+//      }
+//
+//    });
     
     final Button applyButton = new Button(composite, SWT.NONE);
     applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -336,6 +316,26 @@ public class ConfigurationDialog {
         ConfigurationDialog.this.modeler.updateDisplay();
       }
 
+    });
+    
+    final Button closeButton = new Button(composite, SWT.NONE);
+    closeButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    closeButton.setText(Messages.getString("ConfigDialog.17")); //$NON-NLS-1$
+    closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+      @Override
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        if (ConfigurationDialog.this.isChanged() == false) {
+          ConfigurationDialog.this.sShell.close();
+          return;
+        }
+        
+        final MessageBox message = new MessageBox(ConfigurationDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
+        final int yesNo = message.open();
+        if (yesNo == SWT.YES) {
+         ConfigurationDialog.this.sShell.close();
+        }
+      }
     });
   }
 

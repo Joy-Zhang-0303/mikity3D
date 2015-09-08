@@ -69,7 +69,7 @@ public class ParameterInputBox extends Composite {
     
     final GridData data2 = new GridData(GridData.FILL_HORIZONTAL);
     data2.horizontalSpan = 2;
-    this.setLayoutData(data2);
+    setLayoutData(data2);
   }
 
   /**
@@ -86,6 +86,12 @@ public class ParameterInputBox extends Composite {
     layout.marginWidth = 0;
     this.setLayout(layout);
     this.valueText = new Text(this, SWT.BORDER | SWT.RIGHT | style);
+
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    data.widthHint = 65;
+    this.valueText.setLayoutData(data);
+    this.valueText.setText("" + value); //$NON-NLS-1$
+
     this.valueText.addModifyListener(new ModifyListener() {
 
       /**
@@ -95,11 +101,6 @@ public class ParameterInputBox extends Composite {
         ParameterInputBox.this.isChanged = true;
       }
     });
-    
-    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
-    data.widthHint = 65;
-    this.valueText.setLayoutData(data);
-    this.valueText.setText("" + value); //$NON-NLS-1$
   }
 
   /**
