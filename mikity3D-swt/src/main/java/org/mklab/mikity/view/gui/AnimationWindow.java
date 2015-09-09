@@ -346,7 +346,8 @@ public class AnimationWindow extends ApplicationWindow {
         }
         String value = String.valueOf(AnimationWindow.this.speedRate);
         value = value.substring(0, value.indexOf(".") + 2); //$NON-NLS-1$
-        AnimationWindow.this.playSpeed.setStringValue(value);
+        AnimationWindow.this.playSpeed.setValue(value);
+        AnimationWindow.this.playSpeed.setIsChanged(true);
       }
     });
 
@@ -362,7 +363,8 @@ public class AnimationWindow extends ApplicationWindow {
         }
         String value = String.valueOf(AnimationWindow.this.speedRate);
         value = value.substring(0, value.indexOf(".") + 2); //$NON-NLS-1$
-        AnimationWindow.this.playSpeed.setStringValue(value);
+        AnimationWindow.this.playSpeed.setValue(value);
+        AnimationWindow.this.playSpeed.setIsChanged(true);
       }
     });
 

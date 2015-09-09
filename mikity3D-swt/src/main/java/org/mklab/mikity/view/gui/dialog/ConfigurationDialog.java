@@ -278,10 +278,10 @@ public class ConfigurationDialog {
     composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     composite.setLayout(layout);
     
-    final Button applyButton = new Button(composite, SWT.NONE);
-    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    applyButton.setText(Messages.getString("ConfigurationDialog.0")); //$NON-NLS-1$
-    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    final Button saveButton = new Button(composite, SWT.NONE);
+    saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    saveButton.setText(Messages.getString("ConfigurationDialog.0")); //$NON-NLS-1$
+    saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containsOnlyNumbers() == false) {

@@ -6,7 +6,6 @@
 package org.mklab.mikity.view.gui.dialog;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ShellEvent;
 import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.layout.GridData;
@@ -104,8 +103,7 @@ public class EditGroupDialog implements EditModelDialog {
     this.groupName.setTextWidth(150);
 
     if (this.targetGroup.getName() != null) {
-      this.groupName.setStringValue(this.targetGroup.getName());
-      this.groupName.setIsChanged(false);
+      this.groupName.setValue(this.targetGroup.getName());
     }
     
     addShellListener();
@@ -284,41 +282,23 @@ public class EditGroupDialog implements EditModelDialog {
       final String number = "" + source.getNumber(); //$NON-NLS-1$
 
       if (target.equals("translationX")) { //$NON-NLS-1$
-        this.translationXsourceId.setStringValue(id);
-        this.translationXsourceNumber.setStringValue(number);
-        
-        this.translationXsourceId.setIsChanged(false);
-        this.translationXsourceNumber.setIsChanged(false);
+        this.translationXsourceId.setValue(id);
+        this.translationXsourceNumber.setValue(number);
       } else if (target.equals("translationY")) { //$NON-NLS-1$
-        this.translationYsourceId.setStringValue(id);
-        this.translationYsourceNumber.setStringValue(number);
-        
-        this.translationYsourceId.setIsChanged(false);
-        this.translationYsourceNumber.setIsChanged(false);
+        this.translationYsourceId.setValue(id);
+        this.translationYsourceNumber.setValue(number);
       } else if (target.equals("translationZ")) { //$NON-NLS-1$
-        this.translationZsourceId.setStringValue(id);
-        this.translationZsourceNumber.setStringValue(number);
-        
-        this.translationZsourceId.setIsChanged(false);
-        this.translationZsourceNumber.setIsChanged(false);
+        this.translationZsourceId.setValue(id);
+        this.translationZsourceNumber.setValue(number);
       } else if (target.equals("rotationX")) { //$NON-NLS-1$
-        this.rotationXsourceId.setStringValue(id);
-        this.rotationXsourceNumber.setStringValue(number);
-        
-        this.rotationXsourceId.setIsChanged(false);
-        this.rotationXsourceNumber.setIsChanged(false);
+        this.rotationXsourceId.setValue(id);
+        this.rotationXsourceNumber.setValue(number);
       } else if (target.equals("rotationY")) { //$NON-NLS-1$
-        this.rotationYsourceId.setStringValue(id);
-        this.rotationYsourceNumber.setStringValue(number);
-        
-        this.rotationYsourceId.setIsChanged(false);
-        this.rotationYsourceNumber.setIsChanged(false);
+        this.rotationYsourceId.setValue(id);
+        this.rotationYsourceNumber.setValue(number);
       } else if (target.equals("rotationZ")) { //$NON-NLS-1$
-        this.rotationZsourceId.setStringValue(id);        
-        this.rotationZsourceNumber.setStringValue(number);
-        
-        this.rotationZsourceId.setIsChanged(false);
-        this.rotationZsourceNumber.setIsChanged(false);
+        this.rotationZsourceId.setValue(id);        
+        this.rotationZsourceNumber.setValue(number);
       }
     }
   }
@@ -333,10 +313,10 @@ public class EditGroupDialog implements EditModelDialog {
     final GridLayout compLayout = new GridLayout(2, true);
     composite.setLayout(compLayout);
   
-    final Button applyButton = new Button(this.sShell, SWT.NONE);
-    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    applyButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
-    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    final Button saveButton = new Button(this.sShell, SWT.NONE);
+    saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    saveButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
+    saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         EditGroupDialog.this.modeler.setChanged(EditGroupDialog.this.isChanged());

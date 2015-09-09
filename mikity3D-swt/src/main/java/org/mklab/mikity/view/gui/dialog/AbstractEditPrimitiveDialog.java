@@ -235,10 +235,10 @@ public abstract class AbstractEditPrimitiveDialog implements EditPrimitiveDialog
     final GridLayout compLayout = new GridLayout(2, true);
     composite.setLayout(compLayout);
     
-    final Button applyButton = new Button(composite, SWT.NONE);
-    applyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    applyButton.setText(Messages.getString("EditPrimitiveDialog.11")); //$NON-NLS-1$
-    applyButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    final Button saveButton = new Button(composite, SWT.NONE);
+    saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    saveButton.setText(Messages.getString("EditPrimitiveDialog.11")); //$NON-NLS-1$
+    saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containsOnlyNumbers() == false) {

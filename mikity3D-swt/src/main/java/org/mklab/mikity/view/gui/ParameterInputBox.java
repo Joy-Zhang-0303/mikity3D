@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Text;
 
 
 /**
- * 数値の入力を行うボックスに関するクラスです。
+ * パラメータを入力するためのボックスを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.11 $.2004/12/15
@@ -25,10 +25,9 @@ import org.eclipse.swt.widgets.Text;
 public class ParameterInputBox extends Composite {
   /** 名前用のラベル。 */
   private Label nameLabel;
-
   /** 値用のテキスト。 */
   private Text valueText;
-  /** 値が変呼されていればtrue。 */
+  /** 値が変更されていればtrue。 */
   boolean isChanged = false;
 
   /**
@@ -94,8 +93,7 @@ public class ParameterInputBox extends Composite {
   }
 
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
    * @param parent コンポジット
    * @param style スタイル
    * @param value 値 
@@ -142,7 +140,7 @@ public class ParameterInputBox extends Composite {
   }
 
   /**
-   * テキストボックスの文字をfloat型で返します。
+   * パラメータをfloat型で返します。
    * 
    * @return テキストボックスの文字の値
    */
@@ -151,7 +149,7 @@ public class ParameterInputBox extends Composite {
   }
 
   /**
-   * テキストボックスの文字をdouble型で返す
+   * パラメータをdouble型で返す
    * 
    * @return Double.parseDouble(text.getText())
    */
@@ -160,12 +158,21 @@ public class ParameterInputBox extends Composite {
   }
 
   /**
-   * テキストボックスの文字をInt型で返します。
+   * パラメータをint型で返します。
    * 
    * @return テキストボックスの文字の値
    */
   public int getIntValue() {
-    return (int)getDoubleValue();
+    return Integer.parseInt(this.valueText.getText());
+  }
+  
+  /**
+   * パラメータをString型で返します。
+   * 
+   * @return テキストボックスの文字
+   */
+  public String getStringValue() {
+    return this.valueText.getText();
   }
 
   /**
@@ -173,11 +180,13 @@ public class ParameterInputBox extends Composite {
    * 
    * @param string 文字列
    */
-  public void setStringValue(String string) {
+  public void setValue(String string) {
     if (string == null) {
       this.valueText.setText(Messages.getString("ParameterInputBox.0")); //$NON-NLS-1$
     }
     this.valueText.setText(string);
+    
+    setIsChanged(false);
   }
   
   /**
@@ -188,15 +197,6 @@ public class ParameterInputBox extends Composite {
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = width;
     this.valueText.setLayoutData(data);
-  }
-
-  /**
-   * テキストボックスの文字を返します。
-   * 
-   * @return テキストボックスの文字
-   */
-  public String getStringValue() {
-    return this.valueText.getText();
   }
 
   /**
