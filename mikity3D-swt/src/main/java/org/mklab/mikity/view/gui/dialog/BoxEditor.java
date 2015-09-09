@@ -19,12 +19,12 @@ import org.mklab.mikity.view.gui.UnitLabel;
 
 
 /**
- * 直方体の編集を行うダイアログを表すクラスです。
+ * 直方体の編集するエディタを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.5 $.2005/02/09
  */
-public class EditBoxDialog extends AbstractEditPrimitiveDialog {
+public class BoxEditor extends AbstractPrimitiveEditor {
   private ParameterInputBox width;
   private ParameterInputBox height;
   private ParameterInputBox depth;
@@ -41,7 +41,7 @@ public class EditBoxDialog extends AbstractEditPrimitiveDialog {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public EditBoxDialog(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public BoxEditor(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     super(parentShell, primitive, group, tree, modeler);
   }
 

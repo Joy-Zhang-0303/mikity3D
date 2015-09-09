@@ -27,12 +27,12 @@ import org.mklab.mikity.view.gui.SceneGraphTree;
 
 
 /**
- * グループの設定を行うダイアログを表すクラスです。
+ * グループを編集するエディタを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.1 $.2005/02/03
  */
-public class EditGroupDialog implements EditModelDialog {
+public class GroupEditor implements ModelEditor {
   Shell sShell = null;
   private Shell parentShell = null;
   GroupModel targetGroup;
@@ -74,7 +74,7 @@ public class EditGroupDialog implements EditModelDialog {
    * @param tree ツリー
    * @param modeler モデラー
    */
-  public EditGroupDialog(Shell parentShell, GroupModel targetGroup, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
+  public GroupEditor(Shell parentShell, GroupModel targetGroup, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parentShell;
     this.targetGroup = targetGroup;
     this.editable = editable;
@@ -133,7 +133,7 @@ public class EditGroupDialog implements EditModelDialog {
       }
       
       public void shellClosed(ShellEvent arg0) {
-        EditGroupDialog.this.tree.setIsModifyingObject(false);
+        GroupEditor.this.tree.setIsModifyingObject(false);
       }
       
       public void shellActivated(ShellEvent arg0) {
@@ -319,11 +319,11 @@ public class EditGroupDialog implements EditModelDialog {
     saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        EditGroupDialog.this.modeler.setChanged(EditGroupDialog.this.isChanged());
+        GroupEditor.this.modeler.setChanged(GroupEditor.this.isChanged());
         
         updateModelParameters();
-        EditGroupDialog.this.tree.updateTree();
-        EditGroupDialog.this.modeler.updateDisplay();
+        GroupEditor.this.tree.updateTree();
+        GroupEditor.this.modeler.updateDisplay();
       }
 
     });
@@ -334,16 +334,16 @@ public class EditGroupDialog implements EditModelDialog {
     closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (EditGroupDialog.this.isChanged() == false) {
-          EditGroupDialog.this.sShell.close();
+        if (GroupEditor.this.isChanged() == false) {
+          GroupEditor.this.sShell.close();
           return;
         }
 
-        final MessageBox message = new MessageBox(EditGroupDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        final MessageBox message = new MessageBox(GroupEditor.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
         final int yesNo = message.open();
         if (yesNo == SWT.YES) {
-          EditGroupDialog.this.sShell.close();
+          GroupEditor.this.sShell.close();
         }
         
       }

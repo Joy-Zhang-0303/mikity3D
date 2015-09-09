@@ -9,12 +9,12 @@ import org.eclipse.swt.widgets.Group;
 
 
 /**
- * プリミティブを編集するダイアログを表すインターフェースです。
+ * プリミティブを編集するエディタを表すインターフェースです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/26
  */
-public interface EditPrimitiveDialog extends EditModelDialog {
+public interface PrimitiveEditor extends ModelEditor {
   /**
    * パラメータを設定するボックスを生成します。
    * 

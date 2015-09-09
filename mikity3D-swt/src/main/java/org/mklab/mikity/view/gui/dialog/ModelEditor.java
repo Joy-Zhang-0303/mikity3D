@@ -7,12 +7,12 @@ package org.mklab.mikity.view.gui.dialog;
 
 
 /**
- * モデルを編集するダイアログを表すインターフェースです。
+ * モデルを編集するエディタを表すインターフェースです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/26
  */
-public interface EditModelDialog {
+public interface ModelEditor {
   /**
    * パラメータを更新します。
    */

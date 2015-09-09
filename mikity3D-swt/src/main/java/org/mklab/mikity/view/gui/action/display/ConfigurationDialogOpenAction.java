@@ -9,7 +9,7 @@ import org.eclipse.jface.action.Action;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ModelingWindow;
 import org.mklab.mikity.view.gui.action.Messages;
-import org.mklab.mikity.view.gui.dialog.ConfigurationDialog;
+import org.mklab.mikity.view.gui.dialog.ConfigurationEditor;
 
 
 /**
@@ -42,7 +42,7 @@ public class ConfigurationDialogOpenAction extends Action {
    */
   @Override
   public void run() {
-    final ConfigurationDialog dialog = new ConfigurationDialog(this.window.getShell(), this.modeler.getRoot().getConfiguration(0), this.modeler);
+    final ConfigurationEditor dialog = new ConfigurationEditor(this.window.getShell(), this.modeler.getRoot().getConfiguration(0), this.modeler);
     dialog.open();
   }
   

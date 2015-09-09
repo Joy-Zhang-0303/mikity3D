@@ -29,12 +29,12 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 
 
 /**
- * Configurationの設定を行うダイアログを表すクラスです。
+ * Configurationの設定を編集するエディタを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.1 $.2005/02/01
  */
-public class ConfigurationDialog {
+public class ConfigurationEditor {
   Shell sShell = null;
   private ColorSelectorButton colorSelector;
   private Combo modelLengthUnitCombo;
@@ -64,7 +64,7 @@ public class ConfigurationDialog {
    * @param configuration 設定
    * @param modeler モデラー
    */
-  public ConfigurationDialog(Shell parentShell, ConfigurationModel configuration, JoglModeler modeler) {
+  public ConfigurationEditor(Shell parentShell, ConfigurationModel configuration, JoglModeler modeler) {
     this.configuration = configuration;
     this.modeler = modeler;
 
@@ -289,10 +289,10 @@ public class ConfigurationDialog {
           return;
         }
         
-        ConfigurationDialog.this.modeler.setChanged(ConfigurationDialog.this.isChanged());
+        ConfigurationEditor.this.modeler.setChanged(ConfigurationEditor.this.isChanged());
         
         updateConfigurationParameters();
-        ConfigurationDialog.this.modeler.updateDisplay();
+        ConfigurationEditor.this.modeler.updateDisplay();
       }
 
     });
@@ -303,16 +303,16 @@ public class ConfigurationDialog {
     closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (ConfigurationDialog.this.isChanged() == false) {
-          ConfigurationDialog.this.sShell.close();
+        if (ConfigurationEditor.this.isChanged() == false) {
+          ConfigurationEditor.this.sShell.close();
           return;
         }
         
-        final MessageBox message = new MessageBox(ConfigurationDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        final MessageBox message = new MessageBox(ConfigurationEditor.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
         final int yesNo = message.open();
         if (yesNo == SWT.YES) {
-         ConfigurationDialog.this.sShell.close();
+         ConfigurationEditor.this.sShell.close();
         }
       }
     });

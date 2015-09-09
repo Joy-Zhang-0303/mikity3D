@@ -14,7 +14,6 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
@@ -53,12 +52,11 @@ public class JoglModeler extends Composite {
     this.setLayout(new GridLayout());
     this.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-    // SashForm 画面を垂直に広げることができる
     final SashForm sash = new SashForm(this, SWT.NONE);
     sash.setLayoutData(new GridData(GridData.FILL_BOTH));
     sash.setLayout(new GridLayout());
     
-    createTreeComposite(sash);
+    createSceneGraphComposite(sash);
     createCanvasComposite(sash);
     
     updateRenderer();
@@ -70,30 +68,22 @@ public class JoglModeler extends Composite {
    * @param parent 親コンポジット
    */
   private void createCanvasComposite(Composite parent) {
-    final GridData gridData = new GridData(GridData.FILL_BOTH);
-    final Composite composite = new Composite(parent, SWT.EMBEDDED);
-    composite.setLayout(new GridLayout());
-    composite.setLayoutData(gridData);
-    createModelCanvas(composite);
+    final Composite canvas = new Composite(parent, SWT.EMBEDDED);
+    canvas.setLayout(new GridLayout());
+    canvas.setLayoutData(new GridData(GridData.FILL_BOTH));
+    createModelCanvas(canvas);
   }
 
   /**
-   * Treeを表示するコンポジットを作成します。
+   * シーングラフを表示するコンポジットを作成します。
    * 
    * @param parent 親コンポジット
    */
-  private void createTreeComposite(Composite parent) {
-    final GridLayout layout = new GridLayout();
-    layout.numColumns = 2;
-    final Group group = new Group(parent, SWT.NONE);
-    group.setLayout(layout);
-
-    final GridData data = new GridData(GridData.FILL_BOTH);
-    data.widthHint = 10;
-    group.setLayoutData(data);
-    group.setText(Messages.getString("Modeler.0")); //$NON-NLS-1$
-
-    this.tree = new SceneGraphTree(group, this, this.root.getScene(0));
+  private void createSceneGraphComposite(Composite parent) {
+    final Composite sceneGraph = new Composite(parent, SWT.EMBEDDED);
+    sceneGraph.setLayout(new GridLayout());
+    sceneGraph.setLayoutData(new GridData(GridData.FILL_BOTH));
+    this.tree = new SceneGraphTree(sceneGraph, this, this.root.getScene(0));
   }
 
   /**
@@ -130,13 +120,13 @@ public class JoglModeler extends Composite {
   /**
    * キャンバスを生成します。
    * 
-   * @param canvasComposite ビュワーコンポジット
+   * @param parent 親
    */
-  private void createModelCanvas(Composite canvasComposite) {
+  private void createModelCanvas(Composite parent) {
     this.renderer = new JoglObjectRenderer();
     this.manager = new ObjectGroupManager();
     
-    final Frame frame = SWT_AWT.new_Frame(canvasComposite);
+    final Frame frame = SWT_AWT.new_Frame(parent);
     frame.add(this.renderer);
   }
   

@@ -29,8 +29,8 @@ import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
-import org.mklab.mikity.view.gui.dialog.EditModelDialog;
-import org.mklab.mikity.view.gui.dialog.EditModelDialogFactory;
+import org.mklab.mikity.view.gui.dialog.ModelEditor;
+import org.mklab.mikity.view.gui.dialog.ModelEditorFactory;
 
 /**
  * シーングラフを表すクラスです。
@@ -74,29 +74,29 @@ public class SceneGraphTree {
   /**
    * 新しく生成された<code>SceneGraphTree</code>オブジェクトを初期化します。
    * 
-   * @param composite コンポジット
+   * @param parent コンポジット
    * @param modeler モデラー
    * @param model モデル
    */
-  public SceneGraphTree(final Composite composite, final JoglModeler modeler, final SceneModel model) {
+  public SceneGraphTree(final Composite parent, final JoglModeler modeler, final SceneModel model) {
     this.model = model;
     this.targetGroup = this.model.getGroup(0);
     this.targetObject= this.model.getGroup(0);
     this.scene = new GroupModel();
     this.scene.setName("scene"); //$NON-NLS-1$
     this.modeler = modeler;
-    createTree(composite);
-    this.composite = composite;
+    createTree(parent);
+    this.composite = parent;
   }
 
   /**
    * ツリーを生成する
    * 
-   * @param composite
+   * @param parent
    */
-  private void createTree(final Composite composite) {
-    composite.setLayout(new GridLayout(1, true));
-    this.tree = new Tree(composite, SWT.SINGLE | SWT.BORDER);
+  private void createTree(final Composite parent) {
+    parent.setLayout(new GridLayout(1, true));
+    this.tree = new Tree(parent, SWT.SINGLE | SWT.BORDER);
     final GridData data2 = new GridData(GridData.FILL_BOTH);
     this.tree.setLayoutData(data2);
 
@@ -123,7 +123,7 @@ public class SceneGraphTree {
           return;
         }
 
-        final EditModelDialog dialog = EditModelDialogFactory.create(clickObject, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final ModelEditor dialog = ModelEditorFactory.create(clickObject, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         dialog.open();
         updateTree();
       }
@@ -148,7 +148,7 @@ public class SceneGraphTree {
       }
     });
 
-    createPopupMenu(composite);
+    createPopupMenu(parent);
   }
 
   /**
@@ -200,10 +200,10 @@ public class SceneGraphTree {
   /**
    * ポップアップメニューを生成します。
    * 
-   * @param composite コンポジット
+   * @param parent コンポジット
    */
-  private void createPopupMenu(final Composite composite) {
-    final Menu menu = new Menu(composite.getShell(), SWT.POP_UP);
+  private void createPopupMenu(final Composite parent) {
+    final Menu menu = new Menu(parent.getShell(), SWT.POP_UP);
     this.tree.setMenu(menu);
 
     final MenuItem addBox = new MenuItem(menu, SWT.POP_UP);
@@ -214,7 +214,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = BoxModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditModelDialog dialog = EditModelDialogFactory.create(primitive, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         dialog.open();
         updateTree();
       }
@@ -228,7 +228,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = CylinderModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditModelDialog dialog = EditModelDialogFactory.create(primitive, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);        
+        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);        
         dialog.open();
         updateTree();
       }
@@ -242,7 +242,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = SphereModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditModelDialog dialog = EditModelDialogFactory.create(primitive, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         dialog.open();
         updateTree();
       }
@@ -256,7 +256,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = ConeModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditModelDialog dialog = EditModelDialogFactory.create(primitive, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         dialog.open();
         updateTree();
       }
@@ -270,7 +270,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = TrianglePolygonModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditModelDialog dialog = EditModelDialogFactory.create(primitive, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         dialog.open();
         updateTree();
       }
@@ -284,7 +284,7 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = QuadPolygonModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-        final EditModelDialog dialog = EditModelDialogFactory.create(primitive, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         dialog.open();
         updateTree();
       }
@@ -302,7 +302,7 @@ public class SceneGraphTree {
         } else {
           SceneGraphTree.this.targetGroup.add(group);
         }
-        final EditModelDialog dialog = EditModelDialogFactory.create(group, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final ModelEditor dialog = ModelEditorFactory.create(group, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         dialog.open();
         updateTree();
       }
@@ -374,7 +374,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final EditModelDialog dialog = EditModelDialogFactory.create(SceneGraphTree.this.targetObject, composite.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
+        final ModelEditor dialog = ModelEditorFactory.create(SceneGraphTree.this.targetObject, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
         dialog.open();
         updateTree();
       }

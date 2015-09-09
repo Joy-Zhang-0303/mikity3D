@@ -29,12 +29,12 @@ import org.mklab.mikity.view.gui.UnitLabel;
 
 
 /**
- * プリミティブを編集するダイアログを表す抽象クラスです。
+ * プリミティブを編集するエディタを表す抽象クラスです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/22
  */
-public abstract class AbstractEditPrimitiveDialog implements EditPrimitiveDialog {
+public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
   Shell parentShell;
   Shell sShell;
   PrimitiveModel primitive;
@@ -65,7 +65,7 @@ public abstract class AbstractEditPrimitiveDialog implements EditPrimitiveDialog
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public AbstractEditPrimitiveDialog(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
+  public AbstractPrimitiveEditor(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     this.parentShell = parentShell;
     this.primitive = primitive;
     this.groupName = group.getName();
@@ -216,7 +216,7 @@ public abstract class AbstractEditPrimitiveDialog implements EditPrimitiveDialog
       }
       
       public void shellClosed(ShellEvent arg0) {
-        AbstractEditPrimitiveDialog.this.tree.setIsModifyingObject(false);
+        AbstractPrimitiveEditor.this.tree.setIsModifyingObject(false);
       }
       
       public void shellActivated(ShellEvent arg0) {
@@ -242,18 +242,18 @@ public abstract class AbstractEditPrimitiveDialog implements EditPrimitiveDialog
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containsOnlyNumbers() == false) {
-          final MessageBox message = new MessageBox(AbstractEditPrimitiveDialog.this.sShell, SWT.ICON_WARNING);
+          final MessageBox message = new MessageBox(AbstractPrimitiveEditor.this.sShell, SWT.ICON_WARNING);
           message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
           message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
           message.open();
           return;
         }        
         
-        AbstractEditPrimitiveDialog.this.modeler.setChanged(AbstractEditPrimitiveDialog.this.isChanged());
+        AbstractPrimitiveEditor.this.modeler.setChanged(AbstractPrimitiveEditor.this.isChanged());
         
         updatePrimitiveParameters();
-        AbstractEditPrimitiveDialog.this.tree.updateTree();
-        AbstractEditPrimitiveDialog.this.modeler.updateDisplay();
+        AbstractPrimitiveEditor.this.tree.updateTree();
+        AbstractPrimitiveEditor.this.modeler.updateDisplay();
       }
     });
     
@@ -263,16 +263,16 @@ public abstract class AbstractEditPrimitiveDialog implements EditPrimitiveDialog
     closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (AbstractEditPrimitiveDialog.this.isChanged() == false) {
-          AbstractEditPrimitiveDialog.this.sShell.close();
+        if (AbstractPrimitiveEditor.this.isChanged() == false) {
+          AbstractPrimitiveEditor.this.sShell.close();
           return;
         }
                
-        final MessageBox message = new MessageBox(AbstractEditPrimitiveDialog.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        final MessageBox message = new MessageBox(AbstractPrimitiveEditor.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
         final int yesNo = message.open();
         if (yesNo == SWT.YES) {
-          AbstractEditPrimitiveDialog.this.sShell.close();
+          AbstractPrimitiveEditor.this.sShell.close();
         }
       }
     });
