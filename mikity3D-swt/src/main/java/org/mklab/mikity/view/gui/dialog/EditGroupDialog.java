@@ -6,6 +6,7 @@
 package org.mklab.mikity.view.gui.dialog;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ShellEvent;
 import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.layout.GridData;
@@ -222,7 +223,7 @@ public class EditGroupDialog implements EditModelDialog {
     parameterGroup.setText(Messages.getString("EditGroupDialog.8")); //$NON-NLS-1$
     parameterGroup.setLayout(layout);
     parameterGroup.setLayoutData(data);
-
+    
     final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 80;
     final Label label1 = new Label(parameterGroup, SWT.CENTER);

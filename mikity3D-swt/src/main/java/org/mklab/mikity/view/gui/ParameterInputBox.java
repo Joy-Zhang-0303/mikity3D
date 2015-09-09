@@ -6,6 +6,7 @@
 package org.mklab.mikity.view.gui;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
@@ -32,13 +33,13 @@ public class ParameterInputBox extends Composite {
 
   /**
    * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
-   * @param composite コンポジット
+   * @param parent コンポジット
    * @param style スタイル
    * @param name 名前
    * @param value 値
    */
-  public ParameterInputBox(Composite composite, int style, String name, String value) {
-    super(composite, style);
+  public ParameterInputBox(final Composite parent, int style, String name, String value) {
+    super(parent, style);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
     layout.marginHeight = 0;
@@ -46,7 +47,6 @@ public class ParameterInputBox extends Composite {
     this.setLayout(layout);
     
     this.nameLabel = new Label(this, SWT.NONE);
-    //this.nameLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     this.nameLabel.setAlignment(SWT.LEFT);
     this.nameLabel.setText(name);
     
@@ -63,6 +63,16 @@ public class ParameterInputBox extends Composite {
       }
     });
     
+    this.valueText.addKeyListener(new org.eclipse.swt.events.KeyAdapter() {
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public void keyReleased(KeyEvent e){
+        if (e.character==SWT.CR){
+          parent.notify();
+        }}});
+    
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 65;
     this.valueText.setLayoutData(data);
@@ -74,55 +84,24 @@ public class ParameterInputBox extends Composite {
   
   /**
    * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
-   * @param composite コンポジット
+   * @param parent コンポジット
    * @param style スタイル
    * @param name 名前
    * @param value 値
    */
-  public ParameterInputBox(Composite composite, int style, String name, int value) {
-    super(composite, style);
-    final GridLayout layout = new GridLayout();
-    layout.numColumns = 2;
-    layout.marginHeight = 0;
-    layout.marginWidth = 0;
-    this.setLayout(layout);
-    
-    this.nameLabel = new Label(this, SWT.NONE);
-    //this.nameLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    this.nameLabel.setAlignment(SWT.LEFT);
-    this.nameLabel.setText(name);
-    
-    this.valueText = new Text(this, SWT.BORDER | SWT.RIGHT | style);
-    this.valueText.setText("" + value); //$NON-NLS-1$
-    this.valueText.setFocus();
-    this.valueText.addModifyListener(new ModifyListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void modifyText(ModifyEvent arg0) {
-        ParameterInputBox.this.isChanged = true;
-      }
-    });
-
-    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
-    data.widthHint = 65;
-    this.valueText.setLayoutData(data);
-
-    final GridData data2 = new GridData(GridData.FILL_HORIZONTAL);
-    data2.horizontalSpan = 2;
-    setLayoutData(data2);
+  public ParameterInputBox(Composite parent, int style, String name, int value) {
+    this(parent, style, name, "" + value); //$NON-NLS-1$
   }
 
   /**
    * コンストラクター
    * 
-   * @param composite コンポジット
+   * @param parent コンポジット
    * @param style スタイル
    * @param value 値 
    */
-  public ParameterInputBox(Composite composite, int style, int value) {
-    super(composite, SWT.RIGHT);
+  public ParameterInputBox(final Composite parent, int style, int value) {
+    super(parent, SWT.RIGHT);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
     layout.marginHeight = 0;
@@ -142,6 +121,17 @@ public class ParameterInputBox extends Composite {
       }
     });
     
+    this.valueText.addKeyListener(new org.eclipse.swt.events.KeyAdapter() {
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public void keyReleased(KeyEvent e){
+        if (e.character==SWT.CR){
+          parent.notify();
+        }}});
+
+    
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 65;
     this.valueText.setLayoutData(data);
@@ -159,15 +149,6 @@ public class ParameterInputBox extends Composite {
   public float getFloatValue() {
     return Float.parseFloat(this.valueText.getText());
   }
-
-//  /**
-//   * テキストボックスの中の数字を設定します。
-//   * 
-//   * @param value 値
-//   */
-//  public void setDoubleValue(double value) {
-//    this.valueText.setText("" + value); //$NON-NLS-1$
-//  }
 
   /**
    * テキストボックスの文字をdouble型で返す
@@ -226,16 +207,7 @@ public class ParameterInputBox extends Composite {
   public void setName(String string) {
     this.nameLabel.setText(string);
   }
-
-//  /**
-//   * ラベルの文字を返します。
-//   * 
-//   * @return ラベルの文字
-//   */
-//  public String getLabelText() {
-//    return this.name.getText();
-//  }
-
+  
   /**
    * テキストボックスに 数字のみが入っているか判別します。
    * 
