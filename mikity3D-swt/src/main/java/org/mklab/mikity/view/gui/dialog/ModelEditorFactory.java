@@ -36,32 +36,32 @@ public class ModelEditorFactory {
    */
   public static ModelEditor create(Object model, Shell shell, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
     if (model instanceof GroupModel) {
-      final ModelEditor dialog = new GroupEditor(shell, group, true, tree, modeler);
-      return dialog;
+      final ModelEditor editor = new GroupEditor(shell, group, true, tree, modeler);
+      return editor;
     } 
     if (model instanceof TrianglePolygonModel) {
-      final ModelEditor dialog = new TrianglePolygonEditor(shell, (PrimitiveModel)model, group, tree,  modeler);
-      return dialog;
+      final ModelEditor editor = new TrianglePolygonEditor(shell, (PrimitiveModel)model, group, tree,  modeler);
+      return editor;
     } 
     if (model instanceof QuadPolygonModel) {
-      final ModelEditor dialog = new QuadPolygonEditor(shell, (QuadPolygonModel)model, group, tree,  modeler);
-      return dialog;
+      final ModelEditor editor = new QuadPolygonEditor(shell, (QuadPolygonModel)model, group, tree,  modeler);
+      return editor;
     }
     if (model instanceof BoxModel) {
-      final ModelEditor dialog = new BoxEditor(shell, (PrimitiveModel)model, group, tree, modeler);
-      return dialog;
+      final ModelEditor editor = new BoxEditor(shell, (PrimitiveModel)model, group, tree, modeler);
+      return editor;
     } 
     if (model instanceof CylinderModel) {
-      final ModelEditor dialog = new CylinderEditor(shell, (PrimitiveModel)model, group, tree, modeler);
-      return dialog;
+      final ModelEditor editor = new CylinderEditor(shell, (PrimitiveModel)model, group, tree, modeler);
+      return editor;
     } 
     if (model instanceof SphereModel) {
-      final ModelEditor dialog = new SphereEditor(shell, (PrimitiveModel)model, group, tree, modeler);
-      return dialog;
+      final ModelEditor editor = new SphereEditor(shell, (PrimitiveModel)model, group, tree, modeler);
+      return editor;
     } 
     if (model instanceof ConeModel) {
-      final ModelEditor dialog = new ConeEditor(shell, (PrimitiveModel)model, group, tree, modeler);
-      return dialog;
+      final ModelEditor editor = new ConeEditor(shell, (PrimitiveModel)model, group, tree, modeler);
+      return editor;
     }
 
     throw new IllegalArgumentException(model.toString());
