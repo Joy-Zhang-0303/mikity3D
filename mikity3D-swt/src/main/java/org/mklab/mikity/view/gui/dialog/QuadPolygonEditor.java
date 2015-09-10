@@ -48,13 +48,19 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
    * 新しく生成された<code>EditQuadPolygonDialog</code>オブジェクトを初期化します。
    * @param parentShell 親のシェル
    * @param primitive ポリゴン
-   * @param group グループ
    * @param tree シーングラフツリー 
    * @param modeler モデラー
    */
-  public QuadPolygonEditor(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
-    super(parentShell, primitive, group, tree, modeler);
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 890));
+  public QuadPolygonEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+    super(parentShell, primitive, tree, modeler);
+
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void setShellSize(Shell shell) {
+    shell.setSize(new org.eclipse.swt.graphics.Point(400, 890));
   }
 
   /**

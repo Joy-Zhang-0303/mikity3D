@@ -40,27 +40,27 @@ public class ModelEditorFactory {
       return editor;
     } 
     if (model instanceof TrianglePolygonModel) {
-      final ModelEditor editor = new TrianglePolygonEditor(shell, (PrimitiveModel)model, group, tree,  modeler);
+      final ModelEditor editor = new TrianglePolygonEditor(shell, (PrimitiveModel)model, tree,  modeler);
       return editor;
     } 
     if (model instanceof QuadPolygonModel) {
-      final ModelEditor editor = new QuadPolygonEditor(shell, (QuadPolygonModel)model, group, tree,  modeler);
+      final ModelEditor editor = new QuadPolygonEditor(shell, (QuadPolygonModel)model, tree,  modeler);
       return editor;
     }
     if (model instanceof BoxModel) {
-      final ModelEditor editor = new BoxEditor(shell, (PrimitiveModel)model, group, tree, modeler);
+      final ModelEditor editor = new BoxEditor(shell, (PrimitiveModel)model, tree, modeler);
       return editor;
     } 
     if (model instanceof CylinderModel) {
-      final ModelEditor editor = new CylinderEditor(shell, (PrimitiveModel)model, group, tree, modeler);
+      final ModelEditor editor = new CylinderEditor(shell, (PrimitiveModel)model, tree, modeler);
       return editor;
     } 
     if (model instanceof SphereModel) {
-      final ModelEditor editor = new SphereEditor(shell, (PrimitiveModel)model, group, tree, modeler);
+      final ModelEditor editor = new SphereEditor(shell, (PrimitiveModel)model, tree, modeler);
       return editor;
     } 
     if (model instanceof ConeModel) {
-      final ModelEditor editor = new ConeEditor(shell, (PrimitiveModel)model, group, tree, modeler);
+      final ModelEditor editor = new ConeEditor(shell, (PrimitiveModel)model, tree, modeler);
       return editor;
     }
 

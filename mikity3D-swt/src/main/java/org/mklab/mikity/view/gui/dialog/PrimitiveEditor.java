@@ -6,6 +6,7 @@
 package org.mklab.mikity.view.gui.dialog;
 
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Shell;
 
 
 /**
@@ -21,4 +22,10 @@ public interface PrimitiveEditor extends ModelEditor {
    * @param group グループ
    */
   void createParameterBoxes(Group group);
+  
+  /**
+   * サイズを設定します。 
+   * @param shell シェル
+   */
+  void setShellSize(Shell shell);
 }

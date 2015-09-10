@@ -35,14 +35,19 @@ public class SphereEditor extends AbstractPrimitiveEditor {
    * 
    * @param parentShell 親のシェル
    * @param primitive プリミティブ
-   * @param group グループ
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public SphereEditor(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
-    super(parentShell, primitive, group, tree, modeler);
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 530));
+  public SphereEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+    super(parentShell, primitive, tree, modeler);
   }
+  
+   /**
+   * {@inheritDoc}
+   */
+  public void setShellSize(Shell shell) {
+     shell.setSize(new org.eclipse.swt.graphics.Point(350, 530));
+   }
   
   /**
    * {@inheritDoc}

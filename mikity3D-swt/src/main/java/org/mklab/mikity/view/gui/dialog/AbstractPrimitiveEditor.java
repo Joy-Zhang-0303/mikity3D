@@ -18,7 +18,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -35,79 +34,75 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision$, 2015/08/22
  */
 public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
-  Shell parentShell;
-  Shell sShell;
+  private Shell shell;
   PrimitiveModel primitive;
-  String groupName;
 
   JoglModeler modeler;
   SceneGraphTree tree;
   
-  ColorSelectorButton colorSelector;
-  ParameterInputBox alpha;
+  private ColorSelectorButton colorSelector;
+  private ParameterInputBox alpha;
   
   Label primitiveType;
 
-  ParameterInputBox translationX;
-  ParameterInputBox translationY;
-  ParameterInputBox translationZ;
+  private ParameterInputBox translationX;
+  private ParameterInputBox translationY;
+  private ParameterInputBox translationZ;
   
-  ParameterInputBox rotationX;
-  ParameterInputBox rotationY;
-  ParameterInputBox rotationZ;
+  private ParameterInputBox rotationX;
+  private ParameterInputBox rotationY;
+  private ParameterInputBox rotationZ;
 
   /**
    * 新しく生成された<code>AbstractEditPrimitiveDialog</code>オブジェクトを初期化します。
    * 
    * @param parentShell 親のシェル
    * @param primitive プリミティブ
-   * @param group グループ
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public AbstractPrimitiveEditor(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
-    this.parentShell = parentShell;
+  public AbstractPrimitiveEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     this.primitive = primitive;
-    this.groupName = group.getName();
     this.tree = tree;
     this.modeler = modeler;
     
     this.tree.setIsModifyingObject(true);
     
-    createSShell();
+    createSShell(parentShell);
   }
 
   /**
    * {@inheritDoc}
    */
   public void open() {
-    this.sShell.open();
+    this.shell.open();
   }
   
   /**
    * シェルを生成します。
    */
-  private void createSShell() {
-    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 560));
-    this.sShell.setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
+  private void createSShell(Shell parent) {
+    this.shell = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.shell.setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
     
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
-    this.sShell.setLayout(layout);
+    this.shell.setLayout(layout);
     
-    addShellListener();
+    setShellSize(this.shell);
+    
+    addShellListener(this.shell);
 
-    createParameterBoxes();
+    createParameterBoxes(this.shell);
     
-    createButtonComposite();
+    createButtonComposite(this.shell);
   }
 
-  private void createParameterBoxes() {
-    this.primitiveType = new Label(this.sShell, SWT.NONE);
+  private void createParameterBoxes(Shell parent) {
+    this.primitiveType = new Label(parent, SWT.NONE);
     setGridLayout(this.primitiveType, 2);
 
-    Group parameterGroup = new Group(this.sShell, SWT.NONE);
+    Group parameterGroup = new Group(parent, SWT.NONE);
     parameterGroup.setText(Messages.getString("EditPrimitiveDialog.9")); //$NON-NLS-1$
     setGridLayout(parameterGroup, 1);
 
@@ -193,8 +188,8 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
   /**
    * Shellのリスナーを追加します。 
    */
-  private void addShellListener() {
-    this.sShell.addShellListener(new ShellListener() {
+  private void addShellListener(Shell parent) {
+    parent.addShellListener(new ShellListener() {
       public void shellIconified(ShellEvent arg0) {
         // nothing to do
       }
@@ -220,8 +215,8 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
   /**
    * 変更を決定するButtonを作成します。
    */
-  private void createButtonComposite() {
-    final Composite composite = new Composite(this.sShell, SWT.NONE);
+  private void createButtonComposite(final Shell parent) {
+    final Composite composite = new Composite(parent, SWT.NONE);
     setGridLayout(composite, 2);
 
     final GridLayout compLayout = new GridLayout(2, true);
@@ -234,7 +229,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containsOnlyNumbers() == false) {
-          final MessageBox message = new MessageBox(AbstractPrimitiveEditor.this.sShell, SWT.ICON_WARNING);
+          final MessageBox message = new MessageBox(parent, SWT.ICON_WARNING);
           message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
           message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
           message.open();
@@ -256,15 +251,15 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (AbstractPrimitiveEditor.this.isChanged() == false) {
-          AbstractPrimitiveEditor.this.sShell.close();
+          parent.close();
           return;
         }
                
-        final MessageBox message = new MessageBox(AbstractPrimitiveEditor.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        final MessageBox message = new MessageBox(parent, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
         final int yesNo = message.open();
         if (yesNo == SWT.YES) {
-          AbstractPrimitiveEditor.this.sShell.close();
+          parent.close();
         }
       }
     });

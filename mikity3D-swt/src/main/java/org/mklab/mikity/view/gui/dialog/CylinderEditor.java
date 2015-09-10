@@ -34,12 +34,18 @@ public class CylinderEditor extends AbstractPrimitiveEditor {
    * 
    * @param parentShell 親のシェル
    * @param primitive プリミティブ
-   * @param group グループ
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public CylinderEditor(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
-    super(parentShell, primitive, group, tree, modeler);
+  public CylinderEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+    super(parentShell, primitive, tree, modeler);
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void setShellSize(Shell shell) {
+    shell.setSize(new org.eclipse.swt.graphics.Point(350, 560));
   }
 
   /**

@@ -44,13 +44,19 @@ public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
    * 
    * @param parentShell 親のシェル
    * @param primitive ポリゴン
-   * @param group グループ
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public TrianglePolygonEditor(Shell parentShell, PrimitiveModel primitive, GroupModel group, SceneGraphTree tree, JoglModeler modeler) {
-    super(parentShell, primitive, group, tree, modeler);
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 780));
+  public TrianglePolygonEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+    super(parentShell, primitive, tree, modeler);
+    
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void setShellSize(Shell shell) {
+    shell.setSize(new org.eclipse.swt.graphics.Point(400, 780));
   }
 
   /**
