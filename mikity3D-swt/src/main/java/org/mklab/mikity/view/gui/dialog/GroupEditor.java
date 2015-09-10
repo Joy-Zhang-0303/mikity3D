@@ -319,7 +319,7 @@ public class GroupEditor implements ModelEditor {
     saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        GroupEditor.this.modeler.setChanged(GroupEditor.this.isChanged());
+        GroupEditor.this.modeler.setIsChanged(GroupEditor.this.isChanged());
         
         updateModelParameters();
         GroupEditor.this.tree.updateTree();

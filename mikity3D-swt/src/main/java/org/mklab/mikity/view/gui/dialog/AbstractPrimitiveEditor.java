@@ -82,20 +82,12 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
    */
   public void open() {
     this.sShell.open();
-//    Display display = this.sShell.getDisplay();
-//    while (!this.sShell.isDisposed()) {
-//      if (!display.readAndDispatch()) {
-//        display.sleep();
-//      }
-//    }
   }
-  
   
   /**
    * シェルを生成します。
    */
   private void createSShell() {
-    //this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(350, 560));
     this.sShell.setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
@@ -249,7 +241,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
           return;
         }        
         
-        AbstractPrimitiveEditor.this.modeler.setChanged(AbstractPrimitiveEditor.this.isChanged());
+        AbstractPrimitiveEditor.this.modeler.setIsChanged(false);
         
         updatePrimitiveParameters();
         AbstractPrimitiveEditor.this.tree.updateTree();

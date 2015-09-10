@@ -31,6 +31,6 @@ public class GroupToolBarAction extends AbstractToolBarAction {
     targetGroup.add(group);
     update();
     
-    this.modeler.setChanged(true);
+    this.modeler.setIsChanged(true);
   }
 }

@@ -168,7 +168,7 @@ public class JoglModeler extends Composite {
    * 
    * @param isChanged 変更されている場合true
    */
-  public void setChanged(final boolean isChanged) {
+  public void setIsChanged(final boolean isChanged) {
     this.isChanged = isChanged;
   }
   

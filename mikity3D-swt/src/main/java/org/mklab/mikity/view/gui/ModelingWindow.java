@@ -239,7 +239,7 @@ public class ModelingWindow extends ApplicationWindow {
     }
     final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
     marshaller.marshal(this.file);
-    this.modeler.setChanged(false);
+    this.modeler.setIsChanged(false);
   }
 
   /**
@@ -273,7 +273,7 @@ public class ModelingWindow extends ApplicationWindow {
     new Mikity3dFactory().importFile(this.file, this.root);
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     
-    this.modeler.setChanged(true);
+    this.modeler.setIsChanged(true);
     this.modeler.fillTree();
     this.modeler.updateRenderer();
   }

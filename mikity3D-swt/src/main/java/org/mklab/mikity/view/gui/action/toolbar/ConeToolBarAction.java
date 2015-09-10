@@ -31,6 +31,6 @@ public class ConeToolBarAction extends AbstractToolBarAction {
     group.add(primitive);
     update();
     
-    this.modeler.setChanged(true);
+    this.modeler.setIsChanged(true);
   }
 }

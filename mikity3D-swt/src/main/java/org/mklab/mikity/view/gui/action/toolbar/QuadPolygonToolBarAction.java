@@ -37,6 +37,6 @@ public class QuadPolygonToolBarAction extends AbstractToolBarAction {
 
     update();
     
-    this.modeler.setChanged(true);
+    this.modeler.setIsChanged(true);
   }
 }

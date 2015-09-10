@@ -289,7 +289,7 @@ public class ConfigurationEditor {
           return;
         }
         
-        ConfigurationEditor.this.modeler.setChanged(ConfigurationEditor.this.isChanged());
+        ConfigurationEditor.this.modeler.setIsChanged(ConfigurationEditor.this.isChanged());
         
         updateConfigurationParameters();
         ConfigurationEditor.this.modeler.updateDisplay();
