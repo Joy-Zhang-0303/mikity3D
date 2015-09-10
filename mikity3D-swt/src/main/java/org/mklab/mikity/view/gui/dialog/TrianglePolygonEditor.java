@@ -8,10 +8,10 @@ package org.mklab.mikity.view.gui.dialog;
 import java.util.Arrays;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
@@ -55,8 +55,8 @@ public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
   /**
    * {@inheritDoc}
    */
-  public void setShellSize(Shell shell) {
-    shell.setSize(new org.eclipse.swt.graphics.Point(400, 780));
+  public void setCompositeSize(Composite composite) {
+    composite.setSize(new org.eclipse.swt.graphics.Point(400, 780));
   }
 
   /**

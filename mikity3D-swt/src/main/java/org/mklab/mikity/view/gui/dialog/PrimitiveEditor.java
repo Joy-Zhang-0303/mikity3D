@@ -5,8 +5,8 @@
  */
 package org.mklab.mikity.view.gui.dialog;
 
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Shell;
 
 
 /**
@@ -25,7 +25,7 @@ public interface PrimitiveEditor extends ModelEditor {
   
   /**
    * サイズを設定します。 
-   * @param shell シェル
+   * @param composite コンポジット
    */
-  void setShellSize(Shell shell);
+  void setCompositeSize(Composite composite);
 }

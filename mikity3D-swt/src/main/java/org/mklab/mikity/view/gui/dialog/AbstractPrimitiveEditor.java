@@ -34,7 +34,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision$, 2015/08/22
  */
 public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
-  private Shell shell;
+  private Composite editor;
   PrimitiveModel primitive;
 
   JoglModeler modeler;
@@ -56,49 +56,49 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
   /**
    * 新しく生成された<code>AbstractEditPrimitiveDialog</code>オブジェクトを初期化します。
    * 
-   * @param parentShell 親のシェル
+   * @param parent 親のシェル
    * @param primitive プリミティブ
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public AbstractPrimitiveEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+  public AbstractPrimitiveEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     this.primitive = primitive;
     this.tree = tree;
     this.modeler = modeler;
     
     this.tree.setIsModifyingObject(true);
     
-    createSShell(parentShell);
+    createComposite(parent);
   }
 
   /**
    * {@inheritDoc}
    */
   public void open() {
-    this.shell.open();
+    this.editor.getShell().open();
   }
   
   /**
-   * シェルを生成します。
+   * コンポジットを生成します。
    */
-  private void createSShell(Shell parent) {
-    this.shell = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.shell.setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
+  private void createComposite(Shell parent) {
+    this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.editor.getShell().setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
     
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
-    this.shell.setLayout(layout);
+    this.editor.setLayout(layout);
     
-    setShellSize(this.shell);
+    setCompositeSize(this.editor);
     
-    addShellListener(this.shell);
+    addShellListener(this.editor);
 
-    createParameterBoxes(this.shell);
+    createParameterBoxes(this.editor);
     
-    createButtonComposite(this.shell);
+    createButtonComposite(this.editor);
   }
 
-  private void createParameterBoxes(Shell parent) {
+  private void createParameterBoxes(Composite parent) {
     this.primitiveType = new Label(parent, SWT.NONE);
     setGridLayout(this.primitiveType, 2);
 
@@ -188,8 +188,8 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
   /**
    * Shellのリスナーを追加します。 
    */
-  private void addShellListener(Shell parent) {
-    parent.addShellListener(new ShellListener() {
+  private void addShellListener(Composite parent) {
+    parent.getShell().addShellListener(new ShellListener() {
       public void shellIconified(ShellEvent arg0) {
         // nothing to do
       }
@@ -215,7 +215,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
   /**
    * 変更を決定するButtonを作成します。
    */
-  private void createButtonComposite(final Shell parent) {
+  private void createButtonComposite(final Composite parent) {
     final Composite composite = new Composite(parent, SWT.NONE);
     setGridLayout(composite, 2);
 
@@ -229,7 +229,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containsOnlyNumbers() == false) {
-          final MessageBox message = new MessageBox(parent, SWT.ICON_WARNING);
+          final MessageBox message = new MessageBox(parent.getShell(), SWT.ICON_WARNING);
           message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
           message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
           message.open();
@@ -251,15 +251,15 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (AbstractPrimitiveEditor.this.isChanged() == false) {
-          parent.close();
+          parent.getShell().close();
           return;
         }
                
-        final MessageBox message = new MessageBox(parent, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        final MessageBox message = new MessageBox(parent.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
         final int yesNo = message.open();
         if (yesNo == SWT.YES) {
-          parent.close();
+          parent.getShell().close();
         }
       }
     });

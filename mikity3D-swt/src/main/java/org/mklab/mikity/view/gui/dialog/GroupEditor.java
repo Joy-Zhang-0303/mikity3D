@@ -34,7 +34,6 @@ import org.mklab.mikity.view.gui.SceneGraphTree;
  */
 public class GroupEditor implements ModelEditor {
   Shell sShell = null;
-  private Shell parentShell = null;
   GroupModel targetGroup;
   
   ParameterInputBox groupName;
@@ -61,7 +60,6 @@ public class GroupEditor implements ModelEditor {
   ParameterInputBox rotationZsourceNumber;
 
   private boolean editable;
-  //private Label statusLabel;
   
   JoglModeler modeler;
   SceneGraphTree tree;
@@ -75,7 +73,6 @@ public class GroupEditor implements ModelEditor {
    * @param modeler モデラー
    */
   public GroupEditor(Shell parentShell, GroupModel targetGroup, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
-    this.parentShell = parentShell;
     this.targetGroup = targetGroup;
     this.editable = editable;
     this.tree = tree;
@@ -83,16 +80,14 @@ public class GroupEditor implements ModelEditor {
     
     this.tree.setIsModifyingObject(true);
     
-    createSShell();
+    createSShell(parentShell);
   }
 
   /**
    * シェルを生成します。
    */
-  private void createSShell() {
-    // SWT.APPLICATION_MODAL→このシェルを閉じないと、親シェルを編集できなくする
-    //this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.sShell = new Shell(this.parentShell, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+  private void createSShell(Shell parent) {
+    this.sShell = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     this.sShell.setSize(new org.eclipse.swt.graphics.Point(450, 680));
     this.sShell.setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
     final GridLayout layout = new GridLayout();
@@ -106,20 +101,20 @@ public class GroupEditor implements ModelEditor {
       this.groupName.setValue(this.targetGroup.getName());
     }
     
-    addShellListener();
+    addShellListener(this.sShell);
 
-    createCoordinateParameterBoxes();
+    createCoordinateParameterBoxes(this.sShell);
     
-    createAnimationParameterBoxes();
+    createAnimationParameterBoxes(this.sShell);
 
-    createButtonComposite();
+    createButtonComposite(this.sShell);
   }
 
   /**
    * Shellのリスナーを追加します。 
    */
-  private void addShellListener() {
-    this.sShell.addShellListener(new ShellListener() {
+  private void addShellListener(Shell parent) {
+    parent.addShellListener(new ShellListener() {
       public void shellIconified(ShellEvent arg0) {
         // nothing to do
       }
@@ -145,8 +140,8 @@ public class GroupEditor implements ModelEditor {
   /**
    * 座標系のパラメータを設定するボックスを生成します。
    */
-  private void createCoordinateParameterBoxes() {
-    final Group parameterGroup = new Group(this.sShell, SWT.NONE);
+  private void createCoordinateParameterBoxes(Shell parent) {
+    final Group parameterGroup = new Group(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.horizontalSpan = 2;
@@ -212,8 +207,8 @@ public class GroupEditor implements ModelEditor {
   /**
    * アニメーションのパラメータを設定するボックスを生成します。
    */
-  private void createAnimationParameterBoxes() {
-    final Group parameterGroup = new Group(this.sShell, SWT.NONE);
+  private void createAnimationParameterBoxes(Shell parent) {
+    final Group parameterGroup = new Group(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.horizontalSpan = 3;
@@ -303,8 +298,8 @@ public class GroupEditor implements ModelEditor {
     }
   }
 
-  private void createButtonComposite() {
-    final Composite composite = new Composite(this.sShell, SWT.NONE);
+  private void createButtonComposite(final Shell parent) {
+    final Composite composite = new Composite(parent, SWT.NONE);
     
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
     gridData.horizontalSpan = 3;
@@ -313,13 +308,13 @@ public class GroupEditor implements ModelEditor {
     final GridLayout compLayout = new GridLayout(2, true);
     composite.setLayout(compLayout);
   
-    final Button saveButton = new Button(this.sShell, SWT.NONE);
+    final Button saveButton = new Button(parent, SWT.NONE);
     saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     saveButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
     saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        GroupEditor.this.modeler.setIsChanged(GroupEditor.this.isChanged());
+        GroupEditor.this.modeler.setIsChanged(false);
         
         updateModelParameters();
         GroupEditor.this.tree.updateTree();
@@ -328,22 +323,22 @@ public class GroupEditor implements ModelEditor {
 
     });
     
-    final Button closeButton = new Button(this.sShell, SWT.NONE);
+    final Button closeButton = new Button(parent, SWT.NONE);
     closeButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     closeButton.setText(Messages.getString("GroupConfigDialogLink.9")); //$NON-NLS-1$
     closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (GroupEditor.this.isChanged() == false) {
-          GroupEditor.this.sShell.close();
+          parent.close();
           return;
         }
 
-        final MessageBox message = new MessageBox(GroupEditor.this.sShell, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        final MessageBox message = new MessageBox(parent, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
         final int yesNo = message.open();
         if (yesNo == SWT.YES) {
-          GroupEditor.this.sShell.close();
+          parent.close();
         }
         
       }
@@ -439,13 +434,6 @@ public class GroupEditor implements ModelEditor {
    */
   public void open() {
     this.sShell.open();
-//    final Display display = this.sShell.getDisplay();
-//    
-//    while (!this.sShell.isDisposed()) {
-//      if (!display.readAndDispatch()) {
-//        display.sleep();
-//      }
-//    }
   }
 
   /**
