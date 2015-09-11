@@ -33,46 +33,46 @@ import org.mklab.mikity.view.gui.SceneGraphTree;
  * @version $Revision: 1.1 $.2005/02/03
  */
 public class GroupEditor implements ModelEditor {
-  Shell sShell = null;
-  GroupModel targetGroup;
-  
-  ParameterInputBox groupName;
-  
-  ParameterInputBox translationX;
-  ParameterInputBox translationY;
-  ParameterInputBox translationZ;
-  ParameterInputBox rotationX;
-  ParameterInputBox rotationY;
-  ParameterInputBox rotationZ;
-
-  ParameterInputBox translationXsourceId;
-  ParameterInputBox translationYsourceId;
-  ParameterInputBox translationZsourceId;
-  ParameterInputBox rotationXsourceId;
-  ParameterInputBox rotationYsourceId;
-  ParameterInputBox rotationZsourceId;
-
-  ParameterInputBox translationXsourceNumber;
-  ParameterInputBox translationYsourceNumber;
-  ParameterInputBox translationZsourceNumber;
-  ParameterInputBox rotationXsourceNumber;
-  ParameterInputBox rotationYsourceNumber;
-  ParameterInputBox rotationZsourceNumber;
-
-  private boolean editable;
+  private Composite editor;
+  private GroupModel targetGroup;
   
   JoglModeler modeler;
   SceneGraphTree tree;
+  
+  private boolean editable;
+  
+  private ParameterInputBox groupName;
+  
+  private ParameterInputBox translationX;
+  private ParameterInputBox translationY;
+  private ParameterInputBox translationZ;
+  private ParameterInputBox rotationX;
+  private ParameterInputBox rotationY;
+  private ParameterInputBox rotationZ;
+
+  private ParameterInputBox translationXsourceId;
+  private ParameterInputBox translationYsourceId;
+  private ParameterInputBox translationZsourceId;
+  private ParameterInputBox rotationXsourceId;
+  private ParameterInputBox rotationYsourceId;
+  private ParameterInputBox rotationZsourceId;
+
+  private ParameterInputBox translationXsourceNumber;
+  private ParameterInputBox translationYsourceNumber;
+  private ParameterInputBox translationZsourceNumber;
+  private ParameterInputBox rotationXsourceNumber;
+  private ParameterInputBox rotationYsourceNumber;
+  private ParameterInputBox rotationZsourceNumber;
 
   /**
    * 新しく生成された<code>EditGroupDialog</code>オブジェクトを初期化します。
-   * @param parentShell 親のシェル
+   * @param parent 親のシェル
    * @param targetGroup グループ
    * @param editable 編集可能性
    * @param tree ツリー
    * @param modeler モデラー
    */
-  public GroupEditor(Shell parentShell, GroupModel targetGroup, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
+  public GroupEditor(Shell parent, GroupModel targetGroup, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
     this.targetGroup = targetGroup;
     this.editable = editable;
     this.tree = tree;
@@ -80,41 +80,42 @@ public class GroupEditor implements ModelEditor {
     
     this.tree.setIsModifyingObject(true);
     
-    createSShell(parentShell);
+    createComposite(parent);
   }
 
   /**
    * シェルを生成します。
    */
-  private void createSShell(Shell parent) {
-    this.sShell = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(450, 680));
-    this.sShell.setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
+  private void createComposite(Shell parent) {
+    this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.editor.setSize(new org.eclipse.swt.graphics.Point(450, 680));
+    this.editor.getShell().setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
+    
     final GridLayout layout = new GridLayout();
     layout.numColumns = 3;
-    this.sShell.setLayout(layout);
+    this.editor.setLayout(layout);
 
-    this.groupName = new ParameterInputBox(this.sShell, SWT.LEFT, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.groupName = new ParameterInputBox(this.editor, SWT.LEFT, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
     this.groupName.setTextWidth(150);
 
     if (this.targetGroup.getName() != null) {
       this.groupName.setValue(this.targetGroup.getName());
     }
     
-    addShellListener(this.sShell);
+    addShellListener(this.editor);
 
-    createCoordinateParameterBoxes(this.sShell);
+    createCoordinateParameterBoxes(this.editor);
     
-    createAnimationParameterBoxes(this.sShell);
+    createAnimationParameterBoxes(this.editor);
 
-    createButtonComposite(this.sShell);
+    createButtonComposite(this.editor);
   }
 
   /**
    * Shellのリスナーを追加します。 
    */
-  private void addShellListener(Shell parent) {
-    parent.addShellListener(new ShellListener() {
+  private void addShellListener(Composite parent) {
+    parent.getShell().addShellListener(new ShellListener() {
       public void shellIconified(ShellEvent arg0) {
         // nothing to do
       }
@@ -140,7 +141,7 @@ public class GroupEditor implements ModelEditor {
   /**
    * 座標系のパラメータを設定するボックスを生成します。
    */
-  private void createCoordinateParameterBoxes(Shell parent) {
+  private void createCoordinateParameterBoxes(Composite parent) {
     final Group parameterGroup = new Group(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
@@ -207,7 +208,7 @@ public class GroupEditor implements ModelEditor {
   /**
    * アニメーションのパラメータを設定するボックスを生成します。
    */
-  private void createAnimationParameterBoxes(Shell parent) {
+  private void createAnimationParameterBoxes(Composite parent) {
     final Group parameterGroup = new Group(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
@@ -298,7 +299,7 @@ public class GroupEditor implements ModelEditor {
     }
   }
 
-  private void createButtonComposite(final Shell parent) {
+  private void createButtonComposite(final Composite parent) {
     final Composite composite = new Composite(parent, SWT.NONE);
     
     final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
@@ -330,15 +331,15 @@ public class GroupEditor implements ModelEditor {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (GroupEditor.this.isChanged() == false) {
-          parent.close();
+          parent.getShell().close();
           return;
         }
 
-        final MessageBox message = new MessageBox(parent, SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+        final MessageBox message = new MessageBox(parent.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
         message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
         final int yesNo = message.open();
         if (yesNo == SWT.YES) {
-          parent.close();
+          parent.getShell().close();
         }
         
       }
@@ -433,7 +434,7 @@ public class GroupEditor implements ModelEditor {
    * {@inheritDoc}
    */
   public void open() {
-    this.sShell.open();
+    this.editor.getShell().open();
   }
 
   /**
