@@ -67,8 +67,11 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
     this.modeler = modeler;
     
     this.tree.setIsModifyingObject(true);
+
+    this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    this.editor.getShell().setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
     
-    createComposite(parent);
+    createComposite(this.editor);
   }
 
   /**
@@ -77,25 +80,24 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
   public void open() {
     this.editor.getShell().open();
   }
-  
+
   /**
    * コンポジットを生成します。
+   * 
+   * @param parent 親
    */
-  private void createComposite(Shell parent) {
-    this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.editor.getShell().setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
-    
+  private void createComposite(Composite parent) {
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
-    this.editor.setLayout(layout);
+    parent.setLayout(layout);
     
-    setCompositeSize(this.editor);
+    setCompositeSize(parent);
     
-    addShellListener(this.editor);
+    addShellListener(parent);
 
-    createParameterBoxes(this.editor);
+    createParameterBoxes(parent);
     
-    createButtonComposite(this.editor);
+    createButtonComposite(parent);
   }
 
   private void createParameterBoxes(Composite parent) {

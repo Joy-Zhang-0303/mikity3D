@@ -79,36 +79,45 @@ public class GroupEditor implements ModelEditor {
     this.modeler = modeler;
     
     this.tree.setIsModifyingObject(true);
-    
-    createComposite(parent);
-  }
 
-  /**
-   * シェルを生成します。
-   */
-  private void createComposite(Shell parent) {
     this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     this.editor.setSize(new org.eclipse.swt.graphics.Point(450, 680));
     this.editor.getShell().setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
     
+    createComposite(this.editor);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void open() {
+    this.editor.getShell().open();
+  }
+  
+  /**
+   * コンポジットを生成します。
+   * 
+   * @param parent 親
+   */
+  private void createComposite(Composite parent) {
     final GridLayout layout = new GridLayout();
     layout.numColumns = 3;
-    this.editor.setLayout(layout);
+    parent.setLayout(layout);
 
-    this.groupName = new ParameterInputBox(this.editor, SWT.LEFT, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.groupName = new ParameterInputBox(parent, SWT.LEFT, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
     this.groupName.setTextWidth(150);
 
     if (this.targetGroup.getName() != null) {
       this.groupName.setValue(this.targetGroup.getName());
     }
     
-    addShellListener(this.editor);
+    addShellListener(parent);
 
-    createCoordinateParameterBoxes(this.editor);
+    createCoordinateParameterBoxes(parent);
     
-    createAnimationParameterBoxes(this.editor);
+    createAnimationParameterBoxes(parent);
 
-    createButtonComposite(this.editor);
+    createButtonComposite(parent);
   }
 
   /**
@@ -428,13 +437,6 @@ public class GroupEditor implements ModelEditor {
       return false;
     }
     return true;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void open() {
-    this.editor.getShell().open();
   }
 
   /**
