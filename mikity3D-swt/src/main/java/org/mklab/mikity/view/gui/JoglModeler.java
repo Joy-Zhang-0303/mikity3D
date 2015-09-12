@@ -57,13 +57,15 @@ public class JoglModeler extends Composite {
     this.setLayout(new GridLayout());
     this.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-    final SashForm sash = new SashForm(this, SWT.NONE);
+    final SashForm sash = new SashForm(this, SWT.HORIZONTAL);
     sash.setLayoutData(new GridData(GridData.FILL_BOTH));
     sash.setLayout(new GridLayout());
     
     createSceneGraphComposite(sash);
     createCanvasComposite(sash);
     createModelPropertyEditor(sash);
+    
+    sash.setWeights(new int[]{25, 50, 25});
     
     updateRenderer();
     updatePropertyEditor();
@@ -89,7 +91,12 @@ public class JoglModeler extends Composite {
   private void createSceneGraphComposite(Composite parent) {
     final Composite composite = new Composite(parent, SWT.EMBEDDED | SWT.BORDER);
     composite.setLayout(new GridLayout());
-    composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+    composite.setLayoutData(new GridData(GridData.FILL_VERTICAL));
+    
+    final GridData data = new GridData();
+    data.widthHint = 100;
+    composite.setLayoutData(data);
+    
     this.tree = new SceneGraphTree(composite, this, this.root.getScene(0));
   }
   
@@ -97,6 +104,11 @@ public class JoglModeler extends Composite {
     final Composite composite = new Composite(parent, SWT.EMBEDDED | SWT.BORDER | SWT.SINGLE);
     composite.setLayout(new GridLayout());
     composite.setLayoutData(new GridData(GridData.FILL_VERTICAL));
+
+    final GridData data = new GridData();
+    data.widthHint = 100;
+    composite.setLayoutData(data);
+    
     this.editor = new ModelPropertyEditor(composite, this, this.tree);
   }
 
