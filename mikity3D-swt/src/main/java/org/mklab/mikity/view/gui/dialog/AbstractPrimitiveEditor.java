@@ -7,9 +7,7 @@ package org.mklab.mikity.view.gui.dialog;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -45,8 +43,10 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
   
   Label primitiveType;
   
+  /** 値が変更されていればtrue。 */
   boolean isChanged = false;
   
+  /** 保存ボタン。 */
   private Button saveButton;
 
   private ParameterInputBox translationX;
@@ -304,31 +304,6 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
     }
     
     return this.isChanged;
-    
-//    if (this.alpha.isChanged()) {
-//      return true;
-//    }
-//    
-//    if (this.translationX.isChanged()) {
-//      return true;
-//    }
-//    if (this.translationY.isChanged()) {
-//      return true;
-//    }
-//    if (this.translationZ.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationX.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationY.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationZ.isChanged()) {
-//      return true;
-//    }
-//    
-//    return false;
   }
   
   /**

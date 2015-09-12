@@ -81,28 +81,6 @@ public class CylinderEditor extends AbstractPrimitiveEditor {
     cylinder.setHeight(this.height.getFloatValue());
     cylinder.setDivision(this.depth.getIntValue());
   }
-  
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public boolean isChanged() {
-    if (super.isChanged()) {
-      return true;
-    }
-    
-    if (this.radius.isChanged()) {
-      return true;
-    }
-    if (this.height.isChanged()) {
-      return true;
-    }
-    if (this.depth.isChanged()) {
-      return true;
-    }
-    
-    return false;
-  }
 
   /**
    * {@inheritDoc}

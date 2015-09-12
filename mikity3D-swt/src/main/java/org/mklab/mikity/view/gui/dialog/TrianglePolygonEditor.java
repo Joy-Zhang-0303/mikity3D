@@ -150,46 +150,4 @@ public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
 
     polygon.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2]));
   }
-  
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public boolean isChanged() {
-    if (super.isChanged()) {
-      return true;
-    }
-    
-    if (this.vertex1X.isChanged()) {
-      return true;
-    }
-    if (this.vertex1Y.isChanged()) {
-      return true;
-    }
-    if (this.vertex1Z.isChanged()) {
-      return true;
-    }
-    
-    if (this.vertex2X.isChanged()) {
-      return true;
-    }
-    if (this.vertex2Y.isChanged()) {
-      return true;
-    }
-    if (this.vertex2Z.isChanged()) {
-      return true;
-    }
-    
-    if (this.vertex3X.isChanged()) {
-      return true;
-    }
-    if (this.vertex3Y.isChanged()) {
-      return true;
-    }
-    if (this.vertex3Z.isChanged()) {
-      return true;
-    }
-    
-    return false;
-  }
 }

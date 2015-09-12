@@ -25,8 +25,6 @@ public class ParameterInputBox extends Composite {
   private Label nameLabel;
   /** 値用のテキスト。 */
   private Text valueText;
-  /** 値が変更されていればtrue。 */
-  boolean isChanged = false;
 
   /**
    * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
@@ -52,28 +50,7 @@ public class ParameterInputBox extends Composite {
     this.valueText.setText(value);
     this.valueText.setFocus();
     this.valueText.addModifyListener(listener);
-    
-//    this.valueText.addModifyListener(new ModifyListener() {
-//
-//      /**
-//       * {@inheritDoc}
-//       */
-//      public void modifyText(ModifyEvent arg0) {
-//        ParameterInputBox.this.isChanged = true;
-//      }
-//    });
-    
     this.valueText.addKeyListener(listener);
-    
-//    this.valueText.addKeyListener(new org.eclipse.swt.events.KeyAdapter() {
-//      /**
-//       * {@inheritDoc}
-//       */
-//      @Override
-//      public void keyReleased(KeyEvent e){
-//        if (e.character==SWT.CR){
-//          parent.notify();
-//        }}});
     
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 65;
@@ -115,29 +92,7 @@ public class ParameterInputBox extends Composite {
     this.valueText.setText("" + value); //$NON-NLS-1$
     this.valueText.setFocus();
     this.valueText.addModifyListener(listener);
-    
-//    this.valueText.addModifyListener(new ModifyListener() {
-//
-//      /**
-//       * {@inheritDoc}
-//       */
-//      public void modifyText(ModifyEvent arg0) {
-//        ParameterInputBox.this.isChanged = true;
-//      }
-//    });
-    
     this.valueText.addKeyListener(listener);
-    
-//    this.valueText.addKeyListener(new org.eclipse.swt.events.KeyAdapter() {
-//      /**
-//       * {@inheritDoc}
-//       */
-//      @Override
-//      public void keyReleased(KeyEvent e){
-//        if (e.character==SWT.CR){
-//          parent.notify();
-//        }}});
-
     
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 65;
@@ -194,8 +149,6 @@ public class ParameterInputBox extends Composite {
       this.valueText.setText(Messages.getString("ParameterInputBox.0")); //$NON-NLS-1$
     }
     this.valueText.setText(string);
-    
-    setIsChanged(false);
   }
   
   /**
@@ -229,23 +182,5 @@ public class ParameterInputBox extends Composite {
       return false;
     }
     return true;
-  }
-  
-  /**
-   * 値が変更されたか判定します。
-   * 
-   * @return 値が変更されていればtrue
-   */
-  public boolean isChanged() {
-    return this.isChanged;
-  }
-  
-  /**
-   * 値が変更されたか設定します。
-   * 
-   * @param isChanged 値が変更されていればtrue
-   */
-  public void setIsChanged(boolean isChanged) {
-    this.isChanged = isChanged;
   }
 }

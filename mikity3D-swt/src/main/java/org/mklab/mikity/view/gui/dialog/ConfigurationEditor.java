@@ -60,8 +60,9 @@ public class ConfigurationEditor implements ModifyKeyListener {
   
   JoglModeler modeler;
   
+  /** 値が変更されていればtrue。 */
   private boolean isChanged = false;
-  
+  /** 保存ボタン。 */
   private Button saveButton;
 
   /**
@@ -531,40 +532,6 @@ public class ConfigurationEditor implements ModifyKeyListener {
     }
     
     return this.isChanged;
-    
-//    if (this.lightX.isChanged()) {
-//      return true;
-//    }
-//    if (this.lightY.isChanged()) {
-//      return true;
-//    }
-//    if (this.lightZ.isChanged()) {
-//      return true;
-//    }
-//
-//    if (this.eyeX.isChanged()) {
-//      return true;
-//    }
-//    
-//    if (this.eyeY.isChanged()) {
-//      return true;
-//    }
-//    
-//    if (this.eyeZ.isChanged()) {
-//      return true;
-//    }
-//
-//    if (this.lookAtPointX.isChanged()) {
-//      return true;
-//    }
-//    if (this.lookAtPointY.isChanged()) {
-//      return true;
-//    }
-//    if (this.lookAtPointZ.isChanged()) {
-//      return true;
-//    }
-//    
-//    return false;
   }
   
   /**

@@ -36,8 +36,10 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
   JoglModeler modeler;
   SceneGraphTree tree;
   
+  /** 値が変更されていればtrue。 */
   private boolean editable;
   
+  /** 保存ボタン。 */
   private ParameterInputBox groupName;
   
   private ParameterInputBox translationX;
@@ -390,72 +392,6 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
    */
   public boolean isChanged() {
     return this.isChanged;
-    
-//    if (this.groupName.isChanged()) {
-//      return true;
-//    }
-//    
-//    if (this.translationX.isChanged()) {
-//      return true;
-//    }
-//    
-//    if (this.translationY.isChanged()) {
-//      return true;
-//    }
-//    
-//    if (this.translationZ.isChanged()) {
-//      return true;
-//    }
-//    
-//    if (this.rotationX.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationY.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationZ.isChanged()) {
-//      return true;
-//    }
-//
-//    if (this.translationXsourceId.isChanged()) {
-//      return true;
-//    }
-//    if (this.translationYsourceId.isChanged()) {
-//      return true;
-//    }
-//    if (this.translationZsourceId.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationXsourceId.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationYsourceId.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationZsourceId.isChanged()) {
-//      return true;
-//    }
-//
-//    if (this.translationXsourceNumber.isChanged()) {
-//      return true;
-//    }
-//    if (this.translationYsourceNumber.isChanged()) {
-//      return true;
-//    }
-//    if (this.translationZsourceNumber.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationXsourceNumber.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationYsourceNumber.isChanged()) {
-//      return true;
-//    }
-//    if (this.rotationZsourceNumber.isChanged()) {
-//      return true;
-//    }
-//    
-//    return false;
   }
 
   /**

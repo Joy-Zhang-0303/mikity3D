@@ -89,28 +89,6 @@ public class ConeEditor extends AbstractPrimitiveEditor {
    * {@inheritDoc}
    */
   @Override
-  public boolean isChanged() {
-    if (super.isChanged()) {
-      return true;
-    }
-    
-    if (this.radius.isChanged()) {
-      return true;
-    }
-    if (this.height.isChanged()) {
-      return true;
-    }
-    if (this.division.isChanged()) {
-      return true;
-    }
-    
-    return false;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
   boolean containsOnlyNumbers() {
     if (super.containsOnlyNumbers() == false) {
       return false;
