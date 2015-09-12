@@ -9,7 +9,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.view.gui.JoglModeler;
@@ -31,19 +30,6 @@ public class ConeEditor extends AbstractPrimitiveEditor {
   
   private Label radiusUnit;
   private Label heightUnit;
-
-//  
-//  /**
-//   * コンストラクター
-//   * 
-//   * @param parent 親のシェル
-//   * @param primitive プリミティブ
-//   * @param tree シーングラフツリー
-//   * @param modeler モデラー
-//   */
-//  public ConeEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-//    super(parent, primitive, tree, modeler);
-//  }
   
   /**
    * コンストラクター

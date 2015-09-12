@@ -9,7 +9,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.view.gui.JoglModeler;
@@ -27,20 +26,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
 public class SphereEditor extends AbstractPrimitiveEditor {
   private ParameterInputBox radius;
   private ParameterInputBox division;
-  
   private Label radiusUnit;
-  
-//  /**
-//   * コンストラクター
-//   * 
-//   * @param parent 親のシェル
-//   * @param primitive プリミティブ
-//   * @param tree シーングラフツリー
-//   * @param modeler モデラー
-//   */
-//  public SphereEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-//    super(parent, primitive, tree, modeler);
-//  }
   
   /**
    * コンストラクター

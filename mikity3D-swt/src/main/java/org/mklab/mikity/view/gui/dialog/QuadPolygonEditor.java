@@ -11,7 +11,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
@@ -44,18 +43,6 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
   private ParameterInputBox vertex4X;
   private ParameterInputBox vertex4Y;
   private ParameterInputBox vertex4Z;
-
-//  /**
-//   * 新しく生成された<code>EditQuadPolygonDialog</code>オブジェクトを初期化します。
-//   * 
-//   * @param parent 親のシェル
-//   * @param primitive ポリゴン
-//   * @param tree シーングラフツリー
-//   * @param modeler モデラー
-//   */
-//  public QuadPolygonEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-//    super(parent, primitive, tree, modeler);
-//  }
   
   /**
    * 新しく生成された<code>EditQuadPolygonDialog</code>オブジェクトを初期化します。

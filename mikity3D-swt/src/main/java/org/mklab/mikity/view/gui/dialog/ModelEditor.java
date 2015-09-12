@@ -24,9 +24,4 @@ public interface ModelEditor {
    * @return パラメータが変更されていればtrue
    */
   boolean isChanged();
-  
-//  /**
-//   * ダイアログを開きます。
-//   */
-//  void open();
 }

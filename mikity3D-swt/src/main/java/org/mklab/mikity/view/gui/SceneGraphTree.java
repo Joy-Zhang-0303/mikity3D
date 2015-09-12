@@ -27,8 +27,6 @@ import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
-import org.mklab.mikity.view.gui.dialog.ModelEditor;
-import org.mklab.mikity.view.gui.dialog.ModelEditorFactory;
 
 /**
  * シーングラフを表すクラスです。
@@ -91,7 +89,6 @@ public class SceneGraphTree {
    */
   private void createTree(final Composite parent) {
     parent.setLayout(new GridLayout(1, true));
-    //this.tree = new Tree(parent, SWT.BORDER | SWT.SINGLE);
     this.tree = new Tree(parent, SWT.NONE);
     final GridData data2 = new GridData(GridData.FILL_BOTH);
     this.tree.setLayoutData(data2);
@@ -100,30 +97,6 @@ public class SceneGraphTree {
 
     // TODO
     // new DragAndDropEnabler(this.xmlTree);
-
-//    this.tree.addMouseListener(new MouseAdapter() {
-//
-//      @Override
-//      public void mouseDoubleClick(MouseEvent arg0) {
-//        final Object clickObject = SceneGraphTree.this.tree.getSelection()[0].getData();
-//
-//        if (SceneGraphTree.this.isModifyingObject) {
-//          return;
-//        }
-//       
-//        if (clickObject == SceneGraphTree.this.scene) {
-//          return;
-//        }
-//        
-//        if (clickObject == null) {
-//          return;
-//        }
-//
-//        final ModelEditor dialog = ModelEditorFactory.create(clickObject, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
-//        dialog.open();
-//        updateTree();
-//      }
-//    });
 
     this.tree.addSelectionListener(new SelectionAdapter() {
 
@@ -212,8 +185,6 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = BoxModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-//        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
-//        dialog.open();
         updateTree();
       }
     });
@@ -226,8 +197,6 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = CylinderModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-//        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);        
-//        dialog.open();
         updateTree();
       }
     });
@@ -240,8 +209,6 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = SphereModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-//        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
-//        dialog.open();
         updateTree();
       }
     });
@@ -254,8 +221,6 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = ConeModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-//        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
-//        dialog.open();
         updateTree();
       }
     });
@@ -268,8 +233,6 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = TrianglePolygonModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-//        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
-//        dialog.open();
         updateTree();
       }
     });
@@ -282,8 +245,6 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = QuadPolygonModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-//        final ModelEditor dialog = ModelEditorFactory.create(primitive, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
-//        dialog.open();
         updateTree();
       }
     });
@@ -300,8 +261,6 @@ public class SceneGraphTree {
         } else {
           SceneGraphTree.this.targetGroup.add(group);
         }
-//        final ModelEditor dialog = ModelEditorFactory.create(group, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
-//        dialog.open();
         updateTree();
       }
     });
@@ -366,18 +325,6 @@ public class SceneGraphTree {
       }
     });
 
-//    final MenuItem edit = new MenuItem(menu, SWT.POP_UP);
-//    edit.setText(Messages.getString("SceneGraphTree.12")); //$NON-NLS-1$
-//    edit.addSelectionListener(new SelectionAdapter() {
-//
-//      @Override
-//      public void widgetSelected(SelectionEvent e) {
-//        final ModelEditor dialog = ModelEditorFactory.create(SceneGraphTree.this.targetObject, parent.getShell(), SceneGraphTree.this.targetGroup, SceneGraphTree.this, SceneGraphTree.this.modeler);
-//        dialog.open();
-//        updateTree();
-//      }
-//    });
-
     final MenuItem delete = new MenuItem(menu, SWT.POP_UP);
     delete.setText(Messages.getString("SceneGraphTree.13")); //$NON-NLS-1$
     delete.addSelectionListener(new SelectionAdapter() {
@@ -407,7 +354,6 @@ public class SceneGraphTree {
           copy.setEnabled(false);
           cut.setEnabled(false);
           paste.setEnabled(true);
-          //edit.setEnabled(false);
           delete.setEnabled(false);
           return;
         } 
@@ -423,7 +369,6 @@ public class SceneGraphTree {
           copy.setEnabled(true);
           cut.setEnabled(true);
           paste.setEnabled(true);
-          //edit.setEnabled(true);
           delete.setEnabled(true);
           return;
         }
@@ -438,7 +383,6 @@ public class SceneGraphTree {
         copy.setEnabled(true);
         cut.setEnabled(true);
         paste.setEnabled(true);
-        //edit.setEnabled(true);
         delete.setEnabled(true);
       }
     });

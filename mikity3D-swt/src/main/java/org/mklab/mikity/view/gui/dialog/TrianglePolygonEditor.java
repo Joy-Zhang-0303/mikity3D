@@ -11,7 +11,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
@@ -38,18 +37,6 @@ public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
   private ParameterInputBox vertex3X;
   private ParameterInputBox vertex3Y;
   private ParameterInputBox vertex3Z;
-
-//  /**
-//   * 新しく生成された<code>EditTrianglePolygonDialog</code>オブジェクトを初期化します。
-//   * 
-//   * @param parent 親のシェル
-//   * @param primitive ポリゴン
-//   * @param tree シーングラフツリー
-//   * @param modeler モデラー
-//   */
-//  public TrianglePolygonEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-//    super(parent, primitive, tree, modeler);
-//  }
   
   /**
    * 新しく生成された<code>EditTrianglePolygonDialog</code>オブジェクトを初期化します。

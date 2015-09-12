@@ -9,7 +9,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.view.gui.JoglModeler;
@@ -32,17 +31,6 @@ public class BoxEditor extends AbstractPrimitiveEditor {
   private Label widthUnit;
   private Label heightUnit;
   private Label depthUnit;
-
-//  /**
-//   * 新しく生成された<code>EditBoxDialog</code>オブジェクトを初期化します。
-//   * @param parent 親のシェル
-//   * @param primitive プリミティブ
-//   * @param tree シーングラフツリー
-//   * @param modeler モデラー
-//   */
-//  public BoxEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-//    super(parent, primitive, tree, modeler);
-//  }
   
   /**
    * 新しく生成された<code>EditBoxDialog</code>オブジェクトを初期化します。
