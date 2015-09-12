@@ -67,31 +67,31 @@ public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
     final TrianglePolygonModel polygon = (TrianglePolygonModel)this.primitive;
     
     final VertexModel vertex1 = polygon.getVertex(0);
-    this.vertex1X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.3"), "" + vertex1.getX());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1X = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.3"), "" + vertex1.getX());  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex1Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.4"), "" + vertex1.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1Y = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.4"), "" + vertex1.getY());  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex1Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.5"), "" + vertex1.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1Z = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.5"), "" + vertex1.getZ());  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
 
     setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
     final VertexModel vertex2 = polygon.getVertex(1);
-    this.vertex2X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.6"), "" + vertex2.getX());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2X = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.6"), "" + vertex2.getX());  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex2Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.7"), "" + vertex2.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2Y = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.7"), "" + vertex2.getY());  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex2Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.8"), "" + vertex2.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2Z = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.8"), "" + vertex2.getZ());  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
 
     setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
     final VertexModel vertex3 = polygon.getVertex(2);    
-    this.vertex3X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.9"), "" + vertex3.getX());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3X = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.9"), "" + vertex3.getX());  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex3Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.10"), "" + vertex3.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3Y = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.10"), "" + vertex3.getY());  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex3Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.11"), "" + vertex3.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3Z = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.11"), "" + vertex3.getZ());  //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
   }
 

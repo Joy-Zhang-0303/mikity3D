@@ -6,6 +6,8 @@
 package org.mklab.mikity.view.gui.dialog;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -28,7 +30,7 @@ import org.mklab.mikity.view.gui.SceneGraphTree;
  * @author miki
  * @version $Revision: 1.1 $.2005/02/03
  */
-public class GroupEditor implements ModelEditor {
+public class GroupEditor implements ModelEditor, ModifyKeyListener  {
   private GroupModel targetGroup;
   
   JoglModeler modeler;
@@ -59,6 +61,9 @@ public class GroupEditor implements ModelEditor {
   private ParameterInputBox rotationYsourceNumber;
   private ParameterInputBox rotationZsourceNumber;
   
+  private Button saveButton;
+  private boolean isChanged = false;
+  
   /**
    * 新しく生成された<code>EditGroupDialog</code>オブジェクトを初期化します。
    * @param parent 親のシェル
@@ -86,7 +91,7 @@ public class GroupEditor implements ModelEditor {
     layout.numColumns = 3;
     parent.setLayout(layout);
 
-    this.groupName = new ParameterInputBox(parent, SWT.LEFT, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.groupName = new ParameterInputBox(parent, this, SWT.LEFT, Messages.getString("GroupConfigDialogLink.1"), "root"); //$NON-NLS-1$ //$NON-NLS-2$
     this.groupName.setTextWidth(150);
 
     if (this.targetGroup.getName() != null) {
@@ -158,13 +163,13 @@ public class GroupEditor implements ModelEditor {
       rZ = "0"; //$NON-NLS-1$
     }
 
-    this.translationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.0"), tX);  //$NON-NLS-1$
-    this.translationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.1"), tY);  //$NON-NLS-1$
-    this.translationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.2"), tZ);  //$NON-NLS-1$
+    this.translationX = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.0"), tX);  //$NON-NLS-1$
+    this.translationY = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.1"), tY);  //$NON-NLS-1$
+    this.translationZ = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.2"), tZ);  //$NON-NLS-1$
 
-    this.rotationX = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.3"), rX);  //$NON-NLS-1$
-    this.rotationY = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.4"), rY);  //$NON-NLS-1$
-    this.rotationZ = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.5"), rZ);  //$NON-NLS-1$
+    this.rotationX = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.3"), rX);  //$NON-NLS-1$
+    this.rotationY = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.4"), rY);  //$NON-NLS-1$
+    this.rotationZ = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.5"), rZ);  //$NON-NLS-1$
   }
   
   /**
@@ -205,23 +210,23 @@ public class GroupEditor implements ModelEditor {
       style = SWT.READ_ONLY;
     }
 
-    this.translationXsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.0"), 0); //$NON-NLS-1$
-    this.translationXsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationXsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.0"), 0); //$NON-NLS-1$
+    this.translationXsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
 
-    this.translationYsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.1"), 0); //$NON-NLS-1$
-    this.translationYsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationYsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.1"), 0); //$NON-NLS-1$
+    this.translationYsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
     
-    this.translationZsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.2"), 0); //$NON-NLS-1$
-    this.translationZsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.translationZsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.2"), 0); //$NON-NLS-1$
+    this.translationZsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
 
-    this.rotationXsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.3"), 0); //$NON-NLS-1$
-    this.rotationXsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationXsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.3"), 0); //$NON-NLS-1$
+    this.rotationXsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
 
-    this.rotationYsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.4"), 0); //$NON-NLS-1$
-    this.rotationYsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationYsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.4"), 0); //$NON-NLS-1$
+    this.rotationYsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
 
-    this.rotationZsourceId = new ParameterInputBox(parameterGroup, style, Messages.getString("EditGroupDialog.5"), 0); //$NON-NLS-1$
-    this.rotationZsourceNumber = new ParameterInputBox(parameterGroup, style, 0);
+    this.rotationZsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.5"), 0); //$NON-NLS-1$
+    this.rotationZsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
 
     setAnimationInDialog();
   }
@@ -271,20 +276,29 @@ public class GroupEditor implements ModelEditor {
     final GridLayout compLayout = new GridLayout(1, true);
     composite.setLayout(compLayout);
   
-    final Button saveButton = new Button(parent, SWT.NONE);
-    saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    saveButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
-    saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    this.saveButton = new Button(parent, SWT.NONE);
+    this.saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    this.saveButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
+    this.saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        updateModelParameters();
-        GroupEditor.this.tree.updateTree();
-
-        GroupEditor.this.modeler.setIsChanged(GroupEditor.this.modeler.isChanged() || isChanged());
-        GroupEditor.this.modeler.updateDisplay();
+        saveParameters();
       }
 
     });
+    
+    this.saveButton.setEnabled(false);
+  }
+  
+  /**
+   * パラメータを保存します。 
+   */
+  void saveParameters() {
+    updateModelParameters();
+    this.tree.updateTree();
+
+    this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
+    this.modeler.updateDisplay();
   }
 
   /**
@@ -331,7 +345,7 @@ public class GroupEditor implements ModelEditor {
    * 
    * @return 数字のみが入力されていればtrue，そうでなければfalse
    */
-  boolean containsOnlyNumbers() {
+  boolean containsOnlyNumbers() {  
     if (this.translationX.containsOnlyNumbers() == false) {
       return false;
     }
@@ -375,71 +389,99 @@ public class GroupEditor implements ModelEditor {
    * {@inheritDoc}
    */
   public boolean isChanged() {
-    if (this.groupName.isChanged()) {
-      return true;
-    }
+    return this.isChanged;
     
-    if (this.translationX.isChanged()) {
-      return true;
-    }
-    
-    if (this.translationY.isChanged()) {
-      return true;
-    }
-    
-    if (this.translationZ.isChanged()) {
-      return true;
-    }
-    
-    if (this.rotationX.isChanged()) {
-      return true;
-    }
-    if (this.rotationY.isChanged()) {
-      return true;
-    }
-    if (this.rotationZ.isChanged()) {
-      return true;
-    }
-
-    if (this.translationXsourceId.isChanged()) {
-      return true;
-    }
-    if (this.translationYsourceId.isChanged()) {
-      return true;
-    }
-    if (this.translationZsourceId.isChanged()) {
-      return true;
-    }
-    if (this.rotationXsourceId.isChanged()) {
-      return true;
-    }
-    if (this.rotationYsourceId.isChanged()) {
-      return true;
-    }
-    if (this.rotationZsourceId.isChanged()) {
-      return true;
-    }
-
-    if (this.translationXsourceNumber.isChanged()) {
-      return true;
-    }
-    if (this.translationYsourceNumber.isChanged()) {
-      return true;
-    }
-    if (this.translationZsourceNumber.isChanged()) {
-      return true;
-    }
-    if (this.rotationXsourceNumber.isChanged()) {
-      return true;
-    }
-    if (this.rotationYsourceNumber.isChanged()) {
-      return true;
-    }
-    if (this.rotationZsourceNumber.isChanged()) {
-      return true;
-    }
-    
-    return false;
+//    if (this.groupName.isChanged()) {
+//      return true;
+//    }
+//    
+//    if (this.translationX.isChanged()) {
+//      return true;
+//    }
+//    
+//    if (this.translationY.isChanged()) {
+//      return true;
+//    }
+//    
+//    if (this.translationZ.isChanged()) {
+//      return true;
+//    }
+//    
+//    if (this.rotationX.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationY.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationZ.isChanged()) {
+//      return true;
+//    }
+//
+//    if (this.translationXsourceId.isChanged()) {
+//      return true;
+//    }
+//    if (this.translationYsourceId.isChanged()) {
+//      return true;
+//    }
+//    if (this.translationZsourceId.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationXsourceId.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationYsourceId.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationZsourceId.isChanged()) {
+//      return true;
+//    }
+//
+//    if (this.translationXsourceNumber.isChanged()) {
+//      return true;
+//    }
+//    if (this.translationYsourceNumber.isChanged()) {
+//      return true;
+//    }
+//    if (this.translationZsourceNumber.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationXsourceNumber.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationYsourceNumber.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationZsourceNumber.isChanged()) {
+//      return true;
+//    }
+//    
+//    return false;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  public void modifyText(ModifyEvent e) {
+    if (this.saveButton != null) {
+      this.isChanged = true;
+      this.saveButton.setEnabled(true);
+    }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void keyPressed(KeyEvent e) {
+    // nothing to do
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void keyReleased(KeyEvent e) {
+    if (e.character==SWT.CR){
+      saveParameters();
+      this.saveButton.setEnabled(false);
+    }
+  }
 }

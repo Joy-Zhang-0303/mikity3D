@@ -19,6 +19,8 @@ import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.TraverseEvent;
@@ -45,6 +47,7 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.SourceDataModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.view.gui.dialog.ModifyKeyListener;
 import org.mklab.mikity.view.renderer.ObjectRenderer;
 import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
 import org.mklab.nfc.matrix.DoubleMatrix;
@@ -58,7 +61,7 @@ import org.mklab.nfc.matx.MatxMatrix;
  * @version $Revision: 1.21 $.2004/12/02
  */
 
-public class AnimationWindow extends ApplicationWindow {
+public class AnimationWindow extends ApplicationWindow implements ModifyKeyListener {
 
   /** アニメーション用タスク */
   AnimationTask animationTask;
@@ -302,7 +305,7 @@ public class AnimationWindow extends ApplicationWindow {
     final Button fasterButton = new Button(topComposite, SWT.NONE);
     fasterButton.setImage(ImageManager.getImage(ImageManager.FASTER));
 
-    this.playSpeed = new ParameterInputBox(topComposite, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
+    this.playSpeed = new ParameterInputBox(topComposite, this, SWT.NONE, Messages.getString("SimulationViewer.0"), "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
 
     createTimeBar(controller);
     createModelChooser(composite);
@@ -782,5 +785,26 @@ public class AnimationWindow extends ApplicationWindow {
         }
       });
     }
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void modifyText(ModifyEvent arg0) {
+    // nothing to do
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void keyPressed(KeyEvent e) {
+    // nothing to do
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void keyReleased(KeyEvent e) {
+    // nothing to do
   }
 }

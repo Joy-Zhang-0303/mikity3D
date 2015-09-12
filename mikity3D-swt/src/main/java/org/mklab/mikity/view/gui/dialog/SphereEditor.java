@@ -55,13 +55,13 @@ public class SphereEditor extends AbstractPrimitiveEditor {
     this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
     final SphereModel sphere = (SphereModel)this.primitive;
     
-    this.radius = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.38"), "" + sphere.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
+    this.radius = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.38"), "" + sphere.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
 
     this.radiusUnit = new Label(parameterGroup, SWT.NONE);
     this.radiusUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.radiusUnit, 1);
 
-    this.division = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.39"), "" + sphere.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
+    this.division = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.39"), "" + sphere.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
   }
 
   /**

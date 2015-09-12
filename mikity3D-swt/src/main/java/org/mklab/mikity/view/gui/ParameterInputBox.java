@@ -6,14 +6,12 @@
 package org.mklab.mikity.view.gui;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.mklab.mikity.view.gui.dialog.ModifyKeyListener;
 
 
 /**
@@ -33,11 +31,12 @@ public class ParameterInputBox extends Composite {
   /**
    * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
    * @param parent コンポジット
+   * @param listener リスナー
    * @param style スタイル
    * @param name 名前
    * @param value 値
    */
-  public ParameterInputBox(final Composite parent, int style, String name, String value) {
+  public ParameterInputBox(final Composite parent, ModifyKeyListener listener,  int style, String name, String value) {
     super(parent, style);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 2;
@@ -52,25 +51,29 @@ public class ParameterInputBox extends Composite {
     this.valueText = new Text(this, SWT.BORDER | SWT.RIGHT | style);
     this.valueText.setText(value);
     this.valueText.setFocus();
-    this.valueText.addModifyListener(new ModifyListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void modifyText(ModifyEvent arg0) {
-        ParameterInputBox.this.isChanged = true;
-      }
-    });
+    this.valueText.addModifyListener(listener);
     
-    this.valueText.addKeyListener(new org.eclipse.swt.events.KeyAdapter() {
-      /**
-       * {@inheritDoc}
-       */
-      @Override
-      public void keyReleased(KeyEvent e){
-        if (e.character==SWT.CR){
-          parent.notify();
-        }}});
+//    this.valueText.addModifyListener(new ModifyListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void modifyText(ModifyEvent arg0) {
+//        ParameterInputBox.this.isChanged = true;
+//      }
+//    });
+    
+    this.valueText.addKeyListener(listener);
+    
+//    this.valueText.addKeyListener(new org.eclipse.swt.events.KeyAdapter() {
+//      /**
+//       * {@inheritDoc}
+//       */
+//      @Override
+//      public void keyReleased(KeyEvent e){
+//        if (e.character==SWT.CR){
+//          parent.notify();
+//        }}});
     
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.widthHint = 65;
@@ -84,21 +87,23 @@ public class ParameterInputBox extends Composite {
   /**
    * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
    * @param parent コンポジット
+   * @param listener リスナー
    * @param style スタイル
    * @param name 名前
    * @param value 値
    */
-  public ParameterInputBox(Composite parent, int style, String name, int value) {
-    this(parent, style, name, "" + value); //$NON-NLS-1$
+  public ParameterInputBox(Composite parent, ModifyKeyListener listener, int style, String name, int value) {
+    this(parent, listener, style, name, "" + value); //$NON-NLS-1$
   }
 
   /**
    * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
    * @param parent コンポジット
+   * @param listener リスナー
    * @param style スタイル
    * @param value 値 
    */
-  public ParameterInputBox(final Composite parent, int style, int value) {
+  public ParameterInputBox(final Composite parent, ModifyKeyListener listener, int style, int value) {
     super(parent, SWT.RIGHT);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
@@ -109,25 +114,29 @@ public class ParameterInputBox extends Composite {
     this.valueText = new Text(this, SWT.BORDER | SWT.RIGHT | style);
     this.valueText.setText("" + value); //$NON-NLS-1$
     this.valueText.setFocus();
-    this.valueText.addModifyListener(new ModifyListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void modifyText(ModifyEvent arg0) {
-        ParameterInputBox.this.isChanged = true;
-      }
-    });
+    this.valueText.addModifyListener(listener);
     
-    this.valueText.addKeyListener(new org.eclipse.swt.events.KeyAdapter() {
-      /**
-       * {@inheritDoc}
-       */
-      @Override
-      public void keyReleased(KeyEvent e){
-        if (e.character==SWT.CR){
-          parent.notify();
-        }}});
+//    this.valueText.addModifyListener(new ModifyListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void modifyText(ModifyEvent arg0) {
+//        ParameterInputBox.this.isChanged = true;
+//      }
+//    });
+    
+    this.valueText.addKeyListener(listener);
+    
+//    this.valueText.addKeyListener(new org.eclipse.swt.events.KeyAdapter() {
+//      /**
+//       * {@inheritDoc}
+//       */
+//      @Override
+//      public void keyReleased(KeyEvent e){
+//        if (e.character==SWT.CR){
+//          parent.notify();
+//        }}});
 
     
     final GridData data = new GridData(GridData.FILL_HORIZONTAL);

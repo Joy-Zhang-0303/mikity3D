@@ -59,19 +59,19 @@ public class BoxEditor extends AbstractPrimitiveEditor {
     
     final BoxModel box = (BoxModel)this.primitive;
     
-    this.width = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.32"), "" + box.getWidth()); //$NON-NLS-1$//$NON-NLS-2$
+    this.width = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.32"), "" + box.getWidth()); //$NON-NLS-1$//$NON-NLS-2$
     
     this.widthUnit = new Label(parameterGroup, SWT.NONE);
     this.widthUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.widthUnit, 1);
 
-    this.height = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.33"), "" + box.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
+    this.height = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.33"), "" + box.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
     
     this.heightUnit = new Label(parameterGroup, SWT.NONE);
     this.heightUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.heightUnit, 1);
 
-    this.depth = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.34"), "" + box.getDepth()); //$NON-NLS-1$//$NON-NLS-2$
+    this.depth = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.34"), "" + box.getDepth()); //$NON-NLS-1$//$NON-NLS-2$
     
     this.depthUnit = new Label(parameterGroup, SWT.NONE);
     this.depthUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$

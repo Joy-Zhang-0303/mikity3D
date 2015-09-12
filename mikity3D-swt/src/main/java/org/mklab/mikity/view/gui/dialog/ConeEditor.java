@@ -59,19 +59,19 @@ public class ConeEditor extends AbstractPrimitiveEditor {
     
     final ConeModel cone = (ConeModel)this.primitive;
     
-    this.radius = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.40"), "" + cone.getRadisu()); //$NON-NLS-1$//$NON-NLS-2$
+    this.radius = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.40"), "" + cone.getRadisu()); //$NON-NLS-1$//$NON-NLS-2$
     
     this.radiusUnit = new Label(parameterGroup, SWT.NONE);
     this.radiusUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.radiusUnit, 1);
 
-    this.height = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.41"), "" + cone.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
+    this.height = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.41"), "" + cone.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
     
     this.heightUnit = new Label(parameterGroup, SWT.NONE);
     this.heightUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(this.heightUnit, 1);
 
-    this.division = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.42"), "" + cone.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
+    this.division = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.42"), "" + cone.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
   }
 
   /**

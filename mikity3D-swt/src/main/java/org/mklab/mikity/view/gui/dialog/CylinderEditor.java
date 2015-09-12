@@ -56,19 +56,19 @@ public class CylinderEditor extends AbstractPrimitiveEditor {
     
     final CylinderModel cylinder = (CylinderModel)this.primitive;
     
-    this.radius = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.35"), "" + cylinder.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
+    this.radius = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.35"), "" + cylinder.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
 
     final Label radiusUnit = new Label(parameterGroup, SWT.NONE);
     radiusUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(radiusUnit, 1);
 
-    this.height = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.36"), "" + cylinder.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
+    this.height = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.36"), "" + cylinder.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
 
     final Label heightUnit = new Label(parameterGroup, SWT.NONE);
     heightUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(heightUnit, 1);
 
-    this.depth = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.37"), "" + cylinder.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
+    this.depth = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.37"), "" + cylinder.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
   }
 
   /**

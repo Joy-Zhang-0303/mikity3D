@@ -6,6 +6,10 @@
 package org.mklab.mikity.view.gui.dialog;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -30,7 +34,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @author koga
  * @version $Revision$, 2015/08/22
  */
-public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
+public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, ModifyKeyListener {
   PrimitiveModel primitive;
 
   JoglModeler modeler;
@@ -40,6 +44,10 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
   private ParameterInputBox alpha;
   
   Label primitiveType;
+  
+  boolean isChanged = false;
+  
+  private Button saveButton;
 
   private ParameterInputBox translationX;
   private ParameterInputBox translationY;
@@ -75,8 +83,6 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
     layout.numColumns = 1;
     parent.setLayout(layout);
 
-    //setCompositeSize(parent);
-
     createParameterBoxes(parent);
     
     createButtonComposite(parent);
@@ -86,7 +92,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
     this.primitiveType = new Label(parent, SWT.NONE);
     setGridLayout(this.primitiveType, 2);
 
-    Group parameterGroup = new Group(parent, SWT.NONE);
+    final Group parameterGroup = new Group(parent, SWT.NONE);
     parameterGroup.setText(Messages.getString("EditPrimitiveDialog.9")); //$NON-NLS-1$
     setGridLayout(parameterGroup, 1);
 
@@ -103,7 +109,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
     this.colorSelector = new ColorSelectorButton(parameterGroup);
     this.colorSelector.setColor(this.primitive.getColor());
 
-    this.alpha = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.primitive.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.alpha = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.primitive.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
 
     setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
     
@@ -136,11 +142,11 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
       z = "0"; //$NON-NLS-1$
     }
     
-    this.rotationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.3"), x); //$NON-NLS-1$
+    this.rotationX = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.3"), x); //$NON-NLS-1$
     new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
-    this.rotationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.4"), y); //$NON-NLS-1$
+    this.rotationY = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.4"), y); //$NON-NLS-1$
     new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
-    this.rotationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.5"), z); //$NON-NLS-1$
+    this.rotationZ = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.5"), z); //$NON-NLS-1$
     new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
   }
 
@@ -161,11 +167,11 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
       z = "0"; //$NON-NLS-1$
     }
 
-    this.translationX = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.6"), x); //$NON-NLS-1$
+    this.translationX = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.6"), x); //$NON-NLS-1$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.translationY = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.7"), y); //$NON-NLS-1$
+    this.translationY = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.7"), y); //$NON-NLS-1$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.translationZ = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditPrimitiveDialog.8"), z); //$NON-NLS-1$
+    this.translationZ = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.8"), z); //$NON-NLS-1$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
   }
   
@@ -179,10 +185,10 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
     final GridLayout compLayout = new GridLayout(1, true);
     composite.setLayout(compLayout);
     
-    final Button saveButton = new Button(composite, SWT.NONE);
-    saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    saveButton.setText(Messages.getString("EditPrimitiveDialog.11")); //$NON-NLS-1$
-    saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    this.saveButton = new Button(composite, SWT.NONE);
+    this.saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    this.saveButton.setText(Messages.getString("EditPrimitiveDialog.11")); //$NON-NLS-1$
+    this.saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containsOnlyNumbers() == false) {
@@ -191,15 +197,24 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
           message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
           message.open();
           return;
-        }        
-              
-        updatePrimitiveParameters();
-        AbstractPrimitiveEditor.this.tree.updateTree();
+        }
         
-        AbstractPrimitiveEditor.this.modeler.setIsChanged(AbstractPrimitiveEditor.this.modeler.isChanged() || isChanged());
-        AbstractPrimitiveEditor.this.modeler.updateDisplay();
+        saveParameters();
       }
     });
+    
+    this.saveButton.setEnabled(false);
+  }
+  
+  /**
+   * パラメータを保存します。 
+   */
+  void saveParameters() {
+    updatePrimitiveParameters();
+    this.tree.updateTree();
+    
+    this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
+    this.modeler.updateDisplay();
   }
   
   /**
@@ -287,29 +302,59 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
     if (this.colorSelector.isChanged) {
       return true;
     }
-    if (this.alpha.isChanged()) {
-      return true;
-    }
     
-    if (this.translationX.isChanged()) {
-      return true;
-    }
-    if (this.translationY.isChanged()) {
-      return true;
-    }
-    if (this.translationZ.isChanged()) {
-      return true;
-    }
-    if (this.rotationX.isChanged()) {
-      return true;
-    }
-    if (this.rotationY.isChanged()) {
-      return true;
-    }
-    if (this.rotationZ.isChanged()) {
-      return true;
-    }
+    return this.isChanged;
     
-    return false;
+//    if (this.alpha.isChanged()) {
+//      return true;
+//    }
+//    
+//    if (this.translationX.isChanged()) {
+//      return true;
+//    }
+//    if (this.translationY.isChanged()) {
+//      return true;
+//    }
+//    if (this.translationZ.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationX.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationY.isChanged()) {
+//      return true;
+//    }
+//    if (this.rotationZ.isChanged()) {
+//      return true;
+//    }
+//    
+//    return false;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void modifyText(ModifyEvent arg0) {
+    if (this.saveButton != null) {
+      this.isChanged = true;
+      this.saveButton.setEnabled(true);
+    }
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void keyPressed(KeyEvent e) {
+    // nothing to do
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void keyReleased(KeyEvent e) {
+    if (e.character==SWT.CR){
+      saveParameters();
+      this.saveButton.setEnabled(false);
+    }
   }
 }

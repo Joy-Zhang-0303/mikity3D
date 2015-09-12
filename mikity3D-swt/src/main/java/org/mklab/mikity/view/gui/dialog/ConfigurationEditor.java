@@ -6,6 +6,8 @@
 package org.mklab.mikity.view.gui.dialog;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -34,7 +36,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
  * @author miki
  * @version $Revision: 1.1 $.2005/02/01
  */
-public class ConfigurationEditor {
+public class ConfigurationEditor implements ModifyKeyListener {
   Shell sShell = null;
   private ColorSelectorButton colorSelector;
   private Combo modelLengthUnitCombo;
@@ -57,6 +59,10 @@ public class ConfigurationEditor {
   private ConfigurationModel configuration;
   
   JoglModeler modeler;
+  
+  private boolean isChanged = false;
+  
+  private Button saveButton;
 
   /**
    * 新しく生成された<code>ConfigurationDialog</code>オブジェクトを初期化します。
@@ -183,9 +189,9 @@ public class ConfigurationEditor {
 
     final LightModel light = this.configuration.getLight();
     
-    this.lightX = new ParameterInputBox(lightGroup, SWT.NONE, "  (", "" + light.getX()); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lightY = new ParameterInputBox(lightGroup, SWT.NONE, ",  ", "" + light.getY()); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lightZ = new ParameterInputBox(lightGroup, SWT.NONE, ",  ", "" + light.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightX = new ParameterInputBox(lightGroup, this, SWT.NONE, "  (", "" + light.getX()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightY = new ParameterInputBox(lightGroup, this, SWT.NONE, ",  ", "" + light.getY()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightZ = new ParameterInputBox(lightGroup, this, SWT.NONE, ",  ", "" + light.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
 
     final Label lightRightLabel = new Label(lightGroup, SWT.NONE);
     final GridData lightRightData = new GridData();
@@ -209,9 +215,9 @@ public class ConfigurationEditor {
 
     final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
 
-    this.lookAtPointX = new ParameterInputBox(lookAtPointGroup, SWT.NONE, "  (", "" + lookAtPoint.getX()); //$NON-NLS-1$//$NON-NLS-2$
-    this.lookAtPointY = new ParameterInputBox(lookAtPointGroup, SWT.NONE, ",  ", "" + lookAtPoint.getY()); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lookAtPointZ = new ParameterInputBox(lookAtPointGroup, SWT.NONE, ",  ", "" + lookAtPoint.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lookAtPointX = new ParameterInputBox(lookAtPointGroup, this, SWT.NONE, "  (", "" + lookAtPoint.getX()); //$NON-NLS-1$//$NON-NLS-2$
+    this.lookAtPointY = new ParameterInputBox(lookAtPointGroup, this, SWT.NONE, ",  ", "" + lookAtPoint.getY()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lookAtPointZ = new ParameterInputBox(lookAtPointGroup, this, SWT.NONE, ",  ", "" + lookAtPoint.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
 
     final Label lookAtPointRightLabel = new Label(lookAtPointGroup, SWT.NONE);
     final GridData lookAtPointRightData = new GridData();
@@ -234,9 +240,9 @@ public class ConfigurationEditor {
 
     final EyeModel eye = this.configuration.getEye();
     
-    this.eyeX = new ParameterInputBox(eyeGroup, SWT.NONE, "  (", "" + eye.getX()); //$NON-NLS-1$ //$NON-NLS-2$
-    this.eyeY = new ParameterInputBox(eyeGroup, SWT.NONE, ",  ", "" + eye.getY()); //$NON-NLS-1$ //$NON-NLS-2$
-    this.eyeZ = new ParameterInputBox(eyeGroup, SWT.NONE, ",  ", "" + eye.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeX = new ParameterInputBox(eyeGroup, this, SWT.NONE, "  (", "" + eye.getX()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeY = new ParameterInputBox(eyeGroup, this, SWT.NONE, ",  ", "" + eye.getY()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeZ = new ParameterInputBox(eyeGroup, this, SWT.NONE, ",  ", "" + eye.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
 
     final Label eyeRightLabel = new Label(eyeGroup, SWT.NONE);
     final GridData eyePositionRightData = new GridData();
@@ -278,24 +284,22 @@ public class ConfigurationEditor {
     composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     composite.setLayout(layout);
     
-    final Button saveButton = new Button(composite, SWT.NONE);
-    saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    saveButton.setText(Messages.getString("ConfigurationDialog.0")); //$NON-NLS-1$
-    saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    this.saveButton = new Button(composite, SWT.NONE);
+    this.saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    this.saveButton.setText(Messages.getString("ConfigurationDialog.0")); //$NON-NLS-1$
+    this.saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (containsOnlyNumbers() == false) {
           createMessageBoxForNonNumericInput();
           return;
         }
-        
-        ConfigurationEditor.this.modeler.setIsChanged(ConfigurationEditor.this.isChanged());
-        
-        updateConfigurationParameters();
-        ConfigurationEditor.this.modeler.updateDisplay();
+
+        saveParameters();
       }
 
     });
+    this.saveButton.setEnabled(false);
     
     final Button closeButton = new Button(composite, SWT.NONE);
     closeButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -316,6 +320,16 @@ public class ConfigurationEditor {
         }
       }
     });
+  }
+  
+  /**
+   * パラメータを保存します。
+   */
+  void saveParameters() {
+    this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
+    
+    updateConfigurationParameters();
+    this.modeler.updateDisplay();
   }
 
   /**
@@ -516,38 +530,67 @@ public class ConfigurationEditor {
       return true;
     }
     
-    if (this.lightX.isChanged()) {
-      return true;
+    return this.isChanged;
+    
+//    if (this.lightX.isChanged()) {
+//      return true;
+//    }
+//    if (this.lightY.isChanged()) {
+//      return true;
+//    }
+//    if (this.lightZ.isChanged()) {
+//      return true;
+//    }
+//
+//    if (this.eyeX.isChanged()) {
+//      return true;
+//    }
+//    
+//    if (this.eyeY.isChanged()) {
+//      return true;
+//    }
+//    
+//    if (this.eyeZ.isChanged()) {
+//      return true;
+//    }
+//
+//    if (this.lookAtPointX.isChanged()) {
+//      return true;
+//    }
+//    if (this.lookAtPointY.isChanged()) {
+//      return true;
+//    }
+//    if (this.lookAtPointZ.isChanged()) {
+//      return true;
+//    }
+//    
+//    return false;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void modifyText(ModifyEvent arg0) {
+    if (this.saveButton != null) {
+      this.isChanged = true;
+      this.saveButton.setEnabled(true);
     }
-    if (this.lightY.isChanged()) {
-      return true;
-    }
-    if (this.lightZ.isChanged()) {
-      return true;
-    }
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void keyPressed(KeyEvent e) {
+    // nothing to do
+  }
 
-    if (this.eyeX.isChanged()) {
-      return true;
+  /**
+   * {@inheritDoc}
+   */
+  public void keyReleased(KeyEvent e) {
+    if (e.character==SWT.CR){
+      saveParameters();
+      this.saveButton.setEnabled(false);
     }
-    
-    if (this.eyeY.isChanged()) {
-      return true;
-    }
-    
-    if (this.eyeZ.isChanged()) {
-      return true;
-    }
-
-    if (this.lookAtPointX.isChanged()) {
-      return true;
-    }
-    if (this.lookAtPointY.isChanged()) {
-      return true;
-    }
-    if (this.lookAtPointZ.isChanged()) {
-      return true;
-    }
-    
-    return false;
   }
 }
