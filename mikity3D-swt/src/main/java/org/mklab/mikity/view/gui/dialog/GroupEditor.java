@@ -64,6 +64,29 @@ public class GroupEditor implements ModelEditor {
   private ParameterInputBox rotationYsourceNumber;
   private ParameterInputBox rotationZsourceNumber;
 
+//  /**
+//   * 新しく生成された<code>EditGroupDialog</code>オブジェクトを初期化します。
+//   * @param parent 親のシェル
+//   * @param targetGroup グループ
+//   * @param editable 編集可能性
+//   * @param tree ツリー
+//   * @param modeler モデラー
+//   */
+//  public GroupEditor(Shell parent, GroupModel targetGroup, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
+//    this.targetGroup = targetGroup;
+//    this.editable = editable;
+//    this.tree = tree;
+//    this.modeler = modeler;
+//    
+//    this.tree.setIsModifyingObject(true);
+//
+//    this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+//    this.editor.setSize(new org.eclipse.swt.graphics.Point(450, 680));
+//    this.editor.getShell().setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
+//    
+//    createComposite(this.editor);
+//  }
+  
   /**
    * 新しく生成された<code>EditGroupDialog</code>オブジェクトを初期化します。
    * @param parent 親のシェル
@@ -72,27 +95,29 @@ public class GroupEditor implements ModelEditor {
    * @param tree ツリー
    * @param modeler モデラー
    */
-  public GroupEditor(Shell parent, GroupModel targetGroup, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
+  public GroupEditor(Composite parent, GroupModel targetGroup, boolean editable, SceneGraphTree tree, JoglModeler modeler) {
     this.targetGroup = targetGroup;
     this.editable = editable;
     this.tree = tree;
     this.modeler = modeler;
     
-    this.tree.setIsModifyingObject(true);
+    //this.tree.setIsModifyingObject(true);
 
-    this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.editor.setSize(new org.eclipse.swt.graphics.Point(450, 680));
-    this.editor.getShell().setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
+    //this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    //this.editor = new Composite(parent, SWT.EMBEDDED);
+    //this.editor.setSize(new org.eclipse.swt.graphics.Point(450, 680));
+    //this.editor.getShell().setText(Messages.getString("GroupConfigDialogLink.0")); //$NON-NLS-1$
     
-    createComposite(this.editor);
+    createComposite(parent);
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public void open() {
-    this.editor.getShell().open();
-  }
+
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void open() {
+//    this.editor.getShell().open();
+//  }
   
   /**
    * コンポジットを生成します。
@@ -111,7 +136,7 @@ public class GroupEditor implements ModelEditor {
       this.groupName.setValue(this.targetGroup.getName());
     }
     
-    addShellListener(parent);
+    //addShellListener(parent);
 
     createCoordinateParameterBoxes(parent);
     
@@ -120,32 +145,32 @@ public class GroupEditor implements ModelEditor {
     createButtonComposite(parent);
   }
 
-  /**
-   * Shellのリスナーを追加します。 
-   */
-  private void addShellListener(Composite parent) {
-    parent.getShell().addShellListener(new ShellListener() {
-      public void shellIconified(ShellEvent arg0) {
-        // nothing to do
-      }
-      
-      public void shellDeiconified(ShellEvent arg0) {
-        // nothing to do
-      }
-      
-      public void shellDeactivated(ShellEvent arg0) {
-        // nothing to do
-      }
-      
-      public void shellClosed(ShellEvent arg0) {
-        GroupEditor.this.tree.setIsModifyingObject(false);
-      }
-      
-      public void shellActivated(ShellEvent arg0) {
-        // nothing to do
-      }
-    });
-  }
+//  /**
+//   * Shellのリスナーを追加します。 
+//   */
+//  private void addShellListener(Composite parent) {
+//    parent.getShell().addShellListener(new ShellListener() {
+//      public void shellIconified(ShellEvent arg0) {
+//        // nothing to do
+//      }
+//      
+//      public void shellDeiconified(ShellEvent arg0) {
+//        // nothing to do
+//      }
+//      
+//      public void shellDeactivated(ShellEvent arg0) {
+//        // nothing to do
+//      }
+//      
+//      public void shellClosed(ShellEvent arg0) {
+//        //GroupEditor.this.tree.setIsModifyingObject(false);
+//      }
+//      
+//      public void shellActivated(ShellEvent arg0) {
+//        // nothing to do
+//      }
+//    });
+//  }
 
   /**
    * 座標系のパラメータを設定するボックスを生成します。
@@ -315,7 +340,7 @@ public class GroupEditor implements ModelEditor {
     gridData.horizontalSpan = 3;
     composite.setLayoutData(gridData);
 
-    final GridLayout compLayout = new GridLayout(2, true);
+    final GridLayout compLayout = new GridLayout(1, true);
     composite.setLayout(compLayout);
   
     final Button saveButton = new Button(parent, SWT.NONE);
@@ -324,35 +349,35 @@ public class GroupEditor implements ModelEditor {
     saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        GroupEditor.this.modeler.setIsChanged(false);
-        
         updateModelParameters();
         GroupEditor.this.tree.updateTree();
+
+        GroupEditor.this.modeler.setIsChanged(GroupEditor.this.modeler.isChanged() || isChanged());
         GroupEditor.this.modeler.updateDisplay();
       }
 
     });
     
-    final Button closeButton = new Button(parent, SWT.NONE);
-    closeButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    closeButton.setText(Messages.getString("GroupConfigDialogLink.9")); //$NON-NLS-1$
-    closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-      @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (GroupEditor.this.isChanged() == false) {
-          parent.getShell().close();
-          return;
-        }
-
-        final MessageBox message = new MessageBox(parent.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-        message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
-        final int yesNo = message.open();
-        if (yesNo == SWT.YES) {
-          parent.getShell().close();
-        }
-        
-      }
-    });
+//    final Button closeButton = new Button(parent, SWT.NONE);
+//    closeButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+//    closeButton.setText(Messages.getString("GroupConfigDialogLink.9")); //$NON-NLS-1$
+//    closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+//      @Override
+//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+//        if (GroupEditor.this.isChanged() == false) {
+//          parent.getShell().close();
+//          return;
+//        }
+//
+//        final MessageBox message = new MessageBox(parent.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+//        message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
+//        final int yesNo = message.open();
+//        if (yesNo == SWT.YES) {
+//          parent.getShell().close();
+//        }
+//        
+//      }
+//    });
   }
 
   /**

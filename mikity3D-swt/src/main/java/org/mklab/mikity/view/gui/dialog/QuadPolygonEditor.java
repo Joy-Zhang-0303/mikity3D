@@ -28,34 +28,47 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision: 1.7 $. 2007/11/15
  */
 public class QuadPolygonEditor extends AbstractPrimitiveEditor {
+
   private ParameterInputBox vertex1X;
   private ParameterInputBox vertex1Y;
   private ParameterInputBox vertex1Z;
-  
+
   private ParameterInputBox vertex2X;
   private ParameterInputBox vertex2Y;
   private ParameterInputBox vertex2Z;
-  
+
   private ParameterInputBox vertex3X;
   private ParameterInputBox vertex3Y;
   private ParameterInputBox vertex3Z;
-  
+
   private ParameterInputBox vertex4X;
   private ParameterInputBox vertex4Y;
   private ParameterInputBox vertex4Z;
+
+//  /**
+//   * 新しく生成された<code>EditQuadPolygonDialog</code>オブジェクトを初期化します。
+//   * 
+//   * @param parent 親のシェル
+//   * @param primitive ポリゴン
+//   * @param tree シーングラフツリー
+//   * @param modeler モデラー
+//   */
+//  public QuadPolygonEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+//    super(parent, primitive, tree, modeler);
+//  }
   
-    /**
+  /**
    * 新しく生成された<code>EditQuadPolygonDialog</code>オブジェクトを初期化します。
-   * @param parentShell 親のシェル
+   * 
+   * @param parent 親のシェル
    * @param primitive ポリゴン
-   * @param tree シーングラフツリー 
+   * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public QuadPolygonEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-    super(parentShell, primitive, tree, modeler);
-
+  public QuadPolygonEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+    super(parent, primitive, tree, modeler);
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -69,45 +82,45 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
   @SuppressWarnings("unused")
   public void createParameterBoxes(final Group parameterGroup) {
     this.primitiveType.setText(Messages.getString("EditQuadPolygonDialog.23")); //$NON-NLS-1$
-    
+
     final QuadPolygonModel polygon = (QuadPolygonModel)this.primitive;
-    
+
     final VertexModel vertex1 = polygon.getVertex(0);
-    this.vertex1X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.3"), "" + vertex1.getX());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.3"), "" + vertex1.getX()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex1Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.4"), "" + vertex1.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.4"), "" + vertex1.getY()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex1Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.5"), "" + vertex1.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex1Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.5"), "" + vertex1.getZ()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
 
     setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
     final VertexModel vertex2 = polygon.getVertex(1);
-    this.vertex2X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.6"), "" +vertex2.getX());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.6"), "" + vertex2.getX()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex2Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.7"),  "" + vertex2.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.7"), "" + vertex2.getY()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex2Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.8"), "" + vertex2.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex2Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.8"), "" + vertex2.getZ()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
 
     setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
     final VertexModel vertex3 = polygon.getVertex(2);
-    this.vertex3X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.21"), "" + vertex3.getX());    //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.21"), "" + vertex3.getX()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex3Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.9"), "" + vertex3.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.9"), "" + vertex3.getY()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex3Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.10"), "" + vertex3.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex3Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.10"), "" + vertex3.getZ()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
 
     setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
     final VertexModel vertex4 = polygon.getVertex(3);
-    this.vertex4X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.11"), "" + vertex4.getX());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex4X = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.11"), "" + vertex4.getX()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex4Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.12"), "" + vertex4.getY());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex4Y = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.12"), "" + vertex4.getY()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
-    this.vertex4Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.13"), "" + vertex4.getZ());  //$NON-NLS-1$//$NON-NLS-2$
+    this.vertex4Z = new ParameterInputBox(parameterGroup, SWT.NONE, Messages.getString("EditQuadPolygonDialog.13"), "" + vertex4.getZ()); //$NON-NLS-1$//$NON-NLS-2$
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
   }
 
@@ -120,7 +133,7 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
     if (super.containsOnlyNumbers() == false) {
       return false;
     }
-    
+
     if (this.vertex1X.containsOnlyNumbers() == false) {
       return false;
     }
@@ -166,7 +179,7 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
    */
   public void updateModelParameters() {
     final QuadPolygonModel polygon = (QuadPolygonModel)this.primitive;
-    
+
     final VertexModel[] vertices = new VertexModel[4];
 
     vertices[0] = new VertexModel(this.vertex1X.getFloatValue(), this.vertex1Y.getFloatValue(), this.vertex1Z.getFloatValue());
@@ -176,7 +189,7 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
 
     polygon.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2], vertices[3]));
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -185,7 +198,7 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
     if (super.isChanged()) {
       return true;
     }
-    
+
     if (this.vertex1X.isChanged()) {
       return true;
     }
@@ -195,7 +208,7 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
     if (this.vertex1Z.isChanged()) {
       return true;
     }
-    
+
     if (this.vertex2X.isChanged()) {
       return true;
     }
@@ -205,7 +218,7 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
     if (this.vertex2Z.isChanged()) {
       return true;
     }
-    
+
     if (this.vertex3X.isChanged()) {
       return true;
     }
@@ -215,7 +228,7 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
     if (this.vertex3Z.isChanged()) {
       return true;
     }
-    
+
     if (this.vertex4X.isChanged()) {
       return true;
     }

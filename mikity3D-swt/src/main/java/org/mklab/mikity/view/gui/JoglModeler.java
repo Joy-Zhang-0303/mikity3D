@@ -18,6 +18,7 @@ import org.mklab.mikity.model.ObjectGroupManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.view.gui.dialog.ModelPropertyEditor;
 import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
 
 
@@ -30,6 +31,10 @@ import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
 public class JoglModeler extends Composite {
   /** シーングラフツリー。 */
   SceneGraphTree tree;
+  
+  /** プロパティエディタ。 */
+  ModelPropertyEditor editor;
+  
   /** レンダラー。 */
   private JoglObjectRenderer renderer;
   /** オブジェクトグループのマネージャ。 */
@@ -43,11 +48,11 @@ public class JoglModeler extends Composite {
 
   /**
    * 新しく生成された<code>AbstractModeler</code>オブジェクトを初期化します。
-   * @param parent 親
+   * @param composite コンポジット
    * @param root ルート
    */
-  public JoglModeler(Composite parent, final Mikity3DModel root) {
-    super(parent, SWT.None);
+  public JoglModeler(Composite composite, final Mikity3DModel root) {
+    super(composite, SWT.None);
     this.root = root;
     this.setLayout(new GridLayout());
     this.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -58,8 +63,10 @@ public class JoglModeler extends Composite {
     
     createSceneGraphComposite(sash);
     createCanvasComposite(sash);
+    createModelPropertyEditor(sash);
     
     updateRenderer();
+    updatePropertyEditor();
   }
 
   /**
@@ -68,23 +75,31 @@ public class JoglModeler extends Composite {
    * @param parent 親コンポジット
    */
   private void createCanvasComposite(Composite parent) {
-    final Composite canvas = new Composite(parent, SWT.EMBEDDED);
-    canvas.setLayout(new GridLayout());
-    canvas.setLayoutData(new GridData(GridData.FILL_BOTH));
-    createModelCanvas(canvas);
+    final Composite composite = new Composite(parent, SWT.EMBEDDED | SWT.BORDER);
+    composite.setLayout(new GridLayout());
+    composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+    createModelCanvas(composite);
   }
-
+  
   /**
    * シーングラフを表示するコンポジットを作成します。
    * 
    * @param parent 親コンポジット
    */
   private void createSceneGraphComposite(Composite parent) {
-    final Composite sceneGraph = new Composite(parent, SWT.EMBEDDED);
-    sceneGraph.setLayout(new GridLayout());
-    sceneGraph.setLayoutData(new GridData(GridData.FILL_BOTH));
-    this.tree = new SceneGraphTree(sceneGraph, this, this.root.getScene(0));
+    final Composite composite = new Composite(parent, SWT.EMBEDDED | SWT.BORDER);
+    composite.setLayout(new GridLayout());
+    composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+    this.tree = new SceneGraphTree(composite, this, this.root.getScene(0));
   }
+  
+  private void createModelPropertyEditor(Composite parent) {
+    final Composite composite = new Composite(parent, SWT.EMBEDDED | SWT.BORDER | SWT.SINGLE);
+    composite.setLayout(new GridLayout());
+    composite.setLayoutData(new GridData(GridData.FILL_VERTICAL));
+    this.editor = new ModelPropertyEditor(composite, this, this.tree);
+  }
+
 
   /**
    * ツリーのルートを設定します。
@@ -96,6 +111,7 @@ public class JoglModeler extends Composite {
     this.isChanged = false;
     this.tree.setModel(root.getScene(0));
     updateRenderer();
+    updatePropertyEditor();
   }
 
   /**
@@ -115,6 +131,14 @@ public class JoglModeler extends Composite {
     this.manager.clearObjectGroups();
     this.renderer.setRootGroups(rootGroups, this.manager);
     this.renderer.setConfiguration(configuration);
+  }
+  
+  /**
+   * プロパティエディタを更新します。
+   */
+  public void updatePropertyEditor() {
+    final Object target = this.tree.getTargetObject();
+    this.editor.setTarget(target);
   }
 
   /**

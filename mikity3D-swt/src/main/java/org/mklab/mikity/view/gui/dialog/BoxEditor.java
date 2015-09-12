@@ -33,15 +33,26 @@ public class BoxEditor extends AbstractPrimitiveEditor {
   private Label heightUnit;
   private Label depthUnit;
 
+//  /**
+//   * 新しく生成された<code>EditBoxDialog</code>オブジェクトを初期化します。
+//   * @param parent 親のシェル
+//   * @param primitive プリミティブ
+//   * @param tree シーングラフツリー
+//   * @param modeler モデラー
+//   */
+//  public BoxEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+//    super(parent, primitive, tree, modeler);
+//  }
+  
   /**
    * 新しく生成された<code>EditBoxDialog</code>オブジェクトを初期化します。
-   * @param parentShell 親のシェル
+   * @param parent 親のシェル
    * @param primitive プリミティブ
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public BoxEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-    super(parentShell, primitive, tree, modeler);
+  public BoxEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+    super(parent, primitive, tree, modeler);
   }
   
   /**

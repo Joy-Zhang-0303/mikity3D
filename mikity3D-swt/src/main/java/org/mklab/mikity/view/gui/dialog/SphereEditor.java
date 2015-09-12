@@ -30,16 +30,28 @@ public class SphereEditor extends AbstractPrimitiveEditor {
   
   private Label radiusUnit;
   
+//  /**
+//   * コンストラクター
+//   * 
+//   * @param parent 親のシェル
+//   * @param primitive プリミティブ
+//   * @param tree シーングラフツリー
+//   * @param modeler モデラー
+//   */
+//  public SphereEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+//    super(parent, primitive, tree, modeler);
+//  }
+  
   /**
    * コンストラクター
    * 
-   * @param parentShell 親のシェル
+   * @param parent 親のシェル
    * @param primitive プリミティブ
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public SphereEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-    super(parentShell, primitive, tree, modeler);
+  public SphereEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+    super(parent, primitive, tree, modeler);
   }
   
    /**

@@ -39,17 +39,28 @@ public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
   private ParameterInputBox vertex3Y;
   private ParameterInputBox vertex3Z;
 
+//  /**
+//   * 新しく生成された<code>EditTrianglePolygonDialog</code>オブジェクトを初期化します。
+//   * 
+//   * @param parent 親のシェル
+//   * @param primitive ポリゴン
+//   * @param tree シーングラフツリー
+//   * @param modeler モデラー
+//   */
+//  public TrianglePolygonEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+//    super(parent, primitive, tree, modeler);
+//  }
+  
   /**
    * 新しく生成された<code>EditTrianglePolygonDialog</code>オブジェクトを初期化します。
    * 
-   * @param parentShell 親のシェル
+   * @param parent 親のシェル
    * @param primitive ポリゴン
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public TrianglePolygonEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-    super(parentShell, primitive, tree, modeler);
-    
+  public TrianglePolygonEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+    super(parent, primitive, tree, modeler);
   }
   
   /**

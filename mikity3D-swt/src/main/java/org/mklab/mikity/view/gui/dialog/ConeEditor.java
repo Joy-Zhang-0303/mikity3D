@@ -32,17 +32,29 @@ public class ConeEditor extends AbstractPrimitiveEditor {
   private Label radiusUnit;
   private Label heightUnit;
 
+//  
+//  /**
+//   * コンストラクター
+//   * 
+//   * @param parent 親のシェル
+//   * @param primitive プリミティブ
+//   * @param tree シーングラフツリー
+//   * @param modeler モデラー
+//   */
+//  public ConeEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+//    super(parent, primitive, tree, modeler);
+//  }
   
   /**
    * コンストラクター
    * 
-   * @param parentShell 親のシェル
+   * @param parent 親のシェル
    * @param primitive プリミティブ
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public ConeEditor(Shell parentShell, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-    super(parentShell, primitive, tree, modeler);
+  public ConeEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+    super(parent, primitive, tree, modeler);
   }
   
   /**

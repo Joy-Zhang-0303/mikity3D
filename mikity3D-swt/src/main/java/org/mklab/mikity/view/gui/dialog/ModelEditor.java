@@ -25,8 +25,8 @@ public interface ModelEditor {
    */
   boolean isChanged();
   
-  /**
-   * ダイアログを開きます。
-   */
-  void open();
+//  /**
+//   * ダイアログを開きます。
+//   */
+//  void open();
 }

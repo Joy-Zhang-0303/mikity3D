@@ -47,5 +47,6 @@ public abstract class AbstractToolBarAction extends Action {
   protected void update() {
     this.modeler.fillTree();
     this.modeler.updateRenderer();
+    this.modeler.updatePropertyEditor();
   }
 }

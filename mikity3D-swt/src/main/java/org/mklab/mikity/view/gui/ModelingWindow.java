@@ -105,7 +105,7 @@ public class ModelingWindow extends ApplicationWindow {
   protected Control createContents(Composite parent) {
     final Composite composite = new Composite(parent, SWT.NONE);
     composite.setLayout(new GridLayout());
-    composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+    composite.setLayoutData(new GridData(GridData.FILL_BOTH));   
 
     this.modeler = new JoglModeler(composite, this.root);
     
@@ -129,6 +129,7 @@ public class ModelingWindow extends ApplicationWindow {
   @Override
   protected void configureShell(Shell shell) {
     super.configureShell(shell);
+    shell.setSize(1200, 800);
     shell.setText("Mikity3D Modeler"); //$NON-NLS-1$
   }
 
@@ -276,6 +277,7 @@ public class ModelingWindow extends ApplicationWindow {
     this.modeler.setIsChanged(true);
     this.modeler.fillTree();
     this.modeler.updateRenderer();
+    this.modeler.updatePropertyEditor();
   }
 
   /**

@@ -6,8 +6,6 @@
 package org.mklab.mikity.view.gui.dialog;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ShellEvent;
-import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -16,7 +14,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
@@ -34,7 +31,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision$, 2015/08/22
  */
 public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
-  private Composite editor;
+//  private Composite editor;
   PrimitiveModel primitive;
 
   JoglModeler modeler;
@@ -53,6 +50,27 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
   private ParameterInputBox rotationY;
   private ParameterInputBox rotationZ;
 
+//  /**
+//   * 新しく生成された<code>AbstractEditPrimitiveDialog</code>オブジェクトを初期化します。
+//   * 
+//   * @param parent 親のシェル
+//   * @param primitive プリミティブ
+//   * @param tree シーングラフツリー
+//   * @param modeler モデラー
+//   */
+//  public AbstractPrimitiveEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+//    this.primitive = primitive;
+//    this.tree = tree;
+//    this.modeler = modeler;
+//    
+//    this.tree.setIsModifyingObject(true);
+//
+//    this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+//    this.editor.getShell().setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
+//    
+//    createComposite(this.editor);
+//  }
+  
   /**
    * 新しく生成された<code>AbstractEditPrimitiveDialog</code>オブジェクトを初期化します。
    * 
@@ -61,25 +79,25 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public AbstractPrimitiveEditor(Shell parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+  public AbstractPrimitiveEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     this.primitive = primitive;
     this.tree = tree;
     this.modeler = modeler;
     
-    this.tree.setIsModifyingObject(true);
+    //this.tree.setIsModifyingObject(true);
 
-    this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
-    this.editor.getShell().setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
+    //this.editor = new Shell(parent, SWT.RESIZE | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
+    //this.editor.getShell().setText(Messages.getString("EditPrimitiveDialog.0")); //$NON-NLS-1$
     
-    createComposite(this.editor);
+    createComposite(parent);
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public void open() {
-    this.editor.getShell().open();
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void open() {
+//    this.editor.getShell().open();
+//  }
 
   /**
    * コンポジットを生成します。
@@ -91,9 +109,9 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
     layout.numColumns = 1;
     parent.setLayout(layout);
     
-    setCompositeSize(parent);
+    //setCompositeSize(parent);
     
-    addShellListener(parent);
+    //addShellListener(parent);
 
     createParameterBoxes(parent);
     
@@ -187,41 +205,41 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
     new UnitLabel(parameterGroup, "modelLength"); //$NON-NLS-1$
   }
   
-  /**
-   * Shellのリスナーを追加します。 
-   */
-  private void addShellListener(Composite parent) {
-    parent.getShell().addShellListener(new ShellListener() {
-      public void shellIconified(ShellEvent arg0) {
-        // nothing to do
-      }
-      
-      public void shellDeiconified(ShellEvent arg0) {
-        // nothing to do
-      }
-      
-      public void shellDeactivated(ShellEvent arg0) {
-        // nothing to do
-      }
-      
-      public void shellClosed(ShellEvent arg0) {
-        AbstractPrimitiveEditor.this.tree.setIsModifyingObject(false);
-      }
-      
-      public void shellActivated(ShellEvent arg0) {
-        // nothing to do
-      }
-    });
-  }
+//  /**
+//   * Shellのリスナーを追加します。 
+//   */
+//  private void addShellListener(Composite parent) {
+//    parent.getShell().addShellListener(new ShellListener() {
+//      public void shellIconified(ShellEvent arg0) {
+//        // nothing to do
+//      }
+//      
+//      public void shellDeiconified(ShellEvent arg0) {
+//        // nothing to do
+//      }
+//      
+//      public void shellDeactivated(ShellEvent arg0) {
+//        // nothing to do
+//      }
+//      
+//      public void shellClosed(ShellEvent arg0) {
+//        //AbstractPrimitiveEditor.this.tree.setIsModifyingObject(false);
+//      }
+//      
+//      public void shellActivated(ShellEvent arg0) {
+//        // nothing to do
+//      }
+//    });
+//  }
   
   /**
    * 変更を決定するButtonを作成します。
    */
   private void createButtonComposite(final Composite parent) {
     final Composite composite = new Composite(parent, SWT.NONE);
-    setGridLayout(composite, 2);
+    setGridLayout(composite, 1);
 
-    final GridLayout compLayout = new GridLayout(2, true);
+    final GridLayout compLayout = new GridLayout(1, true);
     composite.setLayout(compLayout);
     
     final Button saveButton = new Button(composite, SWT.NONE);
@@ -237,34 +255,34 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor {
           message.open();
           return;
         }        
-        
-        AbstractPrimitiveEditor.this.modeler.setIsChanged(false);
-        
+              
         updatePrimitiveParameters();
         AbstractPrimitiveEditor.this.tree.updateTree();
+        
+        AbstractPrimitiveEditor.this.modeler.setIsChanged(AbstractPrimitiveEditor.this.modeler.isChanged() || isChanged());
         AbstractPrimitiveEditor.this.modeler.updateDisplay();
       }
     });
     
-    final Button closeButton = new Button(composite, SWT.NONE);
-    closeButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    closeButton.setText(Messages.getString("EditPrimitiveDialog.25")); //$NON-NLS-1$
-    closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-      @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (AbstractPrimitiveEditor.this.isChanged() == false) {
-          parent.getShell().close();
-          return;
-        }
-               
-        final MessageBox message = new MessageBox(parent.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
-        message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
-        final int yesNo = message.open();
-        if (yesNo == SWT.YES) {
-          parent.getShell().close();
-        }
-      }
-    });
+//    final Button closeButton = new Button(composite, SWT.NONE);
+//    closeButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+//    closeButton.setText(Messages.getString("EditPrimitiveDialog.25")); //$NON-NLS-1$
+//    closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+//      @Override
+//      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+//        if (AbstractPrimitiveEditor.this.isChanged() == false) {
+//          parent.getShell().close();
+//          return;
+//        }
+//               
+//        final MessageBox message = new MessageBox(parent.getShell(), SWT.YES | SWT.NO | SWT.ICON_INFORMATION);
+//        message.setMessage(Messages.getString("EditPrimitiveDialog.26")); //$NON-NLS-1$
+//        final int yesNo = message.open();
+//        if (yesNo == SWT.YES) {
+//          parent.getShell().close();
+//        }
+//      }
+//    });
   }
   
   /**
