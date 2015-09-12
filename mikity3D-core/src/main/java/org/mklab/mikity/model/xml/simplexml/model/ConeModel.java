@@ -155,4 +155,12 @@ public class ConeModel extends AbstractPrimitiveModel {
   public String toString() {
     return "cone (radius=" + this.radius + ", height=" + this.height + ", divison=" + this.division + ", color=" + this.color + ")"; //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public String toShortString() {
+    return "cone"; //$NON-NLS-1$
+  }
+
 }

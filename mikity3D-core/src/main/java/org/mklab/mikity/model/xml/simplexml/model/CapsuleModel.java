@@ -156,4 +156,12 @@ public class CapsuleModel extends AbstractPrimitiveModel {
   public String toString() {
     return "capsule (radius=" + this.radius + ", height=" + this.height + ", division=" + this.division + ", color=" + this.color + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public String toShortString() {
+    return "capsule"; //$NON-NLS-1$
+  }
+  
 }

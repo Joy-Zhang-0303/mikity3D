@@ -129,7 +129,7 @@ public class ModelingWindow extends ApplicationWindow {
   @Override
   protected void configureShell(Shell shell) {
     super.configureShell(shell);
-    shell.setSize(1200, 800);
+    shell.setSize(1300, 800);
     shell.setText("Mikity3D Modeler"); //$NON-NLS-1$
   }
 

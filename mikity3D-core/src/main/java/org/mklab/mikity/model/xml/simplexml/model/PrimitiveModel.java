@@ -75,4 +75,11 @@ public interface PrimitiveModel {
    * @return クローン
    */
   PrimitiveModel createClone();
+  
+  /**
+   * 短い文字列を返します。
+   * 
+   * @return 短い文字列
+   */
+  String toShortString();
 }

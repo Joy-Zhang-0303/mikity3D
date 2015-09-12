@@ -525,7 +525,7 @@ public class SceneGraphTree {
         groupItem.setText(group.getName());
       } else {
         groupItem = new TreeItem(parent, SWT.NONE);
-        groupItem.setText(group.toString());
+        groupItem.setText(group.toShortString());
       }
       groupItem.setData(group);
 
@@ -535,7 +535,7 @@ public class SceneGraphTree {
         }
         
         final TreeItem child = new TreeItem(groupItem, SWT.NONE);
-        child.setText(primitive.toString());
+        child.setText(primitive.toShortString());
         child.setData(primitive);
       }
       

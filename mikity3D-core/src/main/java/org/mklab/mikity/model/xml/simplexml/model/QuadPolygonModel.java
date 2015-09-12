@@ -218,4 +218,12 @@ public class QuadPolygonModel extends AbstractPrimitiveModel {
   public String toString() {
     return "quadPolygon (color=" + this.color + ")"; //$NON-NLS-1$//$NON-NLS-2$ 
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public String toShortString() {
+    return "quadPolygon"; //$NON-NLS-1$
+  }
+
 }

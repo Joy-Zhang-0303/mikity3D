@@ -156,4 +156,11 @@ public class BoxModel extends AbstractPrimitiveModel {
   public String toString() {
     return "box (width=" + this.width + ", height=" + this.height + ", depth=" + this.depth + ", color=" + this.color + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public String toShortString() {
+    return "box"; //$NON-NLS-1$
+  }
 }

@@ -399,4 +399,17 @@ public class GroupModel implements Serializable, Cloneable {
     }
     return getName() + " (" + animationProperty + ")"; //$NON-NLS-1$//$NON-NLS-2$
   }
+
+  /**
+   * 短い文字列を返します。
+   * 
+   * @return 短い文字列
+   */
+  public String toShortString() {
+    if (hasAnimation() == false) {
+      return getName();
+    }
+    return getName() + "(animation)"; //$NON-NLS-1$
+  }
+
 }

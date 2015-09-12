@@ -129,4 +129,12 @@ public class SphereModel extends AbstractPrimitiveModel {
   public String toString() {
     return "sphere (radius=" + this.radius + ", division=" + this.division + ", color=" + this.color + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public String toShortString() {
+    return "sphere"; //$NON-NLS-1$
+  }
+
 }

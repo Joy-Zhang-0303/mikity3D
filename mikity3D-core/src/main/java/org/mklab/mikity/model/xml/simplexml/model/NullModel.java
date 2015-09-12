@@ -129,5 +129,13 @@ public class NullModel implements PrimitiveModel, Serializable, Cloneable {
   public PrimitiveModel createClone() {
     return this;
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public String toShortString() {
+    return "null"; //$NON-NLS-1$
+  }
+
 
 }

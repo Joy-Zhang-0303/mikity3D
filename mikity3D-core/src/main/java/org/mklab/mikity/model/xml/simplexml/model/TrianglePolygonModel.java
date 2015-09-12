@@ -216,4 +216,12 @@ public class TrianglePolygonModel extends AbstractPrimitiveModel {
   public String toString() {
     return "trianglePolygon (color=" + this.color + ")"; //$NON-NLS-1$ //$NON-NLS-2$
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public String toShortString() {
+    return "trianglePolygon"; //$NON-NLS-1$
+  }
+
 }
