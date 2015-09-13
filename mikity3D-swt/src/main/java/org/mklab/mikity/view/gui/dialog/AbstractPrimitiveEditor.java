@@ -92,36 +92,36 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
     this.primitiveType = new Label(parent, SWT.NONE);
     setGridLayout(this.primitiveType, 2);
 
-    final Group parameterGroup = new Group(parent, SWT.NONE);
-    parameterGroup.setText(Messages.getString("EditPrimitiveDialog.9")); //$NON-NLS-1$
-    setGridLayout(parameterGroup, 1);
+    final Group group = new Group(parent, SWT.NONE);
+    group.setText(Messages.getString("EditPrimitiveDialog.9")); //$NON-NLS-1$
+    setGridLayout(group, 1);
 
-    final GridLayout parameterLayout = new GridLayout(3, false);
-    parameterGroup.setLayout(parameterLayout);
+    final GridLayout layout = new GridLayout(3, false);
+    group.setLayout(layout);
     
-    final Label colorLabel = new Label(parameterGroup, SWT.LEFT);
+    final Label colorLabel = new Label(group, SWT.LEFT);
     colorLabel.setText(Messages.getString("EditPrimitiveDialog.10")); //$NON-NLS-1$
     final GridData gridData = new GridData();
     gridData.minimumWidth = 200;
     colorLabel.setLayoutData(gridData);
     setGridLayout(colorLabel, 1);
 
-    this.colorSelector = new ColorSelectorButton(parameterGroup);
+    this.colorSelector = new ColorSelectorButton(group);
     this.colorSelector.setColor(this.primitive.getColor());
 
-    this.alpha = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.primitive.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.alpha = new ParameterInputBox(group, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.primitive.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
 
-    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
+    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
     
-    createParameterBoxes(parameterGroup);
+    createParameterBoxes(group);
 
-    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
+    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
     
-    createTranslationBoxes(parameterGroup);
+    createTranslationBoxes(group);
     
-    setGridLayout(new Label(parameterGroup, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
+    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
-    createRotationBoxes(parameterGroup);
+    createRotationBoxes(group);
   }
 
   @SuppressWarnings("unused")
@@ -182,8 +182,8 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
     final Composite composite = new Composite(parent, SWT.NONE);
     setGridLayout(composite, 1);
 
-    final GridLayout compLayout = new GridLayout(1, true);
-    composite.setLayout(compLayout);
+    final GridLayout layout = new GridLayout(1, true);
+    composite.setLayout(layout);
     
     this.saveButton = new Button(composite, SWT.NONE);
     this.saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));

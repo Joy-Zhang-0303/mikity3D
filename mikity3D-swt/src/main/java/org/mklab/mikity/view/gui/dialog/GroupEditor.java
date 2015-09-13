@@ -105,31 +105,35 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
     createAnimationParameterBoxes(parent);
 
     createButtonComposite(parent);
+    
+    this.modeler.setFocus();
   }
 
   /**
    * 座標系のパラメータを設定するボックスを生成します。
    */
   private void createCoordinateParameterBoxes(Composite parent) {
-    final Group parameterGroup = new Group(parent, SWT.NONE);
-    final GridLayout layout = new GridLayout();
-    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
-    data.horizontalSpan = 2;
-    layout.numColumns = 2;
-    parameterGroup.setText(Messages.getString("GroupConfigDialogLink.11")); //$NON-NLS-1$
-    parameterGroup.setLayout(layout);
-    parameterGroup.setLayoutData(data);
+    final Group group = new Group(parent, SWT.NONE);
+    group.setText(Messages.getString("GroupConfigDialogLink.11")); //$NON-NLS-1$
 
-    final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
-    data.widthHint = 80;
-    final Label label1 = new Label(parameterGroup, SWT.CENTER);
+    final GridLayout layout = new GridLayout();
+    layout.numColumns = 2;
+    group.setLayout(layout);
+
+    final GridData gridData0 = new GridData(GridData.FILL_HORIZONTAL);
+    gridData0.widthHint = 80;
+    gridData0.horizontalSpan = 2;
+    group.setLayoutData(gridData0);
+    
+    final Label label1 = new Label(group, SWT.CENTER);
     label1.setText(Messages.getString("GroupConfigDialogLink.12")); //$NON-NLS-1$
+    final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
     label1.setLayoutData(gridData1);
 
+    final Label label2 = new Label(group, SWT.CENTER);
+    label2.setText(Messages.getString("GroupConfigDialogLink.13")); //$NON-NLS-1$
     final GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
     gridData2.widthHint = 65;
-    final Label label2 = new Label(parameterGroup, SWT.CENTER);
-    label2.setText(Messages.getString("GroupConfigDialogLink.13")); //$NON-NLS-1$
     label2.setLayoutData(gridData2);
 
     int style;
@@ -165,44 +169,46 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
       rZ = "0"; //$NON-NLS-1$
     }
 
-    this.translationX = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.0"), tX);  //$NON-NLS-1$
-    this.translationY = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.1"), tY);  //$NON-NLS-1$
-    this.translationZ = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.2"), tZ);  //$NON-NLS-1$
+    this.translationX = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.0"), tX);  //$NON-NLS-1$
+    this.translationY = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.1"), tY);  //$NON-NLS-1$
+    this.translationZ = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.2"), tZ);  //$NON-NLS-1$
 
-    this.rotationX = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.3"), rX);  //$NON-NLS-1$
-    this.rotationY = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.4"), rY);  //$NON-NLS-1$
-    this.rotationZ = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.5"), rZ);  //$NON-NLS-1$
+    this.rotationX = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.3"), rX);  //$NON-NLS-1$
+    this.rotationY = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.4"), rY);  //$NON-NLS-1$
+    this.rotationZ = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.5"), rZ);  //$NON-NLS-1$
   }
   
   /**
    * アニメーションのパラメータを設定するボックスを生成します。
    */
   private void createAnimationParameterBoxes(Composite parent) {
-    final Group parameterGroup = new Group(parent, SWT.NONE);
-    final GridLayout layout = new GridLayout();
-    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
-    data.horizontalSpan = 3;
-    layout.numColumns = 3;
-    parameterGroup.setText(Messages.getString("EditGroupDialog.8")); //$NON-NLS-1$
-    parameterGroup.setLayout(layout);
-    parameterGroup.setLayoutData(data);
+    final Group group = new Group(parent, SWT.NONE);
+    group.setText(Messages.getString("EditGroupDialog.8")); //$NON-NLS-1$
     
-    final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
-    data.widthHint = 80;
-    final Label label1 = new Label(parameterGroup, SWT.CENTER);
+    final GridLayout layout = new GridLayout();
+    layout.numColumns = 3;
+    group.setLayout(layout);
+    
+    final GridData gridData0 = new GridData(GridData.FILL_HORIZONTAL);
+    gridData0.horizontalSpan = 3;
+    gridData0.widthHint = 80;
+    group.setLayoutData(gridData0);
+
+    final Label label1 = new Label(group, SWT.CENTER);
     label1.setText(Messages.getString("GroupConfigDialogLink.12")); //$NON-NLS-1$
+    final GridData gridData1 = new GridData(GridData.FILL_HORIZONTAL);
     label1.setLayoutData(gridData1);
 
+    final Label label3 = new Label(group, SWT.CENTER);
+    label3.setText(Messages.getString("EditGroupDialog.7")); //$NON-NLS-1$
     final GridData gridData3 = new GridData(GridData.FILL_HORIZONTAL);
     gridData3.widthHint = 30;
-    final Label label3 = new Label(parameterGroup, SWT.CENTER);
-    label3.setText(Messages.getString("EditGroupDialog.7")); //$NON-NLS-1$
     label3.setLayoutData(gridData3);
 
+    final Label label4 = new Label(group, SWT.CENTER);
+    label4.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
     final GridData gridData4 = new GridData(GridData.FILL_HORIZONTAL);
     gridData4.widthHint = 30;
-    final Label label4 = new Label(parameterGroup, SWT.CENTER);
-    label4.setText(Messages.getString("GroupConfigDialogLink.14")); //$NON-NLS-1$
     label4.setLayoutData(gridData4);
 
     int style;
@@ -212,23 +218,23 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
       style = SWT.READ_ONLY;
     }
 
-    this.translationXsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.0"), 0); //$NON-NLS-1$
-    this.translationXsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
+    this.translationXsourceId = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.0"), 0); //$NON-NLS-1$
+    this.translationXsourceNumber = new ParameterInputBox(group, this, style, 0);
 
-    this.translationYsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.1"), 0); //$NON-NLS-1$
-    this.translationYsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
+    this.translationYsourceId = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.1"), 0); //$NON-NLS-1$
+    this.translationYsourceNumber = new ParameterInputBox(group, this, style, 0);
     
-    this.translationZsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.2"), 0); //$NON-NLS-1$
-    this.translationZsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
+    this.translationZsourceId = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.2"), 0); //$NON-NLS-1$
+    this.translationZsourceNumber = new ParameterInputBox(group, this, style, 0);
 
-    this.rotationXsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.3"), 0); //$NON-NLS-1$
-    this.rotationXsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
+    this.rotationXsourceId = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.3"), 0); //$NON-NLS-1$
+    this.rotationXsourceNumber = new ParameterInputBox(group, this, style, 0);
 
-    this.rotationYsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.4"), 0); //$NON-NLS-1$
-    this.rotationYsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
+    this.rotationYsourceId = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.4"), 0); //$NON-NLS-1$
+    this.rotationYsourceNumber = new ParameterInputBox(group, this, style, 0);
 
-    this.rotationZsourceId = new ParameterInputBox(parameterGroup, this, style, Messages.getString("EditGroupDialog.5"), 0); //$NON-NLS-1$
-    this.rotationZsourceNumber = new ParameterInputBox(parameterGroup, this, style, 0);
+    this.rotationZsourceId = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.5"), 0); //$NON-NLS-1$
+    this.rotationZsourceNumber = new ParameterInputBox(group, this, style, 0);
 
     setAnimationInDialog();
   }
@@ -275,8 +281,8 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
     gridData.horizontalSpan = 3;
     composite.setLayoutData(gridData);
 
-    final GridLayout compLayout = new GridLayout(1, true);
-    composite.setLayout(compLayout);
+    final GridLayout layout = new GridLayout(1, true);
+    composite.setLayout(layout);
   
     this.saveButton = new Button(parent, SWT.NONE);
     this.saveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));

@@ -48,7 +48,6 @@ public class ParameterInputBox extends Composite {
     
     this.valueText = new Text(this, SWT.BORDER | SWT.RIGHT | style);
     this.valueText.setText(value);
-    this.valueText.setFocus();
     this.valueText.addModifyListener(listener);
     this.valueText.addKeyListener(listener);
     
