@@ -299,10 +299,6 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
    * {@inheritDoc}
    */
   public boolean isChanged() {
-//    if (this.colorSelector.isChanged) {
-//      return true;
-//    }
-    
     return this.isChanged;
   }
   

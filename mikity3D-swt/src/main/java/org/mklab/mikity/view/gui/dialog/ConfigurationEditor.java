@@ -530,10 +530,6 @@ public class ConfigurationEditor implements ModifyKeyListener {
    * @return パラメータが変更されていればtrue
    */
   public boolean isChanged() {
-//    if (this.colorSelector.isChanged) {
-//      return true;
-//    }
-    
     return this.isChanged;
   }
   

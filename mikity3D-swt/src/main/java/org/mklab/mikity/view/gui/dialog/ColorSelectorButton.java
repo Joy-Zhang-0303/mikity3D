@@ -13,7 +13,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
 import org.mklab.mikity.model.xml.simplexml.model.ColorConstants;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
@@ -33,9 +32,6 @@ public class ColorSelectorButton implements ModifyListener {
   
   /** 選択器。 */
   ColorSelector selector;
-  
-  /** 変更されていればtrue */
-  boolean isChanged = false;
 
   /**
    * 新しく生成された<code>ColorComboBox</code>オブジェクトを初期化します。
@@ -69,7 +65,6 @@ public class ColorSelectorButton implements ModifyListener {
         }
         
         setColor(selectedColor);
-        ColorSelectorButton.this.isChanged = true;
         
         listener.modifyText(null);
       }
@@ -95,14 +90,6 @@ public class ColorSelectorButton implements ModifyListener {
     if (this.selector != null) {
       this.selector.setColorValue(new RGB(color.getR(),color.getG(),color.getB()));
     }
-  }
-  
-  /**
-   * 値が変更されたか判定します。
-   * @return 値が変更されれいればtrue
-   */
-  public boolean isChanged() {
-    return this.isChanged;
   }
 
   /**
