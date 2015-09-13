@@ -101,7 +101,7 @@ public class SceneModel implements Serializable, Cloneable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    SceneModel other = (SceneModel)obj;
+    final SceneModel other = (SceneModel)obj;
     if (this.groups == null) {
       if (other.groups != null) {
         return false;
@@ -119,12 +119,5 @@ public class SceneModel implements Serializable, Cloneable {
    */
   public List<GroupModel> getGroups() {
     return this.groups;
-    
-//    final int size = this.groups.size();
-//    final GroupModel[] localGroups = new GroupModel[size];
-//    for (int i = 0; i < size; i++) {
-//      localGroups[i] = this.groups.get(i);
-//    }
-//    return localGroups;
   } 
 }

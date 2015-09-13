@@ -148,11 +148,11 @@ public class Mikity3dFactory {
     
     final ConfigurationModel configuration = new ConfigurationModel();
     
-    final GroupModel group = new GroupModel();
-    group.setName("object"); //$NON-NLS-1$
+    //final GroupModel group = new GroupModel();
+    //group.setName("object"); //$NON-NLS-1$
 
     final SceneModel scene = new SceneModel();
-    scene.addGroup(group);
+    //scene.addGroup(group);
 
     EMPTY_MODEL = new Mikity3DModel();
     EMPTY_MODEL.addConfiguration(configuration);
