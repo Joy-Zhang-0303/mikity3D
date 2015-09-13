@@ -6,11 +6,14 @@
 package org.mklab.mikity.view.gui.dialog;
 
 import org.eclipse.jface.preference.ColorSelector;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
 import org.mklab.mikity.model.xml.simplexml.model.ColorConstants;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
@@ -21,7 +24,7 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
  * @author SHOGO
  * @version $Revision: 1.2 $. 2008/02/29
  */
-public class ColorSelectorButton {
+public class ColorSelectorButton implements ModifyListener {
   /** 親。 */
   private Composite parent;
   
@@ -38,7 +41,7 @@ public class ColorSelectorButton {
    * 新しく生成された<code>ColorComboBox</code>オブジェクトを初期化します。
    * @param parent 親
    */
-  public ColorSelectorButton(Composite parent) {
+  public ColorSelectorButton(Composite parent, final ModifyListener listener) {
     this.parent = parent;
     this.color = new ColorModel("red"); //$NON-NLS-1$
 
@@ -62,11 +65,13 @@ public class ColorSelectorButton {
         }
         
         if (ColorSelectorButton.this.color.equals(selectedColor)) {
-         return; 
+          return; 
         }
         
         setColor(selectedColor);
         ColorSelectorButton.this.isChanged = true;
+        
+        listener.modifyText(null);
       }
     });
   }
@@ -98,5 +103,12 @@ public class ColorSelectorButton {
    */
   public boolean isChanged() {
     return this.isChanged;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void modifyText(ModifyEvent arg0) {
+    // TODO 自動生成されたメソッド・スタブ
   }
 }

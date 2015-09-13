@@ -63,7 +63,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
   /** 値が変更されていればtrue。 */
   private boolean isChanged = false;
   /** 保存ボタン。 */
-  private Button saveButton;
+  Button saveButton;
 
   /**
    * 新しく生成された<code>ConfigurationDialog</code>オブジェクトを初期化します。
@@ -296,7 +296,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
           return;
         }
 
-        saveParameters();
+        saveParameters();        
       }
 
     });
@@ -331,6 +331,9 @@ public class ConfigurationEditor implements ModifyKeyListener {
     
     updateConfigurationParameters();
     this.modeler.updateDisplay();
+    
+    this.isChanged = false;
+    this.saveButton.setEnabled(false);
   }
 
   /**
@@ -446,7 +449,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
    * 背景の色を指定するボタンを生成します。
    */
   private void createColorSelectorButton(Group parent) {
-    this.colorSelector = new ColorSelectorButton(parent);
+    this.colorSelector = new ColorSelectorButton(parent, this);
   }
 
   /**
@@ -527,9 +530,9 @@ public class ConfigurationEditor implements ModifyKeyListener {
    * @return パラメータが変更されていればtrue
    */
   public boolean isChanged() {
-    if (this.colorSelector.isChanged) {
-      return true;
-    }
+//    if (this.colorSelector.isChanged) {
+//      return true;
+//    }
     
     return this.isChanged;
   }

@@ -106,7 +106,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
     colorLabel.setLayoutData(gridData);
     setGridLayout(colorLabel, 1);
 
-    this.colorSelector = new ColorSelectorButton(group);
+    this.colorSelector = new ColorSelectorButton(group, this);
     this.colorSelector.setColor(this.primitive.getColor());
 
     this.alpha = new ParameterInputBox(group, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.primitive.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
@@ -299,9 +299,9 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
    * {@inheritDoc}
    */
   public boolean isChanged() {
-    if (this.colorSelector.isChanged) {
-      return true;
-    }
+//    if (this.colorSelector.isChanged) {
+//      return true;
+//    }
     
     return this.isChanged;
   }
