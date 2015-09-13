@@ -77,9 +77,6 @@ public class SceneGraphTree {
     this.modeler = modeler;
     this.scene = new GroupModel();
     this.scene.setName("scene"); //$NON-NLS-1$
-    
-    //this.targetGroup = this.model.getGroup(0);
-    //this.targetObject= this.model.getGroup(0);
 
     this.targetGroup = this.scene;
     this.targetObject= this.scene;
