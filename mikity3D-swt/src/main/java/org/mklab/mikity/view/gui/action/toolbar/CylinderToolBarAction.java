@@ -19,7 +19,7 @@ public class CylinderToolBarAction extends AbstractToolBarAction {
    * @param window ウィンドウ
    */
   public CylinderToolBarAction(final ModelingWindow window) {
-    super(window, "Cylinder"); //$NON-NLS-1$
+    super(window, Messages.getString("CylinderToolBarAction.0")); //$NON-NLS-1$
   }
 
   /**

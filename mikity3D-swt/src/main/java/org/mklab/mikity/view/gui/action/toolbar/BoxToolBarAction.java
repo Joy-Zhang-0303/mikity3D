@@ -18,7 +18,7 @@ public class BoxToolBarAction extends AbstractToolBarAction {
    * @param window ウィンドウ
    */
   public BoxToolBarAction(final ModelingWindow window) {
-    super(window, "Box"); //$NON-NLS-1$
+    super(window, Messages.getString("BoxToolBarAction.0")); //$NON-NLS-1$
   }
 
   /**

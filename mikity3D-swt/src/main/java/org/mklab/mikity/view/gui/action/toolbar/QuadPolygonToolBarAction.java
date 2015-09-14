@@ -23,7 +23,7 @@ public class QuadPolygonToolBarAction extends AbstractToolBarAction {
    * @param window ウィンドウ
    */
   public QuadPolygonToolBarAction(final ModelingWindow window) {
-    super(window, "QuadPolygon"); //$NON-NLS-1$
+    super(window, Messages.getString("QuadPolygonToolBarAction.0")); //$NON-NLS-1$
   }
 
   /**

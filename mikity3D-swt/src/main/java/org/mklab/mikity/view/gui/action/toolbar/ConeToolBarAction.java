@@ -18,7 +18,7 @@ public class ConeToolBarAction extends AbstractToolBarAction {
    * @param window ウィンドウ
    */
   public ConeToolBarAction(final ModelingWindow window) {
-    super(window, "Cone"); //$NON-NLS-1$
+    super(window, Messages.getString("ConeToolBarAction.0")); //$NON-NLS-1$
   }
 
   /**

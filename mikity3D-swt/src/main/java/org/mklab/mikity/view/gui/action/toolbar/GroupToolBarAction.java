@@ -16,7 +16,7 @@ public class GroupToolBarAction extends AbstractToolBarAction {
    * @param window ウィンドウ 
    */
   public GroupToolBarAction(final ModelingWindow window) {
-    super(window, "Group"); //$NON-NLS-1$
+    super(window, Messages.getString("GroupToolBarAction.0")); //$NON-NLS-1$
   }
 
   /**

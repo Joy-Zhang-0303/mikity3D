@@ -19,7 +19,7 @@ public class SphereToolBarAction extends AbstractToolBarAction {
    * @param window ウィンドウ
    */
   public SphereToolBarAction(final ModelingWindow window) {
-    super(window, "Sphere"); //$NON-NLS-1$
+    super(window, Messages.getString("SphereToolBarAction.0")); //$NON-NLS-1$
   }
 
   /**

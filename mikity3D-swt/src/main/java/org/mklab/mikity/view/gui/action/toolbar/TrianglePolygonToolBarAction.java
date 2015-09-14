@@ -23,7 +23,7 @@ public class TrianglePolygonToolBarAction extends AbstractToolBarAction {
    * @param window ウィンドウ
    */
   public TrianglePolygonToolBarAction(final ModelingWindow window) {
-    super(window, "TrianglePolygon"); //$NON-NLS-1$
+    super(window, Messages.getString("TrianglePolygonToolBarAction.0")); //$NON-NLS-1$
   }
 
   /**
