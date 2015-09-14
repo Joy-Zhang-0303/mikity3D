@@ -47,7 +47,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
   boolean isChanged = false;
   
   /** 保存ボタン。 */
-  private Button saveButton;
+  Button saveButton;
 
   private ParameterInputBox translationX;
   private ParameterInputBox translationY;
@@ -200,6 +200,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
         }
         
         saveParameters();
+        AbstractPrimitiveEditor.this.saveButton.setEnabled(false);
       }
     });
     
