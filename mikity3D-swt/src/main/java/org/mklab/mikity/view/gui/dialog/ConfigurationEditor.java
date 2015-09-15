@@ -291,11 +291,6 @@ public class ConfigurationEditor implements ModifyKeyListener {
     this.saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (containsOnlyNumbers() == false) {
-          createMessageBoxForNonNumericInput();
-          return;
-        }
-
         saveParameters();        
       }
 
@@ -327,6 +322,11 @@ public class ConfigurationEditor implements ModifyKeyListener {
    * パラメータを保存します。
    */
   void saveParameters() {
+    if (containsOnlyNumbers() == false) {
+      createMessageBoxForNonNumericInput();
+      return;
+    }
+    
     this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
     
     updateConfigurationParameters();
@@ -556,7 +556,6 @@ public class ConfigurationEditor implements ModifyKeyListener {
   public void keyReleased(KeyEvent e) {
     if (e.character==SWT.CR){
       saveParameters();
-      this.saveButton.setEnabled(false);
     }
   }
 }
