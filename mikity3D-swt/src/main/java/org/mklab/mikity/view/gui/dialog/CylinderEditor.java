@@ -24,13 +24,15 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision: 1.5 $.2005/02/09
  */
 public class CylinderEditor extends AbstractPrimitiveEditor {
+  /** 半径。 */
   private ParameterInputBox radius;
+  /** 高さ。 */
   private ParameterInputBox height;
+  /** 奥行き。 */
   private ParameterInputBox depth;
-  
+
   /**
-   * コンストラクター
-   * 
+   * 新しく生成された<code>CylinderEditor</code>オブジェクトを初期化します。
    * @param parent 親のシェル
    * @param primitive プリミティブ
    * @param tree シーングラフツリー

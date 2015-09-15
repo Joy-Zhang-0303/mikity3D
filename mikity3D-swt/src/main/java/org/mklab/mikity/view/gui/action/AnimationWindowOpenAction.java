@@ -34,7 +34,7 @@ public class AnimationWindowOpenAction extends Action {
   /**
    * アニメーション画面を展開します。
    * 
-   * @see org.eclipse.jface.action.IAction#run()
+   * {@inheritDoc}
    */
   @Override
   public void run() {

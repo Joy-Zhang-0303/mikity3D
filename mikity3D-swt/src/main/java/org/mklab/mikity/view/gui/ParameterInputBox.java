@@ -51,9 +51,9 @@ public class ParameterInputBox extends Composite {
     this.valueText.addModifyListener(listener);
     this.valueText.addKeyListener(listener);
     
-    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
-    data.widthHint = 65;
-    this.valueText.setLayoutData(data);
+    final GridData data1 = new GridData(GridData.FILL_HORIZONTAL);
+    data1.widthHint = 65;
+    this.valueText.setLayoutData(data1);
     
     final GridData data2 = new GridData(GridData.FILL_HORIZONTAL);
     data2.horizontalSpan = 2;
@@ -93,9 +93,9 @@ public class ParameterInputBox extends Composite {
     this.valueText.addModifyListener(listener);
     this.valueText.addKeyListener(listener);
     
-    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
-    data.widthHint = 65;
-    this.valueText.setLayoutData(data);
+    final GridData data1 = new GridData(GridData.FILL_HORIZONTAL);
+    data1.widthHint = 65;
+    this.valueText.setLayoutData(data1);
     
     final GridData data2 = new GridData(GridData.FILL_HORIZONTAL);
     data2.horizontalSpan = 1;

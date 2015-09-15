@@ -25,6 +25,7 @@ public interface PrimitiveEditor extends ModelEditor {
   
   /**
    * サイズを設定します。 
+   * 
    * @param composite コンポジット
    */
   void setCompositeSize(Composite composite);

@@ -26,16 +26,25 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision: 1.9 $. 2008/02/29
  */
 public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
+  /** 頂点1のX座標。 */
   private ParameterInputBox vertex1X;
+  /** 頂点1のY座標。 */
   private ParameterInputBox vertex1Y;
+  /** 頂点1のZ座標。 */
   private ParameterInputBox vertex1Z;
   
+  /** 頂点2のX座標。 */
   private ParameterInputBox vertex2X;
+  /** 頂点2のY座標。 */
   private ParameterInputBox vertex2Y;
+  /** 頂点2のZ座標。 */
   private ParameterInputBox vertex2Z;
   
+  /** 頂点3のX座標。 */
   private ParameterInputBox vertex3X;
+  /** 頂点3のY座標。 */
   private ParameterInputBox vertex3Y;
+  /** 頂点3のZ座標。 */
   private ParameterInputBox vertex3Z;
   
   /**

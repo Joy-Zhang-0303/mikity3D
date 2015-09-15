@@ -24,12 +24,18 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision: 1.5 $.2005/02/09
  */
 public class BoxEditor extends AbstractPrimitiveEditor {
+  /** 幅。 */
   private ParameterInputBox width;
+  /** 高さ。 */
   private ParameterInputBox height;
+  /** 奥行き。 */
   private ParameterInputBox depth;
   
+  /** 幅の単位。 */
   private Label widthUnit;
+  /** 高さの単位。 */
   private Label heightUnit;
+  /** 奥行きの単位。 */
   private Label depthUnit;
   
   /**

@@ -34,12 +34,15 @@ public class UnitLabel extends Composite {
    */
   public UnitLabel(Composite composite, String target) {
     super(composite, SWT.NONE);
+    
     final GridLayout layout = new GridLayout();
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     this.setLayout(layout);
+    
     final Label localLabel = new Label(this, SWT.NONE);
     localLabel.setText(getUnit(target));
+    
     final GridData data = new GridData();
     localLabel.setLayoutData(data);
   }

@@ -27,21 +27,32 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision: 1.7 $. 2007/11/15
  */
 public class QuadPolygonEditor extends AbstractPrimitiveEditor {
-
+  /** 頂点1のX座標。 */
   private ParameterInputBox vertex1X;
+  /** 頂点1のY座標。 */
   private ParameterInputBox vertex1Y;
+  /** 頂点1のZ座標。 */
   private ParameterInputBox vertex1Z;
 
+  /** 頂点2のX座標。 */
   private ParameterInputBox vertex2X;
+  /** 頂点2のY座標。 */
   private ParameterInputBox vertex2Y;
+  /** 頂点2のZ座標。 */
   private ParameterInputBox vertex2Z;
 
+  /** 頂点3のX座標。 */
   private ParameterInputBox vertex3X;
+  /** 頂点3のY座標。 */
   private ParameterInputBox vertex3Y;
+  /** 頂点3のZ座標。 */
   private ParameterInputBox vertex3Z;
 
+  /** 頂点4のX座標。 */
   private ParameterInputBox vertex4X;
+  /** 頂点4のY座標。 */
   private ParameterInputBox vertex4Y;
+  /** 頂点4のZ座標。 */
   private ParameterInputBox vertex4Z;
   
   /**

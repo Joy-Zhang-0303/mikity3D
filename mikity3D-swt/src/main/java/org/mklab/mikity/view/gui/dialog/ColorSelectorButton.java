@@ -96,6 +96,6 @@ public class ColorSelectorButton implements ModifyListener {
    * {@inheritDoc}
    */
   public void modifyText(ModifyEvent arg0) {
-    // TODO 自動生成されたメソッド・スタブ
+    // nothing to do
   }
 }

@@ -92,8 +92,8 @@ public class SceneGraphTree {
   private void createTree(final Composite parent) {
     parent.setLayout(new GridLayout(1, true));
     this.tree = new Tree(parent, SWT.NONE);
-    final GridData data2 = new GridData(GridData.FILL_BOTH);
-    this.tree.setLayoutData(data2);
+    final GridData data = new GridData(GridData.FILL_BOTH);
+    this.tree.setLayoutData(data);
 
     fillTree();
 

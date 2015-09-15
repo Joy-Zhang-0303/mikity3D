@@ -24,12 +24,15 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision: 1.5 $.2005/02/09
  */
 public class SphereEditor extends AbstractPrimitiveEditor {
+  /** 半径。 */
   private ParameterInputBox radius;
+  /** 分割数。 */
   private ParameterInputBox division;
+  /** 半径の単位。 */
   private Label radiusUnit;
-  
+
   /**
-   * コンストラクター
+   * 新しく生成された<code>SphereEditor</code>オブジェクトを初期化します。
    * 
    * @param parent 親のシェル
    * @param primitive プリミティブ

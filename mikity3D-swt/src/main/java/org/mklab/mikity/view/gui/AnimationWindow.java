@@ -537,7 +537,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
     final Label label = new Label(composite, SWT.NONE);
     label.setText(id + ":"); //$NON-NLS-1$
     
-    Text filePathText = new Text(composite, SWT.BORDER);
+    final Text filePathText = new Text(composite, SWT.BORDER);
     this.sourceFilePathText.put(id,  filePathText);
     
     filePathText.setText(""); //$NON-NLS-1$
@@ -632,7 +632,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
    */
   void addSource(String id, String filePath) {
     try (FileReader input = new FileReader(filePath);) {
-      DoubleMatrix sourceData;
+      final DoubleMatrix sourceData;
       if (filePath.toLowerCase().endsWith(".mat")) { //$NON-NLS-1$
         sourceData = (DoubleMatrix)MatxMatrix.readMatFormat(input);
       } else {
@@ -692,7 +692,6 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
     this.stopTime = this.manager.getStopTime();
     this.animationTask = new AnimationTask(this.currentTime, this.stopTime, this.manager, this.renderer);
     this.animationTask.setSpeedScale(this.playSpeed.getDoubleValue());// スピードの設定
-    //this.animationTask.setCurrentTime(this.timeTable[this.timeSlider.getSelection()]);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**
