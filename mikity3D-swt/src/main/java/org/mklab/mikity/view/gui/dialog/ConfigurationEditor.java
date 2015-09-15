@@ -120,8 +120,8 @@ public class ConfigurationEditor implements ModifyKeyListener {
    * @param editGroup 親
    */
   private void createBackground(final Group editGroup) {
-    final Label backgroundLabel = new Label(editGroup, SWT.NONE);
-    backgroundLabel.setText(Messages.getString("ConfigDialog.13")); //$NON-NLS-1$
+    final Label label = new Label(editGroup, SWT.NONE);
+    label.setText(Messages.getString("ConfigDialog.13")); //$NON-NLS-1$
     createColorSelectorButton(editGroup);
   }
 
@@ -131,23 +131,24 @@ public class ConfigurationEditor implements ModifyKeyListener {
    * @param parent 親
    */
   private void createDataUnit(Group parent) {
-    final Group dataUnitGroup = new Group(parent, SWT.NONE);
-    final GridLayout dataUnitLayout = new GridLayout();
-    dataUnitLayout.numColumns = 5;
-    dataUnitGroup.setText(Messages.getString("ConfigDialog.5")); //$NON-NLS-1$
-    final GridData dataUnitData = new GridData(GridData.FILL_HORIZONTAL);
-    dataUnitData.horizontalSpan = 2;
-    dataUnitGroup.setLayoutData(dataUnitData);
-    dataUnitGroup.setLayout(dataUnitLayout);
+    final Group group = new Group(parent, SWT.NONE);
+    final GridLayout layout = new GridLayout();
+    layout.numColumns = 5;
+    group.setText(Messages.getString("ConfigDialog.5")); //$NON-NLS-1$
+    
+    final GridData unitData = new GridData(GridData.FILL_HORIZONTAL);
+    unitData.horizontalSpan = 2;
+    group.setLayoutData(unitData);
+    group.setLayout(layout);
 
-    createDataLengthUnitCombo(dataUnitGroup);
+    createDataLengthUnitCombo(group);
     
-    final Label space = new Label(dataUnitGroup, SWT.NONE);
-    final GridData data = new GridData();
-    data.widthHint = 60;
-    space.setLayoutData(data);
+    final Label space = new Label(group, SWT.NONE);
+    final GridData spaceData = new GridData();
+    spaceData.widthHint = 60;
+    space.setLayoutData(spaceData);
     
-    createDataAngleUnitCombo(dataUnitGroup);
+    createDataAngleUnitCombo(group);
   }
 
   /**
@@ -156,99 +157,100 @@ public class ConfigurationEditor implements ModifyKeyListener {
    * @param parent 親
    */
   private void createModelUnit(Group parent) {
-    final Group modelUnitGroup = new Group(parent, SWT.NONE);
-    final GridLayout modeUnitLayout = new GridLayout();
-    modeUnitLayout.numColumns = 5;
-    modelUnitGroup.setText(Messages.getString("ConfigDialog.2")); //$NON-NLS-1$
-    final GridData modelUnitData = new GridData(GridData.FILL_HORIZONTAL);
-    modelUnitData.horizontalSpan = 2;
-    modelUnitGroup.setLayoutData(modelUnitData);
-    modelUnitGroup.setLayout(modeUnitLayout);
+    final Group group = new Group(parent, SWT.NONE);
+    final GridLayout layout = new GridLayout();
+    layout.numColumns = 5;
+    group.setText(Messages.getString("ConfigDialog.2")); //$NON-NLS-1$
+    
+    final GridData unitData = new GridData(GridData.FILL_HORIZONTAL);
+    unitData.horizontalSpan = 2;
+    group.setLayoutData(unitData);
+    group.setLayout(layout);
 
-    createModelLengthUnit(modelUnitGroup);
+    createModelLengthUnit(group);
     
-    final Label space = new Label(modelUnitGroup, SWT.NONE);
-    final GridData data = new GridData();
-    data.widthHint = 60;
-    space.setLayoutData(data);
+    final Label space = new Label(group, SWT.NONE);
+    final GridData spaceData = new GridData();
+    spaceData.widthHint = 60;
+    space.setLayoutData(spaceData);
     
-    createModelAngleUnit(modelUnitGroup);
+    createModelAngleUnit(group);
   }
 
   /**
    * 光源の位置を設定するグループを生成します。
    */
   private void createLightGroup(Group parent) {
-    final Group lightGroup = new Group(parent, SWT.NONE);
-    lightGroup.setText(Messages.getString("ConfigDialog.8")); //$NON-NLS-1$
+    final Group group = new Group(parent, SWT.NONE);
+    group.setText(Messages.getString("ConfigDialog.8")); //$NON-NLS-1$
 
-    final GridData lightData = new GridData(GridData.FILL_HORIZONTAL);
-    lightData.horizontalSpan = 2;
-    final GridLayout lightLayout = new GridLayout(7, true);
-    lightGroup.setLayout(lightLayout);
-    lightGroup.setLayoutData(lightData);
+    final GridData data = new GridData(GridData.FILL_HORIZONTAL);
+    data.horizontalSpan = 2;
+    final GridLayout layout = new GridLayout(7, true);
+    group.setLayout(layout);
+    group.setLayoutData(data);
 
     final LightModel light = this.configuration.getLight();
     
-    this.lightX = new ParameterInputBox(lightGroup, this, SWT.NONE, "  (", "" + light.getX()); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lightY = new ParameterInputBox(lightGroup, this, SWT.NONE, ",  ", "" + light.getY()); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lightZ = new ParameterInputBox(lightGroup, this, SWT.NONE, ",  ", "" + light.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightX = new ParameterInputBox(group, this, SWT.NONE, "  (", "" + light.getX()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightY = new ParameterInputBox(group, this, SWT.NONE, ",  ", "" + light.getY()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lightZ = new ParameterInputBox(group, this, SWT.NONE, ",  ", "" + light.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
 
-    final Label lightRightLabel = new Label(lightGroup, SWT.NONE);
-    final GridData lightRightData = new GridData();
-    lightRightData.widthHint = 10;
-    lightRightLabel.setLayoutData(lightRightData);
-    lightRightLabel.setText(")"); //$NON-NLS-1$
+    final Label label = new Label(group, SWT.NONE);
+    final GridData lightData = new GridData();
+    lightData.widthHint = 10;
+    label.setLayoutData(lightData);
+    label.setText(")"); //$NON-NLS-1$
   }
 
   /**
    * 注視点の位置を設定するグループを生成します。
    */
   private void createLookAtPoint(Group parent) {
-    final Group lookAtPointGroup = new Group(parent, SWT.NONE);
-    lookAtPointGroup.setText(Messages.getString("ConfigDialog.11")); //$NON-NLS-1$
+    final Group group = new Group(parent, SWT.NONE);
+    group.setText(Messages.getString("ConfigDialog.11")); //$NON-NLS-1$
 
-    final GridData lookAtPointGroupData = new GridData(GridData.FILL_HORIZONTAL);
-    lookAtPointGroupData.horizontalSpan = 2;
-    final GridLayout viewLayout = new GridLayout(7, true);
-    lookAtPointGroup.setLayout(viewLayout);
-    lookAtPointGroup.setLayoutData(lookAtPointGroupData);
+    final GridData groupData = new GridData(GridData.FILL_HORIZONTAL);
+    groupData.horizontalSpan = 2;
+    final GridLayout layout = new GridLayout(7, true);
+    group.setLayout(layout);
+    group.setLayoutData(groupData);
 
     final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
 
-    this.lookAtPointX = new ParameterInputBox(lookAtPointGroup, this, SWT.NONE, "  (", "" + lookAtPoint.getX()); //$NON-NLS-1$//$NON-NLS-2$
-    this.lookAtPointY = new ParameterInputBox(lookAtPointGroup, this, SWT.NONE, ",  ", "" + lookAtPoint.getY()); //$NON-NLS-1$ //$NON-NLS-2$
-    this.lookAtPointZ = new ParameterInputBox(lookAtPointGroup, this, SWT.NONE, ",  ", "" + lookAtPoint.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lookAtPointX = new ParameterInputBox(group, this, SWT.NONE, "  (", "" + lookAtPoint.getX()); //$NON-NLS-1$//$NON-NLS-2$
+    this.lookAtPointY = new ParameterInputBox(group, this, SWT.NONE, ",  ", "" + lookAtPoint.getY()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.lookAtPointZ = new ParameterInputBox(group, this, SWT.NONE, ",  ", "" + lookAtPoint.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
 
-    final Label lookAtPointRightLabel = new Label(lookAtPointGroup, SWT.NONE);
-    final GridData lookAtPointRightData = new GridData();
-    lookAtPointRightLabel.setLayoutData(lookAtPointRightData);
-    lookAtPointRightLabel.setText(")"); //$NON-NLS-1$
+    final Label label = new Label(group, SWT.NONE);
+    final GridData data = new GridData();
+    label.setLayoutData(data);
+    label.setText(")"); //$NON-NLS-1$
   }
 
   /**
    * 視点の位置を設定するグループを生成します。
    */
   private void createEye(Group parent) {
-    final Group eyeGroup = new Group(parent, SWT.NONE);
-    eyeGroup.setText(Messages.getString("ConfigDialog.12")); //$NON-NLS-1$
+    final Group group = new Group(parent, SWT.NONE);
+    group.setText(Messages.getString("ConfigDialog.12")); //$NON-NLS-1$
 
-    final GridData eyeGroupData = new GridData(GridData.FILL_HORIZONTAL);
-    eyeGroupData.horizontalSpan = 2;
-    final GridLayout viewLayout2 = new GridLayout(7, true);
-    eyeGroup.setLayout(viewLayout2);
-    eyeGroup.setLayoutData(eyeGroupData);
+    final GridData groupData = new GridData(GridData.FILL_HORIZONTAL);
+    groupData.horizontalSpan = 2;
+    final GridLayout layout = new GridLayout(7, true);
+    group.setLayout(layout);
+    group.setLayoutData(groupData);
 
     final EyeModel eye = this.configuration.getEye();
     
-    this.eyeX = new ParameterInputBox(eyeGroup, this, SWT.NONE, "  (", "" + eye.getX()); //$NON-NLS-1$ //$NON-NLS-2$
-    this.eyeY = new ParameterInputBox(eyeGroup, this, SWT.NONE, ",  ", "" + eye.getY()); //$NON-NLS-1$ //$NON-NLS-2$
-    this.eyeZ = new ParameterInputBox(eyeGroup, this, SWT.NONE, ",  ", "" + eye.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeX = new ParameterInputBox(group, this, SWT.NONE, "  (", "" + eye.getX()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeY = new ParameterInputBox(group, this, SWT.NONE, ",  ", "" + eye.getY()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.eyeZ = new ParameterInputBox(group, this, SWT.NONE, ",  ", "" + eye.getZ()); //$NON-NLS-1$ //$NON-NLS-2$
 
-    final Label eyeRightLabel = new Label(eyeGroup, SWT.NONE);
-    final GridData eyePositionRightData = new GridData();
-    eyeRightLabel.setLayoutData(eyePositionRightData);
-    eyeRightLabel.setText(")"); //$NON-NLS-1$
+    final Label label = new Label(group, SWT.NONE);
+    final GridData labelData = new GridData();
+    label.setLayoutData(labelData);
+    label.setText(")"); //$NON-NLS-1$
   }
 
   /**
