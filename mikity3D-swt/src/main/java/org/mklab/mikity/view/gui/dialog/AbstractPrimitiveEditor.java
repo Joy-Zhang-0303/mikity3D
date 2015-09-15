@@ -191,16 +191,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
     this.saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        if (containsOnlyNumbers() == false) {
-          final MessageBox message = new MessageBox(parent.getShell(), SWT.ICON_WARNING);
-          message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
-          message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
-          message.open();
-          return;
-        }
-        
         saveParameters();
-        AbstractPrimitiveEditor.this.saveButton.setEnabled(false);
       }
     });
     
@@ -211,11 +202,21 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
    * パラメータを保存します。 
    */
   void saveParameters() {
+    if (containsOnlyNumbers() == false) {
+      final MessageBox message = new MessageBox(this.modeler.getShell(), SWT.ICON_WARNING);
+      message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
+      message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
+      message.open();
+      return;
+    }
+    
     updatePrimitiveParameters();
     this.tree.updateTree();
     
     this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
     this.modeler.updateDisplay();
+    
+    this.saveButton.setEnabled(false);
   }
   
   /**
@@ -326,7 +327,6 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
   public void keyReleased(KeyEvent e) {
     if (e.character==SWT.CR){
       saveParameters();
-      this.saveButton.setEnabled(false);
     }
   }
 }
