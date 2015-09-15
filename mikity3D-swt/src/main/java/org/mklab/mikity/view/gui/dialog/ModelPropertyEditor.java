@@ -20,17 +20,17 @@ import org.mklab.mikity.view.gui.SceneGraphTree;
  */
 public class ModelPropertyEditor {
   /** */
-  JoglModeler modeler;
+  private JoglModeler modeler;
   
   /** シーングラフツリー。 */
-  SceneGraphTree tree;
+  private SceneGraphTree tree;
   
   /** */
-  Composite parent;
+  private Composite parent;
   
-  ModelEditor editor;
+  private ModelEditor editor;
   
-  Object target;
+  private Object target;
   
   /**
    * 新しく生成された<code>ModelPropertyEditor</code>オブジェクトを初期化します。
@@ -45,6 +45,11 @@ public class ModelPropertyEditor {
     createEditor(parent);
   }
   
+  /**
+   * エディタを生成します。
+   * 
+   * @param parent 親
+   */
   private void createEditor(final Composite parent) {
     parent.setLayout(new GridLayout(1, true));
     this.editor = new GroupEditor(parent, this.modeler.getTargetGroup(), true, null, this.modeler);

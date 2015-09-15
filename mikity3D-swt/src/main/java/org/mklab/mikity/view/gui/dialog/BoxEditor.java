@@ -49,12 +49,12 @@ public class BoxEditor extends AbstractPrimitiveEditor {
     super(parent, primitive, tree, modeler);
   }
   
-  /**
-   * {@inheritDoc}
-   */
-  public void setCompositeSize(Composite composite) {
-    composite.setSize(new org.eclipse.swt.graphics.Point(350, 560));
-  }
+//  /**
+//   * {@inheritDoc}
+//   */
+//  public void setCompositeSize(Composite composite) {
+//    composite.setSize(new org.eclipse.swt.graphics.Point(350, 560));
+//  }
 
   /**
    * {@inheritDoc}
