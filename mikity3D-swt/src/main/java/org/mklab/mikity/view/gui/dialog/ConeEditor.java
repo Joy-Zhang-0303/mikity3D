@@ -47,13 +47,6 @@ public class ConeEditor extends AbstractPrimitiveEditor {
   public ConeEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     super(parent, primitive, tree, modeler);
   }
-  
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void setCompositeSize(Composite composite) {
-//    composite.setSize(new org.eclipse.swt.graphics.Point(350, 560));
-//  }
 
   /**
    * {@inheritDoc}

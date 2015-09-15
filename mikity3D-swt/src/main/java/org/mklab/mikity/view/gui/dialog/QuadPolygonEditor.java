@@ -67,13 +67,6 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
     super(parent, primitive, tree, modeler);
   }
 
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void setCompositeSize(Composite composite) {
-//    composite.setSize(new org.eclipse.swt.graphics.Point(400, 890));
-//  }
-
   /**
    * @param parameterGroup パラメータグループ
    */

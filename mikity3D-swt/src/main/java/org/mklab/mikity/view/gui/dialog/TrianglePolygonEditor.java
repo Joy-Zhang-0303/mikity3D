@@ -58,13 +58,6 @@ public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
   public TrianglePolygonEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     super(parent, primitive, tree, modeler);
   }
-  
-//  /**
-//   * {@inheritDoc}
-//   */
-//  public void setCompositeSize(Composite composite) {
-//    composite.setSize(new org.eclipse.swt.graphics.Point(400, 780));
-//  }
 
   /**
    * @param parameterGroup パラメータグループ

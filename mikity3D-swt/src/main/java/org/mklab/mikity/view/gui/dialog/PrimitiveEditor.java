@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.view.gui.dialog;
 
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
 
@@ -22,11 +21,4 @@ public interface PrimitiveEditor extends ModelEditor {
    * @param group グループ
    */
   void createParameterBoxes(Group group);
-  
-//  /**
-//   * サイズを設定します。 
-//   * 
-//   * @param composite コンポジット
-//   */
-//  void setCompositeSize(Composite composite);
 }
