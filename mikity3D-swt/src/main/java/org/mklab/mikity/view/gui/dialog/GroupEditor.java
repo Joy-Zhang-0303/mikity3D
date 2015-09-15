@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
@@ -302,11 +303,21 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
    * パラメータを保存します。 
    */
   void saveParameters() {
+    if (containsOnlyNumbers() == false) {
+      final MessageBox message = new MessageBox(this.modeler.getShell(), SWT.ICON_WARNING);
+      message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
+      message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
+      message.open();
+      return;
+    }
+    
     updateModelParameters();
     this.tree.updateTree();
 
     this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
     this.modeler.updateDisplay();
+    
+    this.saveButton.setEnabled(false);
   }
 
   /**
@@ -423,7 +434,6 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
   public void keyReleased(KeyEvent e) {
     if (e.character==SWT.CR){
       saveParameters();
-      this.saveButton.setEnabled(false);
     }
   }
 }
