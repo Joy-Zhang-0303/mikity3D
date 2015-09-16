@@ -51,6 +51,7 @@ public class TriangleModel extends AbstractPrimitiveModel {
     this.vertices = new ArrayList<>(3);
     setVertices(vertex0, vertex1, vertex2);
     setColor(new ColorModel("orange")); //$NON-NLS-1$
+    this.preservedAlpha = this.color.getAlpha();
   }
   
   /**
@@ -161,8 +162,10 @@ public class TriangleModel extends AbstractPrimitiveModel {
   /**
    * デシリアライズの後処理をします。
    */
+  @Override
   @Commit
-  private void buildAfterDeserialization() {
+  protected void buildAfterDeserialization() {
+    super.buildAfterDeserialization();
     updateNormalVector();
   }
   

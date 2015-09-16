@@ -56,7 +56,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
    * デシリアライズの後処理をします。
    */
   @Commit
-  private void buildAfterDeserialization() {
+  protected void buildAfterDeserialization() {
     this.preservedAlpha = getColor().getAlpha();
   }
 

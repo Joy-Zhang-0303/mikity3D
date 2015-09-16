@@ -164,8 +164,10 @@ public class QuadrangleModel extends AbstractPrimitiveModel {
   /**
    * デシリアライズの後処理をします。
    */
+  @Override
   @Commit
-  private void buildAfterDeserialization() {
+  protected void buildAfterDeserialization() {
+    super.buildAfterDeserialization();
     updateNormalVector();
   }
 
@@ -224,7 +226,7 @@ public class QuadrangleModel extends AbstractPrimitiveModel {
    * {@inheritDoc}
    */
   public String toShortString() {
-    return "quadranle"; //$NON-NLS-1$
+    return "quadrangle"; //$NON-NLS-1$
   }
 
 }
