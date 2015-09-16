@@ -34,7 +34,7 @@ public class Mikity3DModel implements Serializable, Cloneable {
    * 新しく生成された<code>Mikity3DModel</code>オブジェクトを初期化します。
    */
   public Mikity3DModel() {
-    this.version = "0.3"; //$NON-NLS-1$
+    this.version = "0.4"; //$NON-NLS-1$
     this.scenes = new ArrayList<>();
     this.configurations = new ArrayList<>();
   }

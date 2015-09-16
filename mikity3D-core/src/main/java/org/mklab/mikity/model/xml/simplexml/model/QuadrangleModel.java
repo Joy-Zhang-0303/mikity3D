@@ -20,7 +20,7 @@ import org.simpleframework.xml.core.Commit;
  * @author koga
  * @version $Revision$, 2008/08/10
  */
-@Root(name="quadPolygon")
+@Root(name="quadrangle")
 public class QuadrangleModel extends AbstractPrimitiveModel {
   /** */
   private static final long serialVersionUID = 1L;

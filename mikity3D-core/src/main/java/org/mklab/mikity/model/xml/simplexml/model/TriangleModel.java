@@ -20,7 +20,7 @@ import org.simpleframework.xml.core.Commit;
  * @author koga
  * @version $Revision$, 2008/08/10
  */
-@Root(name = "trianglePolygon")
+@Root(name = "triangle")
 public class TriangleModel extends AbstractPrimitiveModel {
 
   /** */
