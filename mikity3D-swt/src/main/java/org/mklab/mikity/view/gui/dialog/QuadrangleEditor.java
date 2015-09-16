@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
-import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -21,12 +21,12 @@ import org.mklab.mikity.view.gui.UnitLabel;
 
 
 /**
- * 四角形ポリゴンを編集するエディタを表すクラスです。
+ * 四角形を編集するエディタを表すクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.7 $. 2007/11/15
  */
-public class QuadPolygonEditor extends AbstractPrimitiveEditor {
+public class QuadrangleEditor extends AbstractPrimitiveEditor {
   /** 頂点1のX座標。 */
   private ParameterInputBox vertex1X;
   /** 頂点1のY座標。 */
@@ -56,14 +56,14 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
   private ParameterInputBox vertex4Z;
   
   /**
-   * 新しく生成された<code>EditQuadPolygonDialog</code>オブジェクトを初期化します。
+   * 新しく生成された<code>QuadrangleEditor</code>オブジェクトを初期化します。
    * 
    * @param parent 親のシェル
    * @param primitive ポリゴン
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public QuadPolygonEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+  public QuadrangleEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     super(parent, primitive, tree, modeler);
   }
 
@@ -74,7 +74,7 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
   public void createParameterBoxes(final Group parameterGroup) {
     this.primitiveType.setText(Messages.getString("EditQuadPolygonDialog.23")); //$NON-NLS-1$
 
-    final QuadPolygonModel polygon = (QuadPolygonModel)this.primitive;
+    final QuadrangleModel polygon = (QuadrangleModel)this.primitive;
 
     final VertexModel vertex1 = polygon.getVertex(0);
     this.vertex1X = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditQuadPolygonDialog.3"), "" + vertex1.getX()); //$NON-NLS-1$//$NON-NLS-2$
@@ -169,7 +169,7 @@ public class QuadPolygonEditor extends AbstractPrimitiveEditor {
    * {@inheritDoc}
    */
   public void updateModelParameters() {
-    final QuadPolygonModel polygon = (QuadPolygonModel)this.primitive;
+    final QuadrangleModel polygon = (QuadrangleModel)this.primitive;
 
     final VertexModel[] vertices = new VertexModel[4];
 

@@ -21,9 +21,9 @@ import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
-import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
-import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 
 
 /**
@@ -135,12 +135,12 @@ public class DragAndDropEnabler {
       } else if (obj instanceof ConeModel) {
         sourceGroup.remove((ConeModel)obj);
         group.add((ConeModel)obj);
-      } else if (obj instanceof TrianglePolygonModel) {
-        sourceGroup.remove((TrianglePolygonModel)obj);
-        group.add((TrianglePolygonModel)obj);
-      } else if (obj instanceof QuadPolygonModel) {
-        sourceGroup.remove((QuadPolygonModel)obj);
-        group.add((QuadPolygonModel)obj);
+      } else if (obj instanceof TriangleModel) {
+        sourceGroup.remove((TriangleModel)obj);
+        group.add((TriangleModel)obj);
+      } else if (obj instanceof QuadrangleModel) {
+        sourceGroup.remove((QuadrangleModel)obj);
+        group.add((QuadrangleModel)obj);
       } else if (obj instanceof GroupModel) {
         sourceGroup.remove((GroupModel)obj);
         group.add((GroupModel)obj);

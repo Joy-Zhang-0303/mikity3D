@@ -24,9 +24,9 @@ import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
-import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
-import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 
 /**
  * シーングラフを表すクラスです。
@@ -227,25 +227,25 @@ public class SceneGraphTree {
       }
     });
 
-    final MenuItem addTrianglePolygon = new MenuItem(menu, SWT.POP_UP);
-    addTrianglePolygon.setText(Messages.getString("SceneGraphTree.5")); //$NON-NLS-1$
-    addTrianglePolygon.addSelectionListener(new SelectionAdapter() {
+    final MenuItem addTriangle = new MenuItem(menu, SWT.POP_UP);
+    addTriangle.setText(Messages.getString("SceneGraphTree.5")); //$NON-NLS-1$
+    addTriangle.addSelectionListener(new SelectionAdapter() {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = TrianglePolygonModel.createDefault();
+        final PrimitiveModel primitive = TriangleModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
       }
     });
 
-    final MenuItem addQuadPolygon = new MenuItem(menu, SWT.POP_UP);
-    addQuadPolygon.setText(Messages.getString("SceneGraphTree.6")); //$NON-NLS-1$
-    addQuadPolygon.addSelectionListener(new SelectionAdapter() {
+    final MenuItem addQuadrangle = new MenuItem(menu, SWT.POP_UP);
+    addQuadrangle.setText(Messages.getString("SceneGraphTree.6")); //$NON-NLS-1$
+    addQuadrangle.addSelectionListener(new SelectionAdapter() {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = QuadPolygonModel.createDefault();
+        final PrimitiveModel primitive = QuadrangleModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
       }
@@ -350,8 +350,8 @@ public class SceneGraphTree {
           addCylinder.setEnabled(false);
           addSphere.setEnabled(false);
           addCone.setEnabled(false);
-          addTrianglePolygon.setEnabled(false);
-          addQuadPolygon.setEnabled(false);
+          addTriangle.setEnabled(false);
+          addQuadrangle.setEnabled(false);
           addGroup.setEnabled(true);
           copy.setEnabled(false);
           cut.setEnabled(false);
@@ -365,8 +365,8 @@ public class SceneGraphTree {
           addCylinder.setEnabled(true);
           addSphere.setEnabled(true);
           addCone.setEnabled(true);
-          addTrianglePolygon.setEnabled(true);
-          addQuadPolygon.setEnabled(true);
+          addTriangle.setEnabled(true);
+          addQuadrangle.setEnabled(true);
           addGroup.setEnabled(true);
           copy.setEnabled(true);
           cut.setEnabled(true);
@@ -379,8 +379,8 @@ public class SceneGraphTree {
         addCylinder.setEnabled(false);
         addSphere.setEnabled(false);
         addCone.setEnabled(false);
-        addTrianglePolygon.setEnabled(false);
-        addQuadPolygon.setEnabled(false);
+        addTriangle.setEnabled(false);
+        addQuadrangle.setEnabled(false);
         addGroup.setEnabled(false);
         copy.setEnabled(true);
         cut.setEnabled(true);

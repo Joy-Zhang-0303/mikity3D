@@ -7,22 +7,22 @@ package org.mklab.mikity.view.gui.action.toolbar;
 
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
-import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
 /**
- * マウス操作による三角形ポリゴン作成のためのツールバーを作成するクラスです。
+ * マウス操作による三角形作成のためのツールバーを作成するクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.5 $. 2007/11/14
  */
-public class TrianglePolygonToolBarAction extends AbstractToolBarAction {
+public class TriangleToolBarAction extends AbstractToolBarAction {
   /**
-   * 新しく生成された<code>TrianglePolygonToolBarAction</code>オブジェクトを初期化します。
+   * 新しく生成された<code>TriangleToolBarAction</code>オブジェクトを初期化します。
    * @param window ウィンドウ
    */
-  public TrianglePolygonToolBarAction(final ModelingWindow window) {
+  public TriangleToolBarAction(final ModelingWindow window) {
     super(window, Messages.getString("TrianglePolygonToolBarAction.0")); //$NON-NLS-1$
   }
 
@@ -32,7 +32,7 @@ public class TrianglePolygonToolBarAction extends AbstractToolBarAction {
   @Override
   public void run() {
     final GroupModel group = this.modeler.getTargetGroup();
-    final PrimitiveModel primitive = TrianglePolygonModel.createDefault();
+    final PrimitiveModel primitive = TriangleModel.createDefault();
     group.add(primitive);
 
     update();

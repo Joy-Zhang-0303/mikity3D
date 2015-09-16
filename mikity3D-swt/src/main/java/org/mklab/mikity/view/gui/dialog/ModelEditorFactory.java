@@ -11,9 +11,9 @@ import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
-import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
-import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.SceneGraphTree;
 
@@ -39,12 +39,12 @@ public class ModelEditorFactory {
       final ModelEditor editor = new GroupEditor(parent, group, true, tree, modeler);
       return editor;
     } 
-    if (model instanceof TrianglePolygonModel) {
-      final ModelEditor editor = new TrianglePolygonEditor(parent, (PrimitiveModel)model, tree,  modeler);
+    if (model instanceof TriangleModel) {
+      final ModelEditor editor = new TriangleEditor(parent, (PrimitiveModel)model, tree,  modeler);
       return editor;
     } 
-    if (model instanceof QuadPolygonModel) {
-      final ModelEditor editor = new QuadPolygonEditor(parent, (QuadPolygonModel)model, tree,  modeler);
+    if (model instanceof QuadrangleModel) {
+      final ModelEditor editor = new QuadrangleEditor(parent, (QuadrangleModel)model, tree,  modeler);
       return editor;
     }
     if (model instanceof BoxModel) {

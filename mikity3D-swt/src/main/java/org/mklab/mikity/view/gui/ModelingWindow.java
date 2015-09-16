@@ -33,9 +33,9 @@ import org.mklab.mikity.view.gui.action.toolbar.BoxToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.ConeToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.CylinderToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.GroupToolBarAction;
-import org.mklab.mikity.view.gui.action.toolbar.QuadPolygonToolBarAction;
+import org.mklab.mikity.view.gui.action.toolbar.QuadrangleToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.SphereToolBarAction;
-import org.mklab.mikity.view.gui.action.toolbar.TrianglePolygonToolBarAction;
+import org.mklab.mikity.view.gui.action.toolbar.TriangleToolBarAction;
 
 /**
  * モデリングを行うウィンドウを表すクラスです。
@@ -66,8 +66,8 @@ public class ModelingWindow extends ApplicationWindow {
   private AbstractToolBarAction TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this);
   private AbstractToolBarAction TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this);
   private AbstractToolBarAction TOOLBAR_CONE_ACTION = new ConeToolBarAction(this);
-  private AbstractToolBarAction TOOLBAR_TRIANGLE_ACTION = new TrianglePolygonToolBarAction(this);
-  private AbstractToolBarAction TOOLBAR_QUAD_ACTION = new QuadPolygonToolBarAction(this);
+  private AbstractToolBarAction TOOLBAR_TRIANGLE_ACTION = new TriangleToolBarAction(this);
+  private AbstractToolBarAction TOOLBAR_QUADRANGLE_ACTION = new QuadrangleToolBarAction(this);
   
   /** モデル。 */
   private Mikity3DModel root;
@@ -117,7 +117,7 @@ public class ModelingWindow extends ApplicationWindow {
     this.TOOLBAR_CYLINDER_ACTION.setModeler(this.modeler);
     this.TOOLBAR_CONE_ACTION.setModeler(this.modeler);
     this.TOOLBAR_TRIANGLE_ACTION.setModeler(this.modeler);
-    this.TOOLBAR_QUAD_ACTION.setModeler(this.modeler);
+    this.TOOLBAR_QUADRANGLE_ACTION.setModeler(this.modeler);
     this.RESET_TO_INITIAL_STATE_ACTION.setModeler(this.modeler);
       
     return composite;
@@ -189,7 +189,7 @@ public class ModelingWindow extends ApplicationWindow {
     toolbar.add(this.TOOLBAR_CYLINDER_ACTION);
     toolbar.add(this.TOOLBAR_CONE_ACTION);
     toolbar.add(this.TOOLBAR_TRIANGLE_ACTION);
-    toolbar.add(this.TOOLBAR_QUAD_ACTION);
+    toolbar.add(this.TOOLBAR_QUADRANGLE_ACTION);
     toolbar.add(this.TOOLBAR_GROUP_ACTION);
     return toolbar;
   }

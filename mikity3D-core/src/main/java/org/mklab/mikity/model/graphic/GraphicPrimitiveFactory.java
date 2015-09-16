@@ -10,9 +10,9 @@ import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
-import org.mklab.mikity.model.xml.simplexml.model.QuadPolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
-import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 
 
 /**
@@ -45,12 +45,12 @@ public class GraphicPrimitiveFactory {
       return new SpherePrimitive((SphereModel)model);
     } 
     
-    if (model instanceof TrianglePolygonModel) {
-      return new TrianglePolygonPrimitive((TrianglePolygonModel)model);
+    if (model instanceof TriangleModel) {
+      return new TrianglePrimitive((TriangleModel)model);
     } 
 
-    if (model instanceof QuadPolygonModel) {
-      return new QuadPolygonPrimitive((QuadPolygonModel)model);
+    if (model instanceof QuadrangleModel) {
+      return new QuadranglePrimitive((QuadrangleModel)model);
     } 
 
     if (model instanceof NullModel) {

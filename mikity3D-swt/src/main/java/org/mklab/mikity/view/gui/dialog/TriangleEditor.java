@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
-import org.mklab.mikity.model.xml.simplexml.model.TrianglePolygonModel;
+import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -20,12 +20,12 @@ import org.mklab.mikity.view.gui.SceneGraphTree;
 import org.mklab.mikity.view.gui.UnitLabel;
 
 /**
- * 三角形ポリゴンを編集するエディタを表すクラスです。
+ * 三角形を編集するエディタを表すクラスです。
  * 
  * @author SHOGO
  * @version $Revision: 1.9 $. 2008/02/29
  */
-public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
+public class TriangleEditor extends AbstractPrimitiveEditor {
   /** 頂点1のX座標。 */
   private ParameterInputBox vertex1X;
   /** 頂点1のY座標。 */
@@ -48,14 +48,14 @@ public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
   private ParameterInputBox vertex3Z;
   
   /**
-   * 新しく生成された<code>EditTrianglePolygonDialog</code>オブジェクトを初期化します。
+   * 新しく生成された<code>EditTriangleDialog</code>オブジェクトを初期化します。
    * 
    * @param parent 親のシェル
    * @param primitive ポリゴン
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public TrianglePolygonEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+  public TriangleEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     super(parent, primitive, tree, modeler);
   }
 
@@ -66,7 +66,7 @@ public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
   public void createParameterBoxes(final Group parameterGroup) {
     this.primitiveType.setText(Messages.getString("EditTrianglePolygonDialog.21")); //$NON-NLS-1$
     
-    final TrianglePolygonModel polygon = (TrianglePolygonModel)this.primitive;
+    final TriangleModel polygon = (TriangleModel)this.primitive;
     
     final VertexModel vertex1 = polygon.getVertex(0);
     this.vertex1X = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.3"), "" + vertex1.getX());  //$NON-NLS-1$//$NON-NLS-2$
@@ -142,7 +142,7 @@ public class TrianglePolygonEditor extends AbstractPrimitiveEditor {
    * {@inheritDoc}
    */
   public void updateModelParameters() {
-    final TrianglePolygonModel polygon = (TrianglePolygonModel)this.primitive;
+    final TriangleModel polygon = (TriangleModel)this.primitive;
     
     final VertexModel[] vertices = new VertexModel[3];
 
