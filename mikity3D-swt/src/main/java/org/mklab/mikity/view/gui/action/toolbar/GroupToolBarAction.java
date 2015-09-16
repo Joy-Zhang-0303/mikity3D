@@ -1,7 +1,6 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 /**

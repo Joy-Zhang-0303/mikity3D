@@ -184,13 +184,13 @@ public class ModelingWindow extends ApplicationWindow {
   @Override
   protected ToolBarManager createToolBarManager(int arg0) {
     final ToolBarManager toolbar = new ToolBarManager();
+    toolbar.add(this.TOOLBAR_GROUP_ACTION);
     toolbar.add(this.TOOLBAR_BOX_ACTION);
-    toolbar.add(this.TOOLBAR_SPHERE_ACTION);
     toolbar.add(this.TOOLBAR_CYLINDER_ACTION);
+    toolbar.add(this.TOOLBAR_SPHERE_ACTION);
     toolbar.add(this.TOOLBAR_CONE_ACTION);
     toolbar.add(this.TOOLBAR_TRIANGLE_ACTION);
     toolbar.add(this.TOOLBAR_QUADRANGLE_ACTION);
-    toolbar.add(this.TOOLBAR_GROUP_ACTION);
     return toolbar;
   }
 

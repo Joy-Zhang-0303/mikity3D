@@ -179,6 +179,22 @@ public class SceneGraphTree {
     final Menu menu = new Menu(parent.getShell(), SWT.POP_UP);
     this.tree.setMenu(menu);
 
+    final MenuItem addGroup = new MenuItem(menu, SWT.POP_UP);
+    addGroup.setText(Messages.getString("SceneGraphTree.7")); //$NON-NLS-1$
+    addGroup.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        final GroupModel group = new GroupModel("group");  //$NON-NLS-1$
+        if (SceneGraphTree.this.targetGroup == SceneGraphTree.this.scene) {
+          SceneGraphTree.this.model.addGroup(group);
+        } else {
+          SceneGraphTree.this.targetGroup.add(group);
+        }
+        updateTree();
+      }
+    });
+
     final MenuItem addBox = new MenuItem(menu, SWT.POP_UP);
     addBox.setText(Messages.getString("SceneGraphTree.4")); //$NON-NLS-1$
     addBox.addSelectionListener(new SelectionAdapter() {
@@ -247,22 +263,6 @@ public class SceneGraphTree {
       public void widgetSelected(SelectionEvent e) {
         final PrimitiveModel primitive = QuadrangleModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
-        updateTree();
-      }
-    });
-
-    final MenuItem addGroup = new MenuItem(menu, SWT.POP_UP);
-    addGroup.setText(Messages.getString("SceneGraphTree.7")); //$NON-NLS-1$
-    addGroup.addSelectionListener(new SelectionAdapter() {
-
-      @Override
-      public void widgetSelected(SelectionEvent e) {
-        final GroupModel group = new GroupModel("group");  //$NON-NLS-1$
-        if (SceneGraphTree.this.targetGroup == SceneGraphTree.this.scene) {
-          SceneGraphTree.this.model.addGroup(group);
-        } else {
-          SceneGraphTree.this.targetGroup.add(group);
-        }
         updateTree();
       }
     });
@@ -355,7 +355,11 @@ public class SceneGraphTree {
           addGroup.setEnabled(true);
           copy.setEnabled(false);
           cut.setEnabled(false);
-          paste.setEnabled(true);
+          if (SceneGraphTree.this.bufferedGroup != null || SceneGraphTree.this.bufferedObject != null) {
+            paste.setEnabled(true);
+          } else {
+            paste.setEnabled(false);
+          }
           delete.setEnabled(false);
           return;
         } 
@@ -370,7 +374,11 @@ public class SceneGraphTree {
           addGroup.setEnabled(true);
           copy.setEnabled(true);
           cut.setEnabled(true);
-          paste.setEnabled(true);
+          if (SceneGraphTree.this.bufferedGroup != null || SceneGraphTree.this.bufferedObject != null) {
+            paste.setEnabled(true);
+          } else {
+            paste.setEnabled(false);
+          }
           delete.setEnabled(true);
           return;
         }
@@ -384,7 +392,11 @@ public class SceneGraphTree {
         addGroup.setEnabled(false);
         copy.setEnabled(true);
         cut.setEnabled(true);
-        paste.setEnabled(true);
+        if (SceneGraphTree.this.bufferedGroup != null || SceneGraphTree.this.bufferedObject != null) {
+          paste.setEnabled(true);
+        } else {
+          paste.setEnabled(false);
+        }
         delete.setEnabled(true);
       }
     });
