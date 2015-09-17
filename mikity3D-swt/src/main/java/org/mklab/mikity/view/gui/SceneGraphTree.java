@@ -41,8 +41,6 @@ public class SceneGraphTree {
   Object targetObject = null;
   /** 選択されているグループ。 */
   GroupModel targetGroup = null;
-  /** 選択されている物の親グループ。 */
-  //GroupModel targetParentGroup = null;
   
   /** シーンを表すグループ。 */
   GroupModel scene;
@@ -403,39 +401,30 @@ public class SceneGraphTree {
   }
 
   /**
-   * 選択されているオブジェクトを設定します。
+   * 選択されているオブジェクトをターゲットとして設定します。
    */
-  void setSelectedObjectAsTarget() {
+  public void setSelectedObjectAsTarget() {
     if (this.tree.getSelectionCount() == 0) {
       return;
     }
 
     this.targetObject = this.tree.getSelection()[0].getData();
-    
-    if (this.targetObject == this.scene) {
-      this.targetGroup = (GroupModel)this.targetObject;
-      setTarget(this.targetGroup);
-      return;
-    } 
-    
+
     if (this.targetObject instanceof GroupModel) {
       this.targetGroup = (GroupModel)this.targetObject;
-      //this.targetParentGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
-      setTarget(this.targetGroup);
-      return;
+    } else {
+      this.targetGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
     }
-
-    this.targetGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
-    //this.targetParentGroup = null;
-    setTarget(this.targetObject);
+    
+    makeObjectNontransparent(this.targetObject);
   }
 
   /**
-   * 選択されているオブジェクトを設定します。
+   * 指定されたオブジェクトのみを非透過に設定します。
    * 
-   * @param object
+   * @param object オブジェクト
    */
-  private void setTarget(Object object) {
+  private void makeObjectNontransparent(Object object) {
     if (object == this.scene) {
       for (GroupModel group : this.model.getGroups()) {
         setAllTransparent(group, false);
