@@ -24,10 +24,9 @@ public class FileSaveAction extends Action {
   private ModelingWindow window;
 
   /**
-   * コンストラクター
+   * 新しく生成された<code>FileSaveAction</code>オブジェクトを初期化します。
    * 
    * @param window ウィンドウ
-   * 
    */
   public FileSaveAction(final ModelingWindow window) {
     setText(Messages.getString("FileSaveAction.0")); //$NON-NLS-1$
@@ -35,7 +34,7 @@ public class FileSaveAction extends Action {
   }
 
   /**
-   * @see org.eclipse.jface.action.IAction#run()
+   * {@inheritDoc}
    */
   @Override
   public void run() {

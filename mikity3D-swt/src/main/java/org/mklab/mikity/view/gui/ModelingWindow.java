@@ -232,6 +232,7 @@ public class ModelingWindow extends ApplicationWindow {
 
   /**
    * ファイルに保存します。
+   * 
    * @throws Mikity3dSerializeDeserializeException ファイルに保存できない場合  
    */
   public void saveFile() throws Mikity3dSerializeDeserializeException {

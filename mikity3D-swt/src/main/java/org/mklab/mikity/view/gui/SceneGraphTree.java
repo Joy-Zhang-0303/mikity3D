@@ -42,7 +42,7 @@ public class SceneGraphTree {
   /** 選択されているグループ。 */
   GroupModel targetGroup = null;
   /** 選択されている物の親グループ。 */
-  GroupModel targetParentGroup = null;
+  //GroupModel targetParentGroup = null;
   
   /** シーンを表すグループ。 */
   GroupModel scene;
@@ -420,13 +420,13 @@ public class SceneGraphTree {
     
     if (this.targetObject instanceof GroupModel) {
       this.targetGroup = (GroupModel)this.targetObject;
-      this.targetParentGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
+      //this.targetParentGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
       setTarget(this.targetGroup);
       return;
     }
 
     this.targetGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
-    this.targetParentGroup = null;
+    //this.targetParentGroup = null;
     setTarget(this.targetObject);
   }
 
@@ -451,26 +451,36 @@ public class SceneGraphTree {
       ((PrimitiveModel)object).setTransparent(false);
     } else if (object instanceof GroupModel) {
       final GroupModel group = (GroupModel)object;
-      setAllTransparent(group, false);
+      setTransparent(group, false);
     }
   }
 
   /**
-   * 全透過性を設定する。
+   * 指定されたグループ以下に含まれる全てのプリミティブの透過性を設定する。
    * 
    * @param group グループ
-   * @param transparent トランスピアレント
+   * @param transparent 透過ならばtrue
    */
   public void setAllTransparent(final GroupModel group, boolean transparent) {
+    setTransparent(group, transparent);
+
+    for (GroupModel childGroup : group.getGroups()) {
+      setAllTransparent(childGroup, transparent);
+    }
+  }
+  
+  /**
+   * グループに含まれる全てのプリミティブの透過性を設定する。
+   * 
+   * @param group グループ
+   * @param transparent 透過ならばtrue
+   */
+  public void setTransparent(final GroupModel group, boolean transparent) {
     for (PrimitiveModel primitive : group.getPrimitives()) {
       if (primitive instanceof NullModel) {
         continue;
       }
       primitive.setTransparent(transparent);
-    }
-
-    for (GroupModel childGroup : group.getGroups()) {
-      setAllTransparent(childGroup, transparent);
     }
   }
 
