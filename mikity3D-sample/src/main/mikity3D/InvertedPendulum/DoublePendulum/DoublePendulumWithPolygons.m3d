@@ -1,4 +1,4 @@
-<mikity3d>
+<mikity3d version="0.4">
    <scene>
       <group name="doublePendulum">
          <translation x="0.0" y="0.0" z="-0.05"/>
@@ -8,898 +8,898 @@
             <translation x="0.0" y="0.0" z="-0.15"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
             <quadrangle>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
                <vertex x="0.75" y="0.05" z="-0.05"/>
                <vertex x="0.75" y="-0.05" z="-0.05"/>
                <vertex x="-0.75" y="-0.05" z="-0.05"/>
                <vertex x="-0.75" y="0.05" z="-0.05"/>
-               <translation x="0.0" y="0.0" z="0.0"/>
-               <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadrangle>
             <quadrangle>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
                <vertex x="0.75" y="0.05" z="0.05"/>
                <vertex x="-0.75" y="0.05" z="0.05"/>
                <vertex x="-0.75" y="-0.05" z="0.05"/>
                <vertex x="0.75" y="-0.05" z="0.05"/>
-               <translation x="0.0" y="0.0" z="0.0"/>
-               <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadrangle>
             <quadrangle>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
                <vertex x="0.75" y="0.05" z="-0.05"/>
                <vertex x="0.75" y="0.05" z="0.05"/>
                <vertex x="0.75" y="-0.05" z="0.05"/>
                <vertex x="0.75" y="-0.05" z="-0.05"/>
-               <translation x="0.0" y="0.0" z="0.0"/>
-               <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadrangle>
             <quadrangle>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
                <vertex x="0.75" y="-0.05" z="-0.05"/>
                <vertex x="0.75" y="-0.05" z="0.05"/>
                <vertex x="-0.75" y="-0.05" z="0.05"/>
                <vertex x="-0.75" y="-0.05" z="-0.05"/>
-               <translation x="0.0" y="0.0" z="0.0"/>
-               <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadrangle>
             <quadrangle>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
                <vertex x="-0.75" y="-0.05" z="-0.05"/>
                <vertex x="-0.75" y="-0.05" z="0.05"/>
                <vertex x="-0.75" y="0.05" z="0.05"/>
                <vertex x="-0.75" y="0.05" z="-0.05"/>
-               <translation x="0.0" y="0.0" z="0.0"/>
-               <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadrangle>
             <quadrangle>
+               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
                <vertex x="0.75" y="0.05" z="0.05"/>
                <vertex x="0.75" y="0.05" z="-0.05"/>
                <vertex x="-0.75" y="0.05" z="-0.05"/>
                <vertex x="-0.75" y="0.05" z="0.05"/>
-               <translation x="0.0" y="0.0" z="0.0"/>
-               <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="211" g="211" b="211" alpha="255" name="LightGray"/>
             </quadrangle>
-            <group name="daisha">
+            <group name="cart">
                <translation x="0.0" y="0.15" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
                <animation target="translationX">
                   <source id="0" number="2"/>
                </animation>
                <quadrangle>
+                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
                   <vertex x="0.125" y="0.1" z="-0.025"/>
                   <vertex x="0.125" y="-0.1" z="-0.025"/>
                   <vertex x="-0.125" y="-0.1" z="-0.025"/>
                   <vertex x="-0.125" y="0.1" z="-0.025"/>
-                  <translation x="0.0" y="0.0" z="0.0"/>
-                  <rotation x="0.0" y="0.0" z="0.0"/>
-                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadrangle>
                <quadrangle>
+                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
                   <vertex x="0.125" y="0.1" z="0.025"/>
                   <vertex x="-0.125" y="0.1" z="0.025"/>
                   <vertex x="-0.125" y="-0.1" z="0.025"/>
                   <vertex x="0.125" y="-0.1" z="0.025"/>
-                  <translation x="0.0" y="0.0" z="0.0"/>
-                  <rotation x="0.0" y="0.0" z="0.0"/>
-                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadrangle>
                <quadrangle>
+                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
                   <vertex x="0.125" y="0.1" z="-0.025"/>
                   <vertex x="0.125" y="0.1" z="0.025"/>
                   <vertex x="0.125" y="-0.1" z="0.025"/>
                   <vertex x="0.125" y="-0.1" z="-0.025"/>
-                  <translation x="0.0" y="0.0" z="0.0"/>
-                  <rotation x="0.0" y="0.0" z="0.0"/>
-                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadrangle>
                <quadrangle>
+                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
                   <vertex x="0.125" y="-0.1" z="-0.025"/>
                   <vertex x="0.125" y="-0.1" z="0.025"/>
                   <vertex x="-0.125" y="-0.1" z="0.025"/>
                   <vertex x="-0.125" y="-0.1" z="-0.025"/>
-                  <translation x="0.0" y="0.0" z="0.0"/>
-                  <rotation x="0.0" y="0.0" z="0.0"/>
-                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadrangle>
                <quadrangle>
+                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
                   <vertex x="-0.125" y="-0.1" z="-0.025"/>
                   <vertex x="-0.125" y="-0.1" z="0.025"/>
                   <vertex x="-0.125" y="0.1" z="0.025"/>
                   <vertex x="-0.125" y="0.1" z="-0.025"/>
-                  <translation x="0.0" y="0.0" z="0.0"/>
-                  <rotation x="0.0" y="0.0" z="0.0"/>
-                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadrangle>
                <quadrangle>
+                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
                   <vertex x="0.125" y="0.1" z="0.025"/>
                   <vertex x="0.125" y="0.1" z="-0.025"/>
                   <vertex x="-0.125" y="0.1" z="-0.025"/>
                   <vertex x="-0.125" y="0.1" z="0.025"/>
-                  <translation x="0.0" y="0.0" z="0.0"/>
-                  <rotation x="0.0" y="0.0" z="0.0"/>
-                  <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                </quadrangle>
-               <group name="sinsi1">
+               <group name="link1">
                   <translation x="0.0" y="0.0" z="0.035"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <animation target="rotationZ">
                      <source id="0" number="3"/>
                   </animation>
                   <triangle>
-                     <vertex x="0.0" y="0.0" z="-0.01"/>
-                     <vertex x="0.00707" y="0.00707" z="-0.01"/>
-                     <vertex x="0.00988" y="0.00156" z="-0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
+                     <vertex x="0.0" y="0.0" z="-0.01"/>
+                     <vertex x="0.00707" y="0.00707" z="-0.01"/>
+                     <vertex x="0.00988" y="0.00156" z="-0.01"/>
                   </triangle>
                   <triangle>
-                     <vertex x="0.0" y="0.0" z="0.01"/>
-                     <vertex x="0.00988" y="0.00156" z="0.01"/>
-                     <vertex x="0.00707" y="0.00707" z="0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
+                     <vertex x="0.0" y="0.0" z="0.01"/>
+                     <vertex x="0.00988" y="0.00156" z="0.01"/>
+                     <vertex x="0.00707" y="0.00707" z="0.01"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="0.00988" y="0.00156" z="-0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="-0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
-                     <vertex x="0.0" y="0.0" z="0.01"/>
-                     <vertex x="0.00891" y="-0.00454" z="0.01"/>
-                     <vertex x="0.00988" y="0.00156" z="0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
+                     <vertex x="0.0" y="0.0" z="0.01"/>
+                     <vertex x="0.00891" y="-0.00454" z="0.01"/>
+                     <vertex x="0.00988" y="0.00156" z="0.01"/>
                   </triangle>
                   <triangle>
-                     <vertex x="0.0" y="0.0" z="-0.01"/>
-                     <vertex x="0.00891" y="-0.00454" z="-0.01"/>
-                     <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                      <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
+                     <vertex x="0.0" y="0.0" z="-0.01"/>
+                     <vertex x="0.00891" y="-0.00454" z="-0.01"/>
+                     <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="-0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="-0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                      <vertex x="0.00156" y="0.00988" z="-0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="0.00156" y="0.00988" z="0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.00156" y="0.00988" z="-0.01"/>
                      <vertex x="0.00707" y="0.00707" z="-0.01"/>
                      <vertex x="0.0" y="0.0" z="-0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="0.0" y="0.0" z="0.01"/>
                      <vertex x="0.00707" y="0.00707" z="0.01"/>
                      <vertex x="0.00156" y="0.00988" z="0.01"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="0.00707" y="0.0" z="-0.00707"/>
                      <vertex x="0.00988" y="0.0" z="-0.00156"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="0.00988" y="0.379" z="-0.00156"/>
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="0.00988" y="0.0" z="-0.00156"/>
                      <vertex x="0.00891" y="0.0" z="0.00454"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="0.00891" y="0.379" z="0.00454"/>
                      <vertex x="0.00988" y="0.379" z="-0.00156"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="0.00891" y="0.0" z="0.00454"/>
                      <vertex x="0.00454" y="0.0" z="0.00891"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="0.00454" y="0.379" z="0.00891"/>
                      <vertex x="0.00891" y="0.379" z="0.00454"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="0.00454" y="0.0" z="0.00891"/>
                      <vertex x="-0.00156" y="0.0" z="0.00988"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="-0.00156" y="0.379" z="0.00988"/>
                      <vertex x="0.00454" y="0.379" z="0.00891"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="-0.00156" y="0.0" z="0.00988"/>
                      <vertex x="-0.00707" y="0.0" z="0.00707"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="-0.00707" y="0.379" z="0.00707"/>
                      <vertex x="-0.00156" y="0.379" z="0.00988"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="-0.00707" y="0.0" z="0.00707"/>
                      <vertex x="-0.00988" y="0.0" z="0.00156"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="-0.00988" y="0.379" z="0.00156"/>
                      <vertex x="-0.00707" y="0.379" z="0.00707"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="-0.00988" y="0.0" z="0.00156"/>
                      <vertex x="-0.00891" y="0.0" z="-0.00454"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="-0.00891" y="0.379" z="-0.00454"/>
                      <vertex x="-0.00988" y="0.379" z="0.00156"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="-0.00891" y="0.0" z="-0.00454"/>
                      <vertex x="-0.00454" y="0.0" z="-0.00891"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="-0.00454" y="0.379" z="-0.00891"/>
                      <vertex x="-0.00891" y="0.379" z="-0.00454"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="-0.00454" y="0.0" z="-0.00891"/>
                      <vertex x="0.00156" y="0.0" z="-0.00988"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="0.00156" y="0.379" z="-0.00988"/>
                      <vertex x="-0.00454" y="0.379" z="-0.00891"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.0" z="-0.0"/>
                      <vertex x="0.00156" y="0.0" z="-0.00988"/>
                      <vertex x="0.00707" y="0.0" z="-0.00707"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <triangle>
+                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                      <vertex x="-0.0" y="0.379" z="0.0"/>
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
                      <vertex x="0.00156" y="0.379" z="-0.00988"/>
-                     <color r="255" g="0" b="0" alpha="255" name="red"/>
                   </triangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="0.00707" y="0.00707" z="-0.01"/>
                      <vertex x="0.00707" y="0.00707" z="0.01"/>
                      <vertex x="0.00988" y="0.00156" z="0.01"/>
                      <vertex x="0.00988" y="0.00156" z="-0.01"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="0.00988" y="0.00156" z="-0.01"/>
                      <vertex x="0.00988" y="0.00156" z="0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="-0.01"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                      <vertex x="0.00891" y="-0.00454" z="0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="-0.01"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                      <vertex x="0.00454" y="-0.00891" z="0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                      <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                      <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                      <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="-0.01"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                      <vertex x="-0.00891" y="0.00454" z="0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="-0.01"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                      <vertex x="-0.00454" y="0.00891" z="0.01"/>
                      <vertex x="0.00156" y="0.00988" z="0.01"/>
                      <vertex x="0.00156" y="0.00988" z="-0.01"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="0.00707" y="0.00707" z="0.01"/>
                      <vertex x="0.00707" y="0.00707" z="-0.01"/>
                      <vertex x="0.00156" y="0.00988" z="-0.01"/>
                      <vertex x="0.00156" y="0.00988" z="0.01"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="0.00707" y="0.0" z="-0.00707"/>
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
                      <vertex x="0.00988" y="0.379" z="-0.00156"/>
                      <vertex x="0.00988" y="0.0" z="-0.00156"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="0.00988" y="0.0" z="-0.00156"/>
                      <vertex x="0.00988" y="0.379" z="-0.00156"/>
                      <vertex x="0.00891" y="0.379" z="0.00454"/>
                      <vertex x="0.00891" y="0.0" z="0.00454"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="0.00891" y="0.0" z="0.00454"/>
                      <vertex x="0.00891" y="0.379" z="0.00454"/>
                      <vertex x="0.00454" y="0.379" z="0.00891"/>
                      <vertex x="0.00454" y="0.0" z="0.00891"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="0.00454" y="0.0" z="0.00891"/>
                      <vertex x="0.00454" y="0.379" z="0.00891"/>
                      <vertex x="-0.00156" y="0.379" z="0.00988"/>
                      <vertex x="-0.00156" y="0.0" z="0.00988"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="-0.00156" y="0.0" z="0.00988"/>
                      <vertex x="-0.00156" y="0.379" z="0.00988"/>
                      <vertex x="-0.00707" y="0.379" z="0.00707"/>
                      <vertex x="-0.00707" y="0.0" z="0.00707"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="-0.00707" y="0.0" z="0.00707"/>
                      <vertex x="-0.00707" y="0.379" z="0.00707"/>
                      <vertex x="-0.00988" y="0.379" z="0.00156"/>
                      <vertex x="-0.00988" y="0.0" z="0.00156"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="-0.00988" y="0.0" z="0.00156"/>
                      <vertex x="-0.00988" y="0.379" z="0.00156"/>
                      <vertex x="-0.00891" y="0.379" z="-0.00454"/>
                      <vertex x="-0.00891" y="0.0" z="-0.00454"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="-0.00891" y="0.0" z="-0.00454"/>
                      <vertex x="-0.00891" y="0.379" z="-0.00454"/>
                      <vertex x="-0.00454" y="0.379" z="-0.00891"/>
                      <vertex x="-0.00454" y="0.0" z="-0.00891"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="-0.00454" y="0.0" z="-0.00891"/>
                      <vertex x="-0.00454" y="0.379" z="-0.00891"/>
                      <vertex x="0.00156" y="0.379" z="-0.00988"/>
                      <vertex x="0.00156" y="0.0" z="-0.00988"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
                   <quadrangle>
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <vertex x="0.00156" y="0.0" z="-0.00988"/>
                      <vertex x="0.00156" y="0.379" z="-0.00988"/>
                      <vertex x="0.00707" y="0.379" z="-0.00707"/>
                      <vertex x="0.00707" y="0.0" z="-0.00707"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </quadrangle>
-                  <group name="sinsi2">
+                  <group name="link2">
                      <translation x="0.0" y="0.389" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                      <animation target="rotationZ">
                         <source id="0" number="4"/>
                      </animation>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="0.00707" y="0.00707" z="-0.01"/>
                         <vertex x="0.00988" y="0.00156" z="-0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="0.00988" y="0.00156" z="0.01"/>
                         <vertex x="0.00707" y="0.00707" z="0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="0.00988" y="0.00156" z="-0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="-0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="0.01"/>
                         <vertex x="0.00988" y="0.00156" z="0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="-0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="-0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="-0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                         <vertex x="0.00156" y="0.00988" z="-0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="0.00156" y="0.00988" z="0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.00156" y="0.00988" z="-0.01"/>
                         <vertex x="0.00707" y="0.00707" z="-0.01"/>
                         <vertex x="0.0" y="0.0" z="-0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="0.0" y="0.0" z="0.01"/>
                         <vertex x="0.00707" y="0.00707" z="0.01"/>
                         <vertex x="0.00156" y="0.00988" z="0.01"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="0.00707" y="0.354" z="0.00707"/>
                         <vertex x="0.00988" y="0.354" z="0.00156"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="0.00988" y="-0.0" z="0.00156"/>
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="0.00988" y="0.354" z="0.00156"/>
                         <vertex x="0.00891" y="0.354" z="-0.00454"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="0.00891" y="-0.0" z="-0.00454"/>
                         <vertex x="0.00988" y="-0.0" z="0.00156"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="0.00891" y="0.354" z="-0.00454"/>
                         <vertex x="0.00454" y="0.354" z="-0.00891"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="0.00454" y="-0.0" z="-0.00891"/>
                         <vertex x="0.00891" y="-0.0" z="-0.00454"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="0.00454" y="0.354" z="-0.00891"/>
                         <vertex x="-0.00156" y="0.354" z="-0.00988"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="-0.00156" y="-0.0" z="-0.00988"/>
                         <vertex x="0.00454" y="-0.0" z="-0.00891"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="-0.00156" y="0.354" z="-0.00988"/>
                         <vertex x="-0.00707" y="0.354" z="-0.00707"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="-0.00707" y="-0.0" z="-0.00707"/>
                         <vertex x="-0.00156" y="-0.0" z="-0.00988"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="-0.00707" y="0.354" z="-0.00707"/>
                         <vertex x="-0.00988" y="0.354" z="-0.00156"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="-0.00988" y="-0.0" z="-0.00156"/>
                         <vertex x="-0.00707" y="-0.0" z="-0.00707"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="-0.00988" y="0.354" z="-0.00156"/>
                         <vertex x="-0.00891" y="0.354" z="0.00454"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="-0.00891" y="-0.0" z="0.00454"/>
                         <vertex x="-0.00988" y="-0.0" z="-0.00156"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="-0.00891" y="0.354" z="0.00454"/>
                         <vertex x="-0.00454" y="0.354" z="0.00891"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="-0.00454" y="-0.0" z="0.00891"/>
                         <vertex x="-0.00891" y="-0.0" z="0.00454"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="-0.00454" y="0.354" z="0.00891"/>
                         <vertex x="0.00156" y="0.354" z="0.00988"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="0.00156" y="-0.0" z="0.00988"/>
                         <vertex x="-0.00454" y="-0.0" z="0.00891"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="0.354" z="-0.0"/>
                         <vertex x="0.00156" y="0.354" z="0.00988"/>
                         <vertex x="0.00707" y="0.354" z="0.00707"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <triangle>
+                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                         <vertex x="-0.0" y="-0.0" z="0.0"/>
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>
                         <vertex x="0.00156" y="-0.0" z="0.00988"/>
-                        <color r="255" g="0" b="0" alpha="255" name="red"/>
                      </triangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="0.00707" y="0.00707" z="-0.01"/>
                         <vertex x="0.00707" y="0.00707" z="0.01"/>
                         <vertex x="0.00988" y="0.00156" z="0.01"/>
                         <vertex x="0.00988" y="0.00156" z="-0.01"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="0.00988" y="0.00156" z="-0.01"/>
                         <vertex x="0.00988" y="0.00156" z="0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="-0.01"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="0.00891" y="-0.00454" z="-0.01"/>
                         <vertex x="0.00891" y="-0.00454" z="0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="-0.01"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="0.00454" y="-0.00891" z="-0.01"/>
                         <vertex x="0.00454" y="-0.00891" z="0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="-0.00156" y="-0.00988" z="-0.01"/>
                         <vertex x="-0.00156" y="-0.00988" z="0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="-0.00707" y="-0.00707" z="-0.01"/>
                         <vertex x="-0.00707" y="-0.00707" z="0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="-0.00988" y="-0.00156" z="-0.01"/>
                         <vertex x="-0.00988" y="-0.00156" z="0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="-0.01"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="-0.00891" y="0.00454" z="-0.01"/>
                         <vertex x="-0.00891" y="0.00454" z="0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="-0.01"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="-0.00454" y="0.00891" z="-0.01"/>
                         <vertex x="-0.00454" y="0.00891" z="0.01"/>
                         <vertex x="0.00156" y="0.00988" z="0.01"/>
                         <vertex x="0.00156" y="0.00988" z="-0.01"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="0.00707" y="0.00707" z="0.01"/>
                         <vertex x="0.00707" y="0.00707" z="-0.01"/>
                         <vertex x="0.00156" y="0.00988" z="-0.01"/>
                         <vertex x="0.00156" y="0.00988" z="0.01"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="0.00707" y="0.354" z="0.00707"/>
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>
                         <vertex x="0.00988" y="-0.0" z="0.00156"/>
                         <vertex x="0.00988" y="0.354" z="0.00156"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="0.00988" y="0.354" z="0.00156"/>
                         <vertex x="0.00988" y="-0.0" z="0.00156"/>
                         <vertex x="0.00891" y="-0.0" z="-0.00454"/>
                         <vertex x="0.00891" y="0.354" z="-0.00454"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="0.00891" y="0.354" z="-0.00454"/>
                         <vertex x="0.00891" y="-0.0" z="-0.00454"/>
                         <vertex x="0.00454" y="-0.0" z="-0.00891"/>
                         <vertex x="0.00454" y="0.354" z="-0.00891"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="0.00454" y="0.354" z="-0.00891"/>
                         <vertex x="0.00454" y="-0.0" z="-0.00891"/>
                         <vertex x="-0.00156" y="-0.0" z="-0.00988"/>
                         <vertex x="-0.00156" y="0.354" z="-0.00988"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="-0.00156" y="0.354" z="-0.00988"/>
                         <vertex x="-0.00156" y="-0.0" z="-0.00988"/>
                         <vertex x="-0.00707" y="-0.0" z="-0.00707"/>
                         <vertex x="-0.00707" y="0.354" z="-0.00707"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="-0.00707" y="0.354" z="-0.00707"/>
                         <vertex x="-0.00707" y="-0.0" z="-0.00707"/>
                         <vertex x="-0.00988" y="-0.0" z="-0.00156"/>
                         <vertex x="-0.00988" y="0.354" z="-0.00156"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="-0.00988" y="0.354" z="-0.00156"/>
                         <vertex x="-0.00988" y="-0.0" z="-0.00156"/>
                         <vertex x="-0.00891" y="-0.0" z="0.00454"/>
                         <vertex x="-0.00891" y="0.354" z="0.00454"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="-0.00891" y="0.354" z="0.00454"/>
                         <vertex x="-0.00891" y="-0.0" z="0.00454"/>
                         <vertex x="-0.00454" y="-0.0" z="0.00891"/>
                         <vertex x="-0.00454" y="0.354" z="0.00891"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="-0.00454" y="0.354" z="0.00891"/>
                         <vertex x="-0.00454" y="-0.0" z="0.00891"/>
                         <vertex x="0.00156" y="-0.0" z="0.00988"/>
                         <vertex x="0.00156" y="0.354" z="0.00988"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                      <quadrangle>
+                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <vertex x="0.00156" y="0.354" z="0.00988"/>
                         <vertex x="0.00156" y="-0.0" z="0.00988"/>
                         <vertex x="0.00707" y="-0.0" z="0.00707"/>
                         <vertex x="0.00707" y="0.354" z="0.00707"/>
-                        <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      </quadrangle>
                   </group>
                </group>

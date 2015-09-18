@@ -1,4 +1,4 @@
-<mikity3d>
+<mikity3d version="0.4">
    <scene>
       <group name="root">
          <translation x="0.0" y="0.0" z="0.0"/>
@@ -8,46 +8,46 @@
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
             <box width="0.5" height="0.05" depth="0.05">
+               <color r="169" g="169" b="169" alpha="255" name="darkGray"/>
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <color r="169" g="169" b="169" alpha="255" name="darkGray"/>
             </box>
             <cylinder radius="0.01" height="0.05" division="20">
+               <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                <translation x="0.05" y="0.0" z="0.0"/>
                <rotation x="0.0" y="1.5708" z="0.0"/>
-               <color r="0" g="255" b="255" alpha="255" name="cyan"/>
             </cylinder>
-            <group name="pend1">
+            <group name="link1">
                <translation x="0.05" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
                <animation target="rotationX">
                   <source id="0" number="2"/>
                </animation>
                <cylinder radius="0.003" height="0.3" division="20">
+                  <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   <translation x="0.0" y="0.0" z="-0.15"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
-                  <color r="255" g="165" b="0" alpha="255" name="orange"/>
                </cylinder>
                <sphere radius="0.01" division="20">
+                  <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                   <translation x="0.0" y="0.0" z="-0.3"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
-                  <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                </sphere>
-               <group name="pend2">
+               <group name="link2">
                   <translation x="0.0" y="0.0" z="-0.3"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
                   <animation target="rotationX">
                      <source id="0" number="3"/>
                   </animation>
                   <cylinder radius="0.003" height="0.15" division="30">
+                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <translation x="0.0" y="0.0" z="-0.075"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
-                     <color r="255" g="165" b="0" alpha="255" name="orange"/>
                   </cylinder>
                   <sphere radius="0.01" division="20">
+                     <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                      <translation x="0.0" y="0.0" z="-0.15"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
-                     <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                   </sphere>
                </group>
             </group>

@@ -4,7 +4,7 @@
          <translation x="0.0" y="0.0" z="0.0"/>
          <rotation x="0.0" y="0.0" z="0.0"/>
          <null/>
-         <group name="dodai">
+         <group name="base">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="-1.57"/>
             <cylinder radius="0.2" height="0.2" division="36">
