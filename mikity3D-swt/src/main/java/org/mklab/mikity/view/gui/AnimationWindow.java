@@ -670,24 +670,22 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
    * アニメーションを開始します。
    */
   void runAnimation() {
-    if (playable == false) {
-      this.timer.cancel();
+    if (this.manager == null) {
+      MessagegUtil.show(getShell(), Messages.getString("AnimationWindow.1")); //$NON-NLS-1$
+      return;
     }
-
-    if (this.manager.hasSource() == false) {
+    if (this.manager.isSourceReady() == false) {
       MessagegUtil.show(getShell(), Messages.getString("SimulationViewer.4")); //$NON-NLS-1$
       return;
     }
-    
-    if (this.manager.areMovingGroupsReady() == false) {
-      return;
+
+    if (playable == false) {
+      this.timer.cancel();
     }
-    
+        
     this.manager.prepareMovingGroups();
 
     prepareSlider();
-
-    playable = false;
 
     this.stopTime = this.manager.getStopTime();
     this.animationTask = new AnimationTask(this.currentTime, this.stopTime, this.manager, this.renderer);
@@ -714,6 +712,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
 
     this.sliderTask = new SliderPositionMoveTask(this.animationTask, this.timeSlider);
 
+    playable = false;
     this.timer = new Timer();
     this.timer.schedule(this.animationTask, 0, 10);
     this.timer.schedule(this.sliderTask, 0, 10);

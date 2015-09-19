@@ -85,7 +85,7 @@ public class CanvasFragment extends RoboFragment {
   /** アニメーションの開始時間 */
   private long startTime;
   /** アニメーションの終了時間。 */
-  private double endTime;
+  private double stopTime;
   /** アニメーションの一時停止時間 */
   private long pausedTime;
   /** アニメーションの遅延時間 */
@@ -251,10 +251,6 @@ public class CanvasFragment extends RoboFragment {
     }
   };
 
-//  protected void setScaleValue(double d) {
-//    this.scaleValue = d;
-//  }
-
   /**
    * モデルデータをストリームから読み込みます。
    * 
@@ -351,14 +347,14 @@ public class CanvasFragment extends RoboFragment {
         this.progressDialog.dismiss();
       }
       
-      showAlertMessageInDialog("Please select proper source file or set source number size to data size or lower."); //$NON-NLS-1$
+      showAlertMessageInDialog("Please select proper source file and set proper source number."); //$NON-NLS-1$
       this.setIllegalSourceData = true;
     } catch (IllegalAccessError e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
       final String message = "Source data size is not match model's source number." //$NON-NLS-1$
-          + "\nPlease select proper source file or set proper source number."; //$NON-NLS-1$
+          + "\nPlease select proper source file and set proper source number."; //$NON-NLS-1$
       showAlertMessageInDialog(message);
       this.setIllegalSourceData = true;
     }
@@ -412,9 +408,9 @@ public class CanvasFragment extends RoboFragment {
   private void prepareTimeTable() {
     final int dataSize = this.manager.getDataSize();
     this.timeTable = new double[dataSize];
-    this.endTime = this.manager.getStopTime();
+    this.stopTime = this.manager.getStopTime();
     for (int i = 0; i < this.timeTable.length; i++) {
-      this.timeTable[i] = this.endTime * ((double)i / this.timeTable.length);
+      this.timeTable[i] = this.stopTime * ((double)i / this.timeTable.length);
     }
   }
 
@@ -456,41 +452,37 @@ public class CanvasFragment extends RoboFragment {
    * アニメーションを開始します。
    */
   public void runAnimation() {
-    if (this.isPaused == false) {
-      this.startTime = SystemClock.uptimeMillis();
-      this.delayTime = 0;
+    if (this.manager == null) {
+      showAlertMessageInDialog("Model data is not ready"); //$NON-NLS-1$
+      return;
     }
-
-    final int animationSpeed = this.activity.ndFragment.animationSpeed;
+    if (this.manager.isSourceReady() == false) {
+      showAlertMessageInDialog("Source data is not ready"); //$NON-NLS-1$
+      return;
+    }
 
     if (this.playable == false) {
       this.timer.cancel();
     }
-
-    if (this.sourceData.size() == 0) {
-      return;
-    }
-
-    if (this.manager.areMovingGroupsReady() == false) {
-      return;
+    
+    if (this.isPaused == false) {
+      this.startTime = SystemClock.uptimeMillis();
+      this.delayTime = 0;
     }
 
     this.manager.prepareMovingGroups();
 
     prepareTimeTable();
 
-    if (this.timeTable == null) {
-      return;
-    }
-
-    this.endTime = this.manager.getStopTime();
+    this.stopTime = this.manager.getStopTime();
 
     if (this.isPaused) {
       this.delayTime += SystemClock.uptimeMillis() - this.pausedTime;
     }
-
     this.isPaused = false;
-    this.animationTask = new AnimationTask(this.startTime, this.endTime, getObjectGroupManager(), getObjectRender(), this.delayTime);
+    
+    this.animationTask = new AnimationTask(this.startTime, this.stopTime, getObjectGroupManager(), getObjectRender(), this.delayTime);
+    final int animationSpeed = this.activity.ndFragment.animationSpeed;
     this.animationTask.setSpeedScale(((double)animationSpeed) / 10);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
@@ -510,7 +502,6 @@ public class CanvasFragment extends RoboFragment {
     });
 
     this.playable = false;
-    
     this.timer = new Timer();
     this.timer.schedule(this.animationTask, 0, 30);
   }
