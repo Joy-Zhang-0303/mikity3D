@@ -127,14 +127,14 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * 例外メッセージを出力するダイアログを表示します。
+   * ダイアログに警告メッセージを表示します。
    * 
    * @param message メッセージ
    */
-  void showExceptionDailogFragment(String message) {
-    final DialogFragment dialogFragment = new ExceptionDialogFragment();
-    ((ExceptionDialogFragment)dialogFragment).setMessage(message);
-    dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
+  void showAlertMessageInDailog(String message) {
+    final AlertDialogFragment dialog = new AlertDialogFragment();
+    dialog.setMessage(message);
+    dialog.show(getFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**

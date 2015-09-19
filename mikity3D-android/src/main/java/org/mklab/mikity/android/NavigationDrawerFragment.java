@@ -551,7 +551,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       setButtonEnabled(true);
       
     } catch (Mikity3dSerializeDeserializeException e) {
-      setExceptionDailogFragment("please select model file."); //$NON-NLS-1$
+      showAlertMessageInDialog("please select model file."); //$NON-NLS-1$
       setButtonEnabled(false);
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -559,12 +559,14 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
 
   /**
-   * @param message 例外メッセージ
+   * 警告メッセージを表示します。
+   * 
+   * @param message メッセージ
    */
-  void setExceptionDailogFragment(String message) {
-    final DialogFragment fragment = new ExceptionDialogFragment();
-    ((ExceptionDialogFragment)fragment).setMessage(message);
-    fragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
+  void showAlertMessageInDialog(String message) {
+    final AlertDialogFragment dialog = new AlertDialogFragment();
+    dialog.setMessage(message);
+    dialog.show(getFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**
@@ -575,10 +577,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.quickButton.setEnabled(enabled);
     this.slowButton.setEnabled(enabled);
     this.sourceNumberChangeButton.setEnabled((enabled));
-    
-    //this.sourceButton.setEnabled(enabled);
-    //this.sourceReloadButton.setEnabled(enabled);
-    //this.sourceDeleteButton.setEnabled(enabled);
 
     for (Button button : this.sourceSelectButtons) {
       button.setEnabled(enabled);

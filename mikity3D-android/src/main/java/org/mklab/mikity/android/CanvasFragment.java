@@ -344,29 +344,35 @@ public class CanvasFragment extends RoboFragment {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      callExceptionDialogFragment("Please select data file."); //$NON-NLS-1$
+      showAlertMessageInDialog("Please select source file."); //$NON-NLS-1$
+      this.setIllegalSourceData = true;
     } catch (IllegalArgumentException e) {
-      callExceptionDialogFragment("Please select proper data file or set source number size to data size or lower."); //$NON-NLS-1$
+      if (this.progressDialog != null) {
+        this.progressDialog.dismiss();
+      }
+      
+      showAlertMessageInDialog("Please select proper source file or set source number size to data size or lower."); //$NON-NLS-1$
+      this.setIllegalSourceData = true;
     } catch (IllegalAccessError e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
       final String message = "Source data size is not match model's source number." //$NON-NLS-1$
-          + "\nPlease select proper source data or set proper source number."; //$NON-NLS-1$
-      callExceptionDialogFragment(message);
+          + "\nPlease select proper source file or set proper source number."; //$NON-NLS-1$
+      showAlertMessageInDialog(message);
       this.setIllegalSourceData = true;
     }
   }
 
   /**
-   * 例外がキャッチされた時、その例外に対するダイアログを表示します。
+   * ダイアログに警告メッセージを表示します。
    * 
-   * @param message 例外に対する返答
+   * @param message メッセージ
    */
-  public void callExceptionDialogFragment(String message) {
-    final DialogFragment dialogFragment = new ExceptionDialogFragment();
-    ((ExceptionDialogFragment)dialogFragment).setMessage(message);
-    dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
+  void showAlertMessageInDialog(String message) {
+    final AlertDialogFragment dialog = new AlertDialogFragment();
+    dialog.setMessage(message);
+    dialog.show(getFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**
@@ -381,14 +387,23 @@ public class CanvasFragment extends RoboFragment {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
+      
       final String message = "Source data size is not match model's source number." //$NON-NLS-1$
           + "\nPlease select proper source data or set proper source number."; //$NON-NLS-1$
-      final DialogFragment dialogFragment = new ExceptionDialogFragment();
-      ((ExceptionDialogFragment)dialogFragment).setMessage(message);
-      dialogFragment.show(getFragmentManager(), "exceptionDialogFragment"); //$NON-NLS-1$
+      
+      showAlertMessageInDialog(message);
+
       this.setIllegalSourceData = true;
+      return;
     } catch (IllegalArgumentException e) {
-      callExceptionDialogFragment("Please select proper data file or set source number to data size or lower."); //$NON-NLS-1$
+      if (this.progressDialog != null) {
+        this.progressDialog.dismiss();
+      }
+      
+      showAlertMessageInDialog("Please select proper source data or set source number to data size or lower."); //$NON-NLS-1$
+      
+      this.setIllegalSourceData = true;
+      return;
     }
 
     this.setIllegalSourceData = false;
@@ -451,7 +466,6 @@ public class CanvasFragment extends RoboFragment {
     if (this.playable == false) {
       this.timer.cancel();
     }
-    this.playable = false;
 
     if (this.sourceData.size() == 0) {
       return;
@@ -495,8 +509,32 @@ public class CanvasFragment extends RoboFragment {
       }
     });
 
+    this.playable = false;
+    
     this.timer = new Timer();
     this.timer.schedule(this.animationTask, 0, 30);
+  }
+  
+  /**
+   * アニメーションを停止します。 
+   */
+  public void stopAnimation() {
+    this.timer.cancel();
+    this.playable = true;
+    this.isPaused = false;
+  }
+  
+  /**
+   * アニメーションを一時停止します。 
+   */
+  public void pauseAnimation() {
+    if (this.isPaused == false) {
+      if (this.animationTask != null) {
+        this.timer.cancel();
+        this.isPaused = true;
+        setPuasedTime(SystemClock.uptimeMillis());
+      }
+    }
   }
 
   /**
