@@ -9,7 +9,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
+import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
@@ -18,12 +18,12 @@ import org.mklab.mikity.view.gui.UnitLabel;
 
 
 /**
- * 円柱の編集するエディタを表すクラスです。
+ * カプセルの編集するエディタを表すクラスです。
  * 
  * @author miki
  * @version $Revision: 1.5 $.2005/02/09
  */
-public class CylinderEditor extends AbstractPrimitiveEditor {
+public class CapsuleEditor extends AbstractPrimitiveEditor {
   /** 半径。 */
   private ParameterInputBox radius;
   /** 高さ。 */
@@ -32,13 +32,13 @@ public class CylinderEditor extends AbstractPrimitiveEditor {
   private ParameterInputBox division;
 
   /**
-   * 新しく生成された<code>CylinderEditor</code>オブジェクトを初期化します。
+   * 新しく生成された<code>CapsuleEditor</code>オブジェクトを初期化します。
    * @param parent 親のシェル
    * @param primitive プリミティブ
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public CylinderEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+  public CapsuleEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     super(parent, primitive, tree, modeler);
   }
 
@@ -49,21 +49,21 @@ public class CylinderEditor extends AbstractPrimitiveEditor {
   public void createParameterBoxes(Group parameterGroup) {
     this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
     
-    final CylinderModel cylinder = (CylinderModel)this.primitive;
+    final CapsuleModel capsule = (CapsuleModel)this.primitive;
     
-    this.radius = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.35"), "" + cylinder.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
+    this.radius = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.35"), "" + capsule.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
 
     final Label radiusUnit = new Label(parameterGroup, SWT.NONE);
     radiusUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(radiusUnit, 1);
 
-    this.height = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.36"), "" + cylinder.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
+    this.height = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.36"), "" + capsule.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
 
     final Label heightUnit = new Label(parameterGroup, SWT.NONE);
     heightUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(heightUnit, 1);
 
-    this.division = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.37"), "" + cylinder.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
+    this.division = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.37"), "" + capsule.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
   }
 
   /**
@@ -71,10 +71,10 @@ public class CylinderEditor extends AbstractPrimitiveEditor {
    */
   @Override
   public void updateModelParameters() {
-    final CylinderModel cylinder = (CylinderModel)this.primitive;
-    cylinder.setRadius(this.radius.getFloatValue());
-    cylinder.setHeight(this.height.getFloatValue());
-    cylinder.setDivision(this.division.getIntValue());
+    final CapsuleModel capsule = (CapsuleModel)this.primitive;
+    capsule.setRadius(this.radius.getFloatValue());
+    capsule.setHeight(this.height.getFloatValue());
+    capsule.setDivision(this.division.getIntValue());
   }
 
   /**

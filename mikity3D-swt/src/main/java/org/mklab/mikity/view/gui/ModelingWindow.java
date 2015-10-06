@@ -30,6 +30,7 @@ import org.mklab.mikity.view.gui.action.file.FileSaveAction;
 import org.mklab.mikity.view.gui.action.file.FileSaveAsAction;
 import org.mklab.mikity.view.gui.action.toolbar.AbstractToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.BoxToolBarAction;
+import org.mklab.mikity.view.gui.action.toolbar.CapsuleToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.ConeToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.CylinderToolBarAction;
 import org.mklab.mikity.view.gui.action.toolbar.GroupToolBarAction;
@@ -66,6 +67,7 @@ public class ModelingWindow extends ApplicationWindow {
   private AbstractToolBarAction TOOLBAR_SPHERE_ACTION = new SphereToolBarAction(this);
   private AbstractToolBarAction TOOLBAR_CYLINDER_ACTION = new CylinderToolBarAction(this);
   private AbstractToolBarAction TOOLBAR_CONE_ACTION = new ConeToolBarAction(this);
+  private AbstractToolBarAction TOOLBAR_CAPSULE_ACTION = new CapsuleToolBarAction(this);
   private AbstractToolBarAction TOOLBAR_TRIANGLE_ACTION = new TriangleToolBarAction(this);
   private AbstractToolBarAction TOOLBAR_QUADRANGLE_ACTION = new QuadrangleToolBarAction(this);
   
@@ -116,6 +118,7 @@ public class ModelingWindow extends ApplicationWindow {
     this.TOOLBAR_SPHERE_ACTION.setModeler(this.modeler);
     this.TOOLBAR_CYLINDER_ACTION.setModeler(this.modeler);
     this.TOOLBAR_CONE_ACTION.setModeler(this.modeler);
+    this.TOOLBAR_CAPSULE_ACTION.setModeler(this.modeler);
     this.TOOLBAR_TRIANGLE_ACTION.setModeler(this.modeler);
     this.TOOLBAR_QUADRANGLE_ACTION.setModeler(this.modeler);
     this.RESET_TO_INITIAL_STATE_ACTION.setModeler(this.modeler);
@@ -189,6 +192,7 @@ public class ModelingWindow extends ApplicationWindow {
     toolbar.add(this.TOOLBAR_CYLINDER_ACTION);
     toolbar.add(this.TOOLBAR_SPHERE_ACTION);
     toolbar.add(this.TOOLBAR_CONE_ACTION);
+    toolbar.add(this.TOOLBAR_CAPSULE_ACTION);
     toolbar.add(this.TOOLBAR_TRIANGLE_ACTION);
     toolbar.add(this.TOOLBAR_QUADRANGLE_ACTION);
     return toolbar;

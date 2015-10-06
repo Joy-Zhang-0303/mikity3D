@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -240,6 +241,18 @@ public class SceneGraphTree {
         updateTree();
       }
     });
+    
+    final MenuItem addCapsule = new MenuItem(menu, SWT.POP_UP);
+    addCapsule.setText(Messages.getString("SceneGraphTree.35")); //$NON-NLS-1$
+    addCapsule.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        final PrimitiveModel primitive = CapsuleModel.createDefault();
+        SceneGraphTree.this.targetGroup.add(primitive);
+        updateTree();
+      }
+    });
 
     final MenuItem addTriangle = new MenuItem(menu, SWT.POP_UP);
     addTriangle.setText(Messages.getString("SceneGraphTree.5")); //$NON-NLS-1$
@@ -348,6 +361,7 @@ public class SceneGraphTree {
           addCylinder.setEnabled(false);
           addSphere.setEnabled(false);
           addCone.setEnabled(false);
+          addCapsule.setEnabled(false);
           addTriangle.setEnabled(false);
           addQuadrangle.setEnabled(false);
           addGroup.setEnabled(true);
@@ -367,6 +381,7 @@ public class SceneGraphTree {
           addCylinder.setEnabled(true);
           addSphere.setEnabled(true);
           addCone.setEnabled(true);
+          addCapsule.setEnabled(true);
           addTriangle.setEnabled(true);
           addQuadrangle.setEnabled(true);
           addGroup.setEnabled(true);
@@ -385,6 +400,7 @@ public class SceneGraphTree {
         addCylinder.setEnabled(false);
         addSphere.setEnabled(false);
         addCone.setEnabled(false);
+        addCapsule.setEnabled(false);
         addTriangle.setEnabled(false);
         addQuadrangle.setEnabled(false);
         addGroup.setEnabled(false);

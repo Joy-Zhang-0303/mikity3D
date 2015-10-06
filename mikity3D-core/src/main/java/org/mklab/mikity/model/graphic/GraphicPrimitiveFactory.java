@@ -6,6 +6,7 @@
 package org.mklab.mikity.model.graphic;
 
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
@@ -43,6 +44,10 @@ public class GraphicPrimitiveFactory {
     
     if (model instanceof SphereModel) {
       return new SpherePrimitive((SphereModel)model);
+    }
+    
+    if (model instanceof CapsuleModel) {
+      return new CapsulePrimitive((CapsuleModel)model);
     } 
     
     if (model instanceof TriangleModel) {

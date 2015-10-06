@@ -17,6 +17,7 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
@@ -135,6 +136,9 @@ public class DragAndDropEnabler {
       } else if (obj instanceof ConeModel) {
         sourceGroup.remove((ConeModel)obj);
         group.add((ConeModel)obj);
+      } else if (obj instanceof CapsuleModel) {
+        sourceGroup.remove((CapsuleModel)obj);
+        group.add((AbstractPrimitiveModel)obj);
       } else if (obj instanceof TriangleModel) {
         sourceGroup.remove((TriangleModel)obj);
         group.add((TriangleModel)obj);
