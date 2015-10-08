@@ -150,14 +150,6 @@ public class SceneGraphTree {
       
       SceneGraphTree.this.model.removeGroup((GroupModel)selectedData);
       selectedItem.dispose();
-      
-//      if (parentItem.getItemCount() == 0) {
-//        final GroupModel objectGroup = new GroupModel();
-//        objectGroup.setName("object"); //$NON-NLS-1$
-//        SceneGraphTree.this.model.addGroup(objectGroup);
-//        SceneGraphTree.this.targetGroup = objectGroup;
-//        fillTree();
-//      }
     } else {
       final GroupModel group = (GroupModel)parentItem.getData();
       if (removeObject(group, selectedData, parent)) {
