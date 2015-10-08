@@ -74,8 +74,8 @@ public class SceneGraphTree {
   public SceneGraphTree(final Composite parent, final JoglModeler modeler, final SceneModel model) {
     this.model = model;
     this.modeler = modeler;
-    this.scene = new GroupModel();
-    this.scene.setName("scene"); //$NON-NLS-1$
+    this.scene = new GroupModel("scene"); //$NON-NLS-1$
+    this.scene.setGroups(model.getGroups());
 
     this.targetGroup = this.scene;
     this.targetObject= this.scene;

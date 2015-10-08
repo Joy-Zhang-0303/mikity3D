@@ -369,6 +369,15 @@ public class GroupModel implements Serializable, Cloneable {
   public void setName(String name) {
     this.name = name;
   }
+  
+  /**
+   * グループを設定します。
+   * 
+   * @param groups グループ
+   */
+  public void setGroups(List<GroupModel> groups) {
+    this.groups = groups;
+  }
 
   /**
    * Sets the value of field 'rotation'.
