@@ -20,7 +20,6 @@ import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import roboguice.fragment.RoboFragment;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -97,7 +96,8 @@ public class AssetsListViewFragment extends RoboFragment {
             final InputStream input = AssetsListViewFragment.this.assetManager.open(nextFile);
 
             if (AssetsListViewFragment.this.isModel) {
-              AssetsListViewFragment.this.canvasActivity.canvasFragment.loadModelData(input);
+              //AssetsListViewFragment.this.canvasActivity.canvasFragment.loadModelData(input);
+              AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleModelData(input, nextFile);
               
               if (AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.size() != 0) {
                 AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.clear();
@@ -105,11 +105,12 @@ public class AssetsListViewFragment extends RoboFragment {
               
               AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
               
-              AssetsListViewFragment.this.canvasActivity.ndFragment.createSampleSource();
+              AssetsListViewFragment.this.canvasActivity.ndFragment.createSampleSourceComponent();
               
               AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
             } else {
-              AssetsListViewFragment.this.canvasActivity.canvasFragment.loadSourceData(input, nextFile, AssetsListViewFragment.this.sourceId);
+              //AssetsListViewFragment.this.canvasActivity.canvasFragment.loadSourceData(input, nextFile, AssetsListViewFragment.this.sourceId);
+              AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleSourceData(input, nextFile, AssetsListViewFragment.this.sourceId);
             }
 
             AssetsListViewFragment.this.fragmentManager.popBackStack();

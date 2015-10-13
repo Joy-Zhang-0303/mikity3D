@@ -3,17 +3,24 @@
     android:layout_height="wrap_content" >
 
     <TextView
-        android:id="@+id/assetsSourceText"
-        android:layout_width="0dp"
+        android:id="@+id/sampleSourceText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/assetsSourceText" />
+        android:text="@string/sampleSourceText"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <Button
-        android:id="@+id/assetsSourceButton"
+        android:id="@+id/sampleSourceButton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/assetsSourceButtonText" />
+        android:text="@string/sampleSourceButtonText" />
+    
+     <TextView
+        android:id="@+id/sampleSourceFileNameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="30"
+        android:text="@string/sampleSourceFileNameView" />
 
 </LinearLayout>

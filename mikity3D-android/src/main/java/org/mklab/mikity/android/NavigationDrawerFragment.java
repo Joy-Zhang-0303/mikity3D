@@ -36,7 +36,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.method.ScrollingMovementMethod;
@@ -63,7 +62,10 @@ public class NavigationDrawerFragment extends RoboFragment {
   CanvasActivity canvasActivity;
 
   /** モデルのファイルパス。 */
-  TextView modelPathView;
+  TextView modelFileNameView;
+
+  /** サンプルモデルのファイルパス。 */
+  TextView sampleModelFileNameView;
 
   /** ソースID。 */
   String sourceId = null;
@@ -84,10 +86,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button quickButton;
   /** アニメーションスピードを遅くするときに押されるボタン */
   Button slowButton;
-  
-  /** モデルデータ読み込むときに押されるボタン */
-  Button modelButton;
-  
+    
   /** モデルを選択するときに押されるボタン */
   List<Button> sourceSelectButtons = new ArrayList<Button>();
   /** ソースデータ再読み込みのためのボタン */
@@ -95,8 +94,11 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** ソースデータを削除するためのボタン */
   List<Button> sourceDeleteButtons = new ArrayList<Button>();
   /** ソースのファイルパス。 */
-  Map<String,TextView> sourcePathViews = new HashMap<String,TextView>();
-  
+  Map<String,TextView> sourceFileNameViews = new HashMap<String,TextView>();
+
+  /** サンプルソースのファイルパス。 */
+  Map<String,TextView> sampleSourceFileNameViews = new HashMap<String,TextView>();
+
   /** 端末の角度を3Dオブジェクトに反映させるかどうかのトグル */
   ToggleButton rotationSensorButton;
   /** 加速度を3Dオブジェクトに反映させるかどうかのトグル */
@@ -107,7 +109,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** ソース番号を変更するためのボタン */
   Button sourceNumberChangeButton;
 
-  List<Button> assetsSourceButtons = new ArrayList<Button>();
+  List<Button> sampleSourceButtons = new ArrayList<Button>();
   
   /**
    * {@inheritDoc}
@@ -126,7 +128,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
     createSensorComponent(mainView);
 
-    createSampleComponent(mainView);
+    createSampleModelComponent(mainView);
        
     //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
     this.canvasActivity.ndFragment = this;
@@ -174,8 +176,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
 
   private void createModelComponent(final View mainView) {
-    this.modelButton = (Button)mainView.findViewById(R.id.modelSelectButton);
-    this.modelButton.setOnClickListener(new View.OnClickListener() {
+    final Button modelButton = (Button)mainView.findViewById(R.id.modelSelectButton);
+    modelButton.setOnClickListener(new View.OnClickListener() {
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_FILE_OR_DIRECTORY;
 
       /**
@@ -186,8 +188,8 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
     
-    this.modelPathView = (TextView)mainView.findViewById(R.id.modelPathView);
-    this.modelPathView.setMovementMethod(ScrollingMovementMethod.getInstance());
+    this.modelFileNameView = (TextView)mainView.findViewById(R.id.modelPathView);
+    this.modelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
 
   private void createSourceComponent() {
@@ -199,7 +201,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.sourceSelectButtons.clear();
     this.sourceDeleteButtons.clear();
     this.sourceReloadButtons.clear();
-    this.sourcePathViews.clear();
+    this.sourceFileNameViews.clear();
     
     for (final String id : ids) {
       final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.source, null);
@@ -225,7 +227,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       });
     
       final TextView sourcePathView = (TextView)source.findViewById(R.id.sourcePathView);
-      this.sourcePathViews.put(id,sourcePathView);
+      this.sourceFileNameViews.put(id,sourcePathView);
 
       final Button sourceDeleteButton = (Button)source.findViewById(R.id.sourceDeleteButton);
       this.sourceDeleteButtons.add(sourceDeleteButton);
@@ -239,7 +241,7 @@ public class NavigationDrawerFragment extends RoboFragment {
           if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData.containsKey(id)) { 
             NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData.remove(id);
             final String sourceFileName = "..."; //$NON-NLS-1$
-            NavigationDrawerFragment.this.sourcePathViews.get(id).setText(sourceFileName);
+            NavigationDrawerFragment.this.sourceFileNameViews.get(id).setText(sourceFileName);
           }
         }
       });
@@ -328,9 +330,9 @@ public class NavigationDrawerFragment extends RoboFragment {
     });
   }
 
-  private void createSampleComponent(final View mainView) {
-    final Button assetsModelButton = (Button)mainView.findViewById(R.id.assetsModelButton);
-    assetsModelButton.setOnClickListener(new OnClickListener() {
+  private void createSampleModelComponent(final View mainView) {
+    final Button sampleModelButton = (Button)mainView.findViewById(R.id.sampleModelButton);
+    sampleModelButton.setOnClickListener(new OnClickListener() {
       /**
        * {@inheritDoc}
        */
@@ -346,6 +348,9 @@ public class NavigationDrawerFragment extends RoboFragment {
         transaction.commit();
       }
     });
+    
+    this.sampleModelFileNameView = (TextView)mainView.findViewById(R.id.sampleModelFileNameView);
+    this.sampleModelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
   
   /**
@@ -391,26 +396,27 @@ public class NavigationDrawerFragment extends RoboFragment {
   /**
    * サンプルのソースを読み込むボタンを生成します。 
    */
-  void createSampleSource() {
+  void createSampleSourceComponent() {
     final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();
     final Set<String> ids = getAllIds(rootGroups);  
     
     final LinearLayout sampleSources = ((LinearLayout)getActivity().findViewById(R.id.layout_sample_sources));
     sampleSources.removeAllViews();
-    this.assetsSourceButtons.clear();
+    this.sampleSourceButtons.clear();
+    this.sampleSourceFileNameViews.clear();
     
     for (final String id : ids) {
       final LinearLayout sampleSource = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.sample_source, null);
       sampleSources.addView(sampleSource);
       
-      final TextView assetsSourceTextView = (TextView)sampleSource.findViewById(R.id.assetsSourceText);
-      assetsSourceTextView.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+      final TextView sampleSourceTextView = (TextView)sampleSource.findViewById(R.id.sampleSourceText);
+      sampleSourceTextView.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       
-      final Button assetsSourceButton = (Button)sampleSource.findViewById(R.id.assetsSourceButton); 
-      this.assetsSourceButtons.add(assetsSourceButton);
+      final Button sampleSourceButton = (Button)sampleSource.findViewById(R.id.sampleSourceButton); 
+      this.sampleSourceButtons.add(sampleSourceButton);
       
-      assetsSourceButton.setEnabled(false);
-      assetsSourceButton.setOnClickListener(new OnClickListener() {
+      sampleSourceButton.setEnabled(false);
+      sampleSourceButton.setOnClickListener(new OnClickListener() {
         /**
          * {@inheritDoc}
          */
@@ -426,6 +432,10 @@ public class NavigationDrawerFragment extends RoboFragment {
           transaction.commit();
         }
       });
+      
+      final TextView sampleSourceFileNameView = (TextView)sampleSource.findViewById(R.id.sampleSourceFileNameView);
+      this.sampleSourceFileNameViews.put(id, sampleSourceFileNameView);
+
     }
   }
 
@@ -452,6 +462,21 @@ public class NavigationDrawerFragment extends RoboFragment {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
+  }
+  
+  /**
+   * ストリームからサンプルソースデータを取り出します。
+   * 
+   * @param input ソースの入力ストリーム
+   * @param filePath ソースのファイルパス
+   * @param sampleSourceId ソースID
+   */
+  public void loadSampleSourceData(final InputStream input, final String filePath, final String sampleSourceId) {
+    this.canvasActivity.canvasFragment.loadSourceData(input, filePath, sampleSourceId);    
+    
+    final String[] parts = filePath.split("/"); //$NON-NLS-1$
+    final String sourceFileName = parts[parts.length - 1];
+    this.sampleSourceFileNameViews.get(sampleSourceId).setText(sourceFileName);
   }
 
   /**
@@ -490,12 +515,25 @@ public class NavigationDrawerFragment extends RoboFragment {
       sourceFileName = parts[parts.length - 1];
     }
     
-    this.sourcePathViews.get(this.sourceId).setText(sourceFileName);
+    this.sourceFileNameViews.get(this.sourceId).setText(sourceFileName);
     
-    this.canvasActivity.canvasFragment.loadSourceData(sourceStream,  uri.getPath(), this.sourceId);
+    this.canvasActivity.canvasFragment.loadSourceData(sourceStream, uri.getPath(), this.sourceId);
     // sourceStream has been already closed in the loadSourceData method. 
   }
 
+  void loadSampleModelData(InputStream modelStream, String modelFilePath) throws Mikity3dSerializeDeserializeException {
+    this.canvasActivity.canvasFragment.loadModelData(modelStream);
+
+    final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
+    final String modelFileName = parts[parts.length - 1];
+    this.sampleModelFileNameView.setText(modelFileName);
+    
+    final String sampleSourceFileName = "..."; //$NON-NLS-1$
+    for (final TextView view : this.sampleSourceFileNameViews.values()) {
+      view.setText(sampleSourceFileName);
+    }
+  }
+  
   /**
    * モデルをURIから読み込みます。
    * 
@@ -532,9 +570,9 @@ public class NavigationDrawerFragment extends RoboFragment {
       modelFileName = parts[parts.length - 1];
     }
 
-    this.modelPathView.setText(modelFileName);
+    this.modelFileNameView.setText(modelFileName);
     final String sourceFileName = "..."; //$NON-NLS-1$
-    for (final TextView view : this.sourcePathViews.values()) {
+    for (final TextView view : this.sourceFileNameViews.values()) {
       view.setText(sourceFileName);
     }
 
@@ -587,7 +625,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     for (Button button : this.sourceDeleteButtons) {
       button.setEnabled(enabled);
     }   
-    for (Button button : this.assetsSourceButtons) {
+    for (Button button : this.sampleSourceButtons) {
       button.setEnabled(enabled);
     }
   }

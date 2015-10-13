@@ -27,8 +27,10 @@
 	<string name="back">Back</string>
 	<string name="pause">Pause</string>
 	<string name="sampleText">Sample</string>
-	<string name="assetsModelText">Model</string>
-	<string name="assetsModelButtonText">Open</string>
-	<string name="assetsSourceText">Source</string>
-	<string name="assetsSourceButtonText">Open</string>
+	<string name="sampleModelText">Model</string>
+	<string name="sampleModelButtonText">Open</string>
+	<string name="sampleSourceText">Source</string>
+	<string name="sampleSourceButtonText">Open</string>
+    <string name="sampleModelFileNameView">...</string>
+  	<string name="sampleSourceFileNameView">...</string>
 </resources>
