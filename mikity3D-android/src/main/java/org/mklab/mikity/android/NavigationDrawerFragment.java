@@ -91,8 +91,6 @@ public class NavigationDrawerFragment extends RoboFragment {
   List<Button> sourceSelectButtons = new ArrayList<Button>();
   /** ソースデータ再読み込みのためのボタン */
   List<Button> sourceReloadButtons = new ArrayList<Button>();
-//  /** ソースデータを削除するためのボタン */
-//  List<Button> sourceDeleteButtons = new ArrayList<Button>();
   /** ソースのファイルパス。 */
   Map<String,TextView> sourceFileNameViews = new HashMap<String,TextView>();
 
@@ -228,23 +226,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     
       final TextView sourcePathView = (TextView)source.findViewById(R.id.sourcePathView);
       this.sourceFileNameViews.put(id,sourcePathView);
-
-//      final Button sourceDeleteButton = (Button)source.findViewById(R.id.sourceDeleteButton);
-//      this.sourceDeleteButtons.add(sourceDeleteButton);
-//      
-//      sourceDeleteButton.setEnabled(false);
-//      sourceDeleteButton.setOnClickListener(new View.OnClickListener() {
-//        /**
-//         * {@inheritDoc}
-//         */
-//        public void onClick(View view) {
-//          if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData.containsKey(id)) { 
-//            NavigationDrawerFragment.this.canvasActivity.canvasFragment.sourceData.remove(id);
-//            final String sourceFileName = "..."; //$NON-NLS-1$
-//            NavigationDrawerFragment.this.sourceFileNameViews.get(id).setText(sourceFileName);
-//          }
-//        }
-//      });
       
       final Button sourceReloadButton = (Button)source.findViewById(R.id.sourceReloadButton);
       this.sourceReloadButtons.add(sourceReloadButton);
@@ -619,12 +600,11 @@ public class NavigationDrawerFragment extends RoboFragment {
     for (Button button : this.sourceSelectButtons) {
       button.setEnabled(enabled);
     }
+
     for (Button button : this.sourceReloadButtons) {
       button.setEnabled(enabled);
     }
-//    for (Button button : this.sourceDeleteButtons) {
-//      button.setEnabled(enabled);
-//    }   
+
     for (Button button : this.sampleSourceButtons) {
       button.setEnabled(enabled);
     }
