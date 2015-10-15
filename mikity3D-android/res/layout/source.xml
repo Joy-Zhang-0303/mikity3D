@@ -24,13 +24,6 @@
         android:text="@string/filePathView" />
 
     <Button
-        android:id="@+id/sourceDeleteButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sourceDeleteButton" />
-
-    <Button
         android:id="@+id/sourceReloadButton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"

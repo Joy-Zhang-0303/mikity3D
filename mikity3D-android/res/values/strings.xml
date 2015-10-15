@@ -15,7 +15,6 @@
 	<string name="plusButton">>></string>
 	<string name="modelPathLabel">Model</string>
 	<string name="sourcePathLabel">Source</string>
-	<string name="sourceDeleteButton">×</string>
 	<string name="rotationSensorTextView">Rotation Sensor</string>
 	<string name="rotationSensorButton">rotationSensorButton</string>
 	<string name="accelerometerTextView">Accelerometer</string>
