@@ -51,25 +51,25 @@
         android:layout_height="match_parent" >
 
         <TextView
-            android:id="@+id/modelPathlabel"
+            android:id="@+id/modellabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/modelPathLabel" />
+            android:text="@string/modelLabel" />
 
         <Button
             android:id="@+id/modelSelectButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fileSelectButton" />
+            android:text="@string/modelSelectButton" />
 
         <TextView
-            android:id="@+id/modelPathView"
+            android:id="@+id/modelFileNameView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="20"
-            android:text="@string/filePathView" />
+            android:text="@string/modelFileNameView" />
     </LinearLayout>
 
     <LinearLayout
@@ -167,11 +167,11 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/sampleTextView"
+            android:id="@+id/sampleLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/sampleText" />
+            android:text="@string/sampleLabel" />
     </LinearLayout>
 
     <LinearLayout
@@ -179,18 +179,18 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/sampleModelTextView"
+            android:id="@+id/sampleModelLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/sampleModelText" />
+            android:text="@string/sampleModelLabel" />
 
         <Button
-            android:id="@+id/sampleModelButton"
+            android:id="@+id/sampleModelSelectButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sampleModelButtonText" />
+            android:text="@string/sampleModelSelectButton" />
         
          <TextView
             android:id="@+id/sampleModelFileNameView"

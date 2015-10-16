@@ -3,10 +3,10 @@
     android:layout_height="wrap_content" >
 
     <TextView
-        android:id="@+id/sourcePathLabel"
+        android:id="@+id/sourceLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sourcePathLabel"
+        android:text="@string/sourceLabel"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <Button
@@ -14,14 +14,14 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/fileSelectButton" />
+        android:text="@string/sourceSelectButton" />
 
     <TextView
-        android:id="@+id/sourcePathView"
+        android:id="@+id/sourceFileNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLength="30"
-        android:text="@string/filePathView" />
+        android:text="@string/sourceFileNameView" />
 
     <Button
         android:id="@+id/sourceReloadButton"
