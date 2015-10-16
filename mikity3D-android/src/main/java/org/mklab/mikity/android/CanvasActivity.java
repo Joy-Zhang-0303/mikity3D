@@ -131,21 +131,21 @@ public class CanvasActivity extends RoboFragmentActivity {
 
     switch (item.getItemId()) {
       case R.id.menu_play:
-        CanvasActivity.this.canvasFragment.runAnimation();
         if (CanvasActivity.this.canvasFragment.playable) {
           this.isStopButtonPushable = true;
         }
+        CanvasActivity.this.canvasFragment.runAnimation();
         break;
       case R.id.menu_stop:
         if (this.isStopButtonPushable) {
-          CanvasActivity.this.canvasFragment.stopAnimation();
           this.isStopButtonPushable = false;
+          CanvasActivity.this.canvasFragment.stopAnimation();
         }
         break;
       case R.id.menu_pause:
         if (this.isStopButtonPushable) {
-          CanvasActivity.this.canvasFragment.pauseAnimation();
           this.isStopButtonPushable = false;
+          CanvasActivity.this.canvasFragment.pauseAnimation();
         }
         break;
       default:

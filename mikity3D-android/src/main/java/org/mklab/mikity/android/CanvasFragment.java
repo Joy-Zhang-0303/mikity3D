@@ -102,8 +102,7 @@ public class CanvasFragment extends RoboFragment {
 
   /** プログレスダイアログ */
   ProgressDialog progressDialog;
-  /** 無効な時間データが読み込まれたならばtrue */
-  private boolean setIllegalSourceData = false;
+
   /** ポーズボタンが押されたならばtrue */
   boolean isPaused = false;
 
@@ -332,7 +331,6 @@ public class CanvasFragment extends RoboFragment {
       } else {
         this.sourceData.put(sourceId, DoubleMatrix.readCsvFormat(new InputStreamReader(input)).transpose());
       }
-      this.setIllegalSourceData = false;
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
@@ -340,14 +338,12 @@ public class CanvasFragment extends RoboFragment {
         this.progressDialog.dismiss();
       }
       showAlertMessageInDialog("Please select source file."); //$NON-NLS-1$
-      this.setIllegalSourceData = true;
     } catch (IllegalArgumentException e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      
+
       showAlertMessageInDialog("Please select proper source file and set proper source number."); //$NON-NLS-1$
-      this.setIllegalSourceData = true;
     } catch (IllegalAccessError e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
@@ -355,7 +351,6 @@ public class CanvasFragment extends RoboFragment {
       final String message = "Source data size is not match model's source number." //$NON-NLS-1$
           + "\nPlease select proper source file and set proper source number."; //$NON-NLS-1$
       showAlertMessageInDialog(message);
-      this.setIllegalSourceData = true;
     }
   }
 
@@ -385,23 +380,13 @@ public class CanvasFragment extends RoboFragment {
       
       final String message = "Source data size is not match model's source number." //$NON-NLS-1$
           + "\nPlease select proper source data or set proper source number."; //$NON-NLS-1$
-      
       showAlertMessageInDialog(message);
-
-      this.setIllegalSourceData = true;
-      return;
     } catch (IllegalArgumentException e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      
       showAlertMessageInDialog("Please select proper source data or set source number to data size or lower."); //$NON-NLS-1$
-      
-      this.setIllegalSourceData = true;
-      return;
     }
-
-    this.setIllegalSourceData = false;
   }
 
   private void prepareTimeTable() {
@@ -518,12 +503,15 @@ public class CanvasFragment extends RoboFragment {
    * アニメーションを一時停止します。 
    */
   public void pauseAnimation() {
-    if (this.isPaused == false) {
-      if (this.animationTask != null) {
-        this.timer.cancel();
-        this.isPaused = true;
-        setPuasedTime(SystemClock.uptimeMillis());
-      }
+    if (this.isPaused) {
+      return;
+    }      
+    
+    if (this.animationTask != null) {
+      this.timer.cancel();
+      this.isPaused = true;
+      this.playable = true;
+      setPuasedTime(SystemClock.uptimeMillis());
     }
   }
 
