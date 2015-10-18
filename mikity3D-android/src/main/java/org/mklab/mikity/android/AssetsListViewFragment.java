@@ -65,7 +65,7 @@ public class AssetsListViewFragment extends RoboFragment {
     this.assetManager = getResources().getAssets();
     
     final ListView listView = (ListView)view.findViewById(R.id.assetsListView);
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.canvasActivity, android.R.layout.simple_list_item_1, getFilesInFolder(this.currentPath));
+    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.canvasActivity, android.R.layout.simple_list_item_1, getFilesInPath(this.currentPath));
     listView.setAdapter(adapter);
 
     // リスト項目がクリックされた時の処理
@@ -73,31 +73,30 @@ public class AssetsListViewFragment extends RoboFragment {
 
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final String item = (String)listView.getItemAtPosition(position);
-        final String selectedFolder = AssetsListViewFragment.this.currentPath + File.separator + item;
-        final String[] filesInFolder = getFilesInFolder(selectedFolder);
+        final String selectedItem = AssetsListViewFragment.this.currentPath + File.separator + item;
+        final String[] filesInFolder = getFilesInPath(selectedItem);
         final List<String> selectedFileList;
 
         if (AssetsListViewFragment.this.isModel) {
-          selectedFileList = selectFilesWithExtensions(filesInFolder, new String[]{"m3d"}); //$NON-NLS-1$
+          selectedFileList = selectFilesWithExtensionsOrFolders(selectedItem, filesInFolder, new String[]{"m3d"}); //$NON-NLS-1$
         } else {
-          selectedFileList = selectFilesWithExtensions(filesInFolder, new String[]{"mat", "csv", "txt"}); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+          selectedFileList = selectFilesWithExtensionsOrFolders(selectedItem, filesInFolder, new String[]{"mat", "csv", "txt"}); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
 
         final String[] selectedFiles = selectedFileList.toArray(new String[selectedFileList.size()]);
 
         if (selectedFiles.length > 0) {
-          AssetsListViewFragment.this.currentPath = selectedFolder;
+          AssetsListViewFragment.this.currentPath = selectedItem;
           listView.setAdapter(new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, android.R.layout.simple_list_item_1, selectedFiles));
         } else {
           //copyAssetsFiles(AssetsListViewFragment.this.currentPath, item, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + File.separator + "org.mklab.mikity")); //$NON-NLS-1$
 
           try {
             // input should not be closed since it is a virtual stream for asset
-            final InputStream input = AssetsListViewFragment.this.assetManager.open(selectedFolder);
+            final InputStream input = AssetsListViewFragment.this.assetManager.open(selectedItem);
 
             if (AssetsListViewFragment.this.isModel) {
-              //AssetsListViewFragment.this.canvasActivity.canvasFragment.loadModelData(input);
-              AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleModelData(input, selectedFolder);
+              AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleModelData(input, selectedItem);
               
               if (AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.size() != 0) {
                 AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.clear();
@@ -109,8 +108,7 @@ public class AssetsListViewFragment extends RoboFragment {
               
               AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
             } else {
-              //AssetsListViewFragment.this.canvasActivity.canvasFragment.loadSourceData(input, nextFile, AssetsListViewFragment.this.sourceId);
-              AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleSourceData(input, selectedFolder, AssetsListViewFragment.this.sourceId);
+              AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleSourceData(input, selectedItem, AssetsListViewFragment.this.sourceId);
             }
 
             AssetsListViewFragment.this.fragmentManager.popBackStack();
@@ -139,15 +137,15 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * 指定したフォルダー中のファイルの名前を返します。
+   * 指定したパスの中のファイル一覧を返します。
    * 
-   * @param folderName フォルダーの名前
+   * @param path パス
    * 
-   * @return 指定したフォルダー中のファイルの名前
+   * @return 指定したパスの中のファイル一覧
    */
-  String[] getFilesInFolder(String folderName) {
+  String[] getFilesInPath(String path) {
     try {
-      final String[] files = this.assetManager.list(folderName);
+      final String[] files = this.assetManager.list(path);
       return files;
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -251,25 +249,48 @@ public class AssetsListViewFragment extends RoboFragment {
   }
 
   /**
-   * 指定された拡張子をもつファイルのみのリストを返します。
+   * 指定された拡張子をもつファイルとフォルダーのリストを返します。
    * 
+   * @param folderName フォルダー名 
    * @param files ファイルのリスト  
    * @param extensions 拡張子
    * 
-   * @return 指定された拡張子をもつファイルのみのリスト
+   * @return 指定された拡張子をもつファイルとフォルダーのリスト
    */
-  public List<String> selectFilesWithExtensions(String[] files, String[] extensions) {
+  public List<String> selectFilesWithExtensionsOrFolders(String folderName, String[] files, String[] extensions) {
     final List<String> selectedFiles = new ArrayList<String>();
     
     for (final String file : files) {
+      final String path = folderName + File.separator + file;
+      if (isFolder(path)) {
+        selectedFiles.add(file);
+        continue;
+      }
+      
       for (final String extension : extensions) {
         if (getExtension(file).toLowerCase().equals(extension)) {
           selectedFiles.add(file);
-        }
+        }         
       }
     }
     
     return selectedFiles;
+  }
+  
+  /**
+   * 指定したパスがフォルダーであるか判別します。
+   * 
+   * @param path パス
+   * @return 指定したパスがフォルダーならばtrue
+   */
+  boolean isFolder(final String path) {
+    final String[] filesInFolder = getFilesInPath(path);
+
+    if (filesInFolder.length > 0) {
+      return true;
+    }
+    
+    return false;
   }
 
   /**
