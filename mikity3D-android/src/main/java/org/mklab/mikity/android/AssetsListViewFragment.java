@@ -37,7 +37,7 @@ import android.widget.ListView;
  * @version $Revision$, 2015/03/26
  */
 public class AssetsListViewFragment extends RoboFragment {
-  String currentPath = "sample"; //$NON-NLS-1$
+  static String currentPath = "sample"; //$NON-NLS-1$
   CanvasActivity canvasActivity;
   AssetManager assetManager;
   boolean isModel;
@@ -65,7 +65,11 @@ public class AssetsListViewFragment extends RoboFragment {
     this.assetManager = getResources().getAssets();
     
     final ListView listView = (ListView)view.findViewById(R.id.assetsListView);
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.canvasActivity, android.R.layout.simple_list_item_1, getFilesInPath(this.currentPath));
+    
+    final String selectedItem = AssetsListViewFragment.currentPath;
+    final String[] selectedFiles = getSelectedFiles(selectedItem);
+    
+    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.canvasActivity, android.R.layout.simple_list_item_1, selectedFiles);
     listView.setAdapter(adapter);
 
     // リスト項目がクリックされた時の処理
@@ -73,56 +77,70 @@ public class AssetsListViewFragment extends RoboFragment {
 
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final String item = (String)listView.getItemAtPosition(position);
-        final String selectedItem = AssetsListViewFragment.this.currentPath + File.separator + item;
-        final String[] filesInFolder = getFilesInPath(selectedItem);
-        final List<String> selectedFileList;
-
-        if (AssetsListViewFragment.this.isModel) {
-          selectedFileList = selectFilesWithExtensionsOrFolders(selectedItem, filesInFolder, new String[]{"m3d"}); //$NON-NLS-1$
-        } else {
-          selectedFileList = selectFilesWithExtensionsOrFolders(selectedItem, filesInFolder, new String[]{"mat", "csv", "txt"}); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        
+        final String selectedItem;
+        if (item.equals("..")) { //$NON-NLS-1$
+          selectedItem = getParentFolder(AssetsListViewFragment.currentPath);
+        } else { 
+          selectedItem = AssetsListViewFragment.currentPath + File.separator + item;
         }
 
-        final String[] selectedFiles = selectedFileList.toArray(new String[selectedFileList.size()]);
+        final String[] selectedFiles = getSelectedFiles(selectedItem);
 
-        if (selectedFiles.length > 0) {
-          AssetsListViewFragment.this.currentPath = selectedItem;
+        if (selectedFiles.length > 1) {
+          AssetsListViewFragment.currentPath = selectedItem;
           listView.setAdapter(new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, android.R.layout.simple_list_item_1, selectedFiles));
-        } else {
-          //copyAssetsFiles(AssetsListViewFragment.this.currentPath, item, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + File.separator + "org.mklab.mikity")); //$NON-NLS-1$
+          return;
+        }
 
-          try {
-            // input should not be closed since it is a virtual stream for asset
-            final InputStream input = AssetsListViewFragment.this.assetManager.open(selectedItem);
-
-            if (AssetsListViewFragment.this.isModel) {
-              AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleModelData(input, selectedItem);
-              
-              if (AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.size() != 0) {
-                AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.clear();
-              }
-              
-              AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
-              
-              AssetsListViewFragment.this.canvasActivity.ndFragment.createSampleSourceComponent();
-              
-              AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
-            } else {
-              AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleSourceData(input, selectedItem, AssetsListViewFragment.this.sourceId);
+        final String selectedFile = selectedItem;
+          
+        try {
+          // input should not be closed since it is a virtual stream for asset
+          final InputStream input = AssetsListViewFragment.this.assetManager.open(selectedFile);
+          
+          if (AssetsListViewFragment.this.isModel) {
+            AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleModelData(input, selectedFile);
+            
+            if (AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.size() != 0) {
+              AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.clear();
             }
-
-            AssetsListViewFragment.this.fragmentManager.popBackStack();
-
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          } catch (Mikity3dSerializeDeserializeException e) {
-            throw new RuntimeException(e);
+            
+            AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
+            
+            AssetsListViewFragment.this.canvasActivity.ndFragment.createSampleSourceComponent();
+            
+            AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
+          } else {
+            AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
           }
+          
+          AssetsListViewFragment.this.fragmentManager.popBackStack();
+
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        } catch (Mikity3dSerializeDeserializeException e) {
+          throw new RuntimeException(e);
         }
       }
     });
     
     return view;
+  }
+
+  String[] getSelectedFiles(String selectedItem) {
+    String[] filesInFolder = getFilesInPath(selectedItem);
+    final List<String> selectedFileList  = new ArrayList<String>();
+    selectedFileList.add(".."); //$NON-NLS-1$
+
+    if (AssetsListViewFragment.this.isModel) {
+      selectedFileList.addAll(selectFilesWithExtensionsOrFolders(selectedItem, filesInFolder, new String[]{"m3d"})); //$NON-NLS-1$
+    } else {
+      selectedFileList.addAll(selectFilesWithExtensionsOrFolders(selectedItem, filesInFolder, new String[]{"mat", "csv", "txt"})); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    }
+
+    final String[] selectedFiles = selectedFileList.toArray(new String[selectedFileList.size()]);
+    return selectedFiles;
   }
 
   /**
@@ -246,6 +264,22 @@ public class AssetsListViewFragment extends RoboFragment {
       return fileName.substring(point + 1);
     }
     return fileName;
+  }
+  
+  /**
+   * 親フォルダーを返します。
+   * 
+   * @param path パス
+   * @return 親フォルダー
+   */
+  public String getParentFolder(String path) {
+    final int point = path.lastIndexOf("/"); //$NON-NLS-1$
+   
+    if (point != -1) {
+      return path.substring(0, point);
+    }
+
+    return path;
   }
 
   /**
