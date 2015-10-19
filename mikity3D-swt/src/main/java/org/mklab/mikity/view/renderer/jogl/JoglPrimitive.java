@@ -41,6 +41,7 @@ public class JoglPrimitive implements JoglObject {
    */
   public void display(GL2 gl) {
     applyTransparency(gl);
+    drawAxisVector(gl);
     applyColor(gl);
     drawTrianglePolygons(gl);
   }
@@ -68,6 +69,39 @@ public class JoglPrimitive implements JoglObject {
 //      gl.glEnable(GL.GL_BLEND);
 //      gl.glBlendFunc(GL.GL_ONE, GL.GL_ZERO);
 //    }
+  }
+  
+  /**
+   * 選択オブジェクトに座標を描画します。
+   * 
+   * @param gl GL
+   */
+  private void drawAxisVector(GL2 gl) {
+    if (!((AbstractGraphicPrimitive)this.object).isTransparent()) {
+      // x軸矢印
+      gl.glLineWidth(10f);
+      gl.glBegin(GL.GL_LINES);
+      gl.glColor3d(1, 0, 0);
+      gl.glVertex3f( 0, 0, 0);
+      gl.glVertex3f( 0.5f, 0, 0);
+      gl.glEnd();
+      
+      // y軸矢印
+      gl.glBegin(GL.GL_LINES);
+      gl.glColor3d(0, 1, 0);
+      gl.glVertex3f(0, 0, 0);
+      gl.glVertex3f(0, 0.5f, 0);
+      gl.glEnd();
+      
+      // z軸矢印
+      gl.glBegin(GL.GL_LINES);
+      gl.glColor3d(0, 0, 1);
+      gl.glVertex3f(0, 0, 0);
+      gl.glVertex3f(0, 0, 0.5f);
+      gl.glEnd();
+      
+      gl.glLineWidth(1.0f);
+    }
   }
   
   /**

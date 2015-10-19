@@ -104,6 +104,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   public void init(GLAutoDrawable drawable) {
     final GL2 gl = (GL2)drawable.getGL();
 
+    
     gl.glEnable(GL.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     gl.glEnable(GL.GL_CULL_FACE); // 背面除去
     
@@ -128,7 +129,6 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final ColorModel background = this.configuration.getBackground().getColor();
     gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());
 
-    
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
     
     gl.glLoadIdentity();
@@ -152,12 +152,46 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     
     gl.glScalef(this.scale, this.scale, this.scale);
     
+    // x軸の描画
+    gl.glBegin(GL.GL_LINES);
+    gl.glColor3d(1, 0, 0);
+    gl.glVertex3f(-10f, 0, 0);
+    gl.glVertex3f( 10f, 0, 0);
+    gl.glEnd();
+    
+    // y軸の描画
+    gl.glBegin(GL.GL_LINES);
+    gl.glColor3d(0, 1, 0);
+    gl.glVertex3f(0, -10f, 0);
+    gl.glVertex3f(0,  10f, 0);
+    gl.glEnd();
+    
+    // z軸の描画
+    gl.glBegin(GL.GL_LINES);
+    gl.glColor3d(0, 0, 1);
+    gl.glVertex3f(0, 0, -10f);
+    gl.glVertex3f(0, 0,  10f);
+    gl.glEnd();
+    
+    drawGrid(gl);
+    
     if (this.rootGroups != null) {
       for (final JoglObjectGroup topGroup : this.rootGroups) {
         topGroup.display(gl);
       }
     }
-
+  }
+  
+  private void drawGrid(GL2 gl) {
+    gl.glBegin(GL.GL_LINES);
+    gl.glColor3d(0.8, 0.8, 0.8);
+    for(int i = -10; i <= 10; i++) {
+      gl.glVertex3f(-0.5f, i*0.05f, 0);
+      gl.glVertex3f(0.5f, i*0.05f, 0);
+      gl.glVertex3f(i*0.05f, -0.5f, 0);
+      gl.glVertex3f(i*0.05f,  0.5f, 0);
+    }
+    gl.glEnd();
   }
 
   /**
