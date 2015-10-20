@@ -3,10 +3,11 @@
     android:id="@+id/layout_fragment_navigation_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
@@ -16,6 +17,7 @@
             android:layout_weight="1"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:textColor="@color/black"
             android:text="@string/animationSpeedText" />
 
         <Button
@@ -32,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberDecimal"
+            android:textColor="@color/black"
             android:maxLength="4" >
 
             <requestFocus />
@@ -47,14 +50,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/modellabel"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="@string/modelLabel" />
 
         <Button
@@ -69,25 +72,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="20"
+            android:textColor="@color/black"
             android:text="@string/modelFileNameView" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_sources"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/sourceNumberChangeView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="@string/sourceNumberChangeView" />
 
         <Button
@@ -99,14 +103,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/rotationSensorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:textColor="@color/black"
             android:text="@string/rotationSensorTextView" />
 
         <ToggleButton
@@ -114,19 +118,18 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
             android:text="@string/rotationSensorButton" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/accelerometerTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:textColor="@color/black"
             android:text="@string/accelerometerTextView" />
 
         <ToggleButton
@@ -134,19 +137,18 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
             android:text="@string/accelerometerButton" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/rotationLockTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:textColor="@color/black"
             android:text="@string/rotationLockTextView" />
 
         <ToggleButton
@@ -154,7 +156,6 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
             android:text="@string/rotationLockButton" />
     </LinearLayout>
 
@@ -163,26 +164,26 @@
         android:layout_height="25dip" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/sampleLabel"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="@string/sampleLabel" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/sampleModelLabel"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="@string/sampleModelLabel" />
 
         <Button
@@ -197,12 +198,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="20"
+            android:textColor="@color/black"
             android:text="@string/sampleModelFileNameView" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_sample_sources"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
     </LinearLayout>

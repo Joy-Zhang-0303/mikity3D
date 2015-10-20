@@ -7,7 +7,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sampleSourceLabel"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/sampleSourceSelectButton"
@@ -15,12 +16,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sampleSourceSelectButton" />
-    
+
     <TextView
         android:id="@+id/sampleSourceFileNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLength="30"
-        android:text="@string/sampleSourceFileNameView" />
+        android:text="@string/sampleSourceFileNameView"
+        android:textColor="@color/black" />
 
 </LinearLayout>

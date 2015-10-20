@@ -69,7 +69,7 @@ public class AssetsListViewFragment extends RoboFragment {
     final String selectedItem = AssetsListViewFragment.currentPath;
     final String[] selectedFiles = getSelectedFiles(selectedItem);
     
-    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.canvasActivity, android.R.layout.simple_list_item_1, selectedFiles);
+    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.canvasActivity, R.layout.source_item, selectedFiles);
     listView.setAdapter(adapter);
 
     // リスト項目がクリックされた時の処理
@@ -89,7 +89,8 @@ public class AssetsListViewFragment extends RoboFragment {
 
         if (selectedFiles.length > 1) {
           AssetsListViewFragment.currentPath = selectedItem;
-          listView.setAdapter(new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, android.R.layout.simple_list_item_1, selectedFiles));
+          ArrayAdapter<String> adapter = new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, R.layout.source_item, selectedFiles);
+          listView.setAdapter(adapter);
           return;
         }
 
@@ -298,6 +299,12 @@ public class AssetsListViewFragment extends RoboFragment {
       final String path = folderName + File.separator + file;
       if (isFolder(path)) {
         selectedFiles.add(file);
+      }
+    }
+
+    for (final String file : files) {
+      final String path = folderName + File.separator + file;
+      if (isFolder(path)) {
         continue;
       }
       
@@ -307,7 +314,7 @@ public class AssetsListViewFragment extends RoboFragment {
         }         
       }
     }
-    
+
     return selectedFiles;
   }
   
@@ -335,7 +342,7 @@ public class AssetsListViewFragment extends RoboFragment {
     final FragmentTransaction transaction = manager.beginTransaction();
     final NavigationDrawerFragment fragment = new NavigationDrawerFragment();
 
-    transaction.replace(R.id.assets_list_layput, fragment);
+    transaction.replace(R.id.assets_list_layout, fragment);
     transaction.addToBackStack(null);
     transaction.commit();
   }

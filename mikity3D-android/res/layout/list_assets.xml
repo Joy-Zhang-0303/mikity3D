@@ -1,15 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/assets_list_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        android:background="#000001"
-        android:id="@+id/assets_list_layput" >
+    android:background="@color/white" >
 
     <ListView
         android:id="@+id/assetsListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentTop="true"        
         android:layout_centerHorizontal="true" >
     </ListView>
 
