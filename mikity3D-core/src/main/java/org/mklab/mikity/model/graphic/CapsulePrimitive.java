@@ -13,7 +13,7 @@ import org.mklab.mikity.util.Vector3;
 public class CapsulePrimitive extends AbstractGraphicPrimitive {
   /**
    * 新しく生成された<code>CylinderObject</code>オブジェクトを初期化します。
-   * @param cylinder シリンダー
+   * @param capsule カプセル
    */
   public CapsulePrimitive(CapsuleModel capsule) {
     super(capsule);
