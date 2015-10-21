@@ -294,18 +294,11 @@ public class AssetsListViewFragment extends RoboFragment {
    */
   public List<String> selectFilesWithExtensionsOrFolders(String folderName, String[] files, String[] extensions) {
     final List<String> selectedFiles = new ArrayList<String>();
-    
-    for (final String file : files) {
-      final String path = folderName + File.separator + file;
-      if (isFolder(path)) {
-        selectedFiles.add(file);
-      }
-    }
 
     for (final String file : files) {
       final String path = folderName + File.separator + file;
       if (isFolder(path)) {
-        continue;
+        selectedFiles.add(file);
       }
       
       for (final String extension : extensions) {
