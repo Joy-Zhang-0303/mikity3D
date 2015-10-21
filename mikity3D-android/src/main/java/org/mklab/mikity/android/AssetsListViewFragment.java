@@ -76,7 +76,10 @@ public class AssetsListViewFragment extends RoboFragment {
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        final String item = (String)listView.getItemAtPosition(position);
+        String item = (String)listView.getItemAtPosition(position);
+        if (item.endsWith(File.separator)) {
+          item = item.substring(0,item.length()-1);
+        }
         
         final String selectedItem;
         if (item.equals("..")) { //$NON-NLS-1$
@@ -274,7 +277,7 @@ public class AssetsListViewFragment extends RoboFragment {
    * @return 親フォルダー
    */
   public String getParentFolder(String path) {
-    final int point = path.lastIndexOf("/"); //$NON-NLS-1$
+    final int point = path.lastIndexOf(File.separator);
    
     if (point != -1) {
       return path.substring(0, point);
@@ -298,7 +301,7 @@ public class AssetsListViewFragment extends RoboFragment {
     for (final String file : files) {
       final String path = folderName + File.separator + file;
       if (isFolder(path)) {
-        selectedFiles.add(file);
+        selectedFiles.add(file + File.separator);
       }
       
       for (final String extension : extensions) {
