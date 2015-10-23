@@ -88,7 +88,7 @@ public class Vector3 implements java.io.Serializable, Cloneable {
    * 長さを返します。
    * @return 長さ
    */
-  public float lenght() {
+  public float length() {
     return (float)Math.sqrt(this.x*this.x + this.y*this.y + this.z*this.z);
   }
   
@@ -97,7 +97,7 @@ public class Vector3 implements java.io.Serializable, Cloneable {
    * @return 正規化したベクトル
    */
   public Vector3 normalize() {
-    final float length = lenght();
+    final float length = length();
     if (length == 0) {
       return new Vector3(0, 0, 0);
     }
