@@ -159,6 +159,7 @@ public class ConeModel extends AbstractPrimitiveModel {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String toShortString() {
     return "cone"; //$NON-NLS-1$
   }

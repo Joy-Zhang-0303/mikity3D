@@ -160,6 +160,7 @@ public class CapsuleModel extends AbstractPrimitiveModel {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String toShortString() {
     return "capsule"; //$NON-NLS-1$
   }

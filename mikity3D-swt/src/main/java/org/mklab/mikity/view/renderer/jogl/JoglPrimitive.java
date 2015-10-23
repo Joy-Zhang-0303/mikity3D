@@ -39,6 +39,7 @@ public class JoglPrimitive implements JoglObject {
   /**
    * {@inheritDoc}
    */
+  @Override
   public void display(GL2 gl) {
     applyTransparency(gl);
     drawAxisVector(gl);

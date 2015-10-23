@@ -41,6 +41,7 @@ public abstract class AbstractGraphicPrimitive implements GraphicPrimitive {
   /**
    * {@inheritDoc}
    */
+  @Override
   public float[] getVertexArray() {
     return this.vertexArray;
   }
@@ -48,6 +49,7 @@ public abstract class AbstractGraphicPrimitive implements GraphicPrimitive {
   /**
    * {@inheritDoc}
    */
+  @Override
   public int getVertexArrayLength() {
     return this.vertexArray.length;
   }
@@ -55,6 +57,7 @@ public abstract class AbstractGraphicPrimitive implements GraphicPrimitive {
   /**
    * {@inheritDoc}
    */
+  @Override
   public float[] getNormalVectorArray() {
     return this.normalVectorArray;
   }
@@ -62,6 +65,7 @@ public abstract class AbstractGraphicPrimitive implements GraphicPrimitive {
   /**
    * {@inheritDoc}
    */
+  @Override
   public int getNormalVectorArrayLength() {
     return this.normalVectorArray.length;
   }

@@ -133,6 +133,7 @@ public class SphereModel extends AbstractPrimitiveModel {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String toShortString() {
     return "sphere"; //$NON-NLS-1$
   }

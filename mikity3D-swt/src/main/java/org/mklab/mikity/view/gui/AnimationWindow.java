@@ -447,6 +447,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
     this.modelFilePathText.setText(""); //$NON-NLS-1$
     this.modelFilePathText.addTraverseListener(new TraverseListener() {
 
+      @Override
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
           final String filePath = AnimationWindow.this.modelFilePathText.getText();
@@ -543,6 +544,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
     filePathText.setText(""); //$NON-NLS-1$
     filePathText.addTraverseListener(new TraverseListener() {
 
+      @Override
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
           final String filePath =  AnimationWindow.this.sourceFilePathText.get(id).getText();
@@ -695,6 +697,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
       /**
        * {@inheritDoc}
        */
+      @Override
       public void tearDownAnimation() {
         AnimationWindow.this.sliderTask.run();
         AnimationWindow.this.sliderTask.cancel();
@@ -756,6 +759,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
         /**
          * {@inheritDoc}
          */
+        @Override
         public void run() {
           final double time = SliderPositionMoveTask.this.localTask.getCurrentTime();
           String timeString = String.valueOf(time);

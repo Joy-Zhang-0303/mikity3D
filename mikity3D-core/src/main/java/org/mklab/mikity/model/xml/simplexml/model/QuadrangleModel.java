@@ -225,6 +225,7 @@ public class QuadrangleModel extends AbstractPrimitiveModel {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String toShortString() {
     return "quadrangle"; //$NON-NLS-1$
   }

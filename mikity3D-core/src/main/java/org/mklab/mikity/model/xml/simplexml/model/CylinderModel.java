@@ -160,6 +160,7 @@ public class CylinderModel extends AbstractPrimitiveModel {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String toShortString() {
     return "cylinder"; //$NON-NLS-1$
   }

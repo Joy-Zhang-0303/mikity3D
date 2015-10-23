@@ -223,6 +223,7 @@ public class TriangleModel extends AbstractPrimitiveModel {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String toShortString() {
     return "triangle"; //$NON-NLS-1$
   }

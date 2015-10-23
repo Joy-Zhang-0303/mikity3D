@@ -127,6 +127,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   /**
    * {@inheritDoc}
    */
+  @Override
   public ColorModel getColor() {
     return this.color;
   }
@@ -134,6 +135,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   /**
    * {@inheritDoc}
    */
+  @Override
   public void setColor(ColorModel color) {
     this.color = color;
     this.preservedAlpha = color.getAlpha();
@@ -142,6 +144,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   /**
    * {@inheritDoc}
    */
+  @Override
   public TranslationModel getTranslation() {
     return this.translation;
   }
@@ -149,6 +152,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   /**
    * {@inheritDoc}
    */
+  @Override
   public RotationModel getRotation() {
     return this.rotation;
   }
@@ -156,6 +160,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   /**
    * {@inheritDoc}
    */
+  @Override
   public boolean isTransparent() {
     return this.transparent;
   }
@@ -163,6 +168,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   /**
    * {@inheritDoc}
    */
+  @Override
   public void setTranslation(TranslationModel translation) {
     this.translation = translation;
   }
@@ -170,6 +176,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   /**
    * {@inheritDoc}
    */
+  @Override
   public void setRotation(RotationModel rotation) {
     this.rotation = rotation;
   }
@@ -177,6 +184,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   /**
    * {@inheritDoc}
    */
+  @Override
   public void setTransparent(boolean transparent) {
     this.transparent = transparent;
     if (transparent) {
@@ -224,6 +232,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   /**
    * {@inheritDoc}
    */
+  @Override
   public PrimitiveModel createClone() {
     return clone();
   }

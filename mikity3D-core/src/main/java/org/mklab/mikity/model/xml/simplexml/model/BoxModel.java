@@ -160,6 +160,7 @@ public class BoxModel extends AbstractPrimitiveModel {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String toShortString() {
     return "box"; //$NON-NLS-1$
   }

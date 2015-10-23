@@ -63,6 +63,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
   /**
    * {@inheritDoc}
    */
+  @Override
   public GroupModel getGroup() {
     return this.group;
   }
@@ -133,6 +134,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
   /**
    * {@inheritDoc}
    */
+  @Override
   public void display(GL2 gl) {
     gl.glPushMatrix();
     
@@ -167,6 +169,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
   /**
    * {@inheritDoc}
    */
+  @Override
   public void setCoordinate(Coordinate coordinate) {
     this.coordinate = coordinate;
   }
@@ -174,6 +177,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
   /**
    * {@inheritDoc}
    */
+  @Override
   public void setName(String name) {
     this.name = name;
   }

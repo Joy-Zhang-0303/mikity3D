@@ -133,6 +133,7 @@ public class NullModel implements PrimitiveModel, Serializable, Cloneable {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String toShortString() {
     return "null"; //$NON-NLS-1$
   }
