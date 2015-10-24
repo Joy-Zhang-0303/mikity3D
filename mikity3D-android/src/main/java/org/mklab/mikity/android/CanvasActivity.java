@@ -33,7 +33,7 @@ import android.widget.LinearLayout;
  */
 public class CanvasActivity extends RoboFragmentActivity {
 
-  final static int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 0;
+  final static int REQUEST_CODE_PICK_MODEL_DATA_FILE = 0;
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
 
   /** NavigationDrawer用のアクションバートグル */
@@ -209,7 +209,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     super.onActivityResult(requestCode, resultCode, data);
 
     switch (requestCode) {
-      case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
+      case REQUEST_CODE_PICK_MODEL_DATA_FILE:
         if (resultCode == RESULT_OK && data != null) {
           final Uri uri = data.getData();
           loadModelData(uri);

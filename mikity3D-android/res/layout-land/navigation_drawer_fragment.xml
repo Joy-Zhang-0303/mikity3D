@@ -52,25 +52,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <TextView
+<!--     <TextView
             android:id="@+id/modelLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/modelLabel"
             android:textColor="@color/black" />
-
+ -->
         <Button
             android:id="@+id/modelSelectButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/modelSelectButton" />
+            android:text="@string/modelLabel" />
 
         <TextView
             android:id="@+id/modelFileNameView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="20"
+            android:maxLength="30"
             android:text="@string/modelFileNameView"
             android:textColor="@color/black" />
     </LinearLayout>
@@ -88,7 +88,7 @@
 
         <TextView
             android:id="@+id/sourceNumberChangeView"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/sourceNumberChangeView"
             android:textColor="@color/black" />
@@ -107,7 +107,7 @@
 
         <TextView
             android:id="@+id/rotationSensorTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/rotationSensorTextView"
             android:textColor="@color/black" />
@@ -125,7 +125,7 @@
 
         <TextView
             android:id="@+id/accelerometerTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/accelerometerTextView"
             android:textColor="@color/black" />
@@ -143,7 +143,7 @@
 
         <TextView
             android:id="@+id/rotationLockTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/rotationLockTextView"
             android:textColor="@color/black" />
@@ -157,7 +157,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="25dip" />
+        android:layout_height="25dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -174,26 +174,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
+<!--
         <TextView
             android:id="@+id/sampleModelLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sampleModelLabel"
             android:textColor="@color/black" />
-
+  -->
         <Button
             android:id="@+id/sampleModelSelectButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sampleModelSelectButton" />
+            android:text="@string/sampleModelLabel" />
 
         <TextView
             android:id="@+id/sampleModelFileNameView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="20"
+            android:maxLength="30"
             android:text="@string/sampleModelFileNameView"
             android:textColor="@color/black" />
     </LinearLayout>

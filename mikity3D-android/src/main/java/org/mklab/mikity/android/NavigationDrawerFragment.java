@@ -178,7 +178,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     final Button modelButton = (Button)mainView.findViewById(R.id.modelSelectButton);
     modelButton.setOnClickListener(new View.OnClickListener() {
 
-      final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_FILE_OR_DIRECTORY;
+      final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_MODEL_DATA_FILE;
 
       /**
        * {@inheritDoc}
@@ -206,10 +206,11 @@ public class NavigationDrawerFragment extends RoboFragment {
       final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.source, null);
       sources.addView(source);
 
-      final TextView sourceLabel = (TextView)source.findViewById(R.id.sourceLabel);
-      sourceLabel.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+//      final TextView sourceLabel = (TextView)source.findViewById(R.id.sourceLabel);
+//      sourceLabel.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 
       final Button selectButton = (Button)source.findViewById(R.id.sourceSelectButton);
+      selectButton.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sourceSelectButtons.add(selectButton);
 
       selectButton.setEnabled(false);
@@ -397,10 +398,11 @@ public class NavigationDrawerFragment extends RoboFragment {
       final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.sample_source, null);
       sources.addView(source);
 
-      final TextView sourceLabel = (TextView)source.findViewById(R.id.sampleSourceLabel);
-      sourceLabel.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+//      final Button sourceLabel = (Button)source.findViewById(R.id.sampleSourceSelectButton);
+//      sourceLabel.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 
       final Button selectButton = (Button)source.findViewById(R.id.sampleSourceSelectButton);
+      selectButton.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sampleSourceSelectButtons.add(selectButton);
 
       selectButton.setEnabled(false);

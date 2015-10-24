@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
-
+<!--
     <TextView
         android:id="@+id/sourceLabel"
         android:layout_width="wrap_content"
@@ -9,13 +9,13 @@
         android:textColor="@color/black"
         android:text="@string/sourceLabel"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
+  -->
     <Button
         android:id="@+id/sourceSelectButton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sourceSelectButton" />
+        android:text="@string/sourceLabel" />
 
     <TextView
         android:id="@+id/sourceFileNameView"
