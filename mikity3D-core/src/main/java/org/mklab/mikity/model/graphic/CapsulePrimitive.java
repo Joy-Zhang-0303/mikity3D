@@ -26,28 +26,13 @@ public class CapsulePrimitive extends AbstractGraphicPrimitive {
    * ポリゴンを更新します。
    */
   private void updatePolygons() {
-    float radius = ((CapsuleModel)this.primitive).getRadius();
-    float height = ((CapsuleModel)this.primitive).getHeight();
-    int division = ((CapsuleModel)this.primitive).getDivision();
+    final float radius = ((CapsuleModel)this.primitive).getRadius();
+    final float height = ((CapsuleModel)this.primitive).getHeight();
+    final int division = ((CapsuleModel)this.primitive).getDivision();
 
     if (radius == 0 || height == 0 || division == 0) {
       return;
     }
-
-    final int sidePolygonNumber = division * 2;
-    final int spherePolygonNumber = division * division * 2 * 2;
-    final int polygonNumber = sidePolygonNumber + spherePolygonNumber;
-    initializeArrays(polygonNumber);
-
-    final float[] upperCenterPoint = new float[3];
-    upperCenterPoint[0] = 0;
-    upperCenterPoint[1] = 0;
-    upperCenterPoint[2] = height / 2;
-
-    final float[] lowerCenterPoint = new float[3];
-    lowerCenterPoint[0] = 0;
-    lowerCenterPoint[1] = 0;
-    lowerCenterPoint[2] = -height / 2;
 
     final float[][] upperPoints = new float[division + 1][3];
     for (int i = 0; i < division; i++) {
@@ -74,15 +59,38 @@ public class CapsulePrimitive extends AbstractGraphicPrimitive {
     final float[][][] upperSpherePoints = createSpherePoints(radius, division, height/2);
     final float[][][] lowerSpherePoints = createSpherePoints(radius, division, -height/2);
 
+    final int sidePolygonNumber = (upperPoints.length-1) + (lowerPoints.length-1);
+    final int upperSpherePolygonNumber = (upperSpherePoints.length-1)*(upperSpherePoints[0].length-1)*2;
+    final int lowerSpherePolygonNumber = (lowerSpherePoints.length-1)*(lowerSpherePoints[0].length-1)*2;
+    final int polygonNumber = sidePolygonNumber + upperSpherePolygonNumber + lowerSpherePolygonNumber;
+    initializeArrays(polygonNumber);
+    
     updateSidePolygons(upperPoints, lowerPoints, division);
-    updateLowerRightPolygons(upperSpherePoints, division);
-    updateUpperLeftPolygons(upperSpherePoints, division);
-    updateLowerRightPolygons(lowerSpherePoints, division);
-    updateUpperLeftPolygons(lowerSpherePoints, division);
+    updateHalfSpherePolygons(upperSpherePoints, division);
+    updateHalfSpherePolygons(lowerSpherePoints, division);
   }
 
-  private float[][][] createSpherePoints(float radius, int division, float zoffset) {
-    final float[][][] lowerSpherePoints = new float[division+1][division + 1][3];
+  /**
+   * 半球のポリゴンを生成します。
+   * 
+   * @param halfSpherePoints 半球上の点
+   * @param division 分割数
+   */
+  private void updateHalfSpherePolygons(final float[][][] halfSpherePoints, final int division) {
+    updateLowerRightPolygons(halfSpherePoints, division);
+    updateUpperLeftPolygons(halfSpherePoints, division);
+  }
+
+  /**
+   * 球上の点を生成します。
+   * 
+   * @param radius 半径
+   * @param division 分割数
+   * @param zOffset Z軸方向のオフセット
+   * @return 球上の点
+   */
+  private float[][][] createSpherePoints(float radius, int division, float zOffset) {
+    final float[][][] spherePoints = new float[division+1][division+1][3];
 
     final float incV = 2 * radius / division;
     final float incH = 360.f / division;
@@ -92,24 +100,24 @@ public class CapsulePrimitive extends AbstractGraphicPrimitive {
       final float r = (float)Math.sqrt(radius * radius - z * z);
       for (int j = 0; j < division; ++j) {
         final float theta = (float)(j * incH * Math.PI / 180);
-        lowerSpherePoints[i][j][0] = (float)(r * Math.cos(theta));
-        lowerSpherePoints[i][j][1] = (float)(r * Math.sin(theta));
-        lowerSpherePoints[i][j][2] = z + zoffset;
+        spherePoints[i][j][0] = (float)(r * Math.cos(theta));
+        spherePoints[i][j][1] = (float)(r * Math.sin(theta));
+        spherePoints[i][j][2] = z + zOffset;
       }
       
-      lowerSpherePoints[i][division][0] = (float)(r * Math.cos(0));
-      lowerSpherePoints[i][division][1] = (float)(r * Math.sin(0));
-      lowerSpherePoints[i][division][2] = z + zoffset;
+      spherePoints[i][division][0] = (float)(r * Math.cos(0));
+      spherePoints[i][division][1] = (float)(r * Math.sin(0));
+      spherePoints[i][division][2] = z + zOffset;
     }
     
     for (int j = 0; j <= division; j++) {
-      lowerSpherePoints[division][j][0] = 0;
-      lowerSpherePoints[division][j][1] = 0;
-      lowerSpherePoints[division][j][2] = radius + zoffset;
+      spherePoints[division][j][0] = 0;
+      spherePoints[division][j][1] = 0;
+      spherePoints[division][j][2] = radius + zOffset;
     }
-    return lowerSpherePoints;
+    return spherePoints;
   }
-
+  
   /**
    * 側面のポリゴンを生成します。
    * 
