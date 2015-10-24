@@ -34,30 +34,32 @@ public class CapsulePrimitive extends AbstractGraphicPrimitive {
       return;
     }
 
+    final float cylinderHeight = height - 2*radius;
+    
     final float[][] upperPoints = new float[division + 1][3];
     for (int i = 0; i < division; i++) {
       final double theta = 2.0 * Math.PI / division * i;
       upperPoints[i][0] = (float)(radius * Math.cos(theta));
       upperPoints[i][1] = (float)(radius * Math.sin(theta));
-      upperPoints[i][2] = height / 2.0f;
+      upperPoints[i][2] = cylinderHeight / 2.0f;
     }
     upperPoints[division][0] = (float)(radius * Math.cos(0));
     upperPoints[division][1] = (float)(radius * Math.sin(0));
-    upperPoints[division][2] = height / 2.0f;
+    upperPoints[division][2] = cylinderHeight / 2.0f;
 
     final float[][] lowerPoints = new float[division + 1][3];
     for (int i = 0; i < division; i++) {
       final double theta = 2.0 * Math.PI / division * i;
       lowerPoints[i][0] = (float)(radius * Math.cos(theta));
       lowerPoints[i][1] = (float)(radius * Math.sin(theta));
-      lowerPoints[i][2] = -height / 2.0f;
+      lowerPoints[i][2] = -cylinderHeight / 2.0f;
     }
     lowerPoints[division][0] = (float)(radius * Math.cos(0));
     lowerPoints[division][1] = (float)(radius * Math.sin(0));
-    lowerPoints[division][2] = -height / 2.0f;
+    lowerPoints[division][2] = -cylinderHeight / 2.0f;
 
-    final float[][][] upperSpherePoints = createSpherePoints(radius, division, height/2);
-    final float[][][] lowerSpherePoints = createSpherePoints(radius, division, -height/2);
+    final float[][][] upperSpherePoints = createSpherePoints(radius, division, cylinderHeight/2);
+    final float[][][] lowerSpherePoints = createSpherePoints(radius, division, -cylinderHeight/2);
 
     final int sidePolygonNumber = (upperPoints.length-1) + (lowerPoints.length-1);
     final int upperSpherePolygonNumber = (upperSpherePoints.length-1)*(upperSpherePoints[0].length-1)*2;
