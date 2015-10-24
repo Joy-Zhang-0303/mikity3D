@@ -206,9 +206,6 @@ public class NavigationDrawerFragment extends RoboFragment {
       final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.source, null);
       sources.addView(source);
 
-//      final TextView sourceLabel = (TextView)source.findViewById(R.id.sourceLabel);
-//      sourceLabel.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
-
       final Button selectButton = (Button)source.findViewById(R.id.sourceSelectButton);
       selectButton.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sourceSelectButtons.add(selectButton);
@@ -397,9 +394,6 @@ public class NavigationDrawerFragment extends RoboFragment {
     for (final String id : ids) {
       final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.sample_source, null);
       sources.addView(source);
-
-//      final Button sourceLabel = (Button)source.findViewById(R.id.sampleSourceSelectButton);
-//      sourceLabel.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 
       final Button selectButton = (Button)source.findViewById(R.id.sampleSourceSelectButton);
       selectButton.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
