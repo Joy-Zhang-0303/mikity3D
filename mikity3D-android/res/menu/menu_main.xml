@@ -15,4 +15,10 @@
         android:id="@+id/menu_pause"
         android:title="@string/pause"
         android:showAsAction="always" />
+    
+    <item
+        android:id="@+id/menu_repeat"
+        android:title="@string/repeat"
+        android:showAsAction="always" />
+    
 </menu>

@@ -3,11 +3,12 @@
 	<string name="accelerometerTextView">Accelerometer</string>
 	<string name="accelerometerButton">accelerometerButton</string>
     <string name="animationSpeedText">Speed Rate</string>
-    <string name="app_name">Mikity3D Mobile</string>
+    <string name="app_name">Mikity3D</string>
     <string name="back">Back</string>
     <string name="button1">Play</string>
     <string name="button2">Stop</string>
    	<string name="pause">Pause</string>
+   	<string name="repeat">Repeat</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="menu_settings">Settings</string>

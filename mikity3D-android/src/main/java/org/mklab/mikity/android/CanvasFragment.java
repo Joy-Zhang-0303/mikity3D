@@ -106,6 +106,9 @@ public class CanvasFragment extends RoboFragment {
   /** ポーズボタンが押されたならばtrue */
   boolean isPaused = false;
 
+  /** 繰り返し再生中ならばtrue */
+  boolean isRepeating = false;
+  
   /**
    * {@inheritDoc}
    */
@@ -431,6 +434,14 @@ public class CanvasFragment extends RoboFragment {
   public OpenglesObjectRenderer getObjectRender() {
     return this.objectRenderer;
   }
+  
+  /**
+   * アニメーションを繰り返し再生します。 
+   */
+  public void repeatAnimation() {
+    this.isRepeating = true;
+    runAnimation();
+  }
 
   /**
    * アニメーションを開始します。
@@ -475,6 +486,9 @@ public class CanvasFragment extends RoboFragment {
        */
       public void tearDownAnimation() {
         CanvasFragment.this.playable = true;
+        if (CanvasFragment.this.isRepeating) {
+          runAnimation();
+        }
       }
 
       /**
@@ -497,6 +511,7 @@ public class CanvasFragment extends RoboFragment {
     this.timer.cancel();
     this.playable = true;
     this.isPaused = false;
+    this.isRepeating = false;
   }
   
   /**
@@ -505,7 +520,7 @@ public class CanvasFragment extends RoboFragment {
   public void pauseAnimation() {
     if (this.isPaused) {
       return;
-    }      
+    }
     
     if (this.animationTask != null) {
       this.timer.cancel();
