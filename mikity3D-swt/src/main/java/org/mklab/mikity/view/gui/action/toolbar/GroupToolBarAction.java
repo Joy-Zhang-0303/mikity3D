@@ -24,7 +24,7 @@ public class GroupToolBarAction extends AbstractToolBarAction {
   @Override
   public void run() {
     final GroupModel group = new GroupModel();
-    group.setName("group"); //$NON-NLS-1$
+    group.setName(Messages.getString("GroupToolBarAction.1")); //$NON-NLS-1$
     
     final GroupModel targetGroup = this.modeler.getTargetGroup();
     targetGroup.add(group);

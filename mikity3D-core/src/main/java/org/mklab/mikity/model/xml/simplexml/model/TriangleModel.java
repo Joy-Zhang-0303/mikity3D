@@ -225,7 +225,7 @@ public class TriangleModel extends AbstractPrimitiveModel {
    */
   @Override
   public String toShortString() {
-    return "triangle"; //$NON-NLS-1$
+    return Messages.getString("TriangleModel.0"); //$NON-NLS-1$
   }
 
 }

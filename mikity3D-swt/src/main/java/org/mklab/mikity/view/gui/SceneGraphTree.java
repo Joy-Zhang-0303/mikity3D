@@ -176,7 +176,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final GroupModel group = new GroupModel("group");  //$NON-NLS-1$
+        final GroupModel group = new GroupModel(Messages.getString("SceneGraphTree.37")); //$NON-NLS-1$
         if (SceneGraphTree.this.targetGroup == SceneGraphTree.this.scene) {
           SceneGraphTree.this.model.addGroup(group);
         } else {

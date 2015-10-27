@@ -162,7 +162,7 @@ public class CylinderModel extends AbstractPrimitiveModel {
    */
   @Override
   public String toShortString() {
-    return "cylinder"; //$NON-NLS-1$
+    return Messages.getString("CylinderModel.0"); //$NON-NLS-1$
   }
 
 }

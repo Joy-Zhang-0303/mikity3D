@@ -135,7 +135,7 @@ public class SphereModel extends AbstractPrimitiveModel {
    */
   @Override
   public String toShortString() {
-    return "sphere"; //$NON-NLS-1$
+    return Messages.getString("SphereModel.0"); //$NON-NLS-1$
   }
 
 }

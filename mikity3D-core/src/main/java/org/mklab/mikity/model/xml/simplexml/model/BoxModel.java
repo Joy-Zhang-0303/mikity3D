@@ -162,6 +162,6 @@ public class BoxModel extends AbstractPrimitiveModel {
    */
   @Override
   public String toShortString() {
-    return "box"; //$NON-NLS-1$
+    return Messages.getString("BoxModel.0"); //$NON-NLS-1$
   }
 }

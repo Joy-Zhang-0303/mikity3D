@@ -227,7 +227,7 @@ public class QuadrangleModel extends AbstractPrimitiveModel {
    */
   @Override
   public String toShortString() {
-    return "quadrangle"; //$NON-NLS-1$
+    return Messages.getString("QuadrangleModel.0"); //$NON-NLS-1$
   }
 
 }

@@ -162,7 +162,7 @@ public class CapsuleModel extends AbstractPrimitiveModel {
    */
   @Override
   public String toShortString() {
-    return "capsule"; //$NON-NLS-1$
+    return Messages.getString("CapsuleModel.0"); //$NON-NLS-1$
   }
   
 }

@@ -161,7 +161,7 @@ public class ConeModel extends AbstractPrimitiveModel {
    */
   @Override
   public String toShortString() {
-    return "cone"; //$NON-NLS-1$
+    return Messages.getString("ConeModel.1"); //$NON-NLS-1$
   }
 
 }
