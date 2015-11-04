@@ -707,10 +707,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
       @Override
       public void tearDownAnimation() {
         AnimationWindow.this.playable = true;
-        
-//        AnimationWindow.this.sliderTask.run();
-//        AnimationWindow.this.sliderTask.cancel();
-//        AnimationWindow.this.timer.cancel();
+        AnimationWindow.this.sliderTask.cancel();
       }
 
       /**
@@ -721,11 +718,11 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
       }
     });
 
-    this.sliderTask = new SliderPositionMoveTask(this.animationTask, this.timeSlider);
-
     this.playable = false;
     this.timer = new Timer();
     this.timer.schedule(this.animationTask, 0, 10);
+
+    this.sliderTask = new SliderPositionMoveTask(this.animationTask, this.timeSlider);    
     this.timer.schedule(this.sliderTask, 0, 10);
   }
 
