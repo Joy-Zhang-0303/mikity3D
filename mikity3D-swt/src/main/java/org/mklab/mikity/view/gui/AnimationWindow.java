@@ -69,6 +69,9 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
 
   /** */
   boolean playable = true;
+  
+  /** 繰り返し再生中ならばtrue。 */
+  boolean isRepeating = false;
 
   /** 現在の時刻。 */
   double currentTime;
@@ -197,7 +200,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   @Override
   protected void configureShell(final Shell shell) {
     super.configureShell(shell);
-    shell.setSize(900, 600);
+    shell.setSize(950, 600);
     shell.setText("Mikity3D Animation Viewer"); //$NON-NLS-1$
   }
 
@@ -290,13 +293,16 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
     controller.setLayout(new GridLayout());
 
     final Composite topComposite = new Composite(controller, SWT.NONE);
-    topComposite.setLayout(new GridLayout(6, false));
+    topComposite.setLayout(new GridLayout(7, false));
     
     final Button playButton = new Button(topComposite, SWT.NONE);
     playButton.setImage(ImageManager.getImage(ImageManager.PLAYBACK));
     
     final Button stopButton = new Button(topComposite, SWT.NONE);
     stopButton.setImage(ImageManager.getImage(ImageManager.STOP));
+    
+    final Button repeatButton = new Button(topComposite, SWT.NONE);
+    repeatButton.setImage(ImageManager.getImage(ImageManager.PLAYBACK));
     
     final Button slowerButton = new Button(topComposite, SWT.NONE);
     slowerButton.setImage(ImageManager.getImage(ImageManager.SLOW));
@@ -333,6 +339,16 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
         stopAnimation();
       }
       
+    });
+    
+    repeatButton.addSelectionListener(new SelectionAdapter() {
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        repeatAnimation();
+      }
     });
     
     fasterButton.addSelectionListener(new SelectionAdapter() {
@@ -672,6 +688,15 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   public void stopAnimation() {
     this.timer.cancel();
     this.playable = true;
+    this.isRepeating = false;
+  }
+  
+  /**
+   * アニメーションを繰り返し再生します。 
+   */
+  public void repeatAnimation() {
+    this.isRepeating = true;
+    runAnimation();
   }
   
   /**
@@ -707,7 +732,17 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
       @Override
       public void tearDownAnimation() {
         AnimationWindow.this.playable = true;
+        AnimationWindow.this.animationTask.cancel();
         AnimationWindow.this.sliderTask.cancel();
+        
+        if (AnimationWindow.this.isRepeating) {
+          getShell().getDisplay().asyncExec(new Runnable() {
+            public void run() {
+              AnimationWindow.this.currentTime = 0;
+              runAnimation();
+            }
+          });
+        }
       }
 
       /**
