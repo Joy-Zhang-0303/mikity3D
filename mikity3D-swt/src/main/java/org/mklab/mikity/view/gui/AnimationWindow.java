@@ -60,7 +60,6 @@ import org.mklab.nfc.matx.MatxMatrix;
  * @author miki
  * @version $Revision: 1.21 $.2004/12/02
  */
-
 public class AnimationWindow extends ApplicationWindow implements ModifyKeyListener {
 
   /** アニメーション用タスク */
@@ -69,7 +68,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   SliderPositionMoveTask sliderTask;
 
   /** */
-  public static boolean playable = true;
+  boolean playable = true;
 
   /** 現在の時刻。 */
   double currentTime;
@@ -315,12 +314,12 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
     this.sourceGroup.setLayout(new GridLayout());
     this.sourceGroup.setText(Messages.getString("SimulationViewer.2")); //$NON-NLS-1$
 
-    playButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+    playButton.addSelectionListener(new SelectionAdapter() {
       /**
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         runAnimation();
       }
     });
@@ -331,12 +330,11 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        */
       @Override
       public void widgetSelected(SelectionEvent e) {
-        // スレッドを停止させる。復元不能
-        AnimationWindow.this.timer.cancel();
-        playable = true;
+        stopAnimation();
       }
+      
     });
-
+    
     fasterButton.addSelectionListener(new SelectionAdapter() {
       /**
        * {@inheritDoc}
@@ -669,6 +667,14 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   }
 
   /**
+   * アニメーションを停止します。 
+   */
+  public void stopAnimation() {
+    this.timer.cancel();
+    this.playable = true;
+  }
+  
+  /**
    * アニメーションを開始します。
    */
   void runAnimation() {
@@ -681,7 +687,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
       return;
     }
 
-    if (playable == false) {
+    if (this.playable == false) {
       this.timer.cancel();
     }
         
@@ -691,7 +697,8 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
 
     this.stopTime = this.manager.getStopTime();
     this.animationTask = new AnimationTask(this.currentTime, this.stopTime, this.manager, this.renderer);
-    this.animationTask.setSpeedScale(this.playSpeed.getDoubleValue());// スピードの設定
+    double animationSpeedScale = this.playSpeed.getDoubleValue();
+    this.animationTask.setSpeedScale(animationSpeedScale);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**
@@ -699,10 +706,11 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        */
       @Override
       public void tearDownAnimation() {
-        AnimationWindow.this.sliderTask.run();
-        AnimationWindow.this.sliderTask.cancel();
-        AnimationWindow.this.timer.cancel();
-        playable = true;
+        AnimationWindow.this.playable = true;
+        
+//        AnimationWindow.this.sliderTask.run();
+//        AnimationWindow.this.sliderTask.cancel();
+//        AnimationWindow.this.timer.cancel();
       }
 
       /**
@@ -715,7 +723,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
 
     this.sliderTask = new SliderPositionMoveTask(this.animationTask, this.timeSlider);
 
-    playable = false;
+    this.playable = false;
     this.timer = new Timer();
     this.timer.schedule(this.animationTask, 0, 10);
     this.timer.schedule(this.sliderTask, 0, 10);
