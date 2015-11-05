@@ -651,8 +651,12 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
       final DoubleMatrix sourceData;
       if (filePath.toLowerCase().endsWith(".mat")) { //$NON-NLS-1$
         sourceData = (DoubleMatrix)MatxMatrix.readMatFormat(input);
-      } else {
+      } else if (filePath.toLowerCase().endsWith(".csv")) { //$NON-NLS-1$
         sourceData = DoubleMatrix.readCsvFormat(input).transpose();
+      } else if (filePath.toLowerCase().endsWith(".txt")) { //$NON-NLS-1$
+        sourceData = DoubleMatrix.readSsvFormat(input).transpose();
+      } else {
+        sourceData = DoubleMatrix.readSsvFormat(input).transpose();
       }
 
       input.close();

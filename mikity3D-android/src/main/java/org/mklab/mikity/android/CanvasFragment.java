@@ -331,8 +331,12 @@ public class CanvasFragment extends RoboFragment {
     try {
       if (sourceFilePath.toLowerCase().endsWith(".mat") || sourceFilePath.startsWith("/document")) { //$NON-NLS-1$ //$NON-NLS-2$
         this.sourceData.put(sourceId, (DoubleMatrix)MatxMatrix.readMatFormat(new InputStreamReader(input)));
-      } else {
+      } else if (sourceFilePath.toLowerCase().endsWith(".csv") || sourceFilePath.startsWith("/document")) { //$NON-NLS-1$ //$NON-NLS-2$
         this.sourceData.put(sourceId, DoubleMatrix.readCsvFormat(new InputStreamReader(input)).transpose());
+      } else if (sourceFilePath.toLowerCase().endsWith(".txt") || sourceFilePath.startsWith("/document")) { //$NON-NLS-1$ //$NON-NLS-2$
+        this.sourceData.put(sourceId, DoubleMatrix.readSsvFormat(new InputStreamReader(input)).transpose());
+      } else {
+        this.sourceData.put(sourceId, DoubleMatrix.readSsvFormat(new InputStreamReader(input)).transpose());
       }
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
