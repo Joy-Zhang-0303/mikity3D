@@ -553,6 +553,14 @@ public class CanvasFragment extends RoboFragment {
     this.objectRenderer.setRootGroups(rootGroups, this.manager);
     this.objectRenderer.setConfiguration(configuration);
   }
+  
+  /**
+   * モデルをリセットし、初期状態に戻します。 
+   */
+  public void resetToInitialState() {
+    this.objectRenderer.resetToInitialState();
+    this.objectRenderer.updateDisplay();
+  }
 
   /**
    * ObjectGroupManagerを準備します。

@@ -99,6 +99,9 @@ public class NavigationDrawerFragment extends RoboFragment {
 
   /** ソース番号を変更するためのボタン。 */
   Button sourceNumberChangeButton;
+  
+  /** モデルをリセットし、初期状態の戻すためのボタン。 */
+  Button resetToInitialStateButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
   ToggleButton rotationSensorButton;
@@ -128,6 +131,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     createSourceNumberChangeComponent(mainView);
 
     createSensorComponent(mainView);
+    
+    createResetComponent(mainView);
 
     createSampleModelComponent(mainView);
 
@@ -348,6 +353,20 @@ public class NavigationDrawerFragment extends RoboFragment {
     });
   }
 
+  private void createResetComponent(final View mainView) {
+    this.resetToInitialStateButton = (Button)mainView.findViewById(R.id.resetToInitialButton);
+    this.resetToInitialStateButton.setEnabled(false);
+    this.resetToInitialStateButton.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View view) {
+        NavigationDrawerFragment.this.canvasActivity.canvasFragment.resetToInitialState();
+      }
+    });
+  }
+  
   private void createSampleModelComponent(final View mainView) {
     final Button modelButton = (Button)mainView.findViewById(R.id.sampleModelSelectButton);
     modelButton.setOnClickListener(new OnClickListener() {
@@ -632,7 +651,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.isSelectedModelFile = enabled;
     this.quickButton.setEnabled(enabled);
     this.slowButton.setEnabled(enabled);
-    this.sourceNumberChangeButton.setEnabled((enabled));
+    this.sourceNumberChangeButton.setEnabled(enabled);
+    this.resetToInitialStateButton.setEnabled(enabled);
 
     for (Button button : this.sourceSelectButtons) {
       button.setEnabled(enabled);

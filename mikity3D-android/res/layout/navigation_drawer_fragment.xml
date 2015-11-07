@@ -17,8 +17,8 @@
             android:layout_weight="1"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:textColor="@color/black"
-            android:text="@string/animationSpeedText" />
+            android:text="@string/animationSpeedText"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/slowButton"
@@ -34,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberDecimal"
-            android:textColor="@color/black"
-            android:maxLength="5" >
+            android:maxLength="5"
+            android:textColor="@color/black" >
 
             <requestFocus />
         </EditText>
@@ -52,14 +52,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
- <!-- 
-        <TextView
-            android:id="@+id/modellabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/modelLabel" />
- -->
+
         <Button
             android:id="@+id/modelSelectButton"
             style="?android:attr/buttonStyleSmall"
@@ -72,8 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="30"
-            android:textColor="@color/black"
-            android:text="@string/modelFileNameView" />
+            android:text="@string/modelFileNameView"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -91,8 +84,8 @@
             android:id="@+id/sourceNumberChangeView"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/sourceNumberChangeView" />
+            android:text="@string/sourceNumberChangeView"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/sourceNumberChangeButton"
@@ -110,8 +103,8 @@
             android:id="@+id/rotationSensorTextView"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/rotationSensorTextView" />
+            android:text="@string/rotationSensorTextView"
+            android:textColor="@color/black" />
 
         <ToggleButton
             android:id="@+id/rotationSensorButton"
@@ -129,8 +122,8 @@
             android:id="@+id/accelerometerTextView"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/accelerometerTextView" />
+            android:text="@string/accelerometerTextView"
+            android:textColor="@color/black" />
 
         <ToggleButton
             android:id="@+id/accelerometerButton"
@@ -148,8 +141,8 @@
             android:id="@+id/rotationLockTextView"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/rotationLockTextView" />
+            android:text="@string/rotationLockTextView"
+            android:textColor="@color/black" />
 
         <ToggleButton
             android:id="@+id/rotationLockButton"
@@ -159,6 +152,18 @@
             android:text="@string/rotationLockButton" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/resetToInitialButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resetButton" />
+    </LinearLayout>
+    
     <Space
         android:layout_width="match_parent"
         android:layout_height="25dp" />
@@ -171,35 +176,28 @@
             android:id="@+id/sampleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/sampleLabel" />
+            android:text="@string/sampleLabel"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-<!--
-        <TextView
-            android:id="@+id/sampleModelLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/sampleModelLabel" />
-  -->
+
         <Button
             android:id="@+id/sampleModelSelectButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sampleModelLabel" />
-        
-         <TextView
+
+        <TextView
             android:id="@+id/sampleModelFileNameView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="30"
-            android:textColor="@color/black"
-            android:text="@string/sampleModelFileNameView" />
+            android:text="@string/sampleModelFileNameView"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout

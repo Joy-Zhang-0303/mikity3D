@@ -52,13 +52,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-<!--     <TextView
-            android:id="@+id/modelLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/modelLabel"
-            android:textColor="@color/black" />
- -->
         <Button
             android:id="@+id/modelSelectButton"
             style="?android:attr/buttonStyleSmall"
@@ -155,6 +148,18 @@
             android:text="@string/rotationLockButton" />
     </LinearLayout>
 
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/resetToInitialButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resetButton" />
+    </LinearLayout>
+    
     <Space
         android:layout_width="match_parent"
         android:layout_height="25dp" />
@@ -174,14 +179,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-<!--
-        <TextView
-            android:id="@+id/sampleModelLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sampleModelLabel"
-            android:textColor="@color/black" />
-  -->
+
         <Button
             android:id="@+id/sampleModelSelectButton"
             style="?android:attr/buttonStyleSmall"

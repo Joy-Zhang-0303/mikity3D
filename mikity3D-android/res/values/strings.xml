@@ -17,6 +17,7 @@
 	<string name="modelLabel">Model</string>
     <string name="modelSelectButton">Open</string>
 	<string name="plusButton">>></string>
+	<string name="resetButton">Reset to Initial State</string>
 	<string name="rotationSensorTextView">Rotation Sensor</string>
 	<string name="rotationSensorButton">rotationSensorButton</string>
 	<string name="rotationLockTextView">Rotation Lock</string>
