@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberDecimal"
-            android:maxLength="4"
+            android:maxLength="5"
             android:textColor="@color/black" >
             <requestFocus />
         </EditText>

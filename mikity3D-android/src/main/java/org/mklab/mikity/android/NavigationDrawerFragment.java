@@ -38,6 +38,8 @@ import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,8 +76,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** アニメーション用タスク。 */
   AnimationTask animationTask;
 
-  /** アニメーションの再生速度(丸め誤差を防ぐために10で割る必要があります)。 */
-  int animationSpeed = 10;
+  /** アニメーションの再生速度倍率 */
+  int animationSpeedScale = 1000;
 
   /** アニメーションスピード。 */
   EditText animationSpeedTextEdit;
@@ -143,19 +145,46 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
-        NavigationDrawerFragment.this.animationSpeed -= 1;
-        if (NavigationDrawerFragment.this.animationSpeed < 0) NavigationDrawerFragment.this.animationSpeed = 0;
-        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(Double.toString((double)NavigationDrawerFragment.this.animationSpeed / 10));
-        if (NavigationDrawerFragment.this.animationTask != null) NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeed / 10);
-        NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
+        final int step = (int)Math.floor(Math.log10(NavigationDrawerFragment.this.animationSpeedScale - 1));
+        NavigationDrawerFragment.this.animationSpeedScale -= (int)Math.pow(10, step);  
+        if (NavigationDrawerFragment.this.animationSpeedScale < 0) {
+          NavigationDrawerFragment.this.animationSpeedScale = 1;
+        }
+        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(NavigationDrawerFragment.this.animationSpeedScale/1000.0))); //$NON-NLS-1$
+        if (NavigationDrawerFragment.this.animationTask != null) {
+          NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeedScale/1000.0);
+        }
       }
     });
 
     this.animationSpeedTextEdit = (EditText)mainView.findViewById(R.id.animationSpeedEditText);
     this.animationSpeedTextEdit.clearFocus();
-    this.animationSpeedTextEdit.setText(Double.toString(this.animationSpeed / 10));
+    this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(this.animationSpeedScale/1000.0))); //$NON-NLS-1$    
     this.animationSpeedTextEdit.clearFocus();
+    
+    this.animationSpeedTextEdit.addTextChangedListener(new TextWatcher() {
+      /**
+       * {@inheritDoc}
+       */
+      public void onTextChanged(CharSequence s, int start, int before, int count) {
+        // TODO 自動生成されたメソッド・スタブ
+      }
+      
+      /**
+       * {@inheritDoc}
+       */
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // TODO 自動生成されたメソッド・スタブ
+      }
+      
+      /**
+       * {@inheritDoc}
+       */
+      public void afterTextChanged(Editable s) {
+        final double value = Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString());
+        NavigationDrawerFragment.this.animationSpeedScale = (int)Math.round(value*1000);
+      }
+    });
 
     this.quickButton = (Button)mainView.findViewById(R.id.quickButton);
     this.quickButton.setEnabled(false);
@@ -165,11 +194,15 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
-        NavigationDrawerFragment.this.animationSpeed += 1;
-        NavigationDrawerFragment.this.animationSpeedTextEdit.setText("" + (double)NavigationDrawerFragment.this.animationSpeed / 10); //$NON-NLS-1$
-        if (NavigationDrawerFragment.this.animationTask != null) NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeed / 10);
-        NavigationDrawerFragment.this.animationSpeed = (int)(Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString()) * 10);
+        final int step = (int)Math.floor(Math.log10(NavigationDrawerFragment.this.animationSpeedScale));
+        NavigationDrawerFragment.this.animationSpeedScale += (int)Math.pow(10, step);
+        if (NavigationDrawerFragment.this.animationSpeedScale > 1000000) {
+          NavigationDrawerFragment.this.animationSpeedScale = 1000000;
+        }
+        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(NavigationDrawerFragment.this.animationSpeedScale/1000.0))); //$NON-NLS-1$
+        if (NavigationDrawerFragment.this.animationTask != null) {
+          NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeedScale/1000.0);
+        }
       }
     });
   }
