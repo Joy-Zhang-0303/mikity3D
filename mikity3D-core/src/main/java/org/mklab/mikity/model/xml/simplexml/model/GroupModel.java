@@ -418,7 +418,7 @@ public class GroupModel implements Serializable, Cloneable {
     if (hasAnimation() == false) {
       return getName();
     }
-    return getName() + "(animation)"; //$NON-NLS-1$
+    return getName() + Messages.getString("GroupModel.0"); //$NON-NLS-1$
   }
 
 }

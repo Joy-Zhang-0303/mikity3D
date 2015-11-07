@@ -550,14 +550,23 @@ public class SceneGraphTree {
       }
       groupItem.setData(group);
 
-      for (final PrimitiveModel primitive :  group.getPrimitives()) {
-        if (primitive instanceof NullModel) {
-          continue;
+      final List<PrimitiveModel> primitives = group.getPrimitives();
+      final boolean groupHasAnyPrimitive = primitives.size() > 0 && (primitives.get(0) instanceof NullModel) == false;
+      
+      if (groupHasAnyPrimitive) {
+        final TreeItem primitiveItems = new TreeItem(groupItem, SWT.NONE);
+        primitiveItems.setText(Messages.getString("SceneGraphTree.38")); //$NON-NLS-1$
+        primitiveItems.setData(group);
+
+        for (final PrimitiveModel primitive :  primitives) {
+          if (primitive instanceof NullModel) {
+            continue;
+          }
+          
+          final TreeItem child = new TreeItem(primitiveItems, SWT.NONE);
+          child.setText(primitive.toShortString());
+          child.setData(primitive);
         }
-        
-        final TreeItem child = new TreeItem(groupItem, SWT.NONE);
-        child.setText(primitive.toShortString());
-        child.setData(primitive);
       }
       
       addTreeItem(groupItem, group.getGroups());
