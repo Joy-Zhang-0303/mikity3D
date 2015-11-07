@@ -481,7 +481,7 @@ public class CanvasFragment extends RoboFragment {
     this.isPaused = false;
     
     this.animationTask = new AnimationTask(this.startTime, this.stopTime, getObjectGroupManager(), getObjectRender(), this.delayTime);
-    this.animationTask.setSpeedScale(this.activity.ndFragment.animationSpeedScale/1000.0);
+    this.animationTask.setSpeedScale(this.activity.ndFragment.animationSpeedRate/1000.0);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**

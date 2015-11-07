@@ -81,7 +81,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   private Mikity3DModel root;
 
   /** */
-  double speedRate = 1.0;
+  int animationSpeedRate = 1000;
 
   /** */
   Timer timer = new Timer();
@@ -357,13 +357,15 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        */
       @Override
       public void widgetSelected(SelectionEvent e) {
-        AnimationWindow.this.speedRate += 0.1;
-        if (AnimationWindow.this.animationTask != null) {
-          AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.speedRate);
+        final int step = (int)Math.floor(Math.log10(AnimationWindow.this.animationSpeedRate));
+        AnimationWindow.this.animationSpeedRate += (int)Math.pow(10, step);
+        if (AnimationWindow.this.animationSpeedRate > 1000000) {
+          AnimationWindow.this.animationSpeedRate = 1000000;
         }
-        String value = String.valueOf(AnimationWindow.this.speedRate);
-        value = value.substring(0, value.indexOf(".") + 2); //$NON-NLS-1$
-        AnimationWindow.this.playSpeed.setValue(value);
+        AnimationWindow.this.playSpeed.setValue(String.format("%6.3f", Double.valueOf(AnimationWindow.this.animationSpeedRate/1000.0))); //$NON-NLS-1$                
+        if (AnimationWindow.this.animationTask != null) {
+          AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.animationSpeedRate/1000.0);
+        }
       }
     });
 
@@ -373,13 +375,15 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        */
       @Override
       public void widgetSelected(SelectionEvent e) {
-        AnimationWindow.this.speedRate -= 0.1;
-        if (AnimationWindow.this.animationTask != null) {
-          AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.speedRate);
+        final int step = (int)Math.floor(Math.log10(AnimationWindow.this.animationSpeedRate - 1));
+        AnimationWindow.this.animationSpeedRate -= (int)Math.pow(10, step);  
+        if (AnimationWindow.this.animationSpeedRate < 0) {
+          AnimationWindow.this.animationSpeedRate = 1;
         }
-        String value = String.valueOf(AnimationWindow.this.speedRate);
-        value = value.substring(0, value.indexOf(".") + 2); //$NON-NLS-1$
-        AnimationWindow.this.playSpeed.setValue(value);
+        AnimationWindow.this.playSpeed.setValue(String.format("%6.3f", Double.valueOf(AnimationWindow.this.animationSpeedRate/1000.0))); //$NON-NLS-1$        
+        if (AnimationWindow.this.animationTask != null) {
+          AnimationWindow.this.animationTask.setSpeedScale(AnimationWindow.this.animationSpeedRate/1000.0);
+        }
       }
     });
 

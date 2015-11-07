@@ -77,7 +77,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   AnimationTask animationTask;
 
   /** アニメーションの再生速度倍率 */
-  int animationSpeedScale = 1000;
+  int animationSpeedRate = 1000;
 
   /** アニメーションスピード。 */
   EditText animationSpeedTextEdit;
@@ -145,21 +145,21 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        final int step = (int)Math.floor(Math.log10(NavigationDrawerFragment.this.animationSpeedScale - 1));
-        NavigationDrawerFragment.this.animationSpeedScale -= (int)Math.pow(10, step);  
-        if (NavigationDrawerFragment.this.animationSpeedScale < 0) {
-          NavigationDrawerFragment.this.animationSpeedScale = 1;
+        final int step = (int)Math.floor(Math.log10(NavigationDrawerFragment.this.animationSpeedRate - 1));
+        NavigationDrawerFragment.this.animationSpeedRate -= (int)Math.pow(10, step);  
+        if (NavigationDrawerFragment.this.animationSpeedRate < 0) {
+          NavigationDrawerFragment.this.animationSpeedRate = 1;
         }
-        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(NavigationDrawerFragment.this.animationSpeedScale/1000.0))); //$NON-NLS-1$
+        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(NavigationDrawerFragment.this.animationSpeedRate/1000.0))); //$NON-NLS-1$
         if (NavigationDrawerFragment.this.animationTask != null) {
-          NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeedScale/1000.0);
+          NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeedRate/1000.0);
         }
       }
     });
 
     this.animationSpeedTextEdit = (EditText)mainView.findViewById(R.id.animationSpeedEditText);
     this.animationSpeedTextEdit.clearFocus();
-    this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(this.animationSpeedScale/1000.0))); //$NON-NLS-1$    
+    this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(this.animationSpeedRate/1000.0))); //$NON-NLS-1$    
     this.animationSpeedTextEdit.clearFocus();
     
     this.animationSpeedTextEdit.addTextChangedListener(new TextWatcher() {
@@ -182,7 +182,7 @@ public class NavigationDrawerFragment extends RoboFragment {
        */
       public void afterTextChanged(Editable s) {
         final double value = Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString());
-        NavigationDrawerFragment.this.animationSpeedScale = (int)Math.round(value*1000);
+        NavigationDrawerFragment.this.animationSpeedRate = (int)Math.round(value*1000);
       }
     });
 
@@ -194,14 +194,14 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        final int step = (int)Math.floor(Math.log10(NavigationDrawerFragment.this.animationSpeedScale));
-        NavigationDrawerFragment.this.animationSpeedScale += (int)Math.pow(10, step);
-        if (NavigationDrawerFragment.this.animationSpeedScale > 1000000) {
-          NavigationDrawerFragment.this.animationSpeedScale = 1000000;
+        final int step = (int)Math.floor(Math.log10(NavigationDrawerFragment.this.animationSpeedRate));
+        NavigationDrawerFragment.this.animationSpeedRate += (int)Math.pow(10, step);
+        if (NavigationDrawerFragment.this.animationSpeedRate > 1000000) {
+          NavigationDrawerFragment.this.animationSpeedRate = 1000000;
         }
-        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(NavigationDrawerFragment.this.animationSpeedScale/1000.0))); //$NON-NLS-1$
+        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(NavigationDrawerFragment.this.animationSpeedRate/1000.0))); //$NON-NLS-1$
         if (NavigationDrawerFragment.this.animationTask != null) {
-          NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeedScale/1000.0);
+          NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeedRate/1000.0);
         }
       }
     });
