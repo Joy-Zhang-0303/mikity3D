@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.model.graphic;
 
+import org.mklab.mikity.model.xml.simplexml.model.AxisModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
@@ -60,7 +61,11 @@ public class GraphicPrimitiveFactory {
 
     if (model instanceof NullModel) {
       return new NullPrimitive((NullModel)model);
-    } 
+    }
+    
+    if (model instanceof AxisModel) {
+      return new AxisPrimitive((AxisModel)model);
+    }
 
     throw new IllegalArgumentException(model.getClass().toString());
   }

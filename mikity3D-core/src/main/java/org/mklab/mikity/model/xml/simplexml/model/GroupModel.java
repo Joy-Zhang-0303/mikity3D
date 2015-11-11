@@ -47,6 +47,7 @@ public class GroupModel implements Serializable, Cloneable {
     @ElementList(entry = "capsule", inline = true, type = CapsuleModel.class),
     @ElementList(entry = "triangle", inline = true, type = TriangleModel.class), 
     @ElementList(entry = "quadrangle", inline = true, type = QuadrangleModel.class),
+    @ElementList(entry = "axis", inline = true, type = AxisModel.class),
     @ElementList(entry = "null", inline = true, type = NullModel.class)})
   private List<PrimitiveModel> primitives;
 
