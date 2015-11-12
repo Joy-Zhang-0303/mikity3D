@@ -4,21 +4,21 @@
     <item
         android:id="@+id/menu_play"
         android:title="@string/button1"
-        android:showAsAction="always" />
+        android:showAsAction="always" android:icon="@drawable/play"/>
     
     <item
         android:id="@+id/menu_stop"
         android:title="@string/button2"
-        android:showAsAction="always" />
+        android:showAsAction="always" android:icon="@drawable/stop"/>
     
     <item
         android:id="@+id/menu_pause"
         android:title="@string/pause"
-        android:showAsAction="always" />
+        android:showAsAction="always" android:icon="@drawable/pause"/>
     
     <item
         android:id="@+id/menu_repeat"
         android:title="@string/repeat"
-        android:showAsAction="always" />
+        android:showAsAction="always" android:icon="@drawable/repeat"/>
     
 </menu>
