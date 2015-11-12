@@ -10,7 +10,7 @@ import com.jogamp.opengl.GL2;
  * @version $Revision$, 2012/01/13
  */
 public interface JoglObject {
-
+  
   /**
    * オブジェクトを表示します。
    * 

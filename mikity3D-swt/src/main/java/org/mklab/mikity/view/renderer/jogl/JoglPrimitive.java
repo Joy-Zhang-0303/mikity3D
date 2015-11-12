@@ -88,7 +88,7 @@ public class JoglPrimitive implements JoglObject {
    * @param gl GL
    */
   private void drawAxisVector(GL2 gl) {
-    if (!((AbstractGraphicPrimitive)this.object).isTransparent()) {
+    if (!((AbstractGraphicPrimitive)this.object).isTransparent() && JoglObjectRenderer.isAxisDisplay) {
       // x軸矢印
       final float[] vertexXArray = this.axis[0].getVertexArray();
       final float[] normalXVectorArray = this.axis[0].getNormalVectorArray();
