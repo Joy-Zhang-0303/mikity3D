@@ -29,7 +29,7 @@ public class GroupObjectManager {
   /** グループオブジェクト。 */
   private List<GroupObject> groupObjects = new ArrayList<>();
   /** 可動グループオブジェクト。 */
-  private List<GroupObjectDataSampler> movingGroups = new ArrayList<>();
+  private List<GroupObjectDataSampler> movingGroupObjects = new ArrayList<>();
 
   /** データの個数 */
   private int dataSize;
@@ -45,18 +45,18 @@ public class GroupObjectManager {
   private Map<String, DoubleMatrix> sources = new HashMap<>();
 
   /**
-   * 指定された時刻のデータでオブジェクトグループを更新します。
+   * 指定された時刻のデータでグループオブジェクトを更新します。
    * 
    * @param t 時刻
    */
-  public void updateObjectGroups(final double t) {
+  public void updateGroupObjects(final double t) {
     AbstractDataSampler.clearTimeNumbers();
     
-    for (final GroupObjectDataSampler movingGroup : this.movingGroups) {
-      final GroupObject objectGroup = movingGroup.groupObject;
-      final DataSampler sampler = movingGroup.sampler;
+    for (final GroupObjectDataSampler movingGroupObject : this.movingGroupObjects) {
+      final GroupObject groupObject = movingGroupObject.groupObject;
+      final DataSampler sampler = movingGroupObject.sampler;
       final Coordinate coordinte = sampler.getCoordinate(t);
-      objectGroup.setCoordinate(coordinte);
+      groupObject.setCoordinate(coordinte);
     }
   }
   
@@ -76,8 +76,8 @@ public class GroupObjectManager {
    * @return 全てのアニメーションのソースが登録されていればtrue
    */
   public boolean isSourceReady() {
-    for (final GroupObject objectGroup : this.groupObjects) {
-      final GroupModel group = objectGroup.getGroup();
+    for (final GroupObject groupObject : this.groupObjects) {
+      final GroupModel group = groupObject.getGroup();
       if (group == null || group.hasAnimation() == false) {
         continue;
       }
@@ -93,32 +93,32 @@ public class GroupObjectManager {
   /**
    * 可動グループを準備します。
    */
-  public void prepareMovingGroups() {
+  public void prepareMovingGroupObjects() {
     this.dataSize = 0;
     this.startTime = 0;
     this.stopTime = 0;
 
-    this.movingGroups.clear();
+    this.movingGroupObjects.clear();
 
-    for (final GroupObject objectGroup : this.groupObjects) {
-      final GroupModel group = objectGroup.getGroup();
+    for (final GroupObject groupObject : this.groupObjects) {
+      final GroupModel group = groupObject.getGroup();
       if (group == null || group.hasAnimation() == false) {
         continue;
       }
       
       final DataSampler sampler = createSampler(group.getAnimations());
-      addMovingGroup(objectGroup, sampler);
+      addMovingGroup(groupObject, sampler);
     }
   }
 
   /**
-   * 可動グループを追加します。
+   * 可動グループオブジェクトを追加します。
    * 
-   * @param objectGroup オブジェクトグループ
+   * @param groupObject グループオブジェクト
    * @param sampler データ抽出器
    */
-  private void addMovingGroup(final GroupObject objectGroup, final DataSampler sampler) {
-    this.movingGroups.add(new GroupObjectDataSampler(objectGroup, sampler));
+  private void addMovingGroup(final GroupObject groupObject, final DataSampler sampler) {
+    this.movingGroupObjects.add(new GroupObjectDataSampler(groupObject, sampler));
     this.dataSize = Math.max(this.dataSize, sampler.getDataSize());
     this.startTime = Math.min(this.startTime, sampler.getStartTime());
     this.stopTime = Math.max(this.stopTime, sampler.getEndTime());
@@ -220,18 +220,18 @@ public class GroupObjectManager {
   }
 
   /**
-   * オブジェクトグループを登録します。
+   * グループオブジェクトを登録します。
    * 
-   * @param objectGroup オブジェクトグループ
+   * @param groupObject グループオブジェクト
    */
-  public void addObjectGroup(final GroupObject objectGroup) {
-    this.groupObjects.add(objectGroup);
+  public void addGroupObject(final GroupObject groupObject) {
+    this.groupObjects.add(groupObject);
   }
   
   /**
-   * 全ての登録されているオブジェクトグループを削除します。
+   * 全ての登録されているグループオブジェクトを削除します。
    */
-  public void clearObjectGroups() {
+  public void clearGroupObjects() {
     this.groupObjects.clear();
   }
 

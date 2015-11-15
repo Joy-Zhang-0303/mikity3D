@@ -34,31 +34,31 @@ public class JoglObjectFactory {
    * @return グループ
    */
   public JoglGroupObject create(final GroupModel group) {
-    final JoglGroupObject objectGroup = JoglGroupObject.create(group);
+    final JoglGroupObject groupObject = JoglGroupObject.create(group);
     
-    for (final ObjectModel primitive : group.getPrimitives()) {
-      if (primitive instanceof NullModel) {
+    for (final ObjectModel object : group.getObjects()) {
+      if (object instanceof NullModel) {
         continue;
       }
-      objectGroup.addElement(create(primitive));
+      groupObject.addElement(create(object));
     }
 
-    for (final GroupModel child : group.getGroups()) {
-      final JoglGroupObject childObjectGroup = create(child);
-      objectGroup.addElement(childObjectGroup);
+    for (final GroupModel subGroup : group.getGroups()) {
+      final JoglGroupObject subGroupObject = create(subGroup);
+      groupObject.addElement(subGroupObject);
     }
 
     final Coordinate baseCoordinate = createCoordinateOf(group.getTranslation(), group.getRotation());
-    objectGroup.setBaseCoordinate(baseCoordinate);
+    groupObject.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
     if (name != null) {
-      objectGroup.setName(name);
+      groupObject.setName(name);
     }
     
-    this.manager.addObjectGroup(objectGroup);
+    this.manager.addGroupObject(groupObject);
 
-    return objectGroup;
+    return groupObject;
   }
   
   /**
@@ -68,17 +68,17 @@ public class JoglObjectFactory {
    * @return 与えられたモデルを含むプリミティブ
    */
   public JoglObject create(ObjectModel model) {
-    final JoglSingleObject primitive = new JoglSingleObject(GraphicObjectFactory.create(model));
+    final JoglSingleObject object = new JoglSingleObject(GraphicObjectFactory.create(model));
    
     final TranslationModel translation = model.getTranslation();
     final RotationModel rotation = model.getRotation();
 
     if (translation == null && rotation == null) {
-      return primitive;
+      return object;
     }
 
     final JoglGroupObject group = JoglGroupObject.create();
-    group.addElement(primitive);
+    group.addElement(object);
     group.setBaseCoordinate(createCoordinateOf(translation, rotation));
     
     return group;

@@ -21,7 +21,7 @@ import com.jogamp.opengl.fixedfunc.GLPointerFunc;
 
 
 /**
- * JOGLのプリミティブを表すクラスです。
+ * JOGLの単体オブジェクトを表すクラスです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/02
@@ -30,9 +30,9 @@ public class JoglSingleObject implements JoglObject {
   /** グラフィックオブジェクト。 */
   private GraphicObject object;
   private GraphicObject[] axis;
-  
+
   /**
-   * 新しく生成された<code>AbstractJoglObject</code>オブジェクトを初期化します。
+   * 新しく生成された<code>JoglSingleObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
    */
   public JoglSingleObject(GraphicObject object) {

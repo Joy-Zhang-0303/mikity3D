@@ -7,7 +7,7 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * 点を表すクラスです。
+ * 頂点を表すクラスです。
  * 
  * @version $Revision: 1.2 $ $Date: 2007/11/19 10:39:36 $
  */
@@ -28,7 +28,7 @@ public class VertexModel implements Serializable, Cloneable {
   private float z;
 
   /**
-   * 新しく生成された<code>XMLPoint</code>オブジェクトを初期化します。
+   * 新しく生成された<code>VertexModel</code>オブジェクトを初期化します。
    */
   public VertexModel() {
     this.x = 0;
@@ -37,7 +37,7 @@ public class VertexModel implements Serializable, Cloneable {
   }
 
   /**
-   * 新しく生成された<code>XMLPoint</code>オブジェクトを初期化します。
+   * 新しく生成された<code>VertexModel</code>オブジェクトを初期化します。
    * @param x x
    * @param y y
    * @param z z

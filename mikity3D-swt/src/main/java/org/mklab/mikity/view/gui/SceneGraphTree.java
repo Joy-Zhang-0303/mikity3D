@@ -473,7 +473,7 @@ public class SceneGraphTree {
    * @param transparent 透過ならばtrue
    */
   public void setTransparent(final GroupModel group, boolean transparent) {
-    for (ObjectModel primitive : group.getPrimitives()) {
+    for (ObjectModel primitive : group.getObjects()) {
       if (primitive instanceof NullModel) {
         continue;
       }
@@ -550,7 +550,7 @@ public class SceneGraphTree {
       }
       groupItem.setData(group);
 
-      final List<ObjectModel> primitives = group.getPrimitives();
+      final List<ObjectModel> primitives = group.getObjects();
       final boolean groupHasAnyPrimitive = primitives.size() > 0 && (primitives.get(0) instanceof NullModel) == false;
       
       if (groupHasAnyPrimitive) {

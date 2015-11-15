@@ -469,7 +469,7 @@ public class CanvasFragment extends RoboFragment {
       this.delayTime = 0;
     }
 
-    this.manager.prepareMovingGroups();
+    this.manager.prepareMovingGroupObjects();
 
     prepareTimeTable();
 
@@ -549,7 +549,7 @@ public class CanvasFragment extends RoboFragment {
     final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
 
-    this.manager.clearObjectGroups();
+    this.manager.clearGroupObjects();
     this.objectRenderer.setRootGroups(rootGroups, this.manager);
     this.objectRenderer.setConfiguration(configuration);
   }

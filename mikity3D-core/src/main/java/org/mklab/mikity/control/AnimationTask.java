@@ -99,7 +99,7 @@ public class AnimationTask extends TimerTask {
     this.currentTime = Math.max(this.currentTime, this.startTime);
 
     if (this.manager.hasAnimation()) {
-      this.manager.updateObjectGroups(this.currentTime);
+      this.manager.updateGroupObjects(this.currentTime);
     }
 
     if (this.renderer.isRequiredToCallDisplay()) {

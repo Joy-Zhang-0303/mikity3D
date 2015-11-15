@@ -107,7 +107,7 @@ public class AnimationTask extends TimerTask {
 
     if (this.manager.hasAnimation()) {
       try {
-        this.manager.updateObjectGroups(this.currentTime);
+        this.manager.updateGroupObjects(this.currentTime);
       } catch(ConcurrentModificationException e) {
         //　再生中に再読み込みが何度も押されすぎたら落ちてしまうので、そのエラーをキャッチしています。
         e.getMessage();

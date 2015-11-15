@@ -152,7 +152,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
-    final List<ObjectModel> actualBoxes = actualGroup.getPrimitives();
+    final List<ObjectModel> actualBoxes = actualGroup.getObjects();
     
     final BoxModel actualBox1 = (BoxModel)actualBoxes.get(0);
     assertDodaiBox1(actualBox1);
@@ -283,7 +283,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedAnimation.setTarget("translationY"); //$NON-NLS-1$
     assertThat(actualAnimation, is(expectedAnimation));
 
-    final BoxModel actualBox = (BoxModel)actualGroup.getPrimitives().get(0);
+    final BoxModel actualBox = (BoxModel)actualGroup.getObjects().get(0);
     assertDaishaBox(actualBox);
     
     final GroupModel actualSinsiGroup = actualGroup.getGroups().get(0);
@@ -335,7 +335,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedAnimation.setTarget("rotationX"); //$NON-NLS-1$
     assertThat(actualAnimation, is(expectedAnimation));
     
-    final List<ObjectModel> actualCylinders = actualGroup.getPrimitives();
+    final List<ObjectModel> actualCylinders = actualGroup.getObjects();
     final CylinderModel actualCylinder1 = (CylinderModel)actualCylinders.get(0);
     assertCylinder1(actualCylinder1);
     

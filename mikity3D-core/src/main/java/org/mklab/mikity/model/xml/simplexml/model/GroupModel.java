@@ -49,7 +49,7 @@ public class GroupModel implements Serializable, Cloneable {
     @ElementList(entry = "quadrangle", inline = true, type = QuadrangleModel.class),
     @ElementList(entry = "axis", inline = true, type = AxisModel.class),
     @ElementList(entry = "null", inline = true, type = NullModel.class)})
-  private List<ObjectModel> primitives;
+  private List<ObjectModel> objects;
 
   /** Groups */
   @ElementList(type = GroupModel.class, inline = true, required = false)
@@ -69,7 +69,7 @@ public class GroupModel implements Serializable, Cloneable {
    */
   public GroupModel(String name) {
     this.name = name;
-    this.primitives = new ArrayList<>();
+    this.objects = new ArrayList<>();
     this.groups = new ArrayList<>();
     this.animations = new ArrayList<>();
     this.translation = new TranslationModel();
@@ -90,9 +90,9 @@ public class GroupModel implements Serializable, Cloneable {
         ans.rotation = this.rotation.clone();
       }
       
-      ans.primitives = new ArrayList<>();
-      for (final ObjectModel primitive : this.primitives) {
-        ans.primitives.add(primitive.createClone());
+      ans.objects = new ArrayList<>();
+      for (final ObjectModel primitive : this.objects) {
+        ans.objects.add(primitive.createClone());
       }
 
       ans.animations = new ArrayList<>();
@@ -130,12 +130,12 @@ public class GroupModel implements Serializable, Cloneable {
   }
 
   /**
-   * プリミティブを追加します。
+   * オブジェクトを追加します。
    * 
-   * @param primitive プリミティブ
+   * @param object オブジェクト
    */
-  public void add(ObjectModel primitive) {
-    this.primitives.add(primitive);
+  public void add(ObjectModel object) {
+    this.objects.add(object);
   }
   
   /**
@@ -143,21 +143,21 @@ public class GroupModel implements Serializable, Cloneable {
    */
   @Persist
   public void prepare() {
-    if (this.primitives.size() == 0) {
-      this.primitives.add(NullModel.getInstance());
+    if (this.objects.size() == 0) {
+      this.objects.add(NullModel.getInstance());
     }
     
-    if (this.primitives.size() > 1) {
+    if (this.objects.size() > 1) {
       final List<ObjectModel> removingPrimitive = new ArrayList<>();
       
-      for (ObjectModel primitive : this.primitives) {
+      for (ObjectModel primitive : this.objects) {
         if (primitive instanceof NullModel) {
           removingPrimitive.add(primitive);
         }
       }
 
       for (ObjectModel primitive : removingPrimitive) {
-        this.primitives.remove(primitive);
+        this.objects.remove(primitive);
       }
     }
   }
@@ -176,7 +176,7 @@ public class GroupModel implements Serializable, Cloneable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((this.primitives == null) ? 0 : this.primitives.hashCode());  
+    result = prime * result + ((this.objects == null) ? 0 : this.objects.hashCode());  
     result = prime * result + ((this.groups == null) ? 0 : this.groups.hashCode());
     result = prime * result + ((this.animations == null) ? 0 : this.animations.hashCode());
     result = prime * result + ((this.translation == null) ? 0 : this.translation.hashCode());
@@ -200,11 +200,11 @@ public class GroupModel implements Serializable, Cloneable {
       return false;
     }
     GroupModel other = (GroupModel)obj;
-    if (this.primitives == null) {
-      if (other.primitives != null) {
+    if (this.objects == null) {
+      if (other.objects != null) {
         return false;
       }
-    } else if (!this.primitives.equals(other.primitives)) {
+    } else if (!this.objects.equals(other.objects)) {
       return false;
     }
     
@@ -312,12 +312,12 @@ public class GroupModel implements Serializable, Cloneable {
   }
 
   /**
-   * プリミティブを返します。
+   * オブジェクトを返します。
    * 
-   * @return プリミティブ
+   * @return オブジェクト
    */
-  public List<ObjectModel> getPrimitives() {
-    return this.primitives;
+  public List<ObjectModel> getObjects() {
+    return this.objects;
   }
 
   /**
@@ -332,13 +332,13 @@ public class GroupModel implements Serializable, Cloneable {
   }
 
   /**
-   * プリミティブを削除します。
+   * オブジェクトを削除します。
    * 
-   * @param primitive プリミティブ
+   * @param object オブジェクト
    * @return removed
    */
-  public boolean remove(ObjectModel primitive) {
-    boolean removed = this.primitives.remove(primitive);
+  public boolean remove(ObjectModel object) {
+    boolean removed = this.objects.remove(object);
     return removed;
   }
 

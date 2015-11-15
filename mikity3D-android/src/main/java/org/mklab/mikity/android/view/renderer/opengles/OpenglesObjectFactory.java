@@ -39,31 +39,31 @@ public class OpenglesObjectFactory {
    * @return グループ
    */
   public OpenglesGroupObject create(final GroupModel group) {
-    final OpenglesGroupObject objectGroup = OpenglesGroupObject.create(group);
+    final OpenglesGroupObject groupObject = OpenglesGroupObject.create(group);
 
-    for (final ObjectModel primitive : group.getPrimitives()) {
-      if (primitive instanceof NullModel) {
+    for (final ObjectModel object : group.getObjects()) {
+      if (object instanceof NullModel) {
         continue;
       }
-      objectGroup.addElement(create(primitive));
+      groupObject.addElement(create(object));
     }
 
-    for (final GroupModel child : group.getGroups()) {
-      final OpenglesGroupObject childObjectGroup = create(child);
-      objectGroup.addElement(childObjectGroup);
+    for (final GroupModel subGroup : group.getGroups()) {
+      final OpenglesGroupObject subGroupObject = create(subGroup);
+      groupObject.addElement(subGroupObject);
     }
 
     final Coordinate baseCoordinate = createCoordinateOf(group.getTranslation(), group.getRotation());
-    objectGroup.setBaseCoordinate(baseCoordinate);
+    groupObject.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
     if (name != null) {
-      objectGroup.setName(name);
+      groupObject.setName(name);
     }
     
-    this.manager.addObjectGroup(objectGroup);
+    this.manager.addGroupObject(groupObject);
 
-    return objectGroup;
+    return groupObject;
   }
  
   /**
@@ -73,17 +73,17 @@ public class OpenglesObjectFactory {
    * @return 与えられたプリミティブを含むグループ
    */
   public OpenglesObject create(ObjectModel model) {
-    final OpenglesSingleObject primitive = new OpenglesSingleObject(GraphicObjectFactory.create(model));
+    final OpenglesSingleObject object = new OpenglesSingleObject(GraphicObjectFactory.create(model));
    
     final TranslationModel translation = model.getTranslation();
     final RotationModel rotation = model.getRotation();
 
     if (translation == null && rotation == null) {
-      return primitive;
+      return object;
     }
 
     final OpenglesGroupObject group = OpenglesGroupObject.create();
-    group.addElement(primitive);
+    group.addElement(object);
     group.setBaseCoordinate(createCoordinateOf(translation, rotation));
     
     return group;

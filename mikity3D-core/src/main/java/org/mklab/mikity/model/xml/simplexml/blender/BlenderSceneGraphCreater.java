@@ -36,7 +36,7 @@ public class BlenderSceneGraphCreater {
     
     for (int i = 0; i < groups.size(); i++) {
       if (groups.get(i).getName().equals(scene.getName())) {
-        final List<ObjectModel> primitives = rootGroup.getGroups().get(i).getPrimitives();
+        final List<ObjectModel> primitives = rootGroup.getGroups().get(i).getObjects();
         addPrimitives(scene, primitives);
         
 //        final List<TrianglePolygonModel> trianglePolygons = rootGroup.getGroups().get(i).getTrianglePolygons();

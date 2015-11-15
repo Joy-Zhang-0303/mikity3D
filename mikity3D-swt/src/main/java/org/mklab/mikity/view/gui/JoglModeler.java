@@ -140,7 +140,7 @@ public class JoglModeler extends Composite {
     final List<GroupModel> rootGroups = this.tree.getModel().getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     
-    this.manager.clearObjectGroups();
+    this.manager.clearGroupObjects();
     this.renderer.setRootGroups(rootGroups, this.manager);
     this.renderer.setConfiguration(configuration);
   }
