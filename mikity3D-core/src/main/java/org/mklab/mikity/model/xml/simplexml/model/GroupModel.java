@@ -13,7 +13,7 @@ import org.simpleframework.xml.core.Persist;
 
 
 /**
- * Class Group.
+ * グループモデルを表すクラスです。
  * 
  * @version $Revision: 1.4 $ $Date: 2007/12/13 10:01:55 $
  */
@@ -49,7 +49,7 @@ public class GroupModel implements Serializable, Cloneable {
     @ElementList(entry = "quadrangle", inline = true, type = QuadrangleModel.class),
     @ElementList(entry = "axis", inline = true, type = AxisModel.class),
     @ElementList(entry = "null", inline = true, type = NullModel.class)})
-  private List<PrimitiveModel> primitives;
+  private List<ObjectModel> primitives;
 
   /** Groups */
   @ElementList(type = GroupModel.class, inline = true, required = false)
@@ -91,7 +91,7 @@ public class GroupModel implements Serializable, Cloneable {
       }
       
       ans.primitives = new ArrayList<>();
-      for (final PrimitiveModel primitive : this.primitives) {
+      for (final ObjectModel primitive : this.primitives) {
         ans.primitives.add(primitive.createClone());
       }
 
@@ -134,7 +134,7 @@ public class GroupModel implements Serializable, Cloneable {
    * 
    * @param primitive プリミティブ
    */
-  public void add(PrimitiveModel primitive) {
+  public void add(ObjectModel primitive) {
     this.primitives.add(primitive);
   }
   
@@ -148,15 +148,15 @@ public class GroupModel implements Serializable, Cloneable {
     }
     
     if (this.primitives.size() > 1) {
-      final List<PrimitiveModel> removingPrimitive = new ArrayList<>();
+      final List<ObjectModel> removingPrimitive = new ArrayList<>();
       
-      for (PrimitiveModel primitive : this.primitives) {
+      for (ObjectModel primitive : this.primitives) {
         if (primitive instanceof NullModel) {
           removingPrimitive.add(primitive);
         }
       }
 
-      for (PrimitiveModel primitive : removingPrimitive) {
+      for (ObjectModel primitive : removingPrimitive) {
         this.primitives.remove(primitive);
       }
     }
@@ -316,7 +316,7 @@ public class GroupModel implements Serializable, Cloneable {
    * 
    * @return プリミティブ
    */
-  public List<PrimitiveModel> getPrimitives() {
+  public List<ObjectModel> getPrimitives() {
     return this.primitives;
   }
 
@@ -337,7 +337,7 @@ public class GroupModel implements Serializable, Cloneable {
    * @param primitive プリミティブ
    * @return removed
    */
-  public boolean remove(PrimitiveModel primitive) {
+  public boolean remove(ObjectModel primitive) {
     boolean removed = this.primitives.remove(primitive);
     return removed;
   }

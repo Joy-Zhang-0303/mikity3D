@@ -16,7 +16,7 @@ import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.mklab.mikity.model.xml.simplexml.model.AbstractPrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.AbstractObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
@@ -126,19 +126,19 @@ public class DragAndDropEnabler {
 
       if (obj instanceof BoxModel) {
         sourceGroup.remove((BoxModel)obj);
-        group.add((AbstractPrimitiveModel)obj);
+        group.add((AbstractObjectModel)obj);
       } else if (obj instanceof CylinderModel) {
         sourceGroup.remove((CylinderModel)obj);
-        group.add((AbstractPrimitiveModel)obj);
+        group.add((AbstractObjectModel)obj);
       } else if (obj instanceof SphereModel) {
         sourceGroup.remove((SphereModel)obj);
-        group.add((AbstractPrimitiveModel)obj);
+        group.add((AbstractObjectModel)obj);
       } else if (obj instanceof ConeModel) {
         sourceGroup.remove((ConeModel)obj);
         group.add((ConeModel)obj);
       } else if (obj instanceof CapsuleModel) {
         sourceGroup.remove((CapsuleModel)obj);
-        group.add((AbstractPrimitiveModel)obj);
+        group.add((AbstractObjectModel)obj);
       } else if (obj instanceof TriangleModel) {
         sourceGroup.remove((TriangleModel)obj);
         group.add((TriangleModel)obj);

@@ -21,7 +21,7 @@ import org.simpleframework.xml.core.Commit;
  * @version $Revision$, 2008/08/10
  */
 @Root(name = "triangle")
-public class TriangleModel extends AbstractPrimitiveModel {
+public class TriangleModel extends AbstractObjectModel {
 
   /** */
   private static final long serialVersionUID = 1L;

@@ -11,7 +11,7 @@ import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
@@ -30,7 +30,7 @@ public class GraphicObjectFactory {
    * @param model モデル
    * @return 与えられたモデルを含むオブジェクト
    */
-  public static GraphicObject create(PrimitiveModel model) {
+  public static GraphicObject create(ObjectModel model) {
     if (model instanceof BoxModel) {
       return new BoxObject((BoxModel)model);
     } 

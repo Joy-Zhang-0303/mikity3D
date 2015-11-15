@@ -25,7 +25,7 @@ import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -152,7 +152,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedRotation.setZ(0.0F);
     assertThat(actualRotation, is(expectedRotation));
     
-    final List<PrimitiveModel> actualBoxes = actualGroup.getPrimitives();
+    final List<ObjectModel> actualBoxes = actualGroup.getPrimitives();
     
     final BoxModel actualBox1 = (BoxModel)actualBoxes.get(0);
     assertDodaiBox1(actualBox1);
@@ -335,7 +335,7 @@ public class SimpleXmlUnmarshallerTest {
     expectedAnimation.setTarget("rotationX"); //$NON-NLS-1$
     assertThat(actualAnimation, is(expectedAnimation));
     
-    final List<PrimitiveModel> actualCylinders = actualGroup.getPrimitives();
+    final List<ObjectModel> actualCylinders = actualGroup.getPrimitives();
     final CylinderModel actualCylinder1 = (CylinderModel)actualCylinders.get(0);
     assertCylinder1(actualCylinder1);
     

@@ -5,7 +5,7 @@ import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.graphic.GraphicObjectFactory;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
@@ -36,16 +36,16 @@ public class JoglObjectFactory {
   public JoglGroupObject create(final GroupModel group) {
     final JoglGroupObject objectGroup = JoglGroupObject.create(group);
     
-    for (final PrimitiveModel primitive : group.getPrimitives()) {
+    for (final ObjectModel primitive : group.getPrimitives()) {
       if (primitive instanceof NullModel) {
         continue;
       }
-      objectGroup.addChild(create(primitive));
+      objectGroup.addElement(create(primitive));
     }
 
     for (final GroupModel child : group.getGroups()) {
       final JoglGroupObject childObjectGroup = create(child);
-      objectGroup.addChild(childObjectGroup);
+      objectGroup.addElement(childObjectGroup);
     }
 
     final Coordinate baseCoordinate = createCoordinateOf(group.getTranslation(), group.getRotation());
@@ -67,7 +67,7 @@ public class JoglObjectFactory {
    * @param model モデル
    * @return 与えられたモデルを含むプリミティブ
    */
-  public JoglObject create(PrimitiveModel model) {
+  public JoglObject create(ObjectModel model) {
     final JoglSingleObject primitive = new JoglSingleObject(GraphicObjectFactory.create(model));
    
     final TranslationModel translation = model.getTranslation();
@@ -78,7 +78,7 @@ public class JoglObjectFactory {
     }
 
     final JoglGroupObject group = JoglGroupObject.create();
-    group.addChild(primitive);
+    group.addElement(primitive);
     group.setBaseCoordinate(createCoordinateOf(translation, rotation));
     
     return group;

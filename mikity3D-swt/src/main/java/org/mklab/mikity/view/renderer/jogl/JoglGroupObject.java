@@ -18,8 +18,8 @@ import com.jogamp.opengl.GL2;
  * @version $Revision$, 2012/02/07
  */
 public class JoglGroupObject implements GroupObject, JoglObject {
-  /** オブジェクト。 */
-  private List<JoglObject> objects = new ArrayList<>();
+  /** グループの要素。 */
+  private List<JoglObject> elements = new ArrayList<>();
   /** 座標系の基準。 */
   private Coordinate baseCoordinate;
   /** 座標系。 */
@@ -34,7 +34,7 @@ public class JoglGroupObject implements GroupObject, JoglObject {
   private static int serialID = 0;
 
   /**
-   * 新しく生成された<code>JoglObjectGroup</code>オブジェクトを初期化します。
+   * 新しく生成された<code>JoglGroupObject</code>オブジェクトを初期化します。
    * @param id ID
    * @param group モデルデータ
    */
@@ -80,7 +80,7 @@ public class JoglGroupObject implements GroupObject, JoglObject {
     result = prime * result + ((this.group == null) ? 0 : this.group.hashCode());
     result = prime * result + this.id;
     result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
-    result = prime * result + ((this.objects == null) ? 0 : this.objects.hashCode());
+    result = prime * result + ((this.elements == null) ? 0 : this.elements.hashCode());
     return result;
   }
 
@@ -106,19 +106,19 @@ public class JoglGroupObject implements GroupObject, JoglObject {
     if (this.name == null) {
       if (other.name != null) return false;
     } else if (!this.name.equals(other.name)) return false;
-    if (this.objects == null) {
-      if (other.objects != null) return false;
-    } else if (!this.objects.equals(other.objects)) return false;
+    if (this.elements == null) {
+      if (other.elements != null) return false;
+    } else if (!this.elements.equals(other.elements)) return false;
     return true;
   }
   
   /**
    * オブジェクトを追加します。
    * 
-   * @param child オブジェクト
+   * @param element オブジェクト
    */
-  public void addChild(JoglObject child) {
-    this.objects.add(child);
+  public void addElement(JoglObject element) {
+    this.elements.add(element);
   }
 
 
@@ -144,7 +144,7 @@ public class JoglGroupObject implements GroupObject, JoglObject {
 
     applyCoordinate(gl, this.coordinate);
 
-    for (final JoglObject object : this.objects) {
+    for (final JoglObject object : this.elements) {
       object.display(gl);
     }
     

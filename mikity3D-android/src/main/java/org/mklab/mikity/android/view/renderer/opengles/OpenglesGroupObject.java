@@ -13,14 +13,14 @@ import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
 
 /**
- * オブジェクトグループを表すクラスです。
+ * グループオブジェクトを表すクラスです。
  * 
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */
 public class OpenglesGroupObject implements GroupObject, OpenglesObject {
-  /** オブジェクト。 */
-  private List<OpenglesObject> objects = new ArrayList<OpenglesObject>();
+  /** グループの要素。 */
+  private List<OpenglesObject> elements = new ArrayList<OpenglesObject>();
   /** 座標系の基準。 */
   private Coordinate baseCoordinate;
   /** 座標系。 */
@@ -80,7 +80,7 @@ public class OpenglesGroupObject implements GroupObject, OpenglesObject {
     result = prime * result + ((this.group == null) ? 0 : this.group.hashCode());
     result = prime * result + this.id;
     result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
-    result = prime * result + ((this.objects == null) ? 0 : this.objects.hashCode());
+    result = prime * result + ((this.elements == null) ? 0 : this.elements.hashCode());
     return result;
   }
 
@@ -106,19 +106,19 @@ public class OpenglesGroupObject implements GroupObject, OpenglesObject {
     if (this.name == null) {
       if (other.name != null) return false;
     } else if (!this.name.equals(other.name)) return false;
-    if (this.objects == null) {
-      if (other.objects != null) return false;
-    } else if (!this.objects.equals(other.objects)) return false;
+    if (this.elements == null) {
+      if (other.elements != null) return false;
+    } else if (!this.elements.equals(other.elements)) return false;
     return true;
   }
 
   /**
    * オブジェクトを追加します。
    * 
-   * @param child オブジェクト
+   * @param element オブジェクト
    */
-  public void addChild(OpenglesObject child) {
-    this.objects.add(child);
+  public void addElement(OpenglesObject element) {
+    this.elements.add(element);
   }
 
   /**
@@ -142,7 +142,7 @@ public class OpenglesGroupObject implements GroupObject, OpenglesObject {
 
     applyCoordinate(gl, this.coordinate);
 
-    for (final OpenglesObject object : this.objects) {
+    for (final OpenglesObject object : this.elements) {
       object.display(gl);
     }
 

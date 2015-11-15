@@ -2,7 +2,7 @@ package org.mklab.mikity.view.gui.action.toolbar;
 
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
 
@@ -28,7 +28,7 @@ public class CapsuleToolBarAction extends AbstractToolBarAction {
   @Override
   public void run() {
     final GroupModel group = this.modeler.getTargetGroup();
-    final PrimitiveModel primitive = CapsuleModel.createDefault();    
+    final ObjectModel primitive = CapsuleModel.createDefault();    
     group.add(primitive);
     
     update();

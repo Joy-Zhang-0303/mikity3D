@@ -15,12 +15,12 @@ import org.simpleframework.xml.core.Commit;
 
 
 /**
- * プリミティブを表す抽象クラスです。
+ * オブジェクトモデルを表す抽象クラスです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/25
  */
-public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializable, Cloneable {
+public abstract class AbstractObjectModel implements ObjectModel, Serializable, Cloneable {
   /** */
   private static final long serialVersionUID = 1L;
   /** color */
@@ -47,7 +47,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
   /**
    * 新しく生成された<code>AbstractPrimitiveModel</code>オブジェクトを初期化します。
    */
-  public AbstractPrimitiveModel() {
+  public AbstractObjectModel() {
     this.transparent = false;
     this.propertyChangeListeners = new Vector<>();
   }
@@ -64,9 +64,9 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
    * {@inheritDoc}
    */
   @Override
-  public AbstractPrimitiveModel clone() {
+  public AbstractObjectModel clone() {
     try {
-      final AbstractPrimitiveModel ans = (AbstractPrimitiveModel)super.clone();
+      final AbstractObjectModel ans = (AbstractObjectModel)super.clone();
       if (this.translation != null) {
         ans.translation = this.translation.clone();
       }
@@ -106,7 +106,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    AbstractPrimitiveModel other = (AbstractPrimitiveModel)obj;
+    AbstractObjectModel other = (AbstractObjectModel)obj;
     if (this.color == null) {
       if (other.color != null) return false;
     } else if (!this.color.equals(other.color)) return false;
@@ -233,7 +233,7 @@ public abstract class AbstractPrimitiveModel implements PrimitiveModel, Serializ
    * {@inheritDoc}
    */
   @Override
-  public PrimitiveModel createClone() {
+  public ObjectModel createClone() {
     return clone();
   }
 

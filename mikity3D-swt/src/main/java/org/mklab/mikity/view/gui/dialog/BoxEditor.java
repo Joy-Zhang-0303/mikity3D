@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.SceneGraphTree;
@@ -45,7 +45,7 @@ public class BoxEditor extends AbstractPrimitiveEditor {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public BoxEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+  public BoxEditor(Composite parent, ObjectModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     super(parent, primitive, tree, modeler);
   }
 

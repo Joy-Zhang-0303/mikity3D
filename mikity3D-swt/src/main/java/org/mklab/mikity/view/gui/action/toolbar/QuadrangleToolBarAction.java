@@ -6,7 +6,7 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -32,7 +32,7 @@ public class QuadrangleToolBarAction extends AbstractToolBarAction {
   @Override
   public void run() {
     final GroupModel group = this.modeler.getTargetGroup();
-    final PrimitiveModel primitive = QuadrangleModel.createDefault();
+    final ObjectModel primitive = QuadrangleModel.createDefault();
     group.add(primitive);
 
     update();

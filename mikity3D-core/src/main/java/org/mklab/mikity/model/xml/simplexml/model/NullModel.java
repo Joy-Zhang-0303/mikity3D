@@ -17,7 +17,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2015/08/17
  */
 @Root(name="null")
-public class NullModel implements PrimitiveModel, Serializable, Cloneable {
+public class NullModel implements ObjectModel, Serializable, Cloneable {
   /** */
   private static final long serialVersionUID = 1L;
   private static final NullModel instancel = new NullModel();
@@ -126,7 +126,7 @@ public class NullModel implements PrimitiveModel, Serializable, Cloneable {
   /**
    * {@inheritDoc}
    */
-  public PrimitiveModel createClone() {
+  public ObjectModel createClone() {
     return this;
   }
   

@@ -15,7 +15,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2015/10/23
  */
 @Root(name="axis")
-public class AxisModel extends AbstractPrimitiveModel {
+public class AxisModel extends AbstractObjectModel {
   /** */
   private static final long serialVersionUID = 1L;
 
