@@ -19,15 +19,15 @@ public class Mikity3DUnmarshaller {
   private Mikity3DModel root;
 
   /**
-   * 指定したMikity3DTファイルを読み込みます。
+   * 指定したMikity3Dファイルを読み込みます。
    * 
-   * @param file Mikity3DTファイル
+   * @param file Mikity3Dファイル
    * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
    */
   public void unmarshalFromMikity3DFile(File file) throws Mikity3dSerializeDeserializeException {
     try {
       final Serializer serializer = new Persister();
-      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3DModel.class, file);
+      this.root = serializer.read(Mikity3DModel.class, file);
     } catch (Exception e) {
       throw new Mikity3dSerializeDeserializeException(e);
     }
@@ -42,7 +42,7 @@ public class Mikity3DUnmarshaller {
   public void unmarshalFromMikity3DFile(InputStream input) throws Mikity3dSerializeDeserializeException {
     try {
       final Serializer serializer = new Persister();
-      this.root = serializer.read(org.mklab.mikity.model.xml.simplexml.Mikity3DModel.class, input);
+      this.root = serializer.read(Mikity3DModel.class, input);
     } catch (Exception e) {
       throw new Mikity3dSerializeDeserializeException(e);
     }
