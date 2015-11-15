@@ -9,17 +9,17 @@ import org.mklab.mikity.model.xml.simplexml.model.AxisModel;
 import org.mklab.mikity.util.Vector3;
 
 /**
- * 軸プリミティブを表すクラスです。
+ * 軸オブジェクトを表すクラスです。
  * 
  * @author eguchi
  * @version $Revision$, 2015/10/26
  */
-public class AxisPrimitive extends AbstractGraphicPrimitive {
+public class AxisObject extends AbstractGraphicObject {
   /**
    * 新しく生成された<code>AxisPrimitive</code>オブジェクトを初期化します。
    * @param axis 軸モデル
    */
-  public AxisPrimitive(AxisModel axis) {
+  public AxisObject(AxisModel axis) {
     super(axis);
     updatePolygons();
   }

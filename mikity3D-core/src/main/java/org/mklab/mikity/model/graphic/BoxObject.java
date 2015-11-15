@@ -3,17 +3,17 @@ package org.mklab.mikity.model.graphic;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 
 /**
- * 直方体プリミティブを表わすクラスです
+ * 直方体オブジェクトを表わすクラスです
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/26
  */
-public class BoxPrimitive extends AbstractGraphicPrimitive {
+public class BoxObject extends AbstractGraphicObject {
   /**
    * 新しく生成された<code>BoxObject</code>オブジェクトを初期化します。
    * @param box モデル
    */
-  public BoxPrimitive(BoxModel box) {
+  public BoxObject(BoxModel box) {
     super(box);
     updatePolygons();
   }

@@ -7,8 +7,8 @@ package org.mklab.mikity.android.view.renderer.opengles;
 
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.Messages;
-import org.mklab.mikity.model.ObjectGroupManager;
-import org.mklab.mikity.model.graphic.GraphicPrimitiveFactory;
+import org.mklab.mikity.model.GroupObjectManager;
+import org.mklab.mikity.model.graphic.GraphicObjectFactory;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
@@ -23,23 +23,23 @@ import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
  */
 public class OpenglesObjectFactory {
   /** オブジェクトグループマネージャ。 */
-  private ObjectGroupManager manager;
+  private GroupObjectManager manager;
   
   /**
    * 新しく生成された<code>OpenglesObjectGroupFactory</code>オブジェクトを初期化します。
    * @param manager オブジェクトグループマネージャ
    */
-  public OpenglesObjectFactory(ObjectGroupManager manager) {
+  public OpenglesObjectFactory(GroupObjectManager manager) {
     this.manager = manager;
   }
     
   /**
-   * {@link OpenglesObjectGroup}を生成します。
+   * {@link OpenglesGroupObject}を生成します。
    * @param group オブジェクトのグループ
    * @return グループ
    */
-  public OpenglesObjectGroup create(final GroupModel group) {
-    final OpenglesObjectGroup objectGroup = OpenglesObjectGroup.create(group);
+  public OpenglesGroupObject create(final GroupModel group) {
+    final OpenglesGroupObject objectGroup = OpenglesGroupObject.create(group);
 
     for (final PrimitiveModel primitive : group.getPrimitives()) {
       if (primitive instanceof NullModel) {
@@ -49,7 +49,7 @@ public class OpenglesObjectFactory {
     }
 
     for (final GroupModel child : group.getGroups()) {
-      final OpenglesObjectGroup childObjectGroup = create(child);
+      final OpenglesGroupObject childObjectGroup = create(child);
       objectGroup.addChild(childObjectGroup);
     }
 
@@ -73,7 +73,7 @@ public class OpenglesObjectFactory {
    * @return 与えられたプリミティブを含むグループ
    */
   public OpenglesObject create(PrimitiveModel model) {
-    final OpenglesPrimitive primitive = new OpenglesPrimitive(GraphicPrimitiveFactory.create(model));
+    final OpenglesSingleObject primitive = new OpenglesSingleObject(GraphicObjectFactory.create(model));
    
     final TranslationModel translation = model.getTranslation();
     final RotationModel rotation = model.getRotation();
@@ -82,7 +82,7 @@ public class OpenglesObjectFactory {
       return primitive;
     }
 
-    final OpenglesObjectGroup group = OpenglesObjectGroup.create();
+    final OpenglesGroupObject group = OpenglesGroupObject.create();
     group.addChild(primitive);
     group.setBaseCoordinate(createCoordinateOf(translation, rotation));
     

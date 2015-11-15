@@ -14,7 +14,7 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.mklab.mikity.model.ObjectGroupManager;
+import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -38,7 +38,7 @@ public class JoglModeler extends Composite {
   /** レンダラー。 */
   private JoglObjectRenderer renderer;
   /** オブジェクトグループのマネージャ。 */
-  private ObjectGroupManager manager;
+  private GroupObjectManager manager;
   
   /** ルート。 */
   Mikity3DModel root;
@@ -160,7 +160,7 @@ public class JoglModeler extends Composite {
    */
   private void createModelCanvas(Composite parent) {
     this.renderer = new JoglObjectRenderer();
-    this.manager = new ObjectGroupManager();
+    this.manager = new GroupObjectManager();
     
     final Frame frame = SWT_AWT.new_Frame(parent);
     frame.add(this.renderer);

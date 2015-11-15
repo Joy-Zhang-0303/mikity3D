@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.model.Coordinate;
-import org.mklab.mikity.model.ObjectGroup;
+import org.mklab.mikity.model.GroupObject;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -12,12 +12,12 @@ import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import com.jogamp.opengl.GL2;
 
 /**
- * オブジェクトグループを表すクラスです。
+ * グループオブジェクトを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/07
  */
-public class JoglObjectGroup implements ObjectGroup, JoglObject {
+public class JoglGroupObject implements GroupObject, JoglObject {
   /** オブジェクト。 */
   private List<JoglObject> objects = new ArrayList<>();
   /** 座標系の基準。 */
@@ -38,7 +38,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
    * @param id ID
    * @param group モデルデータ
    */
-  private JoglObjectGroup(int id, GroupModel group) {
+  private JoglGroupObject(int id, GroupModel group) {
     this.id = id;
     this.group = group;
   }
@@ -47,8 +47,8 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
    * ファクトリーメソッドです。
    * @return グループ
    */
-  public static JoglObjectGroup create() {
-    return new JoglObjectGroup(serialID++, null);
+  public static JoglGroupObject create() {
+    return new JoglGroupObject(serialID++, null);
   }
 
   /**
@@ -56,8 +56,8 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
    * @param group モデルデータ
    * @return グループ
    */
-  public static JoglObjectGroup create(GroupModel group) {
-    return new JoglObjectGroup(serialID++, group);
+  public static JoglGroupObject create(GroupModel group) {
+    return new JoglGroupObject(serialID++, group);
   }
   
   /**
@@ -92,7 +92,7 @@ public class JoglObjectGroup implements ObjectGroup, JoglObject {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    final JoglObjectGroup other = (JoglObjectGroup)obj;
+    final JoglGroupObject other = (JoglGroupObject)obj;
     if (this.baseCoordinate == null) {
       if (other.baseCoordinate != null) return false;
     } else if (!this.baseCoordinate.equals(other.baseCoordinate)) return false;

@@ -39,7 +39,7 @@ import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
-import org.mklab.mikity.model.ObjectGroupManager;
+import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
@@ -99,7 +99,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   Map<String,Text> sourceFilePathText = new HashMap<>();
 
   /** */
-  ObjectGroupManager manager;
+  GroupObjectManager manager;
 
   /** */
   private Label startTimeLabel;
@@ -157,7 +157,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
    */
   void setRoot(final Mikity3DModel root) {
     this.root = root;
-    this.manager = new ObjectGroupManager();
+    this.manager = new GroupObjectManager();
     
     final List<SourceDataModel> sourcesInConfiguration = this.root.getConfiguration(0).getSources();
     if (sourcesInConfiguration != null) {

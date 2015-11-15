@@ -20,16 +20,16 @@ import org.mklab.nfc.matrix.DoubleMatrix;
 
 
 /**
- * オブジェクトグループを管理するクラスです。
+ * グループオブジェクトを管理するクラスです。
  * 
  * @author miki
  * @version $Revision: 1.10 $.2005/01/14
  */
-public class ObjectGroupManager {
-  /** オブジェクトグループ。 */
-  private List<ObjectGroup> objectGroups = new ArrayList<>();
-  /** 可動グループ。 */
-  private List<ObjectGroupDataSampler> movingGroups = new ArrayList<>();
+public class GroupObjectManager {
+  /** グループオブジェクト。 */
+  private List<GroupObject> groupObjects = new ArrayList<>();
+  /** 可動グループオブジェクト。 */
+  private List<GroupObjectDataSampler> movingGroups = new ArrayList<>();
 
   /** データの個数 */
   private int dataSize;
@@ -52,8 +52,8 @@ public class ObjectGroupManager {
   public void updateObjectGroups(final double t) {
     AbstractDataSampler.clearTimeNumbers();
     
-    for (final ObjectGroupDataSampler movingGroup : this.movingGroups) {
-      final ObjectGroup objectGroup = movingGroup.objectGroup;
+    for (final GroupObjectDataSampler movingGroup : this.movingGroups) {
+      final GroupObject objectGroup = movingGroup.groupObject;
       final DataSampler sampler = movingGroup.sampler;
       final Coordinate coordinte = sampler.getCoordinate(t);
       objectGroup.setCoordinate(coordinte);
@@ -76,7 +76,7 @@ public class ObjectGroupManager {
    * @return 全てのアニメーションのソースが登録されていればtrue
    */
   public boolean isSourceReady() {
-    for (final ObjectGroup objectGroup : this.objectGroups) {
+    for (final GroupObject objectGroup : this.groupObjects) {
       final GroupModel group = objectGroup.getGroup();
       if (group == null || group.hasAnimation() == false) {
         continue;
@@ -100,7 +100,7 @@ public class ObjectGroupManager {
 
     this.movingGroups.clear();
 
-    for (final ObjectGroup objectGroup : this.objectGroups) {
+    for (final GroupObject objectGroup : this.groupObjects) {
       final GroupModel group = objectGroup.getGroup();
       if (group == null || group.hasAnimation() == false) {
         continue;
@@ -117,8 +117,8 @@ public class ObjectGroupManager {
    * @param objectGroup オブジェクトグループ
    * @param sampler データ抽出器
    */
-  private void addMovingGroup(final ObjectGroup objectGroup, final DataSampler sampler) {
-    this.movingGroups.add(new ObjectGroupDataSampler(objectGroup, sampler));
+  private void addMovingGroup(final GroupObject objectGroup, final DataSampler sampler) {
+    this.movingGroups.add(new GroupObjectDataSampler(objectGroup, sampler));
     this.dataSize = Math.max(this.dataSize, sampler.getDataSize());
     this.startTime = Math.min(this.startTime, sampler.getStartTime());
     this.stopTime = Math.max(this.stopTime, sampler.getEndTime());
@@ -224,15 +224,15 @@ public class ObjectGroupManager {
    * 
    * @param objectGroup オブジェクトグループ
    */
-  public void addObjectGroup(final ObjectGroup objectGroup) {
-    this.objectGroups.add(objectGroup);
+  public void addObjectGroup(final GroupObject objectGroup) {
+    this.groupObjects.add(objectGroup);
   }
   
   /**
    * 全ての登録されているオブジェクトグループを削除します。
    */
   public void clearObjectGroups() {
-    this.objectGroups.clear();
+    this.groupObjects.clear();
   }
 
 }

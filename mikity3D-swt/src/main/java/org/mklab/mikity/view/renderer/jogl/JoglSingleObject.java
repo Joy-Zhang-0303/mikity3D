@@ -9,10 +9,9 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import org.mklab.mikity.model.graphic.AxisPrimitive;
-import org.mklab.mikity.model.graphic.GraphicPrimitive;
-import org.mklab.mikity.model.graphic.AbstractGraphicPrimitive;
-import org.mklab.mikity.model.graphic.GraphicPrimitiveFactory;
+import org.mklab.mikity.model.graphic.AbstractGraphicObject;
+import org.mklab.mikity.model.graphic.GraphicObject;
+import org.mklab.mikity.model.graphic.GraphicObjectFactory;
 import org.mklab.mikity.model.xml.simplexml.model.AxisModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
@@ -27,21 +26,21 @@ import com.jogamp.opengl.fixedfunc.GLPointerFunc;
  * @author koga
  * @version $Revision$, 2015/08/02
  */
-public class JoglPrimitive implements JoglObject {
+public class JoglSingleObject implements JoglObject {
   /** グラフィックオブジェクト。 */
-  private GraphicPrimitive object;
-  private GraphicPrimitive[] axis;
+  private GraphicObject object;
+  private GraphicObject[] axis;
   
   /**
    * 新しく生成された<code>AbstractJoglObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
    */
-  public JoglPrimitive(GraphicPrimitive object) {
+  public JoglSingleObject(GraphicObject object) {
     this.object = object;
     
-    this.axis = new GraphicPrimitive[3];
+    this.axis = new GraphicObject[3];
     for (int i = 0; i < this.axis.length; i++) {
-      this.axis[i] = GraphicPrimitiveFactory.create(AxisModel.createDefault());
+      this.axis[i] = GraphicObjectFactory.create(AxisModel.createDefault());
     }    
   }
   
@@ -62,7 +61,7 @@ public class JoglPrimitive implements JoglObject {
    * @param gl GL　
    */
   private void applyColor(GL2 gl) {
-    final ColorModel color = ((AbstractGraphicPrimitive)this.object).getColor();
+    final ColorModel color = ((AbstractGraphicObject)this.object).getColor();
     
     gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
   }
@@ -88,7 +87,7 @@ public class JoglPrimitive implements JoglObject {
    * @param gl GL
    */
   private void drawAxisVector(GL2 gl) {
-    if (!((AbstractGraphicPrimitive)this.object).isTransparent() && JoglObjectRenderer.isAxisDisplay) {
+    if (!((AbstractGraphicObject)this.object).isTransparent() && JoglObjectRenderer.isAxisDisplay) {
       // x軸矢印
       final float[] vertexXArray = this.axis[0].getVertexArray();
       final float[] normalXVectorArray = this.axis[0].getNormalVectorArray();

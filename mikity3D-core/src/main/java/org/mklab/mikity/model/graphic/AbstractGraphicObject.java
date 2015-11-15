@@ -9,12 +9,12 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
 
 /**
- * グラフィックプリミティブを表す抽象クラスです。
+ * グラフィックオブジェクトを表す抽象クラスです。
  * 
  * @author koga
  * @version $Revision$, 2015/07/11
  */
-public abstract class AbstractGraphicPrimitive implements GraphicPrimitive {
+public abstract class AbstractGraphicObject implements GraphicObject {
   /** 頂点配列の参照位置。 */
   private int vertexPosition = 0;
   
@@ -34,7 +34,7 @@ public abstract class AbstractGraphicPrimitive implements GraphicPrimitive {
    * 新しく生成された<code>GraphicPrimitive</code>オブジェクトを初期化します。
    * @param primitive プリミティブ
    */
-  public AbstractGraphicPrimitive(PrimitiveModel primitive) {
+  public AbstractGraphicObject(PrimitiveModel primitive) {
     this.primitive = primitive;
   }
   

@@ -6,7 +6,7 @@ import java.util.List;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.Coordinate;
-import org.mklab.mikity.model.ObjectGroup;
+import org.mklab.mikity.model.GroupObject;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -18,7 +18,7 @@ import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
  * @author ohashi
  * @version $Revision$, 2013/02/06
  */
-public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
+public class OpenglesGroupObject implements GroupObject, OpenglesObject {
   /** オブジェクト。 */
   private List<OpenglesObject> objects = new ArrayList<OpenglesObject>();
   /** 座標系の基準。 */
@@ -39,7 +39,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    * @param id ID
    * @param group モデルデータ
    */
-  private OpenglesObjectGroup(int id, GroupModel group) {
+  private OpenglesGroupObject(int id, GroupModel group) {
     this.id = id;
     this.group = group;
   }
@@ -48,8 +48,8 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    * ファクトリーメソッドです。
    * @return グループ
    */
-  public static OpenglesObjectGroup create() {
-    return new OpenglesObjectGroup(serialID++, null);
+  public static OpenglesGroupObject create() {
+    return new OpenglesGroupObject(serialID++, null);
   }
 
   /**
@@ -57,8 +57,8 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    * @param group モデルデータ
    * @return グループ
    */
-  public static OpenglesObjectGroup create(GroupModel group) {
-    return new OpenglesObjectGroup(serialID++, group);
+  public static OpenglesGroupObject create(GroupModel group) {
+    return new OpenglesGroupObject(serialID++, group);
   }
   
   /**
@@ -92,7 +92,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    final OpenglesObjectGroup other = (OpenglesObjectGroup)obj;
+    final OpenglesGroupObject other = (OpenglesGroupObject)obj;
     if (this.baseCoordinate == null) {
       if (other.baseCoordinate != null) return false;
     } else if (!this.baseCoordinate.equals(other.baseCoordinate)) return false;

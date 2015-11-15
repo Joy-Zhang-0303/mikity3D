@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
-import org.mklab.mikity.model.ObjectGroupManager;
+import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
@@ -42,7 +42,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   public static boolean isAxisDisplay;
   
   /** ルートグループ郡。 */
-  private List<JoglObjectGroup> rootGroups;
+  private List<JoglGroupObject> rootGroups;
   
   /** 設定。 */
   private ConfigurationModel configuration;
@@ -166,7 +166,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     }
     
     if (this.rootGroups != null) {
-      for (final JoglObjectGroup topGroup : this.rootGroups) {
+      for (final JoglGroupObject topGroup : this.rootGroups) {
         topGroup.display(gl);
       }
     }
@@ -221,7 +221,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * {@inheritDoc}
    */
   @Override
-  public void setRootGroups(List<GroupModel> rootGroups, ObjectGroupManager manager) {
+  public void setRootGroups(List<GroupModel> rootGroups, GroupObjectManager manager) {
     this.rootGroups = createObjectGroups(rootGroups, manager);
     display();
   }
@@ -233,12 +233,12 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * @param manager オブジェクトグループマネージャ
    * @return オブジェクトグループ
    */
-  private List<JoglObjectGroup> createObjectGroups(List<GroupModel> groups, ObjectGroupManager manager) {
+  private List<JoglGroupObject> createObjectGroups(List<GroupModel> groups, GroupObjectManager manager) {
     final JoglObjectFactory factory = new JoglObjectFactory(manager);
     
-    final List<JoglObjectGroup> objectGroups = new ArrayList<>();
+    final List<JoglGroupObject> objectGroups = new ArrayList<>();
     for (final GroupModel rootGroup : groups) {
-      final JoglObjectGroup objectGroup = factory.create(rootGroup);
+      final JoglGroupObject objectGroup = factory.create(rootGroup);
       objectGroups.add(objectGroup);
     }
     return objectGroups;
