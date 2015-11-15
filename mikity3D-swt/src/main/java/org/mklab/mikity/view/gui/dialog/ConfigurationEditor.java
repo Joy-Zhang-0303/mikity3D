@@ -8,6 +8,8 @@ package org.mklab.mikity.view.gui.dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -20,6 +22,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
+import org.mklab.mikity.model.xml.simplexml.config.BaseAxisModel;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
@@ -39,6 +42,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 public class ConfigurationEditor implements ModifyKeyListener {
   Shell sShell = null;
   private ColorSelectorButton colorSelector;
+  private Button axisCheack;
   private Combo modelLengthUnitCombo;
   private Combo modelAngleUnitCombo;
   private Combo dataLengthUnitCombo;
@@ -110,6 +114,8 @@ public class ConfigurationEditor implements ModifyKeyListener {
     createDataUnit(editGroup);
 
     createBackground(editGroup);
+    
+    createBaseAxis(editGroup);
 
     setParametersToDialog();
   }
@@ -123,6 +129,28 @@ public class ConfigurationEditor implements ModifyKeyListener {
     final Label label = new Label(editGroup, SWT.NONE);
     label.setText(Messages.getString("ConfigDialog.13")); //$NON-NLS-1$
     createColorSelectorButton(editGroup);
+  }
+  
+  /**
+   * 背景色を設定するグループを生成します。
+   * 
+   * @param editGroup 親
+   */   
+  private void createBaseAxis(final Group editGroup) {
+    final Label label = new Label(editGroup, SWT.NONE);
+    label.setText(Messages.getString("ConfigDialog.18")); //$NON-NLS-1$
+    this.axisCheack = new Button(editGroup, SWT.CHECK);
+    this.axisCheack.addSelectionListener(new SelectionListener() {
+
+      @Override
+      public void widgetDefaultSelected(SelectionEvent e) {   
+      }
+
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        modifyText(null);
+      }
+    });
   }
 
   /**
@@ -265,6 +293,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
 
     final ColorModel color = this.configuration.getBackground().getColor();
     this.colorSelector.setColor(color);
+    this.axisCheack.setSelection(this.configuration.getBaseAxis().isDisplay());
   }
 
   /**
@@ -353,6 +382,10 @@ public class ConfigurationEditor implements ModifyKeyListener {
     eye.setY(this.eyeY.getFloatValue());
     eye.setZ(this.eyeZ.getFloatValue());
     this.configuration.setEye(eye);
+    
+    final BaseAxisModel axis = new BaseAxisModel();
+    axis.setDisplay(this.axisCheack.getSelection());
+    this.configuration.setBaseAxis(axis);
     
     final LookAtPointModel lookAtPoint = new LookAtPointModel();
     lookAtPoint.setX(this.lookAtPointX.getFloatValue());

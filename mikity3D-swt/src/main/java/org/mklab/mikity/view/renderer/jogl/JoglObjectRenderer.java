@@ -39,6 +39,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
 
+  public static boolean isAxisDisplay;
+  
   /** ルートグループ郡。 */
   private List<JoglObjectGroup> rootGroups;
   
@@ -96,6 +98,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     addGLEventListener(this);
     addMouseListener(this);
     addMouseMotionListener(this);
+    
+    isAxisDisplay = this.configuration.getBaseAxis().isDisplay();
   }
   
   /**
@@ -154,6 +158,26 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     
     gl.glScalef(this.scale, this.scale, this.scale);
     
+    isAxisDisplay = this.configuration.getBaseAxis().isDisplay();
+    
+    if(isAxisDisplay) {
+      drawBaseAxis(gl);
+      drawGrid(gl);
+    }
+    
+    if (this.rootGroups != null) {
+      for (final JoglObjectGroup topGroup : this.rootGroups) {
+        topGroup.display(gl);
+      }
+    }
+  }
+  
+  /**
+   * 基準軸を描画します。
+   * 
+   * @param gl
+   */
+  private void drawBaseAxis(GL2 gl) {
     // x軸の描画
     gl.glBegin(GL.GL_LINES);
     gl.glColor3d(1, 0, 0);
@@ -174,16 +198,13 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     gl.glVertex3f(0, 0, -10f);
     gl.glVertex3f(0, 0,  10f);
     gl.glEnd();
-    
-    drawGrid(gl);
-    
-    if (this.rootGroups != null) {
-      for (final JoglObjectGroup topGroup : this.rootGroups) {
-        topGroup.display(gl);
-      }
-    }
   }
   
+  /**
+   * グリッドを描画します。
+   * 
+   * @param gl
+   */
   private void drawGrid(GL2 gl) {
     gl.glBegin(GL.GL_LINES);
     gl.glColor3d(0.8, 0.8, 0.8);
