@@ -11,7 +11,7 @@ import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
@@ -41,7 +41,7 @@ public class ModelEditorFactory {
       return editor;
     } 
     if (model instanceof TriangleModel) {
-      final ModelEditor editor = new TriangleEditor(parent, (PrimitiveModel)model, tree,  modeler);
+      final ModelEditor editor = new TriangleEditor(parent, (ObjectModel)model, tree,  modeler);
       return editor;
     } 
     if (model instanceof QuadrangleModel) {
@@ -49,23 +49,23 @@ public class ModelEditorFactory {
       return editor;
     }
     if (model instanceof BoxModel) {
-      final ModelEditor editor = new BoxEditor(parent, (PrimitiveModel)model, tree, modeler);
+      final ModelEditor editor = new BoxEditor(parent, (ObjectModel)model, tree, modeler);
       return editor;
     } 
     if (model instanceof CylinderModel) {
-      final ModelEditor editor = new CylinderEditor(parent, (PrimitiveModel)model, tree, modeler);
+      final ModelEditor editor = new CylinderEditor(parent, (ObjectModel)model, tree, modeler);
       return editor;
     } 
     if (model instanceof SphereModel) {
-      final ModelEditor editor = new SphereEditor(parent, (PrimitiveModel)model, tree, modeler);
+      final ModelEditor editor = new SphereEditor(parent, (ObjectModel)model, tree, modeler);
       return editor;
     } 
     if (model instanceof ConeModel) {
-      final ModelEditor editor = new ConeEditor(parent, (PrimitiveModel)model, tree, modeler);
+      final ModelEditor editor = new ConeEditor(parent, (ObjectModel)model, tree, modeler);
       return editor;
     }
     if (model instanceof CapsuleModel) {
-      final ModelEditor editor = new CapsuleEditor(parent, (PrimitiveModel)model, tree, modeler);
+      final ModelEditor editor = new CapsuleEditor(parent, (ObjectModel)model, tree, modeler);
       return editor;
     }    
 

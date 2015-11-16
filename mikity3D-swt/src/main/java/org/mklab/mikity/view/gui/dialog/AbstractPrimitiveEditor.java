@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.view.gui.JoglModeler;
@@ -33,7 +33,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @version $Revision$, 2015/08/22
  */
 public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, ModifyKeyListener {
-  PrimitiveModel primitive;
+  ObjectModel primitive;
 
   JoglModeler modeler;
   SceneGraphTree tree;
@@ -65,7 +65,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public AbstractPrimitiveEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+  public AbstractPrimitiveEditor(Composite parent, ObjectModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     this.primitive = primitive;
     this.tree = tree;
     this.modeler = modeler;

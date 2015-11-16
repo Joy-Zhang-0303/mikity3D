@@ -17,7 +17,7 @@ import java.util.Timer;
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.android.view.renderer.opengles.OpenglesObjectRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
-import org.mklab.mikity.model.ObjectGroupManager;
+import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
@@ -93,7 +93,7 @@ public class CanvasFragment extends RoboFragment {
   /** Mikity3dモデル */
   Mikity3DModel root;
 
-  ObjectGroupManager manager;
+  GroupObjectManager manager;
 
   Map<String, DoubleMatrix> sourceData = new HashMap<String, DoubleMatrix>();
 
@@ -426,7 +426,7 @@ public class CanvasFragment extends RoboFragment {
    * 
    * @return ObjectGroupManager
    */
-  public ObjectGroupManager getObjectGroupManager() {
+  public GroupObjectManager getObjectGroupManager() {
     return this.manager;
   }
 
@@ -469,7 +469,7 @@ public class CanvasFragment extends RoboFragment {
       this.delayTime = 0;
     }
 
-    this.manager.prepareMovingGroups();
+    this.manager.prepareMovingGroupObjects();
 
     prepareTimeTable();
 
@@ -549,7 +549,7 @@ public class CanvasFragment extends RoboFragment {
     final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
 
-    this.manager.clearObjectGroups();
+    this.manager.clearGroupObjects();
     this.objectRenderer.setRootGroups(rootGroups, this.manager);
     this.objectRenderer.setConfiguration(configuration);
   }
@@ -566,7 +566,7 @@ public class CanvasFragment extends RoboFragment {
    * ObjectGroupManagerを準備します。
    */
   protected void prepareObjectGroupManager() {
-    this.manager = new ObjectGroupManager();
+    this.manager = new GroupObjectManager();
   }
 
   /**

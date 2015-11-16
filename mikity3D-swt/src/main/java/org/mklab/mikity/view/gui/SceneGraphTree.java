@@ -24,7 +24,7 @@ import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
@@ -50,7 +50,7 @@ public class SceneGraphTree {
   JoglModeler modeler;
 
   /** 記憶されたオブジェクト。 */
-  PrimitiveModel bufferedObject = null;
+  ObjectModel bufferedObject = null;
   /** 記憶されたグループ。 */
   GroupModel bufferedGroup = null;
   
@@ -192,7 +192,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = BoxModel.createDefault();
+        final ObjectModel primitive = BoxModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
       }
@@ -204,7 +204,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = CylinderModel.createDefault();
+        final ObjectModel primitive = CylinderModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
       }
@@ -216,7 +216,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = SphereModel.createDefault();
+        final ObjectModel primitive = SphereModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
       }
@@ -228,7 +228,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = ConeModel.createDefault();
+        final ObjectModel primitive = ConeModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
       }
@@ -240,7 +240,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = CapsuleModel.createDefault();
+        final ObjectModel primitive = CapsuleModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
       }
@@ -252,7 +252,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = TriangleModel.createDefault();
+        final ObjectModel primitive = TriangleModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
       }
@@ -264,7 +264,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        final PrimitiveModel primitive = QuadrangleModel.createDefault();
+        final ObjectModel primitive = QuadrangleModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
       }
@@ -281,7 +281,7 @@ public class SceneGraphTree {
           SceneGraphTree.this.bufferedObject = null;
         } else {
           SceneGraphTree.this.bufferedGroup = null;
-          SceneGraphTree.this.bufferedObject = (PrimitiveModel)SceneGraphTree.this.targetObject;
+          SceneGraphTree.this.bufferedObject = (ObjectModel)SceneGraphTree.this.targetObject;
         }
         
         removeSelectedItem(parent);
@@ -299,7 +299,7 @@ public class SceneGraphTree {
           SceneGraphTree.this.bufferedObject = null;
         } else {
           SceneGraphTree.this.bufferedGroup = null;
-          SceneGraphTree.this.bufferedObject = (PrimitiveModel)SceneGraphTree.this.targetObject;
+          SceneGraphTree.this.bufferedObject = (ObjectModel)SceneGraphTree.this.targetObject;
         }
       }
     });
@@ -444,8 +444,8 @@ public class SceneGraphTree {
       setAllTransparent(group, true);
     }
     
-    if (object instanceof PrimitiveModel) {
-      ((PrimitiveModel)object).setTransparent(false);
+    if (object instanceof ObjectModel) {
+      ((ObjectModel)object).setTransparent(false);
     } else if (object instanceof GroupModel) {
       final GroupModel group = (GroupModel)object;
       setTransparent(group, false);
@@ -473,7 +473,7 @@ public class SceneGraphTree {
    * @param transparent 透過ならばtrue
    */
   public void setTransparent(final GroupModel group, boolean transparent) {
-    for (PrimitiveModel primitive : group.getPrimitives()) {
+    for (ObjectModel primitive : group.getObjects()) {
       if (primitive instanceof NullModel) {
         continue;
       }
@@ -517,8 +517,8 @@ public class SceneGraphTree {
    * @return モデルを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
    */
   protected boolean removeObject(GroupModel group, Object object, Composite parent) {
-    if (object instanceof PrimitiveModel) {
-      group.remove((PrimitiveModel)object);
+    if (object instanceof ObjectModel) {
+      group.remove((ObjectModel)object);
     } else if (object instanceof GroupModel) {
       final MessageBox message = new MessageBox(parent.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
       message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
@@ -550,7 +550,7 @@ public class SceneGraphTree {
       }
       groupItem.setData(group);
 
-      final List<PrimitiveModel> primitives = group.getPrimitives();
+      final List<ObjectModel> primitives = group.getObjects();
       final boolean groupHasAnyPrimitive = primitives.size() > 0 && (primitives.get(0) instanceof NullModel) == false;
       
       if (groupHasAnyPrimitive) {
@@ -558,7 +558,7 @@ public class SceneGraphTree {
         primitiveItems.setText(Messages.getString("SceneGraphTree.38")); //$NON-NLS-1$
         primitiveItems.setData(group);
 
-        for (final PrimitiveModel primitive :  primitives) {
+        for (final ObjectModel primitive :  primitives) {
           if (primitive instanceof NullModel) {
             continue;
           }

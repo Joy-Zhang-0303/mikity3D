@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.TimerTask;
 
 import org.mklab.mikity.control.AnimationTaskListener;
-import org.mklab.mikity.model.ObjectGroupManager;
+import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.view.renderer.ObjectRenderer;
 
 import android.os.SystemClock;
@@ -27,7 +27,7 @@ public class AnimationTask extends TimerTask {
   /** アニメーションの速度倍率(1.0のときに実時間で再生) */
   private double speedScale = 1.0;
   /** グループマネージャ　 */
-  private ObjectGroupManager manager;
+  private GroupObjectManager manager;
   /** リスナー　 */
   private List<AnimationTaskListener> listeners = new ArrayList<AnimationTaskListener>();
   /** 現在の時間　 */
@@ -50,7 +50,7 @@ public class AnimationTask extends TimerTask {
    * @param renderer レンダラー
    * @param delayTime 遅延時間
    */
-  public AnimationTask(double startTime, double endTime, ObjectGroupManager manager, ObjectRenderer renderer, long delayTime) {
+  public AnimationTask(double startTime, double endTime, GroupObjectManager manager, ObjectRenderer renderer, long delayTime) {
     this.startTime = startTime;
     this.endTime = endTime;
     this.currentTime = startTime;
@@ -107,7 +107,7 @@ public class AnimationTask extends TimerTask {
 
     if (this.manager.hasAnimation()) {
       try {
-        this.manager.updateObjectGroups(this.currentTime);
+        this.manager.updateGroupObjects(this.currentTime);
       } catch(ConcurrentModificationException e) {
         //　再生中に再読み込みが何度も押されすぎたら落ちてしまうので、そのエラーをキャッチしています。
         e.getMessage();

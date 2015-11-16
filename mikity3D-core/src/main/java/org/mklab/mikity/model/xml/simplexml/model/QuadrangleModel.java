@@ -21,7 +21,7 @@ import org.simpleframework.xml.core.Commit;
  * @version $Revision$, 2008/08/10
  */
 @Root(name="quadrangle")
-public class QuadrangleModel extends AbstractPrimitiveModel {
+public class QuadrangleModel extends AbstractObjectModel {
   /** */
   private static final long serialVersionUID = 1L;
 

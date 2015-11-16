@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 
 /**
  * Blenderのシーングラフの生成器です。
@@ -36,7 +36,7 @@ public class BlenderSceneGraphCreater {
     
     for (int i = 0; i < groups.size(); i++) {
       if (groups.get(i).getName().equals(scene.getName())) {
-        final List<PrimitiveModel> primitives = rootGroup.getGroups().get(i).getPrimitives();
+        final List<ObjectModel> primitives = rootGroup.getGroups().get(i).getObjects();
         addPrimitives(scene, primitives);
         
 //        final List<TrianglePolygonModel> trianglePolygons = rootGroup.getGroups().get(i).getTrianglePolygons();
@@ -79,8 +79,8 @@ public class BlenderSceneGraphCreater {
    * @param scene
    * @param primitives
    */
-  private void addPrimitives(GroupModel scene, List<PrimitiveModel> primitives) {
-    for (final PrimitiveModel primitive : primitives) {
+  private void addPrimitives(GroupModel scene, List<ObjectModel> primitives) {
+    for (final ObjectModel primitive : primitives) {
       if (primitive instanceof NullModel) {
         continue;
       }

@@ -7,7 +7,7 @@ package org.mklab.mikity.view.renderer;
 
 import java.util.List;
 
-import org.mklab.mikity.model.ObjectGroupManager;
+import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
@@ -24,7 +24,7 @@ public interface ObjectRenderer {
    * @param rootGroups ルートグループ群 
    * @param manager オブジェクトグループマネージャ
    */
-  void setRootGroups(List<GroupModel> rootGroups, ObjectGroupManager manager);
+  void setRootGroups(List<GroupModel> rootGroups, GroupObjectManager manager);
   
   /**
    * 環境データを設定します。

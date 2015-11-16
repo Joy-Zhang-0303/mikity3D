@@ -23,7 +23,7 @@ public class BaseAxisModel implements java.io.Serializable, Cloneable {
   @Element(name="gridSize")
   private float gridSize;
   
-  /** display swith */
+  /** display switch */
   @Element(name="display")
   private boolean isDisplay;
   

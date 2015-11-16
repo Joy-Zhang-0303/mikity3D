@@ -11,25 +11,25 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import org.mklab.mikity.model.graphic.GraphicPrimitive;
-import org.mklab.mikity.model.graphic.AbstractGraphicPrimitive;
+import org.mklab.mikity.model.graphic.GraphicObject;
+import org.mklab.mikity.model.graphic.AbstractGraphicObject;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
 /**
- * OpenGL ESのオブジェクトを表す抽象クラスです。
+ * OpenGL ESの単体オブジェクトを表す抽象クラスです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/02
  */
-public class OpenglesPrimitive implements OpenglesObject {
+public class OpenglesSingleObject implements OpenglesObject {
   /** グラフィックオブジェクト。 */
-  private GraphicPrimitive object;
-  
+  private GraphicObject object;
+
   /**
-   * 新しく生成された<code>AbstractOpenglesObject</code>オブジェクトを初期化します。
+   * 新しく生成された<code>OpenglesSingleObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
    */
-  public OpenglesPrimitive(GraphicPrimitive object) {
+  public OpenglesSingleObject(GraphicObject object) {
     this.object = object;
   }
   
@@ -48,7 +48,7 @@ public class OpenglesPrimitive implements OpenglesObject {
    * @param gl GL　
    */
   private void applyColor(GL10 gl) {
-    final ColorModel color = ((AbstractGraphicPrimitive)this.object).getColor();
+    final ColorModel color = ((AbstractGraphicObject)this.object).getColor();
     gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
 
   }

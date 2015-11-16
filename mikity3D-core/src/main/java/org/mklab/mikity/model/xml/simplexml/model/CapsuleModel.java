@@ -10,7 +10,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision$, 2015/08/27
  */
 @Root(name="capsule")
-public class CapsuleModel extends AbstractPrimitiveModel {
+public class CapsuleModel extends AbstractObjectModel {
   private static final long serialVersionUID = 1L;
 
   /** radius */

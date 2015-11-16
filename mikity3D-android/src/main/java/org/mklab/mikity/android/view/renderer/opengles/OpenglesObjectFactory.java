@@ -7,11 +7,11 @@ package org.mklab.mikity.android.view.renderer.opengles;
 
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.Messages;
-import org.mklab.mikity.model.ObjectGroupManager;
-import org.mklab.mikity.model.graphic.GraphicPrimitiveFactory;
+import org.mklab.mikity.model.GroupObjectManager;
+import org.mklab.mikity.model.graphic.GraphicObjectFactory;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
@@ -23,47 +23,47 @@ import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
  */
 public class OpenglesObjectFactory {
   /** オブジェクトグループマネージャ。 */
-  private ObjectGroupManager manager;
+  private GroupObjectManager manager;
   
   /**
    * 新しく生成された<code>OpenglesObjectGroupFactory</code>オブジェクトを初期化します。
    * @param manager オブジェクトグループマネージャ
    */
-  public OpenglesObjectFactory(ObjectGroupManager manager) {
+  public OpenglesObjectFactory(GroupObjectManager manager) {
     this.manager = manager;
   }
     
   /**
-   * {@link OpenglesObjectGroup}を生成します。
+   * {@link OpenglesGroupObject}を生成します。
    * @param group オブジェクトのグループ
    * @return グループ
    */
-  public OpenglesObjectGroup create(final GroupModel group) {
-    final OpenglesObjectGroup objectGroup = OpenglesObjectGroup.create(group);
+  public OpenglesGroupObject create(final GroupModel group) {
+    final OpenglesGroupObject groupObject = OpenglesGroupObject.create(group);
 
-    for (final PrimitiveModel primitive : group.getPrimitives()) {
-      if (primitive instanceof NullModel) {
+    for (final ObjectModel object : group.getObjects()) {
+      if (object instanceof NullModel) {
         continue;
       }
-      objectGroup.addChild(create(primitive));
+      groupObject.addElement(create(object));
     }
 
-    for (final GroupModel child : group.getGroups()) {
-      final OpenglesObjectGroup childObjectGroup = create(child);
-      objectGroup.addChild(childObjectGroup);
+    for (final GroupModel subGroup : group.getGroups()) {
+      final OpenglesGroupObject subGroupObject = create(subGroup);
+      groupObject.addElement(subGroupObject);
     }
 
     final Coordinate baseCoordinate = createCoordinateOf(group.getTranslation(), group.getRotation());
-    objectGroup.setBaseCoordinate(baseCoordinate);
+    groupObject.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
     if (name != null) {
-      objectGroup.setName(name);
+      groupObject.setName(name);
     }
     
-    this.manager.addObjectGroup(objectGroup);
+    this.manager.addGroupObject(groupObject);
 
-    return objectGroup;
+    return groupObject;
   }
  
   /**
@@ -72,18 +72,18 @@ public class OpenglesObjectFactory {
    * @param model プリミティブ
    * @return 与えられたプリミティブを含むグループ
    */
-  public OpenglesObject create(PrimitiveModel model) {
-    final OpenglesPrimitive primitive = new OpenglesPrimitive(GraphicPrimitiveFactory.create(model));
+  public OpenglesObject create(ObjectModel model) {
+    final OpenglesSingleObject object = new OpenglesSingleObject(GraphicObjectFactory.create(model));
    
     final TranslationModel translation = model.getTranslation();
     final RotationModel rotation = model.getRotation();
 
     if (translation == null && rotation == null) {
-      return primitive;
+      return object;
     }
 
-    final OpenglesObjectGroup group = OpenglesObjectGroup.create();
-    group.addChild(primitive);
+    final OpenglesGroupObject group = OpenglesGroupObject.create();
+    group.addElement(object);
     group.setBaseCoordinate(createCoordinateOf(translation, rotation));
     
     return group;

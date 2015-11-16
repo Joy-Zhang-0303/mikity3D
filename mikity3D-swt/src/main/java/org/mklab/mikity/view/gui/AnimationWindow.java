@@ -39,7 +39,7 @@ import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
-import org.mklab.mikity.model.ObjectGroupManager;
+import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
@@ -99,7 +99,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   Map<String,Text> sourceFilePathText = new HashMap<>();
 
   /** */
-  ObjectGroupManager manager;
+  GroupObjectManager manager;
 
   /** */
   private Label startTimeLabel;
@@ -157,7 +157,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
    */
   void setRoot(final Mikity3DModel root) {
     this.root = root;
-    this.manager = new ObjectGroupManager();
+    this.manager = new GroupObjectManager();
     
     final List<SourceDataModel> sourcesInConfiguration = this.root.getConfiguration(0).getSources();
     if (sourcesInConfiguration != null) {
@@ -180,7 +180,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
     final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
     
-    this.manager.clearObjectGroups();
+    this.manager.clearGroupObjects();
     this.renderer.setRootGroups(rootGroups, this.manager);
     this.renderer.setConfiguration(configuration);
   }
@@ -430,7 +430,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
         }
         
         final double time = AnimationWindow.this.timeTable[AnimationWindow.this.timeSlider.getSelection()];
-        AnimationWindow.this.manager.updateObjectGroups(time);
+        AnimationWindow.this.manager.updateGroupObjects(time);
 
         String timeString = String.valueOf(time);
         if (timeString.length() > 5) {
@@ -724,7 +724,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
       this.timer.cancel();
     }
         
-    this.manager.prepareMovingGroups();
+    this.manager.prepareMovingGroupObjects();
 
     prepareSlider();
 

@@ -6,7 +6,7 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -32,7 +32,7 @@ public class TriangleToolBarAction extends AbstractToolBarAction {
   @Override
   public void run() {
     final GroupModel group = this.modeler.getTargetGroup();
-    final PrimitiveModel primitive = TriangleModel.createDefault();
+    final ObjectModel primitive = TriangleModel.createDefault();
     group.add(primitive);
 
     update();

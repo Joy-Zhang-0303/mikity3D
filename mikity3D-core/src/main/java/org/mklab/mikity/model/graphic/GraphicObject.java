@@ -6,12 +6,12 @@
 package org.mklab.mikity.model.graphic;
 
 /**
- * グラフィックプリミティブを表すインターフェースです。
+ * グラフィックオブジェクトを表すインターフェースです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/01
  */
-public interface GraphicPrimitive {
+public interface GraphicObject {
 
   /**
    * 頂点配列を返します。

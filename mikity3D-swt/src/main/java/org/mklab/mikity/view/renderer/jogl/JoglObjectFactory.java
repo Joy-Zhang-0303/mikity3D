@@ -1,11 +1,11 @@
 package org.mklab.mikity.view.renderer.jogl;
 
 import org.mklab.mikity.model.Coordinate;
-import org.mklab.mikity.model.ObjectGroupManager;
-import org.mklab.mikity.model.graphic.GraphicPrimitiveFactory;
+import org.mklab.mikity.model.GroupObjectManager;
+import org.mklab.mikity.model.graphic.GraphicObjectFactory;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
@@ -18,47 +18,47 @@ import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
  */
 public class JoglObjectFactory {
   /** オブジェクトグループマネージャ。 */
-  private ObjectGroupManager manager;
+  private GroupObjectManager manager;
   
   /**
    * 新しく生成された<code>JoglObjectGroupFactory</code>オブジェクトを初期化します。
    * @param manager オブジェクトグループマネージャ
    */
-  public JoglObjectFactory(ObjectGroupManager manager) {
+  public JoglObjectFactory(GroupObjectManager manager) {
     this.manager = manager;
   }
   
   /**
-   * {@link JoglObjectGroup}を生成します。
+   * {@link JoglGroupObject}を生成します。
    * @param group オブジェクトのグループ
    * @return グループ
    */
-  public JoglObjectGroup create(final GroupModel group) {
-    final JoglObjectGroup objectGroup = JoglObjectGroup.create(group);
+  public JoglGroupObject create(final GroupModel group) {
+    final JoglGroupObject groupObject = JoglGroupObject.create(group);
     
-    for (final PrimitiveModel primitive : group.getPrimitives()) {
-      if (primitive instanceof NullModel) {
+    for (final ObjectModel object : group.getObjects()) {
+      if (object instanceof NullModel) {
         continue;
       }
-      objectGroup.addChild(create(primitive));
+      groupObject.addElement(create(object));
     }
 
-    for (final GroupModel child : group.getGroups()) {
-      final JoglObjectGroup childObjectGroup = create(child);
-      objectGroup.addChild(childObjectGroup);
+    for (final GroupModel subGroup : group.getGroups()) {
+      final JoglGroupObject subGroupObject = create(subGroup);
+      groupObject.addElement(subGroupObject);
     }
 
     final Coordinate baseCoordinate = createCoordinateOf(group.getTranslation(), group.getRotation());
-    objectGroup.setBaseCoordinate(baseCoordinate);
+    groupObject.setBaseCoordinate(baseCoordinate);
     
     final String name = group.getName();
     if (name != null) {
-      objectGroup.setName(name);
+      groupObject.setName(name);
     }
     
-    this.manager.addObjectGroup(objectGroup);
+    this.manager.addGroupObject(groupObject);
 
-    return objectGroup;
+    return groupObject;
   }
   
   /**
@@ -67,18 +67,18 @@ public class JoglObjectFactory {
    * @param model モデル
    * @return 与えられたモデルを含むプリミティブ
    */
-  public JoglObject create(PrimitiveModel model) {
-    final JoglPrimitive primitive = new JoglPrimitive(GraphicPrimitiveFactory.create(model));
+  public JoglObject create(ObjectModel model) {
+    final JoglSingleObject object = new JoglSingleObject(GraphicObjectFactory.create(model));
    
     final TranslationModel translation = model.getTranslation();
     final RotationModel rotation = model.getRotation();
 
     if (translation == null && rotation == null) {
-      return primitive;
+      return object;
     }
 
-    final JoglObjectGroup group = JoglObjectGroup.create();
-    group.addChild(primitive);
+    final JoglGroupObject group = JoglGroupObject.create();
+    group.addElement(object);
     group.setBaseCoordinate(createCoordinateOf(translation, rotation));
     
     return group;

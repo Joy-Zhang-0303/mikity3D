@@ -4,17 +4,17 @@ import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.util.Vector3;
 
 /**
- * 球プリミティブを表すクラスです。
+ * 球オブジェクトを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class SpherePrimitive extends AbstractGraphicPrimitive {
+public class SphereObject extends AbstractGraphicObject {
   /**
    * 新しく生成された<code>SphereObject</code>オブジェクトを初期化します。
    * @param sphere 球
    */
-  public SpherePrimitive(SphereModel sphere) {
+  public SphereObject(SphereModel sphere) {
     super(sphere);
     updatePolygons();
   }

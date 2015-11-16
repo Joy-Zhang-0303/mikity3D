@@ -5,19 +5,19 @@ import org.mklab.mikity.util.Vector3;
 
 
 /**
- * 　カプセルプリミティブを表すクラスです。
+ * 　カプセルオブジェクトを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/31
  */
-public class CapsulePrimitive extends AbstractGraphicPrimitive {
+public class CapsuleObject extends AbstractGraphicObject {
 
   /**
    * 新しく生成された<code>CylinderObject</code>オブジェクトを初期化します。
    * 
    * @param capsule カプセル
    */
-  public CapsulePrimitive(CapsuleModel capsule) {
+  public CapsuleObject(CapsuleModel capsule) {
     super(capsule);
     updatePolygons();
   }

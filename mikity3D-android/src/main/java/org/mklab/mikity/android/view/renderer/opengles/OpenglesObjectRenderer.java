@@ -6,7 +6,7 @@ import java.util.List;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import org.mklab.mikity.model.ObjectGroupManager;
+import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
@@ -30,8 +30,8 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   @SuppressWarnings("unused")
   private static final long serialVersionUID = 5653656698891675370L;
 
-  /** オブジェクトのグループ。 */
-  private List<OpenglesObjectGroup> rootGroups;
+  /** ルートオブジェクト。 */
+  private List<OpenglesGroupObject> rootObjects;
 
   /** 設定。 */
   private ConfigurationModel configuration;
@@ -125,9 +125,9 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
 
     gl.glScalef(this.scale, this.scale, this.scale);
 
-    if (this.rootGroups != null) {
-      for (final OpenglesObjectGroup topGroup : this.rootGroups) {
-        topGroup.display(gl);
+    if (this.rootObjects != null) {
+      for (final OpenglesGroupObject topObject : this.rootObjects) {
+        topObject.display(gl);
       }
     }
   }
@@ -144,26 +144,26 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   /**
    * {@inheritDoc}
    */
-  public void setRootGroups(List<GroupModel> rootGroups, ObjectGroupManager manager) {
-    this.rootGroups = createObjectGroups(rootGroups, manager);
+  public void setRootGroups(List<GroupModel> rootGroups, GroupObjectManager manager) {
+    this.rootObjects = createGroupObjects(rootGroups, manager);
   }
 
   /**
-   * オブジェクトグループを生成します。
+   * グループオブジェクトを生成します。
    * 
-   * @param ｇroups グループ
+   * @param groupModels グループモデル
    * @param manager オブジェクトグループマネージャ
-   * @return オブジェクトグループ
+   * @return グループオブジェクト
    */
-  private List<OpenglesObjectGroup> createObjectGroups(List<GroupModel> ｇroups, ObjectGroupManager manager) {
+  private List<OpenglesGroupObject> createGroupObjects(List<GroupModel> groupModels, GroupObjectManager manager) {
     final OpenglesObjectFactory factory = new OpenglesObjectFactory(manager);
     
-    final List<OpenglesObjectGroup> objectGroups = new ArrayList<OpenglesObjectGroup>();
-    for (final GroupModel group : ｇroups) {
-      final OpenglesObjectGroup objectGroup = factory.create(group);
-      objectGroups.add(objectGroup);
+    final List<OpenglesGroupObject> groupObjects = new ArrayList<OpenglesGroupObject>();
+    for (final GroupModel groupModel : groupModels) {
+      final OpenglesGroupObject objectGroup = factory.create(groupModel);
+      groupObjects.add(objectGroup);
     }
-    return objectGroups;
+    return groupObjects;
   }
   
   /**

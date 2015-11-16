@@ -4,17 +4,17 @@ import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.util.Vector3;
 
 /**
- * 円錐(正多角錘)プリミティブを表すクラスです。
+ * 円錐(正多角錘)オブジェクトを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class ConePrimitive extends AbstractGraphicPrimitive {
+public class ConeObject extends AbstractGraphicObject {
   /**
    * 新しく生成された<code>ConeObject</code>オブジェクトを初期化します。
    * @param cone コーン
    */
-  public ConePrimitive(ConeModel cone) {
+  public ConeObject(ConeModel cone) {
     super(cone);
     updatePolygons();
   }

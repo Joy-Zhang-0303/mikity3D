@@ -11,7 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.view.gui.JoglModeler;
@@ -55,7 +55,7 @@ public class TriangleEditor extends AbstractPrimitiveEditor {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public TriangleEditor(Composite parent, PrimitiveModel primitive, SceneGraphTree tree, JoglModeler modeler) {
+  public TriangleEditor(Composite parent, ObjectModel primitive, SceneGraphTree tree, JoglModeler modeler) {
     super(parent, primitive, tree, modeler);
   }
 

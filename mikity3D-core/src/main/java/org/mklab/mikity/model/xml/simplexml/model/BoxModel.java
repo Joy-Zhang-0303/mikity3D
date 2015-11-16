@@ -10,7 +10,7 @@ import org.simpleframework.xml.Root;
  * @version $Revision: 1.2 $ $Date: 2007/11/20 02:51:56 $
  */
 @Root(name="box")
-public class BoxModel extends AbstractPrimitiveModel {
+public class BoxModel extends AbstractObjectModel {
   /** */
   private static final long serialVersionUID = 1L;
 

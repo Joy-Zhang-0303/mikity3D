@@ -7,12 +7,12 @@ package org.mklab.mikity.model.xml.simplexml.model;
 
 
 /**
- * プリミティブを表すインターフェースです。
+ * オブジェクトモデルを表すインターフェースです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/07
  */
-public interface PrimitiveModel {
+public interface ObjectModel {
   /**
    * 色を返します。
    * 
@@ -74,7 +74,7 @@ public interface PrimitiveModel {
    * 
    * @return クローン
    */
-  PrimitiveModel createClone();
+  ObjectModel createClone();
   
   /**
    * 短い文字列を返します。

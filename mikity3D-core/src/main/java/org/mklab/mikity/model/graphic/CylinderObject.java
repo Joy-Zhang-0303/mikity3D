@@ -5,17 +5,17 @@ import org.mklab.mikity.util.Vector3;
 
 
 /**
- * 円柱(正多角柱)プリミティブを表すクラスです。
+ * 円柱(正多角柱)オブジェクトを表すクラスです。
  * 
  * @author iwamoto
  * @version $Revision$, 2012/01/31
  */
-public class CylinderPrimitive extends AbstractGraphicPrimitive {
+public class CylinderObject extends AbstractGraphicObject {
   /**
    * 新しく生成された<code>CylinderObject</code>オブジェクトを初期化します。
    * @param cylinder シリンダー
    */
-  public CylinderPrimitive(CylinderModel cylinder) {
+  public CylinderObject(CylinderModel cylinder) {
     super(cylinder);
     updatePolygons();
   }

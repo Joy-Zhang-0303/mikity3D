@@ -9,12 +9,12 @@ import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 
 /**
- * グループを表すインターフェイスです。
+ * グループオブジェクトを表すインターフェイスです。
  * 
  * @author miki
  * @version $Revision: 1.4 $.2005/01/14
  */
-public interface ObjectGroup {
+public interface GroupObject {
 
   /**
    * 名前を設定します。

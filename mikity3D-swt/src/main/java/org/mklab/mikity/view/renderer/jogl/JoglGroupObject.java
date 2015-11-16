@@ -1,26 +1,25 @@
-package org.mklab.mikity.android.view.renderer.opengles;
+package org.mklab.mikity.view.renderer.jogl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import org.mklab.mikity.model.Coordinate;
-import org.mklab.mikity.model.ObjectGroup;
+import org.mklab.mikity.model.GroupObject;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
+import com.jogamp.opengl.GL2;
 
 /**
- * オブジェクトグループを表すクラスです。
+ * グループオブジェクトを表すクラスです。
  * 
- * @author ohashi
- * @version $Revision$, 2013/02/06
+ * @author iwamoto
+ * @version $Revision$, 2012/02/07
  */
-public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
-  /** オブジェクト。 */
-  private List<OpenglesObject> objects = new ArrayList<OpenglesObject>();
+public class JoglGroupObject implements GroupObject, JoglObject {
+  /** グループの要素。 */
+  private List<JoglObject> elements = new ArrayList<>();
   /** 座標系の基準。 */
   private Coordinate baseCoordinate;
   /** 座標系。 */
@@ -35,11 +34,11 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   private static int serialID = 0;
 
   /**
-   * 新しく生成された<code>OpenglesObjectGroup</code>オブジェクトを初期化します。
+   * 新しく生成された<code>JoglGroupObject</code>オブジェクトを初期化します。
    * @param id ID
    * @param group モデルデータ
    */
-  private OpenglesObjectGroup(int id, GroupModel group) {
+  private JoglGroupObject(int id, GroupModel group) {
     this.id = id;
     this.group = group;
   }
@@ -48,8 +47,8 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    * ファクトリーメソッドです。
    * @return グループ
    */
-  public static OpenglesObjectGroup create() {
-    return new OpenglesObjectGroup(serialID++, null);
+  public static JoglGroupObject create() {
+    return new JoglGroupObject(serialID++, null);
   }
 
   /**
@@ -57,13 +56,14 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    * @param group モデルデータ
    * @return グループ
    */
-  public static OpenglesObjectGroup create(GroupModel group) {
-    return new OpenglesObjectGroup(serialID++, group);
+  public static JoglGroupObject create(GroupModel group) {
+    return new JoglGroupObject(serialID++, group);
   }
   
   /**
    * {@inheritDoc}
    */
+  @Override
   public GroupModel getGroup() {
     return this.group;
   }
@@ -80,7 +80,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
     result = prime * result + ((this.group == null) ? 0 : this.group.hashCode());
     result = prime * result + this.id;
     result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
-    result = prime * result + ((this.objects == null) ? 0 : this.objects.hashCode());
+    result = prime * result + ((this.elements == null) ? 0 : this.elements.hashCode());
     return result;
   }
 
@@ -92,7 +92,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    final OpenglesObjectGroup other = (OpenglesObjectGroup)obj;
+    final JoglGroupObject other = (JoglGroupObject)obj;
     if (this.baseCoordinate == null) {
       if (other.baseCoordinate != null) return false;
     } else if (!this.baseCoordinate.equals(other.baseCoordinate)) return false;
@@ -106,20 +106,21 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
     if (this.name == null) {
       if (other.name != null) return false;
     } else if (!this.name.equals(other.name)) return false;
-    if (this.objects == null) {
-      if (other.objects != null) return false;
-    } else if (!this.objects.equals(other.objects)) return false;
+    if (this.elements == null) {
+      if (other.elements != null) return false;
+    } else if (!this.elements.equals(other.elements)) return false;
     return true;
   }
-
+  
   /**
    * オブジェクトを追加します。
    * 
-   * @param child オブジェクト
+   * @param element オブジェクト
    */
-  public void addChild(OpenglesObject child) {
-    this.objects.add(child);
+  public void addElement(JoglObject element) {
+    this.elements.add(element);
   }
+
 
   /**
    * 座標系の基準を設定します。
@@ -127,37 +128,38 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
    * @param coordinate 座標系の基準
    */
   public void setBaseCoordinate(Coordinate coordinate) {
-    this.baseCoordinate = coordinate;
+    this.baseCoordinate = coordinate; 
   }
 
   /**
    * {@inheritDoc}
    */
-  public void display(GL10 gl) {
+  @Override
+  public void display(GL2 gl) {
     gl.glPushMatrix();
-
+    
     if (this.baseCoordinate != null) {
       applyCoordinate(gl, this.baseCoordinate);
     }
 
     applyCoordinate(gl, this.coordinate);
 
-    for (final OpenglesObject object : this.objects) {
+    for (final JoglObject object : this.elements) {
       object.display(gl);
     }
-
+    
     gl.glPopMatrix();
   }
   
   /**
    * GLによる座標変換を適用します。
-   * 
    * @param gl GL
    * @param coordinateArg 座標
    */
-  private void applyCoordinate(GL10 gl, Coordinate coordinateArg) {
+  private void applyCoordinate(GL2 gl, Coordinate coordinateArg) {
     final TranslationModel translation = coordinateArg.getTranslation();
     final RotationModel rotation = coordinateArg.getRotation();
+    
     gl.glTranslatef(translation.getX(), translation.getY(), translation.getZ());
     gl.glRotatef((float)Math.toDegrees(rotation.getX()), 1.0f, 0.0f, 0.0f);
     gl.glRotatef((float)Math.toDegrees(rotation.getY()), 0.0f, 1.0f, 0.0f);
@@ -167,6 +169,7 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   /**
    * {@inheritDoc}
    */
+  @Override
   public void setCoordinate(Coordinate coordinate) {
     this.coordinate = coordinate;
   }
@@ -174,10 +177,11 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
   /**
    * {@inheritDoc}
    */
+  @Override
   public void setName(String name) {
     this.name = name;
   }
-
+  
   /**
    * {@inheritDoc}
    */
@@ -190,9 +194,8 @@ public class OpenglesObjectGroup implements ObjectGroup, OpenglesObject {
     if (this.coordinate == null) {
       return this.name;
     }
-
+    
     return this.name + this.coordinate;
   }
-
-
+  
 }

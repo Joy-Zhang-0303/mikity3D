@@ -18,7 +18,7 @@ public class Mikity3DMarshaller {
   private Mikity3DModel root;
 
   /**
-   * 新しく生成された<code>JAXBMarshaller</code>オブジェクトを初期化します。
+   * 新しく生成された<code>Mikity3DMarshaller</code>オブジェクトを初期化します。
    * @param root モデルデータのルート
    */
   public Mikity3DMarshaller(Mikity3DModel root) {

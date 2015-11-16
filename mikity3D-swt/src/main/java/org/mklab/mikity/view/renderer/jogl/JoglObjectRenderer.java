@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
-import org.mklab.mikity.model.ObjectGroupManager;
+import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
@@ -41,8 +41,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
   public static boolean isAxisDisplay;
   
-  /** ルートグループ郡。 */
-  private List<JoglObjectGroup> rootGroups;
+  /** ルートオブジェクト。 */
+  private List<JoglGroupObject> rootObjects;
   
   /** 設定。 */
   private ConfigurationModel configuration;
@@ -165,8 +165,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
       drawGrid(gl);
     }
     
-    if (this.rootGroups != null) {
-      for (final JoglObjectGroup topGroup : this.rootGroups) {
+    if (this.rootObjects != null) {
+      for (final JoglGroupObject topGroup : this.rootObjects) {
         topGroup.display(gl);
       }
     }
@@ -221,27 +221,27 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * {@inheritDoc}
    */
   @Override
-  public void setRootGroups(List<GroupModel> rootGroups, ObjectGroupManager manager) {
-    this.rootGroups = createObjectGroups(rootGroups, manager);
+  public void setRootGroups(List<GroupModel> models, GroupObjectManager manager) {
+    this.rootObjects = createGroupObjects(models, manager);
     display();
   }
 
   /**
-   * オブジェクトグループを生成します。
+   * グループオブジェクトを生成します。
    * 
-   * @param groups グループ
+   * @param groupModels グループ
    * @param manager オブジェクトグループマネージャ
-   * @return オブジェクトグループ
+   * @return グループオブジェクト
    */
-  private List<JoglObjectGroup> createObjectGroups(List<GroupModel> groups, ObjectGroupManager manager) {
+  private List<JoglGroupObject> createGroupObjects(List<GroupModel> groupModels, GroupObjectManager manager) {
     final JoglObjectFactory factory = new JoglObjectFactory(manager);
     
-    final List<JoglObjectGroup> objectGroups = new ArrayList<>();
-    for (final GroupModel rootGroup : groups) {
-      final JoglObjectGroup objectGroup = factory.create(rootGroup);
-      objectGroups.add(objectGroup);
+    final List<JoglGroupObject> groupObjects = new ArrayList<>();
+    for (final GroupModel groupModel : groupModels) {
+      final JoglGroupObject groupObject = factory.create(groupModel);
+      groupObjects.add(groupObject);
     }
-    return objectGroups;
+    return groupObjects;
   }
 
   /**

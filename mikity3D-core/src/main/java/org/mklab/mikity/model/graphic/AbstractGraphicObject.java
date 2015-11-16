@@ -6,15 +6,15 @@
 package org.mklab.mikity.model.graphic;
 
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
-import org.mklab.mikity.model.xml.simplexml.model.PrimitiveModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 
 /**
- * グラフィックプリミティブを表す抽象クラスです。
+ * グラフィックオブジェクトを表す抽象クラスです。
  * 
  * @author koga
  * @version $Revision$, 2015/07/11
  */
-public abstract class AbstractGraphicPrimitive implements GraphicPrimitive {
+public abstract class AbstractGraphicObject implements GraphicObject {
   /** 頂点配列の参照位置。 */
   private int vertexPosition = 0;
   
@@ -28,13 +28,13 @@ public abstract class AbstractGraphicPrimitive implements GraphicPrimitive {
   private float normalVectorArray[];
   
   /** プリミティブ。 */
-  protected PrimitiveModel primitive;
+  protected ObjectModel primitive;
   
   /**
    * 新しく生成された<code>GraphicPrimitive</code>オブジェクトを初期化します。
    * @param primitive プリミティブ
    */
-  public AbstractGraphicPrimitive(PrimitiveModel primitive) {
+  public AbstractGraphicObject(ObjectModel primitive) {
     this.primitive = primitive;
   }
   
