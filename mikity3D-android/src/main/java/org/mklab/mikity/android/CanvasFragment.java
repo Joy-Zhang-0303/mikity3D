@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
-
 import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.android.view.renderer.opengles.OpenglesObjectRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
@@ -26,7 +25,6 @@ import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matx.MatxMatrix;
-
 import roboguice.fragment.RoboFragment;
 import roboguice.inject.InjectView;
 import android.app.ProgressDialog;
@@ -287,7 +285,7 @@ public class CanvasFragment extends RoboFragment {
         CanvasFragment.this.progressDialog = new ProgressDialog(getActivity());
         CanvasFragment.this.progressDialog.setCanceledOnTouchOutside(false);
         CanvasFragment.this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        CanvasFragment.this.progressDialog.setMessage("Now Loading..."); //$NON-NLS-1$
+        CanvasFragment.this.progressDialog.setMessage(getString(R.string.now_loading_));
         CanvasFragment.this.progressDialog.show();
       }
 
@@ -350,13 +348,13 @@ public class CanvasFragment extends RoboFragment {
         this.progressDialog.dismiss();
       }
 
-      showAlertMessageInDialog("Please select proper source file and set proper source number."); //$NON-NLS-1$
+      showAlertMessageInDialog("Please select proper source file and set source number."); //$NON-NLS-1$
     } catch (IllegalAccessError e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      final String message = "Source data size is not match model's source number." //$NON-NLS-1$
-          + "\nPlease select proper source file and set proper source number."; //$NON-NLS-1$
+      final String message = "Source data size dose not match the model's source number." //$NON-NLS-1$
+          + "\nPlease select proper source file and set source number."; //$NON-NLS-1$
       showAlertMessageInDialog(message);
     }
   }
@@ -452,11 +450,11 @@ public class CanvasFragment extends RoboFragment {
    */
   public void runAnimation() {
     if (this.manager == null) {
-      showAlertMessageInDialog("Model data is not ready"); //$NON-NLS-1$
+      showAlertMessageInDialog(getString(R.string.modelDataIsNotReady));
       return;
     }
     if (this.manager.isSourceReady() == false) {
-      showAlertMessageInDialog("Source data is not ready"); //$NON-NLS-1$
+      showAlertMessageInDialog(getString(R.string.sourceDataIsNotReady));
       return;
     }
 

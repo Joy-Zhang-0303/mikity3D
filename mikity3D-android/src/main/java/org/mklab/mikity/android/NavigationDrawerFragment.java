@@ -245,7 +245,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       sources.addView(source);
 
       final Button selectButton = (Button)source.findViewById(R.id.sourceSelectButton);
-      selectButton.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+      selectButton.setText(getString(R.string.sourceLabel) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sourceSelectButtons.add(selectButton);
 
       selectButton.setEnabled(false);
@@ -448,7 +448,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       sources.addView(source);
 
       final Button selectButton = (Button)source.findViewById(R.id.sampleSourceSelectButton);
-      selectButton.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+      selectButton.setText(getString(R.string.sampleSourceLabel) +  "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sampleSourceSelectButtons.add(selectButton);
 
       selectButton.setEnabled(false);
@@ -626,7 +626,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       setButtonEnabled(true);
 
     } catch (Mikity3dSerializeDeserializeException e) {
-      showAlertMessageInDialog("please select model file."); //$NON-NLS-1$
+      showAlertMessageInDialog(getString(R.string.pleaseSelectModelFile));
       setButtonEnabled(false);
     } catch (IOException e) {
       throw new RuntimeException(e);
