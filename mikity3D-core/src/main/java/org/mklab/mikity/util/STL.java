@@ -14,6 +14,9 @@ import java.io.InputStream;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
+import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
+import org.mklab.mikity.model.xml.simplexml.config.LightModel;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
 import org.mklab.mikity.model.xml.simplexml.model.FacetModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -91,6 +94,10 @@ public class STL {
    */
   public Mikity3DModel toMikity3DModel() {
     final CompositionModel composition = new CompositionModel();
+    float xmax = -Float.MAX_VALUE;
+    float ymax = -Float.MAX_VALUE;
+    float zmax = -Float.MAX_VALUE;
+    
     for (final Facet facet: this.facets) {
       final float[] v1 = facet.getVertex1();
       final float[] v2 = facet.getVertex2();
@@ -99,6 +106,10 @@ public class STL {
       final VertexModel vertex1 = new VertexModel(v1[0], v1[1], v1[2]);
       final VertexModel vertex2 = new VertexModel(v2[0], v2[1], v2[2]);
       final VertexModel vertex3 = new VertexModel(v3[0], v3[1], v3[2]);
+      
+      xmax = Math.max(Math.max(Math.max(xmax, v1[0]), v2[0]), v3[0]);
+      ymax = Math.max(Math.max(Math.max(ymax, v1[1]), v2[1]), v3[1]);
+      zmax = Math.max(Math.max(Math.max(zmax, v1[2]), v2[2]), v3[2]);
       
       final FacetModel facetModel = new FacetModel(vertex1, vertex2, vertex3);
       composition.add(facetModel);
@@ -111,7 +122,10 @@ public class STL {
     scene.addGroup(group);
     
     final ConfigurationModel configuration = new ConfigurationModel();
-    
+    configuration.setEye(new EyeModel(10*Math.max(Math.max(xmax, ymax), zmax), 0, 0));
+    configuration.setLookAtPoiint(new LookAtPointModel(0, 0, zmax/2));
+    configuration.setLight(new LightModel(10*xmax, 10*ymax, 10*zmax));
+  
     final Mikity3DModel mikity3d = new Mikity3DModel();
     mikity3d.addConfiguration(configuration);
     mikity3d.addScene(scene);

@@ -28,6 +28,9 @@ public class CompositionObject extends AbstractGraphicObject {
     for (final FacetModel facet : ((CompositionModel)this.object).getFacets()) {
       appendVertices(facet.getVertices());
       appendNormalVector(facet.getNormalVector());
+      appendNormalVector(facet.getNormalVector());
+      appendNormalVector(facet.getNormalVector());
     }
+    
   }
 }
