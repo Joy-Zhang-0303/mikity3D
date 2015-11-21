@@ -25,9 +25,9 @@ public class AxisObject extends AbstractGraphicObject {
   }
   
   private void updatePolygons() {
-    float radius = ((AxisModel)this.primitive).getRadius();
-    float height = ((AxisModel)this.primitive).getHeight();
-    int division = ((AxisModel)this.primitive).getDivision();
+    float radius = ((AxisModel)this.object).getRadius();
+    float height = ((AxisModel)this.object).getHeight();
+    int division = ((AxisModel)this.object).getDivision();
     
     if (radius == 0 || height == 0 || division == 0) {
       return;

@@ -26,9 +26,9 @@ public class CapsuleObject extends AbstractGraphicObject {
    * ポリゴンを更新します。
    */
   private void updatePolygons() {
-    final float radius = ((CapsuleModel)this.primitive).getRadius();
-    final float height = ((CapsuleModel)this.primitive).getHeight();
-    final int division = ((CapsuleModel)this.primitive).getDivision();
+    final float radius = ((CapsuleModel)this.object).getRadius();
+    final float height = ((CapsuleModel)this.object).getHeight();
+    final int division = ((CapsuleModel)this.object).getDivision();
 
     if (radius == 0 || height == 0 || division == 0) {
       return;

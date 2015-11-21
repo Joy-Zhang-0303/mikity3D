@@ -23,9 +23,9 @@ public class ConeObject extends AbstractGraphicObject {
    * ポリゴンを更新します。
    */
   private void updatePolygons() {
-    float radius = ((ConeModel)this.primitive).getRadisu();
-    float height = ((ConeModel)this.primitive).getHeight();
-    int division = ((ConeModel)this.primitive).getDivision();
+    float radius = ((ConeModel)this.object).getRadisu();
+    float height = ((ConeModel)this.object).getHeight();
+    int division = ((ConeModel)this.object).getDivision();
     
     if (radius == 0 || height == 0 || division == 0) {
       return;

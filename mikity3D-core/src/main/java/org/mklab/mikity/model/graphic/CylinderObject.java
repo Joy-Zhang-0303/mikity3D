@@ -24,9 +24,9 @@ public class CylinderObject extends AbstractGraphicObject {
    * ポリゴンを更新します。
    */
   private void updatePolygons() {
-    float radius = ((CylinderModel)this.primitive).getRadius();
-    float height = ((CylinderModel)this.primitive).getHeight();
-    int division = ((CylinderModel)this.primitive).getDivision();
+    float radius = ((CylinderModel)this.object).getRadius();
+    float height = ((CylinderModel)this.object).getHeight();
+    int division = ((CylinderModel)this.object).getDivision();
     
     if (radius == 0 || height == 0 || division == 0) {
       return;

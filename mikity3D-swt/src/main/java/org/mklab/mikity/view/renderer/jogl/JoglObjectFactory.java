@@ -30,8 +30,8 @@ public class JoglObjectFactory {
   
   /**
    * {@link JoglGroupObject}を生成します。
-   * @param group オブジェクトのグループ
-   * @return グループ
+   * @param group グループモデル
+   * @return グループオブジェクト
    */
   public JoglGroupObject create(final GroupModel group) {
     final JoglGroupObject groupObject = JoglGroupObject.create(group);
@@ -62,10 +62,10 @@ public class JoglObjectFactory {
   }
   
   /**
-   * 与えられたモデルを含むプリミティブを生成します。
+   * 与えられたモデルを含むオブジェクトを生成します。
    * 
    * @param model モデル
-   * @return 与えられたモデルを含むプリミティブ
+   * @return 与えられたモデルを含むオブジェクト
    */
   public JoglObject create(ObjectModel model) {
     final JoglSingleObject object = new JoglSingleObject(GraphicObjectFactory.create(model));
@@ -87,7 +87,6 @@ public class JoglObjectFactory {
   /**
    * 座標を生成します。
    * 
-   * @param targetGroup オブジェクトグループ
    * @param translation 並進変換
    * @param rotation 回転変換
    * @return 座標系

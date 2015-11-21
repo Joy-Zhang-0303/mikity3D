@@ -23,8 +23,8 @@ public class SphereObject extends AbstractGraphicObject {
    * ポリゴンを更新します。
    */
   private void updatePolygons() {
-    float radius = ((SphereModel)this.primitive).getRadius();
-    int division = ((SphereModel)this.primitive).getDivision();
+    float radius = ((SphereModel)this.object).getRadius();
+    int division = ((SphereModel)this.object).getDivision();
     
     if (radius == 0 || division == 0) {
       return;

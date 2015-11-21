@@ -27,8 +27,8 @@ public class QuadrangleObject extends AbstractGraphicObject {
    * ポリゴンを更新します。
    */
   private void updatePolygons() {
-    List<VertexModel> vertices = ((QuadrangleModel)this.primitive).getVertices();
-    Vector3 normalVector = ((QuadrangleModel)this.primitive).getNormalVector();
+    List<VertexModel> vertices = ((QuadrangleModel)this.object).getVertices();
+    Vector3 normalVector = ((QuadrangleModel)this.object).getNormalVector();
     
     if (vertices == null || normalVector == null) {
       return;

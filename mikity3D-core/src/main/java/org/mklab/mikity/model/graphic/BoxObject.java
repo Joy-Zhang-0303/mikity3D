@@ -33,9 +33,9 @@ public class BoxObject extends AbstractGraphicObject {
     //  /      /
     // v2 -- v3
     
-    float width = ((BoxModel)this.primitive).getWidth();
-    float height = ((BoxModel)this.primitive).getHeight();
-    float depth = ((BoxModel)this.primitive).getDepth();
+    float width = ((BoxModel)this.object).getWidth();
+    float height = ((BoxModel)this.object).getHeight();
+    float depth = ((BoxModel)this.object).getDepth();
     
     float x0 = depth / 2;
     float y0 = width / 2;

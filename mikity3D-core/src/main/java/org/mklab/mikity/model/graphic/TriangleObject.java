@@ -27,8 +27,8 @@ public class TriangleObject extends AbstractGraphicObject {
    * ポリゴンを更新します。
    */
   private void updatePolygons() {
-    List<VertexModel> vertices = ((TriangleModel)this.primitive).getVertices();
-    Vector3 normalVector = ((TriangleModel)this.primitive).getNormalVector();
+    List<VertexModel> vertices = ((TriangleModel)this.object).getVertices();
+    Vector3 normalVector = ((TriangleModel)this.object).getNormalVector();
     
     if (vertices == null || normalVector == null) {
       return;

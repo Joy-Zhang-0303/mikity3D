@@ -27,15 +27,15 @@ public abstract class AbstractGraphicObject implements GraphicObject {
   /** 法線ベクトル配列。 */
   private float normalVectorArray[];
   
-  /** プリミティブ。 */
-  protected ObjectModel primitive;
+  /** オブジェクト。 */
+  protected ObjectModel object;
   
   /**
    * 新しく生成された<code>GraphicPrimitive</code>オブジェクトを初期化します。
-   * @param primitive プリミティブ
+   * @param object オブジェクト
    */
-  public AbstractGraphicObject(ObjectModel primitive) {
-    this.primitive = primitive;
+  public AbstractGraphicObject(ObjectModel object) {
+    this.object = object;
   }
   
   /**
@@ -76,7 +76,7 @@ public abstract class AbstractGraphicObject implements GraphicObject {
    * @param color 色
    */
   public void setColor(ColorModel color) {
-    this.primitive.setColor(color);
+    this.object.setColor(color);
   }
   
   /**
@@ -85,7 +85,7 @@ public abstract class AbstractGraphicObject implements GraphicObject {
    * @return 色
    */
   public ColorModel getColor() {
-    return this.primitive.getColor();
+    return this.object.getColor();
   }
 
   
@@ -95,7 +95,7 @@ public abstract class AbstractGraphicObject implements GraphicObject {
    * @param isTransparent 透明性
    */
   public void setTransparent(boolean isTransparent) {
-    this.primitive.setTransparent(isTransparent);
+    this.object.setTransparent(isTransparent);
   }
   
   /**
@@ -104,7 +104,7 @@ public abstract class AbstractGraphicObject implements GraphicObject {
    * @return 透明ならばtrue、そうでなければfalse
    */
   public boolean isTransparent() {
-    return this.primitive.isTransparent();
+    return this.object.isTransparent();
   }
 
   /**
@@ -117,6 +117,17 @@ public abstract class AbstractGraphicObject implements GraphicObject {
       for (int j = 0; j < 3; j++) {
         this.vertexArray[this.vertexPosition++] = vertices[i][j];
       }
+    }
+  }
+  
+  /**
+   * 与えられた頂点配列をこのオブジェクトの頂点配列に追加します。
+   * 
+   * @param vertices 頂点
+   */
+  protected void appendVertices(float[] vertices) {
+    for (int i = 0; i < vertices.length; i++) {
+      this.vertexArray[this.vertexPosition++] = vertices[i];
     }
   }
 
@@ -143,6 +154,17 @@ public abstract class AbstractGraphicObject implements GraphicObject {
       for (int j = 0; j < 3; j++) {
         this.normalVectorArray[this.normalVectorPosition++] = normalVector[i][j];
       }
+    }
+  }
+  
+  /**
+   * 与えられた法線ベクトルをこのオブジェクトの法線ベクトル配列に追加します。
+   * 
+   * @param normalVector 法線ベクトル
+   */
+  protected void appendNormalVector(float[] normalVector) {
+    for (int i = 0; i < normalVector.length; i++) {
+      this.normalVectorArray[this.normalVectorPosition++] = normalVector[i];
     }
   }
 
