@@ -8,12 +8,12 @@ package org.mklab.mikity.view.gui;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
-import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 
 /**
@@ -44,7 +44,7 @@ public class AnimationWindowTest {
     final Mikity3DModel expected;
     try {
       expected = new Mikity3dFactory().loadFile(new File(filePath));
-    } catch (Mikity3dSerializeDeserializeException e) {
+    } catch (IOException e) {
       throw new RuntimeException(e);
     }
     
@@ -64,7 +64,7 @@ public class AnimationWindowTest {
     final Mikity3DModel expected;
     try {
       expected = new Mikity3dFactory().loadFile(new File(modelFileName));
-    } catch (Mikity3dSerializeDeserializeException e) {
+    } catch (IOException e) {
       throw new RuntimeException(e);
     }
     

@@ -41,7 +41,6 @@ import org.mklab.mikity.control.AnimationTask;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
-import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.SourceDataModel;
@@ -492,7 +491,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
       @Override
       public void widgetSelected(SelectionEvent e) {
         final FileDialog dialog = new FileDialog(parent.getShell());
-        dialog.setFilterExtensions(new String[] {"*.m3d", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
+        dialog.setFilterExtensions(new String[] {"*.m3d", "*.stl", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
         
         final String filePath = dialog.open();
         if (filePath != null) {
@@ -519,7 +518,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
       
       final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
       createSourceChoosers(getAllIds(rootGroups), true);
-    } catch (Mikity3dSerializeDeserializeException e) {
+    } catch (IOException e) {
       throw new RuntimeException(e);
     }
   }

@@ -6,6 +6,7 @@
 package org.mklab.mikity.model.xml;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DUnmarshaller;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.util.STL;
 
 
 /**
@@ -32,12 +34,25 @@ public class Mikity3dFactory {
    * 
    * @param file ファイル
    * @param parent Jamastのroot
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
+   * @throws IOException ファイルを読み込めない場合 
    */
-  public void importFile(File file, Mikity3DModel parent) throws Mikity3dSerializeDeserializeException {
-    final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
-    unmarshaller.unmarshalFromMikity3DFile(file);
-    final Mikity3DModel importedMikity3d = unmarshaller.getRoot();
+  public void importFile(File file, Mikity3DModel parent) throws IOException {
+    final Mikity3DModel importedMikity3d;
+    
+    if (file.getPath().endsWith(".m3d")) { //$NON-NLS-1$
+      try {
+        final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
+        unmarshaller.unmarshalFromMikity3DFile(file);
+        importedMikity3d = unmarshaller.getRoot();
+      } catch (Mikity3dSerializeDeserializeException e) {
+        throw new IOException(e);
+      }
+    } else if (file.getPath().endsWith(".stl")) { //$NON-NLS-1$
+      importedMikity3d = STL.load(file.getPath()).toMikity3DModel();
+    } else {
+      throw new IllegalArgumentException("Inappropriate model file."); //$NON-NLS-1$
+    }
+      
     final List<GroupModel> rootGroups = importedMikity3d.getScene(0).getGroups();
     
     final SceneModel parentMikity3d = parent.getScene(0);
@@ -52,12 +67,24 @@ public class Mikity3dFactory {
    * 
    * @param file Mikity3Dファイル
    * @return Mikity3Dモデル
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
+   * @throws IOException ファイルを読み込めない場合
    */
-  public Mikity3DModel loadFile(final File file) throws Mikity3dSerializeDeserializeException {
-    final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
-    unmarshaller.unmarshalFromMikity3DFile(file);
-    final Mikity3DModel root = unmarshaller.getRoot();
+  public Mikity3DModel loadFile(final File file) throws IOException {
+    final Mikity3DModel root;
+    if (file.getPath().endsWith(".m3d")) { //$NON-NLS-1$
+      try {
+        final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
+        unmarshaller.unmarshalFromMikity3DFile(file);
+        root = unmarshaller.getRoot();
+      } catch (Mikity3dSerializeDeserializeException e) {
+        throw new IOException(e);
+      }
+    } else if (file.getPath().endsWith(".stl")) { //$NON-NLS-1$
+      root = STL.load(file.getPath()).toMikity3DModel();
+    } else {
+      throw new IllegalArgumentException("Inappropriate model file."); //$NON-NLS-1$
+    }
+          
     return root;
   }
 

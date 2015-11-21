@@ -1,6 +1,7 @@
 package org.mklab.mikity.view.gui;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
@@ -251,9 +252,9 @@ public class ModelingWindow extends ApplicationWindow {
   /**
    * ファイルを読み込みます。
    * 
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合 
+   * @throws IOException ファイルを読み込めない場合 
    */
-  public void loadFile() throws Mikity3dSerializeDeserializeException {
+  public void loadFile() throws IOException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
@@ -269,9 +270,9 @@ public class ModelingWindow extends ApplicationWindow {
 
   /**
    * ファイルを読み込み，データをモデルに追加します。
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合  
+   * @throws IOException ファイルを読み込めない場合  
    */
-  public void importFile() throws Mikity3dSerializeDeserializeException {
+  public void importFile() throws IOException {
     if (this.file == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
