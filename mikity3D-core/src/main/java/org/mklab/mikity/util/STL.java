@@ -14,8 +14,9 @@ import java.io.InputStream;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
+import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
+import org.mklab.mikity.model.xml.simplexml.model.FacetModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 
 
@@ -89,7 +90,7 @@ public class STL {
    * @return Mikity3Dのモデル
    */
   public Mikity3DModel toMikity3DModel() {
-    final GroupModel group = new GroupModel(this.name);
+    final CompositionModel composition = new CompositionModel();
     for (final Facet facet: this.facets) {
       final float[] v1 = facet.getVertex1();
       final float[] v2 = facet.getVertex2();
@@ -99,9 +100,12 @@ public class STL {
       final VertexModel vertex2 = new VertexModel(v2[0], v2[1], v2[2]);
       final VertexModel vertex3 = new VertexModel(v3[0], v3[1], v3[2]);
       
-      final TriangleModel triangle = new TriangleModel(vertex1, vertex2, vertex3);
-      group.add(triangle);
+      final FacetModel facetModel = new FacetModel(vertex1, vertex2, vertex3);
+      composition.add(facetModel);
     }
+
+    final GroupModel group = new GroupModel(this.name);
+    group.add(composition);
     
     final SceneModel scene = new SceneModel();
     scene.addGroup(group);

@@ -8,6 +8,7 @@ package org.mklab.mikity.model.graphic;
 import org.mklab.mikity.model.xml.simplexml.model.AxisModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
+import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
@@ -57,6 +58,10 @@ public class GraphicObjectFactory {
 
     if (model instanceof QuadrangleModel) {
       return new QuadrangleObject((QuadrangleModel)model);
+    } 
+    
+    if (model instanceof CompositionModel) {
+      return new CompositionObject((CompositionModel)model);
     } 
 
     if (model instanceof NullModel) {

@@ -39,7 +39,7 @@ public class AxisModel extends AbstractObjectModel {
   }
   
   /**
-   * 新しく生成された<code>CapsuleModel</code>オブジェクトを初期化します。
+   * 新しく生成された<code>AxisModel</code>オブジェクトを初期化します。
    * @param radius 半径
    * @param height 高さ
    * @param division 分割数
@@ -91,7 +91,7 @@ public class AxisModel extends AbstractObjectModel {
     if (getClass() != obj.getClass()) return false;
     if (super.equals(obj) == false) return false;
     
-    CapsuleModel other = (CapsuleModel)obj;
+    AxisModel other = (AxisModel)obj;
     if (this.division != other.division) return false;
     if (Float.floatToIntBits(this.height) != Float.floatToIntBits(other.height)) return false;
     if (Float.floatToIntBits(this.radius) != Float.floatToIntBits(other.radius)) return false;

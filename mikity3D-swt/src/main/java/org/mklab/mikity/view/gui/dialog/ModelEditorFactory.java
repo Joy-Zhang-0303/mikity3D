@@ -8,6 +8,7 @@ package org.mklab.mikity.view.gui.dialog;
 import org.eclipse.swt.widgets.Composite;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
+import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -66,6 +67,10 @@ public class ModelEditorFactory {
     }
     if (model instanceof CapsuleModel) {
       final ModelEditor editor = new CapsuleEditor(parent, (ObjectModel)model, tree, modeler);
+      return editor;
+    }    
+    if (model instanceof CompositionModel) {
+      final ModelEditor editor = new CompositionEditor(parent, (ObjectModel)model, tree, modeler);
       return editor;
     }    
 

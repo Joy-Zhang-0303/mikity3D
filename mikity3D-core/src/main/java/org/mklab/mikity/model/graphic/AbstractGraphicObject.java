@@ -5,8 +5,12 @@
  */
 package org.mklab.mikity.model.graphic;
 
+import java.util.List;
+
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
+import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
+import org.mklab.mikity.util.Vector3;
 
 /**
  * グラフィックオブジェクトを表す抽象クラスです。
@@ -121,6 +125,19 @@ public abstract class AbstractGraphicObject implements GraphicObject {
   }
   
   /**
+   * 頂点を頂点配列に追加します。
+   * 
+   * @param vertices 頂点
+   */
+  protected void appendVertices(List<VertexModel> vertices) {
+    for (final VertexModel vertex : vertices) {
+      this.vertexArray[this.vertexPosition++] = vertex.getX();
+      this.vertexArray[this.vertexPosition++] = vertex.getY();
+      this.vertexArray[this.vertexPosition++] = vertex.getZ();
+    }
+  }
+  
+  /**
    * 与えられた頂点配列をこのオブジェクトの頂点配列に追加します。
    * 
    * @param vertices 頂点
@@ -166,6 +183,17 @@ public abstract class AbstractGraphicObject implements GraphicObject {
     for (int i = 0; i < normalVector.length; i++) {
       this.normalVectorArray[this.normalVectorPosition++] = normalVector[i];
     }
+  }
+  
+  /**
+   * 与えられた法線ベクトルをこのオブジェクトの法線ベクトル配列に追加します。
+   * 
+   * @param normalVector 法線ベクトル
+   */
+  protected void appendNormalVector(Vector3 normalVector) {
+    this.normalVectorArray[this.normalVectorPosition++] = normalVector.getX();
+    this.normalVectorArray[this.normalVectorPosition++] = normalVector.getY();
+    this.normalVectorArray[this.normalVectorPosition++] = normalVector.getZ();
   }
 
   /**
