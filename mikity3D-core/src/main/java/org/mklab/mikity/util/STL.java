@@ -103,9 +103,9 @@ public class STL {
       final float[] v2 = facet.getVertex2();
       final float[] v3 = facet.getVertex3();
       
-      final VertexModel vertex1 = new VertexModel(v1[0], v1[1], v1[2]);
-      final VertexModel vertex2 = new VertexModel(v2[0], v2[1], v2[2]);
-      final VertexModel vertex3 = new VertexModel(v3[0], v3[1], v3[2]);
+      final VertexModel vertex1 = new VertexModel(v1[0]/1000, v1[1]/1000, v1[2]/1000);
+      final VertexModel vertex2 = new VertexModel(v2[0]/1000, v2[1]/1000, v2[2]/1000);
+      final VertexModel vertex3 = new VertexModel(v3[0]/1000, v3[1]/1000, v3[2]/1000);
       
       xmax = Math.max(Math.max(Math.max(xmax, v1[0]), v2[0]), v3[0]);
       ymax = Math.max(Math.max(Math.max(ymax, v1[1]), v2[1]), v3[1]);
@@ -122,9 +122,9 @@ public class STL {
     scene.addGroup(group);
     
     final ConfigurationModel configuration = new ConfigurationModel();
-    configuration.setEye(new EyeModel(10*Math.max(Math.max(xmax, ymax), zmax), 0, 0));
-    configuration.setLookAtPoiint(new LookAtPointModel(0, 0, zmax/2));
-    configuration.setLight(new LightModel(10*xmax, 10*ymax, 10*zmax));
+    configuration.setEye(new EyeModel(10*Math.max(Math.max(xmax/1000, ymax/1000), zmax/1000), 0, 0));
+    configuration.setLookAtPoiint(new LookAtPointModel(0, 0, zmax/1000/2));
+    configuration.setLight(new LightModel(10*xmax/1000, 10*ymax/1000, 10*zmax/1000));
   
     final Mikity3DModel mikity3d = new Mikity3DModel();
     mikity3d.addConfiguration(configuration);
