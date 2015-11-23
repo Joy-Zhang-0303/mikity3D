@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.model.xml.simplexml.config;
 
+import java.io.Serializable;
+
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.simpleframework.xml.Element;
 
@@ -12,7 +14,7 @@ import org.simpleframework.xml.Element;
  * @author eguchi
  * @version $Revision$, 2015/11/11
  */
-public class BaseAxisModel implements java.io.Serializable, Cloneable {
+public class BaseAxisModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   
   /** color */
@@ -40,7 +42,7 @@ public class BaseAxisModel implements java.io.Serializable, Cloneable {
    * 新しく生成された<code>BaseAxisModel</code>オブジェクトを初期化します。
    * @param color グリッド色
    * @param gridSize グリッド間隔
-   * @param isDisplay 表示切替
+   * @param isDisplay 表示するならばtrue
    */
   public BaseAxisModel(ColorModel color, float gridSize, boolean isDisplay) {
     this.gridColor = color;
@@ -105,8 +107,9 @@ public class BaseAxisModel implements java.io.Serializable, Cloneable {
 
   
   /**
+   * グリッド間隔を設定します。
    * 
-   * @param gridSize
+   * @param gridSize グリッド間隔
    */
   public void setGridSize(float gridSize) {
     this.gridSize = gridSize;
@@ -114,7 +117,9 @@ public class BaseAxisModel implements java.io.Serializable, Cloneable {
 
   
   /**
-   * @return
+   * 表示するか判定します。
+   * 
+   * @return 表示するならばtrue
    */
   public boolean isDisplay() {
     return this.isDisplay;
@@ -122,7 +127,9 @@ public class BaseAxisModel implements java.io.Serializable, Cloneable {
 
   
   /**
-   * @param isDisplay
+   * 表示するか設定します。
+   * 
+   * @param isDisplay 表示するならばtrue
    */
   public void setDisplay(boolean isDisplay) {
     this.isDisplay = isDisplay;
