@@ -190,7 +190,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
     this.saveButton.setText(Messages.getString("EditPrimitiveDialog.11")); //$NON-NLS-1$
     this.saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") org.eclipse.swt.events.SelectionEvent e) {
         saveParameters();
       }
     });
@@ -307,7 +307,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
   /**
    * {@inheritDoc}
    */
-  public void modifyText(ModifyEvent arg0) {
+  public void modifyText(@SuppressWarnings("unused") ModifyEvent e) {
     if (this.saveButton != null) {
       this.isChanged = true;
       this.saveButton.setEnabled(true);
@@ -317,7 +317,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
   /**
    * {@inheritDoc}
    */
-  public void keyPressed(KeyEvent e) {
+  public void keyPressed(@SuppressWarnings("unused") KeyEvent e) {
     // nothing to do
   }
 

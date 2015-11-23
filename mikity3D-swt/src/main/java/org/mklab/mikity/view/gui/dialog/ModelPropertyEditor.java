@@ -48,11 +48,11 @@ public class ModelPropertyEditor {
   /**
    * エディタを生成します。
    * 
-   * @param parent 親
+   * @param localParent 親
    */
-  private void createEditor(final Composite parent) {
-    parent.setLayout(new GridLayout(1, true));
-    this.editor = new GroupEditor(parent, this.modeler.getTargetGroup(), true, null, this.modeler);
+  private void createEditor(final Composite localParent) {
+    localParent.setLayout(new GridLayout(1, true));
+    this.editor = new GroupEditor(localParent, this.modeler.getTargetGroup(), true, null, this.modeler);
   }
   
   /**

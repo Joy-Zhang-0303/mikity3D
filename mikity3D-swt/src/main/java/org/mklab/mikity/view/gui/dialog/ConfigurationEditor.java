@@ -143,11 +143,12 @@ public class ConfigurationEditor implements ModifyKeyListener {
     this.axisCheack.addSelectionListener(new SelectionListener() {
 
       @Override
-      public void widgetDefaultSelected(SelectionEvent e) {   
+      public void widgetDefaultSelected(@SuppressWarnings("unused") SelectionEvent e) {
+        // nothing to do
       }
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         modifyText(null);
       }
     });
@@ -321,7 +322,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
     this.saveButton.setText(Messages.getString("ConfigurationDialog.0")); //$NON-NLS-1$
     this.saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") org.eclipse.swt.events.SelectionEvent e) {
         saveParameters();        
       }
 
@@ -333,7 +334,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
     closeButton.setText(Messages.getString("ConfigDialog.17")); //$NON-NLS-1$
     closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") org.eclipse.swt.events.SelectionEvent e) {
         if (ConfigurationEditor.this.isChanged() == false) {
           ConfigurationEditor.this.sShell.close();
           return;
@@ -571,7 +572,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
   /**
    * {@inheritDoc}
    */
-  public void modifyText(ModifyEvent arg0) {
+  public void modifyText(@SuppressWarnings("unused") ModifyEvent e) {
     if (this.saveButton != null) {
       this.isChanged = true;
       this.saveButton.setEnabled(true);
@@ -581,7 +582,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
   /**
    * {@inheritDoc}
    */
-  public void keyPressed(KeyEvent e) {
+  public void keyPressed(@SuppressWarnings("unused") KeyEvent e) {
     // nothing to do
   }
 

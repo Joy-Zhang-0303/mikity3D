@@ -65,25 +65,26 @@ public class DragAndDropEnabler {
    * @version $Revision$, 2012/02/23
    */
   class MyDropTargetListener implements DropTargetListener {
+
     /**
      * {@inheritDoc}
      */
-    public void dragEnter(DropTargetEvent e) {
-    // nothing to do
+    public void dragEnter(@SuppressWarnings("unused") DropTargetEvent e) {
+      // nothing to do
     }
 
     /**
      * {@inheritDoc}
      */
-    public void dragLeave(DropTargetEvent e) {
-    // nothing to do
+    public void dragLeave(@SuppressWarnings("unused") DropTargetEvent e) {
+      // nothing to do
     }
 
     /**
      * {@inheritDoc}
      */
-    public void dragOperationChanged(DropTargetEvent e) {
-    // nothing to do
+    public void dragOperationChanged(@SuppressWarnings("unused") DropTargetEvent e) {
+      // nothing to do
     }
 
     /**
@@ -162,8 +163,8 @@ public class DragAndDropEnabler {
     /**
      * {@inheritDoc}
      */
-    public void dropAccept(DropTargetEvent e) {
-    // nothing to do
+    public void dropAccept(@SuppressWarnings("unused") DropTargetEvent e) {
+      // nothing to do
     }
 
   }
@@ -173,6 +174,7 @@ public class DragAndDropEnabler {
    * @version $Revision$, 2012/02/23
    */
   class MyDragSourceListener implements DragSourceListener {
+
     /**
      * {@inheritDoc}
      */
@@ -188,15 +190,15 @@ public class DragAndDropEnabler {
     /**
      * {@inheritDoc}
      */
-    public void dragSetData(DragSourceEvent e) {
-    // nothing to do
+    public void dragSetData(@SuppressWarnings("unused") DragSourceEvent e) {
+      // nothing to do
     }
 
     /**
      * {@inheritDoc}
      */
-    public void dragFinished(DragSourceEvent e) {
-    // nothing to do
+    public void dragFinished(@SuppressWarnings("unused") DragSourceEvent e) {
+      // nothing to do
     }
 
   }

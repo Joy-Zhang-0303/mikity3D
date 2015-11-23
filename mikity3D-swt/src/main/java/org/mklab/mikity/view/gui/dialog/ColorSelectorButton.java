@@ -36,6 +36,7 @@ public class ColorSelectorButton implements ModifyListener {
   /**
    * 新しく生成された<code>ColorComboBox</code>オブジェクトを初期化します。
    * @param parent 親
+   * @param listener イベントリスナー
    */
   public ColorSelectorButton(Composite parent, final ModifyListener listener) {
     this.parent = parent;
@@ -95,7 +96,7 @@ public class ColorSelectorButton implements ModifyListener {
   /**
    * {@inheritDoc}
    */
-  public void modifyText(ModifyEvent arg0) {
+  public void modifyText(@SuppressWarnings("unused") ModifyEvent arg0) {
     // nothing to do
   }
 }

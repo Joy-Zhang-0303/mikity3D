@@ -39,6 +39,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
 
+  /** 座標軸を描画するならばtrue。 */
   public static boolean isAxisDisplay;
   
   /** ルートオブジェクト。 */
@@ -270,7 +271,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * {@inheritDoc}
    */
   @Override
-  public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+  public void reshape(GLAutoDrawable drawable, @SuppressWarnings("unused") int x, @SuppressWarnings("unused") int y, int width, int height) {
     final GL2 gl = (GL2)drawable.getGL();
     gl.glViewport(0, 0, width, height);
     gl.glMatrixMode(GLMatrixFunc.GL_PROJECTION);

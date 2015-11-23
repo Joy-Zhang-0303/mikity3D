@@ -102,7 +102,7 @@ public class SceneGraphTree {
     this.tree.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent arg0) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         setSelectedObjectAsTarget();
         SceneGraphTree.this.modeler.updateRenderer(); 
         SceneGraphTree.this.modeler.updatePropertyEditor();
@@ -175,7 +175,7 @@ public class SceneGraphTree {
     addGroup.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final GroupModel group = new GroupModel(Messages.getString("SceneGraphTree.37")); //$NON-NLS-1$
         if (SceneGraphTree.this.targetGroup == SceneGraphTree.this.scene) {
           SceneGraphTree.this.model.addGroup(group);
@@ -191,7 +191,7 @@ public class SceneGraphTree {
     addBox.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = BoxModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
@@ -203,7 +203,7 @@ public class SceneGraphTree {
     addCylinder.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = CylinderModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
@@ -215,7 +215,7 @@ public class SceneGraphTree {
     addSphere.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = SphereModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
@@ -227,7 +227,7 @@ public class SceneGraphTree {
     addCone.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = ConeModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
@@ -239,7 +239,7 @@ public class SceneGraphTree {
     addCapsule.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = CapsuleModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
@@ -251,7 +251,7 @@ public class SceneGraphTree {
     addTriangle.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = TriangleModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
@@ -263,7 +263,7 @@ public class SceneGraphTree {
     addQuadrangle.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = QuadrangleModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
@@ -275,7 +275,7 @@ public class SceneGraphTree {
     cut.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         if (SceneGraphTree.this.targetObject instanceof GroupModel) {
           SceneGraphTree.this.bufferedGroup = SceneGraphTree.this.targetGroup;
           SceneGraphTree.this.bufferedObject = null;
@@ -293,7 +293,7 @@ public class SceneGraphTree {
     copy.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         if (SceneGraphTree.this.targetObject instanceof GroupModel) {
           SceneGraphTree.this.bufferedGroup = SceneGraphTree.this.targetGroup;
           SceneGraphTree.this.bufferedObject = null;
@@ -309,7 +309,7 @@ public class SceneGraphTree {
     paste.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         if ((SceneGraphTree.this.targetObject instanceof GroupModel) == false) {
           return;
         }
@@ -335,7 +335,7 @@ public class SceneGraphTree {
     delete.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         removeSelectedItem(parent);
       }
     });
@@ -345,7 +345,7 @@ public class SceneGraphTree {
        * {@inheritDoc}
        */
       @Override
-      public void menuShown(MenuEvent e) {
+      public void menuShown(@SuppressWarnings("unused") MenuEvent e) {
         final Object clickedObject = SceneGraphTree.this.tree.getSelection()[0].getData();
         
         if (clickedObject == SceneGraphTree.this.scene) {

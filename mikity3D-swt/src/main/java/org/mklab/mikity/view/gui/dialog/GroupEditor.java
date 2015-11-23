@@ -290,7 +290,7 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
     this.saveButton.setText(Messages.getString("EditGroupDialog.6")); //$NON-NLS-1$
     this.saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") org.eclipse.swt.events.SelectionEvent e) {
         saveParameters();
       }
 
@@ -414,7 +414,7 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
   /**
    * {@inheritDoc}
    */
-  public void modifyText(ModifyEvent e) {
+  public void modifyText(@SuppressWarnings("unused") ModifyEvent e) {
     if (this.saveButton != null) {
       this.isChanged = true;
       this.saveButton.setEnabled(true);
@@ -424,7 +424,7 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
   /**
    * {@inheritDoc}
    */
-  public void keyPressed(KeyEvent e) {
+  public void keyPressed(@SuppressWarnings("unused") KeyEvent e) {
     // nothing to do
   }
 

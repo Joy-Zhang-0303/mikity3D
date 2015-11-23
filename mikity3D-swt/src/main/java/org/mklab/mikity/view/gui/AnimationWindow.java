@@ -324,7 +324,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         runAnimation();
       }
     });
@@ -334,7 +334,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         stopAnimation();
       }
       
@@ -345,7 +345,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         repeatAnimation();
       }
     });
@@ -355,7 +355,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final int step = (int)Math.floor(Math.log10(AnimationWindow.this.animationSpeedRate));
         AnimationWindow.this.animationSpeedRate += (int)Math.pow(10, step);
         if (AnimationWindow.this.animationSpeedRate > 1000000) {
@@ -373,7 +373,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final int step = (int)Math.floor(Math.log10(AnimationWindow.this.animationSpeedRate - 1));
         AnimationWindow.this.animationSpeedRate -= (int)Math.pow(10, step);  
         if (AnimationWindow.this.animationSpeedRate < 0) {
@@ -423,7 +423,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         if (AnimationWindow.this.timeTable == null) {
           return;
         }
@@ -489,7 +489,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final FileDialog dialog = new FileDialog(parent.getShell());
         dialog.setFilterExtensions(new String[] {"*.m3d", "*.stl", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
         
@@ -584,9 +584,9 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(SelectionEvent e) {
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final FileDialog dialog = new FileDialog(parent.getShell());
-        dialog.setFilterExtensions(new String[] {"*.mat", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$
+        dialog.setFilterExtensions(new String[] {"*.mat", "*.csv", "*.txt", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         
         final String filePath = dialog.open();
         if (filePath != null) {
@@ -837,21 +837,21 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   /**
    * {@inheritDoc}
    */
-  public void modifyText(ModifyEvent arg0) {
+  public void modifyText(@SuppressWarnings("unused") ModifyEvent e) {
     // nothing to do
   }
   
   /**
    * {@inheritDoc}
    */
-  public void keyPressed(KeyEvent e) {
+  public void keyPressed(@SuppressWarnings("unused") KeyEvent e) {
     // nothing to do
   }
 
   /**
    * {@inheritDoc}
    */
-  public void keyReleased(KeyEvent e) {
+  public void keyReleased(@SuppressWarnings("unused") KeyEvent e) {
     // nothing to do
   }
 }
