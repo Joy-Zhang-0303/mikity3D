@@ -35,7 +35,7 @@ public class BaseAxisModel implements Serializable, Cloneable {
   public BaseAxisModel() {
     this.gridColor = new ColorModel(20, 20, 20);
     this.gridSize = 0.05f;
-    this.isDisplay = true;
+    this.isDisplay = false;
   }
   
   /**

@@ -182,4 +182,13 @@ public class ParameterInputBox extends Composite {
     }
     return true;
   }
+  
+  /**
+   * 値を編集可能か設定します。
+   * 
+   * @param editable 編集可能ならばtrue
+   */
+  public void setEditable(boolean editable) {
+    this.valueText.setEditable(editable);
+  }
 }

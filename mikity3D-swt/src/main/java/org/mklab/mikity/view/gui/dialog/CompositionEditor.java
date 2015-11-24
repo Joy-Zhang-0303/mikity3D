@@ -5,11 +5,14 @@
  */
 package org.mklab.mikity.view.gui.dialog;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.Messages;
+import org.mklab.mikity.view.gui.ParameterInputBox;
 import org.mklab.mikity.view.gui.SceneGraphTree;
 
 
@@ -32,8 +35,13 @@ public class CompositionEditor extends AbstractPrimitiveEditor {
   /**
    * {@inheritDoc}
    */
-  public void createParameterBoxes(@SuppressWarnings("unused") Group parameterGroup) {
+  public void createParameterBoxes(Group parameterGroup) {
     this.primitiveType.setText(Messages.getString("CompositionEditor.0")); //$NON-NLS-1$
+    
+    final CompositionModel compostion = (CompositionModel)this.primitive;
+    
+    final ParameterInputBox sizeValue = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("CompositionEditor.1"), "" + compostion.getSize()); //$NON-NLS-1$ //$NON-NLS-2$
+    sizeValue.setEditable(false);
   }
 
   /**
