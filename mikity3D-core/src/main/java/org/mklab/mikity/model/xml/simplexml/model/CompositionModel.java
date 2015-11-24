@@ -147,4 +147,28 @@ public class CompositionModel extends AbstractObjectModel {
   public String toShortString() {
     return Messages.getString("CompositionModel.0"); //$NON-NLS-1$
   }
+  
+  /**
+   * 拡大縮小します。
+   * 
+   * @param rate 拡大縮小率
+   */
+  public void scale(float rate) {
+    for (final FacetModel facet : this.facets) {
+      facet.scale(rate);
+    }
+  }
+  
+  /**
+   * 平行移動します。
+   * 
+   * @param dx x軸方向の移動量
+   * @param dy y軸方向の移動量
+   * @param dz z軸方向の移動量
+   */
+  public void translate(float dx, float dy, float dz) {
+    for (final FacetModel facet : this.facets) {
+      facet.translate(dx, dy, dz);
+    }
+  }
 }

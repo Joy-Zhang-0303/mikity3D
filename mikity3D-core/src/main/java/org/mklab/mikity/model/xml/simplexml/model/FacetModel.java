@@ -218,4 +218,28 @@ public class FacetModel implements Serializable, Cloneable {
   public String toString() {
     return "facet"; //$NON-NLS-1$
   }
+  
+  /**
+   * 拡大縮小します。
+   * 
+   * @param rate 拡大縮小率
+   */
+  public void scale(float rate) {
+    for (final VertexModel vertex : this.vertices) {
+      vertex.scale(rate);
+    }
+  }
+  
+  /**
+   * 平行移動します。
+   * 
+   * @param dx x軸方向の移動量
+   * @param dy y軸方向の移動量
+   * @param dz z軸方向の移動量
+   */
+  public void translate(float dx, float dy, float dz) {
+    for (final VertexModel vertex : this.vertices) {
+      vertex.translate(dx, dy, dz);
+    }
+  }
 }

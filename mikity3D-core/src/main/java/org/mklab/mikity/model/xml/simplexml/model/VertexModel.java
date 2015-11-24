@@ -162,4 +162,28 @@ public class VertexModel implements Serializable, Cloneable {
   public boolean isZero() {
     return this.x == 0 && this.y == 0 && this.z == 0;
   }
+  
+  /**
+   * 拡大縮小します。
+   * 
+   * @param rate 拡大縮小率
+   */
+  public void scale(float rate) {
+    this.x *= rate;
+    this.y *= rate;
+    this.z *= rate;
+  }
+  
+  /**
+   * 平行移動します。
+   * 
+   * @param dx x軸方向の移動量
+   * @param dy y軸方向の移動量
+   * @param dz z軸方向の移動量
+   */
+  public void translate(float dx, float dy, float dz) {
+    this.x += dx;
+    this.y += dy;
+    this.z += dz;
+  }
 }
