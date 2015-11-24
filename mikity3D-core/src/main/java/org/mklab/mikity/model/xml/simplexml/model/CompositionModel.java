@@ -9,8 +9,7 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * 三角形の面による合成モデルを表すクラスです。
- * 
+ * 三角形の面の集合による合成モデルを表すクラスです。
  */
 @Root(name="composition")
 public class CompositionModel extends AbstractObjectModel {
@@ -49,6 +48,13 @@ public class CompositionModel extends AbstractObjectModel {
   @Override
   public CompositionModel clone() {
     final CompositionModel ans = (CompositionModel)super.clone();
+    ans.size = this.size;
+    
+    ans.facets = new ArrayList<>();
+    for (final FacetModel facet : this.facets) {
+      ans.facets.add(facet.clone());
+    }
+    
     return ans;
   }
   
@@ -60,6 +66,7 @@ public class CompositionModel extends AbstractObjectModel {
     final int prime = 31;
     int result = super.hashCode();
     result = prime * result + Float.floatToIntBits(this.size);
+    result = prime * result + ((this.facets == null) ? 0 : this.facets.hashCode());
     return result;
   }
 
@@ -68,13 +75,32 @@ public class CompositionModel extends AbstractObjectModel {
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null) return false;
-    if (getClass() != obj.getClass()) return false;
-    if (super.equals(obj) == false) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    if (super.equals(obj) == false) {
+      return false;
+    }
 
     CompositionModel other = (CompositionModel)obj;
-    if (Float.floatToIntBits(this.size) != Float.floatToIntBits(other.size)) return false;
+    if (Float.floatToIntBits(this.size) != Float.floatToIntBits(other.size)) {
+      return false;
+    }
+    
+    if (this.facets == null) {
+      if (other.facets != null) {
+        return false;
+      }
+    } else if (!this.facets.equals(other.facets)) {
+      return false;
+    }
+    
     return true;
   }
 
@@ -98,9 +124,9 @@ public class CompositionModel extends AbstractObjectModel {
   }
   
   /**
-   * 三角形の面を返します。
+   * 三角形の面の集合を返します。
    * 
-   * @return 三角形の面
+   * @return 三角形の面の集合
    */
   public List<FacetModel> getFacets() {
     return this.facets;

@@ -87,18 +87,35 @@ public class FacetModel implements Serializable, Cloneable {
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null) return false;
-    if (getClass() != obj.getClass()) return false;
-    if (super.equals(obj) == false) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    if (super.equals(obj) == false) {
+      return false;
+    }
     
     FacetModel other = (FacetModel)obj;
     if (this.normalVector == null) {
-      if (other.normalVector != null) return false;
-    } else if (!this.normalVector.equals(other.normalVector)) return false;
+      if (other.normalVector != null) {
+        return false;
+      }
+    } else if (!this.normalVector.equals(other.normalVector)) {
+      return false;
+    }
     if (this.vertices == null) {
-      if (other.vertices != null) return false;
-    } else if (!this.vertices.equals(other.vertices)) return false;
+      if (other.vertices != null) {
+        return false;
+      }
+    } else if (!this.vertices.equals(other.vertices)) {
+      return false;
+    }
+    
     return true;
   }
 
