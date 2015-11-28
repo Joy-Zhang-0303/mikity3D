@@ -6,6 +6,7 @@ import java.util.List;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.simpleframework.xml.core.Commit;
 
 
 /**
@@ -23,6 +24,19 @@ public class CompositionModel extends AbstractObjectModel {
   /** facets */
   @ElementList(name="facets",  type = FacetModel.class, inline = true, required = true)
   private List<FacetModel> facets;
+  
+  /** x成分の最小値。 */
+  private float xMin;
+  /** x成分の最大値。 */
+  private float xMax;
+  /** y成分の最小値。 */
+  private float yMin;
+  /** y成分の最大値。 */
+  private float yMax;
+  /** z成分の最小値。 */
+  private float zMin;
+  /** z成分の最大値。 */
+  private float zMax;
 
   /**
    * 新しく生成された<code>CompositionModel</code>オブジェクトを初期化します。
@@ -31,6 +45,16 @@ public class CompositionModel extends AbstractObjectModel {
     this.facets = new ArrayList<>();
     this.color = new ColorModel("orange"); //$NON-NLS-1$
     this.preservedAlpha = this.color.getAlpha();
+  }
+  
+  /**
+   * デシリアライズの後処理をします。
+   */
+  @Override
+  @Commit
+  protected void buildAfterDeserialization() {
+    super.buildAfterDeserialization();
+    updateMinMax();
   }
   
   /**
@@ -112,6 +136,39 @@ public class CompositionModel extends AbstractObjectModel {
   public void add(FacetModel facet) {
     this.facets.add(facet);
     this.size++;
+    
+    updateMinMax(facet);
+  }
+  
+  /**
+   * X,Y,Zの最小値と最大値を更新します。
+   */
+  private void updateMinMax() {
+    if (this.size == 0) {
+      return;
+    }
+    
+    this.xMin = this.facets.get(0).getXmin();
+    this.xMax = this.facets.get(0).getXmax();
+    this.yMin = this.facets.get(0).getYmin();
+    this.yMax = this.facets.get(0).getYmax();
+    this.zMin = this.facets.get(0).getZmin();
+    this.zMax = this.facets.get(0).getZmax();
+  }
+  
+
+  /**
+   * X,Y,Zの最小値と最大値を更新します。
+   * 
+   * @param facet 三角形の面
+   */
+  private void updateMinMax(FacetModel facet) {
+    this.xMin = Math.min(this.xMin, facet.getXmin());
+    this.xMax = Math.max(this.xMax, facet.getXmax());
+    this.yMin = Math.min(this.yMin, facet.getYmin());
+    this.yMax = Math.max(this.yMax, facet.getYmax());
+    this.zMin = Math.min(this.zMin, facet.getZmin());
+    this.zMax = Math.max(this.zMax, facet.getZmax());
   }
   
   /**
@@ -157,6 +214,8 @@ public class CompositionModel extends AbstractObjectModel {
     for (final FacetModel facet : this.facets) {
       facet.scale(rate);
     }
+    
+    updateMinMax();
   }
   
   /**
@@ -170,5 +229,88 @@ public class CompositionModel extends AbstractObjectModel {
     for (final FacetModel facet : this.facets) {
       facet.translate(dx, dy, dz);
     }
+    
+    updateMinMax();
+  }
+  
+  /**
+   * X成分の最小値を返します。
+   * 
+   * @return X成分の最小値
+   */
+  public float getXmin() {
+    return this.xMin;
+  }
+  
+  /**
+   * X成分の最大値を返します。
+   * 
+   * @return X成分の最大値
+   */
+  public float getXmax() {
+    return this.xMax;
+  }
+  
+  /**
+   * Y成分の最小値を返します。
+   * 
+   * @return Y成分の最小値
+   */
+  public float getYmin() {
+    return this.yMin;
+  }
+  
+  /**
+   * Y成分の最大値を返します。
+   * 
+   * @return Y成分の最大値
+   */
+  public float getYmax() {
+    return this.yMax;
+  }
+  
+  /**
+   * Z成分の最小値を返します。
+   * 
+   * @return Z成分の最小値
+   */
+  public float getZmin() {
+    return this.zMin;
+  }
+  
+  /**
+   * Z成分の最大値を返します。
+   * 
+   * @return Z成分の最大値
+   */
+  public float getZmax() {
+    return this.zMax;
+  }
+  
+  /**
+   * 合成モデルの囲む直方体の幅を返します。
+   * 
+   * @return 合成モデルの囲む直方体の幅
+   */
+  public float getWidth() {
+    return this.yMax - this.yMin;
+  }
+  
+  /**
+   * 合成モデルの囲む直方体の奥行きを返します。
+   * 
+   * @return 合成モデルの囲む直方体の奥行き
+   */
+  public float getDepth() {
+    return this.xMax - this.xMin;
+  }
+  
+  /**
+   * 合成モデルの囲む直方体の高さを返します。
+   * 
+   * @return 合成モデルの囲む直方体の高さ
+   */
+  public float getHeight() {
+    return this.zMax - this.zMin;
   }
 }

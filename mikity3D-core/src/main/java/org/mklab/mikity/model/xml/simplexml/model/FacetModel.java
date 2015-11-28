@@ -12,6 +12,7 @@ import java.util.List;
 import org.mklab.mikity.util.Vector3;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.simpleframework.xml.core.Commit;
 
 
 /**
@@ -31,6 +32,19 @@ public class FacetModel implements Serializable, Cloneable {
   /** 法線ベクトル。 */
   private Vector3 normalVector;
 
+  /** x成分の最小値。 */
+  private float xMin;
+  /** x成分の最大値。 */
+  private float xMax;
+  /** y成分の最小値。 */
+  private float yMin;
+  /** y成分の最大値。 */
+  private float yMax;
+  /** z成分の最小値。 */
+  private float zMin;
+  /** z成分の最大値。 */
+  private float zMax;
+  
   /**
    * 新しく生成された<code>FacetModel</code>オブジェクトを初期化します。
    */
@@ -48,8 +62,50 @@ public class FacetModel implements Serializable, Cloneable {
   public FacetModel(VertexModel vertex0, VertexModel vertex1, VertexModel vertex2) {
     this.vertices = new ArrayList<>(3);
     setVertices(vertex0, vertex1, vertex2);
+
+    updateMinMax();
   }
   
+  /**
+   * X,Y,Zの最小値と最大値を更新します。
+   */
+  private void updateMinMax() {
+    if (this.vertices.size() == 0) {
+      return;
+    }
+    
+    this.xMin = this.xMax = this.vertices.get(0).getX();
+    this.yMin = this.yMax = this.vertices.get(0).getY();
+    this.zMin = this.zMax = this.vertices.get(0).getZ();
+
+    updateMinMax(this.vertices.get(1));
+    updateMinMax(this.vertices.get(2));
+  }
+
+  /**
+   * X,Y,Zの最小値と最大値を更新します。
+   * 
+   * @param vertex 頂点
+   */
+  private void updateMinMax(VertexModel vertex) {
+    this.xMin = Math.min(this.xMin, vertex.getX());
+    this.xMax = Math.max(this.xMax, vertex.getX());
+    
+    this.yMin = Math.min(this.yMin, vertex.getY());
+    this.yMax = Math.max(this.yMax, vertex.getY());
+    
+    this.zMin = Math.min(this.zMin, vertex.getZ());
+    this.zMax = Math.max(this.zMax, vertex.getZ());
+  }
+  
+  /**
+   * デシリアライズの後処理をします。
+   */
+  @Commit
+  protected void buildAfterDeserialization() {
+    updateMinMax();
+  }
+
   /**
    * {@inheritDoc}
    */
@@ -63,6 +119,8 @@ public class FacetModel implements Serializable, Cloneable {
       for (final VertexModel vertex : this.vertices) {
         ans.vertices.add(vertex.clone());
       }
+      
+      ans.updateMinMax();
       
       return ans;
     } catch (CloneNotSupportedException e) {
@@ -132,6 +190,7 @@ public class FacetModel implements Serializable, Cloneable {
     this.vertices.get(number).setY(y);
     this.vertices.get(number).setZ(z);
     updateNormalVector();
+    updateMinMax();
   }
 
   /**
@@ -147,6 +206,7 @@ public class FacetModel implements Serializable, Cloneable {
     this.vertices.add(vertex1);
     this.vertices.add(vertex2);
     updateNormalVector();
+    updateMinMax();
   }
 
   /**
@@ -166,6 +226,7 @@ public class FacetModel implements Serializable, Cloneable {
   public void setVertices(List<VertexModel> vertices) {
     this.vertices = vertices;
     updateNormalVector();
+    updateMinMax();
   }
 
   /**
@@ -241,5 +302,59 @@ public class FacetModel implements Serializable, Cloneable {
     for (final VertexModel vertex : this.vertices) {
       vertex.translate(dx, dy, dz);
     }
+  }
+  
+  /**
+   * X成分の最小値を返します。
+   * 
+   * @return X成分の最小値
+   */
+  public float getXmin() {
+    return this.xMin;
+  }
+  
+  /**
+   * X成分の最大値を返します。
+   * 
+   * @return X成分の最大値
+   */
+  public float getXmax() {
+    return this.xMax;
+  }
+  
+  /**
+   * Y成分の最小値を返します。
+   * 
+   * @return Y成分の最小値
+   */
+  public float getYmin() {
+    return this.yMin;
+  }
+  
+  /**
+   * Y成分の最大値を返します。
+   * 
+   * @return Y成分の最大値
+   */
+  public float getYmax() {
+    return this.yMax;
+  }
+  
+  /**
+   * Z成分の最小値を返します。
+   * 
+   * @return Z成分の最小値
+   */
+  public float getZmin() {
+    return this.zMin;
+  }
+  
+  /**
+   * Z成分の最大値を返します。
+   * 
+   * @return Z成分の最大値
+   */
+  public float getZmax() {
+    return this.zMax;
   }
 }
