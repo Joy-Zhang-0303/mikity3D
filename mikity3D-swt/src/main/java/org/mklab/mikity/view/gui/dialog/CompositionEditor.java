@@ -22,7 +22,14 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * 三角形の面による合成オブジェクトの編集するエディタを表すクラスです。
  * 
  */
-public class CompositionEditor extends AbstractPrimitiveEditor {
+public class CompositionEditor extends AbstractObjectEditor {
+  /** 幅。 */
+  private ParameterInputBox widthValue;
+  /** 高さ。*/
+  private ParameterInputBox heightValue;
+  /** 奥行き。 */
+  private ParameterInputBox depthValue;
+
   /**
    * 新しく生成された<code>CompositionEditor</code>オブジェクトを初期化します。
    * @param parent 親のシェル
@@ -38,29 +45,29 @@ public class CompositionEditor extends AbstractPrimitiveEditor {
    * {@inheritDoc}
    */
   public void createParameterBoxes(Group parameterGroup) {
-    this.primitiveType.setText(Messages.getString("CompositionEditor.0")); //$NON-NLS-1$
+    this.objectType.setText(Messages.getString("CompositionEditor.0")); //$NON-NLS-1$
     
-    final CompositionModel compostion = (CompositionModel)this.primitive;
+    final CompositionModel compostion = (CompositionModel)this.object;
     
     final ParameterInputBox sizeValue = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("CompositionEditor.1"), "" + compostion.getSize()); //$NON-NLS-1$ //$NON-NLS-2$
     sizeValue.setEditable(false);
        
-    final ParameterInputBox widthValue = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("CompositionEditor.2"), "" + compostion.getWidth());  //$NON-NLS-1$//$NON-NLS-2$
-    widthValue.setEditable(false);
+    this.widthValue = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("CompositionEditor.2"), "" + compostion.getWidth()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.widthValue.setEditable(false);
 
     final Label widthUnit = new Label(parameterGroup, SWT.NONE);
     widthUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(widthUnit, 1);
     
-    final ParameterInputBox heightValue = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("CompositionEditor.3"), "" + compostion.getHeight()); //$NON-NLS-1$ //$NON-NLS-2$
-    heightValue.setEditable(false);
+    this.heightValue = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("CompositionEditor.3"), "" + compostion.getHeight()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.heightValue.setEditable(false);
 
     final Label heightUnit = new Label(parameterGroup, SWT.NONE);
     heightUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
     setGridLayout(heightUnit, 1);
     
-    final ParameterInputBox depthValue = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("CompositionEditor.5"), "" + compostion.getDepth()); //$NON-NLS-1$ //$NON-NLS-2$
-    depthValue.setEditable(false);
+    this.depthValue = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("CompositionEditor.5"), "" + compostion.getDepth()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.depthValue.setEditable(false);
 
     final Label depthUnit = new Label(parameterGroup, SWT.NONE);
     depthUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
@@ -84,5 +91,15 @@ public class CompositionEditor extends AbstractPrimitiveEditor {
     }
 
     return true;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void updateEditor() {
+    final CompositionModel compostion = (CompositionModel)this.object;
+    this.widthValue.setValue("" + compostion.getWidth()); //$NON-NLS-1$
+    this.heightValue.setValue("" + compostion.getHeight()); //$NON-NLS-1$
+    this.depthValue.setValue("" + compostion.getDepth()); //$NON-NLS-1$
   }
 }

@@ -26,7 +26,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @author SHOGO
  * @version $Revision: 1.7 $. 2007/11/15
  */
-public class QuadrangleEditor extends AbstractPrimitiveEditor {
+public class QuadrangleEditor extends AbstractObjectEditor {
   /** 頂点1のX座標。 */
   private ParameterInputBox vertex1X;
   /** 頂点1のY座標。 */
@@ -72,9 +72,9 @@ public class QuadrangleEditor extends AbstractPrimitiveEditor {
    */
   @SuppressWarnings("unused")
   public void createParameterBoxes(final Group parameterGroup) {
-    this.primitiveType.setText(Messages.getString("EditQuadPolygonDialog.23")); //$NON-NLS-1$
+    this.objectType.setText(Messages.getString("EditQuadPolygonDialog.23")); //$NON-NLS-1$
 
-    final QuadrangleModel polygon = (QuadrangleModel)this.primitive;
+    final QuadrangleModel polygon = (QuadrangleModel)this.object;
 
     final VertexModel vertex1 = polygon.getVertex(0);
     this.vertex1X = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditQuadPolygonDialog.3"), "" + vertex1.getX()); //$NON-NLS-1$//$NON-NLS-2$
@@ -169,7 +169,7 @@ public class QuadrangleEditor extends AbstractPrimitiveEditor {
    * {@inheritDoc}
    */
   public void updateModelParameters() {
-    final QuadrangleModel polygon = (QuadrangleModel)this.primitive;
+    final QuadrangleModel polygon = (QuadrangleModel)this.object;
 
     final VertexModel[] vertices = new VertexModel[4];
 
@@ -179,5 +179,12 @@ public class QuadrangleEditor extends AbstractPrimitiveEditor {
     vertices[3] = new VertexModel(this.vertex4X.getFloatValue(), this.vertex4Y.getFloatValue(), this.vertex4Z.getFloatValue());
 
     polygon.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2], vertices[3]));
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void updateEditor() {
+    // nothig to do
   }
 }

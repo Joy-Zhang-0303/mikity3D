@@ -289,6 +289,8 @@ public class FacetModel implements Serializable, Cloneable {
     for (final VertexModel vertex : this.vertices) {
       vertex.scale(rate);
     }
+    
+    updateMinMax();
   }
   
   /**
@@ -302,6 +304,8 @@ public class FacetModel implements Serializable, Cloneable {
     for (final VertexModel vertex : this.vertices) {
       vertex.translate(dx, dy, dz);
     }
+    
+    updateMinMax();
   }
   
   /**

@@ -151,6 +151,7 @@ public class JoglModeler extends Composite {
   public void updatePropertyEditor() {
     final Object target = this.tree.getTargetObject();
     this.editor.setTarget(target);
+    this.editor.updateEditor();
   }
 
   /**

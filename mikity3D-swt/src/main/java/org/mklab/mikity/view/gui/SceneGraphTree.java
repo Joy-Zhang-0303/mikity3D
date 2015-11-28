@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
+import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -267,6 +268,19 @@ public class SceneGraphTree {
         final ObjectModel primitive = QuadrangleModel.createDefault();
         SceneGraphTree.this.targetGroup.add(primitive);
         updateTree();
+      }
+    });
+    
+    final MenuItem scale = new MenuItem(menu, SWT.POP_UP);
+    scale.setText(Messages.getString("SceneGraphTree.39")); //$NON-NLS-1$
+    scale.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+        if (SceneGraphTree.this.targetObject instanceof CompositionModel) {
+          ((CompositionModel)SceneGraphTree.this.targetObject).scale(2);
+          updateTree();
+        }
       }
     });
 

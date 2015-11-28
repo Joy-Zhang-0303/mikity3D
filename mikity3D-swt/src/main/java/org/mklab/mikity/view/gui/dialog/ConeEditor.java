@@ -23,7 +23,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @author miki
  * @version $Revision: 1.5 $.2005/02/09
  */
-public class ConeEditor extends AbstractPrimitiveEditor {
+public class ConeEditor extends AbstractObjectEditor {
   /** 半径。 */
   private ParameterInputBox radius;
   /** 高さ。 */
@@ -53,9 +53,9 @@ public class ConeEditor extends AbstractPrimitiveEditor {
    */
   @Override
   public void createParameterBoxes(Group parameterGroup) {
-    this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
+    this.objectType.setText(Messages.getString("EditPrimitiveDialog.31")); //$NON-NLS-1$
     
-    final ConeModel cone = (ConeModel)this.primitive;
+    final ConeModel cone = (ConeModel)this.object;
     
     this.radius = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.40"), "" + cone.getRadisu()); //$NON-NLS-1$//$NON-NLS-2$
     
@@ -77,7 +77,7 @@ public class ConeEditor extends AbstractPrimitiveEditor {
    */
   @Override
   public void updateModelParameters() {
-    final ConeModel cone = (ConeModel)this.primitive;
+    final ConeModel cone = (ConeModel)this.object;
     cone.setRadius(this.radius.getFloatValue());
     cone.setHeight(this.height.getFloatValue());
     cone.setDivision(this.division.getIntValue());
@@ -103,6 +103,13 @@ public class ConeEditor extends AbstractPrimitiveEditor {
     }
 
     return true;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void updateEditor() {
+    // nothing to do
   }
 
 }

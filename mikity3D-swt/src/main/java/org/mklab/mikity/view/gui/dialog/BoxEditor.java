@@ -23,7 +23,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @author miki
  * @version $Revision: 1.5 $.2005/02/09
  */
-public class BoxEditor extends AbstractPrimitiveEditor {
+public class BoxEditor extends AbstractObjectEditor {
   /** 幅。 */
   private ParameterInputBox width;
   /** 高さ。 */
@@ -54,9 +54,9 @@ public class BoxEditor extends AbstractPrimitiveEditor {
    */
   @Override
   public void createParameterBoxes(Group parameterGroup) {
-    this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
+    this.objectType.setText(Messages.getString("EditPrimitiveDialog.28")); //$NON-NLS-1$
     
-    final BoxModel box = (BoxModel)this.primitive;
+    final BoxModel box = (BoxModel)this.object;
     
     this.width = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.32"), "" + box.getWidth()); //$NON-NLS-1$//$NON-NLS-2$
     
@@ -82,7 +82,7 @@ public class BoxEditor extends AbstractPrimitiveEditor {
    */
   @Override
   public void updateModelParameters() {
-    final BoxModel box = (BoxModel)this.primitive;
+    final BoxModel box = (BoxModel)this.object;
     box.setWidth(this.width.getFloatValue());
     box.setHeight(this.height.getFloatValue());
     box.setDepth(this.depth.getFloatValue());
@@ -108,5 +108,12 @@ public class BoxEditor extends AbstractPrimitiveEditor {
     }
 
     return true;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void updateEditor() {
+    // nothing to do
   }
 }

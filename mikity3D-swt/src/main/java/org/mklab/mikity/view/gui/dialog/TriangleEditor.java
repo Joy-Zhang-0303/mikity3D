@@ -25,7 +25,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @author SHOGO
  * @version $Revision: 1.9 $. 2008/02/29
  */
-public class TriangleEditor extends AbstractPrimitiveEditor {
+public class TriangleEditor extends AbstractObjectEditor {
   /** 頂点1のX座標。 */
   private ParameterInputBox vertex1X;
   /** 頂点1のY座標。 */
@@ -64,9 +64,9 @@ public class TriangleEditor extends AbstractPrimitiveEditor {
    */
   @SuppressWarnings("unused")
   public void createParameterBoxes(final Group parameterGroup) {
-    this.primitiveType.setText(Messages.getString("EditTrianglePolygonDialog.21")); //$NON-NLS-1$
+    this.objectType.setText(Messages.getString("EditTrianglePolygonDialog.21")); //$NON-NLS-1$
     
-    final TriangleModel polygon = (TriangleModel)this.primitive;
+    final TriangleModel polygon = (TriangleModel)this.object;
     
     final VertexModel vertex1 = polygon.getVertex(0);
     this.vertex1X = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditTrianglePolygonDialog.3"), "" + vertex1.getX());  //$NON-NLS-1$//$NON-NLS-2$
@@ -142,7 +142,7 @@ public class TriangleEditor extends AbstractPrimitiveEditor {
    * {@inheritDoc}
    */
   public void updateModelParameters() {
-    final TriangleModel polygon = (TriangleModel)this.primitive;
+    final TriangleModel polygon = (TriangleModel)this.object;
     
     final VertexModel[] vertices = new VertexModel[3];
 
@@ -151,5 +151,12 @@ public class TriangleEditor extends AbstractPrimitiveEditor {
     vertices[2] = new VertexModel(this.vertex3X.getFloatValue(), this.vertex3Y.getFloatValue(), this.vertex3Z.getFloatValue());
 
     polygon.setVertices(Arrays.asList(vertices[0], vertices[1], vertices[2]));
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void updateEditor() {
+    // nothing to do
   }
 }

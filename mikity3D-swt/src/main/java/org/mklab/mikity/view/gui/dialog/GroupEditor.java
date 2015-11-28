@@ -436,4 +436,11 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
       saveParameters();
     }
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void updateEditor() {
+    // nothing to do
+  }
 }

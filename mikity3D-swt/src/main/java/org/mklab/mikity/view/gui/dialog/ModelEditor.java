@@ -19,6 +19,11 @@ public interface ModelEditor {
   void updateModelParameters();
   
   /**
+   * エディタを更新し(オブジェクトの変化をエディタに反映させ)ます。
+   */
+  void updateEditor();
+  
+  /**
    * パラメータが変更されているか判定します。
    * 
    * @return パラメータが変更されていればtrue

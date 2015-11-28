@@ -9,12 +9,12 @@ import org.eclipse.swt.widgets.Group;
 
 
 /**
- * プリミティブを編集するエディタを表すインターフェースです。
+ * オブジェクトを編集するエディタを表すインターフェースです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/26
  */
-public interface PrimitiveEditor extends ModelEditor {
+public interface ObjectEditor extends ModelEditor {
   /**
    * パラメータを設定するボックスを生成します。
    * 

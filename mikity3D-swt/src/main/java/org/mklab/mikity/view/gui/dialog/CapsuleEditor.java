@@ -23,7 +23,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @author miki
  * @version $Revision: 1.5 $.2005/02/09
  */
-public class CapsuleEditor extends AbstractPrimitiveEditor {
+public class CapsuleEditor extends AbstractObjectEditor {
   /** 半径。 */
   private ParameterInputBox radius;
   /** 高さ。 */
@@ -47,9 +47,9 @@ public class CapsuleEditor extends AbstractPrimitiveEditor {
    */
   @Override
   public void createParameterBoxes(Group parameterGroup) {
-    this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
+    this.objectType.setText(Messages.getString("EditPrimitiveDialog.29")); //$NON-NLS-1$
     
-    final CapsuleModel capsule = (CapsuleModel)this.primitive;
+    final CapsuleModel capsule = (CapsuleModel)this.object;
     
     this.radius = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.35"), "" + capsule.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
 
@@ -71,7 +71,7 @@ public class CapsuleEditor extends AbstractPrimitiveEditor {
    */
   @Override
   public void updateModelParameters() {
-    final CapsuleModel capsule = (CapsuleModel)this.primitive;
+    final CapsuleModel capsule = (CapsuleModel)this.object;
     capsule.setRadius(this.radius.getFloatValue());
     capsule.setHeight(this.height.getFloatValue());
     capsule.setDivision(this.division.getIntValue());
@@ -97,6 +97,13 @@ public class CapsuleEditor extends AbstractPrimitiveEditor {
     }
 
     return true;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void updateEditor() {
+    // nothing to do
   }
 
 }

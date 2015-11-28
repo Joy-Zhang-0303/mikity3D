@@ -27,13 +27,13 @@ import org.mklab.mikity.view.gui.UnitLabel;
 
 
 /**
- * プリミティブを編集するエディタを表す抽象クラスです。
+ * オブジェクトを編集するエディタを表す抽象クラスです。
  * 
  * @author koga
  * @version $Revision$, 2015/08/22
  */
-public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, ModifyKeyListener {
-  ObjectModel primitive;
+public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyListener {
+  ObjectModel object;
 
   JoglModeler modeler;
   SceneGraphTree tree;
@@ -41,7 +41,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
   private ColorSelectorButton colorSelector;
   private ParameterInputBox alpha;
   
-  Label primitiveType;
+  Label objectType;
   
   /** 値が変更されていればtrue。 */
   boolean isChanged = false;
@@ -61,12 +61,12 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
    * 新しく生成された<code>AbstractEditPrimitiveDialog</code>オブジェクトを初期化します。
    * 
    * @param parent 親のシェル
-   * @param primitive プリミティブ
+   * @param object オブジェクト
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public AbstractPrimitiveEditor(Composite parent, ObjectModel primitive, SceneGraphTree tree, JoglModeler modeler) {
-    this.primitive = primitive;
+  public AbstractObjectEditor(Composite parent, ObjectModel object, SceneGraphTree tree, JoglModeler modeler) {
+    this.object = object;
     this.tree = tree;
     this.modeler = modeler;
     
@@ -89,8 +89,8 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
   }
 
   private void createParameterBoxes(Composite parent) {
-    this.primitiveType = new Label(parent, SWT.NONE);
-    setGridLayout(this.primitiveType, 2);
+    this.objectType = new Label(parent, SWT.NONE);
+    setGridLayout(this.objectType, 2);
 
     final Group group = new Group(parent, SWT.NONE);
     group.setText(Messages.getString("EditPrimitiveDialog.9")); //$NON-NLS-1$
@@ -107,9 +107,9 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
     setGridLayout(colorLabel, 1);
 
     this.colorSelector = new ColorSelectorButton(group, this);
-    this.colorSelector.setColor(this.primitive.getColor());
+    this.colorSelector.setColor(this.object.getColor());
 
-    this.alpha = new ParameterInputBox(group, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.primitive.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.alpha = new ParameterInputBox(group, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.object.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
 
     setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
     
@@ -126,7 +126,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
 
   @SuppressWarnings("unused")
   private void createRotationBoxes(Group parameterGroup) {
-    final RotationModel rotation = this.primitive.getRotation();
+    final RotationModel rotation = this.object.getRotation();
     
     final String x;
     final String y;
@@ -152,7 +152,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
 
   @SuppressWarnings("unused")
   private void createTranslationBoxes(Group parameterGroup) {
-    final TranslationModel translation = this.primitive.getTranslation();
+    final TranslationModel translation = this.object.getTranslation();
     
     final String x;
     final String y;
@@ -210,7 +210,7 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
       return;
     }
     
-    updatePrimitiveParameters();
+    updateObjectParameters();
     this.tree.updateTree();
     
     this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
@@ -259,14 +259,14 @@ public abstract class AbstractPrimitiveEditor implements PrimitiveEditor, Modify
   }
 
   /**
-   * プリミティブのパラメータを更新します。
+   * オブジェクトのパラメータを更新します。
    */
-  void updatePrimitiveParameters() {
+  void updateObjectParameters() {
     final ColorModel color = this.colorSelector.getColor();
     color.setAlpha(this.alpha.getIntValue());
-    this.primitive.setColor(color);
-    this.primitive.setTranslation(getTranslation());
-    this.primitive.setRotation(getRotation());
+    this.object.setColor(color);
+    this.object.setTranslation(getTranslation());
+    this.object.setRotation(getRotation());
     
     updateModelParameters();
   }

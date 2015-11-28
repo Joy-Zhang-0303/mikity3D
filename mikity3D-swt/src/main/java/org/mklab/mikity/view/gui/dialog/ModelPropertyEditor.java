@@ -77,4 +77,11 @@ public class ModelPropertyEditor {
     
     this.parent.layout();
   }
+  
+  /**
+   * エディタを更新し(モデルの変化をエディタに反映させ)ます。 
+   */
+  public void updateEditor() {
+    this.editor.updateEditor();
+  }
 }

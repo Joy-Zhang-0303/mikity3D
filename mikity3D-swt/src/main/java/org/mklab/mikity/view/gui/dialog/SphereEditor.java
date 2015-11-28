@@ -23,7 +23,7 @@ import org.mklab.mikity.view.gui.UnitLabel;
  * @author miki
  * @version $Revision: 1.5 $.2005/02/09
  */
-public class SphereEditor extends AbstractPrimitiveEditor {
+public class SphereEditor extends AbstractObjectEditor {
   /** 半径。 */
   private ParameterInputBox radius;
   /** 分割数。 */
@@ -48,8 +48,8 @@ public class SphereEditor extends AbstractPrimitiveEditor {
    */
   @Override
   public void createParameterBoxes(Group parameterGroup) {
-    this.primitiveType.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
-    final SphereModel sphere = (SphereModel)this.primitive;
+    this.objectType.setText(Messages.getString("EditPrimitiveDialog.30")); //$NON-NLS-1$
+    final SphereModel sphere = (SphereModel)this.object;
     
     this.radius = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.38"), "" + sphere.getRadius()); //$NON-NLS-1$//$NON-NLS-2$
 
@@ -65,7 +65,7 @@ public class SphereEditor extends AbstractPrimitiveEditor {
    */
   @Override
   public void updateModelParameters() {
-    final SphereModel sphere = (SphereModel)this.primitive;
+    final SphereModel sphere = (SphereModel)this.object;
     sphere.setRadius(this.radius.getFloatValue());
     sphere.setDivision(this.division.getIntValue());
   }
@@ -87,6 +87,13 @@ public class SphereEditor extends AbstractPrimitiveEditor {
     }
 
     return true;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void updateEditor() {
+    // nothing to do
   }
 
 }
