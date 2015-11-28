@@ -136,6 +136,16 @@ public class CompositionModel extends AbstractObjectModel {
   public void add(FacetModel facet) {
     this.facets.add(facet);
     this.size++;
+
+    if (this.size == 1) {
+      this.xMin = facet.getXmin();
+      this.xMax = facet.getXmax();
+      this.yMin = facet.getYmin();
+      this.yMax = facet.getYmax();
+      this.zMin = facet.getZmin();
+      this.zMax = facet.getZmax();
+      return;
+    }
     
     updateMinMax(facet);
   }
@@ -148,12 +158,20 @@ public class CompositionModel extends AbstractObjectModel {
       return;
     }
     
-    this.xMin = this.facets.get(0).getXmin();
-    this.xMax = this.facets.get(0).getXmax();
-    this.yMin = this.facets.get(0).getYmin();
-    this.yMax = this.facets.get(0).getYmax();
-    this.zMin = this.facets.get(0).getZmin();
-    this.zMax = this.facets.get(0).getZmax();
+    final FacetModel firstFacet = this.facets.get(0);
+    this.xMin = firstFacet.getXmin();
+    this.xMax = firstFacet.getXmax();
+    this.yMin = firstFacet.getYmin();
+    this.yMax = firstFacet.getYmax();
+    this.zMin = firstFacet.getZmin();
+    this.zMax = firstFacet.getZmax();
+    
+    for (final FacetModel facet : this.facets) {
+      if (facet == firstFacet) {
+        continue;
+      }
+      updateMinMax(facet);
+    }
   }
   
 
