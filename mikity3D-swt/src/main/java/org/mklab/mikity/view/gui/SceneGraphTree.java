@@ -29,6 +29,7 @@ import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
+import org.mklab.mikity.view.gui.dialog.TransformationEditor;
 
 /**
  * シーングラフを表すクラスです。
@@ -57,6 +58,8 @@ public class SceneGraphTree {
   
   /** オブジェクトを修正中ならばtrue */
   boolean isModifyingObject = false;
+  
+  Composite parentComposite;
 
   /**
    * コンストラクター
@@ -73,6 +76,7 @@ public class SceneGraphTree {
    * @param model モデル
    */
   public SceneGraphTree(final Composite parent, final JoglModeler modeler, final SceneModel model) {
+    this.parentComposite = parent;
     this.model = model;
     this.modeler = modeler;
     this.scene = new GroupModel("scene"); //$NON-NLS-1$
@@ -278,7 +282,8 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         if (SceneGraphTree.this.targetObject instanceof CompositionModel) {
-          ((CompositionModel)SceneGraphTree.this.targetObject).scale(2);
+          final TransformationEditor dialog = new TransformationEditor(SceneGraphTree.this.parentComposite.getShell(), (CompositionModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.modeler);
+          dialog.open();
           updateTree();
         }
       }

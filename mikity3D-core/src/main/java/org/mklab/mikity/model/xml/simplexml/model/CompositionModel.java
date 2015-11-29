@@ -226,11 +226,13 @@ public class CompositionModel extends AbstractObjectModel {
   /**
    * 拡大縮小します。
    * 
-   * @param rate 拡大縮小率
+   * @param scaleX X軸方向の拡大縮小率
+   * @param scaleY Y軸方向の拡大縮小率
+   * @param scaleZ Z軸方向の拡大縮小率
    */
-  public void scale(float rate) {
+  public void scale(float scaleX, float scaleY, float scaleZ) {
     for (final FacetModel facet : this.facets) {
-      facet.scale(rate);
+      facet.scale(scaleX, scaleY, scaleZ);
     }
     
     updateMinMax();

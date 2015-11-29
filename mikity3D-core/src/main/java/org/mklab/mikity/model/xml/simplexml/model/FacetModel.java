@@ -283,11 +283,13 @@ public class FacetModel implements Serializable, Cloneable {
   /**
    * 拡大縮小します。
    * 
-   * @param rate 拡大縮小率
+   * @param scaleX X軸方向の拡大縮小率
+   * @param scaleY Y軸方向の拡大縮小率
+   * @param scaleZ Z軸方向の拡大縮小率
    */
-  public void scale(float rate) {
+  public void scale(float scaleX, float scaleY, float scaleZ) {
     for (final VertexModel vertex : this.vertices) {
-      vertex.scale(rate);
+      vertex.scale(scaleX, scaleY, scaleZ);
     }
     
     updateMinMax();
