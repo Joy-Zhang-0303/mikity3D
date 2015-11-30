@@ -188,4 +188,42 @@ public class VertexModel implements Serializable, Cloneable {
     this.y += dy;
     this.z += dz;
   }
+  
+  /**
+   * X軸周りに回転します
+   * 
+   * @param angle 回転角度(rad)
+   */
+  public void rotateX(float angle) {
+    final float newY = (float)(Math.cos(angle)*this.y - Math.sin(angle)*this.z);
+    final float newZ = (float)(Math.sin(angle)*this.y + Math.cos(angle)*this.z);
+    this.y = newY;
+    this.z = newZ;
+  }
+  
+  /**
+   * Y軸周りに回転します
+   * 
+   * @param angle 回転角度(rad)
+   */
+  public void rotateY(float angle) {
+    final float newX = (float)(Math.cos(angle)*this.x + Math.sin(angle)*this.z);
+    final float newZ = (float)(-Math.sin(angle)*this.x + Math.cos(angle)*this.z);
+    this.x = newX;
+    this.z = newZ;
+  }
+  
+  /**
+   * Z軸周りに回転します
+   * 
+   * @param angle 回転角度(rad)
+   */
+  public void rotateZ(float angle) {
+    final float newX = (float)(Math.cos(angle)*this.x - Math.sin(angle)*this.y);
+    final float newY = (float)(Math.sin(angle)*this.x + Math.cos(angle)*this.y);
+    this.x = newX;
+    this.y = newY;
+  }
+
+
 }

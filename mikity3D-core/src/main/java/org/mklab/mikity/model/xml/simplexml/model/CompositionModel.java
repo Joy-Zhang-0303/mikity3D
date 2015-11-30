@@ -254,6 +254,47 @@ public class CompositionModel extends AbstractObjectModel {
   }
   
   /**
+   * X軸周りに回転します。
+   * 
+   * @param angle 回転角度
+   */
+  public void rotateX(float angle) {
+    for (final FacetModel facet : this.facets) {
+      facet.rotateX(angle);
+    }
+    
+    updateMinMax();
+  }
+
+  /**
+   * Y軸周りに回転します。
+   * 
+   * @param angle 回転角度
+   */
+  public void rotateY(float angle) {
+    for (final FacetModel facet : this.facets) {
+      facet.rotateY(angle);
+    }
+    
+    updateMinMax();
+  }
+  
+  /**
+   * Z軸周りに回転します。
+   * 
+   * @param angle 回転角度
+   */
+  public void rotateZ(float angle) {
+    for (final FacetModel facet : this.facets) {
+      facet.rotateZ(angle);
+    }
+    
+    updateMinMax();
+  }
+
+
+  
+  /**
    * X成分の最小値を返します。
    * 
    * @return X成分の最小値

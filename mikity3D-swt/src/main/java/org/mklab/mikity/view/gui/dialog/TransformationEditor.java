@@ -238,7 +238,32 @@ public class TransformationEditor implements ModifyKeyListener {
    * Configurationのパラメータを更新します。
    */
   void updateObjectParameters() {
-    this.object.scale(this.scaleX.getFloatValue(), this.scaleY.getFloatValue(), this.scaleZ.getFloatValue());
+    final float dx = this.translationX.getFloatValue();
+    final float dy = this.translationY.getFloatValue();
+    final float dz = this.translationZ.getFloatValue();
+    if (dx != 0 || dy != 0 || dz != 0) { 
+      this.object.translate(dx, dy, dz);
+    }
+
+    final float rx = this.rotationX.getFloatValue();
+    final float ry = this.rotationY.getFloatValue();
+    final float rz = this.rotationZ.getFloatValue();
+    if (rx != 0) { 
+      this.object.rotateX(rx);
+    }
+    if (ry != 0) { 
+      this.object.rotateY(ry);
+    }
+    if (rz != 0) { 
+      this.object.rotateZ(rz);
+    }
+
+    final float sx = this.scaleX.getFloatValue();
+    final float sy = this.scaleY.getFloatValue();
+    final float sz = this.scaleZ.getFloatValue();
+    if (sx != 1 || sy != 1 || sz != 1) {
+      this.object.scale(sx, sy, sz);
+    }
     
     resetTransformationParameters();
   }

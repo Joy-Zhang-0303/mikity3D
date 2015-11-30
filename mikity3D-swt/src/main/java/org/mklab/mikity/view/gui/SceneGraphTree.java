@@ -275,9 +275,9 @@ public class SceneGraphTree {
       }
     });
     
-    final MenuItem scale = new MenuItem(menu, SWT.POP_UP);
-    scale.setText(Messages.getString("SceneGraphTree.39")); //$NON-NLS-1$
-    scale.addSelectionListener(new SelectionAdapter() {
+    final MenuItem transform = new MenuItem(menu, SWT.POP_UP);
+    transform.setText(Messages.getString("SceneGraphTree.39")); //$NON-NLS-1$
+    transform.addSelectionListener(new SelectionAdapter() {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {

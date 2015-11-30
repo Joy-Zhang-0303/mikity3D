@@ -296,6 +296,47 @@ public class FacetModel implements Serializable, Cloneable {
   }
   
   /**
+   * X軸周りに回転します。
+   * 
+   * @param angle 回転角度
+   */
+  public void rotateX(float angle) {
+    for (final VertexModel vertex : this.vertices) {
+      vertex.rotateX(angle);
+    }
+    
+    updateMinMax();
+  }
+  
+  /**
+   * Y軸周りに回転します。
+   * 
+   * @param angle 回転角度
+   */
+  public void rotateY(float angle) {
+    for (final VertexModel vertex : this.vertices) {
+      vertex.rotateY(angle);
+    }
+    
+    updateMinMax();
+  }
+  
+  /**
+   * Z軸周りに回転します。
+   * 
+   * @param angle 回転角度
+   */
+  public void rotateZ(float angle) {
+    for (final VertexModel vertex : this.vertices) {
+      vertex.rotateZ(angle);
+    }
+    
+    updateMinMax();
+  }
+
+
+  
+  /**
    * 平行移動します。
    * 
    * @param dx x軸方向の移動量
