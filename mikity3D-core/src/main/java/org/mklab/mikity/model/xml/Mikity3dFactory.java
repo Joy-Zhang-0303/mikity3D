@@ -39,7 +39,7 @@ public class Mikity3dFactory {
   public void importFile(File file, Mikity3DModel parent) throws IOException {
     final Mikity3DModel importedMikity3d;
     
-    if (file.getPath().endsWith(".m3d")) { //$NON-NLS-1$
+    if (file.getPath().toLowerCase().endsWith(".m3d")) { //$NON-NLS-1$a
       try {
         final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
         unmarshaller.unmarshalFromMikity3DFile(file);
@@ -47,7 +47,7 @@ public class Mikity3dFactory {
       } catch (Mikity3dSerializeDeserializeException e) {
         throw new IOException(e);
       }
-    } else if (file.getPath().endsWith(".stl")) { //$NON-NLS-1$
+    } else if (file.getPath().toLowerCase().endsWith(".stl")) { //$NON-NLS-1$
       importedMikity3d = STL.load(file.getPath()).toMikity3DModel();
     } else {
       throw new IllegalArgumentException("Inappropriate model file."); //$NON-NLS-1$
@@ -71,7 +71,7 @@ public class Mikity3dFactory {
    */
   public Mikity3DModel loadFile(final File file) throws IOException {
     final Mikity3DModel root;
-    if (file.getPath().endsWith(".m3d")) { //$NON-NLS-1$
+    if (file.getPath().toLowerCase().endsWith(".m3d")) { //$NON-NLS-1$
       try {
         final Mikity3DUnmarshaller unmarshaller = new Mikity3DUnmarshaller();
         unmarshaller.unmarshalFromMikity3DFile(file);
@@ -79,7 +79,7 @@ public class Mikity3dFactory {
       } catch (Mikity3dSerializeDeserializeException e) {
         throw new IOException(e);
       }
-    } else if (file.getPath().endsWith(".stl")) { //$NON-NLS-1$
+    } else if (file.getPath().toLowerCase().endsWith(".stl")) { //$NON-NLS-1$
       root = STL.load(file.getPath()).toMikity3DModel();
     } else {
       throw new IllegalArgumentException("Inappropriate model file."); //$NON-NLS-1$
