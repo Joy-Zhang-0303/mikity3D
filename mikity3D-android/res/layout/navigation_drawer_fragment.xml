@@ -106,12 +106,12 @@
             android:text="@string/rotationSensorTextView"
             android:textColor="@color/black" />
 
-        <ToggleButton
+        <Switch
             android:id="@+id/rotationSensorButton"
-            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rotationSensorButton" />
+
     </LinearLayout>
 
     <LinearLayout

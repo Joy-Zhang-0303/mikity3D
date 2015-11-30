@@ -50,6 +50,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Switch;
 
 
 /**
@@ -104,7 +107,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button resetToInitialStateButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
-  ToggleButton rotationSensorButton;
+  Switch rotationSensorButton;
   /** 加速度を3Dオブジェクトに反映させるならばtrue。 */
   ToggleButton accelerometerButton;
   /** 端末の回転を許可するならばtrue。 */
@@ -245,7 +248,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       sources.addView(source);
 
       final Button selectButton = (Button)source.findViewById(R.id.sourceSelectButton);
-      selectButton.setText(getString(R.string.sourceLabel) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+      selectButton.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sourceSelectButtons.add(selectButton);
 
       selectButton.setEnabled(false);
@@ -309,21 +312,20 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
 
   private void createSensorComponent(final View mainView) {
-    this.rotationSensorButton = (ToggleButton)mainView.findViewById(R.id.rotationSensorButton);
-    this.rotationSensorButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View view) {
-        if (NavigationDrawerFragment.this.rotationSensorButton.isChecked()) {
-          NavigationDrawerFragment.this.canvasActivity.sensorService.useRotationSensor = true;
-        } else {
-          NavigationDrawerFragment.this.canvasActivity.sensorService.useRotationSensor = false;
-        }
-
-      }
-    });
+    this.rotationSensorButton = (Switch)mainView.findViewById(R.id.rotationSensorButton);
+    this.rotationSensorButton.setOnCheckedChangeListener(
+    		new CompoundButton.OnCheckedChangeListener() {
+				
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					// TODO Auto-generated method stub
+			        if (NavigationDrawerFragment.this.rotationSensorButton.isChecked()) {
+			            NavigationDrawerFragment.this.canvasActivity.sensorService.useRotationSensor = true;
+			          } else {
+			            NavigationDrawerFragment.this.canvasActivity.sensorService.useRotationSensor = false;
+			          }
+					
+				}
+			});
 
     this.accelerometerButton = (ToggleButton)mainView.findViewById(R.id.accelerometerButton);
     this.accelerometerButton.setOnClickListener(new OnClickListener() {
@@ -448,7 +450,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       sources.addView(source);
 
       final Button selectButton = (Button)source.findViewById(R.id.sampleSourceSelectButton);
-      selectButton.setText(getString(R.string.sampleSourceLabel) +  "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+      selectButton.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sampleSourceSelectButtons.add(selectButton);
 
       selectButton.setEnabled(false);
@@ -626,7 +628,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       setButtonEnabled(true);
 
     } catch (Mikity3dSerializeDeserializeException e) {
-      showAlertMessageInDialog(getString(R.string.pleaseSelectModelFile));
+      showAlertMessageInDialog("please select model file."); //$NON-NLS-1$
       setButtonEnabled(false);
     } catch (IOException e) {
       throw new RuntimeException(e);
