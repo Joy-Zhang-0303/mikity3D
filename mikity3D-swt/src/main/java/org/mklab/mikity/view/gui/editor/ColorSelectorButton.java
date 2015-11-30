@@ -3,7 +3,7 @@
  * Copyright (C) 2004-2005 Koga Laboratoy. All rights reserved.
  *
  */
-package org.mklab.mikity.view.gui.dialog;
+package org.mklab.mikity.view.gui.editor;
 
 import org.eclipse.jface.preference.ColorSelector;
 import org.eclipse.swt.events.ModifyEvent;

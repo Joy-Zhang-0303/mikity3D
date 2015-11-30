@@ -9,7 +9,7 @@ import org.eclipse.jface.action.Action;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ModelingWindow;
 import org.mklab.mikity.view.gui.action.Messages;
-import org.mklab.mikity.view.gui.dialog.ConfigurationEditor;
+import org.mklab.mikity.view.gui.editor.ConfigurationEditor;
 
 
 /**

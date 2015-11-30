@@ -46,7 +46,7 @@ import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.SourceDataModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.view.gui.dialog.ModifyKeyListener;
+import org.mklab.mikity.view.gui.editor.ModifyKeyListener;
 import org.mklab.mikity.view.renderer.ObjectRenderer;
 import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
 import org.mklab.nfc.matrix.DoubleMatrix;

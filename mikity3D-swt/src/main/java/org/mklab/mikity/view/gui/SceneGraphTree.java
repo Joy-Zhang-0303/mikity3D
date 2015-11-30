@@ -29,7 +29,7 @@ import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
-import org.mklab.mikity.view.gui.dialog.TransformationEditor;
+import org.mklab.mikity.view.gui.editor.TransformationEditor;
 
 /**
  * シーングラフを表すクラスです。

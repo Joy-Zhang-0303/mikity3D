@@ -3,7 +3,7 @@
  * Copyright (C) 2015 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.gui.dialog;
+package org.mklab.mikity.view.gui.editor;
 
 
 /**

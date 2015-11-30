@@ -18,7 +18,7 @@ import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.view.gui.dialog.ModelPropertyEditor;
+import org.mklab.mikity.view.gui.editor.ModelPropertyEditor;
 import org.mklab.mikity.view.renderer.jogl.JoglObjectRenderer;
 
 
