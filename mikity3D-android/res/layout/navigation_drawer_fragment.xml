@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_fragment_navigation_drawer"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical" >
 
@@ -97,7 +97,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/rotationSensorTextView"
@@ -108,8 +109,8 @@
 
         <Switch
             android:id="@+id/rotationSensorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="107dp"
+            android:layout_height="match_parent"
             android:text="@string/rotationSensorButton" />
 
     </LinearLayout>
@@ -124,13 +125,13 @@
             android:layout_height="wrap_content"
             android:text="@string/accelerometerTextView"
             android:textColor="@color/black" />
-
-        <ToggleButton
+        
+        <Switch
             android:id="@+id/accelerometerButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="107dp"
+            android:layout_height="match_parent"
             android:text="@string/accelerometerButton" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -143,13 +144,14 @@
             android:layout_height="wrap_content"
             android:text="@string/rotationLockTextView"
             android:textColor="@color/black" />
-
-        <ToggleButton
+        
+        
+        <Switch
             android:id="@+id/rotationLockButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="107dp"
+            android:layout_height="match_parent"
             android:text="@string/rotationLockButton" />
+  
     </LinearLayout>
 
     <LinearLayout

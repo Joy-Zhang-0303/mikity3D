@@ -109,9 +109,9 @@ public class NavigationDrawerFragment extends RoboFragment {
   /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
   Switch rotationSensorButton;
   /** 加速度を3Dオブジェクトに反映させるならばtrue。 */
-  ToggleButton accelerometerButton;
+  Switch accelerometerButton;
   /** 端末の回転を許可するならばtrue。 */
-  ToggleButton rotationLockButton;
+  Switch rotationLockButton;
 
   /** サンプルのソースファイルのパス。 */
   Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
@@ -327,31 +327,35 @@ public class NavigationDrawerFragment extends RoboFragment {
 				}
 			});
 
-    this.accelerometerButton = (ToggleButton)mainView.findViewById(R.id.accelerometerButton);
-    this.accelerometerButton.setOnClickListener(new OnClickListener() {
+    this.accelerometerButton = (Switch)mainView.findViewById(R.id.accelerometerButton);
+    this.accelerometerButton.setOnCheckedChangeListener(
+    		new CompoundButton.OnCheckedChangeListener() {
 
       /**
        * {@inheritDoc}
        */
-      public void onClick(View view) {
-        if (NavigationDrawerFragment.this.accelerometerButton.isChecked()) {
-          NavigationDrawerFragment.this.canvasActivity.sensorService.useAccelerometer = true;
-        } else {
-          NavigationDrawerFragment.this.canvasActivity.sensorService.useAccelerometer = false;
-        }
+    			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					// TODO Auto-generated method stub
+    				if (NavigationDrawerFragment.this.accelerometerButton.isChecked()) {
+    					NavigationDrawerFragment.this.canvasActivity.sensorService.useAccelerometer = true;
+    				} else {
+    					NavigationDrawerFragment.this.canvasActivity.sensorService.useAccelerometer = false;
+    				}
       }
 
     });
 
-    this.rotationLockButton = (ToggleButton)mainView.findViewById(R.id.rotationLockButton);
-    this.rotationLockButton.setOnClickListener(new OnClickListener() {
+    this.rotationLockButton = (Switch)mainView.findViewById(R.id.rotationLockButton);
+    this.rotationLockButton.setOnCheckedChangeListener(
+    		new CompoundButton.OnCheckedChangeListener() {
 
       /**
        * {@inheritDoc}
        */
-      public void onClick(View view) {
-        NavigationDrawerFragment.this.canvasActivity.controlRotation();
-      }
+    			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					// TODO Auto-generated method stub
+    				NavigationDrawerFragment.this.canvasActivity.controlRotation();
+    			}
     });
   }
 
