@@ -108,16 +108,14 @@ public class STL {
       composition.add(facetModel);
     }
 
-
-    final GroupModel group = new GroupModel(this.name);
-    group.add(composition);
-    
-    final SceneModel scene = new SceneModel();
-    scene.addGroup(group);
-    
     float xCenter = (composition.getXmax() + composition.getXmin())/2;
     float yCenter = (composition.getYmax() + composition.getYmin())/2;
     float zCenter = (composition.getZmax() + composition.getZmin())/2;
+    
+    composition.translate(-xCenter, -yCenter, -zCenter);
+    xCenter = 0;
+    yCenter = 0;
+    zCenter = 0;
     
     float compositionSize = Math.max(Math.max(composition.getWidth(), composition.getHeight()), composition.getDepth());
     
@@ -125,7 +123,13 @@ public class STL {
     configuration.setEye(new EyeModel(xCenter + compositionSize*15, yCenter, zCenter));
     configuration.setLookAtPoiint(new LookAtPointModel(xCenter, yCenter, zCenter));
     configuration.setLight(new LightModel(composition.getXmax()*100, composition.getYmax()*100, composition.getZmax()*100));
-  
+   
+    final GroupModel group = new GroupModel(this.name);
+    group.add(composition);
+    
+    final SceneModel scene = new SceneModel();
+    scene.addGroup(group);
+
     final Mikity3DModel mikity3d = new Mikity3DModel();
     mikity3d.addConfiguration(configuration);
     mikity3d.addScene(scene);
