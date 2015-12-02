@@ -350,12 +350,17 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
   /**
    * マウスをドラッグさせるとカメラ座標が移動させます。
-   * @param e マウスイベント
+   * 
+   * {@inheritDoc}
    */
   @Override
   public void mouseDragged(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e)) {
       this.endPoint = getMousePosition(true);
+      if (this.endPoint == null) {
+        return;
+      }
+      
       if (this.startPoint == null) {
         this.startPoint = new Point(this.endPoint);
       }
@@ -367,6 +372,10 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     
     if (SwingUtilities.isMiddleMouseButton(e)) {
       this.endPoint = getMousePosition(true);
+      if (this.endPoint == null) {
+        return;
+      }
+      
       if (this.startPoint == null) {
         this.startPoint = new Point(this.endPoint);
       }
@@ -383,6 +392,10 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     
     if (SwingUtilities.isRightMouseButton(e) == true) {
       this.endPoint = getMousePosition(true);
+      if (this.endPoint == null) {
+        return;
+      }
+      
       if (this.startPoint == null) {
         this.startPoint = new Point(this.endPoint);
       }
