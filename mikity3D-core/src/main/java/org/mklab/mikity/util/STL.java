@@ -6,10 +6,15 @@
 package org.mklab.mikity.util;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
@@ -43,13 +48,13 @@ public class STL {
   private String name = "stl"; //$NON-NLS-1$
   
   /**
-   * 入力ストリームからデータを読み込みます。
+   * 入力ストリームからバイナリ形式のデータを読み込みます。
    * 
-   * @param input 入力ストリーム
+   * @param input 入力
    * @return STL
    * @throws IOException データを読み込めない場合
    */
-  public static STL load(InputStream input) throws IOException {
+  public static STL loadBinaryData(InputStream input) throws IOException {
     final STL stl = new STL();
     
     try (final DataInputStream dataInput = new DataInputStream(new BufferedInputStream(input))) {
@@ -57,12 +62,75 @@ public class STL {
       stl.size = Integer.reverseBytes(dataInput.readInt());
       stl.facets = new Facet[stl.size];
       for (int i = 0; i < stl.size; i++) {
-        stl.facets[i] = Facet.load(dataInput);
+        stl.facets[i] = Facet.loadBinaryData(dataInput);
       }
     }
     
     return stl; 
   }
+
+  /**
+   * Readerからテキスト形式のデータを読み込みます。
+   * 
+   * @param input 入力
+   * @return STL
+   * @throws IOException データを読み込めない場合
+   */
+  public static STL loadTextData(Reader input) throws IOException {
+    final STL stl = new STL();
+    
+    final BufferedReader reader = new BufferedReader(input);
+    final String firstLine = reader.readLine();
+    if (firstLine.startsWith("solid ") == false) { //$NON-NLS-1$
+      throw new IOException("The first line must start with 'solid'"); //$NON-NLS-1$
+    }
+    final String[] firstLineWords = firstLine.split(" "); //$NON-NLS-1$
+    if (firstLineWords.length != 2) {
+      throw new IOException("The first line must have 'solid' and 'name'"); //$NON-NLS-1$
+    }
+    
+    stl.name = firstLineWords[1];
+    
+    final List<Facet> facetList = new ArrayList<>();
+    
+    do {
+      reader.mark(100);
+      final String nextLine = reader.readLine();
+      if (nextLine.startsWith("endsolid")) { //$NON-NLS-1$
+        break;
+      }
+      reader.reset();
+      
+      facetList.add(Facet.loadTextData(reader));
+    } while (true);
+    
+    stl.facets = facetList.toArray(new Facet[facetList.size()]);
+      
+    return stl;
+  }
+  
+  /**
+   * テキストデータであるか判定します。
+   * 
+   * @param filePath ファイルパス
+   * @return テキストデータならばtrue
+   * @throws IOException ファイルを読み込めない場合
+   */
+  public static boolean isTextData(String filePath) throws IOException {
+    try (DataInputStream input = new DataInputStream(new FileInputStream(filePath))) {
+      byte c1 = input.readByte();
+      byte c2 = input.readByte();
+      byte c3 = input.readByte();
+      byte c4 = input.readByte();
+      byte c5 = input.readByte();
+      if (c1 == 's' && c2 == 'o' && c3 == 'l' && c4 == 'i' && c5 == 'd') {
+        return true;
+      }
+      
+      return false;
+    }
+  }
+  
   
   /**
    * ファイルからデータを読み込みます。
@@ -72,11 +140,41 @@ public class STL {
    * @throws IOException ファイルを読み込めない場合
    */
   public static STL load(String filePath) throws IOException {
+    if (isTextData(filePath)) {
+      return loadTextData(filePath);
+    }
+
+    return loadBinaryData(filePath);
+  }
+  
+  /**
+   * ファイルからバイナリデータを読み込みます。
+   * 
+   * @param filePath ファイルパス
+   * @return STL
+   * @throws IOException ファイルを読み込めない場合
+   */
+  public static STL loadBinaryData(String filePath) throws IOException {
     try (FileInputStream input = new FileInputStream(filePath)) {
-      final STL stl = load(input);
+      final STL stl = loadBinaryData(input);
       return stl;
     }
   }
+  
+  /**
+   * ファイルからテキストデータを読み込みます。
+   * 
+   * @param filePath ファイルパス
+   * @return STL
+   * @throws IOException ファイルを読み込めない場合
+   */
+  public static STL loadTextData(String filePath) throws IOException {
+    try (FileReader input = new FileReader(filePath)) {
+      final STL stl = loadTextData(input);
+      return stl;
+    }
+  }
+
   
   /**
    * データを標準出力に表示します。

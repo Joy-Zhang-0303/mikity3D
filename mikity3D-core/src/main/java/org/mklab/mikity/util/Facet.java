@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.util;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
 
@@ -32,13 +33,13 @@ public class Facet {
   private short data = 0;
   
   /**
-   * データ入力ストリームからデータを読み込みます。
+   * データ入力ストリームからバイナリデータを読み込みます。
    * 
    * @param input データ入力ストリーム
    * @return 読み込んだデータから構成される三角形の面
    * @throws IOException データを読み込めない場合
    */
-  public static Facet load(DataInputStream input) throws IOException {
+  public static Facet loadBinaryData(DataInputStream input) throws IOException {
     final Facet facet = new Facet();
     
     facet.normalVector[0] = Float.intBitsToFloat(Integer.reverseBytes(input.readInt()));
@@ -60,6 +61,65 @@ public class Facet {
     facet.data = Short.reverseBytes(input.readShort());
     
     return facet;
+  }
+  
+  /**
+   * BufferedReaderからテキストデータを読み込みます。
+   * 
+   * @param input 入力
+   * @return 読み込んだデータから構成される三角形の面
+   * @throws IOException データを読み込めない場合
+   */
+  public static Facet loadTextData(BufferedReader input) throws IOException {
+    final Facet facet = new Facet();
+    
+    final String line1 = input.readLine();
+    final String[] line1Words = line1.trim().replaceAll("[ \\t]+", " ").split("[ ]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    
+    if (line1Words.length != 5 || line1Words[0].equals("facet")==false || line1Words[1].equals("normal")==false) { //$NON-NLS-1$ //$NON-NLS-2$
+      throw new IOException("The first line must have 'facet normal ni nj nk'"); //$NON-NLS-1$
+    }
+    
+    final String line2 = input.readLine();
+    if (line2.contains("outer loop") == false) { //$NON-NLS-1$
+      throw new IOException("The second line must be '  outer loop'"); //$NON-NLS-1$
+    }
+    
+    facet.vertex1 = loadTextVertex(input);
+    facet.vertex2 = loadTextVertex(input);
+    facet.vertex3 = loadTextVertex(input);
+    
+    final String line6 = input.readLine();
+    if (line6.contains("endloop") == false) { //$NON-NLS-1$
+      throw new IOException("The 6th line must be '  endloop'"); //$NON-NLS-1$
+    }
+    
+    final String line7 = input.readLine();
+    if (line7.contains("endfacet") == false) { //$NON-NLS-1$
+      throw new IOException("The 7th line must be 'endfacet'"); //$NON-NLS-1$
+    }
+    
+    return facet;
+  }
+
+  /**
+   * Readerからテキスト形式のデータを読み込みます。
+   * 
+   * @param input 入力
+   * @return 頂点の配列
+   * @throws IOException データを読み込めない場合
+   */
+  private static float[] loadTextVertex(BufferedReader input) throws IOException {
+    final String line = input.readLine();
+    final String[] words = line.trim().replaceAll("[ \\t]+", " ").split("[ ]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    if (words.length != 4 || words[0].equals("vertex") == false) { //$NON-NLS-1$
+      throw new IOException("The line must have 'vertex vx vy vz'"); //$NON-NLS-1$
+    }
+    float vx = Float.parseFloat(words[1]);
+    float vy = Float.parseFloat(words[2]);
+    float vz = Float.parseFloat(words[3]);
+    
+    return new float[]{vx, vy, vz};
   }
   
   /**
