@@ -31,10 +31,10 @@ public class ConeEditor extends AbstractObjectEditor {
   /** 分割数。 */
   private ParameterInputBox division;
   
-  /** 半径の単位。 */
-  private Label radiusUnit;
-  /** 高さの単位。 */
-  private Label heightUnit;
+//  /** 半径の単位。 */
+//  private Label radiusUnit;
+//  /** 高さの単位。 */
+//  private Label heightUnit;
 
   /**
    * 新しく生成された<code>ConeEditor</code>オブジェクトを初期化します。
@@ -59,15 +59,15 @@ public class ConeEditor extends AbstractObjectEditor {
     
     this.radius = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.40"), "" + cone.getRadisu()); //$NON-NLS-1$//$NON-NLS-2$
     
-    this.radiusUnit = new Label(parameterGroup, SWT.NONE);
-    this.radiusUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.radiusUnit, 1);
+    final Label radiusUnit = new Label(parameterGroup, SWT.NONE);
+    radiusUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+    setGridLayout(radiusUnit, 1);
 
     this.height = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.41"), "" + cone.getHeight()); //$NON-NLS-1$//$NON-NLS-2$
     
-    this.heightUnit = new Label(parameterGroup, SWT.NONE);
-    this.heightUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
-    setGridLayout(this.heightUnit, 1);
+    final Label heightUnit = new Label(parameterGroup, SWT.NONE);
+    heightUnit.setText(UnitLabel.getUnit("modelLength")); //$NON-NLS-1$
+    setGridLayout(heightUnit, 1);
 
     this.division = new ParameterInputBox(parameterGroup, this, SWT.NONE, Messages.getString("EditPrimitiveDialog.42"), "" + cone.getDivision()); //$NON-NLS-1$//$NON-NLS-2$
   }

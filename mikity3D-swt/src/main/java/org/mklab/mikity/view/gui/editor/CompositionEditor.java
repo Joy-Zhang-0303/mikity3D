@@ -32,7 +32,7 @@ public class CompositionEditor extends AbstractObjectEditor {
   private ParameterInputBox heightValue;
   /** 奥行き。 */
   private ParameterInputBox depthValue;
-  /** 比率保存用ボタン。 */
+  /** 比率保存用チェックボックス。 */
   private Button preservingRatio;
 
   /**
