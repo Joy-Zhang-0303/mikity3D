@@ -291,8 +291,6 @@ public class CompositionModel extends AbstractObjectModel {
     
     updateMinMax();
   }
-
-
   
   /**
    * X成分の最小値を返します。

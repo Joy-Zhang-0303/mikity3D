@@ -11,7 +11,7 @@ import java.io.IOException;
 
 
 /**
- * STLの三角形の面を表すクラスです。
+ * {@link STL}の三角形の面を表すクラスです。
  *  
  * @author koga
  * @version $Revision$, 2015/11/19
@@ -30,7 +30,7 @@ public class Facet {
   private float[] vertex3 = new float[3];
   
   /** 未使用データ。 */
-  private short data = 0;
+  private short unusedData = 0;
   
   /**
    * データ入力ストリームからバイナリデータを読み込みます。
@@ -58,7 +58,7 @@ public class Facet {
     facet.vertex3[1] = Float.intBitsToFloat(Integer.reverseBytes(input.readInt()));
     facet.vertex3[2] = Float.intBitsToFloat(Integer.reverseBytes(input.readInt()));
 
-    facet.data = Short.reverseBytes(input.readShort());
+    facet.unusedData = Short.reverseBytes(input.readShort());
     
     return facet;
   }
@@ -103,7 +103,7 @@ public class Facet {
   }
 
   /**
-   * Readerからテキスト形式のデータを読み込みます。
+   * BufferedReaderからテキスト形式のデータを読み込みます。
    * 
    * @param input 入力
    * @return 頂点の配列
@@ -157,10 +157,11 @@ public class Facet {
 
   /**
    * 未使用データを返します。
+   * 
    * @return 未使用データ
    */
-  public short getData() {
-    return this.data;
+  public short getUnusedData() {
+    return this.unusedData;
   }
   
   /**
@@ -172,6 +173,6 @@ public class Facet {
     final String v1 = "v1(" + this.vertex1[0] + "," + this.vertex1[1] + "," + this.vertex1[2] + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     final String v2 = "v2(" + this.vertex2[0] + "," + this.vertex2[1] + "," + this.vertex2[2] + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     final String v3 = "v3(" + this.vertex3[0] + "," + this.vertex3[1] + "," + this.vertex3[2] + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-    return normal + "," + v1 + "," + v2 + "," + v3 + "," + String.format("0x%x", Short.valueOf(this.data));  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    return normal + "," + v1 + "," + v2 + "," + v3 + "," + String.format("0x%x", Short.valueOf(this.unusedData));  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
   }
 }

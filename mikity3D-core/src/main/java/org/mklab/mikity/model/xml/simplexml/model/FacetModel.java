@@ -25,7 +25,7 @@ public class FacetModel implements Serializable, Cloneable {
   /** */
   private static final long serialVersionUID = 1L;
 
-  /** vertices */
+  /** 頂点のリスト。  */
   @ElementList(name="vertices",  type = VertexModel.class, inline = true, required = true)
   private List<VertexModel> vertices;
 
@@ -333,8 +333,6 @@ public class FacetModel implements Serializable, Cloneable {
     
     updateMinMax();
   }
-
-
   
   /**
    * 平行移動します。

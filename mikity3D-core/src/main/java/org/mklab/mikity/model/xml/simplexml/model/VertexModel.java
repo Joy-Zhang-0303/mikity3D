@@ -38,9 +38,9 @@ public class VertexModel implements Serializable, Cloneable {
 
   /**
    * 新しく生成された<code>VertexModel</code>オブジェクトを初期化します。
-   * @param x x
-   * @param y y
-   * @param z z
+   * @param x x成分
+   * @param y y成分
+   * @param z z成分
    */
   public VertexModel(float x, float y, float z) {
     this.x = x;
@@ -177,7 +177,7 @@ public class VertexModel implements Serializable, Cloneable {
   }
   
   /**
-   * 平行移動します。
+   * 並進します。
    * 
    * @param dx x軸方向の移動量
    * @param dy y軸方向の移動量
@@ -224,6 +224,4 @@ public class VertexModel implements Serializable, Cloneable {
     this.x = newX;
     this.y = newY;
   }
-
-
 }
