@@ -31,13 +31,6 @@ public class BoxEditor extends AbstractObjectEditor {
   /** 奥行き。 */
   private ParameterInputBox depth;
   
-//  /** 幅の単位。 */
-//  private Label widthUnit;
-//  /** 高さの単位。 */
-//  private Label heightUnit;
-//  /** 奥行きの単位。 */
-//  private Label depthUnit;
-  
   /**
    * 新しく生成された<code>EditBoxDialog</code>オブジェクトを初期化します。
    * @param parent 親のシェル

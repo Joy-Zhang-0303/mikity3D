@@ -30,11 +30,6 @@ public class ConeEditor extends AbstractObjectEditor {
   private ParameterInputBox height;
   /** 分割数。 */
   private ParameterInputBox division;
-  
-//  /** 半径の単位。 */
-//  private Label radiusUnit;
-//  /** 高さの単位。 */
-//  private Label heightUnit;
 
   /**
    * 新しく生成された<code>ConeEditor</code>オブジェクトを初期化します。
