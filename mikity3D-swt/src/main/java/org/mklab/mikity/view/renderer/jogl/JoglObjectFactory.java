@@ -72,11 +72,12 @@ public class JoglObjectFactory {
   public JoglObject create(ObjectModel model) {
     final float modelMin = Math.min(Math.min(model.getWidth(), model.getDepth()), model.getHeight());
     final float modelMax = Math.max(Math.max(model.getWidth(), model.getDepth()), model.getHeight());
-    final float axisRadius = Math.min(Math.max(modelMin/16, modelMax/200), modelMin/2); 
+    float axisRadius = Math.min(Math.max(modelMin/16, modelMax/200), modelMin/2);
+    axisRadius = axisRadius == 0 ? modelMax/100 : axisRadius;
         
-    final GraphicObject axisX = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getDepth()*2, axisRadius*20), 36));
-    final GraphicObject axisY = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getWidth()*2, axisRadius*20), 36));
-    final GraphicObject axisZ = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getHeight()*2, axisRadius*20), 36));
+    final GraphicObject axisX = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getDepth(), axisRadius*20), 36));
+    final GraphicObject axisY = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getWidth(), axisRadius*20), 36));
+    final GraphicObject axisZ = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getHeight()*1.5f, axisRadius*20), 36));
     final GraphicObject[] axies = new GraphicObject[]{axisX, axisY, axisZ};
     
     final JoglSingleObject object = new JoglSingleObject(GraphicObjectFactory.create(model), axies);

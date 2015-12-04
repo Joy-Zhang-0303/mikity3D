@@ -281,14 +281,14 @@ public class QuadrangleModel extends AbstractObjectModel {
    * {@inheritDoc}
    */
   public float getWidth() {
-    return this.xMax - this.xMin;
+    return this.yMax - this.yMin;
   }
 
   /**
    * {@inheritDoc}
    */
   public float getDepth() {
-    return this.yMax - this.yMin;
+    return this.xMax - this.xMin;
   }
 
   /**
