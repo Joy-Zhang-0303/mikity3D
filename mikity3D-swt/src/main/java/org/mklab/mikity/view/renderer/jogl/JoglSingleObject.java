@@ -29,7 +29,7 @@ import com.jogamp.opengl.fixedfunc.GLPointerFunc;
 public class JoglSingleObject implements JoglObject {
   /** グラフィックオブジェクト。 */
   private GraphicObject object;
-  private GraphicObject[] axis;
+  private GraphicObject[] axies;
 
   /**
    * 新しく生成された<code>JoglSingleObject</code>オブジェクトを初期化します。
@@ -38,9 +38,9 @@ public class JoglSingleObject implements JoglObject {
   public JoglSingleObject(GraphicObject object) {
     this.object = object;
     
-    this.axis = new GraphicObject[3];
-    for (int i = 0; i < this.axis.length; i++) {
-      this.axis[i] = GraphicObjectFactory.create(AxisModel.createDefault());
+    this.axies = new GraphicObject[3];
+    for (int i = 0; i < this.axies.length; i++) {
+      this.axies[i] = GraphicObjectFactory.create(AxisModel.createDefault());
     }    
   }
   
@@ -50,7 +50,7 @@ public class JoglSingleObject implements JoglObject {
   @Override
   public void display(GL2 gl) {
     applyTransparency(gl);
-    drawAxisVector(gl);
+    drawAxies(gl);
     applyColor(gl);
     drawTrianglePolygons(gl);
   }
@@ -86,82 +86,96 @@ public class JoglSingleObject implements JoglObject {
    * 
    * @param gl GL
    */
-  private void drawAxisVector(GL2 gl) {
-    if (!((AbstractGraphicObject)this.object).isTransparent() && JoglObjectRenderer.isAxisDisplay) {
-      // x軸矢印
-      final float[] vertexXArray = this.axis[0].getVertexArray();
-      final float[] normalXVectorArray = this.axis[0].getNormalVectorArray();
-      
-      final FloatBuffer vertexXBuffer = makeFloatBuffer(vertexXArray);
-      final FloatBuffer normalXBuffer = makeFloatBuffer(normalXVectorArray);
-
-      // 法線配列の有効化
-      gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
-      // 法線バッファの指定
-      gl.glNormalPointer(GL.GL_FLOAT, 0, normalXBuffer);
-      
-      // 頂点配列の有効化
-      gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
-      // 頂点バッファの指定
-      gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexXBuffer);
-      
-      ColorModel color = new ColorModel("red"); //$NON-NLS-1$
-      gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
-
-      final int numberX = vertexXArray.length/3;
-      gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
-      gl.glDrawArrays(GL.GL_TRIANGLES, 0, numberX);
-      gl.glRotatef(-90, 0.0f, 1.0f, 0.0f);
-      
-      // y軸矢印
-      final float[] vertexYArray = this.axis[1].getVertexArray();
-      final float[] normalYVectorArray = this.axis[1].getNormalVectorArray();
-      
-      final FloatBuffer vertexYBuffer = makeFloatBuffer(vertexYArray);
-      final FloatBuffer normalYBuffer = makeFloatBuffer(normalYVectorArray);
-
-      // 法線配列の有効化
-      gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
-      // 法線バッファの指定
-      gl.glNormalPointer(GL.GL_FLOAT, 0, normalYBuffer);
-      
-      // 頂点配列の有効化
-      gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
-      // 頂点バッファの指定
-      gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexYBuffer);
-      
-      color = new ColorModel("green"); //$NON-NLS-1$
-      gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
-
-      final int numberY = vertexYArray.length/3;
-      gl.glRotatef(-90, 1.0f, 0.0f, 0.0f);
-      gl.glDrawArrays(GL.GL_TRIANGLES, 0, numberY);
-      gl.glRotatef(90, 1.0f, 0.0f, 0.0f);
-      
-      // z軸矢印
-      final float[] vertexZArray = this.axis[2].getVertexArray();
-      final float[] normalZVectorArray = this.axis[2].getNormalVectorArray();
-      
-      final FloatBuffer vertexZBuffer = makeFloatBuffer(vertexZArray);
-      final FloatBuffer normalZBuffer = makeFloatBuffer(normalZVectorArray);
-
-      // 法線配列の有効化
-      gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
-      // 法線バッファの指定
-      gl.glNormalPointer(GL.GL_FLOAT, 0, normalZBuffer);
-      
-      // 頂点配列の有効化
-      gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
-      // 頂点バッファの指定
-      gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexZBuffer);
-      
-      color = new ColorModel("blue"); //$NON-NLS-1$
-      gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
-
-      final int numberZ = vertexZArray.length/3;
-      gl.glDrawArrays(GL.GL_TRIANGLES, 0, numberZ);
+  private void drawAxies(GL2 gl) {
+    if (JoglObjectRenderer.isAxisDisplay == false) {
+      return;
     }
+    
+    if (((AbstractGraphicObject)this.object).isTransparent()) {
+      return;
+    }
+    
+     //$NON-NLS-1$
+    gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
+    drawAxis(gl, this.axies[0], new ColorModel("red")); //$NON-NLS-1$
+    gl.glRotatef(-90, 0.0f, 1.0f, 0.0f);
+
+    gl.glRotatef(-90, 1.0f, 0.0f, 0.0f);
+    drawAxis(gl, this.axies[1], new ColorModel("green")); //$NON-NLS-1$;
+    gl.glRotatef(90, 1.0f, 0.0f, 0.0f);
+    
+    drawAxis(gl, this.axies[2], new ColorModel("blue")); //$NON-NLS-1$;
   }
+
+  private void drawAxis(GL2 gl, GraphicObject axis, ColorModel color) {
+    final float[] vertexArray = axis.getVertexArray();
+    final float[] normalVectorArray = axis.getNormalVectorArray();
+    
+    final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
+    final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
+
+    // 法線配列の有効化
+    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
+    // 法線バッファの指定
+    gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
+    
+    // 頂点配列の有効化
+    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
+    // 頂点バッファの指定
+    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
+
+    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
+
+    final int number = vertexArray.length/3;
+    gl.glDrawArrays(GL.GL_TRIANGLES, 0, number);
+    
+  }
+
+//  private void drawAxisY(GL2 gl, GraphicObject axis, ColorModel color) {
+//    final float[] vertexArray = axis.getVertexArray();
+//    final float[] normalVectorArray = axis.getNormalVectorArray();
+//    
+//    final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
+//    final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
+//
+//    // 法線配列の有効化
+//    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
+//    // 法線バッファの指定
+//    gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
+//    
+//    // 頂点配列の有効化
+//    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
+//    // 頂点バッファの指定
+//    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
+//    
+//    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
+//
+//    final int number = vertexArray.length/3;
+//    gl.glDrawArrays(GL.GL_TRIANGLES, 0, number);
+//  }
+//
+//  private void drawAxisZ(GL2 gl, GraphicObject axis, ColorModel color) {
+//    final float[] vertexArray = axis.getVertexArray();
+//    final float[] normalVectorArray = axis.getNormalVectorArray();
+//    
+//    final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
+//    final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
+//
+//    // 法線配列の有効化
+//    gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
+//    // 法線バッファの指定
+//    gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
+//    
+//    // 頂点配列の有効化
+//    gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
+//    // 頂点バッファの指定
+//    gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
+//
+//    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
+//
+//    final int number = vertexArray.length/3;
+//    gl.glDrawArrays(GL.GL_TRIANGLES, 0, number);
+//  }
   
   /**
    * 三角形ポリゴンを描画します。
