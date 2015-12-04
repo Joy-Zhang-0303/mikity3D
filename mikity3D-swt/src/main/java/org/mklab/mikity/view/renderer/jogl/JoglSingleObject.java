@@ -45,12 +45,19 @@ public class JoglSingleObject implements JoglObject {
    */
   @Override
   public void display(GL2 gl) {
-    applyTransparency(gl);
-    
-    drawAxies(gl);
-    
+    applyTransparency(gl);    
     applyColor(gl,  ((AbstractGraphicObject)this.object).getColor());
     drawObject(gl);
+
+    if (JoglObjectRenderer.isAxisDisplay == false) {
+      return;
+    }
+    
+    if (((AbstractGraphicObject)this.object).isTransparent()) {
+      return;
+    }
+
+    drawAxies(gl);
   }
 
   /**
@@ -78,20 +85,11 @@ public class JoglSingleObject implements JoglObject {
   }
   
   /**
-   * 選択オブジェクトに座標軸を描画します。
+   * オブジェクトの座標軸を描画します。
    * 
    * @param gl GL
    */
   private void drawAxies(GL2 gl) {
-    if (JoglObjectRenderer.isAxisDisplay == false) {
-      return;
-    }
-    
-    if (((AbstractGraphicObject)this.object).isTransparent()) {
-      return;
-    }
-    
-     //$NON-NLS-1$
     applyColor(gl, new ColorModel("red")); //$NON-NLS-1$
     gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
     drawAxis(gl, this.axises[0]);
@@ -107,10 +105,10 @@ public class JoglSingleObject implements JoglObject {
   }
 
   /**
-   * 軸を描画します。
+   * 座標軸を描画します。
    * 
    * @param gl GL
-   * @param axis 軸
+   * @param axis 座標軸
    */
   private void drawAxis(GL2 gl, GraphicObject axis) {
     final float[] vertexArray = axis.getVertexArray();
