@@ -9,11 +9,11 @@
             <rotation x="0.0" y="0.0" z="0.0"/>
             <cylinder radius="0.1" height="0.2" division="36">
                <color r="0" g="255" b="64" alpha="255"/>
-               <translation x="0.0" y="0.0" z="0.0"/>
+               <translation x="0.0" y="0.0" z="0.1"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
             </cylinder>
             <group name="link0">
-               <translation x="0.0" y="0.0" z="0.15"/>
+               <translation x="0.0" y="0.0" z="0.25"/>
                <rotation x="0.0" y="3.14" z="0.0"/>
                <animation target="rotationZ">
                   <source id="0" number="2"/>
@@ -65,6 +65,11 @@
       <background>
          <color r="255" g="255" b="255" alpha="255" name="white"/>
       </background>
+      <baseAxis>
+         <gridColor r="20" g="20" b="20" alpha="255"/>
+         <gridSize>0.05</gridSize>
+         <display>true</display>
+      </baseAxis>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="5.0" y="0.0" z="3.0"/>
       <lookAtPoint x="0.0" y="0.0" z="0.0"/>
