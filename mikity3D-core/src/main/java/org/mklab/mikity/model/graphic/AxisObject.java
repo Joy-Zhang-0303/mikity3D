@@ -48,7 +48,7 @@ public class AxisObject extends AbstractGraphicObject {
     final int polygonNumber = bodyPolygonNumber + headerPolygonNumber;
     initializeArrays(polygonNumber);
     
-    updateHeaderPolygons(radius, height, division);
+    updateHeaderPolygons(height, division);
     updateBodyPolygons(radius, height, division);
   }
 
@@ -102,13 +102,12 @@ public class AxisObject extends AbstractGraphicObject {
   /**
    * 軸先端のポリゴンを更新します。
    * 
-   * @param radius 半径
    * @param height 高さ
    * @param division 分割数
    */
-  private void updateHeaderPolygons(final float radius, final float height, final int division) {
-    final float headerRadius = 3 * radius;    
-    final float headerHeight = 6 * radius;
+  private void updateHeaderPolygons(final float height, final int division) {
+    final float headerRadius = ((AxisModel)this.object).getHeaderRadius();
+    final float headerHeight = ((AxisModel)this.object).getHeaderHeight();
     
     final float[] coneTopPoints = new float[3];
     coneTopPoints[0] = 0;

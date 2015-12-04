@@ -138,4 +138,25 @@ public class SphereModel extends AbstractObjectModel {
     return Messages.getString("SphereModel.0"); //$NON-NLS-1$
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  public float getWidth() {
+    return 2*this.radius;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getDepth() {
+    return 2*this.radius;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getHeight() {
+    return 2*this.radius;
+  }
+
 }

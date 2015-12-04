@@ -105,9 +105,7 @@ public class CapsuleModel extends AbstractObjectModel {
   }
 
   /**
-   * 高さを返します。
-   * 
-   * @return 高さ
+   * {@inheritDoc}
    */
   public float getHeight() {
     return this.height;
@@ -163,6 +161,20 @@ public class CapsuleModel extends AbstractObjectModel {
   @Override
   public String toShortString() {
     return Messages.getString("CapsuleModel.0"); //$NON-NLS-1$
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getWidth() {
+    return this.radius*2;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getDepth() {
+    return this.radius*2;
   }
   
 }

@@ -138,5 +138,24 @@ public class NullModel implements ObjectModel, Serializable, Cloneable {
     return "null"; //$NON-NLS-1$
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  public float getWidth() {
+    return 0;
+  }
 
+  /**
+   * {@inheritDoc}
+   */
+  public float getDepth() {
+    return 0;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getHeight() {
+    return 0;
+  }
 }

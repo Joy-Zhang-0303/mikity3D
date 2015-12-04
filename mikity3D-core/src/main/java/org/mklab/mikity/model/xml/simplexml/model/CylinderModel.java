@@ -105,9 +105,7 @@ public class CylinderModel extends AbstractObjectModel {
   }
 
   /**
-   * 高さを返します。
-   * 
-   * @return 高さ
+   * {@inheritDoc}
    */
   public float getHeight() {
     return this.height;
@@ -163,6 +161,20 @@ public class CylinderModel extends AbstractObjectModel {
   @Override
   public String toShortString() {
     return Messages.getString("CylinderModel.0"); //$NON-NLS-1$
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getWidth() {
+    return 2*this.radius;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getDepth() {
+    return 2*this.radius;
   }
 
 }

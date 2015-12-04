@@ -108,9 +108,7 @@ public class AxisModel extends AbstractObjectModel {
   }
 
   /**
-   * 高さを返します。
-   * 
-   * @return 高さ
+   * {@inheritDoc}
    */
   public float getHeight() {
     return this.height;
@@ -166,5 +164,37 @@ public class AxisModel extends AbstractObjectModel {
   @Override
   public String toShortString() {
     return "axis"; //$NON-NLS-1$
+  }
+  
+  /**
+   * 軸のヘッドの半径を返します。
+   * 
+   * @return 軸のヘッドの半径
+   */
+  public float getHeaderRadius() {
+    return 3*this.radius;
+  }
+  
+  /**
+   * 軸のヘッドの高さを返します。
+   * 
+   * @return 軸のヘッドの高さ
+   */
+  public float getHeaderHeight() {
+    return 6*this.radius;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getWidth() {
+    return 2*getHeaderRadius();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getDepth() {
+    return 2*getHeaderRadius();
   }
 }

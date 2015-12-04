@@ -68,7 +68,27 @@ public interface ObjectModel {
    */
   void setTransparent(boolean isTransparent);
   
+  /**
+   * モデルを囲む直方体の幅を返します。
+   * 
+   * @return モデルを囲む直方体の幅
+   */
+  float getWidth();
+
+  /**
+   * モデルを囲む直方体の奥行きを返します。
+   * 
+   * @return モデルを囲む直方体の奥行き
+   */
+  float getDepth();
   
+  /**
+   * モデルを囲む直方体の高さを返します。
+   * 
+   * @return モデルを囲む直方体の高さ
+   */
+  float getHeight();
+    
   /**
    * クローンを生成します。
    * 

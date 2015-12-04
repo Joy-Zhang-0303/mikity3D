@@ -32,6 +32,20 @@ public class QuadrangleModel extends AbstractObjectModel {
   /** 法線ベクトル。 */
   private Vector3 normalVector;
   
+  /** x成分の最小値。 */
+  private float xMin;
+  /** x成分の最大値。 */
+  private float xMax;
+  /** y成分の最小値。 */
+  private float yMin;
+  /** y成分の最大値。 */
+  private float yMax;
+  /** z成分の最小値。 */
+  private float zMin;
+  /** z成分の最大値。 */
+  private float zMax;
+
+  
   /**
    * 新しく生成された<code>QuadrangleModel</code>オブジェクトを初期化します。
    */
@@ -123,6 +137,7 @@ public class QuadrangleModel extends AbstractObjectModel {
     this.vertices.get(number).setY(y);
     this.vertices.get(number).setZ(z);
     updateNormalVector();
+    updateMinMax();
   }
 
   /**
@@ -140,6 +155,7 @@ public class QuadrangleModel extends AbstractObjectModel {
     this.vertices.add(vertex2);
     this.vertices.add(vertex3);
     updateNormalVector();
+    updateMinMax();
   }
 
   /**
@@ -169,6 +185,7 @@ public class QuadrangleModel extends AbstractObjectModel {
   protected void buildAfterDeserialization() {
     super.buildAfterDeserialization();
     updateNormalVector();
+    updateMinMax();
   }
 
   /**
@@ -228,6 +245,57 @@ public class QuadrangleModel extends AbstractObjectModel {
   @Override
   public String toShortString() {
     return Messages.getString("QuadrangleModel.0"); //$NON-NLS-1$
+  }
+
+  /**
+   * X,Y,Zの最小値と最大値を更新します。
+   */
+  private void updateMinMax() {
+    final VertexModel vertex0 = this.vertices.get(0);
+    this.xMin = vertex0.getX();
+    this.xMax = vertex0.getX();
+    this.yMin = vertex0.getY();
+    this.yMax = vertex0.getY();
+    this.zMin = vertex0.getZ();
+    this.zMax = vertex0.getZ();
+
+    updateMinMax(this.vertices.get(1));
+    updateMinMax(this.vertices.get(2));
+  }
+  
+  /**
+   * X,Y,Zの最小値と最大値を更新します。
+   * 
+   * @param vertex 頂点
+   */
+  private void updateMinMax(VertexModel vertex) {
+    this.xMin = Math.min(this.xMin, vertex.getX());
+    this.xMax = Math.max(this.xMax, vertex.getX());
+    this.yMin = Math.min(this.yMin, vertex.getY());
+    this.yMax = Math.max(this.yMax, vertex.getY());
+    this.zMin = Math.min(this.zMin, vertex.getZ());
+    this.zMax = Math.max(this.zMax, vertex.getZ());
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getWidth() {
+    return this.xMax - this.xMin;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getDepth() {
+    return this.yMax - this.yMin;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public float getHeight() {
+    return this.zMax - this.zMin;
   }
 
 }

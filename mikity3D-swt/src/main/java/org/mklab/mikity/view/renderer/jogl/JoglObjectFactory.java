@@ -2,7 +2,9 @@ package org.mklab.mikity.view.renderer.jogl;
 
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.GroupObjectManager;
+import org.mklab.mikity.model.graphic.GraphicObject;
 import org.mklab.mikity.model.graphic.GraphicObjectFactory;
+import org.mklab.mikity.model.xml.simplexml.model.AxisModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
@@ -68,7 +70,15 @@ public class JoglObjectFactory {
    * @return 与えられたモデルを含むオブジェクト
    */
   public JoglObject create(ObjectModel model) {
-    final JoglSingleObject object = new JoglSingleObject(GraphicObjectFactory.create(model));
+    final float modelMin = Math.min(Math.min(model.getWidth(), model.getDepth()), model.getHeight());
+    final float axisRadius = Math.min(Math.max(modelMin/16, 0.002f), modelMin/2); 
+        
+    final GraphicObject axisX = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getDepth()*2, axisRadius*20), 36));
+    final GraphicObject axisY = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getWidth()*2, axisRadius*20), 36));
+    final GraphicObject axisZ = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getHeight()*2, axisRadius*20), 36));
+    final GraphicObject[] axies = new GraphicObject[]{axisX, axisY, axisZ};
+    
+    final JoglSingleObject object = new JoglSingleObject(GraphicObjectFactory.create(model), axies);
    
     final TranslationModel translation = model.getTranslation();
     final RotationModel rotation = model.getRotation();

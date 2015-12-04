@@ -11,8 +11,6 @@ import java.nio.FloatBuffer;
 
 import org.mklab.mikity.model.graphic.AbstractGraphicObject;
 import org.mklab.mikity.model.graphic.GraphicObject;
-import org.mklab.mikity.model.graphic.GraphicObjectFactory;
-import org.mklab.mikity.model.xml.simplexml.model.AxisModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
 import com.jogamp.opengl.GL;
@@ -30,16 +28,16 @@ public class JoglSingleObject implements JoglObject {
   /** グラフィックオブジェクト。 */
   private GraphicObject object;
   /** 座標軸。 */
-  private GraphicObject axis;
+  private GraphicObject[] axises;
 
   /**
    * 新しく生成された<code>JoglSingleObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
+   * @param axises 座標軸オブジェクト
    */
-  public JoglSingleObject(GraphicObject object) {
+  public JoglSingleObject(GraphicObject object, GraphicObject[] axises) {
     this.object = object;
-    
-    this.axis = GraphicObjectFactory.create(AxisModel.createDefault());
+    this.axises = axises;
   }
   
   /**
@@ -96,16 +94,16 @@ public class JoglSingleObject implements JoglObject {
      //$NON-NLS-1$
     applyColor(gl, new ColorModel("red")); //$NON-NLS-1$
     gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
-    drawAxis(gl);
+    drawAxis(gl, this.axises[0]);
     gl.glRotatef(-90, 0.0f, 1.0f, 0.0f);
 
     applyColor(gl, new ColorModel("green")); //$NON-NLS-1$
     gl.glRotatef(-90, 1.0f, 0.0f, 0.0f);
-    drawAxis(gl);
+    drawAxis(gl, this.axises[1]);
     gl.glRotatef(90, 1.0f, 0.0f, 0.0f);
     
     applyColor(gl, new ColorModel("blue")); //$NON-NLS-1$
-    drawAxis(gl);
+    drawAxis(gl, this.axises[2]);
   }
 
   /**
@@ -114,9 +112,9 @@ public class JoglSingleObject implements JoglObject {
    * @param gl GL
    * @param axis 軸
    */
-  private void drawAxis(GL2 gl) {
-    final float[] vertexArray = this.axis.getVertexArray();
-    final float[] normalVectorArray = this.axis.getNormalVectorArray();
+  private void drawAxis(GL2 gl, GraphicObject axis) {
+    final float[] vertexArray = axis.getVertexArray();
+    final float[] normalVectorArray = axis.getNormalVectorArray();
     
     drawTrianglePolygons(gl, vertexArray, normalVectorArray);   
   }
