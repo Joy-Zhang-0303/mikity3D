@@ -11,12 +11,12 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.simpleframework.xml.Element;
 
 /**
- * 地面(床)(絶対座標)を表すクラスです。
+ * 絶対座標を表すクラスです。
  * 
  * @author eguchi
  * @version $Revision$, 2015/11/11
  */
-public class GroundModel implements Serializable, Cloneable {
+public class BaseCoordinateModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   
   /** グリッドの色 */
@@ -32,9 +32,9 @@ public class GroundModel implements Serializable, Cloneable {
   private boolean isShowing;
   
   /**
-   * 新しく生成された<code>GroundModel</code>オブジェクトを初期化します。
+   * 新しく生成された<code>BaseCoordinateModel</code>オブジェクトを初期化します。
    */
-  public GroundModel() {
+  public BaseCoordinateModel() {
     this.gridColor = new ColorModel(20, 20, 20);
     this.gridInverval = 0.05f;
     this.isShowing = false;
@@ -46,7 +46,7 @@ public class GroundModel implements Serializable, Cloneable {
    * @param gridInverval グリッド間隔
    * @param isDisplay 表示するならばtrue
    */
-  public GroundModel(ColorModel color, float gridInverval, boolean isDisplay) {
+  public BaseCoordinateModel(ColorModel color, float gridInverval, boolean isDisplay) {
     this.gridColor = color;
     this.gridInverval = gridInverval;
     this.isShowing = isDisplay;
@@ -56,9 +56,9 @@ public class GroundModel implements Serializable, Cloneable {
    * {@inheritDoc}
    */
   @Override
-  public GroundModel clone() {
+  public BaseCoordinateModel clone() {
     try {
-      final GroundModel ans = (GroundModel)super.clone();
+      final BaseCoordinateModel ans = (BaseCoordinateModel)super.clone();
       ans.gridColor = this.gridColor.clone();
       ans.gridInverval = this.gridInverval;
       ans.isShowing = this.isShowing;
@@ -89,7 +89,7 @@ public class GroundModel implements Serializable, Cloneable {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    GroundModel other = (GroundModel)obj;
+    BaseCoordinateModel other = (BaseCoordinateModel)obj;
     if (this.gridColor == null) {
       if (other.gridColor != null) return false;
     } else if (!this.gridColor.equals(other.gridColor)) return false;

@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
-import org.mklab.mikity.model.xml.simplexml.config.GroundModel;
+import org.mklab.mikity.model.xml.simplexml.config.BaseCoordinateModel;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
@@ -42,7 +42,7 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 public class ConfigurationEditor implements ModifyKeyListener {
   Shell sShell = null;
   private ColorSelectorButton colorSelector;
-  private Button axisCheack;
+  private Button baseCoordinateCheack;
   private Combo modelLengthUnitCombo;
   private Combo modelAngleUnitCombo;
   private Combo dataLengthUnitCombo;
@@ -139,8 +139,8 @@ public class ConfigurationEditor implements ModifyKeyListener {
   private void createBaseAxis(final Group editGroup) {
     final Label label = new Label(editGroup, SWT.NONE);
     label.setText(Messages.getString("ConfigDialog.18")); //$NON-NLS-1$
-    this.axisCheack = new Button(editGroup, SWT.CHECK);
-    this.axisCheack.addSelectionListener(new SelectionListener() {
+    this.baseCoordinateCheack = new Button(editGroup, SWT.CHECK);
+    this.baseCoordinateCheack.addSelectionListener(new SelectionListener() {
 
       @Override
       public void widgetDefaultSelected(@SuppressWarnings("unused") SelectionEvent e) {
@@ -294,7 +294,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
 
     final ColorModel color = this.configuration.getBackground().getColor();
     this.colorSelector.setColor(color);
-    this.axisCheack.setSelection(this.configuration.getGround().isShowing());
+    this.baseCoordinateCheack.setSelection(this.configuration.getBaseCoordinate().isShowing());
   }
 
   /**
@@ -384,8 +384,8 @@ public class ConfigurationEditor implements ModifyKeyListener {
     eye.setZ(this.eyeZ.getFloatValue());
     this.configuration.setEye(eye);
     
-    final GroundModel axis = new GroundModel();
-    axis.setShowing(this.axisCheack.getSelection());
+    final BaseCoordinateModel axis = new BaseCoordinateModel();
+    axis.setShowing(this.baseCoordinateCheack.getSelection());
     this.configuration.setBaseAxis(axis);
     
     final LookAtPointModel lookAtPoint = new LookAtPointModel();

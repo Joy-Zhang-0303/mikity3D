@@ -63,11 +63,11 @@
       <background>
          <color r="255" g="255" b="255" alpha="255" name="white"/>
       </background>
-      <ground>
+      <baseCoordinate>
          <gridColor r="20" g="20" b="20" alpha="255"/>
          <gridSize>0.05</gridSize>
-         <isShowing>false</isShowing>
-      </ground>
+         <isShowing>true</isShowing>
+      </baseCoordinate>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="5.0" y="0.0" z="0.0"/>
       <lookAtPoint x="0.0" y="0.0" z="0.35"/>

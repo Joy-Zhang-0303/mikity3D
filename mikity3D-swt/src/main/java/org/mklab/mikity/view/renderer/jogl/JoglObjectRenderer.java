@@ -154,7 +154,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     
     gl.glScalef(this.scale, this.scale, this.scale);
     
-    final boolean isShowingAxis = this.configuration.getGround().isShowing();
+    final boolean isShowingAxis = this.configuration.getBaseCoordinate().isShowing();
     
     if (isShowingAxis) {
       drawBaseAxis(gl);
