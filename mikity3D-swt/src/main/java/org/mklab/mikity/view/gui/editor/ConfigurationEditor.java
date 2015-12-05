@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
-import org.mklab.mikity.model.xml.simplexml.config.BaseAxisModel;
+import org.mklab.mikity.model.xml.simplexml.config.GroundModel;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
@@ -294,7 +294,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
 
     final ColorModel color = this.configuration.getBackground().getColor();
     this.colorSelector.setColor(color);
-    this.axisCheack.setSelection(this.configuration.getBaseAxis().isDisplay());
+    this.axisCheack.setSelection(this.configuration.getGround().isShowing());
   }
 
   /**
@@ -384,8 +384,8 @@ public class ConfigurationEditor implements ModifyKeyListener {
     eye.setZ(this.eyeZ.getFloatValue());
     this.configuration.setEye(eye);
     
-    final BaseAxisModel axis = new BaseAxisModel();
-    axis.setDisplay(this.axisCheack.getSelection());
+    final GroundModel axis = new GroundModel();
+    axis.setShowing(this.axisCheack.getSelection());
     this.configuration.setBaseAxis(axis);
     
     final LookAtPointModel lookAtPoint = new LookAtPointModel();

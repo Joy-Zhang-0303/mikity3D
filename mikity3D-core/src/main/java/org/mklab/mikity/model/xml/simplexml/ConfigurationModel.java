@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
-import org.mklab.mikity.model.xml.simplexml.config.BaseAxisModel;
+import org.mklab.mikity.model.xml.simplexml.config.GroundModel;
 import org.mklab.mikity.model.xml.simplexml.config.DataUnitModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
@@ -29,9 +29,9 @@ public class ConfigurationModel implements Serializable, Cloneable {
   @Element(name="background")
   private BackgroundModel background;
   
-  /** 基準座標軸。 */
+  /** 地面。 */
   @Element(name="baseAxis", required=false)
-  private BaseAxisModel baseAxis;
+  private GroundModel ground;
 
   /** 光源。 */
   @Element(name="light")
@@ -62,7 +62,7 @@ public class ConfigurationModel implements Serializable, Cloneable {
    */
   public ConfigurationModel() {
     this.background = new BackgroundModel();
-    this.baseAxis = new BaseAxisModel();
+    this.ground = new GroundModel();
     this.light = new LightModel();
     this.eye = new EyeModel();
     this.lookAtPoint = new LookAtPointModel();
@@ -78,7 +78,7 @@ public class ConfigurationModel implements Serializable, Cloneable {
     try {
       final ConfigurationModel ans = (ConfigurationModel)super.clone();
       ans.background = this.background.clone();
-      ans.baseAxis = this.baseAxis.clone();
+      ans.ground = this.ground.clone();
       ans.light = this.light.clone();
       ans.eye = this.eye.clone();
       ans.lookAtPoint = this.lookAtPoint.clone();
@@ -107,7 +107,7 @@ public class ConfigurationModel implements Serializable, Cloneable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((this.background == null) ? 0 : this.background.hashCode());
-    result = prime * result + ((this.baseAxis == null) ? 0 : this.baseAxis.hashCode());
+    result = prime * result + ((this.ground == null) ? 0 : this.ground.hashCode());
     result = prime * result + ((this.dataUnit == null) ? 0 : this.dataUnit.hashCode());
     result = prime * result + ((this.eye == null) ? 0 : this.eye.hashCode());
     result = prime * result + ((this.light == null) ? 0 : this.light.hashCode());
@@ -129,9 +129,9 @@ public class ConfigurationModel implements Serializable, Cloneable {
     if (this.background == null) {
       if (other.background != null) return false;
     } else if (!this.background.equals(other.background)) return false;
-    if (this.baseAxis == null) {
-      if (other.baseAxis != null) return false;
-    } else if (!this.baseAxis.equals(other.baseAxis)) return false;
+    if (this.ground == null) {
+      if (other.ground != null) return false;
+    } else if (!this.ground.equals(other.ground)) return false;
     if (this.dataUnit == null) {
       if (other.dataUnit != null) return false;
     } else if (!this.dataUnit.equals(other.dataUnit)) return false;
@@ -164,12 +164,12 @@ public class ConfigurationModel implements Serializable, Cloneable {
 
   
   /**
-   * 基準座標軸を返します。
+   * 地面を返します。
    * 
-   * @return 基準座標軸
+   * @return 地面
    */
-  public BaseAxisModel getBaseAxis() {
-    return this.baseAxis;
+  public GroundModel getGround() {
+    return this.ground;
   }
 
   
@@ -241,8 +241,8 @@ public class ConfigurationModel implements Serializable, Cloneable {
    * 
    * @param baseAxis 基準座標軸
    */
-  public void setBaseAxis(BaseAxisModel baseAxis) {
-    this.baseAxis = baseAxis;
+  public void setBaseAxis(GroundModel baseAxis) {
+    this.ground = baseAxis;
   }
 
   /**

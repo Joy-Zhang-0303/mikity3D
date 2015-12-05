@@ -11,55 +11,57 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.simpleframework.xml.Element;
 
 /**
+ * 地面(床)(絶対座標)を表すクラスです。
+ * 
  * @author eguchi
  * @version $Revision$, 2015/11/11
  */
-public class BaseAxisModel implements Serializable, Cloneable {
+public class GroundModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   
-  /** color */
+  /** グリッドの色 */
   @Element(name="gridColor")
   private ColorModel gridColor;
   
-  /** grid size */
+  /** グリッドの間隔 */
   @Element(name="gridSize")
-  private float gridSize;
+  private float gridInverval;
   
-  /** display switch */
+  /** 表示するならばtrue。  */
   @Element(name="display")
-  private boolean isDisplay;
+  private boolean isShowing;
   
   /**
-   * 新しく生成された<code>BaseAxisModel</code>オブジェクトを初期化します。
+   * 新しく生成された<code>GroundModel</code>オブジェクトを初期化します。
    */
-  public BaseAxisModel() {
+  public GroundModel() {
     this.gridColor = new ColorModel(20, 20, 20);
-    this.gridSize = 0.05f;
-    this.isDisplay = false;
+    this.gridInverval = 0.05f;
+    this.isShowing = false;
   }
   
   /**
    * 新しく生成された<code>BaseAxisModel</code>オブジェクトを初期化します。
    * @param color グリッド色
-   * @param gridSize グリッド間隔
+   * @param gridInverval グリッド間隔
    * @param isDisplay 表示するならばtrue
    */
-  public BaseAxisModel(ColorModel color, float gridSize, boolean isDisplay) {
+  public GroundModel(ColorModel color, float gridInverval, boolean isDisplay) {
     this.gridColor = color;
-    this.gridSize = gridSize;
-    this.isDisplay = isDisplay;
+    this.gridInverval = gridInverval;
+    this.isShowing = isDisplay;
   }
   
   /**
    * {@inheritDoc}
    */
   @Override
-  public BaseAxisModel clone() {
+  public GroundModel clone() {
     try {
-      final BaseAxisModel ans = (BaseAxisModel)super.clone();
+      final GroundModel ans = (GroundModel)super.clone();
       ans.gridColor = this.gridColor.clone();
-      ans.gridSize = this.gridSize;
-      ans.isDisplay = this.isDisplay;
+      ans.gridInverval = this.gridInverval;
+      ans.isShowing = this.isShowing;
       return ans;
     } catch (CloneNotSupportedException e) {
       throw new InternalError(e);
@@ -74,8 +76,8 @@ public class BaseAxisModel implements Serializable, Cloneable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((this.gridColor == null) ? 0 : this.gridColor.hashCode());
-    result = prime * result + Float.floatToIntBits(this.gridSize);
-    result = prime * result + (this.isDisplay ? 1231 : 1237);
+    result = prime * result + Float.floatToIntBits(this.gridInverval);
+    result = prime * result + (this.isShowing ? 1231 : 1237);
     return result;
   }
 
@@ -87,12 +89,12 @@ public class BaseAxisModel implements Serializable, Cloneable {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    BaseAxisModel other = (BaseAxisModel)obj;
+    GroundModel other = (GroundModel)obj;
     if (this.gridColor == null) {
       if (other.gridColor != null) return false;
     } else if (!this.gridColor.equals(other.gridColor)) return false;
-    if (Float.floatToIntBits(this.gridSize) != Float.floatToIntBits(other.gridSize)) return false;
-    if (this.isDisplay != other.isDisplay) return false;
+    if (Float.floatToIntBits(this.gridInverval) != Float.floatToIntBits(other.gridInverval)) return false;
+    if (this.isShowing != other.isShowing) return false;
     return true;
   }
 
@@ -101,55 +103,53 @@ public class BaseAxisModel implements Serializable, Cloneable {
    * 
    * @return グリッド間隔
    */
-  public float getGridSize() {
-    return this.gridSize;
+  public float getGridInterval() {
+    return this.gridInverval;
   }
 
   
   /**
    * グリッド間隔を設定します。
    * 
-   * @param gridSize グリッド間隔
+   * @param gridInverval グリッド間隔
    */
-  public void setGridSize(float gridSize) {
-    this.gridSize = gridSize;
+  public void setGridInterval(float gridInverval) {
+    this.gridInverval = gridInverval;
   }
-
   
   /**
    * 表示するか判定します。
    * 
    * @return 表示するならばtrue
    */
-  public boolean isDisplay() {
-    return this.isDisplay;
+  public boolean isShowing() {
+    return this.isShowing;
   }
-
   
   /**
    * 表示するか設定します。
    * 
-   * @param isDisplay 表示するならばtrue
+   * @param isShowing 表示するならばtrue
    */
-  public void setDisplay(boolean isDisplay) {
-    this.isDisplay = isDisplay;
+  public void setShowing(boolean isShowing) {
+    this.isShowing = isShowing;
   }
 
   /**
-   * 色を返します。
+   * グリッドの色を返します。
    * 
-   * @return 色
+   * @return グリッドの色
    */
-  public ColorModel getColor() {
+  public ColorModel getGridColor() {
     return this.gridColor;
   }
   
   /**
-   * 色を設定します。
+   * グリッドの色を設定します。
    * 
-   * @param color 色
+   * @param color グリッドの色
    */
-  public void setColor(ColorModel color) {
+  public void setGridColor(ColorModel color) {
     this.gridColor = color;
   }
 }
