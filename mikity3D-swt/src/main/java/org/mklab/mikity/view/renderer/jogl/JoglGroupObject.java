@@ -30,6 +30,8 @@ public class JoglGroupObject implements GroupObject, JoglObject {
   private int id = 0;
   /** モデルデータ。 */
   private GroupModel group;
+  /** 座用軸を描画するならばtrue。 */
+  private boolean isShowingAxis = false;
   /** シリアル番号。 */
   private static int serialID = 0;
 
@@ -149,6 +151,17 @@ public class JoglGroupObject implements GroupObject, JoglObject {
     }
     
     gl.glPopMatrix();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void setShowingAxis(boolean isShowingAxis) {
+    this.isShowingAxis = isShowingAxis;
+    
+    for (final JoglObject object : this.elements) {
+      object.setShowingAxis(isShowingAxis);
+    }
   }
   
   /**

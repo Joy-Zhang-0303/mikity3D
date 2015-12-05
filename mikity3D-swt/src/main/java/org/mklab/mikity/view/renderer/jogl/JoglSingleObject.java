@@ -29,6 +29,9 @@ public class JoglSingleObject implements JoglObject {
   private GraphicObject object;
   /** 座標軸。 */
   private GraphicObject[] axises;
+  
+  /** 座標軸を描画するならばtrue。 */
+  private boolean isShowingAxis = false;
 
   /**
    * 新しく生成された<code>JoglSingleObject</code>オブジェクトを初期化します。
@@ -39,6 +42,13 @@ public class JoglSingleObject implements JoglObject {
     this.object = object;
     this.axises = axises;
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void setShowingAxis(boolean isShowingAxis) {
+    this.isShowingAxis = isShowingAxis;
+  }
   
   /**
    * {@inheritDoc}
@@ -48,16 +58,10 @@ public class JoglSingleObject implements JoglObject {
     applyTransparency(gl);    
     applyColor(gl,  ((AbstractGraphicObject)this.object).getColor());
     drawObject(gl);
-
-    if (JoglObjectRenderer.isAxisDisplay == false) {
-      return;
+  
+    if (this.isShowingAxis && ((AbstractGraphicObject)this.object).isTransparent() == false) {
+      drawAxies(gl);
     }
-    
-    if (((AbstractGraphicObject)this.object).isTransparent()) {
-      return;
-    }
-
-    drawAxies(gl);
   }
 
   /**
@@ -89,7 +93,7 @@ public class JoglSingleObject implements JoglObject {
    * 
    * @param gl GL
    */
-  private void drawAxies(GL2 gl) {
+  public void drawAxies(GL2 gl) {
     applyColor(gl, new ColorModel("red")); //$NON-NLS-1$
     gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
     drawAxis(gl, this.axises[0]);

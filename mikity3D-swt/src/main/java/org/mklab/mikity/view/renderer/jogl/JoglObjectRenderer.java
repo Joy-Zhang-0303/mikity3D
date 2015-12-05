@@ -38,9 +38,6 @@ import com.jogamp.opengl.glu.GLU;
 public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEventListener, MouseListener, MouseMotionListener {
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
-
-  /** 座標軸を描画するならばtrue。 */
-  public static boolean isAxisDisplay;
   
   /** ルートオブジェクト。 */
   private List<JoglGroupObject> rootObjects;
@@ -99,8 +96,6 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     addGLEventListener(this);
     addMouseListener(this);
     addMouseMotionListener(this);
-    
-    isAxisDisplay = this.configuration.getBaseAxis().isDisplay();
   }
   
   /**
@@ -159,15 +154,16 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     
     gl.glScalef(this.scale, this.scale, this.scale);
     
-    isAxisDisplay = this.configuration.getBaseAxis().isDisplay();
+    final boolean isShowingAxis = this.configuration.getBaseAxis().isDisplay();
     
-    if(isAxisDisplay) {
+    if (isShowingAxis) {
       drawBaseAxis(gl);
       drawGrid(gl);
     }
     
     if (this.rootObjects != null) {
       for (final JoglGroupObject topGroup : this.rootObjects) {
+        topGroup.setShowingAxis(isShowingAxis);
         topGroup.display(gl);
       }
     }

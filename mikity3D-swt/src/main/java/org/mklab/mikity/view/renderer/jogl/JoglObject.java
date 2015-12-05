@@ -17,5 +17,11 @@ public interface JoglObject {
    * @param gl GL
    */
   void display(GL2 gl);
-
+  
+  /**
+   * 座標軸を描画するか設定します。
+   * 
+   * @param isShowingAxis 座標軸を描画するならばtrue
+   */
+  void setShowingAxis(boolean isShowingAxis);
 }
