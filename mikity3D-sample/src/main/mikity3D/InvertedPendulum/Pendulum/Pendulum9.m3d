@@ -542,11 +542,11 @@
       <background>
          <color r="255" g="255" b="255" alpha="255" name="white"/>
       </background>
-      <baseAxis>
+      <ground>
          <gridColor r="20" g="20" b="20" alpha="255"/>
          <gridSize>0.05</gridSize>
-         <display>true</display>
-      </baseAxis>
+         <isShowing>true</isShowing>
+      </ground>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="12.0" y="0.0" z="0.0"/>
       <lookAtPoint x="0.0" y="0.0" z="0.35"/>

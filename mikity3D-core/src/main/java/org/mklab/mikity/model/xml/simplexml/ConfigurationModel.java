@@ -30,7 +30,7 @@ public class ConfigurationModel implements Serializable, Cloneable {
   private BackgroundModel background;
   
   /** 地面。 */
-  @Element(name="baseAxis", required=false)
+  @Element(name="ground", required=false)
   private GroundModel ground;
 
   /** 光源。 */

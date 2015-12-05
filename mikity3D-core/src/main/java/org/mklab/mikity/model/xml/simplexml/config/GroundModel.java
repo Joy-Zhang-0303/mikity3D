@@ -28,7 +28,7 @@ public class GroundModel implements Serializable, Cloneable {
   private float gridInverval;
   
   /** 表示するならばtrue。  */
-  @Element(name="display")
+  @Element(name="isShowing")
   private boolean isShowing;
   
   /**
