@@ -28,29 +28,34 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
   private float gridInverval;
   
   /** 表示するならばtrue。  */
-  @Element(name="isShowing")
-  private boolean isShowing;
-  
+  @Element(name="isAxisShowing")
+  private boolean isAxisShowing;
+
+  /** 表示するならばtrue。  */
+  @Element(name="isGridShowing")
+  private boolean isGridShowing;
+
   /**
    * 新しく生成された<code>BaseCoordinateModel</code>オブジェクトを初期化します。
    */
   public BaseCoordinateModel() {
     this.gridColor = new ColorModel(20, 20, 20);
     this.gridInverval = 0.05f;
-    this.isShowing = false;
+    this.isAxisShowing = false;
+    this.isGridShowing = false;
   }
   
-  /**
-   * 新しく生成された<code>BaseAxisModel</code>オブジェクトを初期化します。
-   * @param color グリッド色
-   * @param gridInverval グリッド間隔
-   * @param isDisplay 表示するならばtrue
-   */
-  public BaseCoordinateModel(ColorModel color, float gridInverval, boolean isDisplay) {
-    this.gridColor = color;
-    this.gridInverval = gridInverval;
-    this.isShowing = isDisplay;
-  }
+//  /**
+//   * 新しく生成された<code>BaseAxisModel</code>オブジェクトを初期化します。
+//   * @param gridColor グリッド色
+//   * @param gridInverval グリッド間隔
+//   * @param isAxisShowing 座標軸を表示するならばtrue
+//   */
+//  public BaseCoordinateModel(ColorModel gridColor, float gridInverval, boolean isAxisShowing) {
+//    this.gridColor = gridColor;
+//    this.gridInverval = gridInverval;
+//    this.isAxisShowing = isAxisShowing;
+//  }
   
   /**
    * {@inheritDoc}
@@ -61,7 +66,8 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
       final BaseCoordinateModel ans = (BaseCoordinateModel)super.clone();
       ans.gridColor = this.gridColor.clone();
       ans.gridInverval = this.gridInverval;
-      ans.isShowing = this.isShowing;
+      ans.isAxisShowing = this.isAxisShowing;
+      ans.isGridShowing = this.isGridShowing;
       return ans;
     } catch (CloneNotSupportedException e) {
       throw new InternalError(e);
@@ -77,7 +83,8 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
     int result = 1;
     result = prime * result + ((this.gridColor == null) ? 0 : this.gridColor.hashCode());
     result = prime * result + Float.floatToIntBits(this.gridInverval);
-    result = prime * result + (this.isShowing ? 1231 : 1237);
+    result = prime * result + (this.isAxisShowing ? 1231 : 1237);
+    result = prime * result + (this.isGridShowing ? 1231 : 1237);
     return result;
   }
 
@@ -86,15 +93,32 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     BaseCoordinateModel other = (BaseCoordinateModel)obj;
     if (this.gridColor == null) {
-      if (other.gridColor != null) return false;
-    } else if (!this.gridColor.equals(other.gridColor)) return false;
-    if (Float.floatToIntBits(this.gridInverval) != Float.floatToIntBits(other.gridInverval)) return false;
-    if (this.isShowing != other.isShowing) return false;
+      if (other.gridColor != null) {
+        return false;
+      }
+    } else if (!this.gridColor.equals(other.gridColor)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this.gridInverval) != Float.floatToIntBits(other.gridInverval)) {
+      return false;
+    }
+    if (this.isAxisShowing != other.isAxisShowing) {
+      return false;
+    }
+    if (this.isGridShowing != other.isGridShowing) {
+      return false;
+    }
     return true;
   }
 
@@ -118,22 +142,41 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
   }
   
   /**
-   * 表示するか判定します。
+   * 座標軸を表示するか判定します。
    * 
-   * @return 表示するならばtrue
+   * @return 座標軸を表示するならばtrue
    */
-  public boolean isShowing() {
-    return this.isShowing;
+  public boolean isAxisShowing() {
+    return this.isAxisShowing;
   }
   
   /**
-   * 表示するか設定します。
+   * 座標軸を表示するか設定します。
    * 
-   * @param isShowing 表示するならばtrue
+   * @param isAxisShowing 座標軸を表示するならばtrue
    */
-  public void setShowing(boolean isShowing) {
-    this.isShowing = isShowing;
+  public void setAxisShowing(boolean isAxisShowing) {
+    this.isAxisShowing = isAxisShowing;
   }
+  
+  /**
+   * グリッドを表示するか判定します。
+   * 
+   * @return グリッドを表示するならばtrue
+   */
+  public boolean isGridShowing() {
+    return this.isGridShowing;
+  }
+  
+  /**
+   * グリッドを表示するか設定します。
+   * 
+   * @param isGridShowing グリッドを表示するならばtrue
+   */
+  public void setGridShowing(boolean isGridShowing) {
+    this.isGridShowing = isGridShowing;
+  }
+
 
   /**
    * グリッドの色を返します。

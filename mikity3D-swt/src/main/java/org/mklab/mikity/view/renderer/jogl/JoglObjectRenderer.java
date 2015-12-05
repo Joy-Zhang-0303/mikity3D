@@ -155,28 +155,23 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
     gl.glScalef(this.scale, this.scale, this.scale);
 
-    final boolean isShowingBaseCoordinat = this.configuration.getBaseCoordinate().isShowing();
+    final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
+    final boolean isGridShowing = this.configuration.getBaseCoordinate().isGridShowing();
 
-    if (isShowingBaseCoordinat) {
-      drawBaseCoordinate(gl);
+    if (isAxisShowing) {
+      drawBaseAxis(gl);
+    }
+
+    if (isGridShowing) {
+      drawGrid(gl);
     }
 
     if (this.rootObjects != null) {
       for (final JoglGroupObject topGroup : this.rootObjects) {
-        topGroup.setShowingAxis(isShowingBaseCoordinat);
+        topGroup.setShowingAxis(isAxisShowing);
         topGroup.display(gl);
       }
     }
-  }
-
-  /**
-   * 絶対座標を描画します。
-   * 
-   * @param gl GL
-   */
-  private void drawBaseCoordinate(final GL2 gl) {
-    drawBaseAxis(gl);
-    drawGrid(gl);
   }
 
   /**

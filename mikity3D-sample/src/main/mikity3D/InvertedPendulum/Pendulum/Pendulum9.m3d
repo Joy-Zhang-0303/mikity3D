@@ -545,7 +545,8 @@
       <baseCoordinate>
          <gridColor r="20" g="20" b="20" alpha="255"/>
          <gridSize>0.05</gridSize>
-         <isShowing>true</isShowing>
+         <isAxisShowing>true</isAxisShowing>
+         <isGridShowing>true</isGridShowing>
       </baseCoordinate>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="12.0" y="0.0" z="0.0"/>

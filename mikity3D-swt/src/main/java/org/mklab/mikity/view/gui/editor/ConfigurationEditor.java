@@ -42,7 +42,8 @@ import org.mklab.mikity.view.gui.ParameterInputBox;
 public class ConfigurationEditor implements ModifyKeyListener {
   Shell sShell = null;
   private ColorSelectorButton colorSelector;
-  private Button baseCoordinateCheack;
+  private Button baseAxisCheck;
+  private Button gridCheck;
   private Combo modelLengthUnitCombo;
   private Combo modelAngleUnitCombo;
   private Combo dataLengthUnitCombo;
@@ -81,7 +82,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
 
     this.sShell = new Shell(parentShell, SWT.RESIZE | SWT.APPLICATION_MODAL | SWT.NORMAL | SWT.BORDER | SWT.MAX | SWT.MIN | SWT.CLOSE);
     this.sShell.setText("Configuration Dialog"); //$NON-NLS-1$
-    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 560));
+    this.sShell.setSize(new org.eclipse.swt.graphics.Point(400, 590));
 
     final GridLayout layout = new GridLayout();
     layout.numColumns = 1;
@@ -109,13 +110,13 @@ public class ConfigurationEditor implements ModifyKeyListener {
     
     createLightGroup(editGroup);
     
+    createBaseCoordinate(editGroup);
+    
     createModelUnit(editGroup);
     
     createDataUnit(editGroup);
 
     createBackground(editGroup);
-    
-    createBaseAxis(editGroup);
 
     setParametersToDialog();
   }
@@ -136,11 +137,56 @@ public class ConfigurationEditor implements ModifyKeyListener {
    * 
    * @param editGroup 親
    */   
-  private void createBaseAxis(final Group editGroup) {
-    final Label label = new Label(editGroup, SWT.NONE);
-    label.setText(Messages.getString("ConfigDialog.18")); //$NON-NLS-1$
-    this.baseCoordinateCheack = new Button(editGroup, SWT.CHECK);
-    this.baseCoordinateCheack.addSelectionListener(new SelectionListener() {
+  private void createBaseCoordinate(final Group editGroup) {
+    final Group group = new Group(editGroup, SWT.NONE);
+    final GridLayout layout = new GridLayout();
+    layout.numColumns = 5;
+    group.setText(Messages.getString("ConfigurationEditor.1")); //$NON-NLS-1$
+    
+    final GridData unitData = new GridData(GridData.FILL_HORIZONTAL);
+    unitData.horizontalSpan = 2;
+    group.setLayoutData(unitData);
+    group.setLayout(layout);
+    
+    createBaseAxisCombo(group);
+    
+    final Label space = new Label(group, SWT.NONE);
+    final GridData spaceData = new GridData();
+    spaceData.widthHint = 60;
+    space.setLayoutData(spaceData);
+    
+    createGridCombo(group);
+  }
+
+  private void createGridCombo(final Group editGroup) {
+    final BaseCoordinateModel baseCoordinate = this.configuration.getBaseCoordinate();
+    
+    final Label gridLabel = new Label(editGroup, SWT.NONE);
+    gridLabel.setText(Messages.getString("ConfigurationEditor.0")); //$NON-NLS-1$
+    this.gridCheck = new Button(editGroup, SWT.CHECK);
+    this.gridCheck.setSelection(baseCoordinate.isGridShowing());
+    this.gridCheck.addSelectionListener(new SelectionListener() {
+
+      @Override
+      public void widgetDefaultSelected(@SuppressWarnings("unused") SelectionEvent e) {
+        // nothing to do
+      }
+
+      @Override
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+        modifyText(null);
+      }
+    });
+  }
+
+  private void createBaseAxisCombo(final Group editGroup) {
+    final BaseCoordinateModel baseCoordinate = this.configuration.getBaseCoordinate();
+    
+    final Label baseAxisLabel = new Label(editGroup, SWT.NONE);
+    baseAxisLabel.setText(Messages.getString("ConfigDialog.18")); //$NON-NLS-1$
+    this.baseAxisCheck = new Button(editGroup, SWT.CHECK);
+    this.baseAxisCheck.setSelection(baseCoordinate.isAxisShowing());
+    this.baseAxisCheck.addSelectionListener(new SelectionListener() {
 
       @Override
       public void widgetDefaultSelected(@SuppressWarnings("unused") SelectionEvent e) {
@@ -294,7 +340,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
 
     final ColorModel color = this.configuration.getBackground().getColor();
     this.colorSelector.setColor(color);
-    this.baseCoordinateCheack.setSelection(this.configuration.getBaseCoordinate().isShowing());
+    this.baseAxisCheck.setSelection(this.configuration.getBaseCoordinate().isAxisShowing());
   }
 
   /**
@@ -384,9 +430,10 @@ public class ConfigurationEditor implements ModifyKeyListener {
     eye.setZ(this.eyeZ.getFloatValue());
     this.configuration.setEye(eye);
     
-    final BaseCoordinateModel axis = new BaseCoordinateModel();
-    axis.setShowing(this.baseCoordinateCheack.getSelection());
-    this.configuration.setBaseAxis(axis);
+    final BaseCoordinateModel baseCoordinate = new BaseCoordinateModel();
+    baseCoordinate.setAxisShowing(this.baseAxisCheck.getSelection());
+    baseCoordinate.setGridShowing(this.gridCheck.getSelection());
+    this.configuration.setBaseAxis(baseCoordinate);
     
     final LookAtPointModel lookAtPoint = new LookAtPointModel();
     lookAtPoint.setX(this.lookAtPointX.getFloatValue());
