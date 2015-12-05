@@ -29,6 +29,7 @@ import com.jogamp.opengl.fixedfunc.GLLightingFunc;
 import com.jogamp.opengl.fixedfunc.GLMatrixFunc;
 import com.jogamp.opengl.glu.GLU;
 
+
 /**
  * JOGL用のキャンバスを表すクラスです。
  * 
@@ -36,12 +37,13 @@ import com.jogamp.opengl.glu.GLU;
  * @version $Revision$, 2012/01/11
  */
 public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEventListener, MouseListener, MouseMotionListener {
+
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
-  
+
   /** ルートオブジェクト。 */
   private List<JoglGroupObject> rootObjects;
-  
+
   /** 設定。 */
   private ConfigurationModel configuration;
 
@@ -62,7 +64,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   private float[] lightDiffuse = {0.5f, 0.5f, 0.5f, 1.0f};
   /** 環境光の強さ。 */
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
-  
+
   /** マウスボタンを押した点 */
   private Point startPoint;
   /** マウスボタンを離した点 */
@@ -78,7 +80,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   private float startTranslationZ;
   /** 開始拡大縮小率 */
   private float startScale;
-  
+
   private GLU glu = new GLU();
 
   /**
@@ -86,18 +88,18 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    */
   public JoglObjectRenderer() {
     super(new GLCapabilities(null));
-    
+
     this.configuration = new ConfigurationModel();
     this.configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
     this.configuration.setLookAtPoiint(new LookAtPointModel(0.0f, 0.0f, 0.0f));
     this.configuration.setLight(new LightModel(10.0f, 10.0f, 20.0f));
     this.configuration.setBackground(new BackgroundModel("white")); //$NON-NLS-1$
-    
+
     addGLEventListener(this);
     addMouseListener(this);
     addMouseMotionListener(this);
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -105,15 +107,14 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   public void init(GLAutoDrawable drawable) {
     final GL2 gl = (GL2)drawable.getGL();
 
-    
     gl.glEnable(GL.GL_DEPTH_TEST); // 奥行き判定を有効にします 
     gl.glEnable(GL.GL_CULL_FACE); // 背面除去
-    
-//    gl.glEnable(GL.GL_BLEND);
-//    gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-//    gl.glHint(GL2GL3.GL_POLYGON_SMOOTH_HINT, GL.GL_NICEST);
-//    gl.glEnable(GL2GL3.GL_POLYGON_SMOOTH);
-    
+
+    //    gl.glEnable(GL.GL_BLEND);
+    //    gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+    //    gl.glHint(GL2GL3.GL_POLYGON_SMOOTH_HINT, GL.GL_NICEST);
+    //    gl.glEnable(GL2GL3.GL_POLYGON_SMOOTH);
+
     gl.glEnable(GLLightingFunc.GL_LIGHTING); //光源を有効にします 
     gl.glEnable(GLLightingFunc.GL_COLOR_MATERIAL); //(光源がある場合の)カラーを有効にします 
     gl.glEnable(GLLightingFunc.GL_NORMALIZE);
@@ -132,85 +133,118 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());
 
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-    
+
     gl.glLoadIdentity();
-    
+
     final LightModel light = this.configuration.getLight();
-    final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f};
+    final float[] lightLocation = new float[] {light.getX(), light.getY(), light.getZ(), 1.0f};
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
 
     gl.glLoadIdentity();
-    
+
     final EyeModel eye = this.configuration.getEye();
     final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
     this.glu.gluLookAt(eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0, 0.0, 1.0);
-    
+
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
     gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
-    
+
     gl.glScalef(this.scale, this.scale, this.scale);
-    
-    final boolean isShowingAxis = this.configuration.getBaseCoordinate().isShowing();
-    
-    if (isShowingAxis) {
-      drawBaseAxis(gl);
-      drawGrid(gl);
+
+    final boolean isShowingBaseCoordinat = this.configuration.getBaseCoordinate().isShowing();
+
+    if (isShowingBaseCoordinat) {
+      drawBaseCoordinate(gl);
     }
-    
+
     if (this.rootObjects != null) {
       for (final JoglGroupObject topGroup : this.rootObjects) {
-        topGroup.setShowingAxis(isShowingAxis);
+        topGroup.setShowingAxis(isShowingBaseCoordinat);
         topGroup.display(gl);
       }
     }
   }
-  
+
   /**
-   * 基準軸を描画します。
+   * 絶対座標を描画します。
    * 
-   * @param gl
+   * @param gl GL
    */
-  private void drawBaseAxis(GL2 gl) {
-    // x軸の描画
-    gl.glBegin(GL.GL_LINES);
-    gl.glColor3d(1, 0, 0);
-    gl.glVertex3f(-10f, 0, 0);
-    gl.glVertex3f( 10f, 0, 0);
-    gl.glEnd();
-    
-    // y軸の描画
-    gl.glBegin(GL.GL_LINES);
-    gl.glColor3d(0, 1, 0);
-    gl.glVertex3f(0, -10f, 0);
-    gl.glVertex3f(0,  10f, 0);
-    gl.glEnd();
-    
-    // z軸の描画
-    gl.glBegin(GL.GL_LINES);
-    gl.glColor3d(0, 0, 1);
-    gl.glVertex3f(0, 0, -10f);
-    gl.glVertex3f(0, 0,  10f);
-    gl.glEnd();
+  private void drawBaseCoordinate(final GL2 gl) {
+    drawBaseAxis(gl);
+    drawGrid(gl);
+  }
+
+  /**
+   * 色を適用します。
+   * 
+   * @param gl GL　
+   */
+  private void applyColor(GL2 gl, ColorModel color) {
+    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
   }
   
   /**
+   * 絶対座標の座標軸を描画します。
+   * 
+   * @param gl GL
+   */
+  private void drawBaseAxis(GL2 gl) {
+    final float axisMin = -10;
+    final float axisMax = 10;
+    
+    // x軸の描画
+    applyColor(gl, new ColorModel("red")); //$NON-NLS-1$
+    gl.glBegin(GL.GL_LINES);
+    gl.glVertex3f(axisMin, 0, 0);
+    gl.glVertex3f(axisMax, 0, 0);
+    gl.glEnd();
+
+    // y軸の描画
+    applyColor(gl, new ColorModel("blue")); //$NON-NLS-1$
+    gl.glBegin(GL.GL_LINES);
+    gl.glVertex3f(0, axisMin, 0);
+    gl.glVertex3f(0, axisMax, 0);
+    gl.glEnd();
+
+    // z軸の描画
+    applyColor(gl, new ColorModel("green")); //$NON-NLS-1$
+    gl.glBegin(GL.GL_LINES);
+    gl.glVertex3f(0, 0, axisMin);
+    gl.glVertex3f(0, 0, axisMax);
+    gl.glEnd();
+  }
+
+  /**
    * グリッドを描画します。
    * 
-   * @param gl
+   * @param gl GL
    */
   private void drawGrid(GL2 gl) {
+    applyColor(gl, this.configuration.getBaseCoordinate().getGridColor());
+    
+    final float gridMin = -1f;
+    final float gridMax = 1f;
+    final float gridInterval = this.configuration.getBaseCoordinate().getGridInterval();
+    
     gl.glBegin(GL.GL_LINES);
-    gl.glColor3d(0.8, 0.8, 0.8);
-    for(int i = -10; i <= 10; i++) {
-      gl.glVertex3f(-0.5f, i*0.05f, 0);
-      gl.glVertex3f(0.5f, i*0.05f, 0);
-      gl.glVertex3f(i*0.05f, -0.5f, 0);
-      gl.glVertex3f(i*0.05f,  0.5f, 0);
+    
+    float y = gridMin;
+    for (int i = 0; y <= gridMax; i++, y = gridMin + i*gridInterval) {
+      gl.glVertex3f(gridMin, y, 0);
+      gl.glVertex3f(gridMax, y, 0);
     }
+    
+    float x = gridMin;
+    for (int i = 0; x <= gridMax; i++, x = gridMin + i*gridInterval) {
+      gl.glVertex3f(x, gridMin, 0);
+      gl.glVertex3f(x, gridMax, 0);
+    }
+    
     gl.glEnd();
   }
 
@@ -232,7 +266,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    */
   private List<JoglGroupObject> createGroupObjects(List<GroupModel> groupModels, GroupObjectManager manager) {
     final JoglObjectFactory factory = new JoglObjectFactory(manager);
-    
+
     final List<JoglGroupObject> groupObjects = new ArrayList<>();
     for (final GroupModel groupModel : groupModels) {
       final JoglGroupObject groupObject = factory.create(groupModel);
@@ -249,13 +283,14 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     if (configuration == null) {
       return;
     }
-    
+
     this.configuration = configuration;
     display();
   }
-  
+
   /**
    * 設定を返します。
+   * 
    * @return 設定
    */
   @Override
@@ -278,7 +313,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
   /**
    * マウス左クリック時の処理　カメラを移動させます。
-   * @param e マウスイベント 
+   * 
+   * @param e マウスイベント
    */
   @Override
   public void mousePressed(MouseEvent e) {
@@ -292,7 +328,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
       display();
       return;
     }
-    
+
     if (SwingUtilities.isMiddleMouseButton(e) == true) {
       this.startScale = this.scale;
       this.startPoint = getMousePosition(true);
@@ -302,7 +338,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
       display();
       return;
     }
-    
+
     if (SwingUtilities.isRightMouseButton(e) == true) {
       this.startTranslationY = this.translationY;
       this.startTranslationZ = this.translationZ;
@@ -356,7 +392,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
       if (this.endPoint == null) {
         return;
       }
-      
+
       if (this.startPoint == null) {
         this.startPoint = new Point(this.endPoint);
       }
@@ -365,13 +401,13 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
       display();
       return;
     }
-    
+
     if (SwingUtilities.isMiddleMouseButton(e)) {
       this.endPoint = getMousePosition(true);
       if (this.endPoint == null) {
         return;
       }
-      
+
       if (this.startPoint == null) {
         this.startPoint = new Point(this.endPoint);
       }
@@ -385,13 +421,13 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
       display();
       return;
     }
-    
+
     if (SwingUtilities.isRightMouseButton(e) == true) {
       this.endPoint = getMousePosition(true);
       if (this.endPoint == null) {
         return;
       }
-      
+
       if (this.startPoint == null) {
         this.startPoint = new Point(this.endPoint);
       }
@@ -432,7 +468,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   public void dispose(@SuppressWarnings("unused") GLAutoDrawable arg0) {
     // TODO 自動生成されたメソッド・スタブ
   }
-  
+
   /**
    * 移動・回転・拡大・縮小等の操作をリセットし、初期状態に戻します。
    */
