@@ -45,18 +45,6 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
     this.isGridShowing = false;
   }
   
-//  /**
-//   * 新しく生成された<code>BaseAxisModel</code>オブジェクトを初期化します。
-//   * @param gridColor グリッド色
-//   * @param gridInverval グリッド間隔
-//   * @param isAxisShowing 座標軸を表示するならばtrue
-//   */
-//  public BaseCoordinateModel(ColorModel gridColor, float gridInverval, boolean isAxisShowing) {
-//    this.gridColor = gridColor;
-//    this.gridInverval = gridInverval;
-//    this.isAxisShowing = isAxisShowing;
-//  }
-  
   /**
    * {@inheritDoc}
    */
