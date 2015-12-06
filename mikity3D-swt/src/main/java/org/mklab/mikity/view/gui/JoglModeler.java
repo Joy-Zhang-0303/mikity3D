@@ -160,7 +160,7 @@ public class JoglModeler extends Composite {
    * @param parent 親
    */
   private void createModelCanvas(Composite parent) {
-    this.renderer = new JoglObjectRenderer();
+    this.renderer = new JoglObjectRenderer(this.root.getConfiguration(0));
     this.manager = new GroupObjectManager();
     
     final Frame frame = SWT_AWT.new_Frame(parent);

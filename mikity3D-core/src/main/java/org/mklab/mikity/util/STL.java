@@ -118,17 +118,32 @@ public class STL {
    */
   public static boolean isTextData(String filePath) throws IOException {
     try (DataInputStream input = new DataInputStream(new FileInputStream(filePath))) {
-      byte c1 = input.readByte();
-      byte c2 = input.readByte();
-      byte c3 = input.readByte();
-      byte c4 = input.readByte();
-      byte c5 = input.readByte();
-      if (c1 == 's' && c2 == 'o' && c3 == 'l' && c4 == 'i' && c5 == 'd') {
-        return true;
+      final byte c1 = input.readByte();
+      final byte c2 = input.readByte();
+      final byte c3 = input.readByte();
+      final byte c4 = input.readByte();
+      final byte c5 = input.readByte();
+      final byte c6 = input.readByte();
+      
+      if (c1 != 's' || c2 != 'o' || c3 != 'l' || c4 != 'i' || c5 != 'd' || c6 != ' ') {
+        return false;
+      }
+    }
+    
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+      final String firstLine = reader.readLine();
+      if (firstLine.startsWith("solid ") == false) { //$NON-NLS-1$
+        return false;
       }
       
-      return false;
+      final String secondLine = reader.readLine();
+      final String[] secondLineWords = secondLine.trim().replaceAll("[ \\t]+", " ").split("[ ]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      if (secondLineWords.length != 5 || secondLineWords[0].equals("facet") == false || secondLineWords[1].equals("normal") == false) { //$NON-NLS-1$ //$NON-NLS-2$
+        return false; 
+      }
     }
+    
+    return true;
   }
   
   

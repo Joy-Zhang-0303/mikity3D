@@ -44,6 +44,10 @@ import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.SourceDataModel;
+import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
+import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
+import org.mklab.mikity.model.xml.simplexml.config.LightModel;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.gui.editor.ModifyKeyListener;
@@ -135,7 +139,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
     super(parentShell);
     setRoot(root);
     this.modelFile = modelFile;
-    this.renderer = new JoglObjectRenderer();
+    this.renderer = new JoglObjectRenderer(root.getConfiguration(0));
   }
 
   /**
@@ -144,7 +148,14 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
    */
   public AnimationWindow(final Shell parentShell) {
     super(parentShell);
-    this.renderer = new JoglObjectRenderer();
+    
+    final ConfigurationModel configuration = new ConfigurationModel();
+    configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
+    configuration.setLookAtPoiint(new LookAtPointModel(0.0f, 0.0f, 0.0f));
+    configuration.setLight(new LightModel(10.0f, 10.0f, 20.0f));
+    configuration.setBackground(new BackgroundModel("white")); //$NON-NLS-1$
+    
+    this.renderer = new JoglObjectRenderer(configuration);
   }
 
   /**
