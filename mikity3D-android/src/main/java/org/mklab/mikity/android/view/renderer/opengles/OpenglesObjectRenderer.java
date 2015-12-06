@@ -63,13 +63,16 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
    * 新しく生成された<code>OpenglesModelRenderer</code>オブジェクトを初期化します。
    * 
    * @param glView GLサーフェースビュー
+   * @param configuration 環境 
    */
-  public OpenglesObjectRenderer(GLSurfaceView glView) {
+  public OpenglesObjectRenderer(GLSurfaceView glView, ConfigurationModel configuration) {
     this.glView = glView;
-    this.configuration = new ConfigurationModel();
-    this.configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
-    this.configuration.setLookAtPoiint(new LookAtPointModel(0.0f, 0.0f, 0.0f));
-    this.configuration.setLight(new LightModel(10.0f, 10.0f, 20.0f));
+    this.configuration = configuration;
+    
+//    this.configuration = new ConfigurationModel();
+//    this.configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
+//    this.configuration.setLookAtPoiint(new LookAtPointModel(0.0f, 0.0f, 0.0f));
+//    this.configuration.setLight(new LightModel(10.0f, 10.0f, 20.0f));
   }
 
   /**

@@ -11,7 +11,6 @@ import javax.swing.SwingUtilities;
 
 import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
-import org.mklab.mikity.model.xml.simplexml.config.BackgroundModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
@@ -91,12 +90,6 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     super(new GLCapabilities(null));
 
     this.configuration = configuration;
-    
-//    this.configuration = new ConfigurationModel();
-//    this.configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
-//    this.configuration.setLookAtPoiint(new LookAtPointModel(0.0f, 0.0f, 0.0f));
-//    this.configuration.setLight(new LightModel(10.0f, 10.0f, 20.0f));
-//    this.configuration.setBackground(new BackgroundModel("white")); //$NON-NLS-1$
 
     addGLEventListener(this);
     addMouseListener(this);
