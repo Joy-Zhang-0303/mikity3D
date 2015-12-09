@@ -107,11 +107,11 @@ public class NavigationDrawerFragment extends RoboFragment {
   Button resetToInitialStateButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
-  Switch rotationSensorButton;
+  ToggleButton rotationSensorButton;
   /** 加速度を3Dオブジェクトに反映させるならばtrue。 */
-  Switch accelerometerButton;
+  ToggleButton accelerometerButton;
   /** 端末の回転を許可するならばtrue。 */
-  Switch rotationLockButton;
+  ToggleButton rotationLockButton;
 
   /** サンプルのソースファイルのパス。 */
   Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
@@ -312,7 +312,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
 
   private void createSensorComponent(final View mainView) {
-    this.rotationSensorButton = (Switch)mainView.findViewById(R.id.rotationSensorButton);
+    this.rotationSensorButton = (ToggleButton)mainView.findViewById(R.id.rotationSensorButton);
     this.rotationSensorButton.setOnCheckedChangeListener(
     		new CompoundButton.OnCheckedChangeListener() {
 				
@@ -327,7 +327,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 				}
 			});
 
-    this.accelerometerButton = (Switch)mainView.findViewById(R.id.accelerometerButton);
+    this.accelerometerButton = (ToggleButton)mainView.findViewById(R.id.accelerometerButton);
     this.accelerometerButton.setOnCheckedChangeListener(
     		new CompoundButton.OnCheckedChangeListener() {
 
@@ -345,7 +345,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
     });
 
-    this.rotationLockButton = (Switch)mainView.findViewById(R.id.rotationLockButton);
+    this.rotationLockButton = (ToggleButton)mainView.findViewById(R.id.rotationLockButton);
     this.rotationLockButton.setOnCheckedChangeListener(
     		new CompoundButton.OnCheckedChangeListener() {
 

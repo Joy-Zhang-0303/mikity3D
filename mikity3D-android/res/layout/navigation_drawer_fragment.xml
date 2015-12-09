@@ -107,11 +107,14 @@
             android:text="@string/rotationSensorTextView"
             android:textColor="@color/black" />
 
-        <Switch
+        <ToggleButton
             android:id="@+id/rotationSensorButton"
-            android:layout_width="106dp"
-            android:layout_height="13dp"
-            android:switchPadding="25dp"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/toggle_bg"
+            android:button="@drawable/toggle_btn"
+            android:checked="false"
             android:text="@string/rotationSensorButton" />
 
     </LinearLayout>
@@ -127,10 +130,16 @@
             android:text="@string/accelerometerTextView"
             android:textColor="@color/black" />
 
-        <Switch
+        <ToggleButton
             android:id="@+id/accelerometerButton"
-            android:layout_width="106dp"
-            android:layout_height="13dp"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/toggle_bg"
+            android:button="@drawable/toggle_btn"
+            android:checked="false"
+            android:textOff=""
+            android:textOn=""
             android:text="@string/accelerometerButton" />
 
     </LinearLayout>
@@ -147,10 +156,16 @@
             android:textColor="@color/black" />
         
         
-        <Switch
+        <ToggleButton
             android:id="@+id/rotationLockButton"
-            android:layout_width="106dp"
-            android:layout_height="13dp"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/toggle_bg"
+            android:button="@drawable/toggle_btn"
+            android:checked="false"
+            android:textOff=""
+            android:textOn=""
             android:text="@string/rotationLockButton" />
   
     </LinearLayout>
