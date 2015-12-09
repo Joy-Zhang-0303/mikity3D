@@ -97,7 +97,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal" >
 
         <TextView
@@ -109,15 +109,16 @@
 
         <Switch
             android:id="@+id/rotationSensorButton"
-            android:layout_width="107dp"
-            android:layout_height="match_parent"
+            android:layout_width="106dp"
+            android:layout_height="13dp"
+            android:switchPadding="25dp"
             android:text="@string/rotationSensorButton" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent" >
 
         <TextView
             android:id="@+id/accelerometerTextView"
@@ -125,18 +126,18 @@
             android:layout_height="wrap_content"
             android:text="@string/accelerometerTextView"
             android:textColor="@color/black" />
-        
+
         <Switch
             android:id="@+id/accelerometerButton"
-            android:layout_width="107dp"
-            android:layout_height="match_parent"
+            android:layout_width="106dp"
+            android:layout_height="13dp"
             android:text="@string/accelerometerButton" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent" >
 
         <TextView
             android:id="@+id/rotationLockTextView"
@@ -148,8 +149,8 @@
         
         <Switch
             android:id="@+id/rotationLockButton"
-            android:layout_width="107dp"
-            android:layout_height="match_parent"
+            android:layout_width="106dp"
+            android:layout_height="13dp"
             android:text="@string/rotationLockButton" />
   
     </LinearLayout>
