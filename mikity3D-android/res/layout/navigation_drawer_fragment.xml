@@ -95,46 +95,57 @@
             android:text="@string/sourceNumberChangeButton" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal" >
+        android:padding="30px" >
 
         <TextView
             android:id="@+id/rotationSensorTextView"
-            android:layout_width="110dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:text="@string/rotationSensorTextView"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="25sp" />
 
         <ToggleButton
             android:id="@+id/rotationSensorButton"
             android:layout_width="58dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/rotationSensorTextView"
+            android:layout_marginRight="18dp"
             android:background="@drawable/toggle_bg"
             android:button="@drawable/toggle_btn"
             android:checked="false"
             android:text="@string/rotationSensorButton" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:padding="30px" >
 
         <TextView
             android:id="@+id/accelerometerTextView"
-            android:layout_width="110dp"
+           android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:text="@string/accelerometerTextView"
-            android:textColor="@color/black" />
+            android:textColor="@color/black" 
+            android:textSize="25sp"/>
 
         <ToggleButton
             android:id="@+id/accelerometerButton"
             android:layout_width="58dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/rotationSensorTextView"
+            android:layout_marginRight="18dp"
             android:background="@drawable/toggle_bg"
             android:button="@drawable/toggle_btn"
             android:checked="false"
@@ -142,25 +153,31 @@
             android:textOn=""
             android:text="@string/accelerometerButton" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:padding="30px" >
 
         <TextView
             android:id="@+id/rotationLockTextView"
-            android:layout_width="110dp"
+			android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:text="@string/rotationLockTextView"
-            android:textColor="@color/black" />
+            android:textColor="@color/black" 
+            android:textSize="25sp"/>
         
         
         <ToggleButton
             android:id="@+id/rotationLockButton"
             android:layout_width="58dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/rotationSensorTextView"
+            android:layout_marginRight="18dp"
             android:background="@drawable/toggle_bg"
             android:button="@drawable/toggle_btn"
             android:checked="false"
@@ -168,7 +185,7 @@
             android:textOn=""
             android:text="@string/rotationLockButton" />
   
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
