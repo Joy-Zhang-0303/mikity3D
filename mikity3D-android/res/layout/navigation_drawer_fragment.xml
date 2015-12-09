@@ -18,7 +18,8 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:text="@string/animationSpeedText"
-            android:textColor="@color/black" />
+            android:textColor="@color/black" 
+            android:textSize="25sp"/>
 
         <Button
             android:id="@+id/slowButton"
@@ -58,7 +59,8 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/modelLabel" />
+            android:text="@string/modelLabel"
+             />
 
         <TextView
             android:id="@+id/modelFileNameView"
@@ -66,7 +68,8 @@
             android:layout_height="wrap_content"
             android:maxLength="30"
             android:text="@string/modelFileNameView"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="25sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -85,7 +88,8 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/sourceNumberChangeView"
-            android:textColor="@color/black" />
+            android:textColor="@color/black" 
+            android:textSize="25sp"/>
 
         <Button
             android:id="@+id/sourceNumberChangeButton"
@@ -212,7 +216,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sampleLabel"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="25sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -232,7 +237,8 @@
             android:layout_height="wrap_content"
             android:maxLength="30"
             android:text="@string/sampleModelFileNameView"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="25sp" />
     </LinearLayout>
 
     <LinearLayout
