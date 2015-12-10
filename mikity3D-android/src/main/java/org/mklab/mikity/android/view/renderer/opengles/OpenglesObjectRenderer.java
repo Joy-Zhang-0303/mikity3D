@@ -128,8 +128,20 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
 
     gl.glScalef(this.scale, this.scale, this.scale);
 
+    final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
+    final boolean isGridShowing = this.configuration.getBaseCoordinate().isGridShowing();
+
+//    if (isAxisShowing) {
+//      drawBaseAxis(gl);
+//    }
+//
+//    if (isGridShowing) {
+//      drawGrid(gl);
+//    }
+    
     if (this.rootObjects != null) {
       for (final OpenglesGroupObject topObject : this.rootObjects) {
+        topObject.setShowingAxis(isAxisShowing);
         topObject.display(gl);
       }
     }

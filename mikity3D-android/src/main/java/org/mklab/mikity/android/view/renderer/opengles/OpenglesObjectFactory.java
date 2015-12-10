@@ -8,7 +8,9 @@ package org.mklab.mikity.android.view.renderer.opengles;
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.Messages;
 import org.mklab.mikity.model.GroupObjectManager;
+import org.mklab.mikity.model.graphic.GraphicObject;
 import org.mklab.mikity.model.graphic.GraphicObjectFactory;
+import org.mklab.mikity.model.xml.simplexml.model.AxisModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
@@ -73,7 +75,17 @@ public class OpenglesObjectFactory {
    * @return 与えられたプリミティブを含むグループ
    */
   public OpenglesObject create(ObjectModel model) {
-    final OpenglesSingleObject object = new OpenglesSingleObject(GraphicObjectFactory.create(model));
+    final float modelMin = Math.min(Math.min(model.getWidth(), model.getDepth()), model.getHeight());
+    final float modelMax = Math.max(Math.max(model.getWidth(), model.getDepth()), model.getHeight());
+    float axisRadius = Math.min(Math.max(modelMin/16, modelMax/200), modelMin/2);
+    axisRadius = axisRadius == 0 ? modelMax/100 : axisRadius;
+        
+    final GraphicObject axisX = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getDepth(), axisRadius*20), 36));
+    final GraphicObject axisY = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getWidth(), axisRadius*20), 36));
+    final GraphicObject axisZ = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getHeight()*1.5f, axisRadius*20), 36));
+    final GraphicObject[] axies = new GraphicObject[]{axisX, axisY, axisZ};
+    
+    final OpenglesSingleObject object = new OpenglesSingleObject(GraphicObjectFactory.create(model), axies);
    
     final TranslationModel translation = model.getTranslation();
     final RotationModel rotation = model.getRotation();

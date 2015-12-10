@@ -570,6 +570,15 @@ public class CanvasFragment extends RoboFragment {
     this.objectRenderer.resetToInitialState();
     this.objectRenderer.updateDisplay();
   }
+  
+  /**
+   * 座標軸を表示するか設定します。
+   * 
+   * @param isAxisShowing 表示するならばtrue
+   */
+  public void setAxisShowing(boolean isAxisShowing) {
+    this.root.getConfiguration(0).getBaseCoordinate().setAxisShowing(isAxisShowing);
+  }
 
   /**
    * ObjectGroupManagerを準備します。

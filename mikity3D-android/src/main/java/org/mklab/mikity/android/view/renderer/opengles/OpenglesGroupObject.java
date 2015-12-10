@@ -31,6 +31,8 @@ public class OpenglesGroupObject implements GroupObject, OpenglesObject {
   private int id = 0;
   /** モデルデータ。 */
   private GroupModel group;
+  /** 座用軸を描画するならばtrue。 */
+  private boolean isShowingAxis = false;
   /** シリアル番号。 */
   private static int serialID = 0;
 
@@ -194,5 +196,15 @@ public class OpenglesGroupObject implements GroupObject, OpenglesObject {
     return this.name + this.coordinate;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  public void setShowingAxis(boolean isShowingAxis) {
+    this.isShowingAxis = isShowingAxis;
+    
+    for (final OpenglesObject object : this.elements) {
+      object.setShowingAxis(isShowingAxis);
+    }
+  }
 
 }

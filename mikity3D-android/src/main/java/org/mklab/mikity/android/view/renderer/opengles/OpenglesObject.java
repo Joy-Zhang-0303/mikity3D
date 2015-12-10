@@ -17,4 +17,10 @@ public interface OpenglesObject {
    */
   void display(GL10 gl);
   
+  /**
+   * 座標軸を描画するか設定します。
+   * 
+   * @param isShowingAxis 座標軸を描画するならばtrue
+   */
+  void setShowingAxis(boolean isShowingAxis);
 }

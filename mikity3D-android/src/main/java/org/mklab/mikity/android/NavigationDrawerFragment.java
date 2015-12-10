@@ -46,13 +46,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Switch;
 
 
 /**
@@ -347,15 +345,16 @@ public class NavigationDrawerFragment extends RoboFragment {
 
     this.rotationLockButton = (ToggleButton)mainView.findViewById(R.id.rotationLockButton);
     this.rotationLockButton.setOnCheckedChangeListener(
-    		new CompoundButton.OnCheckedChangeListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-    			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-					// TODO Auto-generated method stub
-    				NavigationDrawerFragment.this.canvasActivity.controlRotation();
-    			}
+        new CompoundButton.OnCheckedChangeListener() {
+          
+          /**
+           * {@inheritDoc}
+           */
+          public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            // TODO Auto-generated method stub
+            NavigationDrawerFragment.this.canvasActivity.canvasFragment.setAxisShowing(isChecked);
+            NavigationDrawerFragment.this.canvasActivity.controlRotation();
+          }
     });
   }
 

@@ -11,8 +11,8 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import org.mklab.mikity.model.graphic.GraphicObject;
 import org.mklab.mikity.model.graphic.AbstractGraphicObject;
+import org.mklab.mikity.model.graphic.GraphicObject;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
 /**
@@ -24,13 +24,19 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 public class OpenglesSingleObject implements OpenglesObject {
   /** グラフィックオブジェクト。 */
   private GraphicObject object;
-
+  /** 座標軸。 */
+  private GraphicObject[] axises;
+  /** 座標軸を描画するならばtrue。 */
+  private boolean isShowingAxis = false;
+  
   /**
    * 新しく生成された<code>OpenglesSingleObject</code>オブジェクトを初期化します。
    * @param object グラフィックオブジェクト
+   * @param axises 座標軸オブジェクト
    */
-  public OpenglesSingleObject(GraphicObject object) {
+  public OpenglesSingleObject(GraphicObject object, GraphicObject[] axises) {
     this.object = object;
+    this.axises = axises;
   }
   
   /**
@@ -38,8 +44,24 @@ public class OpenglesSingleObject implements OpenglesObject {
    */
   public void display(GL10 gl) {
     applyTransparency(gl);
-    applyColor(gl);
-    drawTrianglePolygons(gl);
+    applyColor(gl, ((AbstractGraphicObject)this.object).getColor());
+    drawObject(gl);
+    
+    if (this.isShowingAxis && ((AbstractGraphicObject)this.object).isTransparent() == false) {
+      drawAxies(gl);
+    }
+  }
+
+  /**
+   * オブジェクトを描画します。
+   * 
+   * @param gl GL
+   */
+  private void drawObject(GL10 gl) {
+    final float[] vertexArray = this.object.getVertexArray();
+    final float[] normalVectorArray = this.object.getNormalVectorArray();
+
+    drawTrianglePolygons(gl, vertexArray, normalVectorArray);
   }
 
   /**
@@ -47,8 +69,8 @@ public class OpenglesSingleObject implements OpenglesObject {
    * 
    * @param gl GL　
    */
-  private void applyColor(GL10 gl) {
-    final ColorModel color = ((AbstractGraphicObject)this.object).getColor();
+  private void applyColor(GL10 gl, ColorModel color) {
+    //final ColorModel color = ((AbstractGraphicObject)this.object).getColor();
     gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
 
   }
@@ -69,13 +91,45 @@ public class OpenglesSingleObject implements OpenglesObject {
   }
   
   /**
+   * オブジェクトの座標軸を描画します。
+   * 
+   * @param gl GL
+   */
+  public void drawAxies(GL10 gl) {
+    applyColor(gl, new ColorModel("red")); //$NON-NLS-1$
+    gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
+    drawAxis(gl, this.axises[0]);
+    gl.glRotatef(-90, 0.0f, 1.0f, 0.0f);
+
+    applyColor(gl, new ColorModel("green")); //$NON-NLS-1$
+    gl.glRotatef(-90, 1.0f, 0.0f, 0.0f);
+    drawAxis(gl, this.axises[1]);
+    gl.glRotatef(90, 1.0f, 0.0f, 0.0f);
+    
+    applyColor(gl, new ColorModel("blue")); //$NON-NLS-1$
+    drawAxis(gl, this.axises[2]);
+  }
+
+  /**
+   * 座標軸を描画します。
+   * 
+   * @param gl GL
+   * @param axis 座標軸
+   */
+  private void drawAxis(GL10 gl, GraphicObject axis) {
+    final float[] vertexArray = axis.getVertexArray();
+    final float[] normalVectorArray = axis.getNormalVectorArray();
+    
+    drawTrianglePolygons(gl, vertexArray, normalVectorArray);   
+  }
+
+  
+  /**
    * 三角形ポリゴンを描画します。
    * 
    * @param gl GL
    */
-  private void drawTrianglePolygons(GL10 gl) {
-    final float[] vertexArray = this.object.getVertexArray();
-    final float[] normalVectorArray = this.object.getNormalVectorArray();
+  private void drawTrianglePolygons(GL10 gl, final float[] vertexArray, final float[] normalVectorArray) {
     
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
     final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
@@ -117,5 +171,12 @@ public class OpenglesSingleObject implements OpenglesObject {
     final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     buffer.put(array).position(0);
     return buffer;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void setShowingAxis(boolean isShowingAxis) {
+    this.isShowingAxis = isShowingAxis;
   }
 }
