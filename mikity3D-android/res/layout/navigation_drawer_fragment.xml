@@ -35,27 +35,27 @@
             android:focusableInTouchMode="true"
             android:text="@string/animationSpeedText"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/slowButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/animationSpeedEditText"
-            android:layout_toLeftOf="@+id/quickButton"
+            android:layout_toLeftOf="@+id/animationSpeedText"
             android:layout_weight="1"
-            android:maxWidth="2dp"
-            android:text="@string/minusButton" />
+            android:background="@drawable/slow"
+            android:maxWidth="2dp" />
 
         <Button
             android:id="@+id/quickButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/animationSpeedText"
             android:layout_below="@+id/animationSpeedEditText"
+            android:layout_toRightOf="@+id/animationSpeedText"
             android:layout_weight="1"
-            android:maxWidth="2dp"
-            android:text="@string/plusButton" />
+            android:background="@drawable/fast"
+            android:maxWidth="2dp" />
 
     </RelativeLayout>
 
@@ -78,7 +78,7 @@
             android:maxLength="30"
             android:text="@string/modelFileNameView"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:text="@string/sourceNumberChangeView"
             android:textColor="@color/black" 
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
 
         <Button
             android:id="@+id/sourceNumberChangeButton"
@@ -121,7 +121,7 @@
             android:layout_centerVertical="true"
             android:text="@string/rotationSensorTextView"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <ToggleButton
             android:id="@+id/rotationSensorButton"
@@ -150,7 +150,7 @@
             android:layout_centerVertical="true"
             android:text="@string/accelerometerTextView"
             android:textColor="@color/black" 
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
 
         <ToggleButton
             android:id="@+id/accelerometerButton"
@@ -181,7 +181,7 @@
             android:layout_centerVertical="true"
             android:text="@string/rotationLockTextView"
             android:textColor="@color/black" 
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
         
         
         <ToggleButton
@@ -226,7 +226,7 @@
             android:layout_height="wrap_content"
             android:text="@string/sampleLabel"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -247,7 +247,7 @@
             android:maxLength="30"
             android:text="@string/sampleModelFileNameView"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
