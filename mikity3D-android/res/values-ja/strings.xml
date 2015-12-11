@@ -2,6 +2,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="accelerometerTextView">加速度センサ</string>
     <string name="accelerometerButton">加速度センサボタン</string>
+    <string name="axisShowingTextView">座標軸表示</string>
+    <string name="axisShowingButton">座標軸表示ボタン</string>
     <string name="animationSpeedText">再生速度</string>
     <string name="app_name">Mikity3D</string>
     <string name="back">戻る</string>

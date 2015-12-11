@@ -101,7 +101,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
   /** ソース番号を変更するためのボタン。 */
   Button sourceNumberChangeButton;
-  
+
   /** モデルをリセットし、初期状態の戻すためのボタン。 */
   Button resetToInitialStateButton;
 
@@ -111,6 +111,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   ToggleButton accelerometerButton;
   /** 端末の回転を許可するならばtrue。 */
   ToggleButton rotationLockButton;
+  /** 座標軸を表示するならばtrue。 */
+  ToggleButton axisShowingButton;
 
   /** サンプルのソースファイルのパス。 */
   Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
@@ -133,7 +135,9 @@ public class NavigationDrawerFragment extends RoboFragment {
     createSourceNumberChangeComponent(mainView);
 
     createSensorComponent(mainView);
-    
+
+    createConfigurationComponent(mainView);
+
     createResetComponent(mainView);
 
     createSampleModelComponent(mainView);
@@ -153,43 +157,44 @@ public class NavigationDrawerFragment extends RoboFragment {
        */
       public void onClick(View view) {
         final int step = (int)Math.floor(Math.log10(NavigationDrawerFragment.this.animationSpeedRate - 1));
-        NavigationDrawerFragment.this.animationSpeedRate -= (int)Math.pow(10, step);  
+        NavigationDrawerFragment.this.animationSpeedRate -= (int)Math.pow(10, step);
         if (NavigationDrawerFragment.this.animationSpeedRate < 0) {
           NavigationDrawerFragment.this.animationSpeedRate = 1;
         }
-        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(NavigationDrawerFragment.this.animationSpeedRate/1000.0))); //$NON-NLS-1$
+        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(NavigationDrawerFragment.this.animationSpeedRate / 1000.0))); //$NON-NLS-1$
         if (NavigationDrawerFragment.this.animationTask != null) {
-          NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeedRate/1000.0);
+          NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeedRate / 1000.0);
         }
       }
     });
 
     this.animationSpeedTextEdit = (EditText)mainView.findViewById(R.id.animationSpeedEditText);
     this.animationSpeedTextEdit.clearFocus();
-    this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(this.animationSpeedRate/1000.0))); //$NON-NLS-1$    
+    this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(this.animationSpeedRate / 1000.0))); //$NON-NLS-1$    
     this.animationSpeedTextEdit.clearFocus();
-    
+
     this.animationSpeedTextEdit.addTextChangedListener(new TextWatcher() {
+
       /**
        * {@inheritDoc}
        */
       public void onTextChanged(CharSequence s, int start, int before, int count) {
         // TODO 自動生成されたメソッド・スタブ
       }
-      
+
       /**
        * {@inheritDoc}
        */
       public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         // TODO 自動生成されたメソッド・スタブ
       }
-      
+
       /**
        * {@inheritDoc}
        */
       public void afterTextChanged(Editable s) {
         final double value = Double.parseDouble(NavigationDrawerFragment.this.animationSpeedTextEdit.getText().toString());
-        NavigationDrawerFragment.this.animationSpeedRate = (int)Math.round(value*1000);
+        NavigationDrawerFragment.this.animationSpeedRate = (int)Math.round(value * 1000);
       }
     });
 
@@ -206,9 +211,9 @@ public class NavigationDrawerFragment extends RoboFragment {
         if (NavigationDrawerFragment.this.animationSpeedRate > 1000000) {
           NavigationDrawerFragment.this.animationSpeedRate = 1000000;
         }
-        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(NavigationDrawerFragment.this.animationSpeedRate/1000.0))); //$NON-NLS-1$
+        NavigationDrawerFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(NavigationDrawerFragment.this.animationSpeedRate / 1000.0))); //$NON-NLS-1$
         if (NavigationDrawerFragment.this.animationTask != null) {
-          NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeedRate/1000.0);
+          NavigationDrawerFragment.this.animationTask.setSpeedScale(NavigationDrawerFragment.this.animationSpeedRate / 1000.0);
         }
       }
     });
@@ -312,51 +317,65 @@ public class NavigationDrawerFragment extends RoboFragment {
 
   private void createSensorComponent(final View mainView) {
     this.rotationSensorButton = (ToggleButton)mainView.findViewById(R.id.rotationSensorButton);
-    this.rotationSensorButton.setOnCheckedChangeListener(
-    		new CompoundButton.OnCheckedChangeListener() {
-				
-				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-					// TODO Auto-generated method stub
-			        if (NavigationDrawerFragment.this.rotationSensorButton.isChecked()) {
-			            NavigationDrawerFragment.this.canvasActivity.sensorService.useRotationSensor = true;
-			          } else {
-			            NavigationDrawerFragment.this.canvasActivity.sensorService.useRotationSensor = false;
-			          }
-					
-				}
-			});
+    this.rotationSensorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (NavigationDrawerFragment.this.rotationSensorButton.isChecked()) {
+          NavigationDrawerFragment.this.canvasActivity.sensorService.useRotationSensor = true;
+        } else {
+          NavigationDrawerFragment.this.canvasActivity.sensorService.useRotationSensor = false;
+        }
+
+      }
+    });
 
     this.accelerometerButton = (ToggleButton)mainView.findViewById(R.id.accelerometerButton);
-    this.accelerometerButton.setOnCheckedChangeListener(
-    		new CompoundButton.OnCheckedChangeListener() {
+    this.accelerometerButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
        * {@inheritDoc}
        */
-    			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-					// TODO Auto-generated method stub
-    				if (NavigationDrawerFragment.this.accelerometerButton.isChecked()) {
-    					NavigationDrawerFragment.this.canvasActivity.sensorService.useAccelerometer = true;
-    				} else {
-    					NavigationDrawerFragment.this.canvasActivity.sensorService.useAccelerometer = false;
-    				}
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (NavigationDrawerFragment.this.accelerometerButton.isChecked()) {
+          NavigationDrawerFragment.this.canvasActivity.sensorService.useAccelerometer = true;
+        } else {
+          NavigationDrawerFragment.this.canvasActivity.sensorService.useAccelerometer = false;
+        }
       }
 
     });
 
     this.rotationLockButton = (ToggleButton)mainView.findViewById(R.id.rotationLockButton);
-    this.rotationLockButton.setOnCheckedChangeListener(
-        new CompoundButton.OnCheckedChangeListener() {
-          
-          /**
-           * {@inheritDoc}
-           */
-          public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            // TODO Auto-generated method stub
-            NavigationDrawerFragment.this.canvasActivity.canvasFragment.setAxisShowing(isChecked);
-            NavigationDrawerFragment.this.canvasActivity.controlRotation();
-          }
+    this.rotationLockButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        NavigationDrawerFragment.this.canvasActivity.controlRotation();
+      }
     });
+  }
+
+  private void createConfigurationComponent(final View mainView) {
+    this.axisShowingButton = (ToggleButton)mainView.findViewById(R.id.axisShowingButton);
+    this.axisShowingButton.setEnabled(false);
+    this.axisShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        NavigationDrawerFragment.this.canvasActivity.canvasFragment.setAxisShowing(isChecked);
+      }
+    });
+  }
+  
+  /**
+   * Configurationを更新します。 
+   */
+  private void updateConfiguration() {
+    this.axisShowingButton.setChecked(this.canvasActivity.canvasFragment.isAxisShowing());
   }
 
   private void createResetComponent(final View mainView) {
@@ -372,7 +391,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
   }
-  
+
   private void createSampleModelComponent(final View mainView) {
     final Button modelButton = (Button)mainView.findViewById(R.id.sampleModelSelectButton);
     modelButton.setOnClickListener(new OnClickListener() {
@@ -575,6 +594,8 @@ public class NavigationDrawerFragment extends RoboFragment {
     for (final TextView view : this.sampleSourceFileNameViews.values()) {
       view.setText(sampleSourceFileName);
     }
+    
+    updateConfiguration();
   }
 
   /**
@@ -628,6 +649,8 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
 
       createSourceComponent();
+      
+      updateConfiguration();
 
       setButtonEnabled(true);
 
@@ -659,6 +682,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.slowButton.setEnabled(enabled);
     this.sourceNumberChangeButton.setEnabled(enabled);
     this.resetToInitialStateButton.setEnabled(enabled);
+    this.axisShowingButton.setEnabled(enabled);
 
     for (Button button : this.sourceSelectButtons) {
       button.setEnabled(enabled);

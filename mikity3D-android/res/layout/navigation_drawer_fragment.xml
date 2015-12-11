@@ -10,11 +10,10 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
+        android:paddingBottom="15dip"
         android:paddingLeft="30dip"
         android:paddingRight="30dip"
-        android:paddingTop="15dip"
-        android:paddingBottom="15dip" >
-
+        android:paddingTop="15dip" >
 
         <TextView
             android:id="@+id/animationSpeedText"
@@ -29,12 +28,11 @@
             android:text="@string/animationSpeedText"
             android:textColor="@color/black"
             android:textSize="20sp" />
-        
-        
-        <Space android:layout_width="60dip"
-               android:layout_height="match_parent"/>
-        
-        
+
+        <Space
+            android:layout_width="60dip"
+            android:layout_height="match_parent" />
+
         <EditText
             android:id="@+id/animationSpeedEditText"
             android:layout_width="wrap_content"
@@ -43,18 +41,15 @@
             android:inputType="numberDecimal"
             android:maxLength="5"
             android:textColor="@color/black" >
-
-    
         </EditText>
-        
-        </LinearLayout>
-        
+    </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
-        android:paddingLeft="90dip">
+        android:orientation="horizontal"
+        android:paddingLeft="90dip" >
 
         <ImageButton
             android:id="@+id/slowButton"
@@ -62,9 +57,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/slow"
             android:maxWidth="2dp" />
-        
-                <Space android:layout_width="50dip"
-               android:layout_height="match_parent"/>
+
+        <Space
+            android:layout_width="50dip"
+            android:layout_height="match_parent" />
 
         <ImageButton
             android:id="@+id/quickButton"
@@ -72,7 +68,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/fast"
             android:maxWidth="2dp" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -84,8 +79,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/modelLabel"
-             />
+            android:text="@string/modelLabel" />
 
         <TextView
             android:id="@+id/modelFileNameView"
@@ -113,8 +107,8 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/sourceNumberChangeView"
-            android:textColor="@color/black" 
-            android:textSize="20sp"/>
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/sourceNumberChangeButton"
@@ -125,12 +119,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
         android:paddingLeft="25dip"
-        android:paddingRight="25dip">
+        android:paddingRight="25dip" >
 
         <TextView
             android:id="@+id/rotationSensorTextView"
@@ -140,9 +134,10 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <Space android:layout_width="60dip"
-               android:layout_height="match_parent"/>
-        
+        <Space
+            android:layout_width="60dip"
+            android:layout_height="match_parent" />
+
         <ToggleButton
             android:id="@+id/rotationSensorButton"
             android:layout_width="65dp"
@@ -150,29 +145,29 @@
             android:background="@drawable/toggle_bg"
             android:button="@drawable/toggle_btn"
             android:checked="false" />
-
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
-        android:paddingLeft="25dip" 
-        android:paddingRight="25dip">
+        android:orientation="horizontal"
+        android:paddingLeft="25dip"
+        android:paddingRight="25dip" >
 
         <TextView
             android:id="@+id/accelerometerTextView"
-           android:layout_width="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/accelerometerTextView"
-            android:textColor="@color/black" 
-            android:textSize="20sp"/>
-        
-        <Space android:layout_width="40dip"
-               android:layout_height="match_parent"/>
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="40dip"
+            android:layout_height="match_parent" />
 
         <ToggleButton
             android:id="@+id/accelerometerButton"
@@ -183,31 +178,30 @@
             android:checked="false"
             android:textOff=""
             android:textOn="" />
-
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
         android:paddingLeft="25dip"
         android:paddingRight="25dip" >
 
         <TextView
             android:id="@+id/rotationLockTextView"
-			android:layout_width="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/rotationLockTextView"
-            android:textColor="@color/black" 
-            android:textSize="20sp"/>
-        
-        <Space android:layout_width="20dip"
-               android:layout_height="match_parent"/>
-        
-        
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="20dip"
+            android:layout_height="match_parent" />
+
         <ToggleButton
             android:id="@+id/rotationLockButton"
             android:layout_width="65dp"
@@ -216,15 +210,47 @@
             android:button="@drawable/toggle_btn"
             android:checked="false"
             android:textOff=""
-            android:textOn=""/>
-  
+            android:textOn="" />
     </LinearLayout>
-
+    
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingLeft="25dip"
+        android:paddingRight="25dip" >
+
+        <TextView
+            android:id="@+id/axisShowingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="@string/axisShowingTextView"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="60dip"
+            android:layout_height="match_parent" />
+
+        <ToggleButton
+            android:id="@+id/axisShowingButton"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toggle_bg"
+            android:button="@drawable/toggle_btn"
+            android:checked="false"
+            android:textOff=""
+            android:textOn="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
         android:paddingLeft="80dip" >
 
         <Button
@@ -234,7 +260,7 @@
             android:layout_height="wrap_content"
             android:text="@string/resetButton" />
     </LinearLayout>
-    
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="25dp" />

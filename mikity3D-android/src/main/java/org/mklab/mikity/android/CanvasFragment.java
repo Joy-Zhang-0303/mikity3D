@@ -577,7 +577,22 @@ public class CanvasFragment extends RoboFragment {
    * @param isAxisShowing 表示するならばtrue
    */
   public void setAxisShowing(boolean isAxisShowing) {
+    if (this.root == null) {
+      return;
+    }
     this.root.getConfiguration(0).getBaseCoordinate().setAxisShowing(isAxisShowing);
+  }
+  
+  /**
+   * 座標軸を表示するか判定します。
+   * 
+   * @return 表示するならばtrue
+   */
+  public boolean isAxisShowing() {
+    if (this.root == null) {
+      return false;
+    }
+    return this.root.getConfiguration(0).getBaseCoordinate().isAxisShowing();
   }
 
   /**
