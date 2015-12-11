@@ -108,39 +108,42 @@
             android:text="@string/sourceNumberChangeButton" />
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="30px" >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="25dip"
+        android:paddingRight="25dip">
 
         <TextView
             android:id="@+id/rotationSensorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
             android:text="@string/rotationSensorTextView"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
+        <Space android:layout_width="60dip"
+               android:layout_height="match_parent"/>
+        
         <ToggleButton
             android:id="@+id/rotationSensorButton"
-            android:layout_width="58dp"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/rotationSensorTextView"
-            android:layout_marginRight="18dp"
             android:background="@drawable/toggle_bg"
             android:button="@drawable/toggle_btn"
-            android:checked="false"
-            android:text="@string/rotationSensorButton" />
+            android:checked="false" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="30px" >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="25dip" 
+        android:paddingRight="25dip">
 
         <TextView
             android:id="@+id/accelerometerTextView"
@@ -151,27 +154,29 @@
             android:text="@string/accelerometerTextView"
             android:textColor="@color/black" 
             android:textSize="20sp"/>
+        
+        <Space android:layout_width="40dip"
+               android:layout_height="match_parent"/>
 
         <ToggleButton
             android:id="@+id/accelerometerButton"
-            android:layout_width="58dp"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/rotationSensorTextView"
-            android:layout_marginRight="18dp"
             android:background="@drawable/toggle_bg"
             android:button="@drawable/toggle_btn"
             android:checked="false"
             android:textOff=""
-            android:textOn=""
-            android:text="@string/accelerometerButton" />
+            android:textOn="" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="30px" >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="25dip"
+        android:paddingRight="25dip" >
 
         <TextView
             android:id="@+id/rotationLockTextView"
@@ -183,22 +188,21 @@
             android:textColor="@color/black" 
             android:textSize="20sp"/>
         
+        <Space android:layout_width="20dip"
+               android:layout_height="match_parent"/>
+        
         
         <ToggleButton
             android:id="@+id/rotationLockButton"
-            android:layout_width="58dp"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/rotationSensorTextView"
-            android:layout_marginRight="18dp"
             android:background="@drawable/toggle_bg"
             android:button="@drawable/toggle_btn"
             android:checked="false"
             android:textOff=""
-            android:textOn=""
-            android:text="@string/rotationLockButton" />
+            android:textOn=""/>
   
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
