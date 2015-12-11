@@ -51,6 +51,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+import android.widget.ImageButton;
 
 
 /**
@@ -87,9 +88,9 @@ public class NavigationDrawerFragment extends RoboFragment {
   boolean isSelectedModelFile;
 
   /** アニメーションスピードを早くするためのボタン。 */
-  Button quickButton;
+  ImageButton quickButton;
   /** アニメーションスピードを遅くするためのボタン。 */
-  Button slowButton;
+  ImageButton slowButton;
 
   /** ソースファイルを選択するためのボタン。 */
   List<Button> sourceSelectButtons = new ArrayList<Button>();
@@ -143,7 +144,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
 
   private void createAnimationSpeedComponent(final View mainView) {
-    this.slowButton = (Button)mainView.findViewById(R.id.slowButton);
+    this.slowButton = (ImageButton)mainView.findViewById(R.id.slowButton);
     this.slowButton.setEnabled(false);
     this.slowButton.setOnClickListener(new View.OnClickListener() {
 
@@ -192,7 +193,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       }
     });
 
-    this.quickButton = (Button)mainView.findViewById(R.id.quickButton);
+    this.quickButton = (ImageButton)mainView.findViewById(R.id.quickButton);
     this.quickButton.setEnabled(false);
     this.quickButton.setOnClickListener(new View.OnClickListener() {
 

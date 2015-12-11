@@ -6,22 +6,15 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="30px" >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="30dip"
+        android:paddingRight="30dip"
+        android:paddingTop="15dip"
+        android:paddingBottom="15dip" >
 
-        <EditText
-            android:id="@+id/animationSpeedEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-            android:maxLength="5"
-            android:textColor="@color/black" >
-
-    
-        </EditText>
 
         <TextView
             android:id="@+id/animationSpeedText"
@@ -36,28 +29,51 @@
             android:text="@string/animationSpeedText"
             android:textColor="@color/black"
             android:textSize="20sp" />
+        
+        
+        <Space android:layout_width="60dip"
+               android:layout_height="match_parent"/>
+        
+        
+        <EditText
+            android:id="@+id/animationSpeedEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:maxLength="5"
+            android:textColor="@color/black" >
 
-        <Button
+    
+        </EditText>
+        
+        </LinearLayout>
+        
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="90dip">
+
+        <ImageButton
             android:id="@+id/slowButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/animationSpeedEditText"
-            android:layout_toLeftOf="@+id/animationSpeedText"
-            android:layout_weight="1"
             android:background="@drawable/slow"
             android:maxWidth="2dp" />
+        
+                <Space android:layout_width="50dip"
+               android:layout_height="match_parent"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/quickButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/animationSpeedEditText"
-            android:layout_toRightOf="@+id/animationSpeedText"
-            android:layout_weight="1"
             android:background="@drawable/fast"
             android:maxWidth="2dp" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
