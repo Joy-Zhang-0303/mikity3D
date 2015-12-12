@@ -45,6 +45,11 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
   /** 設定。 */
   private ConfigurationModel configuration;
+  
+//  /** グリッドオブジェクト。 */
+//  private GridObject grid;
+  
+  private JoglGridObject grid; 
 
   /** Y軸周りの回転角度 */
   private float rotationY = 0.0f;
@@ -90,6 +95,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     super(new GLCapabilities(null));
 
     this.configuration = configuration;
+    
+    this.grid = new JoglGridObject(configuration);
 
     addGLEventListener(this);
     addMouseListener(this);
@@ -150,17 +157,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
 
     gl.glScalef(this.scale, this.scale, this.scale);
-
+    
     final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
-    final boolean isGridShowing = this.configuration.getBaseCoordinate().isGridShowing();
-
-    if (isAxisShowing) {
-      drawBaseAxis(gl);
-    }
-
-    if (isGridShowing) {
-      drawGrid(gl);
-    }
 
     if (this.rootObjects != null) {
       for (final JoglGroupObject topGroup : this.rootObjects) {
@@ -168,75 +166,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
         topGroup.display(gl);
       }
     }
-  }
-
-  /**
-   * 色を適用します。
-   * 
-   * @param gl GL　
-   */
-  private void applyColor(GL2 gl, ColorModel color) {
-    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
-  }
-  
-  /**
-   * 絶対座標の座標軸を描画します。
-   * 
-   * @param gl GL
-   */
-  private void drawBaseAxis(GL2 gl) {
-    final float axisMin = -10;
-    final float axisMax = 10;
     
-    // x軸の描画
-    applyColor(gl, new ColorModel("red")); //$NON-NLS-1$
-    gl.glBegin(GL.GL_LINES);
-    gl.glVertex3f(axisMin, 0, 0);
-    gl.glVertex3f(axisMax, 0, 0);
-    gl.glEnd();
-
-    // y軸の描画
-    applyColor(gl, new ColorModel("blue")); //$NON-NLS-1$
-    gl.glBegin(GL.GL_LINES);
-    gl.glVertex3f(0, axisMin, 0);
-    gl.glVertex3f(0, axisMax, 0);
-    gl.glEnd();
-
-    // z軸の描画
-    applyColor(gl, new ColorModel("green")); //$NON-NLS-1$
-    gl.glBegin(GL.GL_LINES);
-    gl.glVertex3f(0, 0, axisMin);
-    gl.glVertex3f(0, 0, axisMax);
-    gl.glEnd();
-  }
-
-  /**
-   * グリッドを描画します。
-   * 
-   * @param gl GL
-   */
-  private void drawGrid(GL2 gl) {
-    applyColor(gl, this.configuration.getBaseCoordinate().getGridColor());
-    
-    final float gridMin = -1f;
-    final float gridMax = 1f;
-    final float gridInterval = this.configuration.getBaseCoordinate().getGridInterval();
-    
-    gl.glBegin(GL.GL_LINES);
-    
-    float y = gridMin;
-    for (int i = 0; y <= gridMax; i++, y = gridMin + i*gridInterval) {
-      gl.glVertex3f(gridMin, y, 0);
-      gl.glVertex3f(gridMax, y, 0);
-    }
-    
-    float x = gridMin;
-    for (int i = 0; x <= gridMax; i++, x = gridMin + i*gridInterval) {
-      gl.glVertex3f(x, gridMin, 0);
-      gl.glVertex3f(x, gridMax, 0);
-    }
-    
-    gl.glEnd();
+    this.grid.display(gl);
   }
 
   /**
@@ -276,6 +207,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     }
 
     this.configuration = configuration;
+    this.grid.setConfiguration(configuration);
+    
     display();
   }
 
