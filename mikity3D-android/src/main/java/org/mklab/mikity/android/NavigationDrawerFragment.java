@@ -111,6 +111,8 @@ public class NavigationDrawerFragment extends RoboFragment {
   ToggleButton accelerometerButton;
   /** 端末の回転を許可するならばtrue。 */
   ToggleButton rotationLockButton;
+  /** グリッドを表示するならばtrue。 */
+  ToggleButton gridShowingButton;
   /** 座標軸を表示するならばtrue。 */
   ToggleButton axisShowingButton;
 
@@ -358,6 +360,18 @@ public class NavigationDrawerFragment extends RoboFragment {
   }
 
   private void createConfigurationComponent(final View mainView) {
+    this.gridShowingButton = (ToggleButton)mainView.findViewById(R.id.gridShowingButton);
+    this.gridShowingButton.setEnabled(false);
+    this.gridShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        NavigationDrawerFragment.this.canvasActivity.canvasFragment.setGridShowing(isChecked);
+      }
+    });
+    
     this.axisShowingButton = (ToggleButton)mainView.findViewById(R.id.axisShowingButton);
     this.axisShowingButton.setEnabled(false);
     this.axisShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -376,6 +390,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    */
   private void updateConfiguration() {
     this.axisShowingButton.setChecked(this.canvasActivity.canvasFragment.isAxisShowing());
+    this.gridShowingButton.setChecked(this.canvasActivity.canvasFragment.isGridShowing());
   }
 
   private void createResetComponent(final View mainView) {
@@ -682,6 +697,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     this.slowButton.setEnabled(enabled);
     this.sourceNumberChangeButton.setEnabled(enabled);
     this.resetToInitialStateButton.setEnabled(enabled);
+    this.gridShowingButton.setEnabled(enabled);
     this.axisShowingButton.setEnabled(enabled);
 
     for (Button button : this.sourceSelectButtons) {

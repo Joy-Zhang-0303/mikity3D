@@ -572,6 +572,31 @@ public class CanvasFragment extends RoboFragment {
   }
   
   /**
+   * グリッドを表示するか設定します。
+   * 
+   * @param isGridShowing 表示するならばtrue
+   */
+  public void setGridShowing(boolean isGridShowing) {
+    if (this.root == null) {
+      return;
+    }
+    this.root.getConfiguration(0).getBaseCoordinate().setGridShowing(isGridShowing);
+  }
+  
+  /**
+   * グリッドを表示するか判定します。
+   * 
+   * @return 表示するならばtrue
+   */
+  public boolean isGridShowing() {
+    if (this.root == null) {
+      return false;
+    }
+    return this.root.getConfiguration(0).getBaseCoordinate().isGridShowing();
+  }
+
+  
+  /**
    * 座標軸を表示するか設定します。
    * 
    * @param isAxisShowing 表示するならばtrue

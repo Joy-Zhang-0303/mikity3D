@@ -9,6 +9,8 @@
     <string name="back">Back</string>
     <string name="button1">Play</string>
     <string name="button2">Stop</string>
+    <string name="gridShowingTextView">Grid Showing</string>
+    <string name="gridShowingButton">gridShowingkButton</string>
     <string name="pause">Pause</string>
     <string name="repeat">Repeat</string>
     <string name="drawer_open">Open</string>

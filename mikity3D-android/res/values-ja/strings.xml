@@ -9,6 +9,8 @@
     <string name="back">戻る</string>
     <string name="button1">再生</string>
     <string name="button2">停止</string>
+    <string name="gridShowingTextView">グリッド表示</string>
+    <string name="gridShowingButton">グリッド表示ボタン</string>
     <string name="pause">一旦停止</string>
     <string name="repeat">繰り返し</string>
     <string name="drawer_open">開く</string>

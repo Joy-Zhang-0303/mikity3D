@@ -46,9 +46,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /** 設定。 */
   private ConfigurationModel configuration;
   
-//  /** グリッドオブジェクト。 */
-//  private GridObject grid;
-  
+  /** グリッド。 */
   private JoglGridObject grid; 
 
   /** Y軸周りの回転角度 */

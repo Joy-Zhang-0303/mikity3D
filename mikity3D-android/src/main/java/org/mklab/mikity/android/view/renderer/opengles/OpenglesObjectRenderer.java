@@ -35,6 +35,9 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
 
   /** 設定。 */
   private ConfigurationModel configuration;
+  
+  /** グリッド。 */
+  private OpenglesGridObject grid; 
 
   /** アスペクト比 。 */
   private float aspect;
@@ -69,10 +72,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     this.glView = glView;
     this.configuration = configuration;
     
-//    this.configuration = new ConfigurationModel();
-//    this.configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
-//    this.configuration.setLookAtPoiint(new LookAtPointModel(0.0f, 0.0f, 0.0f));
-//    this.configuration.setLight(new LightModel(10.0f, 10.0f, 20.0f));
+    this.grid = new OpenglesGridObject(configuration);
   }
 
   /**
@@ -129,15 +129,6 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     gl.glScalef(this.scale, this.scale, this.scale);
 
     final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
-    final boolean isGridShowing = this.configuration.getBaseCoordinate().isGridShowing();
-
-//    if (isAxisShowing) {
-//      drawBaseAxis(gl);
-//    }
-//
-//    if (isGridShowing) {
-//      drawGrid(gl);
-//    }
     
     if (this.rootObjects != null) {
       for (final OpenglesGroupObject topObject : this.rootObjects) {
@@ -145,6 +136,8 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
         topObject.display(gl);
       }
     }
+    
+    this.grid.display(gl);
   }
 
   /**
@@ -188,7 +181,9 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     if (configuration == null) {
       return;
     }
+    
     this.configuration = configuration;
+    this.grid.setConfiguration(configuration);    
     
     updateDisplay();
   }
