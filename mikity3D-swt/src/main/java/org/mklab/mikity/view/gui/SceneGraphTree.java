@@ -48,7 +48,7 @@ public class SceneGraphTree {
   /** シーンを表すグループ。 */
   GroupModel scene;
   
-  /** */
+  /** モデラー。 */
   JoglModeler modeler;
 
   /** 記憶されたオブジェクト。 */
@@ -62,16 +62,9 @@ public class SceneGraphTree {
   Composite parentComposite;
 
   /**
-   * コンストラクター
-   */
-  public SceneGraphTree() {
-    // nothing to do
-  }
-
-  /**
    * 新しく生成された<code>SceneGraphTree</code>オブジェクトを初期化します。
    * 
-   * @param parent コンポジット
+   * @param parent 親
    * @param modeler モデラー
    * @param model モデル
    */
@@ -85,17 +78,17 @@ public class SceneGraphTree {
     this.targetGroup = this.scene;
     this.targetObject= this.scene;
 
-    createTree(parent);
+    createTree();
   }
 
   /**
-   * ツリーを生成する
+   * ツリーを生成します。
    * 
-   * @param parent
+   * @param parent 親
    */
-  private void createTree(final Composite parent) {
-    parent.setLayout(new GridLayout(1, true));
-    this.tree = new Tree(parent, SWT.NONE);
+  private void createTree() {
+    this.parentComposite.setLayout(new GridLayout(1, true));
+    this.tree = new Tree(this.parentComposite, SWT.NONE);
     final GridData data = new GridData(GridData.FILL_BOTH);
     this.tree.setLayoutData(data);
 
@@ -119,18 +112,18 @@ public class SceneGraphTree {
       @Override
       public void keyPressed(KeyEvent arg0) {
         if (arg0.keyCode == SWT.DEL) {
-          removeSelectedItem(parent);
+          removeSelectedItem();
         }
       }
     });
 
-    createPopupMenu(parent);
+    createPopupMenu();
   }
 
   /**
    * 選択されたitemを削除します。 
    */
-  void removeSelectedItem(Composite parent) {
+  void removeSelectedItem() {
     final TreeItem[] selectedItems = SceneGraphTree.this.tree.getSelection();
     if (selectedItems.length == 0) {
       return;
@@ -146,7 +139,7 @@ public class SceneGraphTree {
     final TreeItem parentItem = selectedItem.getParentItem();
 
     if (parentItem.getText().equals("scene")) { //$NON-NLS-1$
-      final MessageBox message = new MessageBox(parent.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
+      final MessageBox message = new MessageBox(this.parentComposite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
       message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
       final int result = message.open();
       if (result == SWT.NO) {
@@ -157,7 +150,7 @@ public class SceneGraphTree {
       selectedItem.dispose();
     } else {
       final GroupModel group = (GroupModel)parentItem.getData();
-      if (removeObject(group, selectedData, parent)) {
+      if (removeObject(group, selectedData)) {
         selectedItem.dispose();
       }
     }
@@ -171,8 +164,8 @@ public class SceneGraphTree {
    * 
    * @param parent コンポジット
    */
-  private void createPopupMenu(final Composite parent) {
-    final Menu menu = new Menu(parent.getShell(), SWT.POP_UP);
+  private void createPopupMenu() {
+    final Menu menu = new Menu(this.parentComposite.getShell(), SWT.POP_UP);
     this.tree.setMenu(menu);
 
     final MenuItem addGroup = new MenuItem(menu, SWT.POP_UP);
@@ -303,7 +296,7 @@ public class SceneGraphTree {
           SceneGraphTree.this.bufferedObject = (ObjectModel)SceneGraphTree.this.targetObject;
         }
         
-        removeSelectedItem(parent);
+        removeSelectedItem();
       }
     });
 
@@ -355,7 +348,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        removeSelectedItem(parent);
+        removeSelectedItem();
       }
     });
     
@@ -535,11 +528,11 @@ public class SceneGraphTree {
    * 
    * @return モデルを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
    */
-  protected boolean removeObject(GroupModel group, Object object, Composite parent) {
+  boolean removeObject(GroupModel group, Object object) {
     if (object instanceof ObjectModel) {
       group.remove((ObjectModel)object);
     } else if (object instanceof GroupModel) {
-      final MessageBox message = new MessageBox(parent.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
+      final MessageBox message = new MessageBox(this.parentComposite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
       message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
       message.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
       int result = message.open();
@@ -602,7 +595,7 @@ public class SceneGraphTree {
   public void fillTree() {
     clearTree();
     
-    TreeItem sceneItem = new TreeItem(this.tree, SWT.NONE);
+    final TreeItem sceneItem = new TreeItem(this.tree, SWT.NONE);
     sceneItem.setText("scene"); //$NON-NLS-1$
     sceneItem.setData(this.scene);
     
