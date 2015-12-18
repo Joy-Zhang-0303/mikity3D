@@ -35,21 +35,23 @@ import org.mklab.mikity.view.gui.editor.TransformationEditor;
  * シーングラフを表すクラスです。
  */
 public class SceneGraphTree {
-  /** */
+  /** 親コンポーネント。 */
+  Composite parentComposite;
+  /** ツリー。 */
   Tree tree;
-  /** */
-  SceneModel model;
-
-  /** 選択されているオブジェクト。 */
-  Object targetObject = null;
-  /** 選択されているグループ。 */
-  GroupModel targetGroup = null;
-  
-  /** シーンを表すグループ。 */
-  GroupModel scene;
   
   /** モデラー。 */
   JoglModeler modeler;
+
+  /** シーンモデル。 */
+  SceneModel model;
+  /** シーンを表すグループ。 */
+  GroupModel scene;
+
+  /** 選択されているオブジェクト。 */
+  Object selectedObject = null;
+  /** 選択されているグループ。 */
+  GroupModel selectedGroup = null;
 
   /** 記憶されたオブジェクト。 */
   ObjectModel bufferedObject = null;
@@ -58,13 +60,12 @@ public class SceneGraphTree {
   
   /** オブジェクトを修正中ならばtrue */
   boolean isModifyingObject = false;
-  
-  Composite parentComposite;
+
 
   /**
    * 新しく生成された<code>SceneGraphTree</code>オブジェクトを初期化します。
    * 
-   * @param parent 親
+   * @param parent 親コンポーネント
    * @param modeler モデラー
    * @param model モデル
    */
@@ -75,8 +76,8 @@ public class SceneGraphTree {
     this.scene = new GroupModel("scene"); //$NON-NLS-1$
     this.scene.setGroups(model.getGroups());
 
-    this.targetGroup = this.scene;
-    this.targetObject= this.scene;
+    this.selectedGroup = this.scene;
+    this.selectedObject= this.scene;
 
     createTree();
   }
@@ -92,7 +93,7 @@ public class SceneGraphTree {
     final GridData data = new GridData(GridData.FILL_BOTH);
     this.tree.setLayoutData(data);
 
-    fillTree();
+    bindModelToTree();
 
     // TODO
     // new DragAndDropEnabler(this.xmlTree);
@@ -101,7 +102,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        setSelectedObjectAsTarget();
+        updatetSelectedObject();
         SceneGraphTree.this.modeler.updateRenderer(); 
         SceneGraphTree.this.modeler.updatePropertyEditor();
       }
@@ -175,10 +176,10 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final GroupModel group = new GroupModel(Messages.getString("SceneGraphTree.37")); //$NON-NLS-1$
-        if (SceneGraphTree.this.targetGroup == SceneGraphTree.this.scene) {
+        if (SceneGraphTree.this.selectedGroup == SceneGraphTree.this.scene) {
           SceneGraphTree.this.model.addGroup(group);
         } else {
-          SceneGraphTree.this.targetGroup.add(group);
+          SceneGraphTree.this.selectedGroup.add(group);
         }
         updateTree();
       }
@@ -191,7 +192,7 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = BoxModel.createDefault();
-        SceneGraphTree.this.targetGroup.add(primitive);
+        SceneGraphTree.this.selectedGroup.add(primitive);
         updateTree();
       }
     });
@@ -203,7 +204,7 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = CylinderModel.createDefault();
-        SceneGraphTree.this.targetGroup.add(primitive);
+        SceneGraphTree.this.selectedGroup.add(primitive);
         updateTree();
       }
     });
@@ -215,7 +216,7 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = SphereModel.createDefault();
-        SceneGraphTree.this.targetGroup.add(primitive);
+        SceneGraphTree.this.selectedGroup.add(primitive);
         updateTree();
       }
     });
@@ -227,7 +228,7 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = ConeModel.createDefault();
-        SceneGraphTree.this.targetGroup.add(primitive);
+        SceneGraphTree.this.selectedGroup.add(primitive);
         updateTree();
       }
     });
@@ -239,7 +240,7 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = CapsuleModel.createDefault();
-        SceneGraphTree.this.targetGroup.add(primitive);
+        SceneGraphTree.this.selectedGroup.add(primitive);
         updateTree();
       }
     });
@@ -251,7 +252,7 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = TriangleModel.createDefault();
-        SceneGraphTree.this.targetGroup.add(primitive);
+        SceneGraphTree.this.selectedGroup.add(primitive);
         updateTree();
       }
     });
@@ -263,7 +264,7 @@ public class SceneGraphTree {
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
         final ObjectModel primitive = QuadrangleModel.createDefault();
-        SceneGraphTree.this.targetGroup.add(primitive);
+        SceneGraphTree.this.selectedGroup.add(primitive);
         updateTree();
       }
     });
@@ -274,8 +275,8 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        if (SceneGraphTree.this.targetObject instanceof CompositionModel) {
-          final TransformationEditor dialog = new TransformationEditor(SceneGraphTree.this.parentComposite.getShell(), (CompositionModel)SceneGraphTree.this.targetObject, SceneGraphTree.this.modeler);
+        if (SceneGraphTree.this.selectedObject instanceof CompositionModel) {
+          final TransformationEditor dialog = new TransformationEditor(SceneGraphTree.this.parentComposite.getShell(), (CompositionModel)SceneGraphTree.this.selectedObject, SceneGraphTree.this.modeler);
           dialog.open();
           updateTree();
         }
@@ -288,12 +289,12 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        if (SceneGraphTree.this.targetObject instanceof GroupModel) {
-          SceneGraphTree.this.bufferedGroup = SceneGraphTree.this.targetGroup;
+        if (SceneGraphTree.this.selectedObject instanceof GroupModel) {
+          SceneGraphTree.this.bufferedGroup = SceneGraphTree.this.selectedGroup;
           SceneGraphTree.this.bufferedObject = null;
         } else {
           SceneGraphTree.this.bufferedGroup = null;
-          SceneGraphTree.this.bufferedObject = (ObjectModel)SceneGraphTree.this.targetObject;
+          SceneGraphTree.this.bufferedObject = (ObjectModel)SceneGraphTree.this.selectedObject;
         }
         
         removeSelectedItem();
@@ -306,12 +307,12 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        if (SceneGraphTree.this.targetObject instanceof GroupModel) {
-          SceneGraphTree.this.bufferedGroup = SceneGraphTree.this.targetGroup;
+        if (SceneGraphTree.this.selectedObject instanceof GroupModel) {
+          SceneGraphTree.this.bufferedGroup = SceneGraphTree.this.selectedGroup;
           SceneGraphTree.this.bufferedObject = null;
         } else {
           SceneGraphTree.this.bufferedGroup = null;
-          SceneGraphTree.this.bufferedObject = (ObjectModel)SceneGraphTree.this.targetObject;
+          SceneGraphTree.this.bufferedObject = (ObjectModel)SceneGraphTree.this.selectedObject;
         }
       }
     });
@@ -322,21 +323,21 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        if ((SceneGraphTree.this.targetObject instanceof GroupModel) == false) {
+        if ((SceneGraphTree.this.selectedObject instanceof GroupModel) == false) {
           return;
         }
         
         if (SceneGraphTree.this.bufferedGroup != null) {
-          if (SceneGraphTree.this.targetGroup == SceneGraphTree.this.scene) {
+          if (SceneGraphTree.this.selectedGroup == SceneGraphTree.this.scene) {
             SceneGraphTree.this.model.addGroup(SceneGraphTree.this.bufferedGroup.clone());
           } else {
-            SceneGraphTree.this.targetGroup.add(SceneGraphTree.this.bufferedGroup.clone());
+            SceneGraphTree.this.selectedGroup.add(SceneGraphTree.this.bufferedGroup.clone());
           }
           updateTree();
         }
         
         if (SceneGraphTree.this.bufferedObject != null) {
-          SceneGraphTree.this.targetGroup.add(SceneGraphTree.this.bufferedObject.createClone());
+          SceneGraphTree.this.selectedGroup.add(SceneGraphTree.this.bufferedObject.createClone());
           updateTree();
         }
       }
@@ -421,22 +422,22 @@ public class SceneGraphTree {
   }
 
   /**
-   * 選択されているオブジェクトをターゲットとして設定します。
+   * 選択されているオブジェクトを更新します。
    */
-  public void setSelectedObjectAsTarget() {
+  public void updatetSelectedObject() {
     if (this.tree.getSelectionCount() == 0) {
       return;
     }
 
-    this.targetObject = this.tree.getSelection()[0].getData();
+    this.selectedObject = this.tree.getSelection()[0].getData();
 
-    if (this.targetObject instanceof GroupModel) {
-      this.targetGroup = (GroupModel)this.targetObject;
+    if (this.selectedObject instanceof GroupModel) {
+      this.selectedGroup = (GroupModel)this.selectedObject;
     } else {
-      this.targetGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
+      this.selectedGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
     }
     
-    makeObjectNontransparent(this.targetObject);
+    makeObjectNontransparent(this.selectedObject);
   }
 
   /**
@@ -498,8 +499,8 @@ public class SceneGraphTree {
    * 
    * @return 選択されているグループ
    */
-  public GroupModel getTargetGroup() {
-    return this.targetGroup;
+  public GroupModel getSelectedGroup() {
+    return this.selectedGroup;
   }
   
   /**
@@ -507,15 +508,15 @@ public class SceneGraphTree {
    * 
    * @return 選択されているオブジェクト
    */
-  public Object getTargetObject() {
-    return this.targetObject;
+  public Object getSelectedObject() {
+    return this.selectedObject;
   }
 
   /**
    * ツリーとビューアを更新します。
    */
   public void updateTree() {
-    fillTree();
+    bindModelToTree();
     this.modeler.updateRenderer();
     this.modeler.updatePropertyEditor();
   }
@@ -550,7 +551,7 @@ public class SceneGraphTree {
    * @param parent 親
    * @param groups グループ
    */
-  private void addTreeItem(TreeItem parent, List<GroupModel> groups) {
+  private void addItemToTree(TreeItem parent, List<GroupModel> groups) {
     for (final GroupModel group : groups) {
       final TreeItem groupItem;
       if (parent.getText().equals("scene")) { //$NON-NLS-1$
@@ -581,7 +582,7 @@ public class SceneGraphTree {
         }
       }
       
-      addTreeItem(groupItem, group.getGroups());
+      addItemToTree(groupItem, group.getGroups());
     }
     
     if (parent != null) {
@@ -590,16 +591,16 @@ public class SceneGraphTree {
   }
 
   /**
-   * シーングラフツリーにモデルを追加します。
+   * モデルをシーングラフにバインドし(結びつけ)ます。
    */
-  public void fillTree() {
+  public void bindModelToTree() {
     clearTree();
     
     final TreeItem sceneItem = new TreeItem(this.tree, SWT.NONE);
     sceneItem.setText("scene"); //$NON-NLS-1$
     sceneItem.setData(this.scene);
     
-    addTreeItem(sceneItem, this.model.getGroups());
+    addItemToTree(sceneItem, this.model.getGroups());
   }
 
   /**
@@ -612,28 +613,28 @@ public class SceneGraphTree {
   }
 
   /**
-   * ツリーを消去します。
+   * ツリーから全てのItemを消去します。
    */
   public void clearTree() {
     if (this.tree.getItemCount() == 0) {
       return;
     }
     
-    for (TreeItem item : this.tree.getItems()) {
-      clearTreeItems(item);
+    for (final TreeItem item : this.tree.getItems()) {
+      removeItemsFromTree(item);
       item.dispose();
     }
   }
 
   /**
-   * ツリーのノードを削除します。
+   * ツリーからItemを削除します。
    * 
-   * @param items ノード郡
+   * @param items Item郡
    */
-  private void clearTreeItems(TreeItem items) {
-    for (TreeItem item : items.getItems()) {
+  private void removeItemsFromTree(TreeItem items) {
+    for (final TreeItem item : items.getItems()) {
       if (item.getItemCount() != 0) {
-        clearTreeItems(item);
+        removeItemsFromTree(item);
       }
       item.dispose();
     }
@@ -646,7 +647,7 @@ public class SceneGraphTree {
    */
   public void setModel(SceneModel model) {
     this.model = model;
-    fillTree();
+    bindModelToTree();
   }
 
   /**

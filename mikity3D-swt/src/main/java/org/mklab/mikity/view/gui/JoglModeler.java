@@ -130,7 +130,7 @@ public class JoglModeler extends Composite {
    * シーングラフツリーにプリミティブのデータを追加します。
    */
   public void fillTree() {
-    this.tree.fillTree();
+    this.tree.bindModelToTree();
   }
 
   /**
@@ -149,7 +149,7 @@ public class JoglModeler extends Composite {
    * プロパティエディタを更新します。
    */
   public void updatePropertyEditor() {
-    final Object target = this.tree.getTargetObject();
+    final Object target = this.tree.getSelectedObject();
     this.editor.setTarget(target);
     this.editor.updateEditor();
   }
@@ -188,7 +188,7 @@ public class JoglModeler extends Composite {
    * @return 選択されているグループ
    */
   public GroupModel getTargetGroup() {
-    return this.tree.getTargetGroup();
+    return this.tree.getSelectedGroup();
   }
   
   /**
