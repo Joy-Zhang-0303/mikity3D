@@ -31,9 +31,12 @@ public class QuadrangleToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final GroupModel group = this.modeler.getTargetGroup();
-    final ObjectModel primitive = QuadrangleModel.createDefault();
-    group.add(primitive);
+    final GroupModel group = this.modeler.getSelectedGroup();
+    final ObjectModel object = QuadrangleModel.createDefault();
+    
+    this.modeler.setSelectedObject(object);
+    
+    group.add(object);
 
     update();
     

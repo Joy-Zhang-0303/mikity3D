@@ -31,9 +31,12 @@ public class TriangleToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final GroupModel group = this.modeler.getTargetGroup();
-    final ObjectModel primitive = TriangleModel.createDefault();
-    group.add(primitive);
+    final GroupModel group = this.modeler.getSelectedGroup();
+    final ObjectModel object = TriangleModel.createDefault();
+    
+    this.modeler.setSelectedObject(object);
+    
+    group.add(object);
 
     update();
     

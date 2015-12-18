@@ -27,9 +27,11 @@ public class CapsuleToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final GroupModel group = this.modeler.getTargetGroup();
-    final ObjectModel primitive = CapsuleModel.createDefault();    
-    group.add(primitive);
+    final GroupModel group = this.modeler.getSelectedGroup();
+    final ObjectModel object = CapsuleModel.createDefault();    
+    group.add(object);
+    
+    this.modeler.setSelectedObject(object);
     
     update();
     

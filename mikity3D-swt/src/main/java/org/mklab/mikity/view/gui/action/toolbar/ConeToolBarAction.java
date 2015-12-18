@@ -26,9 +26,12 @@ public class ConeToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final GroupModel group = this.modeler.getTargetGroup();
-    final ObjectModel primitive = ConeModel.createDefault();
-    group.add(primitive);
+    final GroupModel group = this.modeler.getSelectedGroup();
+    final ObjectModel object = ConeModel.createDefault();
+    group.add(object);
+    
+    this.modeler.setSelectedObject(object);
+    
     update();
     
     this.modeler.setIsChanged(true);

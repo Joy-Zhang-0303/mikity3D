@@ -27,9 +27,12 @@ public class SphereToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final GroupModel group = this.modeler.getTargetGroup();
-    final ObjectModel primitive = SphereModel.createDefault();
-    group.add(primitive);
+    final GroupModel group = this.modeler.getSelectedGroup();
+    final ObjectModel object = SphereModel.createDefault();
+    
+    this.modeler.setSelectedObject(object);
+    
+    group.add(object);
     
     update();
     

@@ -125,11 +125,29 @@ public class JoglModeler extends Composite {
     updateRenderer();
     updatePropertyEditor();
   }
+  
+  /**
+   * 選択されているグループを設定します。
+   * 
+   * @param selectedGroup 選択されているグループ
+   */
+  public void setSelectedGroup(GroupModel selectedGroup) {
+    this.tree.setSelectedGroup(selectedGroup);
+  }
+  
+  /**
+   * 選択されているオブジェクトを設定します。
+   * 
+   * @param selectedObject 選択されているオブジェクト
+   */
+  public void setSelectedObject(Object selectedObject) {
+    this.tree.setSelectedObject(selectedObject);
+  }
 
   /**
-   * シーングラフツリーにプリミティブのデータを追加します。
+   * モデルをシーングラフツリーにバインドし(結びつけ)ます。
    */
-  public void fillTree() {
+  public void bindModelToTree() {
     this.tree.bindModelToTree();
   }
 
@@ -187,7 +205,7 @@ public class JoglModeler extends Composite {
    * 
    * @return 選択されているグループ
    */
-  public GroupModel getTargetGroup() {
+  public GroupModel getSelectedGroup() {
     return this.tree.getSelectedGroup();
   }
   

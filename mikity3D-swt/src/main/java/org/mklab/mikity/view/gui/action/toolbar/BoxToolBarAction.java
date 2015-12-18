@@ -26,9 +26,12 @@ public class BoxToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final GroupModel group = this.modeler.getTargetGroup();
-    final ObjectModel primitive = BoxModel.createDefault();
-    group.add(primitive);
+    final GroupModel group = this.modeler.getSelectedGroup();
+    final ObjectModel object = BoxModel.createDefault();
+    group.add(object);
+    
+    this.modeler.setSelectedObject(object);
+    
     update();
     
     this.modeler.setIsChanged(true);

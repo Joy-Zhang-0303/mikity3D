@@ -52,7 +52,7 @@ public class ModelPropertyEditor {
    */
   private void createEditor(final Composite localParent) {
     localParent.setLayout(new GridLayout(1, true));
-    this.editor = new GroupEditor(localParent, this.modeler.getTargetGroup(), true, null, this.modeler);
+    this.editor = new GroupEditor(localParent, this.modeler.getSelectedGroup(), true, null, this.modeler);
   }
   
   /**
@@ -73,7 +73,7 @@ public class ModelPropertyEditor {
       }
     }
     
-    this.editor = ModelEditorFactory.create(this.target, this.parent, this.modeler.getTargetGroup(), this.tree, this.modeler);
+    this.editor = ModelEditorFactory.create(this.target, this.parent, this.modeler.getSelectedGroup(), this.tree, this.modeler);
     
     this.parent.layout();
   }

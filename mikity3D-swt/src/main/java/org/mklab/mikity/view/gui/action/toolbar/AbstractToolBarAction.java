@@ -6,6 +6,7 @@
 package org.mklab.mikity.view.gui.action.toolbar;
 
 import org.eclipse.jface.action.Action;
+import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.view.gui.JoglModeler;
 import org.mklab.mikity.view.gui.ModelingWindow;
 
@@ -40,12 +41,30 @@ public abstract class AbstractToolBarAction extends Action {
   public void setModeler(JoglModeler modeler) {
     this.modeler = modeler;
   }
+  
+  /**
+   * 選択されているグループを設定します。
+   * 
+   * @param selectedGroup 選択されているグループ
+   */
+  public void setSelectedGroup(GroupModel selectedGroup) { 
+    this.modeler.setSelectedGroup(selectedGroup);
+  }
+  
+  /**
+   * 選択されているオブジェクトを設定します。
+   * 
+   * @param selectedObject 選択されているオブジェクト
+   */
+  public void setSelectedObject(Object selectedObject) { 
+    this.modeler.setSelectedObject(selectedObject);
+  }
 
   /**
    * 追加したオブジェクトの情報をキャンバスとツリーに追加します。
    */
   protected void update() {
-    this.modeler.fillTree();
+    this.modeler.bindModelToTree();
     this.modeler.updateRenderer();
     this.modeler.updatePropertyEditor();
   }

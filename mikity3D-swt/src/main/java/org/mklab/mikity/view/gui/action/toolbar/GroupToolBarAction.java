@@ -26,8 +26,12 @@ public class GroupToolBarAction extends AbstractToolBarAction {
     final GroupModel group = new GroupModel();
     group.setName(Messages.getString("GroupToolBarAction.1")); //$NON-NLS-1$
     
-    final GroupModel targetGroup = this.modeler.getTargetGroup();
-    targetGroup.add(group);
+    final GroupModel selectedGroup = this.modeler.getSelectedGroup();
+    selectedGroup.add(group);
+    
+    this.modeler.setSelectedGroup(group);
+    this.modeler.setSelectedObject(group);
+    
     update();
     
     this.modeler.setIsChanged(true);

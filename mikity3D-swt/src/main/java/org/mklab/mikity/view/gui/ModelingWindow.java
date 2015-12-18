@@ -281,7 +281,7 @@ public class ModelingWindow extends ApplicationWindow {
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     
     this.modeler.setIsChanged(true);
-    this.modeler.fillTree();
+    this.modeler.bindModelToTree();
     this.modeler.updateRenderer();
     this.modeler.updatePropertyEditor();
   }

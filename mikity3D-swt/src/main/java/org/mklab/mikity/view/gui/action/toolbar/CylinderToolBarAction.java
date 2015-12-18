@@ -27,9 +27,12 @@ public class CylinderToolBarAction extends AbstractToolBarAction {
    */
   @Override
   public void run() {
-    final GroupModel group = this.modeler.getTargetGroup();
-    final ObjectModel primitive = CylinderModel.createDefault();    
-    group.add(primitive);
+    final GroupModel group = this.modeler.getSelectedGroup();
+    final ObjectModel object = CylinderModel.createDefault();
+    
+    this.modeler.setSelectedObject(object);
+    
+    group.add(object);
     
     update();
     
