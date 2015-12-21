@@ -3,7 +3,7 @@
     android:id="@+id/layout_fragment_set_column"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000001"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -11,18 +11,19 @@
         android:id="@+id/layout_groupname_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000001"
+        android:background="@color/white"
         android:orientation="horizontal" >
-        
+
         <Button
-            android:id="@+id/rootButton"
+            android:id="@+id/backButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:text="@string/back" />
     </LinearLayout>
-	<ListView
+
+    <ListView
         android:id="@+id/list_view_source_number"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >

@@ -50,7 +50,7 @@ public class SourceNumberFragment extends RoboFragment {
     this.listView = (ListView)view.findViewById(R.id.list_view_source_number);
     configureListView();
     
-    final Button backButton = (Button)view.findViewById(R.id.rootButton);
+    final Button backButton = (Button)view.findViewById(R.id.backButton);
     backButton.setOnClickListener(new OnClickListener() {
 
       /**
