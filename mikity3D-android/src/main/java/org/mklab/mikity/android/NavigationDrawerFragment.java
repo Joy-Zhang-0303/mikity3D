@@ -254,7 +254,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       sources.addView(source);
 
       final Button selectButton = (Button)source.findViewById(R.id.sourceSelectButton);
-      selectButton.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+      selectButton.setText(getString(R.string.source) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sourceSelectButtons.add(selectButton);
 
       selectButton.setEnabled(false);
@@ -488,7 +488,7 @@ public class NavigationDrawerFragment extends RoboFragment {
       sources.addView(source);
 
       final Button selectButton = (Button)source.findViewById(R.id.sampleSourceSelectButton);
-      selectButton.setText("Source(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+      selectButton.setText(getString(R.string.source) +  "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sampleSourceSelectButtons.add(selectButton);
 
       selectButton.setEnabled(false);

@@ -60,7 +60,7 @@ public class CanvasActivity extends RoboFragmentActivity {
     setContentView(R.layout.canvas);
     
     final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
-    this.drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.menu, R.string.drawer_open, R.string.drawer_close);
+    this.drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.menu, R.string.open, R.string.close);
     this.drawerToggle.syncState();
     drawerLayout.setDrawerListener(this.drawerToggle);
     

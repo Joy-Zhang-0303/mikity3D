@@ -29,7 +29,7 @@ public class AlertDialogFragment extends DialogFragment {
   public Dialog onCreateDialog(Bundle savedInstanceState) {
     final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setMessage(this.message);
-    builder.setPositiveButton("Close", new DialogInterface.OnClickListener() { //$NON-NLS-1$
+    builder.setPositiveButton(getString(R.string.close), new DialogInterface.OnClickListener() { //$NON-NLS-1$
           /**
            * {@inheritDoc}
            */

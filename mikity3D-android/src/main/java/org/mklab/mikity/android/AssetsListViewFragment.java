@@ -330,19 +330,6 @@ public class AssetsListViewFragment extends RoboFragment {
     return false;
   }
 
-//  /**
-//   * 
-//   */
-//  public void commitFragmentTransaction() {
-//    final FragmentManager manager = getFragmentManager();
-//    final FragmentTransaction transaction = manager.beginTransaction();
-//    final NavigationDrawerFragment fragment = new NavigationDrawerFragment();
-//
-//    transaction.replace(R.id.assets_list_layout, fragment);
-//    transaction.addToBackStack(null);
-//    transaction.commit();
-//  }
-
   /**
    * フラグメントマネージャを設定します。
    * 

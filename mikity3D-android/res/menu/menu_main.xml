@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/menu_play"
-        android:title="@string/button1"
+        android:title="@string/play"
         android:showAsAction="always" android:icon="@drawable/play"/>
     
     <item
         android:id="@+id/menu_stop"
-        android:title="@string/button2"
+        android:title="@string/stop"
         android:showAsAction="always" android:icon="@drawable/stop"/>
     
     <item
