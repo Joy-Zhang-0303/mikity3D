@@ -38,7 +38,7 @@ public class SourceNumberFragment extends RoboFragment {
   GroupManager parentGroupManager;
 
   /** NavigationDrawerFragment */
-  private NavigationDrawerFragment fragment;
+  private NavigationDrawerFragment parentFragment;
   List<Integer> targetNumbers = new ArrayList<Integer>();
 
   /**
@@ -76,7 +76,7 @@ public class SourceNumberFragment extends RoboFragment {
    * リストビューをアダプタに登録し、リストの処理します。
    */
   void configureListView() {
-    final SourceNumberAdapter adapter = new SourceNumberAdapter(this.getActivity(), R.layout.list_group_name, this.groupManagers, this.fragment, this.targetNumbers);
+    final SourceNumberAdapter adapter = new SourceNumberAdapter(this.getActivity(), R.layout.list_group_name, this.groupManagers, this.parentFragment, this.targetNumbers);
     this.listView.setAdapter(adapter);
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -102,19 +102,19 @@ public class SourceNumberFragment extends RoboFragment {
   /**
    * グループマネージャーとそのリストを初期化します。
    * 
-   * @param groupManager GroupManager
+   * @param parentGroupManager GroupManager
    */
-  public void setGroupManager(GroupManager groupManager) {
-    this.parentGroupManager = groupManager;
-    this.groupManagers = groupManager.getItems();
+  public void setParentGroupManager(GroupManager parentGroupManager) {
+    this.parentGroupManager = parentGroupManager;
+    this.groupManagers = parentGroupManager.getItems();
   }
 
   /**
    * NavigationDrawerFragmentを設定します。
    * 
-   * @param fragment NavigationDrawerFragment
+   * @param parentFragment NavigationDrawerFragment
    */
-  public void setNavigationDrawerFragment(NavigationDrawerFragment fragment) {
-    this.fragment = fragment;
+  public void setParentFragment(NavigationDrawerFragment parentFragment) {
+    this.parentFragment = parentFragment;
   }
 }

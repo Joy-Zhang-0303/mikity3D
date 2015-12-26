@@ -306,8 +306,8 @@ public class NavigationDrawerFragment extends RoboFragment {
         final FragmentTransaction transaction = manager.beginTransaction();
         final SourceNumberFragment fragment = new SourceNumberFragment();
         if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
-          fragment.setGroupManager(getGroupManager());
-          fragment.setNavigationDrawerFragment(NavigationDrawerFragment.this);
+          fragment.setParentGroupManager(getGroupManager());
+          fragment.setParentFragment(NavigationDrawerFragment.this);
 
           transaction.replace(R.id.fragment_navigation_drawer, fragment);
           transaction.addToBackStack(null);
@@ -725,7 +725,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     final List<GroupModel> topGroups = scene.getGroups();
     GroupModel group = topGroups.get(0);
 
-    for (Integer targetNumber : targetNumbers) {
+    for (final Integer targetNumber : targetNumbers) {
       group = group.getGroups().get(targetNumber.intValue());
     }
 
