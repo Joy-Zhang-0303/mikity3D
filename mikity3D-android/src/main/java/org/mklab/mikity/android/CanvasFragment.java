@@ -378,7 +378,7 @@ public class CanvasFragment extends RoboFragment {
   void showAlertMessageInDialog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
     dialog.setMessage(message);
-    dialog.show(getFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
+    dialog.show(getActivity().getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**

@@ -302,7 +302,7 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        final FragmentManager manager = getFragmentManager();
+        final FragmentManager manager = NavigationDrawerFragment.this.canvasActivity.getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
         final SourceNumberFragment fragment = new SourceNumberFragment();
         if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
@@ -415,12 +415,13 @@ public class NavigationDrawerFragment extends RoboFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        final FragmentManager manager = getFragmentManager();
+        final FragmentManager manager = NavigationDrawerFragment.this.canvasActivity.getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
         final AssetsListViewFragment fragment = new AssetsListViewFragment(null);
         fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         fragment.setIsModelData(true);
         fragment.setFragmentManager(manager);
+
         transaction.replace(R.id.fragment_navigation_drawer, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -498,7 +499,7 @@ public class NavigationDrawerFragment extends RoboFragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          final FragmentManager manager = getFragmentManager();
+          final FragmentManager manager = NavigationDrawerFragment.this.canvasActivity.getSupportFragmentManager();
           final FragmentTransaction transaction = manager.beginTransaction();
           final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
           fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
@@ -685,7 +686,7 @@ public class NavigationDrawerFragment extends RoboFragment {
   void showAlertMessageInDialog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
     dialog.setMessage(message);
-    dialog.show(getFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
+    dialog.show(this.canvasActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**

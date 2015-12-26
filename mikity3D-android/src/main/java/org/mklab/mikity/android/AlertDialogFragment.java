@@ -5,11 +5,11 @@
  */
 package org.mklab.mikity.android;
 
+import roboguice.fragment.RoboDialogFragment;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 
 
 /**
@@ -18,7 +18,7 @@ import android.support.v4.app.DialogFragment;
  * @author soda
  * @version $Revision$, 2015/01/16
  */
-public class AlertDialogFragment extends DialogFragment {
+public class AlertDialogFragment extends RoboDialogFragment {
   /** ダイアログに表示するメッセージ。 */
   private String message;
 

@@ -155,7 +155,7 @@ public class AssetsListViewFragment extends RoboFragment {
   void showAlertMessageInDailog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
     dialog.setMessage(message);
-    dialog.show(getFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
+    dialog.show(this.canvasActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**
