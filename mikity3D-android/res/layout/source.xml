@@ -15,7 +15,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sourceLabel" />
+        android:text="@string/source" />
 
     <TextView
         android:id="@+id/sourceFileNameView"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:maxLength="30"
         android:textColor="@color/black"
-        android:text="@string/sourceFileNameView" />
+        android:text="@string/fileName" />
 
     <Button
         android:id="@+id/sourceReloadButton"

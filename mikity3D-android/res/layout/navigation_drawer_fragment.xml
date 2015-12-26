@@ -79,14 +79,14 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/modelLabel" />
+            android:text="@string/model" />
 
         <TextView
             android:id="@+id/modelFileNameView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="30"
-            android:text="@string/modelFileNameView"
+            android:text="@string/fileName"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
@@ -115,7 +115,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sourceNumberChangeButton" />
+            android:text="@string/edit" />
     </LinearLayout>
 
     <LinearLayout
@@ -306,7 +306,7 @@
             android:id="@+id/sampleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sampleLabel"
+            android:text="@string/sample"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
@@ -320,14 +320,14 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sampleModelLabel" />
+            android:text="@string/model" />
 
         <TextView
             android:id="@+id/sampleModelFileNameView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="30"
-            android:text="@string/sampleModelFileNameView"
+            android:text="@string/fileName"
             android:textColor="@color/black"
             android:textSize="15sp" />
     </LinearLayout>

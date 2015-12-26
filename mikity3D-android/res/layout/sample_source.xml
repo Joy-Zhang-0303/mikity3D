@@ -15,7 +15,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sampleSourceLabel" />
+        android:text="@string/source" />
     
      <TextView
         android:id="@+id/sampleSourceFileNameView"
@@ -23,6 +23,6 @@
         android:layout_height="wrap_content"
         android:maxLength="30"
         android:textColor="@color/black"
-        android:text="@string/sampleSourceFileNameView" />
+        android:text="@string/fileName" />
 
 </LinearLayout>
