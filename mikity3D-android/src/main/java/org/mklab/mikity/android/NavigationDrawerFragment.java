@@ -521,7 +521,7 @@ public class NavigationDrawerFragment extends RoboFragment {
    * 
    * @return result GroupManager
    */
-  public GroupManager getGroupManager() {
+  GroupManager getGroupManager() {
     final Mikity3DModel root = this.canvasActivity.canvasFragment.root;
     final SceneModel model = root.getScene(0);
     final List<GroupModel> groupArray = model.getGroups();

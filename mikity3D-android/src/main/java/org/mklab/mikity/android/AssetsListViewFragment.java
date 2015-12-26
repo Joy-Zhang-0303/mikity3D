@@ -257,7 +257,7 @@ public class AssetsListViewFragment extends RoboFragment {
    * @param fileName ファイル名
    * @return 拡張子
    */
-  public String getExtension(String fileName) {
+  private String getExtension(String fileName) {
     if (fileName == null) {
       return null;
     }
@@ -276,7 +276,7 @@ public class AssetsListViewFragment extends RoboFragment {
    * @param path パス
    * @return 親フォルダー
    */
-  public String getParentFolder(String path) {
+  String getParentFolder(String path) {
     final int point = path.lastIndexOf(File.separator);
    
     if (point != -1) {
@@ -295,7 +295,7 @@ public class AssetsListViewFragment extends RoboFragment {
    * 
    * @return 指定された拡張子をもつファイルとフォルダーのリスト
    */
-  public List<String> selectFilesWithExtensionsOrFolders(String folderName, String[] files, String[] extensions) {
+  private List<String> selectFilesWithExtensionsOrFolders(String folderName, String[] files, String[] extensions) {
     final List<String> selectedFiles = new ArrayList<String>();
 
     for (final String file : files) {
@@ -330,18 +330,18 @@ public class AssetsListViewFragment extends RoboFragment {
     return false;
   }
 
-  /**
-   * 
-   */
-  public void commitFragmentTransaction() {
-    final FragmentManager manager = getFragmentManager();
-    final FragmentTransaction transaction = manager.beginTransaction();
-    final NavigationDrawerFragment fragment = new NavigationDrawerFragment();
-
-    transaction.replace(R.id.assets_list_layout, fragment);
-    transaction.addToBackStack(null);
-    transaction.commit();
-  }
+//  /**
+//   * 
+//   */
+//  public void commitFragmentTransaction() {
+//    final FragmentManager manager = getFragmentManager();
+//    final FragmentTransaction transaction = manager.beginTransaction();
+//    final NavigationDrawerFragment fragment = new NavigationDrawerFragment();
+//
+//    transaction.replace(R.id.assets_list_layout, fragment);
+//    transaction.addToBackStack(null);
+//    transaction.commit();
+//  }
 
   /**
    * フラグメントマネージャを設定します。
