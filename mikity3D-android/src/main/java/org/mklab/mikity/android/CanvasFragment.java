@@ -54,12 +54,11 @@ import android.widget.LinearLayout;
  * @version $Revision$, 2014/10/10
  */
 public class CanvasFragment extends Fragment {
-
-  /** ビュー */
-  //@InjectView(R.id.layout_fragment_canvas)
+  /** ビュー。 */
   View view;
-
+  /** GLのためのビュー。 */
   GLSurfaceView glView;
+
   /** 初期のスクリーンサイズならばtrue */
   boolean isInitialScreenSize;
 
@@ -116,12 +115,6 @@ public class CanvasFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//    if (this.view != null) {
-//      final ViewGroup parent = (ViewGroup)this.view.getParent();
-//      parent.removeView(this.view);
-//      return this.view;
-//    }
-
     this.view = inflater.inflate(R.layout.canvas_fragment, container, false);
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
     this.getResources();

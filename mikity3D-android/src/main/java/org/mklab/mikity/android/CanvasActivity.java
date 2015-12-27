@@ -41,7 +41,6 @@ public class CanvasActivity extends FragmentActivity {
   private ActionBarDrawerToggle drawerToggle;
 
   /** CanvasFragment */
-  //@InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
 
   /** NavigationDrawerFragment */
@@ -62,6 +61,7 @@ public class CanvasActivity extends FragmentActivity {
     setContentView(R.layout.canvas);
     
     createCanvasFragment();
+    createNavigationDrawerFragment();
     
     final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
     this.drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.menu, R.string.open, R.string.close);
@@ -94,6 +94,24 @@ public class CanvasActivity extends FragmentActivity {
 
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.replace( R.id.fragment_canvas, this.canvasFragment);
+    transaction.commit();
+  }
+  
+  /**
+   * NavigationDrawerFragmentを生成します。 
+   */
+  private void createNavigationDrawerFragment() {
+    final FragmentManager manager = getSupportFragmentManager();
+    
+    if (manager.findFragmentById(R.id.fragment_navigation_drawer) != null) {
+      this.ndFragment = (NavigationDrawerFragment)manager.findFragmentById(R.id.fragment_navigation_drawer);
+      return;
+    }
+    
+    this.ndFragment = new NavigationDrawerFragment();
+
+    final FragmentTransaction transaction = manager.beginTransaction();
+    transaction.replace( R.id.fragment_navigation_drawer, this.ndFragment);
     transaction.commit();
   }
   

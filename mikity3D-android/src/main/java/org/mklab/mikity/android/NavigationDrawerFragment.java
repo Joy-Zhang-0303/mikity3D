@@ -145,7 +145,7 @@ public class NavigationDrawerFragment extends Fragment {
     createSampleModelComponent(mainView);
 
     //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
-    this.canvasActivity.ndFragment = this;
+    //this.canvasActivity.ndFragment = this;
     return mainView;
   }
 
