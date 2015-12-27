@@ -50,11 +50,6 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>org.roboguice</groupId>
-			<artifactId>roboguice</artifactId>
-			<version>2.0</version>
-		</dependency>
-		<dependency>
 			<groupId>com.github.bmelnychuk</groupId>
 			<artifactId>atv</artifactId>
 			<version>1.2.7</version>
