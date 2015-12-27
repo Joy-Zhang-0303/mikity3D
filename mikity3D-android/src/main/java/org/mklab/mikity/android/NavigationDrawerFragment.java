@@ -126,27 +126,25 @@ public class NavigationDrawerFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View mainView = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
+    final View view = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
 
     this.canvasActivity = (CanvasActivity)getActivity();
 
-    createAnimationSpeedComponent(mainView);
+    createAnimationSpeedComponent(view);
 
-    createModelComponent(mainView);
+    createModelComponent(view);
 
-    createSourceNumberChangeComponent(mainView);
+    createSourceNumberChangeComponent(view);
 
-    createSensorComponent(mainView);
+    createSensorComponent(view);
 
-    createConfigurationComponent(mainView);
+    createConfigurationComponent(view);
 
-    createResetComponent(mainView);
+    createResetComponent(view);
 
-    createSampleModelComponent(mainView);
+    createSampleModelComponent(view);
 
-    //TODO setRetainInstance()を使っても、activityでこのfragmentを保持しているため、処理が被っている。要修正
-    //this.canvasActivity.ndFragment = this;
-    return mainView;
+    return view;
   }
 
   private void createAnimationSpeedComponent(final View mainView) {
