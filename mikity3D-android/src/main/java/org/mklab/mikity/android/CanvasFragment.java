@@ -30,14 +30,13 @@ import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matx.MatxMatrix;
 
-import roboguice.fragment.RoboFragment;
-import roboguice.inject.InjectView;
 import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -54,10 +53,10 @@ import android.widget.LinearLayout;
  * @author soda
  * @version $Revision$, 2014/10/10
  */
-public class CanvasFragment extends RoboFragment {
+public class CanvasFragment extends Fragment {
 
   /** ビュー */
-  @InjectView(R.id.layout_fragment_canvas)
+  //@InjectView(R.id.layout_fragment_canvas)
   View view;
 
   GLSurfaceView glView;
@@ -117,11 +116,11 @@ public class CanvasFragment extends RoboFragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    if (this.view != null) {
-      final ViewGroup parent = (ViewGroup)this.view.getParent();
-      parent.removeView(this.view);
-      return this.view;
-    }
+//    if (this.view != null) {
+//      final ViewGroup parent = (ViewGroup)this.view.getParent();
+//      parent.removeView(this.view);
+//      return this.view;
+//    }
 
     this.view = inflater.inflate(R.layout.canvas_fragment, container, false);
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);

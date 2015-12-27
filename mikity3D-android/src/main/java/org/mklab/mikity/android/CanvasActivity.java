@@ -5,8 +5,6 @@
  */
 package org.mklab.mikity.android;
 
-import roboguice.activity.RoboFragmentActivity;
-import roboguice.inject.InjectFragment;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -16,6 +14,9 @@ import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,7 +32,7 @@ import android.widget.LinearLayout;
  * @author soda
  * @version $Revision$, 2015/01/16
  */
-public class CanvasActivity extends RoboFragmentActivity {
+public class CanvasActivity extends FragmentActivity {
 
   final static int REQUEST_CODE_PICK_MODEL_DATA_FILE = 0;
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
@@ -40,7 +41,7 @@ public class CanvasActivity extends RoboFragmentActivity {
   private ActionBarDrawerToggle drawerToggle;
 
   /** CanvasFragment */
-  @InjectFragment(R.id.fragment_canvas)
+  //@InjectFragment(R.id.fragment_canvas)
   CanvasFragment canvasFragment;
 
   /** NavigationDrawerFragment */
@@ -57,7 +58,10 @@ public class CanvasActivity extends RoboFragmentActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    
     setContentView(R.layout.canvas);
+    
+    createCanvasFragment();
     
     final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
     this.drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.menu, R.string.open, R.string.close);
@@ -75,6 +79,24 @@ public class CanvasActivity extends RoboFragmentActivity {
     startIntentByExternalActivity();
   }
 
+  /**
+   * CanvasFragmentを生成します。 
+   */
+  private void createCanvasFragment() {
+    final FragmentManager manager = getSupportFragmentManager();
+    
+    if (manager.findFragmentById(R.id.fragment_canvas) != null) {
+      this.canvasFragment = (CanvasFragment)manager.findFragmentById(R.id.fragment_canvas);
+      return;
+    }
+    
+    this.canvasFragment = new CanvasFragment();
+
+    final FragmentTransaction transaction = manager.beginTransaction();
+    transaction.replace( R.id.fragment_canvas, this.canvasFragment);
+    transaction.commit();
+  }
+  
   /**
    * 外部アクティビティからのモデルパス、データパスを渡されるインテントに対応したメソッドです。
    */

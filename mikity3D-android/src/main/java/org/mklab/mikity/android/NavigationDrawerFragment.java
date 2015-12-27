@@ -31,11 +31,11 @@ import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
-import roboguice.fragment.RoboFragment;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
@@ -48,10 +48,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-import android.widget.ImageButton;
 
 
 /**
@@ -60,7 +60,7 @@ import android.widget.ImageButton;
  * @author soda
  * @version $Revision$, 2015/01/16
  */
-public class NavigationDrawerFragment extends RoboFragment {
+public class NavigationDrawerFragment extends Fragment {
 
   static final String LOGTAG = null;
 

@@ -12,6 +12,7 @@ import org.mklab.mikity.model.searcher.GroupManager;
 import org.mklab.mikity.model.searcher.GroupNameManager;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import roboguice.fragment.RoboFragment;
 
 
 /**
@@ -28,7 +28,7 @@ import roboguice.fragment.RoboFragment;
  * @author soda
  * @version $Revision$, 2015/02/03
  */
-public class SourceNumberFragment extends RoboFragment {
+public class SourceNumberFragment extends Fragment {
   /** リストビュー */
   private ListView listView;
   /** グループリスト */

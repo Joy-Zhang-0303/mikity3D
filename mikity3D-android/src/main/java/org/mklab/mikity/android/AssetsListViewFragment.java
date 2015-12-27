@@ -17,11 +17,10 @@ import java.util.List;
 
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 
-import roboguice.fragment.RoboFragment;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,7 @@ import android.widget.ListView;
  * @author koga
  * @version $Revision$, 2015/03/26
  */
-public class AssetsListViewFragment extends RoboFragment {
+public class AssetsListViewFragment extends Fragment {
   static String currentPath = "sample"; //$NON-NLS-1$
   CanvasActivity canvasActivity;
   AssetManager assetManager;
