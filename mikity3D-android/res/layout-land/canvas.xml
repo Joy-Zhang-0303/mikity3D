@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-
     <LinearLayout
         android:id="@+id/drawer_layout"
         android:layout_width="300dp"
@@ -20,16 +19,12 @@
         android:layout_gravity="left"
         android:background="@color/white"
         android:orientation="vertical" >
-		<ScrollView
-    		android:layout_width="match_parent"
-       		android:layout_height="match_parent" >
-        	<fragment
-        		android:id="@+id/fragment_navigation_drawer"
-        		android:name="org.mklab.mikity.android.NavigationDrawerFragment"
-        		android:layout_width="match_parent"
-        		android:layout_height="match_parent" >
-        	</fragment>
-    	</ScrollView>
+
+        <FrameLayout
+            android:id="@+id/fragment_navigation_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </FrameLayout>
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>
