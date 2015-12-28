@@ -46,7 +46,7 @@ public class SourceNumberFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.set_source_number_fragment, container, false);
+    final View view = inflater.inflate(R.layout.source_number_fragment, container, false);
     this.listView = (ListView)view.findViewById(R.id.list_view_source_number);
     configureListView();
     
