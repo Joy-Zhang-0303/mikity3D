@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_fragment_navigation_drawer"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="15dip"
+        android:paddingLeft="30dip"
+        android:paddingRight="30dip"
+        android:paddingTop="15dip" >
 
         <TextView
             android:id="@+id/animationSpeedText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/animationSpeedEditText"
+            android:layout_alignBottom="@+id/animationSpeedEditText"
+            android:layout_centerHorizontal="true"
             android:layout_weight="1"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:text="@string/animationSpeedText"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/slowButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxWidth="2dp"
-            android:text="@string/minusButton" />
+        <Space
+            android:layout_width="60dip"
+            android:layout_height="match_parent" />
 
         <EditText
             android:id="@+id/animationSpeedEditText"
@@ -36,17 +41,33 @@
             android:inputType="numberDecimal"
             android:maxLength="5"
             android:textColor="@color/black" >
-
-            <requestFocus />
         </EditText>
+    </LinearLayout>
 
-        <Button
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingLeft="90dip" >
+
+        <ImageButton
+            android:id="@+id/slowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/slow"
+            android:maxWidth="2dp" />
+
+        <Space
+            android:layout_width="50dip"
+            android:layout_height="match_parent" />
+
+        <ImageButton
             android:id="@+id/quickButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxWidth="2dp"
-            android:text="@string/plusButton" />
+            android:background="@drawable/fast"
+            android:maxWidth="2dp" />
     </LinearLayout>
 
     <LinearLayout
