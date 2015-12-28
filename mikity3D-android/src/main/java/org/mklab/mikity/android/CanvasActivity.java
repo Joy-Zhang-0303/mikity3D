@@ -111,7 +111,8 @@ public class CanvasActivity extends FragmentActivity {
     this.ndFragment = new NavigationDrawerFragment();
 
     final FragmentTransaction transaction = manager.beginTransaction();
-    transaction.replace( R.id.fragment_navigation_drawer, this.ndFragment);
+    transaction.add( R.id.fragment_navigation_drawer, this.ndFragment);
+    transaction.show(this.ndFragment);
     transaction.commit();
   }
   

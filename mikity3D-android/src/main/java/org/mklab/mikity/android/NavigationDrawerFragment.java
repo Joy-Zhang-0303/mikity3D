@@ -74,6 +74,9 @@ public class NavigationDrawerFragment extends Fragment {
 
   /** ソースID。 */
   String sourceId = null;
+  
+  /** サンプルソースID。 */
+  String sampleSourceId = null;
 
   /** アニメーション用タスク。 */
   AnimationTask animationTask;
@@ -120,7 +123,11 @@ public class NavigationDrawerFragment extends Fragment {
   Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
   /** サンプルのソースファイルを選択するためのボタン */
   List<Button> sampleSourceSelectButtons = new ArrayList<Button>();
+  
+  AssetsListViewFragment sampleModelViewFragment;
 
+  AssetsListViewFragment sampleSourceViewFragment;
+  
   /**
    * {@inheritDoc}
    */
@@ -413,15 +420,23 @@ public class NavigationDrawerFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
+        NavigationDrawerFragment.this.sampleSourceId = null;
+        
         final FragmentManager manager = NavigationDrawerFragment.this.canvasActivity.getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
-        final AssetsListViewFragment fragment = new AssetsListViewFragment(null);
-        fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
-        fragment.setIsModelData(true);
-        fragment.setFragmentManager(manager);
-
-        transaction.replace(R.id.fragment_navigation_drawer, fragment);
         transaction.addToBackStack(null);
+        
+        if (NavigationDrawerFragment.this.sampleModelViewFragment != null) {
+          transaction.remove(NavigationDrawerFragment.this.sampleModelViewFragment);
+          NavigationDrawerFragment.this.sampleModelViewFragment = null;
+        }
+        
+        NavigationDrawerFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
+        NavigationDrawerFragment.this.sampleModelViewFragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
+        NavigationDrawerFragment.this.sampleModelViewFragment.setFragmentManager(manager);
+        NavigationDrawerFragment.this.sampleModelViewFragment.setIsModelData(true);
+        transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sampleModelViewFragment);
+        
         transaction.commit();
       }
     });
@@ -479,6 +494,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     final LinearLayout sources = ((LinearLayout)getActivity().findViewById(R.id.layout_sample_sources));
     sources.removeAllViews();
+    
     this.sampleSourceSelectButtons.clear();
     this.sampleSourceFileNameViews.clear();
 
@@ -497,14 +513,23 @@ public class NavigationDrawerFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
+          NavigationDrawerFragment.this.sampleSourceId = id;
+          
           final FragmentManager manager = NavigationDrawerFragment.this.canvasActivity.getSupportFragmentManager();
           final FragmentTransaction transaction = manager.beginTransaction();
-          final AssetsListViewFragment fragment = new AssetsListViewFragment(id);
-          fragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
-          fragment.setIsModelData(false);
-          fragment.setFragmentManager(manager);
-          transaction.replace(R.id.fragment_navigation_drawer, fragment);
           transaction.addToBackStack(null);
+          
+          if (NavigationDrawerFragment.this.sampleSourceViewFragment != null) {
+            transaction.remove(NavigationDrawerFragment.this.sampleSourceViewFragment);
+            NavigationDrawerFragment.this.sampleSourceViewFragment = null;
+          }
+          
+          NavigationDrawerFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
+          NavigationDrawerFragment.this.sampleSourceViewFragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
+          NavigationDrawerFragment.this.sampleSourceViewFragment.setFragmentManager(manager);
+          NavigationDrawerFragment.this.sampleSourceViewFragment.setIsModelData(false);
+          transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sampleSourceViewFragment);
+          
           transaction.commit();
         }
       });
@@ -545,14 +570,13 @@ public class NavigationDrawerFragment extends Fragment {
    * 
    * @param input ソースの入力ストリーム
    * @param filePath ソースのファイルパス
-   * @param sampleSourceId ソースID
    */
-  public void loadSampleSourceData(final InputStream input, final String filePath, final String sampleSourceId) {
-    this.canvasActivity.canvasFragment.loadSourceData(input, filePath, sampleSourceId);
+  public void loadSampleSourceData(final InputStream input, final String filePath) {
+    this.canvasActivity.canvasFragment.loadSourceData(input, filePath, this.sampleSourceId);
 
     final String[] parts = filePath.split("/"); //$NON-NLS-1$
     final String sourceFileName = parts[parts.length - 1];
-    this.sampleSourceFileNameViews.get(sampleSourceId).setText(sourceFileName);
+    this.sampleSourceFileNameViews.get(this.sampleSourceId).setText(sourceFileName);
   }
 
   /**

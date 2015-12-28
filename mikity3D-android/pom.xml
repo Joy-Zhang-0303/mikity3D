@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>com.android.support</groupId>
 			<artifactId>appcompat-v7</artifactId>
-			<version>19.1.0</version>
+			<version>23.1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mklab.mikity3D</groupId>
@@ -53,6 +53,11 @@
 			<groupId>com.github.bmelnychuk</groupId>
 			<artifactId>atv</artifactId>
 			<version>1.2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.android.support</groupId>
+			<artifactId>support-v4</artifactId>
+			<version>23.1.1</version>
 		</dependency>
 	</dependencies>
 

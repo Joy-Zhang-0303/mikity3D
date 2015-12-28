@@ -42,17 +42,6 @@ public class AssetsListViewFragment extends Fragment {
   boolean isModel;
   FragmentManager fragmentManager;
   
-  /** ソースID。 */
-  String sourceId;
-  
-  /**
-   * 新しく生成された<code>AssetsListViewFragment</code>オブジェクトを初期化します。
-   * @param sourceID ソースID
-   */
-  public AssetsListViewFragment(String sourceID) {
-    this.sourceId = sourceID;
-  }
-
   /**
    * {@inheritDoc}
    */
@@ -115,7 +104,7 @@ public class AssetsListViewFragment extends Fragment {
             
             AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
           } else {
-            AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
+            AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleSourceData(input, selectedFile);
           }
           
           AssetsListViewFragment.this.fragmentManager.popBackStack();
