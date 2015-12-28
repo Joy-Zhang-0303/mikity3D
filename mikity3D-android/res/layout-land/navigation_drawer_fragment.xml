@@ -1,293 +1,302 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_fragment_navigation_drawer"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content" >
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="15dip"
-        android:paddingLeft="30dip"
-        android:paddingRight="30dip"
-        android:paddingTop="15dip" >
-
-        <TextView
-            android:id="@+id/animationSpeedText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/animationSpeedEditText"
-            android:layout_alignBottom="@+id/animationSpeedEditText"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:text="@string/animationSpeedText"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <Space
-            android:layout_width="60dip"
-            android:layout_height="match_parent" />
-
-        <EditText
-            android:id="@+id/animationSpeedEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-            android:maxLength="5"
-            android:textColor="@color/black" >
-        </EditText>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingLeft="90dip" >
-
-        <ImageButton
-            android:id="@+id/slowButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/slow"
-            android:maxWidth="2dp" />
-
-        <Space
-            android:layout_width="50dip"
-            android:layout_height="match_parent" />
-
-        <ImageButton
-            android:id="@+id/quickButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/fast"
-            android:maxWidth="2dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
-        <Button
-            android:id="@+id/modelSelectButton"
-            style="?android:attr/buttonStyleSmall"
+        <LinearLayout
+            android:id="@+id/layout_fragment_navigation_drawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/model" />
+            android:background="@color/white"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/modelFileNameView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="30"
-            android:text="@string/fileName"
-            android:textColor="@color/black" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="15dip"
+                android:paddingLeft="30dip"
+                android:paddingRight="30dip"
+                android:paddingTop="15dip" >
 
-    <LinearLayout
-        android:id="@+id/layout_sources"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/animationSpeedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/animationSpeedEditText"
+                    android:layout_alignBottom="@+id/animationSpeedEditText"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:text="@string/animationSpeedText"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+                <Space
+                    android:layout_width="60dip"
+                    android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/sourceNumberChangeView"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:text="@string/sourceNumberChangeView"
-            android:textColor="@color/black" />
+                <EditText
+                    android:id="@+id/animationSpeedEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
+                    android:textColor="@color/black" >
+                </EditText>
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/sourceNumberChangeButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/edit" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingLeft="90dip" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+                <ImageButton
+                    android:id="@+id/slowButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/slow"
+                    android:maxWidth="2dp" />
 
-        <TextView
-            android:id="@+id/rotationSensorTextView"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:text="@string/rotationSensorTextView"
-            android:textColor="@color/black" />
+                <Space
+                    android:layout_width="50dip"
+                    android:layout_height="match_parent" />
 
-        <ToggleButton
-            android:id="@+id/rotationSensorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rotationSensorButton" />
-    </LinearLayout>
+                <ImageButton
+                    android:id="@+id/quickButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/fast"
+                    android:maxWidth="2dp" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/accelerometerTextView"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:text="@string/accelerometerTextView"
-            android:textColor="@color/black" />
+                <Button
+                    android:id="@+id/modelSelectButton"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/model" />
 
-        <ToggleButton
-            android:id="@+id/accelerometerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/accelerometerButton" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/modelFileNameView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="30"
+                    android:text="@string/fileName"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+            <LinearLayout
+                android:id="@+id/layout_sources"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/rotationLockTextView"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:text="@string/rotationLockTextView"
-            android:textColor="@color/black" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-        <ToggleButton
-            android:id="@+id/rotationLockButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rotationLockButton" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingLeft="25dip"
-        android:paddingRight="25dip" >
+                <TextView
+                    android:id="@+id/sourceNumberChangeView"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sourceNumberChangeView"
+                    android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/gridShowingTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/gridShowingTextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                <Button
+                    android:id="@+id/sourceNumberChangeButton"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit" />
+            </LinearLayout>
 
-        <Space
-            android:layout_width="40dip"
-            android:layout_height="match_parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-        <ToggleButton
-            android:id="@+id/gridShowingButton"
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/toggle_bg"
-            android:button="@drawable/toggle_btn"
-            android:checked="false"
-            android:textOff=""
-            android:textOn="" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/rotationSensorTextView"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rotationSensorTextView"
+                    android:textColor="@color/black" />
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingLeft="25dip"
-        android:paddingRight="25dip" >
+                <ToggleButton
+                    android:id="@+id/rotationSensorButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rotationSensorButton" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/axisShowingTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/axisShowingTextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-        <Space
-            android:layout_width="60dip"
-            android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/accelerometerTextView"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accelerometerTextView"
+                    android:textColor="@color/black" />
 
-        <ToggleButton
-            android:id="@+id/axisShowingButton"
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/toggle_bg"
-            android:button="@drawable/toggle_btn"
-            android:checked="false"
-            android:textOff=""
-            android:textOn="" />
-    </LinearLayout>
+                <ToggleButton
+                    android:id="@+id/accelerometerButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accelerometerButton" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-        <Button
-            android:id="@+id/resetToInitialButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/resetButton" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/rotationLockTextView"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rotationLockTextView"
+                    android:textColor="@color/black" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="25dp" />
+                <ToggleButton
+                    android:id="@+id/rotationLockButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rotationLockButton" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingLeft="25dip"
+                android:paddingRight="25dip" >
 
-        <TextView
-            android:id="@+id/sampleLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sample"
-            android:textColor="@color/black" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/gridShowingTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/gridShowingTextView"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+                <Space
+                    android:layout_width="40dip"
+                    android:layout_height="match_parent" />
 
-        <Button
-            android:id="@+id/sampleModelSelectButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/model" />
+                <ToggleButton
+                    android:id="@+id/gridShowingButton"
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/toggle_bg"
+                    android:button="@drawable/toggle_btn"
+                    android:checked="false"
+                    android:textOff=""
+                    android:textOn="" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/sampleModelFileNameView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="30"
-            android:text="@string/fileName"
-            android:textColor="@color/black" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingLeft="25dip"
+                android:paddingRight="25dip" >
 
-    <LinearLayout
-        android:id="@+id/layout_sample_sources"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/axisShowingTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/axisShowingTextView"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-</LinearLayout>
+                <Space
+                    android:layout_width="60dip"
+                    android:layout_height="match_parent" />
+
+                <ToggleButton
+                    android:id="@+id/axisShowingButton"
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/toggle_bg"
+                    android:button="@drawable/toggle_btn"
+                    android:checked="false"
+                    android:textOff=""
+                    android:textOn="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/resetToInitialButton"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/resetButton" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/sampleLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/sampleModelSelectButton"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/model" />
+
+                <TextView
+                    android:id="@+id/sampleModelFileNameView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="30"
+                    android:text="@string/fileName"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_sample_sources"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</ScrollView>
