@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_fragment_set_source_number"
+    android:id="@+id/layout_fragment_source_number"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal" >
-        
+
         <Button
             android:id="@+id/backButton"
             style="?android:attr/buttonStyleSmall"
@@ -21,7 +21,8 @@
             android:layout_weight="0"
             android:text="@string/back" />
     </LinearLayout>
-	<ListView
+
+    <ListView
         android:id="@+id/list_view_source_number"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
