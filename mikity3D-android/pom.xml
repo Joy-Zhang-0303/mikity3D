@@ -51,11 +51,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>com.github.bmelnychuk</groupId>
-			<artifactId>atv</artifactId>
-			<version>1.2.7</version>
-		</dependency>
 	</dependencies>
 
 	<build>
