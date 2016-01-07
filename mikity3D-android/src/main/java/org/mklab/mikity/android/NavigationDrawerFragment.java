@@ -105,9 +105,6 @@ public class NavigationDrawerFragment extends Fragment {
   /** ソース番号を変更するためのボタン。 */
   Button sourceNumberChangeButton;
 
-  /** モデルをリセットし、初期状態の戻すためのボタン。 */
-  //Button resetToInitialStateButton;
-
   /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
   ToggleButton rotationSensorButton;
   /** 加速度を3Dオブジェクトに反映させるならばtrue。 */
@@ -146,8 +143,6 @@ public class NavigationDrawerFragment extends Fragment {
     createSensorComponent(view);
 
     createConfigurationComponent(view);
-
-    //createResetComponent(view);
 
     createSampleModelComponent(view);
 
@@ -397,20 +392,6 @@ public class NavigationDrawerFragment extends Fragment {
     this.axisShowingButton.setChecked(this.canvasActivity.canvasFragment.isAxisShowing());
     this.gridShowingButton.setChecked(this.canvasActivity.canvasFragment.isGridShowing());
   }
-
-//  private void createResetComponent(final View mainView) {
-//    this.resetToInitialStateButton = (Button)mainView.findViewById(R.id.resetToInitialButton);
-//    this.resetToInitialStateButton.setEnabled(false);
-//    this.resetToInitialStateButton.setOnClickListener(new OnClickListener() {
-//
-//      /**
-//       * {@inheritDoc}
-//       */
-//      public void onClick(View view) {
-//        NavigationDrawerFragment.this.canvasActivity.canvasFragment.resetToInitialState();
-//      }
-//    });
-//  }
 
   private void createSampleModelComponent(final View mainView) {
     final Button modelButton = (Button)mainView.findViewById(R.id.sampleModelSelectButton);
@@ -719,7 +700,6 @@ public class NavigationDrawerFragment extends Fragment {
     this.quickButton.setEnabled(enabled);
     this.slowButton.setEnabled(enabled);
     this.sourceNumberChangeButton.setEnabled(enabled);
-//    this.resetToInitialStateButton.setEnabled(enabled);
     this.gridShowingButton.setEnabled(enabled);
     this.axisShowingButton.setEnabled(enabled);
 
