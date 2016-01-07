@@ -23,7 +23,7 @@
     <string name="open">Open</string>
     <string name="play">Play</string>
     <string name="repeat">Repeat</string>
-    <string name="resetButton">Reset to Initial State</string>
+    <string name="resetToInitialState">Reset to Initial State</string>
     <string name="rotationSensorTextView">Rotation Sensor</string>
     <string name="rotationSensorButton">rotationSensorButton</string>
     <string name="rotationLockTextView">Rotation Lock</string>

@@ -73,6 +73,7 @@ public class CanvasActivity extends FragmentActivity {
     actionBar.setLogo(getResources().getDrawable(R.drawable.icon));
     actionBar.setHomeButtonEnabled(true);
     actionBar.setDisplayUseLogoEnabled(true);
+    actionBar.setDisplayShowTitleEnabled(false);
     
     this.sensorService = new SensorService((SensorManager)getSystemService(SENSOR_SERVICE), this.canvasFragment);
     
@@ -194,6 +195,9 @@ public class CanvasActivity extends FragmentActivity {
           this.isStopButtonPushable = true;
         }
         this.canvasFragment.repeatAnimation();
+        break;
+      case R.id.menu_reset_to_initial_state:
+        this.canvasFragment.resetToInitialState();
         break;
       default:
         break;

@@ -21,4 +21,9 @@
         android:title="@string/repeat"
         android:showAsAction="always" android:icon="@drawable/repeat"/>
     
+    <item
+        android:id="@+id/menu_reset_to_initial_state"
+        android:title="@string/resetToInitialState"
+        android:showAsAction="always" android:icon="@drawable/repeat"/>
+    
 </menu>

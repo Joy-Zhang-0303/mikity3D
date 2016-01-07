@@ -106,7 +106,7 @@ public class NavigationDrawerFragment extends Fragment {
   Button sourceNumberChangeButton;
 
   /** モデルをリセットし、初期状態の戻すためのボタン。 */
-  Button resetToInitialStateButton;
+  //Button resetToInitialStateButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
   ToggleButton rotationSensorButton;
@@ -147,7 +147,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     createConfigurationComponent(view);
 
-    createResetComponent(view);
+    //createResetComponent(view);
 
     createSampleModelComponent(view);
 
@@ -398,19 +398,19 @@ public class NavigationDrawerFragment extends Fragment {
     this.gridShowingButton.setChecked(this.canvasActivity.canvasFragment.isGridShowing());
   }
 
-  private void createResetComponent(final View mainView) {
-    this.resetToInitialStateButton = (Button)mainView.findViewById(R.id.resetToInitialButton);
-    this.resetToInitialStateButton.setEnabled(false);
-    this.resetToInitialStateButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View view) {
-        NavigationDrawerFragment.this.canvasActivity.canvasFragment.resetToInitialState();
-      }
-    });
-  }
+//  private void createResetComponent(final View mainView) {
+//    this.resetToInitialStateButton = (Button)mainView.findViewById(R.id.resetToInitialButton);
+//    this.resetToInitialStateButton.setEnabled(false);
+//    this.resetToInitialStateButton.setOnClickListener(new OnClickListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void onClick(View view) {
+//        NavigationDrawerFragment.this.canvasActivity.canvasFragment.resetToInitialState();
+//      }
+//    });
+//  }
 
   private void createSampleModelComponent(final View mainView) {
     final Button modelButton = (Button)mainView.findViewById(R.id.sampleModelSelectButton);
@@ -719,7 +719,7 @@ public class NavigationDrawerFragment extends Fragment {
     this.quickButton.setEnabled(enabled);
     this.slowButton.setEnabled(enabled);
     this.sourceNumberChangeButton.setEnabled(enabled);
-    this.resetToInitialStateButton.setEnabled(enabled);
+//    this.resetToInitialStateButton.setEnabled(enabled);
     this.gridShowingButton.setEnabled(enabled);
     this.axisShowingButton.setEnabled(enabled);
 

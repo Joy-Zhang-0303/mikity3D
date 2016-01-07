@@ -286,21 +286,6 @@
                     android:textOn="" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:paddingLeft="80dip" >
-
-                <Button
-                    android:id="@+id/resetToInitialButton"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/resetButton" />
-            </LinearLayout>
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="25dp" />

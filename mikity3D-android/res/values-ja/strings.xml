@@ -23,7 +23,7 @@
     <string name="pleaseSelectModelFile">モデルファイルを選択して下さい。</string>
     <string name="plusButton">>></string>
     <string name="repeat">繰り返し</string>
-    <string name="resetButton">初期状態へ戻す</string>
+    <string name="resetToInitialState">初期状態へ戻す</string>
     <string name="rotationSensorTextView">傾きセンサ</string>
     <string name="rotationSensorButton">傾きセンサボタン</string>
     <string name="rotationLockTextView">回転防止ロック</string>
