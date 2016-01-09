@@ -22,6 +22,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.mklab.mikity.android.control.AnimationTask;
+import org.mklab.mikity.android.tree.ModelTreeFragment;
 import org.mklab.mikity.model.searcher.ExcecuteSearchGroup;
 import org.mklab.mikity.model.searcher.GroupManager;
 import org.mklab.mikity.model.searcher.GroupNameManager;
@@ -124,6 +125,8 @@ public class NavigationDrawerFragment extends Fragment {
   AssetsListViewFragment sampleModelViewFragment;
 
   AssetsListViewFragment sampleSourceViewFragment;
+  
+  ModelTreeFragment modelTreeFragment;
   
   /**
    * {@inheritDoc}
@@ -304,17 +307,24 @@ public class NavigationDrawerFragment extends Fragment {
       public void onClick(View view) {
         final FragmentManager manager = NavigationDrawerFragment.this.canvasActivity.getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
-        final SourceNumberFragment fragment = new SourceNumberFragment();
-        if (NavigationDrawerFragment.this.canvasActivity.canvasFragment.root != null) {
-          fragment.setParentGroupManager(getGroupManager());
-          fragment.setParentFragment(NavigationDrawerFragment.this);
-
-          transaction.replace(R.id.fragment_navigation_drawer, fragment);
-          transaction.addToBackStack(null);
-          transaction.commit();
+        transaction.addToBackStack(null);
+        
+        if (NavigationDrawerFragment.this.modelTreeFragment != null) {
+          transaction.remove(NavigationDrawerFragment.this.modelTreeFragment);
+          NavigationDrawerFragment.this.modelTreeFragment = null;
         }
+        
+        NavigationDrawerFragment.this.modelTreeFragment = new ModelTreeFragment();
+        NavigationDrawerFragment.this.modelTreeFragment.setFragmentManager(manager);
+        NavigationDrawerFragment.this.modelTreeFragment.setModel(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root.getScene(0));
+        
+        transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.modelTreeFragment);
+
+        transaction.commit();
       }
     });
+    
+    
   }
 
   private void createSensorComponent(final View mainView) {

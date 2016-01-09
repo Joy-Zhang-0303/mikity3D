@@ -29,8 +29,8 @@ import android.widget.TextView;
  * @version $Revision$, 2015/02/03
  */
 public class SourceNumberAdapter extends ArrayAdapter<GroupManager> {
+  private LayoutInflater inflater;
   private int resourceId;
-  private LayoutInflater layoutInflater;
   private List<GroupManager> groupManagers;
 
   /** NavigationDrawer */
@@ -54,7 +54,7 @@ public class SourceNumberAdapter extends ArrayAdapter<GroupManager> {
   public SourceNumberAdapter(Context context, int resourceId, List<GroupManager> groupManagers, NavigationDrawerFragment fragment, List<Integer> targetNumber) {
     super(context, resourceId, groupManagers);
     this.resourceId = resourceId;
-    this.layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     this.groupManagers = groupManagers;
     this.fragment = fragment;
     this.targetNumbers = targetNumber;
@@ -80,14 +80,14 @@ public class SourceNumberAdapter extends ArrayAdapter<GroupManager> {
 
     if (this.groupManagers.get(position).getClass() == GroupNameManager.class) {
       final GroupNameManager nameManager = (GroupNameManager)this.groupManagers.get(position);
-      final View view = this.layoutInflater.inflate(this.resourceId, null);
+      final View view = this.inflater.inflate(this.resourceId, null);
       final TextView groupName = (TextView)view.findViewById(R.id.groupNameText);
       groupName.setText(nameManager.getGroupName());
       return view;
     }
 
     final GroupAnimationManager animationManager = (GroupAnimationManager)this.groupManagers.get(position);
-    final View view = this.layoutInflater.inflate(R.layout.list_link, null);
+    final View view = this.inflater.inflate(R.layout.list_link, null);
     final TextView targetText = (TextView)view.findViewById(R.id.list_target);
     targetText.setText(animationManager.getTarget());
     final EditText numberText = (EditText)view.findViewById(R.id.sourceNumber);

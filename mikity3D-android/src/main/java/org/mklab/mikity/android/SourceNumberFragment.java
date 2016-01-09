@@ -76,7 +76,7 @@ public class SourceNumberFragment extends Fragment {
    * リストビューをアダプタに登録し、リストの処理します。
    */
   void configureListView() {
-    final SourceNumberAdapter adapter = new SourceNumberAdapter(this.getActivity(), R.layout.list_group_name, this.groupManagers, this.parentFragment, this.targetNumbers);
+    final SourceNumberAdapter adapter = new SourceNumberAdapter(getActivity(), R.layout.list_group_name, this.groupManagers, this.parentFragment, this.targetNumbers);
     this.listView.setAdapter(adapter);
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
