@@ -51,8 +51,8 @@ public class SceneGraphFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.model_tree_fragment, container, false);
-    this.listView = (ListView)view.findViewById(R.id.model_tree_list_view);
+    final View view = inflater.inflate(R.layout.scene_graph_fragment, container, false);
+    this.listView = (ListView)view.findViewById(R.id.scene_graph_list_view);
     
     configureListView();
 

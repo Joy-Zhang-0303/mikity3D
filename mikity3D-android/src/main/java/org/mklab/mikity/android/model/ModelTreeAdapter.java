@@ -39,7 +39,7 @@ public class ModelTreeAdapter extends BaseAdapter {
    * {@inheritDoc}
    */
   public View getView(int position, @SuppressWarnings("unused") View convertView, @SuppressWarnings("unused") ViewGroup parent) {
-    final TextView view = (TextView)this.inflater.inflate(R.layout.model_tree_item, null);
+    final TextView view = (TextView)this.inflater.inflate(R.layout.scene_graph_item, null);
     TreeItem treeItem = (TreeItem)getItem(position);
     view.setText(treeItem.getText());
     view.setPadding(treeItem.getDepth() * 20, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
