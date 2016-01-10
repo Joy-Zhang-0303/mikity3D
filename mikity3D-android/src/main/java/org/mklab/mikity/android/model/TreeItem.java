@@ -3,7 +3,7 @@
  * Copyright (C) 2016 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.android.tree;
+package org.mklab.mikity.android.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -22,7 +22,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.android.tree.SceneGraphFragment;
+import org.mklab.mikity.android.model.SceneGraphFragment;
 import org.mklab.mikity.model.searcher.ExcecuteSearchGroup;
 import org.mklab.mikity.model.searcher.GroupManager;
 import org.mklab.mikity.model.searcher.GroupNameManager;
