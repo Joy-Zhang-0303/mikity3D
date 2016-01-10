@@ -127,7 +127,7 @@ public class SceneGraphFragment extends Fragment {
   private void createTree() {
     this.adapter.clearTree();
     
-    this.root = this.adapter.add("scene");
+    this.root = this.adapter.add("scene"); //$NON-NLS-1$
     addItemToTree(this.root, this.model.getGroups());
   }
   

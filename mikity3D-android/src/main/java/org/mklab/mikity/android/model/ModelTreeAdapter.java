@@ -40,8 +40,20 @@ public class ModelTreeAdapter extends BaseAdapter {
    */
   public View getView(int position, @SuppressWarnings("unused") View convertView, @SuppressWarnings("unused") ViewGroup parent) {
     final TextView view = (TextView)this.inflater.inflate(R.layout.scene_graph_item, null);
-    TreeItem treeItem = (TreeItem)getItem(position);
-    view.setText(treeItem.getText());
+    final TreeItem treeItem = (TreeItem)getItem(position);
+
+    String itemText;
+    if (treeItem.hasChild()) {
+      if (treeItem.isExpanded()) {
+        itemText = "- " + treeItem.getText(); //$NON-NLS-1$
+      } else {
+        itemText = "+ " + treeItem.getText(); //$NON-NLS-1$
+      }
+    } else {
+      itemText = treeItem.getText();
+    }
+    
+    view.setText(itemText);
     view.setPadding(treeItem.getDepth() * 20, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
 
     return view;
