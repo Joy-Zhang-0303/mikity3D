@@ -9,6 +9,7 @@
     <string name="back">Back</string>
     <string name="close">Close</string>
     <string name="edit">Edit</string>
+    <string name="editModel">Edit Model</string>
     <string name="fileName">...</string>
     <string name="gridShowingButton">gridShowingkButton</string>    
     <string name="gridShowingTextView">Grid Showing</string>
@@ -31,7 +32,6 @@
     <string name="sample">Sample</string>
     <string name="source">Source</string>
     <string name="sourceDataIsNotReady">Source data is not ready</string>
-    <string name="sourceNumberChangeView">Source Number</string>
     <string name="sourceReloadButton">↻</string>
     <string name="stop">Stop</string>
 </resources>

@@ -22,7 +22,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.android.tree.ModelTreeFragment;
+import org.mklab.mikity.android.tree.SceneGraphFragment;
 import org.mklab.mikity.model.searcher.ExcecuteSearchGroup;
 import org.mklab.mikity.model.searcher.GroupManager;
 import org.mklab.mikity.model.searcher.GroupNameManager;
@@ -104,7 +104,7 @@ public class NavigationDrawerFragment extends Fragment {
   Map<String, TextView> sourceFileNameViews = new HashMap<String, TextView>();
 
   /** ソース番号を変更するためのボタン。 */
-  Button sourceNumberChangeButton;
+  Button editModelButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
   ToggleButton rotationSensorButton;
@@ -126,7 +126,7 @@ public class NavigationDrawerFragment extends Fragment {
 
   AssetsListViewFragment sampleSourceViewFragment;
   
-  ModelTreeFragment modelTreeFragment;
+  SceneGraphFragment sceneGraphFragment;
   
   /**
    * {@inheritDoc}
@@ -141,7 +141,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     createModelComponent(view);
 
-    createSourceNumberChangeComponent(view);
+    createEditModelComponent(view);
 
     createSensorComponent(view);
 
@@ -296,10 +296,10 @@ public class NavigationDrawerFragment extends Fragment {
 
   }
 
-  private void createSourceNumberChangeComponent(final View mainView) {
-    this.sourceNumberChangeButton = (Button)mainView.findViewById(R.id.sourceNumberChangeButton);
-    this.sourceNumberChangeButton.setEnabled(false);
-    this.sourceNumberChangeButton.setOnClickListener(new OnClickListener() {
+  private void createEditModelComponent(final View mainView) {
+    this.editModelButton = (Button)mainView.findViewById(R.id.editModelButton);
+    this.editModelButton.setEnabled(false);
+    this.editModelButton.setOnClickListener(new OnClickListener() {
 
       /**
        * {@inheritDoc}
@@ -309,16 +309,16 @@ public class NavigationDrawerFragment extends Fragment {
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
         
-        if (NavigationDrawerFragment.this.modelTreeFragment != null) {
-          transaction.remove(NavigationDrawerFragment.this.modelTreeFragment);
-          NavigationDrawerFragment.this.modelTreeFragment = null;
+        if (NavigationDrawerFragment.this.sceneGraphFragment != null) {
+          transaction.remove(NavigationDrawerFragment.this.sceneGraphFragment);
+          NavigationDrawerFragment.this.sceneGraphFragment = null;
         }
         
-        NavigationDrawerFragment.this.modelTreeFragment = new ModelTreeFragment();
-        NavigationDrawerFragment.this.modelTreeFragment.setFragmentManager(manager);
-        NavigationDrawerFragment.this.modelTreeFragment.setModel(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root.getScene(0));
+        NavigationDrawerFragment.this.sceneGraphFragment = new SceneGraphFragment();
+        NavigationDrawerFragment.this.sceneGraphFragment.setFragmentManager(manager);
+        NavigationDrawerFragment.this.sceneGraphFragment.setModel(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root.getScene(0));
         
-        transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.modelTreeFragment);
+        transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sceneGraphFragment);
 
         transaction.commit();
       }
@@ -709,7 +709,7 @@ public class NavigationDrawerFragment extends Fragment {
     this.isSelectedModelFile = enabled;
     this.quickButton.setEnabled(enabled);
     this.slowButton.setEnabled(enabled);
-    this.sourceNumberChangeButton.setEnabled(enabled);
+    this.editModelButton.setEnabled(enabled);
     this.gridShowingButton.setEnabled(enabled);
     this.axisShowingButton.setEnabled(enabled);
 

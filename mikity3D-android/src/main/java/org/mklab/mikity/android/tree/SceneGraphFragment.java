@@ -32,7 +32,7 @@ import android.widget.ListView;
  * @author koga
  * @version $Revision$, 2016/01/08
  */
-public class ModelTreeFragment extends Fragment {
+public class SceneGraphFragment extends Fragment {
   private ListView listView;
   
   FragmentManager fragmentManager;
@@ -81,7 +81,7 @@ public class ModelTreeFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        ModelTreeFragment.this.fragmentManager.popBackStack();
+        SceneGraphFragment.this.fragmentManager.popBackStack();
       }
     });
     
@@ -116,25 +116,6 @@ public class ModelTreeFragment extends Fragment {
     this.listView.setAdapter(this.adapter);
     
     createTree();
-    
-//    TreeItem root1 = this.adapter.add("1階層目-1");
-//    
-//    TreeItem days21 = root1.add("2階層目-1");
-//    TreeItem days22 = root1.add("2階層目-2");
-//    days22.add("3階層目-1");
-//    days22.add("3階層目-2");
-//
-//    TreeItem root2 = adapter.add("1階層目-2");
-//    TreeItem days23 = root2.add("2階層目-3");
-//    days23.add("3階層目-3");
-//    days23.add("3階層目-4");
-//    days23.add("3階層目-5");
-//    
-//    TreeItem days24 = root2.add("2階層目-4");
-//    days24.add("3階層目-6");
-//    days24.add("3階層目-7");
-//    days24.add("3階層目-8");
-//    days24.add("3階層目-9");
   }
   
   

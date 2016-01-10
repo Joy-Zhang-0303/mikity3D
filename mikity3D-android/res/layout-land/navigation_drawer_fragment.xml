@@ -108,19 +108,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/sourceNumberChangeView"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sourceNumberChangeView"
-                    android:textColor="@color/black" />
-
                 <Button
-                    android:id="@+id/sourceNumberChangeButton"
+                    android:id="@+id/editModelButton"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/edit" />
+                    android:text="@string/editModel" />
             </LinearLayout>
 
             <LinearLayout
