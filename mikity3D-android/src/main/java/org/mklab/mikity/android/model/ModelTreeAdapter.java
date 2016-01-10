@@ -67,9 +67,8 @@ public class ModelTreeAdapter extends BaseAdapter {
    */
   public TreeItem add(Object item) {
     if (this.rootItem == null) {
-      this.rootItem = new TreeItem(this);
+      this.rootItem = new TreeItem();
     }
-    //return this.rootItem.add(item);
     
     return new TreeItem(this.rootItem, item);
   }

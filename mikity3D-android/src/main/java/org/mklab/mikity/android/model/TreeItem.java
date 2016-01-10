@@ -23,16 +23,13 @@ public class TreeItem {
   private boolean isExpanded = false;
   private Object data = null;
   private String text = null;
-  
-  static ModelTreeAdapter adapter;
 
   /**
    * 新しく生成された<code>TreeItem</code>オブジェクトを初期化します。
    * 
    * ルートオブジェクト専用
    */
-  TreeItem(ModelTreeAdapter adapter) {
-    TreeItem.adapter = adapter;
+  TreeItem() {
     this.isExpanded = true;
   }
 
@@ -43,27 +40,12 @@ public class TreeItem {
    * @param value データ
    */
   public TreeItem(TreeItem parent, Object value) {
-    //if (parent != null) {
-      this.depth = parent.depth + 1;
-    //}
+    this.depth = parent.depth + 1;
     this.data = value;
     this.text = value.toString();
-    
+
     parent.treeItems.add(this);
   }
-
-//  /**
-//   * 要素を追加します。
-//   * 
-//   * @param value データ
-//   * @return 要素
-//   */
-//  public TreeItem add(Object value) {
-//    TreeItem treeItem = new TreeItem(this, value);
-//    
-//    this.treeItems.add(treeItem);
-//    return treeItem;
-//  }
 
   /**
    * テキストを設定します。
@@ -142,8 +124,6 @@ public class TreeItem {
       return;
     }
     this.isExpanded = true;
-    
-    adapter.notifyDataSetChanged();
   }
 
   /**
@@ -153,9 +133,8 @@ public class TreeItem {
     if (!this.isExpanded) {
       return;
     }
+
     this.isExpanded = false;
-    
-    adapter.notifyDataSetChanged();
   }
 
   /**
