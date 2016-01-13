@@ -8,10 +8,17 @@ package org.mklab.mikity.android.model;
 import org.mklab.mikity.android.R;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -52,10 +59,24 @@ public class ModelTreeAdapter extends BaseAdapter {
     } else {
       itemText = treeItem.getText();
     }
-    
-    view.setText(itemText);
-    view.setPadding(treeItem.getDepth() * 20, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
 
+
+    final ListView listView = (ListView)parent;
+    
+    int p = listView.getCheckedItemPosition();
+    
+    if (listView.getCheckedItemPosition() == position) {
+      CharSequence str = Html.fromHtml(itemText); //$NON-NLS-1$ //$NON-NLS-2$
+      SpannableString spannable = new SpannableString(str);
+      BackgroundColorSpan bgcolor = new BackgroundColorSpan(Color.parseColor("#CCCCFF")); //$NON-NLS-1$
+      spannable.setSpan(bgcolor, 2, spannable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+      view.setText(spannable);
+    } else {
+      view.setText(itemText);  
+    }
+
+    view.setPadding(treeItem.getDepth() * 20, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
+    
     return view;
   }
 
@@ -69,7 +90,7 @@ public class ModelTreeAdapter extends BaseAdapter {
     if (this.rootItem == null) {
       this.rootItem = new TreeItem();
     }
-    
+
     return new TreeItem(this.rootItem, item);
   }
 
