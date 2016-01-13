@@ -60,16 +60,16 @@ public class ModelTreeAdapter extends BaseAdapter {
       itemText = treeItem.getText();
     }
 
-
     final ListView listView = (ListView)parent;
     
-    int p = listView.getCheckedItemPosition();
-    
     if (listView.getCheckedItemPosition() == position) {
-      CharSequence str = Html.fromHtml(itemText); //$NON-NLS-1$ //$NON-NLS-2$
-      SpannableString spannable = new SpannableString(str);
-      BackgroundColorSpan bgcolor = new BackgroundColorSpan(Color.parseColor("#CCCCFF")); //$NON-NLS-1$
-      spannable.setSpan(bgcolor, 2, spannable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+      final SpannableString spannable = new SpannableString(Html.fromHtml(itemText));
+      final BackgroundColorSpan bgcolor = new BackgroundColorSpan(Color.parseColor("#CCCCFF")); //$NON-NLS-1$
+      if (treeItem.hasChild()) {
+        spannable.setSpan(bgcolor, 2, spannable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+      } else {
+        spannable.setSpan(bgcolor, 0, spannable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+      }
       view.setText(spannable);
     } else {
       view.setText(itemText);  

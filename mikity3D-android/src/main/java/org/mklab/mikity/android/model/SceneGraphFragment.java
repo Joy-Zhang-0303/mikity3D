@@ -66,13 +66,13 @@ public class SceneGraphFragment extends Fragment {
         
         if (treeEntry.isExpanded()) {
           treeEntry.collapse();
-          SceneGraphFragment.this.adapter.notifyDataSetChanged();
         } else {
           if (treeEntry.hasChild()) {
             treeEntry.expand();
-            SceneGraphFragment.this.adapter.notifyDataSetChanged();
           }
         }
+        
+        SceneGraphFragment.this.adapter.notifyDataSetChanged();
       }
     });
     
