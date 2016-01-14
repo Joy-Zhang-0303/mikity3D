@@ -171,36 +171,28 @@ public class CanvasActivity extends FragmentActivity {
       return true;
     }
 
-    switch (item.getItemId()) {
-      case R.id.menu_play:
+    if (item.getItemId() == R.id.menu_play) {
         if (this.canvasFragment.playable) {
           this.isStopButtonPushable = true;
         }
         this.canvasFragment.runAnimation();
-        break;
-      case R.id.menu_stop:
+    } else if (item.getItemId() == R.id.menu_stop) {
         if (this.isStopButtonPushable) {
           this.isStopButtonPushable = false;
           this.canvasFragment.stopAnimation();
         }
-        break;
-      case R.id.menu_pause:
+    } else if (item.getItemId() == R.id.menu_pause) {
         if (this.isStopButtonPushable) {
           this.isStopButtonPushable = false;
           this.canvasFragment.pauseAnimation();
         }
-        break;
-      case R.id.menu_repeat:
+    } else if (item.getItemId() == R.id.menu_repeat) {
         if (this.canvasFragment.playable) {
           this.isStopButtonPushable = true;
         }
         this.canvasFragment.repeatAnimation();
-        break;
-      case R.id.menu_reset_to_initial_state:
+    } else if (item.getItemId() == R.id.menu_reset_to_initial_state) {
         this.canvasFragment.resetToInitialState();
-        break;
-      default:
-        break;
     }
     
     return super.onOptionsItemSelected(item);
