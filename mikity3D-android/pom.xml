@@ -4,7 +4,6 @@
 	<artifactId>mikity3D-android</artifactId>
 	<packaging>apk</packaging>
 
-
 	<parent>
 		<groupId>org.mklab.mikity3D</groupId>
 		<artifactId>mikity3D</artifactId>
@@ -27,11 +26,13 @@
 			<groupId>android.support</groupId>
 			<artifactId>appcompat-v7</artifactId>
 			<version>23.1.1</version>
+			<type>aar</type>
 		</dependency>
 		<dependency>
 			<groupId>android.support</groupId>
 			<artifactId>support-v4</artifactId>
 			<version>23.1.1</version>
+			<type>aar</type>
 		</dependency>
 		<dependency>
 			<groupId>org.mklab.mikity3D</groupId>
@@ -81,20 +82,21 @@
 				</executions>
 			</plugin>
 
-
 			<plugin>
-				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<groupId>com.simpligility.maven.plugins</groupId>
 				<artifactId>android-maven-plugin</artifactId>
-				<version>3.8.0</version>
+				<version>4.3.0</version>
 				<configuration>
 					<androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
 					<assetsDirectory>${project.basedir}/assets</assetsDirectory>
 					<resourceDirectory>${project.basedir}/res</resourceDirectory>
 					<nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
 					<sdk>
-						<platform>15</platform>
+						<platform>23</platform>
 					</sdk>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
+					<includeLibsJarsFromAar>true</includeLibsJarsFromAar>
+					<includeLibsJarsFromApklib>true</includeLibsJarsFromApklib>
 				</configuration>
 				<extensions>true</extensions>
 			</plugin>
@@ -155,14 +157,12 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>
-											com.jayway.maven.plugins.android.generation2
-										</groupId>
+									<groupId>com.simpligility.maven.plugins</groupId>
 										<artifactId>
 											android-maven-plugin
 										</artifactId>
 										<versionRange>
-											[3.8.0,)
+											[4.3.0,)
 										</versionRange>
 										<goals>
 											<goal>proguard</goal>
@@ -171,6 +171,7 @@
 												generate-sources
 											</goal>
 											<goal>consume-aar</goal>
+											<goal>emma</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
