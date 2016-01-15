@@ -157,7 +157,7 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-									<groupId>com.simpligility.maven.plugins</groupId>
+										<groupId>com.simpligility.maven.plugins</groupId>
 										<artifactId>
 											android-maven-plugin
 										</artifactId>
