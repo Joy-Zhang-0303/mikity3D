@@ -16,7 +16,7 @@ import java.util.List;
  * @version $Revision$, 2016/01/08
  */
 public class TreeItem {
-
+  private TreeItem parent;
   private List<TreeItem> treeItems = new ArrayList<TreeItem>();
   private int depth = -1;
 
@@ -40,6 +40,7 @@ public class TreeItem {
    * @param value データ
    */
   public TreeItem(TreeItem parent, Object value) {
+    this.parent = parent;
     this.depth = parent.depth + 1;
     this.data = value;
     this.text = value.toString();
@@ -80,6 +81,15 @@ public class TreeItem {
       count += item.getCount();
     }
     return count;
+  }
+  
+  /**
+   * 親を返します。
+   * 
+   * @return 親
+   */
+  TreeItem getParentItem() {
+    return this.parent;
   }
 
   /**

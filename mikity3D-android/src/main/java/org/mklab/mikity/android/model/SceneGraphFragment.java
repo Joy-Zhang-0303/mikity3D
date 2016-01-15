@@ -45,6 +45,12 @@ public class SceneGraphFragment extends Fragment {
   SceneModel model;
   /** ルートグループ。 */
   GroupModel rootGroup;
+  
+  TreeItem selectedTreeItem;
+  
+  Object selectedObject;
+  
+  GroupModel selectedGroup;
 
   /**
    * {@inheritDoc}
@@ -62,17 +68,19 @@ public class SceneGraphFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        final TreeItem treeEntry = (TreeItem)parent.getItemAtPosition(position);
+        SceneGraphFragment.this.selectedTreeItem = (TreeItem)parent.getItemAtPosition(position);
         
-        if (treeEntry.isExpanded()) {
-          treeEntry.collapse();
+        if (SceneGraphFragment.this.selectedTreeItem.isExpanded()) {
+          SceneGraphFragment.this.selectedTreeItem.collapse();
         } else {
-          if (treeEntry.hasChild()) {
-            treeEntry.expand();
+          if (SceneGraphFragment.this.selectedTreeItem.hasChild()) {
+            SceneGraphFragment.this.selectedTreeItem.expand();
           }
         }
         
         SceneGraphFragment.this.adapter.notifyDataSetChanged();
+        
+        updatetSelectedObject();
       }
     });
     
@@ -183,4 +191,72 @@ public class SceneGraphFragment extends Fragment {
     }
   }
 
+  /**
+   * 選択されているオブジェクトを更新します。
+   */
+  void updatetSelectedObject() {
+    this.selectedObject = this.selectedTreeItem.getData();
+    
+    if (this.selectedObject instanceof GroupModel) {
+      this.selectedGroup = (GroupModel)this.selectedObject;
+    } else {
+      this.selectedGroup = (GroupModel)this.selectedTreeItem.getParentItem().getData();
+    }
+    
+    makeObjectNontransparent(this.selectedObject);
+  }
+  
+  /**
+   * 指定されたオブジェクトのみを非透過に設定します。
+   * 
+   * @param object オブジェクト
+   */
+  private void makeObjectNontransparent(Object object) {
+    if (object == this.rootGroup) {
+      for (final GroupModel group : this.model.getGroups()) {
+        setAllTransparent(group, false);
+      }
+      return;
+    }
+
+    for (final GroupModel group : this.model.getGroups()) {
+      setAllTransparent(group, true);
+    }
+    
+    if (object instanceof ObjectModel) {
+      ((ObjectModel)object).setTransparent(false);
+    } else if (object instanceof GroupModel) {
+      final GroupModel group = (GroupModel)object;
+      setTransparent(group, false);
+    }
+  }
+  
+  /**
+   * 指定されたグループ以下に含まれる全てのプリミティブの透過性を設定する。
+   * 
+   * @param group グループ
+   * @param transparent 透過ならばtrue
+   */
+  public void setAllTransparent(final GroupModel group, boolean transparent) {
+    setTransparent(group, transparent);
+
+    for (GroupModel childGroup : group.getGroups()) {
+      setAllTransparent(childGroup, transparent);
+    }
+  }
+  
+  /**
+   * グループに含まれる全てのプリミティブの透過性を設定する。
+   * 
+   * @param group グループ
+   * @param transparent 透過ならばtrue
+   */
+  public void setTransparent(final GroupModel group, boolean transparent) {
+    for (ObjectModel primitive : group.getObjects()) {
+      if (primitive instanceof NullModel) {
+        continue;
+      }
+      primitive.setTransparent(transparent);
+    }
+  }
 }

@@ -48,6 +48,9 @@ public class SceneGraphTree {
   /** ルートグループ。 */
   GroupModel rootGroup;
 
+  /** 選択されている要素。 */
+  TreeItem selectedTreeItem = null;
+  
   /** 選択されているオブジェクト。 */
   Object selectedObject = null;
   /** 選択されているグループ。 */
@@ -101,7 +104,11 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        updatetSelectedObject();
+        if (SceneGraphTree.this.tree.getSelectionCount() != 0) {
+          SceneGraphTree.this.selectedTreeItem = SceneGraphTree.this.tree.getSelection()[0];
+          updatetSelectedObject();
+        }
+        
         SceneGraphTree.this.modeler.updateRenderer(); 
         SceneGraphTree.this.modeler.updatePropertyEditor();
       }
@@ -433,17 +440,13 @@ public class SceneGraphTree {
   /**
    * 選択されているオブジェクトを更新します。
    */
-  public void updatetSelectedObject() {
-    if (this.tree.getSelectionCount() == 0) {
-      return;
-    }
-
-    this.selectedObject = this.tree.getSelection()[0].getData();
-
+  void updatetSelectedObject() {
+    this.selectedObject = this.selectedTreeItem.getData();
+    
     if (this.selectedObject instanceof GroupModel) {
       this.selectedGroup = (GroupModel)this.selectedObject;
     } else {
-      this.selectedGroup = (GroupModel)this.tree.getSelection()[0].getParentItem().getData();
+      this.selectedGroup = (GroupModel)this.selectedTreeItem.getParentItem().getData();
     }
     
     makeObjectNontransparent(this.selectedObject);
