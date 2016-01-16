@@ -37,11 +37,12 @@ import org.mklab.mikity.view.gui.editor.TransformationEditor;
 public class SceneGraphTree {
   /** 親コンポーネント。 */
   Composite parentComposite;
-  /** シーングラフツリー。 */
-  Tree tree;
   
   /** モデラー。 */
   JoglModeler modeler;
+
+  /** グラフツリー。 */
+  Tree tree;
 
   /** シーンモデル。 */
   SceneModel model;
@@ -50,7 +51,6 @@ public class SceneGraphTree {
 
   /** 選択されている要素。 */
   TreeItem selectedTreeItem = null;
-  
   /** 選択されているオブジェクト。 */
   Object selectedObject = null;
   /** 選択されているグループ。 */
@@ -645,7 +645,7 @@ public class SceneGraphTree {
   /**
    * ツリーから全てのItemを消去します。
    */
-  public void clearTree() {
+  private void clearTree() {
     if (this.tree.getItemCount() == 0) {
       return;
     }

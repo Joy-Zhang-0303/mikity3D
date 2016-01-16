@@ -10,7 +10,6 @@ import org.mklab.mikity.android.R;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Html;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.BackgroundColorSpan;
@@ -23,12 +22,12 @@ import android.widget.TextView;
 
 
 /**
- * モデルツリーのアダプタを表すクラスです。
+ * グラフツリーを表すクラスです。
  * 
  * @author koga
  * @version $Revision$, 2016/01/08
  */
-public class SceneGraphTreeAdapter extends BaseAdapter {
+public class GraphTree extends BaseAdapter {
 
   private LayoutInflater inflater;
   TreeItem rootItem = null;
@@ -38,7 +37,7 @@ public class SceneGraphTreeAdapter extends BaseAdapter {
    * 
    * @param context Context
    */
-  public SceneGraphTreeAdapter(Context context) {
+  public GraphTree(Context context) {
     this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   }
 

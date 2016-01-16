@@ -27,7 +27,7 @@ import android.widget.ListView;
 
 
 /**
- * シーングラフツリーのフラグメントを表すクラスです。
+ * モデルツリーのフラグメントを表すクラスです。
  * 
  * @author koga
  * @version $Revision$, 2016/01/08
@@ -37,20 +37,20 @@ public class SceneGraphTreeFragment extends Fragment {
   
   FragmentManager fragmentManager;
   
-  SceneGraphTreeAdapter adapter;
-  
-  TreeItem root;
-  
+  /** グラフツリー。 */
+  GraphTree tree;
+    
   /** シーンモデル。 */
   SceneModel model;
   /** ルートグループ。 */
   GroupModel rootGroup;
   
-  TreeItem selectedTreeItem;
-  
-  Object selectedObject;
-  
-  GroupModel selectedGroup;
+  /** 選択されている要素。 */
+  TreeItem selectedTreeItem = null;
+  /** 選択されているオブジェクト。 */
+  Object selectedObject = null;
+  /** 選択されているグループ。 */
+  GroupModel selectedGroup = null;
 
   /**
    * {@inheritDoc}
@@ -78,7 +78,7 @@ public class SceneGraphTreeFragment extends Fragment {
           }
         }
         
-        SceneGraphTreeFragment.this.adapter.notifyDataSetChanged();
+        SceneGraphTreeFragment.this.tree.notifyDataSetChanged();
         
         updatetSelectedObject();
       }
@@ -122,8 +122,8 @@ public class SceneGraphTreeFragment extends Fragment {
    * リストビューをアダプタに登録し、リストの処理します。
    */
   void configureListView() {
-    this.adapter = new SceneGraphTreeAdapter(getActivity());
-    this.listView.setAdapter(this.adapter);
+    this.tree = new GraphTree(getActivity());
+    this.listView.setAdapter(this.tree);
     
     createTree();
   }
@@ -135,10 +135,10 @@ public class SceneGraphTreeFragment extends Fragment {
    * @param parent 親
    */
   private void createTree() {
-    this.adapter.clearTree();
+    this.tree.clearTree();
     
-    this.root = this.adapter.add("scene"); //$NON-NLS-1$
-    addItemToTree(this.root, this.model.getGroups());
+    final TreeItem rootItem = this.tree.add("scene"); //$NON-NLS-1$
+    addItemToTree(rootItem, this.model.getGroups());
   }
   
   /**
