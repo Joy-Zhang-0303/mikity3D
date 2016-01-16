@@ -5,6 +5,8 @@
  */
 package org.mklab.mikity.android.model;
 
+import java.util.List;
+
 import org.mklab.mikity.android.R;
 
 import android.content.Context;
@@ -78,20 +80,6 @@ public class GraphTree extends BaseAdapter {
     
     return view;
   }
-
-//  /**
-//   * データを追加します。
-//   * 
-//   * @param item データ
-//   * @return　ツリーの要素
-//   */
-//  public TreeItem add(Object item) {
-//    if (this.rootItem == null) {
-//      this.rootItem = new TreeItem();
-//    }
-//
-//    return new TreeItem(this.rootItem, item);
-//  }
   
   /**
    * ルート要素を設定します。
@@ -106,7 +94,7 @@ public class GraphTree extends BaseAdapter {
    * {@inheritDoc}
    */
   public int getCount() {
-    return this.rootItem == null ? 0 : this.rootItem.getCount();
+    return this.rootItem == null ? 0 : this.rootItem.getItemCount();
   }
 
   /**
@@ -122,15 +110,20 @@ public class GraphTree extends BaseAdapter {
   public long getItemId(int position) {
     return position;
   }
+  
+  /**
+   * 要素のリストを返します。
+   * 
+   * @return 要素のリスト
+   */
+  public List<TreeItem> getItems() {
+    return this.rootItem.getItems();
+  }
 
   /**
    * ツリーから全てのItemを消去します。
    */
   public void clearTree() {
-    if (this.rootItem == null) {
-      return;
-    }
-
     this.rootItem.clearTree();
   }
 }

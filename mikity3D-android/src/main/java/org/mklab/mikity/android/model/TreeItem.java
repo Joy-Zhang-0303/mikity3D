@@ -84,14 +84,14 @@ public class TreeItem {
    * 
    * @return 要素を数
    */
-  int getCount() {
+  int getItemCount() {
     if (this.treeItems.size() == 0 || this.isExpanded == false) {
       return 0;
     }
 
     int count = this.treeItems.size();
     for (TreeItem item : this.treeItems) {
-      count += item.getCount();
+      count += item.getItemCount();
     }
     return count;
   }
@@ -103,6 +103,15 @@ public class TreeItem {
    */
   TreeItem getParentItem() {
     return this.parent;
+  }
+  
+  /**
+   * 要素のリストを返します。
+   * 
+   * @return 要素のリスト
+   */
+  List<TreeItem> getItems() {
+    return this.treeItems;
   }
 
   /**
@@ -126,7 +135,7 @@ public class TreeItem {
       TreeItem item = this.treeItems.get(i);
       --position;
 
-      int count = item.getCount();
+      int count = item.getItemCount();
       if (count >= position) {
         return item.getItem(position);
       }
@@ -200,7 +209,7 @@ public class TreeItem {
    * ツリーから全てのItemを消去します。
    */
   public void clearTree() {
-    if (getCount() == 0) {
+    if (getItemCount() == 0) {
       return;
     }
 
@@ -213,7 +222,7 @@ public class TreeItem {
   /**
    * データを削除します。
    */
-  private void dispose() {
+  public void dispose() {
     this.treeItems.clear();
     this.data = null;
     this.text = null;
@@ -226,7 +235,7 @@ public class TreeItem {
    */
   private void removeItemsFromTree(TreeItem items) {
     for (final TreeItem item : items.treeItems) {
-      if (item.getCount() != 0) {
+      if (item.getItemCount() != 0) {
         removeItemsFromTree(item);
       }
       item.dispose();

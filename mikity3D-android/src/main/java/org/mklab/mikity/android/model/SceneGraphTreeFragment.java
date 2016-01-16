@@ -33,7 +33,7 @@ import android.widget.ListView;
  * @version $Revision$, 2016/01/08
  */
 public class SceneGraphTreeFragment extends Fragment {
-  private ListView listView;
+  private ListView treeView;
   
   FragmentManager fragmentManager;
   
@@ -58,11 +58,11 @@ public class SceneGraphTreeFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.scene_graph_tree_fragment, container, false);
-    this.listView = (ListView)view.findViewById(R.id.scene_graph_list_view);
+    this.treeView = (ListView)view.findViewById(R.id.scene_graph_list_view);
     
-    configureListView();
+    createTree();
 
-    this.listView.setOnItemClickListener(new OnItemClickListener() {
+    this.treeView.setOnItemClickListener(new OnItemClickListener() {
 
       /**
        * {@inheritDoc}
@@ -119,27 +119,56 @@ public class SceneGraphTreeFragment extends Fragment {
   }
   
   /**
-   * リストビューをアダプタに登録し、リストの処理します。
+   * ツリーを生成します。
    */
-  void configureListView() {
+  void createTree() {
     this.tree = new GraphTree(getActivity());
-    this.listView.setAdapter(this.tree);
+    this.treeView.setAdapter(this.tree);
     
-    createTree();
+    bindModelToTree();
   }
   
   
   /**
-   * ツリーを生成します。
-   * 
-   * @param parent 親
+   * モデルをシーングラフにバインドし(結びつけ)ます。
    */
-  private void createTree() {
-    this.tree.clearTree();
+  public void bindModelToTree() {
+    clearTree();
     
-    final TreeItem rootItem = new TreeItem(this.tree, "scene"); //$NON-NLS-1$
+    final TreeItem rootItem = new TreeItem(this.tree, this.rootGroup);
+    rootItem.setText("scene"); //$NON-NLS-1$
+    
     addItemToTree(rootItem, this.model.getGroups());
   }
+  
+  /**
+   * ツリーから全てのItemを消去します。
+   */
+  private void clearTree() {
+    if (this.tree.getCount() == 0) {
+      return;
+    }
+    
+    for (final TreeItem item : this.tree.getItems()) {
+      removeItemsFromTree(item);
+      item.dispose();
+    }
+  }
+
+  /**
+   * ツリーからItemを削除します。
+   * 
+   * @param items Item郡
+   */
+  private void removeItemsFromTree(TreeItem items) {
+    for (final TreeItem item : items.getItems()) {
+      if (item.getItemCount() != 0) {
+        removeItemsFromTree(item);
+      }
+      item.dispose();
+    }
+  }
+
   
   /**
    * ツリーにオブジェクトを追加します。
