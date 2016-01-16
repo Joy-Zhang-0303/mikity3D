@@ -16,6 +16,8 @@ import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -51,6 +53,20 @@ public class SceneGraphTreeFragment extends Fragment {
   Object selectedObject = null;
   /** 選択されているグループ。 */
   GroupModel selectedGroup = null;
+  
+  private static final int CONTEXT_MENU_ADD_GROUP = 1;
+  private static final int CONTEXT_MENU_ADD_BOX = 2;
+  private static final int CONTEXT_MENU_ADD_CYLINDER = 3;
+  private static final int CONTEXT_MENU_ADD_SPHERE = 4;
+  private static final int CONTEXT_MENU_ADD_CONE = 5;
+  private static final int CONTEXT_MENU_ADD_CAPSULE = 6;
+  private static final int CONTEXT_MENU_ADD_TRIANGLE = 7;
+  private static final int CONTEXT_MENU_ADD_QUADRANGLE = 8;
+  private static final int CONTEXT_MENU_ADD_TRANSFORM = 9;
+  private static final int CONTEXT_MENU_ADD_CUT = 10;
+  private static final int CONTEXT_MENU_ADD_COPY = 11;
+  private static final int CONTEXT_MENU_ADD_PASTE = 12;
+  private static final int CONTEXT_MENU_ADD_DELETE = 13;
 
   /**
    * {@inheritDoc}
@@ -58,9 +74,10 @@ public class SceneGraphTreeFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.scene_graph_tree_fragment, container, false);
-    this.treeView = (ListView)view.findViewById(R.id.scene_graph_list_view);
+    this.treeView = (ListView)view.findViewById(R.id.scene_graph_tree_view);
     
     createTree();
+    createPopupMenu();
     
     final Button backButton = (Button)view.findViewById(R.id.backButton);
     backButton.setOnClickListener(new OnClickListener() {
@@ -74,6 +91,37 @@ public class SceneGraphTreeFragment extends Fragment {
     });
     
     return view;
+  }
+  
+  /**
+   * ポップアップメニュを生成します。 
+   */
+  private void createPopupMenu() {
+    registerForContextMenu(this.treeView);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
+    super.onCreateContextMenu(menu, view, menuInfo);
+    
+    if (view.getId() == R.id.scene_graph_tree_view) {
+      menu.add(0, CONTEXT_MENU_ADD_GROUP, 0, R.string.addGroup);
+      menu.add(0, CONTEXT_MENU_ADD_BOX, 0, R.string.addBox);
+      menu.add(0, CONTEXT_MENU_ADD_CYLINDER, 0, R.string.addCylinder);
+      menu.add(0, CONTEXT_MENU_ADD_SPHERE, 0, R.string.addSphere);
+      menu.add(0, CONTEXT_MENU_ADD_CONE, 0, R.string.addCone);
+      menu.add(0, CONTEXT_MENU_ADD_CAPSULE, 0, R.string.addCapsule);
+      menu.add(0, CONTEXT_MENU_ADD_TRIANGLE, 0, R.string.addTriangle);
+      menu.add(0, CONTEXT_MENU_ADD_QUADRANGLE, 0, R.string.addQuadrangle);
+      menu.add(0, CONTEXT_MENU_ADD_TRANSFORM, 0, R.string.transform);
+      menu.add(0, CONTEXT_MENU_ADD_CUT, 0, R.string.cut);
+      menu.add(0, CONTEXT_MENU_ADD_COPY, 0, R.string.copy);
+      menu.add(0, CONTEXT_MENU_ADD_PASTE, 0, R.string.paste);
+      menu.add(0, CONTEXT_MENU_ADD_DELETE, 0, R.string.delete);
+    }
   }
 
   /**
