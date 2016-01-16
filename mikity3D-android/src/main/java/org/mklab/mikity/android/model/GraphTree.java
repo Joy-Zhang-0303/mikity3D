@@ -79,18 +79,27 @@ public class GraphTree extends BaseAdapter {
     return view;
   }
 
+//  /**
+//   * データを追加します。
+//   * 
+//   * @param item データ
+//   * @return　ツリーの要素
+//   */
+//  public TreeItem add(Object item) {
+//    if (this.rootItem == null) {
+//      this.rootItem = new TreeItem();
+//    }
+//
+//    return new TreeItem(this.rootItem, item);
+//  }
+  
   /**
-   * データを追加します。
+   * ルート要素を設定します。
    * 
-   * @param item データ
-   * @return　ツリーの要素
+   * @param rootItem ルート要素
    */
-  public TreeItem add(Object item) {
-    if (this.rootItem == null) {
-      this.rootItem = new TreeItem();
-    }
-
-    return new TreeItem(this.rootItem, item);
+  public void setRootItem(TreeItem rootItem) {
+    this.rootItem = rootItem;
   }
 
   /**

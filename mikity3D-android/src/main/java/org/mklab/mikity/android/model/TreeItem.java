@@ -29,8 +29,21 @@ public class TreeItem {
    * 
    * ルートオブジェクト専用
    */
-  TreeItem() {
+  private TreeItem() {
     this.isExpanded = true;
+  }
+
+  /**
+   * 新しく生成された<code>TreeItem</code>オブジェクトを初期化します。
+   * 
+   * ルートオブジェクト専用
+   * 
+   * @param tree ツリー
+   * @param value データ
+   */
+  public TreeItem(GraphTree tree, Object value) {
+    this(new TreeItem(), value);
+    tree.setRootItem(this.parent);
   }
 
   /**
