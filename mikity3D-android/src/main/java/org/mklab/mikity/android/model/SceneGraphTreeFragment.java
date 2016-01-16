@@ -27,17 +27,17 @@ import android.widget.ListView;
 
 
 /**
- * モデルツリーのフラグメントを表すクラスです。
+ * シーングラフツリーのフラグメントを表すクラスです。
  * 
  * @author koga
  * @version $Revision$, 2016/01/08
  */
-public class SceneGraphFragment extends Fragment {
+public class SceneGraphTreeFragment extends Fragment {
   private ListView listView;
   
   FragmentManager fragmentManager;
   
-  ModelTreeAdapter adapter;
+  SceneGraphTreeAdapter adapter;
   
   TreeItem root;
   
@@ -57,7 +57,7 @@ public class SceneGraphFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.scene_graph_fragment, container, false);
+    final View view = inflater.inflate(R.layout.scene_graph_tree_fragment, container, false);
     this.listView = (ListView)view.findViewById(R.id.scene_graph_list_view);
     
     configureListView();
@@ -68,17 +68,17 @@ public class SceneGraphFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        SceneGraphFragment.this.selectedTreeItem = (TreeItem)parent.getItemAtPosition(position);
+        SceneGraphTreeFragment.this.selectedTreeItem = (TreeItem)parent.getItemAtPosition(position);
         
-        if (SceneGraphFragment.this.selectedTreeItem.isExpanded()) {
-          SceneGraphFragment.this.selectedTreeItem.collapse();
+        if (SceneGraphTreeFragment.this.selectedTreeItem.isExpanded()) {
+          SceneGraphTreeFragment.this.selectedTreeItem.collapse();
         } else {
-          if (SceneGraphFragment.this.selectedTreeItem.hasChild()) {
-            SceneGraphFragment.this.selectedTreeItem.expand();
+          if (SceneGraphTreeFragment.this.selectedTreeItem.hasChild()) {
+            SceneGraphTreeFragment.this.selectedTreeItem.expand();
           }
         }
         
-        SceneGraphFragment.this.adapter.notifyDataSetChanged();
+        SceneGraphTreeFragment.this.adapter.notifyDataSetChanged();
         
         updatetSelectedObject();
       }
@@ -91,7 +91,7 @@ public class SceneGraphFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        SceneGraphFragment.this.fragmentManager.popBackStack();
+        SceneGraphTreeFragment.this.fragmentManager.popBackStack();
       }
     });
     
@@ -122,7 +122,7 @@ public class SceneGraphFragment extends Fragment {
    * リストビューをアダプタに登録し、リストの処理します。
    */
   void configureListView() {
-    this.adapter = new ModelTreeAdapter(getActivity());
+    this.adapter = new SceneGraphTreeAdapter(getActivity());
     this.listView.setAdapter(this.adapter);
     
     createTree();

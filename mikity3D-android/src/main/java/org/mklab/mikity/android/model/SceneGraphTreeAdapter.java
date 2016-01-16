@@ -28,7 +28,7 @@ import android.widget.TextView;
  * @author koga
  * @version $Revision$, 2016/01/08
  */
-public class ModelTreeAdapter extends BaseAdapter {
+public class SceneGraphTreeAdapter extends BaseAdapter {
 
   private LayoutInflater inflater;
   TreeItem rootItem = null;
@@ -38,7 +38,7 @@ public class ModelTreeAdapter extends BaseAdapter {
    * 
    * @param context Context
    */
-  public ModelTreeAdapter(Context context) {
+  public SceneGraphTreeAdapter(Context context) {
     this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   }
 
@@ -46,7 +46,7 @@ public class ModelTreeAdapter extends BaseAdapter {
    * {@inheritDoc}
    */
   public View getView(int position, @SuppressWarnings("unused") View convertView, @SuppressWarnings("unused") ViewGroup parent) {
-    final TextView view = (TextView)this.inflater.inflate(R.layout.scene_graph_item, null);
+    final TextView view = (TextView)this.inflater.inflate(R.layout.scene_graph_tree_item, null);
     final TreeItem treeItem = (TreeItem)getItem(position);
 
     String itemText;

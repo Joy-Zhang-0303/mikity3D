@@ -82,6 +82,7 @@ public class SceneGraphTree {
     this.selectedObject= this.rootGroup;
 
     createTree();
+    createPopupMenu();
   }
 
   /**
@@ -96,9 +97,6 @@ public class SceneGraphTree {
     this.tree.setLayoutData(data);
 
     bindModelToTree();
-
-    // TODO
-    // new DragAndDropEnabler(this.xmlTree);
 
     this.tree.addSelectionListener(new SelectionAdapter() {
 
@@ -123,8 +121,6 @@ public class SceneGraphTree {
         }
       }
     });
-
-    createPopupMenu();
   }
 
   /**
@@ -375,9 +371,7 @@ public class SceneGraphTree {
        */
       @Override
       public void menuShown(@SuppressWarnings("unused") MenuEvent e) {
-        final Object clickedObject = SceneGraphTree.this.tree.getSelection()[0].getData();
-        
-        if (clickedObject == SceneGraphTree.this.rootGroup) {
+        if (SceneGraphTree.this.selectedObject == SceneGraphTree.this.rootGroup) {
           addBox.setEnabled(false);
           addCylinder.setEnabled(false);
           addSphere.setEnabled(false);
@@ -397,7 +391,7 @@ public class SceneGraphTree {
           return;
         } 
         
-        if (clickedObject instanceof GroupModel) {
+        if (SceneGraphTree.this.selectedObject instanceof GroupModel) {
           addBox.setEnabled(true);
           addCylinder.setEnabled(true);
           addSphere.setEnabled(true);
