@@ -61,28 +61,6 @@ public class SceneGraphTreeFragment extends Fragment {
     this.treeView = (ListView)view.findViewById(R.id.scene_graph_list_view);
     
     createTree();
-
-    this.treeView.setOnItemClickListener(new OnItemClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        SceneGraphTreeFragment.this.selectedTreeItem = (TreeItem)parent.getItemAtPosition(position);
-        
-        if (SceneGraphTreeFragment.this.selectedTreeItem.isExpanded()) {
-          SceneGraphTreeFragment.this.selectedTreeItem.collapse();
-        } else {
-          if (SceneGraphTreeFragment.this.selectedTreeItem.hasChild()) {
-            SceneGraphTreeFragment.this.selectedTreeItem.expand();
-          }
-        }
-        
-        SceneGraphTreeFragment.this.tree.notifyDataSetChanged();
-        
-        updatetSelectedObject();
-      }
-    });
     
     final Button backButton = (Button)view.findViewById(R.id.backButton);
     backButton.setOnClickListener(new OnClickListener() {
@@ -126,6 +104,28 @@ public class SceneGraphTreeFragment extends Fragment {
     this.treeView.setAdapter(this.tree);
     
     bindModelToTree();
+    
+    this.treeView.setOnItemClickListener(new OnItemClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        SceneGraphTreeFragment.this.selectedTreeItem = (TreeItem)parent.getItemAtPosition(position);
+        
+        if (SceneGraphTreeFragment.this.selectedTreeItem.isExpanded()) {
+          SceneGraphTreeFragment.this.selectedTreeItem.collapse();
+        } else {
+          if (SceneGraphTreeFragment.this.selectedTreeItem.hasChild()) {
+            SceneGraphTreeFragment.this.selectedTreeItem.expand();
+          }
+        }
+        
+        SceneGraphTreeFragment.this.tree.notifyDataSetChanged();
+        
+        updatetSelectedObject();
+      }
+    });
   }
   
   

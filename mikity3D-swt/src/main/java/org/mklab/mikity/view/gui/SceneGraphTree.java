@@ -117,7 +117,7 @@ public class SceneGraphTree {
       @Override
       public void keyPressed(KeyEvent arg0) {
         if (arg0.keyCode == SWT.DEL) {
-          removeSelectedItem();
+          deleteSelectedItem();
         }
       }
     });
@@ -126,20 +126,12 @@ public class SceneGraphTree {
   /**
    * 選択されたitemを削除します。 
    */
-  void removeSelectedItem() {
-    final TreeItem[] selectedItems = SceneGraphTree.this.tree.getSelection();
-    if (selectedItems.length == 0) {
-      return;
-    }
-    
-    final TreeItem selectedItem = selectedItems[0];
-    final Object selectedData = selectedItem.getData();          
-
-    if (selectedItem.getText().equals("scene")) { //$NON-NLS-1$
+  void deleteSelectedItem() {
+    if (this.selectedTreeItem.getText().equals("scene")) { //$NON-NLS-1$
       return;
     }
 
-    final TreeItem parentItem = selectedItem.getParentItem();
+    final TreeItem parentItem = this.selectedTreeItem.getParentItem();
 
     if (parentItem.getText().equals("scene")) { //$NON-NLS-1$
       final MessageBox message = new MessageBox(this.parentComposite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
@@ -149,17 +141,17 @@ public class SceneGraphTree {
         return;
       }
       
-      SceneGraphTree.this.model.removeGroup((GroupModel)selectedData);
-      selectedItem.dispose();
+      this.model.removeGroup((GroupModel)this.selectedObject);
+      this.selectedTreeItem.dispose();
     } else {
       final GroupModel group = (GroupModel)parentItem.getData();
-      if (removeObject(group, selectedData)) {
-        selectedItem.dispose();
+      if (removeObjectFromGroup(group, this.selectedObject)) {
+        this.selectedTreeItem.dispose();
       }
     }
     
-    SceneGraphTree.this.modeler.updateRenderer();
-    SceneGraphTree.this.modeler.updatePropertyEditor();
+    this.modeler.updateRenderer();
+    this.modeler.updatePropertyEditor();
   }
   
   /**
@@ -177,16 +169,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        final GroupModel group = new GroupModel(Messages.getString("SceneGraphTree.37")); //$NON-NLS-1$
-        if (SceneGraphTree.this.selectedGroup == SceneGraphTree.this.rootGroup) {
-          SceneGraphTree.this.model.addGroup(group);
-        } else {
-          SceneGraphTree.this.selectedGroup.add(group);
-        }
-        SceneGraphTree.this.selectedGroup = group;
-        SceneGraphTree.this.selectedObject = group;
-        
-        updateTree();
+        addGroup();
       }
     });
 
@@ -196,10 +179,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        final ObjectModel object = BoxModel.createDefault();
-        SceneGraphTree.this.selectedGroup.add(object);
-        SceneGraphTree.this.selectedObject = object;
-        updateTree();
+        addBox();
       }
     });
 
@@ -209,10 +189,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        final ObjectModel object = CylinderModel.createDefault();
-        SceneGraphTree.this.selectedGroup.add(object);
-        SceneGraphTree.this.selectedObject = object;
-        updateTree();
+        addCylinder();
       }
     });
 
@@ -222,10 +199,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        final ObjectModel object = SphereModel.createDefault();
-        SceneGraphTree.this.selectedGroup.add(object);
-        SceneGraphTree.this.selectedObject = object;
-        updateTree();
+        addSphere();
       }
     });
 
@@ -235,10 +209,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        final ObjectModel object = ConeModel.createDefault();
-        SceneGraphTree.this.selectedGroup.add(object);
-        SceneGraphTree.this.selectedObject = object;
-        updateTree();
+        addCone();
       }
     });
     
@@ -248,10 +219,7 @@ public class SceneGraphTree {
 
       @Override     
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        final ObjectModel object = CapsuleModel.createDefault();
-        SceneGraphTree.this.selectedGroup.add(object);
-        SceneGraphTree.this.selectedObject = object;
-        updateTree();
+        addCupsule();
       }
     });
 
@@ -261,10 +229,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        final ObjectModel object = TriangleModel.createDefault();
-        SceneGraphTree.this.selectedGroup.add(object);
-        SceneGraphTree.this.selectedObject = object;
-        updateTree();
+        addTriangle();
       }
     });
 
@@ -274,10 +239,7 @@ public class SceneGraphTree {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        final ObjectModel object = QuadrangleModel.createDefault();
-        SceneGraphTree.this.selectedGroup.add(object);
-        SceneGraphTree.this.selectedObject = object;
-        updateTree();
+        addQuadrangle();
       }
     });
     
@@ -295,73 +257,43 @@ public class SceneGraphTree {
       }
     });
 
-    final MenuItem cut = new MenuItem(menu, SWT.POP_UP);
-    cut.setText(Messages.getString("SceneGraphTree.32")); //$NON-NLS-1$
-    cut.addSelectionListener(new SelectionAdapter() {
+    final MenuItem cutItem = new MenuItem(menu, SWT.POP_UP);
+    cutItem.setText(Messages.getString("SceneGraphTree.32")); //$NON-NLS-1$
+    cutItem.addSelectionListener(new SelectionAdapter() {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        if (SceneGraphTree.this.selectedObject instanceof GroupModel) {
-          SceneGraphTree.this.bufferedGroup = SceneGraphTree.this.selectedGroup;
-          SceneGraphTree.this.bufferedObject = null;
-        } else {
-          SceneGraphTree.this.bufferedGroup = null;
-          SceneGraphTree.this.bufferedObject = (ObjectModel)SceneGraphTree.this.selectedObject;
-        }
-        
-        removeSelectedItem();
+        cutSelectedItem();
       }
     });
 
-    final MenuItem copy = new MenuItem(menu, SWT.POP_UP);
-    copy.setText(Messages.getString("SceneGraphTree.33")); //$NON-NLS-1$
-    copy.addSelectionListener(new SelectionAdapter() {
+    final MenuItem copyItem = new MenuItem(menu, SWT.POP_UP);
+    copyItem.setText(Messages.getString("SceneGraphTree.33")); //$NON-NLS-1$
+    copyItem.addSelectionListener(new SelectionAdapter() {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        if (SceneGraphTree.this.selectedObject instanceof GroupModel) {
-          SceneGraphTree.this.bufferedGroup = SceneGraphTree.this.selectedGroup;
-          SceneGraphTree.this.bufferedObject = null;
-        } else {
-          SceneGraphTree.this.bufferedGroup = null;
-          SceneGraphTree.this.bufferedObject = (ObjectModel)SceneGraphTree.this.selectedObject;
-        }
+        copySelectedItem();
       }
     });
 
-    final MenuItem paste = new MenuItem(menu, SWT.POP_UP);
-    paste.setText(Messages.getString("SceneGraphTree.34")); //$NON-NLS-1$
-    paste.addSelectionListener(new SelectionAdapter() {
+    final MenuItem pasteItem = new MenuItem(menu, SWT.POP_UP);
+    pasteItem.setText(Messages.getString("SceneGraphTree.34")); //$NON-NLS-1$
+    pasteItem.addSelectionListener(new SelectionAdapter() {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        if ((SceneGraphTree.this.selectedObject instanceof GroupModel) == false) {
-          return;
-        }
-        
-        if (SceneGraphTree.this.bufferedGroup != null) {
-          if (SceneGraphTree.this.selectedGroup == SceneGraphTree.this.rootGroup) {
-            SceneGraphTree.this.model.addGroup(SceneGraphTree.this.bufferedGroup.clone());
-          } else {
-            SceneGraphTree.this.selectedGroup.add(SceneGraphTree.this.bufferedGroup.clone());
-          }
-          updateTree();
-        }
-        
-        if (SceneGraphTree.this.bufferedObject != null) {
-          SceneGraphTree.this.selectedGroup.add(SceneGraphTree.this.bufferedObject.createClone());
-          updateTree();
-        }
+        pasteBufferedObjectToSelectedItem();
       }
     });
 
-    final MenuItem delete = new MenuItem(menu, SWT.POP_UP);
-    delete.setText(Messages.getString("SceneGraphTree.13")); //$NON-NLS-1$
-    delete.addSelectionListener(new SelectionAdapter() {
+    final MenuItem deleteItem = new MenuItem(menu, SWT.POP_UP);
+    deleteItem.setText(Messages.getString("SceneGraphTree.13")); //$NON-NLS-1$
+    deleteItem.addSelectionListener(new SelectionAdapter() {
 
       @Override
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        removeSelectedItem();
+        deleteSelectedItem();
       }
     });
     
@@ -380,14 +312,14 @@ public class SceneGraphTree {
           addTriangle.setEnabled(false);
           addQuadrangle.setEnabled(false);
           addGroup.setEnabled(true);
-          copy.setEnabled(false);
-          cut.setEnabled(false);
+          copyItem.setEnabled(false);
+          cutItem.setEnabled(false);
           if (SceneGraphTree.this.bufferedGroup != null || SceneGraphTree.this.bufferedObject != null) {
-            paste.setEnabled(true);
+            pasteItem.setEnabled(true);
           } else {
-            paste.setEnabled(false);
+            pasteItem.setEnabled(false);
           }
-          delete.setEnabled(false);
+          deleteItem.setEnabled(false);
           return;
         } 
         
@@ -400,14 +332,14 @@ public class SceneGraphTree {
           addTriangle.setEnabled(true);
           addQuadrangle.setEnabled(true);
           addGroup.setEnabled(true);
-          copy.setEnabled(true);
-          cut.setEnabled(true);
+          copyItem.setEnabled(true);
+          cutItem.setEnabled(true);
           if (SceneGraphTree.this.bufferedGroup != null || SceneGraphTree.this.bufferedObject != null) {
-            paste.setEnabled(true);
+            pasteItem.setEnabled(true);
           } else {
-            paste.setEnabled(false);
+            pasteItem.setEnabled(false);
           }
-          delete.setEnabled(true);
+          deleteItem.setEnabled(true);
           return;
         }
 
@@ -419,14 +351,14 @@ public class SceneGraphTree {
         addTriangle.setEnabled(false);
         addQuadrangle.setEnabled(false);
         addGroup.setEnabled(false);
-        copy.setEnabled(true);
-        cut.setEnabled(true);
+        copyItem.setEnabled(true);
+        cutItem.setEnabled(true);
         if (SceneGraphTree.this.bufferedGroup != null || SceneGraphTree.this.bufferedObject != null) {
-          paste.setEnabled(true);
+          pasteItem.setEnabled(true);
         } else {
-          paste.setEnabled(false);
+          pasteItem.setEnabled(false);
         }
-        delete.setEnabled(true);
+        deleteItem.setEnabled(true);
       }
     });
   }
@@ -553,7 +485,7 @@ public class SceneGraphTree {
    * 
    * @return モデルを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
    */
-  boolean removeObject(GroupModel group, Object object) {
+  boolean removeObjectFromGroup(GroupModel group, Object object) {
     if (object instanceof ObjectModel) {
       group.remove((ObjectModel)object);
     } else if (object instanceof GroupModel) {
@@ -694,5 +626,142 @@ public class SceneGraphTree {
    */
   public void setIsModifyingObject(boolean isModifyingObject) {
     this.isModifyingObject = isModifyingObject;
+  }
+
+  /**
+   * グループを追加します。 
+   */
+  void addGroup() {
+    final GroupModel group = new GroupModel(Messages.getString("SceneGraphTree.37")); //$NON-NLS-1$
+    if (this.selectedGroup == this.rootGroup) {
+      this.model.addGroup(group);
+    } else {
+      this.selectedGroup.add(group);
+    }
+    this.selectedGroup = group;
+    this.selectedObject = group;
+    
+    updateTree();
+  }
+
+  /**
+   * 直方体を追加します。 
+   */
+  void addBox() {
+    final ObjectModel object = BoxModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    updateTree();
+  }
+
+  /**
+   * 円柱を追加します。
+   */
+  void addCylinder() {
+    final ObjectModel object = CylinderModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    updateTree();
+  }
+
+  /**
+   * 球を追加します。 
+   */
+  void addSphere() {
+    final ObjectModel object = SphereModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    updateTree();
+  }
+
+  /**
+   * 円錐を追加します。 
+   */
+  void addCone() {
+    final ObjectModel object = ConeModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    updateTree();
+  }
+
+  /**
+   * カプセルを追加します。
+   */
+  void addCupsule() {
+    final ObjectModel object = CapsuleModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    updateTree();
+  }
+
+  /**
+   * 三角形を追加します。 
+   */
+  void addTriangle() {
+    final ObjectModel object = TriangleModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    updateTree();
+  }
+
+  /**
+   * 四角形を追加します。 
+   */
+  void addQuadrangle() {
+    final ObjectModel object = QuadrangleModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    updateTree();
+  }
+
+  /**
+   * 要素をカットします。 
+   */
+  void cutSelectedItem() {
+    if (this.selectedObject instanceof GroupModel) {
+      this.bufferedGroup = this.selectedGroup;
+      this.bufferedObject = null;
+    } else {
+      this.bufferedGroup = null;
+      this.bufferedObject = (ObjectModel)this.selectedObject;
+    }
+    
+    deleteSelectedItem();
+  }
+
+  /**
+   * 要素をコピーします。 
+   */
+  void copySelectedItem() {
+    if (this.selectedObject instanceof GroupModel) {
+      this.bufferedGroup = this.selectedGroup;
+      this.bufferedObject = null;
+    } else {
+      this.bufferedGroup = null;
+      this.bufferedObject = (ObjectModel)this.selectedObject;
+    }
+  }
+
+  /**
+   * 要素をペーストします。 
+   */
+  void pasteBufferedObjectToSelectedItem() {
+    if ((this.selectedObject instanceof GroupModel) == false) {
+      return;
+    }
+    
+    if (this.bufferedGroup != null) {
+      if (this.selectedGroup == this.rootGroup) {
+        this.model.addGroup(this.bufferedGroup.clone());
+      } else {
+        this.selectedGroup.add(this.bufferedGroup.clone());
+      }
+      updateTree();
+    }
+    
+    if (this.bufferedObject != null) {
+      this.selectedGroup.add(this.bufferedObject.createClone());
+      updateTree();
+    }
   }
 }
