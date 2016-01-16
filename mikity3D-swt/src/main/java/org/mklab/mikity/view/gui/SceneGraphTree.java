@@ -219,7 +219,7 @@ public class SceneGraphTree {
 
       @Override     
       public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        addCupsule();
+        addCapsule();
       }
     });
 
@@ -687,7 +687,7 @@ public class SceneGraphTree {
   /**
    * カプセルを追加します。
    */
-  void addCupsule() {
+  void addCapsule() {
     final ObjectModel object = CapsuleModel.createDefault();
     this.selectedGroup.add(object);
     this.selectedObject = object;

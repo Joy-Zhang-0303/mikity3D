@@ -241,4 +241,16 @@ public class TreeItem {
       item.dispose();
     }
   }
+  
+  /**
+   * 要素を削除します。
+   * 
+   * @param item 要素
+   */
+  public void removeItem(TreeItem item) {
+    if (this.treeItems.contains(item)) {
+      this.treeItems.remove(item);
+    }
+      
+  }
 }

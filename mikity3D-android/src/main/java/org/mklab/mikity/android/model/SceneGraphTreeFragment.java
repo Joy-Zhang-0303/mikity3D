@@ -9,9 +9,16 @@ import java.util.List;
 
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
+import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
+import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
+import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.NullModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
+import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
+import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
+import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +26,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -53,6 +61,11 @@ public class SceneGraphTreeFragment extends Fragment {
   Object selectedObject = null;
   /** 選択されているグループ。 */
   GroupModel selectedGroup = null;
+  
+  /** 記憶されたオブジェクト。 */
+  ObjectModel bufferedObject = null;
+  /** 記憶されたグループ。 */
+  GroupModel bufferedGroup = null;
   
   private static final int CONTEXT_MENU_ADD_GROUP = 1;
   private static final int CONTEXT_MENU_ADD_BOX = 2;
@@ -122,6 +135,73 @@ public class SceneGraphTreeFragment extends Fragment {
       menu.add(0, CONTEXT_MENU_ADD_PASTE, 0, R.string.paste);
       menu.add(0, CONTEXT_MENU_ADD_DELETE, 0, R.string.delete);
     }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean onContextItemSelected(MenuItem item) {
+    final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+    
+    int position = info.position;
+    
+    int itemId = item.getItemId();
+    
+    if (itemId == CONTEXT_MENU_ADD_GROUP) {
+      addGroup();
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_ADD_BOX) {
+      addBox();
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_ADD_CYLINDER) {
+      addCylinder();
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_ADD_SPHERE) {
+      addSphere();
+      return true;
+    } 
+    if (itemId == CONTEXT_MENU_ADD_CONE) {
+      addCone();
+      return true;
+    }
+
+    if (itemId == CONTEXT_MENU_ADD_CAPSULE) {
+      addCapsule();
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_ADD_TRIANGLE) {
+      addTriangle();
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_ADD_QUADRANGLE) {
+      addQuadrangle();
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_ADD_TRANSFORM) {
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_ADD_CUT) {
+      cutSelectedItem();
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_ADD_COPY) {
+      copySelectedItem();
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_ADD_PASTE) {
+      pasteBufferedObjectToSelectedItem();
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_ADD_DELETE) {
+      deleteSelectedItem();
+      return true;
+    }
+    
+    return super.onContextItemSelected(item);
   }
 
   /**
@@ -335,5 +415,221 @@ public class SceneGraphTreeFragment extends Fragment {
       }
       primitive.setTransparent(transparent);
     }
+  }
+  
+  /**
+   * グループを追加します。 
+   */
+  void addGroup() {
+    final GroupModel group = new GroupModel(getActivity().getString(R.string.group));
+    if (this.selectedGroup == this.rootGroup) {
+      this.model.addGroup(group);
+    } else {
+      this.selectedGroup.add(group);
+    }
+    this.selectedGroup = group;
+    this.selectedObject = group;
+    
+    updateTree();
+  }
+
+  /**
+   * 直方体を追加します。 
+   */
+  void addBox() {
+    final ObjectModel object = BoxModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    
+    updateTree();
+  }
+
+  /**
+   * 円柱を追加します。
+   */
+  void addCylinder() {
+    final ObjectModel object = CylinderModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    
+    updateTree();
+  }
+
+  /**
+   * 球を追加します。 
+   */
+  void addSphere() {
+    final ObjectModel object = SphereModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    
+    updateTree();
+  }
+
+  /**
+   * 円錐を追加します。 
+   */
+  void addCone() {
+    final ObjectModel object = ConeModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    
+    updateTree();
+  }
+
+  /**
+   * カプセルを追加します。
+   */
+  void addCapsule() {
+    final ObjectModel object = CapsuleModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    
+    updateTree();
+  }
+
+  /**
+   * 三角形を追加します。 
+   */
+  void addTriangle() {
+    final ObjectModel object = TriangleModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    
+    updateTree();
+  }
+
+  /**
+   * 四角形を追加します。 
+   */
+  void addQuadrangle() {
+    final ObjectModel object = QuadrangleModel.createDefault();
+    this.selectedGroup.add(object);
+    this.selectedObject = object;
+    
+    updateTree();
+  }
+
+  /**
+   * 要素をカットします。 
+   */
+  void cutSelectedItem() {
+    if (this.selectedObject instanceof GroupModel) {
+      this.bufferedGroup = this.selectedGroup;
+      this.bufferedObject = null;
+    } else {
+      this.bufferedGroup = null;
+      this.bufferedObject = (ObjectModel)this.selectedObject;
+    }
+    
+    deleteSelectedItem();
+  }
+
+  /**
+   * 要素をコピーします。 
+   */
+  void copySelectedItem() {
+    if (this.selectedObject instanceof GroupModel) {
+      this.bufferedGroup = this.selectedGroup;
+      this.bufferedObject = null;
+    } else {
+      this.bufferedGroup = null;
+      this.bufferedObject = (ObjectModel)this.selectedObject;
+    }
+  }
+
+  /**
+   * 要素をペーストします。 
+   */
+  void pasteBufferedObjectToSelectedItem() {
+    if ((this.selectedObject instanceof GroupModel) == false) {
+      return;
+    }
+    
+    if (this.bufferedGroup != null) {
+      if (this.selectedGroup == this.rootGroup) {
+        this.model.addGroup(this.bufferedGroup.clone());
+      } else {
+        this.selectedGroup.add(this.bufferedGroup.clone());
+      }
+      updateTree();
+    }
+    
+    if (this.bufferedObject != null) {
+      this.selectedGroup.add(this.bufferedObject.createClone());
+      updateTree();
+    }
+  }
+  
+  /**
+   * 選択されたitemを削除します。 
+   */
+  void deleteSelectedItem() {
+    if (this.selectedTreeItem.getText().equals("scene")) { //$NON-NLS-1$
+      return;
+    }
+
+    final TreeItem parentItem = this.selectedTreeItem.getParentItem();
+
+    if (parentItem.getText().equals("scene")) { //$NON-NLS-1$
+//      final MessageBox message = new MessageBox(this.parentComposite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
+//      message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
+//      final int result = message.open();
+//      if (result == SWT.NO) {
+//        return;
+//      }
+      
+      this.model.removeGroup((GroupModel)this.selectedObject);
+      this.selectedTreeItem.dispose();
+    } else {
+      final GroupModel group = (GroupModel)parentItem.getData();
+      if (removeObjectFromGroup(group, this.selectedObject)) {
+        this.selectedTreeItem.dispose();
+      }
+    }
+    
+    parentItem.removeItem(this.selectedTreeItem);
+    
+    updateTree();
+    
+    //this.modeler.updateRenderer();
+    //this.modeler.updatePropertyEditor();
+  }
+  
+  /**
+   * グループからモデルを削除します。
+   * 
+   * @param group グループ
+   * @param object プリミティブ
+   * 
+   * @return モデルを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
+   */
+  boolean removeObjectFromGroup(GroupModel group, Object object) {
+    if (object instanceof ObjectModel) {
+      group.remove((ObjectModel)object);
+    } else if (object instanceof GroupModel) {
+//      final MessageBox message = new MessageBox(this.parentComposite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
+//      message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
+//      message.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
+//      int result = message.open();
+//      if (result == SWT.NO) {
+//        return false;
+//      }
+      group.remove((GroupModel)object);
+    }
+    
+    return true;
+  }
+  
+  /**
+   * ツリーとビューアを更新します。
+   */
+  public void updateTree() {
+    bindModelToTree();
+    
+    this.tree.notifyDataSetChanged();
+    
+    //this.modeler.updateRenderer();
+    //this.modeler.updatePropertyEditor();
   }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <string name="accelerometerButton">加速度センサボタン</string>
     <string name="accelerometerTextView">加速度センサ</string>
     <string name="addBox">直方体を追加</string>
@@ -24,6 +25,7 @@
     <string name="fileName">...</string>
     <string name="gridShowingButton">グリッド表示ボタン</string>
     <string name="gridShowingTextView">グリッド表示</string>
+    <string name="group">グループ</string>
     <string name="settings">設定</string>
     <string name="minusButton">&lt;&lt;</string>
     <string name="model">モデル</string>
@@ -47,4 +49,5 @@
     <string name="sourceReloadButton">↻</string>
     <string name="stop">停止</string>
     <string name="transform">変換</string>
+
 </resources>
