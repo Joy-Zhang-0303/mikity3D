@@ -572,22 +572,13 @@ public class SceneGraphTreeFragment extends Fragment {
     final TreeItem parentItem = this.selectedTreeItem.getParentItem();
 
     if (parentItem.getText().equals("scene")) { //$NON-NLS-1$
-//      final MessageBox message = new MessageBox(this.parentComposite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
-//      message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
-//      final int result = message.open();
-//      if (result == SWT.NO) {
-//        return;
-//      }
-      
       this.model.removeGroup((GroupModel)this.selectedObject);
-      this.selectedTreeItem.dispose();
     } else {
       final GroupModel group = (GroupModel)parentItem.getData();
-      if (removeObjectFromGroup(group, this.selectedObject)) {
-        this.selectedTreeItem.dispose();
-      }
+      removeObjectFromGroup(group, this.selectedObject);
     }
-    
+
+    this.selectedTreeItem.dispose();
     parentItem.removeItem(this.selectedTreeItem);
     
     updateTree();
@@ -601,24 +592,15 @@ public class SceneGraphTreeFragment extends Fragment {
    * 
    * @param group グループ
    * @param object プリミティブ
-   * 
-   * @return モデルを削除したかどうか。（削除したとき:true,削除されなかったとき:false）
    */
-  boolean removeObjectFromGroup(GroupModel group, Object object) {
+  void removeObjectFromGroup(GroupModel group, Object object) {
     if (object instanceof ObjectModel) {
       group.remove((ObjectModel)object);
-    } else if (object instanceof GroupModel) {
-//      final MessageBox message = new MessageBox(this.parentComposite.getShell(), SWT.YES | SWT.NO | SWT.ICON_QUESTION);
-//      message.setMessage(Messages.getString("SceneGraphTree.29")); //$NON-NLS-1$
-//      message.setText(Messages.getString("SceneGraphTree.30")); //$NON-NLS-1$
-//      int result = message.open();
-//      if (result == SWT.NO) {
-//        return false;
-//      }
+    } 
+    
+    if (object instanceof GroupModel) {
       group.remove((GroupModel)object);
     }
-    
-    return true;
   }
   
   /**
