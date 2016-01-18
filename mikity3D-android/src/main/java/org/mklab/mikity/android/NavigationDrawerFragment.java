@@ -126,7 +126,7 @@ public class NavigationDrawerFragment extends Fragment {
 
   AssetsListViewFragment sampleSourceViewFragment;
   
-  SceneGraphTreeFragment sceneGraphFragment;
+  SceneGraphTreeFragment sceneGraphTreeFragment;
   
   /**
    * {@inheritDoc}
@@ -309,16 +309,17 @@ public class NavigationDrawerFragment extends Fragment {
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
         
-        if (NavigationDrawerFragment.this.sceneGraphFragment != null) {
-          transaction.remove(NavigationDrawerFragment.this.sceneGraphFragment);
-          NavigationDrawerFragment.this.sceneGraphFragment = null;
+        if (NavigationDrawerFragment.this.sceneGraphTreeFragment != null) {
+          transaction.remove(NavigationDrawerFragment.this.sceneGraphTreeFragment);
+          NavigationDrawerFragment.this.sceneGraphTreeFragment = null;
         }
         
-        NavigationDrawerFragment.this.sceneGraphFragment = new SceneGraphTreeFragment();
-        NavigationDrawerFragment.this.sceneGraphFragment.setFragmentManager(manager);
-        NavigationDrawerFragment.this.sceneGraphFragment.setModel(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root.getScene(0));
+        NavigationDrawerFragment.this.sceneGraphTreeFragment = new SceneGraphTreeFragment();
+        NavigationDrawerFragment.this.sceneGraphTreeFragment.setModel(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root.getScene(0));
+
+        NavigationDrawerFragment.this.sceneGraphTreeFragment.setFragmentManager(manager);
         
-        transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sceneGraphFragment);
+        transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sceneGraphTreeFragment);
 
         transaction.commit();
       }

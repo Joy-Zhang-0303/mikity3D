@@ -7,6 +7,7 @@ package org.mklab.mikity.android.model;
 
 import java.util.List;
 
+import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
@@ -46,6 +47,9 @@ public class SceneGraphTreeFragment extends Fragment {
   private ListView treeView;
   
   FragmentManager fragmentManager;
+  
+  /** モデラー。 */
+  OpenglesModeler modeler;
   
   /** グラフツリー。 */
   GraphTree tree;
@@ -614,4 +618,59 @@ public class SceneGraphTreeFragment extends Fragment {
     //this.modeler.updateRenderer();
     //this.modeler.updatePropertyEditor();
   }
+  
+  /**
+   * 選択されているグループを設定します。
+   * 
+   * @param selectedGroup 選択されているグループ
+   */
+  public void setSelectedGroup(GroupModel selectedGroup) {
+    this.selectedGroup = selectedGroup;
+  }
+  
+  /**
+   * 選択されているグループを返します。
+   * 
+   * @return 選択されているグループ
+   */
+  public GroupModel getSelectedGroup() {
+    return this.selectedGroup;
+  }
+  
+  /**
+   * 選択されているオブジェクトを設定します。
+   * 
+   * @param selectedObject 選択されているオブジェクト
+   */
+  public void setSelectedObject(Object selectedObject) {
+    this.selectedObject = selectedObject;
+  }
+  
+  /**
+   * 選択されているオブジェクトを返します。
+   * 
+   * @return 選択されているオブジェクト
+   */
+  public Object getSelectedObject() {
+    return this.selectedObject;
+  }
+
+  /**
+   * モデルデータを返します。
+   * 
+   * @return モデルデータ
+   */
+  public SceneModel getModel() {
+    return this.model;
+  }
+  
+  /**
+   * モデラーを設定します。
+   * 
+   * @param modeler モデラー
+   */
+  public void setModeler(OpenglesModeler modeler) {
+    this.modeler = modeler;
+  }
+  
 }
