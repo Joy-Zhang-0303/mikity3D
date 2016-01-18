@@ -25,6 +25,7 @@
 	</dependency>
 	</dependencies>
 
+<!-- 
 	<build>
 		<plugins>
 			<plugin>
@@ -36,7 +37,8 @@
 			</plugin>
 		</plugins>
 	</build>
-
+ -->
+ 
 	<repositories>
 		<repository>
 			<id>mklab-repository</id>
@@ -53,7 +55,4 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<properties>
-		<jmockit.version>1.9</jmockit.version>
-	</properties>
 </project>
