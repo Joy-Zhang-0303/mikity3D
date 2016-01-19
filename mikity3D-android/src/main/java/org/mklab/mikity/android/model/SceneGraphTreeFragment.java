@@ -318,10 +318,6 @@ public class SceneGraphTreeFragment extends Fragment {
         groupItem = new TreeItem(parent, group);
         groupItem.setText(group.toShortString());
       }
-      
-//      if (group == this.selectedObject) {
-//        this.tree.select(groupItem);
-//      }
 
       final List<ObjectModel> objects = group.getObjects();
       final boolean groupHasAnyObject = objects.size() > 0 && (objects.get(0) instanceof NullModel) == false;
@@ -337,10 +333,6 @@ public class SceneGraphTreeFragment extends Fragment {
           
           final TreeItem child = new TreeItem(objectItems, object);
           child.setText(object.toShortString());
-
-//          if (object == this.selectedObject) {
-//            this.tree.select(child);
-//          }
         }
       }
       
