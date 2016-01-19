@@ -587,7 +587,7 @@ public class SceneGraphTreeFragment extends Fragment {
     
     updateTree();
     
-    //this.modeler.updateRenderer();
+    this.modeler.updateRenderer();
     //this.modeler.updatePropertyEditor();
   }
   
@@ -615,7 +615,7 @@ public class SceneGraphTreeFragment extends Fragment {
     
     this.tree.notifyDataSetChanged();
     
-    //this.modeler.updateRenderer();
+    this.modeler.updateRenderer();
     //this.modeler.updatePropertyEditor();
   }
   

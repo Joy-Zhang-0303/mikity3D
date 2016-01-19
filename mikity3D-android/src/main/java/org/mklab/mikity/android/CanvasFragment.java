@@ -95,6 +95,8 @@ public class CanvasFragment extends Fragment {
   Mikity3DModel root;
 
   GroupObjectManager manager;
+  
+  OpenglesModeler modeler;
 
   Map<String, DoubleMatrix> sourceData = new HashMap<String, DoubleMatrix>();
 
@@ -125,6 +127,7 @@ public class CanvasFragment extends Fragment {
     configuration.setLight(new LightModel(10.0f, 10.0f, 20.0f));
 
     this.objectRenderer = new OpenglesObjectRenderer(this.glView, configuration);
+    this.modeler = new OpenglesModeler(this.objectRenderer);
 
     this.glView.setRenderer(this.objectRenderer);
     this.isInitialScreenSize = false;
@@ -263,11 +266,20 @@ public class CanvasFragment extends Fragment {
     this.root = new Mikity3dFactory().loadFile(input);
     prepareObjectGroupManager();
     prepareRenderer();
+    prepareModeler();
 
     final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
     if (hasAnimation(rootGroups)) {
       this.manager.setHasAnimation(true);
     }
+  }
+  
+  /**
+   * モデラーを準備します。 
+   */
+  private void prepareModeler() {
+    this.modeler.setRoot(this.root);
+    this.modeler.setManager(this.manager);
   }
 
   /**

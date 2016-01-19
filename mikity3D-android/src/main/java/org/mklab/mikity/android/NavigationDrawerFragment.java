@@ -322,6 +322,9 @@ public class NavigationDrawerFragment extends Fragment {
         transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sceneGraphTreeFragment);
 
         transaction.commit();
+        
+        NavigationDrawerFragment.this.canvasActivity.canvasFragment.modeler.setTree(NavigationDrawerFragment.this.sceneGraphTreeFragment);
+        NavigationDrawerFragment.this.sceneGraphTreeFragment.setModeler(NavigationDrawerFragment.this.canvasActivity.canvasFragment.modeler);
       }
     });
     

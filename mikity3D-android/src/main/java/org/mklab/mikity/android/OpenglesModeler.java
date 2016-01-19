@@ -33,18 +33,37 @@ public class OpenglesModeler {
 
   /**
    * 新しく生成された<code>AbstractModeler</code>オブジェクトを初期化します。
-   * @param root ルート
-   * @param tree シーングラフツリー
    * @param renderer レンダラー
+   */
+  public OpenglesModeler(OpenglesObjectRenderer renderer) {
+    this.renderer = renderer;
+  }
+  
+  /**
+   * オブジェクトグループマネージャ を設定します。
+   * 
    * @param manager オブジェクトグループマネージャ 
    */
-  public OpenglesModeler(final Mikity3DModel root, SceneGraphTreeFragment tree, OpenglesObjectRenderer renderer, GroupObjectManager manager) {
-    this.root = root;
-    this.tree = tree;
-    this.renderer = renderer;
+  public void setManager(GroupObjectManager manager) {
     this.manager = manager;
-    
-    updateRenderer();
+  }
+  
+  /**
+   * モデルのルートを設定します。
+   * 
+   * @param root ルート
+   */
+  public void setRoot(Mikity3DModel root) {
+    this.root = root;
+  }
+  
+  /**
+   * シーングラフツリーを設定します。
+   * 
+   * @param tree シーングラフツリー
+   */
+  public void setTree(SceneGraphTreeFragment tree) {
+    this.tree = tree;
   }
 
   /**
