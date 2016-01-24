@@ -61,7 +61,7 @@ public class CanvasActivity extends AppCompatActivity {
     
     setContentView(R.layout.canvas);
     
-    Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+    final Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     
     createCanvasFragment();
@@ -72,10 +72,10 @@ public class CanvasActivity extends AppCompatActivity {
     this.drawerToggle.syncState();
     drawerLayout.setDrawerListener(this.drawerToggle);
     
-    ActionBar actionBar = getSupportActionBar();
-    actionBar.setDisplayHomeAsUpEnabled(true);
-    actionBar.setLogo(getResources().getDrawable(R.drawable.icon));
+    final ActionBar actionBar = getSupportActionBar();
+    actionBar.setLogo(R.drawable.icon);
     actionBar.setHomeButtonEnabled(true);
+    actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setDisplayUseLogoEnabled(true);
     actionBar.setDisplayShowTitleEnabled(false);
     

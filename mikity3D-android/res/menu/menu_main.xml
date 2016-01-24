@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
         android:id="@+id/menu_play"
-        android:title="@string/play"
-        android:showAsAction="always" android:icon="@drawable/play"/>
-    
+        android:icon="@drawable/play"
+        app:showAsAction="ifRoom"
+        android:title="@string/play"/>
     <item
         android:id="@+id/menu_stop"
-        android:title="@string/stop"
-        android:showAsAction="always" android:icon="@drawable/stop"/>
-    
+        android:icon="@drawable/stop"
+        app:showAsAction="ifRoom"
+        android:title="@string/stop"/>
     <item
         android:id="@+id/menu_pause"
-        android:title="@string/pause"
-        android:showAsAction="always" android:icon="@drawable/pause"/>
-    
+        android:icon="@drawable/pause"
+        app:showAsAction="ifRoom"
+        android:title="@string/pause"/>
     <item
         android:id="@+id/menu_repeat"
-        android:title="@string/repeat"
-        android:showAsAction="always" android:icon="@drawable/repeat"/>
-    
+        android:icon="@drawable/repeat"
+        app:showAsAction="ifRoom"
+        android:title="@string/repeat"/>
     <item
         android:id="@+id/menu_reset_to_initial_state"
-        android:title="@string/resetToInitialState"
-        android:showAsAction="always" android:icon="@drawable/reset"/>
-    
+        android:icon="@drawable/reset"
+        app:showAsAction="ifRoom"
+        android:title="@string/resetToInitialState"/>
+
 </menu>
