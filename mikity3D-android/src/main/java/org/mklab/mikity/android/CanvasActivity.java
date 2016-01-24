@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.android;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -13,11 +12,13 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,7 +33,7 @@ import android.widget.LinearLayout;
  * @author soda
  * @version $Revision$, 2015/01/16
  */
-public class CanvasActivity extends FragmentActivity {
+public class CanvasActivity extends AppCompatActivity {
 
   final static int REQUEST_CODE_PICK_MODEL_DATA_FILE = 0;
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
@@ -60,15 +61,18 @@ public class CanvasActivity extends FragmentActivity {
     
     setContentView(R.layout.canvas);
     
+    Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+    
     createCanvasFragment();
     createNavigationDrawerFragment();
     
     final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.layout_activity_canvas);
-    this.drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.menu, R.string.open, R.string.close);
+    this.drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
     this.drawerToggle.syncState();
     drawerLayout.setDrawerListener(this.drawerToggle);
     
-    final ActionBar actionBar = getActionBar();
+    ActionBar actionBar = getSupportActionBar();
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setLogo(getResources().getDrawable(R.drawable.icon));
     actionBar.setHomeButtonEnabled(true);
