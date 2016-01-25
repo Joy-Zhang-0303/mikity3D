@@ -42,17 +42,9 @@ public class ModelPropertyEditor {
     this.parent = parent;
     this.modeler = modeler;
     this.tree = tree;
-    createEditor(parent);
-  }
-  
-  /**
-   * エディタを生成します。
-   * 
-   * @param localParent 親
-   */
-  private void createEditor(final Composite localParent) {
-    localParent.setLayout(new GridLayout(1, true));
-    this.editor = new GroupEditor(localParent, this.modeler.getSelectedGroup(), true, null, this.modeler);
+
+    this.parent.setLayout(new GridLayout(1, true));
+    this.editor = new GroupEditor(this.parent, this.modeler.getSelectedGroup(), true, null, this.modeler);
   }
   
   /**

@@ -137,13 +137,6 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
     gridData2.widthHint = 65;
     label2.setLayoutData(gridData2);
 
-    int style;
-    if (this.editable == true) {
-      style = SWT.NONE;
-    } else {
-      style = SWT.READ_ONLY;
-    }
-
     final TranslationModel translation = this.targetGroup.getTranslation();
     final String tX, tY, tZ;
     
@@ -170,6 +163,13 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
       rZ = "0"; //$NON-NLS-1$
     }
 
+    int style;
+    if (this.editable == true) {
+      style = SWT.NONE;
+    } else {
+      style = SWT.READ_ONLY;
+    }
+    
     this.translationX = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.0"), tX);  //$NON-NLS-1$
     this.translationY = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.1"), tY);  //$NON-NLS-1$
     this.translationZ = new ParameterInputBox(group, this, style, Messages.getString("EditGroupDialog.2"), tZ);  //$NON-NLS-1$
