@@ -117,7 +117,7 @@ public class CanvasFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    this.view = inflater.inflate(R.layout.canvas_fragment, container, false);
+    this.view = inflater.inflate(R.layout.fragment_canvas, container, false);
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
     this.getResources();
     

@@ -48,7 +48,7 @@ public class AssetsListViewFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-    final View view = inflater.inflate(R.layout.assets_list_view_fragment, container, false);
+    final View view = inflater.inflate(R.layout.fragment_assets_list_view, container, false);
 
     this.assetManager = getResources().getAssets();
     

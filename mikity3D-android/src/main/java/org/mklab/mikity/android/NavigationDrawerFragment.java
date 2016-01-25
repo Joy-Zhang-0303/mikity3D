@@ -133,7 +133,7 @@ public class NavigationDrawerFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
+    final View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
 
     this.canvasActivity = (CanvasActivity)getActivity();
 

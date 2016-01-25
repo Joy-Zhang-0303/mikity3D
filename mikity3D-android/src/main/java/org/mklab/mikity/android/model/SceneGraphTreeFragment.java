@@ -90,7 +90,7 @@ public class SceneGraphTreeFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.scene_graph_tree_fragment, container, false);
+    final View view = inflater.inflate(R.layout.fragment_scene_graph_tree, container, false);
     this.treeView = (ListView)view.findViewById(R.id.scene_graph_tree_view);
     
     createTree();
