@@ -82,6 +82,9 @@ public class CanvasActivity extends AppCompatActivity {
     this.sensorService = new SensorService((SensorManager)getSystemService(SENSOR_SERVICE), this.canvasFragment);
     
     startIntentByExternalActivity();
+    
+    //ステータスバーを消す
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
   }
 
   /**

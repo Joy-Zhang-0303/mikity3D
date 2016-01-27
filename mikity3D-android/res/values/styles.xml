@@ -5,6 +5,9 @@
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_d</item>
         <item name="colorAccent">@color/color_accent</item>
+        <!-- <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowContentOverlay">@null</item> -->
     </style>
     
     <style name="toolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
