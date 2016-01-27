@@ -1,8 +1,22 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@android:color/primary_text_light</item>
-        <item name="colorPrimaryDark">@android:color/primary_text_dark</item>
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Toolbar背景色 -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_d</item>
+        <item name="colorAccent">@color/color_accent</item>
+    </style>
+    
+    <style name="toolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Toolbar背景色 -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_d</item>
+        <item name="colorAccent">@color/color_accent</item>
+        
+    </style>
+    
+    <style name="toolbarMenuTheme" parent="Theme.AppCompat.Light">
+        <item name="android:textColorPrimary">@color/menu_color</item>
     </style>
 
 </resources>

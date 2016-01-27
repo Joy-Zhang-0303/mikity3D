@@ -9,7 +9,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="4dp" />
+        android:elevation="4dp"
+        android:background="?attr/colorPrimary"
+         />
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/layout_activity_canvas"

@@ -140,4 +140,8 @@
 <color name="mediumpurple">#FF9370db</color>
 <color name="slateblue">#FF6a5acd</color>
 <color name="mediumslateblue">#FF7b68ee</color>
+<color name="color_primary">#4CAF50</color>
+<color name="color_primary_d">#388E3C</color>
+<color name="color_accent">#8BC34A</color>
+<color name="menu_color">#FFFFFF</color>
 </resources>
