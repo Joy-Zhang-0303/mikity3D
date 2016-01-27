@@ -107,15 +107,15 @@ public class NavigationDrawerFragment extends Fragment {
   Button editModelButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
-  ToggleButton rotationSensorButton;
+  CompoundButton rotationSensorButton;
   /** 加速度を3Dオブジェクトに反映させるならばtrue。 */
-  ToggleButton accelerometerButton;
+  CompoundButton accelerometerButton;
   /** 端末の回転を許可するならばtrue。 */
-  ToggleButton rotationLockButton;
+  CompoundButton rotationLockButton;
   /** グリッドを表示するならばtrue。 */
-  ToggleButton gridShowingButton;
+  CompoundButton gridShowingButton;
   /** 座標軸を表示するならばtrue。 */
-  ToggleButton axisShowingButton;
+  CompoundButton axisShowingButton;
 
   /** サンプルのソースファイルのパス。 */
   Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
@@ -332,7 +332,7 @@ public class NavigationDrawerFragment extends Fragment {
   }
 
   private void createSensorComponent(final View mainView) {
-    this.rotationSensorButton = (ToggleButton)mainView.findViewById(R.id.rotationSensorButton);
+    this.rotationSensorButton = (CompoundButton)mainView.findViewById(R.id.rotationSensorButton);
     this.rotationSensorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -345,7 +345,7 @@ public class NavigationDrawerFragment extends Fragment {
       }
     });
 
-    this.accelerometerButton = (ToggleButton)mainView.findViewById(R.id.accelerometerButton);
+    this.accelerometerButton = (CompoundButton)mainView.findViewById(R.id.accelerometerButton);
     this.accelerometerButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
@@ -361,7 +361,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     });
 
-    this.rotationLockButton = (ToggleButton)mainView.findViewById(R.id.rotationLockButton);
+    this.rotationLockButton = (CompoundButton)mainView.findViewById(R.id.rotationLockButton);
     this.rotationLockButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
@@ -374,7 +374,7 @@ public class NavigationDrawerFragment extends Fragment {
   }
 
   private void createConfigurationComponent(final View mainView) {
-    this.gridShowingButton = (ToggleButton)mainView.findViewById(R.id.gridShowingButton);
+    this.gridShowingButton = (CompoundButton)mainView.findViewById(R.id.gridShowingButton);
     this.gridShowingButton.setEnabled(false);
     this.gridShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -386,7 +386,7 @@ public class NavigationDrawerFragment extends Fragment {
       }
     });
     
-    this.axisShowingButton = (ToggleButton)mainView.findViewById(R.id.axisShowingButton);
+    this.axisShowingButton = (CompoundButton)mainView.findViewById(R.id.axisShowingButton);
     this.axisShowingButton.setEnabled(false);
     this.axisShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 

@@ -137,12 +137,11 @@
                     android:layout_width="60dip"
                     android:layout_height="match_parent" />
 
-                <ToggleButton
+                <android.support.v7.widget.SwitchCompat
                     android:id="@+id/rotationSensorButton"
-                    android:layout_width="65dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/toggle_bg"
-                    android:button="@drawable/toggle_btn"
+                    android:background="@null"
                     android:checked="false" />
             </LinearLayout>
 
@@ -168,15 +167,13 @@
                     android:layout_width="40dip"
                     android:layout_height="match_parent" />
 
-                <ToggleButton
+                <android.support.v7.widget.SwitchCompat
                     android:id="@+id/accelerometerButton"
                     android:layout_width="65dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/toggle_bg"
-                    android:button="@drawable/toggle_btn"
+                    android:background="@null"
                     android:checked="false"
-                    android:textOff=""
-                    android:textOn="" />
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -201,15 +198,13 @@
                     android:layout_width="20dip"
                     android:layout_height="match_parent" />
 
-                <ToggleButton
+                <android.support.v7.widget.SwitchCompat
                     android:id="@+id/rotationLockButton"
-                    android:layout_width="65dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/toggle_bg"
-                    android:button="@drawable/toggle_btn"
+                    android:background="@null"
                     android:checked="false"
-                    android:textOff=""
-                    android:textOn="" />
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -234,15 +229,12 @@
                     android:layout_width="40dip"
                     android:layout_height="match_parent" />
 
-                <ToggleButton
+                <android.support.v7.widget.SwitchCompat
                     android:id="@+id/gridShowingButton"
-                    android:layout_width="65dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/toggle_bg"
-                    android:button="@drawable/toggle_btn"
-                    android:checked="false"
-                    android:textOff=""
-                    android:textOn="" />
+                    android:background="@null"
+                    android:checked="false" />
             </LinearLayout>
 
             <LinearLayout
@@ -267,15 +259,12 @@
                     android:layout_width="60dip"
                     android:layout_height="match_parent" />
 
-                <ToggleButton
+                <android.support.v7.widget.SwitchCompat
                     android:id="@+id/axisShowingButton"
-                    android:layout_width="65dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/toggle_bg"
-                    android:button="@drawable/toggle_btn"
-                    android:checked="false"
-                    android:textOff=""
-                    android:textOn="" />
+                    android:background="@null"
+                    android:checked="false" />
             </LinearLayout>
 
             <Space
