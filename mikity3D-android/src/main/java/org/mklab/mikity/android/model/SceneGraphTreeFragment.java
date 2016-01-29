@@ -7,8 +7,11 @@ package org.mklab.mikity.android.model;
 
 import java.util.List;
 
+import org.mklab.mikity.android.AssetsListViewFragment;
+import org.mklab.mikity.android.NavigationDrawerFragment;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.R;
+import org.mklab.mikity.android.editor.BoxEditorFragment;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
@@ -24,6 +27,7 @@ import org.mklab.mikity.model.xml.simplexml.model.TriangleModel;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -71,6 +75,8 @@ public class SceneGraphTreeFragment extends Fragment {
   /** 記憶されたグループ。 */
   GroupModel bufferedGroup = null;
   
+  BoxEditorFragment boxEditorFragment = null;
+  
   private static final int CONTEXT_MENU_ADD_GROUP = 1;
   private static final int CONTEXT_MENU_ADD_BOX = 2;
   private static final int CONTEXT_MENU_ADD_CYLINDER = 3;
@@ -79,11 +85,12 @@ public class SceneGraphTreeFragment extends Fragment {
   private static final int CONTEXT_MENU_ADD_CAPSULE = 6;
   private static final int CONTEXT_MENU_ADD_TRIANGLE = 7;
   private static final int CONTEXT_MENU_ADD_QUADRANGLE = 8;
-  private static final int CONTEXT_MENU_ADD_TRANSFORM = 9;
-  private static final int CONTEXT_MENU_ADD_CUT = 10;
-  private static final int CONTEXT_MENU_ADD_COPY = 11;
-  private static final int CONTEXT_MENU_ADD_PASTE = 12;
-  private static final int CONTEXT_MENU_ADD_DELETE = 13;
+  private static final int CONTEXT_MENU_TRANSFORM = 9;
+  private static final int CONTEXT_MENU_CUT = 10;
+  private static final int CONTEXT_MENU_COPY = 11;
+  private static final int CONTEXT_MENU_PASTE = 12;
+  private static final int CONTEXT_MENU_DELETE = 13;
+  private static final int CONTEXT_MENU_EDIT = 14;
 
   /**
    * {@inheritDoc}
@@ -133,11 +140,12 @@ public class SceneGraphTreeFragment extends Fragment {
       menu.add(0, CONTEXT_MENU_ADD_CAPSULE, 0, R.string.addCapsule);
       menu.add(0, CONTEXT_MENU_ADD_TRIANGLE, 0, R.string.addTriangle);
       menu.add(0, CONTEXT_MENU_ADD_QUADRANGLE, 0, R.string.addQuadrangle);
-      menu.add(0, CONTEXT_MENU_ADD_TRANSFORM, 0, R.string.transform);
-      menu.add(0, CONTEXT_MENU_ADD_CUT, 0, R.string.cut);
-      menu.add(0, CONTEXT_MENU_ADD_COPY, 0, R.string.copy);
-      menu.add(0, CONTEXT_MENU_ADD_PASTE, 0, R.string.paste);
-      menu.add(0, CONTEXT_MENU_ADD_DELETE, 0, R.string.delete);
+      menu.add(0, CONTEXT_MENU_TRANSFORM, 0, R.string.transform);
+      menu.add(0, CONTEXT_MENU_CUT, 0, R.string.cut);
+      menu.add(0, CONTEXT_MENU_COPY, 0, R.string.copy);
+      menu.add(0, CONTEXT_MENU_PASTE, 0, R.string.paste);
+      menu.add(0, CONTEXT_MENU_DELETE, 0, R.string.delete);
+      menu.add(0, CONTEXT_MENU_EDIT, 0, R.string.edit);
     }
   }
 
@@ -185,23 +193,27 @@ public class SceneGraphTreeFragment extends Fragment {
       addQuadrangle();
       return true;
     }
-    if (itemId == CONTEXT_MENU_ADD_TRANSFORM) {
+    if (itemId == CONTEXT_MENU_TRANSFORM) {
       return true;
     }
-    if (itemId == CONTEXT_MENU_ADD_CUT) {
+    if (itemId == CONTEXT_MENU_CUT) {
       cutSelectedItem();
       return true;
     }
-    if (itemId == CONTEXT_MENU_ADD_COPY) {
+    if (itemId == CONTEXT_MENU_COPY) {
       copySelectedItem();
       return true;
     }
-    if (itemId == CONTEXT_MENU_ADD_PASTE) {
+    if (itemId == CONTEXT_MENU_PASTE) {
       pasteBufferedObjectToSelectedItem();
       return true;
     }
-    if (itemId == CONTEXT_MENU_ADD_DELETE) {
+    if (itemId == CONTEXT_MENU_DELETE) {
       deleteSelectedItem();
+      return true;
+    }
+    if (itemId == CONTEXT_MENU_EDIT) {
+      editSelectedItem();
       return true;
     }
     
@@ -576,6 +588,34 @@ public class SceneGraphTreeFragment extends Fragment {
 
     this.selectedTreeItem.dispose();
     parentItem.removeItem(this.selectedTreeItem);
+    
+    updateTree();
+    
+    this.modeler.updateRenderer();
+    //this.modeler.updatePropertyEditor();
+  }
+  
+  /**
+   * 選択されたitemを編集します。 
+   */
+  void editSelectedItem() {
+    if (this.selectedTreeItem.getText().equals("scene")) { //$NON-NLS-1$
+      return;
+    }
+
+    final FragmentManager manager = getActivity().getSupportFragmentManager();
+    final FragmentTransaction transaction = manager.beginTransaction();
+    transaction.addToBackStack(null);
+    
+    if (this.boxEditorFragment != null) {
+      transaction.remove(this.boxEditorFragment);
+      this.boxEditorFragment = null;
+    }
+    
+    this.boxEditorFragment = new BoxEditorFragment((BoxModel)this.selectedObject);
+    transaction.add(R.id.fragment_navigation_drawer, this.boxEditorFragment);
+    
+    transaction.commit();
     
     updateTree();
     

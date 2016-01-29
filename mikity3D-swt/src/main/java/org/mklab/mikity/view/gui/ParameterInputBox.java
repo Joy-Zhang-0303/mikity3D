@@ -40,7 +40,7 @@ public class ParameterInputBox extends Composite {
     layout.numColumns = 2;
     layout.marginHeight = 0;
     layout.marginWidth = 0;
-    this.setLayout(layout);
+    setLayout(layout);
     
     this.nameLabel = new Label(this, SWT.NONE);
     this.nameLabel.setAlignment(SWT.LEFT);
@@ -145,7 +145,7 @@ public class ParameterInputBox extends Composite {
    */
   public void setValue(String string) {
     if (string == null) {
-      this.valueText.setText(Messages.getString("ParameterInputBox.0")); //$NON-NLS-1$
+      this.valueText.setText("0.0"); //$NON-NLS-1$
     }
     this.valueText.setText(string);
   }

@@ -1,0 +1,187 @@
+/*
+ * Created on 2016/01/25
+ * Copyright (C) 2016 Koga Laboratory. All rights reserved.
+ *
+ */
+package org.mklab.mikity.android;
+
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.text.InputType;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+
+/**
+ * パラメータを入力するためのボックスを現すクラスです。
+ * 
+ * @author koga
+ * @version $Revision$, 2016/01/25
+ */
+public class ParameterInputBox extends LinearLayout {
+
+  /** 名前用のラベル。 */
+  private TextView nameLabel;
+  /** 値用のテキスト。 */
+  private EditText valueText;
+  /** 単位用のラベル。 */
+  private TextView unitLabel;
+
+  /**
+   * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
+   * 
+   * @param context Context
+   * @param attrs Attributes
+   * @param defStyleAttr Style Attribute
+   * @param defStyleRes Style Resource
+   */
+  @TargetApi(21)
+  public ParameterInputBox(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    super(context, attrs, defStyleAttr, defStyleRes);
+    init(context);
+  }
+
+  /**
+   * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
+   * 
+   * @param context Context
+   * @param attrs Attributes
+   * @param defStyleAttr Style Attribute
+   */
+  public ParameterInputBox(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+    init(context);
+  }
+
+  /**
+   * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
+   * 
+   * @param context Context
+   * @param attrs Attributes
+   */
+  public ParameterInputBox(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    init(context);
+  }
+
+  /**
+   * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
+   * 
+   * @param context Context
+   */
+  public ParameterInputBox(Context context) {
+    super(context);
+    init(context);
+  }
+
+  /**
+   * @param context
+   */
+  private void init(Context context) {
+    View.inflate(context, R.layout.parameter_input_box, this);
+  }
+  
+  /**
+   * パラメータをfloat型で返します。
+   * 
+   * @return テキストボックスの文字の値
+   */
+  public float getFloatValue() {
+    return Float.parseFloat(this.valueText.getText().toString());
+  }
+  
+  /**
+   * パラメータをdouble型で返す
+   * 
+   * @return Double.parseDouble(text.getText())
+   */
+  public double getDoubleValue() {
+    return Double.parseDouble(this.valueText.getText().toString());
+  }
+
+  /**
+   * パラメータをint型で返します。
+   * 
+   * @return テキストボックスの文字の値
+   */
+  public int getIntValue() {
+    return Integer.parseInt(this.valueText.getText().toString());
+  }
+  
+  /**
+   * パラメータをString型で返します。
+   * 
+   * @return テキストボックスの文字
+   */
+  public String getStringValue() {
+    return this.valueText.getText().toString();
+  }
+  
+  /**
+   * テキストボックスの文字を設定します。
+   * 
+   * @param string 文字列
+   */
+  public void setValue(String string) {
+    if (string == null) {
+      this.valueText.setText("0.0"); //$NON-NLS-1$
+    }
+    this.valueText.setText(string);
+  }
+  
+  /**
+   * テキストボックスの幅を設定します。
+   * @param width テキストボックスの幅
+   */
+  public void setTextWidth(int width) {
+    this.valueText.setWidth(width);
+  }
+
+  /**
+   * 名前の文字を設定します。
+   * 
+   * @param name 名前
+   */
+  public void setName(String name) {
+    this.nameLabel.setText(name);
+  }
+  
+  /**
+   * 単位の文字を設定します。
+   * 
+   * @param unit 単位
+   */
+  public void setUnit(String unit) {
+    this.unitLabel.setText(unit);
+  }
+  
+  /**
+   * テキストボックスに 数字のみが入っているか判別します。
+   * 
+   * @return boolean テキストボックスに 数字のみが入っていればtrue、そうでなければfalse
+   */
+  public boolean containsOnlyNumbers() {
+    try {
+      Double.parseDouble(this.valueText.getText().toString());
+    } catch (NumberFormatException e) {
+      return false;
+    }
+    return true;
+  }
+  
+  /**
+   * 値を編集可能か設定します。
+   * 
+   * @param editable 編集可能ならばtrue
+   */
+  public void setEditable(boolean editable) {
+    if (editable == false) {
+      this.valueText.setInputType(InputType.TYPE_NULL);
+    } else {
+      this.valueText.setInputType(InputType.TYPE_CLASS_TEXT);
+    }
+  }
+}
