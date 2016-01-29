@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.TimerTask;
 
 import org.mklab.mikity.model.GroupObjectManager;
-import org.mklab.mikity.view.renderer.ObjectRenderer;
+import org.mklab.mikity.renderer.ObjectRenderer;
 
 
 /**

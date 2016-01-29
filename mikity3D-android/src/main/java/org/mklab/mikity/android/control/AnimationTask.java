@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.GroupObjectManager;
-import org.mklab.mikity.view.renderer.ObjectRenderer;
+import org.mklab.mikity.renderer.ObjectRenderer;
 
 import android.os.SystemClock;
 

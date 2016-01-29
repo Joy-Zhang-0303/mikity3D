@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Timer;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.android.view.renderer.opengles.OpenglesObjectRenderer;
+import org.mklab.mikity.android.renderer.OpenglesObjectRenderer;
 import org.mklab.mikity.control.AnimationTaskListener;
 import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;

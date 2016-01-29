@@ -1,4 +1,4 @@
-package org.mklab.mikity.android.view.renderer.opengles;
+package org.mklab.mikity.android.renderer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
-import org.mklab.mikity.view.renderer.ObjectRenderer;
+import org.mklab.mikity.renderer.ObjectRenderer;
 
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;

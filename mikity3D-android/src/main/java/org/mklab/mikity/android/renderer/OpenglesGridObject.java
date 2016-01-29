@@ -3,7 +3,7 @@
  * Copyright (C) 2015 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.android.view.renderer.opengles;
+package org.mklab.mikity.android.renderer;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

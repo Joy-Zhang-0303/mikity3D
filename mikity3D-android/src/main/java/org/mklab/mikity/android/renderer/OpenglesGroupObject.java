@@ -1,4 +1,4 @@
-package org.mklab.mikity.android.view.renderer.opengles;
+package org.mklab.mikity.android.renderer;
 
 import java.util.ArrayList;
 import java.util.List;

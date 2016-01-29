@@ -50,9 +50,9 @@ import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.renderer.ObjectRenderer;
 import org.mklab.mikity.swt.gui.editor.ModifyKeyListener;
 import org.mklab.mikity.swt.renderer.JoglObjectRenderer;
-import org.mklab.mikity.view.renderer.ObjectRenderer;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matx.MatxMatrix;
 

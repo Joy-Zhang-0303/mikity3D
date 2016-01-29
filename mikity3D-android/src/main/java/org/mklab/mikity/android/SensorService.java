@@ -7,7 +7,7 @@ package org.mklab.mikity.android;
 
 import java.util.List;
 
-import org.mklab.mikity.android.view.renderer.opengles.OpenglesObjectRenderer;
+import org.mklab.mikity.android.renderer.OpenglesObjectRenderer;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;

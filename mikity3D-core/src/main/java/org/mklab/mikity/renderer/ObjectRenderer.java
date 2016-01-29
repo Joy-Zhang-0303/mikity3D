@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.view.renderer;
+package org.mklab.mikity.renderer;
 
 import java.util.List;
 

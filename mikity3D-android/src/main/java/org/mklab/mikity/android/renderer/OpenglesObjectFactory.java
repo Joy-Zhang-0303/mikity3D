@@ -3,7 +3,7 @@
  * Copyright (C) 2013 Koga Laboratory. All rights reserved.
  *
  */
-package org.mklab.mikity.android.view.renderer.opengles;
+package org.mklab.mikity.android.renderer;
 
 import org.mklab.mikity.model.Coordinate;
 import org.mklab.mikity.model.Messages;
