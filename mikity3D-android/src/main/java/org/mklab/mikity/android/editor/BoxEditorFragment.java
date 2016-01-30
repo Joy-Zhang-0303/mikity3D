@@ -55,7 +55,25 @@ public class BoxEditorFragment extends Fragment {
     if (parameters != null) {
       parameters.removeAllViews();
     }
+    
+    final Button backButton = (Button)view.findViewById(R.id.backButton);
+    backButton.setOnClickListener(new OnClickListener() {
 
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+        final FragmentManager manager = getActivity().getSupportFragmentManager();
+        manager.popBackStack();
+      }
+    });
+
+    createParameterBoxes(parameters);
+    
+    return view;
+  }
+
+  void createParameterBoxes(final LinearLayout parameters) {
     final BoxModel box = (BoxModel)this.object;
 
     this.width = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
@@ -84,20 +102,6 @@ public class BoxEditorFragment extends Fragment {
     depthValue.setText(String.valueOf(box.getDepth()));
     final TextView depthtUnit = (TextView)this.depth.findViewById(R.id.parameterUnit);
     depthtUnit.setText("[m]"); //$NON-NLS-1$
-    
-    final Button backButton = (Button)view.findViewById(R.id.backButton);
-    backButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View v) {
-        final FragmentManager manager = getActivity().getSupportFragmentManager();
-        manager.popBackStack();
-      }
-    });
-    
-    return view;
   }
 
   /**
