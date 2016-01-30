@@ -154,12 +154,31 @@ R   *
   }
   
   /**
+   * 名前の文字を設定します。
+   * 
+   * @param id 名前のID
+   */
+  public void setName(int id) {
+    this.nameLabel.setText(id);
+  }
+  
+  /**
    * 単位の文字を設定します。
    * 
    * @param unit 単位
    */
   public void setUnit(String unit) {
     this.unitLabel.setText(unit);
+  }
+  
+  
+  /**
+   * 単位の文字を設定します。
+   * 
+   * @param id 単位のID
+   */
+  public void setUnit(int id) {
+    this.unitLabel.setText(id);
   }
   
   /**

@@ -50,12 +50,18 @@
     <string name="rotationSensorButton">傾きセンサボタン</string>
     <string name="rotationLockTextView">回転防止ロック</string>
     <string name="rotationLockButton">回転防止ロックボタン</string>
+    <string name="rotation_wrt_x_axis">X軸周り回転</string>
+    <string name="rotation_wrt_y_axis">Y軸周り回転</string>
+    <string name="rotation_wrt_z_axis">Z軸周り回転</string>
     <string name="sample">サンプル</string>
     <string name="source">ソース</string>
     <string name="sourceDataIsNotReady">ソースデータが未設定です。</string>
     <string name="sourceReloadButton">↻</string>
     <string name="stop">停止</string>
     <string name="transform">変換</string>
+    <string name="translation_to_x_axis">X軸方向並進</string>
+    <string name="translation_to_y_axis">Y軸方向並進</string>
+    <string name="translation_to_z_axis">Z軸方向並進</string>
     <string name="width">幅</string>
     <string name="yes">はい</string>
 

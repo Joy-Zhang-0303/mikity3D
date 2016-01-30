@@ -1,0 +1,109 @@
+/*
+ * Created on 2016/01/31
+ * Copyright (C) 2016 Koga Laboratory. All rights reserved.
+ *
+ */
+package org.mklab.mikity.android.editor;
+
+import org.mklab.mikity.android.OpenglesModeler;
+import org.mklab.mikity.android.ParameterInputBoxLayout;
+import org.mklab.mikity.android.R;
+import org.mklab.mikity.android.model.SceneGraphTreeFragment;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
+import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
+
+import android.support.v4.app.Fragment;
+import android.widget.LinearLayout;
+
+
+
+/**
+ * オブジェクトを編集するエディタを表すフラグメントです。
+ * @author koga
+ * @version $Revision$, 2016/01/31
+ */
+public abstract class AbstractObjectEditorFragment extends Fragment {
+  ObjectModel object;
+  OpenglesModeler modeler;
+  SceneGraphTreeFragment tree;
+  
+  private ParameterInputBoxLayout translationX;
+  private ParameterInputBoxLayout translationY;
+  private ParameterInputBoxLayout translationZ;
+  
+  private ParameterInputBoxLayout rotationX;
+  private ParameterInputBoxLayout rotationY;
+  private ParameterInputBoxLayout rotationZ;
+  
+  void createRotationBoxes(LinearLayout parameters) {
+    final RotationModel rotation = this.object.getRotation();
+    
+    final String x;
+    final String y;
+    final String z;
+    
+    if (rotation != null) {
+      x = "" + rotation.getX(); //$NON-NLS-1$
+      y = "" + rotation.getY(); //$NON-NLS-1$
+      z = "" + rotation.getZ(); //$NON-NLS-1$
+    } else {
+      x = "0"; //$NON-NLS-1$
+      y = "0"; //$NON-NLS-1$
+      z = "0"; //$NON-NLS-1$
+    }
+    
+    this.rotationX = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    parameters.addView(this.rotationX);
+    this.rotationX.setName(R.string.rotation_wrt_x_axis);
+    this.rotationX.setValue(x);
+    this.rotationX.setUnit("[rad]"); //$NON-NLS-1$
+
+    this.rotationY = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    parameters.addView(this.rotationY);
+    this.rotationY.setName(R.string.rotation_wrt_y_axis);
+    this.rotationY.setValue(y);
+    this.rotationY.setUnit("[rad]"); //$NON-NLS-1$
+    
+    this.rotationZ = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    parameters.addView(this.rotationZ);
+    this.rotationZ.setName(R.string.rotation_wrt_z_axis);
+    this.rotationZ.setValue(z);
+    this.rotationZ.setUnit("[rad]"); //$NON-NLS-1$
+  }
+
+  void createTranslationBoxes(LinearLayout parameters) {
+    final TranslationModel translation = this.object.getTranslation();
+    
+    final String x;
+    final String y;
+    final String z;
+    if (translation != null) {
+      x = "" + translation.getX(); //$NON-NLS-1$
+      y = "" + translation.getY(); //$NON-NLS-1$
+      z = "" + translation.getZ(); //$NON-NLS-1$
+    } else {
+      x = "0"; //$NON-NLS-1$
+      y = "0"; //$NON-NLS-1$
+      z = "0"; //$NON-NLS-1$
+    }
+
+    this.translationX = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    parameters.addView(this.translationX);
+    this.translationX.setName(R.string.translation_to_x_axis);
+    this.translationX.setValue(x);
+    this.translationX.setUnit("[m]"); //$NON-NLS-1$
+
+    this.translationY = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    parameters.addView(this.translationY);
+    this.translationY.setName(R.string.translation_to_y_axis);
+    this.translationY.setValue(y);
+    this.translationY.setUnit("[m]"); //$NON-NLS-1$
+    
+    this.translationZ = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    parameters.addView(this.translationZ);
+    this.translationZ.setName(R.string.translation_to_z_axis);
+    this.translationZ.setValue(z);
+    this.translationZ.setUnit("[m]"); //$NON-NLS-1$
+  }
+}

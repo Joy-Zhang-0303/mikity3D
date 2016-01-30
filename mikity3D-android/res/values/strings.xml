@@ -48,6 +48,9 @@
     <string name="resetToInitialState">Reset to Initial State</string>
     <string name="rotationSensorTextView">Rotation Sensor</string>
     <string name="rotationSensorButton">rotationSensorButton</string>
+    <string name="rotation_wrt_x_axis">Rotation w.r.t. x-axis</string>
+    <string name="rotation_wrt_y_axis">Rotation w.r.t. y-axis</string>
+    <string name="rotation_wrt_z_axis">Rotation w.r.t. z-axis</string>
     <string name="rotationLockTextView">Rotation Lock</string>
     <string name="rotationLockButton">rotationLockButton</string>
     <string name="sample">Sample</string>
@@ -56,6 +59,9 @@
     <string name="sourceReloadButton">↻</string>
     <string name="stop">Stop</string>
     <string name="transform">Transform</string>
+    <string name="translation_to_x_axis">Translation to x-axis</string>
+    <string name="translation_to_y_axis">Translation to y-axis</string>
+    <string name="translation_to_z_axis">Translation to z-axis</string>
     <string name="width">width</string>
     <string name="yes">Yes</string>
 
