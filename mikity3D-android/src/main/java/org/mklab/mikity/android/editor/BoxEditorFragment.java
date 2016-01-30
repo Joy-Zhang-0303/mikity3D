@@ -61,6 +61,7 @@ public class BoxEditorFragment extends AbstractObjectEditorFragment {
       }
     });
 
+    createColorBoxes(parameters);
     createParameterBoxes(parameters);
     createTranslationBoxes(parameters);
     createRotationBoxes(parameters);

@@ -9,6 +9,7 @@ import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBoxLayout;
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.android.model.SceneGraphTreeFragment;
+import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
@@ -28,6 +29,11 @@ public abstract class AbstractObjectEditorFragment extends Fragment {
   OpenglesModeler modeler;
   SceneGraphTreeFragment tree;
   
+  private ParameterInputBoxLayout colorR;
+  private ParameterInputBoxLayout colorG;
+  private ParameterInputBoxLayout colorB;
+  private ParameterInputBoxLayout colorAlpha;
+  
   private ParameterInputBoxLayout translationX;
   private ParameterInputBoxLayout translationY;
   private ParameterInputBoxLayout translationZ;
@@ -35,6 +41,35 @@ public abstract class AbstractObjectEditorFragment extends Fragment {
   private ParameterInputBoxLayout rotationX;
   private ParameterInputBoxLayout rotationY;
   private ParameterInputBoxLayout rotationZ;
+  
+  void createColorBoxes(LinearLayout parameters) {
+    final ColorModel color = this.object.getColor();
+    
+    this.colorR = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    parameters.addView(this.colorR);
+    this.colorR.setName(R.string.color_r);
+    this.colorR.setValue("" + color.getR()); //$NON-NLS-1$
+    this.colorR.setUnit(""); //$NON-NLS-1$
+    
+    this.colorG = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    parameters.addView(this.colorG);
+    this.colorG.setName(R.string.color_g);
+    this.colorG.setValue("" + color.getG()); //$NON-NLS-1$
+    this.colorG.setUnit(""); //$NON-NLS-1$
+
+    this.colorB = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    parameters.addView(this.colorB);
+    this.colorB.setName(R.string.color_b);
+    this.colorB.setValue("" + color.getB()); //$NON-NLS-1$
+    this.colorB.setUnit(""); //$NON-NLS-1$
+
+    this.colorAlpha = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    parameters.addView(this.colorAlpha);
+    this.colorAlpha.setName(R.string.color_alpha);
+    this.colorAlpha.setValue("" + color.getAlpha()); //$NON-NLS-1$
+    this.colorAlpha.setUnit(""); //$NON-NLS-1$
+  }
+
   
   void createRotationBoxes(LinearLayout parameters) {
     final RotationModel rotation = this.object.getRotation();

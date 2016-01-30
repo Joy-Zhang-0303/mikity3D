@@ -17,6 +17,10 @@
     <string name="axisShowingTextView">Axis Showing</string>
     <string name="back">Back</string>
     <string name="close">Close</string>
+    <string name="color_alpha">Color(Alapha)</string>
+    <string name="color_r">Color(R)</string>
+    <string name="color_g">Color(G)</string>
+    <string name="color_b">Color(B)</string>
     <string name="copy">Copy</string>
     <string name="cut">Cut</string>
     <string name="delete">Delete</string>
