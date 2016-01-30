@@ -9,6 +9,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -21,7 +22,7 @@ import android.widget.TextView;
  * @author koga
  * @version $Revision$, 2016/01/25
  */
-public class ParameterInputBox extends LinearLayout {
+public class ParameterInputBoxLayout extends LinearLayout {
 
   /** 名前用のラベル。 */
   private TextView nameLabel;
@@ -39,7 +40,7 @@ public class ParameterInputBox extends LinearLayout {
    * @param defStyleRes Style Resource
    */
   @TargetApi(21)
-  public ParameterInputBox(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+  public ParameterInputBoxLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
     init(context);
   }
@@ -51,7 +52,7 @@ public class ParameterInputBox extends LinearLayout {
    * @param attrs Attributes
    * @param defStyleAttr Style Attribute
    */
-  public ParameterInputBox(Context context, AttributeSet attrs, int defStyleAttr) {
+  public ParameterInputBoxLayout(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     init(context);
   }
@@ -62,7 +63,7 @@ public class ParameterInputBox extends LinearLayout {
    * @param context Context
    * @param attrs Attributes
    */
-  public ParameterInputBox(Context context, AttributeSet attrs) {
+  public ParameterInputBoxLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
     init(context);
   }
@@ -72,7 +73,7 @@ public class ParameterInputBox extends LinearLayout {
    * 
    * @param context Context
    */
-  public ParameterInputBox(Context context) {
+  public ParameterInputBoxLayout(Context context) {
     super(context);
     init(context);
   }
@@ -81,7 +82,10 @@ public class ParameterInputBox extends LinearLayout {
    * @param context
    */
   private void init(Context context) {
-    View.inflate(context, R.layout.parameter_input_box, this);
+    View layout = LayoutInflater.from(context).inflate(R.layout.parameter_input_box_layout, this);
+    this.nameLabel = (TextView)layout.findViewById(R.id.parameterName);
+    this.valueText  = (EditText)layout.findViewById(R.id.parameterValue);
+    this.unitLabel = (TextView)layout.findViewById(R.id.parameterUnit);
   }
   
   /**
@@ -122,7 +126,7 @@ public class ParameterInputBox extends LinearLayout {
   
   /**
    * テキストボックスの文字を設定します。
-   * 
+R   * 
    * @param string 文字列
    */
   public void setValue(String string) {

@@ -1,19 +1,19 @@
 package org.mklab.mikity.android.editor;
 
 import org.mklab.mikity.android.OpenglesModeler;
+import org.mklab.mikity.android.ParameterInputBoxLayout;
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.android.model.SceneGraphTreeFragment;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -32,9 +32,9 @@ public class BoxEditorFragment extends Fragment {
   OpenglesModeler modeler;
   SceneGraphTreeFragment tree;
   
-  LinearLayout width;
-  LinearLayout height;
-  LinearLayout depth;
+  ParameterInputBoxLayout width;
+  ParameterInputBoxLayout height;
+  ParameterInputBoxLayout depth;
   
   /**
    * 新しく生成された<code>BoxEditorFragment</code>オブジェクトを初期化します。
@@ -76,7 +76,7 @@ public class BoxEditorFragment extends Fragment {
   void createParameterBoxes(final LinearLayout parameters) {
     final BoxModel box = (BoxModel)this.object;
 
-    this.width = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.width = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
     parameters.addView(this.width);
     final TextView widthName = (TextView)this.width.findViewById(R.id.parameterName);
     widthName.setText(R.string.width);
@@ -85,7 +85,7 @@ public class BoxEditorFragment extends Fragment {
     final TextView widthUnit = (TextView)this.width.findViewById(R.id.parameterUnit);
     widthUnit.setText("[m]"); //$NON-NLS-1$
 
-    this.height = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.height = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
     parameters.addView(this.height);
     final TextView heightName = (TextView)this.height.findViewById(R.id.parameterName);
     heightName.setText(R.string.height);
@@ -94,7 +94,7 @@ public class BoxEditorFragment extends Fragment {
     final TextView heightUnit = (TextView)this.height.findViewById(R.id.parameterUnit);
     heightUnit.setText("[m]"); //$NON-NLS-1$
 
-    this.depth = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.depth = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
     parameters.addView(this.depth);
     final TextView depthName = (TextView)this.depth.findViewById(R.id.parameterName);
     depthName.setText(R.string.depth);
@@ -108,9 +108,9 @@ public class BoxEditorFragment extends Fragment {
    * パラメータを更新します。
    */
   public void updateModelParameters() {
-//    final BoxModel box = (BoxModel)this.object;
-//    box.setWidth(this.width.getFloatValue());
-//    box.setHeight(this.height.getFloatValue());
-//    box.setDepth(this.depth.getFloatValue());
+    final BoxModel box = (BoxModel)this.object;
+    box.setWidth(this.width.getFloatValue());
+    box.setHeight(this.height.getFloatValue());
+    box.setDepth(this.depth.getFloatValue());
   }
 }
