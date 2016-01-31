@@ -14,7 +14,14 @@ import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 
@@ -42,7 +49,54 @@ public abstract class AbstractObjectEditorFragment extends Fragment {
   private ParameterInputBoxLayout rotationY;
   private ParameterInputBoxLayout rotationZ;
   
-  void createColorBoxes(LinearLayout parameters) {
+  /**
+   * パラメータを編集するボックスを生成します。
+   * 
+   * @param parameters パラメータを設定するレイアウト
+   */
+  abstract void createParameterBoxes(final LinearLayout parameters);
+  
+  /**
+   * 新しく生成された<code>AbstractObjectEditorFragment</code>オブジェクトを初期化します。
+   * @param object オブジェクト
+   */
+  public AbstractObjectEditorFragment(ObjectModel object) {
+    this.object = object;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    final View view = inflater.inflate(R.layout.fragment_box_editor, container, false);
+    
+    final LinearLayout parameters = ((LinearLayout)view.findViewById(R.id.layout_parameters));
+    if (parameters != null) {
+      parameters.removeAllViews();
+    }
+    
+    final Button backButton = (Button)view.findViewById(R.id.backButton);
+    backButton.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+        final FragmentManager manager = getActivity().getSupportFragmentManager();
+        manager.popBackStack();
+      }
+    });
+
+    createColorBoxes(parameters);
+    createParameterBoxes(parameters);
+    createTranslationBoxes(parameters);
+    createRotationBoxes(parameters);
+    
+    return view;
+  }
+  
+  private void createColorBoxes(LinearLayout parameters) {
     final ColorModel color = this.object.getColor();
     
     this.colorR = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
@@ -70,8 +124,7 @@ public abstract class AbstractObjectEditorFragment extends Fragment {
     this.colorAlpha.setUnit(""); //$NON-NLS-1$
   }
 
-  
-  void createRotationBoxes(LinearLayout parameters) {
+  private void createRotationBoxes(LinearLayout parameters) {
     final RotationModel rotation = this.object.getRotation();
     
     final String x;
@@ -107,7 +160,7 @@ public abstract class AbstractObjectEditorFragment extends Fragment {
     this.rotationZ.setUnit("[rad]"); //$NON-NLS-1$
   }
 
-  void createTranslationBoxes(LinearLayout parameters) {
+  private void createTranslationBoxes(LinearLayout parameters) {
     final TranslationModel translation = this.object.getTranslation();
     
     final String x;

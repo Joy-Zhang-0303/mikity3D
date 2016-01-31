@@ -99,17 +99,7 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
     final GridLayout layout = new GridLayout(3, false);
     group.setLayout(layout);
     
-    final Label colorLabel = new Label(group, SWT.LEFT);
-    colorLabel.setText(Messages.getString("EditPrimitiveDialog.10")); //$NON-NLS-1$
-    final GridData gridData = new GridData();
-    gridData.minimumWidth = 200;
-    colorLabel.setLayoutData(gridData);
-    setGridLayout(colorLabel, 1);
-
-    this.colorSelector = new ColorSelectorButton(group, this);
-    this.colorSelector.setColor(this.object.getColor());
-
-    this.alpha = new ParameterInputBox(group, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.object.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
+    createColorBoxes(group);
 
     setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
     
@@ -122,6 +112,20 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
     setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
     createRotationBoxes(group);
+  }
+
+  void createColorBoxes(final Group group) {
+    final Label colorLabel = new Label(group, SWT.LEFT);
+    colorLabel.setText(Messages.getString("EditPrimitiveDialog.10")); //$NON-NLS-1$
+    final GridData gridData = new GridData();
+    gridData.minimumWidth = 200;
+    colorLabel.setLayoutData(gridData);
+    setGridLayout(colorLabel, 1);
+
+    this.colorSelector = new ColorSelectorButton(group, this);
+    this.colorSelector.setColor(this.object.getColor());
+
+    this.alpha = new ParameterInputBox(group, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.object.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
   }
 
   @SuppressWarnings("unused")

@@ -4,16 +4,7 @@ import org.mklab.mikity.android.ParameterInputBoxLayout;
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 /**
  * 直方体を編集するためのエディタを表すラグメントです。
@@ -34,41 +25,13 @@ public class BoxEditorFragment extends AbstractObjectEditorFragment {
    * @param object オブジェクト
    */
   public BoxEditorFragment(BoxModel object) {
-    this.object = object;
+    super(object);
   }
-  
+
   /**
    * {@inheritDoc}
    */
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.fragment_box_editor, container, false);
-    
-    final LinearLayout parameters = ((LinearLayout)view.findViewById(R.id.layout_parameters));
-    if (parameters != null) {
-      parameters.removeAllViews();
-    }
-    
-    final Button backButton = (Button)view.findViewById(R.id.backButton);
-    backButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View v) {
-        final FragmentManager manager = getActivity().getSupportFragmentManager();
-        manager.popBackStack();
-      }
-    });
-
-    createColorBoxes(parameters);
-    createParameterBoxes(parameters);
-    createTranslationBoxes(parameters);
-    createRotationBoxes(parameters);
-    
-    return view;
-  }
-
   void createParameterBoxes(final LinearLayout parameters) {
     final BoxModel box = (BoxModel)this.object;
 
