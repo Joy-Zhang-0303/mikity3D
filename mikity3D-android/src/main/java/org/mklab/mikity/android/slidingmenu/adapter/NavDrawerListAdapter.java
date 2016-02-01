@@ -1,11 +1,10 @@
 package org.mklab.mikity.android.slidingmenu.adapter;
 
+import java.util.ArrayList;
+
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.android.slidingmenu.NavDrawerItem;
 
-import java.util.ArrayList;
-
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,56 +13,71 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class NavDrawerListAdapter extends BaseAdapter{
-	
-	private Context context;
-	private ArrayList<NavDrawerItem> navDrawerItems;
-	
-	public NavDrawerListAdapter(Context context, ArrayList<NavDrawerItem> navDrawerItems){
-		this.context = context;
-		this.navDrawerItems = navDrawerItems;
-	}
-	
-	
-	public int getCount(){
-		return navDrawerItems.size();
-	}
-	
-	
-	public Object getItem(int position){
-		return navDrawerItems.get(position);
-	}
-	
-	
-	public long getItemId(int position){
-		return position;
-	}
-	
-	
-	public View getView(int position, View convertView, ViewGroup parent){
-		if(convertView == null){
-			LayoutInflater mInflater = (LayoutInflater)
-					context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-			convertView = mInflater.inflate(R.layout.drawer_list_item, null);
-		}
-		
-		ImageView imgIcon = (ImageView) convertView.findViewById(R.id.navicon);
-		TextView txtTitle = (TextView) convertView.findViewById(R.id.title);
-		TextView txtCount = (TextView) convertView.findViewById(R.id.counter);
-		
-		imgIcon.setImageResource(navDrawerItems.get(position).getIcon());
-		txtTitle.setText(navDrawerItems.get(position).getTitle());
-		
-		//displaying count
-		//check whether it set visible or not
-		if(navDrawerItems.get(position).getCounterVisiblity()){
-			txtCount.setText(navDrawerItems.get(position).getCount());
-		}else{
-			//hide the counter view
-			txtCount.setVisibility(View.GONE);
-		}
-		
-		return convertView;
-		
-		}
-	}
+
+/**
+ * @author 
+ * @version $Revision$, 2016/02/01
+ */
+public class NavDrawerListAdapter extends BaseAdapter {
+
+  private Context context;
+  private ArrayList<NavDrawerItem> items;
+
+  /**
+   * 新しく生成された<code>NavDrawerListAdapter</code>オブジェクトを初期化します。
+   * 
+   * @param context コンテキスト
+   * @param items 項目
+   */
+  public NavDrawerListAdapter(Context context, ArrayList<NavDrawerItem> items) {
+    this.context = context;
+    this.items = items;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public int getCount() {
+    return this.items.size();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public Object getItem(int position) {
+    return this.items.get(position);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public long getItemId(int position) {
+    return position;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public View getView(int position, View convertView, ViewGroup parent) {
+    if (convertView == null) {
+      LayoutInflater mInflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      convertView = mInflater.inflate(R.layout.drawer_list_item, null);
+    }
+
+    ImageView icon = (ImageView)convertView.findViewById(R.id.navicon);
+    TextView title = (TextView)convertView.findViewById(R.id.title);
+    TextView counter = (TextView)convertView.findViewById(R.id.counter);
+
+    icon.setImageResource(this.items.get(position).getIcon());
+    title.setText(this.items.get(position).getTitle());
+
+    if (this.items.get(position).getCounterVisiblity()) {
+      counter.setText(this.items.get(position).getCount());
+    } else {
+      counter.setVisibility(View.GONE);
+    }
+
+    return convertView;
+
+  }
+}

@@ -9,8 +9,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:background="?attr/colorPrimary" />
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp" />
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/layout_activity_canvas"
@@ -25,20 +25,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:id="@+id/drawer_layout"
+        <FrameLayout
+            android:id="@+id/fragment_navigation_drawer"
             android:layout_width="300dp"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:background="@color/white"
-            android:orientation="vertical" >
-
-            <FrameLayout
-                android:id="@+id/fragment_navigation_drawer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-            </FrameLayout>
-        </LinearLayout>
+            android:layout_gravity="left" >
+        </FrameLayout>
     </android.support.v4.widget.DrawerLayout>
 
 </LinearLayout>

@@ -52,7 +52,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 
 /**
@@ -64,7 +63,13 @@ import android.widget.ToggleButton;
 public class NavigationDrawerFragment extends Fragment {
 
   static final String LOGTAG = null;
-  public NavigationDrawerFragment(){}
+
+  /**
+   * 新しく生成された<code>NavigationDrawerFragment</code>オブジェクトを初期化します。
+   */
+  public NavigationDrawerFragment() {
+    // nothing to do
+  }
 
   CanvasActivity canvasActivity;
 
@@ -76,7 +81,7 @@ public class NavigationDrawerFragment extends Fragment {
 
   /** ソースID。 */
   String sourceId = null;
-  
+
   /** サンプルソースID。 */
   String sampleSourceId = null;
 
@@ -122,13 +127,13 @@ public class NavigationDrawerFragment extends Fragment {
   Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
   /** サンプルのソースファイルを選択するためのボタン */
   List<Button> sampleSourceSelectButtons = new ArrayList<Button>();
-  
+
   AssetsListViewFragment sampleModelViewFragment;
 
   AssetsListViewFragment sampleSourceViewFragment;
-  
+
   SceneGraphTreeFragment sceneGraphTreeFragment;
-  
+
   /**
    * {@inheritDoc}
    */
@@ -309,27 +314,26 @@ public class NavigationDrawerFragment extends Fragment {
         final FragmentManager manager = NavigationDrawerFragment.this.canvasActivity.getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
-        
+
         if (NavigationDrawerFragment.this.sceneGraphTreeFragment != null) {
           transaction.remove(NavigationDrawerFragment.this.sceneGraphTreeFragment);
           NavigationDrawerFragment.this.sceneGraphTreeFragment = null;
         }
-        
+
         NavigationDrawerFragment.this.sceneGraphTreeFragment = new SceneGraphTreeFragment();
         NavigationDrawerFragment.this.sceneGraphTreeFragment.setModel(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root.getScene(0));
 
         NavigationDrawerFragment.this.sceneGraphTreeFragment.setFragmentManager(manager);
-        
+
         transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sceneGraphTreeFragment);
 
         transaction.commit();
-        
+
         NavigationDrawerFragment.this.canvasActivity.canvasFragment.modeler.setTree(NavigationDrawerFragment.this.sceneGraphTreeFragment);
         NavigationDrawerFragment.this.sceneGraphTreeFragment.setModeler(NavigationDrawerFragment.this.canvasActivity.canvasFragment.modeler);
       }
     });
-    
-    
+
   }
 
   private void createSensorComponent(final View mainView) {
@@ -386,7 +390,7 @@ public class NavigationDrawerFragment extends Fragment {
         NavigationDrawerFragment.this.canvasActivity.canvasFragment.setGridShowing(isChecked);
       }
     });
-    
+
     this.axisShowingButton = (CompoundButton)mainView.findViewById(R.id.axisShowingButton);
     this.axisShowingButton.setEnabled(false);
     this.axisShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -399,9 +403,9 @@ public class NavigationDrawerFragment extends Fragment {
       }
     });
   }
-  
+
   /**
-   * Configurationを更新します。 
+   * Configurationを更新します。
    */
   private void updateConfiguration() {
     this.axisShowingButton.setChecked(this.canvasActivity.canvasFragment.isAxisShowing());
@@ -417,22 +421,22 @@ public class NavigationDrawerFragment extends Fragment {
        */
       public void onClick(View view) {
         NavigationDrawerFragment.this.sampleSourceId = null;
-        
+
         final FragmentManager manager = NavigationDrawerFragment.this.canvasActivity.getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
-        
+
         if (NavigationDrawerFragment.this.sampleModelViewFragment != null) {
           transaction.remove(NavigationDrawerFragment.this.sampleModelViewFragment);
           NavigationDrawerFragment.this.sampleModelViewFragment = null;
         }
-        
+
         NavigationDrawerFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
         NavigationDrawerFragment.this.sampleModelViewFragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
         NavigationDrawerFragment.this.sampleModelViewFragment.setFragmentManager(manager);
         NavigationDrawerFragment.this.sampleModelViewFragment.setIsModelData(true);
         transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sampleModelViewFragment);
-        
+
         transaction.commit();
       }
     });
@@ -490,7 +494,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     final LinearLayout sources = ((LinearLayout)getActivity().findViewById(R.id.layout_sample_sources));
     sources.removeAllViews();
-    
+
     this.sampleSourceSelectButtons.clear();
     this.sampleSourceFileNameViews.clear();
 
@@ -499,7 +503,7 @@ public class NavigationDrawerFragment extends Fragment {
       sources.addView(source);
 
       final Button selectButton = (Button)source.findViewById(R.id.sampleSourceSelectButton);
-      selectButton.setText(getString(R.string.source) +  "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+      selectButton.setText(getString(R.string.source) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sampleSourceSelectButtons.add(selectButton);
 
       selectButton.setEnabled(false);
@@ -510,22 +514,22 @@ public class NavigationDrawerFragment extends Fragment {
          */
         public void onClick(View view) {
           NavigationDrawerFragment.this.sampleSourceId = id;
-          
+
           final FragmentManager manager = NavigationDrawerFragment.this.canvasActivity.getSupportFragmentManager();
           final FragmentTransaction transaction = manager.beginTransaction();
           transaction.addToBackStack(null);
-          
+
           if (NavigationDrawerFragment.this.sampleSourceViewFragment != null) {
             transaction.remove(NavigationDrawerFragment.this.sampleSourceViewFragment);
             NavigationDrawerFragment.this.sampleSourceViewFragment = null;
           }
-          
+
           NavigationDrawerFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
           NavigationDrawerFragment.this.sampleSourceViewFragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
           NavigationDrawerFragment.this.sampleSourceViewFragment.setFragmentManager(manager);
           NavigationDrawerFragment.this.sampleSourceViewFragment.setIsModelData(false);
           transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sampleSourceViewFragment);
-          
+
           transaction.commit();
         }
       });
@@ -628,7 +632,7 @@ public class NavigationDrawerFragment extends Fragment {
     for (final TextView view : this.sampleSourceFileNameViews.values()) {
       view.setText(sampleSourceFileName);
     }
-    
+
     updateConfiguration();
   }
 
@@ -683,7 +687,7 @@ public class NavigationDrawerFragment extends Fragment {
       }
 
       createSourceComponent();
-      
+
       updateConfiguration();
 
       setButtonEnabled(true);
