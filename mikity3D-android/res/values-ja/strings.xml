@@ -26,6 +26,8 @@
     <string name="delete">削除</string>
     <string name="delete_all_objects_in_the_group_q">グループ全体を削除しますか？</string>
     <string name="depth">奥行</string>
+    <string name="division">division</string>
+    <string name="division">分割数</string>
     <string name="edit">編集</string>
     <string name="editModel">モデル編集</string>
     <string name="fileName">...</string>
@@ -48,6 +50,7 @@
     <string name="play">再生</string>
     <string name="pleaseSelectModelFile">モデルファイルを選択して下さい。</string>
     <string name="plusButton">>></string>
+    <string name="radius">半径</string>
     <string name="repeat">繰り返し</string>
     <string name="resetToInitialState">初期状態へ戻す</string>
     <string name="rotationSensorTextView">傾きセンサ</string>
@@ -66,6 +69,18 @@
     <string name="translation_to_x_axis">X軸方向並進</string>
     <string name="translation_to_y_axis">Y軸方向並進</string>
     <string name="translation_to_z_axis">Z軸方向並進</string>
+    <string name="vertex_1_x">頂点1 X座標</string>
+    <string name="vertex_1_y">頂点1 Y座標</string>
+    <string name="vertex_1_z">頂点1 Z座標</string>
+    <string name="vertex_2_x">頂点2 X座標</string>
+    <string name="vertex_2_y">頂点2 Y座標</string>
+    <string name="vertex_2_z">頂点2 Z座標</string>
+    <string name="vertex_3_x">頂点3 X座標</string>
+    <string name="vertex_3_y">頂点3 Y座標</string>
+    <string name="vertex_3_z">頂点3 Z座標</string>
+    <string name="vertex_4_x">頂点4 X座標</string>
+    <string name="vertex_4_y">頂点4 Y座標</string>
+    <string name="vertex_4_z">頂点4 Z座標</string>
     <string name="width">幅</string>
     <string name="yes">はい</string>
 

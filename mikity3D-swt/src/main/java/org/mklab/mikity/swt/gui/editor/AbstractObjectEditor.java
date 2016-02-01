@@ -300,13 +300,6 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
     translation.setZ(this.translationZ.getFloatValue());
     return translation;
   }
-
-  /**
-   * {@inheritDoc}
-   */
-  public boolean isChanged() {
-    return this.isChanged;
-  }
   
   /**
    * {@inheritDoc}
@@ -332,5 +325,12 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
     if (e.character==SWT.CR){
       saveParameters();
     }
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public boolean isChanged() {
+    return this.isChanged;
   }
 }

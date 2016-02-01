@@ -8,6 +8,7 @@ package org.mklab.mikity.android.editor;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBoxLayout;
 import org.mklab.mikity.android.R;
+import org.mklab.mikity.android.model.GraphTree;
 import org.mklab.mikity.android.model.SceneGraphTreeFragment;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
@@ -19,8 +20,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -31,10 +32,10 @@ import android.widget.LinearLayout;
  * @author koga
  * @version $Revision$, 2016/01/31
  */
-public abstract class AbstractObjectEditorFragment extends Fragment {
+public abstract class AbstractObjectEditor extends Fragment implements ObjectEditor {
   ObjectModel object;
   OpenglesModeler modeler;
-  SceneGraphTreeFragment tree;
+  GraphTree tree;
   
   private ParameterInputBoxLayout colorR;
   private ParameterInputBoxLayout colorG;
@@ -49,19 +50,19 @@ public abstract class AbstractObjectEditorFragment extends Fragment {
   private ParameterInputBoxLayout rotationY;
   private ParameterInputBoxLayout rotationZ;
   
-  /**
-   * パラメータを編集するボックスを生成します。
-   * 
-   * @param parameters パラメータを設定するレイアウト
-   */
-  abstract void createParameterBoxes(final LinearLayout parameters);
+  /** 値が変更されていればtrue。 */
+  boolean isChanged = false;
   
   /**
    * 新しく生成された<code>AbstractObjectEditorFragment</code>オブジェクトを初期化します。
    * @param object オブジェクト
+   * @param tree シーングラフツリー
+   * @param modeler モデラー
    */
-  public AbstractObjectEditorFragment(ObjectModel object) {
+  public AbstractObjectEditor(ObjectModel object, GraphTree tree, OpenglesModeler modeler) {
     this.object = object;
+    this.tree = tree;
+    this.modeler = modeler;
   }
   
   /**
@@ -193,5 +194,40 @@ public abstract class AbstractObjectEditorFragment extends Fragment {
     this.translationZ.setName(R.string.translation_to_z_axis);
     this.translationZ.setValue(z);
     this.translationZ.setUnit("[m]"); //$NON-NLS-1$
+  }
+  
+  /**
+   * 数字のみが入力されているか判定します。
+   * 
+   * @return boolean 数字のみが入力されていればtrue、そうでなければfalse
+   */
+  boolean containsOnlyNumbers() {
+    if (this.rotationX.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.rotationY.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.rotationZ.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.translationX.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.translationY.containsOnlyNumbers() == false) {
+      return false;
+    }
+    if (this.translationZ.containsOnlyNumbers() == false) {
+      return false;
+    }
+    return true;
+  }
+  
+
+  /**
+   * {@inheritDoc}
+   */
+  public boolean isChanged() {
+    return this.isChanged;
   }
 }

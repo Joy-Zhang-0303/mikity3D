@@ -7,11 +7,10 @@ package org.mklab.mikity.android.model;
 
 import java.util.List;
 
-import org.mklab.mikity.android.AssetsListViewFragment;
-import org.mklab.mikity.android.NavigationDrawerFragment;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.editor.BoxEditorFragment;
+import org.mklab.mikity.android.editor.AbstractObjectEditor;
+import org.mklab.mikity.android.editor.ModelEditorFactory;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
@@ -75,7 +74,7 @@ public class SceneGraphTreeFragment extends Fragment {
   /** 記憶されたグループ。 */
   GroupModel bufferedGroup = null;
   
-  BoxEditorFragment boxEditorFragment = null;
+  AbstractObjectEditor objectEditorFragment = null;
   
   private static final int CONTEXT_MENU_ADD_GROUP = 1;
   private static final int CONTEXT_MENU_ADD_BOX = 2;
@@ -607,13 +606,15 @@ public class SceneGraphTreeFragment extends Fragment {
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
     
-    if (this.boxEditorFragment != null) {
-      transaction.remove(this.boxEditorFragment);
-      this.boxEditorFragment = null;
+    if (this.objectEditorFragment != null) {
+      transaction.remove(this.objectEditorFragment);
+      this.objectEditorFragment = null;
     }
+
+    this.objectEditorFragment = (AbstractObjectEditor)ModelEditorFactory.create(this.selectedObject, this.selectedGroup, this.tree, this.modeler);
+
     
-    this.boxEditorFragment = new BoxEditorFragment((BoxModel)this.selectedObject);
-    transaction.add(R.id.fragment_navigation_drawer, this.boxEditorFragment);
+    transaction.add(R.id.fragment_navigation_drawer, this.objectEditorFragment);
     
     transaction.commit();
     

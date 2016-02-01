@@ -26,6 +26,7 @@
     <string name="delete">Delete</string>
     <string name="delete_all_objects_in_the_group_q">Delete all objects in the group ?</string>
     <string name="depth">depth</string>
+    <string name="division">division</string>
     <string name="edit">Edit</string>
     <string name="editModel">Edit Model</string>
     <string name="fileName">...</string>
@@ -48,6 +49,7 @@
     <string name="pleaseSelectModelFile">Please select model file</string>
     <string name="plusButton">>></string>
     <string name="play">Play</string>
+    <string name="radius">radius</string>
     <string name="repeat">Repeat</string>
     <string name="resetToInitialState">Reset to Initial State</string>
     <string name="rotationSensorTextView">Rotation Sensor</string>
@@ -66,6 +68,18 @@
     <string name="translation_to_x_axis">Translation to x-axis</string>
     <string name="translation_to_y_axis">Translation to y-axis</string>
     <string name="translation_to_z_axis">Translation to z-axis</string>
+    <string name="vertex_1_x">Vertex 1 (X)</string>
+    <string name="vertex_1_y">Vertex 1 (Y)</string>
+    <string name="vertex_1_z">Vertex 1 (Z)</string>
+    <string name="vertex_2_x">Vertex 2 (X)</string>
+    <string name="vertex_2_y">Vertex 2 (Y)</string>
+    <string name="vertex_2_z">Vertex 2 (Z)</string>
+    <string name="vertex_3_x">Vertex 3 (X)</string>
+    <string name="vertex_3_y">Vertex 3 (Y)</string>
+    <string name="vertex_3_z">Vertex 3 (Z)</string>
+    <string name="vertex_4_x">Vertex 4 (X)</string>
+    <string name="vertex_4_y">Vertex 4 (Y)</string>
+    <string name="vertex_4_z">Vertex 4 (Z)</string>
     <string name="width">width</string>
     <string name="yes">Yes</string>
 

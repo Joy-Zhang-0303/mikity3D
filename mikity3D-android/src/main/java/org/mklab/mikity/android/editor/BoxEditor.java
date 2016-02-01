@@ -1,9 +1,13 @@
 package org.mklab.mikity.android.editor;
 
+import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBoxLayout;
 import org.mklab.mikity.android.R;
+import org.mklab.mikity.android.model.GraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
+import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 
+import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 /**
@@ -12,7 +16,7 @@ import android.widget.LinearLayout;
  * @author koga
  * @version $Revision$, 2016/01/26
  */
-public class BoxEditorFragment extends AbstractObjectEditorFragment {
+public class BoxEditor extends AbstractObjectEditor {
   /** 幅。 */
   private ParameterInputBoxLayout width;
   /** 高さ。 */
@@ -23,31 +27,34 @@ public class BoxEditorFragment extends AbstractObjectEditorFragment {
   /**
    * 新しく生成された<code>BoxEditorFragment</code>オブジェクトを初期化します。
    * @param object オブジェクト
+   * @param tree シーングラフツリー
+   * @param modeler モデラー
    */
-  public BoxEditorFragment(BoxModel object) {
-    super(object);
+  public BoxEditor(ObjectModel object, GraphTree tree, OpenglesModeler modeler) {
+    super(object, tree, modeler);
   }
 
   /**
    * {@inheritDoc}
    */
-  @Override
-  void createParameterBoxes(final LinearLayout parameters) {
+  public void createParameterBoxes(final LinearLayout parameters) {
     final BoxModel box = (BoxModel)this.object;
 
-    this.width = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    final LayoutInflater layoutInflater = getActivity().getLayoutInflater();
+    
+    this.width = (ParameterInputBoxLayout)layoutInflater.inflate(R.layout.parameter_input_box, null);
     parameters.addView(this.width);
     this.width.setName(R.string.width);
     this.width.setValue(String.valueOf(box.getWidth()));
     this.width.setUnit("[m]"); //$NON-NLS-1$
 
-    this.height = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.height = (ParameterInputBoxLayout)layoutInflater.inflate(R.layout.parameter_input_box, null);
     parameters.addView(this.height);
     this.height.setName(R.string.height);
     this.height.setValue(String.valueOf(box.getHeight()));
     this.height.setUnit("[m]"); //$NON-NLS-1$
 
-    this.depth = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.depth = (ParameterInputBoxLayout)layoutInflater.inflate(R.layout.parameter_input_box, null);
     parameters.addView(this.depth);
     this.depth.setName(R.string.depth);
     this.depth.setValue(String.valueOf(box.getDepth()));
@@ -64,10 +71,14 @@ public class BoxEditorFragment extends AbstractObjectEditorFragment {
     box.setDepth(this.depth.getFloatValue());
   }
   
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   boolean containsOnlyNumbers() {
-//    if (super.containsOnlyNumbers() == false) {
-//      return false;
-//    }
+    if (super.containsOnlyNumbers() == false) {
+      return false;
+    }
     
     if (this.width.containsOnlyNumbers() == false) {
       return false;
@@ -80,5 +91,12 @@ public class BoxEditorFragment extends AbstractObjectEditorFragment {
     }
 
     return true;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void updateEditor() {
+    // nothing to do
   }
 }
