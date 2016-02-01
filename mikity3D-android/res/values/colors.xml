@@ -144,4 +144,8 @@
 <color name="color_primary_d">#388E3C</color>
 <color name="color_accent">#8BC34A</color>
 <color name="menu_color">#FFFFFF</color>
+<color name="list_selector">#B6B6B6</color>
+<color name="list_divider">#9E9E9E</color>
+<color name="list_background_pressed">#B6B6B6</color>
+<color name="counter_text_bg">#F5F5F5</color>
 </resources>

@@ -83,5 +83,30 @@
     <string name="vertex_4_z">頂点4 Z座標</string>
     <string name="width">幅</string>
     <string name="yes">はい</string>
-
+    
+    <!-- Navigation Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>新規モデル作成</item>
+        <item>モデル選択</item>
+        <item>モデル編集</item>
+        <item>設定</item>
+        <item>アプリについて</item>
+        <item>ヘルプ</item>
+        <item>ナビゲーションドロワー</item>
+    </string-array>
+    
+    <!-- Nav Drawer List Item Icons -->
+    <!-- keep them in order as the titles are in -->
+	<array name = "nav_drawer_icons">
+	    <item>@drawable/ic_add_circle_black_24dp</item>
+	    <item>@drawable/ic_attach_file_black_24dp</item>
+	    <item>@drawable/ic_edit_black_24dp</item>
+	    <item>@drawable/ic_settings_black_24dp</item>
+	    <item>@drawable/ic_android_black</item>
+	    <item>@drawable/ic_help_black_24dp</item>
+	    <item>@drawable/icon2</item>
+	</array>
+	
+	<!-- Content Description -->
+	<string name = "desc_list_item_icon">Item Icon</string>
 </resources>

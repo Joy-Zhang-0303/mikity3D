@@ -64,6 +64,7 @@ import android.widget.ToggleButton;
 public class NavigationDrawerFragment extends Fragment {
 
   static final String LOGTAG = null;
+  public NavigationDrawerFragment(){}
 
   CanvasActivity canvasActivity;
 

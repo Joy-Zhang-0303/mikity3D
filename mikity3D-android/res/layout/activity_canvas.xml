@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <LinearLayout
+        <!--  <LinearLayout
             android:id="@+id/drawer_layout"
             android:layout_width="300dp"
             android:layout_height="match_parent"
@@ -34,12 +34,26 @@
             android:background="@color/white"
             android:orientation="vertical" >
 
-            <FrameLayout
-                android:id="@+id/fragment_navigation_drawer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-            </FrameLayout>
-        </LinearLayout>
+
+        </LinearLayout> -->
+        
+       <FrameLayout
+            android:id="@+id/fragment_navigation_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </FrameLayout>
+        
+        
+        <ListView 
+            android:id="@+id/list_slidermenu"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:choiceMode="singleChoice"
+            android:divider="@color/list_divider"
+            android:dividerHeight="1dp"
+            android:background="@color/white"></ListView>
+        
     </android.support.v4.widget.DrawerLayout>
 
 </LinearLayout>
