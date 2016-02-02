@@ -9,6 +9,7 @@ import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.model.GraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
+import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
 import org.mklab.mikity.model.xml.simplexml.model.ConeModel;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -66,10 +67,10 @@ public class ModelEditorFactory {
       final ModelEditor editor = new CapsuleEditor((ObjectModel)model, tree, modeler);
       return editor;
     }    
-//    if (model instanceof CompositionModel) {
-//      final ModelEditor editor = new CompositionEditorFragment((ObjectModel)model, tree, modeler);
-//      return editor;
-//    }    
+    if (model instanceof CompositionModel) {
+      final ModelEditor editor = new CompositionEditor((ObjectModel)model, tree, modeler);
+      return editor;
+    }    
 
     throw new IllegalArgumentException(model.toString());
   }

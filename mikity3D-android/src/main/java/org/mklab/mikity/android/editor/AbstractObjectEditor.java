@@ -9,7 +9,6 @@ import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBoxLayout;
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.android.model.GraphTree;
-import org.mklab.mikity.android.model.SceneGraphTreeFragment;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
@@ -70,7 +69,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.fragment_box_editor, container, false);
+    final View view = inflater.inflate(R.layout.fragment_object_editor, container, false);
     
     final LinearLayout parameters = ((LinearLayout)view.findViewById(R.id.layout_parameters));
     if (parameters != null) {

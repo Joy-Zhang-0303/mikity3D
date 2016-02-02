@@ -49,6 +49,7 @@
     <string name="play">再生</string>
     <string name="pleaseSelectModelFile">モデルファイルを選択して下さい。</string>
     <string name="plusButton">>></string>
+    <string name="preserve_ratio">比率を保存</string>
     <string name="radius">半径</string>
     <string name="repeat">繰り返し</string>
     <string name="resetToInitialState">初期状態へ戻す</string>
@@ -60,6 +61,7 @@
     <string name="rotation_wrt_y_axis">Y軸周り回転</string>
     <string name="rotation_wrt_z_axis">Z軸周り回転</string>
     <string name="sample">サンプル</string>
+    <string name="size_of_facets">三角形の数</string>
     <string name="source">ソース</string>
     <string name="sourceDataIsNotReady">ソースデータが未設定です。</string>
     <string name="sourceReloadButton">↻</string>
@@ -82,7 +84,7 @@
     <string name="vertex_4_z">頂点4 Z座標</string>
     <string name="width">幅</string>
     <string name="yes">はい</string>
-    
+
     <!-- MainMenu Drawer Menu Items -->
     <string-array name="main_menu_drawer_items">
         <item>新規モデル作成</item>
@@ -93,28 +95,29 @@
         <item>ヘルプ</item>
         <item>ナビゲーションドロワー</item>
     </string-array>
-    
+
     <!-- MainMenu Drawer List Item Icons -->
     <!-- keep them in order as the titles are in -->
-	<array name = "main_menu_drawer_icons">
-	    <item>@drawable/ic_add_circle_black_24dp</item>
-	    <item>@drawable/ic_attach_file_black_24dp</item>
-	    <item>@drawable/ic_edit_black_24dp</item>
-	    <item>@drawable/ic_settings_black_24dp</item>
-	    <item>@drawable/ic_android_black</item>
-	    <item>@drawable/ic_help_black_24dp</item>
-	    <item>@drawable/icon2</item>
-	</array>
-	
-	<!-- Settings Drawer Menu Items -->
-	<string-array name="settings_drawer_items">
-	    <item>傾きセンサ</item>
-	    <item>加速度センサ</item>
-	    <item>回転防止ロック</item>
-	    <item>グリッド表示</item>
-	    <item>座標軸表示</item>
-	</string-array>
-	
-	<!-- Content Description -->
-	<string name = "desc_list_item_icon">Item Icon</string>
+    <array name="main_menu_drawer_icons">
+        <item>@drawable/ic_add_circle_black_24dp</item>
+        <item>@drawable/ic_attach_file_black_24dp</item>
+        <item>@drawable/ic_edit_black_24dp</item>
+        <item>@drawable/ic_settings_black_24dp</item>
+        <item>@drawable/ic_android_black</item>
+        <item>@drawable/ic_help_black_24dp</item>
+        <item>@drawable/icon2</item>
+    </array>
+
+    <!-- Settings Drawer Menu Items -->
+    <string-array name="settings_drawer_items">
+        <item>傾きセンサ</item>
+        <item>加速度センサ</item>
+        <item>回転防止ロック</item>
+        <item>グリッド表示</item>
+        <item>座標軸表示</item>
+    </string-array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+
 </resources>

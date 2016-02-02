@@ -49,6 +49,7 @@
     <string name="pleaseSelectModelFile">Please select model file</string>
     <string name="plusButton">>></string>
     <string name="play">Play</string>
+    <string name="preserve_ratio">Preserve ratio</string>
     <string name="radius">radius</string>
     <string name="repeat">Repeat</string>
     <string name="resetToInitialState">Reset to Initial State</string>
@@ -60,6 +61,7 @@
     <string name="rotationLockTextView">Rotation Lock</string>
     <string name="rotationLockButton">rotationLockButton</string>
     <string name="sample">Sample</string>
+    <string name="size_of_facets">Size of facets</string>
     <string name="source">Source</string>
     <string name="sourceDataIsNotReady">Source data is not ready</string>
     <string name="sourceReloadButton">↻</string>
