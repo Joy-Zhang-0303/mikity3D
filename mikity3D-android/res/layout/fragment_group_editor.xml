@@ -1,0 +1,144 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:textColor="@color/black" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/backButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/back" />
+
+            <TableLayout
+                android:id="@+id/coordinate_parameter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:id="”@+id/coordinate_label″"
+                    android:layout_width="”wrap_content”"
+                    android:layout_height="”wrap_content”" >
+
+                    <TextView
+                        android:id="”@+id/name_label″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+
+                    <TextView
+                        android:id="”@+id/value_label″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+                </TableRow>
+
+                <TableRow
+                    android:id="”@+id/xaxis_translation″"
+                    android:layout_width="”wrap_content”"
+                    android:layout_height="”wrap_content”" >
+
+                    <TextView
+                        android:id="”@+id/xaxis_translation_name″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+
+                    <EditView
+                        android:id="”@+id/xaxis_translation_value″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+                </TableRow>
+
+                <TableRow
+                    android:id="”@+id/yaxis_translation″"
+                    android:layout_width="”wrap_content”"
+                    android:layout_height="”wrap_content”" >
+
+                    <TextView
+                        android:id="”@+id/yaxis_translation_name″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+
+                    <EditView
+                        android:id="”@+id/yaxis_translation_value″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+                </TableRow>
+
+                <TableRow
+                    android:id="”@+id/zaxis_translation″"
+                    android:layout_width="”wrap_content”"
+                    android:layout_height="”wrap_content”" >
+
+                    <TextView
+                        android:id="”@+id/zaxis_translation_name″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+
+                    <EditView
+                        android:id="”@+id/zaxis_translation_value″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+                </TableRow>
+
+                <TableRow
+                    android:id="”@+id/xaxis_rotation″"
+                    android:layout_width="”wrap_content”"
+                    android:layout_height="”wrap_content”" >
+
+                    <TextView
+                        android:id="”@+id/xaxis_rotationname″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+
+                    <EditView
+                        android:id="”@+id/xaxis_rotation_value″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+                </TableRow>
+
+                <TableRow
+                    android:id="”@+id/yaxis_rotation″"
+                    android:layout_width="”wrap_content”"
+                    android:layout_height="”wrap_content”" >
+
+                    <TextView
+                        android:id="”@+id/yaxis_rotation_name″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+
+                    <EditView
+                        android:id="”@+id/yaxis_rotation_value″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+                </TableRow>
+
+                <TableRow
+                    android:id="”@+id/zaxis_rotation″"
+                    android:layout_width="”wrap_content”"
+                    android:layout_height="”wrap_content”" >
+
+                    <TextView
+                        android:id="”@+id/zaxis_rotation_name″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+
+                    <EditView
+                        android:id="”@+id/zaxis_rotation_value″"
+                        android:layout_width="”wrap_content”"
+                        android:layout_height="”wrap_content”" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</ScrollView>
