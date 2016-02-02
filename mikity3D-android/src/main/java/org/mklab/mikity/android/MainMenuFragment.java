@@ -62,9 +62,9 @@ public class MainMenuFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
-    this.mainMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+    this.mainMenuTitles = getResources().getStringArray(R.array.main_menu_drawer_items);
 
-    final TypedArray mainMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+    final TypedArray mainMenuIcons = getResources().obtainTypedArray(R.array.main_menu_drawer_icons);
 
     //this.mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
     this.mainMenuList = (ListView)view.findViewById(R.id.list_main_menu);

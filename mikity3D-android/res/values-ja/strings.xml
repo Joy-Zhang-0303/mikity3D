@@ -26,7 +26,6 @@
     <string name="delete">削除</string>
     <string name="delete_all_objects_in_the_group_q">グループ全体を削除しますか？</string>
     <string name="depth">奥行</string>
-    <string name="division">division</string>
     <string name="division">分割数</string>
     <string name="edit">編集</string>
     <string name="editModel">モデル編集</string>
@@ -85,7 +84,7 @@
     <string name="yes">はい</string>
     
     <!-- Navigation Drawer Menu Items -->
-    <string-array name="nav_drawer_items">
+    <string-array name="main_menu_drawer_items">
         <item>新規モデル作成</item>
         <item>モデル選択</item>
         <item>モデル編集</item>
@@ -97,7 +96,7 @@
     
     <!-- Nav Drawer List Item Icons -->
     <!-- keep them in order as the titles are in -->
-	<array name = "nav_drawer_icons">
+	<array name = "main_menu_drawer_icons">
 	    <item>@drawable/ic_add_circle_black_24dp</item>
 	    <item>@drawable/ic_attach_file_black_24dp</item>
 	    <item>@drawable/ic_edit_black_24dp</item>
