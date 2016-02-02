@@ -7,7 +7,7 @@ package org.mklab.mikity.android;
 
 import java.util.ArrayList;
 
-import org.mklab.mikity.android.mainmenu.NavDrawerItem;
+import org.mklab.mikity.android.mainmenu.MainMenuDrawerItem;
 import org.mklab.mikity.android.mainmenu.adapter.MainMenuDrawerListAdapter;
 
 import android.content.Intent;

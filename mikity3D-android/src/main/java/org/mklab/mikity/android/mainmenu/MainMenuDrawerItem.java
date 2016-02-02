@@ -4,7 +4,7 @@ package org.mklab.mikity.android.mainmenu;
  * @author 
  * @version $Revision$, 2016/02/01
  */
-public class NavDrawerItem {
+public class MainMenuDrawerItem {
 
   private String title;
   private int navicon;
@@ -15,7 +15,7 @@ public class NavDrawerItem {
   /**
    * 新しく生成された<code>NavDrawerItem</code>オブジェクトを初期化します。
    */
-  public NavDrawerItem() {
+  public MainMenuDrawerItem() {
     // nothing to do
   }
 
@@ -24,7 +24,7 @@ public class NavDrawerItem {
    * @param title
    * @param icon
    */
-  public NavDrawerItem(String title, int icon) {
+  public MainMenuDrawerItem(String title, int icon) {
     this.title = title;
     this.navicon = icon;
   }
@@ -36,7 +36,7 @@ public class NavDrawerItem {
    * @param isCounterVisible
    * @param count
    */
-  public NavDrawerItem(String title, int icon, boolean isCounterVisible, String count) {
+  public MainMenuDrawerItem(String title, int icon, boolean isCounterVisible, String count) {
     this.title = title;
     this.navicon = icon;
     this.isCounterVisible = isCounterVisible;

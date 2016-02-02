@@ -3,7 +3,7 @@ package org.mklab.mikity.android.mainmenu.adapter;
 import java.util.ArrayList;
 
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.mainmenu.NavDrawerItem;
+import org.mklab.mikity.android.mainmenu.MainMenuDrawerItem;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -21,7 +21,7 @@ import android.widget.TextView;
 public class MainMenuDrawerListAdapter extends BaseAdapter {
 
   private Context context;
-  private ArrayList<NavDrawerItem> items;
+  private ArrayList<MainMenuDrawerItem> items;
 
   /**
    * 新しく生成された<code>NavDrawerListAdapter</code>オブジェクトを初期化します。
@@ -29,7 +29,7 @@ public class MainMenuDrawerListAdapter extends BaseAdapter {
    * @param context コンテキスト
    * @param items 項目
    */
-  public MainMenuDrawerListAdapter(Context context, ArrayList<NavDrawerItem> items) {
+  public MainMenuDrawerListAdapter(Context context, ArrayList<MainMenuDrawerItem> items) {
     this.context = context;
     this.items = items;
   }

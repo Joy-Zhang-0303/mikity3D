@@ -7,7 +7,7 @@ package org.mklab.mikity.android;
 
 import java.util.ArrayList;
 
-import org.mklab.mikity.android.mainmenu.NavDrawerItem;
+import org.mklab.mikity.android.mainmenu.MainMenuDrawerItem;
 import org.mklab.mikity.android.mainmenu.adapter.MainMenuDrawerListAdapter;
 
 import android.content.res.TypedArray;
@@ -41,7 +41,7 @@ public class MainMenuFragment extends Fragment {
   /** slide menu items */
   private String[] mainMenuTitles;
 
-  private ArrayList<NavDrawerItem> mainMenuItems;
+  private ArrayList<MainMenuDrawerItem> mainMenuItems;
   private MainMenuDrawerListAdapter adapter;
 
   CanvasActivity canvasActivity;
@@ -69,14 +69,14 @@ public class MainMenuFragment extends Fragment {
     //this.mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
     this.mainMenuList = (ListView)view.findViewById(R.id.list_main_menu);
 
-    this.mainMenuItems = new ArrayList<NavDrawerItem>();
-    this.mainMenuItems.add(new NavDrawerItem(this.mainMenuTitles[0], mainMenuIcons.getResourceId(0, -1)));
-    this.mainMenuItems.add(new NavDrawerItem(this.mainMenuTitles[1], mainMenuIcons.getResourceId(1, -1)));
-    this.mainMenuItems.add(new NavDrawerItem(this.mainMenuTitles[2], mainMenuIcons.getResourceId(2, -1)));
-    this.mainMenuItems.add(new NavDrawerItem(this.mainMenuTitles[3], mainMenuIcons.getResourceId(3, -1)));
-    this.mainMenuItems.add(new NavDrawerItem(this.mainMenuTitles[4], mainMenuIcons.getResourceId(4, -1)));
-    this.mainMenuItems.add(new NavDrawerItem(this.mainMenuTitles[5], mainMenuIcons.getResourceId(5, -1)));
-    this.mainMenuItems.add(new NavDrawerItem(this.mainMenuTitles[6], mainMenuIcons.getResourceId(6, -1)));
+    this.mainMenuItems = new ArrayList<MainMenuDrawerItem>();
+    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[0], mainMenuIcons.getResourceId(0, -1)));
+    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[1], mainMenuIcons.getResourceId(1, -1)));
+    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[2], mainMenuIcons.getResourceId(2, -1)));
+    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[3], mainMenuIcons.getResourceId(3, -1)));
+    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[4], mainMenuIcons.getResourceId(4, -1)));
+    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[5], mainMenuIcons.getResourceId(5, -1)));
+    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[6], mainMenuIcons.getResourceId(6, -1)));
 
     mainMenuIcons.recycle();
 
