@@ -1,9 +1,9 @@
-package org.mklab.mikity.android.slidingmenu.adapter;
+package org.mklab.mikity.android.mainmenu.adapter;
 
 import java.util.ArrayList;
 
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.slidingmenu.NavDrawerItem;
+import org.mklab.mikity.android.mainmenu.NavDrawerItem;
 
 import android.content.Context;
 import android.view.LayoutInflater;

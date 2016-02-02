@@ -1,4 +1,4 @@
-package org.mklab.mikity.android.slidingmenu;
+package org.mklab.mikity.android.mainmenu;
 
 /**
  * @author 
