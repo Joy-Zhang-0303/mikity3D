@@ -67,7 +67,7 @@ public class MainMenuFragment extends Fragment {
     final TypedArray mainMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
     //this.mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-    this.mainMenuList = (ListView)view.findViewById(R.id.list_slidermenu);
+    this.mainMenuList = (ListView)view.findViewById(R.id.list_main_menu);
 
     this.mainMenuItems = new ArrayList<NavDrawerItem>();
     this.mainMenuItems.add(new NavDrawerItem(this.mainMenuTitles[0], mainMenuIcons.getResourceId(0, -1)));
