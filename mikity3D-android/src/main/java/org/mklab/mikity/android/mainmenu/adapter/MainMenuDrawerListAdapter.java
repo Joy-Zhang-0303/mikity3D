@@ -18,7 +18,7 @@ import android.widget.TextView;
  * @author 
  * @version $Revision$, 2016/02/01
  */
-public class NavDrawerListAdapter extends BaseAdapter {
+public class MainMenuDrawerListAdapter extends BaseAdapter {
 
   private Context context;
   private ArrayList<NavDrawerItem> items;
@@ -29,7 +29,7 @@ public class NavDrawerListAdapter extends BaseAdapter {
    * @param context コンテキスト
    * @param items 項目
    */
-  public NavDrawerListAdapter(Context context, ArrayList<NavDrawerItem> items) {
+  public MainMenuDrawerListAdapter(Context context, ArrayList<NavDrawerItem> items) {
     this.context = context;
     this.items = items;
   }

@@ -7,8 +7,8 @@ package org.mklab.mikity.android;
 
 import java.util.ArrayList;
 
-import org.mklab.mikity.android.slidingmenu.NavDrawerItem;
-import org.mklab.mikity.android.slidingmenu.adapter.NavDrawerListAdapter;
+import org.mklab.mikity.android.mainmenu.NavDrawerItem;
+import org.mklab.mikity.android.mainmenu.adapter.MainMenuDrawerListAdapter;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -42,7 +42,7 @@ public class MainMenuFragment extends Fragment {
   private String[] mainMenuTitles;
 
   private ArrayList<NavDrawerItem> mainMenuItems;
-  private NavDrawerListAdapter adapter;
+  private MainMenuDrawerListAdapter adapter;
 
   CanvasActivity canvasActivity;
   
@@ -80,7 +80,7 @@ public class MainMenuFragment extends Fragment {
 
     mainMenuIcons.recycle();
 
-    this.adapter = new NavDrawerListAdapter(getActivity().getApplicationContext(), this.mainMenuItems);
+    this.adapter = new MainMenuDrawerListAdapter(getActivity().getApplicationContext(), this.mainMenuItems);
     this.mainMenuList.setAdapter(this.adapter);
     this.mainMenuList.setOnItemClickListener(new SlideMenuClickListener());
 
