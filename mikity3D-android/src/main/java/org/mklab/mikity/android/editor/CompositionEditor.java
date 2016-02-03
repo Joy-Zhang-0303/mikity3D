@@ -12,12 +12,12 @@ import org.mklab.mikity.android.model.GraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 
-import android.graphics.Color;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnAttachStateChangeListener;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 /**
@@ -50,37 +50,34 @@ public class CompositionEditor extends AbstractObjectEditor {
   /**
    * {@inheritDoc}
    */
-  public void createParameterBoxes(final LinearLayout parameters) {
+  public void createParameterBoxes(final TableLayout parameters) {
     final CompositionModel compostion = (CompositionModel)this.object;
-    
-    final LayoutInflater layoutInflater = getActivity().getLayoutInflater();
        
-    this.size = (ParameterInputBoxLayout)layoutInflater.inflate(R.layout.parameter_input_box, null);
+    this.size = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.size);
     this.size.setName(R.string.size_of_facets);
     this.size.setValue(String.valueOf(compostion.getSize()));
     this.size.setUnit(""); //$NON-NLS-1$
 
-    this.width = (ParameterInputBoxLayout)layoutInflater.inflate(R.layout.parameter_input_box, null);
+    this.width = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.width);
     this.width.setName(R.string.width);
     this.width.setValue(String.valueOf(compostion.getWidth()));
     this.width.setUnit("[m]"); //$NON-NLS-1$
 
-    this.height = (ParameterInputBoxLayout)layoutInflater.inflate(R.layout.parameter_input_box, null);
+    this.height = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.height);
     this.height.setName(R.string.height);
     this.height.setValue(String.valueOf(compostion.getHeight()));
     this.height.setUnit("[m]"); //$NON-NLS-1$
     
-    this.depth = (ParameterInputBoxLayout)layoutInflater.inflate(R.layout.parameter_input_box, null);
+    this.depth = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.depth);
     this.depth.setName(R.string.depth);
     this.depth.setValue(String.valueOf(compostion.getDepth()));
     this.depth.setUnit("[m]"); //$NON-NLS-1$
 
-    final LinearLayout preservingRatioLayout = new LinearLayout(getContext());
-    preservingRatioLayout.setOrientation(LinearLayout.HORIZONTAL);
+    final TableRow preservingRatioLayout = new TableRow(getContext());
     parameters.addView(preservingRatioLayout);
     
     final TextView preservingRatioLabel = new TextView(getContext());

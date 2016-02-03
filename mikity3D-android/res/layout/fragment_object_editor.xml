@@ -21,12 +21,12 @@
                 android:layout_weight="0"
                 android:text="@string/back" />
 
-            <LinearLayout
+            <TableLayout
                 android:id="@+id/layout_parameters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-            </LinearLayout>
+            </TableLayout>
         </LinearLayout>
     </FrameLayout>
 

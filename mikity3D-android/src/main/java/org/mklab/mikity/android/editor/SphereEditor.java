@@ -7,8 +7,7 @@ import org.mklab.mikity.android.model.GraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 
-import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.widget.TableLayout;
 
 /**
  * 球を編集するためのエディタを表すラグメントです。
@@ -35,18 +34,16 @@ public class SphereEditor extends AbstractObjectEditor {
   /**
    * {@inheritDoc}
    */
-  public void createParameterBoxes(final LinearLayout parameters) {
+  public void createParameterBoxes(final TableLayout parameters) {
     final SphereModel sphere = (SphereModel)this.object;
-
-    final LayoutInflater layoutInflater = getActivity().getLayoutInflater();
     
-    this.radius = (ParameterInputBoxLayout)layoutInflater.inflate(R.layout.parameter_input_box, null);
+    this.radius = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.radius);
     this.radius.setName(R.string.radius);
     this.radius.setValue(String.valueOf(sphere.getRadius()));
     this.radius.setUnit("[m]"); //$NON-NLS-1$
 
-    this.division = (ParameterInputBoxLayout)layoutInflater.inflate(R.layout.parameter_input_box, null);
+    this.division = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.division);
     this.division.setName(R.string.division);
     this.division.setValue(String.valueOf(sphere.getDivision()));

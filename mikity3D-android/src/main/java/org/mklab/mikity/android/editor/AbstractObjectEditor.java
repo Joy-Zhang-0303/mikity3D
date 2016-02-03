@@ -22,9 +22,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-
-
+import android.widget.TableLayout;
 
 /**
  * オブジェクトを編集するエディタを表すフラグメントです。
@@ -71,9 +69,10 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_object_editor, container, false);
     
-    final LinearLayout parameters = ((LinearLayout)view.findViewById(R.id.layout_parameters));
+    final TableLayout parameters = ((TableLayout)view.findViewById(R.id.layout_parameters));
     if (parameters != null) {
       parameters.removeAllViews();
+      parameters.setStretchAllColumns(true);
     }
     
     final Button backButton = (Button)view.findViewById(R.id.backButton);
@@ -96,35 +95,35 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
     return view;
   }
   
-  private void createColorBoxes(LinearLayout parameters) {
+  private void createColorBoxes(TableLayout parameters) {
     final ColorModel color = this.object.getColor();
     
-    this.colorR = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.colorR = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.colorR);
     this.colorR.setName(R.string.color_r);
     this.colorR.setValue("" + color.getR()); //$NON-NLS-1$
     this.colorR.setUnit(""); //$NON-NLS-1$
     
-    this.colorG = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.colorG = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.colorG);
     this.colorG.setName(R.string.color_g);
     this.colorG.setValue("" + color.getG()); //$NON-NLS-1$
     this.colorG.setUnit(""); //$NON-NLS-1$
 
-    this.colorB = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.colorB = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.colorB);
     this.colorB.setName(R.string.color_b);
     this.colorB.setValue("" + color.getB()); //$NON-NLS-1$
     this.colorB.setUnit(""); //$NON-NLS-1$
 
-    this.colorAlpha = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.colorAlpha = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.colorAlpha);
     this.colorAlpha.setName(R.string.color_alpha);
     this.colorAlpha.setValue("" + color.getAlpha()); //$NON-NLS-1$
     this.colorAlpha.setUnit(""); //$NON-NLS-1$
   }
 
-  private void createRotationBoxes(LinearLayout parameters) {
+  private void createRotationBoxes(TableLayout parameters) {
     final RotationModel rotation = this.object.getRotation();
     
     final String x;
@@ -141,26 +140,26 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
       z = "0"; //$NON-NLS-1$
     }
     
-    this.rotationX = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.rotationX = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.rotationX);
     this.rotationX.setName(R.string.rotation_wrt_x_axis);
     this.rotationX.setValue(x);
     this.rotationX.setUnit("[rad]"); //$NON-NLS-1$
 
-    this.rotationY = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.rotationY = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.rotationY);
     this.rotationY.setName(R.string.rotation_wrt_y_axis);
     this.rotationY.setValue(y);
     this.rotationY.setUnit("[rad]"); //$NON-NLS-1$
     
-    this.rotationZ = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.rotationZ = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.rotationZ);
     this.rotationZ.setName(R.string.rotation_wrt_z_axis);
     this.rotationZ.setValue(z);
     this.rotationZ.setUnit("[rad]"); //$NON-NLS-1$
   }
 
-  private void createTranslationBoxes(LinearLayout parameters) {
+  private void createTranslationBoxes(TableLayout parameters) {
     final TranslationModel translation = this.object.getTranslation();
     
     final String x;
@@ -176,19 +175,19 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
       z = "0"; //$NON-NLS-1$
     }
 
-    this.translationX = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.translationX = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.translationX);
     this.translationX.setName(R.string.translation_to_x_axis);
     this.translationX.setValue(x);
     this.translationX.setUnit("[m]"); //$NON-NLS-1$
 
-    this.translationY = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.translationY = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.translationY);
     this.translationY.setName(R.string.translation_to_y_axis);
     this.translationY.setValue(y);
     this.translationY.setUnit("[m]"); //$NON-NLS-1$
     
-    this.translationZ = (ParameterInputBoxLayout)getActivity().getLayoutInflater().inflate(R.layout.parameter_input_box, null);
+    this.translationZ = new ParameterInputBoxLayout(getContext());
     parameters.addView(this.translationZ);
     this.translationZ.setName(R.string.translation_to_z_axis);
     this.translationZ.setValue(z);

@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.android.editor;
 
-import android.widget.LinearLayout;
+import android.widget.TableLayout;
 
 
 /**
@@ -20,5 +20,5 @@ public interface ObjectEditor extends ModelEditor {
    * 
    * @param parameters パラメータ群
    */
-  void createParameterBoxes(LinearLayout parameters);
+  void createParameterBoxes(TableLayout parameters);
 }

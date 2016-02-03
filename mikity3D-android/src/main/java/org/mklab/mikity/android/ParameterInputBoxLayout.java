@@ -5,14 +5,12 @@
  */
 package org.mklab.mikity.android;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 
@@ -22,7 +20,7 @@ import android.widget.TextView;
  * @author koga
  * @version $Revision$, 2016/01/25
  */
-public class ParameterInputBoxLayout extends LinearLayout {
+public class ParameterInputBoxLayout extends TableRow {
 
   /** 名前用のラベル。 */
   private TextView nameLabel;
@@ -30,32 +28,6 @@ public class ParameterInputBoxLayout extends LinearLayout {
   private EditText valueText;
   /** 単位用のラベル。 */
   private TextView unitLabel;
-
-  /**
-   * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
-   * 
-   * @param context Context
-   * @param attrs Attributes
-   * @param defStyleAttr Style Attribute
-   * @param defStyleRes Style Resource
-   */
-  @TargetApi(21)
-  public ParameterInputBoxLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-    super(context, attrs, defStyleAttr, defStyleRes);
-    init(context);
-  }
-
-  /**
-   * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
-   * 
-   * @param context Context
-   * @param attrs Attributes
-   * @param defStyleAttr Style Attribute
-   */
-  public ParameterInputBoxLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-    init(context);
-  }
 
   /**
    * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
@@ -82,7 +54,7 @@ public class ParameterInputBoxLayout extends LinearLayout {
    * @param context
    */
   private void init(Context context) {
-    View layout = LayoutInflater.from(context).inflate(R.layout.parameter_input_box_layout, this);
+    TableRow layout = (TableRow)LayoutInflater.from(context).inflate(R.layout.parameter_input_box_layout, this, true);
     this.nameLabel = (TextView)layout.findViewById(R.id.parameterName);
     this.valueText  = (EditText)layout.findViewById(R.id.parameterValue);
     this.unitLabel = (TextView)layout.findViewById(R.id.parameterUnit);
