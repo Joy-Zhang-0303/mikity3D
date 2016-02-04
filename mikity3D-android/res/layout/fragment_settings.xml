@@ -1,8 +1,18 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:background="@color/white">
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
 
+    
+    <TableRow>
+        <Button
+                android:id="@+id/settingBackButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/back" />
+    </TableRow>
     <TableRow>
 
         <TextView
@@ -23,6 +33,13 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:checked="false" />
+    </TableRow>
+
+    <TableRow>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
     </TableRow>
 
     <TableRow>
@@ -51,6 +68,13 @@
 
     <TableRow>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </TableRow>
+
+    <TableRow>
+
         <TextView
             android:id="@+id/rotationLockTextView"
             android:layout_width="wrap_content"
@@ -71,6 +95,13 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:checked="false" />
+    </TableRow>
+
+    <TableRow>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
     </TableRow>
 
     <TableRow>
@@ -99,6 +130,13 @@
 
     <TableRow>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </TableRow>
+
+    <TableRow>
+
         <TextView
             android:id="@+id/axisShowingTextView"
             android:layout_width="wrap_content"
@@ -122,4 +160,3 @@
     </TableRow>
 
 </TableLayout>
-           

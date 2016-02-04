@@ -94,6 +94,18 @@ public class SettingsFragment extends Fragment {
     final View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
     this.canvasActivity = (CanvasActivity)getActivity();
+    
+    final Button settingBackButton = (Button)view.findViewById(R.id.settingBackButton);
+    settingBackButton.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+        final FragmentManager manager = getActivity().getSupportFragmentManager();
+        manager.popBackStack();
+      }
+    });
 
 
 
