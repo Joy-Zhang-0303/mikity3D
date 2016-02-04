@@ -57,6 +57,9 @@ public class CanvasActivity extends AppCompatActivity {
   /** NavigationDrawerFragment */
   NavigationDrawerFragment ndFragment;
   
+  /** NavigationDrawerFragment */
+  SettingsFragment settingsFragment;
+  
   /** MainMenuFragment */
   MainMenuFragment mainMenuFragment;
 
@@ -157,6 +160,26 @@ public class CanvasActivity extends AppCompatActivity {
     transaction.commit();
   }
 
+  
+  /**
+   * SettingsFragmentを生成します。
+   */
+  void createSettingsFragment() {
+    final FragmentManager manager = getSupportFragmentManager();
+    final FragmentTransaction transaction = manager.beginTransaction();
+    transaction.addToBackStack(null);
+    
+    if (this.settingsFragment != null) {
+      transaction.remove(this.mainMenuFragment);
+      this.settingsFragment = null;
+    }
+
+    this.settingsFragment = new SettingsFragment();
+    transaction.add(R.id.fragment_navigation_drawer, this.settingsFragment);
+    transaction.commit();
+  }
+  
+  
   /**
    * 外部アクティビティからのモデルパス、データパスを渡されるインテントに対応したメソッドです。
    */

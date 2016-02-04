@@ -94,19 +94,23 @@ public class MainMenuFragment extends Fragment {
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
       displayView(position);
-    }
-  }
+		}
+	}
 
-  /**
-   * Displaying fragment view for selected nav drawer list item
-   */
-  void displayView(int position) {
-    switch (position) {
-      case 6:
-        this.canvasActivity.createNavigationDrawerFragment();
-        break;
-      default:
-        break;
-    }
-  }
+	/**
+	 * Displaying fragment view for selected nav drawer list item
+	 */
+	void displayView(int position) {
+		switch (position) {
+
+		case 3:
+			this.canvasActivity.createSettingsFragment();
+			break;
+		case 6:
+			this.canvasActivity.createNavigationDrawerFragment();
+			break;
+		default:
+			break;
+		}
+	}
 }
