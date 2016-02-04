@@ -35,10 +35,10 @@ public class ModelEditorFactory {
    * @return ダイアログ
    */
   public static ModelEditor create(Object model, GroupModel group, SceneGraphTree tree, OpenglesModeler modeler) {
-//    if (model instanceof GroupModel) {
-//      final ModelEditor editor = new GroupEditor(group, true, tree, modeler);
-//      return editor;
-//    } 
+    if (model instanceof GroupModel) {
+      final ModelEditor editor = new GroupEditor(group, tree, modeler);
+      return editor;
+    } 
     if (model instanceof TriangleModel) {
       final ModelEditor editor = new TriangleEditor((ObjectModel)model, tree,  modeler);
       return editor;

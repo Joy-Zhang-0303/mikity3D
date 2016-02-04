@@ -1,0 +1,26 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/parameterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/parameterName"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/parameterValue1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/parameterValue"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/parameterValue2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/parameterValue"
+        android:textColor="@color/black" />
+
+</merge>

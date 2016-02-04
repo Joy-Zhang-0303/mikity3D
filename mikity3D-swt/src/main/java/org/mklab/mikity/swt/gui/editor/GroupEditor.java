@@ -53,13 +53,13 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
   private ParameterInputBox translationXsourceId;
   private ParameterInputBox translationYsourceId;
   private ParameterInputBox translationZsourceId;
-  private ParameterInputBox rotationXsourceId;
-  private ParameterInputBox rotationYsourceId;
-  private ParameterInputBox rotationZsourceId;
-
   private ParameterInputBox translationXsourceNumber;
   private ParameterInputBox translationYsourceNumber;
   private ParameterInputBox translationZsourceNumber;
+
+  private ParameterInputBox rotationXsourceId;
+  private ParameterInputBox rotationYsourceId;
+  private ParameterInputBox rotationZsourceId;
   private ParameterInputBox rotationXsourceNumber;
   private ParameterInputBox rotationYsourceNumber;
   private ParameterInputBox rotationZsourceNumber;
