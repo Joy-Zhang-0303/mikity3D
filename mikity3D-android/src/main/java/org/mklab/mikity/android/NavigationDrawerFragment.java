@@ -22,7 +22,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.mklab.mikity.android.control.AnimationTask;
-import org.mklab.mikity.android.model.SceneGraphTreeFragment;
+import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.searcher.ExcecuteSearchGroup;
 import org.mklab.mikity.model.searcher.GroupManager;
 import org.mklab.mikity.model.searcher.GroupNameManager;
@@ -132,7 +132,7 @@ public class NavigationDrawerFragment extends Fragment {
 
   AssetsListViewFragment sampleSourceViewFragment;
 
-  SceneGraphTreeFragment sceneGraphTreeFragment;
+  SceneGraphTree sceneGraphTreeFragment;
 
   /**
    * {@inheritDoc}
@@ -320,7 +320,7 @@ public class NavigationDrawerFragment extends Fragment {
           NavigationDrawerFragment.this.sceneGraphTreeFragment = null;
         }
 
-        NavigationDrawerFragment.this.sceneGraphTreeFragment = new SceneGraphTreeFragment();
+        NavigationDrawerFragment.this.sceneGraphTreeFragment = new SceneGraphTree();
         NavigationDrawerFragment.this.sceneGraphTreeFragment.setModel(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root.getScene(0));
 
         NavigationDrawerFragment.this.sceneGraphTreeFragment.setFragmentManager(manager);

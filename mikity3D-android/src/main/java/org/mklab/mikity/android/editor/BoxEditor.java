@@ -1,9 +1,9 @@
 package org.mklab.mikity.android.editor;
 
 import org.mklab.mikity.android.OpenglesModeler;
-import org.mklab.mikity.android.ParameterInputBoxLayout;
+import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.model.GraphTree;
+import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 
@@ -17,11 +17,11 @@ import android.widget.TableLayout;
  */
 public class BoxEditor extends AbstractObjectEditor {
   /** 幅。 */
-  private ParameterInputBoxLayout width;
+  private ParameterInputBox width;
   /** 高さ。 */
-  private ParameterInputBoxLayout height;
+  private ParameterInputBox height;
   /** 奥行き。 */
-  private ParameterInputBoxLayout depth;
+  private ParameterInputBox depth;
   
   /**
    * 新しく生成された<code>BoxEditorFragment</code>オブジェクトを初期化します。
@@ -29,7 +29,7 @@ public class BoxEditor extends AbstractObjectEditor {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public BoxEditor(ObjectModel object, GraphTree tree, OpenglesModeler modeler) {
+  public BoxEditor(ObjectModel object, SceneGraphTree tree, OpenglesModeler modeler) {
     super(object, tree, modeler);
   }
 
@@ -39,19 +39,19 @@ public class BoxEditor extends AbstractObjectEditor {
   public void createParameterBoxes(final TableLayout parameters) {
     final BoxModel box = (BoxModel)this.object;
     
-    this.width = new ParameterInputBoxLayout(getContext());
+    this.width = new ParameterInputBox(getContext());
     parameters.addView(this.width);
     this.width.setName(R.string.width);
     this.width.setValue(String.valueOf(box.getWidth()));
     this.width.setUnit("[m]"); //$NON-NLS-1$
 
-    this.height = new ParameterInputBoxLayout(getContext());
+    this.height = new ParameterInputBox(getContext());
     parameters.addView(this.height);
     this.height.setName(R.string.height);
     this.height.setValue(String.valueOf(box.getHeight()));
     this.height.setUnit("[m]"); //$NON-NLS-1$
 
-    this.depth = new ParameterInputBoxLayout(getContext());
+    this.depth = new ParameterInputBox(getContext());
     parameters.addView(this.depth);
     this.depth.setName(R.string.depth);
     this.depth.setValue(String.valueOf(box.getDepth()));

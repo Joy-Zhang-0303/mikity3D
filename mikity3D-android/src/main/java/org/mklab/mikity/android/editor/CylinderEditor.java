@@ -1,9 +1,9 @@
 package org.mklab.mikity.android.editor;
 
 import org.mklab.mikity.android.OpenglesModeler;
-import org.mklab.mikity.android.ParameterInputBoxLayout;
+import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.model.GraphTree;
+import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.CylinderModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 
@@ -17,11 +17,11 @@ import android.widget.TableLayout;
  */
 public class CylinderEditor extends AbstractObjectEditor {
   /** 半径。 */
-  private ParameterInputBoxLayout radius;
+  private ParameterInputBox radius;
   /** 高さ。 */
-  private ParameterInputBoxLayout height;
+  private ParameterInputBox height;
   /** 分割数。 */
-  private ParameterInputBoxLayout division;
+  private ParameterInputBox division;
 
   /**
    * 新しく生成された<code>CylinderEditorFragment</code>オブジェクトを初期化します。
@@ -29,7 +29,7 @@ public class CylinderEditor extends AbstractObjectEditor {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public CylinderEditor(ObjectModel object, GraphTree tree, OpenglesModeler modeler) {
+  public CylinderEditor(ObjectModel object, SceneGraphTree tree, OpenglesModeler modeler) {
     super(object, tree, modeler);
   }
 
@@ -39,19 +39,19 @@ public class CylinderEditor extends AbstractObjectEditor {
   public void createParameterBoxes(final TableLayout parameters) {
     final CylinderModel cylinder = (CylinderModel)this.object;
     
-    this.radius = new ParameterInputBoxLayout(getContext());
+    this.radius = new ParameterInputBox(getContext());
     parameters.addView(this.radius);
     this.radius.setName(R.string.radius);
     this.radius.setValue(String.valueOf(cylinder.getRadius()));
     this.radius.setUnit("[m]"); //$NON-NLS-1$
 
-    this.height = new ParameterInputBoxLayout(getContext());
+    this.height = new ParameterInputBox(getContext());
     parameters.addView(this.height);
     this.height.setName(R.string.height);
     this.height.setValue(String.valueOf(cylinder.getHeight()));
     this.height.setUnit("[m]"); //$NON-NLS-1$
 
-    this.division = new ParameterInputBoxLayout(getContext());
+    this.division = new ParameterInputBox(getContext());
     parameters.addView(this.division);
     this.division.setName(R.string.division);
     this.division.setValue(String.valueOf(cylinder.getDivision()));

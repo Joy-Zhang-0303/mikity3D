@@ -46,7 +46,7 @@ import android.widget.ListView;
  * @author koga
  * @version $Revision$, 2016/01/08
  */
-public class SceneGraphTreeFragment extends Fragment {
+public class SceneGraphTree extends Fragment {
   private ListView treeView;
   
   FragmentManager fragmentManager;
@@ -109,7 +109,7 @@ public class SceneGraphTreeFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        SceneGraphTreeFragment.this.fragmentManager.popBackStack();
+        SceneGraphTree.this.fragmentManager.popBackStack();
       }
     });
     
@@ -254,17 +254,17 @@ public class SceneGraphTreeFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        SceneGraphTreeFragment.this.selectedTreeItem = (TreeItem)parent.getItemAtPosition(position);
+        SceneGraphTree.this.selectedTreeItem = (TreeItem)parent.getItemAtPosition(position);
         
-        if (SceneGraphTreeFragment.this.selectedTreeItem.isExpanded()) {
-          SceneGraphTreeFragment.this.selectedTreeItem.collapse();
+        if (SceneGraphTree.this.selectedTreeItem.isExpanded()) {
+          SceneGraphTree.this.selectedTreeItem.collapse();
         } else {
-          if (SceneGraphTreeFragment.this.selectedTreeItem.hasChild()) {
-            SceneGraphTreeFragment.this.selectedTreeItem.expand();
+          if (SceneGraphTree.this.selectedTreeItem.hasChild()) {
+            SceneGraphTree.this.selectedTreeItem.expand();
           }
         }
         
-        SceneGraphTreeFragment.this.tree.notifyDataSetChanged();
+        SceneGraphTree.this.tree.notifyDataSetChanged();
         
         updatetSelectedObject();
       }
@@ -611,7 +611,7 @@ public class SceneGraphTreeFragment extends Fragment {
       this.objectEditorFragment = null;
     }
 
-    this.objectEditorFragment = (AbstractObjectEditor)ModelEditorFactory.create(this.selectedObject, this.selectedGroup, this.tree, this.modeler);
+    this.objectEditorFragment = (AbstractObjectEditor)ModelEditorFactory.create(this.selectedObject, this.selectedGroup, this, this.modeler);
 
     
     transaction.add(R.id.fragment_navigation_drawer, this.objectEditorFragment);

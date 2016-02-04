@@ -3,9 +3,9 @@ package org.mklab.mikity.android.editor;
 import java.util.Arrays;
 
 import org.mklab.mikity.android.OpenglesModeler;
-import org.mklab.mikity.android.ParameterInputBoxLayout;
+import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.model.GraphTree;
+import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
@@ -20,32 +20,32 @@ import android.widget.TableLayout;
  */
 public class QuadrangleEditor extends AbstractObjectEditor {
   /** 頂点１のX座標。 */
-  private ParameterInputBoxLayout vertex1X;
+  private ParameterInputBox vertex1X;
   /** 頂点1のY座標。 */
-  private ParameterInputBoxLayout vertex1Y;
+  private ParameterInputBox vertex1Y;
   /** 頂点1のZ座標。 */
-  private ParameterInputBoxLayout vertex1Z;
+  private ParameterInputBox vertex1Z;
   
   /** 頂点2のX座標。 */
-  private ParameterInputBoxLayout vertex2X;
+  private ParameterInputBox vertex2X;
   /** 頂点2のY座標。 */
-  private ParameterInputBoxLayout vertex2Y;
+  private ParameterInputBox vertex2Y;
   /** 頂点2のZ座標。 */
-  private ParameterInputBoxLayout vertex2Z;
+  private ParameterInputBox vertex2Z;
   
   /** 頂点3のX座標。 */
-  private ParameterInputBoxLayout vertex3X;
+  private ParameterInputBox vertex3X;
   /** 頂点3のY座標。 */
-  private ParameterInputBoxLayout vertex3Y;
+  private ParameterInputBox vertex3Y;
   /** 頂点3のZ座標。 */
-  private ParameterInputBoxLayout vertex3Z;
+  private ParameterInputBox vertex3Z;
   
   /** 頂点4のX座標。 */
-  private ParameterInputBoxLayout vertex4X;
+  private ParameterInputBox vertex4X;
   /** 頂点4のY座標。 */
-  private ParameterInputBoxLayout vertex4Y;
+  private ParameterInputBox vertex4Y;
   /** 頂点4のZ座標。 */
-  private ParameterInputBoxLayout vertex4Z;
+  private ParameterInputBox vertex4Z;
 
   /**
    * 新しく生成された<code>QuadrangleEditorFragment</code>オブジェクトを初期化します。
@@ -53,7 +53,7 @@ public class QuadrangleEditor extends AbstractObjectEditor {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public QuadrangleEditor(ObjectModel object, GraphTree tree, OpenglesModeler modeler) {
+  public QuadrangleEditor(ObjectModel object, SceneGraphTree tree, OpenglesModeler modeler) {
     super(object, tree, modeler);
   }
 
@@ -65,19 +65,19 @@ public class QuadrangleEditor extends AbstractObjectEditor {
     
     final VertexModel vertex1 = polygon.getVertex(0);
 
-    this.vertex1X = new ParameterInputBoxLayout(getContext());
+    this.vertex1X = new ParameterInputBox(getContext());
     parameters.addView(this.vertex1X);
     this.vertex1X.setName(R.string.vertex_1_x);
     this.vertex1X.setValue(String.valueOf(vertex1.getX()));
     this.vertex1X.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex1Y = new ParameterInputBoxLayout(getContext());
+    this.vertex1Y = new ParameterInputBox(getContext());
     parameters.addView(this.vertex1Y);
     this.vertex1Y.setName(R.string.vertex_1_y);
     this.vertex1Y.setValue(String.valueOf(vertex1.getY()));
     this.vertex1Y.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex1Z = new ParameterInputBoxLayout(getContext());
+    this.vertex1Z = new ParameterInputBox(getContext());
     parameters.addView(this.vertex1Z);
     this.vertex1Z.setName(R.string.vertex_1_z);
     this.vertex1Z.setValue(String.valueOf(vertex1.getZ()));
@@ -85,19 +85,19 @@ public class QuadrangleEditor extends AbstractObjectEditor {
     
     final VertexModel vertex2 = polygon.getVertex(1);
 
-    this.vertex2X = new ParameterInputBoxLayout(getContext());
+    this.vertex2X = new ParameterInputBox(getContext());
     parameters.addView(this.vertex2X);
     this.vertex2X.setName(R.string.vertex_2_x);
     this.vertex2X.setValue(String.valueOf(vertex2.getX()));
     this.vertex2X.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex2Y = new ParameterInputBoxLayout(getContext());
+    this.vertex2Y = new ParameterInputBox(getContext());
     parameters.addView(this.vertex2Y);
     this.vertex2Y.setName(R.string.vertex_2_y);
     this.vertex2Y.setValue(String.valueOf(vertex2.getY()));
     this.vertex2Y.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex2Z = new ParameterInputBoxLayout(getContext());
+    this.vertex2Z = new ParameterInputBox(getContext());
     parameters.addView(this.vertex2Z);
     this.vertex2Z.setName(R.string.vertex_2_z);
     this.vertex2Z.setValue(String.valueOf(vertex2.getZ()));
@@ -105,19 +105,19 @@ public class QuadrangleEditor extends AbstractObjectEditor {
     
     final VertexModel vertex3 = polygon.getVertex(2);
 
-    this.vertex3X = new ParameterInputBoxLayout(getContext());
+    this.vertex3X = new ParameterInputBox(getContext());
     parameters.addView(this.vertex3X);
     this.vertex3X.setName(R.string.vertex_3_x);
     this.vertex3X.setValue(String.valueOf(vertex3.getX()));
     this.vertex3X.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex3Y = new ParameterInputBoxLayout(getContext());
+    this.vertex3Y = new ParameterInputBox(getContext());
     parameters.addView(this.vertex3Y);
     this.vertex3Y.setName(R.string.vertex_3_y);
     this.vertex3Y.setValue(String.valueOf(vertex3.getY()));
     this.vertex3Y.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex3Z = new ParameterInputBoxLayout(getContext());
+    this.vertex3Z = new ParameterInputBox(getContext());
     parameters.addView(this.vertex3Z);
     this.vertex3Z.setName(R.string.vertex_3_z);
     this.vertex3Z.setValue(String.valueOf(vertex3.getZ()));
@@ -125,19 +125,19 @@ public class QuadrangleEditor extends AbstractObjectEditor {
 
     final VertexModel vertex4 = polygon.getVertex(0);
 
-    this.vertex4X = new ParameterInputBoxLayout(getContext());
+    this.vertex4X = new ParameterInputBox(getContext());
     parameters.addView(this.vertex4X);
     this.vertex4X.setName(R.string.vertex_4_x);
     this.vertex4X.setValue(String.valueOf(vertex4.getX()));
     this.vertex4X.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex4Y = new ParameterInputBoxLayout(getContext());
+    this.vertex4Y = new ParameterInputBox(getContext());
     parameters.addView(this.vertex4Y);
     this.vertex4Y.setName(R.string.vertex_4_y);
     this.vertex4Y.setValue(String.valueOf(vertex4.getY()));
     this.vertex4Y.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex4Z = new ParameterInputBoxLayout(getContext());
+    this.vertex4Z = new ParameterInputBox(getContext());
     parameters.addView(this.vertex4Z);
     this.vertex4Z.setName(R.string.vertex_4_z);
     this.vertex4Z.setValue(String.valueOf(vertex4.getZ()));

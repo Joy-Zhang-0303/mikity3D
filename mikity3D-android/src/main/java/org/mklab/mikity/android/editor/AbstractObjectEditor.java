@@ -6,9 +6,9 @@
 package org.mklab.mikity.android.editor;
 
 import org.mklab.mikity.android.OpenglesModeler;
-import org.mklab.mikity.android.ParameterInputBoxLayout;
+import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.model.GraphTree;
+import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
@@ -32,20 +32,20 @@ import android.widget.TableLayout;
 public abstract class AbstractObjectEditor extends Fragment implements ObjectEditor {
   ObjectModel object;
   OpenglesModeler modeler;
-  GraphTree tree;
+  SceneGraphTree tree;
   
-  private ParameterInputBoxLayout colorR;
-  private ParameterInputBoxLayout colorG;
-  private ParameterInputBoxLayout colorB;
-  private ParameterInputBoxLayout colorAlpha;
+  private ParameterInputBox colorR;
+  private ParameterInputBox colorG;
+  private ParameterInputBox colorB;
+  private ParameterInputBox colorAlpha;
   
-  private ParameterInputBoxLayout translationX;
-  private ParameterInputBoxLayout translationY;
-  private ParameterInputBoxLayout translationZ;
+  private ParameterInputBox translationX;
+  private ParameterInputBox translationY;
+  private ParameterInputBox translationZ;
   
-  private ParameterInputBoxLayout rotationX;
-  private ParameterInputBoxLayout rotationY;
-  private ParameterInputBoxLayout rotationZ;
+  private ParameterInputBox rotationX;
+  private ParameterInputBox rotationY;
+  private ParameterInputBox rotationZ;
   
   /** 値が変更されていればtrue。 */
   boolean isChanged = false;
@@ -56,7 +56,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public AbstractObjectEditor(ObjectModel object, GraphTree tree, OpenglesModeler modeler) {
+  public AbstractObjectEditor(ObjectModel object, SceneGraphTree tree, OpenglesModeler modeler) {
     this.object = object;
     this.tree = tree;
     this.modeler = modeler;
@@ -98,25 +98,25 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
   private void createColorBoxes(TableLayout parameters) {
     final ColorModel color = this.object.getColor();
     
-    this.colorR = new ParameterInputBoxLayout(getContext());
+    this.colorR = new ParameterInputBox(getContext());
     parameters.addView(this.colorR);
     this.colorR.setName(R.string.color_r);
     this.colorR.setValue("" + color.getR()); //$NON-NLS-1$
     this.colorR.setUnit(""); //$NON-NLS-1$
     
-    this.colorG = new ParameterInputBoxLayout(getContext());
+    this.colorG = new ParameterInputBox(getContext());
     parameters.addView(this.colorG);
     this.colorG.setName(R.string.color_g);
     this.colorG.setValue("" + color.getG()); //$NON-NLS-1$
     this.colorG.setUnit(""); //$NON-NLS-1$
 
-    this.colorB = new ParameterInputBoxLayout(getContext());
+    this.colorB = new ParameterInputBox(getContext());
     parameters.addView(this.colorB);
     this.colorB.setName(R.string.color_b);
     this.colorB.setValue("" + color.getB()); //$NON-NLS-1$
     this.colorB.setUnit(""); //$NON-NLS-1$
 
-    this.colorAlpha = new ParameterInputBoxLayout(getContext());
+    this.colorAlpha = new ParameterInputBox(getContext());
     parameters.addView(this.colorAlpha);
     this.colorAlpha.setName(R.string.color_alpha);
     this.colorAlpha.setValue("" + color.getAlpha()); //$NON-NLS-1$
@@ -140,19 +140,19 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
       z = "0"; //$NON-NLS-1$
     }
     
-    this.rotationX = new ParameterInputBoxLayout(getContext());
+    this.rotationX = new ParameterInputBox(getContext());
     parameters.addView(this.rotationX);
     this.rotationX.setName(R.string.rotation_wrt_x_axis);
     this.rotationX.setValue(x);
     this.rotationX.setUnit("[rad]"); //$NON-NLS-1$
 
-    this.rotationY = new ParameterInputBoxLayout(getContext());
+    this.rotationY = new ParameterInputBox(getContext());
     parameters.addView(this.rotationY);
     this.rotationY.setName(R.string.rotation_wrt_y_axis);
     this.rotationY.setValue(y);
     this.rotationY.setUnit("[rad]"); //$NON-NLS-1$
     
-    this.rotationZ = new ParameterInputBoxLayout(getContext());
+    this.rotationZ = new ParameterInputBox(getContext());
     parameters.addView(this.rotationZ);
     this.rotationZ.setName(R.string.rotation_wrt_z_axis);
     this.rotationZ.setValue(z);
@@ -175,19 +175,19 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
       z = "0"; //$NON-NLS-1$
     }
 
-    this.translationX = new ParameterInputBoxLayout(getContext());
+    this.translationX = new ParameterInputBox(getContext());
     parameters.addView(this.translationX);
     this.translationX.setName(R.string.translation_to_x_axis);
     this.translationX.setValue(x);
     this.translationX.setUnit("[m]"); //$NON-NLS-1$
 
-    this.translationY = new ParameterInputBoxLayout(getContext());
+    this.translationY = new ParameterInputBox(getContext());
     parameters.addView(this.translationY);
     this.translationY.setName(R.string.translation_to_y_axis);
     this.translationY.setValue(y);
     this.translationY.setUnit("[m]"); //$NON-NLS-1$
     
-    this.translationZ = new ParameterInputBoxLayout(getContext());
+    this.translationZ = new ParameterInputBox(getContext());
     parameters.addView(this.translationZ);
     this.translationZ.setName(R.string.translation_to_z_axis);
     this.translationZ.setValue(z);

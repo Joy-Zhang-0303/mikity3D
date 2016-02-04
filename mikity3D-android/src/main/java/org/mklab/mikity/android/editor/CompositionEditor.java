@@ -6,16 +6,15 @@
 package org.mklab.mikity.android.editor;
 
 import org.mklab.mikity.android.OpenglesModeler;
-import org.mklab.mikity.android.ParameterInputBoxLayout;
+import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.model.GraphTree;
+import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 
 import android.view.View;
 import android.view.View.OnAttachStateChangeListener;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -26,13 +25,13 @@ import android.widget.TextView;
  */
 public class CompositionEditor extends AbstractObjectEditor {
   /** Facetの数。 */
-  private ParameterInputBoxLayout size;
+  private ParameterInputBox size;
   /** 幅。 */
-  private ParameterInputBoxLayout width;
+  private ParameterInputBox width;
   /** 高さ。*/
-  private ParameterInputBoxLayout height;
+  private ParameterInputBox height;
   /** 奥行き。 */
-  private ParameterInputBoxLayout depth;
+  private ParameterInputBox depth;
   
   /** 比率を保存するためのチェックボックス。 */
   private CheckBox preservingRatio;
@@ -43,7 +42,7 @@ public class CompositionEditor extends AbstractObjectEditor {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public CompositionEditor(ObjectModel object, GraphTree tree, OpenglesModeler modeler) {
+  public CompositionEditor(ObjectModel object, SceneGraphTree tree, OpenglesModeler modeler) {
     super(object, tree, modeler);
   }
 
@@ -53,25 +52,25 @@ public class CompositionEditor extends AbstractObjectEditor {
   public void createParameterBoxes(final TableLayout parameters) {
     final CompositionModel compostion = (CompositionModel)this.object;
        
-    this.size = new ParameterInputBoxLayout(getContext());
+    this.size = new ParameterInputBox(getContext());
     parameters.addView(this.size);
     this.size.setName(R.string.size_of_facets);
     this.size.setValue(String.valueOf(compostion.getSize()));
     this.size.setUnit(""); //$NON-NLS-1$
 
-    this.width = new ParameterInputBoxLayout(getContext());
+    this.width = new ParameterInputBox(getContext());
     parameters.addView(this.width);
     this.width.setName(R.string.width);
     this.width.setValue(String.valueOf(compostion.getWidth()));
     this.width.setUnit("[m]"); //$NON-NLS-1$
 
-    this.height = new ParameterInputBoxLayout(getContext());
+    this.height = new ParameterInputBox(getContext());
     parameters.addView(this.height);
     this.height.setName(R.string.height);
     this.height.setValue(String.valueOf(compostion.getHeight()));
     this.height.setUnit("[m]"); //$NON-NLS-1$
     
-    this.depth = new ParameterInputBoxLayout(getContext());
+    this.depth = new ParameterInputBox(getContext());
     parameters.addView(this.depth);
     this.depth.setName(R.string.depth);
     this.depth.setValue(String.valueOf(compostion.getDepth()));

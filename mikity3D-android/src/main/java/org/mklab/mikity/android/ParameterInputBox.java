@@ -20,7 +20,7 @@ import android.widget.TextView;
  * @author koga
  * @version $Revision$, 2016/01/25
  */
-public class ParameterInputBoxLayout extends TableRow {
+public class ParameterInputBox extends TableRow {
 
   /** 名前用のラベル。 */
   private TextView nameLabel;
@@ -35,7 +35,7 @@ public class ParameterInputBoxLayout extends TableRow {
    * @param context Context
    * @param attrs Attributes
    */
-  public ParameterInputBoxLayout(Context context, AttributeSet attrs) {
+  public ParameterInputBox(Context context, AttributeSet attrs) {
     super(context, attrs);
     init(context);
   }
@@ -45,7 +45,7 @@ public class ParameterInputBoxLayout extends TableRow {
    * 
    * @param context Context
    */
-  public ParameterInputBoxLayout(Context context) {
+  public ParameterInputBox(Context context) {
     super(context);
     init(context);
   }
@@ -54,7 +54,7 @@ public class ParameterInputBoxLayout extends TableRow {
    * @param context
    */
   private void init(Context context) {
-    TableRow layout = (TableRow)LayoutInflater.from(context).inflate(R.layout.parameter_input_box_layout, this, true);
+    TableRow layout = (TableRow)LayoutInflater.from(context).inflate(R.layout.parameter_input_box, this, true);
     this.nameLabel = (TextView)layout.findViewById(R.id.parameterName);
     this.valueText  = (EditText)layout.findViewById(R.id.parameterValue);
     this.unitLabel = (TextView)layout.findViewById(R.id.parameterUnit);
