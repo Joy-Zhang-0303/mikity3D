@@ -41,19 +41,19 @@ public class BoxEditor extends AbstractObjectEditor {
     
     final BoxModel box = (BoxModel)this.object;
     
-    this.width = new ParameterInputBox(getContext());
+    this.width = new ParameterInputBox(getContext(), this);
     parameters.addView(this.width);
     this.width.setName(R.string.width);
     this.width.setValue(String.valueOf(box.getWidth()));
     this.width.setUnit("[m]"); //$NON-NLS-1$
 
-    this.height = new ParameterInputBox(getContext());
+    this.height = new ParameterInputBox(getContext(), this);
     parameters.addView(this.height);
     this.height.setName(R.string.height);
     this.height.setValue(String.valueOf(box.getHeight()));
     this.height.setUnit("[m]"); //$NON-NLS-1$
 
-    this.depth = new ParameterInputBox(getContext());
+    this.depth = new ParameterInputBox(getContext(), this);
     parameters.addView(this.depth);
     this.depth.setName(R.string.depth);
     this.depth.setValue(String.valueOf(box.getDepth()));

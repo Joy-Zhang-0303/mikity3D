@@ -34,29 +34,34 @@ public class ParameterInputBox extends TableRow {
    * 
    * @param context Context
    * @param attrs Attributes
+   * @param onKeyListener キーリスナー
    */
-  public ParameterInputBox(Context context, AttributeSet attrs) {
+  public ParameterInputBox(Context context, AttributeSet attrs, OnKeyListener onKeyListener) {
     super(context, attrs);
-    init(context);
+    init(context, onKeyListener);
   }
 
   /**
    * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
    * 
    * @param context Context
+   * @param onKeyListener キーリスナー
    */
-  public ParameterInputBox(Context context) {
+  public ParameterInputBox(Context context, OnKeyListener onKeyListener) {
     super(context);
-    init(context);
+    init(context, onKeyListener);
   }
 
   /**
    * @param context
    */
-  private void init(Context context) {
+  private void init(Context context, OnKeyListener onKeyListener) {
     TableRow layout = (TableRow)LayoutInflater.from(context).inflate(R.layout.parameter_input_box, this, true);
     this.nameLabel = (TextView)layout.findViewById(R.id.parameterName);
+
     this.valueText  = (EditText)layout.findViewById(R.id.parameterValue);
+    this.valueText.setOnKeyListener(onKeyListener);
+    
     this.unitLabel = (TextView)layout.findViewById(R.id.parameterUnit);
   }
   

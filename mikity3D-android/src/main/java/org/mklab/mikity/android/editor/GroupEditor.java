@@ -5,9 +5,9 @@
  */
 package org.mklab.mikity.android.editor;
 
+import org.mklab.mikity.android.AnimationParameterInputBox;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBox;
-import org.mklab.mikity.android.AnimationParameterInputBox;
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
@@ -16,13 +16,17 @@ import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -34,7 +38,7 @@ import android.widget.TextView;
  * @author koga
  * @version $Revision$, 2016/01/31
  */
-public class GroupEditor extends Fragment implements ModelEditor {
+public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener {
   GroupModel targetGroup;
   OpenglesModeler modeler;
   SceneGraphTree tree;
@@ -163,19 +167,19 @@ public class GroupEditor extends Fragment implements ModelEditor {
       z = "0"; //$NON-NLS-1$
     }
 
-    this.translationX = new ParameterInputBox(getContext());
+    this.translationX = new ParameterInputBox(getContext(), this);
     parameters.addView(this.translationX);
     this.translationX.setName(R.string.translation_to_x_axis);
     this.translationX.setValue(x);
     this.translationX.setUnit(""); //$NON-NLS-1$
 
-    this.translationY = new ParameterInputBox(getContext());
+    this.translationY = new ParameterInputBox(getContext(), this);
     parameters.addView(this.translationY);
     this.translationY.setName(R.string.translation_to_y_axis);
     this.translationY.setValue(y);
     this.translationY.setUnit(""); //$NON-NLS-1$
     
-    this.translationZ = new ParameterInputBox(getContext());
+    this.translationZ = new ParameterInputBox(getContext(), this);
     parameters.addView(this.translationZ);
     this.translationZ.setName(R.string.translation_to_z_axis);
     this.translationZ.setValue(z);
@@ -199,19 +203,19 @@ public class GroupEditor extends Fragment implements ModelEditor {
       z = "0"; //$NON-NLS-1$
     }
     
-    this.rotationX = new ParameterInputBox(getContext());
+    this.rotationX = new ParameterInputBox(getContext(), this);
     parameters.addView(this.rotationX);
     this.rotationX.setName(R.string.rotation_wrt_x_axis);
     this.rotationX.setValue(x);
     this.rotationX.setUnit(""); //$NON-NLS-1$
 
-    this.rotationY = new ParameterInputBox(getContext());
+    this.rotationY = new ParameterInputBox(getContext(), this);
     parameters.addView(this.rotationY);
     this.rotationY.setName(R.string.rotation_wrt_y_axis);
     this.rotationY.setValue(y);
     this.rotationY.setUnit(""); //$NON-NLS-1$
     
-    this.rotationZ = new ParameterInputBox(getContext());
+    this.rotationZ = new ParameterInputBox(getContext(), this);
     parameters.addView(this.rotationZ);
     this.rotationZ.setName(R.string.rotation_wrt_z_axis);
     this.rotationZ.setValue(z);
@@ -373,5 +377,40 @@ public class GroupEditor extends Fragment implements ModelEditor {
    */
   public void updateEditor() {
     // nothing to do
+  }
+
+  /**
+   * パラメータを保存します。 
+   */
+  void saveParameters() {
+//    if (containsOnlyNumbers() == false) {
+//      final MessageBox message = new MessageBox(this.modeler.getShell(), SWT.ICON_WARNING);
+//      message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
+//      message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
+//      message.open();
+//      return;
+//    }
+//    
+//    updateModelParameters();
+//    this.tree.updateTree();
+//
+//    this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
+//    this.modeler.updateDisplay();
+//    
+//    this.saveButton.setEnabled(false);
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public boolean onKey(View v, int keyCode, KeyEvent event) {
+    if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+      final InputMethodManager inputMethodManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+      inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+      saveParameters();
+      return true;
+    }
+
+    return false;
   }
 }
