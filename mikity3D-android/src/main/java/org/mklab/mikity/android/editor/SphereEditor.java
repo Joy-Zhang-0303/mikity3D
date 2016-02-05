@@ -39,13 +39,13 @@ public class SphereEditor extends AbstractObjectEditor {
     
     final SphereModel sphere = (SphereModel)this.object;
     
-    this.radius = new ParameterInputBox(getContext(), this);
+    this.radius = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.radius);
     this.radius.setName(R.string.radius);
     this.radius.setValue(String.valueOf(sphere.getRadius()));
     this.radius.setUnit("[m]"); //$NON-NLS-1$
 
-    this.division = new ParameterInputBox(getContext(), this);
+    this.division = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.division);
     this.division.setName(R.string.division);
     this.division.setValue(String.valueOf(sphere.getDivision()));

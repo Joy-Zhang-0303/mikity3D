@@ -7,6 +7,7 @@ package org.mklab.mikity.android;
 
 import android.content.Context;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.EditText;
@@ -35,10 +36,11 @@ public class ParameterInputBox extends TableRow {
    * @param context Context
    * @param attrs Attributes
    * @param onKeyListener キーリスナー
+   * @param textWatcher Text watcher
    */
-  public ParameterInputBox(Context context, AttributeSet attrs, OnKeyListener onKeyListener) {
+  public ParameterInputBox(Context context, AttributeSet attrs, OnKeyListener onKeyListener, TextWatcher textWatcher) {
     super(context, attrs);
-    init(context, onKeyListener);
+    init(context, onKeyListener, textWatcher);
   }
 
   /**
@@ -46,21 +48,23 @@ public class ParameterInputBox extends TableRow {
    * 
    * @param context Context
    * @param onKeyListener キーリスナー
+   * @param textWatcher Text watcher
    */
-  public ParameterInputBox(Context context, OnKeyListener onKeyListener) {
+  public ParameterInputBox(Context context, OnKeyListener onKeyListener, TextWatcher textWatcher) {
     super(context);
-    init(context, onKeyListener);
+    init(context, onKeyListener, textWatcher);
   }
 
   /**
    * @param context
    */
-  private void init(Context context, OnKeyListener onKeyListener) {
+  private void init(Context context, OnKeyListener onKeyListener, TextWatcher textWatcher) {
     TableRow layout = (TableRow)LayoutInflater.from(context).inflate(R.layout.parameter_input_box, this, true);
     this.nameLabel = (TextView)layout.findViewById(R.id.parameterName);
 
     this.valueText  = (EditText)layout.findViewById(R.id.parameterValue);
     this.valueText.setOnKeyListener(onKeyListener);
+    this.valueText.addTextChangedListener(textWatcher);
     
     this.unitLabel = (TextView)layout.findViewById(R.id.parameterUnit);
   }

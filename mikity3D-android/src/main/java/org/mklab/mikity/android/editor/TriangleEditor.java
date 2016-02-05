@@ -60,19 +60,19 @@ public class TriangleEditor extends AbstractObjectEditor {
     
     final VertexModel vertex1 = polygon.getVertex(0);
 
-    this.vertex1X = new ParameterInputBox(getContext(), this);
+    this.vertex1X = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.vertex1X);
     this.vertex1X.setName(R.string.vertex_1_x);
     this.vertex1X.setValue(String.valueOf(vertex1.getX()));
     this.vertex1X.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex1Y = new ParameterInputBox(getContext(), this);
+    this.vertex1Y = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.vertex1Y);
     this.vertex1Y.setName(R.string.vertex_1_y);
     this.vertex1Y.setValue(String.valueOf(vertex1.getY()));
     this.vertex1Y.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex1Z = new ParameterInputBox(getContext(), this);
+    this.vertex1Z = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.vertex1Z);
     this.vertex1Z.setName(R.string.vertex_1_z);
     this.vertex1Z.setValue(String.valueOf(vertex1.getZ()));
@@ -80,19 +80,19 @@ public class TriangleEditor extends AbstractObjectEditor {
     
     final VertexModel vertex2 = polygon.getVertex(1);
 
-    this.vertex2X = new ParameterInputBox(getContext(), this);
+    this.vertex2X = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.vertex2X);
     this.vertex2X.setName(R.string.vertex_2_x);
     this.vertex2X.setValue(String.valueOf(vertex2.getX()));
     this.vertex2X.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex2Y = new ParameterInputBox(getContext(), this);
+    this.vertex2Y = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.vertex2Y);
     this.vertex2Y.setName(R.string.vertex_2_y);
     this.vertex2Y.setValue(String.valueOf(vertex2.getY()));
     this.vertex2Y.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex2Z = new ParameterInputBox(getContext(), this);
+    this.vertex2Z = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.vertex2Z);
     this.vertex2Z.setName(R.string.vertex_2_z);
     this.vertex2Z.setValue(String.valueOf(vertex2.getZ()));
@@ -100,19 +100,19 @@ public class TriangleEditor extends AbstractObjectEditor {
     
     final VertexModel vertex3 = polygon.getVertex(2);
 
-    this.vertex3X = new ParameterInputBox(getContext(), this);
+    this.vertex3X = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.vertex3X);
     this.vertex3X.setName(R.string.vertex_3_x);
     this.vertex3X.setValue(String.valueOf(vertex3.getX()));
     this.vertex3X.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex3Y = new ParameterInputBox(getContext(), this);
+    this.vertex3Y = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.vertex3Y);
     this.vertex3Y.setName(R.string.vertex_3_y);
     this.vertex3Y.setValue(String.valueOf(vertex3.getY()));
     this.vertex3Y.setUnit("[m]"); //$NON-NLS-1$
 
-    this.vertex3Z = new ParameterInputBox(getContext(), this);
+    this.vertex3Z = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.vertex3Z);
     this.vertex3Z.setName(R.string.vertex_3_z);
     this.vertex3Z.setValue(String.valueOf(vertex3.getZ()));

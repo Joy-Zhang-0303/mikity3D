@@ -41,19 +41,19 @@ public class ConeEditor extends AbstractObjectEditor {
     
     final ConeModel cone = (ConeModel)this.object;
     
-    this.radius = new ParameterInputBox(getContext(), this);
+    this.radius = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.radius);
     this.radius.setName(R.string.radius);
     this.radius.setValue(String.valueOf(cone.getRadisu()));
     this.radius.setUnit("[m]"); //$NON-NLS-1$
 
-    this.height = new ParameterInputBox(getContext(), this);
+    this.height = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.height);
     this.height.setName(R.string.height);
     this.height.setValue(String.valueOf(cone.getHeight()));
     this.height.setUnit("[m]"); //$NON-NLS-1$
 
-    this.division = new ParameterInputBox(getContext(), this);
+    this.division = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.division);
     this.division.setName(R.string.division);
     this.division.setValue(String.valueOf(cone.getDivision()));

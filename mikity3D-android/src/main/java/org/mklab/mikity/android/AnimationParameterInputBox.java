@@ -7,6 +7,7 @@ package org.mklab.mikity.android;
 
 import android.content.Context;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.EditText;
@@ -33,30 +34,40 @@ public class AnimationParameterInputBox extends TableRow {
    * 新しく生成された<code>AnimationParameterInputBox</code>オブジェクトを初期化します。
    * @param context Context
    * @param attrs Attributes
+   * @param onKeyListener Key listener 
+   * @param textWatcher Text watcher
    */
-  public AnimationParameterInputBox(Context context, AttributeSet attrs) {
+  public AnimationParameterInputBox(Context context, AttributeSet attrs, OnKeyListener onKeyListener, TextWatcher textWatcher) {
     super(context, attrs);
-    init(context);
+    init(context, onKeyListener, textWatcher);
   }
 
   /**
    * 新しく生成された<code>AnimationParameterInputBox</code>オブジェクトを初期化します。
    * 
    * @param context Context
+   * @param onKeyListener Key listener
+   * @param textWatcher Text watcher
    */
-  public AnimationParameterInputBox(Context context) {
+  public AnimationParameterInputBox(Context context, OnKeyListener onKeyListener, TextWatcher textWatcher) {
     super(context);
-    init(context);
+    init(context, onKeyListener, textWatcher);
   }
 
   /**
    * @param context
    */
-  private void init(Context context) {
+  private void init(Context context, OnKeyListener onKeyListener, TextWatcher textWatcher) {
     TableRow layout = (TableRow)LayoutInflater.from(context).inflate(R.layout.animation_parameter_input_box, this, true);
     this.nameLabel = (TextView)layout.findViewById(R.id.parameterName);
+    
     this.valueText1  = (EditText)layout.findViewById(R.id.parameterValue1);
+    this.valueText1.setOnKeyListener(onKeyListener);
+    this.valueText1.addTextChangedListener(textWatcher);
+
     this.valueText2  = (EditText)layout.findViewById(R.id.parameterValue2);
+    this.valueText2.setOnKeyListener(onKeyListener);
+    this.valueText2.addTextChangedListener(textWatcher);
   }
   
   /**

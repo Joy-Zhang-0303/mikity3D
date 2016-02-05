@@ -18,6 +18,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +38,7 @@ import android.widget.TextView;
  * @author koga
  * @version $Revision$, 2016/01/31
  */
-public abstract class AbstractObjectEditor extends Fragment implements ObjectEditor, OnKeyListener {
+public abstract class AbstractObjectEditor extends Fragment implements ObjectEditor, OnKeyListener, TextWatcher {
   ObjectModel object;
   OpenglesModeler modeler;
   SceneGraphTree tree;
@@ -110,25 +112,25 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
   private void createColorBoxes(TableLayout parameters) {
     final ColorModel color = this.object.getColor();
 
-    this.colorR = new ParameterInputBox(getContext(), this);
+    this.colorR = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.colorR);
     this.colorR.setName(R.string.color_r);
     this.colorR.setValue("" + color.getR()); //$NON-NLS-1$
     this.colorR.setUnit(""); //$NON-NLS-1$
 
-    this.colorG = new ParameterInputBox(getContext(), this);
+    this.colorG = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.colorG);
     this.colorG.setName(R.string.color_g);
     this.colorG.setValue("" + color.getG()); //$NON-NLS-1$
     this.colorG.setUnit(""); //$NON-NLS-1$
 
-    this.colorB = new ParameterInputBox(getContext(), this);
+    this.colorB = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.colorB);
     this.colorB.setName(R.string.color_b);
     this.colorB.setValue("" + color.getB()); //$NON-NLS-1$
     this.colorB.setUnit(""); //$NON-NLS-1$
 
-    this.colorAlpha = new ParameterInputBox(getContext(), this);
+    this.colorAlpha = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.colorAlpha);
     this.colorAlpha.setName(R.string.color_alpha);
     this.colorAlpha.setValue("" + color.getAlpha()); //$NON-NLS-1$
@@ -152,19 +154,19 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
       z = "0"; //$NON-NLS-1$
     }
 
-    this.rotationX = new ParameterInputBox(getContext(), this);
+    this.rotationX = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.rotationX);
     this.rotationX.setName(R.string.rotation_wrt_x_axis);
     this.rotationX.setValue(x);
     this.rotationX.setUnit("[rad]"); //$NON-NLS-1$
 
-    this.rotationY = new ParameterInputBox(getContext(), this);
+    this.rotationY = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.rotationY);
     this.rotationY.setName(R.string.rotation_wrt_y_axis);
     this.rotationY.setValue(y);
     this.rotationY.setUnit("[rad]"); //$NON-NLS-1$
 
-    this.rotationZ = new ParameterInputBox(getContext(), this);
+    this.rotationZ = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.rotationZ);
     this.rotationZ.setName(R.string.rotation_wrt_z_axis);
     this.rotationZ.setValue(z);
@@ -187,19 +189,19 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
       z = "0"; //$NON-NLS-1$
     }
 
-    this.translationX = new ParameterInputBox(getContext(), this);
+    this.translationX = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.translationX);
     this.translationX.setName(R.string.translation_to_x_axis);
     this.translationX.setValue(x);
     this.translationX.setUnit("[m]"); //$NON-NLS-1$
 
-    this.translationY = new ParameterInputBox(getContext(), this);
+    this.translationY = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.translationY);
     this.translationY.setName(R.string.translation_to_y_axis);
     this.translationY.setValue(y);
     this.translationY.setUnit("[m]"); //$NON-NLS-1$
 
-    this.translationZ = new ParameterInputBox(getContext(), this);
+    this.translationZ = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.translationZ);
     this.translationZ.setName(R.string.translation_to_z_axis);
     this.translationZ.setValue(z);
@@ -273,5 +275,29 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
     }
 
     return false;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    // nothing to do
+    }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void onTextChanged(CharSequence s, int start, int before, int count) {
+    // nothing to do
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void afterTextChanged(Editable s) {
+//    if (this.saveButton != null) {
+      this.isChanged = true;
+//      this.saveButton.setEnabled(true);
+//    }
   }
 }

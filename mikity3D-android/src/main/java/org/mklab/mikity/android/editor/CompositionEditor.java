@@ -54,25 +54,25 @@ public class CompositionEditor extends AbstractObjectEditor {
     
     final CompositionModel compostion = (CompositionModel)this.object;
        
-    this.size = new ParameterInputBox(getContext(), this);
+    this.size = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.size);
     this.size.setName(R.string.size_of_facets);
     this.size.setValue(String.valueOf(compostion.getSize()));
     this.size.setUnit(""); //$NON-NLS-1$
 
-    this.width = new ParameterInputBox(getContext(), this);
+    this.width = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.width);
     this.width.setName(R.string.width);
     this.width.setValue(String.valueOf(compostion.getWidth()));
     this.width.setUnit("[m]"); //$NON-NLS-1$
 
-    this.height = new ParameterInputBox(getContext(), this);
+    this.height = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.height);
     this.height.setName(R.string.height);
     this.height.setValue(String.valueOf(compostion.getHeight()));
     this.height.setUnit("[m]"); //$NON-NLS-1$
     
-    this.depth = new ParameterInputBox(getContext(), this);
+    this.depth = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.depth);
     this.depth.setName(R.string.depth);
     this.depth.setValue(String.valueOf(compostion.getDepth()));

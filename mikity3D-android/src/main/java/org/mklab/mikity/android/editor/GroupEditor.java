@@ -20,6 +20,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +40,7 @@ import android.widget.TextView;
  * @author koga
  * @version $Revision$, 2016/01/31
  */
-public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener {
+public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener, TextWatcher {
   GroupModel targetGroup;
   OpenglesModeler modeler;
   SceneGraphTree tree;
@@ -167,19 +169,19 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener 
       z = "0"; //$NON-NLS-1$
     }
 
-    this.translationX = new ParameterInputBox(getContext(), this);
+    this.translationX = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.translationX);
     this.translationX.setName(R.string.translation_to_x_axis);
     this.translationX.setValue(x);
     this.translationX.setUnit(""); //$NON-NLS-1$
 
-    this.translationY = new ParameterInputBox(getContext(), this);
+    this.translationY = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.translationY);
     this.translationY.setName(R.string.translation_to_y_axis);
     this.translationY.setValue(y);
     this.translationY.setUnit(""); //$NON-NLS-1$
     
-    this.translationZ = new ParameterInputBox(getContext(), this);
+    this.translationZ = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.translationZ);
     this.translationZ.setName(R.string.translation_to_z_axis);
     this.translationZ.setValue(z);
@@ -203,19 +205,19 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener 
       z = "0"; //$NON-NLS-1$
     }
     
-    this.rotationX = new ParameterInputBox(getContext(), this);
+    this.rotationX = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.rotationX);
     this.rotationX.setName(R.string.rotation_wrt_x_axis);
     this.rotationX.setValue(x);
     this.rotationX.setUnit(""); //$NON-NLS-1$
 
-    this.rotationY = new ParameterInputBox(getContext(), this);
+    this.rotationY = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.rotationY);
     this.rotationY.setName(R.string.rotation_wrt_y_axis);
     this.rotationY.setValue(y);
     this.rotationY.setUnit(""); //$NON-NLS-1$
     
-    this.rotationZ = new ParameterInputBox(getContext(), this);
+    this.rotationZ = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.rotationZ);
     this.rotationZ.setName(R.string.rotation_wrt_z_axis);
     this.rotationZ.setValue(z);
@@ -223,19 +225,19 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener 
   }
   
   private void createAnimationTranslationBoxes(TableLayout parameters) {
-    this.translationXsource = new AnimationParameterInputBox(getContext());
+    this.translationXsource = new AnimationParameterInputBox(getContext(), this, this);
     parameters.addView(this.translationXsource);
     this.translationXsource.setName(R.string.translation_to_x_axis);
     this.translationXsource.setValue1("0"); //$NON-NLS-1$
     this.translationXsource.setValue2("0"); //$NON-NLS-1$
 
-    this.translationYsource = new AnimationParameterInputBox(getContext());
+    this.translationYsource = new AnimationParameterInputBox(getContext(), this, this);
     parameters.addView(this.translationYsource);
     this.translationYsource.setName(R.string.translation_to_y_axis);
     this.translationYsource.setValue1("0"); //$NON-NLS-1$
     this.translationYsource.setValue2("0"); //$NON-NLS-1$
     
-    this.translationZsource = new AnimationParameterInputBox(getContext());
+    this.translationZsource = new AnimationParameterInputBox(getContext(), this, this);
     parameters.addView(this.translationZsource);
     this.translationZsource.setName(R.string.translation_to_z_axis);
     this.translationZsource.setValue1("0"); //$NON-NLS-1$
@@ -243,19 +245,19 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener 
   }
   
   private void createAnimationRotationBoxes(TableLayout parameters) {
-    this.rotationXsource = new AnimationParameterInputBox(getContext());
+    this.rotationXsource = new AnimationParameterInputBox(getContext(), this, this);
     parameters.addView(this.rotationXsource);
     this.rotationXsource.setName(R.string.rotation_wrt_x_axis);
     this.rotationXsource.setValue1("0"); //$NON-NLS-1$
     this.rotationXsource.setValue2("0"); //$NON-NLS-1$
 
-    this.rotationYsource = new AnimationParameterInputBox(getContext());
+    this.rotationYsource = new AnimationParameterInputBox(getContext(), this, this);
     parameters.addView(this.rotationYsource);
     this.rotationYsource.setName(R.string.rotation_wrt_y_axis);
     this.rotationYsource.setValue1("0"); //$NON-NLS-1$
     this.rotationYsource.setValue2("0"); //$NON-NLS-1$
     
-    this.rotationZsource = new AnimationParameterInputBox(getContext());
+    this.rotationZsource = new AnimationParameterInputBox(getContext(), this, this);
     parameters.addView(this.rotationZsource);
     this.rotationZsource.setName(R.string.rotation_wrt_z_axis);
     this.rotationZsource.setValue1("0"); //$NON-NLS-1$
@@ -412,5 +414,29 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener 
     }
 
     return false;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    // nothing to do
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void onTextChanged(CharSequence s, int start, int before, int count) {
+    // nothing to do
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void afterTextChanged(Editable s) {
+//    if (this.saveButton != null) {
+      this.isChanged = true;
+//      this.saveButton.setEnabled(true);
+//    }
   }
 }
