@@ -15,12 +15,12 @@ import android.widget.TextView;
 
 
 /**
- * パラメータを入力するためのボックスを現すクラスです。
+ * アニメーションパラメータを入力するためのボックスを現すクラスです。
  * 
  * @author koga
  * @version $Revision$, 2016/01/25
  */
-public class ParameterInputBox2 extends TableRow {
+public class AnimationParameterInputBox extends TableRow {
 
   /** 名前用のラベル。 */
   private TextView nameLabel;
@@ -29,24 +29,22 @@ public class ParameterInputBox2 extends TableRow {
   /** 値2用のテキスト。 */
   private EditText valueText2;
 
-
   /**
-   * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
-   * 
+   * 新しく生成された<code>AnimationParameterInputBox</code>オブジェクトを初期化します。
    * @param context Context
    * @param attrs Attributes
    */
-  public ParameterInputBox2(Context context, AttributeSet attrs) {
+  public AnimationParameterInputBox(Context context, AttributeSet attrs) {
     super(context, attrs);
     init(context);
   }
 
   /**
-   * 新しく生成された<code>ParameterInputBox</code>オブジェクトを初期化します。
+   * 新しく生成された<code>AnimationParameterInputBox</code>オブジェクトを初期化します。
    * 
    * @param context Context
    */
-  public ParameterInputBox2(Context context) {
+  public AnimationParameterInputBox(Context context) {
     super(context);
     init(context);
   }
@@ -55,7 +53,7 @@ public class ParameterInputBox2 extends TableRow {
    * @param context
    */
   private void init(Context context) {
-    TableRow layout = (TableRow)LayoutInflater.from(context).inflate(R.layout.parameter_input_box2, this, true);
+    TableRow layout = (TableRow)LayoutInflater.from(context).inflate(R.layout.animation_parameter_input_box, this, true);
     this.nameLabel = (TextView)layout.findViewById(R.id.parameterName);
     this.valueText1  = (EditText)layout.findViewById(R.id.parameterValue1);
     this.valueText2  = (EditText)layout.findViewById(R.id.parameterValue2);

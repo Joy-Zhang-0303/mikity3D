@@ -7,7 +7,7 @@ package org.mklab.mikity.android.editor;
 
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBox;
-import org.mklab.mikity.android.ParameterInputBox2;
+import org.mklab.mikity.android.AnimationParameterInputBox;
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
@@ -48,13 +48,13 @@ public class GroupEditor extends Fragment implements ModelEditor {
   private ParameterInputBox rotationY;
   private ParameterInputBox rotationZ;
   
-  private ParameterInputBox2 translationXsource;
-  private ParameterInputBox2 translationYsource;
-  private ParameterInputBox2 translationZsource;
+  private AnimationParameterInputBox translationXsource;
+  private AnimationParameterInputBox translationYsource;
+  private AnimationParameterInputBox translationZsource;
   
-  private ParameterInputBox2 rotationXsource;
-  private ParameterInputBox2 rotationYsource;
-  private ParameterInputBox2 rotationZsource;
+  private AnimationParameterInputBox rotationXsource;
+  private AnimationParameterInputBox rotationYsource;
+  private AnimationParameterInputBox rotationZsource;
   
   /** 値が変更されていればtrue。 */
   boolean isChanged = false;
@@ -219,19 +219,19 @@ public class GroupEditor extends Fragment implements ModelEditor {
   }
   
   private void createAnimationTranslationBoxes(TableLayout parameters) {
-    this.translationXsource = new ParameterInputBox2(getContext());
+    this.translationXsource = new AnimationParameterInputBox(getContext());
     parameters.addView(this.translationXsource);
     this.translationXsource.setName(R.string.translation_to_x_axis);
     this.translationXsource.setValue1("0"); //$NON-NLS-1$
     this.translationXsource.setValue2("0"); //$NON-NLS-1$
 
-    this.translationYsource = new ParameterInputBox2(getContext());
+    this.translationYsource = new AnimationParameterInputBox(getContext());
     parameters.addView(this.translationYsource);
     this.translationYsource.setName(R.string.translation_to_y_axis);
     this.translationYsource.setValue1("0"); //$NON-NLS-1$
     this.translationYsource.setValue2("0"); //$NON-NLS-1$
     
-    this.translationZsource = new ParameterInputBox2(getContext());
+    this.translationZsource = new AnimationParameterInputBox(getContext());
     parameters.addView(this.translationZsource);
     this.translationZsource.setName(R.string.translation_to_z_axis);
     this.translationZsource.setValue1("0"); //$NON-NLS-1$
@@ -239,19 +239,19 @@ public class GroupEditor extends Fragment implements ModelEditor {
   }
   
   private void createAnimationRotationBoxes(TableLayout parameters) {
-    this.rotationXsource = new ParameterInputBox2(getContext());
+    this.rotationXsource = new AnimationParameterInputBox(getContext());
     parameters.addView(this.rotationXsource);
     this.rotationXsource.setName(R.string.rotation_wrt_x_axis);
     this.rotationXsource.setValue1("0"); //$NON-NLS-1$
     this.rotationXsource.setValue2("0"); //$NON-NLS-1$
 
-    this.rotationYsource = new ParameterInputBox2(getContext());
+    this.rotationYsource = new AnimationParameterInputBox(getContext());
     parameters.addView(this.rotationYsource);
     this.rotationYsource.setName(R.string.rotation_wrt_y_axis);
     this.rotationYsource.setValue1("0"); //$NON-NLS-1$
     this.rotationYsource.setValue2("0"); //$NON-NLS-1$
     
-    this.rotationZsource = new ParameterInputBox2(getContext());
+    this.rotationZsource = new AnimationParameterInputBox(getContext());
     parameters.addView(this.rotationZsource);
     this.rotationZsource.setName(R.string.rotation_wrt_z_axis);
     this.rotationZsource.setValue1("0"); //$NON-NLS-1$
