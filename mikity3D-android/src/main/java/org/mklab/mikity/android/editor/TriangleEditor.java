@@ -54,6 +54,8 @@ public class TriangleEditor extends AbstractObjectEditor {
    * {@inheritDoc}
    */
   public void createParameterBoxes(final TableLayout parameters) {
+    this.objectType.setText(getString(R.string.objectType) + ": " + getString(R.string.triangle)); //$NON-NLS-1$
+    
     final TriangleModel polygon = (TriangleModel)this.object;
     
     final VertexModel vertex1 = polygon.getVertex(0);

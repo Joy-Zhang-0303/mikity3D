@@ -37,6 +37,8 @@ public class CylinderEditor extends AbstractObjectEditor {
    * {@inheritDoc}
    */
   public void createParameterBoxes(final TableLayout parameters) {
+    this.objectType.setText(getString(R.string.objectType) + ": " + getString(R.string.cylinder)); //$NON-NLS-1$
+    
     final CylinderModel cylinder = (CylinderModel)this.object;
     
     this.radius = new ParameterInputBox(getContext());

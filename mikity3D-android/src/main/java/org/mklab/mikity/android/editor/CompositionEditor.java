@@ -50,6 +50,8 @@ public class CompositionEditor extends AbstractObjectEditor {
    * {@inheritDoc}
    */
   public void createParameterBoxes(final TableLayout parameters) {
+    this.objectType.setText(getString(R.string.objectType) + ": " + getString(R.string.composition)); //$NON-NLS-1$
+    
     final CompositionModel compostion = (CompositionModel)this.object;
        
     this.size = new ParameterInputBox(getContext());

@@ -35,6 +35,8 @@ public class SphereEditor extends AbstractObjectEditor {
    * {@inheritDoc}
    */
   public void createParameterBoxes(final TableLayout parameters) {
+    this.objectType.setText(getString(R.string.objectType) + ": " + getString(R.string.sphere)); //$NON-NLS-1$
+    
     final SphereModel sphere = (SphereModel)this.object;
     
     this.radius = new ParameterInputBox(getContext());

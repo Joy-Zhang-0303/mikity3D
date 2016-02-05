@@ -37,6 +37,8 @@ public class CapsuleEditor extends AbstractObjectEditor {
    * {@inheritDoc}
    */
   public void createParameterBoxes(final TableLayout parameters) {
+    this.objectType.setText(getString(R.string.objectType) + ": " + getString(R.string.capsule)); //$NON-NLS-1$
+    
     final CapsuleModel capsule = (CapsuleModel)this.object;
     
     this.radius = new ParameterInputBox(getContext());

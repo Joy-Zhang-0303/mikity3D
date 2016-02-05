@@ -37,6 +37,8 @@ public class ConeEditor extends AbstractObjectEditor {
    * {@inheritDoc}
    */
   public void createParameterBoxes(final TableLayout parameters) {
+    this.objectType.setText(getString(R.string.objectType) + ": " + getString(R.string.cone)); //$NON-NLS-1$
+    
     final ConeModel cone = (ConeModel)this.object;
     
     this.radius = new ParameterInputBox(getContext());

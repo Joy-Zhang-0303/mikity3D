@@ -61,6 +61,8 @@ public class QuadrangleEditor extends AbstractObjectEditor {
    * {@inheritDoc}
    */
   public void createParameterBoxes(final TableLayout parameters) {
+    this.objectType.setText(getString(R.string.objectType) + ": " + getString(R.string.quadrangle)); //$NON-NLS-1$
+    
     final QuadrangleModel polygon = (QuadrangleModel)this.object;
     
     final VertexModel vertex1 = polygon.getVertex(0);

@@ -34,20 +34,16 @@ import org.mklab.mikity.swt.gui.UnitLabel;
  */
 public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyListener {
   ObjectModel object;
-
   JoglModeler modeler;
   SceneGraphTree tree;
-  
-  private ColorSelectorButton colorSelector;
-  private ParameterInputBox alpha;
-  
+
   Label objectType;
-  
-  /** 値が変更されていればtrue。 */
-  boolean isChanged = false;
-  
+ 
   /** 保存ボタン。 */
   Button saveButton;
+  
+  private ColorSelectorButton colorSelector;
+  private ParameterInputBox colorAlpha;
 
   private ParameterInputBox translationX;
   private ParameterInputBox translationY;
@@ -56,6 +52,9 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
   private ParameterInputBox rotationX;
   private ParameterInputBox rotationY;
   private ParameterInputBox rotationZ;
+  
+  /** 値が変更されていればtrue。 */
+  boolean isChanged = false;
   
   /**
    * 新しく生成された<code>AbstractEditPrimitiveDialog</code>オブジェクトを初期化します。
@@ -92,26 +91,25 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
     this.objectType = new Label(parent, SWT.NONE);
     setGridLayout(this.objectType, 2);
 
-    final Group group = new Group(parent, SWT.NONE);
-    group.setText(Messages.getString("EditPrimitiveDialog.9")); //$NON-NLS-1$
-    setGridLayout(group, 1);
+    final Group parameters = new Group(parent, SWT.NONE);
+    parameters.setText(Messages.getString("EditPrimitiveDialog.9")); //$NON-NLS-1$
+    setGridLayout(parameters, 1);
 
-    final GridLayout layout = new GridLayout(3, false);
-    group.setLayout(layout);
+    parameters.setLayout(new GridLayout(3, false));
     
-    createColorBoxes(group);
+    createColorBoxes(parameters);
 
-    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
+    setGridLayout(new Label(parameters, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
     
-    createParameterBoxes(group);
+    createParameterBoxes(parameters);
 
-    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
+    setGridLayout(new Label(parameters, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
     
-    createTranslationBoxes(group);
+    createTranslationBoxes(parameters);
     
-    setGridLayout(new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
+    setGridLayout(new Label(parameters, SWT.SEPARATOR | SWT.HORIZONTAL), 3);
 
-    createRotationBoxes(group);
+    createRotationBoxes(parameters);
   }
 
   void createColorBoxes(final Group group) {
@@ -125,7 +123,7 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
     this.colorSelector = new ColorSelectorButton(group, this);
     this.colorSelector.setColor(this.object.getColor());
 
-    this.alpha = new ParameterInputBox(group, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.object.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
+    this.colorAlpha = new ParameterInputBox(group, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.object.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
   }
 
   @SuppressWarnings("unused")
@@ -267,7 +265,7 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
    */
   void updateObjectParameters() {
     final ColorModel color = this.colorSelector.getColor();
-    color.setAlpha(this.alpha.getIntValue());
+    color.setAlpha(this.colorAlpha.getIntValue());
     this.object.setColor(color);
     this.object.setTranslation(getTranslation());
     this.object.setRotation(getRotation());

@@ -37,6 +37,8 @@ public class BoxEditor extends AbstractObjectEditor {
    * {@inheritDoc}
    */
   public void createParameterBoxes(final TableLayout parameters) {
+    this.objectType.setText(getString(R.string.objectType) + ": " + getString(R.string.box)); //$NON-NLS-1$
+    
     final BoxModel box = (BoxModel)this.object;
     
     this.width = new ParameterInputBox(getContext());
