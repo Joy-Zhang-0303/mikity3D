@@ -127,17 +127,19 @@ public class GroupEditor extends Fragment implements ModelEditor {
     parameters.setStretchAllColumns(true);
     
     final TableRow head = new TableRow(getContext());
+    parameters.addView(head);
+    
     final TextView name = new TextView(getContext());
     name.setText(R.string.name);
+    head.addView(name);
+    
     final TextView id = new TextView(getContext());
     id.setText(R.string.id);
+    head.addView(id);
+    
     final TextView number = new TextView(getContext());
     number.setText(R.string.number);
-
-    head.addView(name);
-    head.addView(id);
     head.addView(number);
-    parameters.addView(head);
 
     createAnimationTranslationBoxes(parameters);
     createAnimationRotationBoxes(parameters);
