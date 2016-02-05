@@ -92,19 +92,19 @@ public class AssetsListViewFragment extends Fragment {
           final InputStream input = AssetsListViewFragment.this.assetManager.open(selectedFile);
           
           if (AssetsListViewFragment.this.isModel) {
-            AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleModelData(input, selectedFile);
+            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.loadSampleModelData(input, selectedFile);
             
             if (AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.size() != 0) {
               AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.clear();
             }
             
-            AssetsListViewFragment.this.canvasActivity.ndFragment.isSelectedModelFile = true;
+            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.isSelectedModelFile = true;
             
-            AssetsListViewFragment.this.canvasActivity.ndFragment.createSampleSourceComponent();
+            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.createSampleSourceComponent();
             
-            AssetsListViewFragment.this.canvasActivity.ndFragment.setButtonEnabled(true);
+            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.setButtonEnabled(true);
           } else {
-            AssetsListViewFragment.this.canvasActivity.ndFragment.loadSampleSourceData(input, selectedFile);
+            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.loadSampleSourceData(input, selectedFile);
           }
           
           AssetsListViewFragment.this.fragmentManager.popBackStack();

@@ -62,6 +62,9 @@ public class CanvasActivity extends AppCompatActivity {
 
 	/** MainMenuFragment */
 	MainMenuFragment mainMenuFragment;
+	
+	/** ChooseModelFragment */
+	ChooseModelFragment chooseModelFragment;
 
 	/** SceneGraphTreeFragment */
 	SceneGraphTree sceneGraphTreeFragment;
@@ -164,6 +167,24 @@ public class CanvasActivity extends AppCompatActivity {
 
 		final FragmentTransaction transaction = manager.beginTransaction();
 		transaction.replace(R.id.fragment_canvas, this.canvasFragment);
+		transaction.commit();
+	}
+	
+	/**
+	 * ChooseModelFragmentを生成します。
+	 */
+	void createChooseModelFragment() {
+		final FragmentManager manager = getSupportFragmentManager();
+		final FragmentTransaction transaction = manager.beginTransaction();
+		transaction.addToBackStack(null);
+
+		if (this.chooseModelFragment != null) {
+			transaction.remove(this.mainMenuFragment);
+			this.chooseModelFragment = null;
+		}
+
+		this.chooseModelFragment = new ChooseModelFragment();
+		transaction.add(R.id.fragment_navigation_drawer, this.chooseModelFragment);
 		transaction.commit();
 	}
 
@@ -363,7 +384,7 @@ public class CanvasActivity extends AppCompatActivity {
 		case 3:
 			if (resultCode == RESULT_OK && data != null) {
 				final Uri uri = data.getData();
-				this.ndFragment.unzipFile(uri);
+				this.chooseModelFragment.unzipFile(uri);
 			}
 			break;
 		default:
@@ -378,7 +399,7 @@ public class CanvasActivity extends AppCompatActivity {
 	 *            時間データのパス
 	 */
 	private void loadSourceData(Uri path) {
-		this.ndFragment.loadSourceData(path);
+		this.chooseModelFragment.loadSourceData(path);
 	}
 
 	/**
@@ -388,9 +409,9 @@ public class CanvasActivity extends AppCompatActivity {
 	 *            モデルデータのパス
 	 */
 	private void loadModelData(Uri path) {
-		this.ndFragment.loadModelData(path);
+		this.chooseModelFragment.loadModelData(path);
 
-		this.ndFragment.sourceId = null;
+		this.chooseModelFragment.sourceId = null;
 		this.canvasFragment.objectRenderer.updateDisplay();
 	}
 

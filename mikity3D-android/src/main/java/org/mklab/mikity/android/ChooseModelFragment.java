@@ -529,11 +529,7 @@ public class ChooseModelFragment extends Fragment {
    */
   void setButtonEnabled(boolean enabled) {
     this.isSelectedModelFile = enabled;
-    this.quickButton.setEnabled(enabled);
-    this.slowButton.setEnabled(enabled);
-    this.editModelButton.setEnabled(enabled);
-    this.gridShowingButton.setEnabled(enabled);
-    this.axisShowingButton.setEnabled(enabled);
+    
 
     for (Button button : this.sourceSelectButtons) {
       button.setEnabled(enabled);

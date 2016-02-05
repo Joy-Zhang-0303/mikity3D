@@ -103,6 +103,10 @@ public class MainMenuFragment extends Fragment {
 	void displayView(int position) {
 		switch (position) {
 		
+		case 1:
+			this.canvasActivity.createChooseModelFragment();
+			break;
+		
 		case 2:
 			this.canvasActivity.createSceneGraphTreeFragment();
 			break;
