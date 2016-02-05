@@ -140,6 +140,20 @@ public class ChooseModelFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_choose_model, container, false);
+    
+    
+    final Button backButton = (Button)view.findViewById(R.id.settingsBackButton);
+    backButton.setOnClickListener(new OnClickListener() {
+    	
+    	
+        /**
+         * {@inheritDoc}
+         */
+        public void onClick(View v) {
+          final FragmentManager manager = getActivity().getSupportFragmentManager();
+          manager.popBackStack();
+        }
+      });
 
     this.canvasActivity = (CanvasActivity)getActivity();
 
