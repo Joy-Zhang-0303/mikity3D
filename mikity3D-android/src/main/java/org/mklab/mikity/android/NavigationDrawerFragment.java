@@ -323,10 +323,7 @@ public class NavigationDrawerFragment extends Fragment {
         NavigationDrawerFragment.this.sceneGraphTreeFragment = new SceneGraphTree();
         NavigationDrawerFragment.this.sceneGraphTreeFragment.setModel(NavigationDrawerFragment.this.canvasActivity.canvasFragment.root.getScene(0));
 
-        //NavigationDrawerFragment.this.sceneGraphTreeFragment.setFragmentManager(manager);
-
         transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sceneGraphTreeFragment);
-
         transaction.commit();
 
         NavigationDrawerFragment.this.canvasActivity.canvasFragment.modeler.setSceneGraphTree(NavigationDrawerFragment.this.sceneGraphTreeFragment);
