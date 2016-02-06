@@ -20,6 +20,7 @@
     <string name="box">Box</string>
     <string name="capsule">Capsule</string>
     <string name="close">Close</string>
+    <string name="color">Color</string>
     <string name="color_alpha">Color(Alapha)</string>
     <string name="color_r">Color(R)</string>
     <string name="color_g">Color(G)</string>

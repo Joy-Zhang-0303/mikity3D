@@ -20,6 +20,7 @@
     <string name="box">直方体</string>
     <string name="capsule">カプセル</string>
     <string name="close">閉じる</string>
+    <string name="color">色</string>
     <string name="color_alpha">色(アルファ値)</string>
     <string name="color_r">色(赤)</string>
     <string name="color_g">色(緑)</string>
