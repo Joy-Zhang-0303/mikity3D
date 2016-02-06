@@ -16,6 +16,7 @@ import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,7 +31,10 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.example.android.apis.graphics.ColorPickerDialog;
 
 
 /**
@@ -40,16 +44,16 @@ import android.widget.TextView;
  * @version $Revision$, 2016/01/31
  */
 public abstract class AbstractObjectEditor extends Fragment implements ObjectEditor, OnKeyListener, TextWatcher {
+
   ObjectModel object;
   OpenglesModeler modeler;
   SceneGraphTree tree;
 
   TextView objectType;
 
-  private ParameterInputBox colorR;
-  private ParameterInputBox colorG;
-  private ParameterInputBox colorB;
-  private ParameterInputBox colorAlpha;
+  int colorValue;
+  private Button colorButton;
+  ParameterInputBox colorAlpha;
 
   private ParameterInputBox translationX;
   private ParameterInputBox translationY;
@@ -61,7 +65,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
 
   /** 値が変更されていればtrue。 */
   boolean isChanged = false;
-  
+
   /** 保存ボタン。 */
   Button saveButton;
 
@@ -100,7 +104,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
 
     // Next line should be located after setting the parameters in the boxes
     createButtonComposite(view);
-    
+
     return view;
   }
 
@@ -116,7 +120,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
         manager.popBackStack();
       }
     });
-    
+
     this.saveButton = (Button)view.findViewById(R.id.saveButton);
     this.saveButton.setOnClickListener(new OnClickListener() {
 
@@ -127,36 +131,75 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
         saveParameters();
       }
     });
-    
+
     this.saveButton.setEnabled(false);
   }
 
   private void createColorBoxes(TableLayout parameters) {
     final ColorModel color = this.object.getColor();
+    this.colorValue = Color.argb(color.getAlpha(), color.getR(), color.getG(), color.getB());
 
-    this.colorR = new ParameterInputBox(getContext(), this, this);
-    parameters.addView(this.colorR);
-    this.colorR.setName(R.string.color_r);
-    this.colorR.setValue("" + color.getR()); //$NON-NLS-1$
-    this.colorR.setUnit(""); //$NON-NLS-1$
+    final TableRow colorParameter = new TableRow(getContext());
+    parameters.addView(colorParameter);
 
-    this.colorG = new ParameterInputBox(getContext(), this, this);
-    parameters.addView(this.colorG);
-    this.colorG.setName(R.string.color_g);
-    this.colorG.setValue("" + color.getG()); //$NON-NLS-1$
-    this.colorG.setUnit(""); //$NON-NLS-1$
+    final TextView colorLabel = new TextView(getContext());
+    colorLabel.setText(getString(R.string.color));
+    colorLabel.setTextColor(Color.BLACK);
+    colorParameter.addView(colorLabel);
 
-    this.colorB = new ParameterInputBox(getContext(), this, this);
-    parameters.addView(this.colorB);
-    this.colorB.setName(R.string.color_b);
-    this.colorB.setValue("" + color.getB()); //$NON-NLS-1$
-    this.colorB.setUnit(""); //$NON-NLS-1$
+    this.colorButton = new Button(getContext());
+    updateColorButton();
+    colorParameter.addView(this.colorButton);
+
+    this.colorButton.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(@SuppressWarnings("unused") View v) {
+        openColorPicker(AbstractObjectEditor.this.colorValue);
+      }
+    });
 
     this.colorAlpha = new ParameterInputBox(getContext(), this, this);
     parameters.addView(this.colorAlpha);
     this.colorAlpha.setName(R.string.color_alpha);
     this.colorAlpha.setValue("" + color.getAlpha()); //$NON-NLS-1$
     this.colorAlpha.setUnit(""); //$NON-NLS-1$
+  }
+  
+  /**
+   * 色選択ボタンを更新します。
+   */
+  void updateColorButton() {
+    this.colorButton.setBackgroundColor(this.colorValue);
+    final String rgba = "(" + Color.red(this.colorValue) + ", " + Color.green(this.colorValue) + ", " + Color.blue(this.colorValue) + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+    this.colorButton.setText(rgba);
+  }
+
+  /**
+   * 色選択ダイアログを開きます。 
+   */
+  void openColorPicker(final int initialColor) {
+    final ColorPickerDialog dialog = new ColorPickerDialog(getContext(), new ColorPickerDialog.OnColorChangedListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void colorChanged(int color) {
+        if (initialColor != color) {
+          AbstractObjectEditor.this.colorValue = color;
+          AbstractObjectEditor.this.colorAlpha.setValue("" + Color.alpha(color)); //$NON-NLS-1$
+          AbstractObjectEditor.this.isChanged = true;          
+
+          saveParameters();
+          
+          updateColorButton();
+        }
+      }
+    }, initialColor);
+
+    dialog.show();
   }
 
   private void createRotationBoxes(TableLayout parameters) {
@@ -263,25 +306,25 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
   public boolean isChanged() {
     return this.isChanged;
   }
-  
+
   /**
-   * パラメータを保存します。 
+   * パラメータを保存します。
    */
   void saveParameters() {
     if (containsOnlyNumbers() == false) {
       showAlertMessageInDialog(getActivity().getString(R.string.please_input_numerical_values));
       return;
     }
-    
+
     updateObjectParameters();
     this.tree.updateTree();
-    
+
     this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
     this.modeler.updateDisplay();
-    
+
     this.saveButton.setEnabled(false);
   }
-  
+
   /**
    * 警告メッセージを表示します。
    * 
@@ -292,7 +335,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
     dialog.setMessage(message);
     dialog.show(getActivity().getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
-  
+
   /**
    * Translationを返します。
    * 
@@ -305,7 +348,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
     translation.setZ(this.translationZ.getFloatValue());
     return translation;
   }
-  
+
   /**
    * Rotationを設定 受け取ったRotationを変更に応じて設定
    * 
@@ -318,20 +361,20 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
     rotation.setZ(this.rotationZ.getFloatValue());
     return rotation;
   }
-  
+
   /**
    * オブジェクトのパラメータを更新します。
    */
   void updateObjectParameters() {
-    final ColorModel color = new ColorModel(this.colorR.getIntValue(), this.colorG.getIntValue(), this.colorB.getIntValue(), this.colorAlpha.getIntValue());
+    final ColorModel color = new ColorModel(Color.red(this.colorValue), Color.green(this.colorValue), Color.blue(this.colorValue), Color.alpha(this.colorValue));
     color.setAlpha(this.colorAlpha.getIntValue());
     this.object.setColor(color);
     this.object.setTranslation(getTranslation());
     this.object.setRotation(getRotation());
-    
+
     updateModelParameters();
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -345,14 +388,14 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
 
     return false;
   }
-  
+
   /**
    * {@inheritDoc}
    */
   @SuppressWarnings("unused")
   public void beforeTextChanged(CharSequence s, int start, int count, int after) {
     // nothing to do
-    }
+  }
 
   /**
    * {@inheritDoc}

@@ -12,6 +12,7 @@ import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 
+import android.graphics.Color;
 import android.view.View;
 import android.view.View.OnAttachStateChangeListener;
 import android.widget.CheckBox;
@@ -83,7 +84,7 @@ public class CompositionEditor extends AbstractObjectEditor {
     
     final TextView preservingRatioLabel = new TextView(getContext());
     preservingRatioLabel.setText(R.string.preserve_ratio);
-    preservingRatioLabel.setTextColor(R.color.black);
+    preservingRatioLabel.setTextColor(Color.BLACK);
     preservingRatioLayout.addView(preservingRatioLabel);
     
     this.preservingRatio = new CheckBox(getContext());
