@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.android.editor;
 
+import org.mklab.mikity.android.AlertDialogFragment;
 import org.mklab.mikity.android.AnimationParameterInputBox;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBox;
@@ -378,20 +379,38 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
    * {@inheritDoc}
    */
   public void updateModelParameters() {
-//    this.targetGroup.setName(this.groupName.getStringValue());
-//    this.targetGroup.clearAnimations();
-//    addAnimation("translationX", this.translationXsourceId, this.translationXsourceNumber); //$NON-NLS-1$
-//    addAnimation("translationY", this.translationYsourceId, this.translationYsourceNumber); //$NON-NLS-1$
-//    addAnimation("translationZ", this.translationZsourceId, this.translationZsourceNumber); //$NON-NLS-1$
-//    addAnimation("rotationX", this.rotationXsourceId, this.rotationXsourceNumber); //$NON-NLS-1$
-//    addAnimation("rotationY", this.rotationYsourceId, this.rotationYsourceNumber); //$NON-NLS-1$
-//    addAnimation("rotationZ", this.rotationZsourceId, this.rotationZsourceNumber); //$NON-NLS-1$
-//    
-//    final TranslationModel translation = new TranslationModel(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue());
-//    final RotationModel rotation = new RotationModel(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue());
-//    
-//    this.targetGroup.setTranslation(translation);
-//    this.targetGroup.setRotation(rotation);
+    this.targetGroup.setName(this.groupName.getText().toString());
+    this.targetGroup.clearAnimations();
+    addAnimation("translationX", this.translationXsource); //$NON-NLS-1$
+    addAnimation("translationY", this.translationYsource); //$NON-NLS-1$
+    addAnimation("translationZ", this.translationZsource); //$NON-NLS-1$
+    addAnimation("rotationX", this.rotationXsource); //$NON-NLS-1$
+    addAnimation("rotationY", this.rotationYsource); //$NON-NLS-1$
+    addAnimation("rotationZ", this.rotationZsource); //$NON-NLS-1$
+    
+    final TranslationModel translation = new TranslationModel(this.translationX.getFloatValue(), this.translationY.getFloatValue(), this.translationZ.getFloatValue());
+    final RotationModel rotation = new RotationModel(this.rotationX.getFloatValue(), this.rotationY.getFloatValue(), this.rotationZ.getFloatValue());
+    
+    this.targetGroup.setTranslation(translation);
+    this.targetGroup.setRotation(rotation);
+  }
+  
+  /**
+   * Animationを追加します。
+   * 
+   * @param parameterName パラメータの名前
+   * @param sourceNumber データの番号
+   */
+  void addAnimation(final String parameterName, final AnimationParameterInputBox sourceParameter) {
+    if (sourceParameter.getIntValue2() != 0) {
+      final SourceModel source = new SourceModel();
+      source.setId(sourceParameter.getStringValue1());
+      source.setNumber(sourceParameter.getIntValue2());
+      final AnimationModel animation = new AnimationModel();
+      animation.setTarget(parameterName);
+      animation.setSource(source);
+      this.targetGroup.add(animation);
+    }
   }
   
   /**
@@ -405,23 +424,31 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
    * パラメータを保存します。 
    */
   void saveParameters() {
-//    if (containsOnlyNumbers() == false) {
-//      final MessageBox message = new MessageBox(this.modeler.getShell(), SWT.ICON_WARNING);
-//      message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
-//      message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
-//      message.open();
-//      return;
-//    }
-//    
-//    updateModelParameters();
-//    this.tree.updateTree();
-//
-//    this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
-//    this.modeler.updateDisplay();
-//    
+    if (containsOnlyNumbers() == false) {
+      showAlertMessageInDialog(getActivity().getString(R.string.please_input_numerical_values));
+      return;
+    }
+    
+    updateModelParameters();
+    this.tree.updateTree();
+
+    this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
+    this.modeler.updateDisplay();
+    
     this.saveButton.setEnabled(false);
   }
   
+  /**
+   * 警告メッセージを表示します。
+   * 
+   * @param message メッセージ
+   */
+  void showAlertMessageInDialog(String message) {
+    final AlertDialogFragment dialog = new AlertDialogFragment();
+    dialog.setMessage(message);
+    dialog.show(getActivity().getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
+  }
+
   /**
    * {@inheritDoc}
    */

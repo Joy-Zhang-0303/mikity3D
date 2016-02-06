@@ -68,6 +68,7 @@ public class AnimationParameterInputBox extends TableRow {
     this.valueText2  = (EditText)layout.findViewById(R.id.parameterValue2);
     this.valueText2.setOnKeyListener(onKeyListener);
     this.valueText2.addTextChangedListener(textWatcher);
+    this.valueText2.setInputType(InputType.TYPE_CLASS_NUMBER);
   }
   
   /**
@@ -228,7 +229,7 @@ public class AnimationParameterInputBox extends TableRow {
       this.valueText2.setInputType(InputType.TYPE_NULL);
     } else {
       this.valueText1.setInputType(InputType.TYPE_CLASS_TEXT);
-      this.valueText2.setInputType(InputType.TYPE_CLASS_TEXT);
+      this.valueText2.setInputType(InputType.TYPE_CLASS_NUMBER);
     }
   }
 }

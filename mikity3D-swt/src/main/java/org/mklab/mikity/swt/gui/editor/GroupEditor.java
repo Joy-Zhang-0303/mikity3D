@@ -33,13 +33,9 @@ import org.mklab.mikity.swt.gui.SceneGraphTree;
  */
 public class GroupEditor implements ModelEditor, ModifyKeyListener  {
   private GroupModel targetGroup;
-  
   JoglModeler modeler;
   SceneGraphTree tree;
-  
-  /** 値が変更されていればtrue。 */
-  private boolean editable;
-  
+    
   /** 保存ボタン。 */
   private ParameterInputBox groupName;
   
@@ -68,6 +64,9 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
   private Button saveButton;
   /** 値が変更されていればtrue。 */
   boolean isChanged = false;
+  
+  /** 値を変更可能ならばtrue。 */
+  private boolean editable;
   
   /**
    * 新しく生成された<code>EditGroupDialog</code>オブジェクトを初期化します。
