@@ -64,8 +64,10 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
   private ParameterInputBox rotationYsourceNumber;
   private ParameterInputBox rotationZsourceNumber;
   
+  /** 保存ボタン。 */
   private Button saveButton;
-  private boolean isChanged = false;
+  /** 値が変更されていればtrue。 */
+  boolean isChanged = false;
   
   /**
    * 新しく生成された<code>EditGroupDialog</code>オブジェクトを初期化します。

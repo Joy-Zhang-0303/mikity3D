@@ -73,6 +73,7 @@
     <string name="rotation_wrt_y_axis">Y軸周り回転</string>
     <string name="rotation_wrt_z_axis">Z軸周り回転</string>
     <string name="sample">サンプル</string>
+    <string name="save">保存</string>
     <string name="size_of_facets">三角形の数</string>
     <string name="source">ソース</string>
     <string name="sourceDataIsNotReady">ソースデータが未設定です。</string>

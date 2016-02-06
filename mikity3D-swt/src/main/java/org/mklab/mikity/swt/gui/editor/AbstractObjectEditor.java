@@ -38,9 +38,6 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
   SceneGraphTree tree;
 
   Label objectType;
- 
-  /** 保存ボタン。 */
-  Button saveButton;
   
   private ColorSelectorButton colorSelector;
   private ParameterInputBox colorAlpha;
@@ -55,6 +52,9 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
   
   /** 値が変更されていればtrue。 */
   boolean isChanged = false;
+  
+  /** 保存ボタン。 */
+  Button saveButton;
   
   /**
    * 新しく生成された<code>AbstractEditPrimitiveDialog</code>オブジェクトを初期化します。

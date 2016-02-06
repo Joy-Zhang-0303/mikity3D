@@ -74,6 +74,7 @@
     <string name="rotationLockTextView">Rotation Lock</string>
     <string name="rotationLockButton">rotationLockButton</string>
     <string name="sample">Sample</string>
+    <string name="save">Save</string>
     <string name="size_of_facets">Size of facets</string>
     <string name="source">Source</string>
     <string name="sourceDataIsNotReady">Source data is not ready</string>

@@ -62,6 +62,8 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
   private AnimationParameterInputBox rotationYsource;
   private AnimationParameterInputBox rotationZsource;
   
+  /** 保存ボタン。 */
+  private Button saveButton;
   /** 値が変更されていればtrue。 */
   boolean isChanged = false;
   
@@ -95,7 +97,18 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
         manager.popBackStack();
       }
     });
-    
+
+    this.saveButton = (Button)view.findViewById(R.id.saveButton);
+    this.saveButton.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+        saveParameters();
+      }
+    });
+
     this.groupName = (TextView)view.findViewById(R.id.groupName);
     this.groupName.setText("root"); //$NON-NLS-1$
     
@@ -105,6 +118,9 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
     
     createCoordinateParameterBoxes(view);
     createAnimationParameterBoxes(view);
+    
+    // Next line should be located after setting the parameters in the boxes
+    this.saveButton.setEnabled(false);
     
     return view;
   }
@@ -399,7 +415,7 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
 //    this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
 //    this.modeler.updateDisplay();
 //    
-//    this.saveButton.setEnabled(false);
+    this.saveButton.setEnabled(false);
   }
   
   /**
@@ -434,9 +450,9 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
    * {@inheritDoc}
    */
   public void afterTextChanged(Editable s) {
-//    if (this.saveButton != null) {
+    if (this.saveButton != null) {
       this.isChanged = true;
-//      this.saveButton.setEnabled(true);
-//    }
+      this.saveButton.setEnabled(true);
+    }
   }
 }

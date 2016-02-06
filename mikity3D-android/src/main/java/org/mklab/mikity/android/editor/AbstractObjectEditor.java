@@ -60,6 +60,9 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
 
   /** 値が変更されていればtrue。 */
   boolean isChanged = false;
+  
+  /** 保存ボタン。 */
+  Button saveButton;
 
   /**
    * 新しく生成された<code>AbstractObjectEditorFragment</code>オブジェクトを初期化します。
@@ -92,6 +95,17 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
         manager.popBackStack();
       }
     });
+    
+    this.saveButton = (Button)view.findViewById(R.id.saveButton);
+    this.saveButton.setOnClickListener(new OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+        saveParameters();
+      }
+    });
 
     this.objectType = (TextView)view.findViewById(R.id.objectType);
 
@@ -106,6 +120,9 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
     createTranslationBoxes(parameters);
     createRotationBoxes(parameters);
 
+    // Next line should be located after setting the parameters in the boxes
+    this.saveButton.setEnabled(false);
+    
     return view;
   }
 
@@ -260,7 +277,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
 //    this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
 //    this.modeler.updateDisplay();
 //    
-//    this.saveButton.setEnabled(false);
+    this.saveButton.setEnabled(false);
   }
   
   /**
@@ -295,9 +312,9 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
    * {@inheritDoc}
    */
   public void afterTextChanged(Editable s) {
-//    if (this.saveButton != null) {
+    if (this.saveButton != null) {
       this.isChanged = true;
-//      this.saveButton.setEnabled(true);
-//    }
+      this.saveButton.setEnabled(true);
+    }
   }
 }
