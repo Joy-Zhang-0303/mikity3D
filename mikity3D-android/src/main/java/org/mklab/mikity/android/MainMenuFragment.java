@@ -45,7 +45,7 @@ public class MainMenuFragment extends Fragment {
   private MainMenuDrawerListAdapter adapter;
 
   CanvasActivity canvasActivity;
-  
+
   /**
    * アクティビティを設定します。
    * 
@@ -66,7 +66,6 @@ public class MainMenuFragment extends Fragment {
 
     final TypedArray mainMenuIcons = getResources().obtainTypedArray(R.array.main_menu_drawer_icons);
 
-    //this.mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
     this.mainMenuList = (ListView)view.findViewById(R.id.list_main_menu);
 
     this.mainMenuItems = new ArrayList<MainMenuDrawerItem>();
@@ -94,31 +93,30 @@ public class MainMenuFragment extends Fragment {
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
       displayView(position);
-		}
-	}
+    }
+  }
 
-	/**
-	 * Displaying fragment view for selected nav drawer list item
-	 */
-	void displayView(int position) {
-		switch (position) {
-		
-		case 1:
-			this.canvasActivity.createChooseModelFragment();
-			break;
-		
-		case 2:
-			this.canvasActivity.createSceneGraphTreeFragment();
-			break;
+  /**
+   * Displaying fragment view for selected nav drawer list item
+   */
+  void displayView(int position) {
+    switch (position) {
 
-		case 3:
-			this.canvasActivity.createSettingsFragment();
-			break;
-		case 6:
-			this.canvasActivity.createNavigationDrawerFragment();
-			break;
-		default:
-			break;
-		}
-	}
+      case 1:
+        this.canvasActivity.createChooseModelFragment();
+        break;
+      case 2:
+        this.canvasActivity.createSceneGraphTreeFragment();
+        break;
+
+      case 3:
+        this.canvasActivity.createSettingsFragment();
+        break;
+      case 6:
+        this.canvasActivity.createNavigationDrawerFragment();
+        break;
+      default:
+        break;
+    }
+  }
 }

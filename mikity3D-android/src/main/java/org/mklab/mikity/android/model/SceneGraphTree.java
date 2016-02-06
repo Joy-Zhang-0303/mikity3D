@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.editor.AbstractObjectEditor;
 import org.mklab.mikity.android.editor.ModelEditor;
 import org.mklab.mikity.android.editor.ModelEditorFactory;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
@@ -49,8 +48,6 @@ import android.widget.ListView;
  */
 public class SceneGraphTree extends Fragment {
   private ListView treeView;
-  
-  FragmentManager fragmentManager;
   
   /** モデラー。 */
   OpenglesModeler modeler;
@@ -110,7 +107,7 @@ public class SceneGraphTree extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        SceneGraphTree.this.fragmentManager.popBackStack();
+        getActivity().getSupportFragmentManager().popBackStack();
       }
     });
     
@@ -220,14 +217,14 @@ public class SceneGraphTree extends Fragment {
     return super.onContextItemSelected(item);
   }
 
-  /**
-   * フラグメントマネージャを設定します。
-   * 
-   * @param fragmentManager フラグメントマネージャ
-   */
-  public void setFragmentManager(FragmentManager fragmentManager) {
-    this.fragmentManager = fragmentManager;
-  }
+//  /**
+//   * フラグメントマネージャを設定します。
+//   * 
+//   * @param fragmentManager フラグメントマネージャ
+//   */
+//  public void setFragmentManager(FragmentManager fragmentManager) {
+//    this.fragmentManager = fragmentManager;
+//  }
   
   /**
    * モデルを設定します。

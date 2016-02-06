@@ -38,10 +38,6 @@ import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -155,18 +151,12 @@ public class SettingsFragment extends Fragment {
 
     this.canvasActivity = (CanvasActivity)getActivity();
 
-
     createSensorComponent(view);
 
     createConfigurationComponent(view);
 
-
-
     return view;
   }
-
-
-
 
   private void createSourceComponent() {
     final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();

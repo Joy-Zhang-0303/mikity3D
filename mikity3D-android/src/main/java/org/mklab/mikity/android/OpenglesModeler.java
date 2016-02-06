@@ -62,7 +62,7 @@ public class OpenglesModeler {
    * 
    * @param tree シーングラフツリー
    */
-  public void setTree(SceneGraphTree tree) {
+  public void setSceneGraphTree(SceneGraphTree tree) {
     this.tree = tree;
   }
 
