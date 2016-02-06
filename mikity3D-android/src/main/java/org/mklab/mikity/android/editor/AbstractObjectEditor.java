@@ -5,6 +5,7 @@
  */
 package org.mklab.mikity.android.editor;
 
+import org.mklab.mikity.android.AlertDialogFragment;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
@@ -267,21 +268,68 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
    * パラメータを保存します。 
    */
   void saveParameters() {
-//    if (containsOnlyNumbers() == false) {
-//      final MessageBox message = new MessageBox(this.modeler.getShell(), SWT.ICON_WARNING);
-//      message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
-//      message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
-//      message.open();
-//      return;
-//    }
-//    
-//    updateObjectParameters();
-//    this.tree.updateTree();
-//    
-//    this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
-//    this.modeler.updateDisplay();
-//    
+    if (containsOnlyNumbers() == false) {
+      showAlertMessageInDialog(getActivity().getString(R.string.please_input_numerical_values));
+      return;
+    }
+    
+    updateObjectParameters();
+    this.tree.updateTree();
+    
+    this.modeler.setIsChanged(this.modeler.isChanged() || isChanged());
+    this.modeler.updateDisplay();
+    
     this.saveButton.setEnabled(false);
+  }
+  
+  /**
+   * 警告メッセージを表示します。
+   * 
+   * @param message メッセージ
+   */
+  void showAlertMessageInDialog(String message) {
+    final AlertDialogFragment dialog = new AlertDialogFragment();
+    dialog.setMessage(message);
+    dialog.show(getActivity().getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
+  }
+  
+  /**
+   * Translationを返します。
+   * 
+   * @return translation
+   */
+  private TranslationModel getTranslation() {
+    final TranslationModel translation = new TranslationModel();
+    translation.setX(this.translationX.getFloatValue());
+    translation.setY(this.translationY.getFloatValue());
+    translation.setZ(this.translationZ.getFloatValue());
+    return translation;
+  }
+  
+  /**
+   * Rotationを設定 受け取ったRotationを変更に応じて設定
+   * 
+   * @return rotation
+   */
+  private RotationModel getRotation() {
+    final RotationModel rotation = new RotationModel();
+    rotation.setX(this.rotationX.getFloatValue());
+    rotation.setY(this.rotationY.getFloatValue());
+    rotation.setZ(this.rotationZ.getFloatValue());
+    return rotation;
+  }
+  
+  /**
+   * オブジェクトのパラメータを更新します。
+   */
+  void updateObjectParameters() {
+    final ColorModel color = new ColorModel(this.colorR.getIntValue(), this.colorG.getIntValue(), this.colorB.getIntValue(), this.colorAlpha.getIntValue());
+    color.setAlpha(this.colorAlpha.getIntValue());
+    this.object.setColor(color);
+    this.object.setTranslation(getTranslation());
+    this.object.setRotation(getRotation());
+    
+    updateModelParameters();
   }
   
   /**
