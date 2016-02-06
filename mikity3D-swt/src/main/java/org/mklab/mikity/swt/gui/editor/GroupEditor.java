@@ -332,10 +332,7 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
    */
   void saveParameters() {
     if (containsOnlyNumbers() == false) {
-      final MessageBox message = new MessageBox(this.modeler.getShell(), SWT.ICON_WARNING);
-      message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
-      message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
-      message.open();
+      showAlertMessageInDialog();
       return;
     }
     
@@ -346,6 +343,14 @@ public class GroupEditor implements ModelEditor, ModifyKeyListener  {
     this.modeler.updateDisplay();
     
     this.saveButton.setEnabled(false);
+  }
+
+  private void showAlertMessageInDialog() {
+    final MessageBox message = new MessageBox(this.modeler.getShell(), SWT.ICON_WARNING);
+    message.setMessage(Messages.getString("EditPrimitiveDialog.23")); //$NON-NLS-1$
+    message.setText(Messages.getString("EditPrimitiveDialog.24")); //$NON-NLS-1$
+    message.open();
+    return;
   }
 
   /**

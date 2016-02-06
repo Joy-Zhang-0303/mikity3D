@@ -443,7 +443,7 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
    * 
    * @param message メッセージ
    */
-  void showAlertMessageInDialog(String message) {
+  private void showAlertMessageInDialog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
     dialog.setMessage(message);
     dialog.show(getActivity().getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
