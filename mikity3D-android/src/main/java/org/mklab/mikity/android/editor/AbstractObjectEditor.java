@@ -84,6 +84,26 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_object_editor, container, false);
 
+    this.objectType = (TextView)view.findViewById(R.id.objectType);
+
+    final TableLayout parameters = ((TableLayout)view.findViewById(R.id.layout_parameters));
+    if (parameters != null) {
+      parameters.removeAllViews();
+      parameters.setStretchAllColumns(true);
+    }
+
+    createColorBoxes(parameters);
+    createParameterBoxes(parameters);
+    createTranslationBoxes(parameters);
+    createRotationBoxes(parameters);
+
+    // Next line should be located after setting the parameters in the boxes
+    createButtonComposite(view);
+    
+    return view;
+  }
+
+  private void createButtonComposite(final View view) {
     final Button backButton = (Button)view.findViewById(R.id.backButton);
     backButton.setOnClickListener(new OnClickListener() {
 
@@ -106,24 +126,8 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
         saveParameters();
       }
     });
-
-    this.objectType = (TextView)view.findViewById(R.id.objectType);
-
-    final TableLayout parameters = ((TableLayout)view.findViewById(R.id.layout_parameters));
-    if (parameters != null) {
-      parameters.removeAllViews();
-      parameters.setStretchAllColumns(true);
-    }
-
-    createColorBoxes(parameters);
-    createParameterBoxes(parameters);
-    createTranslationBoxes(parameters);
-    createRotationBoxes(parameters);
-
-    // Next line should be located after setting the parameters in the boxes
-    this.saveButton.setEnabled(false);
     
-    return view;
+    this.saveButton.setEnabled(false);
   }
 
   private void createColorBoxes(TableLayout parameters) {

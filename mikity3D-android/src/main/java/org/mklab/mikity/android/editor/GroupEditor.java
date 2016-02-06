@@ -85,7 +85,24 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_group_editor, container, false);
-       
+
+    this.groupName = (TextView)view.findViewById(R.id.groupName);
+    this.groupName.setText("root"); //$NON-NLS-1$
+    
+    if (this.targetGroup.getName() != null) {
+      this.groupName.setText(this.targetGroup.getName());
+    }
+    
+    createCoordinateParameterBoxes(view);
+    createAnimationParameterBoxes(view);
+    
+    // Next line should be located after setting the parameters in the boxes
+    createButtonComposite(view);
+    
+    return view;
+  }
+
+  private void createButtonComposite(final View view) {
     final Button backButton = (Button)view.findViewById(R.id.backButton);
     backButton.setOnClickListener(new OnClickListener() {
 
@@ -108,24 +125,11 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
         saveParameters();
       }
     });
-
-    this.groupName = (TextView)view.findViewById(R.id.groupName);
-    this.groupName.setText("root"); //$NON-NLS-1$
     
-    if (this.targetGroup.getName() != null) {
-      this.groupName.setText(this.targetGroup.getName());
-    }
-    
-    createCoordinateParameterBoxes(view);
-    createAnimationParameterBoxes(view);
-    
-    // Next line should be located after setting the parameters in the boxes
     this.saveButton.setEnabled(false);
-    
-    return view;
   }
 
-  void createCoordinateParameterBoxes(final View view) {
+  private void createCoordinateParameterBoxes(final View view) {
     final TableLayout parameters = ((TableLayout)view.findViewById(R.id.coordinate_parameters));
     parameters.removeAllViews();
     parameters.setStretchAllColumns(true);
@@ -143,7 +147,7 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
     createCoordinateRotationBoxes(parameters);
   }
   
-  void createAnimationParameterBoxes(final View view) {
+  private void createAnimationParameterBoxes(final View view) {
     final TableLayout parameters = ((TableLayout)view.findViewById(R.id.animation_parameters));
     parameters.removeAllViews();
     parameters.setStretchAllColumns(true);
