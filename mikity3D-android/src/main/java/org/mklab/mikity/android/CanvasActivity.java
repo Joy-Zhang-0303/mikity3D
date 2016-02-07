@@ -166,13 +166,11 @@ public class CanvasActivity extends AppCompatActivity {
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    if (this.chooseModelFragment != null) {
-      transaction.remove(this.mainMenuFragment);
-      this.chooseModelFragment = null;
+    if (this.chooseModelFragment == null) {
+      this.chooseModelFragment = new ChooseModelFragment();
     }
 
-    this.chooseModelFragment = new ChooseModelFragment();
-    transaction.add(R.id.fragment_navigation_drawer, this.chooseModelFragment);
+    transaction.replace(R.id.fragment_navigation_drawer, this.chooseModelFragment);
     transaction.commit();
   }
 
@@ -184,13 +182,11 @@ public class CanvasActivity extends AppCompatActivity {
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    if (this.settingsFragment != null) {
-      transaction.remove(this.mainMenuFragment);
-      this.settingsFragment = null;
+    if (this.settingsFragment == null) {
+      this.settingsFragment = new SettingsFragment();
     }
 
-    this.settingsFragment = new SettingsFragment();
-    transaction.add(R.id.fragment_navigation_drawer, this.settingsFragment);
+    transaction.replace(R.id.fragment_navigation_drawer, this.settingsFragment);
     transaction.commit();
   }
 
@@ -206,15 +202,13 @@ public class CanvasActivity extends AppCompatActivity {
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    if (this.sceneGraphTreeFragment != null) {
-      transaction.remove(this.sceneGraphTreeFragment);
-      this.sceneGraphTreeFragment = null;
+    if (this.sceneGraphTreeFragment == null) {
+      this.sceneGraphTreeFragment = new SceneGraphTree();
     }
 
-    this.sceneGraphTreeFragment = new SceneGraphTree();
     this.sceneGraphTreeFragment.setModel(this.canvasFragment.root.getScene(0));
 
-    transaction.add(R.id.fragment_navigation_drawer, this.sceneGraphTreeFragment);
+    transaction.replace(R.id.fragment_navigation_drawer, this.sceneGraphTreeFragment);
     transaction.commit();
 
     this.canvasFragment.modeler.setSceneGraphTree(this.sceneGraphTreeFragment);
