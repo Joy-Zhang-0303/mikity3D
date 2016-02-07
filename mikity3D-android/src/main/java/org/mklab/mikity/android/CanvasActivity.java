@@ -198,6 +198,10 @@ public class CanvasActivity extends AppCompatActivity {
    * SceneGraphTreeFragmentを生成します。
    */
   void createSceneGraphTreeFragment() {
+    if (this.canvasFragment.root == null) {
+      return;
+    }
+    
     final FragmentManager manager = getSupportFragmentManager();
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
