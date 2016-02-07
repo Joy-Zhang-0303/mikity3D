@@ -76,6 +76,7 @@
     <string name="rotationLockTextView">Rotation Lock</string>
     <string name="rotationLockButton">rotationLockButton</string>
     <string name="sample">Sample</string>
+    <string name="samplemodel">Sample Model</string>
     <string name="save">Save</string>
     <string name="size_of_facets">Size of facets</string>
     <string name="source">Source</string>
