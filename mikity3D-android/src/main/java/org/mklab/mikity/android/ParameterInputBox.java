@@ -65,6 +65,7 @@ public class ParameterInputBox extends TableRow {
     this.valueText  = (EditText)layout.findViewById(R.id.parameterValue);
     this.valueText.setOnKeyListener(onKeyListener);
     this.valueText.addTextChangedListener(textWatcher);
+    this.valueText.setInputType(InputType.TYPE_CLASS_NUMBER);
     
     this.unitLabel = (TextView)layout.findViewById(R.id.parameterUnit);
   }

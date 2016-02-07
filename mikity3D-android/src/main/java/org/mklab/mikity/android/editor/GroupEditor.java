@@ -18,6 +18,7 @@ import org.mklab.mikity.model.xml.simplexml.model.SourceModel;
 import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,8 +30,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -46,7 +49,7 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
   OpenglesModeler modeler;
   SceneGraphTree tree;
 
-  private TextView groupName;
+  private EditText groupName;
   
   private ParameterInputBox translationX;
   private ParameterInputBox translationY;
@@ -87,8 +90,10 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
   public View onCreateView(LayoutInflater inflater, ViewGroup container, @SuppressWarnings("unused") Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_group_editor, container, false);
 
-    this.groupName = (TextView)view.findViewById(R.id.groupName);
+    this.groupName = (EditText)view.findViewById(R.id.groupName);
     this.groupName.setText("root"); //$NON-NLS-1$
+    this.groupName.setOnKeyListener(this);
+    this.groupName.addTextChangedListener(this);
     
     if (this.targetGroup.getName() != null) {
       this.groupName.setText(this.targetGroup.getName());
@@ -138,8 +143,10 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
     final TableRow head = new TableRow(getContext());
     final TextView name = new TextView(getContext());
     name.setText(R.string.name);
+    name.setTextColor(Color.BLACK);
     final TextView value = new TextView(getContext());
     value.setText(R.string.value);
+    value.setTextColor(Color.BLACK);
     head.addView(name);
     head.addView(value);
     parameters.addView(head);
@@ -158,14 +165,17 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
     
     final TextView name = new TextView(getContext());
     name.setText(R.string.name);
+    name.setTextColor(Color.BLACK);
     head.addView(name);
     
     final TextView id = new TextView(getContext());
     id.setText(R.string.id);
+    id.setTextColor(Color.BLACK);
     head.addView(id);
     
     final TextView number = new TextView(getContext());
     number.setText(R.string.number);
+    number.setTextColor(Color.BLACK);
     head.addView(number);
 
     createAnimationTranslationBoxes(parameters);

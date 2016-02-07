@@ -45,22 +45,30 @@
                     android:textColor="@color/black" >
                 </TextView>
 
+                <Space
+                    android:layout_width="5dip"
+                    android:layout_height="wrap_content" />
+
                 <EditText
                     android:id="@+id/groupName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:maxLength="5"
+                    android:singleLine="true"
                     android:textColor="@color/black" >
                 </EditText>
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/coordinateParameter"
                 android:textColor="@color/black" >
             </TextView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dip" />
 
             <TableLayout
                 android:id="@+id/coordinate_parameters"
@@ -70,11 +78,16 @@
             </TableLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/animationParameter"
                 android:textColor="@color/black" >
             </TextView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dip" />
 
             <TableLayout
                 android:id="@+id/animation_parameters"

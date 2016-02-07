@@ -3,16 +3,17 @@
     android:layout_height="fill_parent"
     android:background="@color/white" >
 
-    
     <TableRow>
+
         <Button
-                android:id="@+id/settingsBackButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/back" />
+            android:id="@+id/settingsBackButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/back" />
     </TableRow>
+
     <TableRow>
 
         <TextView
