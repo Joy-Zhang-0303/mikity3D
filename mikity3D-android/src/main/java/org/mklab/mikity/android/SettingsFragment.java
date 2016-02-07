@@ -257,7 +257,7 @@ public class SettingsFragment extends Fragment {
 
   private void createConfigurationComponent(final View mainView) {
     this.gridShowingButton = (CompoundButton)mainView.findViewById(R.id.gridShowingButton);
-    this.gridShowingButton.setEnabled(false);
+    this.gridShowingButton.setEnabled(true);
     this.gridShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
@@ -269,7 +269,7 @@ public class SettingsFragment extends Fragment {
     });
 
     this.axisShowingButton = (CompoundButton)mainView.findViewById(R.id.axisShowingButton);
-    this.axisShowingButton.setEnabled(false);
+    this.axisShowingButton.setEnabled(true);
     this.axisShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
@@ -448,6 +448,7 @@ public class SettingsFragment extends Fragment {
     }
 
     updateConfiguration();
+
   }
 
   /**
