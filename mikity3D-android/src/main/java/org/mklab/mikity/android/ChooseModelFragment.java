@@ -21,7 +21,6 @@ import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.mklab.mikity.android.control.AnimationTask;
 import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.searcher.ExcecuteSearchGroup;
 import org.mklab.mikity.model.searcher.GroupManager;
@@ -45,9 +44,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -83,22 +79,8 @@ public class ChooseModelFragment extends Fragment {
   /** サンプルソースID。 */
   String sampleSourceId = null;
 
-//  /** アニメーション用タスク。 */
-//  AnimationTask animationTask;
-//
-//  /** アニメーションの再生速度倍率 */
-//  int animationSpeedRate = 1000;
-//
-//  /** アニメーションスピード。 */
-//  EditText animationSpeedTextEdit;
-
   /** 3Dモデルが選ばれて表示されたならばtrue。 */
   boolean isSelectedModelFile;
-
-//  /** アニメーションスピードを早くするためのボタン。 */
-//  ImageButton quickButton;
-//  /** アニメーションスピードを遅くするためのボタン。 */
-//  ImageButton slowButton;
 
   /** ソースファイルを選択するためのボタン。 */
   List<Button> sourceSelectButtons = new ArrayList<Button>();
@@ -106,20 +88,6 @@ public class ChooseModelFragment extends Fragment {
   List<Button> sourceReloadButtons = new ArrayList<Button>();
   /** ソースファイルのパス。 */
   Map<String, TextView> sourceFileNameViews = new HashMap<String, TextView>();
-
-  /** ソース番号を変更するためのボタン。 */
-  //Button editModelButton;
-
-//  /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
-//  CompoundButton rotationSensorButton;
-//  /** 加速度を3Dオブジェクトに反映させるならばtrue。 */
-//  CompoundButton accelerometerButton;
-//  /** 端末の回転を許可するならばtrue。 */
-//  CompoundButton rotationLockButton;
-//  /** グリッドを表示するならばtrue。 */
-//  CompoundButton gridShowingButton;
-//  /** 座標軸を表示するならばtrue。 */
-//  CompoundButton axisShowingButton;
 
   /** サンプルのソースファイルのパス。 */
   Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
