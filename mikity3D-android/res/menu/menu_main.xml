@@ -4,17 +4,17 @@
 
     <item
         android:id="@+id/menu_play"
-        android:icon="@drawable/play"
+        android:icon="@drawable/play2"
         app:showAsAction="ifRoom"
         android:title="@string/play"/>
     <item
         android:id="@+id/menu_stop"
-        android:icon="@drawable/stop"
+        android:icon="@drawable/stop2"
         app:showAsAction="ifRoom"
         android:title="@string/stop"/>
     <item
         android:id="@+id/menu_pause"
-        android:icon="@drawable/pause"
+        android:icon="@drawable/pause2"
         app:showAsAction="ifRoom"
         android:title="@string/pause"/>
     <item
