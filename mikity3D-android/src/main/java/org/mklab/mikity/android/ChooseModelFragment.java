@@ -39,8 +39,6 @@ import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,22 +83,22 @@ public class ChooseModelFragment extends Fragment {
   /** サンプルソースID。 */
   String sampleSourceId = null;
 
-  /** アニメーション用タスク。 */
-  AnimationTask animationTask;
-
-  /** アニメーションの再生速度倍率 */
-  int animationSpeedRate = 1000;
-
-  /** アニメーションスピード。 */
-  EditText animationSpeedTextEdit;
+//  /** アニメーション用タスク。 */
+//  AnimationTask animationTask;
+//
+//  /** アニメーションの再生速度倍率 */
+//  int animationSpeedRate = 1000;
+//
+//  /** アニメーションスピード。 */
+//  EditText animationSpeedTextEdit;
 
   /** 3Dモデルが選ばれて表示されたならばtrue。 */
   boolean isSelectedModelFile;
 
-  /** アニメーションスピードを早くするためのボタン。 */
-  ImageButton quickButton;
-  /** アニメーションスピードを遅くするためのボタン。 */
-  ImageButton slowButton;
+//  /** アニメーションスピードを早くするためのボタン。 */
+//  ImageButton quickButton;
+//  /** アニメーションスピードを遅くするためのボタン。 */
+//  ImageButton slowButton;
 
   /** ソースファイルを選択するためのボタン。 */
   List<Button> sourceSelectButtons = new ArrayList<Button>();
@@ -110,18 +108,18 @@ public class ChooseModelFragment extends Fragment {
   Map<String, TextView> sourceFileNameViews = new HashMap<String, TextView>();
 
   /** ソース番号を変更するためのボタン。 */
-  Button editModelButton;
+  //Button editModelButton;
 
-  /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
-  CompoundButton rotationSensorButton;
-  /** 加速度を3Dオブジェクトに反映させるならばtrue。 */
-  CompoundButton accelerometerButton;
-  /** 端末の回転を許可するならばtrue。 */
-  CompoundButton rotationLockButton;
-  /** グリッドを表示するならばtrue。 */
-  CompoundButton gridShowingButton;
-  /** 座標軸を表示するならばtrue。 */
-  CompoundButton axisShowingButton;
+//  /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
+//  CompoundButton rotationSensorButton;
+//  /** 加速度を3Dオブジェクトに反映させるならばtrue。 */
+//  CompoundButton accelerometerButton;
+//  /** 端末の回転を許可するならばtrue。 */
+//  CompoundButton rotationLockButton;
+//  /** グリッドを表示するならばtrue。 */
+//  CompoundButton gridShowingButton;
+//  /** 座標軸を表示するならばtrue。 */
+//  CompoundButton axisShowingButton;
 
   /** サンプルのソースファイルのパス。 */
   Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
@@ -140,31 +138,27 @@ public class ChooseModelFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_choose_model, container, false);
-    
-    
+
     final Button backButton = (Button)view.findViewById(R.id.settingsBackButton);
     backButton.setOnClickListener(new OnClickListener() {
-    	
-    	
-        /**
-         * {@inheritDoc}
-         */
-        public void onClick(View v) {
-          final FragmentManager manager = getActivity().getSupportFragmentManager();
-          manager.popBackStack();
-        }
-      });
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View v) {
+        final FragmentManager manager = getActivity().getSupportFragmentManager();
+        manager.popBackStack();
+      }
+    });
 
     this.canvasActivity = (CanvasActivity)getActivity();
 
-
     createModelComponent(view);
-
+    
     createSampleModelComponent(view);
 
     return view;
   }
-
 
   private void createModelComponent(final View mainView) {
     final Button modelButton = (Button)mainView.findViewById(R.id.modelSelectButton);
@@ -211,8 +205,8 @@ public class ChooseModelFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-        	ChooseModelFragment.this.sourceId = id;
-        	ChooseModelFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
+          ChooseModelFragment.this.sourceId = id;
+          ChooseModelFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
         }
       });
 
@@ -230,17 +224,13 @@ public class ChooseModelFragment extends Fragment {
          */
         public void onClick(View view) {
           if (ChooseModelFragment.this.canvasActivity.canvasFragment.sourceData.containsKey(id)) {
-        	  ChooseModelFragment.this.canvasActivity.canvasFragment.addSource(id);
+            ChooseModelFragment.this.canvasActivity.canvasFragment.addSource(id);
           }
         }
       });
     }
 
   }
-
-
-
-
 
   private void createSampleModelComponent(final View mainView) {
     final Button modelButton = (Button)mainView.findViewById(R.id.sampleModelSelectButton);
@@ -250,7 +240,7 @@ public class ChooseModelFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-    	  ChooseModelFragment.this.sampleSourceId = null;
+        ChooseModelFragment.this.sampleSourceId = null;
 
         final FragmentManager manager = ChooseModelFragment.this.canvasActivity.getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
@@ -343,7 +333,7 @@ public class ChooseModelFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-        	ChooseModelFragment.this.sampleSourceId = id;
+          ChooseModelFragment.this.sampleSourceId = id;
 
           final FragmentManager manager = ChooseModelFragment.this.canvasActivity.getSupportFragmentManager();
           final FragmentTransaction transaction = manager.beginTransaction();
@@ -462,7 +452,6 @@ public class ChooseModelFragment extends Fragment {
     for (final TextView view : this.sampleSourceFileNameViews.values()) {
       view.setText(sampleSourceFileName);
     }
-
   }
 
   /**
@@ -516,7 +505,7 @@ public class ChooseModelFragment extends Fragment {
       }
 
       createSourceComponent();
-
+      
       setButtonEnabled(true);
 
     } catch (Mikity3dSerializeDeserializeException e) {
@@ -543,7 +532,6 @@ public class ChooseModelFragment extends Fragment {
    */
   void setButtonEnabled(boolean enabled) {
     this.isSelectedModelFile = enabled;
-    
 
     for (Button button : this.sourceSelectButtons) {
       button.setEnabled(enabled);

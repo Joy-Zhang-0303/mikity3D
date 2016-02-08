@@ -108,7 +108,6 @@ public class MainMenuFragment extends Fragment {
       case 2:
         this.canvasActivity.createSceneGraphTreeFragment();
         break;
-
       case 3:
         this.canvasActivity.createSettingsFragment();
         break;

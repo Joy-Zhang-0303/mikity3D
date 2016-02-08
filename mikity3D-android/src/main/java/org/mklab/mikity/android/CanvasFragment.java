@@ -82,6 +82,9 @@ public class CanvasFragment extends Fragment {
 
   private double[] timeTable;
 
+  /** アニメーションの再生速度倍率 */
+  int animationSpeedRate = 1000;
+  
   /** アニメーションの開始時間 */
   private long startTime;
   /** アニメーションの終了時間。 */
@@ -494,7 +497,7 @@ public class CanvasFragment extends Fragment {
     this.isPaused = false;
     
     this.animationTask = new AnimationTask(this.startTime, this.stopTime, getObjectGroupManager(), getObjectRender(), this.delayTime);
-    this.animationTask.setSpeedScale(this.canvasActivity.chooseModelFragment.animationSpeedRate/1000.0);
+    this.animationTask.setSpeedScale(this.animationSpeedRate/1000.0);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**
