@@ -19,12 +19,12 @@
         android:title="@string/pause"/>
     <item
         android:id="@+id/menu_repeat"
-        android:icon="@drawable/repeat"
+        android:icon="@drawable/repeat2"
         app:showAsAction="ifRoom"
         android:title="@string/repeat"/>
     <item
         android:id="@+id/menu_reset_to_initial_state"
-        android:icon="@drawable/reset"
+        android:icon="@drawable/reset3"
         app:showAsAction="ifRoom"
         android:title="@string/resetToInitialState"/>
 
