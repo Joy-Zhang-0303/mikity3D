@@ -38,6 +38,8 @@ import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -150,6 +152,8 @@ public class SettingsFragment extends Fragment {
     });
 
     this.canvasActivity = (CanvasActivity)getActivity();
+    
+    createAnimationSpeedComponent(view);
 
     createSensorComponent(view);
 
@@ -157,6 +161,78 @@ public class SettingsFragment extends Fragment {
 
     return view;
   }
+  
+  private void createAnimationSpeedComponent(final View mainView) {
+	    this.slowButton = (ImageButton)mainView.findViewById(R.id.slowButton);
+	    this.slowButton.setEnabled(false);
+	    this.slowButton.setOnClickListener(new View.OnClickListener() {
+
+	      /**
+	       * {@inheritDoc}
+	       */
+	      public void onClick(View view) {
+	        final int step = (int)Math.floor(Math.log10(SettingsFragment.this.animationSpeedRate - 1));
+	        SettingsFragment.this.animationSpeedRate -= (int)Math.pow(10, step);
+	        if (SettingsFragment.this.animationSpeedRate < 0) {
+	          SettingsFragment.this.animationSpeedRate = 1;
+	        }
+	        SettingsFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(SettingsFragment.this.animationSpeedRate / 1000.0))); //$NON-NLS-1$
+	        if (SettingsFragment.this.animationTask != null) {
+	          SettingsFragment.this.animationTask.setSpeedScale(SettingsFragment.this.animationSpeedRate / 1000.0);
+	        }
+	      }
+	    });
+
+	    this.animationSpeedTextEdit = (EditText)mainView.findViewById(R.id.animationSpeedEditText);
+	    this.animationSpeedTextEdit.clearFocus();
+	    this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(this.animationSpeedRate / 1000.0))); //$NON-NLS-1$    
+	    this.animationSpeedTextEdit.clearFocus();
+
+	    this.animationSpeedTextEdit.addTextChangedListener(new TextWatcher() {
+
+	      /**
+	       * {@inheritDoc}
+	       */
+	      public void onTextChanged(CharSequence s, int start, int before, int count) {
+	        // TODO 自動生成されたメソッド・スタブ
+	      }
+
+	      /**
+	       * {@inheritDoc}
+	       */
+	      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+	        // TODO 自動生成されたメソッド・スタブ
+	      }
+
+	      /**
+	       * {@inheritDoc}
+	       */
+	      public void afterTextChanged(Editable s) {
+	        final double value = Double.parseDouble(SettingsFragment.this.animationSpeedTextEdit.getText().toString());
+	        SettingsFragment.this.animationSpeedRate = (int)Math.round(value * 1000);
+	      }
+	    });
+
+	    this.quickButton = (ImageButton)mainView.findViewById(R.id.quickButton);
+	    this.quickButton.setEnabled(false);
+	    this.quickButton.setOnClickListener(new View.OnClickListener() {
+
+	      /**
+	       * {@inheritDoc}
+	       */
+	      public void onClick(View view) {
+	        final int step = (int)Math.floor(Math.log10(SettingsFragment.this.animationSpeedRate));
+	        SettingsFragment.this.animationSpeedRate += (int)Math.pow(10, step);
+	        if (SettingsFragment.this.animationSpeedRate > 1000000) {
+	          SettingsFragment.this.animationSpeedRate = 1000000;
+	        }
+	        SettingsFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(SettingsFragment.this.animationSpeedRate / 1000.0))); //$NON-NLS-1$
+	        if (SettingsFragment.this.animationTask != null) {
+	          SettingsFragment.this.animationTask.setSpeedScale(SettingsFragment.this.animationSpeedRate / 1000.0);
+	        }
+	      }
+	    });
+	  }
 
   private void createSourceComponent() {
     final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();
