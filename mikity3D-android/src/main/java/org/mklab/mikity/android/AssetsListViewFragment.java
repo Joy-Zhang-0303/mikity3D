@@ -40,7 +40,7 @@ public class AssetsListViewFragment extends Fragment {
   CanvasActivity canvasActivity;
   AssetManager assetManager;
   boolean isModel;
-  FragmentManager fragmentManager;
+  //FragmentManager fragmentManager;
   
   /**
    * {@inheritDoc}
@@ -107,7 +107,8 @@ public class AssetsListViewFragment extends Fragment {
             AssetsListViewFragment.this.canvasActivity.chooseModelFragment.loadSampleSourceData(input, selectedFile);
           }
           
-          AssetsListViewFragment.this.fragmentManager.popBackStack();
+          getActivity().getSupportFragmentManager().popBackStack();
+          //AssetsListViewFragment.this.fragmentManager.popBackStack();
 
         } catch (IOException e) {
           throw new RuntimeException(e);
@@ -318,12 +319,12 @@ public class AssetsListViewFragment extends Fragment {
     return false;
   }
 
-  /**
-   * フラグメントマネージャを設定します。
-   * 
-   * @param fragmentManager フラグメントマネージャ
-   */
-  public void setFragmentManager(FragmentManager fragmentManager) {
-    this.fragmentManager = fragmentManager;
-  }
+//  /**
+//   * フラグメントマネージャを設定します。
+//   * 
+//   * @param fragmentManager フラグメントマネージャ
+//   */
+//  public void setFragmentManager(FragmentManager fragmentManager) {
+//    this.fragmentManager = fragmentManager;
+//  }
 }

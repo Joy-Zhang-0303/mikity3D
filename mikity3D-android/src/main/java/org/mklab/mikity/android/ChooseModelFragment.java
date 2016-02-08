@@ -242,21 +242,18 @@ public class ChooseModelFragment extends Fragment {
       public void onClick(View view) {
         ChooseModelFragment.this.sampleSourceId = null;
 
-        final FragmentManager manager = ChooseModelFragment.this.canvasActivity.getSupportFragmentManager();
+        final FragmentManager manager = getActivity().getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
 
-        if (ChooseModelFragment.this.sampleModelViewFragment != null) {
-          transaction.remove(ChooseModelFragment.this.sampleModelViewFragment);
-          ChooseModelFragment.this.sampleModelViewFragment = null;
+        if (ChooseModelFragment.this.sampleModelViewFragment == null) {
+          ChooseModelFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
         }
 
-        ChooseModelFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
         ChooseModelFragment.this.sampleModelViewFragment.setActivity(ChooseModelFragment.this.canvasActivity);
-        ChooseModelFragment.this.sampleModelViewFragment.setFragmentManager(manager);
+        //ChooseModelFragment.this.sampleModelViewFragment.setFragmentManager(manager);
         ChooseModelFragment.this.sampleModelViewFragment.setIsModelData(true);
         transaction.add(R.id.fragment_navigation_drawer, ChooseModelFragment.this.sampleModelViewFragment);
-
         transaction.commit();
       }
     });
@@ -335,21 +332,18 @@ public class ChooseModelFragment extends Fragment {
         public void onClick(View view) {
           ChooseModelFragment.this.sampleSourceId = id;
 
-          final FragmentManager manager = ChooseModelFragment.this.canvasActivity.getSupportFragmentManager();
+          final FragmentManager manager = getActivity().getSupportFragmentManager();
           final FragmentTransaction transaction = manager.beginTransaction();
           transaction.addToBackStack(null);
 
-          if (ChooseModelFragment.this.sampleSourceViewFragment != null) {
-            transaction.remove(ChooseModelFragment.this.sampleSourceViewFragment);
-            ChooseModelFragment.this.sampleSourceViewFragment = null;
+          if (ChooseModelFragment.this.sampleSourceViewFragment == null) {
+            ChooseModelFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
           }
-
-          ChooseModelFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
+          
           ChooseModelFragment.this.sampleSourceViewFragment.setActivity(ChooseModelFragment.this.canvasActivity);
-          ChooseModelFragment.this.sampleSourceViewFragment.setFragmentManager(manager);
+          //ChooseModelFragment.this.sampleSourceViewFragment.setFragmentManager(manager);
           ChooseModelFragment.this.sampleSourceViewFragment.setIsModelData(false);
           transaction.add(R.id.fragment_navigation_drawer, ChooseModelFragment.this.sampleSourceViewFragment);
-
           transaction.commit();
         }
       });

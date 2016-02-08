@@ -430,7 +430,7 @@ public class NavigationDrawerFragment extends Fragment {
 
         NavigationDrawerFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
         NavigationDrawerFragment.this.sampleModelViewFragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
-        NavigationDrawerFragment.this.sampleModelViewFragment.setFragmentManager(manager);
+        //NavigationDrawerFragment.this.sampleModelViewFragment.setFragmentManager(manager);
         NavigationDrawerFragment.this.sampleModelViewFragment.setIsModelData(true);
         transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sampleModelViewFragment);
 
@@ -523,7 +523,7 @@ public class NavigationDrawerFragment extends Fragment {
 
           NavigationDrawerFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
           NavigationDrawerFragment.this.sampleSourceViewFragment.setActivity(NavigationDrawerFragment.this.canvasActivity);
-          NavigationDrawerFragment.this.sampleSourceViewFragment.setFragmentManager(manager);
+          //NavigationDrawerFragment.this.sampleSourceViewFragment.setFragmentManager(manager);
           NavigationDrawerFragment.this.sampleSourceViewFragment.setIsModelData(false);
           transaction.add(R.id.fragment_navigation_drawer, NavigationDrawerFragment.this.sampleSourceViewFragment);
 
