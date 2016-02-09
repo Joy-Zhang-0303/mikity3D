@@ -45,7 +45,7 @@
     <string name="height">高さ</string>
     <string name="settings">設定</string>
     <string name="minusButton">&lt;&lt;</string>
-    <string name="model">モデル</string>
+    <string name="model">作成したモデルを選択</string>
     <string name="modelDataIsNotReady">モデルデータが未設定です。</string>
     <string name="name">名前</string>
     <string name="no">いいえ</string>
@@ -75,7 +75,7 @@
     <string name="rotation_wrt_y_axis">Y軸周り回転</string>
     <string name="rotation_wrt_z_axis">Z軸周り回転</string>
     <string name="sample">サンプル</string>
-    <string name="samplemodel">サンプルモデル</string>
+    <string name="samplemodel">サンプルモデルを選択</string>
     <string name="save">保存</string>
     <string name="size_of_facets">三角形の数</string>
     <string name="source">ソース</string>
