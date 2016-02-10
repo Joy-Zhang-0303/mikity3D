@@ -15,6 +15,53 @@
                 android:layout_weight="0"
                 android:text="@string/back" />
     </TableRow>
+    
+        <TableRow>
+
+        <TextView
+            android:id="@+id/animationSpeedText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/animationSpeedEditText"
+            android:layout_alignBottom="@+id/animationSpeedEditText"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:text="@string/animationSpeedText"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/animationSpeedEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:maxLength="5"
+            android:textColor="@color/black" />
+    </TableRow>
+
+   <TableRow>
+
+        <ImageButton
+            android:id="@+id/slowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/slow2"
+            android:maxWidth="5dp" />
+
+        <ImageButton
+            android:id="@+id/quickButton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:maxWidth="2dp"
+            android:src="@drawable/fast2" />
+        
+        <Space
+            android:layout_width="60dip"
+            android:layout_height="match_parent" />
+    </TableRow>
     <TableRow>
 
         <TextView
@@ -25,16 +72,17 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <Space
-            android:layout_width="60dip"
-            android:layout_height="match_parent" />
-
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/rotationSensorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:checked="false" />
+
+        <Space
+            android:layout_width="60dip"
+            android:layout_height="match_parent" />
+
     </TableRow>
 
     <TableRow>
@@ -56,16 +104,16 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <Space
-            android:layout_width="40dip"
-            android:layout_height="match_parent" />
-
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/accelerometerButton"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:background="@null"
             android:checked="false" />
+
+        <Space
+            android:layout_width="40dip"
+            android:layout_height="match_parent" />
     </TableRow>
 
     <TableRow>
@@ -87,16 +135,16 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <Space
-            android:layout_width="20dip"
-            android:layout_height="match_parent" />
-
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/rotationLockButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:checked="false" />
+
+        <Space
+            android:layout_width="20dip"
+            android:layout_height="match_parent" />
     </TableRow>
 
     <TableRow>
@@ -118,9 +166,6 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <Space
-            android:layout_width="40dip"
-            android:layout_height="match_parent" />
 
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/gridShowingButton"
@@ -128,6 +173,11 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:checked="false" />
+        
+        
+        <Space
+            android:layout_width="20dip"
+            android:layout_height="match_parent" />
     </TableRow>
 
     <TableRow>
@@ -149,16 +199,17 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <Space
-            android:layout_width="60dip"
-            android:layout_height="match_parent" />
-
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/axisShowingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:checked="false" />
+        
+        
+        <Space
+            android:layout_width="20dip"
+            android:layout_height="match_parent" />
     </TableRow>
 
 </TableLayout>
