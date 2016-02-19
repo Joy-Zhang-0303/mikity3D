@@ -45,7 +45,7 @@
     <string name="height">高さ</string>
     <string name="settings">設定</string>
     <string name="minusButton">&lt;&lt;</string>
-    <string name="model">作成したモデルを選択</string>
+    <string name="model">モデルを選択</string>
     <string name="modelDataIsNotReady">モデルデータが未設定です。</string>
     <string name="name">名前</string>
     <string name="no">いいえ</string>
