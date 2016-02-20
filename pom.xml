@@ -10,7 +10,7 @@
 
 	<groupId>org.mklab.mikity3D</groupId>
 	<artifactId>mikity3D</artifactId>
-	<version>0.5.13</version>
+	<version>0.5.14-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 
