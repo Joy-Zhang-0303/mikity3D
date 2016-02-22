@@ -67,9 +67,13 @@ public class ChooseModelFragment extends Fragment {
 
   CanvasActivity canvasActivity;
 
+  /** モデルファイル名。 */
+  String modelFileName = "..."; //$NON-NLS-1$
   /** モデルファイルのパス。 */
   TextView modelFileNameView;
-
+  
+  /** サンプルモデルファイル名。 */
+  String sampleModelFileName = "..."; //$NON-NLS-1$
   /** サンプルのモデルファイルのパス。 */
   TextView sampleModelFileNameView;
 
@@ -122,8 +126,14 @@ public class ChooseModelFragment extends Fragment {
     this.canvasActivity = (CanvasActivity)getActivity();
 
     createModelComponent(view);
+    if (this.modelFileName.equals("...") == false) { //$NON-NLS-1$
+      createSourceComponent();
+    }
     
     createSampleModelComponent(view);
+    if (this.sampleModelFileName.equals("...") == false) { //$NON-NLS-1$
+      createSampleSourceComponent();
+    }
 
     return view;
   }
@@ -143,12 +153,13 @@ public class ChooseModelFragment extends Fragment {
     });
 
     this.modelFileNameView = (TextView)mainView.findViewById(R.id.modelFileNameView);
+    this.modelFileNameView.setText(this.modelFileName);
     this.modelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
 
   private void createSourceComponent() {
     final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();
-    final Set<String> ids = getAllIds(rootGroups);
+    final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
     final LinearLayout sources = ((LinearLayout)getActivity().findViewById(R.id.layout_sources));
     sources.removeAllViews();
@@ -156,7 +167,7 @@ public class ChooseModelFragment extends Fragment {
     this.sourceReloadButtons.clear();
     this.sourceFileNameViews.clear();
 
-    for (final String id : ids) {
+    for (final String id : sourceIds) {
       final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.source, null);
       sources.addView(source);
 
@@ -227,6 +238,7 @@ public class ChooseModelFragment extends Fragment {
     });
 
     this.sampleModelFileNameView = (TextView)mainView.findViewById(R.id.sampleModelFileNameView);
+    this.sampleModelFileNameView.setText(this.sampleModelFileName);
     this.sampleModelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
 
@@ -260,7 +272,7 @@ public class ChooseModelFragment extends Fragment {
    * @param ｇroups グループ
    * @return グループ以下に含まれるアニメーションのソースIDを返します。
    */
-  private Set<String> getAllIds(final List<GroupModel> ｇroups) {
+  private Set<String> getAllSourceIds(final List<GroupModel> ｇroups) {
     final List<AnimationModel> allAnimations = getAllAnimation(ｇroups);
 
     final Set<String> ids = new TreeSet<String>();
@@ -275,7 +287,7 @@ public class ChooseModelFragment extends Fragment {
    */
   void createSampleSourceComponent() {
     final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();
-    final Set<String> ids = getAllIds(rootGroups);
+    final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
     final LinearLayout sources = ((LinearLayout)getActivity().findViewById(R.id.layout_sample_sources));
     sources.removeAllViews();
@@ -283,7 +295,7 @@ public class ChooseModelFragment extends Fragment {
     this.sampleSourceSelectButtons.clear();
     this.sampleSourceFileNameViews.clear();
 
-    for (final String id : ids) {
+    for (final String id : sourceIds) {
       final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.sample_source, null);
       sources.addView(source);
 
@@ -407,8 +419,8 @@ public class ChooseModelFragment extends Fragment {
     this.canvasActivity.canvasFragment.loadModelData(modelStream);
 
     final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
-    final String modelFileName = parts[parts.length - 1];
-    this.sampleModelFileNameView.setText(modelFileName);
+    this.sampleModelFileName = parts[parts.length - 1];
+    this.sampleModelFileNameView.setText(this.sampleModelFileName);
 
     final String sampleSourceFileName = "..."; //$NON-NLS-1$
     for (final TextView view : this.sampleSourceFileNameViews.values()) {
@@ -426,7 +438,6 @@ public class ChooseModelFragment extends Fragment {
       return;
     }
 
-    final String modelFileName;
     final InputStream modelStream;
 
     if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
@@ -438,7 +449,7 @@ public class ChooseModelFragment extends Fragment {
       }
       final Cursor cursor = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
       cursor.moveToFirst();
-      modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      this.modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       cursor.close();
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
@@ -449,10 +460,10 @@ public class ChooseModelFragment extends Fragment {
         throw new RuntimeException(e);
       }
       final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
-      modelFileName = parts[parts.length - 1];
+      this.modelFileName = parts[parts.length - 1];
     }
 
-    this.modelFileNameView.setText(modelFileName);
+    this.modelFileNameView.setText(this.modelFileName);
     final String sourceFileName = "..."; //$NON-NLS-1$
     for (final TextView view : this.sourceFileNameViews.values()) {
       view.setText(sourceFileName);
