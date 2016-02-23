@@ -393,8 +393,6 @@ public class CanvasActivity extends AppCompatActivity {
    */
   private void loadModelData(Uri path) {
     this.chooseModelFragment.loadModelData(path);
-
-    //this.chooseModelFragment.sourceId = null;
     this.canvasFragment.objectRenderer.updateDisplay();
   }
 

@@ -77,12 +77,6 @@ public class ChooseModelFragment extends Fragment {
   /** サンプルのモデルファイルのパス。 */
   TextView sampleModelFileNameView;
 
-  /** ソースID。 */
-  //String sourceId = null;
-
-  /** サンプルソースID。 */
-  //String sampleSourceId = null;
-
   /** 3Dモデルが選ばれて表示されたならばtrue。 */
   boolean isSelectedModelFile;
 
@@ -184,7 +178,6 @@ public class ChooseModelFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          //ChooseModelFragment.this.sourceId = id;
           ChooseModelFragment.this.canvasActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, id);
         }
       });
@@ -219,8 +212,6 @@ public class ChooseModelFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        //ChooseModelFragment.this.sampleSourceId = null;
-
         final FragmentManager manager = getActivity().getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
@@ -230,7 +221,6 @@ public class ChooseModelFragment extends Fragment {
         }
 
         ChooseModelFragment.this.sampleModelViewFragment.setActivity(ChooseModelFragment.this.canvasActivity);
-        //ChooseModelFragment.this.sampleModelViewFragment.setFragmentManager(manager);
         ChooseModelFragment.this.sampleModelViewFragment.setIsModelData(true);
         transaction.add(R.id.fragment_navigation_drawer, ChooseModelFragment.this.sampleModelViewFragment);
         transaction.commit();
@@ -310,8 +300,6 @@ public class ChooseModelFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          //ChooseModelFragment.this.sampleSourceId = id;
-
           final FragmentManager manager = getActivity().getSupportFragmentManager();
           final FragmentTransaction transaction = manager.beginTransaction();
           transaction.addToBackStack(null);
@@ -322,7 +310,6 @@ public class ChooseModelFragment extends Fragment {
           
           ChooseModelFragment.this.sampleSourceViewFragment.setActivity(ChooseModelFragment.this.canvasActivity);
           ChooseModelFragment.this.sampleSourceViewFragment.setSourceId(id);
-          //ChooseModelFragment.this.sampleSourceViewFragment.setFragmentManager(manager);
           ChooseModelFragment.this.sampleSourceViewFragment.setIsModelData(false);
           transaction.add(R.id.fragment_navigation_drawer, ChooseModelFragment.this.sampleSourceViewFragment);
           transaction.commit();
