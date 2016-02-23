@@ -240,7 +240,7 @@ public class NavigationDrawerFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
+        NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntentForModel(this.REQUEST_CODE);
       }
     });
 
@@ -276,7 +276,7 @@ public class NavigationDrawerFragment extends Fragment {
          */
         public void onClick(View view) {
           NavigationDrawerFragment.this.sourceId = id;
-          NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
+          NavigationDrawerFragment.this.canvasActivity.sendFileChooseIntentForModel(this.REQUEST_CODE);
         }
       });
 

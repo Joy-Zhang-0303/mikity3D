@@ -20,7 +20,6 @@ import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +39,7 @@ public class AssetsListViewFragment extends Fragment {
   CanvasActivity canvasActivity;
   AssetManager assetManager;
   boolean isModel;
+  String sourceId;
   
   /**
    * {@inheritDoc}
@@ -103,7 +103,7 @@ public class AssetsListViewFragment extends Fragment {
             
             AssetsListViewFragment.this.canvasActivity.chooseModelFragment.setButtonEnabled(true);
           } else {
-            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.loadSampleSourceData(input, selectedFile);
+            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.loadSampleSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
           }
           
           getActivity().getSupportFragmentManager().popBackStack();
@@ -235,7 +235,16 @@ public class AssetsListViewFragment extends Fragment {
   public void setIsModelData(boolean isModelData) {
     this.isModel = isModelData;
   }
-
+  
+  /**
+   * ソースIDを設定します。
+   * 
+   * @param sourceId ソースID
+   */
+  public void setSourceId(String sourceId) {
+    this.sourceId = sourceId;
+  }
+  
   /**
    * 拡張子を返します。
    * 

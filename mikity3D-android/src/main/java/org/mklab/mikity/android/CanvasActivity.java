@@ -65,6 +65,8 @@ public class CanvasActivity extends AppCompatActivity {
   private boolean isStopButtonPushable;
 
   SensorService sensorService;
+  
+  String sourceId;
 
   /**
    * {@inheritDoc}
@@ -239,7 +241,8 @@ public class CanvasActivity extends AppCompatActivity {
     }
 
     final Uri sourcePath = bundle.getParcelable(intentDataPath);
-    loadSourceData(sourcePath);
+    final String sourceId = intent.getStringExtra("sourceId"); //$NON-NLS-1$
+    loadSourceData(sourcePath, sourceId);
   }
 
   /**
@@ -359,7 +362,7 @@ public class CanvasActivity extends AppCompatActivity {
       case REQUEST_CODE_PICK_SOURCE_DATA_FILE:
         if (resultCode == RESULT_OK && data != null) {
           final Uri uri = data.getData();
-          loadSourceData(uri);
+          loadSourceData(uri, this.sourceId);
         }
         break;
       case 3:
@@ -377,9 +380,10 @@ public class CanvasActivity extends AppCompatActivity {
    * 時間データを読み込みます。
    * 
    * @param path 時間データのパス
+   * @param sourceId ソース
    */
-  private void loadSourceData(Uri path) {
-    this.chooseModelFragment.loadSourceData(path);
+  private void loadSourceData(Uri path, String sourceId) {
+    this.chooseModelFragment.loadSourceData(path,sourceId);
   }
 
   /**
@@ -390,7 +394,7 @@ public class CanvasActivity extends AppCompatActivity {
   private void loadModelData(Uri path) {
     this.chooseModelFragment.loadModelData(path);
 
-    this.chooseModelFragment.sourceId = null;
+    //this.chooseModelFragment.sourceId = null;
     this.canvasFragment.objectRenderer.updateDisplay();
   }
 
@@ -433,13 +437,26 @@ public class CanvasActivity extends AppCompatActivity {
   }
 
   /**
-   * ファイルエクスプローラーにインテントを発行します。
+   * ファイルエクスプローラーにモデルデータのためのインテントを発行します。
    * 
    * @param requestCode インテント時のリクエストコード
    */
-  public void sendFileChooseIntent(int requestCode) {
+  public void sendFileChooseIntentForModel(int requestCode) {
     final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
     intent.setType("*/*"); //$NON-NLS-1$
+    startActivityForResult(intent, requestCode);
+  }
+  
+  /**
+   * ファイルエクスプローラーにソースデータのためのインテントを発行します。
+   * 
+   * @param requestCode インテント時のリクエストコード
+   * @param localSourceId ソースID
+   */
+  public void sendFileChooseIntentForSource(int requestCode, String localSourceId) {
+    final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+    intent.setType("*/*"); //$NON-NLS-1$
+    this.sourceId = localSourceId;
     startActivityForResult(intent, requestCode);
   }
 }

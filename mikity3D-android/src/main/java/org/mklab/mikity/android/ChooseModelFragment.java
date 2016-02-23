@@ -78,10 +78,10 @@ public class ChooseModelFragment extends Fragment {
   TextView sampleModelFileNameView;
 
   /** ソースID。 */
-  String sourceId = null;
+  //String sourceId = null;
 
   /** サンプルソースID。 */
-  String sampleSourceId = null;
+  //String sampleSourceId = null;
 
   /** 3Dモデルが選ばれて表示されたならばtrue。 */
   boolean isSelectedModelFile;
@@ -148,7 +148,7 @@ public class ChooseModelFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        ChooseModelFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
+        ChooseModelFragment.this.canvasActivity.sendFileChooseIntentForModel(this.REQUEST_CODE);
       }
     });
 
@@ -184,8 +184,8 @@ public class ChooseModelFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          ChooseModelFragment.this.sourceId = id;
-          ChooseModelFragment.this.canvasActivity.sendFileChooseIntent(this.REQUEST_CODE);
+          //ChooseModelFragment.this.sourceId = id;
+          ChooseModelFragment.this.canvasActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, id);
         }
       });
 
@@ -219,7 +219,7 @@ public class ChooseModelFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        ChooseModelFragment.this.sampleSourceId = null;
+        //ChooseModelFragment.this.sampleSourceId = null;
 
         final FragmentManager manager = getActivity().getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
@@ -310,7 +310,7 @@ public class ChooseModelFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          ChooseModelFragment.this.sampleSourceId = id;
+          //ChooseModelFragment.this.sampleSourceId = id;
 
           final FragmentManager manager = getActivity().getSupportFragmentManager();
           final FragmentTransaction transaction = manager.beginTransaction();
@@ -321,6 +321,7 @@ public class ChooseModelFragment extends Fragment {
           }
           
           ChooseModelFragment.this.sampleSourceViewFragment.setActivity(ChooseModelFragment.this.canvasActivity);
+          ChooseModelFragment.this.sampleSourceViewFragment.setSourceId(id);
           //ChooseModelFragment.this.sampleSourceViewFragment.setFragmentManager(manager);
           ChooseModelFragment.this.sampleSourceViewFragment.setIsModelData(false);
           transaction.add(R.id.fragment_navigation_drawer, ChooseModelFragment.this.sampleSourceViewFragment);
@@ -364,21 +365,23 @@ public class ChooseModelFragment extends Fragment {
    * 
    * @param input ソースの入力ストリーム
    * @param filePath ソースのファイルパス
+   * @param sourceId ソースID
    */
-  public void loadSampleSourceData(final InputStream input, final String filePath) {
-    this.canvasActivity.canvasFragment.loadSourceData(input, filePath, this.sampleSourceId);
+  public void loadSampleSourceData(final InputStream input, final String filePath, String sourceId) {
+    this.canvasActivity.canvasFragment.loadSourceData(input, filePath, sourceId);
 
     final String[] parts = filePath.split("/"); //$NON-NLS-1$
     final String sourceFileName = parts[parts.length - 1];
-    this.sampleSourceFileNameViews.get(this.sampleSourceId).setText(sourceFileName);
+    this.sampleSourceFileNameViews.get(sourceId).setText(sourceFileName);
   }
 
   /**
    * 時間データをURIから読み込みます。
    * 
    * @param uri 時間データURI
+   * @param sourceId ソースID
    */
-  void loadSourceData(Uri uri) {
+  void loadSourceData(Uri uri, String sourceId) {
     if (uri == null) {
       return;
     }
@@ -409,9 +412,9 @@ public class ChooseModelFragment extends Fragment {
       sourceFileName = parts[parts.length - 1];
     }
 
-    this.sourceFileNameViews.get(this.sourceId).setText(sourceFileName);
+    this.sourceFileNameViews.get(sourceId).setText(sourceFileName);
 
-    this.canvasActivity.canvasFragment.loadSourceData(sourceStream, uri.getPath(), this.sourceId);
+    this.canvasActivity.canvasFragment.loadSourceData(sourceStream, uri.getPath(), sourceId);
     // sourceStream has been already closed in the loadSourceData method. 
   }
 
