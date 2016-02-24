@@ -99,7 +99,7 @@ public class AssetsListViewFragment extends Fragment {
             
             AssetsListViewFragment.this.canvasActivity.chooseModelFragment.isSelectedModelFile = true;
             
-            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.createSampleSourceComponent();
+            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.updateSampleSourceComponent();
             
             AssetsListViewFragment.this.canvasActivity.chooseModelFragment.setButtonEnabled(true);
           } else {

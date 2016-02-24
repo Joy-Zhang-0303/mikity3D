@@ -49,7 +49,7 @@ import android.widget.TextView;
 
 
 /**
- * NavigationDrawerでモデルを選択するためのフラグメントです。
+ * モデルデータとソースデータを選択するためのフラグメントです。
  * 
  * @author hirae
  * @version $Revision$, 2015/02/15
@@ -59,7 +59,7 @@ public class ChooseModelFragment extends Fragment {
   static final String LOGTAG = null;
 
   /**
-   * 新しく生成された<code>NavigationDrawerFragment</code>オブジェクトを初期化します。
+   * 新しく生成された<code>ChooseModelFragment</code>オブジェクトを初期化します。
    */
   public ChooseModelFragment() {
     // nothing to do
@@ -80,15 +80,20 @@ public class ChooseModelFragment extends Fragment {
   /** 3Dモデルが選ばれて表示されたならばtrue。 */
   boolean isSelectedModelFile;
 
+  /** ソースファイルのパス。 */
+  Map<String, TextView> sourceFileNameViews = new HashMap<String, TextView>();
+  /** ソースファイル名。 */
+  Map<String, String> sourceFileNames = new HashMap<String,String>();
   /** ソースファイルを選択するためのボタン。 */
   List<Button> sourceSelectButtons = new ArrayList<Button>();
   /** ソースファイルを再読み込みするためのボタン。 */
   List<Button> sourceReloadButtons = new ArrayList<Button>();
-  /** ソースファイルのパス。 */
-  Map<String, TextView> sourceFileNameViews = new HashMap<String, TextView>();
 
   /** サンプルのソースファイルのパス。 */
   Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
+  /** サンプルソースファイル名。 */
+  Map<String, String> sampleSourceFileNames = new HashMap<String, String>();
+  
   /** サンプルのソースファイルを選択するためのボタン */
   List<Button> sampleSourceSelectButtons = new ArrayList<Button>();
 
@@ -103,9 +108,9 @@ public class ChooseModelFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.fragment_choose_model, container, false);
-
-    final Button backButton = (Button)view.findViewById(R.id.settingsBackButton);
+    View mainView = inflater.inflate(R.layout.fragment_choose_model, container, false);
+    
+    final Button backButton = (Button)mainView.findViewById(R.id.settingsBackButton);
     backButton.setOnClickListener(new OnClickListener() {
 
       /**
@@ -119,21 +124,21 @@ public class ChooseModelFragment extends Fragment {
 
     this.canvasActivity = (CanvasActivity)getActivity();
 
-    createModelComponent(view);
+    createModelComponent(mainView);
     if (this.modelFileName.equals("...") == false) { //$NON-NLS-1$
-      createSourceComponent();
+      createSourceComponent(mainView);
     }
     
-    createSampleModelComponent(view);
+    createSampleModelComponent(mainView);
     if (this.sampleModelFileName.equals("...") == false) { //$NON-NLS-1$
-      createSampleSourceComponent();
+      createSampleSourceComponent(mainView);
     }
 
-    return view;
+    return mainView;
   }
 
-  private void createModelComponent(final View mainView) {
-    final Button modelButton = (Button)mainView.findViewById(R.id.modelSelectButton);
+  private void createModelComponent(View view) {
+    final Button modelButton = (Button)view.findViewById(R.id.modelSelectButton);
     modelButton.setOnClickListener(new View.OnClickListener() {
 
       final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_MODEL_DATA_FILE;
@@ -146,16 +151,16 @@ public class ChooseModelFragment extends Fragment {
       }
     });
 
-    this.modelFileNameView = (TextView)mainView.findViewById(R.id.modelFileNameView);
+    this.modelFileNameView = (TextView)view.findViewById(R.id.modelFileNameView);
     this.modelFileNameView.setText(this.modelFileName);
     this.modelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
 
-  private void createSourceComponent() {
+  private void createSourceComponent(View view) {
     final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();
     final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
-    final LinearLayout sources = ((LinearLayout)getActivity().findViewById(R.id.layout_sources));
+    final LinearLayout sources =  (LinearLayout)view.findViewById(R.id.layout_sources);
     sources.removeAllViews();
     this.sourceSelectButtons.clear();
     this.sourceReloadButtons.clear();
@@ -169,7 +174,7 @@ public class ChooseModelFragment extends Fragment {
       selectButton.setText(getString(R.string.source) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sourceSelectButtons.add(selectButton);
 
-      selectButton.setEnabled(false);
+      //selectButton.setEnabled(false);
       selectButton.setOnClickListener(new View.OnClickListener() {
 
         final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_SOURCE_DATA_FILE;
@@ -183,12 +188,15 @@ public class ChooseModelFragment extends Fragment {
       });
 
       final TextView fileNameView = (TextView)source.findViewById(R.id.sourceFileNameView);
+      if (this.sourceFileNames.containsKey(id)) {
+        fileNameView.setText(this.sourceFileNames.get(id));
+      }
       this.sourceFileNameViews.put(id, fileNameView);
 
       final Button reloadButton = (Button)source.findViewById(R.id.sourceReloadButton);
       this.sourceReloadButtons.add(reloadButton);
 
-      reloadButton.setEnabled(false);
+      //reloadButton.setEnabled(false);
       reloadButton.setOnClickListener(new View.OnClickListener() {
 
         /**
@@ -204,8 +212,8 @@ public class ChooseModelFragment extends Fragment {
 
   }
 
-  private void createSampleModelComponent(final View mainView) {
-    final Button modelButton = (Button)mainView.findViewById(R.id.sampleModelSelectButton);
+  private void createSampleModelComponent(View view) {
+    final Button modelButton = (Button)view.findViewById(R.id.sampleModelSelectButton);
     modelButton.setOnClickListener(new OnClickListener() {
 
       /**
@@ -216,10 +224,12 @@ public class ChooseModelFragment extends Fragment {
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
 
-        if (ChooseModelFragment.this.sampleModelViewFragment == null) {
-          ChooseModelFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
+        if (ChooseModelFragment.this.sampleModelViewFragment != null) {
+          transaction.remove(ChooseModelFragment.this.sampleModelViewFragment);
+          ChooseModelFragment.this.sampleModelViewFragment = null;
         }
-
+        
+        ChooseModelFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
         ChooseModelFragment.this.sampleModelViewFragment.setActivity(ChooseModelFragment.this.canvasActivity);
         ChooseModelFragment.this.sampleModelViewFragment.setIsModelData(true);
         transaction.add(R.id.fragment_navigation_drawer, ChooseModelFragment.this.sampleModelViewFragment);
@@ -227,7 +237,7 @@ public class ChooseModelFragment extends Fragment {
       }
     });
 
-    this.sampleModelFileNameView = (TextView)mainView.findViewById(R.id.sampleModelFileNameView);
+    this.sampleModelFileNameView = (TextView)view.findViewById(R.id.sampleModelFileNameView);
     this.sampleModelFileNameView.setText(this.sampleModelFileName);
     this.sampleModelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
@@ -271,15 +281,22 @@ public class ChooseModelFragment extends Fragment {
     }
     return ids;
   }
+  
+  /**
+   * サンプルのソースを読み込むボタンを更新します。
+   */
+  public void updateSampleSourceComponent() {
+    createSampleSourceComponent(getView());
+  }
 
   /**
    * サンプルのソースを読み込むボタンを生成します。
    */
-  void createSampleSourceComponent() {
+  void createSampleSourceComponent(View view) {
     final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();
     final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
-    final LinearLayout sources = ((LinearLayout)getActivity().findViewById(R.id.layout_sample_sources));
+    final LinearLayout sources = (LinearLayout)view.findViewById(R.id.layout_sample_sources);
     sources.removeAllViews();
 
     this.sampleSourceSelectButtons.clear();
@@ -293,7 +310,7 @@ public class ChooseModelFragment extends Fragment {
       selectButton.setText(getString(R.string.source) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sampleSourceSelectButtons.add(selectButton);
 
-      selectButton.setEnabled(false);
+      //selectButton.setEnabled(false);
       selectButton.setOnClickListener(new OnClickListener() {
 
         /**
@@ -304,10 +321,12 @@ public class ChooseModelFragment extends Fragment {
           final FragmentTransaction transaction = manager.beginTransaction();
           transaction.addToBackStack(null);
 
-          if (ChooseModelFragment.this.sampleSourceViewFragment == null) {
-            ChooseModelFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
+          if (ChooseModelFragment.this.sampleSourceViewFragment != null) {
+            transaction.remove(ChooseModelFragment.this.sampleSourceViewFragment);
+            ChooseModelFragment.this.sampleSourceViewFragment = null;
           }
           
+          ChooseModelFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
           ChooseModelFragment.this.sampleSourceViewFragment.setActivity(ChooseModelFragment.this.canvasActivity);
           ChooseModelFragment.this.sampleSourceViewFragment.setSourceId(id);
           ChooseModelFragment.this.sampleSourceViewFragment.setIsModelData(false);
@@ -317,6 +336,9 @@ public class ChooseModelFragment extends Fragment {
       });
 
       final TextView sourceFileNameView = (TextView)source.findViewById(R.id.sampleSourceFileNameView);
+      if (this.sampleSourceFileNames.containsKey(id)) {
+        sourceFileNameView.setText(this.sampleSourceFileNames.get(id));
+      }
       this.sampleSourceFileNameViews.put(id, sourceFileNameView);
 
     }
@@ -360,6 +382,7 @@ public class ChooseModelFragment extends Fragment {
     final String[] parts = filePath.split("/"); //$NON-NLS-1$
     final String sourceFileName = parts[parts.length - 1];
     this.sampleSourceFileNameViews.get(sourceId).setText(sourceFileName);
+    this.sampleSourceFileNames.put(sourceId, sourceFileName);
   }
 
   /**
@@ -400,6 +423,7 @@ public class ChooseModelFragment extends Fragment {
     }
 
     this.sourceFileNameViews.get(sourceId).setText(sourceFileName);
+    this.sourceFileNames.put(sourceId, sourceFileName);
 
     this.canvasActivity.canvasFragment.loadSourceData(sourceStream, uri.getPath(), sourceId);
     // sourceStream has been already closed in the loadSourceData method. 
@@ -416,6 +440,8 @@ public class ChooseModelFragment extends Fragment {
     for (final TextView view : this.sampleSourceFileNameViews.values()) {
       view.setText(sampleSourceFileName);
     }
+    
+    this.sampleSourceFileNames.clear();
   }
 
   /**
@@ -458,6 +484,7 @@ public class ChooseModelFragment extends Fragment {
     for (final TextView view : this.sourceFileNameViews.values()) {
       view.setText(sourceFileName);
     }
+    this.sourceFileNames.clear();
 
     try {
       this.canvasActivity.canvasFragment.loadModelData(modelStream);
@@ -467,7 +494,7 @@ public class ChooseModelFragment extends Fragment {
         this.canvasActivity.canvasFragment.sourceData.clear();
       }
 
-      createSourceComponent();
+      createSourceComponent(getView());
       
       setButtonEnabled(true);
 
