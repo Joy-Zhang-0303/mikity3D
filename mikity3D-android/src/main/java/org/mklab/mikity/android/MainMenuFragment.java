@@ -13,13 +13,11 @@ import org.mklab.mikity.android.mainmenu.adapter.MainMenuDrawerListAdapter;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 
 /**
  * メインメニューを表すフラグメントです。
@@ -28,15 +26,7 @@ import android.widget.ListView;
  * @version $Revision$, 2015/03/26
  */
 public class MainMenuFragment extends Fragment {
-
-  private DrawerLayout mDrawerLayout;
   private ListView mainMenuList;
-
-  /** nav drawer title */
-  //private CharSequence mDrawerTitle;
-
-  /** used to store app title */
-  //private CharSequence mTitle;
 
   /** slide menu items */
   private String[] mainMenuTitles;
@@ -75,7 +65,7 @@ public class MainMenuFragment extends Fragment {
     this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[3], mainMenuIcons.getResourceId(3, -1)));
     this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[4], mainMenuIcons.getResourceId(4, -1)));
     this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[5], mainMenuIcons.getResourceId(5, -1)));
-    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[6], mainMenuIcons.getResourceId(6, -1)));
+    //this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[6], mainMenuIcons.getResourceId(6, -1)));
 
     mainMenuIcons.recycle();
 
@@ -111,9 +101,9 @@ public class MainMenuFragment extends Fragment {
       case 3:
         this.canvasActivity.createSettingsFragment();
         break;
-      case 6:
-        this.canvasActivity.createNavigationDrawerFragment();
-        break;
+//      case 6:
+//        this.canvasActivity.createNavigationDrawerFragment();
+//        break;
       default:
         break;
     }

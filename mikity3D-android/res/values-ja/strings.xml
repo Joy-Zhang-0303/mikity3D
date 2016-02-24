@@ -112,7 +112,6 @@
         <item>設定</item>
         <item>アプリについて</item>
         <item>ヘルプ</item>
-        <item>ナビゲーションドロワー</item>
     </string-array>
 
     <!-- MainMenu Drawer List Item Icons -->
@@ -124,7 +123,6 @@
         <item>@drawable/ic_settings_black_24dp</item>
         <item>@drawable/ic_android_black</item>
         <item>@drawable/ic_help_black_24dp</item>
-        <item>@drawable/icon2</item>
     </array>
 
     <!-- Settings Drawer Menu Items -->
