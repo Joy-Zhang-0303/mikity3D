@@ -1,6 +1,6 @@
 package org.mklab.mikity.android.mainmenu.adapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.android.mainmenu.MainMenuDrawerItem;
@@ -15,13 +15,13 @@ import android.widget.TextView;
 
 
 /**
- * @author 
+ * @author hirae 
  * @version $Revision$, 2016/02/01
  */
 public class MainMenuDrawerListAdapter extends BaseAdapter {
 
   private Context context;
-  private ArrayList<MainMenuDrawerItem> items;
+  private List<MainMenuDrawerItem> items;
 
   /**
    * 新しく生成された<code>NavDrawerListAdapter</code>オブジェクトを初期化します。
@@ -29,7 +29,7 @@ public class MainMenuDrawerListAdapter extends BaseAdapter {
    * @param context コンテキスト
    * @param items 項目
    */
-  public MainMenuDrawerListAdapter(Context context, ArrayList<MainMenuDrawerItem> items) {
+  public MainMenuDrawerListAdapter(Context context, List<MainMenuDrawerItem> items) {
     this.context = context;
     this.items = items;
   }
@@ -64,9 +64,9 @@ public class MainMenuDrawerListAdapter extends BaseAdapter {
       convertView = mInflater.inflate(R.layout.drawer_list_item, null);
     }
 
-    ImageView icon = (ImageView)convertView.findViewById(R.id.navicon);
-    TextView title = (TextView)convertView.findViewById(R.id.title);
-    TextView counter = (TextView)convertView.findViewById(R.id.counter);
+    final ImageView icon = (ImageView)convertView.findViewById(R.id.navicon);
+    final TextView title = (TextView)convertView.findViewById(R.id.title);
+    final TextView counter = (TextView)convertView.findViewById(R.id.counter);
 
     icon.setImageResource(this.items.get(position).getIcon());
     title.setText(this.items.get(position).getTitle());

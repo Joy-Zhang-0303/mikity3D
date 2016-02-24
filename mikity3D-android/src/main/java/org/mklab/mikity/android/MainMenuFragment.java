@@ -6,6 +6,7 @@
 package org.mklab.mikity.android;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mklab.mikity.android.mainmenu.MainMenuDrawerItem;
 import org.mklab.mikity.android.mainmenu.adapter.MainMenuDrawerListAdapter;
@@ -26,15 +27,7 @@ import android.widget.ListView;
  * @version $Revision$, 2015/03/26
  */
 public class MainMenuFragment extends Fragment {
-  private ListView mainMenuList;
-
-  /** slide menu items */
-  private String[] mainMenuTitles;
-
-  private ArrayList<MainMenuDrawerItem> mainMenuItems;
-  private MainMenuDrawerListAdapter adapter;
-
-  CanvasActivity canvasActivity;
+  private CanvasActivity canvasActivity;
 
   /**
    * アクティビティを設定します。
@@ -52,26 +45,25 @@ public class MainMenuFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
-    this.mainMenuTitles = getResources().getStringArray(R.array.main_menu_drawer_items);
+    final String[] mainMenuTitles = getResources().getStringArray(R.array.main_menu_drawer_items);
 
     final TypedArray mainMenuIcons = getResources().obtainTypedArray(R.array.main_menu_drawer_icons);
 
-    this.mainMenuList = (ListView)view.findViewById(R.id.list_main_menu);
+    final ListView mainMenuList = (ListView)view.findViewById(R.id.list_main_menu);
 
-    this.mainMenuItems = new ArrayList<MainMenuDrawerItem>();
-    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[0], mainMenuIcons.getResourceId(0, -1)));
-    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[1], mainMenuIcons.getResourceId(1, -1)));
-    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[2], mainMenuIcons.getResourceId(2, -1)));
-    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[3], mainMenuIcons.getResourceId(3, -1)));
-    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[4], mainMenuIcons.getResourceId(4, -1)));
-    this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[5], mainMenuIcons.getResourceId(5, -1)));
-    //this.mainMenuItems.add(new MainMenuDrawerItem(this.mainMenuTitles[6], mainMenuIcons.getResourceId(6, -1)));
+    final List<MainMenuDrawerItem> mainMenuItems = new ArrayList<MainMenuDrawerItem>();
+    mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[0], mainMenuIcons.getResourceId(0, -1)));
+    mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[1], mainMenuIcons.getResourceId(1, -1)));
+    mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[2], mainMenuIcons.getResourceId(2, -1)));
+    mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[3], mainMenuIcons.getResourceId(3, -1)));
+    mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[4], mainMenuIcons.getResourceId(4, -1)));
+    mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[5], mainMenuIcons.getResourceId(5, -1)));
 
     mainMenuIcons.recycle();
 
-    this.adapter = new MainMenuDrawerListAdapter(getActivity().getApplicationContext(), this.mainMenuItems);
-    this.mainMenuList.setAdapter(this.adapter);
-    this.mainMenuList.setOnItemClickListener(new SlideMenuClickListener());
+    final MainMenuDrawerListAdapter adapter = new MainMenuDrawerListAdapter(getActivity().getApplicationContext(), mainMenuItems);
+    mainMenuList.setAdapter(adapter);
+    mainMenuList.setOnItemClickListener(new SlideMenuClickListener());
 
     return view;
   }
@@ -80,7 +72,9 @@ public class MainMenuFragment extends Fragment {
    * Slide menu item click listener
    */
   class SlideMenuClickListener implements ListView.OnItemClickListener {
-
+    /**
+     * {@inheritDoc}
+     */
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
       displayView(position);
     }
@@ -91,7 +85,6 @@ public class MainMenuFragment extends Fragment {
    */
   void displayView(int position) {
     switch (position) {
-
       case 1:
         this.canvasActivity.createChooseModelFragment();
         break;
@@ -101,9 +94,6 @@ public class MainMenuFragment extends Fragment {
       case 3:
         this.canvasActivity.createSettingsFragment();
         break;
-//      case 6:
-//        this.canvasActivity.createNavigationDrawerFragment();
-//        break;
       default:
         break;
     }
