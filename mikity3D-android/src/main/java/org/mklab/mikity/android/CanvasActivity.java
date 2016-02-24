@@ -46,9 +46,6 @@ public class CanvasActivity extends AppCompatActivity {
   /** CanvasFragment */
   CanvasFragment canvasFragment;
 
-//  /** NavigationDrawerFragment */
-//  NavigationDrawerFragment ndFragment;
-
   /** NavigationDrawerFragment */
   SettingsFragment settingsFragment;
 
@@ -122,24 +119,6 @@ public class CanvasActivity extends AppCompatActivity {
     transaction.add(R.id.fragment_navigation_drawer, this.mainMenuFragment);
     transaction.commit();
   }
-
-//  /**
-//   * NavigationDrawerFragmentを生成します。
-//   */
-//  void createNavigationDrawerFragment() {
-//    final FragmentManager manager = getSupportFragmentManager();
-//    final FragmentTransaction transaction = manager.beginTransaction();
-//    transaction.addToBackStack(null);
-//
-//    if (this.ndFragment != null) {
-//      transaction.remove(this.mainMenuFragment);
-//      this.ndFragment = null;
-//    }
-//
-//    this.ndFragment = new NavigationDrawerFragment();
-//    transaction.add(R.id.fragment_navigation_drawer, this.ndFragment);
-//    transaction.commit();
-//  }
 
   /**
    * CanvasFragmentを生成します。
