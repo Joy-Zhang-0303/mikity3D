@@ -174,7 +174,6 @@ public class ChooseModelFragment extends Fragment {
       selectButton.setText(getString(R.string.source) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sourceSelectButtons.add(selectButton);
 
-      //selectButton.setEnabled(false);
       selectButton.setOnClickListener(new View.OnClickListener() {
 
         final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_SOURCE_DATA_FILE;
@@ -196,7 +195,6 @@ public class ChooseModelFragment extends Fragment {
       final Button reloadButton = (Button)source.findViewById(R.id.sourceReloadButton);
       this.sourceReloadButtons.add(reloadButton);
 
-      //reloadButton.setEnabled(false);
       reloadButton.setOnClickListener(new View.OnClickListener() {
 
         /**
@@ -310,7 +308,6 @@ public class ChooseModelFragment extends Fragment {
       selectButton.setText(getString(R.string.source) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sampleSourceSelectButtons.add(selectButton);
 
-      //selectButton.setEnabled(false);
       selectButton.setOnClickListener(new OnClickListener() {
 
         /**
