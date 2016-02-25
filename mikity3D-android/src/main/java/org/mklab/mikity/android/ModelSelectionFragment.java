@@ -65,7 +65,7 @@ public class ModelSelectionFragment extends Fragment {
     // nothing to do
   }
 
-  MainActivity canvasActivity;
+  MainActivity mainActivity;
 
   /** モデルファイル名。 */
   String modelFileName = "..."; //$NON-NLS-1$
@@ -122,7 +122,7 @@ public class ModelSelectionFragment extends Fragment {
       }
     });
 
-    this.canvasActivity = (MainActivity)getActivity();
+    this.mainActivity = (MainActivity)getActivity();
 
     createModelComponent(mainView);
     if (this.modelFileName.equals("...") == false) { //$NON-NLS-1$
@@ -147,7 +147,7 @@ public class ModelSelectionFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        ModelSelectionFragment.this.canvasActivity.sendFileChooseIntentForModel(this.REQUEST_CODE);
+        ModelSelectionFragment.this.mainActivity.sendFileChooseIntentForModel(this.REQUEST_CODE);
       }
     });
 
@@ -157,7 +157,7 @@ public class ModelSelectionFragment extends Fragment {
   }
 
   private void createSourceComponent(View view) {
-    final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();
+    final List<GroupModel> rootGroups = this.mainActivity.canvasFragment.root.getScene(0).getGroups();
     final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
     final LinearLayout sources =  (LinearLayout)view.findViewById(R.id.layout_sources);
@@ -182,7 +182,7 @@ public class ModelSelectionFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          ModelSelectionFragment.this.canvasActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, id);
+          ModelSelectionFragment.this.mainActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, id);
         }
       });
 
@@ -201,8 +201,8 @@ public class ModelSelectionFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          if (ModelSelectionFragment.this.canvasActivity.canvasFragment.sourceData.containsKey(id)) {
-            ModelSelectionFragment.this.canvasActivity.canvasFragment.addSource(id);
+          if (ModelSelectionFragment.this.mainActivity.canvasFragment.sourceData.containsKey(id)) {
+            ModelSelectionFragment.this.mainActivity.canvasFragment.addSource(id);
           }
         }
       });
@@ -228,7 +228,7 @@ public class ModelSelectionFragment extends Fragment {
         }
         
         ModelSelectionFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
-        ModelSelectionFragment.this.sampleModelViewFragment.setActivity(ModelSelectionFragment.this.canvasActivity);
+        ModelSelectionFragment.this.sampleModelViewFragment.setActivity(ModelSelectionFragment.this.mainActivity);
         ModelSelectionFragment.this.sampleModelViewFragment.setIsModelData(true);
         transaction.add(R.id.fragment_navigation_drawer, ModelSelectionFragment.this.sampleModelViewFragment);
         transaction.commit();
@@ -291,7 +291,7 @@ public class ModelSelectionFragment extends Fragment {
    * サンプルのソースを読み込むボタンを生成します。
    */
   void createSampleSourceComponent(View view) {
-    final List<GroupModel> rootGroups = this.canvasActivity.canvasFragment.root.getScene(0).getGroups();
+    final List<GroupModel> rootGroups = this.mainActivity.canvasFragment.root.getScene(0).getGroups();
     final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
     final LinearLayout sources = (LinearLayout)view.findViewById(R.id.layout_sample_sources);
@@ -324,7 +324,7 @@ public class ModelSelectionFragment extends Fragment {
           }
           
           ModelSelectionFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
-          ModelSelectionFragment.this.sampleSourceViewFragment.setActivity(ModelSelectionFragment.this.canvasActivity);
+          ModelSelectionFragment.this.sampleSourceViewFragment.setActivity(ModelSelectionFragment.this.mainActivity);
           ModelSelectionFragment.this.sampleSourceViewFragment.setSourceId(id);
           ModelSelectionFragment.this.sampleSourceViewFragment.setIsModelData(false);
           transaction.add(R.id.fragment_navigation_drawer, ModelSelectionFragment.this.sampleSourceViewFragment);
@@ -347,7 +347,7 @@ public class ModelSelectionFragment extends Fragment {
    * @return result GroupManager
    */
   GroupManager getGroupManager() {
-    final Mikity3DModel root = this.canvasActivity.canvasFragment.root;
+    final Mikity3DModel root = this.mainActivity.canvasFragment.root;
     final SceneModel model = root.getScene(0);
     final List<GroupModel> groupArray = model.getGroups();
     final GroupModel group = groupArray.get(0);
@@ -374,7 +374,7 @@ public class ModelSelectionFragment extends Fragment {
    * @param sourceId ソースID
    */
   public void loadSampleSourceData(final InputStream input, final String filePath, String sourceId) {
-    this.canvasActivity.canvasFragment.loadSourceData(input, filePath, sourceId);
+    this.mainActivity.canvasFragment.loadSourceData(input, filePath, sourceId);
 
     final String[] parts = filePath.split("/"); //$NON-NLS-1$
     final String sourceFileName = parts[parts.length - 1];
@@ -399,11 +399,11 @@ public class ModelSelectionFragment extends Fragment {
     if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        sourceStream = this.canvasActivity.getContentResolver().openInputStream(uri);
+        sourceStream = this.mainActivity.getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      final Cursor cursor2 = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
+      final Cursor cursor2 = this.mainActivity.getContentResolver().query(uri, null, null, null, null);
       cursor2.moveToFirst();
       sourceFileName = cursor2.getString(cursor2.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       cursor2.close();
@@ -422,12 +422,12 @@ public class ModelSelectionFragment extends Fragment {
     this.sourceFileNameViews.get(sourceId).setText(sourceFileName);
     this.sourceFileNames.put(sourceId, sourceFileName);
 
-    this.canvasActivity.canvasFragment.loadSourceData(sourceStream, uri.getPath(), sourceId);
+    this.mainActivity.canvasFragment.loadSourceData(sourceStream, uri.getPath(), sourceId);
     // sourceStream has been already closed in the loadSourceData method. 
   }
 
   void loadSampleModelData(InputStream modelStream, String modelFilePath) throws Mikity3dSerializeDeserializeException {
-    this.canvasActivity.canvasFragment.loadModelData(modelStream);
+    this.mainActivity.canvasFragment.loadModelData(modelStream);
 
     final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
     this.sampleModelFileName = parts[parts.length - 1];
@@ -456,11 +456,11 @@ public class ModelSelectionFragment extends Fragment {
     if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        modelStream = this.canvasActivity.getContentResolver().openInputStream(uri);
+        modelStream = this.mainActivity.getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      final Cursor cursor = this.canvasActivity.getContentResolver().query(uri, null, null, null, null);
+      final Cursor cursor = this.mainActivity.getContentResolver().query(uri, null, null, null, null);
       cursor.moveToFirst();
       this.modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       cursor.close();
@@ -484,11 +484,11 @@ public class ModelSelectionFragment extends Fragment {
     this.sourceFileNames.clear();
 
     try {
-      this.canvasActivity.canvasFragment.loadModelData(modelStream);
+      this.mainActivity.canvasFragment.loadModelData(modelStream);
       modelStream.close();
 
-      if (this.canvasActivity.canvasFragment.sourceData.size() != 0) {
-        this.canvasActivity.canvasFragment.sourceData.clear();
+      if (this.mainActivity.canvasFragment.sourceData.size() != 0) {
+        this.mainActivity.canvasFragment.sourceData.clear();
       }
 
       createSourceComponent(getView());
@@ -511,7 +511,7 @@ public class ModelSelectionFragment extends Fragment {
   void showAlertMessageInDialog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
     dialog.setMessage(message);
-    dialog.show(this.canvasActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
+    dialog.show(this.mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**
@@ -541,7 +541,7 @@ public class ModelSelectionFragment extends Fragment {
    * @param number 設定する番号
    */
   void changeSourceNumber(List<Integer> targetNumbers, int childPosition, int number) {
-    final SceneModel scene = this.canvasActivity.canvasFragment.root.getScene(0);
+    final SceneModel scene = this.mainActivity.canvasFragment.root.getScene(0);
     final List<GroupModel> topGroups = scene.getGroups();
     GroupModel group = topGroups.get(0);
 
@@ -550,8 +550,8 @@ public class ModelSelectionFragment extends Fragment {
     }
 
     group.getAnimations()[childPosition].getSource().setNumber(number);
-    this.canvasActivity.canvasFragment.prepareObjectGroupManager();
-    this.canvasActivity.canvasFragment.prepareRenderer();
+    this.mainActivity.canvasFragment.prepareObjectGroupManager();
+    this.mainActivity.canvasFragment.prepareRenderer();
   }
 
   /**
@@ -564,7 +564,7 @@ public class ModelSelectionFragment extends Fragment {
 
     // ストリームを直接URIから取り出します。
     try {
-      final InputStream zipFile = this.canvasActivity.getContentResolver().openInputStream(inputURL);
+      final InputStream zipFile = this.mainActivity.getContentResolver().openInputStream(inputURL);
       final ZipInputStream zipInput = new ZipInputStream(new BufferedInputStream(zipFile));
 
       ZipEntry zipEntry;

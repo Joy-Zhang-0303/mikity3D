@@ -36,7 +36,7 @@ import android.widget.ListView;
  */
 public class AssetsListViewFragment extends Fragment {
   static String currentPath = "sample"; //$NON-NLS-1$
-  MainActivity canvasActivity;
+  MainActivity mainActivity;
   AssetManager assetManager;
   boolean isModel;
   String sourceId;
@@ -56,7 +56,7 @@ public class AssetsListViewFragment extends Fragment {
     final String selectedItem = AssetsListViewFragment.currentPath;
     final String[] selectedFiles = getSelectedFiles(selectedItem);
     
-    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.canvasActivity, R.layout.source_item, selectedFiles);
+    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.mainActivity, R.layout.source_item, selectedFiles);
     listView.setAdapter(adapter);
 
     // リスト項目がクリックされた時の処理
@@ -79,7 +79,7 @@ public class AssetsListViewFragment extends Fragment {
 
         if (selectedFiles.length > 1) {
           AssetsListViewFragment.currentPath = selectedItem;
-          ArrayAdapter<String> adapter = new ArrayAdapter<String>(AssetsListViewFragment.this.canvasActivity, R.layout.source_item, selectedFiles);
+          ArrayAdapter<String> adapter = new ArrayAdapter<String>(AssetsListViewFragment.this.mainActivity, R.layout.source_item, selectedFiles);
           listView.setAdapter(adapter);
           return;
         }
@@ -91,19 +91,19 @@ public class AssetsListViewFragment extends Fragment {
           final InputStream input = AssetsListViewFragment.this.assetManager.open(selectedFile);
           
           if (AssetsListViewFragment.this.isModel) {
-            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.loadSampleModelData(input, selectedFile);
+            AssetsListViewFragment.this.mainActivity.chooseModelFragment.loadSampleModelData(input, selectedFile);
             
-            if (AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.size() != 0) {
-              AssetsListViewFragment.this.canvasActivity.canvasFragment.sourceData.clear();
+            if (AssetsListViewFragment.this.mainActivity.canvasFragment.sourceData.size() != 0) {
+              AssetsListViewFragment.this.mainActivity.canvasFragment.sourceData.clear();
             }
             
-            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.isSelectedModelFile = true;
+            AssetsListViewFragment.this.mainActivity.chooseModelFragment.isSelectedModelFile = true;
             
-            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.updateSampleSourceComponent();
+            AssetsListViewFragment.this.mainActivity.chooseModelFragment.updateSampleSourceComponent();
             
-            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.setButtonEnabled(true);
+            AssetsListViewFragment.this.mainActivity.chooseModelFragment.setButtonEnabled(true);
           } else {
-            AssetsListViewFragment.this.canvasActivity.chooseModelFragment.loadSampleSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
+            AssetsListViewFragment.this.mainActivity.chooseModelFragment.loadSampleSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
           }
           
           getActivity().getSupportFragmentManager().popBackStack();
@@ -142,7 +142,7 @@ public class AssetsListViewFragment extends Fragment {
   void showAlertMessageInDailog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
     dialog.setMessage(message);
-    dialog.show(this.canvasActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
+    dialog.show(this.mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**
@@ -207,7 +207,7 @@ public class AssetsListViewFragment extends Fragment {
       final OutputStream output = new FileOutputStream(file);
       final byte[] buffer = new byte[1024];
       int length = 0;
-      final InputStream input = this.canvasActivity.getAssets().open(parentPath + File.separator + filePath);
+      final InputStream input = this.mainActivity.getAssets().open(parentPath + File.separator + filePath);
       while ((length = input.read(buffer)) >= 0) {
         output.write(buffer, 0, length);
       }
@@ -224,7 +224,7 @@ public class AssetsListViewFragment extends Fragment {
    * @param activity アクティビティ
    */
   public void setActivity(MainActivity activity) {
-    this.canvasActivity = activity;
+    this.mainActivity = activity;
   }
 
   /**

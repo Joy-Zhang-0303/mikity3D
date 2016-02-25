@@ -27,7 +27,7 @@ import android.widget.ListView;
  * @version $Revision$, 2015/03/26
  */
 public class MainMenuFragment extends Fragment {
-  private MainActivity canvasActivity;
+  private MainActivity mainActivity;
 
   /**
    * アクティビティを設定します。
@@ -35,7 +35,7 @@ public class MainMenuFragment extends Fragment {
    * @param activity アクティビティ
    */
   public void setActivity(MainActivity activity) {
-    this.canvasActivity = activity;
+    this.mainActivity = activity;
   }
 
   /**
@@ -86,13 +86,13 @@ public class MainMenuFragment extends Fragment {
   void displayView(int position) {
     switch (position) {
       case 1:
-        this.canvasActivity.createChooseModelFragment();
+        this.mainActivity.createChooseModelFragment();
         break;
       case 2:
-        this.canvasActivity.createSceneGraphTreeFragment();
+        this.mainActivity.createSceneGraphTreeFragment();
         break;
       case 3:
-        this.canvasActivity.createSettingsFragment();
+        this.mainActivity.createSettingsFragment();
         break;
       default:
         break;
