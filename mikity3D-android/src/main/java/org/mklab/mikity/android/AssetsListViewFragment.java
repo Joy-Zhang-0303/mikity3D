@@ -91,19 +91,19 @@ public class AssetsListViewFragment extends Fragment {
           final InputStream input = AssetsListViewFragment.this.assetManager.open(selectedFile);
           
           if (AssetsListViewFragment.this.isModel) {
-            AssetsListViewFragment.this.mainActivity.chooseModelFragment.loadSampleModelData(input, selectedFile);
+            AssetsListViewFragment.this.mainActivity.modelSelectionFragment.loadSampleModelData(input, selectedFile);
             
-            if (AssetsListViewFragment.this.mainActivity.canvasFragment.sourceData.size() != 0) {
-              AssetsListViewFragment.this.mainActivity.canvasFragment.sourceData.clear();
-            }
-            
-            AssetsListViewFragment.this.mainActivity.chooseModelFragment.isSelectedModelFile = true;
-            
-            AssetsListViewFragment.this.mainActivity.chooseModelFragment.updateSampleSourceComponent();
-            
-            AssetsListViewFragment.this.mainActivity.chooseModelFragment.setButtonEnabled(true);
+//            if (AssetsListViewFragment.this.mainActivity.canvasFragment.sourceData.size() != 0) {
+//              AssetsListViewFragment.this.mainActivity.canvasFragment.sourceData.clear();
+//            }
+//            
+//            AssetsListViewFragment.this.mainActivity.modelSelectionFragment.isSelectedModelFile = true;
+//            
+//            AssetsListViewFragment.this.mainActivity.modelSelectionFragment.updateSampleSourceComponent();
+//            
+//            AssetsListViewFragment.this.mainActivity.modelSelectionFragment.setButtonEnabled(true);
           } else {
-            AssetsListViewFragment.this.mainActivity.chooseModelFragment.loadSampleSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
+            AssetsListViewFragment.this.mainActivity.modelSelectionFragment.loadSampleSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
           }
           
           getActivity().getSupportFragmentManager().popBackStack();

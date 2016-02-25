@@ -439,6 +439,13 @@ public class ModelSelectionFragment extends Fragment {
     }
     
     this.sampleSourceFileNames.clear();
+    
+    if (this.mainActivity.canvasFragment.sourceData.size() != 0) {
+      this.mainActivity.canvasFragment.sourceData.clear();
+    }
+    this.isSelectedModelFile = true;
+    updateSampleSourceComponent();
+    setButtonEnabled(true);
   }
 
   /**

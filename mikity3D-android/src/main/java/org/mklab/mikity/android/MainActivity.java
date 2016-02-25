@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
   MainMenuFragment mainMenuFragment;
 
   /** ChooseModelFragment */
-  ModelSelectionFragment chooseModelFragment;
+  ModelSelectionFragment modelSelectionFragment;
 
   /** SceneGraphTreeFragment */
   SceneGraphTree sceneGraphTreeFragment;
@@ -146,11 +146,11 @@ public class MainActivity extends AppCompatActivity {
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    if (this.chooseModelFragment == null) {
-      this.chooseModelFragment = new ModelSelectionFragment();
+    if (this.modelSelectionFragment == null) {
+      this.modelSelectionFragment = new ModelSelectionFragment();
     }
 
-    transaction.replace(R.id.fragment_navigation_drawer, this.chooseModelFragment);
+    transaction.replace(R.id.fragment_navigation_drawer, this.modelSelectionFragment);
     transaction.commit();
   }
 
@@ -347,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
       case 3:
         if (resultCode == RESULT_OK && data != null) {
           final Uri uri = data.getData();
-          this.chooseModelFragment.unzipFile(uri);
+          this.modelSelectionFragment.unzipFile(uri);
         }
         break;
       default:
@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
    * @param sourceId ソース
    */
   private void loadSourceData(Uri path, String sourceId) {
-    this.chooseModelFragment.loadSourceData(path,sourceId);
+    this.modelSelectionFragment.loadSourceData(path,sourceId);
   }
 
   /**
@@ -371,7 +371,7 @@ public class MainActivity extends AppCompatActivity {
    * @param path モデルデータのパス
    */
   private void loadModelData(Uri path) {
-    this.chooseModelFragment.loadModelData(path);
+    this.modelSelectionFragment.loadModelData(path);
     this.canvasFragment.objectRenderer.updateDisplay();
   }
 
