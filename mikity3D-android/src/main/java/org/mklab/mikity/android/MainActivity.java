@@ -36,6 +36,7 @@ import android.widget.LinearLayout;
  * @version $Revision$, 2015/01/16
  */
 public class MainActivity extends AppCompatActivity {
+
   final static int REQUEST_CODE_PICK_MODEL_DATA_FILE = 0;
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
 
@@ -61,8 +62,9 @@ public class MainActivity extends AppCompatActivity {
   private boolean isStopButtonPushable;
 
   SensorService sensorService;
-  
-  String sourceId;
+
+  /** ソースID。 */
+  private String sourceId;
 
   /**
    * {@inheritDoc}
@@ -123,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
    * CanvasFragmentを生成します。
    */
   private void createCanvasFragment() {
-
     final FragmentManager manager = getSupportFragmentManager();
 
     if (manager.findFragmentById(R.id.fragment_canvas) != null) {
@@ -177,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
     if (this.canvasFragment.root == null) {
       return;
     }
-    
+
     final FragmentManager manager = getSupportFragmentManager();
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
@@ -344,12 +345,6 @@ public class MainActivity extends AppCompatActivity {
           loadSourceData(uri, this.sourceId);
         }
         break;
-//      case 3:
-//        if (resultCode == RESULT_OK && data != null) {
-//          final Uri uri = data.getData();
-//          this.modelSelectionFragment.unzipFile(uri);
-//        }
-//        break;
       default:
         break;
     }
@@ -359,10 +354,10 @@ public class MainActivity extends AppCompatActivity {
    * 時間データを読み込みます。
    * 
    * @param path 時間データのパス
-   * @param sourceId ソース
+   * @param localSourceId ソース
    */
-  private void loadSourceData(Uri path, String sourceId) {
-    this.modelSelectionFragment.loadSourceData(path,sourceId);
+  private void loadSourceData(Uri path, String localSourceId) {
+    this.modelSelectionFragment.loadSourceData(path, localSourceId);
   }
 
   /**
@@ -423,7 +418,7 @@ public class MainActivity extends AppCompatActivity {
     intent.setType("*/*"); //$NON-NLS-1$
     startActivityForResult(intent, requestCode);
   }
-  
+
   /**
    * ファイルエクスプローラーにソースデータのためのインテントを発行します。
    * 

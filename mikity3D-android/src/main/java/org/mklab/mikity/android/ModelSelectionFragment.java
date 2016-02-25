@@ -560,34 +560,4 @@ public class ModelSelectionFragment extends Fragment {
     this.mainActivity.canvasFragment.prepareObjectGroupManager();
     this.mainActivity.canvasFragment.prepareRenderer();
   }
-
-//  /**
-//   * @param inputURL URL
-//   */
-//  void unzipFile(Uri inputURL) {
-//    if (inputURL == null) {
-//      return;
-//    }
-//
-//    // ストリームを直接URIから取り出します。
-//    try {
-//      final InputStream zipFile = this.mainActivity.getContentResolver().openInputStream(inputURL);
-//      final ZipInputStream zipInput = new ZipInputStream(new BufferedInputStream(zipFile));
-//
-//      ZipEntry zipEntry;
-//      while ((zipEntry = zipInput.getNextEntry()) != null) {
-//        final BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("/sdcard/mikity3d" + zipEntry.getName())); //$NON-NLS-1$
-//        int data;
-//        while ((data = zipInput.read()) != -1) {
-//          out.write(data);
-//        }
-//        out.close();
-//      }
-//      zipInput.close();
-//    } catch (FileNotFoundException e) {
-//      throw new RuntimeException(e);
-//    } catch (IOException e) {
-//      throw new RuntimeException(e);
-//    }
-//  }
 }
