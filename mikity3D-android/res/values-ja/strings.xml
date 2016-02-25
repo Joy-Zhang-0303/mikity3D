@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <string name="aboutMikity3D">Mikity3Dについて</string>
     <string name="accelerometerButton">加速度センサボタン</string>
     <string name="accelerometerTextView">加速度センサ</string>
     <string name="addBox">直方体を追加</string>
@@ -35,6 +36,7 @@
     <string name="delete_all_objects_in_the_group_q">グループ全体を削除しますか？</string>
     <string name="depth">奥行</string>
     <string name="division">分割数</string>
+    <string name="desc_list_item_icon">項目アイコン</string>
     <string name="edit">編集</string>
     <string name="editModel">モデル編集</string>
     <string name="fileName">...</string>
@@ -43,6 +45,7 @@
     <string name="group">グループ</string>
     <string name="groupName">グループ名</string>
     <string name="height">高さ</string>
+    <string name="help">ヘルプ</string>
     <string name="settings">設定</string>
     <string name="minusButton">&lt;&lt;</string>
     <string name="model">モデルを選択</string>
@@ -50,6 +53,7 @@
     <string name="name">名前</string>
     <string name="no">いいえ</string>
     <string name="now_loading_">読み込み中...</string>
+    <string name="newModel">新規モデル</string>
     <string name="number">番号</string>
     <string name="objectType">オブジェクト型</string>
     <string name="open">開く</string>
@@ -75,7 +79,8 @@
     <string name="rotation_wrt_y_axis">Y軸周り回転</string>
     <string name="rotation_wrt_z_axis">Z軸周り回転</string>
     <string name="sample">サンプル</string>
-    <string name="samplemodel">サンプルモデルを選択</string>
+    <string name="selectModel">モデル選択</string>
+    <string name="sampleModel">サンプルモデルを選択</string>
     <string name="save">保存</string>
     <string name="size_of_facets">三角形の数</string>
     <string name="source">ソースデータ</string>
@@ -103,38 +108,5 @@
     <string name="vertex_4_z">頂点4 Z座標</string>
     <string name="width">幅</string>
     <string name="yes">はい</string>
-
-    <!-- MainMenu Drawer Menu Items -->
-    <string-array name="main_menu_drawer_items">
-        <item>新規モデル作成</item>
-        <item>モデル選択</item>
-        <item>モデル編集</item>
-        <item>設定</item>
-        <item>アプリについて</item>
-        <item>ヘルプ</item>
-    </string-array>
-
-    <!-- MainMenu Drawer List Item Icons -->
-    <!-- keep them in order as the titles are in -->
-    <array name="main_menu_drawer_icons">
-        <item>@drawable/ic_add_circle_black_24dp</item>
-        <item>@drawable/ic_attach_file_black_24dp</item>
-        <item>@drawable/ic_edit_black_24dp</item>
-        <item>@drawable/ic_settings_black_24dp</item>
-        <item>@drawable/ic_android_black</item>
-        <item>@drawable/ic_help_black_24dp</item>
-    </array>
-
-    <!-- Settings Drawer Menu Items -->
-    <string-array name="settings_drawer_items">
-        <item>傾きセンサ</item>
-        <item>加速度センサ</item>
-        <item>回転防止ロック</item>
-        <item>グリッド表示</item>
-        <item>座標軸表示</item>
-    </string-array>
-
-    <!-- Content Description -->
-    <string name="desc_list_item_icon">Item Icon</string>
 
 </resources>
