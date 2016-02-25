@@ -39,7 +39,7 @@ public class SettingsFragment extends Fragment {
     // nothing to do
   }
 
-  CanvasActivity canvasActivity;
+  MainActivity canvasActivity;
 
   /** アニメーション用タスク。 */
   AnimationTask animationTask;
@@ -82,7 +82,7 @@ public class SettingsFragment extends Fragment {
       }
     });
 
-    this.canvasActivity = (CanvasActivity)getActivity();
+    this.canvasActivity = (MainActivity)getActivity();
 
     createAnimationSpeedComponent(view);
 

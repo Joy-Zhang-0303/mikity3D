@@ -36,7 +36,7 @@ import android.widget.ListView;
  */
 public class AssetsListViewFragment extends Fragment {
   static String currentPath = "sample"; //$NON-NLS-1$
-  CanvasActivity canvasActivity;
+  MainActivity canvasActivity;
   AssetManager assetManager;
   boolean isModel;
   String sourceId;
@@ -223,7 +223,7 @@ public class AssetsListViewFragment extends Fragment {
    * 
    * @param activity アクティビティ
    */
-  public void setActivity(CanvasActivity activity) {
+  public void setActivity(MainActivity activity) {
     this.canvasActivity = activity;
   }
 

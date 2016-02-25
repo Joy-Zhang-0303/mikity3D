@@ -35,7 +35,7 @@ import android.widget.LinearLayout;
  * @author soda
  * @version $Revision$, 2015/01/16
  */
-public class CanvasActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
   final static int REQUEST_CODE_PICK_MODEL_DATA_FILE = 0;
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
@@ -53,7 +53,7 @@ public class CanvasActivity extends AppCompatActivity {
   MainMenuFragment mainMenuFragment;
 
   /** ChooseModelFragment */
-  ChooseModelFragment chooseModelFragment;
+  ModelSelectionFragment chooseModelFragment;
 
   /** SceneGraphTreeFragment */
   SceneGraphTree sceneGraphTreeFragment;
@@ -148,7 +148,7 @@ public class CanvasActivity extends AppCompatActivity {
     transaction.addToBackStack(null);
 
     if (this.chooseModelFragment == null) {
-      this.chooseModelFragment = new ChooseModelFragment();
+      this.chooseModelFragment = new ModelSelectionFragment();
     }
 
     transaction.replace(R.id.fragment_navigation_drawer, this.chooseModelFragment);
@@ -407,7 +407,7 @@ public class CanvasActivity extends AppCompatActivity {
           setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
       }
-      CanvasActivity.this.canvasFragment.objectRenderer.updateDisplay();
+      MainActivity.this.canvasFragment.objectRenderer.updateDisplay();
     } else {
       setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
     }

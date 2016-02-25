@@ -54,18 +54,18 @@ import android.widget.TextView;
  * @author hirae
  * @version $Revision$, 2015/02/15
  */
-public class ChooseModelFragment extends Fragment {
+public class ModelSelectionFragment extends Fragment {
 
   static final String LOGTAG = null;
 
   /**
    * 新しく生成された<code>ChooseModelFragment</code>オブジェクトを初期化します。
    */
-  public ChooseModelFragment() {
+  public ModelSelectionFragment() {
     // nothing to do
   }
 
-  CanvasActivity canvasActivity;
+  MainActivity canvasActivity;
 
   /** モデルファイル名。 */
   String modelFileName = "..."; //$NON-NLS-1$
@@ -122,7 +122,7 @@ public class ChooseModelFragment extends Fragment {
       }
     });
 
-    this.canvasActivity = (CanvasActivity)getActivity();
+    this.canvasActivity = (MainActivity)getActivity();
 
     createModelComponent(mainView);
     if (this.modelFileName.equals("...") == false) { //$NON-NLS-1$
@@ -141,13 +141,13 @@ public class ChooseModelFragment extends Fragment {
     final Button modelButton = (Button)view.findViewById(R.id.modelSelectButton);
     modelButton.setOnClickListener(new View.OnClickListener() {
 
-      final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_MODEL_DATA_FILE;
+      final int REQUEST_CODE = MainActivity.REQUEST_CODE_PICK_MODEL_DATA_FILE;
 
       /**
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        ChooseModelFragment.this.canvasActivity.sendFileChooseIntentForModel(this.REQUEST_CODE);
+        ModelSelectionFragment.this.canvasActivity.sendFileChooseIntentForModel(this.REQUEST_CODE);
       }
     });
 
@@ -176,13 +176,13 @@ public class ChooseModelFragment extends Fragment {
 
       selectButton.setOnClickListener(new View.OnClickListener() {
 
-        final int REQUEST_CODE = CanvasActivity.REQUEST_CODE_PICK_SOURCE_DATA_FILE;
+        final int REQUEST_CODE = MainActivity.REQUEST_CODE_PICK_SOURCE_DATA_FILE;
 
         /**
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          ChooseModelFragment.this.canvasActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, id);
+          ModelSelectionFragment.this.canvasActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, id);
         }
       });
 
@@ -201,8 +201,8 @@ public class ChooseModelFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          if (ChooseModelFragment.this.canvasActivity.canvasFragment.sourceData.containsKey(id)) {
-            ChooseModelFragment.this.canvasActivity.canvasFragment.addSource(id);
+          if (ModelSelectionFragment.this.canvasActivity.canvasFragment.sourceData.containsKey(id)) {
+            ModelSelectionFragment.this.canvasActivity.canvasFragment.addSource(id);
           }
         }
       });
@@ -222,15 +222,15 @@ public class ChooseModelFragment extends Fragment {
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
 
-        if (ChooseModelFragment.this.sampleModelViewFragment != null) {
-          transaction.remove(ChooseModelFragment.this.sampleModelViewFragment);
-          ChooseModelFragment.this.sampleModelViewFragment = null;
+        if (ModelSelectionFragment.this.sampleModelViewFragment != null) {
+          transaction.remove(ModelSelectionFragment.this.sampleModelViewFragment);
+          ModelSelectionFragment.this.sampleModelViewFragment = null;
         }
         
-        ChooseModelFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
-        ChooseModelFragment.this.sampleModelViewFragment.setActivity(ChooseModelFragment.this.canvasActivity);
-        ChooseModelFragment.this.sampleModelViewFragment.setIsModelData(true);
-        transaction.add(R.id.fragment_navigation_drawer, ChooseModelFragment.this.sampleModelViewFragment);
+        ModelSelectionFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
+        ModelSelectionFragment.this.sampleModelViewFragment.setActivity(ModelSelectionFragment.this.canvasActivity);
+        ModelSelectionFragment.this.sampleModelViewFragment.setIsModelData(true);
+        transaction.add(R.id.fragment_navigation_drawer, ModelSelectionFragment.this.sampleModelViewFragment);
         transaction.commit();
       }
     });
@@ -318,16 +318,16 @@ public class ChooseModelFragment extends Fragment {
           final FragmentTransaction transaction = manager.beginTransaction();
           transaction.addToBackStack(null);
 
-          if (ChooseModelFragment.this.sampleSourceViewFragment != null) {
-            transaction.remove(ChooseModelFragment.this.sampleSourceViewFragment);
-            ChooseModelFragment.this.sampleSourceViewFragment = null;
+          if (ModelSelectionFragment.this.sampleSourceViewFragment != null) {
+            transaction.remove(ModelSelectionFragment.this.sampleSourceViewFragment);
+            ModelSelectionFragment.this.sampleSourceViewFragment = null;
           }
           
-          ChooseModelFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
-          ChooseModelFragment.this.sampleSourceViewFragment.setActivity(ChooseModelFragment.this.canvasActivity);
-          ChooseModelFragment.this.sampleSourceViewFragment.setSourceId(id);
-          ChooseModelFragment.this.sampleSourceViewFragment.setIsModelData(false);
-          transaction.add(R.id.fragment_navigation_drawer, ChooseModelFragment.this.sampleSourceViewFragment);
+          ModelSelectionFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
+          ModelSelectionFragment.this.sampleSourceViewFragment.setActivity(ModelSelectionFragment.this.canvasActivity);
+          ModelSelectionFragment.this.sampleSourceViewFragment.setSourceId(id);
+          ModelSelectionFragment.this.sampleSourceViewFragment.setIsModelData(false);
+          transaction.add(R.id.fragment_navigation_drawer, ModelSelectionFragment.this.sampleSourceViewFragment);
           transaction.commit();
         }
       });

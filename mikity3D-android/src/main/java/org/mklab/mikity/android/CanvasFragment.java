@@ -76,7 +76,7 @@ public class CanvasFragment extends Fragment {
   double scaleValue = 1;
 
   /** CanvasActivity */
-  private CanvasActivity canvasActivity;
+  private MainActivity canvasActivity;
 
   Timer timer = new Timer();
 
@@ -137,7 +137,7 @@ public class CanvasFragment extends Fragment {
 
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
-    this.canvasActivity = (CanvasActivity)getActivity();
+    this.canvasActivity = (MainActivity)getActivity();
 
     this.gestureDetector = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
 

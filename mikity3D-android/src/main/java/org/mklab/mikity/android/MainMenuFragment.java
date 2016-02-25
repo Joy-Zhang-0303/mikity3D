@@ -27,14 +27,14 @@ import android.widget.ListView;
  * @version $Revision$, 2015/03/26
  */
 public class MainMenuFragment extends Fragment {
-  private CanvasActivity canvasActivity;
+  private MainActivity canvasActivity;
 
   /**
    * アクティビティを設定します。
    * 
    * @param activity アクティビティ
    */
-  public void setActivity(CanvasActivity activity) {
+  public void setActivity(MainActivity activity) {
     this.canvasActivity = activity;
   }
 
