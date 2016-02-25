@@ -92,16 +92,6 @@ public class AssetsListViewFragment extends Fragment {
           
           if (AssetsListViewFragment.this.isModel) {
             AssetsListViewFragment.this.mainActivity.modelSelectionFragment.loadSampleModelData(input, selectedFile);
-            
-//            if (AssetsListViewFragment.this.mainActivity.canvasFragment.sourceData.size() != 0) {
-//              AssetsListViewFragment.this.mainActivity.canvasFragment.sourceData.clear();
-//            }
-//            
-//            AssetsListViewFragment.this.mainActivity.modelSelectionFragment.isSelectedModelFile = true;
-//            
-//            AssetsListViewFragment.this.mainActivity.modelSelectionFragment.updateSampleSourceComponent();
-//            
-//            AssetsListViewFragment.this.mainActivity.modelSelectionFragment.setButtonEnabled(true);
           } else {
             AssetsListViewFragment.this.mainActivity.modelSelectionFragment.loadSampleSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
           }

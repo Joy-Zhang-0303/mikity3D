@@ -344,12 +344,12 @@ public class MainActivity extends AppCompatActivity {
           loadSourceData(uri, this.sourceId);
         }
         break;
-      case 3:
-        if (resultCode == RESULT_OK && data != null) {
-          final Uri uri = data.getData();
-          this.modelSelectionFragment.unzipFile(uri);
-        }
-        break;
+//      case 3:
+//        if (resultCode == RESULT_OK && data != null) {
+//          final Uri uri = data.getData();
+//          this.modelSelectionFragment.unzipFile(uri);
+//        }
+//        break;
       default:
         break;
     }

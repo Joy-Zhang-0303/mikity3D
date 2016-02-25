@@ -75,9 +75,6 @@ public class CanvasFragment extends Fragment {
   
   double scaleValue = 1;
 
-  /** CanvasActivity */
-  //private MainActivity canvasActivity;
-
   Timer timer = new Timer();
 
   private double[] timeTable;
