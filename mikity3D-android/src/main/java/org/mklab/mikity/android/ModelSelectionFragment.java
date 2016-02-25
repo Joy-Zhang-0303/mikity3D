@@ -108,7 +108,7 @@ public class ModelSelectionFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View mainView = inflater.inflate(R.layout.fragment_choose_model, container, false);
+    View mainView = inflater.inflate(R.layout.fragment_model_selection, container, false);
     
     final Button backButton = (Button)mainView.findViewById(R.id.settingsBackButton);
     backButton.setOnClickListener(new OnClickListener() {
