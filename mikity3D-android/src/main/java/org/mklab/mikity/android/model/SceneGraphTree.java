@@ -30,6 +30,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -74,20 +76,21 @@ public class SceneGraphTree extends Fragment {
   
   ModelEditor modelEditorFragment = null;
   
-  private static final int CONTEXT_MENU_ADD_GROUP = 1;
-  private static final int CONTEXT_MENU_ADD_BOX = 2;
-  private static final int CONTEXT_MENU_ADD_CYLINDER = 3;
-  private static final int CONTEXT_MENU_ADD_SPHERE = 4;
-  private static final int CONTEXT_MENU_ADD_CONE = 5;
-  private static final int CONTEXT_MENU_ADD_CAPSULE = 6;
-  private static final int CONTEXT_MENU_ADD_TRIANGLE = 7;
-  private static final int CONTEXT_MENU_ADD_QUADRANGLE = 8;
-  private static final int CONTEXT_MENU_TRANSFORM = 9;
-  private static final int CONTEXT_MENU_CUT = 10;
-  private static final int CONTEXT_MENU_COPY = 11;
-  private static final int CONTEXT_MENU_PASTE = 12;
-  private static final int CONTEXT_MENU_DELETE = 13;
-  private static final int CONTEXT_MENU_EDIT = 14;
+  private static final int CONTEXT_MENU_CUT = 1;
+  private static final int CONTEXT_MENU_COPY = 2;
+  private static final int CONTEXT_MENU_PASTE = 3;
+  private static final int CONTEXT_MENU_DELETE = 4;
+  private static final int CONTEXT_MENU_EDIT = 5;
+  //private static final int CONTEXT_MENU_TRANSFORM = 6;
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setHasOptionsMenu(true);
+  }
 
   /**
    * {@inheritDoc}
@@ -113,6 +116,52 @@ public class SceneGraphTree extends Fragment {
     
     return view;
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    
+    menu.clear();
+    inflater.inflate(R.menu.menu_model, menu);
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == R.id.menu_add_group) {
+      addGroup();
+      return true;
+    } else if (item.getItemId() == R.id.menu_add_box) {
+      addBox();
+      return true;
+    } else if (item.getItemId() == R.id.menu_add_cylinder) {
+      addCylinder();
+      return true;
+    } else if (item.getItemId() == R.id.menu_add_sphere) {
+      addSphere();
+      return true;
+    } else if (item.getItemId() == R.id.menu_add_cone) {
+      addCone();
+      return true;
+    } else if (item.getItemId() == R.id.menu_add_capsule) {
+      addCapsule();
+      return true;
+    } else if (item.getItemId() == R.id.menu_add_triangle) {
+      addTriangle();
+      return true;
+    } else if (item.getItemId() == R.id.menu_add_quadrangle) {
+      addQuadrangle();
+      return true;
+    }
+
+    return super.onOptionsItemSelected(item);
+  }
+  
   
   /**
    * ポップアップメニュを生成します。 
@@ -129,20 +178,12 @@ public class SceneGraphTree extends Fragment {
     super.onCreateContextMenu(menu, view, menuInfo);
     
     if (view.getId() == R.id.scene_graph_tree_view) {
-      menu.add(0, CONTEXT_MENU_ADD_GROUP, 0, R.string.addGroup);
-      menu.add(0, CONTEXT_MENU_ADD_BOX, 0, R.string.addBox);
-      menu.add(0, CONTEXT_MENU_ADD_CYLINDER, 0, R.string.addCylinder);
-      menu.add(0, CONTEXT_MENU_ADD_SPHERE, 0, R.string.addSphere);
-      menu.add(0, CONTEXT_MENU_ADD_CONE, 0, R.string.addCone);
-      menu.add(0, CONTEXT_MENU_ADD_CAPSULE, 0, R.string.addCapsule);
-      menu.add(0, CONTEXT_MENU_ADD_TRIANGLE, 0, R.string.addTriangle);
-      menu.add(0, CONTEXT_MENU_ADD_QUADRANGLE, 0, R.string.addQuadrangle);
-      menu.add(0, CONTEXT_MENU_TRANSFORM, 0, R.string.transform);
       menu.add(0, CONTEXT_MENU_CUT, 0, R.string.cut);
       menu.add(0, CONTEXT_MENU_COPY, 0, R.string.copy);
       menu.add(0, CONTEXT_MENU_PASTE, 0, R.string.paste);
       menu.add(0, CONTEXT_MENU_DELETE, 0, R.string.delete);
       menu.add(0, CONTEXT_MENU_EDIT, 0, R.string.edit);
+      //menu.add(0, CONTEXT_MENU_TRANSFORM, 0, R.string.transform);
     }
   }
 
@@ -157,42 +198,6 @@ public class SceneGraphTree extends Fragment {
     
     int itemId = item.getItemId();
     
-    if (itemId == CONTEXT_MENU_ADD_GROUP) {
-      addGroup();
-      return true;
-    }
-    if (itemId == CONTEXT_MENU_ADD_BOX) {
-      addBox();
-      return true;
-    }
-    if (itemId == CONTEXT_MENU_ADD_CYLINDER) {
-      addCylinder();
-      return true;
-    }
-    if (itemId == CONTEXT_MENU_ADD_SPHERE) {
-      addSphere();
-      return true;
-    } 
-    if (itemId == CONTEXT_MENU_ADD_CONE) {
-      addCone();
-      return true;
-    }
-
-    if (itemId == CONTEXT_MENU_ADD_CAPSULE) {
-      addCapsule();
-      return true;
-    }
-    if (itemId == CONTEXT_MENU_ADD_TRIANGLE) {
-      addTriangle();
-      return true;
-    }
-    if (itemId == CONTEXT_MENU_ADD_QUADRANGLE) {
-      addQuadrangle();
-      return true;
-    }
-    if (itemId == CONTEXT_MENU_TRANSFORM) {
-      return true;
-    }
     if (itemId == CONTEXT_MENU_CUT) {
       cutSelectedItem();
       return true;
@@ -213,18 +218,12 @@ public class SceneGraphTree extends Fragment {
       editSelectedItem();
       return true;
     }
+//    if (itemId == CONTEXT_MENU_TRANSFORM) {
+//      return true;
+//    }
     
     return super.onContextItemSelected(item);
   }
-
-//  /**
-//   * フラグメントマネージャを設定します。
-//   * 
-//   * @param fragmentManager フラグメントマネージャ
-//   */
-//  public void setFragmentManager(FragmentManager fragmentManager) {
-//    this.fragmentManager = fragmentManager;
-//  }
   
   /**
    * モデルを設定します。

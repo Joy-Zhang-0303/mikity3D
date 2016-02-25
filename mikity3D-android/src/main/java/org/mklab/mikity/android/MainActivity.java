@@ -36,7 +36,6 @@ import android.widget.LinearLayout;
  * @version $Revision$, 2015/01/16
  */
 public class MainActivity extends AppCompatActivity {
-
   final static int REQUEST_CODE_PICK_MODEL_DATA_FILE = 0;
   final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
 
@@ -319,6 +318,7 @@ public class MainActivity extends AppCompatActivity {
    */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
+    super.onCreateOptionsMenu(menu);
     final MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.menu_main, menu);
     return true;

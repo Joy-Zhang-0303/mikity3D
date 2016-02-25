@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/menu_add_group"
+        android:title="@string/addGroup"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_add_box"
+        android:title="@string/addBox"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_add_cylinder"
+        android:title="@string/addCylinder"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_add_sphere"
+        android:title="@string/addSphere"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_add_cone"
+        android:title="@string/addCone"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_add_capsule"
+        android:title="@string/addCapsule"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_add_triangle"
+        android:title="@string/addTriangle"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_add_quadrangle"
+        android:title="@string/addQuadrangle"
+        app:showAsAction="ifRoom"/>
+    
+</menu>
