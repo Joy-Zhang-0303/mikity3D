@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- MainMenu Drawer Menu Items -->
+    <string-array name="main_menu_drawer_items">
+        <item>@string/newModel</item>
+        <item>@string/selectModel</item>
+        <item>@string/editModel</item>
+        <item>@string/settings</item>
+        <item>@string/aboutMikity3D</item>
+        <item>@string/help</item>
+    </string-array>
+
+    <!-- MainMenu Drawer List Item Icons -->
+    <!-- keep them in order as the titles are in -->
+    <array name="main_menu_drawer_icons">
+        <item>@drawable/ic_add_circle_black_24dp</item>
+        <item>@drawable/ic_attach_file_black_24dp</item>
+        <item>@drawable/ic_edit_black_24dp</item>
+        <item>@drawable/ic_settings_black_24dp</item>
+        <item>@drawable/ic_android_black</item>
+        <item>@drawable/ic_help_black_24dp</item>
+    </array>
+
+    <!-- Settings Drawer Menu Items -->
+    <string-array name="settings_drawer_items">
+        <item>@string/rotationSensorTextView</item>
+        <item>@string/accelerometerTextView</item>
+        <item>@string/rotationLockTextView</item>
+        <item>@string/gridShowingTextView</item>
+        <item>@string/axisShowingTextView</item>
+    </string-array>
+
+</resources>

@@ -4,14 +4,14 @@
     <string name="aboutMikity3D">About Mikity3D</string>
     <string name="accelerometerButton">accelerometerButton</string>
     <string name="accelerometerTextView">Accelerometer</string>
-    <string name="addBox">Add box</string>
-    <string name="addCapsule">Add capsule</string>
-    <string name="addCone">Add cone</string>
-    <string name="addCylinder">Add cylinder</string>
-    <string name="addGroup">Add group</string>
-    <string name="addQuadrangle">Add quadrangle</string>
-    <string name="addSphere">Add sphere</string>
-    <string name="addTriangle">Add triangle</string>
+    <string name="addBox">+box</string>
+    <string name="addCapsule">+capsule</string>
+    <string name="addCone">+cone</string>
+    <string name="addCylinder">+cylinder</string>
+    <string name="addGroup">+group</string>
+    <string name="addQuadrangle">+quadrangle</string>
+    <string name="addSphere">+sphere</string>
+    <string name="addTriangle">+triangle</string>
     <string name="animationSpeedText">Speed Rate</string>
     <string name="animationParameter">Animation Parameters</string>
     <string name="app_name">Mikity3D</string>
@@ -109,35 +109,4 @@
     <string name="vertex_4_z">Vertex 4 (Z)</string>
     <string name="width">width</string>
     <string name="yes">Yes</string>
-
-    <!-- MainMenu Drawer Menu Items -->
-    <string-array name="main_menu_drawer_items">
-        <item>@string/newModel</item>
-        <item>@string/selectModel</item>
-        <item>@string/editModel</item>
-        <item>@string/settings</item>
-        <item>@string/aboutMikity3D</item>
-        <item>@string/help</item>
-    </string-array>
-
-    <!-- MainMenu Drawer List Item Icons -->
-    <!-- keep them in order as the titles are in -->
-    <array name="main_menu_drawer_icons">
-        <item>@drawable/ic_add_circle_black_24dp</item>
-        <item>@drawable/ic_attach_file_black_24dp</item>
-        <item>@drawable/ic_edit_black_24dp</item>
-        <item>@drawable/ic_settings_black_24dp</item>
-        <item>@drawable/ic_android_black</item>
-        <item>@drawable/ic_help_black_24dp</item>
-    </array>
-
-    <!-- Settings Drawer Menu Items -->
-    <string-array name="settings_drawer_items">
-        <item>@string/rotationSensorTextView</item>
-        <item>@string/accelerometerTextView</item>
-        <item>@string/rotationLockTextView</item>
-        <item>@string/gridShowingTextView</item>
-        <item>@string/axisShowingTextView</item>
-    </string-array>
-
 </resources>
