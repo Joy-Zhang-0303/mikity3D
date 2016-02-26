@@ -5,11 +5,8 @@
  */
 package org.mklab.mikity.android;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -18,8 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.searcher.ExcecuteSearchGroup;
@@ -66,6 +61,8 @@ public class FileSelectionFragment extends Fragment {
   }
 
   MainActivity mainActivity;
+  
+  CanvasFragment canvasFragment;
 
   /** モデルファイル名。 */
   String modelFileName = "..."; //$NON-NLS-1$
@@ -123,6 +120,7 @@ public class FileSelectionFragment extends Fragment {
     });
 
     this.mainActivity = (MainActivity)getActivity();
+    this.canvasFragment = this.mainActivity.canvasFragment;
 
     createModelComponent(mainView);
     if (this.modelFileName.equals("...") == false) { //$NON-NLS-1$
@@ -157,7 +155,7 @@ public class FileSelectionFragment extends Fragment {
   }
 
   private void createSourceComponent(View view) {
-    final List<GroupModel> rootGroups = this.mainActivity.canvasFragment.root.getScene(0).getGroups();
+    final List<GroupModel> rootGroups = this.canvasFragment.root.getScene(0).getGroups();
     final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
     final LinearLayout sources =  (LinearLayout)view.findViewById(R.id.layout_sources);
@@ -201,8 +199,8 @@ public class FileSelectionFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          if (FileSelectionFragment.this.mainActivity.canvasFragment.sourceData.containsKey(id)) {
-            FileSelectionFragment.this.mainActivity.canvasFragment.addSource(id);
+          if (FileSelectionFragment.this.canvasFragment.sourceData.containsKey(id)) {
+            FileSelectionFragment.this.canvasFragment.addSource(id);
           }
         }
       });
@@ -291,7 +289,7 @@ public class FileSelectionFragment extends Fragment {
    * サンプルのソースを読み込むボタンを生成します。
    */
   void createSampleSourceComponent(View view) {
-    final List<GroupModel> rootGroups = this.mainActivity.canvasFragment.root.getScene(0).getGroups();
+    final List<GroupModel> rootGroups = this.canvasFragment.root.getScene(0).getGroups();
     final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
     final LinearLayout sources = (LinearLayout)view.findViewById(R.id.layout_sample_sources);
@@ -347,7 +345,7 @@ public class FileSelectionFragment extends Fragment {
    * @return result GroupManager
    */
   GroupManager getGroupManager() {
-    final Mikity3DModel root = this.mainActivity.canvasFragment.root;
+    final Mikity3DModel root = this.canvasFragment.root;
     final SceneModel model = root.getScene(0);
     final List<GroupModel> groupArray = model.getGroups();
     final GroupModel group = groupArray.get(0);
@@ -374,7 +372,7 @@ public class FileSelectionFragment extends Fragment {
    * @param sourceId ソースID
    */
   public void loadSampleSourceData(final InputStream input, final String filePath, String sourceId) {
-    this.mainActivity.canvasFragment.loadSourceData(input, filePath, sourceId);
+    this.canvasFragment.loadSourceData(input, filePath, sourceId);
 
     final String[] parts = filePath.split("/"); //$NON-NLS-1$
     final String sourceFileName = parts[parts.length - 1];
@@ -422,12 +420,12 @@ public class FileSelectionFragment extends Fragment {
     this.sourceFileNameViews.get(sourceId).setText(sourceFileName);
     this.sourceFileNames.put(sourceId, sourceFileName);
 
-    this.mainActivity.canvasFragment.loadSourceData(sourceStream, uri.getPath(), sourceId);
+    this.canvasFragment.loadSourceData(sourceStream, uri.getPath(), sourceId);
     // sourceStream has been already closed in the loadSourceData method. 
   }
 
   void loadSampleModelData(InputStream modelStream, String modelFilePath) throws Mikity3dSerializeDeserializeException {
-    this.mainActivity.canvasFragment.loadModelData(modelStream);
+    this.canvasFragment.loadModelData(modelStream);
 
     final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
     this.sampleModelFileName = parts[parts.length - 1];
@@ -440,8 +438,8 @@ public class FileSelectionFragment extends Fragment {
     
     this.sampleSourceFileNames.clear();
     
-    if (this.mainActivity.canvasFragment.sourceData.size() != 0) {
-      this.mainActivity.canvasFragment.sourceData.clear();
+    if (this.canvasFragment.sourceData.size() != 0) {
+      this.canvasFragment.sourceData.clear();
     }
     this.isSelectedModelFile = true;
     updateSampleSourceComponent();
@@ -491,11 +489,11 @@ public class FileSelectionFragment extends Fragment {
     this.sourceFileNames.clear();
 
     try {
-      this.mainActivity.canvasFragment.loadModelData(modelStream);
+      this.canvasFragment.loadModelData(modelStream);
       modelStream.close();
 
-      if (this.mainActivity.canvasFragment.sourceData.size() != 0) {
-        this.mainActivity.canvasFragment.sourceData.clear();
+      if (this.canvasFragment.sourceData.size() != 0) {
+        this.canvasFragment.sourceData.clear();
       }
 
       createSourceComponent(getView());
@@ -548,7 +546,7 @@ public class FileSelectionFragment extends Fragment {
    * @param number 設定する番号
    */
   void changeSourceNumber(List<Integer> targetNumbers, int childPosition, int number) {
-    final SceneModel scene = this.mainActivity.canvasFragment.root.getScene(0);
+    final SceneModel scene = this.canvasFragment.root.getScene(0);
     final List<GroupModel> topGroups = scene.getGroups();
     GroupModel group = topGroups.get(0);
 
@@ -557,7 +555,7 @@ public class FileSelectionFragment extends Fragment {
     }
 
     group.getAnimations()[childPosition].getSource().setNumber(number);
-    this.mainActivity.canvasFragment.prepareObjectGroupManager();
-    this.mainActivity.canvasFragment.prepareRenderer();
+    this.canvasFragment.prepareObjectGroupManager();
+    this.canvasFragment.prepareRenderer();
   }
 }

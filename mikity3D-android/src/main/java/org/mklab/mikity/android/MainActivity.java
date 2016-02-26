@@ -140,9 +140,9 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * ChooseModelFragmentを生成します。
+   * FileSelectionFragmentを生成します。
    */
-  void createChooseModelFragment() {
+  void createFileSelectionFragment() {
     final FragmentManager manager = getSupportFragmentManager();
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);

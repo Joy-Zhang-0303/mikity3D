@@ -86,7 +86,7 @@ public class MainMenuFragment extends Fragment {
   void displayView(int position) {
     switch (position) {
       case 1:
-        this.mainActivity.createChooseModelFragment();
+        this.mainActivity.createFileSelectionFragment();
         break;
       case 2:
         this.mainActivity.createSceneGraphTreeFragment();
