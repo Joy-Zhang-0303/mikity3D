@@ -5,9 +5,6 @@
  */
 package org.mklab.mikity.android;
 
-import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.R.string;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;

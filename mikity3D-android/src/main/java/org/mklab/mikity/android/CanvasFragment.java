@@ -143,7 +143,6 @@ public class CanvasFragment extends Fragment {
 
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
-    //this.canvasActivity = (MainActivity)getActivity();
 
     this.gestureDetector = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
 

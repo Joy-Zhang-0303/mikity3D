@@ -28,15 +28,6 @@ import android.widget.ListView;
  */
 public class MainMenuFragment extends Fragment {
   private MainActivity mainActivity;
-
-//  /**
-//   * アクティビティを設定します。
-//   * 
-//   * @param activity アクティビティ
-//   */
-//  public void setActivity(MainActivity activity) {
-//    this.mainActivity = activity;
-//  }
   
   /**
    * {@inheritDoc}

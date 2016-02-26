@@ -50,16 +50,6 @@ import android.widget.TextView;
  * @version $Revision$, 2015/02/15
  */
 public class FileSelectionFragment extends Fragment {
-
-  static final String LOGTAG = null;
-
-  /**
-   * 新しく生成された<code>ChooseModelFragment</code>オブジェクトを初期化します。
-   */
-  public FileSelectionFragment() {
-    // nothing to do
-  }
-
   MainActivity mainActivity;
   
   CanvasFragment canvasFragment;
@@ -235,7 +225,6 @@ public class FileSelectionFragment extends Fragment {
         }
         
         FileSelectionFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
-        //FileSelectionFragment.this.sampleModelViewFragment.setActivity(FileSelectionFragment.this.mainActivity);
         FileSelectionFragment.this.sampleModelViewFragment.setIsModelData(true);
         transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleModelViewFragment);
         transaction.commit();
@@ -331,7 +320,6 @@ public class FileSelectionFragment extends Fragment {
           }
           
           FileSelectionFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
-          //FileSelectionFragment.this.sampleSourceViewFragment.setActivity(FileSelectionFragment.this.mainActivity);
           FileSelectionFragment.this.sampleSourceViewFragment.setSourceId(id);
           FileSelectionFragment.this.sampleSourceViewFragment.setIsModelData(false);
           transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleSourceViewFragment);

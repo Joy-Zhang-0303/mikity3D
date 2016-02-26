@@ -219,15 +219,6 @@ public class AssetsListViewFragment extends Fragment {
     }
   }
 
-//  /**
-//   * アクティビティを設定します。
-//   * 
-//   * @param activity アクティビティ
-//   */
-//  public void setActivity(MainActivity activity) {
-//    this.mainActivity = activity;
-//  }
-
   /**
    * モデルデータであるか判定するための値を設定します。
    * 

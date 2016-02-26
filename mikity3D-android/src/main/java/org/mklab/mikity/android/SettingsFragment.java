@@ -29,17 +29,9 @@ import android.widget.ImageButton;
  * @version $Revision$, 2015/01/16
  */
 public class SettingsFragment extends Fragment {
-
-  static final String LOGTAG = null;
-
-  /**
-   * 新しく生成された<code>NavigationDrawerFragment</code>オブジェクトを初期化します。
-   */
-  public SettingsFragment() {
-    // nothing to do
-  }
-
   MainActivity mainActivity;
+  
+  CanvasFragment canvasFragment;
 
   /** アニメーション用タスク。 */
   AnimationTask animationTask;
@@ -70,6 +62,9 @@ public class SettingsFragment extends Fragment {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
+    
+    this.mainActivity = (MainActivity)getActivity();
+    this.canvasFragment = this.mainActivity.canvasFragment;
   }
   
   /**
@@ -90,8 +85,6 @@ public class SettingsFragment extends Fragment {
         manager.popBackStack();
       }
     });
-
-    this.mainActivity = (MainActivity)getActivity();
 
     createAnimationSpeedComponent(view);
 
@@ -117,7 +110,7 @@ public class SettingsFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        int animationSpeedRate = SettingsFragment.this.mainActivity.canvasFragment.animationSpeedRate;
+        int animationSpeedRate = SettingsFragment.this.canvasFragment.animationSpeedRate;
         
         final int step = (int)Math.floor(Math.log10(animationSpeedRate - 1));
         animationSpeedRate -= (int)Math.pow(10, step);
@@ -129,13 +122,13 @@ public class SettingsFragment extends Fragment {
           SettingsFragment.this.animationTask.setSpeedScale(animationSpeedRate / 1000.0);
         }
         
-        SettingsFragment.this.mainActivity.canvasFragment.animationSpeedRate = animationSpeedRate;
+        SettingsFragment.this.canvasFragment.animationSpeedRate = animationSpeedRate;
       }
     });
 
     this.animationSpeedTextEdit = (EditText)mainView.findViewById(R.id.animationSpeedEditText);
     this.animationSpeedTextEdit.clearFocus();
-    this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(SettingsFragment.this.mainActivity.canvasFragment.animationSpeedRate / 1000.0))); //$NON-NLS-1$    
+    this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(SettingsFragment.this.canvasFragment.animationSpeedRate / 1000.0))); //$NON-NLS-1$    
     this.animationSpeedTextEdit.clearFocus();
 
     this.animationSpeedTextEdit.addTextChangedListener(new TextWatcher() {
@@ -159,7 +152,7 @@ public class SettingsFragment extends Fragment {
        */
       public void afterTextChanged(Editable s) {
         final double value = Double.parseDouble(SettingsFragment.this.animationSpeedTextEdit.getText().toString());
-        SettingsFragment.this.mainActivity.canvasFragment.animationSpeedRate = (int)Math.round(value * 1000);
+        SettingsFragment.this.canvasFragment.animationSpeedRate = (int)Math.round(value * 1000);
       }
     });
 
@@ -171,7 +164,7 @@ public class SettingsFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        int animationSpeedRate = SettingsFragment.this.mainActivity.canvasFragment.animationSpeedRate;
+        int animationSpeedRate = SettingsFragment.this.canvasFragment.animationSpeedRate;
         
         final int step = (int)Math.floor(Math.log10(animationSpeedRate));
         animationSpeedRate += (int)Math.pow(10, step);
@@ -183,7 +176,7 @@ public class SettingsFragment extends Fragment {
           SettingsFragment.this.animationTask.setSpeedScale(animationSpeedRate / 1000.0);
         }
         
-        SettingsFragment.this.mainActivity.canvasFragment.animationSpeedRate = animationSpeedRate;
+        SettingsFragment.this.canvasFragment.animationSpeedRate = animationSpeedRate;
       }
     });
   }
@@ -239,7 +232,7 @@ public class SettingsFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        SettingsFragment.this.mainActivity.canvasFragment.setGridShowing(isChecked);
+        SettingsFragment.this.canvasFragment.setGridShowing(isChecked);
       }
     });
 
@@ -251,7 +244,7 @@ public class SettingsFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        SettingsFragment.this.mainActivity.canvasFragment.setAxisShowing(isChecked);
+        SettingsFragment.this.canvasFragment.setAxisShowing(isChecked);
       }
     });
   }
@@ -260,8 +253,8 @@ public class SettingsFragment extends Fragment {
    * Configurationを更新します。
    */
   void updateConfiguration() {
-    this.axisShowingButton.setChecked(this.mainActivity.canvasFragment.isAxisShowing());
-    this.gridShowingButton.setChecked(this.mainActivity.canvasFragment.isGridShowing());
+    this.axisShowingButton.setChecked(this.canvasFragment.isAxisShowing());
+    this.gridShowingButton.setChecked(this.canvasFragment.isGridShowing());
   }
 
   /**
