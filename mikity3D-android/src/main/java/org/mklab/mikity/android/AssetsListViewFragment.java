@@ -229,24 +229,6 @@ public class AssetsListViewFragment extends Fragment {
       throw new RuntimeException(e);
     }
   }
-
-//  /**
-//   * モデルデータであるか判定するための値を設定します。
-//   * 
-//   * @param isModelData モデルデータならばtrue
-//   */
-//  public void setIsModelData(boolean isModelData) {
-//    this.isModelData = isModelData;
-//  }
-//  
-//  /**
-//   * ソースIDを設定します。
-//   * 
-//   * @param sourceId ソースID
-//   */
-//  public void setSourceId(String sourceId) {
-//    this.sourceId = sourceId;
-//  }
   
   /**
    * 拡張子を返します。

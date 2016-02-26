@@ -228,8 +228,7 @@ public class FileSelectionFragment extends Fragment {
         final Bundle arguments = new Bundle();
         arguments.putBoolean("isModelData", true); //$NON-NLS-1$
         FileSelectionFragment.this.sampleModelViewFragment.setArguments(arguments);
-        
-        //FileSelectionFragment.this.sampleModelViewFragment.setIsModelData(true);
+
         transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleModelViewFragment);
         transaction.commit();
       }
@@ -328,9 +327,7 @@ public class FileSelectionFragment extends Fragment {
           arguments.putString("sourceId", id); //$NON-NLS-1$
           arguments.putBoolean("isModelData", false); //$NON-NLS-1$
           FileSelectionFragment.this.sampleSourceViewFragment.setArguments(arguments);
-          
-          //FileSelectionFragment.this.sampleSourceViewFragment.setSourceId(id);
-          //FileSelectionFragment.this.sampleSourceViewFragment.setIsModelData(false);
+
           transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleSourceViewFragment);
           transaction.commit();
         }
