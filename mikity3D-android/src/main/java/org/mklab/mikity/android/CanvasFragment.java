@@ -380,7 +380,9 @@ public class CanvasFragment extends Fragment {
    */
   void showAlertMessageInDialog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
-    dialog.setMessage(message);
+    final Bundle arguments = new Bundle();
+    arguments.putString("message", message); //$NON-NLS-1$
+    dialog.setArguments(arguments);
     dialog.show(getActivity().getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 

@@ -332,7 +332,9 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
    */
   private void showAlertMessageInDialog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
-    dialog.setMessage(message);
+    final Bundle bundle = new Bundle();
+    bundle.putString("message", message); //$NON-NLS-1$
+    dialog.setArguments(bundle);
     dialog.show(getActivity().getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 

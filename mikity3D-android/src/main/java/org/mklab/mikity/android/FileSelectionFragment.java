@@ -225,7 +225,11 @@ public class FileSelectionFragment extends Fragment {
         }
         
         FileSelectionFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
-        FileSelectionFragment.this.sampleModelViewFragment.setIsModelData(true);
+        final Bundle arguments = new Bundle();
+        arguments.putBoolean("isModelData", true); //$NON-NLS-1$
+        FileSelectionFragment.this.sampleModelViewFragment.setArguments(arguments);
+        
+        //FileSelectionFragment.this.sampleModelViewFragment.setIsModelData(true);
         transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleModelViewFragment);
         transaction.commit();
       }
@@ -320,8 +324,13 @@ public class FileSelectionFragment extends Fragment {
           }
           
           FileSelectionFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
-          FileSelectionFragment.this.sampleSourceViewFragment.setSourceId(id);
-          FileSelectionFragment.this.sampleSourceViewFragment.setIsModelData(false);
+          final Bundle arguments = new Bundle();
+          arguments.putString("sourceId", id); //$NON-NLS-1$
+          arguments.putBoolean("isModelData", false); //$NON-NLS-1$
+          FileSelectionFragment.this.sampleSourceViewFragment.setArguments(arguments);
+          
+          //FileSelectionFragment.this.sampleSourceViewFragment.setSourceId(id);
+          //FileSelectionFragment.this.sampleSourceViewFragment.setIsModelData(false);
           transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleSourceViewFragment);
           transaction.commit();
         }
@@ -503,7 +512,9 @@ public class FileSelectionFragment extends Fragment {
    */
   void showAlertMessageInDialog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
-    dialog.setMessage(message);
+    final Bundle bundle = new Bundle();
+    bundle.putString("message", message); //$NON-NLS-1$
+    dialog.setArguments(bundle);
     dialog.show(this.mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 

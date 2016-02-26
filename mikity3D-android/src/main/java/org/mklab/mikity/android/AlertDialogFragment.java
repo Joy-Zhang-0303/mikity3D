@@ -26,6 +26,20 @@ public class AlertDialogFragment extends DialogFragment {
    * {@inheritDoc}
    */
   @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setRetainInstance(true);
+    
+    final Bundle arguments = getArguments();
+    if (arguments != null && arguments.containsKey("message")) { //$NON-NLS-1$
+      this.message = arguments.getString("message"); //$NON-NLS-1$
+    }
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
     final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setMessage(this.message);
@@ -39,14 +53,5 @@ public class AlertDialogFragment extends DialogFragment {
         });
     
     return builder.create();
-  }
-
-  /**
-   * メッセージを設定します。
-   * 
-   * @param message ダイアログに表示するメッセージ
-   */
-  public void setMessage(String message) {
-    this.message = message;
   }
 }

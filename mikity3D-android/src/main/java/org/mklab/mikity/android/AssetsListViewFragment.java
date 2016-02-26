@@ -38,7 +38,7 @@ public class AssetsListViewFragment extends Fragment {
   static String currentPath = "sample"; //$NON-NLS-1$
   MainActivity mainActivity;
   AssetManager assetManager;
-  boolean isModel;
+  boolean isModelData;
   String sourceId;
   
   /**
@@ -50,6 +50,15 @@ public class AssetsListViewFragment extends Fragment {
     setRetainInstance(true);
     
     this.mainActivity = (MainActivity)getActivity();
+    
+    final Bundle arguments = getArguments();
+    if (arguments != null && arguments.containsKey("sourceId")) { //$NON-NLS-1$
+      this.sourceId = arguments.getString("sourceId"); //$NON-NLS-1$
+    }
+    
+    if (arguments != null && arguments.containsKey("isModelData")) { //$NON-NLS-1$
+      this.isModelData = arguments.getBoolean("isModelData"); //$NON-NLS-1$
+    }
   }
   
   /**
@@ -101,7 +110,7 @@ public class AssetsListViewFragment extends Fragment {
           // input should not be closed since it is a virtual stream for asset
           final InputStream input = AssetsListViewFragment.this.assetManager.open(selectedFile);
           
-          if (AssetsListViewFragment.this.isModel) {
+          if (AssetsListViewFragment.this.isModelData) {
             AssetsListViewFragment.this.mainActivity.fileSelectionFragment.loadSampleModelData(input, selectedFile);
           } else {
             AssetsListViewFragment.this.mainActivity.fileSelectionFragment.loadSampleSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
@@ -125,7 +134,7 @@ public class AssetsListViewFragment extends Fragment {
     final List<String> selectedFileList  = new ArrayList<String>();
     selectedFileList.add(".."); //$NON-NLS-1$
 
-    if (AssetsListViewFragment.this.isModel) {
+    if (AssetsListViewFragment.this.isModelData) {
       selectedFileList.addAll(selectFilesWithExtensionsOrFolders(selectedItem, filesInFolder, new String[]{"m3d"})); //$NON-NLS-1$
     } else {
       selectedFileList.addAll(selectFilesWithExtensionsOrFolders(selectedItem, filesInFolder, new String[]{"mat", "csv", "txt"})); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -142,7 +151,9 @@ public class AssetsListViewFragment extends Fragment {
    */
   void showAlertMessageInDailog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
-    dialog.setMessage(message);
+    final Bundle bundle = new Bundle();
+    bundle.putString("message", message); //$NON-NLS-1$
+    dialog.setArguments(bundle);
     dialog.show(this.mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
@@ -219,23 +230,23 @@ public class AssetsListViewFragment extends Fragment {
     }
   }
 
-  /**
-   * モデルデータであるか判定するための値を設定します。
-   * 
-   * @param isModelData モデルデータならばtrue
-   */
-  public void setIsModelData(boolean isModelData) {
-    this.isModel = isModelData;
-  }
-  
-  /**
-   * ソースIDを設定します。
-   * 
-   * @param sourceId ソースID
-   */
-  public void setSourceId(String sourceId) {
-    this.sourceId = sourceId;
-  }
+//  /**
+//   * モデルデータであるか判定するための値を設定します。
+//   * 
+//   * @param isModelData モデルデータならばtrue
+//   */
+//  public void setIsModelData(boolean isModelData) {
+//    this.isModelData = isModelData;
+//  }
+//  
+//  /**
+//   * ソースIDを設定します。
+//   * 
+//   * @param sourceId ソースID
+//   */
+//  public void setSourceId(String sourceId) {
+//    this.sourceId = sourceId;
+//  }
   
   /**
    * 拡張子を返します。
