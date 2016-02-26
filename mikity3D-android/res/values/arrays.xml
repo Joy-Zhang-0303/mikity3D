@@ -4,10 +4,10 @@
     <!-- MainMenu Drawer Menu Items -->
     <string-array name="main_menu_drawer_items">
         <item>@string/newModel</item>
-        <item>@string/selectModel</item>
-        <item>@string/editModel</item>
+        <item>@string/open</item>
+        <item>@string/edit</item>
         <item>@string/settings</item>
-        <item>@string/aboutMikity3D</item>
+        <item>@string/aboutApp</item>
         <item>@string/help</item>
     </string-array>
 

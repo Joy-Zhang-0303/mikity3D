@@ -54,14 +54,14 @@ import android.widget.TextView;
  * @author hirae
  * @version $Revision$, 2015/02/15
  */
-public class ModelSelectionFragment extends Fragment {
+public class FileSelectionFragment extends Fragment {
 
   static final String LOGTAG = null;
 
   /**
    * 新しく生成された<code>ChooseModelFragment</code>オブジェクトを初期化します。
    */
-  public ModelSelectionFragment() {
+  public FileSelectionFragment() {
     // nothing to do
   }
 
@@ -108,7 +108,7 @@ public class ModelSelectionFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View mainView = inflater.inflate(R.layout.fragment_model_selection, container, false);
+    View mainView = inflater.inflate(R.layout.fragment_file_selection, container, false);
     
     final Button backButton = (Button)mainView.findViewById(R.id.settingsBackButton);
     backButton.setOnClickListener(new OnClickListener() {
@@ -147,7 +147,7 @@ public class ModelSelectionFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        ModelSelectionFragment.this.mainActivity.sendFileChooseIntentForModel(this.REQUEST_CODE);
+        FileSelectionFragment.this.mainActivity.sendFileChooseIntentForModel(this.REQUEST_CODE);
       }
     });
 
@@ -182,7 +182,7 @@ public class ModelSelectionFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          ModelSelectionFragment.this.mainActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, id);
+          FileSelectionFragment.this.mainActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, id);
         }
       });
 
@@ -201,8 +201,8 @@ public class ModelSelectionFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          if (ModelSelectionFragment.this.mainActivity.canvasFragment.sourceData.containsKey(id)) {
-            ModelSelectionFragment.this.mainActivity.canvasFragment.addSource(id);
+          if (FileSelectionFragment.this.mainActivity.canvasFragment.sourceData.containsKey(id)) {
+            FileSelectionFragment.this.mainActivity.canvasFragment.addSource(id);
           }
         }
       });
@@ -222,15 +222,15 @@ public class ModelSelectionFragment extends Fragment {
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
 
-        if (ModelSelectionFragment.this.sampleModelViewFragment != null) {
-          transaction.remove(ModelSelectionFragment.this.sampleModelViewFragment);
-          ModelSelectionFragment.this.sampleModelViewFragment = null;
+        if (FileSelectionFragment.this.sampleModelViewFragment != null) {
+          transaction.remove(FileSelectionFragment.this.sampleModelViewFragment);
+          FileSelectionFragment.this.sampleModelViewFragment = null;
         }
         
-        ModelSelectionFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
-        ModelSelectionFragment.this.sampleModelViewFragment.setActivity(ModelSelectionFragment.this.mainActivity);
-        ModelSelectionFragment.this.sampleModelViewFragment.setIsModelData(true);
-        transaction.add(R.id.fragment_navigation_drawer, ModelSelectionFragment.this.sampleModelViewFragment);
+        FileSelectionFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
+        FileSelectionFragment.this.sampleModelViewFragment.setActivity(FileSelectionFragment.this.mainActivity);
+        FileSelectionFragment.this.sampleModelViewFragment.setIsModelData(true);
+        transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleModelViewFragment);
         transaction.commit();
       }
     });
@@ -318,16 +318,16 @@ public class ModelSelectionFragment extends Fragment {
           final FragmentTransaction transaction = manager.beginTransaction();
           transaction.addToBackStack(null);
 
-          if (ModelSelectionFragment.this.sampleSourceViewFragment != null) {
-            transaction.remove(ModelSelectionFragment.this.sampleSourceViewFragment);
-            ModelSelectionFragment.this.sampleSourceViewFragment = null;
+          if (FileSelectionFragment.this.sampleSourceViewFragment != null) {
+            transaction.remove(FileSelectionFragment.this.sampleSourceViewFragment);
+            FileSelectionFragment.this.sampleSourceViewFragment = null;
           }
           
-          ModelSelectionFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
-          ModelSelectionFragment.this.sampleSourceViewFragment.setActivity(ModelSelectionFragment.this.mainActivity);
-          ModelSelectionFragment.this.sampleSourceViewFragment.setSourceId(id);
-          ModelSelectionFragment.this.sampleSourceViewFragment.setIsModelData(false);
-          transaction.add(R.id.fragment_navigation_drawer, ModelSelectionFragment.this.sampleSourceViewFragment);
+          FileSelectionFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
+          FileSelectionFragment.this.sampleSourceViewFragment.setActivity(FileSelectionFragment.this.mainActivity);
+          FileSelectionFragment.this.sampleSourceViewFragment.setSourceId(id);
+          FileSelectionFragment.this.sampleSourceViewFragment.setIsModelData(false);
+          transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleSourceViewFragment);
           transaction.commit();
         }
       });

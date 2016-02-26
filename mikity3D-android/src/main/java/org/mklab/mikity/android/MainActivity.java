@@ -46,16 +46,16 @@ public class MainActivity extends AppCompatActivity {
   /** CanvasFragment */
   CanvasFragment canvasFragment;
 
-  /** NavigationDrawerFragment */
+  /** SettingsFragment */
   SettingsFragment settingsFragment;
 
   /** MainMenuFragment */
   MainMenuFragment mainMenuFragment;
 
-  /** ChooseModelFragment */
-  ModelSelectionFragment modelSelectionFragment;
+  /** FileSelectionFragment */
+  FileSelectionFragment fileSelectionFragment;
 
-  /** SceneGraphTreeFragment */
+  /** SceneGraphTree */
   SceneGraphTree sceneGraphTreeFragment;
 
   /** 停止ボタンが押すことができるならばtrue */
@@ -147,11 +147,11 @@ public class MainActivity extends AppCompatActivity {
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    if (this.modelSelectionFragment == null) {
-      this.modelSelectionFragment = new ModelSelectionFragment();
+    if (this.fileSelectionFragment == null) {
+      this.fileSelectionFragment = new FileSelectionFragment();
     }
 
-    transaction.replace(R.id.fragment_navigation_drawer, this.modelSelectionFragment);
+    transaction.replace(R.id.fragment_navigation_drawer, this.fileSelectionFragment);
     transaction.commit();
   }
 
@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
    * @param localSourceId ソース
    */
   private void loadSourceData(Uri path, String localSourceId) {
-    this.modelSelectionFragment.loadSourceData(path, localSourceId);
+    this.fileSelectionFragment.loadSourceData(path, localSourceId);
   }
 
   /**
@@ -366,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
    * @param path モデルデータのパス
    */
   private void loadModelData(Uri path) {
-    this.modelSelectionFragment.loadModelData(path);
+    this.fileSelectionFragment.loadModelData(path);
     this.canvasFragment.objectRenderer.updateDisplay();
   }
 

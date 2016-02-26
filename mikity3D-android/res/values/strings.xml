@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="aboutMikity3D">About Mikity3D</string>
+    <string name="aboutApp">About App</string>
     <string name="accelerometerButton">accelerometerButton</string>
     <string name="accelerometerTextView">Accelerometer</string>
     <string name="addBox">+box</string>
@@ -38,7 +38,6 @@
     <string name="division">division</string>
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="edit">Edit</string>
-    <string name="editModel">Edit Model</string>
     <string name="fileName">...</string>
     <string name="gridShowingButton">gridShowingkButton</string>
     <string name="gridShowingTextView">Grid Showing</string>
@@ -52,7 +51,7 @@
     <string name="model">Model</string>
     <string name="modelDataIsNotReady">Model data is not ready</string>
     <string name="name">Name</string>
-    <string name="newModel">New Model</string>
+    <string name="newModel">New</string>
     <string name="no">No</string>
     <string name="now_loading_">Now Loading...</string>
     <string name="number">Number</string>

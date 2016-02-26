@@ -90,8 +90,8 @@ public class SettingsFragment extends Fragment {
 
     createConfigurationComponent(view);
 
-    if (this.mainActivity.modelSelectionFragment != null) {
-      setButtonEnabled(this.mainActivity.modelSelectionFragment.isSelectedModelFile);
+    if (this.mainActivity.fileSelectionFragment != null) {
+      setButtonEnabled(this.mainActivity.fileSelectionFragment.isSelectedModelFile);
     }
     
     updateConfiguration();

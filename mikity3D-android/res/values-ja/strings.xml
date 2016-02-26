@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="aboutMikity3D">Mikity3Dについて</string>
+    <string name="aboutApp">アプリについて</string>
     <string name="accelerometerButton">加速度センサボタン</string>
     <string name="accelerometerTextView">加速度センサ</string>
     <string name="addBox">+直方体</string>
@@ -38,7 +38,6 @@
     <string name="division">分割数</string>
     <string name="desc_list_item_icon">項目アイコン</string>
     <string name="edit">編集</string>
-    <string name="editModel">モデル編集</string>
     <string name="fileName">...</string>
     <string name="gridShowingButton">グリッド表示ボタン</string>
     <string name="gridShowingTextView">グリッド表示</string>
@@ -51,9 +50,9 @@
     <string name="model">モデルを選択</string>
     <string name="modelDataIsNotReady">モデルデータが未設定です。</string>
     <string name="name">名前</string>
+    <string name="newModel">新規</string>
     <string name="no">いいえ</string>
     <string name="now_loading_">読み込み中...</string>
-    <string name="newModel">新規モデル</string>
     <string name="number">番号</string>
     <string name="objectType">オブジェクト型</string>
     <string name="open">開く</string>
