@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     this.mainMenuFragment = new MainMenuFragment();
-    this.mainMenuFragment.setActivity(this);
+    //this.mainMenuFragment.setActivity(this);
     transaction.add(R.id.fragment_navigation_drawer, this.mainMenuFragment);
     transaction.commit();
   }

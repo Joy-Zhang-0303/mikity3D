@@ -116,6 +116,15 @@ public class CanvasFragment extends Fragment {
    * {@inheritDoc}
    */
   @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setRetainInstance(true);
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     this.view = inflater.inflate(R.layout.fragment_canvas, container, false);
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
@@ -200,15 +209,6 @@ public class CanvasFragment extends Fragment {
     });
 
     return this.view;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setRetainInstance(true);
   }
 
   // スケールジェスチャーイベントを取得

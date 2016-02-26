@@ -67,6 +67,15 @@ public class SettingsFragment extends Fragment {
    * {@inheritDoc}
    */
   @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setRetainInstance(true);
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
@@ -253,15 +262,6 @@ public class SettingsFragment extends Fragment {
   void updateConfiguration() {
     this.axisShowingButton.setChecked(this.mainActivity.canvasFragment.isAxisShowing());
     this.gridShowingButton.setChecked(this.mainActivity.canvasFragment.isGridShowing());
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setRetainInstance(true);
   }
 
   /**

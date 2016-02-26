@@ -45,6 +45,17 @@ public class AssetsListViewFragment extends Fragment {
    * {@inheritDoc}
    */
   @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setRetainInstance(true);
+    
+    this.mainActivity = (MainActivity)getActivity();
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
     final View view = inflater.inflate(R.layout.fragment_assets_list_view, container, false);
@@ -208,14 +219,14 @@ public class AssetsListViewFragment extends Fragment {
     }
   }
 
-  /**
-   * アクティビティを設定します。
-   * 
-   * @param activity アクティビティ
-   */
-  public void setActivity(MainActivity activity) {
-    this.mainActivity = activity;
-  }
+//  /**
+//   * アクティビティを設定します。
+//   * 
+//   * @param activity アクティビティ
+//   */
+//  public void setActivity(MainActivity activity) {
+//    this.mainActivity = activity;
+//  }
 
   /**
    * モデルデータであるか判定するための値を設定します。

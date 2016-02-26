@@ -104,6 +104,18 @@ public class FileSelectionFragment extends Fragment {
    * {@inheritDoc}
    */
   @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setRetainInstance(true);
+    
+    this.mainActivity = (MainActivity)getActivity();
+    this.canvasFragment = this.mainActivity.canvasFragment;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View mainView = inflater.inflate(R.layout.fragment_file_selection, container, false);
     
@@ -118,9 +130,6 @@ public class FileSelectionFragment extends Fragment {
         manager.popBackStack();
       }
     });
-
-    this.mainActivity = (MainActivity)getActivity();
-    this.canvasFragment = this.mainActivity.canvasFragment;
 
     createModelComponent(mainView);
     if (this.modelFileName.equals("...") == false) { //$NON-NLS-1$
@@ -226,7 +235,7 @@ public class FileSelectionFragment extends Fragment {
         }
         
         FileSelectionFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
-        FileSelectionFragment.this.sampleModelViewFragment.setActivity(FileSelectionFragment.this.mainActivity);
+        //FileSelectionFragment.this.sampleModelViewFragment.setActivity(FileSelectionFragment.this.mainActivity);
         FileSelectionFragment.this.sampleModelViewFragment.setIsModelData(true);
         transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleModelViewFragment);
         transaction.commit();
@@ -322,7 +331,7 @@ public class FileSelectionFragment extends Fragment {
           }
           
           FileSelectionFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
-          FileSelectionFragment.this.sampleSourceViewFragment.setActivity(FileSelectionFragment.this.mainActivity);
+          //FileSelectionFragment.this.sampleSourceViewFragment.setActivity(FileSelectionFragment.this.mainActivity);
           FileSelectionFragment.this.sampleSourceViewFragment.setSourceId(id);
           FileSelectionFragment.this.sampleSourceViewFragment.setIsModelData(false);
           transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleSourceViewFragment);
@@ -353,15 +362,6 @@ public class FileSelectionFragment extends Fragment {
     final GroupNameManager manager = new GroupNameManager(group.getName(), null);
     final GroupManager result = search.searchGroupRecursion(group, manager);
     return result;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setRetainInstance(true);
   }
 
   /**
