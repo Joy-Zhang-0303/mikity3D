@@ -81,7 +81,7 @@ public class FileSelectionFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View mainView = inflater.inflate(R.layout.fragment_file_selection, container, false);
+    final View mainView = inflater.inflate(R.layout.fragment_file_selection, container, false);
     
     final Button backButton = (Button)mainView.findViewById(R.id.settingsBackButton);
     backButton.setOnClickListener(new OnClickListener() {
@@ -328,11 +328,11 @@ public class FileSelectionFragment extends Fragment {
    * @param message メッセージ
    */
   void showAlertMessageInDialog(String message) {
-    final AlertDialogFragment dialog = new AlertDialogFragment();
-    final Bundle bundle = new Bundle();
-    bundle.putString("message", message); //$NON-NLS-1$
-    dialog.setArguments(bundle);
-    dialog.show(this.mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
+    final AlertDialogFragment fragment = new AlertDialogFragment();
+    final Bundle arguments = new Bundle();
+    arguments.putString("message", message); //$NON-NLS-1$
+    fragment.setArguments(arguments);
+    fragment.show(this.mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**
@@ -341,11 +341,11 @@ public class FileSelectionFragment extends Fragment {
   void setButtonEnabled(boolean enabled) {
     this.isSelectedModelFile = enabled;
 
-    for (Button button : this.sourceSelectButtons) {
+    for (final Button button : this.sourceSelectButtons) {
       button.setEnabled(enabled);
     }
 
-    for (Button button : this.sourceReloadButtons) {
+    for (final Button button : this.sourceReloadButtons) {
       button.setEnabled(enabled);
     }
   }

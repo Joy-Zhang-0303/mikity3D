@@ -79,7 +79,7 @@ public class SampleSelectionFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View mainView = inflater.inflate(R.layout.fragment_sample_selection, container, false);
+    final View mainView = inflater.inflate(R.layout.fragment_sample_selection, container, false);
     
     final Button backButton = (Button)mainView.findViewById(R.id.settingsBackButton);
     backButton.setOnClickListener(new OnClickListener() {
@@ -281,9 +281,9 @@ public class SampleSelectionFragment extends Fragment {
    */
   void showAlertMessageInDialog(String message) {
     final AlertDialogFragment dialog = new AlertDialogFragment();
-    final Bundle bundle = new Bundle();
-    bundle.putString("message", message); //$NON-NLS-1$
-    dialog.setArguments(bundle);
+    final Bundle arguments = new Bundle();
+    arguments.putString("message", message); //$NON-NLS-1$
+    dialog.setArguments(arguments);
     dialog.show(this.mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
@@ -293,7 +293,7 @@ public class SampleSelectionFragment extends Fragment {
   void setButtonEnabled(boolean enabled) {
     this.isSelectedModelFile = enabled;
 
-    for (Button button : this.sourceSelectButtons) {
+    for (final Button button : this.sourceSelectButtons) {
       button.setEnabled(enabled);
     }
   }
