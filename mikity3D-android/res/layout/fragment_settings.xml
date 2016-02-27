@@ -47,14 +47,14 @@
             android:textColor="@color/black" />
     </TableRow>
 
-   <TableRow>
+    <TableRow>
 
         <ImageButton
             android:id="@+id/slowButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/slow2"
-            android:maxWidth="5dp" />
+            android:maxWidth="5dp"
+            android:src="@drawable/slow2" />
 
         <ImageButton
             android:id="@+id/quickButton"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:maxWidth="2dp"
             android:src="@drawable/fast2" />
-        
+
         <Space
             android:layout_width="60dip"
             android:layout_height="match_parent" />
@@ -126,7 +126,6 @@
         <Space
             android:layout_width="40dip"
             android:layout_height="match_parent" />
-
     </TableRow>
 
     <TableRow>

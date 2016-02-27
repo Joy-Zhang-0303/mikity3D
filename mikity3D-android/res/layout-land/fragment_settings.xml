@@ -1,22 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/white" >
 
-    
     <TableRow>
+
         <Button
-                android:id="@+id/settingsBackButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/back" />
+            android:id="@+id/settingsBackButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/back" />
     </TableRow>
-    
-        <TableRow>
+
+    <TableRow>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </TableRow>
+
+    <TableRow>
 
         <TextView
             android:id="@+id/animationSpeedText"
@@ -42,14 +47,14 @@
             android:textColor="@color/black" />
     </TableRow>
 
-   <TableRow>
+    <TableRow>
 
         <ImageButton
             android:id="@+id/slowButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/slow2"
-            android:maxWidth="5dp" />
+            android:maxWidth="5dp"
+            android:src="@drawable/slow2" />
 
         <ImageButton
             android:id="@+id/quickButton"
@@ -57,11 +62,19 @@
             android:layout_height="wrap_content"
             android:maxWidth="2dp"
             android:src="@drawable/fast2" />
-        
+
         <Space
             android:layout_width="60dip"
             android:layout_height="match_parent" />
     </TableRow>
+
+    <TableRow>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </TableRow>
+
     <TableRow>
 
         <TextView
@@ -82,7 +95,6 @@
         <Space
             android:layout_width="60dip"
             android:layout_height="match_parent" />
-
     </TableRow>
 
     <TableRow>
@@ -166,17 +178,15 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/gridShowingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:checked="false" />
-        
-        
+
         <Space
-            android:layout_width="20dip"
+            android:layout_width="40dip"
             android:layout_height="match_parent" />
     </TableRow>
 
@@ -205,10 +215,9 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:checked="false" />
-        
-        
+
         <Space
-            android:layout_width="20dip"
+            android:layout_width="60dip"
             android:layout_height="match_parent" />
     </TableRow>
 

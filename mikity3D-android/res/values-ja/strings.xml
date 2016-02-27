@@ -82,7 +82,7 @@
     <string name="sampleModel">サンプルモデル</string>
     <string name="save">保存</string>
     <string name="size_of_facets">三角形の数</string>
-    <string name="source">ソースデータ</string>
+    <string name="source">ソース</string>
     <string name="sourceDataIsNotReady">ソースデータが未設定です。</string>
     <string name="sourceReloadButton">↻</string>
     <string name="sphere">球</string>

@@ -18,26 +18,25 @@
             android:text="@string/back" />
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/modelSelectButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/model" />
+
+    <TextView
+        android:id="@+id/modelFileNameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="30"
+        android:text="@string/fileName"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/modelSelectButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/model" />
-
-        <TextView
-            android:id="@+id/modelFileNameView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="30"
-            android:text="@string/fileName"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-    </LinearLayout>
+        android:layout_height="20dp" />
 
     <LinearLayout
         android:id="@+id/layout_sources"
