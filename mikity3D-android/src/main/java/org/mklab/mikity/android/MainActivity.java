@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
   SensorService sensorService;
 
   /** ソースID。 */
-  private String sourceId;
+  private String sourceIdForIntent;
 
   /**
    * {@inheritDoc}
@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
       case REQUEST_CODE_PICK_SOURCE_DATA_FILE:
         if (resultCode == RESULT_OK && data != null) {
           final Uri uri = data.getData();
-          loadSourceData(uri, this.sourceId);
+          loadSourceData(uri, this.sourceIdForIntent);
         }
         break;
       default:
@@ -359,22 +359,22 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * 時間データを読み込みます。
+   * ソースデータを読み込みます。
    * 
-   * @param path 時間データのパス
-   * @param localSourceId ソース
+   * @param sourceFileUri ソースデータのパス
+   * @param sourceId ソースID
    */
-  private void loadSourceData(Uri path, String localSourceId) {
-    this.fileSelectionFragment.loadSourceData(path, localSourceId);
+  private void loadSourceData(Uri sourceFileUri, String sourceId) {
+    this.fileSelectionFragment.loadSourceData(sourceFileUri, sourceId);
   }
 
   /**
    * モデルデータを読み込みます。
    * 
-   * @param path モデルデータのパス
+   * @param modelFileUri モデルデータのパス
    */
-  private void loadModelData(Uri path) {
-    this.fileSelectionFragment.loadModelData(path);
+  private void loadModelData(Uri modelFileUri) {
+    this.fileSelectionFragment.loadModelData(modelFileUri);
     this.canvasFragment.objectRenderer.updateDisplay();
   }
 
@@ -431,12 +431,12 @@ public class MainActivity extends AppCompatActivity {
    * ファイルエクスプローラーにソースデータのためのインテントを発行します。
    * 
    * @param requestCode インテント時のリクエストコード
-   * @param localSourceId ソースID
+   * @param sourceId ソースID
    */
-  public void sendFileChooseIntentForSource(int requestCode, String localSourceId) {
+  public void sendFileChooseIntentForSource(int requestCode, String sourceId) {
     final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
     intent.setType("*/*"); //$NON-NLS-1$
-    this.sourceId = localSourceId;
+    this.sourceIdForIntent = sourceId;
     startActivityForResult(intent, requestCode);
   }
 }

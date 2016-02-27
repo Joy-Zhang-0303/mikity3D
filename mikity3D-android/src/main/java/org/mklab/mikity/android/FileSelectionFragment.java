@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +36,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 /**
  * モデルデータとソースデータを選択するためのフラグメントです。
  * 
@@ -52,6 +52,8 @@ public class FileSelectionFragment extends Fragment {
   /** モデルファイルのパス。 */
   TextView modelFileNameView;
 
+  OutputStream modelOutputStream;
+  
   /** 3Dモデルが選ばれて表示されたならばtrue。 */
   boolean isSelectedModelFile;
 
@@ -103,8 +105,13 @@ public class FileSelectionFragment extends Fragment {
     return mainView;
   }
 
-  private void createModelComponent(View view) {
-    final Button modelButton = (Button)view.findViewById(R.id.modelSelectButton);
+  /**
+   * モデルデータを読み込むコンポーネントを生成します。
+   * 
+   * @param mainView
+   */
+  private void createModelComponent(View mainView) {
+    final Button modelButton = (Button)mainView.findViewById(R.id.modelSelectButton);
     modelButton.setOnClickListener(new View.OnClickListener() {
 
       final int REQUEST_CODE = MainActivity.REQUEST_CODE_PICK_MODEL_DATA_FILE;
@@ -117,16 +124,21 @@ public class FileSelectionFragment extends Fragment {
       }
     });
 
-    this.modelFileNameView = (TextView)view.findViewById(R.id.modelFileNameView);
+    this.modelFileNameView = (TextView)mainView.findViewById(R.id.modelFileNameView);
     this.modelFileNameView.setText(this.modelFileName);
     this.modelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
 
-  private void createSourceComponent(View view) {
+  /**
+   * ソースデータを読み込むコンポーネントを生成します。
+   * 
+   * @param mainView
+   */
+  private void createSourceComponent(View mainView) {
     final List<GroupModel> rootGroups = this.canvasFragment.root.getScene(0).getGroups();
     final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
-    final LinearLayout sources =  (LinearLayout)view.findViewById(R.id.layout_sources);
+    final LinearLayout sources =  (LinearLayout)mainView.findViewById(R.id.layout_sources);
     sources.removeAllViews();
     this.sourceSelectButtons.clear();
     this.sourceReloadButtons.clear();
@@ -217,33 +229,33 @@ public class FileSelectionFragment extends Fragment {
   }
 
   /**
-   * 時間データをURIから読み込みます。
+   * ソースデータをURIから読み込みます。
    * 
-   * @param uri 時間データURI
+   * @param sourceFileUri ソースデータURI
    * @param sourceId ソースID
    */
-  public void loadSourceData(Uri uri, String sourceId) {
-    if (uri == null) {
+  public void loadSourceData(Uri sourceFileUri, String sourceId) {
+    if (sourceFileUri == null) {
       return;
     }
 
     final String sourceFileName;
     final InputStream sourceStream;
 
-    if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
+    if ("content".equals(sourceFileUri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        sourceStream = getActivity().getContentResolver().openInputStream(uri);
+        sourceStream = getActivity().getContentResolver().openInputStream(sourceFileUri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      final Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+      final Cursor cursor = getActivity().getContentResolver().query(sourceFileUri, null, null, null, null);
       cursor.moveToFirst();
       sourceFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       cursor.close();
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
-      final String sourceDataFilePath = uri.getPath();
+      final String sourceDataFilePath = sourceFileUri.getPath();
       try {
         sourceStream = new FileInputStream(sourceDataFilePath);
       } catch (FileNotFoundException e) {
@@ -256,38 +268,38 @@ public class FileSelectionFragment extends Fragment {
     this.sourceFileNameViews.get(sourceId).setText(sourceFileName);
     this.sourceFileNames.put(sourceId, sourceFileName);
 
-    this.canvasFragment.loadSourceDataInBackground(sourceStream, uri.getPath(), sourceId);
+    this.canvasFragment.loadSourceDataInBackground(sourceStream, sourceFileUri.getPath(), sourceId);
     // sourceStream has been already closed in the loadSourceData method. 
   }
 
   /**
    * モデルをURIから読み込みます。
    * 
-   * @param uri モデルURI
+   * @param modelFileUri モデルURI
    */
-  void loadModelData(Uri uri) {
-    if (uri == null) {
+  void loadModelData(Uri modelFileUri) {
+    if (modelFileUri == null) {
       return;
     }
 
-    final InputStream modelStream;
+    final InputStream modelInputStream;
 
-    if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
+    if ("content".equals(modelFileUri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        modelStream = this.mainActivity.getContentResolver().openInputStream(uri);
+        modelInputStream = getActivity().getContentResolver().openInputStream(modelFileUri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      final Cursor cursor = this.mainActivity.getContentResolver().query(uri, null, null, null, null);
+      final Cursor cursor = this.mainActivity.getContentResolver().query(modelFileUri, null, null, null, null);
       cursor.moveToFirst();
       this.modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       cursor.close();
-      // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
-      final String modelFilePath = uri.getPath();
+      // URIをファイルパスに変換し、その後ストリームを取り出します。
+      final String modelFilePath = modelFileUri.getPath();
       try {
-        modelStream = new FileInputStream(modelFilePath);
+        modelInputStream = new FileInputStream(modelFilePath);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
@@ -303,8 +315,8 @@ public class FileSelectionFragment extends Fragment {
     this.sourceFileNames.clear();
 
     try {
-      this.canvasFragment.loadModelData(modelStream);
-      modelStream.close();
+      this.canvasFragment.loadModelData(modelInputStream);
+      modelInputStream.close();
 
       if (this.canvasFragment.sourceData.size() != 0) {
         this.canvasFragment.sourceData.clear();
@@ -336,7 +348,9 @@ public class FileSelectionFragment extends Fragment {
   }
 
   /**
-   * @param enabled
+   * ボタンのアクティブ・非アクティブを設定します。
+   * 
+   * @param enabled trueならばアクティブ
    */
   void setButtonEnabled(boolean enabled) {
     this.isSelectedModelFile = enabled;

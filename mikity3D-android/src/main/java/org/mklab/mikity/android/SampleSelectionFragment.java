@@ -101,8 +101,13 @@ public class SampleSelectionFragment extends Fragment {
     return mainView;
   }
 
-  private void createModelComponent(View view) {
-    final Button modelButton = (Button)view.findViewById(R.id.sampleModelSelectButton);
+  /**
+   * モデルのコンポーネントを生成します。
+   * 
+   * @param mainView
+   */
+  private void createModelComponent(View mainView) {
+    final Button modelButton = (Button)mainView.findViewById(R.id.sampleModelSelectButton);
     modelButton.setOnClickListener(new OnClickListener() {
 
       /**
@@ -128,7 +133,7 @@ public class SampleSelectionFragment extends Fragment {
       }
     });
 
-    this.modelFileNameView = (TextView)view.findViewById(R.id.sampleModelFileNameView);
+    this.modelFileNameView = (TextView)mainView.findViewById(R.id.sampleModelFileNameView);
     this.modelFileNameView.setText(this.modelFileName);
     this.modelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
@@ -174,20 +179,20 @@ public class SampleSelectionFragment extends Fragment {
   }
   
   /**
-   * サンプルのソースを読み込むボタンを更新します。
+   * サンプルのソースを読み込むコンポーネントを更新します。
    */
   public void updateSourceComponent() {
     createSourceComponent(getView());
   }
 
   /**
-   * サンプルのソースを読み込むボタンを生成します。
+   * のソースを読み込むコンポーネントを生成します。
    */
-  void createSourceComponent(View view) {
+  void createSourceComponent(View mainView) {
     final List<GroupModel> rootGroups = this.canvasFragment.root.getScene(0).getGroups();
     final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
-    final LinearLayout sources = (LinearLayout)view.findViewById(R.id.layout_sample_sources);
+    final LinearLayout sources = (LinearLayout)mainView.findViewById(R.id.layout_sample_sources);
     sources.removeAllViews();
 
     this.sourceSelectButtons.clear();
@@ -237,23 +242,30 @@ public class SampleSelectionFragment extends Fragment {
   }
 
   /**
-   * ストリームからサンプルソースデータを取り出します。
+   * ストリームからソースデータを読み込みます。
    * 
-   * @param input ソースの入力ストリーム
-   * @param filePath ソースのファイルパス
+   * @param sourceInputStream ソースの入力ストリーム
+   * @param sourceFilePath ソースのファイルパス
    * @param sourceId ソースID
    */
-  public void loadSourceData(final InputStream input, final String filePath, String sourceId) {
-    this.canvasFragment.loadSourceDataInBackground(input, filePath, sourceId);
+  public void loadSourceData(final InputStream sourceInputStream, final String sourceFilePath, String sourceId) {
+    this.canvasFragment.loadSourceDataInBackground(sourceInputStream, sourceFilePath, sourceId);
 
-    final String[] parts = filePath.split("/"); //$NON-NLS-1$
+    final String[] parts = sourceFilePath.split("/"); //$NON-NLS-1$
     final String sourceFileName = parts[parts.length - 1];
     this.sourceFileNameViews.get(sourceId).setText(sourceFileName);
     this.sourceFileNames.put(sourceId, sourceFileName);
   }
 
-  void loadModelData(InputStream modelStream, String modelFilePath) throws Mikity3dSerializeDeserializeException {
-    this.canvasFragment.loadModelData(modelStream);
+  /**
+   * ストリームからモデルデータを読み込みます。
+   * 
+   * @param modelInputStream モデルの入力ストリーム
+   * @param modelFilePath モデルのファイルパス
+   * @throws Mikity3dSerializeDeserializeException
+   */
+  void loadModelData(InputStream modelInputStream, String modelFilePath) throws Mikity3dSerializeDeserializeException {
+    this.canvasFragment.loadModelData(modelInputStream);
 
     final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
     this.modelFileName = parts[parts.length - 1];
@@ -288,7 +300,9 @@ public class SampleSelectionFragment extends Fragment {
   }
 
   /**
-   * @param enabled
+   * ボタンのアクティブ・非アクティブを設定します。
+   * 
+   * @param enabled trueならばアクティブ
    */
   void setButtonEnabled(boolean enabled) {
     this.isSelectedModelFile = enabled;
