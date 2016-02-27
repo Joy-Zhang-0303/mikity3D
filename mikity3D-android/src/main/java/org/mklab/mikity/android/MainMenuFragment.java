@@ -60,6 +60,7 @@ public class MainMenuFragment extends Fragment {
     mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[3], mainMenuIcons.getResourceId(3, -1)));
     mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[4], mainMenuIcons.getResourceId(4, -1)));
     mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[5], mainMenuIcons.getResourceId(5, -1)));
+    mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[6], mainMenuIcons.getResourceId(6, -1)));
 
     mainMenuIcons.recycle();
 
@@ -95,6 +96,9 @@ public class MainMenuFragment extends Fragment {
         break;
       case 3:
         this.mainActivity.createSettingsFragment();
+        break;
+      case 4:
+        this.mainActivity.createSampleSelectionFragment();
         break;
       default:
         break;

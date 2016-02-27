@@ -1,14 +1,15 @@
 package org.mklab.mikity.android.mainmenu;
 
 /**
- * @author 
+ * メインメニューの項目を表すクラスです。
+ * 
+ * @author hirae 
  * @version $Revision$, 2016/02/01
  */
 public class MainMenuDrawerItem {
-
   private String title;
   private int navicon;
-  private String count = "0";
+  private String count = "0"; //$NON-NLS-1$
 
   private boolean isCounterVisible = false;
 
@@ -21,8 +22,8 @@ public class MainMenuDrawerItem {
 
   /**
    * 新しく生成された<code>NavDrawerItem</code>オブジェクトを初期化します。
-   * @param title
-   * @param icon
+   * @param title タイトル
+   * @param icon アイコン
    */
   public MainMenuDrawerItem(String title, int icon) {
     this.title = title;

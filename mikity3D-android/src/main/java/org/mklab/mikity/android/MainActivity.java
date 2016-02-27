@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
   /** FileSelectionFragment */
   FileSelectionFragment fileSelectionFragment;
 
+  /** SampleSelectionFragment */
+  SampleSelectionFragment sampleSelectionFragment;
+
   /** SceneGraphTree */
   SceneGraphTree sceneGraphTreeFragment;
 
@@ -141,6 +144,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     transaction.replace(R.id.fragment_navigation_drawer, this.fileSelectionFragment);
+    transaction.commit();
+  }
+  
+  /**
+   * SampleSelectionFragmentを生成します。
+   */
+  void createSampleSelectionFragment() {
+    final FragmentManager manager = getSupportFragmentManager();
+    final FragmentTransaction transaction = manager.beginTransaction();
+    transaction.addToBackStack(null);
+
+    if (this.sampleSelectionFragment == null) {
+      this.sampleSelectionFragment = new SampleSelectionFragment();
+    }
+
+    transaction.replace(R.id.fragment_navigation_drawer, this.sampleSelectionFragment);
     transaction.commit();
   }
 

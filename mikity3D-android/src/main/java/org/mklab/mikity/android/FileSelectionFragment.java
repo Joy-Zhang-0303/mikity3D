@@ -16,13 +16,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.mklab.mikity.android.model.SceneGraphTree;
-import org.mklab.mikity.model.searcher.ExcecuteSearchGroup;
-import org.mklab.mikity.model.searcher.GroupManager;
-import org.mklab.mikity.model.searcher.GroupNameManager;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
-import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
@@ -32,7 +26,6 @@ import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,10 +52,10 @@ public class FileSelectionFragment extends Fragment {
   /** モデルファイルのパス。 */
   TextView modelFileNameView;
   
-  /** サンプルモデルファイル名。 */
-  String sampleModelFileName = "..."; //$NON-NLS-1$
-  /** サンプルのモデルファイルのパス。 */
-  TextView sampleModelFileNameView;
+//  /** サンプルモデルファイル名。 */
+//  String sampleModelFileName = "..."; //$NON-NLS-1$
+//  /** サンプルのモデルファイルのパス。 */
+//  TextView sampleModelFileNameView;
 
   /** 3Dモデルが選ばれて表示されたならばtrue。 */
   boolean isSelectedModelFile;
@@ -76,19 +69,19 @@ public class FileSelectionFragment extends Fragment {
   /** ソースファイルを再読み込みするためのボタン。 */
   List<Button> sourceReloadButtons = new ArrayList<Button>();
 
-  /** サンプルのソースファイルのパス。 */
-  Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
-  /** サンプルソースファイル名。 */
-  Map<String, String> sampleSourceFileNames = new HashMap<String, String>();
-  
-  /** サンプルのソースファイルを選択するためのボタン */
-  List<Button> sampleSourceSelectButtons = new ArrayList<Button>();
+//  /** サンプルのソースファイルのパス。 */
+//  Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
+//  /** サンプルソースファイル名。 */
+//  Map<String, String> sampleSourceFileNames = new HashMap<String, String>();
+//  
+//  /** サンプルのソースファイルを選択するためのボタン */
+//  List<Button> sampleSourceSelectButtons = new ArrayList<Button>();
+//
+//  AssetsListViewFragment sampleModelViewFragment;
+//
+//  AssetsListViewFragment sampleSourceViewFragment;
 
-  AssetsListViewFragment sampleModelViewFragment;
-
-  AssetsListViewFragment sampleSourceViewFragment;
-
-  SceneGraphTree sceneGraphTreeFragment;
+//  SceneGraphTree sceneGraphTreeFragment;
 
   /**
    * {@inheritDoc}
@@ -126,10 +119,10 @@ public class FileSelectionFragment extends Fragment {
       createSourceComponent(mainView);
     }
     
-    createSampleModelComponent(mainView);
-    if (this.sampleModelFileName.equals("...") == false) { //$NON-NLS-1$
-      createSampleSourceComponent(mainView);
-    }
+//    createSampleModelComponent(mainView);
+//    if (this.sampleModelFileName.equals("...") == false) { //$NON-NLS-1$
+//      createSampleSourceComponent(mainView);
+//    }
 
     return mainView;
   }
@@ -207,37 +200,37 @@ public class FileSelectionFragment extends Fragment {
 
   }
 
-  private void createSampleModelComponent(View view) {
-    final Button modelButton = (Button)view.findViewById(R.id.sampleModelSelectButton);
-    modelButton.setOnClickListener(new OnClickListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View view) {
-        final FragmentManager manager = getActivity().getSupportFragmentManager();
-        final FragmentTransaction transaction = manager.beginTransaction();
-        transaction.addToBackStack(null);
-
-        if (FileSelectionFragment.this.sampleModelViewFragment != null) {
-          transaction.remove(FileSelectionFragment.this.sampleModelViewFragment);
-          FileSelectionFragment.this.sampleModelViewFragment = null;
-        }
-        
-        FileSelectionFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
-        final Bundle arguments = new Bundle();
-        arguments.putBoolean("isModelData", true); //$NON-NLS-1$
-        FileSelectionFragment.this.sampleModelViewFragment.setArguments(arguments);
-
-        transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleModelViewFragment);
-        transaction.commit();
-      }
-    });
-
-    this.sampleModelFileNameView = (TextView)view.findViewById(R.id.sampleModelFileNameView);
-    this.sampleModelFileNameView.setText(this.sampleModelFileName);
-    this.sampleModelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
-  }
+//  private void createSampleModelComponent(View view) {
+//    final Button modelButton = (Button)view.findViewById(R.id.sampleModelSelectButton);
+//    modelButton.setOnClickListener(new OnClickListener() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      public void onClick(View view) {
+//        final FragmentManager manager = getActivity().getSupportFragmentManager();
+//        final FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.addToBackStack(null);
+//
+//        if (FileSelectionFragment.this.sampleModelViewFragment != null) {
+//          transaction.remove(FileSelectionFragment.this.sampleModelViewFragment);
+//          FileSelectionFragment.this.sampleModelViewFragment = null;
+//        }
+//        
+//        FileSelectionFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
+//        final Bundle arguments = new Bundle();
+//        arguments.putBoolean("isModelData", true); //$NON-NLS-1$
+//        FileSelectionFragment.this.sampleModelViewFragment.setArguments(arguments);
+//
+//        transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleModelViewFragment);
+//        transaction.commit();
+//      }
+//    });
+//
+//    this.sampleModelFileNameView = (TextView)view.findViewById(R.id.sampleModelFileNameView);
+//    this.sampleModelFileNameView.setText(this.sampleModelFileName);
+//    this.sampleModelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
+//  }
 
   /**
    * 全ての含まれるアニメーソンを返します。
@@ -279,100 +272,100 @@ public class FileSelectionFragment extends Fragment {
     return ids;
   }
   
-  /**
-   * サンプルのソースを読み込むボタンを更新します。
-   */
-  public void updateSampleSourceComponent() {
-    createSampleSourceComponent(getView());
-  }
+//  /**
+//   * サンプルのソースを読み込むボタンを更新します。
+//   */
+//  private void updateSampleSourceComponent() {
+//    createSampleSourceComponent(getView());
+//  }
 
-  /**
-   * サンプルのソースを読み込むボタンを生成します。
-   */
-  void createSampleSourceComponent(View view) {
-    final List<GroupModel> rootGroups = this.canvasFragment.root.getScene(0).getGroups();
-    final Set<String> sourceIds = getAllSourceIds(rootGroups);
+//  /**
+//   * サンプルのソースを読み込むボタンを生成します。
+//   */
+//  void createSampleSourceComponent(View view) {
+//    final List<GroupModel> rootGroups = this.canvasFragment.root.getScene(0).getGroups();
+//    final Set<String> sourceIds = getAllSourceIds(rootGroups);
+//
+//    final LinearLayout sources = (LinearLayout)view.findViewById(R.id.layout_sample_sources);
+//    sources.removeAllViews();
+//
+//    this.sampleSourceSelectButtons.clear();
+//    this.sampleSourceFileNameViews.clear();
+//
+//    for (final String id : sourceIds) {
+//      final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.sample_source, null);
+//      sources.addView(source);
+//
+//      final Button selectButton = (Button)source.findViewById(R.id.sampleSourceSelectButton);
+//      selectButton.setText(getString(R.string.source) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+//      this.sampleSourceSelectButtons.add(selectButton);
+//
+//      selectButton.setOnClickListener(new OnClickListener() {
+//
+//        /**
+//         * {@inheritDoc}
+//         */
+//        public void onClick(View view) {
+//          final FragmentManager manager = getActivity().getSupportFragmentManager();
+//          final FragmentTransaction transaction = manager.beginTransaction();
+//          transaction.addToBackStack(null);
+//
+//          if (FileSelectionFragment.this.sampleSourceViewFragment != null) {
+//            transaction.remove(FileSelectionFragment.this.sampleSourceViewFragment);
+//            FileSelectionFragment.this.sampleSourceViewFragment = null;
+//          }
+//          
+//          FileSelectionFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
+//          final Bundle arguments = new Bundle();
+//          arguments.putString("sourceId", id); //$NON-NLS-1$
+//          arguments.putBoolean("isModelData", false); //$NON-NLS-1$
+//          FileSelectionFragment.this.sampleSourceViewFragment.setArguments(arguments);
+//
+//          transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleSourceViewFragment);
+//          transaction.commit();
+//        }
+//      });
+//
+//      final TextView sourceFileNameView = (TextView)source.findViewById(R.id.sampleSourceFileNameView);
+//      if (this.sampleSourceFileNames.containsKey(id)) {
+//        sourceFileNameView.setText(this.sampleSourceFileNames.get(id));
+//      }
+//      this.sampleSourceFileNameViews.put(id, sourceFileNameView);
+//
+//    }
+//  }
 
-    final LinearLayout sources = (LinearLayout)view.findViewById(R.id.layout_sample_sources);
-    sources.removeAllViews();
+//  /**
+//   * GroupManagerを取得します。
+//   * 
+//   * @return result GroupManager
+//   */
+//  GroupManager getGroupManager() {
+//    final Mikity3DModel root = this.canvasFragment.root;
+//    final SceneModel model = root.getScene(0);
+//    final List<GroupModel> groupArray = model.getGroups();
+//    final GroupModel group = groupArray.get(0);
+//    final ExcecuteSearchGroup search = new ExcecuteSearchGroup();
+//    final GroupNameManager manager = new GroupNameManager(group.getName(), null);
+//    final GroupManager result = search.searchGroupRecursion(group, manager);
+//    return result;
+//  }
 
-    this.sampleSourceSelectButtons.clear();
-    this.sampleSourceFileNameViews.clear();
-
-    for (final String id : sourceIds) {
-      final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.sample_source, null);
-      sources.addView(source);
-
-      final Button selectButton = (Button)source.findViewById(R.id.sampleSourceSelectButton);
-      selectButton.setText(getString(R.string.source) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
-      this.sampleSourceSelectButtons.add(selectButton);
-
-      selectButton.setOnClickListener(new OnClickListener() {
-
-        /**
-         * {@inheritDoc}
-         */
-        public void onClick(View view) {
-          final FragmentManager manager = getActivity().getSupportFragmentManager();
-          final FragmentTransaction transaction = manager.beginTransaction();
-          transaction.addToBackStack(null);
-
-          if (FileSelectionFragment.this.sampleSourceViewFragment != null) {
-            transaction.remove(FileSelectionFragment.this.sampleSourceViewFragment);
-            FileSelectionFragment.this.sampleSourceViewFragment = null;
-          }
-          
-          FileSelectionFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
-          final Bundle arguments = new Bundle();
-          arguments.putString("sourceId", id); //$NON-NLS-1$
-          arguments.putBoolean("isModelData", false); //$NON-NLS-1$
-          FileSelectionFragment.this.sampleSourceViewFragment.setArguments(arguments);
-
-          transaction.add(R.id.fragment_navigation_drawer, FileSelectionFragment.this.sampleSourceViewFragment);
-          transaction.commit();
-        }
-      });
-
-      final TextView sourceFileNameView = (TextView)source.findViewById(R.id.sampleSourceFileNameView);
-      if (this.sampleSourceFileNames.containsKey(id)) {
-        sourceFileNameView.setText(this.sampleSourceFileNames.get(id));
-      }
-      this.sampleSourceFileNameViews.put(id, sourceFileNameView);
-
-    }
-  }
-
-  /**
-   * GroupManagerを取得します。
-   * 
-   * @return result GroupManager
-   */
-  GroupManager getGroupManager() {
-    final Mikity3DModel root = this.canvasFragment.root;
-    final SceneModel model = root.getScene(0);
-    final List<GroupModel> groupArray = model.getGroups();
-    final GroupModel group = groupArray.get(0);
-    final ExcecuteSearchGroup search = new ExcecuteSearchGroup();
-    final GroupNameManager manager = new GroupNameManager(group.getName(), null);
-    final GroupManager result = search.searchGroupRecursion(group, manager);
-    return result;
-  }
-
-  /**
-   * ストリームからサンプルソースデータを取り出します。
-   * 
-   * @param input ソースの入力ストリーム
-   * @param filePath ソースのファイルパス
-   * @param sourceId ソースID
-   */
-  public void loadSampleSourceData(final InputStream input, final String filePath, String sourceId) {
-    this.canvasFragment.loadSourceData(input, filePath, sourceId);
-
-    final String[] parts = filePath.split("/"); //$NON-NLS-1$
-    final String sourceFileName = parts[parts.length - 1];
-    this.sampleSourceFileNameViews.get(sourceId).setText(sourceFileName);
-    this.sampleSourceFileNames.put(sourceId, sourceFileName);
-  }
+//  /**
+//   * ストリームからサンプルソースデータを取り出します。
+//   * 
+//   * @param input ソースの入力ストリーム
+//   * @param filePath ソースのファイルパス
+//   * @param sourceId ソースID
+//   */
+//  public void loadSampleSourceData(final InputStream input, final String filePath, String sourceId) {
+//    this.canvasFragment.loadSourceData(input, filePath, sourceId);
+//
+//    final String[] parts = filePath.split("/"); //$NON-NLS-1$
+//    final String sourceFileName = parts[parts.length - 1];
+//    this.sampleSourceFileNameViews.get(sourceId).setText(sourceFileName);
+//    this.sampleSourceFileNames.put(sourceId, sourceFileName);
+//  }
 
   /**
    * 時間データをURIから読み込みます。
@@ -380,7 +373,7 @@ public class FileSelectionFragment extends Fragment {
    * @param uri 時間データURI
    * @param sourceId ソースID
    */
-  void loadSourceData(Uri uri, String sourceId) {
+  public void loadSourceData(Uri uri, String sourceId) {
     if (uri == null) {
       return;
     }
@@ -418,27 +411,27 @@ public class FileSelectionFragment extends Fragment {
     // sourceStream has been already closed in the loadSourceData method. 
   }
 
-  void loadSampleModelData(InputStream modelStream, String modelFilePath) throws Mikity3dSerializeDeserializeException {
-    this.canvasFragment.loadModelData(modelStream);
-
-    final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
-    this.sampleModelFileName = parts[parts.length - 1];
-    this.sampleModelFileNameView.setText(this.sampleModelFileName);
-
-    final String sampleSourceFileName = "..."; //$NON-NLS-1$
-    for (final TextView view : this.sampleSourceFileNameViews.values()) {
-      view.setText(sampleSourceFileName);
-    }
-    
-    this.sampleSourceFileNames.clear();
-    
-    if (this.canvasFragment.sourceData.size() != 0) {
-      this.canvasFragment.sourceData.clear();
-    }
-    this.isSelectedModelFile = true;
-    updateSampleSourceComponent();
-    setButtonEnabled(true);
-  }
+//  void loadSampleModelData(InputStream modelStream, String modelFilePath) throws Mikity3dSerializeDeserializeException {
+//    this.canvasFragment.loadModelData(modelStream);
+//
+//    final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
+//    this.sampleModelFileName = parts[parts.length - 1];
+//    this.sampleModelFileNameView.setText(this.sampleModelFileName);
+//
+//    final String sampleSourceFileName = "..."; //$NON-NLS-1$
+//    for (final TextView view : this.sampleSourceFileNameViews.values()) {
+//      view.setText(sampleSourceFileName);
+//    }
+//    
+//    this.sampleSourceFileNames.clear();
+//    
+//    if (this.canvasFragment.sourceData.size() != 0) {
+//      this.canvasFragment.sourceData.clear();
+//    }
+//    this.isSelectedModelFile = true;
+//    updateSampleSourceComponent();
+//    setButtonEnabled(true);
+//  }
 
   /**
    * モデルをURIから読み込みます。
@@ -529,29 +522,29 @@ public class FileSelectionFragment extends Fragment {
       button.setEnabled(enabled);
     }
 
-    for (Button button : this.sampleSourceSelectButtons) {
-      button.setEnabled(enabled);
-    }
+//    for (Button button : this.sampleSourceSelectButtons) {
+//      button.setEnabled(enabled);
+//    }
   }
 
-  /**
-   * ソース番号を変更します。
-   * 
-   * @param targetNumbers グループの階層を所持したリスト
-   * @param childPosition アニメーションデータがある場所
-   * @param number 設定する番号
-   */
-  void changeSourceNumber(List<Integer> targetNumbers, int childPosition, int number) {
-    final SceneModel scene = this.canvasFragment.root.getScene(0);
-    final List<GroupModel> topGroups = scene.getGroups();
-    GroupModel group = topGroups.get(0);
-
-    for (final Integer targetNumber : targetNumbers) {
-      group = group.getGroups().get(targetNumber.intValue());
-    }
-
-    group.getAnimations()[childPosition].getSource().setNumber(number);
-    this.canvasFragment.prepareObjectGroupManager();
-    this.canvasFragment.prepareRenderer();
-  }
+//  /**
+//   * ソース番号を変更します。
+//   * 
+//   * @param targetNumbers グループの階層を所持したリスト
+//   * @param childPosition アニメーションデータがある場所
+//   * @param number 設定する番号
+//   */
+//  void changeSourceNumber(List<Integer> targetNumbers, int childPosition, int number) {
+//    final SceneModel scene = this.canvasFragment.root.getScene(0);
+//    final List<GroupModel> topGroups = scene.getGroups();
+//    GroupModel group = topGroups.get(0);
+//
+//    for (final Integer targetNumber : targetNumbers) {
+//      group = group.getGroups().get(targetNumber.intValue());
+//    }
+//
+//    group.getAnimations()[childPosition].getSource().setNumber(number);
+//    this.canvasFragment.prepareObjectGroupManager();
+//    this.canvasFragment.prepareRenderer();
+//  }
 }

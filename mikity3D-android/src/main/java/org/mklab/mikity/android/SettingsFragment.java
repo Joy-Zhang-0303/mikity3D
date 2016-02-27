@@ -95,6 +95,9 @@ public class SettingsFragment extends Fragment {
     if (this.mainActivity.fileSelectionFragment != null) {
       setButtonEnabled(this.mainActivity.fileSelectionFragment.isSelectedModelFile);
     }
+    if (this.mainActivity.sampleSelectionFragment != null) {
+      setButtonEnabled(this.mainActivity.sampleSelectionFragment.isSelectedModelFile);
+    }
     
     updateConfiguration();
 

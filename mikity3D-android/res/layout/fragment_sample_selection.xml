@@ -23,14 +23,14 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/modelSelectButton"
+            android:id="@+id/sampleModelSelectButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/model" />
 
         <TextView
-            android:id="@+id/modelFileNameView"
+            android:id="@+id/sampleModelFileNameView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="30"
@@ -40,7 +40,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layout_sources"
+        android:id="@+id/layout_sample_sources"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >

@@ -7,6 +7,7 @@
         <item>@string/open</item>
         <item>@string/edit</item>
         <item>@string/settings</item>
+        <item>@string/sample</item>
         <item>@string/aboutApp</item>
         <item>@string/help</item>
     </string-array>
@@ -18,6 +19,7 @@
         <item>@drawable/ic_attach_file_black_24dp</item>
         <item>@drawable/ic_edit_black_24dp</item>
         <item>@drawable/ic_settings_black_24dp</item>
+        <item>@drawable/ic_attach_file_black_24dp</item>
         <item>@drawable/ic_android_black</item>
         <item>@drawable/ic_help_black_24dp</item>
     </array>

@@ -47,7 +47,7 @@
     <string name="help">ヘルプ</string>
     <string name="settings">設定</string>
     <string name="minusButton">&lt;&lt;</string>
-    <string name="model">モデルを選択</string>
+    <string name="model">モデル</string>
     <string name="modelDataIsNotReady">モデルデータが未設定です。</string>
     <string name="name">名前</string>
     <string name="newModel">新規</string>
@@ -79,7 +79,7 @@
     <string name="rotation_wrt_z_axis">Z軸周り回転</string>
     <string name="sample">サンプル</string>
     <string name="selectModel">モデル選択</string>
-    <string name="sampleModel">サンプルモデルを選択</string>
+    <string name="sampleModel">サンプルモデル</string>
     <string name="save">保存</string>
     <string name="size_of_facets">三角形の数</string>
     <string name="source">ソースデータ</string>
