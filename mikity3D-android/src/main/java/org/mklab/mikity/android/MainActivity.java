@@ -125,17 +125,7 @@ public class MainActivity extends AppCompatActivity {
    */
   private void createCanvasFragment() {
     final FragmentManager manager = getSupportFragmentManager();
-
-    if (manager.findFragmentById(R.id.fragment_canvas) != null) {
-      this.canvasFragment = (CanvasFragment)manager.findFragmentById(R.id.fragment_canvas);
-      return;
-    }
-
-    this.canvasFragment = new CanvasFragment();
-
-    final FragmentTransaction transaction = manager.beginTransaction();
-    transaction.replace(R.id.fragment_canvas, this.canvasFragment);
-    transaction.commit();
+    this.canvasFragment = (CanvasFragment)manager.findFragmentById(R.id.fragment_canvas);
   }
 
   /**
