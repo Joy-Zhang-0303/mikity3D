@@ -233,14 +233,14 @@ public class FileSelectionFragment extends Fragment {
     if ("content".equals(uri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        sourceStream = this.mainActivity.getContentResolver().openInputStream(uri);
+        sourceStream = getActivity().getContentResolver().openInputStream(uri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      final Cursor cursor2 = this.mainActivity.getContentResolver().query(uri, null, null, null, null);
-      cursor2.moveToFirst();
-      sourceFileName = cursor2.getString(cursor2.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-      cursor2.close();
+      final Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+      cursor.moveToFirst();
+      sourceFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      cursor.close();
       // URIをファイルパスに変換し、その後ストリームを取り出します。
     } else {
       final String sourceDataFilePath = uri.getPath();

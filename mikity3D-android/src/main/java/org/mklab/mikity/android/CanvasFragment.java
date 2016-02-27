@@ -263,7 +263,8 @@ public class CanvasFragment extends Fragment {
    */
   public void loadModelData(InputStream input) throws Mikity3dSerializeDeserializeException {
     this.root = new Mikity3dFactory().loadFile(input);
-    prepareObjectGroupManager();
+    this.manager = new GroupObjectManager();
+    
     prepareRenderer();
     prepareModeler();
 
@@ -553,7 +554,7 @@ public class CanvasFragment extends Fragment {
   /**
    * レンダーを準備します。
    */
-  public void prepareRenderer() {
+  private void prepareRenderer() {
     final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
 
@@ -618,12 +619,12 @@ public class CanvasFragment extends Fragment {
     return this.root.getConfiguration(0).getBaseCoordinate().isAxisShowing();
   }
 
-  /**
-   * ObjectGroupManagerを準備します。
-   */
-  protected void prepareObjectGroupManager() {
-    this.manager = new GroupObjectManager();
-  }
+//  /**
+//   * ObjectGroupManagerを準備します。
+//   */
+//  private void prepareObjectGroupManager() {
+//    this.manager = new GroupObjectManager();
+//  }
 
   /**
    * アクティビティの画面のレイアウトを取得し、設定します。
