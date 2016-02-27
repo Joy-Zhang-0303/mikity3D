@@ -132,12 +132,12 @@ public class FileSelectionFragment extends Fragment {
     this.sourceReloadButtons.clear();
     this.sourceFileNameViews.clear();
 
-    for (final String id : sourceIds) {
+    for (final String sourceId : sourceIds) {
       final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.source, null);
       sources.addView(source);
 
       final Button selectButton = (Button)source.findViewById(R.id.sourceSelectButton);
-      selectButton.setText(getString(R.string.source) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+      selectButton.setText(getString(R.string.source) + "(" + sourceId + ")"); //$NON-NLS-1$ //$NON-NLS-2$
       this.sourceSelectButtons.add(selectButton);
 
       selectButton.setOnClickListener(new View.OnClickListener() {
@@ -148,15 +148,15 @@ public class FileSelectionFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          FileSelectionFragment.this.mainActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, id);
+          FileSelectionFragment.this.mainActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, sourceId);
         }
       });
 
       final TextView fileNameView = (TextView)source.findViewById(R.id.sourceFileNameView);
-      if (this.sourceFileNames.containsKey(id)) {
-        fileNameView.setText(this.sourceFileNames.get(id));
+      if (this.sourceFileNames.containsKey(sourceId)) {
+        fileNameView.setText(this.sourceFileNames.get(sourceId));
       }
-      this.sourceFileNameViews.put(id, fileNameView);
+      this.sourceFileNameViews.put(sourceId, fileNameView);
 
       final Button reloadButton = (Button)source.findViewById(R.id.sourceReloadButton);
       this.sourceReloadButtons.add(reloadButton);
@@ -167,8 +167,8 @@ public class FileSelectionFragment extends Fragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          if (FileSelectionFragment.this.canvasFragment.sourceData.containsKey(id)) {
-            FileSelectionFragment.this.canvasFragment.addSource(id);
+          if (FileSelectionFragment.this.canvasFragment.sourceData.containsKey(sourceId)) {
+            FileSelectionFragment.this.canvasFragment.addSource(sourceId);
           }
         }
       });
@@ -256,7 +256,7 @@ public class FileSelectionFragment extends Fragment {
     this.sourceFileNameViews.get(sourceId).setText(sourceFileName);
     this.sourceFileNames.put(sourceId, sourceFileName);
 
-    this.canvasFragment.loadSourceData(sourceStream, uri.getPath(), sourceId);
+    this.canvasFragment.loadSourceDataInBackground(sourceStream, uri.getPath(), sourceId);
     // sourceStream has been already closed in the loadSourceData method. 
   }
 

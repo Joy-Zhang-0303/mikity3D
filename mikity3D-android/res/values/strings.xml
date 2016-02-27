@@ -53,7 +53,7 @@
     <string name="name">Name</string>
     <string name="newModel">New</string>
     <string name="no">No</string>
-    <string name="now_loading_">Now Loading...</string>
+    <string name="now_loading">Now Loading...</string>
     <string name="number">Number</string>
     <string name="objectType">Object Type</string>
     <string name="open">Open</string>

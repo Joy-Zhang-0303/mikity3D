@@ -100,6 +100,8 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
 
   /** */
   Map<String,Text> sourceFilePathText = new HashMap<>();
+  
+  Map<String, DoubleMatrix> sourceData = new HashMap<>();
 
   /** */
   GroupObjectManager manager;
@@ -172,7 +174,11 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
     final List<SourceDataModel> sourcesInConfiguration = this.root.getConfiguration(0).getSources();
     if (sourcesInConfiguration != null) {
       for (final SourceDataModel source : sourcesInConfiguration) {
-        addSource(source.getId(), source.getFilePath());
+        final String filePath = source.getFilePath();
+        final String sourceId = source.getId();
+        
+        loadSourceData(filePath, sourceId);
+        addSource(sourceId);
       }
     }
     
@@ -554,9 +560,9 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
    * ソースを選択するコンポジットを生成します。
    * 
    * @param parent 親コンポジット
-   * @param id IO
+   * @param sourceId IO
    */
-  public void createSourceChooser(final Composite parent, final String id) {
+  public void createSourceChooser(final Composite parent, final String sourceId) {
     final Composite composite = new Composite(parent, SWT.NONE);
     final GridLayout layout = new GridLayout();
     layout.numColumns = 6;
@@ -564,10 +570,10 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
     composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
     final Label label = new Label(composite, SWT.NONE);
-    label.setText(id + ":"); //$NON-NLS-1$
+    label.setText(sourceId + ":"); //$NON-NLS-1$
     
     final Text filePathText = new Text(composite, SWT.BORDER);
-    this.sourceFilePathText.put(id,  filePathText);
+    this.sourceFilePathText.put(sourceId,  filePathText);
     
     filePathText.setText(""); //$NON-NLS-1$
     filePathText.addTraverseListener(new TraverseListener() {
@@ -575,9 +581,11 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
       @Override
       public void keyTraversed(TraverseEvent e) {
         if (e.detail == SWT.TRAVERSE_RETURN) {
-          final String filePath =  AnimationWindow.this.sourceFilePathText.get(id).getText();
-          addSource(id, filePath);
-          AnimationWindow.this.sourceFilePathText.get(id).setText(filePath);
+          final String filePath =  AnimationWindow.this.sourceFilePathText.get(sourceId).getText();
+          
+          loadSourceData(filePath, sourceId);
+          addSource(sourceId);
+          AnimationWindow.this.sourceFilePathText.get(sourceId).setText(filePath);
         }
       }
     });
@@ -601,8 +609,10 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
         
         final String filePath = dialog.open();
         if (filePath != null) {
-          AnimationWindow.this.sourceFilePathText.get(id).setText(filePath);
-          addSource(id, filePath);
+          AnimationWindow.this.sourceFilePathText.get(sourceId).setText(filePath);
+          
+          loadSourceData(filePath, sourceId);
+          addSource(sourceId);
         }
       }
     });
@@ -657,25 +667,29 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   /**
    * ソースのファイルを設定します。
    * 
-   * @param id ソースのID
-   * @param file ソースのファイルパス
+   * @param sourceId ソースのID
    */
-  void addSource(String id, String filePath) {
-    try (FileReader input = new FileReader(filePath);) {
-      final DoubleMatrix sourceData;
+  void addSource(String sourceId) {
+    this.manager.addSource(sourceId, this.sourceData.get(sourceId));
+  }
+
+  void loadSourceData(String filePath, String sourceId) {
+    try (final FileReader input = new FileReader(filePath);) {
+      final DoubleMatrix data;
+      
       if (filePath.toLowerCase().endsWith(".mat")) { //$NON-NLS-1$
-        sourceData = (DoubleMatrix)MatxMatrix.readMatFormat(input);
+        data = (DoubleMatrix)MatxMatrix.readMatFormat(input);
       } else if (filePath.toLowerCase().endsWith(".csv")) { //$NON-NLS-1$
-        sourceData = DoubleMatrix.readCsvFormat(input).transpose();
+        data = DoubleMatrix.readCsvFormat(input).transpose();
       } else if (filePath.toLowerCase().endsWith(".txt")) { //$NON-NLS-1$
-        sourceData = DoubleMatrix.readSsvFormat(input).transpose();
+        data = DoubleMatrix.readSsvFormat(input).transpose();
       } else {
-        sourceData = DoubleMatrix.readSsvFormat(input).transpose();
+        data = DoubleMatrix.readSsvFormat(input).transpose();
       }
 
       input.close();
       
-      this.manager.addSource(id, sourceData);
+      this.sourceData.put(sourceId, data);
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {

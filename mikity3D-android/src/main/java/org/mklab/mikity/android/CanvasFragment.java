@@ -5,7 +5,6 @@
  */
 package org.mklab.mikity.android;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -54,6 +53,7 @@ import android.widget.LinearLayout;
  * @version $Revision$, 2014/10/10
  */
 public class CanvasFragment extends Fragment {
+
   /** ビュー。 */
   View view;
   /** GLのためのビュー。 */
@@ -72,7 +72,7 @@ public class CanvasFragment extends Fragment {
   boolean scaling;
   float prevX = 0;
   float prevY = 0;
-  
+
   double scaleValue = 1;
 
   Timer timer = new Timer();
@@ -81,7 +81,7 @@ public class CanvasFragment extends Fragment {
 
   /** アニメーションの再生速度倍率 */
   int animationSpeedRate = 1000;
-  
+
   /** アニメーションの開始時間 */
   private long startTime;
   /** アニメーションの終了時間。 */
@@ -95,7 +95,7 @@ public class CanvasFragment extends Fragment {
   Mikity3DModel root;
 
   GroupObjectManager manager;
-  
+
   OpenglesModeler modeler;
 
   Map<String, DoubleMatrix> sourceData = new HashMap<String, DoubleMatrix>();
@@ -111,7 +111,7 @@ public class CanvasFragment extends Fragment {
 
   /** 繰り返し再生中ならばtrue */
   boolean isRepeating = false;
-  
+
   /**
    * {@inheritDoc}
    */
@@ -120,7 +120,7 @@ public class CanvasFragment extends Fragment {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -129,7 +129,7 @@ public class CanvasFragment extends Fragment {
     this.view = inflater.inflate(R.layout.fragment_canvas, container, false);
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
     this.getResources();
-    
+
     final ConfigurationModel configuration = new ConfigurationModel();
     configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
     configuration.setLookAtPoiint(new LookAtPointModel(0.0f, 0.0f, 0.0f));
@@ -220,11 +220,11 @@ public class CanvasFragment extends Fragment {
     public boolean onScale(ScaleGestureDetector detector) {
       CanvasFragment.this.rotating = false;
       CanvasFragment.this.scaling = true;
-      
+
       final double scalingRate = 0.5;
-      final double newScale = (CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor()))/scalingRate;
+      final double newScale = (CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor())) / scalingRate;
       CanvasFragment.this.objectRenderer.setScale((float)Math.min(20.0, Math.max(0.05, newScale)));
-      
+
       CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
       CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
 
@@ -246,7 +246,7 @@ public class CanvasFragment extends Fragment {
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
       CanvasFragment.this.scaling = false;
-      
+
       CanvasFragment.this.scaleValue = CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor());
 
       CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
@@ -272,9 +272,9 @@ public class CanvasFragment extends Fragment {
       this.manager.setHasAnimation(true);
     }
   }
-  
+
   /**
-   * モデラーを準備します。 
+   * モデラーを準備します。
    */
   private void prepareModeler() {
     this.modeler.setRoot(this.root);
@@ -282,13 +282,13 @@ public class CanvasFragment extends Fragment {
   }
 
   /**
-   * ストリームからソースデータを取り出します。
+   * ストリームからソースデータをバックグランドで取り出します。
    * 
    * @param input ソースの入力ストリーム
    * @param filePath ソースのファイルパス
    * @param sourceId ソースID
    */
-  public void loadSourceData(final InputStream input, final String filePath, final String sourceId) {
+  public void loadSourceDataInBackground(final InputStream input, final String filePath, final String sourceId) {
     final AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
 
       /**
@@ -299,7 +299,7 @@ public class CanvasFragment extends Fragment {
         CanvasFragment.this.progressDialog = new ProgressDialog(getActivity());
         CanvasFragment.this.progressDialog.setCanceledOnTouchOutside(false);
         CanvasFragment.this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        CanvasFragment.this.progressDialog.setMessage(getString(R.string.now_loading_));
+        CanvasFragment.this.progressDialog.setMessage(getString(R.string.now_loading));
         CanvasFragment.this.progressDialog.show();
       }
 
@@ -308,7 +308,7 @@ public class CanvasFragment extends Fragment {
        */
       @Override
       protected Void doInBackground(String... arg0) {
-        readSourceData(sourceId, input, filePath);
+        loadSourceData(input, filePath, sourceId);
 
         // input is closed in order to complete reading the data from the input stream.
         try {
@@ -338,38 +338,30 @@ public class CanvasFragment extends Fragment {
    * ソースデータを読み込みます。
    * 
    * @param input ソースデータのインプットストリーム
+   * @param filePath ソースファイルのパス
+   * @param sourceId ソースファイルID
    */
-  void readSourceData(final String sourceId, final InputStream input, final String sourceFilePath) {
+  void loadSourceData(final InputStream input, final String filePath, final String sourceId) {
     try {
-      if (sourceFilePath.toLowerCase().endsWith(".mat") || sourceFilePath.startsWith("/document")) { //$NON-NLS-1$ //$NON-NLS-2$
-        this.sourceData.put(sourceId, (DoubleMatrix)MatxMatrix.readMatFormat(new InputStreamReader(input)));
-      } else if (sourceFilePath.toLowerCase().endsWith(".csv") || sourceFilePath.startsWith("/document")) { //$NON-NLS-1$ //$NON-NLS-2$
-        this.sourceData.put(sourceId, DoubleMatrix.readCsvFormat(new InputStreamReader(input)).transpose());
-      } else if (sourceFilePath.toLowerCase().endsWith(".txt") || sourceFilePath.startsWith("/document")) { //$NON-NLS-1$ //$NON-NLS-2$
-        this.sourceData.put(sourceId, DoubleMatrix.readSsvFormat(new InputStreamReader(input)).transpose());
+      final DoubleMatrix data;
+      
+      if (filePath.toLowerCase().endsWith(".mat") || filePath.startsWith("/document")) { //$NON-NLS-1$ //$NON-NLS-2$
+        data = (DoubleMatrix)MatxMatrix.readMatFormat(new InputStreamReader(input));
+      } else if (filePath.toLowerCase().endsWith(".csv") || filePath.startsWith("/document")) { //$NON-NLS-1$ //$NON-NLS-2$
+        data = DoubleMatrix.readCsvFormat(new InputStreamReader(input)).transpose();
+      } else if (filePath.toLowerCase().endsWith(".txt") || filePath.startsWith("/document")) { //$NON-NLS-1$ //$NON-NLS-2$
+        data = DoubleMatrix.readSsvFormat(new InputStreamReader(input)).transpose();
       } else {
-        this.sourceData.put(sourceId, DoubleMatrix.readSsvFormat(new InputStreamReader(input)).transpose());
+        data = DoubleMatrix.readSsvFormat(new InputStreamReader(input)).transpose();
       }
-    } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
+
+      this.sourceData.put(sourceId, data);
     } catch (IOException e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      showAlertMessageInDialog("Please select source file."); //$NON-NLS-1$
-    } catch (IllegalArgumentException e) {
-      if (this.progressDialog != null) {
-        this.progressDialog.dismiss();
-      }
 
-      showAlertMessageInDialog("Please select proper source file and set source number."); //$NON-NLS-1$
-    } catch (IllegalAccessError e) {
-      if (this.progressDialog != null) {
-        this.progressDialog.dismiss();
-      }
-      final String message = "Source data size dose not match the model's source number." //$NON-NLS-1$
-          + "\nPlease select proper source file and set source number."; //$NON-NLS-1$
-      showAlertMessageInDialog(message);
+      showAlertMessageInDialog("Please select proper source file."); //$NON-NLS-1$
     }
   }
 
@@ -398,7 +390,7 @@ public class CanvasFragment extends Fragment {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      
+
       final String message = "Source data size is not match model's source number." //$NON-NLS-1$
           + "\nPlease select proper source data or set proper source number."; //$NON-NLS-1$
       showAlertMessageInDialog(message);
@@ -406,7 +398,9 @@ public class CanvasFragment extends Fragment {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
-      showAlertMessageInDialog("Please select proper source data or set source number to data size or lower."); //$NON-NLS-1$
+
+      final String message = "Please select proper source data or set source number to data size or lower."; //$NON-NLS-1$
+      showAlertMessageInDialog(message);
     }
   }
 
@@ -452,9 +446,9 @@ public class CanvasFragment extends Fragment {
   public OpenglesObjectRenderer getObjectRender() {
     return this.objectRenderer;
   }
-  
+
   /**
-   * アニメーションを繰り返し再生します。 
+   * アニメーションを繰り返し再生します。
    */
   public void repeatAnimation() {
     this.isRepeating = true;
@@ -477,7 +471,7 @@ public class CanvasFragment extends Fragment {
     if (this.playable == false) {
       this.timer.cancel();
     }
-    
+
     if (this.isPaused == false) {
       this.startTime = SystemClock.uptimeMillis();
       this.delayTime = 0;
@@ -493,9 +487,9 @@ public class CanvasFragment extends Fragment {
       this.delayTime += SystemClock.uptimeMillis() - this.pausedTime;
     }
     this.isPaused = false;
-    
+
     this.animationTask = new AnimationTask(this.startTime, this.stopTime, getObjectGroupManager(), getObjectRender(), this.delayTime);
-    this.animationTask.setSpeedScale(this.animationSpeedRate/1000.0);
+    this.animationTask.setSpeedScale(this.animationSpeedRate / 1000.0);
     this.animationTask.addAnimationTaskListener(new AnimationTaskListener() {
 
       /**
@@ -520,9 +514,9 @@ public class CanvasFragment extends Fragment {
     this.timer = new Timer();
     this.timer.schedule(this.animationTask, 0, 30);
   }
-  
+
   /**
-   * アニメーションを停止します。 
+   * アニメーションを停止します。
    */
   public void stopAnimation() {
     this.timer.cancel();
@@ -530,15 +524,15 @@ public class CanvasFragment extends Fragment {
     this.isPaused = false;
     this.isRepeating = false;
   }
-  
+
   /**
-   * アニメーションを一時停止します。 
+   * アニメーションを一時停止します。
    */
   public void pauseAnimation() {
     if (this.isPaused) {
       return;
     }
-    
+
     if (this.animationTask != null) {
       this.timer.cancel();
       this.isPaused = true;
@@ -567,15 +561,15 @@ public class CanvasFragment extends Fragment {
     this.objectRenderer.setRootGroups(rootGroups, this.manager);
     this.objectRenderer.setConfiguration(configuration);
   }
-  
+
   /**
-   * モデルをリセットし、初期状態に戻します。 
+   * モデルをリセットし、初期状態に戻します。
    */
   public void resetToInitialState() {
     this.objectRenderer.resetToInitialState();
     this.objectRenderer.updateDisplay();
   }
-  
+
   /**
    * グリッドを表示するか設定します。
    * 
@@ -587,7 +581,7 @@ public class CanvasFragment extends Fragment {
     }
     this.root.getConfiguration(0).getBaseCoordinate().setGridShowing(isGridShowing);
   }
-  
+
   /**
    * グリッドを表示するか判定します。
    * 
@@ -600,7 +594,6 @@ public class CanvasFragment extends Fragment {
     return this.root.getConfiguration(0).getBaseCoordinate().isGridShowing();
   }
 
-  
   /**
    * 座標軸を表示するか設定します。
    * 
@@ -612,7 +605,7 @@ public class CanvasFragment extends Fragment {
     }
     this.root.getConfiguration(0).getBaseCoordinate().setAxisShowing(isAxisShowing);
   }
-  
+
   /**
    * 座標軸を表示するか判定します。
    * 

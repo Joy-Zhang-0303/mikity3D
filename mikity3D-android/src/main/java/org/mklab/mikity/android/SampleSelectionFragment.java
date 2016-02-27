@@ -244,7 +244,7 @@ public class SampleSelectionFragment extends Fragment {
    * @param sourceId ソースID
    */
   public void loadSourceData(final InputStream input, final String filePath, String sourceId) {
-    this.canvasFragment.loadSourceData(input, filePath, sourceId);
+    this.canvasFragment.loadSourceDataInBackground(input, filePath, sourceId);
 
     final String[] parts = filePath.split("/"); //$NON-NLS-1$
     final String sourceFileName = parts[parts.length - 1];
