@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
@@ -62,8 +61,6 @@ public class SampleSelectionFragment extends Fragment {
   AssetsListViewFragment sampleModelViewFragment;
 
   AssetsListViewFragment sampleSourceViewFragment;
-
-//  SceneGraphTree sceneGraphTreeFragment;
 
   /**
    * {@inheritDoc}
