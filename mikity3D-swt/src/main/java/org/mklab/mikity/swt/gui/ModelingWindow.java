@@ -77,7 +77,7 @@ public class ModelingWindow extends ApplicationWindow {
   /** モデラー。 */
   private JoglModeler modeler;
   /** ファイル。 */
-  private File file;
+  private File modelFile;
 
   /** アニメーションウィンドウ。 */
   private AnimationWindow animationWindow;
@@ -138,20 +138,20 @@ public class ModelingWindow extends ApplicationWindow {
   }
 
   /**
-   * ファイルを設定します。
+   * モデルデータのファイルを設定します。
    * 
-   * @param file ファイル
+   * @param file モデルデータのファイル
    */
-  public void setFile(File file) {
-    this.file = file;
+  public void setModelFile(File file) {
+    this.modelFile = file;
   }
   
   /**
-   * ファイルを返します。
-   * @return ファイル
+   * モデルデータのファイルを返します。
+   * @return モデルデータのファイル
    */
-  public File getFile() {
-    return this.file;
+  public File getModelFile() {
+    return this.modelFile;
   }
 
   /**
@@ -240,12 +240,12 @@ public class ModelingWindow extends ApplicationWindow {
    * 
    * @throws Mikity3dSerializeDeserializeException ファイルに保存できない場合  
    */
-  public void saveFile() throws Mikity3dSerializeDeserializeException {
-    if (this.file == null) {
+  public void saveModelFile() throws Mikity3dSerializeDeserializeException {
+    if (this.modelFile == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.11")); //$NON-NLS-1$
     }
     final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
-    marshaller.marshal(this.file);
+    marshaller.marshal(this.modelFile);
     this.modeler.setIsChanged(false);
   }
 
@@ -254,30 +254,30 @@ public class ModelingWindow extends ApplicationWindow {
    * 
    * @throws IOException ファイルを読み込めない場合 
    */
-  public void loadFile() throws IOException {
-    if (this.file == null) {
+  public void loadModelFile() throws IOException {
+    if (this.modelFile == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     
-    this.root = new Mikity3dFactory().loadFile(this.file);
+    this.root = new Mikity3dFactory().loadFile(this.modelFile);
     setStatus(Messages.getString("MainWindow.13")); //$NON-NLS-1$
     
-    getShell().setText("Mikity3D Modeler : " + this.file.getName()); //$NON-NLS-1$    
+    getShell().setText("Mikity3D Modeler : " + this.modelFile.getName()); //$NON-NLS-1$    
 
     setUnit();
     this.modeler.setModel(this.root);
   }
 
   /**
-   * ファイルを読み込み，データをモデルに追加します。
+   * モデルデータのファイルを読み込み，データをモデルに追加します。
    * @throws IOException ファイルを読み込めない場合  
    */
-  public void importFile() throws IOException {
-    if (this.file == null) {
+  public void importModelFile() throws IOException {
+    if (this.modelFile == null) {
       throw new IllegalArgumentException(Messages.getString("MainWindow.12")); //$NON-NLS-1$
     }
     
-    new Mikity3dFactory().importFile(this.file, this.root);
+    new Mikity3dFactory().importFile(this.modelFile, this.root);
     setStatus(Messages.getString("MainWindow.15")); //$NON-NLS-1$
     
     this.modeler.setIsChanged(true);

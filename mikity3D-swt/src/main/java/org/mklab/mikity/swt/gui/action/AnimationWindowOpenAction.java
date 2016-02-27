@@ -42,7 +42,7 @@ public class AnimationWindowOpenAction extends Action {
       return;
     }
     
-    final AnimationWindow animationWindow = new AnimationWindow(this.modelingWindow.getShell(), this.modelingWindow.getRoot(), this.modelingWindow.getFile());
+    final AnimationWindow animationWindow = new AnimationWindow(this.modelingWindow.getShell(), this.modelingWindow.getRoot(), this.modelingWindow.getModelFile());
     this.modelingWindow.setAnimationWindow(animationWindow);
     animationWindow.open();
   }

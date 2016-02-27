@@ -54,7 +54,7 @@ public class FileSaveAsAction extends Action {
     }
     
     final File file = new File(filePath);
-    if (file.equals(this.window.getFile())) {
+    if (file.equals(this.window.getModelFile())) {
       new FileSaveAction(this.window).run();
       return;
     }
@@ -66,10 +66,10 @@ public class FileSaveAsAction extends Action {
       }
     }
 
-    this.window.setFile(file);
+    this.window.setModelFile(file);
     
     try {
-      this.window.saveFile();
+      this.window.saveModelFile();
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }

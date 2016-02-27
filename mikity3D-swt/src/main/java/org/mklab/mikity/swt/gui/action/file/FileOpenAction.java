@@ -49,8 +49,8 @@ public class FileOpenAction extends Action {
     
     try {
       final File file = new File(filePath);
-      this.window.setFile(file);
-      this.window.loadFile();
+      this.window.setModelFile(file);
+      this.window.loadModelFile();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

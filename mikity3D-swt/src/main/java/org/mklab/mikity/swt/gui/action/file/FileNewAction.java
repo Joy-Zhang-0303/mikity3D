@@ -53,8 +53,8 @@ public class FileNewAction extends Action {
     try {
       final File file = new File(filePath);
       if (file.createNewFile()) {
-        this.window.setFile(file);
-        this.window.loadFile();
+        this.window.setModelFile(file);
+        this.window.loadModelFile();
       } else {
         // 新規作成したいが、もともとその名前のファイルが存在するとき
         final MessageBox message = new MessageBox(this.window.getShell(), SWT.YES | SWT.NO);
@@ -63,8 +63,8 @@ public class FileNewAction extends Action {
         final int yesNo = message.open();
 
         if (yesNo == SWT.YES) {
-          this.window.setFile(file);
-          this.window.loadFile();
+          this.window.setModelFile(file);
+          this.window.loadModelFile();
         } else if (yesNo == SWT.NO) {
           return;
         }

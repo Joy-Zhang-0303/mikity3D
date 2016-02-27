@@ -47,8 +47,8 @@ public class FileImportAction extends Action {
     
     try {
       final File file = new File(filePath);
-      this.window.setFile(file);
-      this.window.importFile();
+      this.window.setModelFile(file);
+      this.window.importModelFile();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

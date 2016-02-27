@@ -38,7 +38,7 @@ public class FileSaveAction extends Action {
    */
   @Override
   public void run() {
-    final File file = this.window.getFile();
+    final File file = this.window.getModelFile();
     
     if (file == null) {
       final FileDialog dialog = new FileDialog(this.window.getShell(), SWT.SAVE);
@@ -61,11 +61,11 @@ public class FileSaveAction extends Action {
         }
       }
       
-      this.window.setFile(newFile);
+      this.window.setModelFile(newFile);
     }
     
     try {
-      this.window.saveFile();
+      this.window.saveModelFile();
     } catch (Mikity3dSerializeDeserializeException e) {
       throw new RuntimeException(e);
     }
