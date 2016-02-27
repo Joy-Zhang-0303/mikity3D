@@ -111,9 +111,9 @@ public class AssetsListViewFragment extends Fragment {
           final InputStream input = AssetsListViewFragment.this.assetManager.open(selectedFile);
           
           if (AssetsListViewFragment.this.isModelData) {
-            AssetsListViewFragment.this.mainActivity.sampleSelectionFragment.loadSampleModelData(input, selectedFile);
+            AssetsListViewFragment.this.mainActivity.sampleSelectionFragment.loadModelData(input, selectedFile);
           } else {
-            AssetsListViewFragment.this.mainActivity.sampleSelectionFragment.loadSampleSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
+            AssetsListViewFragment.this.mainActivity.sampleSelectionFragment.loadSourceData(input, selectedFile, AssetsListViewFragment.this.sourceId);
           }
           
           getActivity().getSupportFragmentManager().popBackStack();

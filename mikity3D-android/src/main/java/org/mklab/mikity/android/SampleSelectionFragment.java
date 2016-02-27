@@ -42,25 +42,25 @@ public class SampleSelectionFragment extends Fragment {
   
   CanvasFragment canvasFragment;
   
-  /** サンプルモデルファイル名。 */
-  String sampleModelFileName = "..."; //$NON-NLS-1$
-  /** サンプルのモデルファイルのパス。 */
-  TextView sampleModelFileNameView;
+  /** モデルファイル名。 */
+  String modelFileName = "..."; //$NON-NLS-1$
+  /** モデルファイルのパス。 */
+  TextView modelFileNameView;
 
   /** 3Dモデルが選ばれて表示されたならばtrue。 */
   boolean isSelectedModelFile;
 
-  /** サンプルのソースファイルのパス。 */
-  Map<String, TextView> sampleSourceFileNameViews = new HashMap<String, TextView>();
-  /** サンプルソースファイル名。 */
-  Map<String, String> sampleSourceFileNames = new HashMap<String, String>();
+  /** ソースファイルのパス。 */
+  Map<String, TextView> sourceFileNameViews = new HashMap<String, TextView>();
+  /** ソースファイル名。 */
+  Map<String, String> sourceFileNames = new HashMap<String, String>();
   
-  /** サンプルのソースファイルを選択するためのボタン */
-  List<Button> sampleSourceSelectButtons = new ArrayList<Button>();
+  /** ソースファイルを選択するためのボタン */
+  List<Button> sourceSelectButtons = new ArrayList<Button>();
 
-  AssetsListViewFragment sampleModelViewFragment;
+  AssetsListViewFragment modelViewFragment;
 
-  AssetsListViewFragment sampleSourceViewFragment;
+  AssetsListViewFragment sourceViewFragment;
 
   /**
    * {@inheritDoc}
@@ -93,15 +93,15 @@ public class SampleSelectionFragment extends Fragment {
       }
     });
 
-    createSampleModelComponent(mainView);
-    if (this.sampleModelFileName.equals("...") == false) { //$NON-NLS-1$
-      createSampleSourceComponent(mainView);
+    createModelComponent(mainView);
+    if (this.modelFileName.equals("...") == false) { //$NON-NLS-1$
+      createSourceComponent(mainView);
     }
 
     return mainView;
   }
 
-  private void createSampleModelComponent(View view) {
+  private void createModelComponent(View view) {
     final Button modelButton = (Button)view.findViewById(R.id.sampleModelSelectButton);
     modelButton.setOnClickListener(new OnClickListener() {
 
@@ -113,24 +113,24 @@ public class SampleSelectionFragment extends Fragment {
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
 
-        if (SampleSelectionFragment.this.sampleModelViewFragment != null) {
-          transaction.remove(SampleSelectionFragment.this.sampleModelViewFragment);
-          SampleSelectionFragment.this.sampleModelViewFragment = null;
+        if (SampleSelectionFragment.this.modelViewFragment != null) {
+          transaction.remove(SampleSelectionFragment.this.modelViewFragment);
+          SampleSelectionFragment.this.modelViewFragment = null;
         }
         
-        SampleSelectionFragment.this.sampleModelViewFragment = new AssetsListViewFragment();
+        SampleSelectionFragment.this.modelViewFragment = new AssetsListViewFragment();
         final Bundle arguments = new Bundle();
         arguments.putBoolean("isModelData", true); //$NON-NLS-1$
-        SampleSelectionFragment.this.sampleModelViewFragment.setArguments(arguments);
+        SampleSelectionFragment.this.modelViewFragment.setArguments(arguments);
 
-        transaction.add(R.id.fragment_navigation_drawer, SampleSelectionFragment.this.sampleModelViewFragment);
+        transaction.add(R.id.fragment_navigation_drawer, SampleSelectionFragment.this.modelViewFragment);
         transaction.commit();
       }
     });
 
-    this.sampleModelFileNameView = (TextView)view.findViewById(R.id.sampleModelFileNameView);
-    this.sampleModelFileNameView.setText(this.sampleModelFileName);
-    this.sampleModelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
+    this.modelFileNameView = (TextView)view.findViewById(R.id.sampleModelFileNameView);
+    this.modelFileNameView.setText(this.modelFileName);
+    this.modelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
 
   /**
@@ -176,22 +176,22 @@ public class SampleSelectionFragment extends Fragment {
   /**
    * サンプルのソースを読み込むボタンを更新します。
    */
-  public void updateSampleSourceComponent() {
-    createSampleSourceComponent(getView());
+  public void updateSourceComponent() {
+    createSourceComponent(getView());
   }
 
   /**
    * サンプルのソースを読み込むボタンを生成します。
    */
-  void createSampleSourceComponent(View view) {
+  void createSourceComponent(View view) {
     final List<GroupModel> rootGroups = this.canvasFragment.root.getScene(0).getGroups();
     final Set<String> sourceIds = getAllSourceIds(rootGroups);
 
     final LinearLayout sources = (LinearLayout)view.findViewById(R.id.layout_sample_sources);
     sources.removeAllViews();
 
-    this.sampleSourceSelectButtons.clear();
-    this.sampleSourceFileNameViews.clear();
+    this.sourceSelectButtons.clear();
+    this.sourceFileNameViews.clear();
 
     for (final String id : sourceIds) {
       final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.sample_source, null);
@@ -199,7 +199,7 @@ public class SampleSelectionFragment extends Fragment {
 
       final Button selectButton = (Button)source.findViewById(R.id.sampleSourceSelectButton);
       selectButton.setText(getString(R.string.source) + "(" + id + ")"); //$NON-NLS-1$ //$NON-NLS-2$
-      this.sampleSourceSelectButtons.add(selectButton);
+      this.sourceSelectButtons.add(selectButton);
 
       selectButton.setOnClickListener(new OnClickListener() {
 
@@ -211,27 +211,27 @@ public class SampleSelectionFragment extends Fragment {
           final FragmentTransaction transaction = manager.beginTransaction();
           transaction.addToBackStack(null);
 
-          if (SampleSelectionFragment.this.sampleSourceViewFragment != null) {
-            transaction.remove(SampleSelectionFragment.this.sampleSourceViewFragment);
-            SampleSelectionFragment.this.sampleSourceViewFragment = null;
+          if (SampleSelectionFragment.this.sourceViewFragment != null) {
+            transaction.remove(SampleSelectionFragment.this.sourceViewFragment);
+            SampleSelectionFragment.this.sourceViewFragment = null;
           }
           
-          SampleSelectionFragment.this.sampleSourceViewFragment = new AssetsListViewFragment();
+          SampleSelectionFragment.this.sourceViewFragment = new AssetsListViewFragment();
           final Bundle arguments = new Bundle();
           arguments.putString("sourceId", id); //$NON-NLS-1$
           arguments.putBoolean("isModelData", false); //$NON-NLS-1$
-          SampleSelectionFragment.this.sampleSourceViewFragment.setArguments(arguments);
+          SampleSelectionFragment.this.sourceViewFragment.setArguments(arguments);
 
-          transaction.add(R.id.fragment_navigation_drawer, SampleSelectionFragment.this.sampleSourceViewFragment);
+          transaction.add(R.id.fragment_navigation_drawer, SampleSelectionFragment.this.sourceViewFragment);
           transaction.commit();
         }
       });
 
       final TextView sourceFileNameView = (TextView)source.findViewById(R.id.sampleSourceFileNameView);
-      if (this.sampleSourceFileNames.containsKey(id)) {
-        sourceFileNameView.setText(this.sampleSourceFileNames.get(id));
+      if (this.sourceFileNames.containsKey(id)) {
+        sourceFileNameView.setText(this.sourceFileNames.get(id));
       }
-      this.sampleSourceFileNameViews.put(id, sourceFileNameView);
+      this.sourceFileNameViews.put(id, sourceFileNameView);
 
     }
   }
@@ -243,34 +243,34 @@ public class SampleSelectionFragment extends Fragment {
    * @param filePath ソースのファイルパス
    * @param sourceId ソースID
    */
-  public void loadSampleSourceData(final InputStream input, final String filePath, String sourceId) {
+  public void loadSourceData(final InputStream input, final String filePath, String sourceId) {
     this.canvasFragment.loadSourceData(input, filePath, sourceId);
 
     final String[] parts = filePath.split("/"); //$NON-NLS-1$
     final String sourceFileName = parts[parts.length - 1];
-    this.sampleSourceFileNameViews.get(sourceId).setText(sourceFileName);
-    this.sampleSourceFileNames.put(sourceId, sourceFileName);
+    this.sourceFileNameViews.get(sourceId).setText(sourceFileName);
+    this.sourceFileNames.put(sourceId, sourceFileName);
   }
 
-  void loadSampleModelData(InputStream modelStream, String modelFilePath) throws Mikity3dSerializeDeserializeException {
+  void loadModelData(InputStream modelStream, String modelFilePath) throws Mikity3dSerializeDeserializeException {
     this.canvasFragment.loadModelData(modelStream);
 
     final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
-    this.sampleModelFileName = parts[parts.length - 1];
-    this.sampleModelFileNameView.setText(this.sampleModelFileName);
+    this.modelFileName = parts[parts.length - 1];
+    this.modelFileNameView.setText(this.modelFileName);
 
     final String sampleSourceFileName = "..."; //$NON-NLS-1$
-    for (final TextView view : this.sampleSourceFileNameViews.values()) {
+    for (final TextView view : this.sourceFileNameViews.values()) {
       view.setText(sampleSourceFileName);
     }
     
-    this.sampleSourceFileNames.clear();
+    this.sourceFileNames.clear();
     
     if (this.canvasFragment.sourceData.size() != 0) {
       this.canvasFragment.sourceData.clear();
     }
     this.isSelectedModelFile = true;
-    updateSampleSourceComponent();
+    updateSourceComponent();
     setButtonEnabled(true);
   }
  
@@ -293,7 +293,7 @@ public class SampleSelectionFragment extends Fragment {
   void setButtonEnabled(boolean enabled) {
     this.isSelectedModelFile = enabled;
 
-    for (Button button : this.sampleSourceSelectButtons) {
+    for (Button button : this.sourceSelectButtons) {
       button.setEnabled(enabled);
     }
   }
