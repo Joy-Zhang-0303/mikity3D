@@ -61,6 +61,7 @@ public class MainMenuFragment extends Fragment {
     mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[4], mainMenuIcons.getResourceId(4, -1)));
     mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[5], mainMenuIcons.getResourceId(5, -1)));
     mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[6], mainMenuIcons.getResourceId(6, -1)));
+    mainMenuItems.add(new MainMenuDrawerItem(mainMenuTitles[7], mainMenuIcons.getResourceId(7, -1)));
 
     mainMenuIcons.recycle();
 
@@ -92,12 +93,15 @@ public class MainMenuFragment extends Fragment {
         this.mainActivity.createFileSelectionFragment();
         break;
       case 2:
-        this.mainActivity.createSceneGraphTreeFragment();
+        this.mainActivity.saveModelData();
         break;
       case 3:
-        this.mainActivity.createSettingsFragment();
+        this.mainActivity.createSceneGraphTreeFragment();
         break;
       case 4:
+        this.mainActivity.createSettingsFragment();
+        break;
+      case 5:
         this.mainActivity.createSampleSelectionFragment();
         break;
       default:

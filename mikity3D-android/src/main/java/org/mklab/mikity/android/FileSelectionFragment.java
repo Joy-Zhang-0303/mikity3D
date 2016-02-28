@@ -7,6 +7,7 @@ package org.mklab.mikity.android;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -21,6 +22,7 @@ import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -51,8 +53,6 @@ public class FileSelectionFragment extends Fragment {
   String modelFileName = "..."; //$NON-NLS-1$
   /** モデルファイルのパス。 */
   TextView modelFileNameView;
-
-  OutputStream modelOutputStream;
   
   /** 3Dモデルが選ばれて表示されたならばtrue。 */
   boolean isSelectedModelFile;
@@ -277,7 +277,7 @@ public class FileSelectionFragment extends Fragment {
    * 
    * @param modelFileUri モデルURI
    */
-  void loadModelData(Uri modelFileUri) {
+  public void loadModelData(Uri modelFileUri) {
     if (modelFileUri == null) {
       return;
     }
@@ -287,7 +287,7 @@ public class FileSelectionFragment extends Fragment {
     if ("content".equals(modelFileUri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        modelInputStream = getActivity().getContentResolver().openInputStream(modelFileUri);
+        modelInputStream = this.mainActivity.getContentResolver().openInputStream(modelFileUri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
@@ -333,6 +333,50 @@ public class FileSelectionFragment extends Fragment {
       throw new RuntimeException(e);
     }
   }
+  
+  /**
+   * モデルをURIへ保存します。
+   * 
+   * @param modelFileUri モデルURI
+   */
+  public void saveModelData(Uri modelFileUri) {
+    if (modelFileUri == null) {
+      return;
+    }
+
+    final OutputStream modelOutputStream;
+
+    if ("content".equals(modelFileUri.getScheme())) { //$NON-NLS-1$
+      // ストリームを直接URIから取り出します。
+      try {        
+        modelOutputStream = this.mainActivity.getContentResolver().openOutputStream(modelFileUri);
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+    } else {
+      // URIをファイルパスに変換し、その後ストリームを取り出します。
+      final String modelFilePath = modelFileUri.getPath();
+      try {
+        modelOutputStream = new FileOutputStream(modelFilePath);
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+    }
+
+    try {
+      this.canvasFragment.saveModelData(modelOutputStream);
+      modelOutputStream.close();
+    } catch (Mikity3dSerializeDeserializeException e) {
+      try {
+        modelOutputStream.close();
+      } catch (IOException e1) {
+        throw new RuntimeException(e1);
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
 
   /**
    * 警告メッセージを表示します。

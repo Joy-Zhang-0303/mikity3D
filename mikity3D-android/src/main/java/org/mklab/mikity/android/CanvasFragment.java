@@ -8,6 +8,7 @@ package org.mklab.mikity.android;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.Mikity3dFactory;
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
+import org.mklab.mikity.model.xml.simplexml.Mikity3DMarshaller;
 import org.mklab.mikity.model.xml.simplexml.Mikity3DModel;
 import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
@@ -256,7 +258,7 @@ public class CanvasFragment extends Fragment {
   };
 
   /**
-   * モデルデータをストリームから読み込みます。
+   * モデルデータを入力ストリームから読み込みます。
    * 
    * @param input モデルファイル
    * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
@@ -272,6 +274,18 @@ public class CanvasFragment extends Fragment {
     if (hasAnimation(rootGroups)) {
       this.manager.setHasAnimation(true);
     }
+  }
+
+  /**
+   * モデルデータを出力ストリームへ出力します。
+   * 
+   * @param output 出力ストリーム
+   * @throws Mikity3dSerializeDeserializeException ファイルに保存できない場合  
+   */
+  public void saveModelData(OutputStream output) throws Mikity3dSerializeDeserializeException {
+    final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
+    marshaller.marshal(output);
+    this.modeler.setIsChanged(false);
   }
 
   /**

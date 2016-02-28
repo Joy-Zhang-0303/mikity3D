@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
   /** ソースID。 */
   private String sourceIdForIntent;
 
+  /** モデルデータのURI。 */
+  private Uri modelFileUri;
+
   /**
    * {@inheritDoc}
    */
@@ -146,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
     transaction.replace(R.id.fragment_navigation_drawer, this.fileSelectionFragment);
     transaction.commit();
   }
-  
+
   /**
    * SampleSelectionFragmentを生成します。
    */
@@ -344,6 +347,10 @@ public class MainActivity extends AppCompatActivity {
       case REQUEST_CODE_PICK_MODEL_DATA_FILE:
         if (resultCode == RESULT_OK && data != null) {
           final Uri uri = data.getData();
+          
+          final int takeFlags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+          getContentResolver().takePersistableUriPermission(uri, takeFlags);
+
           loadModelData(uri);
         }
         break;
@@ -361,21 +368,30 @@ public class MainActivity extends AppCompatActivity {
   /**
    * ソースデータを読み込みます。
    * 
-   * @param sourceFileUri ソースデータのパス
+   * @param uri ソースデータのパス
    * @param sourceId ソースID
    */
-  private void loadSourceData(Uri sourceFileUri, String sourceId) {
-    this.fileSelectionFragment.loadSourceData(sourceFileUri, sourceId);
+  private void loadSourceData(Uri uri, String sourceId) {
+    this.fileSelectionFragment.loadSourceData(uri, sourceId);
   }
 
   /**
    * モデルデータを読み込みます。
    * 
-   * @param modelFileUri モデルデータのパス
+   * @param uri モデルデータのURI
    */
-  private void loadModelData(Uri modelFileUri) {
-    this.fileSelectionFragment.loadModelData(modelFileUri);
+  private void loadModelData(Uri uri) {
+    this.fileSelectionFragment.loadModelData(uri);
     this.canvasFragment.objectRenderer.updateDisplay();
+
+    this.modelFileUri = uri;
+  }
+
+  /**
+   * モデルデータをを保存します。
+   */
+  public void saveModelData() {
+    this.fileSelectionFragment.saveModelData(this.modelFileUri);
   }
 
   /**
@@ -422,7 +438,8 @@ public class MainActivity extends AppCompatActivity {
    * @param requestCode インテント時のリクエストコード
    */
   public void sendFileChooseIntentForModel(int requestCode) {
-    final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+    //final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+    final Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
     intent.setType("*/*"); //$NON-NLS-1$
     startActivityForResult(intent, requestCode);
   }
@@ -434,7 +451,8 @@ public class MainActivity extends AppCompatActivity {
    * @param sourceId ソースID
    */
   public void sendFileChooseIntentForSource(int requestCode, String sourceId) {
-    final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+    //final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+    final Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
     intent.setType("*/*"); //$NON-NLS-1$
     this.sourceIdForIntent = sourceId;
     startActivityForResult(intent, requestCode);

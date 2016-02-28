@@ -5,6 +5,7 @@
     <string-array name="main_menu_drawer_items">
         <item>@string/newModel</item>
         <item>@string/open</item>
+        <item>@string/save</item>
         <item>@string/edit</item>
         <item>@string/settings</item>
         <item>@string/sample</item>
@@ -17,6 +18,7 @@
     <array name="main_menu_drawer_icons">
         <item>@drawable/ic_add_circle_black_24dp</item>
         <item>@drawable/ic_attach_file_black_24dp</item>
+        <item>@drawable/ic_save_black_24dp</item>
         <item>@drawable/ic_edit_black_24dp</item>
         <item>@drawable/ic_settings_black_24dp</item>
         <item>@drawable/ic_attach_file_black_24dp</item>
