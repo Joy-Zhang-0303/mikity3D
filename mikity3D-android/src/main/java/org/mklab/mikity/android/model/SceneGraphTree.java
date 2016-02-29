@@ -62,6 +62,8 @@ public class SceneGraphTree extends Fragment {
   /** ルートグループ。 */
   GroupModel rootGroup;
   
+  /** ルート要素。 */
+  TreeItem rootItem = null;
   /** 選択されている要素。 */
   TreeItem selectedTreeItem = null;
   /** 選択されているオブジェクト。 */
@@ -110,6 +112,9 @@ public class SceneGraphTree extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
+        SceneGraphTree.this.selectedTreeItem = SceneGraphTree.this.rootItem;
+        updatetSelectedObject();
+        
         getActivity().getSupportFragmentManager().popBackStack();
       }
     });
@@ -275,10 +280,10 @@ public class SceneGraphTree extends Fragment {
   public void bindModelToTree() {
     clearTree();
     
-    final TreeItem rootItem = new TreeItem(this.tree, this.rootGroup);
-    rootItem.setText("scene"); //$NON-NLS-1$
+    this.rootItem = new TreeItem(this.tree, this.rootGroup);
+    this.rootItem.setText("scene"); //$NON-NLS-1$
     
-    addItemToTree(rootItem, this.model.getGroups());
+    addItemToTree(this.rootItem, this.model.getGroups());
   }
   
   /**
