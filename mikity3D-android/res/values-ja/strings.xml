@@ -81,6 +81,7 @@
     <string name="selectModel">モデル選択</string>
     <string name="sampleModel">サンプルモデル</string>
     <string name="save">保存</string>
+    <string name="savedSuccessfully">データは正常に保存されました</string>
     <string name="size_of_facets">三角形の数</string>
     <string name="source">ソース</string>
     <string name="sourceDataIsNotReady">ソースデータが未設定です。</string>

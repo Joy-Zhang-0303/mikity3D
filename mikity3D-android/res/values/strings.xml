@@ -81,6 +81,7 @@
     <string name="sample">Sample</string>
     <string name="sampleModel">Sample Model</string>
     <string name="save">Save</string>
+    <string name="savedSuccessfully">Your data was saved successfully</string>
     <string name="selectModel">Select Model</string>
     <string name="size_of_facets">Size of facets</string>
     <string name="source">Source</string>

@@ -22,7 +22,6 @@ import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -338,12 +337,9 @@ public class FileSelectionFragment extends Fragment {
    * モデルをURIへ保存します。
    * 
    * @param modelFileUri モデルURI
+   * @return 正常に保存された場合はtrue
    */
-  public void saveModelData(Uri modelFileUri) {
-    if (modelFileUri == null) {
-      return;
-    }
-
+  public boolean saveModelData(Uri modelFileUri) {
     final OutputStream modelOutputStream;
 
     if ("content".equals(modelFileUri.getScheme())) { //$NON-NLS-1$
@@ -375,6 +371,8 @@ public class FileSelectionFragment extends Fragment {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+        
+    return true;
   }
 
 

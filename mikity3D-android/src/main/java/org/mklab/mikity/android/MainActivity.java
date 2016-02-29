@@ -21,12 +21,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Surface;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 /**
@@ -391,7 +393,17 @@ public class MainActivity extends AppCompatActivity {
    * モデルデータをを保存します。
    */
   public void saveModelData() {
-    this.fileSelectionFragment.saveModelData(this.modelFileUri);
+    if (this.modelFileUri == null) {
+      return;
+    }
+    
+    final boolean savedSuccessfully = this.fileSelectionFragment.saveModelData(this.modelFileUri);
+    
+    if(savedSuccessfully) {
+      Toast toast = Toast.makeText(this, getString(R.string.savedSuccessfully), Toast.LENGTH_LONG);
+      toast.setGravity(Gravity.CENTER|Gravity.BOTTOM, 0, 0);
+      toast.show();
+    }
   }
 
   /**
