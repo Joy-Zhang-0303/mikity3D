@@ -4,22 +4,13 @@
     android:background="@color/white" >
 
     <TableRow>
-
         <Button
             android:id="@+id/settingsBackButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/back" />
-    </TableRow>
-
-    <TableRow>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-    </TableRow>
+            android:text="@string/back" />    </TableRow>
 
     <TableRow>
 
@@ -68,6 +59,69 @@
             android:layout_height="match_parent" />
     </TableRow>
 
+    
+    <TableRow>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/gridShowingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="@string/gridShowingTextView"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/gridShowingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:checked="false" />
+
+        <Space
+            android:layout_width="40dip"
+            android:layout_height="match_parent" />
+    </TableRow>
+
+    <TableRow>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/axisShowingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="@string/axisShowingTextView"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/axisShowingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:checked="false" />
+
+        <Space
+            android:layout_width="60dip"
+            android:layout_height="match_parent" />
+    </TableRow>
+        
     <TableRow>
 
         <Space
@@ -156,68 +210,6 @@
 
         <Space
             android:layout_width="20dip"
-            android:layout_height="match_parent" />
-    </TableRow>
-
-    <TableRow>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-    </TableRow>
-
-    <TableRow>
-
-        <TextView
-            android:id="@+id/gridShowingTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/gridShowingTextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/gridShowingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:checked="false" />
-
-        <Space
-            android:layout_width="40dip"
-            android:layout_height="match_parent" />
-    </TableRow>
-
-    <TableRow>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-    </TableRow>
-
-    <TableRow>
-
-        <TextView
-            android:id="@+id/axisShowingTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/axisShowingTextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/axisShowingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:checked="false" />
-
-        <Space
-            android:layout_width="60dip"
             android:layout_height="match_parent" />
     </TableRow>
 

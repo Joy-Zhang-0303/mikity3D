@@ -16,12 +16,12 @@
     <!-- MainMenu Drawer List Item Icons -->
     <!-- keep them in order as the titles are in -->
     <array name="main_menu_drawer_icons">
-        <item>@drawable/ic_add_circle_black_24dp</item>
-        <item>@drawable/ic_attach_file_black_24dp</item>
+        <item>@drawable/ic_add_box_black_24dp</item>
+        <item>@drawable/ic_folder_open_black_24dp</item>
         <item>@drawable/ic_save_black_24dp</item>
         <item>@drawable/ic_edit_black_24dp</item>
         <item>@drawable/ic_settings_black_24dp</item>
-        <item>@drawable/ic_attach_file_black_24dp</item>
+        <item>@drawable/ic_folder_open_black_24dp</item>
         <item>@drawable/ic_android_black</item>
         <item>@drawable/ic_help_black_24dp</item>
     </array>
