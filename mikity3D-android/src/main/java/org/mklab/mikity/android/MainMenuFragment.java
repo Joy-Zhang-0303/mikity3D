@@ -117,7 +117,7 @@ public class MainMenuFragment extends Fragment {
    */
   private void showAboutApp() {
     String message =    "Mikity3D for Android" + System.getProperty("line.separator"); //$NON-NLS-1$ //$NON-NLS-2$
-    message = message + "version 0.6.4" + System.getProperty("line.separator");  //$NON-NLS-1$//$NON-NLS-2$
+    message = message + "version 0.6.5" + System.getProperty("line.separator");  //$NON-NLS-1$//$NON-NLS-2$
     message = message + "Copyright (C) 2015-2016, MKLab.org" + System.getProperty("line.separator"); //$NON-NLS-1$ //$NON-NLS-2$
     message = message + System.getProperty("line.separator"); //$NON-NLS-1$
     message = message + "Send bugs and comments to org.mklab.android@gmail.com"; //$NON-NLS-1$
