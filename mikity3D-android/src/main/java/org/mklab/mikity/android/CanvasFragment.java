@@ -376,7 +376,7 @@ public class CanvasFragment extends Fragment {
         this.progressDialog.dismiss();
       }
 
-      showAlertMessageInDialog("Please select proper source file."); //$NON-NLS-1$
+      showMessageInDialog("Please select proper source file."); //$NON-NLS-1$
     }
   }
 
@@ -385,8 +385,8 @@ public class CanvasFragment extends Fragment {
    * 
    * @param message メッセージ
    */
-  void showAlertMessageInDialog(String message) {
-    final AlertDialogFragment dialog = new AlertDialogFragment();
+  void showMessageInDialog(String message) {
+    final MessageDialogFragment dialog = new MessageDialogFragment();
     final Bundle arguments = new Bundle();
     arguments.putString("message", message); //$NON-NLS-1$
     dialog.setArguments(arguments);
@@ -408,14 +408,14 @@ public class CanvasFragment extends Fragment {
 
       final String message = "Source data size is not match model's source number." //$NON-NLS-1$
           + "\nPlease select proper source data or set proper source number."; //$NON-NLS-1$
-      showAlertMessageInDialog(message);
+      showMessageInDialog(message);
     } catch (IllegalArgumentException e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
 
       final String message = "Please select proper source data or set source number to data size or lower."; //$NON-NLS-1$
-      showAlertMessageInDialog(message);
+      showMessageInDialog(message);
     }
   }
 
@@ -475,11 +475,11 @@ public class CanvasFragment extends Fragment {
    */
   public void runAnimation() {
     if (this.manager == null) {
-      showAlertMessageInDialog(getString(R.string.modelDataIsNotReady));
+      showMessageInDialog(getString(R.string.modelDataIsNotReady));
       return;
     }
     if (this.manager.isSourceReady() == false) {
-      showAlertMessageInDialog(getString(R.string.sourceDataIsNotReady));
+      showMessageInDialog(getString(R.string.sourceDataIsNotReady));
       return;
     }
 

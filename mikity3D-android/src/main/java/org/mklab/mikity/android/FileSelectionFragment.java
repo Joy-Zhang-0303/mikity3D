@@ -326,7 +326,7 @@ public class FileSelectionFragment extends Fragment {
       setButtonEnabled(true);
 
     } catch (Mikity3dSerializeDeserializeException e) {
-      showAlertMessageInDialog("please select model file."); //$NON-NLS-1$
+      showMessageInDialog("please select model file."); //$NON-NLS-1$
       setButtonEnabled(false);
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -377,12 +377,12 @@ public class FileSelectionFragment extends Fragment {
 
 
   /**
-   * 警告メッセージを表示します。
+   * メッセージを表示します。
    * 
    * @param message メッセージ
    */
-  void showAlertMessageInDialog(String message) {
-    final AlertDialogFragment fragment = new AlertDialogFragment();
+  void showMessageInDialog(String message) {
+    final MessageDialogFragment fragment = new MessageDialogFragment();
     final Bundle arguments = new Bundle();
     arguments.putString("message", message); //$NON-NLS-1$
     fragment.setArguments(arguments);

@@ -104,8 +104,36 @@ public class MainMenuFragment extends Fragment {
       case 5:
         this.mainActivity.createSampleSelectionFragment();
         break;
+      case 6:
+        showAboutApp();
+        break;
       default:
         break;
     }
+  }
+  
+  /**
+   * アプリについて表示します。 
+   */
+  private void showAboutApp() {
+    String message =    "Mikity3D for Android" + System.getProperty("line.separator"); //$NON-NLS-1$ //$NON-NLS-2$
+    message = message + "version 0.6.4" + System.getProperty("line.separator");  //$NON-NLS-1$//$NON-NLS-2$
+    message = message + "Copyright (C) 2015-2016, MKLab.org" + System.getProperty("line.separator"); //$NON-NLS-1$ //$NON-NLS-2$
+    message = message + System.getProperty("line.separator"); //$NON-NLS-1$
+    message = message + "Send bugs and comments to org.mklab.android@gmail.com"; //$NON-NLS-1$
+    showMessageInDialog(message);
+  }
+  
+  /**
+   * ダイアログに警告メッセージを表示します。
+   * 
+   * @param message メッセージ
+   */
+  void showMessageInDialog(String message) {
+    final MessageDialogFragment dialog = new MessageDialogFragment();
+    final Bundle arguments = new Bundle();
+    arguments.putString("message", message); //$NON-NLS-1$
+    dialog.setArguments(arguments);
+    dialog.show(getActivity().getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 }

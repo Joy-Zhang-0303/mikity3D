@@ -145,12 +145,12 @@ public class AssetsListViewFragment extends Fragment {
   }
 
   /**
-   * ダイアログに警告メッセージを表示します。
+   * ダイアログにメッセージを表示します。
    * 
    * @param message メッセージ
    */
-  void showAlertMessageInDailog(String message) {
-    final AlertDialogFragment dialog = new AlertDialogFragment();
+  void showMessageInDailog(String message) {
+    final MessageDialogFragment dialog = new MessageDialogFragment();
     final Bundle bundle = new Bundle();
     bundle.putString("message", message); //$NON-NLS-1$
     dialog.setArguments(bundle);

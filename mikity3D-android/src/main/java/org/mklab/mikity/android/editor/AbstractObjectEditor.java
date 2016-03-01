@@ -5,7 +5,7 @@
  */
 package org.mklab.mikity.android.editor;
 
-import org.mklab.mikity.android.AlertDialogFragment;
+import org.mklab.mikity.android.MessageDialogFragment;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
@@ -312,7 +312,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
    */
   void saveParameters() {
     if (containsOnlyNumbers() == false) {
-      showAlertMessageInDialog(getActivity().getString(R.string.please_input_numerical_values));
+      showMessageInDialog(getActivity().getString(R.string.please_input_numerical_values));
       return;
     }
 
@@ -326,12 +326,12 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
   }
 
   /**
-   * 警告メッセージを表示します。
+   * メッセージを表示します。
    * 
    * @param message メッセージ
    */
-  private void showAlertMessageInDialog(String message) {
-    final AlertDialogFragment dialog = new AlertDialogFragment();
+  private void showMessageInDialog(String message) {
+    final MessageDialogFragment dialog = new MessageDialogFragment();
     final Bundle bundle = new Bundle();
     bundle.putString("message", message); //$NON-NLS-1$
     dialog.setArguments(bundle);

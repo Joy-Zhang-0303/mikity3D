@@ -13,12 +13,12 @@ import android.support.v4.app.DialogFragment;
 
 
 /**
- * 警告メッセージを表示するダイアログを表すクラスです。
+ * メッセージを表示するダイアログを表すクラスです。
  * 
  * @author soda
  * @version $Revision$, 2015/01/16
  */
-public class AlertDialogFragment extends DialogFragment {
+public class MessageDialogFragment extends DialogFragment {
   /** ダイアログに表示するメッセージ。 */
   private String message;
 

@@ -287,12 +287,12 @@ public class SampleSelectionFragment extends Fragment {
   }
  
   /**
-   * 警告メッセージを表示します。
+   * メッセージを表示します。
    * 
    * @param message メッセージ
    */
-  void showAlertMessageInDialog(String message) {
-    final AlertDialogFragment dialog = new AlertDialogFragment();
+  void showMessageInDialog(String message) {
+    final MessageDialogFragment dialog = new MessageDialogFragment();
     final Bundle arguments = new Bundle();
     arguments.putString("message", message); //$NON-NLS-1$
     dialog.setArguments(arguments);
