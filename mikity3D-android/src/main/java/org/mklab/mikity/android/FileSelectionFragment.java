@@ -24,12 +24,16 @@ import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -118,7 +122,35 @@ public class FileSelectionFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        FileSelectionFragment.this.mainActivity.sendFileChooseIntentForLoadingModel();
+        if (FileSelectionFragment.this.canvasFragment.isModelChanged() == false) {
+          FileSelectionFragment.this.mainActivity.sendFileChooseIntentForLoadingModel();
+          return;
+        }
+        
+        final DialogFragment fragment = new DialogFragment() {
+          /**
+           * {@inheritDoc}
+           */
+          @Override
+          public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("モデルが変更されています。保存しますか？")
+            .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int id) {
+                FileSelectionFragment.this.mainActivity.saveModelData();
+                FileSelectionFragment.this.mainActivity.sendFileChooseIntentForLoadingModel();
+              }
+            })
+            .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int id) {
+                FileSelectionFragment.this.mainActivity.sendFileChooseIntentForLoadingModel();
+              }
+            });
+            return builder.create();
+          }
+        };
+
+        fragment.show(getFragmentManager(), "confirmDialog"); //$NON-NLS-1$
       }
     });
 
@@ -126,6 +158,7 @@ public class FileSelectionFragment extends Fragment {
     this.modelFileNameView.setText(this.modelFileName);
     this.modelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
+
 
   /**
    * ソースデータを読み込むコンポーネントを生成します。

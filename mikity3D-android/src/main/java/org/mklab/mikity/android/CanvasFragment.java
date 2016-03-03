@@ -294,6 +294,7 @@ public class CanvasFragment extends Fragment {
   private void prepareModeler() {
     this.modeler.setRoot(this.root);
     this.modeler.setManager(this.manager);
+    this.modeler.setIsChanged(false);
   }
 
   /**
@@ -378,19 +379,6 @@ public class CanvasFragment extends Fragment {
 
       showMessageInDialog("Please select proper source file."); //$NON-NLS-1$
     }
-  }
-
-  /**
-   * ダイアログに警告メッセージを表示します。
-   * 
-   * @param message メッセージ
-   */
-  void showMessageInDialog(String message) {
-    final MessageDialogFragment dialog = new MessageDialogFragment();
-    final Bundle arguments = new Bundle();
-    arguments.putString("message", message); //$NON-NLS-1$
-    dialog.setArguments(arguments);
-    dialog.show(getActivity().getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**
@@ -643,7 +631,7 @@ public class CanvasFragment extends Fragment {
   /**
    * アクティビティの画面のレイアウトを取得し、設定します。
    */
-  public void configurateDirection() {
+  private void configurateDirection() {
     final DisplayMetrics displayMetrics = new DisplayMetrics();
     getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
@@ -671,5 +659,30 @@ public class CanvasFragment extends Fragment {
    */
   public void setPuasedTime(long pausedTime) {
     this.pausedTime = pausedTime;
+  }
+
+  /**
+   * ダイアログメッセージを表示します。
+   * 
+   * @param message メッセージ
+   */
+  private void showMessageInDialog(String message) {
+    final MessageDialogFragment dialog = new MessageDialogFragment();
+    final Bundle arguments = new Bundle();
+    arguments.putString("message", message); //$NON-NLS-1$
+    dialog.setArguments(arguments);
+    dialog.show(getActivity().getSupportFragmentManager(), "messageDialogFragment"); //$NON-NLS-1$
+  }
+
+  /**
+   * モデルデータが変更されているか判定します。
+   * 
+   * @return モデルデータが変更されていればtrue
+   */
+  public boolean isModelChanged() {
+    if (this.modeler == null) {
+      return false;
+    }
+    return this.modeler.isChanged();
   }
 }
