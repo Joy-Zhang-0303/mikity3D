@@ -39,8 +39,9 @@ import android.widget.Toast;
  */
 public class MainActivity extends AppCompatActivity {
 
-  final static int REQUEST_CODE_PICK_MODEL_DATA_FILE = 0;
-  final static int REQUEST_CODE_PICK_SOURCE_DATA_FILE = 1;
+  final private static int REQUEST_CODE_LOAD_MODEL_DATA_FILE = 0;
+  final private static int REQUEST_CODE_LOAD_SOURCE_DATA_FILE = 1;
+  final private static int REQUEST_CODE_SAVE_MODEL_DATA_FILE = 2;
 
   /** NavigationDrawer用のアクションバートグル */
   private ActionBarDrawerToggle drawerToggle;
@@ -342,24 +343,30 @@ public class MainActivity extends AppCompatActivity {
    * This is called after the file manager finished. {@inheritDoc}
    */
   @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
+  protected void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+    super.onActivityResult(requestCode, resultCode, resultData);
 
     switch (requestCode) {
-      case REQUEST_CODE_PICK_MODEL_DATA_FILE:
-        if (resultCode == RESULT_OK && data != null) {
-          final Uri uri = data.getData();
-          
-          final int takeFlags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+      case REQUEST_CODE_LOAD_MODEL_DATA_FILE:
+        if (resultCode == RESULT_OK && resultData != null) {
+          final Uri uri = resultData.getData();
+
+          final int takeFlags = resultData.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
           getContentResolver().takePersistableUriPermission(uri, takeFlags);
 
           loadModelData(uri);
         }
         break;
-      case REQUEST_CODE_PICK_SOURCE_DATA_FILE:
-        if (resultCode == RESULT_OK && data != null) {
-          final Uri uri = data.getData();
+      case REQUEST_CODE_LOAD_SOURCE_DATA_FILE:
+        if (resultCode == RESULT_OK && resultData != null) {
+          final Uri uri = resultData.getData();
           loadSourceData(uri, this.sourceIdForIntent);
+        }
+        break;
+      case REQUEST_CODE_SAVE_MODEL_DATA_FILE:
+        if (resultCode == RESULT_OK && resultData != null) {
+          final Uri uri = resultData.getData();
+          saveAsModelData(uri);
         }
         break;
       default:
@@ -390,18 +397,34 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * モデルデータをを保存します。
+   * モデルデータをファイルに上書き保存します。
    */
   public void saveModelData() {
     if (this.modelFileUri == null) {
       return;
     }
-    
+
     final boolean savedSuccessfully = this.fileSelectionFragment.saveModelData(this.modelFileUri);
-    
-    if(savedSuccessfully) {
+
+    if (savedSuccessfully) {
       Toast toast = Toast.makeText(this, getString(R.string.savedSuccessfully), Toast.LENGTH_LONG);
-      toast.setGravity(Gravity.CENTER|Gravity.BOTTOM, 0, 0);
+      toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
+      toast.show();
+    }
+  }
+  
+  /**
+   * モデルデータを名前を付けてファイルに保存します。
+   * @param uri モデルデータのURI
+   */
+  public void saveAsModelData(Uri uri) {
+    this.modelFileUri = uri;
+
+    final boolean savedSuccessfully = this.fileSelectionFragment.saveModelData(this.modelFileUri);
+
+    if (savedSuccessfully) {
+      Toast toast = Toast.makeText(this, getString(R.string.savedSuccessfully), Toast.LENGTH_LONG);
+      toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
       toast.show();
     }
   }
@@ -445,28 +468,34 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * ファイルエクスプローラーにモデルデータのためのインテントを発行します。
-   * 
-   * @param requestCode インテント時のリクエストコード
+   * ファイルエクスプローラーにモデルデータ読み込みのためのインテントを発行します。
    */
-  public void sendFileChooseIntentForModel(int requestCode) {
-    //final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+  public void sendFileChooseIntentForLoadingModel() {
     final Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
     intent.setType("*/*"); //$NON-NLS-1$
-    startActivityForResult(intent, requestCode);
+    startActivityForResult(intent, REQUEST_CODE_LOAD_MODEL_DATA_FILE);
   }
 
   /**
-   * ファイルエクスプローラーにソースデータのためのインテントを発行します。
+   * ファイルエクスプローラーにソースデータ読み込みのためのインテントを発行します。
    * 
-   * @param requestCode インテント時のリクエストコード
    * @param sourceId ソースID
    */
-  public void sendFileChooseIntentForSource(int requestCode, String sourceId) {
-    //final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+  public void sendFileChooseIntentForLoadingSource(String sourceId) {
     final Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
     intent.setType("*/*"); //$NON-NLS-1$
     this.sourceIdForIntent = sourceId;
-    startActivityForResult(intent, requestCode);
+    startActivityForResult(intent, REQUEST_CODE_LOAD_SOURCE_DATA_FILE);
   }
+  
+  /**
+   * ファイルエクスプローラーにモデルデータ保存のためのインテントを発行します。
+   */
+  public void sendFileChooseIntentForSavingModel() {
+    final Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+    intent.setType("*/*"); //$NON-NLS-1$
+    intent.putExtra(Intent.EXTRA_TITLE, "temp.m3d"); //$NON-NLS-1$
+    startActivityForResult(intent, REQUEST_CODE_SAVE_MODEL_DATA_FILE);
+  }
+
 }

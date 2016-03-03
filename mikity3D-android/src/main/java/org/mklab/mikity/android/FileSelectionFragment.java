@@ -11,6 +11,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -112,14 +114,11 @@ public class FileSelectionFragment extends Fragment {
   private void createModelComponent(View mainView) {
     final Button modelButton = (Button)mainView.findViewById(R.id.modelSelectButton);
     modelButton.setOnClickListener(new View.OnClickListener() {
-
-      final int REQUEST_CODE = MainActivity.REQUEST_CODE_PICK_MODEL_DATA_FILE;
-
       /**
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        FileSelectionFragment.this.mainActivity.sendFileChooseIntentForModel(this.REQUEST_CODE);
+        FileSelectionFragment.this.mainActivity.sendFileChooseIntentForLoadingModel();
       }
     });
 
@@ -152,14 +151,11 @@ public class FileSelectionFragment extends Fragment {
       this.sourceSelectButtons.add(selectButton);
 
       selectButton.setOnClickListener(new View.OnClickListener() {
-
-        final int REQUEST_CODE = MainActivity.REQUEST_CODE_PICK_SOURCE_DATA_FILE;
-
         /**
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          FileSelectionFragment.this.mainActivity.sendFileChooseIntentForSource(this.REQUEST_CODE, sourceId);
+          FileSelectionFragment.this.mainActivity.sendFileChooseIntentForLoadingSource(sourceId);
         }
       });
 
@@ -302,8 +298,18 @@ public class FileSelectionFragment extends Fragment {
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
-      this.modelFileName = parts[parts.length - 1];
+      
+      try {
+        final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
+        this.modelFileName =  URLDecoder.decode(parts[parts.length - 1], "utf-8"); //$NON-NLS-1$
+      } catch (UnsupportedEncodingException e) {
+        try {
+          modelInputStream.close();
+        } catch (IOException e1) {
+          throw new RuntimeException(e1);
+        }
+        throw new RuntimeException(e);
+      }
     }
 
     this.modelFileNameView.setText(this.modelFileName);
