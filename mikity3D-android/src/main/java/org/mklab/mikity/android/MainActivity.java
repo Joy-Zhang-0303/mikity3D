@@ -7,6 +7,8 @@ package org.mklab.mikity.android;
 
 import org.mklab.mikity.android.model.SceneGraphTree;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -14,11 +16,13 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -73,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
   private String sourceIdForIntent;
 
   /** モデルデータのURI。 */
-  private Uri modelFileUri;
+  Uri modelFileUri;
 
   /**
    * {@inheritDoc}
@@ -138,9 +142,9 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * FileSelectionFragmentを生成します。
+   * FileSelectionFragmentを表示します。
    */
-  void createFileSelectionFragment() {
+  void showFileSelectionFragment() {
     final FragmentManager manager = getSupportFragmentManager();
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
@@ -152,11 +156,56 @@ public class MainActivity extends AppCompatActivity {
     transaction.replace(R.id.fragment_navigation_drawer, this.fileSelectionFragment);
     transaction.commit();
   }
+  
+  /**
+   * 新しいモデルデータを生成します。 
+   */
+  void createNewModelData() {
+    if (this.canvasFragment.isModelChanged() == false) {
+      this.canvasFragment.createNewModelData();
+      this.fileSelectionFragment.reset();
+      this.modelFileUri = null;
+      return;
+    }
+    
+    final DialogFragment fragment = new DialogFragment() {
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public Dialog onCreateDialog(Bundle savedInstanceState) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(getString(R.string.modelIsChanged) + " " + getString(R.string.willYouSave)) //$NON-NLS-1$
+        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int id) {
+            if (MainActivity.this.modelFileUri == null) {
+              sendFileChooseIntentForSavingModel();
+            } else {
+              MainActivity.this.saveModelData();
+            }
+            MainActivity.this.canvasFragment.createNewModelData();
+            MainActivity.this.modelFileUri = null;
+            MainActivity.this.fileSelectionFragment.reset();
+          }
+        })
+        .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int id) {
+            MainActivity.this.canvasFragment.createNewModelData();
+            MainActivity.this.modelFileUri = null;
+            MainActivity.this.fileSelectionFragment.reset();
+          }
+        });
+        return builder.create();
+      }
+    };
+    
+    fragment.show(getSupportFragmentManager(), "confirmDialog"); //$NON-NLS-1$
+  }
 
   /**
-   * SampleSelectionFragmentを生成します。
+   * SampleSelectionFragmentを表示します。
    */
-  void createSampleSelectionFragment() {
+  void showSampleSelectionFragment() {
     final FragmentManager manager = getSupportFragmentManager();
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
@@ -170,9 +219,9 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * SettingsFragmentを生成します。
+   * SettingsFragmentを表示します。
    */
-  void createSettingsFragment() {
+  void showSettingsFragment() {
     final FragmentManager manager = getSupportFragmentManager();
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
@@ -186,9 +235,9 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * SceneGraphTreeFragmentを生成します。
+   * SceneGraphTreeFragmentを表示します。
    */
-  void createSceneGraphTreeFragment() {
+  void showSceneGraphTreeFragment() {
     if (this.canvasFragment.root == null) {
       return;
     }
@@ -401,6 +450,7 @@ public class MainActivity extends AppCompatActivity {
    */
   public void saveModelData() {
     if (this.modelFileUri == null) {
+      sendFileChooseIntentForSavingModel();
       return;
     }
 

@@ -275,6 +275,22 @@ public class CanvasFragment extends Fragment {
       this.manager.setHasAnimation(true);
     }
   }
+  
+  /**
+   * 新しいモデルデータを準備します。
+   */
+  public void createNewModelData() {
+    this.root = Mikity3dFactory.createModel();
+    this.manager = new GroupObjectManager();
+    
+    prepareRenderer();
+    prepareModeler();
+
+    final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
+    if (hasAnimation(rootGroups)) {
+      this.manager.setHasAnimation(true);
+    }
+  }
 
   /**
    * モデルデータを出力ストリームへ出力します。

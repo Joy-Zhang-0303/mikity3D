@@ -150,6 +150,8 @@ public class SceneGraphTree {
       }
     }
     
+    this.modeler.setIsChanged(true);
+    
     this.modeler.updateRenderer();
     this.modeler.updatePropertyEditor();
   }
@@ -756,12 +758,14 @@ public class SceneGraphTree {
       } else {
         this.selectedGroup.add(this.bufferedGroup.clone());
       }
-      updateTree();
     }
     
     if (this.bufferedObject != null) {
       this.selectedGroup.add(this.bufferedObject.createClone());
-      updateTree();
     }
+    
+    this.modeler.setIsChanged(true);
+    
+    updateTree();    
   }
 }

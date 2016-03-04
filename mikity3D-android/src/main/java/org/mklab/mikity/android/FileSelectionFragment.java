@@ -133,11 +133,15 @@ public class FileSelectionFragment extends Fragment {
            */
           @Override
           public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("モデルが変更されています。保存しますか？")
+            final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(getString(R.string.modelIsChanged) + " " + getString(R.string.willYouSave)) //$NON-NLS-1$
             .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
               public void onClick(DialogInterface dialog, int id) {
-                FileSelectionFragment.this.mainActivity.saveModelData();
+                if (FileSelectionFragment.this.mainActivity.modelFileUri == null) {
+                  FileSelectionFragment.this.mainActivity.sendFileChooseIntentForSavingModel();
+                } else {
+                  FileSelectionFragment.this.mainActivity.saveModelData();
+                }
                 FileSelectionFragment.this.mainActivity.sendFileChooseIntentForLoadingModel();
               }
             })
@@ -159,6 +163,18 @@ public class FileSelectionFragment extends Fragment {
     this.modelFileNameView.setMovementMethod(ScrollingMovementMethod.getInstance());
   }
 
+  /**
+   * リセットします。
+   */
+  public void reset() {
+    this.modelFileName = "..."; //$NON-NLS-1$
+    this.modelFileNameView = null;
+    this.isSelectedModelFile = false;
+    this.sourceFileNames.clear();
+    this.sourceFileNameViews.clear();
+    this.sourceSelectButtons.clear();
+    this.sourceReloadButtons.clear();
+  }
 
   /**
    * ソースデータを読み込むコンポーネントを生成します。
@@ -313,18 +329,17 @@ public class FileSelectionFragment extends Fragment {
     final InputStream modelInputStream;
 
     if ("content".equals(modelFileUri.getScheme())) { //$NON-NLS-1$
-      // ストリームを直接URIから取り出します。
       try {
         modelInputStream = this.mainActivity.getContentResolver().openInputStream(modelFileUri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
+      
       final Cursor cursor = this.mainActivity.getContentResolver().query(modelFileUri, null, null, null, null);
       cursor.moveToFirst();
       this.modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       cursor.close();
     } else {
-      // URIをファイルパスに変換し、その後ストリームを取り出します。
       final String modelFilePath = modelFileUri.getPath();
       try {
         modelInputStream = new FileInputStream(modelFilePath);
@@ -332,16 +347,11 @@ public class FileSelectionFragment extends Fragment {
         throw new RuntimeException(e);
       }
       
+      final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
       try {
-        final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
-        this.modelFileName =  URLDecoder.decode(parts[parts.length - 1], "utf-8"); //$NON-NLS-1$
+        this.modelFileName = URLDecoder.decode(parts[parts.length - 1], "utf-8"); //$NON-NLS-1$
       } catch (UnsupportedEncodingException e) {
-        try {
-          modelInputStream.close();
-        } catch (IOException e1) {
-          throw new RuntimeException(e1);
-        }
-        throw new RuntimeException(e);
+        this.modelFileName = parts[parts.length - 1];
       }
     }
 
@@ -382,19 +392,29 @@ public class FileSelectionFragment extends Fragment {
     final OutputStream modelOutputStream;
 
     if ("content".equals(modelFileUri.getScheme())) { //$NON-NLS-1$
-      // ストリームを直接URIから取り出します。
       try {        
         modelOutputStream = this.mainActivity.getContentResolver().openOutputStream(modelFileUri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
+      
+      final Cursor cursor = this.mainActivity.getContentResolver().query(modelFileUri, null, null, null, null);
+      cursor.moveToFirst();
+      this.modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      cursor.close();
     } else {
-      // URIをファイルパスに変換し、その後ストリームを取り出します。
       final String modelFilePath = modelFileUri.getPath();
       try {
         modelOutputStream = new FileOutputStream(modelFilePath);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
+      }
+      
+      final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
+      try {
+        this.modelFileName = URLDecoder.decode(parts[parts.length - 1], "utf-8"); //$NON-NLS-1$
+      } catch (UnsupportedEncodingException e) {
+        this.modelFileName = parts[parts.length - 1];
       }
     }
 

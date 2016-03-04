@@ -439,6 +439,8 @@ public class SceneGraphTree extends Fragment {
     this.selectedGroup = group;
     this.selectedObject = group;
     
+    this.modeler.setIsChanged(true);
+    
     updateTree();
   }
 
@@ -450,6 +452,8 @@ public class SceneGraphTree extends Fragment {
     this.selectedGroup.add(object);
     this.selectedObject = object;
     
+    this.modeler.setIsChanged(true);
+    
     updateTree();
   }
 
@@ -460,6 +464,8 @@ public class SceneGraphTree extends Fragment {
     final ObjectModel object = CylinderModel.createDefault();
     this.selectedGroup.add(object);
     this.selectedObject = object;
+
+    this.modeler.setIsChanged(true);
     
     updateTree();
   }
@@ -472,6 +478,8 @@ public class SceneGraphTree extends Fragment {
     this.selectedGroup.add(object);
     this.selectedObject = object;
     
+    this.modeler.setIsChanged(true);
+    
     updateTree();
   }
 
@@ -482,6 +490,8 @@ public class SceneGraphTree extends Fragment {
     final ObjectModel object = ConeModel.createDefault();
     this.selectedGroup.add(object);
     this.selectedObject = object;
+    
+    this.modeler.setIsChanged(true);
     
     updateTree();
   }
@@ -494,6 +504,8 @@ public class SceneGraphTree extends Fragment {
     this.selectedGroup.add(object);
     this.selectedObject = object;
     
+    this.modeler.setIsChanged(true);
+    
     updateTree();
   }
 
@@ -505,6 +517,8 @@ public class SceneGraphTree extends Fragment {
     this.selectedGroup.add(object);
     this.selectedObject = object;
     
+    this.modeler.setIsChanged(true);
+    
     updateTree();
   }
 
@@ -515,6 +529,8 @@ public class SceneGraphTree extends Fragment {
     final ObjectModel object = QuadrangleModel.createDefault();
     this.selectedGroup.add(object);
     this.selectedObject = object;
+    
+    this.modeler.setIsChanged(true);
     
     updateTree();
   }
@@ -561,13 +577,14 @@ public class SceneGraphTree extends Fragment {
       } else {
         this.selectedGroup.add(this.bufferedGroup.clone());
       }
-      updateTree();
     }
     
     if (this.bufferedObject != null) {
       this.selectedGroup.add(this.bufferedObject.createClone());
-      updateTree();
     }
+
+    this.modeler.setIsChanged(true);
+    updateTree();
   }
   
   /**
@@ -592,6 +609,7 @@ public class SceneGraphTree extends Fragment {
     
     updateTree();
     
+    this.modeler.setIsChanged(true);
     this.modeler.updateRenderer();
     //this.modeler.updatePropertyEditor();
   }

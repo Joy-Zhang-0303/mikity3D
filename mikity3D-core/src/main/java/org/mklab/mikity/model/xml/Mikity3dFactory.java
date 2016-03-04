@@ -181,4 +181,19 @@ public class Mikity3dFactory {
     EMPTY_MODEL.addScene(scene);
     return EMPTY_MODEL;
   }
+  
+  /**
+   * 新しいモデルを生成します。
+   * 
+   * @return Mikity3Dモデル
+   */
+  public static Mikity3DModel createModel() {
+    final ConfigurationModel configuration = new ConfigurationModel();
+    final SceneModel scene = new SceneModel();
+
+    final Mikity3DModel model = new Mikity3DModel();
+    model.addConfiguration(configuration);
+    model.addScene(scene);
+    return model;
+  }
 }

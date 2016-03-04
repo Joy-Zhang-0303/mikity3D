@@ -50,6 +50,7 @@
     <string name="settings">Settings</string>
     <string name="model">Model</string>
     <string name="modelDataIsNotReady">Model data is not ready</string>
+    <string name="modelIsChanged">Model data is changed.</string>
     <string name="name">Name</string>
     <string name="newModel">New</string>
     <string name="no">No</string>
@@ -109,5 +110,7 @@
     <string name="vertex_4_y">Vertex 4 (Y)</string>
     <string name="vertex_4_z">Vertex 4 (Z)</string>
     <string name="width">width</string>
+    <string name="willYouSave">Save ?</string>
     <string name="yes">Yes</string>
+
 </resources>

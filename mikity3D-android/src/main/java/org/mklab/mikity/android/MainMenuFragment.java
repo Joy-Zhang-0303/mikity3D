@@ -90,8 +90,11 @@ public class MainMenuFragment extends Fragment {
    */
   void displayView(int position) {
     switch (position) {
+      case 0:
+        this.mainActivity.createNewModelData();
+        break;
       case 1:
-        this.mainActivity.createFileSelectionFragment();
+        this.mainActivity.showFileSelectionFragment();
         break;
       case 2:
         this.mainActivity.saveModelData();
@@ -100,13 +103,13 @@ public class MainMenuFragment extends Fragment {
         this.mainActivity.sendFileChooseIntentForSavingModel();
         break;
       case 4:
-        this.mainActivity.createSceneGraphTreeFragment();
+        this.mainActivity.showSceneGraphTreeFragment();
         break;
       case 5:
-        this.mainActivity.createSettingsFragment();
+        this.mainActivity.showSettingsFragment();
         break;
       case 6:
-        this.mainActivity.createSampleSelectionFragment();
+        this.mainActivity.showSampleSelectionFragment();
         break;
       case 7:
         showAboutApp();
