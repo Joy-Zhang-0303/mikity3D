@@ -91,9 +91,11 @@ public class MainActivity extends AppCompatActivity {
     final Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    createCanvasFragment();
+    //createCanvasFragment();
+    
+    createFragments();
 
-    createMainMenuFragment();
+    showMainMenuFragment();
 
     final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.layout_drawer_layout);
     this.drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
@@ -114,32 +116,47 @@ public class MainActivity extends AppCompatActivity {
     // ステータスバーを消す
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
   }
+  
+  /**
+   * 各フラグメントを生成します。
+   */
+  private void createFragments() {
+    final FragmentManager manager = getSupportFragmentManager();
+    this.canvasFragment = (CanvasFragment)manager.findFragmentById(R.id.fragment_canvas);
+    
+    this.mainMenuFragment = new MainMenuFragment();
+    this.fileSelectionFragment = new FileSelectionFragment();
+    this.sampleSelectionFragment = new SampleSelectionFragment();
+    this.settingsFragment = new SettingsFragment();
+    this.sceneGraphTreeFragment = new SceneGraphTree();
+  }
 
   /**
-   * MainMenuFragmentを生成します。
+   * MainMenuFragmentを表示します。
    */
-  private void createMainMenuFragment() {
+  private void showMainMenuFragment() {
     final FragmentManager manager = getSupportFragmentManager();
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    if (this.mainMenuFragment != null) {
-      transaction.remove(this.mainMenuFragment);
-      this.mainMenuFragment = null;
-    }
+//    if (this.mainMenuFragment != null) {
+//      transaction.remove(this.mainMenuFragment);
+//      this.mainMenuFragment = null;
+//    }
 
-    this.mainMenuFragment = new MainMenuFragment();
+//    this.mainMenuFragment = new MainMenuFragment();
+    
     transaction.add(R.id.fragment_navigation_drawer, this.mainMenuFragment);
     transaction.commit();
   }
 
-  /**
-   * CanvasFragmentを生成します。
-   */
-  private void createCanvasFragment() {
-    final FragmentManager manager = getSupportFragmentManager();
-    this.canvasFragment = (CanvasFragment)manager.findFragmentById(R.id.fragment_canvas);
-  }
+//  /**
+//   * CanvasFragmentを生成します。
+//   */
+//  private void createCanvasFragment() {
+//    final FragmentManager manager = getSupportFragmentManager();
+//    this.canvasFragment = (CanvasFragment)manager.findFragmentById(R.id.fragment_canvas);
+//  }
 
   /**
    * FileSelectionFragmentを表示します。
@@ -149,9 +166,9 @@ public class MainActivity extends AppCompatActivity {
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    if (this.fileSelectionFragment == null) {
-      this.fileSelectionFragment = new FileSelectionFragment();
-    }
+//    if (this.fileSelectionFragment == null) {
+//      this.fileSelectionFragment = new FileSelectionFragment();
+//    }
 
     transaction.replace(R.id.fragment_navigation_drawer, this.fileSelectionFragment);
     transaction.commit();
@@ -210,9 +227,9 @@ public class MainActivity extends AppCompatActivity {
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    if (this.sampleSelectionFragment == null) {
-      this.sampleSelectionFragment = new SampleSelectionFragment();
-    }
+//    if (this.sampleSelectionFragment == null) {
+//      this.sampleSelectionFragment = new SampleSelectionFragment();
+//    }
 
     transaction.replace(R.id.fragment_navigation_drawer, this.sampleSelectionFragment);
     transaction.commit();
@@ -226,9 +243,9 @@ public class MainActivity extends AppCompatActivity {
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    if (this.settingsFragment == null) {
-      this.settingsFragment = new SettingsFragment();
-    }
+//    if (this.settingsFragment == null) {
+//      this.settingsFragment = new SettingsFragment();
+//    }
 
     transaction.replace(R.id.fragment_navigation_drawer, this.settingsFragment);
     transaction.commit();
@@ -246,9 +263,9 @@ public class MainActivity extends AppCompatActivity {
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    if (this.sceneGraphTreeFragment == null) {
-      this.sceneGraphTreeFragment = new SceneGraphTree();
-    }
+//    if (this.sceneGraphTreeFragment == null) {
+//      this.sceneGraphTreeFragment = new SceneGraphTree();
+//    }
 
     this.sceneGraphTreeFragment.setModel(this.canvasFragment.root.getScene(0));
 
