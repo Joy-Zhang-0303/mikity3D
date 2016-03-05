@@ -21,7 +21,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-
 /**
  * NavigationDrawerでメニューを表示するためのフラグメントです。
  * 
@@ -91,13 +90,6 @@ public class SettingsFragment extends Fragment {
     createSensorComponent(view);
 
     createConfigurationComponent(view);
-
-//    if (this.mainActivity.fileSelectionFragment != null) {
-//      setButtonEnabled(this.mainActivity.fileSelectionFragment.isSelectedModelFile);
-//    }
-//    if (this.mainActivity.sampleSelectionFragment != null) {
-//      setButtonEnabled(this.mainActivity.sampleSelectionFragment.isSelectedModelFile);
-//    }
     
     updateConfiguration();
 
@@ -106,7 +98,6 @@ public class SettingsFragment extends Fragment {
 
   private void createAnimationSpeedComponent(final View mainView) {
     this.slowButton = (ImageButton)mainView.findViewById(R.id.slowButton);
-    //this.slowButton.setEnabled(false);
     this.slowButton.setOnClickListener(new View.OnClickListener() {
 
       /**
@@ -160,7 +151,6 @@ public class SettingsFragment extends Fragment {
     });
 
     this.quickButton = (ImageButton)mainView.findViewById(R.id.quickButton);
-    //this.quickButton.setEnabled(false);
     this.quickButton.setOnClickListener(new View.OnClickListener() {
 
       /**
@@ -228,7 +218,6 @@ public class SettingsFragment extends Fragment {
 
   private void createConfigurationComponent(final View mainView) {
     this.gridShowingButton = (CompoundButton)mainView.findViewById(R.id.gridShowingButton);
-    //this.gridShowingButton.setEnabled(false);
     this.gridShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
@@ -240,7 +229,6 @@ public class SettingsFragment extends Fragment {
     });
 
     this.axisShowingButton = (CompoundButton)mainView.findViewById(R.id.axisShowingButton);
-    //this.axisShowingButton.setEnabled(false);
     this.axisShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
@@ -255,18 +243,8 @@ public class SettingsFragment extends Fragment {
   /**
    * Configurationを更新します。
    */
-  void updateConfiguration() {
+  private void updateConfiguration() {
     this.axisShowingButton.setChecked(this.canvasFragment.isAxisShowing());
     this.gridShowingButton.setChecked(this.canvasFragment.isGridShowing());
   }
-
-//  /**
-//   * @param enabled
-//   */
-//  void setButtonEnabled(boolean enabled) {
-//    this.quickButton.setEnabled(enabled);
-//    this.slowButton.setEnabled(enabled);
-//    this.gridShowingButton.setEnabled(enabled);
-//    this.axisShowingButton.setEnabled(enabled);
-//  }
 }
