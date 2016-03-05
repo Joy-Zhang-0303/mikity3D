@@ -103,9 +103,10 @@ public class FileSelectionFragment extends Fragment {
     });
 
     createModelComponent(mainView);
-    if (this.modelFileName.equals("...") == false) { //$NON-NLS-1$
+    
+    //if (this.modelFileName.equals("...") == false) { //$NON-NLS-1$
       createSourceComponent(mainView);
-    }
+    //}
 
     return mainView;
   }

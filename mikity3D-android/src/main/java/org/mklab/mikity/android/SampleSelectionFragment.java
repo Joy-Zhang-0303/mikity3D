@@ -311,4 +311,16 @@ public class SampleSelectionFragment extends Fragment {
       button.setEnabled(enabled);
     }
   }
+  
+  /**
+   * リセットします。
+   */
+  public void reset() {
+    this.modelFileName = "..."; //$NON-NLS-1$
+    this.modelFileNameView = null;
+    this.isSelectedModelFile = false;
+    this.sourceFileNames.clear();
+    this.sourceFileNameViews.clear();
+    this.sourceSelectButtons.clear();
+  }
 }

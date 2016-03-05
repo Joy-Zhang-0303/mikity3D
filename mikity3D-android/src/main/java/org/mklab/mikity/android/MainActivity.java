@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
     if (this.canvasFragment.isModelChanged() == false) {
       this.canvasFragment.createNewModelData();
       this.fileSelectionFragment.reset();
+      this.sampleSelectionFragment.reset();
       this.modelFileUri = null;
       return;
     }
