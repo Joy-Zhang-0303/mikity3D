@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
   /** 停止ボタンが押すことができるならばtrue */
   private boolean isStopButtonPushable;
 
+  /** センサーサービス。 */
   SensorService sensorService;
 
   /** ソースID。 */
@@ -92,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
     
     createFragments();
+    
+    createNewModelData();
 
     showMainMenuFragment();
 
@@ -226,21 +229,16 @@ public class MainActivity extends AppCompatActivity {
    * SceneGraphTreeFragmentを表示します。
    */
   void showSceneGraphTreeFragment() {
-    if (this.canvasFragment.root == null) {
-      return;
-    }
-
+    this.sceneGraphTreeFragment.setModel(this.canvasFragment.root.getScene(0));
+    this.sceneGraphTreeFragment.setModeler(this.canvasFragment.modeler);
+    this.canvasFragment.modeler.setSceneGraphTree(this.sceneGraphTreeFragment);
+    
     final FragmentManager manager = getSupportFragmentManager();
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    this.sceneGraphTreeFragment.setModel(this.canvasFragment.root.getScene(0));
-
     transaction.replace(R.id.fragment_navigation_drawer, this.sceneGraphTreeFragment);
     transaction.commit();
-
-    this.canvasFragment.modeler.setSceneGraphTree(this.sceneGraphTreeFragment);
-    this.sceneGraphTreeFragment.setModeler(this.canvasFragment.modeler);
   }
 
   /**
@@ -330,11 +328,11 @@ public class MainActivity extends AppCompatActivity {
    */
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
-    // スクリーンサイズ調整が済んでいない場合は調整する
+    // スクリーンのサイズ調整が済んでいない場合は調整します。
     if (this.canvasFragment.isInitialScreenSize == false) {
-      final GLSurfaceView glSurfaceView = (GLSurfaceView)findViewById(R.id.glview1);
-      final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(glSurfaceView.getWidth(), glSurfaceView.getHeight());
-      glSurfaceView.setLayoutParams(params);
+      final GLSurfaceView view = (GLSurfaceView)findViewById(R.id.glview1);
+      final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(view.getWidth(), view.getHeight());
+      view.setLayoutParams(params);
     }
     super.onWindowFocusChanged(hasFocus);
   }

@@ -32,7 +32,7 @@ import android.widget.TextView;
 public class GraphTree extends BaseAdapter {
 
   private LayoutInflater inflater;
-  TreeItem rootItem = null;
+  private TreeItem rootItem = null;
 
   /**
    * 新しく生成された<code>ModelTreeAdapter</code>オブジェクトを初期化します。
@@ -51,7 +51,7 @@ public class GraphTree extends BaseAdapter {
     final TreeItem treeItem = (TreeItem)getItem(position);
 
     String itemText;
-    if (treeItem.hasChild()) {
+    if (treeItem.hasItems()) {
       if (treeItem.isExpanded()) {
         itemText = "- " + treeItem.getText(); //$NON-NLS-1$
       } else {
@@ -66,7 +66,7 @@ public class GraphTree extends BaseAdapter {
     if (listView.getCheckedItemPosition() == position) {
       final SpannableString spannable = new SpannableString(Html.fromHtml(itemText));
       final BackgroundColorSpan bgcolor = new BackgroundColorSpan(Color.parseColor("#CCCCFF")); //$NON-NLS-1$
-      if (treeItem.hasChild()) {
+      if (treeItem.hasItems()) {
         spannable.setSpan(bgcolor, 2, spannable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
       } else {
         spannable.setSpan(bgcolor, 0, spannable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -94,7 +94,7 @@ public class GraphTree extends BaseAdapter {
    * {@inheritDoc}
    */
   public int getCount() {
-    return this.rootItem == null ? 0 : this.rootItem.getItemCount();
+    return this.rootItem == null ? 0 : this.rootItem.getItemsCount();
   }
 
   /**

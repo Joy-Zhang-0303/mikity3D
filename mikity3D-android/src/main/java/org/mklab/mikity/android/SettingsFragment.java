@@ -92,12 +92,12 @@ public class SettingsFragment extends Fragment {
 
     createConfigurationComponent(view);
 
-    if (this.mainActivity.fileSelectionFragment != null) {
-      setButtonEnabled(this.mainActivity.fileSelectionFragment.isSelectedModelFile);
-    }
-    if (this.mainActivity.sampleSelectionFragment != null) {
-      setButtonEnabled(this.mainActivity.sampleSelectionFragment.isSelectedModelFile);
-    }
+//    if (this.mainActivity.fileSelectionFragment != null) {
+//      setButtonEnabled(this.mainActivity.fileSelectionFragment.isSelectedModelFile);
+//    }
+//    if (this.mainActivity.sampleSelectionFragment != null) {
+//      setButtonEnabled(this.mainActivity.sampleSelectionFragment.isSelectedModelFile);
+//    }
     
     updateConfiguration();
 
@@ -106,7 +106,7 @@ public class SettingsFragment extends Fragment {
 
   private void createAnimationSpeedComponent(final View mainView) {
     this.slowButton = (ImageButton)mainView.findViewById(R.id.slowButton);
-    this.slowButton.setEnabled(false);
+    //this.slowButton.setEnabled(false);
     this.slowButton.setOnClickListener(new View.OnClickListener() {
 
       /**
@@ -140,14 +140,14 @@ public class SettingsFragment extends Fragment {
        * {@inheritDoc}
        */
       public void onTextChanged(CharSequence s, int start, int before, int count) {
-        // TODO 自動生成されたメソッド・スタブ
+        // nothing to do
       }
 
       /**
        * {@inheritDoc}
        */
       public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        // TODO 自動生成されたメソッド・スタブ
+        //nothin to do
       }
 
       /**
@@ -160,7 +160,7 @@ public class SettingsFragment extends Fragment {
     });
 
     this.quickButton = (ImageButton)mainView.findViewById(R.id.quickButton);
-    this.quickButton.setEnabled(false);
+    //this.quickButton.setEnabled(false);
     this.quickButton.setOnClickListener(new View.OnClickListener() {
 
       /**
@@ -228,7 +228,7 @@ public class SettingsFragment extends Fragment {
 
   private void createConfigurationComponent(final View mainView) {
     this.gridShowingButton = (CompoundButton)mainView.findViewById(R.id.gridShowingButton);
-    this.gridShowingButton.setEnabled(false);
+    //this.gridShowingButton.setEnabled(false);
     this.gridShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
@@ -240,7 +240,7 @@ public class SettingsFragment extends Fragment {
     });
 
     this.axisShowingButton = (CompoundButton)mainView.findViewById(R.id.axisShowingButton);
-    this.axisShowingButton.setEnabled(false);
+    //this.axisShowingButton.setEnabled(false);
     this.axisShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
@@ -260,13 +260,13 @@ public class SettingsFragment extends Fragment {
     this.gridShowingButton.setChecked(this.canvasFragment.isGridShowing());
   }
 
-  /**
-   * @param enabled
-   */
-  void setButtonEnabled(boolean enabled) {
-    this.quickButton.setEnabled(enabled);
-    this.slowButton.setEnabled(enabled);
-    this.gridShowingButton.setEnabled(enabled);
-    this.axisShowingButton.setEnabled(enabled);
-  }
+//  /**
+//   * @param enabled
+//   */
+//  void setButtonEnabled(boolean enabled) {
+//    this.quickButton.setEnabled(enabled);
+//    this.slowButton.setEnabled(enabled);
+//    this.gridShowingButton.setEnabled(enabled);
+//    this.axisShowingButton.setEnabled(enabled);
+//  }
 }

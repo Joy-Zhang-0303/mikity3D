@@ -80,18 +80,18 @@ public class TreeItem {
   }
 
   /**
-   * 要素を数を返します。
+   * 子要素の数を返します。
    * 
-   * @return 要素を数
+   * @return 子要素の数
    */
-  int getItemCount() {
+  int getItemsCount() {
     if (this.treeItems.size() == 0 || this.isExpanded == false) {
       return 0;
     }
 
     int count = this.treeItems.size();
     for (TreeItem item : this.treeItems) {
-      count += item.getItemCount();
+      count += item.getItemsCount();
     }
     return count;
   }
@@ -106,19 +106,19 @@ public class TreeItem {
   }
   
   /**
-   * 要素のリストを返します。
+   * 子要素のリストを返します。
    * 
-   * @return 要素のリスト
+   * @return 子要素のリスト
    */
   List<TreeItem> getItems() {
     return this.treeItems;
   }
 
   /**
-   * 要素を返します。
+   * 子要素を返します。
    * 
-   * @param itemPosition 要素の位置
-   * @return 要素
+   * @param itemPosition 子要素の位置
+   * @return 子要素
    */
   TreeItem getItem(int itemPosition) {
     if (itemPosition == 0) {
@@ -135,7 +135,7 @@ public class TreeItem {
       TreeItem item = this.treeItems.get(i);
       --position;
 
-      int count = item.getItemCount();
+      int count = item.getItemsCount();
       if (count >= position) {
         return item.getItem(position);
       }
@@ -149,7 +149,7 @@ public class TreeItem {
    * 展開します。
    */
   public void expand() {
-    if (hasChild() == false) {
+    if (hasItems() == false) {
       return;
     }
     if (this.isExpanded) {
@@ -201,7 +201,7 @@ public class TreeItem {
    * 
    * @return 子要素を持てばtrue
    */
-  public boolean hasChild() {
+  public boolean hasItems() {
     return this.treeItems.isEmpty() == false;
   }
 
@@ -209,7 +209,7 @@ public class TreeItem {
    * ツリーから全てのItemを消去します。
    */
   public void clearTree() {
-    if (getItemCount() == 0) {
+    if (getItemsCount() == 0) {
       return;
     }
 
@@ -235,7 +235,7 @@ public class TreeItem {
    */
   private void removeItemsFromTree(TreeItem items) {
     for (final TreeItem item : items.treeItems) {
-      if (item.getItemCount() != 0) {
+      if (item.getItemsCount() != 0) {
         removeItemsFromTree(item);
       }
       item.dispose();

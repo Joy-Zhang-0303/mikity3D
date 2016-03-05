@@ -261,7 +261,7 @@ public class SceneGraphTree extends Fragment {
         if (SceneGraphTree.this.selectedTreeItem.isExpanded()) {
           SceneGraphTree.this.selectedTreeItem.collapse();
         } else {
-          if (SceneGraphTree.this.selectedTreeItem.hasChild()) {
+          if (SceneGraphTree.this.selectedTreeItem.hasItems()) {
             SceneGraphTree.this.selectedTreeItem.expand();
           }
         }
@@ -307,7 +307,7 @@ public class SceneGraphTree extends Fragment {
    */
   private void removeItemsFromTree(TreeItem items) {
     for (final TreeItem item : items.getItems()) {
-      if (item.getItemCount() != 0) {
+      if (item.getItemsCount() != 0) {
         removeItemsFromTree(item);
       }
       item.dispose();

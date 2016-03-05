@@ -151,9 +151,9 @@ public class AssetsListViewFragment extends Fragment {
    */
   void showMessageInDailog(String message) {
     final MessageDialogFragment dialog = new MessageDialogFragment();
-    final Bundle bundle = new Bundle();
-    bundle.putString("message", message); //$NON-NLS-1$
-    dialog.setArguments(bundle);
+    final Bundle arguments = new Bundle();
+    arguments.putString("message", message); //$NON-NLS-1$
+    dialog.setArguments(arguments);
     dialog.show(this.mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
