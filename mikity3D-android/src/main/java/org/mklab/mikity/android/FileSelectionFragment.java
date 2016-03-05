@@ -14,14 +14,10 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
-import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 import android.app.Dialog;
@@ -31,7 +27,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
@@ -49,39 +44,9 @@ import android.widget.TextView;
  * @author hirae
  * @version $Revision$, 2015/02/15
  */
-public class FileSelectionFragment extends Fragment {
-  MainActivity mainActivity;
-  
-  CanvasFragment canvasFragment;
-
-  /** モデルファイル名。 */
-  String modelFileName = "..."; //$NON-NLS-1$
-  /** モデルファイルのパス。 */
-  TextView modelFileNameView;
-  
-  /** 3Dモデルが選ばれて表示されたならばtrue。 */
-  boolean isSelectedModelFile;
-
-  /** ソースファイルのパス。 */
-  Map<String, TextView> sourceFileNameViews = new HashMap<String, TextView>();
-  /** ソースファイル名。 */
-  Map<String, String> sourceFileNames = new HashMap<String,String>();
-  /** ソースファイルを選択するためのボタン。 */
-  List<Button> sourceSelectButtons = new ArrayList<Button>();
+public class FileSelectionFragment extends AbstractSelectionFragment {
   /** ソースファイルを再読み込みするためのボタン。 */
   List<Button> sourceReloadButtons = new ArrayList<Button>();
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setRetainInstance(true);
-    
-    this.mainActivity = (MainActivity)getActivity();
-    this.canvasFragment = this.mainActivity.canvasFragment;
-  }
 
   /**
    * {@inheritDoc}
@@ -103,10 +68,7 @@ public class FileSelectionFragment extends Fragment {
     });
 
     createModelComponent(mainView);
-    
-    //if (this.modelFileName.equals("...") == false) { //$NON-NLS-1$
-      createSourceComponent(mainView);
-    //}
+    createSourceComponent(mainView);
 
     return mainView;
   }
@@ -165,15 +127,12 @@ public class FileSelectionFragment extends Fragment {
   }
 
   /**
-   * リセットします。
+   * {@inheritDoc}
    */
+  @Override
   public void reset() {
-    this.modelFileName = "..."; //$NON-NLS-1$
-    this.modelFileNameView = null;
-    this.isSelectedModelFile = false;
-    this.sourceFileNames.clear();
-    this.sourceFileNameViews.clear();
-    this.sourceSelectButtons.clear();
+    super.reset();
+
     this.sourceReloadButtons.clear();
   }
 
@@ -188,6 +147,7 @@ public class FileSelectionFragment extends Fragment {
 
     final LinearLayout sources =  (LinearLayout)mainView.findViewById(R.id.layout_sources);
     sources.removeAllViews();
+    
     this.sourceSelectButtons.clear();
     this.sourceReloadButtons.clear();
     this.sourceFileNameViews.clear();
@@ -231,46 +191,6 @@ public class FileSelectionFragment extends Fragment {
       });
     }
 
-  }
-
-  /**
-   * 全ての含まれるアニメーソンを返します。
-   * 
-   * @param groups グループ
-   * 
-   * @return 全ての含まれるアニメーソン
-   */
-  private List<AnimationModel> getAllAnimation(List<GroupModel> groups) {
-    final List<AnimationModel> allAnimations = new ArrayList<AnimationModel>();
-
-    for (final GroupModel group : groups) {
-      final AnimationModel[] animations = group.getAnimations();
-      for (final AnimationModel animation : animations) {
-        if (animation.exists()) {
-          allAnimations.add(animation);
-        }
-      }
-
-      allAnimations.addAll(getAllAnimation(group.getGroups()));
-    }
-
-    return allAnimations;
-  }
-
-  /**
-   * グループ以下に含まれるアニメーションのソースIDを返します。
-   * 
-   * @param ｇroups グループ
-   * @return グループ以下に含まれるアニメーションのソースIDを返します。
-   */
-  private Set<String> getAllSourceIds(final List<GroupModel> ｇroups) {
-    final List<AnimationModel> allAnimations = getAllAnimation(ｇroups);
-
-    final Set<String> ids = new TreeSet<String>();
-    for (final AnimationModel animation : allAnimations) {
-      ids.add(animation.getSource().getId());
-    }
-    return ids;
   }
 
   /**
@@ -435,19 +355,6 @@ public class FileSelectionFragment extends Fragment {
     return true;
   }
 
-
-  /**
-   * メッセージを表示します。
-   * 
-   * @param message メッセージ
-   */
-  void showMessageInDialog(String message) {
-    final MessageDialogFragment fragment = new MessageDialogFragment();
-    final Bundle arguments = new Bundle();
-    arguments.putString("message", message); //$NON-NLS-1$
-    fragment.setArguments(arguments);
-    fragment.show(this.mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
-  }
 
   /**
    * ボタンのアクティブ・非アクティブを設定します。
