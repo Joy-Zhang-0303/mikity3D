@@ -203,21 +203,21 @@ public class SampleSelectionFragment extends AbstractSelectionFragment {
     if (this.canvasFragment.sourceData.size() != 0) {
       this.canvasFragment.sourceData.clear();
     }
-    this.isSelectedModelFile = true;
+    //this.isSelectedModelFile = true;
     updateSourceComponent();
-    setButtonEnabled(true);
+    //setButtonEnabled(true);
   }
  
-  /**
-   * ボタンのアクティブ・非アクティブを設定します。
-   * 
-   * @param enabled trueならばアクティブ
-   */
-  void setButtonEnabled(boolean enabled) {
-    this.isSelectedModelFile = enabled;
-
-    for (final Button button : this.sourceSelectButtons) {
-      button.setEnabled(enabled);
-    }
-  }
+//  /**
+//   * ボタンのアクティブ・非アクティブを設定します。
+//   * 
+//   * @param enabled trueならばアクティブ
+//   */
+//  void setButtonEnabled(boolean enabled) {
+//    this.isSelectedModelFile = enabled;
+//
+//    for (final Button button : this.sourceSelectButtons) {
+//      button.setEnabled(enabled);
+//    }
+//  }
 }

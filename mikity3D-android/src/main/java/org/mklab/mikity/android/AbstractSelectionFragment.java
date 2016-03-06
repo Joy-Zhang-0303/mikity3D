@@ -36,8 +36,8 @@ public abstract class AbstractSelectionFragment extends Fragment {
   protected String modelFileName = "..."; //$NON-NLS-1$
   /** モデルファイルのパス。 */
   protected TextView modelFileNameView;
-  /** 3Dモデルが選ばれて表示されたならばtrue。 */
-  protected boolean isSelectedModelFile;
+//  /** 3Dモデルが選ばれて表示されたならばtrue。 */
+//  protected boolean isSelectedModelFile;
   /** ソースファイルのパス。 */
   protected Map<String, TextView> sourceFileNameViews = new HashMap<String, TextView>();
   /** ソースファイル名。 */
@@ -118,7 +118,7 @@ public abstract class AbstractSelectionFragment extends Fragment {
   public void reset() {
     this.modelFileName = "..."; //$NON-NLS-1$
     this.modelFileNameView = null;
-    this.isSelectedModelFile = false;
+    //this.isSelectedModelFile = false;
     this.sourceFileNames.clear();
     this.sourceFileNameViews.clear();
     this.sourceSelectButtons.clear();

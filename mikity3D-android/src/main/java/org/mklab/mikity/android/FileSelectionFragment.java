@@ -293,11 +293,11 @@ public class FileSelectionFragment extends AbstractSelectionFragment {
 
       createSourceComponent(getView());
       
-      setButtonEnabled(true);
+      //setButtonEnabled(true);
 
     } catch (Mikity3dSerializeDeserializeException e) {
       showMessageInDialog("please select model file."); //$NON-NLS-1$
-      setButtonEnabled(false);
+      //setButtonEnabled(false);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -356,20 +356,20 @@ public class FileSelectionFragment extends AbstractSelectionFragment {
   }
 
 
-  /**
-   * ボタンのアクティブ・非アクティブを設定します。
-   * 
-   * @param enabled trueならばアクティブ
-   */
-  void setButtonEnabled(boolean enabled) {
-    this.isSelectedModelFile = enabled;
-
-    for (final Button button : this.sourceSelectButtons) {
-      button.setEnabled(enabled);
-    }
-
-    for (final Button button : this.sourceReloadButtons) {
-      button.setEnabled(enabled);
-    }
-  }
+//  /**
+//   * ボタンのアクティブ・非アクティブを設定します。
+//   * 
+//   * @param enabled trueならばアクティブ
+//   */
+//  void setButtonEnabled(boolean enabled) {
+////    this.isSelectedModelFile = enabled;
+//
+////    for (final Button button : this.sourceSelectButtons) {
+////      button.setEnabled(enabled);
+////    }
+////
+////    for (final Button button : this.sourceReloadButtons) {
+////      button.setEnabled(enabled);
+////    }
+//  }
 }
