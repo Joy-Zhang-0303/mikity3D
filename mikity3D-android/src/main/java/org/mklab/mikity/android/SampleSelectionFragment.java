@@ -31,7 +31,7 @@ import android.widget.TextView;
  * @author hirae
  * @version $Revision$, 2015/02/15
  */
-public class SampleSelectionFragment extends AbstractSelectionFragment {
+public class SampleSelectionFragment extends AbstractSelectionFragment implements CanvasFragment.LoadSourceDataTaskCallback {
   AssetsListViewFragment modelViewFragment;
 
   AssetsListViewFragment sourceViewFragment;
@@ -171,12 +171,27 @@ public class SampleSelectionFragment extends AbstractSelectionFragment {
    * @param sourceId ソースID
    */
   public void loadSourceData(final InputStream sourceInputStream, final String sourceFilePath, String sourceId) {
-    this.canvasFragment.loadSourceDataInBackground(sourceInputStream, sourceFilePath, sourceId);
-
     final String[] parts = sourceFilePath.split("/"); //$NON-NLS-1$
     final String sourceFileName = parts[parts.length - 1];
-    this.sourceFileNameViews.get(sourceId).setText(sourceFileName);
-    this.sourceFileNames.put(sourceId, sourceFileName);
+    
+    this.canvasFragment.loadSourceDataInBackground(sourceInputStream, sourceFilePath, sourceFileName, sourceId, this);
+  }
+  
+
+  /**
+   * {@inheritDoc}
+   */
+  public void onSuccessLoadSourceData(String sourceId, String fileName) {
+    this.sourceFileNameViews.get(sourceId).setText(fileName);
+    this.sourceFileNames.put(sourceId, fileName);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("unused")
+  public void onFailedLoadSourceData(String sourceId, String fileName) {
+    // nothing to do
   }
 
   /**

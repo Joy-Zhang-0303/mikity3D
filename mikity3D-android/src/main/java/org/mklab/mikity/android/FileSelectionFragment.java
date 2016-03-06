@@ -26,6 +26,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.provider.Telephony.CanonicalAddressesColumns;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -44,7 +45,7 @@ import android.widget.TextView;
  * @author hirae
  * @version $Revision$, 2015/02/15
  */
-public class FileSelectionFragment extends AbstractSelectionFragment {
+public class FileSelectionFragment extends AbstractSelectionFragment implements CanvasFragment.LoadSourceDataTaskCallback {
   /** ソースファイルを再読み込みするためのボタン。 */
   List<Button> sourceReloadButtons = new ArrayList<Button>();
   
@@ -230,11 +231,25 @@ public class FileSelectionFragment extends AbstractSelectionFragment {
       sourceFileName = parts[parts.length - 1];
     }
 
-    this.sourceFileNameViews.get(sourceId).setText(sourceFileName);
-    this.sourceFileNames.put(sourceId, sourceFileName);
-
-    this.canvasFragment.loadSourceDataInBackground(sourceStream, sourceFileUri.getPath(), sourceId);
+    this.canvasFragment.loadSourceDataInBackground(sourceStream, sourceFileUri.getPath(), sourceFileName, sourceId, this);
     // sourceStream has been already closed in the loadSourceData method. 
+  }
+  
+
+  /**
+   * {@inheritDoc}
+   */
+  public void onSuccessLoadSourceData(String sourceId, String fileName) {
+    this.sourceFileNameViews.get(sourceId).setText(fileName);
+    this.sourceFileNames.put(sourceId, fileName);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("unused")
+  public void onFailedLoadSourceData(String sourceId, String fileName) {
+    // nothing to do
   }
 
   /**
@@ -276,17 +291,17 @@ public class FileSelectionFragment extends AbstractSelectionFragment {
       }
     }
 
-    this.modelFileNameView.setText(this.modelFileName);
-    final String sourceFileName = "..."; //$NON-NLS-1$
-    for (final TextView view : this.sourceFileNameViews.values()) {
-      view.setText(sourceFileName);
-    }
-    this.sourceFileNames.clear();
-
     try {
       this.canvasFragment.loadModelData(modelInputStream);
       modelInputStream.close();
 
+      this.modelFileNameView.setText(this.modelFileName);
+      final String sourceFileName = "..."; //$NON-NLS-1$
+      for (final TextView view : this.sourceFileNameViews.values()) {
+        view.setText(sourceFileName);
+      }
+      this.sourceFileNames.clear();
+      
       if (this.canvasFragment.sourceData.size() != 0) {
         this.canvasFragment.sourceData.clear();
       }
@@ -350,4 +365,5 @@ public class FileSelectionFragment extends AbstractSelectionFragment {
         
     return true;
   }
+
 }
