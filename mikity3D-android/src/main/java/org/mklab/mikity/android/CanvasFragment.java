@@ -325,49 +325,108 @@ public class CanvasFragment extends Fragment {
    * @param sourceId ソースID
    */
   public void loadSourceDataInBackground(final InputStream input, final String filePath, final String sourceId) {
-    final AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>() {
-
-      /**
-       * {@inheritDoc}
-       */
-      @Override
-      protected void onPreExecute() {
-        CanvasFragment.this.progressDialog = new ProgressDialog(getActivity());
-        CanvasFragment.this.progressDialog.setCanceledOnTouchOutside(false);
-        CanvasFragment.this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        CanvasFragment.this.progressDialog.setMessage(getString(R.string.now_loading));
-        CanvasFragment.this.progressDialog.show();
-      }
-
-      /**
-       * {@inheritDoc}
-       */
-      @Override
-      protected Void doInBackground(String... arg0) {
-        loadSourceData(input, filePath, sourceId);
-
-        // input is closed in order to complete reading the data from the input stream.
-        try {
-          input.close();
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-
-        addSource(sourceId);
-        return null;
-      }
-
-      /**
-       * {@inheritDoc}
-       */
-      @Override
-      protected void onPostExecute(Void result) {
-        CanvasFragment.this.progressDialog.dismiss();
-      }
-
-    };
+    final AsyncTask<String, Void, Boolean> task = new LoadSourceDataTask(input, filePath, sourceId); 
+        
+//        new AsyncTask<String, Void, Boolean>() {
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      @Override
+//      protected void onPreExecute() {
+//        CanvasFragment.this.progressDialog = new ProgressDialog(getActivity());
+//        CanvasFragment.this.progressDialog.setCanceledOnTouchOutside(false);
+//        CanvasFragment.this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        CanvasFragment.this.progressDialog.setMessage(getString(R.string.now_loading));
+//        CanvasFragment.this.progressDialog.show();
+//      }
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      @Override
+//      protected Boolean doInBackground(String... arg0) {
+//        boolean result = loadSourceData(input, filePath, sourceId);
+//
+//        // input is closed in order to complete reading the data from the input stream.
+//        try {
+//          input.close();
+//        } catch (IOException e) {
+//          throw new RuntimeException(e);
+//        }
+//
+//        return Boolean.valueOf(result);
+//      }
+//
+//      /**
+//       * {@inheritDoc}
+//       */
+//      @Override
+//      protected void onPostExecute(Boolean result) {
+//        CanvasFragment.this.progressDialog.dismiss();
+//        
+//        if (result.booleanValue()) { 
+//          addSource(sourceId);
+//        }
+//      }
+//
+//    };
 
     task.execute();
+  }
+  
+  class LoadSourceDataTask extends AsyncTask<String, Void, Boolean> {
+    private InputStream input;
+    private String filePath;
+    private String sourceId;
+    
+    public LoadSourceDataTask(final InputStream input, final String filePath, final String sourceId) {
+      this.input = input;
+      this.filePath = filePath;
+      this.sourceId = sourceId;
+    }
+    
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onPreExecute() {
+      CanvasFragment.this.progressDialog = new ProgressDialog(getActivity());
+      CanvasFragment.this.progressDialog.setCanceledOnTouchOutside(false);
+      CanvasFragment.this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+      CanvasFragment.this.progressDialog.setMessage(getString(R.string.now_loading));
+      CanvasFragment.this.progressDialog.show();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Boolean doInBackground(String... arg0) {
+      boolean result = loadSourceData(this.input, this.filePath, this.sourceId);
+
+      // input is closed in order to complete reading the data from the input stream.
+      try {
+        this.input.close();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+
+      return Boolean.valueOf(result);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onPostExecute(Boolean result) {
+      CanvasFragment.this.progressDialog.dismiss();
+      
+      if (result.booleanValue()) { 
+        addSource(this.sourceId);
+      }
+    }    
   }
 
   /**
@@ -377,7 +436,7 @@ public class CanvasFragment extends Fragment {
    * @param filePath ソースファイルのパス
    * @param sourceId ソースファイルID
    */
-  void loadSourceData(final InputStream input, final String filePath, final String sourceId) {
+  boolean loadSourceData(final InputStream input, final String filePath, final String sourceId) {
     try {
       final DoubleMatrix data;
       
@@ -392,12 +451,16 @@ public class CanvasFragment extends Fragment {
       }
 
       this.sourceData.put(sourceId, data);
+      
+      return true;
     } catch (IOException e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
 
       showMessageInDialog("Please select proper source file."); //$NON-NLS-1$
+      
+      return false;
     }
   }
 
