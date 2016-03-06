@@ -50,7 +50,7 @@ public class SampleSelectionFragment extends AbstractSelectionFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        final FragmentManager manager = getActivity().getSupportFragmentManager();
+        final FragmentManager manager = SampleSelectionFragment.this.mainActivity.getSupportFragmentManager();
         manager.popBackStack();
       }
     });
@@ -76,7 +76,7 @@ public class SampleSelectionFragment extends AbstractSelectionFragment {
        * {@inheritDoc}
        */
       public void onClick(View view) {
-        final FragmentManager manager = getActivity().getSupportFragmentManager();
+        final FragmentManager manager = SampleSelectionFragment.this.mainActivity.getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
 
@@ -121,7 +121,7 @@ public class SampleSelectionFragment extends AbstractSelectionFragment {
     this.sourceFileNameViews.clear();
 
     for (final String id : sourceIds) {
-      final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.sample_source, null);
+      final LinearLayout source = (LinearLayout)SampleSelectionFragment.this.mainActivity.getLayoutInflater().inflate(R.layout.sample_source, null);
       sources.addView(source);
 
       final Button selectButton = (Button)source.findViewById(R.id.sampleSourceSelectButton);
@@ -134,7 +134,7 @@ public class SampleSelectionFragment extends AbstractSelectionFragment {
          * {@inheritDoc}
          */
         public void onClick(View view) {
-          final FragmentManager manager = getActivity().getSupportFragmentManager();
+          final FragmentManager manager = SampleSelectionFragment.this.mainActivity.getSupportFragmentManager();
           final FragmentTransaction transaction = manager.beginTransaction();
           transaction.addToBackStack(null);
 

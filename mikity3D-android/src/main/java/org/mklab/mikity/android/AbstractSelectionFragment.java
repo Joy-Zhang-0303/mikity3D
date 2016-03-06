@@ -107,7 +107,9 @@ public abstract class AbstractSelectionFragment extends Fragment {
     final Bundle arguments = new Bundle();
     arguments.putString("message", message); //$NON-NLS-1$
     dialog.setArguments(arguments);
-    dialog.show(this.mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
+    
+    final MainActivity mainActivity = (MainActivity)getActivity(); 
+    dialog.show(mainActivity.getSupportFragmentManager(), "alertDialogFragment"); //$NON-NLS-1$
   }
 
   /**

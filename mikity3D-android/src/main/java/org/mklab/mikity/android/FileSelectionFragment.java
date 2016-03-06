@@ -47,7 +47,7 @@ import android.widget.TextView;
 public class FileSelectionFragment extends AbstractSelectionFragment {
   /** ソースファイルを再読み込みするためのボタン。 */
   List<Button> sourceReloadButtons = new ArrayList<Button>();
-
+  
   /**
    * {@inheritDoc}
    */
@@ -62,7 +62,7 @@ public class FileSelectionFragment extends AbstractSelectionFragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        final FragmentManager manager = getActivity().getSupportFragmentManager();
+        final FragmentManager manager = FileSelectionFragment.this.mainActivity.getSupportFragmentManager();
         manager.popBackStack();
       }
     });
@@ -153,7 +153,7 @@ public class FileSelectionFragment extends AbstractSelectionFragment {
     this.sourceFileNameViews.clear();
 
     for (final String sourceId : sourceIds) {
-      final LinearLayout source = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.source, null);
+      final LinearLayout source = (LinearLayout)FileSelectionFragment.this.mainActivity.getLayoutInflater().inflate(R.layout.source, null);
       sources.addView(source);
 
       final Button selectButton = (Button)source.findViewById(R.id.sourceSelectButton);
@@ -210,11 +210,11 @@ public class FileSelectionFragment extends AbstractSelectionFragment {
     if ("content".equals(sourceFileUri.getScheme())) { //$NON-NLS-1$
       // ストリームを直接URIから取り出します。
       try {
-        sourceStream = getActivity().getContentResolver().openInputStream(sourceFileUri);
+        sourceStream = this.mainActivity.getContentResolver().openInputStream(sourceFileUri);
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
-      final Cursor cursor = getActivity().getContentResolver().query(sourceFileUri, null, null, null, null);
+      final Cursor cursor = this.mainActivity.getContentResolver().query(sourceFileUri, null, null, null, null);
       cursor.moveToFirst();
       sourceFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       cursor.close();
