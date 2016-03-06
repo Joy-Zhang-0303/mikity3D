@@ -270,6 +270,13 @@ public class CanvasFragment extends Fragment {
     prepareRenderer();
     prepareModeler();
 
+    prepareAnimation();
+  }
+
+  /**
+   * アニメーションの準備を行います。
+   */
+  public void prepareAnimation() {
     final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
     if (hasAnimation(rootGroups)) {
       this.manager.setHasAnimation(true);
@@ -286,10 +293,7 @@ public class CanvasFragment extends Fragment {
     prepareRenderer();
     prepareModeler();
 
-    final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
-    if (hasAnimation(rootGroups)) {
-      this.manager.setHasAnimation(true);
-    }
+    prepareAnimation();
   }
 
   /**

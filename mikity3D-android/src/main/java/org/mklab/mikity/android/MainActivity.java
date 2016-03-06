@@ -301,6 +301,7 @@ public class MainActivity extends AppCompatActivity {
       if (this.canvasFragment.playable) {
         this.isStopButtonPushable = true;
       }
+      this.canvasFragment.prepareAnimation();
       this.canvasFragment.runAnimation();
     } else if (item.getItemId() == R.id.menu_stop) {
       if (this.isStopButtonPushable) {
@@ -316,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
       if (this.canvasFragment.playable) {
         this.isStopButtonPushable = true;
       }
+      this.canvasFragment.prepareAnimation();
       this.canvasFragment.repeatAnimation();
     } else if (item.getItemId() == R.id.menu_reset_to_initial_state) {
       this.canvasFragment.resetToInitialState();
