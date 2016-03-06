@@ -85,6 +85,8 @@ public class SceneGraphTree extends Fragment {
   private static final int CONTEXT_MENU_EDIT = 5;
   //private static final int CONTEXT_MENU_TRANSFORM = 6;
   
+  private int positionCount = 0;
+  
   /**
    * {@inheritDoc}
    */
@@ -239,6 +241,9 @@ public class SceneGraphTree extends Fragment {
     this.model = model;
     this.rootGroup = new GroupModel("scene"); //$NON-NLS-1$
     this.rootGroup.setGroups(model.getGroups());
+    
+    this.selectedGroup = this.rootGroup;
+    this.selectedObject = this.rootGroup;
   }
   
   /**
@@ -247,8 +252,12 @@ public class SceneGraphTree extends Fragment {
   void createTree() {
     this.tree = new GraphTree(getActivity());
     this.treeView.setAdapter(this.tree);
-    
+       
     bindModelToTree();
+    
+    setSelectedItem(this.rootItem, 0);
+    
+    this.tree.notifyDataSetChanged();
     
     this.treeView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -280,10 +289,24 @@ public class SceneGraphTree extends Fragment {
   public void bindModelToTree() {
     clearTree();
     
+    this.positionCount = 0;
+    
     this.rootItem = new TreeItem(this.tree, this.rootGroup);
     this.rootItem.setText("scene"); //$NON-NLS-1$
+    this.positionCount++;
     
     addItemToTree(this.rootItem, this.model.getGroups());
+  }
+  
+  /**
+   * 選択されている要素を設定します。
+   * 
+   * @param selectedItem 選択されている要素
+   * @param position 要素の番号
+   */
+  private void setSelectedItem(TreeItem selectedItem, int position) {
+    this.selectedTreeItem = selectedItem;
+    this.treeView.setItemChecked(position, true);
   }
   
   /**
@@ -323,14 +346,13 @@ public class SceneGraphTree extends Fragment {
    */
   private void addItemToTree(TreeItem parent, List<GroupModel> groups) {
     for (final GroupModel group : groups) {
-      final TreeItem groupItem;
-      if (parent.getText().equals("scene")) { //$NON-NLS-1$
-        groupItem = new TreeItem(parent, group);
-        groupItem.setText(group.getName());
-      } else {
-        groupItem = new TreeItem(parent, group);
-        groupItem.setText(group.toShortString());
+      final TreeItem groupItem = new TreeItem(parent, group);
+      groupItem.setText(group.toShortString());
+      
+      if (group == this.selectedObject) {
+        setSelectedItem(groupItem, this.positionCount);
       }
+      this.positionCount++;
 
       final List<ObjectModel> objects = group.getObjects();
       final boolean groupHasAnyObject = objects.size() > 0 && (objects.get(0) instanceof NullModel) == false;
@@ -338,6 +360,7 @@ public class SceneGraphTree extends Fragment {
       if (groupHasAnyObject) {
         final TreeItem objectItems = new TreeItem(groupItem, group);
         objectItems.setText("object"); //$NON-NLS-1$
+        this.positionCount++;
 
         for (final ObjectModel object :  objects) {
           if (object instanceof NullModel) {
@@ -346,6 +369,12 @@ public class SceneGraphTree extends Fragment {
           
           final TreeItem child = new TreeItem(objectItems, object);
           child.setText(object.toShortString());
+          
+          if (object == this.selectedObject) {
+            objectItems.expand();
+            setSelectedItem(child, this.positionCount);
+          }
+          this.positionCount++;
         }
       }
       
@@ -572,15 +601,20 @@ public class SceneGraphTree extends Fragment {
     }
     
     if (this.bufferedGroup != null) {
+      final GroupModel group = this.bufferedGroup.clone();
       if (this.selectedGroup == this.rootGroup) {
-        this.model.addGroup(this.bufferedGroup.clone());
+        this.model.addGroup(group);
       } else {
-        this.selectedGroup.add(this.bufferedGroup.clone());
+        this.selectedGroup.add(group);
       }
+      this.selectedGroup = group;
+      this.selectedObject = group;
     }
     
     if (this.bufferedObject != null) {
-      this.selectedGroup.add(this.bufferedObject.createClone());
+      final ObjectModel object = this.bufferedObject.createClone();
+      this.selectedGroup.add(object);
+      this.selectedObject = object;
     }
 
     this.modeler.setIsChanged(true);
@@ -606,6 +640,9 @@ public class SceneGraphTree extends Fragment {
 
     this.selectedTreeItem.dispose();
     parentItem.removeItem(this.selectedTreeItem);
+    
+    this.selectedGroup = (GroupModel)parentItem.getData();
+    this.selectedObject = parentItem.getData();
     
     updateTree();
     
@@ -664,7 +701,6 @@ public class SceneGraphTree extends Fragment {
    */
   public void updateTree() {
     bindModelToTree();
-    
     this.tree.notifyDataSetChanged();
     
     this.modeler.updateRenderer();

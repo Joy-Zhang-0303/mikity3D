@@ -46,7 +46,7 @@ public class GraphTree extends BaseAdapter {
   /**
    * {@inheritDoc}
    */
-  public View getView(int position, @SuppressWarnings("unused") View convertView, @SuppressWarnings("unused") ViewGroup parent) {
+  public View getView(int position, @SuppressWarnings("unused") View convertView, ViewGroup parent) {
     final TextView view = (TextView)this.inflater.inflate(R.layout.scene_graph_tree_item, null);
     final TreeItem treeItem = (TreeItem)getItem(position);
 

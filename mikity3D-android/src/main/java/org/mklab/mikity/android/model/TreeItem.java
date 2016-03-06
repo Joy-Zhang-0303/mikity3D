@@ -20,7 +20,7 @@ public class TreeItem {
   private List<TreeItem> treeItems = new ArrayList<TreeItem>();
   private int depth = -1;
 
-  private boolean isExpanded = false;
+  private boolean isExpanded = true;
   private Object data = null;
   private String text = null;
 

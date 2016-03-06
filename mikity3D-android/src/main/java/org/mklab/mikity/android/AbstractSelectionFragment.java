@@ -64,7 +64,7 @@ public abstract class AbstractSelectionFragment extends Fragment {
    * 
    * @return 全ての含まれるアニメーソン
    */
-  protected List<AnimationModel> getAllAnimation(List<GroupModel> groups) {
+  private List<AnimationModel> getAllAnimation(List<GroupModel> groups) {
     final List<AnimationModel> allAnimations = new ArrayList<AnimationModel>();
   
     for (final GroupModel group : groups) {
