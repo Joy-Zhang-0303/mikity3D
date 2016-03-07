@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 import android.app.Dialog;
@@ -46,7 +45,7 @@ import android.widget.Toast;
  * @author hirae
  * @version $Revision$, 2015/02/15
  */
-public class FileSelectionFragment extends AbstractSelectionFragment implements CanvasFragment.LoadSourceDataTaskCallback, CanvasFragment.LoadModelDataTaskCallback {
+public class FileSelectionFragment extends AbstractSelectionFragment implements CanvasFragment.LoadSourceDataTaskCallback, CanvasFragment.LoadModelDataTaskCallback, CanvasFragment.SaveModelDataTaskCallback {
   /** ソースファイルを再読み込みするためのボタン。 */
   List<Button> sourceReloadButtons = new ArrayList<Button>();
   
@@ -243,10 +242,6 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
   public void onSuccessLoadSourceData(String sourceId, String fileName) {
     this.sourceFileNameViews.get(sourceId).setText(fileName);
     this.sourceFileNames.put(sourceId, fileName);
-    
-    final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_LONG);
-    toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
-    toast.show();
   }
 
   /**
@@ -321,10 +316,6 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
       }
 
       createSourceComponent(getView());
-      
-      final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_LONG);
-      toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
-      toast.show();
     } catch (IOException e) {
       showMessageInDialog(e.getMessage());
     }
@@ -342,11 +333,11 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
    * モデルをURIへ保存します。
    * 
    * @param modelFileUri モデルURI
-   * @return 正常に保存された場合はtrue
    */
-  public boolean saveModelData(Uri modelFileUri) {
+  public void saveModelData(Uri modelFileUri) {
     final OutputStream modelOutputStream;
 
+    String fileName;
     if ("content".equals(modelFileUri.getScheme())) { //$NON-NLS-1$
       try {        
         modelOutputStream = this.mainActivity.getContentResolver().openOutputStream(modelFileUri);
@@ -356,7 +347,7 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
       
       final Cursor cursor = this.mainActivity.getContentResolver().query(modelFileUri, null, null, null, null);
       cursor.moveToFirst();
-      this.modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      fileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       cursor.close();
     } else {
       final String modelFilePath = modelFileUri.getPath();
@@ -368,25 +359,34 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
       
       final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
       try {
-        this.modelFileName = URLDecoder.decode(parts[parts.length - 1], "utf-8"); //$NON-NLS-1$
+        fileName = URLDecoder.decode(parts[parts.length - 1], "utf-8"); //$NON-NLS-1$
       } catch (UnsupportedEncodingException e) {
-        this.modelFileName = parts[parts.length - 1];
+        fileName = parts[parts.length - 1];
       }
     }
 
+    this.canvasFragment.saveModelDataInBackground(modelOutputStream, fileName, this);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void onSuccessSaveModelData(OutputStream output, String fileName) {
     try {
-      this.canvasFragment.saveModelData(modelOutputStream);
-      modelOutputStream.close();
-    } catch (Mikity3dSerializeDeserializeException e) {
-      try {
-        modelOutputStream.close();
-      } catch (IOException e1) {
-        throw new RuntimeException(e);
-      }
+      output.close();
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      showMessageInDialog(e.getLocalizedMessage());
+      return;
     }
-        
-    return true;
+    
+    this.modelFileName = fileName;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("unused")
+  public void onFailedSaveModelData(OutputStream output, String fileName) {
+    // nothing to do
   }
 }

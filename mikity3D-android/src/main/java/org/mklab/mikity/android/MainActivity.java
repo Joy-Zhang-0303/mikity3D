@@ -439,13 +439,7 @@ public class MainActivity extends AppCompatActivity {
       return;
     }
 
-    final boolean savedSuccessfully = this.fileSelectionFragment.saveModelData(this.modelFileUri);
-
-    if (savedSuccessfully) {
-      Toast toast = Toast.makeText(this, getString(R.string.savedSuccessfully), Toast.LENGTH_LONG);
-      toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
-      toast.show();
-    }
+    this.fileSelectionFragment.saveModelData(this.modelFileUri);
   }
   
   /**
@@ -454,14 +448,7 @@ public class MainActivity extends AppCompatActivity {
    */
   public void saveAsModelData(Uri uri) {
     this.modelFileUri = uri;
-
-    final boolean savedSuccessfully = this.fileSelectionFragment.saveModelData(this.modelFileUri);
-
-    if (savedSuccessfully) {
-      Toast toast = Toast.makeText(this, getString(R.string.savedSuccessfully), Toast.LENGTH_LONG);
-      toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
-      toast.show();
-    }
+    this.fileSelectionFragment.saveModelData(this.modelFileUri);
   }
 
   /**

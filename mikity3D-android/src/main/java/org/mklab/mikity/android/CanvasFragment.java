@@ -39,6 +39,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -46,6 +47,7 @@ import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 /**
@@ -346,7 +348,11 @@ public class CanvasFragment extends Fragment {
     protected void onPostExecute(Boolean result) {
       CanvasFragment.this.progressDialog.dismiss();
       
-      if (result.booleanValue()) { 
+      if (result.booleanValue()) {
+        final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
+        toast.show();
+        
         prepareRenderer();
         prepareModeler();
         prepareAnimation();
@@ -381,15 +387,104 @@ public class CanvasFragment extends Fragment {
   }
 
   /**
+   * ストリームへモデルデータをバックグランドで保存します。
+   * 
+   * @param output モデルの出力ストリーム
+   * @param fileName ファイル名
+   * @param callback コールバック
+   */
+  public void saveModelDataInBackground(final OutputStream output, String fileName, SaveModelDataTaskCallback callback) {
+    final SaveModelDataTask task = new SaveModelDataTask(output, fileName, callback); 
+    task.execute();
+  }
+  
+  /**
    * モデルデータを出力ストリームへ出力します。
    * 
    * @param output 出力ストリーム
-   * @throws Mikity3dSerializeDeserializeException ファイルに保存できない場合  
    */
-  public void saveModelData(OutputStream output) throws Mikity3dSerializeDeserializeException {
-    final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
-    marshaller.marshal(output);
-    this.modeler.setIsChanged(false);
+  boolean saveModelData(OutputStream output) {
+    try {
+      final Mikity3DMarshaller marshaller = new Mikity3DMarshaller(this.root);
+      marshaller.marshal(output);
+      return true;
+    } catch (Mikity3dSerializeDeserializeException e) {
+      showMessageInDialog(e.getMessage());
+      return false;
+    }
+  }
+  
+  class SaveModelDataTask extends AsyncTask<String, Void, Boolean> {
+    private OutputStream output;
+    private String fileName;
+    private SaveModelDataTaskCallback callback;
+    
+    public SaveModelDataTask(final OutputStream output, String fileName, SaveModelDataTaskCallback callback) {
+      this.output = output;
+      this.fileName = fileName;
+      this.callback = callback;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onPreExecute() {
+      CanvasFragment.this.progressDialog = new ProgressDialog(getActivity());
+      CanvasFragment.this.progressDialog.setCanceledOnTouchOutside(false);
+      CanvasFragment.this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+      CanvasFragment.this.progressDialog.setMessage(getString(R.string.now_saving));
+      CanvasFragment.this.progressDialog.show();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Boolean doInBackground(String... arg0) {
+      final boolean result = saveModelData(this.output);
+      return Boolean.valueOf(result);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onPostExecute(Boolean result) {
+      CanvasFragment.this.progressDialog.dismiss();
+      
+      if (result.booleanValue()) {
+        final Toast toast = Toast.makeText(getActivity(), getString(R.string.savedSuccessfully), Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
+        toast.show();
+        
+        CanvasFragment.this.modeler.setIsChanged(false);
+        this.callback.onSuccessSaveModelData(this.output, this.fileName);
+      } else {
+        this.callback.onFailedSaveModelData(this.output, this.fileName);
+      }
+    }    
+  }
+  
+  /**
+   * SaveModelDataTaskのコールバックを表すインターフェースです。
+   * 
+   * @author koga
+   * @version $Revision$, 2016/03/07
+   */
+  public static interface SaveModelDataTaskCallback {
+    /**
+     * 成功した場合に呼ばれるメソッドです。 
+     * @param output 出力ストリーム
+     * @param fileName ファイル名
+     */
+    void onSuccessSaveModelData(OutputStream output, String fileName);
+    /**
+     * 失敗した場合に呼ばれるメソッドです。
+     * @param output 出力ストリーム
+     * @param fileName ファイル名
+     */
+    void onFailedSaveModelData(OutputStream output, String fileName);
   }
 
   /**
@@ -487,7 +582,11 @@ public class CanvasFragment extends Fragment {
     protected void onPostExecute(Boolean result) {
       CanvasFragment.this.progressDialog.dismiss();
       
-      if (result.booleanValue()) { 
+      if (result.booleanValue()) {
+        final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
+        toast.show();
+        
         addSource(this.sourceId);
         this.callback.onSuccessLoadSourceData(this.sourceId, this.fileName);
       } else {

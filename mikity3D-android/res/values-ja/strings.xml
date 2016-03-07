@@ -54,6 +54,7 @@
     <string name="newModel">新規</string>
     <string name="no">いいえ</string>
     <string name="now_loading">読み込み中...</string>
+    <string name="now_saving">保存中...</string>
     <string name="number">番号</string>
     <string name="objectType">オブジェクト型</string>
     <string name="open">開く</string>
