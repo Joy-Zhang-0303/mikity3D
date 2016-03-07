@@ -30,6 +30,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,6 +38,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * モデルデータとソースデータを選択するためのフラグメントです。
@@ -241,6 +243,10 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
   public void onSuccessLoadSourceData(String sourceId, String fileName) {
     this.sourceFileNameViews.get(sourceId).setText(fileName);
     this.sourceFileNames.put(sourceId, fileName);
+    
+    final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_LONG);
+    toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
+    toast.show();
   }
 
   /**
@@ -315,6 +321,10 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
       }
 
       createSourceComponent(getView());
+      
+      final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_LONG);
+      toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
+      toast.show();
     } catch (IOException e) {
       showMessageInDialog(e.getMessage());
     }
