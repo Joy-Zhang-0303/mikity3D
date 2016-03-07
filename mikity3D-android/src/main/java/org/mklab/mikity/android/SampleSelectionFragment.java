@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
 
-import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
 import android.os.Bundle;
@@ -31,7 +30,7 @@ import android.widget.TextView;
  * @author hirae
  * @version $Revision$, 2015/02/15
  */
-public class SampleSelectionFragment extends AbstractSelectionFragment implements CanvasFragment.LoadSourceDataTaskCallback {
+public class SampleSelectionFragment extends AbstractSelectionFragment implements CanvasFragment.LoadSourceDataTaskCallback, CanvasFragment.LoadModelDataTaskCallback {
   AssetsListViewFragment modelViewFragment;
 
   AssetsListViewFragment sourceViewFragment;
@@ -199,13 +198,19 @@ public class SampleSelectionFragment extends AbstractSelectionFragment implement
    * 
    * @param modelInputStream モデルの入力ストリーム
    * @param modelFilePath モデルのファイルパス
-   * @throws Mikity3dSerializeDeserializeException
    */
-  void loadModelData(InputStream modelInputStream, String modelFilePath) throws Mikity3dSerializeDeserializeException {
-    this.canvasFragment.loadModelData(modelInputStream);
-
+  void loadModelData(InputStream modelInputStream, String modelFilePath)  {
     final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
-    this.modelFileName = parts[parts.length - 1];
+    final String fileName = parts[parts.length - 1];
+    
+    this.canvasFragment.loadModelDataInBackground(modelInputStream, fileName, this);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void onSuccessLoadModelData(InputStream input, String fileName) {
+    this.modelFileName = fileName;
     this.modelFileNameView.setText(this.modelFileName);
 
     final String sampleSourceFileName = "..."; //$NON-NLS-1$
@@ -220,5 +225,13 @@ public class SampleSelectionFragment extends AbstractSelectionFragment implement
     }
 
     updateSourceComponent();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("unused")
+  public void onFailedLoadModelData(InputStream input, String fileName) {
+    // nothing to do
   }
 }

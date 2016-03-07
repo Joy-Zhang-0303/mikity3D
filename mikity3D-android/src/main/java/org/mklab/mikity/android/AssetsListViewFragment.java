@@ -15,8 +15,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mklab.mikity.model.xml.Mikity3dSerializeDeserializeException;
-
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -119,8 +117,6 @@ public class AssetsListViewFragment extends Fragment {
           getActivity().getSupportFragmentManager().popBackStack();
 
         } catch (IOException e) {
-          throw new RuntimeException(e);
-        } catch (Mikity3dSerializeDeserializeException e) {
           throw new RuntimeException(e);
         }
       }

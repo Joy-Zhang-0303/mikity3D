@@ -267,23 +267,26 @@ public class CanvasFragment extends Fragment {
     /**
      * 成功した場合に呼ばれるメソッドです。 
      * @param input 入力ストリーム
+     * @param fileName ファイル名
      */
-    void onSuccessLoadModelData(InputStream input);
+    void onSuccessLoadModelData(InputStream input, String fileName);
     /**
      * 失敗した場合に呼ばれるメソッドです。
      * @param input 入力ストリーム
+     * @param fileName ファイル名
      */
-    void onFailedLoadModelData(InputStream input);
+    void onFailedLoadModelData(InputStream input, String fileName);
   }
   
   /**
    * ストリームからモデルデータをバックグランドで取り出します。
    * 
    * @param input モデルの入力ストリーム
+   * @param fileName ファイル名
    * @param callback コールバック
    */
-  public void loadModelDataInBackground(final InputStream input, LoadModelDataTaskCallback callback) {
-    final LoadModelDataTask task = new LoadModelDataTask(input, callback); 
+  public void loadModelDataInBackground(final InputStream input, String fileName, LoadModelDataTaskCallback callback) {
+    final LoadModelDataTask task = new LoadModelDataTask(input, fileName, callback); 
     task.execute();
   }
 
@@ -306,10 +309,12 @@ public class CanvasFragment extends Fragment {
   
   class LoadModelDataTask extends AsyncTask<String, Void, Boolean> {
     private InputStream input;
+    private String fileName;
     private LoadModelDataTaskCallback callback;
     
-    public LoadModelDataTask(final InputStream input, LoadModelDataTaskCallback callback) {
+    public LoadModelDataTask(final InputStream input, String fileName, LoadModelDataTaskCallback callback) {
       this.input = input;
+      this.fileName = fileName;
       this.callback = callback;
     }
     
@@ -346,9 +351,9 @@ public class CanvasFragment extends Fragment {
         prepareModeler();
         prepareAnimation();
         
-        this.callback.onSuccessLoadModelData(this.input);
+        this.callback.onSuccessLoadModelData(this.input, this.fileName);
       } else {
-        this.callback.onFailedLoadModelData(this.input);
+        this.callback.onFailedLoadModelData(this.input, this.fileName);
       }
     }    
   }

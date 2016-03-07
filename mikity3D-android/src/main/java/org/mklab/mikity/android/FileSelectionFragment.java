@@ -262,6 +262,7 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
     }
 
     final InputStream modelInputStream;
+    String fileName;
 
     if ("content".equals(modelFileUri.getScheme())) { //$NON-NLS-1$
       try {
@@ -272,7 +273,7 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
       
       final Cursor cursor = this.mainActivity.getContentResolver().query(modelFileUri, null, null, null, null);
       cursor.moveToFirst();
-      this.modelFileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      fileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
       cursor.close();
     } else {
       final String modelFilePath = modelFileUri.getPath();
@@ -284,23 +285,24 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
       
       final String[] parts = modelFilePath.split("/"); //$NON-NLS-1$
       try {
-        this.modelFileName = URLDecoder.decode(parts[parts.length - 1], "utf-8"); //$NON-NLS-1$
+        fileName = URLDecoder.decode(parts[parts.length - 1], "utf-8"); //$NON-NLS-1$
       } catch (UnsupportedEncodingException e) {
-        this.modelFileName = parts[parts.length - 1];
+        fileName = parts[parts.length - 1];
       }
     }
 
-    this.canvasFragment.loadModelDataInBackground(modelInputStream, this);
+    this.canvasFragment.loadModelDataInBackground(modelInputStream, fileName, this);
   }
   
 
   /**
    * {@inheritDoc}
    */
-  public void onSuccessLoadModelData(InputStream input) {
+  public void onSuccessLoadModelData(InputStream input, String fileName) {
     try {
       input.close();
 
+      this.modelFileName = fileName;
       this.modelFileNameView.setText(this.modelFileName);
       final String sourceFileName = "..."; //$NON-NLS-1$
       for (final TextView view : this.sourceFileNameViews.values()) {
@@ -322,7 +324,7 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
    * {@inheritDoc}
    */
   @SuppressWarnings("unused")
-  public void onFailedLoadModelData(InputStream input) {
+  public void onFailedLoadModelData(InputStream input, String fileName) {
     // nothing to do
   }
   
