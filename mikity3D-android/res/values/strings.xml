@@ -64,7 +64,8 @@
     <string name="paste">Pasete</string>
     <string name="pause">Pause</string>
     <string name="please_input_numerical_values">Please input numerical values.</string>
-    <string name="pleaseSelectModelFile">Please select model file</string>
+    <string name="please_select_source_file">Please select source file.</string>
+    <string name="please_select_model_file">Please select model file.</string>
     <string name="plusButton">>></string>
     <string name="play">Play</string>
     <string name="preserve_ratio">Preserve ratio</string>

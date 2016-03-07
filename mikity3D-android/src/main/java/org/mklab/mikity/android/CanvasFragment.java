@@ -256,21 +256,101 @@ public class CanvasFragment extends Fragment {
       super.onScaleEnd(detector);
     }
   };
+  
+  /**
+   * LoadModelDataTaskのコールバックを表すインターフェースです。
+   * 
+   * @author koga
+   * @version $Revision$, 2016/03/07
+   */
+  public static interface LoadModelDataTaskCallback {
+    /**
+     * 成功した場合に呼ばれるメソッドです。 
+     * @param input 入力ストリーム
+     */
+    void onSuccessLoadModelData(InputStream input);
+    /**
+     * 失敗した場合に呼ばれるメソッドです。
+     * @param input 入力ストリーム
+     */
+    void onFailedLoadModelData(InputStream input);
+  }
+  
+  /**
+   * ストリームからモデルデータをバックグランドで取り出します。
+   * 
+   * @param input モデルの入力ストリーム
+   * @param callback コールバック
+   */
+  public void loadModelDataInBackground(final InputStream input, LoadModelDataTaskCallback callback) {
+    final LoadModelDataTask task = new LoadModelDataTask(input, callback); 
+    task.execute();
+  }
 
   /**
    * モデルデータを入力ストリームから読み込みます。
    * 
    * @param input モデルファイル
-   * @throws Mikity3dSerializeDeserializeException ファイルを読み込めない場合
    */
-  public void loadModelData(InputStream input) throws Mikity3dSerializeDeserializeException {
-    this.root = new Mikity3dFactory().loadFile(input);
-    this.manager = new GroupObjectManager();
+  boolean loadModelData(InputStream input) {
+    try {
+      this.root = new Mikity3dFactory().loadFile(input);
+      this.manager = new GroupObjectManager();
+    } catch (Mikity3dSerializeDeserializeException e) {
+      showMessageInDialog(getString(R.string.please_select_model_file));
+      return false;
+    }
     
-    prepareRenderer();
-    prepareModeler();
+    return true;
+  }
+  
+  class LoadModelDataTask extends AsyncTask<String, Void, Boolean> {
+    private InputStream input;
+    private LoadModelDataTaskCallback callback;
+    
+    public LoadModelDataTask(final InputStream input, LoadModelDataTaskCallback callback) {
+      this.input = input;
+      this.callback = callback;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onPreExecute() {
+      CanvasFragment.this.progressDialog = new ProgressDialog(getActivity());
+      CanvasFragment.this.progressDialog.setCanceledOnTouchOutside(false);
+      CanvasFragment.this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+      CanvasFragment.this.progressDialog.setMessage(getString(R.string.now_loading));
+      CanvasFragment.this.progressDialog.show();
+    }
 
-    prepareAnimation();
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Boolean doInBackground(String... arg0) {
+      final boolean result = loadModelData(this.input);
+      return Boolean.valueOf(result);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onPostExecute(Boolean result) {
+      CanvasFragment.this.progressDialog.dismiss();
+      
+      if (result.booleanValue()) { 
+        prepareRenderer();
+        prepareModeler();
+        prepareAnimation();
+        
+        this.callback.onSuccessLoadModelData(this.input);
+      } else {
+        this.callback.onFailedLoadModelData(this.input);
+      }
+    }    
   }
 
   /**
@@ -292,7 +372,6 @@ public class CanvasFragment extends Fragment {
     
     prepareRenderer();
     prepareModeler();
-
     prepareAnimation();
   }
 
@@ -311,7 +390,7 @@ public class CanvasFragment extends Fragment {
   /**
    * モデラーを準備します。
    */
-  private void prepareModeler() {
+  void prepareModeler() {
     this.modeler.setRoot(this.root);
     this.modeler.setManager(this.manager);
     this.modeler.setIsChanged(false);
@@ -327,12 +406,11 @@ public class CanvasFragment extends Fragment {
    * @param callback コールバック
    */
   public void loadSourceDataInBackground(final InputStream input, final String filePath, final String fileName, final String sourceId, LoadSourceDataTaskCallback callback) {
-    final AsyncTask<String, Void, Boolean> task = new LoadSourceDataTask(input, filePath, fileName, sourceId, callback); 
+    final LoadSourceDataTask task = new LoadSourceDataTask(input, filePath, fileName, sourceId, callback); 
     task.execute();
   }
   
   /**
-   * 
    * LoadSourceDataTaskのコールバックを表すインターフェースです。
    * 
    * @author koga
@@ -385,7 +463,7 @@ public class CanvasFragment extends Fragment {
      */
     @Override
     protected Boolean doInBackground(String... arg0) {
-      boolean result = loadSourceData(this.input, this.filePath, this.sourceId);
+      final boolean result = loadSourceData(this.input, this.filePath, this.sourceId);
 
       // input is closed in order to complete reading the data from the input stream.
       try {
@@ -442,7 +520,7 @@ public class CanvasFragment extends Fragment {
         this.progressDialog.dismiss();
       }
 
-      showMessageInDialog("Please select proper source file."); //$NON-NLS-1$
+      showMessageInDialog(getString(R.string.please_select_source_file));
       
       return false;
     }
@@ -623,7 +701,7 @@ public class CanvasFragment extends Fragment {
   /**
    * レンダーを準備します。
    */
-  private void prepareRenderer() {
+  void prepareRenderer() {
     final List<GroupModel> rootGroups = this.root.getScene(0).getGroups();
     final ConfigurationModel configuration = this.root.getConfiguration(0);
 

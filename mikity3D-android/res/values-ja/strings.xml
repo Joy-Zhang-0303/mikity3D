@@ -64,7 +64,8 @@
     <string name="pause">一旦停止</string>
     <string name="play">再生</string>
     <string name="please_input_numerical_values">数字を入力して下さい。</string>
-    <string name="pleaseSelectModelFile">モデルファイルを選択して下さい。</string>
+    <string name="please_select_source_file">ソースファイルを選択して下さい。</string>
+    <string name="please_select_model_file">モデルファイルを選択して下さい。</string>
     <string name="plusButton">>></string>
     <string name="preserve_ratio">比率を保存</string>
     <string name="quadrangle">四角形</string>

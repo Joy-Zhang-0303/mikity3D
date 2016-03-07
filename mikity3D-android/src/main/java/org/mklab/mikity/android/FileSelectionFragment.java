@@ -26,7 +26,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
-import android.provider.Telephony.CanonicalAddressesColumns;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -45,7 +44,7 @@ import android.widget.TextView;
  * @author hirae
  * @version $Revision$, 2015/02/15
  */
-public class FileSelectionFragment extends AbstractSelectionFragment implements CanvasFragment.LoadSourceDataTaskCallback {
+public class FileSelectionFragment extends AbstractSelectionFragment implements CanvasFragment.LoadSourceDataTaskCallback, CanvasFragment.LoadModelDataTaskCallback {
   /** ソースファイルを再読み込みするためのボタン。 */
   List<Button> sourceReloadButtons = new ArrayList<Button>();
   
@@ -291,9 +290,16 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
       }
     }
 
+    this.canvasFragment.loadModelDataInBackground(modelInputStream, this);
+  }
+  
+
+  /**
+   * {@inheritDoc}
+   */
+  public void onSuccessLoadModelData(InputStream input) {
     try {
-      this.canvasFragment.loadModelData(modelInputStream);
-      modelInputStream.close();
+      input.close();
 
       this.modelFileNameView.setText(this.modelFileName);
       final String sourceFileName = "..."; //$NON-NLS-1$
@@ -307,11 +313,17 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
       }
 
       createSourceComponent(getView());
-    } catch (Mikity3dSerializeDeserializeException e) {
-      showMessageInDialog("please select model file."); //$NON-NLS-1$
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      showMessageInDialog(e.getMessage());
     }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("unused")
+  public void onFailedLoadModelData(InputStream input) {
+    // nothing to do
   }
   
   /**
@@ -357,7 +369,7 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
       try {
         modelOutputStream.close();
       } catch (IOException e1) {
-        throw new RuntimeException(e1);
+        throw new RuntimeException(e);
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -365,5 +377,4 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
         
     return true;
   }
-
 }
