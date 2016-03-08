@@ -186,7 +186,7 @@ public class SampleSelectionFragment extends AbstractSelectionFragment implement
     this.sourceFileNameViews.get(sourceId).setText(fileName);
     this.sourceFileNames.put(sourceId, fileName);
     
-    final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_LONG);
+    final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_SHORT);
     toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
     toast.show();
   }
@@ -232,7 +232,7 @@ public class SampleSelectionFragment extends AbstractSelectionFragment implement
 
     updateSourceComponent();
     
-    final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_LONG);
+    final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_SHORT);
     toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
     toast.show();
   }

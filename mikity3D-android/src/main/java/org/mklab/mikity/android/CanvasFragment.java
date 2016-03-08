@@ -349,7 +349,7 @@ public class CanvasFragment extends Fragment {
       CanvasFragment.this.progressDialog.dismiss();
       
       if (result.booleanValue()) {
-        final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_LONG);
+        final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
         toast.show();
         
@@ -454,7 +454,7 @@ public class CanvasFragment extends Fragment {
       CanvasFragment.this.progressDialog.dismiss();
       
       if (result.booleanValue()) {
-        final Toast toast = Toast.makeText(getActivity(), getString(R.string.savedSuccessfully), Toast.LENGTH_LONG);
+        final Toast toast = Toast.makeText(getActivity(), getString(R.string.savedSuccessfully), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
         toast.show();
         
@@ -583,7 +583,7 @@ public class CanvasFragment extends Fragment {
       CanvasFragment.this.progressDialog.dismiss();
       
       if (result.booleanValue()) {
-        final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_LONG);
+        final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
         toast.show();
         
