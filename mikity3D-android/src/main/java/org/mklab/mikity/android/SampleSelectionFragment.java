@@ -232,6 +232,9 @@ public class SampleSelectionFragment extends AbstractSelectionFragment implement
 
     updateSourceComponent();
     
+    this.mainActivity.fileSelectionFragment.reset();
+    this.mainActivity.modelFileUri = null;
+    
     final Toast toast = Toast.makeText(getActivity(), getString(R.string.loadedSuccessfully), Toast.LENGTH_SHORT);
     toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
     toast.show();

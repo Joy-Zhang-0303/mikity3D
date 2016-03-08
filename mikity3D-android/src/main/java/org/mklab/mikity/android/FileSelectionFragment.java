@@ -29,7 +29,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,7 +36,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * モデルデータとソースデータを選択するためのフラグメントです。
@@ -316,6 +314,8 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
       }
 
       createSourceComponent(getView());
+      
+      this.mainActivity.sampleSelectionFragment.reset();
     } catch (IOException e) {
       showMessageInDialog(e.getMessage());
     }
