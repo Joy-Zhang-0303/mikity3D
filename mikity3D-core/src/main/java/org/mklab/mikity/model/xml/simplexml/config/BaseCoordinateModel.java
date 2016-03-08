@@ -40,7 +40,7 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
    */
   public BaseCoordinateModel() {
     this.gridColor = new ColorModel(20, 20, 20);
-    this.gridInverval = 0.05f;
+    this.gridInverval = 0.1f;
     this.isAxisShowing = true;
     this.isGridShowing = true;
   }

@@ -74,7 +74,7 @@ public class QuadrangleModel extends AbstractObjectModel {
    * @return デフォルトのモデル
    */
   public static QuadrangleModel createDefault() {
-    return new QuadrangleModel(new VertexModel(0.0f, -0.3f, 0.0f), new VertexModel(0.0f, 0.3f, 0.0f), new VertexModel(0.0f, 0.3f, 0.3f), new VertexModel(0.0f, -0.3f, 0.3f)); 
+    return new QuadrangleModel(new VertexModel(0.0f, -0.1f, 0.0f), new VertexModel(0.0f, 0.1f, 0.0f), new VertexModel(0.0f, 0.1f, 0.1f), new VertexModel(0.0f, -0.1f, 0.1f)); 
   }
   
   /**
