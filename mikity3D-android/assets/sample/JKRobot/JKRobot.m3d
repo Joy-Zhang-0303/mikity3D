@@ -1,0 +1,142 @@
+<mikity3d version="0.4">
+   <scene>
+      <group name="Base">
+         <translation x="0.0" y="0.0" z="0.122"/>
+         <rotation x="0.0" y="0.0" z="0.0"/>
+         <animation target="translationX">
+            <source id="0" number="2"/>
+         </animation>
+         <animation target="rotationY">
+            <source id="0" number="3"/>
+         </animation>
+         <box width="0.35" height="0.004" depth="0.17">
+            <color r="0" g="255" b="0" alpha="255" name="green"/>
+            <translation x="0.0" y="0.0" z="0.0"/>
+            <rotation x="0.0" y="0.0" z="0.0"/>
+         </box>
+         <group name="LeftWheel">
+            <translation x="0.0" y="-0.12" z="-0.024"/>
+            <rotation x="0.0" y="0.0" z="0.0"/>
+            <box width="0.08" height="0.044" depth="0.02">
+               <color r="255" g="0" b="0" alpha="255" name="red"/>
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+            </box>
+            <group name="Wheel">
+               <translation x="0.0" y="-0.066" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <animation target="rotationY">
+                  <source id="0" number="4"/>
+               </animation>
+               <cylinder radius="0.1" height="0.012" division="36">
+                  <color r="0" g="0" b="255" alpha="255" name="blue"/>
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="1.57" y="0.0" z="0.0"/>
+               </cylinder>
+               <cylinder radius="0.005" height="0.02" division="36">
+                  <color r="0" g="0" b="255" alpha="255" name="blue"/>
+                  <translation x="0.0" y="0.016" z="0.0"/>
+                  <rotation x="1.57" y="0.0" z="0.0"/>
+               </cylinder>
+            </group>
+         </group>
+         <group name="RightWheel">
+            <translation x="0.0" y="0.12" z="-0.024"/>
+            <rotation x="0.0" y="0.0" z="0.0"/>
+            <box width="0.08" height="0.044" depth="0.02">
+               <color r="255" g="0" b="0" alpha="255" name="red"/>
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+            </box>
+            <group name="Wheel">
+               <translation x="0.0" y="0.066" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <animation target="rotationY">
+                  <source id="0" number="4"/>
+               </animation>
+               <cylinder radius="0.1" height="0.012" division="36">
+                  <color r="0" g="0" b="255" alpha="255" name="blue"/>
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="1.57" y="0.0" z="0.0"/>
+               </cylinder>
+               <cylinder radius="0.005" height="0.02" division="36">
+                  <color r="0" g="0" b="255" alpha="255" name="blue"/>
+                  <translation x="0.0" y="-0.016" z="0.0"/>
+                  <rotation x="1.57" y="0.0" z="0.0"/>
+               </cylinder>
+            </group>
+         </group>
+         <group name="Body">
+            <translation x="0.0" y="0.0" z="0.152"/>
+            <rotation x="0.0" y="0.0" z="0.0"/>
+            <box width="0.3" height="0.3" depth="0.004">
+               <color r="192" g="192" b="192" alpha="255"/>
+               <translation x="0.0" y="0.0" z="0.0"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+            </box>
+            <group name="LeftArm">
+               <translation x="0.01" y="-0.13" z="0.122"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <box width="0.04" height="0.04" depth="0.02">
+                  <color r="255" g="0" b="0" alpha="255" name="red"/>
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+               </box>
+               <group name="Arm">
+                  <translation x="0.0" y="-0.034" z="0.01"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+                  <cylinder radius="0.005" height="0.012" division="36">
+                     <color r="0" g="0" b="255" alpha="255" name="blue"/>
+                     <translation x="0.0" y="0.008" z="0.0"/>
+                     <rotation x="1.57" y="0.0" z="0.0"/>
+                  </cylinder>
+                  <box width="0.004" height="0.18" depth="0.05">
+                     <color r="255" g="128" b="0" alpha="255"/>
+                     <translation x="0.0" y="0.0" z="-0.08"/>
+                     <rotation x="0.0" y="0.0" z="0.0"/>
+                  </box>
+               </group>
+            </group>
+            <group name="RightArm">
+               <translation x="0.01" y="0.13" z="0.122"/>
+               <rotation x="0.0" y="0.0" z="0.0"/>
+               <box width="0.04" height="0.04" depth="0.02">
+                  <color r="255" g="0" b="0" alpha="255" name="red"/>
+                  <translation x="0.0" y="0.0" z="0.0"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+               </box>
+               <group name="Arm">
+                  <translation x="0.0" y="0.034" z="0.01"/>
+                  <rotation x="0.0" y="0.0" z="0.0"/>
+                  <cylinder radius="0.005" height="0.012" division="36">
+                     <color r="0" g="0" b="255" alpha="255" name="blue"/>
+                     <translation x="0.0" y="-0.008" z="0.0"/>
+                     <rotation x="1.57" y="0.0" z="0.0"/>
+                  </cylinder>
+                  <box width="0.004" height="0.18" depth="0.05">
+                     <color r="255" g="128" b="0" alpha="255"/>
+                     <translation x="0.0" y="0.0" z="-0.08"/>
+                     <rotation x="0.0" y="0.0" z="0.0"/>
+                  </box>
+               </group>
+            </group>
+         </group>
+      </group>
+   </scene>
+   <configuration>
+      <background>
+         <color r="255" g="255" b="255" alpha="255" name="white"/>
+      </background>
+      <baseCoordinate>
+         <gridColor r="20" g="20" b="20" alpha="255"/>
+         <gridSize>0.1</gridSize>
+         <isAxisShowing>false</isAxisShowing>
+         <isGridShowing>true</isGridShowing>
+      </baseCoordinate>
+      <light x="10.0" y="10.0" z="20.0"/>
+      <eye x="5.0" y="0.0" z="0.0"/>
+      <lookAtPoint x="0.0" y="0.0" z="0.0"/>
+      <modelUnit angle="radian" length="m"/>
+      <dataUnit angle="radian" length="m"/>
+   </configuration>
+</mikity3d>
