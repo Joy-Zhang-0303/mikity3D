@@ -23,6 +23,40 @@
 		<module>mikity3D-installer</module>
 	</modules>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>2.11</version>
+				<configuration>
+					<header>http://birdcage.mk.ces.kyutech.ac.jp/maven/header-apache2.txt</header>
+					<properties>
+						<year>2015</year>
+						<owner>MKLab.org (Koga Laboratory)</owner>
+					</properties>
+					<mapping>
+						<m3d>XML_STYLE</m3d>
+						<jamox>XML_STYLE</jamox>
+					</mapping>
+					<includes>
+						<include>*.xml</include>
+						<include>src/main/java/**</include>
+						<include>test/main/java/**</include>
+						<include>assets/**</include>
+						<include>resources/**</include>
+					</includes>
+					<excludes>
+						<exclude>src/main/java/com/example/android/**</exclude>
+						<exclude>COPYING.txt</exclude>
+						<exclude>.*</exclude>
+					</excludes>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<repositories>
 		<repository>
 			<id>mklab-repository</id>
