@@ -40,7 +40,9 @@
 						<jamox>XML_STYLE</jamox>
 					</mapping>
 					<includes>
-						<include>*.xml</include>
+						<include>**/*.xml</include>
+						<include>**/*.m3d</include>
+						<include>**/*.jamox</include>
 						<include>src/main/java/**</include>
 						<include>test/main/java/**</include>
 						<include>assets/**</include>
@@ -48,6 +50,7 @@
 					</includes>
 					<excludes>
 						<exclude>src/main/java/com/example/android/**</exclude>
+						<exclude>src/main/java/android/api/**</exclude>
 						<exclude>COPYING.txt</exclude>
 						<exclude>.*</exclude>
 					</excludes>
