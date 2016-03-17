@@ -128,10 +128,10 @@
 							<includes>
 								<include>${project.build.directory}/*.apk</include>
 							</includes>
-							<keystore>keystore/mikity3d.keystore</keystore>
-							<storepass>mikity</storepass>
-							<keypass>mikity</keypass>
-							<alias>mikity3d-android</alias>
+							<keystore>keystore/debug.keystore</keystore>
+							<storepass>android</storepass>
+							<keypass>android</keypass>
+							<alias>android</alias>
 							<arguments>
 								<argument>-sigalg</argument>
 								<argument>MD5withRSA</argument>
