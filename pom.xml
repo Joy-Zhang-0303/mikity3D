@@ -68,7 +68,7 @@
 					<excludes>
 						<exclude>src/main/java/com/example/android/**</exclude>
 						<exclude>src/main/java/android/api/**</exclude>
-						<exclude>COPYING.txt</exclude>
+						<exclude>LICENSE.txt</exclude>
 						<exclude>.*</exclude>
 					</excludes>
 					<encoding>${project.build.sourceEncoding}</encoding>
