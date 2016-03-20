@@ -35,6 +35,7 @@
     <string name="axisShowingButton">座標軸表示ボタン</string>
     <string name="axisShowingTextView">座標軸表示</string>
     <string name="back">戻る</string>
+    <string name="backgroundColor">背景色</string>
     <string name="box">直方体</string>
     <string name="capsule">カプセル</string>
     <string name="close">閉じる</string>
@@ -55,6 +56,7 @@
     <string name="division">分割数</string>
     <string name="desc_list_item_icon">項目アイコン</string>
     <string name="edit">編集</string>
+    <string name="eyePosition">視点</string>
     <string name="fileName">...</string>
     <string name="gridShowingButton">グリッド表示ボタン</string>
     <string name="gridShowingTextView">グリッド表示</string>
@@ -62,7 +64,9 @@
     <string name="groupName">グループ名</string>
     <string name="height">高さ</string>
     <string name="help">ヘルプ</string>
+    <string name="lightPosition">光源の位置</string>
     <string name="loadedSuccessfully">データは正常に読み込まれました。</string>
+    <string name="lookAtPoint">注視点</string>   
     <string name="minusButton">&lt;&lt;</string>
     <string name="model">モデル</string>
     <string name="modelDataIsNotReady">モデルデータが未設定です。</string>

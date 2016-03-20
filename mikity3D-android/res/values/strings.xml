@@ -35,6 +35,7 @@
     <string name="axisShowingButton">axisShowingkButton</string>
     <string name="axisShowingTextView">Axis Showing</string>
     <string name="back">Back</string>
+    <string name="backgroundColor">Background color</string>
     <string name="box">Box</string>
     <string name="capsule">Capsule</string>
     <string name="close">Close</string>
@@ -55,6 +56,7 @@
     <string name="division">division</string>
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="edit">Edit</string>
+    <string name="eyePosition">Eye position</string>
     <string name="fileName">...</string>
     <string name="gridShowingButton">gridShowingkButton</string>
     <string name="gridShowingTextView">Grid Showing</string>
@@ -63,7 +65,9 @@
     <string name="height">height</string>
     <string name="help">Help</string>
     <string name="id">ID</string>
+    <string name="lightPosition">Light position</string>
     <string name="loadedSuccessfully">Your data was loaded successfully</string>
+    <string name="lookAtPoint">Look at point</string>
     <string name="minusButton">&lt;&lt;</string>
     <string name="model">Model</string>
     <string name="modelDataIsNotReady">Model data is not ready</string>
