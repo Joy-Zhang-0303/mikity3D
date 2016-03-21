@@ -59,7 +59,7 @@
 
         <ImageButton
             android:id="@+id/slowButton"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:maxWidth="5dp"
             android:src="@drawable/slow2" />
@@ -68,12 +68,8 @@
             android:id="@+id/quickButton"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:maxWidth="2dp"
+            android:maxWidth="5dp"
             android:src="@drawable/fast2" />
-
-        <Space
-            android:layout_width="60dip"
-            android:layout_height="match_parent" />
     </TableRow>
 
     
@@ -100,12 +96,9 @@
             android:id="@+id/gridShowingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingRight="40dp"
             android:background="@null"
             android:checked="false" />
-
-        <Space
-            android:layout_width="40dip"
-            android:layout_height="match_parent" />
     </TableRow>
 
     <TableRow>
@@ -131,12 +124,9 @@
             android:id="@+id/axisShowingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingRight="40dp"
             android:background="@null"
             android:checked="false" />
-
-        <Space
-            android:layout_width="60dip"
-            android:layout_height="match_parent" />
     </TableRow>
         
     <TableRow>
@@ -160,12 +150,10 @@
             android:id="@+id/rotationSensorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingRight="40dp"
             android:background="@null"
             android:checked="false" />
 
-        <Space
-            android:layout_width="60dip"
-            android:layout_height="match_parent" />
     </TableRow>
 
     <TableRow>
@@ -189,14 +177,11 @@
 
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/accelerometerButton"
-            android:layout_width="65dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingRight="40dp"
             android:background="@null"
             android:checked="false" />
-
-        <Space
-            android:layout_width="40dip"
-            android:layout_height="match_parent" />
     </TableRow>
 
     <TableRow>
@@ -222,12 +207,9 @@
             android:id="@+id/rotationLockButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingRight="40dp"
             android:background="@null"
             android:checked="false" />
-
-        <Space
-            android:layout_width="20dip"
-            android:layout_height="match_parent" />
     </TableRow>
 
 </TableLayout>
