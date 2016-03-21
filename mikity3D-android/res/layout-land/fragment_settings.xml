@@ -1,5 +1,4 @@
 <!--
-
     Copyright (C) 2015 MKLab.org (Koga Laboratory)
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,203 +12,246 @@
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
 -->
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white" >
+    android:background="@color/white"
+    android:textColor="@color/black" >
 
-    <TableRow>
-        <Button
-            android:id="@+id/settingsBackButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="@string/back" />    </TableRow>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    <TableRow>
-
-        <TextView
-            android:id="@+id/animationSpeedText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/animationSpeedEditText"
-            android:layout_alignBottom="@+id/animationSpeedEditText"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:text="@string/animationSpeedText"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/animationSpeedEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-            android:maxLength="5"
-            android:textColor="@color/black" />
-    </TableRow>
-
-    <TableRow>
-
-        <ImageButton
-            android:id="@+id/slowButton"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:maxWidth="5dp"
-            android:src="@drawable/slow2" />
-
-        <ImageButton
-            android:id="@+id/quickButton"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:maxWidth="5dp"
-            android:src="@drawable/fast2" />
-    </TableRow>
-
-    
-    <TableRow>
-
-        <Space
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
-    </TableRow>
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-    <TableRow>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" >
 
-        <TextView
-            android:id="@+id/gridShowingTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/gridShowingTextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                <TableRow>
 
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/gridShowingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="40dp"
-            android:background="@null"
-            android:checked="false" />
-    </TableRow>
+                    <Button
+                        android:id="@+id/settingsBackButton"
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="@string/back" />
+                </TableRow>
 
-    <TableRow>
+                <TableRow>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-    </TableRow>
+                    <TextView
+                        android:id="@+id/animationSpeedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/animationSpeedEditText"
+                        android:layout_alignBottom="@+id/animationSpeedEditText"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="1"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="@string/animationSpeedText"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
-    <TableRow>
+                    <EditText
+                        android:id="@+id/animationSpeedEditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+                </TableRow>
 
-        <TextView
-            android:id="@+id/axisShowingTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/axisShowingTextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                <TableRow>
 
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/axisShowingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="40dp"
-            android:background="@null"
-            android:checked="false" />
-    </TableRow>
-        
-    <TableRow>
+                    <ImageButton
+                        android:id="@+id/slowButton"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="5dp"
+                        android:src="@drawable/slow2" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-    </TableRow>
+                    <ImageButton
+                        android:id="@+id/quickButton"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="5dp"
+                        android:src="@drawable/fast2" />
+                </TableRow>
 
-    <TableRow>
+                <TableRow>
 
-        <TextView
-            android:id="@+id/rotationSensorTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rotationSensorTextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
 
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/rotationSensorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="40dp"
-            android:background="@null"
-            android:checked="false" />
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
+                </TableRow>
+            </TableLayout>
 
-    </TableRow>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white" >
 
-    <TableRow>
+                <TableRow>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-    </TableRow>
+                    <TextView
+                        android:id="@+id/gridShowingTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/gridShowingTextView"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
-    <TableRow>
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/gridShowingButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:checked="false"
+                        android:paddingRight="40dp" />
+                </TableRow>
 
-        <TextView
-            android:id="@+id/accelerometerTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/accelerometerTextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                <TableRow>
 
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/accelerometerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="40dp"
-            android:background="@null"
-            android:checked="false" />
-    </TableRow>
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
 
-    <TableRow>
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
+                </TableRow>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-    </TableRow>
+                <TableRow>
 
-    <TableRow>
+                    <TextView
+                        android:id="@+id/axisShowingTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/axisShowingTextView"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/rotationLockTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/rotationLockTextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/axisShowingButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:checked="false"
+                        android:paddingRight="40dp" />
+                </TableRow>
 
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/rotationLockButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="40dp"
-            android:background="@null"
-            android:checked="false" />
-    </TableRow>
+                <TableRow>
 
-</TableLayout>
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
+
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/rotationSensorTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rotationSensorTextView"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/rotationSensorButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:checked="false"
+                        android:paddingRight="40dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
+
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/accelerometerTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/accelerometerTextView"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/accelerometerButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:checked="false"
+                        android:paddingRight="40dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
+
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/rotationLockTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/rotationLockTextView"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/rotationLockButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:checked="false"
+                        android:paddingRight="40dp" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</ScrollView>
