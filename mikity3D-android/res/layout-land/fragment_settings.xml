@@ -91,11 +91,206 @@
 
                     <Space
                         android:layout_width="150dp"
-                        android:layout_height="20dp" />
+                        android:layout_height="10dp" />
 
                     <Space
                         android:layout_width="150dp"
-                        android:layout_height="20dp" />
+                        android:layout_height="10dp" />
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" >
+
+                <TableRow>
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/eyePosition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/eyePosition"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <EditText
+                        android:id="@+id/eyePositionX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/eyePositionY"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/eyePositionZ"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+                </TableRow>
+
+                <TableRow>
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/lookAtPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/lookAtPoint"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <EditText
+                        android:id="@+id/lookAtPointX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/lookAtPointY"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/lookAtPointZ"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+                </TableRow>
+
+                <TableRow>
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/lightPosition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/lightPosition"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <EditText
+                        android:id="@+id/lightPositionX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/lightPositionY"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/lightPositionZ"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+                </TableRow>
+
+                <TableRow>
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
+
+                    <Space
+                        android:layout_width="100dp"
+                        android:layout_height="10dp" />
                 </TableRow>
             </TableLayout>
 
