@@ -144,7 +144,7 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
 
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
     
-    this.getResources();
+    getResources();
 
     final ConfigurationModel configuration = new ConfigurationModel();
     configuration.setEye(new EyeModel(5.0f, 0.0f, 0.0f));
