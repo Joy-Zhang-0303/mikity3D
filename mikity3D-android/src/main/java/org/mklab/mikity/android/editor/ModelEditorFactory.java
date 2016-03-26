@@ -16,7 +16,7 @@
 package org.mklab.mikity.android.editor;
 
 import org.mklab.mikity.android.OpenglesModeler;
-import org.mklab.mikity.android.model.SceneGraphTree;
+import org.mklab.mikity.android.SceneGraphTreeFragment;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
 import org.mklab.mikity.model.xml.simplexml.model.CompositionModel;
@@ -44,7 +44,7 @@ public class ModelEditorFactory {
    * @param modeler モデラー
    * @return ダイアログ
    */
-  public static ModelEditor create(Object model, GroupModel group, SceneGraphTree tree, OpenglesModeler modeler) {
+  public static ModelEditor create(Object model, GroupModel group, SceneGraphTreeFragment tree, OpenglesModeler modeler) {
     if (model instanceof GroupModel) {
       final ModelEditor editor = new GroupEditor(group, tree, modeler);
       return editor;

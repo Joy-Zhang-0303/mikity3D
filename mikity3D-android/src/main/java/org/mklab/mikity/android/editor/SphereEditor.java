@@ -18,7 +18,7 @@ package org.mklab.mikity.android.editor;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.model.SceneGraphTree;
+import org.mklab.mikity.android.SceneGraphTreeFragment;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.SphereModel;
 
@@ -42,7 +42,7 @@ public class SphereEditor extends AbstractObjectEditor {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public SphereEditor(ObjectModel object, SceneGraphTree tree, OpenglesModeler modeler) {
+  public SphereEditor(ObjectModel object, SceneGraphTreeFragment tree, OpenglesModeler modeler) {
     super(object, tree, modeler);
   }
 

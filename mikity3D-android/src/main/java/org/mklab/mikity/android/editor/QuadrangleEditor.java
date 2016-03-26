@@ -20,7 +20,7 @@ import java.util.Arrays;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.model.SceneGraphTree;
+import org.mklab.mikity.android.SceneGraphTreeFragment;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.QuadrangleModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
@@ -68,7 +68,7 @@ public class QuadrangleEditor extends AbstractObjectEditor {
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public QuadrangleEditor(ObjectModel object, SceneGraphTree tree, OpenglesModeler modeler) {
+  public QuadrangleEditor(ObjectModel object, SceneGraphTreeFragment tree, OpenglesModeler modeler) {
     super(object, tree, modeler);
   }
 

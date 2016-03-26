@@ -19,7 +19,7 @@ import org.mklab.mikity.android.MessageDialogFragment;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.model.SceneGraphTree;
+import org.mklab.mikity.android.SceneGraphTreeFragment;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
@@ -57,7 +57,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
 
   ObjectModel object;
   OpenglesModeler modeler;
-  SceneGraphTree tree;
+  SceneGraphTreeFragment tree;
 
   TextView objectType;
 
@@ -86,7 +86,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public AbstractObjectEditor(ObjectModel object, SceneGraphTree tree, OpenglesModeler modeler) {
+  public AbstractObjectEditor(ObjectModel object, SceneGraphTreeFragment tree, OpenglesModeler modeler) {
     this.object = object;
     this.tree = tree;
     this.modeler = modeler;

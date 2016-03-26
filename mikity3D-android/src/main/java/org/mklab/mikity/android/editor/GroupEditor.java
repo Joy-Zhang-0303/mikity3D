@@ -20,7 +20,7 @@ import org.mklab.mikity.android.AnimationParameterInputBox;
 import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.ParameterInputBox;
 import org.mklab.mikity.android.R;
-import org.mklab.mikity.android.model.SceneGraphTree;
+import org.mklab.mikity.android.SceneGraphTreeFragment;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 import org.mklab.mikity.model.xml.simplexml.model.RotationModel;
@@ -56,7 +56,7 @@ import android.widget.TextView;
 public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener, TextWatcher {
   GroupModel targetGroup;
   OpenglesModeler modeler;
-  SceneGraphTree tree;
+  SceneGraphTreeFragment tree;
 
   private EditText groupName;
   
@@ -86,7 +86,7 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
    * @param tree シーングラフツリー
    * @param modeler モデラー
    */
-  public GroupEditor(GroupModel targetGroup, SceneGraphTree tree, OpenglesModeler modeler) {
+  public GroupEditor(GroupModel targetGroup, SceneGraphTreeFragment tree, OpenglesModeler modeler) {
     this.targetGroup = targetGroup;
     this.tree = tree;
     this.modeler = modeler;

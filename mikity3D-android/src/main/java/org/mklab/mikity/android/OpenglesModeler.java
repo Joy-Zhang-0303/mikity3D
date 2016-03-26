@@ -17,7 +17,6 @@ package org.mklab.mikity.android;
 
 import java.util.List;
 
-import org.mklab.mikity.android.model.SceneGraphTree;
 import org.mklab.mikity.android.renderer.OpenglesObjectRenderer;
 import org.mklab.mikity.model.GroupObjectManager;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
@@ -29,7 +28,7 @@ import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
  */
 public class OpenglesModeler {
   /** シーングラフツリー。 */
-  private SceneGraphTree tree;
+  private SceneGraphTreeFragment tree;
   /** レンダラー。 */
   private OpenglesObjectRenderer renderer;
   /** オブジェクトグループのマネージャ。 */
@@ -72,7 +71,7 @@ public class OpenglesModeler {
    * 
    * @param tree シーングラフツリー
    */
-  public void setSceneGraphTree(SceneGraphTree tree) {
+  public void setSceneGraphTree(SceneGraphTreeFragment tree) {
     this.tree = tree;
   }
 

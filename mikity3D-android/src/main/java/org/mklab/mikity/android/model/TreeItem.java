@@ -94,7 +94,7 @@ public class TreeItem {
    * 
    * @return 子要素の数
    */
-  int getItemsCount() {
+  public int getItemsCount() {
     if (this.treeItems.size() == 0 || this.isExpanded == false) {
       return 0;
     }
@@ -111,7 +111,7 @@ public class TreeItem {
    * 
    * @return 親
    */
-  TreeItem getParentItem() {
+  public TreeItem getParentItem() {
     return this.parent;
   }
   
@@ -120,7 +120,7 @@ public class TreeItem {
    * 
    * @return 子要素のリスト
    */
-  List<TreeItem> getItems() {
+  public List<TreeItem> getItems() {
     return this.treeItems;
   }
 
@@ -130,7 +130,7 @@ public class TreeItem {
    * @param itemPosition 子要素の位置
    * @return 子要素
    */
-  TreeItem getItem(int itemPosition) {
+  public TreeItem getItem(int itemPosition) {
     if (itemPosition == 0) {
       return this;
     }

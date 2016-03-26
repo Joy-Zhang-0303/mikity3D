@@ -15,8 +15,6 @@
  */
 package org.mklab.mikity.android;
 
-import org.mklab.mikity.android.model.SceneGraphTree;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -75,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
   SampleSelectionFragment sampleSelectionFragment;
 
   /** SceneGraphTree */
-  SceneGraphTree sceneGraphTreeFragment;
+  SceneGraphTreeFragment sceneGraphTreeFragment;
 
   /** 停止ボタンが押すことができるならばtrue */
   private boolean isStopButtonPushable;
@@ -138,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
     this.fileSelectionFragment = new FileSelectionFragment();
     this.sampleSelectionFragment = new SampleSelectionFragment();
     this.settingsFragment = new SettingsFragment();
-    this.sceneGraphTreeFragment = new SceneGraphTree();
+    this.sceneGraphTreeFragment = new SceneGraphTreeFragment();
   }
 
   /**

@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mklab.mikity.android.model;
+package org.mklab.mikity.android;
 
 import java.util.List;
 
-import org.mklab.mikity.android.OpenglesModeler;
 import org.mklab.mikity.android.R;
 import org.mklab.mikity.android.editor.ModelEditor;
 import org.mklab.mikity.android.editor.ModelEditorFactory;
+import org.mklab.mikity.android.model.GraphTree;
+import org.mklab.mikity.android.model.TreeItem;
 import org.mklab.mikity.model.xml.simplexml.SceneModel;
 import org.mklab.mikity.model.xml.simplexml.model.BoxModel;
 import org.mklab.mikity.model.xml.simplexml.model.CapsuleModel;
@@ -58,7 +59,7 @@ import android.widget.ListView;
  * @author koga
  * @version $Revision$, 2016/01/08
  */
-public class SceneGraphTree extends Fragment {
+public class SceneGraphTreeFragment extends Fragment {
   private ListView treeView;
   
   /** モデラー。 */
@@ -124,7 +125,7 @@ public class SceneGraphTree extends Fragment {
        * {@inheritDoc}
        */
       public void onClick(View v) {
-        SceneGraphTree.this.selectedTreeItem = SceneGraphTree.this.rootItem;
+        SceneGraphTreeFragment.this.selectedTreeItem = SceneGraphTreeFragment.this.rootItem;
         updatetSelectedObject();
         
         getActivity().getSupportFragmentManager().popBackStack();
@@ -275,17 +276,17 @@ public class SceneGraphTree extends Fragment {
        * {@inheritDoc}
        */
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        SceneGraphTree.this.selectedTreeItem = (TreeItem)parent.getItemAtPosition(position);
+        SceneGraphTreeFragment.this.selectedTreeItem = (TreeItem)parent.getItemAtPosition(position);
         
-        if (SceneGraphTree.this.selectedTreeItem.isExpanded()) {
-          SceneGraphTree.this.selectedTreeItem.collapse();
+        if (SceneGraphTreeFragment.this.selectedTreeItem.isExpanded()) {
+          SceneGraphTreeFragment.this.selectedTreeItem.collapse();
         } else {
-          if (SceneGraphTree.this.selectedTreeItem.hasItems()) {
-            SceneGraphTree.this.selectedTreeItem.expand();
+          if (SceneGraphTreeFragment.this.selectedTreeItem.hasItems()) {
+            SceneGraphTreeFragment.this.selectedTreeItem.expand();
           }
         }
         
-        SceneGraphTree.this.tree.notifyDataSetChanged();
+        SceneGraphTreeFragment.this.tree.notifyDataSetChanged();
         
         updatetSelectedObject();
       }
