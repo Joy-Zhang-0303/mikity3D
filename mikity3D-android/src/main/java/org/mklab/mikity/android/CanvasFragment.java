@@ -218,52 +218,6 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
     this.objectRenderer.updateDisplay();
     return true;
   }
-
-//  /** スケールジェスチャーイベントを取得します。 */
-//  private final SimpleOnScaleGestureListener onScaleGestureListener = new SimpleOnScaleGestureListener() {
-//
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
-//    public boolean onScale(ScaleGestureDetector detector) {
-//      CanvasFragment.this.rotating = false;
-//      CanvasFragment.this.scaling = true;
-//
-//      final double scalingRate = 0.5;
-//      final double newScale = (CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor())) / scalingRate;
-//      CanvasFragment.this.objectRenderer.setScale((float)Math.min(20.0, Math.max(0.05, newScale)));
-//
-//      CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
-//      CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
-//
-//      return super.onScale(detector);
-//    }
-//
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
-//    public boolean onScaleBegin(ScaleGestureDetector detector) {
-//      CanvasFragment.this.scaling = true;
-//      return super.onScaleBegin(detector);
-//    }
-//
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
-//    public void onScaleEnd(ScaleGestureDetector detector) {
-//      CanvasFragment.this.scaling = false;
-//
-//      CanvasFragment.this.scaleValue = CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor());
-//
-//      CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
-//      CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
-//      
-//      super.onScaleEnd(detector);
-//    }
-//  };
   
   /**
    * {@inheritDoc}
@@ -921,13 +875,6 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
     }
     return this.root.getConfiguration(0).getBaseCoordinate().isAxisShowing();
   }
-
-//  /**
-//   * ObjectGroupManagerを準備します。
-//   */
-//  private void prepareObjectGroupManager() {
-//    this.manager = new GroupObjectManager();
-//  }
 
   /**
    * アクティビティの画面のレイアウトを取得し、設定します。
