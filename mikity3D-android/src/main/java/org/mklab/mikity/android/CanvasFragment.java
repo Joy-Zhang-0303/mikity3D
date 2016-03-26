@@ -66,7 +66,7 @@ import android.widget.Toast;
  * @author soda
  * @version $Revision$, 2014/10/10
  */
-public class CanvasFragment extends Fragment {
+public class CanvasFragment extends Fragment implements View.OnTouchListener {
   /** ビュー。 */
   View view;
   /** GLのためのビュー。 */
@@ -140,7 +140,10 @@ public class CanvasFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     this.view = inflater.inflate(R.layout.fragment_canvas, container, false);
+    this.view.setOnTouchListener(this);
+
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
+    
     this.getResources();
 
     final ConfigurationModel configuration = new ConfigurationModel();
@@ -152,81 +155,71 @@ public class CanvasFragment extends Fragment {
     this.modeler = new OpenglesModeler(this.objectRenderer);
     
     this.glView.setRenderer(this.objectRenderer);
-        
+    this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);        
     this.isInitialScreenSize = false;
-
-    // 任意のタイミングで再描画する設定
-    this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
     createNewModelData();
     
     this.gestureDetector = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
 
-    // タッチ操作の種類によってイベントを取得する
-    this.view.setOnTouchListener(new View.OnTouchListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      public boolean onTouch(View v, MotionEvent event) {
-        final int touchCount = event.getPointerCount();
-        // タッチイベントをScaleGestureDetector#onTouchEventメソッドに
-        CanvasFragment.this.gestureDetector.onTouchEvent(event);
-
-        switch (event.getAction()) {
-        // タッチした
-          case MotionEvent.ACTION_DOWN:
-            CanvasFragment.this.rotating = true;
-            CanvasFragment.this.prevX = event.getX();
-            CanvasFragment.this.prevY = event.getY();
-            break;
-
-          // タッチしたまま移動
-          case MotionEvent.ACTION_MOVE:
-            final float moveX = event.getX() - CanvasFragment.this.prevX;
-            final float moveY = event.getY() - CanvasFragment.this.prevY;
-            CanvasFragment.this.prevX = event.getX();
-            CanvasFragment.this.prevY = event.getY();
-
-            if ((CanvasFragment.this.rotating) && (touchCount == 1)) {
-              float rotationY = moveY / 5;
-              float rotationZ = moveX / 5;
-              CanvasFragment.this.objectRenderer.rotateY(rotationY);
-              CanvasFragment.this.objectRenderer.rotateZ(rotationZ);
-            }
-            if ((touchCount == 2) && (!CanvasFragment.this.scaling)) {
-              float translationY = moveX / 2000;
-              float translationZ = moveY / 2000;
-              CanvasFragment.this.objectRenderer.translateY(translationY);
-              CanvasFragment.this.objectRenderer.translateZ(translationZ);
-              CanvasFragment.this.rotating = false;
-            }
-            CanvasFragment.this.rotating = true;
-            break;
-
-          // タッチが離れた
-          case MotionEvent.ACTION_UP:
-            CanvasFragment.this.prevX = event.getX();
-            CanvasFragment.this.prevY = event.getY();
-            break;
-
-          // タッチがキャンセルされた
-          case MotionEvent.ACTION_CANCEL:
-            break;
-
-          default:
-            break;
-        }
-
-        CanvasFragment.this.objectRenderer.updateDisplay();
-        return true;
-      }
-    });
-
     return this.view;
   }
+  
+  /**
+   * {@inheritDoc}
+   * 
+   * タッチ操作の種類によってイベントを取得します。
+   */
+  public boolean onTouch(View v, MotionEvent event) {
+    final int touchCount = event.getPointerCount();
 
-  // スケールジェスチャーイベントを取得
+    // タッチイベントをScaleGestureDetector#onTouchEventメソッドに設定します。
+    this.gestureDetector.onTouchEvent(event);
+
+    switch (event.getAction()) {
+      case MotionEvent.ACTION_DOWN:
+        this.rotating = true;
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+        break;
+      case MotionEvent.ACTION_MOVE:
+        final float moveX = event.getX() - this.prevX;
+        final float moveY = event.getY() - this.prevY;
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+
+        if ((this.rotating) && (touchCount == 1)) {
+          float rotationY = moveY / 5;
+          float rotationZ = moveX / 5;
+          this.objectRenderer.rotateY(rotationY);
+          this.objectRenderer.rotateZ(rotationZ);
+        }
+
+        if ((touchCount == 2) && (!this.scaling)) {
+          float translationY = moveX / 2000;
+          float translationZ = moveY / 2000;
+          this.objectRenderer.translateY(translationY);
+          this.objectRenderer.translateZ(translationZ);
+          this.rotating = false;
+        }
+        this.rotating = true;
+        break;
+      case MotionEvent.ACTION_UP:
+        this.prevX = event.getX();
+        this.prevY = event.getY();
+        break;
+      case MotionEvent.ACTION_CANCEL:
+        break;
+
+      default:
+        break;
+    }
+
+    this.objectRenderer.updateDisplay();
+    return true;
+  }
+
+  /** スケールジェスチャーイベントを取得します。 */
   private final SimpleOnScaleGestureListener onScaleGestureListener = new SimpleOnScaleGestureListener() {
 
     /**

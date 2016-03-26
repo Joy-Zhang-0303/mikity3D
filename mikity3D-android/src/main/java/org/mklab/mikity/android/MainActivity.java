@@ -99,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
     
     createFragments();
-    
-    //createNewModelData();
 
     showMainMenuFragment();
 
