@@ -67,7 +67,6 @@ import android.widget.Toast;
  * @version $Revision$, 2014/10/10
  */
 public class CanvasFragment extends Fragment {
-
   /** ビュー。 */
   View view;
   /** GLのためのビュー。 */
@@ -151,13 +150,16 @@ public class CanvasFragment extends Fragment {
 
     this.objectRenderer = new OpenglesObjectRenderer(this.glView, configuration);
     this.modeler = new OpenglesModeler(this.objectRenderer);
-
+    
     this.glView.setRenderer(this.objectRenderer);
+        
     this.isInitialScreenSize = false;
 
     // 任意のタイミングで再描画する設定
     this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
+    createNewModelData();
+    
     this.gestureDetector = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
 
     // タッチ操作の種類によってイベントを取得する

@@ -25,7 +25,6 @@ import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     
     createFragments();
     
-    createNewModelData();
+    //createNewModelData();
 
     showMainMenuFragment();
 
@@ -162,6 +161,46 @@ public class MainActivity extends AppCompatActivity {
     transaction.replace(R.id.fragment_navigation_drawer, this.fileSelectionFragment);
     transaction.commit();
   }
+
+  /**
+   * SampleSelectionFragmentを表示します。
+   */
+  void showSampleSelectionFragment() {
+    final FragmentManager manager = getSupportFragmentManager();
+    final FragmentTransaction transaction = manager.beginTransaction();
+    transaction.addToBackStack(null);
+
+    transaction.replace(R.id.fragment_navigation_drawer, this.sampleSelectionFragment);
+    transaction.commit();
+  }
+
+  /**
+   * SettingsFragmentを表示します。
+   */
+  void showSettingsFragment() {
+    final FragmentManager manager = getSupportFragmentManager();
+    final FragmentTransaction transaction = manager.beginTransaction();
+    transaction.addToBackStack(null);
+
+    transaction.replace(R.id.fragment_navigation_drawer, this.settingsFragment);
+    transaction.commit();
+  }
+
+  /**
+   * SceneGraphTreeFragmentを表示します。
+   */
+  void showSceneGraphTreeFragment() {
+    this.sceneGraphTreeFragment.setModel(this.canvasFragment.root.getScene(0));
+    this.sceneGraphTreeFragment.setModeler(this.canvasFragment.modeler);
+    this.canvasFragment.modeler.setSceneGraphTree(this.sceneGraphTreeFragment);
+
+    final FragmentManager manager = getSupportFragmentManager();
+    final FragmentTransaction transaction = manager.beginTransaction();
+    transaction.addToBackStack(null);
+
+    transaction.replace(R.id.fragment_navigation_drawer, this.sceneGraphTreeFragment);
+    transaction.commit();
+  }
   
   /**
    * 新しいモデルデータを生成します。 
@@ -207,46 +246,6 @@ public class MainActivity extends AppCompatActivity {
     };
     
     fragment.show(getSupportFragmentManager(), "confirmDialog"); //$NON-NLS-1$
-  }
-
-  /**
-   * SampleSelectionFragmentを表示します。
-   */
-  void showSampleSelectionFragment() {
-    final FragmentManager manager = getSupportFragmentManager();
-    final FragmentTransaction transaction = manager.beginTransaction();
-    transaction.addToBackStack(null);
-
-    transaction.replace(R.id.fragment_navigation_drawer, this.sampleSelectionFragment);
-    transaction.commit();
-  }
-
-  /**
-   * SettingsFragmentを表示します。
-   */
-  void showSettingsFragment() {
-    final FragmentManager manager = getSupportFragmentManager();
-    final FragmentTransaction transaction = manager.beginTransaction();
-    transaction.addToBackStack(null);
-
-    transaction.replace(R.id.fragment_navigation_drawer, this.settingsFragment);
-    transaction.commit();
-  }
-
-  /**
-   * SceneGraphTreeFragmentを表示します。
-   */
-  void showSceneGraphTreeFragment() {
-    this.sceneGraphTreeFragment.setModel(this.canvasFragment.root.getScene(0));
-    this.sceneGraphTreeFragment.setModeler(this.canvasFragment.modeler);
-    this.canvasFragment.modeler.setSceneGraphTree(this.sceneGraphTreeFragment);
-
-    final FragmentManager manager = getSupportFragmentManager();
-    final FragmentTransaction transaction = manager.beginTransaction();
-    transaction.addToBackStack(null);
-
-    transaction.replace(R.id.fragment_navigation_drawer, this.sceneGraphTreeFragment);
-    transaction.commit();
   }
 
   /**
