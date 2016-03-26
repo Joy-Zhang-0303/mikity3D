@@ -53,7 +53,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
+import android.view.ScaleGestureDetector.OnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -66,7 +66,7 @@ import android.widget.Toast;
  * @author soda
  * @version $Revision$, 2014/10/10
  */
-public class CanvasFragment extends Fragment implements View.OnTouchListener {
+public class CanvasFragment extends Fragment implements View.OnTouchListener, OnScaleGestureListener {
   /** ビュー。 */
   View view;
   /** GLのためのビュー。 */
@@ -160,7 +160,7 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener {
 
     createNewModelData();
     
-    this.gestureDetector = new ScaleGestureDetector(this.getActivity(), this.onScaleGestureListener);
+    this.gestureDetector = new ScaleGestureDetector(this.getActivity(), this);
 
     return this.view;
   }
@@ -219,50 +219,88 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener {
     return true;
   }
 
-  /** スケールジェスチャーイベントを取得します。 */
-  private final SimpleOnScaleGestureListener onScaleGestureListener = new SimpleOnScaleGestureListener() {
+//  /** スケールジェスチャーイベントを取得します。 */
+//  private final SimpleOnScaleGestureListener onScaleGestureListener = new SimpleOnScaleGestureListener() {
+//
+//    /**
+//     * {@inheritDoc}
+//     */
+//    @Override
+//    public boolean onScale(ScaleGestureDetector detector) {
+//      CanvasFragment.this.rotating = false;
+//      CanvasFragment.this.scaling = true;
+//
+//      final double scalingRate = 0.5;
+//      final double newScale = (CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor())) / scalingRate;
+//      CanvasFragment.this.objectRenderer.setScale((float)Math.min(20.0, Math.max(0.05, newScale)));
+//
+//      CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
+//      CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
+//
+//      return super.onScale(detector);
+//    }
+//
+//    /**
+//     * {@inheritDoc}
+//     */
+//    @Override
+//    public boolean onScaleBegin(ScaleGestureDetector detector) {
+//      CanvasFragment.this.scaling = true;
+//      return super.onScaleBegin(detector);
+//    }
+//
+//    /**
+//     * {@inheritDoc}
+//     */
+//    @Override
+//    public void onScaleEnd(ScaleGestureDetector detector) {
+//      CanvasFragment.this.scaling = false;
+//
+//      CanvasFragment.this.scaleValue = CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor());
+//
+//      CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
+//      CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
+//      
+//      super.onScaleEnd(detector);
+//    }
+//  };
+  
+  /**
+   * {@inheritDoc}
+   */
+  public boolean onScale(ScaleGestureDetector detector) {
+    this.rotating = false;
+    this.scaling = true;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean onScale(ScaleGestureDetector detector) {
-      CanvasFragment.this.rotating = false;
-      CanvasFragment.this.scaling = true;
+    final double scalingRate = 0.5;
+    final double newScale = (this.scaleValue - (1.0 - this.gestureDetector.getScaleFactor())) / scalingRate;
+    this.objectRenderer.setScale((float)Math.min(20.0, Math.max(0.05, newScale)));
 
-      final double scalingRate = 0.5;
-      final double newScale = (CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor())) / scalingRate;
-      CanvasFragment.this.objectRenderer.setScale((float)Math.min(20.0, Math.max(0.05, newScale)));
+    this.prevX = this.gestureDetector.getFocusX();
+    this.prevY = this.gestureDetector.getFocusY();
 
-      CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
-      CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
+    return false;
+  }
 
-      return super.onScale(detector);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  public boolean onScaleBegin(ScaleGestureDetector detector) {
+    this.scaling = true;
+    return true;
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean onScaleBegin(ScaleGestureDetector detector) {
-      CanvasFragment.this.scaling = true;
-      return super.onScaleBegin(detector);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  public void onScaleEnd(ScaleGestureDetector detector) {
+    this.scaling = false;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void onScaleEnd(ScaleGestureDetector detector) {
-      CanvasFragment.this.scaling = false;
+    this.scaleValue = this.scaleValue - (1.0 - this.gestureDetector.getScaleFactor());
 
-      CanvasFragment.this.scaleValue = CanvasFragment.this.scaleValue - (1.0 - CanvasFragment.this.gestureDetector.getScaleFactor());
-
-      CanvasFragment.this.prevX = CanvasFragment.this.gestureDetector.getFocusX();
-      CanvasFragment.this.prevY = CanvasFragment.this.gestureDetector.getFocusY();
-      super.onScaleEnd(detector);
-    }
-  };
+    this.prevX = this.gestureDetector.getFocusX();
+    this.prevY = this.gestureDetector.getFocusY();
+  }
   
   /**
    * LoadModelDataTaskのコールバックを表すインターフェースです。
