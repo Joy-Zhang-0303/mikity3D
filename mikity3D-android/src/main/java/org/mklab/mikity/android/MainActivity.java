@@ -27,6 +27,7 @@ import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -35,14 +36,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Surface;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 
 /**
@@ -243,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
     this.sceneGraphTreeFragment.setModel(this.canvasFragment.root.getScene(0));
     this.sceneGraphTreeFragment.setModeler(this.canvasFragment.modeler);
     this.canvasFragment.modeler.setSceneGraphTree(this.sceneGraphTreeFragment);
-    
+
     final FragmentManager manager = getSupportFragmentManager();
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);

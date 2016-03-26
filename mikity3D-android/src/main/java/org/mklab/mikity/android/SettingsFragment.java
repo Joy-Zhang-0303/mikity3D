@@ -16,20 +16,29 @@
 package org.mklab.mikity.android;
 
 import org.mklab.mikity.android.control.AnimationTask;
+import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
+import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
+import org.mklab.mikity.model.xml.simplexml.config.LightModel;
+import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
 
 /**
  * NavigationDrawerでメニューを表示するためのフラグメントです。
@@ -37,21 +46,22 @@ import android.widget.ImageButton;
  * @author soda
  * @version $Revision$, 2015/01/16
  */
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends Fragment implements OnKeyListener, TextWatcher {
+
   MainActivity mainActivity;
-  
+
   CanvasFragment canvasFragment;
 
   /** アニメーション用タスク。 */
   AnimationTask animationTask;
 
   /** アニメーションスピード。 */
-  EditText animationSpeedTextEdit;
+  //EditText animationSpeedTextEdit;
 
   /** アニメーションスピードを早くするためのボタン。 */
-  ImageButton quickButton;
+  //ImageButton quickButton;
   /** アニメーションスピードを遅くするためのボタン。 */
-  ImageButton slowButton;
+  //ImageButton slowButton;
 
   /** 端末の角度を3Dオブジェクトに反映させるならばtrue。 */
   CompoundButton rotationSensorButton;
@@ -64,6 +74,20 @@ public class SettingsFragment extends Fragment {
   /** 座標軸を表示するならばtrue。 */
   CompoundButton axisShowingButton;
 
+  EditText eyePositionX;
+  EditText eyePositionY;
+  EditText eyePositionZ;
+  
+  EditText lookAtPointX;
+  EditText lookAtPointY;
+  EditText lookAtPointZ;
+  
+  EditText lightPositionX;
+  EditText lightPositionY;
+  EditText lightPositionZ;
+  
+  private boolean isChanged = false;
+
   /**
    * {@inheritDoc}
    */
@@ -75,7 +99,7 @@ public class SettingsFragment extends Fragment {
     this.mainActivity = (MainActivity)getActivity();
     this.canvasFragment = this.mainActivity.canvasFragment;
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -97,45 +121,22 @@ public class SettingsFragment extends Fragment {
 
     createAnimationSpeedComponent(view);
 
+    createEnvironmentComponent(view);
+
     createSensorComponent(view);
 
-    createConfigurationComponent(view);
-    
-    updateConfiguration();
+    createGridAxisComponent(view);
 
     return view;
   }
 
   private void createAnimationSpeedComponent(final View mainView) {
-    this.slowButton = (ImageButton)mainView.findViewById(R.id.slowButton);
-    this.slowButton.setOnClickListener(new View.OnClickListener() {
+    final EditText animationSpeedTextEdit = (EditText)mainView.findViewById(R.id.animationSpeedEditText);
+    animationSpeedTextEdit.clearFocus();
+    animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(SettingsFragment.this.canvasFragment.animationSpeedRate / 1000.0))); //$NON-NLS-1$    
+    animationSpeedTextEdit.clearFocus();
 
-      /**
-       * {@inheritDoc}
-       */
-      public void onClick(View view) {
-        int animationSpeedRate = SettingsFragment.this.canvasFragment.animationSpeedRate;
-        
-        final int step = (int)Math.floor(Math.log10(animationSpeedRate - 1));
-        animationSpeedRate -= (int)Math.pow(10, step);
-        if (animationSpeedRate < 0) {
-          animationSpeedRate = 1;
-        }
-        SettingsFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(animationSpeedRate / 1000.0))); //$NON-NLS-1$
-        if (SettingsFragment.this.animationTask != null) {
-          SettingsFragment.this.animationTask.setSpeedScale(animationSpeedRate / 1000.0);
-        }
-        
-        SettingsFragment.this.canvasFragment.animationSpeedRate = animationSpeedRate;
-      }
-    });
-
-    this.animationSpeedTextEdit = (EditText)mainView.findViewById(R.id.animationSpeedEditText);
-    this.animationSpeedTextEdit.clearFocus();
-    this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(SettingsFragment.this.canvasFragment.animationSpeedRate / 1000.0))); //$NON-NLS-1$    
-    this.animationSpeedTextEdit.clearFocus();
-
-    this.animationSpeedTextEdit.addTextChangedListener(new TextWatcher() {
+    animationSpeedTextEdit.addTextChangedListener(new TextWatcher() {
 
       /**
        * {@inheritDoc}
@@ -155,33 +156,121 @@ public class SettingsFragment extends Fragment {
        * {@inheritDoc}
        */
       public void afterTextChanged(Editable s) {
-        final double value = Double.parseDouble(SettingsFragment.this.animationSpeedTextEdit.getText().toString());
+        final double value = Double.parseDouble(animationSpeedTextEdit.getText().toString());
         SettingsFragment.this.canvasFragment.animationSpeedRate = (int)Math.round(value * 1000);
       }
     });
 
-    this.quickButton = (ImageButton)mainView.findViewById(R.id.quickButton);
-    this.quickButton.setOnClickListener(new View.OnClickListener() {
+    final ImageButton slowButton = (ImageButton)mainView.findViewById(R.id.slowButton);
+    slowButton.setOnClickListener(new View.OnClickListener() {
 
       /**
        * {@inheritDoc}
        */
       public void onClick(View view) {
         int animationSpeedRate = SettingsFragment.this.canvasFragment.animationSpeedRate;
-        
+
+        final int step = (int)Math.floor(Math.log10(animationSpeedRate - 1));
+        animationSpeedRate -= (int)Math.pow(10, step);
+        if (animationSpeedRate < 0) {
+          animationSpeedRate = 1;
+        }
+        animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(animationSpeedRate / 1000.0))); //$NON-NLS-1$
+        if (SettingsFragment.this.animationTask != null) {
+          SettingsFragment.this.animationTask.setSpeedScale(animationSpeedRate / 1000.0);
+        }
+
+        SettingsFragment.this.canvasFragment.animationSpeedRate = animationSpeedRate;
+      }
+    });
+
+    final ImageButton quickButton = (ImageButton)mainView.findViewById(R.id.quickButton);
+    quickButton.setOnClickListener(new View.OnClickListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onClick(View view) {
+        int animationSpeedRate = SettingsFragment.this.canvasFragment.animationSpeedRate;
+
         final int step = (int)Math.floor(Math.log10(animationSpeedRate));
         animationSpeedRate += (int)Math.pow(10, step);
         if (animationSpeedRate > 1000000) {
           animationSpeedRate = 1000000;
         }
-        SettingsFragment.this.animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(animationSpeedRate / 1000.0))); //$NON-NLS-1$
+        animationSpeedTextEdit.setText(String.format("%g", Double.valueOf(animationSpeedRate / 1000.0))); //$NON-NLS-1$
         if (SettingsFragment.this.animationTask != null) {
           SettingsFragment.this.animationTask.setSpeedScale(animationSpeedRate / 1000.0);
         }
-        
+
         SettingsFragment.this.canvasFragment.animationSpeedRate = animationSpeedRate;
       }
     });
+  }
+
+  private void createEnvironmentComponent(final View mainView) {
+    final ConfigurationModel configuration = this.canvasFragment.root.getConfiguration(0);
+
+    createEye(mainView, configuration);
+    createLookAtPoint(mainView, configuration);
+    createLightPosition(mainView, configuration);
+  }
+
+  void createEye(final View mainView, final ConfigurationModel configuration) {
+    final EyeModel eye = configuration.getEye();
+
+    this.eyePositionX = (EditText)mainView.findViewById(R.id.eyePositionX);
+    this.eyePositionX.setText(String.format("%g", Double.valueOf(eye.getX()))); //$NON-NLS-1$
+    this.eyePositionX.addTextChangedListener(this);
+    this.eyePositionX.setOnKeyListener(this);
+
+    this.eyePositionY = (EditText)mainView.findViewById(R.id.eyePositionY);
+    this.eyePositionY.setText(String.format("%g", Double.valueOf(eye.getY()))); //$NON-NLS-1$
+    this.eyePositionY.addTextChangedListener(this);
+    this.eyePositionY.setOnKeyListener(this);
+
+    this.eyePositionZ = (EditText)mainView.findViewById(R.id.eyePositionZ);
+    this.eyePositionZ.setText(String.format("%g", Double.valueOf(eye.getZ()))); //$NON-NLS-1$
+    this.eyePositionZ.addTextChangedListener(this);
+    this.eyePositionZ.setOnKeyListener(this);
+  }
+
+  void createLookAtPoint(final View mainView, final ConfigurationModel configuration) {
+    final LookAtPointModel lookAtPoint = configuration.getLookAtPoint();
+
+    this.lookAtPointX = (EditText)mainView.findViewById(R.id.lookAtPointX);
+    this.lookAtPointX.setText(String.format("%g", Double.valueOf(lookAtPoint.getX()))); //$NON-NLS-1$    
+    this.lookAtPointX.addTextChangedListener(this);
+    this.lookAtPointX.setOnKeyListener(this);
+
+    this.lookAtPointY = (EditText)mainView.findViewById(R.id.lookAtPointY);
+    this.lookAtPointY.setText(String.format("%g", Double.valueOf(lookAtPoint.getY()))); //$NON-NLS-1$    
+    this.lookAtPointY.addTextChangedListener(this);
+    this.lookAtPointY.setOnKeyListener(this);
+
+    this.lookAtPointZ = (EditText)mainView.findViewById(R.id.lookAtPointZ);
+    this.lookAtPointZ.setText(String.format("%g", Double.valueOf(lookAtPoint.getZ()))); //$NON-NLS-1$    
+    this.lookAtPointZ.addTextChangedListener(this);
+    this.lookAtPointZ.setOnKeyListener(this);
+  }
+
+  void createLightPosition(final View mainView, final ConfigurationModel configuration) {
+    final LightModel light = configuration.getLight();
+
+    this.lightPositionX = (EditText)mainView.findViewById(R.id.lightPositionX);
+    this.lightPositionX.setText(String.format("%g", Double.valueOf(light.getX()))); //$NON-NLS-1$    
+    this.lightPositionX.addTextChangedListener(this);
+    this.lightPositionX.setOnKeyListener(this);
+
+    this.lightPositionY = (EditText)mainView.findViewById(R.id.lightPositionY);
+    this.lightPositionY.setText(String.format("%g", Double.valueOf(light.getY()))); //$NON-NLS-1$    
+    this.lightPositionY.addTextChangedListener(this);
+    this.lightPositionY.setOnKeyListener(this);
+
+    this.lightPositionZ = (EditText)mainView.findViewById(R.id.lightPositionZ);
+    this.lightPositionZ.setText(String.format("%g", Double.valueOf(light.getZ()))); //$NON-NLS-1$    
+    this.lightPositionZ.addTextChangedListener(this);
+    this.lightPositionZ.setOnKeyListener(this);
   }
 
   private void createSensorComponent(final View mainView) {
@@ -226,8 +315,9 @@ public class SettingsFragment extends Fragment {
     });
   }
 
-  private void createConfigurationComponent(final View mainView) {
+  private void createGridAxisComponent(final View mainView) {
     this.gridShowingButton = (CompoundButton)mainView.findViewById(R.id.gridShowingButton);
+    this.gridShowingButton.setChecked(this.canvasFragment.isGridShowing());
     this.gridShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
@@ -239,6 +329,7 @@ public class SettingsFragment extends Fragment {
     });
 
     this.axisShowingButton = (CompoundButton)mainView.findViewById(R.id.axisShowingButton);
+    this.axisShowingButton.setChecked(this.canvasFragment.isAxisShowing());
     this.axisShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
       /**
@@ -249,12 +340,68 @@ public class SettingsFragment extends Fragment {
       }
     });
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("unused")
+  public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    // nothing to do
+  }
 
   /**
-   * Configurationを更新します。
+   * {@inheritDoc}
    */
-  private void updateConfiguration() {
-    this.axisShowingButton.setChecked(this.canvasFragment.isAxisShowing());
-    this.gridShowingButton.setChecked(this.canvasFragment.isGridShowing());
+  @SuppressWarnings("unused")
+  public void onTextChanged(CharSequence s, int start, int before, int count) {
+    // nothing to do
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void afterTextChanged(@SuppressWarnings("unused") Editable s) {
+//    if (this.saveButton != null) {
+      this.isChanged = true;
+//      this.saveButton.setEnabled(true);
+//    }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public boolean onKey(View v, int keyCode, KeyEvent event) {
+    if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+      final InputMethodManager inputMethodManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+      inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+      saveEnvironment();
+      return true;
+    }
+
+    return false;
+  }
+  
+  private void saveEnvironment() {
+    final ConfigurationModel configuration = this.canvasFragment.root.getConfiguration(0);
+
+    final EyeModel eye = configuration.getEye();
+    eye.setX(Float.parseFloat(this.eyePositionX.getText().toString()));
+    eye.setY(Float.parseFloat(this.eyePositionY.getText().toString()));
+    eye.setZ(Float.parseFloat(this.eyePositionZ.getText().toString()));
+    configuration.setEye(eye);
+
+    final LookAtPointModel lookAtPoint = configuration.getLookAtPoint();
+    lookAtPoint.setX(Float.parseFloat(this.lookAtPointX.getText().toString()));
+    lookAtPoint.setY(Float.parseFloat(this.lookAtPointY.getText().toString()));
+    lookAtPoint.setZ(Float.parseFloat(this.lookAtPointZ.getText().toString()));
+    configuration.setLookAtPoiint(lookAtPoint);
+    
+    final LightModel light = configuration.getLight();
+    light.setX(Float.parseFloat(this.lightPositionX.getText().toString()));
+    light.setY(Float.parseFloat(this.lightPositionY.getText().toString()));
+    light.setZ(Float.parseFloat(this.lightPositionZ.getText().toString()));
+    configuration.setLight(light);
+    
+    SettingsFragment.this.canvasFragment.setConfiguration(configuration);
   }
 }

@@ -867,6 +867,15 @@ public class CanvasFragment extends Fragment {
     }
     this.root.getConfiguration(0).getBaseCoordinate().setAxisShowing(isAxisShowing);
   }
+  
+  /**
+   * 環境データを設定します。
+   * 
+   * @param configuration 環境データ
+   */
+  public void setConfiguration(ConfigurationModel configuration) {
+    this.objectRenderer.setConfiguration(configuration);
+  }
 
   /**
    * 座標軸を表示するか判定します。
