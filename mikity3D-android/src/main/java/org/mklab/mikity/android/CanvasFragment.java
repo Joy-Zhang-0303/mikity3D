@@ -68,7 +68,7 @@ import android.widget.Toast;
  */
 public class CanvasFragment extends Fragment implements View.OnTouchListener, OnScaleGestureListener {
   /** ビュー。 */
-  View view;
+  private View view;
   /** GLのためのビュー。 */
   GLSurfaceView glView;
 
@@ -79,16 +79,16 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
   OpenglesObjectRenderer objectRenderer;
 
   /** scaleGestureDetector */
-  ScaleGestureDetector gestureDetector = null;
+  private ScaleGestureDetector gestureDetector = null;
 
-  boolean rotating;
-  boolean scaling;
-  float prevX = 0;
-  float prevY = 0;
+  private boolean rotating;
+  private boolean scaling;
+  private float prevX = 0;
+  private float prevY = 0;
 
   double scaleValue = 1;
 
-  Timer timer = new Timer();
+  private Timer timer = new Timer();
 
   private double[] timeTable;
 
@@ -107,23 +107,23 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
   /** Mikity3dモデル */
   Mikity3DModel root;
 
-  GroupObjectManager manager;
+  private GroupObjectManager manager;
 
   OpenglesModeler modeler;
 
   Map<String, DoubleMatrix> sourceData = new HashMap<String, DoubleMatrix>();
 
   boolean playable = true;
-  AnimationTask animationTask;
+  private AnimationTask animationTask;
 
   /** プログレスダイアログ */
-  ProgressDialog progressDialog;
+  private ProgressDialog progressDialog;
 
   /** ポーズボタンが押されたならばtrue */
-  boolean isPaused = false;
+  private boolean isPaused = false;
 
   /** 繰り返し再生中ならばtrue */
-  boolean isRepeating = false;
+  private boolean isRepeating = false;
 
   /**
    * {@inheritDoc}
