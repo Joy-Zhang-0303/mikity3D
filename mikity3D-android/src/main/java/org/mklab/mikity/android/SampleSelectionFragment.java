@@ -52,6 +52,8 @@ public class SampleSelectionFragment extends AbstractSelectionFragment implement
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    super.onCreateView(inflater, container, savedInstanceState);
+    
     final View mainView = inflater.inflate(R.layout.fragment_sample_selection, container, false);
     
     final Button backButton = (Button)mainView.findViewById(R.id.settingsBackButton);

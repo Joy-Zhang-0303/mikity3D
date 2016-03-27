@@ -139,6 +139,8 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    super.onCreateView(inflater, container, savedInstanceState);
+    
     this.view = inflater.inflate(R.layout.fragment_canvas, container, false);
     this.view.setOnTouchListener(this);
 

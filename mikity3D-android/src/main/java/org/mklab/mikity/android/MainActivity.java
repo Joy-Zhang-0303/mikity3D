@@ -139,12 +139,12 @@ public class MainActivity extends AppCompatActivity {
   /**
    * MainMenuFragmentを表示します。
    */
-  private void showMainMenuFragment() {
+  void showMainMenuFragment() {
     final FragmentManager manager = getSupportFragmentManager();
     final FragmentTransaction transaction = manager.beginTransaction();
     transaction.addToBackStack(null);
 
-    transaction.add(R.id.fragment_navigation_drawer, this.mainMenuFragment);
+    transaction.replace(R.id.fragment_navigation_drawer, this.mainMenuFragment);
     transaction.commit();
   }
 

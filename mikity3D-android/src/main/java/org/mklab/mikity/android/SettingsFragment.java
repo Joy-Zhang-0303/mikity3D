@@ -87,7 +87,21 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
   EditText lightPositionZ;
   
   private boolean isChanged = false;
+  
+  View view;
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void onAttach(Context activity) {
+      super.onAttach(activity);
+      if (activity instanceof MainActivity) {
+          this.mainActivity = (MainActivity)activity;
+          this.canvasFragment = this.mainActivity.canvasFragment;
+      }
+  }
+  
   /**
    * {@inheritDoc}
    */
@@ -95,9 +109,6 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
-    
-    this.mainActivity = (MainActivity)getActivity();
-    this.canvasFragment = this.mainActivity.canvasFragment;
   }
 
   /**
@@ -105,9 +116,11 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.fragment_settings, container, false);
+    super.onCreateView(inflater, container, savedInstanceState);
+    
+    this.view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-    final Button backButton = (Button)view.findViewById(R.id.settingsBackButton);
+    final Button backButton = (Button)this.view.findViewById(R.id.settingsBackButton);
     backButton.setOnClickListener(new OnClickListener() {
 
       /**
@@ -119,15 +132,20 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
       }
     });
 
-    createAnimationSpeedComponent(view);
-
-    createEnvironmentComponent(view);
-
-    createSensorComponent(view);
-
-    createGridAxisComponent(view);
-
-    return view;
+    return this.view;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void onResume() {
+    super.onResume();
+    
+    createAnimationSpeedComponent(this.view);
+    createEnvironmentComponent(this.view);
+    createSensorComponent(this.view);
+    createGridAxisComponent(this.view);
   }
 
   private void createAnimationSpeedComponent(final View mainView) {

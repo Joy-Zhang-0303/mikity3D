@@ -21,6 +21,7 @@ import java.util.List;
 import org.mklab.mikity.android.mainmenu.MainMenuDrawerItem;
 import org.mklab.mikity.android.mainmenu.adapter.MainMenuDrawerListAdapter;
 
+import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -43,11 +44,20 @@ public class MainMenuFragment extends Fragment {
    * {@inheritDoc}
    */
   @Override
+  public void onAttach(Context activity) {
+      super.onAttach(activity);
+      if (activity instanceof MainActivity) {
+          this.mainActivity = (MainActivity)activity;
+      }
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
-    
-    this.mainActivity = (MainActivity)getActivity();
   }
 
   /**
@@ -55,6 +65,8 @@ public class MainMenuFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    super.onCreateView(inflater, container, savedInstanceState);
+    
     final View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
     final String[] mainMenuTitles = getResources().getStringArray(R.array.main_menu_drawer_items);

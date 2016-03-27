@@ -25,6 +25,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -53,11 +54,21 @@ public class AssetsListViewFragment extends Fragment {
    * {@inheritDoc}
    */
   @Override
+  public void onAttach(Context activity) {
+      super.onAttach(activity);
+      if (activity instanceof MainActivity) {
+          this.mainActivity = (MainActivity)activity;
+      }
+  }
+
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
-    
-    this.mainActivity = (MainActivity)getActivity();
     
     final Bundle arguments = getArguments();
     if (arguments != null && arguments.containsKey("sourceId")) { //$NON-NLS-1$
@@ -74,6 +85,7 @@ public class AssetsListViewFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    super.onCreateView(inflater, container, savedInstanceState);
 
     final View view = inflater.inflate(R.layout.fragment_assets_list_view, container, false);
 

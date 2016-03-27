@@ -25,6 +25,7 @@ import java.util.TreeSet;
 import org.mklab.mikity.model.xml.simplexml.model.AnimationModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.widget.Button;
@@ -57,12 +58,21 @@ public abstract class AbstractSelectionFragment extends Fragment {
    * {@inheritDoc}
    */
   @Override
+  public void onAttach(Context activity) {
+      super.onAttach(activity);
+      if (activity instanceof MainActivity) {
+          this.mainActivity = (MainActivity)activity;
+          this.canvasFragment = this.mainActivity.canvasFragment;
+      }
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
-    
-    this.mainActivity = (MainActivity)getActivity();
-    this.canvasFragment = this.mainActivity.canvasFragment;
   }
 
   /**

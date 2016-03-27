@@ -104,6 +104,7 @@ public class SceneGraphTreeFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
+      setRetainInstance(true);
       setHasOptionsMenu(true);
   }
 
@@ -112,6 +113,8 @@ public class SceneGraphTreeFragment extends Fragment {
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    super.onCreateView(inflater, container, savedInstanceState);
+    
     final View view = inflater.inflate(R.layout.fragment_scene_graph_tree, container, false);
     this.treeView = (ListView)view.findViewById(R.id.scene_graph_tree_view);
     
@@ -128,7 +131,8 @@ public class SceneGraphTreeFragment extends Fragment {
         SceneGraphTreeFragment.this.selectedTreeItem = SceneGraphTreeFragment.this.rootItem;
         updatetSelectedObject();
         
-        getActivity().getSupportFragmentManager().popBackStack();
+        final FragmentManager manager = getActivity().getSupportFragmentManager();
+        manager.popBackStack();
       }
     });
     

@@ -62,6 +62,8 @@ public class FileSelectionFragment extends AbstractSelectionFragment implements 
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    super.onCreateView(inflater, container, savedInstanceState);
+    
     final View mainView = inflater.inflate(R.layout.fragment_file_selection, container, false);
     
     final Button backButton = (Button)mainView.findViewById(R.id.settingsBackButton);
