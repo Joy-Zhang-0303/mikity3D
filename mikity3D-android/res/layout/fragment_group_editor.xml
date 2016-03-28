@@ -63,7 +63,7 @@
                 </TextView>
 
                 <Space
-                    android:layout_width="5dip"
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <EditText
@@ -85,7 +85,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="5dip" />
+                android:layout_height="5dp" />
 
             <TableLayout
                 android:id="@+id/coordinate_parameters"
@@ -104,7 +104,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="5dip" />
+                android:layout_height="5dp" />
 
             <TableLayout
                 android:id="@+id/animation_parameters"
