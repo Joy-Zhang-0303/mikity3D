@@ -21,7 +21,7 @@ import java.util.List;
 import org.mklab.mikity.android.mainmenu.MainMenuDrawerItem;
 import org.mklab.mikity.android.mainmenu.adapter.MainMenuDrawerListAdapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -44,7 +44,7 @@ public class MainMenuFragment extends Fragment {
    * {@inheritDoc}
    */
   @Override
-  public void onAttach(Context activity) {
+  public void onAttach(Activity activity) {
       super.onAttach(activity);
       if (activity instanceof MainActivity) {
           this.mainActivity = (MainActivity)activity;

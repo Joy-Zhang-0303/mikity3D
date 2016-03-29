@@ -25,7 +25,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -54,7 +54,7 @@ public class AssetsListViewFragment extends Fragment {
    * {@inheritDoc}
    */
   @Override
-  public void onAttach(Context activity) {
+  public void onAttach(Activity activity) {
       super.onAttach(activity);
       if (activity instanceof MainActivity) {
           this.mainActivity = (MainActivity)activity;

@@ -21,6 +21,7 @@ import org.mklab.mikity.model.xml.simplexml.config.EyeModel;
 import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -94,7 +95,7 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
    * {@inheritDoc}
    */
   @Override
-  public void onAttach(Context activity) {
+  public void onAttach(Activity activity) {
       super.onAttach(activity);
       if (activity instanceof MainActivity) {
           this.mainActivity = (MainActivity)activity;
