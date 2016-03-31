@@ -48,8 +48,8 @@ public class GridObject {
    * 頂点配列を更新します。 
    */
   private void updateVertexArray() {
-    final float gridMin = -1f;
-    final float gridMax = 1f;
+    final float gridMin = -10f;
+    final float gridMax = 10f;
     final float gridInterval = this.object.getGridInterval();
 
     final int lineSize = ((int)Math.ceil((gridMax - gridMin)/gridInterval) + 1)*2;

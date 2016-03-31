@@ -68,10 +68,10 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   /** 拡大縮小比。 */
   private float scale = 1.0F;
 
-  /** 反射光の強さ */
-  private float[] lightSpecular = {0.9f, 0.9f, 0.9f, 1.0f};
   /** 拡散光の強さ */
   private float[] lightDiffuse = {0.5f, 0.5f, 0.5f, 1.0f};
+  /** 反射光の強さ */
+  private float[] lightSpecular = {0.9f, 0.9f, 0.9f, 1.0f};
   /** 環境光の強さ */
   private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
   
