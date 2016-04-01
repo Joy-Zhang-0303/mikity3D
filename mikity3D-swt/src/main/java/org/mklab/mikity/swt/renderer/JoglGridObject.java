@@ -25,6 +25,7 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.fixedfunc.GLLightingFunc;
 import com.jogamp.opengl.fixedfunc.GLPointerFunc;
 
 
@@ -82,7 +83,18 @@ public class JoglGridObject {
    * @param gl GL　
    */
   private void applyColor(GL2 gl, ColorModel color) {
-    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
+    final float ambient0 = 0.6f;
+    final float specular0 = 0.1f;
+    final float highlight = 120.0f;
+
+    final float[] ambient = {ambient0, ambient0, ambient0, 1};
+    final float[] specular = {specular0, specular0, specular0, 1};
+    final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()};
+
+    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
+    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
+    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, highlight);
   }
   
   /**

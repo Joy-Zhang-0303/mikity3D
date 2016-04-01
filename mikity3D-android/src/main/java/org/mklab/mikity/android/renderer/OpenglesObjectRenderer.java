@@ -103,8 +103,8 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, 100.0f);
         
     final LightModel light = this.configuration.getLight();
-    final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f};
-    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
+    final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f}; // 点光源を設定します 
+    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, lightLocation, 0); // 光源を設定します 
     gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します

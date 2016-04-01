@@ -25,6 +25,7 @@ import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.fixedfunc.GLLightingFunc;
 import com.jogamp.opengl.fixedfunc.GLPointerFunc;
 
 
@@ -35,16 +36,18 @@ import com.jogamp.opengl.fixedfunc.GLPointerFunc;
  * @version $Revision$, 2015/08/02
  */
 public class JoglSingleObject implements JoglObject {
+
   /** グラフィックオブジェクト。 */
   private GraphicObject object;
   /** 座標軸。 */
   private GraphicObject[] axises;
-  
+
   /** 座標軸を描画するならばtrue。 */
   private boolean isShowingAxis = false;
 
   /**
    * 新しく生成された<code>JoglSingleObject</code>オブジェクトを初期化します。
+   * 
    * @param object グラフィックオブジェクト
    * @param axises 座標軸オブジェクト
    */
@@ -59,16 +62,16 @@ public class JoglSingleObject implements JoglObject {
   public void setShowingAxis(boolean isShowingAxis) {
     this.isShowingAxis = isShowingAxis;
   }
-  
+
   /**
    * {@inheritDoc}
    */
   @Override
   public void display(GL2 gl) {
-    applyTransparency(gl);    
-    applyColor(gl,  ((AbstractGraphicObject)this.object).getColor());
+    applyTransparency(gl);
+    applyColor(gl, ((AbstractGraphicObject)this.object).getColor());
     drawObject(gl);
-  
+
     if (this.isShowingAxis && ((AbstractGraphicObject)this.object).isTransparent() == false) {
       drawAxies(gl);
     }
@@ -80,24 +83,32 @@ public class JoglSingleObject implements JoglObject {
    * @param gl GL　
    */
   private void applyColor(GL2 gl, ColorModel color) {
-    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
+    final float ambient0 = 0.4f;
+    final float specular0 = 1.0f;
+    final float highlight = 80.0f;
+
+    final float[] ambient = {ambient0, ambient0, ambient0, 1};
+    final float[] specular = {specular0, specular0, specular0, 1};
+    final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()};
+
+    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
+    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
+    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, highlight);
+
+    //gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
   }
-  
+
   /**
    * 透明性を適用します。
    * 
    * @param gl GL
    */
   private void applyTransparency(GL2 gl) {
-//    if (((AbstractGraphicPrimitive)this.object).isTransparent()) {
-      gl.glEnable(GL.GL_BLEND);
-      gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-//    } else {
-//      gl.glEnable(GL.GL_BLEND);
-//      gl.glBlendFunc(GL.GL_ONE, GL.GL_ZERO);
-//    }
+    gl.glEnable(GL.GL_BLEND);
+    gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
   }
-  
+
   /**
    * オブジェクトの座標軸を描画します。
    * 
@@ -113,7 +124,7 @@ public class JoglSingleObject implements JoglObject {
     gl.glRotatef(-90, 1.0f, 0.0f, 0.0f);
     drawAxis(gl, this.axises[1]);
     gl.glRotatef(90, 1.0f, 0.0f, 0.0f);
-    
+
     applyColor(gl, new ColorModel("blue")); //$NON-NLS-1$
     drawAxis(gl, this.axises[2]);
   }
@@ -127,10 +138,10 @@ public class JoglSingleObject implements JoglObject {
   private void drawAxis(GL2 gl, GraphicObject axis) {
     final float[] vertexArray = axis.getVertexArray();
     final float[] normalVectorArray = axis.getNormalVectorArray();
-    
-    drawTrianglePolygons(gl, vertexArray, normalVectorArray);   
+
+    drawTrianglePolygons(gl, vertexArray, normalVectorArray);
   }
-  
+
   /**
    * オブジェクトを描画します。
    * 
@@ -139,13 +150,13 @@ public class JoglSingleObject implements JoglObject {
   private void drawObject(GL2 gl) {
     final float[] vertexArray = this.object.getVertexArray();
     final float[] normalVectorArray = this.object.getNormalVectorArray();
-    
+
     drawTrianglePolygons(gl, vertexArray, normalVectorArray);
   }
 
   /**
-   *  三角形ポリゴンを描画します。
-   *  
+   * 三角形ポリゴンを描画します。
+   * 
    * @param gl GL
    * @param vertexArray 頂点の成分配列
    * @param normalVectorArray 法線ベクトルの成分配列
@@ -158,16 +169,16 @@ public class JoglSingleObject implements JoglObject {
     gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
     // 法線バッファの指定
     gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
-    
+
     // 頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
     // 頂点バッファの指定
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
 
-    final int number = vertexArray.length/3;
+    final int number = vertexArray.length / 3;
     gl.glDrawArrays(GL.GL_TRIANGLES, 0, number);
   }
-  
+
   /**
    * float配列をFloatBufferに変換します。
    * 

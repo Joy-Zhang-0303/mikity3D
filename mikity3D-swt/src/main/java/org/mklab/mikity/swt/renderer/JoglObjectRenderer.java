@@ -31,6 +31,7 @@ import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.renderer.ObjectRenderer;
 
 import com.jogamp.opengl.GL;
@@ -60,9 +61,9 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
   /** 設定。 */
   private ConfigurationModel configuration;
-  
+
   /** グリッド。 */
-  private JoglGridObject grid; 
+  private JoglGridObject grid;
 
   /** Y軸周りの回転角度 */
   private float rotationY = 0.0f;
@@ -75,12 +76,12 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /** 拡大縮小率 */
   private float scale = 1.0f;
 
-  /** 反射光の強さ 。 */
-  private float[] lightSpecular = {0.9f, 0.9f, 0.9f, 1.0f};
   /** 拡散光の強さ。 */
-  private float[] lightDiffuse = {0.5f, 0.5f, 0.5f, 1.0f};
+  private float[] lightDiffuse = {1.0f, 1.0f, 1.0f, 1.0f};
+  /** 反射光の強さ 。 */
+  private float[] lightSpecular = {1.0f, 1.0f, 1.0f, 1.0f};
   /** 環境光の強さ。 */
-  private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
+  private float[] lightAmbient = {0.4f, 0.4f, 0.4f, 1.0f};
 
   /** マウスボタンを押した点 */
   private Point startPoint;
@@ -102,13 +103,14 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
   /**
    * 新しく生成された<code>JoglModelCanvas</code>オブジェクトを初期化します。
+   * 
    * @param configuration 環境
    */
   public JoglObjectRenderer(ConfigurationModel configuration) {
     super(new GLCapabilities(null));
 
     this.configuration = configuration;
-    
+
     this.grid = new JoglGridObject(configuration);
 
     addGLEventListener(this);
@@ -123,19 +125,19 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   public void init(GLAutoDrawable drawable) {
     final GL2 gl = (GL2)drawable.getGL();
 
-    gl.glEnable(GL.GL_DEPTH_TEST); // 奥行き判定を有効にします 
-    gl.glEnable(GL.GL_CULL_FACE); // 背面除去
+    gl.glEnable(GL.GL_CULL_FACE); // 裏面削除を有効にします
+    gl.glCullFace(GL.GL_BACK); // 裏面を削除
 
-    //    gl.glEnable(GL.GL_BLEND);
-    //    gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-    //    gl.glHint(GL2GL3.GL_POLYGON_SMOOTH_HINT, GL.GL_NICEST);
-    //    gl.glEnable(GL2GL3.GL_POLYGON_SMOOTH);
+    gl.glEnable(GLLightingFunc.GL_LIGHTING); //光源を有効にします
 
-    gl.glEnable(GLLightingFunc.GL_LIGHTING); //光源を有効にします 
-    gl.glEnable(GLLightingFunc.GL_COLOR_MATERIAL); //(光源がある場合の)カラーを有効にします 
-    gl.glEnable(GLLightingFunc.GL_NORMALIZE);
+    gl.glClear(GL.GL_DEPTH_BITS); //奥行きバッファをクリア
+    gl.glEnable(GL.GL_DEPTH_TEST); // 奥行きバッファ(判定)を有効にします 
+
+    gl.glShadeModel(GLLightingFunc.GL_SMOOTH);
+    gl.glEnable(GLLightingFunc.GL_NORMALIZE); //法線ベクトルの自動正規化を有効にします
     gl.glEnable(GLLightingFunc.GL_LIGHT0); //0番のライトを有効にします
-    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 100.0f);
+
+    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 120.0f);
   }
 
   /**
@@ -148,13 +150,14 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final ColorModel background = this.configuration.getBackground().getColor();
     gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());
 
-    gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+    gl.glClear(GL.GL_COLOR_BUFFER_BIT);
+    gl.glClear(GL.GL_DEPTH_BUFFER_BIT);
 
     gl.glLoadIdentity();
 
     final LightModel light = this.configuration.getLight();
-    final float[] lightLocation = new float[] {light.getX(), light.getY(), light.getZ(), 1.0f};
-    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
+    final float[] lightLocation = new float[] {light.getX(), light.getY(), light.getZ(), 1.0f}; // 点光源を設定します 
+    gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_POSITION, lightLocation, 0); // 光源を設定します 
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
     gl.glLightfv(GLLightingFunc.GL_LIGHT0, GLLightingFunc.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
@@ -170,8 +173,12 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
 
     gl.glScalef(this.scale, this.scale, this.scale);
-    
+
     final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
+
+    drawFloor(gl);
+    
+    //this.grid.display(gl);
 
     if (this.rootObjects != null) {
       for (final JoglGroupObject topGroup : this.rootObjects) {
@@ -179,8 +186,128 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
         topGroup.display(gl);
       }
     }
-    
-    this.grid.display(gl);
+
+    drawShadow(gl);
+  }
+
+  void drawFloor(GL2 gl) {
+    final float wMaxX = 20.0f;
+    final float wMaxY = 20.0f;
+    final float gridWidth = 0.1f;
+    final short nx = (short)(wMaxX / gridWidth);
+    final short ny = (short)(wMaxY / gridWidth);
+
+    float floorSpecular[] = {0.1f, 0.1f, 0.1f, 1.0f}; //(鏡面光）
+    float floorAmbient[] = {0.6f, 0.6f, 0.6f, 1.0f};
+    float floorDiffuse1[] = {0.7f, 0.7f, 0.9f, 1.0f}; //床のﾏﾃﾘｱﾙ特性（拡散光）
+    float floorDiffuse2[] = {0.9f, 0.9f, 0.7f, 1.0f}; //床のﾏﾃﾘｱﾙ特性（拡散光）
+
+    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, floorSpecular, 0);
+    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, floorAmbient, 0);
+    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 120.0f);
+
+    for (int j = -ny / 2; j < ny / 2; j++)
+      for (int i = -nx / 2; i < nx / 2; i++) {
+        int a = i + j;
+
+        if (a % 2 == 0) {
+          gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, floorDiffuse1, 0);
+        } else {
+          gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, floorDiffuse2, 0);
+        }
+
+        gl.glPushMatrix();
+        float x0 = i * gridWidth + gridWidth / 2.0f;
+        float y0 = j * gridWidth + gridWidth / 2.0f;
+        gl.glTranslatef(x0, y0, 0.0f);
+
+        gl.glBegin(GL.GL_TRIANGLES);
+
+        gl.glNormal3f(0.0f, 0.0f, 1.0f); //z方向
+        gl.glVertex3f(gridWidth / 2.0f, -gridWidth / 2.0f, 0.0f);
+        gl.glVertex3f(gridWidth / 2.0f, gridWidth / 2.0f, 0.0f);
+        gl.glVertex3f(-gridWidth / 2.0f, gridWidth / 2.0f, 0.0f);
+
+        gl.glNormal3f(0.0f, 0.0f, 1.0f); //z方向
+        gl.glVertex3f(gridWidth / 2.0f, -gridWidth / 2.0f, 0.0f);
+        gl.glVertex3f(-gridWidth / 2.0f, gridWidth / 2.0f, 0.0f);
+        gl.glVertex3f(-gridWidth / 2.0f, -gridWidth / 2.0f, 0.0f);
+
+        gl.glEnd();
+
+        gl.glPopMatrix();
+      }
+  }
+
+  /**
+   * オブジェクト毎に光源の方向を変え、疑似的に点光源に対する影(平行光線に対する影)を作成します。
+   */
+  void drawShadow(GL2 gl) {
+    gl.glEnable(GL.GL_BLEND);
+    gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+    gl.glDepthMask(false);
+
+    if (this.rootObjects != null) {
+      for (final JoglGroupObject topGroup : this.rootObjects) {
+        final double[] matrix = getShadowMatrix(topGroup.getGroup().getTranslation());
+        gl.glPushMatrix();
+        gl.glMultMatrixd(matrix, 0);
+        topGroup.display(gl);
+        gl.glPopMatrix();
+      }
+    }
+
+    gl.glDepthMask(true);
+    gl.glDisable(GL.GL_BLEND);
+  }
+
+  /**
+   * 射影行列の成分を返します。
+   * 
+   * @param xyz 物体座標系の原点
+   * @return 射影行列の成分
+   */
+  double[] getShadowMatrix(TranslationModel xyz) {
+    final LightModel light = this.configuration.getLight();
+
+    final float x = light.getX() - xyz.getX();
+    final float y = light.getY() - xyz.getY();
+    final float z = light.getZ() - xyz.getZ();
+
+    // 各物体から光源までの距離
+    final float s = (float)Math.sqrt(x * x + y * y + z * z);
+
+    // 光源の方向ベクトル(光源の方向余弦)
+    final float cx = x / s;
+    final float cy = y / s;
+    final float cz = z / s;
+
+    // 床の方向ベクトル(床の面のパラメータ)
+    final float fx = 0.0f;
+    final float fy = 0.0f;
+    final float fz = 1.0f;
+    final float fa = -0.002f; //0.2f; //床と影の干渉を防ぐため
+
+    // shadow matrix
+    final double[] mat = new double[16]; //射影行列の要素
+    mat[0] = fy * cy + fz * cz;
+    mat[1] = -fx * cy;
+    mat[2] = -fx * cz;
+    mat[3] = 0.0f;
+    mat[4] = -fy * cx;
+    mat[5] = fx * cx + fz * cz;
+    mat[6] = -fy * cz;
+    mat[7] = 0.0f;
+    mat[8] = -fz * cx;
+    mat[9] = -fz * cy;
+    mat[10] = fx * cx + fy * cy;
+    mat[11] = 0.0f;
+    mat[12] = -fa * cx;
+    mat[13] = -fa * cy;
+    mat[14] = -fa * cz;
+    mat[15] = fx * cx + fy * cy + fz * cz;
+
+    return mat;
   }
 
   /**
@@ -221,7 +348,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
     this.configuration = configuration;
     this.grid.setConfiguration(configuration);
-    
+
     display();
   }
 
