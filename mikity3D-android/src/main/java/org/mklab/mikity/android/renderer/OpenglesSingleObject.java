@@ -37,7 +37,9 @@ public class OpenglesSingleObject implements OpenglesObject {
   /** 座標軸。 */
   private GraphicObject[] axises;
   /** 座標軸を描画するならばtrue。 */
-  private boolean isShowingAxis = false;
+  private boolean isDrawingAxis = false;
+  /** 影を描画するならばtrue。 */
+  private boolean isDrawingShadow = false;
   
   /**
    * 新しく生成された<code>OpenglesSingleObject</code>オブジェクトを初期化します。
@@ -57,7 +59,7 @@ public class OpenglesSingleObject implements OpenglesObject {
     applyColor(gl, ((AbstractGraphicObject)this.object).getColor());
     drawObject(gl);
     
-    if (this.isShowingAxis && ((AbstractGraphicObject)this.object).isTransparent() == false) {
+    if (this.isDrawingAxis && ((AbstractGraphicObject)this.object).isTransparent() == false) {
       drawAxies(gl);
     }
   }
@@ -186,7 +188,14 @@ public class OpenglesSingleObject implements OpenglesObject {
   /**
    * {@inheritDoc}
    */
-  public void setShowingAxis(boolean isShowingAxis) {
-    this.isShowingAxis = isShowingAxis;
+  public void setDrawingAxis(boolean isDrawingAxis) {
+    this.isDrawingAxis = isDrawingAxis;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void setDrawingShadow(boolean isDrawingShadow) {
+    this.isDrawingShadow = isDrawingShadow;
   }
 }

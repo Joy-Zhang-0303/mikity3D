@@ -46,7 +46,9 @@ public class JoglGroupObject implements GroupObject, JoglObject {
   /** モデルデータ。 */
   private GroupModel group;
   /** 座用軸を描画するならばtrue。 */
-  private boolean isShowingAxis = false;
+  private boolean isDrawingAxis = false;
+  /** 影を描画するならばtrue。 */
+  private boolean isDrawingShadow = false;
   /** シリアル番号。 */
   private static int serialID = 0;
 
@@ -171,13 +173,25 @@ public class JoglGroupObject implements GroupObject, JoglObject {
   /**
    * {@inheritDoc}
    */
-  public void setShowingAxis(boolean isShowingAxis) {
-    this.isShowingAxis = isShowingAxis;
+  public void setDrawingAxis(boolean isDrawingAxis) {
+    this.isDrawingAxis = isDrawingAxis;
     
     for (final JoglObject object : this.elements) {
-      object.setShowingAxis(isShowingAxis);
+      object.setDrawingAxis(isDrawingAxis);
     }
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void setDrawingShadow(boolean isDrawingShadow) {
+    this.isDrawingShadow = isDrawingShadow;
+    
+    for (final JoglObject object : this.elements) {
+      object.setDrawingShadow(isDrawingShadow);
+    }
+  }
+
   
   /**
    * GLによる座標変換を適用します。

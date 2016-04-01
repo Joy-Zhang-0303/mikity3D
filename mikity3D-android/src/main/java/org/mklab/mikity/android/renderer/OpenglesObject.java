@@ -35,7 +35,14 @@ public interface OpenglesObject {
   /**
    * 座標軸を描画するか設定します。
    * 
-   * @param isShowingAxis 座標軸を描画するならばtrue
+   * @param isDrawingAxis 座標軸を描画するならばtrue
    */
-  void setShowingAxis(boolean isShowingAxis);
+  void setDrawingAxis(boolean isDrawingAxis);
+  
+  /**
+   * 影を描画するか設定します。
+   * 
+   * @param isDrawingShadow 影を描画するならばtrue
+   */
+  void setDrawingShadow(boolean isDrawingShadow);
 }

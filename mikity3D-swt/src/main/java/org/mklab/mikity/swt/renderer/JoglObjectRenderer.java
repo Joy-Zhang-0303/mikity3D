@@ -182,7 +182,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
     if (this.rootObjects != null) {
       for (final JoglGroupObject topGroup : this.rootObjects) {
-        topGroup.setShowingAxis(isAxisShowing);
+        topGroup.setDrawingAxis(isAxisShowing);
         topGroup.display(gl);
       }
     }
@@ -252,7 +252,9 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
         final double[] matrix = getShadowMatrix(topGroup.getGroup().getTranslation());
         gl.glPushMatrix();
         gl.glMultMatrixd(matrix, 0);
+        topGroup.setDrawingShadow(true);
         topGroup.display(gl);
+        topGroup.setDrawingShadow(false);
         gl.glPopMatrix();
       }
     }

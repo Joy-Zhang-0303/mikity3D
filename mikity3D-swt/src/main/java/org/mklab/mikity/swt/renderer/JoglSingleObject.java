@@ -43,7 +43,10 @@ public class JoglSingleObject implements JoglObject {
   private GraphicObject[] axises;
 
   /** 座標軸を描画するならばtrue。 */
-  private boolean isShowingAxis = false;
+  private boolean isDrawingAxis = false;
+
+  /** 影を描画するならばtrue。 */
+  private boolean isDrawingShadow = false;
 
   /**
    * 新しく生成された<code>JoglSingleObject</code>オブジェクトを初期化します。
@@ -59,10 +62,17 @@ public class JoglSingleObject implements JoglObject {
   /**
    * {@inheritDoc}
    */
-  public void setShowingAxis(boolean isShowingAxis) {
-    this.isShowingAxis = isShowingAxis;
+  public void setDrawingAxis(boolean isDrawingAxis) {
+    this.isDrawingAxis = isDrawingAxis;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  public void setDrawingShadow(boolean isDrawingShadow) {
+    this.isDrawingShadow = isDrawingShadow;
+  }
+  
   /**
    * {@inheritDoc}
    */
@@ -72,7 +82,7 @@ public class JoglSingleObject implements JoglObject {
     applyColor(gl, ((AbstractGraphicObject)this.object).getColor());
     drawObject(gl);
 
-    if (this.isShowingAxis && ((AbstractGraphicObject)this.object).isTransparent() == false) {
+    if (this.isDrawingAxis && ((AbstractGraphicObject)this.object).isTransparent() == false) {
       drawAxies(gl);
     }
   }
@@ -83,20 +93,25 @@ public class JoglSingleObject implements JoglObject {
    * @param gl GL　
    */
   private void applyColor(GL2 gl, ColorModel color) {
-    final float ambient0 = 0.4f;
-    final float specular0 = 1.0f;
-    final float highlight = 80.0f;
+    if (this.isDrawingShadow) {
+      final float[] specular = {0, 0, 0, 1};
+      final float[] diffuse = {0.2f, 0.25f, 0.25f, 0.3f};
+      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);      
+      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT_AND_DIFFUSE, diffuse, 0);
+    } else {
+      final float ambient0 = 0.4f;
+      final float specular0 = 1.0f;
+      final float highlight = 80.0f;
 
-    final float[] ambient = {ambient0, ambient0, ambient0, 1};
-    final float[] specular = {specular0, specular0, specular0, 1};
-    final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()};
+      final float[] ambient = {ambient0, ambient0, ambient0, 1};
+      final float[] specular = {specular0, specular0, specular0, 1};
+      final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()};
 
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
-    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, highlight);
-
-    //gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
+      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
+      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
+      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
+      gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, highlight);
+    }
   }
 
   /**

@@ -147,7 +147,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     
     if (this.rootObjects != null) {
       for (final OpenglesGroupObject topObject : this.rootObjects) {
-        topObject.setShowingAxis(isAxisShowing);
+        topObject.setDrawingAxis(isAxisShowing);
         topObject.display(gl);
       }
     }
