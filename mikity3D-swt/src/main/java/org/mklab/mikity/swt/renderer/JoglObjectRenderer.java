@@ -197,13 +197,13 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final short nx = (short)(wMaxX / gridWidth);
     final short ny = (short)(wMaxY / gridWidth);
 
-    float floorSpecular[] = {0.1f, 0.1f, 0.1f, 1.0f}; //(鏡面光）
-    float floorAmbient[] = {0.6f, 0.6f, 0.6f, 1.0f};
-    float floorDiffuse1[] = {0.7f, 0.7f, 0.9f, 1.0f}; //床のﾏﾃﾘｱﾙ特性（拡散光）
-    float floorDiffuse2[] = {0.9f, 0.9f, 0.7f, 1.0f}; //床のﾏﾃﾘｱﾙ特性（拡散光）
+    float specular[] = {0.1f, 0.1f, 0.1f, 1.0f}; //鏡面光
+    float ambient[] = {0.6f, 0.6f, 0.6f, 1.0f};  //環境光
+    float diffuse1[] = {0.7f, 0.7f, 0.9f, 1.0f}; //拡散光1
+    float diffuse2[] = {0.9f, 0.9f, 0.7f, 1.0f}; //拡散光2
 
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, floorSpecular, 0);
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, floorAmbient, 0);
+    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
+    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
     gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 120.0f);
 
     for (int j = -ny / 2; j < ny / 2; j++)
@@ -211,9 +211,9 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
         int a = i + j;
 
         if (a % 2 == 0) {
-          gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, floorDiffuse1, 0);
+          gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse1, 0);
         } else {
-          gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, floorDiffuse2, 0);
+          gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse2, 0);
         }
 
         gl.glPushMatrix();
@@ -264,34 +264,34 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   }
 
   /**
-   * 射影行列の成分を返します。
+   * 射影行列を返します。
    * 
-   * @param xyz 物体座標系の原点
-   * @return 射影行列の成分
+   * @param orgin 物体座標系の原点
+   * @return 射影行列
    */
-  double[] getShadowMatrix(TranslationModel xyz) {
+  double[] getShadowMatrix(TranslationModel orgin) {
     final LightModel light = this.configuration.getLight();
 
-    final float x = light.getX() - xyz.getX();
-    final float y = light.getY() - xyz.getY();
-    final float z = light.getZ() - xyz.getZ();
+    final float x = light.getX() - orgin.getX();
+    final float y = light.getY() - orgin.getY();
+    final float z = light.getZ() - orgin.getZ();
 
-    // 各物体から光源までの距離
+    // 各物体の原点から光源までの距離
     final float s = (float)Math.sqrt(x * x + y * y + z * z);
 
-    // 光源の方向ベクトル(光源の方向余弦)
+    // 光源の方向ベクトル
     final float cx = x / s;
     final float cy = y / s;
     final float cz = z / s;
 
-    // 床の方向ベクトル(床の面のパラメータ)
+    // 床の方向ベクトル
     final float fx = 0.0f;
     final float fy = 0.0f;
     final float fz = 1.0f;
     final float fa = -0.002f; //0.2f; //床と影の干渉を防ぐため
 
-    // shadow matrix
-    final double[] mat = new double[16]; //射影行列の要素
+    // 射影行列
+    final double[] mat = new double[16];
     mat[0] = fy * cy + fz * cz;
     mat[1] = -fx * cy;
     mat[2] = -fx * cz;

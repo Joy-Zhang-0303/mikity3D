@@ -94,18 +94,18 @@ public class JoglSingleObject implements JoglObject {
    */
   private void applyColor(GL2 gl, ColorModel color) {
     if (this.isDrawingShadow) {
-      final float[] specular = {0, 0, 0, 1};
-      final float[] diffuse = {0.2f, 0.25f, 0.25f, 0.3f};
+      final float[] specular = {0, 0, 0, 1}; // 鏡面光
+      final float[] ambientDiffuse = {0.2f, 0.25f, 0.25f, 0.3f}; // 環境光と拡散光
       gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);      
-      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT_AND_DIFFUSE, diffuse, 0);
+      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT_AND_DIFFUSE, ambientDiffuse, 0);
     } else {
       final float ambient0 = 0.4f;
       final float specular0 = 1.0f;
       final float highlight = 80.0f;
 
-      final float[] ambient = {ambient0, ambient0, ambient0, 1};
-      final float[] specular = {specular0, specular0, specular0, 1};
-      final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()};
+      final float[] ambient = {ambient0, ambient0, ambient0, 1}; // 環境光
+      final float[] specular = {specular0, specular0, specular0, 1}; // 鏡面光
+      final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()}; // 拡散光
 
       gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
       gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
