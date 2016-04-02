@@ -36,9 +36,9 @@ import com.jogamp.opengl.fixedfunc.GLPointerFunc;
  * @version $Revision$, 2015/08/02
  */
 public class JoglSingleObject implements JoglObject {
-
   /** グラフィックオブジェクト。 */
   private GraphicObject object;
+  
   /** 座標軸。 */
   private GraphicObject[] axises;
 
@@ -101,7 +101,7 @@ public class JoglSingleObject implements JoglObject {
     } else {
       final float ambient0 = 0.4f;
       final float specular0 = 1.0f;
-      final float highlight = 80.0f;
+      final float shiness = 80.0f;
 
       final float[] ambient = {ambient0, ambient0, ambient0, 1}; // 環境光
       final float[] specular = {specular0, specular0, specular0, 1}; // 鏡面光
@@ -110,7 +110,7 @@ public class JoglSingleObject implements JoglObject {
       gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
       gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
       gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
-      gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, highlight);
+      gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, shiness);
     }
   }
 
@@ -129,7 +129,7 @@ public class JoglSingleObject implements JoglObject {
    * 
    * @param gl GL
    */
-  public void drawAxies(GL2 gl) {
+  private void drawAxies(GL2 gl) {
     applyColor(gl, new ColorModel("red")); //$NON-NLS-1$
     gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
     drawAxis(gl, this.axises[0]);
@@ -156,19 +156,7 @@ public class JoglSingleObject implements JoglObject {
 
     drawTrianglePolygons(gl, vertexArray, normalVectorArray);
   }
-
-  /**
-   * オブジェクトを描画します。
-   * 
-   * @param gl GL
-   */
-  private void drawObject(GL2 gl) {
-    final float[] vertexArray = this.object.getVertexArray();
-    final float[] normalVectorArray = this.object.getNormalVectorArray();
-
-    drawTrianglePolygons(gl, vertexArray, normalVectorArray);
-  }
-
+  
   /**
    * 三角形ポリゴンを描画します。
    * 
@@ -179,17 +167,17 @@ public class JoglSingleObject implements JoglObject {
   private void drawTrianglePolygons(GL2 gl, final float[] vertexArray, final float[] normalVectorArray) {
     final FloatBuffer vertexBuffer = makeFloatBuffer(vertexArray);
     final FloatBuffer normalBuffer = makeFloatBuffer(normalVectorArray);
-
+  
     // 法線配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_NORMAL_ARRAY);
     // 法線バッファの指定
     gl.glNormalPointer(GL.GL_FLOAT, 0, normalBuffer);
-
+  
     // 頂点配列の有効化
     gl.glEnableClientState(GLPointerFunc.GL_VERTEX_ARRAY);
     // 頂点バッファの指定
     gl.glVertexPointer(3, GL.GL_FLOAT, 0, vertexBuffer);
-
+  
     final int number = vertexArray.length / 3;
     gl.glDrawArrays(GL.GL_TRIANGLES, 0, number);
   }
@@ -218,4 +206,17 @@ public class JoglSingleObject implements JoglObject {
     buffer.put(array).position(0);
     return buffer;
   }
+
+  /**
+   * オブジェクトを描画します。
+   * 
+   * @param gl GL
+   */
+  private void drawObject(GL2 gl) {
+    final float[] vertexArray = this.object.getVertexArray();
+    final float[] normalVectorArray = this.object.getNormalVectorArray();
+  
+    drawTrianglePolygons(gl, vertexArray, normalVectorArray);
+  }
+
 }

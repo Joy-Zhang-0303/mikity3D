@@ -95,7 +95,7 @@ public class JoglObjectFactory {
     final GraphicObject axisZ = GraphicObjectFactory.create(new AxisModel(axisRadius, Math.max(model.getHeight()*1.5f, axisRadius*20), 36));
     final GraphicObject[] axies = new GraphicObject[]{axisX, axisY, axisZ};
     
-    final JoglSingleObject object = new JoglSingleObject(GraphicObjectFactory.create(model), axies);
+    final JoglObject object = new JoglSingleObject(GraphicObjectFactory.create(model), axies);
    
     final TranslationModel translation = model.getTranslation();
     final RotationModel rotation = model.getRotation();

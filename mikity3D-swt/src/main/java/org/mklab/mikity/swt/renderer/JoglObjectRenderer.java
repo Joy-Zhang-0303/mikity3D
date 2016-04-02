@@ -177,7 +177,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
 
     drawFloor(gl);
-    
+
     //this.grid.display(gl);
 
     if (this.rootObjects != null) {
@@ -191,23 +191,24 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   }
 
   void drawFloor(GL2 gl) {
-    final float wMaxX = 20.0f;
-    final float wMaxY = 20.0f;
+    final float maxWidthX = 10.0f;
+    final float maxWidthY = 10.0f;
     final float gridWidth = 0.1f;
-    final short nx = (short)(wMaxX / gridWidth);
-    final short ny = (short)(wMaxY / gridWidth);
 
-    float specular[] = {0.1f, 0.1f, 0.1f, 1.0f}; //鏡面光
-    float ambient[] = {0.6f, 0.6f, 0.6f, 1.0f};  //環境光
-    float diffuse1[] = {0.7f, 0.7f, 0.9f, 1.0f}; //拡散光1
-    float diffuse2[] = {0.9f, 0.9f, 0.7f, 1.0f}; //拡散光2
+    final float specular[] = {0.1f, 0.1f, 0.1f, 1.0f}; // 鏡面光
+    final float ambient[] = {0.6f, 0.6f, 0.6f, 1.0f}; // 環境光
+    final float diffuse1[] = {0.7f, 0.7f, 0.9f, 1.0f}; // 拡散光1
+    final float diffuse2[] = {0.9f, 0.9f, 0.7f, 1.0f}; // 拡散光2
 
     gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
     gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
     gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 120.0f);
 
-    for (int j = -ny / 2; j < ny / 2; j++)
-      for (int i = -nx / 2; i < nx / 2; i++) {
+    final int numberX = (int)(maxWidthX / gridWidth);
+    final int numberY = (int)(maxWidthY / gridWidth);
+
+    for (int j = -numberY/2; j < numberY/2; j++)
+      for (int i = -numberX/2; i < numberX/2; i++) {
         int a = i + j;
 
         if (a % 2 == 0) {
@@ -217,21 +218,50 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
         }
 
         gl.glPushMatrix();
-        float x0 = i * gridWidth + gridWidth / 2.0f;
-        float y0 = j * gridWidth + gridWidth / 2.0f;
-        gl.glTranslatef(x0, y0, 0.0f);
+        final float x = i * gridWidth + gridWidth/2;
+        final float y = j * gridWidth + gridWidth/2;
+        gl.glTranslatef(x, y, 0.0f);
+        
+        float x0 = gridWidth/2;
+        float y0 = -gridWidth/2;
+        float z0 = 0;
+
+        float x1 = gridWidth/2;
+        float y1 = gridWidth/2;
+        float z1 = 0;
+        
+        float x2 = -gridWidth/2;
+        float y2 = gridWidth/2;
+        float z2 = 0;
+
+        
+        float x3 = gridWidth/2;
+        float y3 = -gridWidth/2;
+        float z3 = 0;
+        
+        float x4 = -gridWidth/2;
+        float y4 = gridWidth/2;
+        float z4 = 0;
+        
+        float x5 = -gridWidth/2;
+        float y5 = -gridWidth/2;
+        float z5 = 0;
+        
+        float nx = 0;
+        float ny = 0;
+        float nz = 1;
 
         gl.glBegin(GL.GL_TRIANGLES);
+        
+        gl.glNormal3f(nx, ny, nz);
+        gl.glVertex3f(x0, y0, z0);
+        gl.glVertex3f(x1, y1, z1);
+        gl.glVertex3f(x2, y2, z2);
 
-        gl.glNormal3f(0.0f, 0.0f, 1.0f); //z方向
-        gl.glVertex3f(gridWidth / 2.0f, -gridWidth / 2.0f, 0.0f);
-        gl.glVertex3f(gridWidth / 2.0f, gridWidth / 2.0f, 0.0f);
-        gl.glVertex3f(-gridWidth / 2.0f, gridWidth / 2.0f, 0.0f);
-
-        gl.glNormal3f(0.0f, 0.0f, 1.0f); //z方向
-        gl.glVertex3f(gridWidth / 2.0f, -gridWidth / 2.0f, 0.0f);
-        gl.glVertex3f(-gridWidth / 2.0f, gridWidth / 2.0f, 0.0f);
-        gl.glVertex3f(-gridWidth / 2.0f, -gridWidth / 2.0f, 0.0f);
+        gl.glNormal3f(nx, ny, nz);
+        gl.glVertex3f(x3, y3, z3);
+        gl.glVertex3f(x4, y4, z4);
+        gl.glVertex3f(x5, y5, z5);
 
         gl.glEnd();
 
@@ -277,39 +307,39 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final float z = light.getZ() - orgin.getZ();
 
     // 各物体の原点から光源までの距離
-    final float s = (float)Math.sqrt(x * x + y * y + z * z);
+    final float s = (float)Math.sqrt(x*x + y*y + z*z);
 
     // 光源の方向ベクトル
-    final float cx = x / s;
-    final float cy = y / s;
-    final float cz = z / s;
+    final float cx = x/s;
+    final float cy = y/s;
+    final float cz = z/s;
 
     // 床の方向ベクトル
-    final float fx = 0.0f;
-    final float fy = 0.0f;
-    final float fz = 1.0f;
+    final float fx = 0;
+    final float fy = 0;
+    final float fz = 1;
     final float fa = -0.002f; //0.2f; //床と影の干渉を防ぐため
 
     // 射影行列
-    final double[] mat = new double[16];
-    mat[0] = fy * cy + fz * cz;
-    mat[1] = -fx * cy;
-    mat[2] = -fx * cz;
-    mat[3] = 0.0f;
-    mat[4] = -fy * cx;
-    mat[5] = fx * cx + fz * cz;
-    mat[6] = -fy * cz;
-    mat[7] = 0.0f;
-    mat[8] = -fz * cx;
-    mat[9] = -fz * cy;
-    mat[10] = fx * cx + fy * cy;
-    mat[11] = 0.0f;
-    mat[12] = -fa * cx;
-    mat[13] = -fa * cy;
-    mat[14] = -fa * cz;
-    mat[15] = fx * cx + fy * cy + fz * cz;
+    final double[] matrix = new double[16];
+    matrix[0] = fy*cy + fz*cz;
+    matrix[1] = -fx*cy;
+    matrix[2] = -fx*cz;
+    matrix[3] = 0;
+    matrix[4] = -fy*cx;
+    matrix[5] = fx*cx + fz*cz;
+    matrix[6] = -fy*cz;
+    matrix[7] = 0;
+    matrix[8] = -fz*cx;
+    matrix[9] = -fz*cy;
+    matrix[10] = fx*cx + fy*cy;
+    matrix[11] = 0;
+    matrix[12] = -fa*cx;
+    matrix[13] = -fa*cy;
+    matrix[14] = -fa*cz;
+    matrix[15] = fx*cx + fy*cy + fz*cz;
 
-    return mat;
+    return matrix;
   }
 
   /**

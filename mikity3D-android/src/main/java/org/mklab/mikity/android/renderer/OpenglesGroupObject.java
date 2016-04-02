@@ -178,9 +178,9 @@ public class OpenglesGroupObject implements GroupObject, OpenglesObject {
     final TranslationModel translation = coordinateArg.getTranslation();
     final RotationModel rotation = coordinateArg.getRotation();
     gl.glTranslatef(translation.getX(), translation.getY(), translation.getZ());
-    gl.glRotatef((float)Math.toDegrees(rotation.getX()), 1.0f, 0.0f, 0.0f);
-    gl.glRotatef((float)Math.toDegrees(rotation.getY()), 0.0f, 1.0f, 0.0f);
     gl.glRotatef((float)Math.toDegrees(rotation.getZ()), 0.0f, 0.0f, 1.0f);
+    gl.glRotatef((float)Math.toDegrees(rotation.getY()), 0.0f, 1.0f, 0.0f);
+    gl.glRotatef((float)Math.toDegrees(rotation.getX()), 1.0f, 0.0f, 0.0f);
   }
 
   /**
