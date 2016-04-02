@@ -178,7 +178,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
     drawFloor(gl);
 
-    //this.grid.display(gl);
+    this.grid.display(gl);
 
     if (this.rootObjects != null) {
       for (final JoglGroupObject topGroup : this.rootObjects) {
@@ -191,9 +191,9 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   }
 
   void drawFloor(GL2 gl) {
-    final float maxWidthX = 10.0f;
-    final float maxWidthY = 10.0f;
-    final float gridWidth = 0.1f;
+    final float floorWidth = 10.0f;
+    final float floorDepth = 10.0f;
+    final float gridSize = 0.1f;
 
     final float specular[] = {0.1f, 0.1f, 0.1f, 1.0f}; // 鏡面光
     final float ambient[] = {0.6f, 0.6f, 0.6f, 1.0f}; // 環境光
@@ -204,8 +204,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
     gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 120.0f);
 
-    final int numberX = (int)(maxWidthX / gridWidth);
-    final int numberY = (int)(maxWidthY / gridWidth);
+    final int numberX = (int)(floorDepth/gridSize);
+    final int numberY = (int)(floorWidth/gridSize);
 
     for (int j = -numberY/2; j < numberY/2; j++)
       for (int i = -numberX/2; i < numberX/2; i++) {
@@ -218,33 +218,33 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
         }
 
         gl.glPushMatrix();
-        final float x = i * gridWidth + gridWidth/2;
-        final float y = j * gridWidth + gridWidth/2;
+        final float x = i * gridSize + gridSize/2;
+        final float y = j * gridSize + gridSize/2;
         gl.glTranslatef(x, y, 0.0f);
         
-        float x0 = gridWidth/2;
-        float y0 = -gridWidth/2;
+        float x0 = gridSize/2;
+        float y0 = -gridSize/2;
         float z0 = 0;
 
-        float x1 = gridWidth/2;
-        float y1 = gridWidth/2;
+        float x1 = gridSize/2;
+        float y1 = gridSize/2;
         float z1 = 0;
         
-        float x2 = -gridWidth/2;
-        float y2 = gridWidth/2;
+        float x2 = -gridSize/2;
+        float y2 = gridSize/2;
         float z2 = 0;
 
         
-        float x3 = gridWidth/2;
-        float y3 = -gridWidth/2;
+        float x3 = gridSize/2;
+        float y3 = -gridSize/2;
         float z3 = 0;
         
-        float x4 = -gridWidth/2;
-        float y4 = gridWidth/2;
+        float x4 = -gridSize/2;
+        float y4 = gridSize/2;
         float z4 = 0;
         
-        float x5 = -gridWidth/2;
-        float y5 = -gridWidth/2;
+        float x5 = -gridSize/2;
+        float y5 = -gridSize/2;
         float z5 = 0;
         
         float nx = 0;

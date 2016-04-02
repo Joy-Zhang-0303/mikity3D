@@ -21,7 +21,7 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import org.mklab.mikity.model.graphic.AbstractGraphicObject;
+import org.mklab.mikity.model.graphic.AbstractGraphicPrimitive;
 import org.mklab.mikity.model.graphic.GraphicObject;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
@@ -56,10 +56,10 @@ public class OpenglesSingleObject implements OpenglesObject {
    */
   public void display(GL10 gl) {
     applyTransparency(gl);
-    applyColor(gl, ((AbstractGraphicObject)this.object).getColor());
+    applyColor(gl, ((AbstractGraphicPrimitive)this.object).getColor());
     drawObject(gl);
     
-    if (this.isDrawingAxis && ((AbstractGraphicObject)this.object).isTransparent() == false) {
+    if (this.isDrawingAxis && ((AbstractGraphicPrimitive)this.object).isTransparent() == false) {
       drawAxies(gl);
     }
   }

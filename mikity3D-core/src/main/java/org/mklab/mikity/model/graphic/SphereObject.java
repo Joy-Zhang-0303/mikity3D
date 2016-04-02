@@ -24,7 +24,7 @@ import org.mklab.mikity.util.Vector3;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class SphereObject extends AbstractGraphicObject {
+public class SphereObject extends AbstractGraphicPrimitive {
   /**
    * 新しく生成された<code>SphereObject</code>オブジェクトを初期化します。
    * @param sphere 球

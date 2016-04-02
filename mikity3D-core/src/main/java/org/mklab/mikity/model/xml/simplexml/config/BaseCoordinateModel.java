@@ -29,30 +29,45 @@ import org.simpleframework.xml.Element;
 public class BaseCoordinateModel implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   
-  /** グリッドの色 */
+  /** グリッドの色。 */
   @Element(name="gridColor")
   private ColorModel gridColor;
   
-  /** グリッドの間隔 */
+  /** グリッドの間隔。 */
   @Element(name="gridSize")
-  private float gridInverval;
+  private float gridSize;
   
-  /** 表示するならばtrue。  */
+  /** 床の幅(Y軸方向)。 */
+  @Element(name="floorWidth", required=false)
+  private float floorWidth;
+  
+  /** 床の奥行き(X軸方向)。 */
+  @Element(name="floorDepth", required=false)
+  private float floorDepth;
+  
+  /** 軸を表示するならばtrue。  */
   @Element(name="isAxisShowing")
   private boolean isAxisShowing;
 
-  /** 表示するならばtrue。  */
+  /** グリッドを表示するならばtrue。  */
   @Element(name="isGridShowing")
   private boolean isGridShowing;
+  
+  /** 床を表示するならばtrue。 */
+  @Element(name="isFloorDrawing", required=false)
+  private boolean isFloorDrawing;
 
   /**
    * 新しく生成された<code>BaseCoordinateModel</code>オブジェクトを初期化します。
    */
   public BaseCoordinateModel() {
     this.gridColor = new ColorModel(20, 20, 20);
-    this.gridInverval = 0.1f;
+    this.gridSize = 0.1f;
+    this.floorDepth = 10;
+    this.floorWidth = 10;
     this.isAxisShowing = true;
-    this.isGridShowing = true;
+    this.isGridShowing = false;
+    this.isFloorDrawing = true;
   }
   
   /**
@@ -63,9 +78,12 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
     try {
       final BaseCoordinateModel ans = (BaseCoordinateModel)super.clone();
       ans.gridColor = this.gridColor.clone();
-      ans.gridInverval = this.gridInverval;
+      ans.gridSize = this.gridSize;
+      ans.floorDepth = this.floorDepth;
+      ans.floorWidth = this.floorWidth;
       ans.isAxisShowing = this.isAxisShowing;
       ans.isGridShowing = this.isGridShowing;
+      ans.isFloorDrawing = this.isFloorDrawing;
       return ans;
     } catch (CloneNotSupportedException e) {
       throw new InternalError(e);
@@ -80,9 +98,12 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((this.gridColor == null) ? 0 : this.gridColor.hashCode());
-    result = prime * result + Float.floatToIntBits(this.gridInverval);
+    result = prime * result + Float.floatToIntBits(this.gridSize);
+    result = prime * result + Float.floatToIntBits(this.floorDepth);
+    result = prime * result + Float.floatToIntBits(this.floorWidth);
     result = prime * result + (this.isAxisShowing ? 1231 : 1237);
     result = prime * result + (this.isGridShowing ? 1231 : 1237);
+    result = prime * result + (this.isFloorDrawing ? 1231 : 1237);
     return result;
   }
 
@@ -108,13 +129,22 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
     } else if (!this.gridColor.equals(other.gridColor)) {
       return false;
     }
-    if (Float.floatToIntBits(this.gridInverval) != Float.floatToIntBits(other.gridInverval)) {
+    if (Float.floatToIntBits(this.gridSize) != Float.floatToIntBits(other.gridSize)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this.floorDepth) != Float.floatToIntBits(other.floorDepth)) {
+      return false;
+    }
+    if (Float.floatToIntBits(this.floorWidth) != Float.floatToIntBits(other.floorWidth)) {
       return false;
     }
     if (this.isAxisShowing != other.isAxisShowing) {
       return false;
     }
     if (this.isGridShowing != other.isGridShowing) {
+      return false;
+    }
+    if (this.isFloorDrawing != other.isFloorDrawing) {
       return false;
     }
     return true;
@@ -125,18 +155,53 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
    * 
    * @return グリッド間隔
    */
-  public float getGridInterval() {
-    return this.gridInverval;
+  public float getGridSize() {
+    return this.gridSize;
   }
-
   
   /**
    * グリッド間隔を設定します。
    * 
-   * @param gridInverval グリッド間隔
+   * @param gridSize グリッド間隔
    */
-  public void setGridInterval(float gridInverval) {
-    this.gridInverval = gridInverval;
+  public void setGridSize(float gridSize) {
+    this.gridSize = gridSize;
+  }
+  
+  /**
+   * 床の幅を返します。
+   * 
+   * @return 床の幅
+   */
+  public float getFloorWidth() {
+    return this.floorWidth;
+  }
+  
+  /**
+   * 床の幅を設定します。
+   * 
+   * @param floorWidth 床の幅
+   */
+  public void setFloorWidth(float floorWidth) {
+    this.floorWidth = floorWidth;
+  }
+  
+  /**
+   * 床の奥行きを返します。
+   * 
+   * @return 床の奥行き
+   */
+  public float getFloorDepth() {
+    return this.floorDepth;
+  }
+  
+  /**
+   * 床の奥行きを設定します。
+   * 
+   * @param floorDepth 床の奥行き
+   */
+  public void setFloorDepth(float floorDepth) {
+    this.floorDepth = floorDepth;
   }
   
   /**
@@ -174,7 +239,24 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
   public void setGridShowing(boolean isGridShowing) {
     this.isGridShowing = isGridShowing;
   }
-
+  
+  /**
+   * 床を表示するか判定します。
+   * 
+   * @return 床を表示するならばtrue
+   */
+  public boolean isFloorDrawing() {
+    return this.isFloorDrawing;
+  }
+  
+  /**
+   * 床を表示するか設定します。
+   * 
+   * @param isFloorDrawing 床を表示するならばtrue
+   */
+  public void setFloorDrawing(boolean isFloorDrawing) {
+    this.isFloorDrawing = isFloorDrawing;
+  }
 
   /**
    * グリッドの色を返します。

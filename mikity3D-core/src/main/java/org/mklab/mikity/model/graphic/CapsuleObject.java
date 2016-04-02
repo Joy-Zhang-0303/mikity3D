@@ -25,7 +25,7 @@ import org.mklab.mikity.util.Vector3;
  * @author iwamoto
  * @version $Revision$, 2012/01/31
  */
-public class CapsuleObject extends AbstractGraphicObject {
+public class CapsuleObject extends AbstractGraphicPrimitive {
 
   /**
    * 新しく生成された<code>CylinderObject</code>オブジェクトを初期化します。

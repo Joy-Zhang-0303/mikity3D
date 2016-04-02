@@ -19,7 +19,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import org.mklab.mikity.model.graphic.AbstractGraphicObject;
+import org.mklab.mikity.model.graphic.AbstractGraphicPrimitive;
 import org.mklab.mikity.model.graphic.GraphicObject;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
@@ -79,10 +79,10 @@ public class JoglSingleObject implements JoglObject {
   @Override
   public void display(GL2 gl) {
     applyTransparency(gl);
-    applyColor(gl, ((AbstractGraphicObject)this.object).getColor());
+    applyColor(gl, ((AbstractGraphicPrimitive)this.object).getColor());
     drawObject(gl);
 
-    if (this.isDrawingAxis && ((AbstractGraphicObject)this.object).isTransparent() == false) {
+    if (this.isDrawingAxis && ((AbstractGraphicPrimitive)this.object).isTransparent() == false) {
       drawAxies(gl);
     }
   }

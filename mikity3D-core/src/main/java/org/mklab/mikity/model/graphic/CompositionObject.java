@@ -22,7 +22,7 @@ import org.mklab.mikity.model.xml.simplexml.model.FacetModel;
  * 三角形の面による合成オブジェクトを表わすクラスです
  * 
  */
-public class CompositionObject extends AbstractGraphicObject {
+public class CompositionObject extends AbstractGraphicPrimitive {
   /**
    * 新しく生成された<code>CompositionObject</code>オブジェクトを初期化します。
    * @param composition モデル

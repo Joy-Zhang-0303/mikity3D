@@ -1,32 +1,21 @@
-/**
- * Copyright (C) 2015 MKLab.org (Koga Laboratory)
+/*
+ * Created on 2016/04/02
+ * Copyright (C) 2016 Koga Laboratory. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 package org.mklab.mikity.model.graphic;
 
 import java.util.List;
 
-import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
-import org.mklab.mikity.model.xml.simplexml.model.ObjectModel;
 import org.mklab.mikity.model.xml.simplexml.model.VertexModel;
 import org.mklab.mikity.util.Vector3;
+
 
 /**
  * グラフィックオブジェクトを表す抽象クラスです。
  * 
  * @author koga
- * @version $Revision$, 2015/07/11
+ * @version $Revision$, 2016/04/02
  */
 public abstract class AbstractGraphicObject implements GraphicObject {
   /** 頂点配列の参照位置。 */
@@ -41,21 +30,9 @@ public abstract class AbstractGraphicObject implements GraphicObject {
   /** 法線ベクトル配列。 */
   private float normalVectorArray[];
   
-  /** オブジェクト。 */
-  protected ObjectModel object;
-  
-  /**
-   * 新しく生成された<code>GraphicPrimitive</code>オブジェクトを初期化します。
-   * @param object オブジェクト
-   */
-  public AbstractGraphicObject(ObjectModel object) {
-    this.object = object;
-  }
-  
   /**
    * {@inheritDoc}
    */
-  @Override
   public float[] getVertexArray() {
     return this.vertexArray;
   }
@@ -63,7 +40,6 @@ public abstract class AbstractGraphicObject implements GraphicObject {
   /**
    * {@inheritDoc}
    */
-  @Override
   public int getVertexArrayLength() {
     return this.vertexArray.length;
   }
@@ -71,7 +47,6 @@ public abstract class AbstractGraphicObject implements GraphicObject {
   /**
    * {@inheritDoc}
    */
-  @Override
   public float[] getNormalVectorArray() {
     return this.normalVectorArray;
   }
@@ -79,46 +54,8 @@ public abstract class AbstractGraphicObject implements GraphicObject {
   /**
    * {@inheritDoc}
    */
-  @Override
   public int getNormalVectorArrayLength() {
     return this.normalVectorArray.length;
-  }
-  
-  /**
-   * 色を設定します。
-   * 
-   * @param color 色
-   */
-  public void setColor(ColorModel color) {
-    this.object.setColor(color);
-  }
-  
-  /**
-   * 色を返します。
-   * 
-   * @return 色
-   */
-  public ColorModel getColor() {
-    return this.object.getColor();
-  }
-
-  
-  /**
-   * 透明性を設定します。
-   * 
-   * @param isTransparent 透明性
-   */
-  public void setTransparent(boolean isTransparent) {
-    this.object.setTransparent(isTransparent);
-  }
-  
-  /**
-   * 透明性を判定します。
-   * 
-   * @return 透明ならばtrue、そうでなければfalse
-   */
-  public boolean isTransparent() {
-    return this.object.isTransparent();
   }
 
   /**

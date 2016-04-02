@@ -24,7 +24,7 @@ import org.mklab.mikity.util.Vector3;
  * @author eguchi
  * @version $Revision$, 2015/10/26
  */
-public class AxisObject extends AbstractGraphicObject {
+public class AxisObject extends AbstractGraphicPrimitive {
   /**
    * 新しく生成された<code>AxisPrimitive</code>オブジェクトを初期化します。
    * @param axis 軸モデル

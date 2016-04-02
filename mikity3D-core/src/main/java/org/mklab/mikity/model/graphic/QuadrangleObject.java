@@ -27,7 +27,7 @@ import org.mklab.mikity.util.Vector3;
  * @author iwamoto
  * @version $Revision$, 2012/02/09
  */
-public class QuadrangleObject extends AbstractGraphicObject {
+public class QuadrangleObject extends AbstractGraphicPrimitive {
   /**
    * 新しく生成された<code>QuadranglePrimitive</code>オブジェクトを初期化します。
    * 

@@ -48,23 +48,27 @@ public class GridObject {
    * 頂点配列を更新します。 
    */
   private void updateVertexArray() {
-    final float gridMin = -10f;
-    final float gridMax = 10f;
-    final float gridInterval = this.object.getGridInterval();
+    final float floorDepth = this.object.getFloorDepth();
+    final float floorWidth = this.object.getFloorWidth();
+    final float gridSize = this.object.getGridSize();
+    final float depthMin = -floorDepth/2;
+    final float depthMax = floorDepth/2;
+    final float widthMin = -floorWidth/2;
+    final float widthMax = floorWidth/2;
 
-    final int lineSize = ((int)Math.ceil((gridMax - gridMin)/gridInterval) + 1)*2;
+    final int lineSize = ((int)Math.ceil((floorWidth)/gridSize) + 1) + ((int)Math.ceil((floorDepth)/gridSize) + 1);
     initializeArrays(lineSize);
     
-    float y = gridMin;
-    for (int i = 0; y <= gridMax; i++, y = gridMin + i*gridInterval) {
-      appendVertices(new float[]{gridMin, y, 0});
-      appendVertices(new float[]{gridMax, y, 0});
+    float y = widthMin;
+    for (int i = 0; y <= widthMax; i++, y = widthMin + i*gridSize) {
+      appendVertices(new float[]{depthMin, y, 0});
+      appendVertices(new float[]{depthMax, y, 0});
     }
     
-    float x = gridMin;
-    for (int i = 0; x <= gridMax; i++, x = gridMin + i*gridInterval) {
-      appendVertices(new float[]{x, gridMin, 0});
-      appendVertices(new float[]{x, gridMax, 0});
+    float x = depthMin;
+    for (int i = 0; x <= depthMax; i++, x = depthMin + i*gridSize) {
+      appendVertices(new float[]{x, widthMin, 0});
+      appendVertices(new float[]{x, widthMax, 0});
     }
   }
 
