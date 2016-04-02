@@ -64,6 +64,9 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
   /** グリッド。 */
   private JoglGridObject grid;
+  
+  /** 床。 */
+  private JoglFloorObject floor;
 
   /** Y軸周りの回転角度 */
   private float rotationY = 0.0f;
@@ -112,6 +115,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     this.configuration = configuration;
 
     this.grid = new JoglGridObject(configuration);
+    this.floor = new JoglFloorObject(configuration);
 
     addGLEventListener(this);
     addMouseListener(this);
@@ -176,7 +180,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
     final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
 
-    drawFloor(gl);
+    this.floor.display(gl);
+    //drawFloor(gl);
 
     this.grid.display(gl);
 
@@ -191,8 +196,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   }
 
   void drawFloor(GL2 gl) {
-    final float floorWidth = 10.0f;
-    final float floorDepth = 10.0f;
+    final float floorWidth = 20.0f;
+    final float floorDepth = 20.0f;
     final float gridSize = 0.1f;
 
     final float specular[] = {0.1f, 0.1f, 0.1f, 1.0f}; // 鏡面光
