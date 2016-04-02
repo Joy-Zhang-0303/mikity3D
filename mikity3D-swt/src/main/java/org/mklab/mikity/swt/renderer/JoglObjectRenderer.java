@@ -181,8 +181,6 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
 
     this.floor.display(gl);
-    //drawFloor(gl);
-
     this.grid.display(gl);
 
     if (this.rootObjects != null) {
@@ -195,89 +193,10 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     drawShadow(gl);
   }
 
-  void drawFloor(GL2 gl) {
-    final float floorWidth = 20.0f;
-    final float floorDepth = 20.0f;
-    final float gridSize = 0.1f;
-
-    final float specular[] = {0.1f, 0.1f, 0.1f, 1.0f}; // 鏡面光
-    final float ambient[] = {0.6f, 0.6f, 0.6f, 1.0f}; // 環境光
-    final float diffuse1[] = {0.7f, 0.7f, 0.9f, 1.0f}; // 拡散光1
-    final float diffuse2[] = {0.9f, 0.9f, 0.7f, 1.0f}; // 拡散光2
-
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
-    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 120.0f);
-
-    final int numberX = (int)(floorDepth/gridSize);
-    final int numberY = (int)(floorWidth/gridSize);
-
-    for (int j = -numberY/2; j < numberY/2; j++)
-      for (int i = -numberX/2; i < numberX/2; i++) {
-        int a = i + j;
-
-        if (a % 2 == 0) {
-          gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse1, 0);
-        } else {
-          gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse2, 0);
-        }
-
-        gl.glPushMatrix();
-        final float x = i * gridSize + gridSize/2;
-        final float y = j * gridSize + gridSize/2;
-        gl.glTranslatef(x, y, 0.0f);
-        
-        float x0 = gridSize/2;
-        float y0 = -gridSize/2;
-        float z0 = 0;
-
-        float x1 = gridSize/2;
-        float y1 = gridSize/2;
-        float z1 = 0;
-        
-        float x2 = -gridSize/2;
-        float y2 = gridSize/2;
-        float z2 = 0;
-
-        
-        float x3 = gridSize/2;
-        float y3 = -gridSize/2;
-        float z3 = 0;
-        
-        float x4 = -gridSize/2;
-        float y4 = gridSize/2;
-        float z4 = 0;
-        
-        float x5 = -gridSize/2;
-        float y5 = -gridSize/2;
-        float z5 = 0;
-        
-        float nx = 0;
-        float ny = 0;
-        float nz = 1;
-
-        gl.glBegin(GL.GL_TRIANGLES);
-        
-        gl.glNormal3f(nx, ny, nz);
-        gl.glVertex3f(x0, y0, z0);
-        gl.glVertex3f(x1, y1, z1);
-        gl.glVertex3f(x2, y2, z2);
-
-        gl.glNormal3f(nx, ny, nz);
-        gl.glVertex3f(x3, y3, z3);
-        gl.glVertex3f(x4, y4, z4);
-        gl.glVertex3f(x5, y5, z5);
-
-        gl.glEnd();
-
-        gl.glPopMatrix();
-      }
-  }
-
   /**
    * オブジェクト毎に光源の方向を変え、疑似的に点光源に対する影(平行光線に対する影)を作成します。
    */
-  void drawShadow(GL2 gl) {
+  private void drawShadow(GL2 gl) {
     gl.glEnable(GL.GL_BLEND);
     gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
     gl.glDepthMask(false);
@@ -304,7 +223,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * @param orgin 物体座標系の原点
    * @return 射影行列
    */
-  double[] getShadowMatrix(TranslationModel orgin) {
+  private double[] getShadowMatrix(TranslationModel orgin) {
     final LightModel light = this.configuration.getLight();
 
     final float x = light.getX() - orgin.getX();
@@ -323,7 +242,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final float fx = 0;
     final float fy = 0;
     final float fz = 1;
-    final float fa = -0.002f; //0.2f; //床と影の干渉を防ぐため
+    final float fa = -0.002f; //0.2f; //床と影の干渉を防止
 
     // 射影行列
     final double[] matrix = new double[16];
