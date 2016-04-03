@@ -39,6 +39,7 @@ import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.config.ModelUnitModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
+import org.mklab.mikity.model.xml.simplexml.model.Messages;
 import org.mklab.mikity.swt.gui.JoglModeler;
 import org.mklab.mikity.swt.gui.ParameterInputBox;
 
@@ -54,6 +55,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
   private ColorSelectorButton colorSelector;
   private Button baseAxisCheck;
   private Button gridCheck;
+  private Button floorCheck;
   private Combo modelLengthUnitCombo;
   private Combo modelAngleUnitCombo;
   private Combo dataLengthUnitCombo;
@@ -143,14 +145,14 @@ public class ConfigurationEditor implements ModifyKeyListener {
   }
   
   /**
-   * 背景色を設定するグループを生成します。
+   * 絶対座標を設定するグループを生成します。
    * 
    * @param editGroup 親
    */   
   private void createBaseCoordinate(final Group editGroup) {
     final Group group = new Group(editGroup, SWT.NONE);
     final GridLayout layout = new GridLayout();
-    layout.numColumns = 5;
+    layout.numColumns = 8;
     group.setText(Messages.getString("ConfigurationEditor.1")); //$NON-NLS-1$
     
     final GridData unitData = new GridData(GridData.FILL_HORIZONTAL);
@@ -162,10 +164,17 @@ public class ConfigurationEditor implements ModifyKeyListener {
     
     final Label space = new Label(group, SWT.NONE);
     final GridData spaceData = new GridData();
-    spaceData.widthHint = 60;
+    spaceData.widthHint = 50;
     space.setLayoutData(spaceData);
     
     createGridCombo(group);
+    
+    final Label space2 = new Label(group, SWT.NONE);
+    final GridData spaceData2 = new GridData();
+    spaceData2.widthHint = 50;
+    space2.setLayoutData(spaceData2);
+    
+    createFloorCombo(group);
   }
 
   private void createGridCombo(final Group editGroup) {
@@ -188,6 +197,28 @@ public class ConfigurationEditor implements ModifyKeyListener {
       }
     });
   }
+  
+  private void createFloorCombo(final Group editGroup) {
+    final BaseCoordinateModel baseCoordinate = this.configuration.getBaseCoordinate();
+    
+    final Label floorLabel = new Label(editGroup, SWT.NONE);
+    floorLabel.setText(Messages.getString("ConfigurationEditor.2")); //$NON-NLS-1$
+    this.floorCheck = new Button(editGroup, SWT.CHECK);
+    this.floorCheck.setSelection(baseCoordinate.isFloorDrawing());
+    this.floorCheck.addSelectionListener(new SelectionListener() {
+
+      @Override
+      public void widgetDefaultSelected(@SuppressWarnings("unused") SelectionEvent e) {
+        // nothing to do
+      }
+
+      @Override
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+        modifyText(null);
+      }
+    });
+  }
+
 
   private void createBaseAxisCombo(final Group editGroup) {
     final BaseCoordinateModel baseCoordinate = this.configuration.getBaseCoordinate();
@@ -443,6 +474,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
     final BaseCoordinateModel baseCoordinate = new BaseCoordinateModel();
     baseCoordinate.setAxisShowing(this.baseAxisCheck.getSelection());
     baseCoordinate.setGridShowing(this.gridCheck.getSelection());
+    baseCoordinate.setFloorDrawing(this.floorCheck.getSelection());
     this.configuration.setBaseAxis(baseCoordinate);
     
     final LookAtPointModel lookAtPoint = new LookAtPointModel();
