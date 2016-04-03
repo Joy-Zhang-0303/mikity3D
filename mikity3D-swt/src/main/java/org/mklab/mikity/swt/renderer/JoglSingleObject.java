@@ -38,13 +38,10 @@ import com.jogamp.opengl.fixedfunc.GLPointerFunc;
 public class JoglSingleObject implements JoglObject {
   /** グラフィックオブジェクト。 */
   private GraphicObject object;
-  
   /** 座標軸。 */
   private GraphicObject[] axises;
-
   /** 座標軸を描画するならばtrue。 */
   private boolean isDrawingAxis = false;
-
   /** 影を描画するならばtrue。 */
   private boolean isDrawingShadow = false;
 
@@ -57,20 +54,6 @@ public class JoglSingleObject implements JoglObject {
   public JoglSingleObject(GraphicObject object, GraphicObject[] axises) {
     this.object = object;
     this.axises = axises;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void setDrawingAxis(boolean isDrawingAxis) {
-    this.isDrawingAxis = isDrawingAxis;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void setDrawingShadow(boolean isDrawingShadow) {
-    this.isDrawingShadow = isDrawingShadow;
   }
   
   /**
@@ -85,6 +68,18 @@ public class JoglSingleObject implements JoglObject {
     if (this.isDrawingAxis && ((AbstractGraphicPrimitive)this.object).isTransparent() == false) {
       drawAxies(gl);
     }
+  }
+
+  /**
+   * オブジェクトを描画します。
+   * 
+   * @param gl GL
+   */
+  private void drawObject(GL2 gl) {
+    final float[] vertexArray = this.object.getVertexArray();
+    final float[] normalVectorArray = this.object.getNormalVectorArray();
+  
+    drawTrianglePolygons(gl, vertexArray, normalVectorArray);
   }
 
   /**
@@ -205,18 +200,20 @@ public class JoglSingleObject implements JoglObject {
     final ByteBuffer buffer = ByteBuffer.allocateDirect(array.length).order(ByteOrder.nativeOrder());
     buffer.put(array).position(0);
     return buffer;
+  } 
+
+  /**
+   * {@inheritDoc}
+   */
+  public void setDrawingAxis(boolean isDrawingAxis) {
+    this.isDrawingAxis = isDrawingAxis;
   }
 
   /**
-   * オブジェクトを描画します。
-   * 
-   * @param gl GL
+   * {@inheritDoc}
    */
-  private void drawObject(GL2 gl) {
-    final float[] vertexArray = this.object.getVertexArray();
-    final float[] normalVectorArray = this.object.getNormalVectorArray();
-  
-    drawTrianglePolygons(gl, vertexArray, normalVectorArray);
+  public void setDrawingShadow(boolean isDrawingShadow) {
+    this.isDrawingShadow = isDrawingShadow;
   }
 
 }

@@ -28,6 +28,7 @@ import org.mklab.mikity.model.xml.simplexml.config.LightModel;
 import org.mklab.mikity.model.xml.simplexml.config.LookAtPointModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 import org.mklab.mikity.model.xml.simplexml.model.GroupModel;
+import org.mklab.mikity.model.xml.simplexml.model.TranslationModel;
 import org.mklab.mikity.renderer.ObjectRenderer;
 
 import android.opengl.GLSurfaceView;
@@ -53,6 +54,9 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   
   /** グリッド。 */
   private OpenglesGridObject grid; 
+  
+  /** 床。 */
+  private OpenglesFloorObject floor;
 
   /** アスペクト比 。 */
   private float aspect;
@@ -69,11 +73,11 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   private float scale = 1.0F;
 
   /** 拡散光の強さ */
-  private float[] lightDiffuse = {0.5f, 0.5f, 0.5f, 1.0f};
+  private float[] lightDiffuse = {1.0f, 1.0f, 1.0f, 1.0f};
   /** 反射光の強さ */
-  private float[] lightSpecular = {0.9f, 0.9f, 0.9f, 1.0f};
+  private float[] lightSpecular = {1.0f, 1.0f, 1.0f, 1.0f};
   /** 環境光の強さ */
-  private float[] lightAmbient = {0.2f, 0.2f, 0.2f, 1.0f};
+  private float[] lightAmbient = {0.4f, 0.4f, 0.4f, 1.0f};
   
   GLSurfaceView glView;
 
@@ -88,19 +92,20 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     this.configuration = configuration;
     
     this.grid = new OpenglesGridObject(configuration);
+    this.floor = new OpenglesFloorObject(configuration);
   }
 
   /**
    * {@inheritDoc}
    */
   public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-    gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-
-    gl.glEnable(GL10.GL_LIGHTING); //光源を有効にします 
-    gl.glEnable(GL10.GL_COLOR_MATERIAL); //カラーマテリアルを有効にします
-    gl.glEnable(GL10.GL_NORMALIZE);
+    gl.glEnable(GL10.GL_LIGHTING); //光源を有効にします
+    
+    gl.glShadeModel(GL10.GL_SMOOTH);
+    gl.glEnable(GL10.GL_NORMALIZE); //法線ベクトルの自動正規化を有効にします
     gl.glEnable(GL10.GL_LIGHT0); //0番のライトを有効にします
-    gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, 100.0f);
+    
+    gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, 120.0f);
         
     final LightModel light = this.configuration.getLight();
     final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f}; // 点光源を設定します 
@@ -117,14 +122,17 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     final ColorModel background = this.configuration.getBackground().getColor();
     gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());  
 
-    gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+    gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+    gl.glClear(GL10.GL_DEPTH_BUFFER_BIT);
 
     gl.glMatrixMode(GL10.GL_PROJECTION);
     gl.glLoadIdentity();
     GLU.gluPerspective(gl, 10.0f, this.aspect, 0.1f, 1000.0f);
 
     gl.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
-    // gl10.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
+
+    gl.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
+    gl.glCullFace(GL10.GL_BACK);
 
     // 光源位置の指定
     gl.glMatrixMode(GL10.GL_MODELVIEW);
@@ -144,6 +152,9 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     gl.glScalef(this.scale, this.scale, this.scale);
 
     final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
+
+    this.floor.display(gl);
+    this.grid.display(gl);
     
     if (this.rootObjects != null) {
       for (final OpenglesGroupObject topObject : this.rootObjects) {
@@ -152,8 +163,82 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
       }
     }
     
-    this.grid.display(gl);
+    drawShadow(gl);
   }
+  
+  /**
+   * オブジェクト毎に光源の方向を変え、疑似的に点光源に対する影(平行光線に対する影)を作成します。
+   */
+  private void drawShadow(GL10 gl) {
+    gl.glEnable(GL10.GL_BLEND);
+    gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+    gl.glDepthMask(false);
+
+    if (this.rootObjects != null) {
+      for (final OpenglesGroupObject topGroup : this.rootObjects) {
+        final float[] matrix = getShadowMatrix(topGroup.getGroup().getTranslation());
+        gl.glPushMatrix();
+        gl.glMultMatrixf(matrix, 0);
+        topGroup.setDrawingShadow(true);
+        topGroup.display(gl);
+        topGroup.setDrawingShadow(false);
+        gl.glPopMatrix();
+      }
+    }
+
+    gl.glDepthMask(true);
+    gl.glDisable(GL10.GL_BLEND);
+  }
+
+  /**
+   * 射影行列を返します。
+   * 
+   * @param orgin 物体座標系の原点
+   * @return 射影行列
+   */
+  private float[] getShadowMatrix(TranslationModel orgin) {
+    final LightModel light = this.configuration.getLight();
+
+    final float x = light.getX() - orgin.getX();
+    final float y = light.getY() - orgin.getY();
+    final float z = light.getZ() - orgin.getZ();
+
+    // 各物体の原点から光源までの距離
+    final float s = (float)Math.sqrt(x*x + y*y + z*z);
+
+    // 光源の方向ベクトル
+    final float cx = x/s;
+    final float cy = y/s;
+    final float cz = z/s;
+
+    // 床の方向ベクトル
+    final float fx = 0;
+    final float fy = 0;
+    final float fz = 1;
+    final float fa = -0.002f; //0.2f; //床と影の干渉を防止
+
+    // 射影行列
+    final float[] matrix = new float[16];
+    matrix[0] = fy*cy + fz*cz;
+    matrix[1] = -fx*cy;
+    matrix[2] = -fx*cz;
+    matrix[3] = 0;
+    matrix[4] = -fy*cx;
+    matrix[5] = fx*cx + fz*cz;
+    matrix[6] = -fy*cz;
+    matrix[7] = 0;
+    matrix[8] = -fz*cx;
+    matrix[9] = -fz*cy;
+    matrix[10] = fx*cx + fy*cy;
+    matrix[11] = 0;
+    matrix[12] = -fa*cx;
+    matrix[13] = -fa*cy;
+    matrix[14] = -fa*cz;
+    matrix[15] = fx*cx + fy*cy + fz*cz;
+
+    return matrix;
+  }
+
 
   /**
    * {@inheritDoc}
@@ -199,6 +284,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     
     this.configuration = configuration;
     this.grid.setConfiguration(configuration);    
+    this.floor.setConfiguration(configuration);    
     
     updateDisplay();
   }

@@ -23,6 +23,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.graphic.GridObject;
 import org.mklab.mikity.model.xml.simplexml.ConfigurationModel;
+import org.mklab.mikity.model.xml.simplexml.config.BaseCoordinateModel;
 import org.mklab.mikity.model.xml.simplexml.model.ColorModel;
 
 /**
@@ -62,34 +63,26 @@ public class OpenglesGridObject {
    * @param gl GL
    */
   public void display(GL10 gl) {
-    final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
-    if (isAxisShowing) {
+    final BaseCoordinateModel baseCoordinate = this.configuration.getBaseCoordinate();
+    
+    if (baseCoordinate.isAxisShowing()) {
       drawBaseAxis(gl);
     }
     
-    final boolean isGridShowing = this.configuration.getBaseCoordinate().isGridShowing();
-    if (isGridShowing) {
+    if (baseCoordinate.isGridShowing()) {
       drawGrid(gl);
     }
   }
-  
-  /**
-   * 色を適用します。
-   * 
-   * @param gl GL　
-   */
-  private void applyColor(GL10 gl, ColorModel color) {
-    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
-  }
-  
+
   /**
    * 絶対座標の座標軸を描画します。
    * 
    * @param gl GL
    */
   private void drawBaseAxis(GL10 gl) {
-    final float axisMin = -10;
-    final float axisMax = 10;
+    float floorWidth = this.configuration.getBaseCoordinate().getFloorWidth();
+    final float axisMin = -floorWidth/2;
+    final float axisMax = floorWidth/2;
     
     // x軸の描画
     applyColor(gl, new ColorModel("red")); //$NON-NLS-1$
@@ -105,6 +98,16 @@ public class OpenglesGridObject {
     applyColor(gl, new ColorModel("green")); //$NON-NLS-1$
     float[] zAxis = {0, 0, axisMin, 0, 0, axisMax}; 
     drawLines(gl, zAxis);
+  }
+
+  /**
+   * グリッドを描画します。
+   * 
+   * @param gl GL
+   */
+  private void drawGrid(GL10 gl) {
+    applyColor(gl, this.configuration.getBaseCoordinate().getGridColor());
+    drawLines(gl, this.grid.getVertexArray());
   }
   
   /**
@@ -136,15 +139,26 @@ public class OpenglesGridObject {
     buffer.put(array).position(0);
     return buffer;
   }
-
+  
   /**
-   * グリッドを描画します。
+   * 色を適用します。
    * 
-   * @param gl GL
+   * @param gl GL　
    */
-  private void drawGrid(GL10 gl) {
-    applyColor(gl, this.configuration.getBaseCoordinate().getGridColor());
-    drawLines(gl, this.grid.getVertexArray());
-  }
+  private void applyColor(GL10 gl, ColorModel color) {
+    final float ambient0 = 0.6f;
+    final float specular0 = 0.1f;
+    final float highlight = 120.0f;
 
+    final float[] ambient = {ambient0, ambient0, ambient0, 1};
+    final float[] specular = {specular0, specular0, specular0, 1};
+    final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()};
+
+    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_AMBIENT, ambient, 0);
+    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_SPECULAR, specular, 0);
+    gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, highlight);
+    
+    //gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
+  }
 }

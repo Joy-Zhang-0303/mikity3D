@@ -52,7 +52,6 @@ import com.jogamp.opengl.glu.GLU;
  * @version $Revision$, 2012/01/11
  */
 public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEventListener, MouseListener, MouseMotionListener {
-
   /** */
   private static final long serialVersionUID = 5653656698891675370L;
 
@@ -203,9 +202,9 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
     if (this.rootObjects != null) {
       for (final JoglGroupObject topGroup : this.rootObjects) {
-        final double[] matrix = getShadowMatrix(topGroup.getGroup().getTranslation());
+        final float[] matrix = getShadowMatrix(topGroup.getGroup().getTranslation());
         gl.glPushMatrix();
-        gl.glMultMatrixd(matrix, 0);
+        gl.glMultMatrixf(matrix, 0);
         topGroup.setDrawingShadow(true);
         topGroup.display(gl);
         topGroup.setDrawingShadow(false);
@@ -223,7 +222,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * @param orgin 物体座標系の原点
    * @return 射影行列
    */
-  private double[] getShadowMatrix(TranslationModel orgin) {
+  private float[] getShadowMatrix(TranslationModel orgin) {
     final LightModel light = this.configuration.getLight();
 
     final float x = light.getX() - orgin.getX();
@@ -245,7 +244,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final float fa = -0.002f; //0.2f; //床と影の干渉を防止
 
     // 射影行列
-    final double[] matrix = new double[16];
+    final float[] matrix = new float[16];
     matrix[0] = fy*cy + fz*cz;
     matrix[1] = -fx*cy;
     matrix[2] = -fx*cz;
@@ -303,6 +302,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     }
 
     this.configuration = configuration;
+    this.floor.setConfiguration(configuration);
     this.grid.setConfiguration(configuration);
 
     display();

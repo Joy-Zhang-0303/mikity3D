@@ -168,6 +168,29 @@ public class OpenglesGroupObject implements GroupObject, OpenglesObject {
     gl.glPopMatrix();
   }
   
+
+  /**
+   * {@inheritDoc}
+   */
+  public void setDrawingAxis(boolean isDrawingAxis) {
+    this.isDrawingAxis = isDrawingAxis;
+    
+    for (final OpenglesObject object : this.elements) {
+      object.setDrawingAxis(isDrawingAxis);
+    }
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void setDrawingShadow(boolean isDrawingShadow) {
+    this.isDrawingShadow = isDrawingShadow;
+    
+    for (final OpenglesObject object : this.elements) {
+      object.setDrawingShadow(isDrawingShadow);
+    }
+  }
+  
   /**
    * GLによる座標変換を適用します。
    * 
@@ -177,6 +200,7 @@ public class OpenglesGroupObject implements GroupObject, OpenglesObject {
   private void applyCoordinate(GL10 gl, Coordinate coordinateArg) {
     final TranslationModel translation = coordinateArg.getTranslation();
     final RotationModel rotation = coordinateArg.getRotation();
+    
     gl.glTranslatef(translation.getX(), translation.getY(), translation.getZ());
     gl.glRotatef((float)Math.toDegrees(rotation.getZ()), 0.0f, 0.0f, 1.0f);
     gl.glRotatef((float)Math.toDegrees(rotation.getY()), 0.0f, 1.0f, 0.0f);
@@ -213,26 +237,5 @@ public class OpenglesGroupObject implements GroupObject, OpenglesObject {
     return this.name + this.coordinate;
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public void setDrawingAxis(boolean isDrawingAxis) {
-    this.isDrawingAxis = isDrawingAxis;
-    
-    for (final OpenglesObject object : this.elements) {
-      object.setDrawingAxis(isDrawingAxis);
-    }
-  }
-  
-  /**
-   * {@inheritDoc}
-   */
-  public void setDrawingShadow(boolean isDrawingShadow) {
-    this.isDrawingShadow = isDrawingShadow;
-    
-    for (final OpenglesObject object : this.elements) {
-      object.setDrawingShadow(isDrawingShadow);
-    }
-  }
 
 }

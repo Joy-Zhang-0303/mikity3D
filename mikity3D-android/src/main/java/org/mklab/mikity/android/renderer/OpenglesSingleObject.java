@@ -19,6 +19,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
+import javax.microedition.khronos.opengles.GL;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.mklab.mikity.model.graphic.AbstractGraphicPrimitive;
@@ -82,9 +83,27 @@ public class OpenglesSingleObject implements OpenglesObject {
    * @param gl GL　
    */
   private void applyColor(GL10 gl, ColorModel color) {
-    //final ColorModel color = ((AbstractGraphicObject)this.object).getColor();
-    gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
+    if (this.isDrawingShadow) {
+      final float[] specular = {0, 0, 0, 1}; // 鏡面光
+      final float[] ambientDiffuse = {0.2f, 0.25f, 0.25f, 0.3f}; // 環境光と拡散光
+      gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_SPECULAR, specular, 0);      
+      gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_AMBIENT_AND_DIFFUSE, ambientDiffuse, 0);
+    } else {
+      final float ambient0 = 0.4f;
+      final float specular0 = 1.0f;
+      final float shiness = 80.0f;
 
+      final float[] ambient = {ambient0, ambient0, ambient0, 1}; // 環境光
+      final float[] specular = {specular0, specular0, specular0, 1}; // 鏡面光
+      final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()}; // 拡散光
+
+      gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_DIFFUSE, diffuse, 0);
+      gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_AMBIENT, ambient, 0);
+      gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_SPECULAR, specular, 0);
+      gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, shiness);
+    }
+    
+    //gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
   }
   
   /**
@@ -93,13 +112,8 @@ public class OpenglesSingleObject implements OpenglesObject {
    * @param gl GL
    */
   private void applyTransparency(GL10 gl) {
-//    if (((AbstractGraphicPrimitive)this.object).isTransparent()) {
-      gl.glEnable(GL10.GL_BLEND); // ブレンドを有効にします
-      gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
-//    } else {
-//      gl.glEnable(GL10.GL_BLEND); // ブレンドを有効にします
-//      gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ZERO);
-//    }
+    gl.glEnable(GL10.GL_BLEND); // ブレンドを有効にします
+    gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
   }
   
   /**
