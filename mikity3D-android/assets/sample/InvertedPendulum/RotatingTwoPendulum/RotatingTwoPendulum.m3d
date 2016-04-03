@@ -87,6 +87,7 @@
          <gridSize>0.05</gridSize>
          <isAxisShowing>false</isAxisShowing>
          <isGridShowing>false</isGridShowing>
+         <isFloorDrawing>true</isFloorDrawing>
       </baseCoordinate>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="5.0" y="0.0" z="3.0"/>

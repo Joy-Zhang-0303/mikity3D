@@ -93,8 +93,9 @@
       <baseCoordinate>
          <gridColor r="20" g="20" b="20" alpha="255"/>
          <gridSize>0.05</gridSize>
-         <isAxisShowing>false</isAxisShowing>
-         <isGridShowing>true</isGridShowing>
+         <isAxisShowing>true</isAxisShowing>
+         <isGridShowing>false</isGridShowing>
+         <isFloorDrawing>true</isFloorDrawing>
       </baseCoordinate>
       <light x="10.0" y="10.0" z="20.0"/>
       <eye x="5.0" y="3.0" z="1.0"/>
