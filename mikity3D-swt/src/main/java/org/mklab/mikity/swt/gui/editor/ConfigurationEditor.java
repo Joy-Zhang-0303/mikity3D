@@ -160,7 +160,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
     group.setLayoutData(unitData);
     group.setLayout(layout);
     
-    createBaseAxisCombo(group);
+    createFloorCombo(group);
     
     final Label space = new Label(group, SWT.NONE);
     final GridData spaceData = new GridData();
@@ -174,7 +174,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
     spaceData2.widthHint = 50;
     space2.setLayoutData(spaceData2);
     
-    createFloorCombo(group);
+    createBaseAxisCombo(group);
   }
 
   private void createGridCombo(final Group editGroup) {
