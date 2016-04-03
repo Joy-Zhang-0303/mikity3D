@@ -58,6 +58,7 @@
     <string name="edit">Edit</string>
     <string name="eyePosition">Eye position</string>
     <string name="fileName">...</string>
+    <string name="floorDrawingTextView">Floor Drawing</string>
     <string name="gridShowingButton">gridShowingkButton</string>
     <string name="gridShowingTextView">Grid Showing</string>
     <string name="group">group</string>

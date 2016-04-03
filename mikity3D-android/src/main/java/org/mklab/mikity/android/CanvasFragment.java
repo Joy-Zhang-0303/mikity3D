@@ -820,6 +820,31 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
     this.objectRenderer.resetToInitialState();
     this.objectRenderer.updateDisplay();
   }
+  
+  /**
+   * 床を表示するか設定します。
+   * 
+   * @param isFloorDrawing 表示するならばtrue
+   */
+  public void setFloorDrawing(boolean isFloorDrawing) {
+    if (this.root == null) {
+      return;
+    }
+    this.root.getConfiguration(0).getBaseCoordinate().setFloorDrawing(isFloorDrawing);
+  }
+  
+
+  /**
+   * 床を表示するか判定します。
+   * 
+   * @return 表示するならばtrue
+   */
+  public boolean isFloorDrawing() {
+    if (this.root == null) {
+      return false;
+    }
+    return this.root.getConfiguration(0).getBaseCoordinate().isFloorDrawing();
+  }
 
   /**
    * グリッドを表示するか設定します。
@@ -832,7 +857,7 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
     }
     this.root.getConfiguration(0).getBaseCoordinate().setGridShowing(isGridShowing);
   }
-
+  
   /**
    * グリッドを表示するか判定します。
    * 

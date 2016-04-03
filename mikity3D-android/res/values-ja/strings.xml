@@ -58,6 +58,7 @@
     <string name="edit">編集</string>
     <string name="eyePosition">視点</string>
     <string name="fileName">...</string>
+    <string name="floorDrawingTextView">床表示</string>
     <string name="gridShowingButton">グリッド表示ボタン</string>
     <string name="gridShowingTextView">グリッド表示</string>
     <string name="group">グループ</string>

@@ -72,6 +72,8 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
   CompoundButton rotationLockButton;
   /** グリッドを表示するならばtrue。 */
   CompoundButton gridShowingButton;
+  /** 床を表示するならばtrue。 */
+  CompoundButton floorDrawingButton;
   /** 座標軸を表示するならばtrue。 */
   CompoundButton axisShowingButton;
 
@@ -146,7 +148,7 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
     createAnimationSpeedComponent(this.view);
     createEnvironmentComponent(this.view);
     createSensorComponent(this.view);
-    createGridAxisComponent(this.view);
+    createFloorGridAxisComponent(this.view);
   }
 
   private void createAnimationSpeedComponent(final View mainView) {
@@ -334,7 +336,19 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
     });
   }
 
-  private void createGridAxisComponent(final View mainView) {
+  private void createFloorGridAxisComponent(final View mainView) {
+    this.floorDrawingButton = (CompoundButton)mainView.findViewById(R.id.floorDrawingButton);
+    this.floorDrawingButton.setChecked(this.canvasFragment.isFloorDrawing());
+    this.floorDrawingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        SettingsFragment.this.canvasFragment.setFloorDrawing(isChecked);
+      }
+    });
+
     this.gridShowingButton = (CompoundButton)mainView.findViewById(R.id.gridShowingButton);
     this.gridShowingButton.setChecked(this.canvasFragment.isGridShowing());
     this.gridShowingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
