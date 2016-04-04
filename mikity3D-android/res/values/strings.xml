@@ -108,6 +108,7 @@
     <string name="save">Save</string>
     <string name="saveAs">Save As...</string>
     <string name="savedSuccessfully">Your data was saved successfully</string>
+    <string name="shadowDrawingTextView">Shadow Drawing</string>
     <string name="selectModel">Select Model</string>
     <string name="settings">Settings</string>
     <string name="size_of_facets">Size of facets</string>

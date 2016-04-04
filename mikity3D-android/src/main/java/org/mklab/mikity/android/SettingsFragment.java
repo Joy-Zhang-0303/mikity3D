@@ -74,6 +74,8 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
   CompoundButton gridShowingButton;
   /** 床を表示するならばtrue。 */
   CompoundButton floorDrawingButton;
+  /** 影を表示するならばtrue。 */
+  CompoundButton shadowDrawingButton;
   /** 座標軸を表示するならばtrue。 */
   CompoundButton axisShowingButton;
 
@@ -358,6 +360,18 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
        */
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         SettingsFragment.this.canvasFragment.setGridShowing(isChecked);
+      }
+    });
+    
+    this.shadowDrawingButton = (CompoundButton)mainView.findViewById(R.id.shadowDrawingButton);
+    this.shadowDrawingButton.setChecked(this.canvasFragment.isShadowDrawing());
+    this.shadowDrawingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        SettingsFragment.this.canvasFragment.setShadowDrawing(isChecked);
       }
     });
 

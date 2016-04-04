@@ -109,6 +109,7 @@
     <string name="save">上書き保存</string>
     <string name="saveAs">名前を付けて保存</string>
     <string name="savedSuccessfully">データは正常に保存されました。</string>
+    <string name="shadowDrawingTextView">影表示</string>
     <string name="size_of_facets">三角形の数</string>
     <string name="source">ソース</string>
     <string name="sourceDataIsNotReady">ソースデータが未設定です。</string>

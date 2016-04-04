@@ -845,6 +845,32 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
     }
     return this.root.getConfiguration(0).getBaseCoordinate().isFloorDrawing();
   }
+  
+  
+  /**
+   * 影を表示するか設定します。
+   * 
+   * @param isShadowDrawing 表示するならばtrue
+   */
+  public void setShadowDrawing(boolean isShadowDrawing) {
+    if (this.root == null) {
+      return;
+    }
+    this.root.getConfiguration(0).getBaseCoordinate().setShadowDrawing(isShadowDrawing);
+  }
+  
+
+  /**
+   * 影を表示するか判定します。
+   * 
+   * @return 表示するならばtrue
+   */
+  public boolean isShadowDrawing() {
+    if (this.root == null) {
+      return false;
+    }
+    return this.root.getConfiguration(0).getBaseCoordinate().isShadowDrawing();
+  }
 
   /**
    * グリッドを表示するか設定します。

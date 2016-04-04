@@ -366,6 +366,38 @@
                 <TableRow>
 
                     <TextView
+                        android:id="@+id/shadowDrawingTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/shadowDrawingTextView"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/shadowDrawingButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:checked="false"
+                        android:paddingRight="40dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
+
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="20dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
                         android:id="@+id/axisShowingTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

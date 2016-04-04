@@ -151,19 +151,23 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
 
     gl.glScalef(this.scale, this.scale, this.scale);
 
-    final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
-
     this.floor.display(gl);
     this.grid.display(gl);
     
     if (this.rootObjects != null) {
+      final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
+      
       for (final OpenglesGroupObject topObject : this.rootObjects) {
         topObject.setDrawingAxis(isAxisShowing);
         topObject.display(gl);
       }
     }
     
-    drawShadow(gl);
+    final boolean isShadowDrawing = this.configuration.getBaseCoordinate().isShadowDrawing();
+    
+    if (isShadowDrawing) { 
+      drawShadow(gl);
+    }
   }
   
   /**
