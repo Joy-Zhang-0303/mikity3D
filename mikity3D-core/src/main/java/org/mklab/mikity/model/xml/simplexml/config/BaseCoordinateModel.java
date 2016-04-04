@@ -56,6 +56,10 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
   /** 床を表示するならばtrue。 */
   @Element(name="isFloorDrawing", required=false)
   private boolean isFloorDrawing;
+  
+  /** 影を表示するならばtrue。 */
+  @Element(name="isShadowDrawing", required=false)
+  private boolean isShadowDrawing;
 
   /**
    * 新しく生成された<code>BaseCoordinateModel</code>オブジェクトを初期化します。
@@ -68,6 +72,7 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
     this.isAxisShowing = true;
     this.isGridShowing = false;
     this.isFloorDrawing = true;
+    this.isShadowDrawing = true;
   }
   
   /**
@@ -84,6 +89,7 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
       ans.isAxisShowing = this.isAxisShowing;
       ans.isGridShowing = this.isGridShowing;
       ans.isFloorDrawing = this.isFloorDrawing;
+      ans.isShadowDrawing = this.isShadowDrawing;
       return ans;
     } catch (CloneNotSupportedException e) {
       throw new InternalError(e);
@@ -104,6 +110,7 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
     result = prime * result + (this.isAxisShowing ? 1231 : 1237);
     result = prime * result + (this.isGridShowing ? 1231 : 1237);
     result = prime * result + (this.isFloorDrawing ? 1231 : 1237);
+    result = prime * result + (this.isShadowDrawing ? 1231 : 1237);
     return result;
   }
 
@@ -145,6 +152,9 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
       return false;
     }
     if (this.isFloorDrawing != other.isFloorDrawing) {
+      return false;
+    }
+    if (this.isShadowDrawing != other.isShadowDrawing) {
       return false;
     }
     return true;
@@ -256,6 +266,24 @@ public class BaseCoordinateModel implements Serializable, Cloneable {
    */
   public void setFloorDrawing(boolean isFloorDrawing) {
     this.isFloorDrawing = isFloorDrawing;
+  }
+  
+  /**
+   * 影を表示するか判定します。
+   * 
+   * @return 影を表示するならばtrue
+   */
+  public boolean isShadowDrawing() {
+    return this.isShadowDrawing;
+  }
+  
+  /**
+   * 影を表示するか設定します。
+   * 
+   * @param isShadowDrawing 影を表示するならばtrue
+   */
+  public void setShadowDrawing(boolean isShadowDrawing) {
+    this.isShadowDrawing = isShadowDrawing;
   }
 
   /**

@@ -53,9 +53,12 @@ import org.mklab.mikity.swt.gui.ParameterInputBox;
 public class ConfigurationEditor implements ModifyKeyListener {
   Shell sShell = null;
   private ColorSelectorButton colorSelector;
+
+  private Button floorCheck;
+  private Button shadowCheck;
   private Button baseAxisCheck;
   private Button gridCheck;
-  private Button floorCheck;
+  
   private Combo modelLengthUnitCombo;
   private Combo modelAngleUnitCombo;
   private Combo dataLengthUnitCombo;
@@ -152,7 +155,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
   private void createBaseCoordinate(final Group editGroup) {
     final Group group = new Group(editGroup, SWT.NONE);
     final GridLayout layout = new GridLayout();
-    layout.numColumns = 8;
+    layout.numColumns = 11;
     group.setText(Messages.getString("ConfigurationEditor.1")); //$NON-NLS-1$
     
     final GridData unitData = new GridData(GridData.FILL_HORIZONTAL);
@@ -164,38 +167,24 @@ public class ConfigurationEditor implements ModifyKeyListener {
     
     final Label space = new Label(group, SWT.NONE);
     final GridData spaceData = new GridData();
-    spaceData.widthHint = 50;
+    spaceData.widthHint = 30;
     space.setLayoutData(spaceData);
     
-    createGridCombo(group);
+    createShadowCombo(group);
     
     final Label space2 = new Label(group, SWT.NONE);
     final GridData spaceData2 = new GridData();
-    spaceData2.widthHint = 50;
+    spaceData2.widthHint = 30;
     space2.setLayoutData(spaceData2);
     
-    createBaseAxisCombo(group);
-  }
-
-  private void createGridCombo(final Group editGroup) {
-    final BaseCoordinateModel baseCoordinate = this.configuration.getBaseCoordinate();
+    createGridCombo(group);
     
-    final Label gridLabel = new Label(editGroup, SWT.NONE);
-    gridLabel.setText(Messages.getString("ConfigurationEditor.0")); //$NON-NLS-1$
-    this.gridCheck = new Button(editGroup, SWT.CHECK);
-    this.gridCheck.setSelection(baseCoordinate.isGridShowing());
-    this.gridCheck.addSelectionListener(new SelectionListener() {
+    final Label space3 = new Label(group, SWT.NONE);
+    final GridData spaceData3 = new GridData();
+    spaceData3.widthHint = 30;
+    space3.setLayoutData(spaceData3);
 
-      @Override
-      public void widgetDefaultSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        // nothing to do
-      }
-
-      @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
-        modifyText(null);
-      }
-    });
+    createBaseAxisCombo(group);
   }
   
   private void createFloorCombo(final Group editGroup) {
@@ -218,7 +207,27 @@ public class ConfigurationEditor implements ModifyKeyListener {
       }
     });
   }
+  
+  private void createShadowCombo(final Group editGroup) {
+    final BaseCoordinateModel baseCoordinate = this.configuration.getBaseCoordinate();
+    
+    final Label shadowLabel = new Label(editGroup, SWT.NONE);
+    shadowLabel.setText(Messages.getString("ConfigurationEditor.3")); //$NON-NLS-1$
+    this.shadowCheck = new Button(editGroup, SWT.CHECK);
+    this.shadowCheck.setSelection(baseCoordinate.isShadowDrawing());
+    this.shadowCheck.addSelectionListener(new SelectionListener() {
 
+      @Override
+      public void widgetDefaultSelected(@SuppressWarnings("unused") SelectionEvent e) {
+        // nothing to do
+      }
+
+      @Override
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+        modifyText(null);
+      }
+    });
+  }
 
   private void createBaseAxisCombo(final Group editGroup) {
     final BaseCoordinateModel baseCoordinate = this.configuration.getBaseCoordinate();
@@ -228,6 +237,27 @@ public class ConfigurationEditor implements ModifyKeyListener {
     this.baseAxisCheck = new Button(editGroup, SWT.CHECK);
     this.baseAxisCheck.setSelection(baseCoordinate.isAxisShowing());
     this.baseAxisCheck.addSelectionListener(new SelectionListener() {
+
+      @Override
+      public void widgetDefaultSelected(@SuppressWarnings("unused") SelectionEvent e) {
+        // nothing to do
+      }
+
+      @Override
+      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+        modifyText(null);
+      }
+    });
+  }
+  
+  private void createGridCombo(final Group editGroup) {
+    final BaseCoordinateModel baseCoordinate = this.configuration.getBaseCoordinate();
+    
+    final Label gridLabel = new Label(editGroup, SWT.NONE);
+    gridLabel.setText(Messages.getString("ConfigurationEditor.0")); //$NON-NLS-1$
+    this.gridCheck = new Button(editGroup, SWT.CHECK);
+    this.gridCheck.setSelection(baseCoordinate.isGridShowing());
+    this.gridCheck.addSelectionListener(new SelectionListener() {
 
       @Override
       public void widgetDefaultSelected(@SuppressWarnings("unused") SelectionEvent e) {
@@ -475,6 +505,7 @@ public class ConfigurationEditor implements ModifyKeyListener {
     baseCoordinate.setAxisShowing(this.baseAxisCheck.getSelection());
     baseCoordinate.setGridShowing(this.gridCheck.getSelection());
     baseCoordinate.setFloorDrawing(this.floorCheck.getSelection());
+    baseCoordinate.setShadowDrawing(this.shadowCheck.getSelection());
     this.configuration.setBaseAxis(baseCoordinate);
     
     final LookAtPointModel lookAtPoint = new LookAtPointModel();

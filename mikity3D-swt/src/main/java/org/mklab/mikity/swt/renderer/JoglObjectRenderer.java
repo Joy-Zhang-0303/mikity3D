@@ -177,19 +177,23 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
     gl.glScalef(this.scale, this.scale, this.scale);
 
-    final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
-
     this.floor.display(gl);
     this.grid.display(gl);
-
+    
     if (this.rootObjects != null) {
+      final boolean isAxisShowing = this.configuration.getBaseCoordinate().isAxisShowing();
+      
       for (final JoglGroupObject topGroup : this.rootObjects) {
         topGroup.setDrawingAxis(isAxisShowing);
         topGroup.display(gl);
       }
     }
+    
+    final boolean isShadowDrawing = this.configuration.getBaseCoordinate().isShadowDrawing();
 
-    drawShadow(gl);
+    if (isShadowDrawing) {
+      drawShadow(gl);
+    }
   }
 
   /**
