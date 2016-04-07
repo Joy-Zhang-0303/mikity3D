@@ -154,11 +154,9 @@ public class OpenglesGridObject {
     final float[] specular = {specular0, specular0, specular0, 1};
     final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()};
 
-    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_DIFFUSE, diffuse, 0);
-    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_AMBIENT, ambient, 0);
-    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_SPECULAR, specular, 0);
-    gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, highlight);
-    
-    //gl.glColor4f(color.getRf(), color.getGf(), color.getBf(), color.getAlphaf());
+    gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, ambient, 0);
+    gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_SPECULAR, specular, 0);
+    gl.glMaterialf(GL10.GL_FRONT_AND_BACK, GL10.GL_SHININESS, highlight);
   }
 }

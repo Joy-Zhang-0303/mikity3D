@@ -132,13 +132,13 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     gl.glCullFace(GL.GL_BACK); // 裏面を削除
 
     gl.glEnable(GLLightingFunc.GL_LIGHTING); //光源を有効にします
-
+    gl.glEnable(GLLightingFunc.GL_LIGHT0); //0番のライトを有効にします
+    
     gl.glClear(GL.GL_DEPTH_BITS); //奥行きバッファをクリア
     gl.glEnable(GL.GL_DEPTH_TEST); // 奥行きバッファ(判定)を有効にします 
 
     gl.glShadeModel(GLLightingFunc.GL_SMOOTH);
     gl.glEnable(GLLightingFunc.GL_NORMALIZE); //法線ベクトルの自動正規化を有効にします
-    gl.glEnable(GLLightingFunc.GL_LIGHT0); //0番のライトを有効にします
 
     gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 120.0f);
   }
@@ -150,11 +150,11 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   public void display(GLAutoDrawable drawable) {
     final GL2 gl = (GL2)drawable.getGL();
 
-    final ColorModel background = this.configuration.getBackground().getColor();
-    gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());
-
     gl.glClear(GL.GL_COLOR_BUFFER_BIT);
     gl.glClear(GL.GL_DEPTH_BUFFER_BIT);
+
+    final ColorModel background = this.configuration.getBackground().getColor();
+    gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());
 
     gl.glLoadIdentity();
 
@@ -329,9 +329,11 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   public void reshape(GLAutoDrawable drawable, @SuppressWarnings("unused") int x, @SuppressWarnings("unused") int y, int width, int height) {
     final GL2 gl = (GL2)drawable.getGL();
     gl.glViewport(0, 0, width, height);
+    
     gl.glMatrixMode(GLMatrixFunc.GL_PROJECTION);
     gl.glLoadIdentity();
-    this.glu.gluPerspective(10.0, (double)width / (double)height, 0.1, 1000.0);
+    final double aspect = (double)width / (double)height;
+    this.glu.gluPerspective(10.0, aspect, 0.1, 1000.0);
     gl.glMatrixMode(GLMatrixFunc.GL_MODELVIEW);
   }
 

@@ -158,9 +158,9 @@ public class JoglGridObject {
     final float[] specular = {specular0, specular0, specular0, 1};
     final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()};
 
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
-    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, highlight);
+    gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_AMBIENT, ambient, 0);
+    gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_SPECULAR, specular, 0);
+    gl.glMaterialf(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_SHININESS, highlight);
   }
 }

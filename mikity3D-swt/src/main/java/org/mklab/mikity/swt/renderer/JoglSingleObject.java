@@ -91,8 +91,8 @@ public class JoglSingleObject implements JoglObject {
     if (this.isDrawingShadow) {
       final float[] specular = {0, 0, 0, 1}; // 鏡面光
       final float[] ambientDiffuse = {0.2f, 0.25f, 0.25f, 0.3f}; // 環境光と拡散光
-      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);      
-      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT_AND_DIFFUSE, ambientDiffuse, 0);
+      gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_SPECULAR, specular, 0);      
+      gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_AMBIENT_AND_DIFFUSE, ambientDiffuse, 0);
     } else {
       final float ambient0 = 0.4f;
       final float specular0 = 1.0f;
@@ -102,10 +102,10 @@ public class JoglSingleObject implements JoglObject {
       final float[] specular = {specular0, specular0, specular0, 1}; // 鏡面光
       final float[] diffuse = {color.getRf(), color.getGf(), color.getBf(), color.getAlphaf()}; // 拡散光
 
-      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
-      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
-      gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
-      gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, shiness);
+      gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
+      gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_AMBIENT, ambient, 0);
+      gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_SPECULAR, specular, 0);
+      gl.glMaterialf(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_SHININESS, shiness);
     }
   }
 

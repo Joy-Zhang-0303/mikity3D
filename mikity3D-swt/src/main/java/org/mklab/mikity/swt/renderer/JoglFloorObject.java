@@ -86,10 +86,10 @@ public class JoglFloorObject {
     final float ambient[] = {0.6f, 0.6f, 0.6f, 1.0f}; // 環境光
     final float diffuse[] = {0.9f, 0.9f, 0.7f, 1.0f}; // 拡散光
 
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
-    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 120.0f);
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_SPECULAR, specular, 0);
+    gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_AMBIENT, ambient, 0);
+    gl.glMaterialf(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_SHININESS, 120.0f);
+    gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
   }
   
   /**
@@ -102,10 +102,10 @@ public class JoglFloorObject {
     final float ambient[] = {0.6f, 0.6f, 0.6f, 1.0f}; // 環境光
     final float diffuse[] = {0.7f, 0.7f, 0.9f, 1.0f}; // 拡散光
 
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specular, 0);
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_AMBIENT, ambient, 0);
-    gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 120.0f);
-    gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_SPECULAR, specular, 0);
+    gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_AMBIENT, ambient, 0);
+    gl.glMaterialf(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_SHININESS, 120.0f);
+    gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GLLightingFunc.GL_DIFFUSE, diffuse, 0);
   }
   
   /**

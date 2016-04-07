@@ -59,7 +59,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   private OpenglesFloorObject floor;
 
   /** アスペクト比 。 */
-  private float aspect;
+  //private float aspect;
   
   /** Y軸周りの回転角度[rad] */
   private float rotationY = 0.0f;
@@ -99,52 +99,46 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
    * {@inheritDoc}
    */
   public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+    gl.glEnable(GL10.GL_CULL_FACE);  // 裏面削除を有効にします 
+    gl.glCullFace(GL10.GL_BACK); // 裏面を削除
+    
     gl.glEnable(GL10.GL_LIGHTING); //光源を有効にします
+    gl.glEnable(GL10.GL_LIGHT0); //0番のライトを有効にします
+    
+    gl.glClear(GL10.GL_DEPTH_BITS); //奥行きバッファをクリア
+    gl.glEnable(GL10.GL_DEPTH_TEST); // 奥行きバッファ(判定)を有効にします
     
     gl.glShadeModel(GL10.GL_SMOOTH);
     gl.glEnable(GL10.GL_NORMALIZE); //法線ベクトルの自動正規化を有効にします
-    gl.glEnable(GL10.GL_LIGHT0); //0番のライトを有効にします
     
-    gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, 120.0f);
-        
-    final LightModel light = this.configuration.getLight();
-    final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f}; // 点光源を設定します 
-    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, lightLocation, 0); // 光源を設定します 
-    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
-    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
-    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
+    gl.glMaterialf(GL10.GL_FRONT_AND_BACK, GL10.GL_SHININESS, 120.0f);
   }
 
   /**
    * {@inheritDoc}
    */
   public void onDrawFrame(GL10 gl) {
+    gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+    gl.glClear(GL10.GL_DEPTH_BUFFER_BIT);
+    
     final ColorModel background = this.configuration.getBackground().getColor();
     gl.glClearColor(background.getRf(), background.getGf(), background.getBf(), background.getAlphaf());  
 
-    gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-    gl.glClear(GL10.GL_DEPTH_BUFFER_BIT);
-
-    gl.glMatrixMode(GL10.GL_PROJECTION);
     gl.glLoadIdentity();
-    GLU.gluPerspective(gl, 10.0f, this.aspect, 0.1f, 1000.0f);
-
-    gl.glEnable(GL10.GL_DEPTH_TEST); // 奥行き判定を有効にします 
-
-    gl.glEnable(GL10.GL_CULL_FACE); // 裏返ったポリゴンを描画しません 
-    gl.glCullFace(GL10.GL_BACK);
-
-    // 光源位置の指定
-    gl.glMatrixMode(GL10.GL_MODELVIEW);
-    gl.glLoadIdentity();
+    
     final LightModel light = this.configuration.getLight();
-    final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f};
-    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, lightLocation, 0); // 平行光源を設定します 
+    final float[] lightLocation = new float[]{light.getX(), light.getY(), light.getZ(), 1.0f}; // 点光源を設定します 
+    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, lightLocation, 0); // 光源を設定します 
+    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, this.lightSpecular, 0); // 反射光の強さを設定します 
+    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, this.lightDiffuse, 0); // 拡散光の強さを設定します 
+    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, this.lightAmbient, 0); // 環境光の強さを設定します
 
+    gl.glLoadIdentity();
+    
     final EyeModel eye = this.configuration.getEye();
     final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
     GLU.gluLookAt(gl, eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0F, 0.0F, 1.0F);
-
+    
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
     gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
@@ -248,9 +242,13 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
    * {@inheritDoc}
    */
   public void onSurfaceChanged(GL10 gl, int width, int height) {
-    //ビューポート変換
     gl.glViewport(0, 0, width, height);
-    this.aspect = (float)width / (float)height;
+    
+    gl.glMatrixMode(GL10.GL_PROJECTION);
+    gl.glLoadIdentity();
+    final float aspect = (float)width / (float)height;
+    GLU.gluPerspective(gl, 10.0f, aspect, 0.1f, 1000.0f);
+    gl.glMatrixMode(GL10.GL_MODELVIEW);
   }
 
   /**

@@ -83,10 +83,10 @@ public class OpenglesFloorObject {
     final float ambient[] = {0.6f, 0.6f, 0.6f, 1.0f}; // 環境光
     final float diffuse[] = {0.9f, 0.9f, 0.7f, 1.0f}; // 拡散光
 
-    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_SPECULAR, specular, 0);
-    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_AMBIENT, ambient, 0);
-    gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, 120.0f);
-    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_SPECULAR, specular, 0);
+    gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, ambient, 0);
+    gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialf(GL10.GL_FRONT_AND_BACK, GL10.GL_SHININESS, 120.0f);
   }
   
   /**
@@ -99,10 +99,10 @@ public class OpenglesFloorObject {
     final float ambient[] = {0.6f, 0.6f, 0.6f, 1.0f}; // 環境光
     final float diffuse[] = {0.7f, 0.7f, 0.9f, 1.0f}; // 拡散光
 
-    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_SPECULAR, specular, 0);
-    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_AMBIENT, ambient, 0);
-    gl.glMaterialf(GL10.GL_FRONT, GL10.GL_SHININESS, 120.0f);
-    gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_SPECULAR, specular, 0);
+    gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, ambient, 0);
+    gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, diffuse, 0);
+    gl.glMaterialf(GL10.GL_FRONT_AND_BACK, GL10.GL_SHININESS, 120.0f);
   }
   
   /**
