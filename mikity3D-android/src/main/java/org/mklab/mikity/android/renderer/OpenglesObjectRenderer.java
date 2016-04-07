@@ -49,7 +49,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   /** ルートオブジェクト。 */
   private List<OpenglesGroupObject> rootObjects;
 
-  /** 設定。 */
+  /** 環境。 */
   private ConfigurationModel configuration;
   
   /** グリッド。 */
@@ -57,9 +57,6 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   
   /** 床。 */
   private OpenglesFloorObject floor;
-
-  /** アスペクト比 。 */
-  //private float aspect;
   
   /** Y軸周りの回転角度[rad] */
   private float rotationY = 0.0f;
@@ -79,6 +76,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
   /** 環境光の強さ */
   private float[] lightAmbient = {0.4f, 0.4f, 0.4f, 1.0f};
   
+  /** GLサーフェイスビュー。 */
   GLSurfaceView glView;
 
   /**

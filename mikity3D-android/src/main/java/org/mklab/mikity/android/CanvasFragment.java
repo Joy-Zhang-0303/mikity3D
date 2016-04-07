@@ -117,7 +117,7 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
   private AnimationTask animationTask;
 
   /** プログレスダイアログ */
-  private ProgressDialog progressDialog;
+  ProgressDialog progressDialog;
 
   /** ポーズボタンが押されたならばtrue */
   private boolean isPaused = false;
