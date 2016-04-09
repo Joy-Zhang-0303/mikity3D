@@ -39,6 +39,7 @@ import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLEventListener;
+import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLJPanel;
 import com.jogamp.opengl.fixedfunc.GLLightingFunc;
 import com.jogamp.opengl.fixedfunc.GLMatrixFunc;
@@ -102,6 +103,14 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   private float startScale;
 
   private GLU glu = new GLU();
+  
+  final static GLCapabilities capabilities;
+  
+  static {
+    final GLProfile profile = GLProfile.getDefault();
+    capabilities = new GLCapabilities(profile);
+    capabilities.setStencilBits(8);
+  }
 
   /**
    * 新しく生成された<code>JoglModelCanvas</code>オブジェクトを初期化します。
@@ -109,7 +118,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * @param configuration 環境
    */
   public JoglObjectRenderer(ConfigurationModel configuration) {
-    super(new GLCapabilities(null));
+    super(capabilities);
 
     this.configuration = configuration;
 
@@ -139,7 +148,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
 
     gl.glShadeModel(GLLightingFunc.GL_SMOOTH);
     gl.glEnable(GLLightingFunc.GL_NORMALIZE); //法線ベクトルの自動正規化を有効にします
-
+    
     gl.glMaterialf(GL.GL_FRONT, GLLightingFunc.GL_SHININESS, 120.0f);
   }
 
@@ -170,13 +179,20 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final EyeModel eye = this.configuration.getEye();
     final LookAtPointModel lookAtPoint = this.configuration.getLookAtPoint();
     this.glu.gluLookAt(eye.getX(), eye.getY(), eye.getZ(), lookAtPoint.getX(), lookAtPoint.getY(), lookAtPoint.getZ(), 0.0, 0.0, 1.0);
-
+    
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
     gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
-
     gl.glScalef(this.scale, this.scale, this.scale);
 
+    // Setting for drawing shadow
+    gl.glEnable(GL.GL_STENCIL_TEST);
+    gl.glClearStencil(0x0);
+    gl.glClear(GL.GL_STENCIL_BUFFER_BIT);
+    gl.glStencilFunc(GL.GL_ALWAYS, 1, 1);
+    gl.glStencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_REPLACE);
+    gl.glStencilMask(0xFF);
+    
     this.floor.display(gl);
     this.grid.display(gl);
     
@@ -192,8 +208,13 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final boolean isShadowDrawing = this.configuration.getBaseCoordinate().isShadowDrawing();
 
     if (isShadowDrawing) {
+      gl.glStencilFunc(GL.GL_EQUAL, 1, ~0);
+      gl.glStencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_INCR);
+
       drawShadow(gl);
     }
+    
+    gl.glDisable(GL.GL_STENCIL_TEST);
   }
 
   /**
@@ -203,6 +224,10 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     gl.glEnable(GL.GL_BLEND);
     gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
     gl.glDepthMask(false);
+
+    //床と影の干渉を防止
+    gl.glPolygonOffset(-1, -1);
+    gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
 
     if (this.rootObjects != null) {
       for (final JoglGroupObject topGroup : this.rootObjects) {
@@ -215,6 +240,8 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
         gl.glPopMatrix();
       }
     }
+    
+    gl.glDisable(GL.GL_POLYGON_OFFSET_FILL);
 
     gl.glDepthMask(true);
     gl.glDisable(GL.GL_BLEND);
@@ -245,7 +272,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
     final float fx = 0;
     final float fy = 0;
     final float fz = 1;
-    final float fa = -0.002f; //0.2f; //床と影の干渉を防止
+    final float fa = 0;//-0.004f; //床と影の干渉を防止
 
     // 射影行列
     final float[] matrix = new float[16];

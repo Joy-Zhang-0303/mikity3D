@@ -145,6 +145,7 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
     this.view.setOnTouchListener(this);
 
     this.glView = (GLSurfaceView)this.view.findViewById(R.id.glview1);
+    this.glView.setEGLConfigChooser(8, 8, 8, 8, 16, 8);
     
     getResources();
 

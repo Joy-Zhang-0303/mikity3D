@@ -140,9 +140,16 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     gl.glTranslatef(0.0f, this.translationY, -this.translationZ);
     gl.glRotatef(this.rotationY, 0.0f, 1.0f, 0.0f);
     gl.glRotatef(this.rotationZ, 0.0f, 0.0f, 1.0f);
-
     gl.glScalef(this.scale, this.scale, this.scale);
 
+    // Setting for drawing shadow
+    gl.glEnable(GL10.GL_STENCIL_TEST);
+    gl.glClearStencil(0x0);
+    gl.glClear(GL10.GL_STENCIL_BUFFER_BIT);
+    gl.glStencilFunc(GL10.GL_ALWAYS, 1, 1);
+    gl.glStencilOp(GL10.GL_KEEP, GL10.GL_KEEP, GL10.GL_REPLACE);
+    gl.glStencilMask(0xFF);
+    
     this.floor.display(gl);
     this.grid.display(gl);
     
@@ -157,9 +164,14 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     
     final boolean isShadowDrawing = this.configuration.getBaseCoordinate().isShadowDrawing();
     
-    if (isShadowDrawing) { 
+    if (isShadowDrawing) {
+      gl.glStencilFunc(GL10.GL_EQUAL, 1, ~0);
+      gl.glStencilOp(GL10.GL_KEEP, GL10.GL_KEEP, GL10.GL_INCR);
+      
       drawShadow(gl);
     }
+    
+    gl.glDisable(GL10.GL_STENCIL_TEST);
   }
   
   /**
@@ -170,6 +182,10 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
     gl.glDepthMask(false);
 
+    //床と影の干渉を防止
+    gl.glPolygonOffset(-1, -1);
+    gl.glEnable(GL10.GL_POLYGON_OFFSET_FILL);
+    
     if (this.rootObjects != null) {
       for (final OpenglesGroupObject topGroup : this.rootObjects) {
         final float[] matrix = getShadowMatrix(topGroup.getGroup().getTranslation());
@@ -181,6 +197,8 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
         gl.glPopMatrix();
       }
     }
+    
+    gl.glDisable(GL10.GL_POLYGON_OFFSET_FILL);
 
     gl.glDepthMask(true);
     gl.glDisable(GL10.GL_BLEND);
@@ -211,7 +229,7 @@ public class OpenglesObjectRenderer implements ObjectRenderer, Renderer {
     final float fx = 0;
     final float fy = 0;
     final float fz = 1;
-    final float fa = -0.002f; //0.2f; //床と影の干渉を防止
+    final float fa = 0; //-0.004f; //床と影の干渉を防止
 
     // 射影行列
     final float[] matrix = new float[16];
