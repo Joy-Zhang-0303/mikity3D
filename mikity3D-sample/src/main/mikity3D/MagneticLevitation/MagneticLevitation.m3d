@@ -27,7 +27,7 @@
             <animation target="translationZ">
                <source id="0" number="2"/>
             </animation>
-            <sphere radius="0.05" division="36">
+            <sphere radius="0.05" division="360">
                <color r="192" g="192" b="192" alpha="255"/>
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
@@ -59,7 +59,7 @@
                   <translation x="0.05" y="0.0" z="0.105"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
                </box>
-               <cylinder radius="0.002" height="0.01" division="36">
+               <cylinder radius="0.002" height="0.01" division="360">
                   <color r="255" g="0" b="0" alpha="255" name="red"/>
                   <translation x="0.0" y="0.0" z="0.105"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
@@ -77,7 +77,7 @@
             <group name="Coil">
                <translation x="0.0" y="0.0" z="0.0"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
-               <cylinder radius="0.07" height="0.3" division="36">
+               <cylinder radius="0.07" height="0.3" division="360">
                   <color r="128" g="64" b="0" alpha="255"/>
                   <translation x="0.0" y="0.0" z="-0.15"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>

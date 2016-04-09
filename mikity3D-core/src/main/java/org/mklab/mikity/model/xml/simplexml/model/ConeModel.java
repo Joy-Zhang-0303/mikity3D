@@ -67,7 +67,7 @@ public class ConeModel extends AbstractObjectModel {
    * @return デフォルトのモデル
    */
   public static ConeModel createDefault() {
-    return new ConeModel(0.1f, 0.1f, 36);
+    return new ConeModel(0.1f, 0.1f, 360);
   }
   
   /**

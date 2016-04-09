@@ -61,7 +61,7 @@ public class SphereModel extends AbstractObjectModel {
    * @return デフォルトのモデル
    */
   public static SphereModel createDefault() {
-    return new SphereModel(0.1f, 36);
+    return new SphereModel(0.1f, 360);
   }
   
   /**

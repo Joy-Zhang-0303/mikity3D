@@ -66,7 +66,7 @@ public class AxisModel extends AbstractObjectModel {
    * @return デフォルトのモデル
    */
   public static AxisModel createDefault() {
-    return new AxisModel(0.006f, 0.36f, 36);
+    return new AxisModel(0.006f, 0.36f, 360);
   }
   
   /**

@@ -12,7 +12,7 @@
                <translation x="0.0" y="0.0" z="0.015"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
             </box>
-            <cylinder radius="0.005" height="0.012" division="36">
+            <cylinder radius="0.005" height="0.012" division="360">
                <color r="255" g="165" b="0" alpha="255" name="orange"/>
                <translation x="0.0" y="0.0" z="0.035"/>
                <rotation x="0.0" y="1.5708" z="0.0"/>
@@ -37,7 +37,7 @@
                   <animation target="rotationX">
                      <source id="0" number="3"/>
                   </animation>
-                  <sphere radius="0.01" division="36">
+                  <sphere radius="0.01" division="360">
                      <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
