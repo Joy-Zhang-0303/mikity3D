@@ -43,6 +43,7 @@ public class ColladaUnmarshaller {
    * @param file Colladaファイル
    * @throws Mikity3dSerializeDeserializeException Unmarshalできない場合
    */
+  @SuppressWarnings("resource")
   public void unmarshalFromColladaFile(File file) throws Mikity3dSerializeDeserializeException {
     try {
       final ColladaFileTransformer transformer = new ColladaFileTransformer();

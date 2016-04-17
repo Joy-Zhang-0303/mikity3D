@@ -128,6 +128,7 @@ public class AssetsListViewFragment extends Fragment {
           
         try {
           // input should not be closed since it is a virtual stream for asset
+          @SuppressWarnings("resource")
           final InputStream input = AssetsListViewFragment.this.assetManager.open(selectedFile);
           
           if (AssetsListViewFragment.this.isModelData) {

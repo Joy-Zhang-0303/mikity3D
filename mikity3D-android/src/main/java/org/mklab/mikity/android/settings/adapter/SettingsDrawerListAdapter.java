@@ -74,18 +74,18 @@ public class SettingsDrawerListAdapter extends BaseAdapter {
    */
   public View getView(int position, View convertView, ViewGroup parent) {
     if (convertView == null) {
-      LayoutInflater mInflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      final LayoutInflater mInflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       convertView = mInflater.inflate(R.layout.drawer_list_item, null);
     }
 
-    ImageView icon = (ImageView)convertView.findViewById(R.id.navicon);
-    TextView title = (TextView)convertView.findViewById(R.id.title);
-    TextView counter = (TextView)convertView.findViewById(R.id.counter);
+    final ImageView icon = (ImageView)convertView.findViewById(R.id.navicon);
+    final TextView title = (TextView)convertView.findViewById(R.id.title);
+    final TextView counter = (TextView)convertView.findViewById(R.id.counter);
 
     icon.setImageResource(this.items.get(position).getIcon());
     title.setText(this.items.get(position).getTitle());
 
-    if (this.items.get(position).getCounterVisiblity()) {
+    if (this.items.get(position).isCounterVisible()) {
       counter.setText(this.items.get(position).getCount());
     } else {
       counter.setVisibility(View.GONE);

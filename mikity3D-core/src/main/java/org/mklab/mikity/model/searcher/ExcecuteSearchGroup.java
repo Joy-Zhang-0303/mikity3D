@@ -53,7 +53,7 @@ public class ExcecuteSearchGroup {
           try {
             items.add(searchAnimation(group, animationIndex, parents));
             animationIndex++;
-          } catch (Exception e) {
+          } catch (@SuppressWarnings("unused") Exception e) {
             break;
           }
         }
@@ -67,7 +67,7 @@ public class ExcecuteSearchGroup {
             try {
               items.add(searchAnimation(group, animationIndex, parents));
               animationIndex++;
-            } catch (Exception ee) {
+            } catch (@SuppressWarnings("unused") Exception ee) {
               break;
             }
           }

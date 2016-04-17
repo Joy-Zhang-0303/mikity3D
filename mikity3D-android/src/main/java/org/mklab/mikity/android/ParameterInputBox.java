@@ -181,7 +181,7 @@ R   *
   public boolean containsOnlyNumbers() {
     try {
       Double.parseDouble(this.valueText.getText().toString());
-    } catch (NumberFormatException e) {
+    } catch (@SuppressWarnings("unused") NumberFormatException e) {
       return false;
     }
     return true;

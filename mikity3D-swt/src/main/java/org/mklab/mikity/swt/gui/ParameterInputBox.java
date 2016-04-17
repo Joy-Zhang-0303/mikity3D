@@ -187,7 +187,7 @@ public class ParameterInputBox extends Composite {
   public boolean containsOnlyNumbers() {
     try {
       Double.parseDouble(this.valueText.getText());
-    } catch (NumberFormatException e) {
+    } catch (@SuppressWarnings("unused") NumberFormatException e) {
       return false;
     }
     return true;

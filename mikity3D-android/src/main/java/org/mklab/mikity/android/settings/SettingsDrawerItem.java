@@ -20,7 +20,6 @@ package org.mklab.mikity.android.settings;
  * @version $Revision$, 2016/02/01
  */
 public class SettingsDrawerItem {
-
   private String title;
   private int navicon;
   private String count = "0"; //$NON-NLS-1$
@@ -36,8 +35,8 @@ public class SettingsDrawerItem {
 
   /**
    * 新しく生成された<code>NavDrawerItem</code>オブジェクトを初期化します。
-   * @param title
-   * @param icon
+   * @param title タイトル 
+   * @param icon アイコン
    */
   public SettingsDrawerItem(String title, int icon) {
     this.title = title;
@@ -46,8 +45,8 @@ public class SettingsDrawerItem {
 
   /**
    * 新しく生成された<code>NavDrawerItem</code>オブジェクトを初期化します。
-   * @param title
-   * @param icon
+   * @param title タイトル
+   * @param icon アイコン
    * @param isCounterVisible
    * @param count
    */
@@ -59,21 +58,26 @@ public class SettingsDrawerItem {
   }
 
   /**
-   * @return
+   * タイトルを返します。
+   * 
+   * @return タイトル
    */
   public String getTitle() {
     return this.title;
   }
 
   /**
-   * @return
+   *  アイコンを返します。
+   * @return アイコン
    */
   public int getIcon() {
     return this.navicon;
   }
 
   /**
-   * @return
+   * 項目の数を返します。
+   * 
+   * @return 項目の数
    */
   public String getCount() {
     return this.count;
@@ -82,26 +86,32 @@ public class SettingsDrawerItem {
   /**
    * @return
    */
-  public boolean getCounterVisiblity() {
+  public boolean isCounterVisible() {
     return this.isCounterVisible;
   }
 
   /**
-   * @param title
+   * タイトルを設定します。
+   * 
+   * @param title タイトル
    */
   public void setTitle(String title) {
     this.title = title;
   }
 
   /**
-   * @param icon
+   * アイコンを設定します。
+   * 
+   * @param icon アイコン
    */
   public void setIcon(int icon) {
     this.navicon = icon;
   }
 
   /**
-   * @param count
+   * 項目の数を設定します。
+   * 
+   * @param count 項目の数
    */
   public void setCount(String count) {
     this.count = count;
@@ -110,7 +120,7 @@ public class SettingsDrawerItem {
   /**
    * @param isCounterVisible
    */
-  public void setCounterVisisblity(boolean isCounterVisible) {
+  public void setCounterVisisble(boolean isCounterVisible) {
     this.isCounterVisible = isCounterVisible;
   }
 }

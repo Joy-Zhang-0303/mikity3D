@@ -222,7 +222,7 @@ public class AnimationParameterInputBox extends TableRow {
   public boolean containsOnlyNumbers() {
     try {
       Double.parseDouble(this.valueText2.getText().toString());
-    } catch (NumberFormatException e) {
+    } catch (@SuppressWarnings("unused") NumberFormatException e) {
       return false;
     }
     return true;

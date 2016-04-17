@@ -301,7 +301,7 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
     try {
       this.root = new Mikity3dFactory().loadFile(input);
       this.manager = new GroupObjectManager();
-    } catch (Mikity3dSerializeDeserializeException e) {
+    } catch (@SuppressWarnings("unused") Mikity3dSerializeDeserializeException e) {
       showMessageInDialog(getString(R.string.please_select_model_file));
       return false;
     }
@@ -619,7 +619,7 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
       this.sourceData.put(sourceId, data);
       
       return true;
-    } catch (IOException e) {
+    } catch (@SuppressWarnings("unused") IOException e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
@@ -638,7 +638,7 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
   public void addSource(String sourceId) {
     try {
       this.manager.addSource(sourceId, this.sourceData.get(sourceId));
-    } catch (IllegalAccessError e) {
+    } catch (@SuppressWarnings("unused") IllegalAccessError e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
@@ -646,7 +646,7 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
       final String message = "Source data size is not match model's source number." //$NON-NLS-1$
           + "\nPlease select proper source data or set proper source number."; //$NON-NLS-1$
       showMessageInDialog(message);
-    } catch (IllegalArgumentException e) {
+    } catch (@SuppressWarnings("unused") IllegalArgumentException e) {
       if (this.progressDialog != null) {
         this.progressDialog.dismiss();
       }
