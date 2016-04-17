@@ -123,7 +123,7 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
   private boolean isPaused = false;
 
   /** 繰り返し再生中ならばtrue */
-  private boolean isRepeating = false;
+  boolean isRepeating = false;
 
   /**
    * {@inheritDoc}

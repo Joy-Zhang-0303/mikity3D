@@ -196,7 +196,7 @@ public class TransformationEditor implements ModifyKeyListener {
     this.saveButton.setText(Messages.getString("ConfigurationDialog.0")); //$NON-NLS-1$
     this.saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") org.eclipse.swt.events.SelectionEvent e) {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         saveParameters();        
       }
 
@@ -208,7 +208,7 @@ public class TransformationEditor implements ModifyKeyListener {
     closeButton.setText(Messages.getString("ConfigDialog.17")); //$NON-NLS-1$
     closeButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") org.eclipse.swt.events.SelectionEvent e) {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         if (TransformationEditor.this.isChanged() == false) {
           TransformationEditor.this.sShell.close();
           return;
@@ -356,7 +356,7 @@ public class TransformationEditor implements ModifyKeyListener {
   /**
    * {@inheritDoc}
    */
-  public void modifyText(@SuppressWarnings("unused") ModifyEvent e) {
+  public void modifyText(ModifyEvent e) {
     if (this.saveButton != null) {
       this.isChanged = true;
       this.saveButton.setEnabled(true);
@@ -366,7 +366,7 @@ public class TransformationEditor implements ModifyKeyListener {
   /**
    * {@inheritDoc}
    */
-  public void keyPressed(@SuppressWarnings("unused") KeyEvent e) {
+  public void keyPressed(KeyEvent e) {
     // nothing to do
   }
 

@@ -80,7 +80,6 @@ public class QuadrangleEditor extends AbstractObjectEditor {
   /**
    * @param parameterGroup パラメータグループ
    */
-  @SuppressWarnings("unused")
   public void createParameterBoxes(final Group parameterGroup) {
     this.objectType.setText(Messages.getString("EditQuadPolygonDialog.23")); //$NON-NLS-1$
 

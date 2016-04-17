@@ -82,17 +82,17 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
   EditText eyePositionX;
   EditText eyePositionY;
   EditText eyePositionZ;
-  
+
   EditText lookAtPointX;
   EditText lookAtPointY;
   EditText lookAtPointZ;
-  
+
   EditText lightPositionX;
   EditText lightPositionY;
   EditText lightPositionZ;
-  
+
   private boolean isChanged = false;
-  
+
   View view;
 
   /**
@@ -100,13 +100,13 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
    */
   @Override
   public void onAttach(Activity activity) {
-      super.onAttach(activity);
-      if (activity instanceof MainActivity) {
-          this.mainActivity = (MainActivity)activity;
-          this.canvasFragment = this.mainActivity.canvasFragment;
-      }
+    super.onAttach(activity);
+    if (activity instanceof MainActivity) {
+      this.mainActivity = (MainActivity)activity;
+      this.canvasFragment = this.mainActivity.canvasFragment;
+    }
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -122,7 +122,7 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
-    
+
     this.view = inflater.inflate(R.layout.fragment_settings, container, false);
 
     final Button backButton = (Button)this.view.findViewById(R.id.settingsBackButton);
@@ -139,14 +139,14 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
 
     return this.view;
   }
-  
+
   /**
    * {@inheritDoc}
    */
   @Override
   public void onResume() {
     super.onResume();
-    
+
     createAnimationSpeedComponent(this.view);
     createEnvironmentComponent(this.view);
     createSensorComponent(this.view);
@@ -362,7 +362,7 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
         SettingsFragment.this.canvasFragment.setGridShowing(isChecked);
       }
     });
-    
+
     this.shadowDrawingButton = (CompoundButton)mainView.findViewById(R.id.shadowDrawingButton);
     this.shadowDrawingButton.setChecked(this.canvasFragment.isShadowDrawing());
     this.shadowDrawingButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -387,11 +387,10 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
       }
     });
   }
-  
+
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("unused")
   public void beforeTextChanged(CharSequence s, int start, int count, int after) {
     // nothing to do
   }
@@ -399,7 +398,6 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("unused")
   public void onTextChanged(CharSequence s, int start, int before, int count) {
     // nothing to do
   }
@@ -407,11 +405,8 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
   /**
    * {@inheritDoc}
    */
-  public void afterTextChanged(@SuppressWarnings("unused") Editable s) {
-//    if (this.saveButton != null) {
-      this.isChanged = true;
-//      this.saveButton.setEnabled(true);
-//    }
+  public void afterTextChanged(Editable s) {
+    this.isChanged = true;
   }
 
   /**
@@ -427,7 +422,7 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
 
     return false;
   }
-  
+
   private void saveEnvironment() {
     final ConfigurationModel configuration = this.canvasFragment.root.getConfiguration(0);
 
@@ -442,13 +437,13 @@ public class SettingsFragment extends Fragment implements OnKeyListener, TextWat
     lookAtPoint.setY(Float.parseFloat(this.lookAtPointY.getText().toString()));
     lookAtPoint.setZ(Float.parseFloat(this.lookAtPointZ.getText().toString()));
     configuration.setLookAtPoiint(lookAtPoint);
-    
+
     final LightModel light = configuration.getLight();
     light.setX(Float.parseFloat(this.lightPositionX.getText().toString()));
     light.setY(Float.parseFloat(this.lightPositionY.getText().toString()));
     light.setZ(Float.parseFloat(this.lightPositionZ.getText().toString()));
     configuration.setLight(light);
-    
+
     SettingsFragment.this.canvasFragment.setConfiguration(configuration);
   }
 }

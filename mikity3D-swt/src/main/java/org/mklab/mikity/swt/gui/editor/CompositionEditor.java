@@ -94,12 +94,12 @@ public class CompositionEditor extends AbstractObjectEditor {
     this.preservingRatio.addSelectionListener(new SelectionListener() {
 
       @Override
-      public void widgetDefaultSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetDefaultSelected(SelectionEvent e) {
         // nothing to do
       }
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         modifyText(null);
       }
     });

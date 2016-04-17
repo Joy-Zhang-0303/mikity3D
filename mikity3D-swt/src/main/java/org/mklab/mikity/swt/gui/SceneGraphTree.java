@@ -116,7 +116,7 @@ public class SceneGraphTree {
     this.tree.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         if (SceneGraphTree.this.tree.getSelectionCount() != 0) {
           SceneGraphTree.this.selectedTreeItem = SceneGraphTree.this.tree.getSelection()[0];
           updatetSelectedObject();
@@ -185,7 +185,7 @@ public class SceneGraphTree {
     addGroup.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         addGroup();
       }
     });
@@ -195,7 +195,7 @@ public class SceneGraphTree {
     addBox.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         addBox();
       }
     });
@@ -205,7 +205,7 @@ public class SceneGraphTree {
     addCylinder.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         addCylinder();
       }
     });
@@ -215,7 +215,7 @@ public class SceneGraphTree {
     addSphere.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         addSphere();
       }
     });
@@ -225,7 +225,7 @@ public class SceneGraphTree {
     addCone.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         addCone();
       }
     });
@@ -235,7 +235,7 @@ public class SceneGraphTree {
     addCapsule.addSelectionListener(new SelectionAdapter() {
 
       @Override     
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         addCapsule();
       }
     });
@@ -245,7 +245,7 @@ public class SceneGraphTree {
     addTriangle.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         addTriangle();
       }
     });
@@ -255,7 +255,7 @@ public class SceneGraphTree {
     addQuadrangle.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         addQuadrangle();
       }
     });
@@ -265,7 +265,7 @@ public class SceneGraphTree {
     transform.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         if (SceneGraphTree.this.selectedObject instanceof CompositionModel) {
           final TransformationEditor dialog = new TransformationEditor(SceneGraphTree.this.parentComposite.getShell(), (CompositionModel)SceneGraphTree.this.selectedObject, SceneGraphTree.this.modeler);
           dialog.open();
@@ -279,7 +279,7 @@ public class SceneGraphTree {
     cutItem.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         cutSelectedItem();
       }
     });
@@ -289,7 +289,7 @@ public class SceneGraphTree {
     copyItem.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         copySelectedItem();
       }
     });
@@ -299,7 +299,7 @@ public class SceneGraphTree {
     pasteItem.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         pasteBufferedObjectToSelectedItem();
       }
     });
@@ -309,7 +309,7 @@ public class SceneGraphTree {
     deleteItem.addSelectionListener(new SelectionAdapter() {
 
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         deleteSelectedItem();
       }
     });
@@ -319,7 +319,7 @@ public class SceneGraphTree {
        * {@inheritDoc}
        */
       @Override
-      public void menuShown(@SuppressWarnings("unused") MenuEvent e) {
+      public void menuShown(MenuEvent e) {
         if (SceneGraphTree.this.selectedObject == SceneGraphTree.this.rootGroup) {
           addBox.setEnabled(false);
           addCylinder.setEnabled(false);

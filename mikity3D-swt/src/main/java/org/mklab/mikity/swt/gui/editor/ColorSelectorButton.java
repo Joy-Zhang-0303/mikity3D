@@ -63,7 +63,7 @@ public class ColorSelectorButton implements ModifyListener {
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") final SelectionEvent e) {
+      public void widgetSelected(final SelectionEvent e) {
         final RGB selectedRGB = ColorSelectorButton.this.selector.getColorValue();
         final ColorModel selectedColor = new ColorModel(selectedRGB.red, selectedRGB.green, selectedRGB.blue);
 
@@ -106,7 +106,7 @@ public class ColorSelectorButton implements ModifyListener {
   /**
    * {@inheritDoc}
    */
-  public void modifyText(@SuppressWarnings("unused") ModifyEvent arg0) {
+  public void modifyText(ModifyEvent arg0) {
     // nothing to do
   }
 }

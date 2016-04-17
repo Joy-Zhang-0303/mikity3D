@@ -34,7 +34,6 @@ import android.widget.TextView;
  * @version $Revision$, 2016/02/01
  */
 public class MainMenuDrawerListAdapter extends BaseAdapter {
-
   private Context context;
   private List<MainMenuDrawerItem> items;
 
@@ -75,7 +74,7 @@ public class MainMenuDrawerListAdapter extends BaseAdapter {
    */
   public View getView(int position, View convertView, ViewGroup parent) {
     if (convertView == null) {
-      LayoutInflater mInflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      final LayoutInflater mInflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       convertView = mInflater.inflate(R.layout.drawer_list_item, null);
     }
 
@@ -86,7 +85,7 @@ public class MainMenuDrawerListAdapter extends BaseAdapter {
     icon.setImageResource(this.items.get(position).getIcon());
     title.setText(this.items.get(position).getTitle());
 
-    if (this.items.get(position).getCounterVisiblity()) {
+    if (this.items.get(position).isCounterVisible()) {
       counter.setText(this.items.get(position).getCount());
     } else {
       counter.setVisibility(View.GONE);

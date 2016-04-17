@@ -80,21 +80,21 @@ public class DragAndDropEnabler {
     /**
      * {@inheritDoc}
      */
-    public void dragEnter(@SuppressWarnings("unused") DropTargetEvent e) {
+    public void dragEnter(DropTargetEvent e) {
       // nothing to do
     }
 
     /**
      * {@inheritDoc}
      */
-    public void dragLeave(@SuppressWarnings("unused") DropTargetEvent e) {
+    public void dragLeave(DropTargetEvent e) {
       // nothing to do
     }
 
     /**
      * {@inheritDoc}
      */
-    public void dragOperationChanged(@SuppressWarnings("unused") DropTargetEvent e) {
+    public void dragOperationChanged(DropTargetEvent e) {
       // nothing to do
     }
 
@@ -174,7 +174,7 @@ public class DragAndDropEnabler {
     /**
      * {@inheritDoc}
      */
-    public void dropAccept(@SuppressWarnings("unused") DropTargetEvent e) {
+    public void dropAccept(DropTargetEvent e) {
       // nothing to do
     }
 
@@ -201,14 +201,14 @@ public class DragAndDropEnabler {
     /**
      * {@inheritDoc}
      */
-    public void dragSetData(@SuppressWarnings("unused") DragSourceEvent e) {
+    public void dragSetData(DragSourceEvent e) {
       // nothing to do
     }
 
     /**
      * {@inheritDoc}
      */
-    public void dragFinished(@SuppressWarnings("unused") DragSourceEvent e) {
+    public void dragFinished(DragSourceEvent e) {
       // nothing to do
     }
 

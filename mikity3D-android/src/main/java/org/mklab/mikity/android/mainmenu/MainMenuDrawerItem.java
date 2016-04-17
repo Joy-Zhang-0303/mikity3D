@@ -22,8 +22,11 @@ package org.mklab.mikity.android.mainmenu;
  * @version $Revision$, 2016/02/01
  */
 public class MainMenuDrawerItem {
+  /** タイトル。 */
   private String title;
+  /** アイコン。 */
   private int navicon;
+  /** 項目の数。 */
   private String count = "0"; //$NON-NLS-1$
 
   private boolean isCounterVisible = false;
@@ -47,10 +50,10 @@ public class MainMenuDrawerItem {
 
   /**
    * 新しく生成された<code>NavDrawerItem</code>オブジェクトを初期化します。
-   * @param title
-   * @param icon
-   * @param isCounterVisible
-   * @param count
+   * @param title タイトル
+   * @param icon アイコン
+   * @param isCounterVisible 項目の数が
+   * @param count 項目の数
    */
   public MainMenuDrawerItem(String title, int icon, boolean isCounterVisible, String count) {
     this.title = title;
@@ -60,21 +63,27 @@ public class MainMenuDrawerItem {
   }
 
   /**
-   * @return
+   * タイトルを返します。
+   * 
+   * @return タイトル
    */
   public String getTitle() {
     return this.title;
   }
 
   /**
-   * @return
+   * アイコンを返します。
+   * 
+   * @return アイコン
    */
   public int getIcon() {
     return this.navicon;
   }
 
   /**
-   * @return
+   * 項目の数を返します。
+   * 
+   * @return 項目の数
    */
   public String getCount() {
     return this.count;
@@ -83,19 +92,23 @@ public class MainMenuDrawerItem {
   /**
    * @return
    */
-  public boolean getCounterVisiblity() {
+  public boolean isCounterVisible() {
     return this.isCounterVisible;
   }
 
   /**
-   * @param title
+   * タイトルを設定します。
+   * 
+   * @param title タイトル
    */
   public void setTitle(String title) {
     this.title = title;
   }
 
   /**
-   * @param icon
+   * アイコンを設定します。
+   * 
+   * @param icon アイコン
    */
   public void setIcon(int icon) {
     this.navicon = icon;
@@ -111,7 +124,7 @@ public class MainMenuDrawerItem {
   /**
    * @param isCounterVisible
    */
-  public void setCounterVisisblity(boolean isCounterVisible) {
+  public void setCounterVisisble(boolean isCounterVisible) {
     this.isCounterVisible = isCounterVisible;
   }
 }

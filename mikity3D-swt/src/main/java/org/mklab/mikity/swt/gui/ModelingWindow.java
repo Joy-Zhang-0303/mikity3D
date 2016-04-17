@@ -201,7 +201,7 @@ public class ModelingWindow extends ApplicationWindow {
    * {@inheritDoc}
    */
   @Override
-  protected ToolBarManager createToolBarManager(@SuppressWarnings("unused") int arg0) {
+protected ToolBarManager createToolBarManager(int arg0) {
     final ToolBarManager toolbar = new ToolBarManager();
     toolbar.add(this.TOOLBAR_GROUP_ACTION);
     toolbar.add(this.TOOLBAR_BOX_ACTION);

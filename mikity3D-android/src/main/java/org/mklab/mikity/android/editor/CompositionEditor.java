@@ -102,11 +102,11 @@ public class CompositionEditor extends AbstractObjectEditor {
     preservingRatioLayout.addView(this.preservingRatio);
     
     this.preservingRatio.addOnAttachStateChangeListener(new OnAttachStateChangeListener() {
-      public void onViewDetachedFromWindow(@SuppressWarnings("unused") View v) {
+      public void onViewDetachedFromWindow(View v) {
         // nothing to do
       }
       
-      public void onViewAttachedToWindow(@SuppressWarnings("unused") View v) {
+      public void onViewAttachedToWindow(View v) {
         // nothing to do
       }
     });

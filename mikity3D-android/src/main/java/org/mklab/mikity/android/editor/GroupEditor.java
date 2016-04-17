@@ -96,7 +96,7 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
    * {@inheritDoc}
    */
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, @SuppressWarnings("unused") Bundle savedInstanceState) {
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_group_editor, container, false);
 
     this.groupName = (EditText)view.findViewById(R.id.groupName);
@@ -124,7 +124,7 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
       /**
        * {@inheritDoc}
        */
-      public void onClick(@SuppressWarnings("unused") View v) {
+      public void onClick(View v) {
         final FragmentManager manager = getActivity().getSupportFragmentManager();
         manager.popBackStack();
       }
@@ -136,7 +136,7 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
       /**
        * {@inheritDoc}
        */
-      public void onClick(@SuppressWarnings("unused") View v) {
+      public void onClick(View v) {
         saveParameters();
       }
     });
@@ -487,7 +487,6 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("unused")
   public void beforeTextChanged(CharSequence s, int start, int count, int after) {
     // nothing to do
   }
@@ -495,7 +494,6 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("unused")
   public void onTextChanged(CharSequence s, int start, int before, int count) {
     // nothing to do
   }
@@ -503,7 +501,7 @@ public class GroupEditor extends Fragment implements ModelEditor, OnKeyListener,
   /**
    * {@inheritDoc}
    */
-  public void afterTextChanged(@SuppressWarnings("unused") Editable s) {
+  public void afterTextChanged(Editable s) {
     if (this.saveButton != null) {
       this.isChanged = true;
       this.saveButton.setEnabled(true);

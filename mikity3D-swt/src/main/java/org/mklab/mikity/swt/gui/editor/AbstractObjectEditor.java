@@ -136,7 +136,6 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
     this.colorAlpha = new ParameterInputBox(group, this, SWT.NONE, Messages.getString("AbstractEditPrimitiveDialog.1"), "" + this.object.getColor().getAlpha()); //$NON-NLS-1$ //$NON-NLS-2$
   }
 
-  @SuppressWarnings("unused")
   private void createRotationBoxes(Group parameterGroup) {
     final RotationModel rotation = this.object.getRotation();
     
@@ -162,7 +161,6 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
     new UnitLabel(parameterGroup, "modelAngle"); //$NON-NLS-1$
   }
 
-  @SuppressWarnings("unused")
   private void createTranslationBoxes(Group parameterGroup) {
     final TranslationModel translation = this.object.getTranslation();
     
@@ -202,7 +200,7 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
     this.saveButton.setText(Messages.getString("EditPrimitiveDialog.11")); //$NON-NLS-1$
     this.saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") org.eclipse.swt.events.SelectionEvent e) {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         saveParameters();
       }
     });
@@ -316,7 +314,7 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
   /**
    * {@inheritDoc}
    */
-  public void modifyText(@SuppressWarnings("unused") ModifyEvent e) {
+  public void modifyText(ModifyEvent e) {
     if (this.saveButton != null) {
       this.isChanged = true;
       this.saveButton.setEnabled(true);
@@ -326,7 +324,7 @@ public abstract class AbstractObjectEditor implements ObjectEditor, ModifyKeyLis
   /**
    * {@inheritDoc}
    */
-  public void keyPressed(@SuppressWarnings("unused") KeyEvent e) {
+  public void keyPressed(KeyEvent e) {
     // nothing to do
   }
 

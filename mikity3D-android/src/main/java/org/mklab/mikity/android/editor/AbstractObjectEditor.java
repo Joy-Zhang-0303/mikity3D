@@ -96,7 +96,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
    * {@inheritDoc}
    */
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, @SuppressWarnings("unused") Bundle savedInstanceState) {
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_object_editor, container, false);
 
     this.objectType = (TextView)view.findViewById(R.id.objectType);
@@ -125,7 +125,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
       /**
        * {@inheritDoc}
        */
-      public void onClick(@SuppressWarnings("unused") View v) {
+      public void onClick(View v) {
         final FragmentManager manager = getActivity().getSupportFragmentManager();
         manager.popBackStack();
       }
@@ -137,7 +137,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
       /**
        * {@inheritDoc}
        */
-      public void onClick(@SuppressWarnings("unused") View v) {
+      public void onClick(View v) {
         saveParameters();
       }
     });
@@ -166,7 +166,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
       /**
        * {@inheritDoc}
        */
-      public void onClick(@SuppressWarnings("unused") View v) {
+      public void onClick(View v) {
         openColorPicker(AbstractObjectEditor.this.colorValue);
       }
     });
@@ -404,7 +404,6 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("unused")
   public void beforeTextChanged(CharSequence s, int start, int count, int after) {
     // nothing to do
   }
@@ -412,7 +411,6 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("unused")
   public void onTextChanged(CharSequence s, int start, int before, int count) {
     // nothing to do
   }
@@ -420,7 +418,7 @@ public abstract class AbstractObjectEditor extends Fragment implements ObjectEdi
   /**
    * {@inheritDoc}
    */
-  public void afterTextChanged(@SuppressWarnings("unused") Editable s) {
+  public void afterTextChanged(Editable s) {
     if (this.saveButton != null) {
       this.isChanged = true;
       this.saveButton.setEnabled(true);

@@ -356,7 +356,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         runAnimation();
       }
     });
@@ -366,7 +366,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         stopAnimation();
       }
       
@@ -377,7 +377,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         repeatAnimation();
       }
     });
@@ -387,7 +387,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         final int step = (int)Math.floor(Math.log10(AnimationWindow.this.animationSpeedRate));
         AnimationWindow.this.animationSpeedRate += (int)Math.pow(10, step);
         if (AnimationWindow.this.animationSpeedRate > 1000000) {
@@ -405,7 +405,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         final int step = (int)Math.floor(Math.log10(AnimationWindow.this.animationSpeedRate - 1));
         AnimationWindow.this.animationSpeedRate -= (int)Math.pow(10, step);  
         if (AnimationWindow.this.animationSpeedRate < 0) {
@@ -455,7 +455,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         if (AnimationWindow.this.timeTable == null) {
           return;
         }
@@ -521,7 +521,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         final FileDialog dialog = new FileDialog(parent.getShell());
         dialog.setFilterExtensions(new String[] {"*.m3d", "*.stl", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
         
@@ -618,7 +618,7 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
        * {@inheritDoc}
        */
       @Override
-      public void widgetSelected(@SuppressWarnings("unused") SelectionEvent e) {
+      public void widgetSelected(SelectionEvent e) {
         final FileDialog dialog = new FileDialog(parent.getShell());
         dialog.setFilterExtensions(new String[] {"*.mat", "*.csv", "*.txt", "*.*"}); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         
@@ -877,21 +877,21 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   /**
    * {@inheritDoc}
    */
-  public void modifyText(@SuppressWarnings("unused") ModifyEvent e) {
+  public void modifyText(ModifyEvent e) {
     // nothing to do
   }
   
   /**
    * {@inheritDoc}
    */
-  public void keyPressed(@SuppressWarnings("unused") KeyEvent e) {
+  public void keyPressed(KeyEvent e) {
     // nothing to do
   }
 
   /**
    * {@inheritDoc}
    */
-  public void keyReleased(@SuppressWarnings("unused") KeyEvent e) {
+  public void keyReleased(KeyEvent e) {
     // nothing to do
   }
 }

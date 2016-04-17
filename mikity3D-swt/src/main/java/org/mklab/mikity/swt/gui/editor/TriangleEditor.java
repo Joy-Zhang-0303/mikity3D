@@ -72,7 +72,6 @@ public class TriangleEditor extends AbstractObjectEditor {
   /**
    * @param parameterGroup パラメータグループ
    */
-  @SuppressWarnings("unused")
   public void createParameterBoxes(final Group parameterGroup) {
     this.objectType.setText(Messages.getString("EditTrianglePolygonDialog.21")); //$NON-NLS-1$
     

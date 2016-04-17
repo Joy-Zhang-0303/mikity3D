@@ -353,7 +353,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
    * {@inheritDoc}
    */
   @Override
-  public void reshape(GLAutoDrawable drawable, @SuppressWarnings("unused") int x, @SuppressWarnings("unused") int y, int width, int height) {
+  public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
     final GL2 gl = (GL2)drawable.getGL();
     gl.glViewport(0, 0, width, height);
     
@@ -408,28 +408,28 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /**
    * {@inheritDoc}
    */
-  public void mouseClicked(@SuppressWarnings("unused") MouseEvent e) {
+  public void mouseClicked(MouseEvent e) {
     // nothing to do
   }
 
   /**
    * {@inheritDoc}
    */
-  public void mouseEntered(@SuppressWarnings("unused") MouseEvent e) {
+  public void mouseEntered(MouseEvent e) {
     // nothing to do
   }
 
   /**
    * {@inheritDoc}
    */
-  public void mouseExited(@SuppressWarnings("unused") MouseEvent e) {
+  public void mouseExited(MouseEvent e) {
     // nothing to do
   }
 
   /**
    * {@inheritDoc}
    */
-  public void mouseReleased(@SuppressWarnings("unused") MouseEvent e) {
+  public void mouseReleased(MouseEvent e) {
     // nothing to do
   }
 
@@ -495,7 +495,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /**
    * {@inheritDoc}
    */
-  public void mouseMoved(@SuppressWarnings("unused") MouseEvent e) {
+  public void mouseMoved(MouseEvent e) {
     // nothing to do
   }
 
@@ -518,7 +518,7 @@ public class JoglObjectRenderer extends GLJPanel implements ObjectRenderer, GLEv
   /**
    * {@inheritDoc}
    */
-  public void dispose(@SuppressWarnings("unused") GLAutoDrawable arg0) {
+  public void dispose(GLAutoDrawable arg0) {
     // TODO 自動生成されたメソッド・スタブ
   }
 

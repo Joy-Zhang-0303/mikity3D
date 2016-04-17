@@ -87,7 +87,7 @@ public class NullModel implements ObjectModel, Serializable, Cloneable {
   /**
    * {@inheritDoc}
    */
-  public void setColor(@SuppressWarnings("unused") ColorModel color) {
+  public void setColor(ColorModel color) {
     // nothing to do
   }
 
@@ -101,7 +101,7 @@ public class NullModel implements ObjectModel, Serializable, Cloneable {
   /**
    * {@inheritDoc}
    */
-  public void setTranslation(@SuppressWarnings("unused") TranslationModel translation) {
+  public void setTranslation(TranslationModel translation) {
     // nothing to do
   }
 
@@ -115,7 +115,7 @@ public class NullModel implements ObjectModel, Serializable, Cloneable {
   /**
    * {@inheritDoc}
    */
-  public void setRotation(@SuppressWarnings("unused") RotationModel rotation) {
+  public void setRotation(RotationModel rotation) {
     // nothing to do
   }
 
@@ -129,7 +129,7 @@ public class NullModel implements ObjectModel, Serializable, Cloneable {
   /**
    * {@inheritDoc}
    */
-  public void setTransparent(@SuppressWarnings("unused") boolean isTransparent) {
+  public void setTransparent(boolean isTransparent) {
     // nothing do do
   }
 

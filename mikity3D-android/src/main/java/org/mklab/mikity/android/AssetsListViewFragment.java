@@ -198,7 +198,6 @@ public class AssetsListViewFragment extends Fragment {
    * 
    * @return 読み込んだファイルの内容
    */
-  @SuppressWarnings("resource")
   String loadFileInAssets(String filePath) {
     try {
       final InputStream input = this.assetManager.open(filePath);

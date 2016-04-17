@@ -206,7 +206,6 @@ public class SampleSelectionFragment extends AbstractSelectionFragment implement
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("unused")
   public void onFailedLoadSourceData(String sourceId, String fileName) {
     // nothing to do
   }
@@ -255,7 +254,6 @@ public class SampleSelectionFragment extends AbstractSelectionFragment implement
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("unused")
   public void onFailedLoadModelData(InputStream input, String fileName) {
     // nothing to do
   }

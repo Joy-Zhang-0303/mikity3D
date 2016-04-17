@@ -23,7 +23,7 @@ public class SettingsDrawerItem {
 
   private String title;
   private int navicon;
-  private String count = "0";
+  private String count = "0"; //$NON-NLS-1$
 
   private boolean isCounterVisible = false;
 
