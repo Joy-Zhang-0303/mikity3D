@@ -91,9 +91,9 @@ public class AnimationWindow extends ApplicationWindow implements ModifyKeyListe
   /** 繰り返し再生中ならばtrue。 */
   boolean isRepeating = false;
 
-  /** 現在の時刻。 */
+  /** 現在の時間。 */
   double currentTime;
-  /** 終了の時刻。 */
+  /** 終了の時間。 */
   private double stopTime;
 
   private Mikity3DModel root;
