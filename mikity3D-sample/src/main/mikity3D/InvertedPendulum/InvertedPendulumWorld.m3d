@@ -44,12 +44,12 @@
                   <animation target="rotationX">
                      <source id="0" number="3"/>
                   </animation>
-                  <cylinder radius="0.01" height="0.018" division="360">
+                  <cylinder radius="0.01" height="0.018" division="180">
                      <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                      <translation x="0.0325" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="1.5708" z="0.0"/>
                   </cylinder>
-                  <cylinder radius="0.0025" height="0.3" division="360">
+                  <cylinder radius="0.0025" height="0.3" division="180">
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <translation x="0.037" y="0.0" z="0.15"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
@@ -86,12 +86,12 @@
                <animation target="rotationX">
                   <source id="1" number="2"/>
                </animation>
-               <cylinder radius="0.02" height="0.3" division="360">
+               <cylinder radius="0.02" height="0.3" division="180">
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                   <translation x="0.0" y="0.0" z="0.15"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
                </cylinder>
-               <sphere radius="0.03" division="360">
+               <sphere radius="0.03" division="90">
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                   <translation x="0.0" y="0.0" z="0.0"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
@@ -102,12 +102,12 @@
                   <animation target="rotationX">
                      <source id="1" number="3"/>
                   </animation>
-                  <cylinder radius="0.02" height="0.3" division="360">
+                  <cylinder radius="0.02" height="0.3" division="180">
                      <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                      <translation x="0.0" y="0.0" z="0.15"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                   </cylinder>
-                  <sphere radius="0.03" division="360">
+                  <sphere radius="0.03" division="180">
                      <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
@@ -123,7 +123,7 @@
          <group name="base">
             <translation x="0.0" y="0.0" z="0.0"/>
             <rotation x="0.0" y="0.0" z="0.0"/>
-            <cylinder radius="0.1" height="0.2" division="360">
+            <cylinder radius="0.1" height="0.2" division="180">
                <color r="0" g="255" b="64" alpha="255"/>
                <translation x="0.0" y="0.0" z="0.1"/>
                <rotation x="0.0" y="0.0" z="0.0"/>
@@ -145,12 +145,12 @@
                   <animation target="rotationZ">
                      <source id="2" number="3"/>
                   </animation>
-                  <cylinder radius="0.01" height="0.3" division="360">
+                  <cylinder radius="0.01" height="0.3" division="180">
                      <color r="255" g="128" b="64" alpha="255"/>
                      <translation x="0.0" y="0.15" z="0.0"/>
                      <rotation x="1.57" y="0.0" z="0.0"/>
                   </cylinder>
-                  <cylinder radius="0.01" height="0.02" division="360">
+                  <cylinder radius="0.01" height="0.02" division="180">
                      <color r="255" g="128" b="0" alpha="255"/>
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
@@ -162,12 +162,12 @@
                   <animation target="rotationZ">
                      <source id="2" number="4"/>
                   </animation>
-                  <cylinder radius="0.01" height="0.2" division="360">
+                  <cylinder radius="0.01" height="0.2" division="180">
                      <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                      <translation x="0.0" y="0.0" z="-0.1"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                   </cylinder>
-                  <cylinder radius="0.01" height="0.02" division="360">
+                  <cylinder radius="0.01" height="0.02" division="180">
                      <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="1.57" y="0.0" z="0.0"/>

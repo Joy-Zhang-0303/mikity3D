@@ -56,12 +56,12 @@
                   <animation target="rotationX">
                      <source id="0" number="3"/>
                   </animation>
-                  <cylinder radius="0.02" height="0.1" division="360">
+                  <cylinder radius="0.02" height="0.1" division="180">
                      <color r="0" g="255" b="0" alpha="255" name="green"/>
                      <translation x="0.025" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="1.57" z="0.0"/>
                   </cylinder>
-                  <cylinder radius="0.01" height="0.6" division="360">
+                  <cylinder radius="0.01" height="0.6" division="180">
                      <color r="255" g="165" b="0" alpha="255" name="orange"/>
                      <translation x="0.05" y="0.0" z="0.3"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
@@ -72,12 +72,12 @@
                      <animation target="rotationX">
                         <source id="0" number="4"/>
                      </animation>
-                     <cylinder radius="0.02" height="0.05" division="360">
+                     <cylinder radius="0.02" height="0.05" division="180">
                         <color r="0" g="255" b="0" alpha="255" name="green"/>
                         <translation x="0.05" y="0.0" z="0.0"/>
                         <rotation x="0.0" y="1.57" z="0.0"/>
                      </cylinder>
-                     <cylinder radius="0.01" height="0.6" division="360">
+                     <cylinder radius="0.01" height="0.6" division="180">
                         <color r="255" g="165" b="0" alpha="255" name="orange"/>
                         <translation x="0.05" y="0.0" z="0.3"/>
                         <rotation x="0.0" y="0.0" z="0.0"/>

@@ -56,12 +56,12 @@
                      <translation x="0.0" y="0.0" z="-0.075"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                   </cylinder>
-                  <sphere radius="0.01" division="20">
+                  <sphere radius="0.01" division="90">
                      <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                      <translation x="0.0" y="0.0" z="-0.15"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                   </sphere>
-                  <sphere radius="0.01" division="20">
+                  <sphere radius="0.01" division="90">
                      <color r="0" g="255" b="255" alpha="255" name="cyan"/>
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>

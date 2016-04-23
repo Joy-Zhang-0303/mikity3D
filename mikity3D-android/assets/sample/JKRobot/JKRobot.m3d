@@ -45,12 +45,12 @@
                <animation target="rotationY">
                   <source id="0" number="4"/>
                </animation>
-               <cylinder radius="0.1" height="0.012" division="360">
+               <cylinder radius="0.1" height="0.012" division="180">
                   <color r="0" g="0" b="255" alpha="255" name="blue"/>
                   <translation x="0.0" y="0.0" z="0.0"/>
                   <rotation x="1.57" y="0.0" z="0.0"/>
                </cylinder>
-               <cylinder radius="0.005" height="0.02" division="360">
+               <cylinder radius="0.005" height="0.02" division="180">
                   <color r="0" g="0" b="255" alpha="255" name="blue"/>
                   <translation x="0.0" y="0.016" z="0.0"/>
                   <rotation x="1.57" y="0.0" z="0.0"/>
@@ -71,12 +71,12 @@
                <animation target="rotationY">
                   <source id="0" number="4"/>
                </animation>
-               <cylinder radius="0.1" height="0.012" division="360">
+               <cylinder radius="0.1" height="0.012" division="180">
                   <color r="0" g="0" b="255" alpha="255" name="blue"/>
                   <translation x="0.0" y="0.0" z="0.0"/>
                   <rotation x="1.57" y="0.0" z="0.0"/>
                </cylinder>
-               <cylinder radius="0.005" height="0.02" division="360">
+               <cylinder radius="0.005" height="0.02" division="180">
                   <color r="0" g="0" b="255" alpha="255" name="blue"/>
                   <translation x="0.0" y="-0.016" z="0.0"/>
                   <rotation x="1.57" y="0.0" z="0.0"/>
@@ -102,7 +102,7 @@
                <group name="Arm">
                   <translation x="0.0" y="-0.034" z="0.01"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
-                  <cylinder radius="0.005" height="0.012" division="360">
+                  <cylinder radius="0.005" height="0.012" division="180">
                      <color r="0" g="0" b="255" alpha="255" name="blue"/>
                      <translation x="0.0" y="0.008" z="0.0"/>
                      <rotation x="1.57" y="0.0" z="0.0"/>
@@ -125,7 +125,7 @@
                <group name="Arm">
                   <translation x="0.0" y="0.034" z="0.01"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
-                  <cylinder radius="0.005" height="0.012" division="360">
+                  <cylinder radius="0.005" height="0.012" division="180">
                      <color r="0" g="0" b="255" alpha="255" name="blue"/>
                      <translation x="0.0" y="-0.008" z="0.0"/>
                      <rotation x="1.57" y="0.0" z="0.0"/>

@@ -28,12 +28,12 @@
                <animation target="rotationX">
                   <source id="0" number="2"/>
                </animation>
-               <cylinder radius="0.02" height="0.3" division="360">
+               <cylinder radius="0.02" height="0.3" division="180">
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                   <translation x="0.0" y="0.0" z="0.15"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
                </cylinder>
-               <sphere radius="0.03" division="360">
+               <sphere radius="0.03" division="90">
                   <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                   <translation x="0.0" y="0.0" z="0.0"/>
                   <rotation x="0.0" y="0.0" z="0.0"/>
@@ -44,12 +44,12 @@
                   <animation target="rotationX">
                      <source id="0" number="3"/>
                   </animation>
-                  <cylinder radius="0.02" height="0.3" division="360">
+                  <cylinder radius="0.02" height="0.3" division="180">
                      <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                      <translation x="0.0" y="0.0" z="0.15"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
                   </cylinder>
-                  <sphere radius="0.03" division="360">
+                  <sphere radius="0.03" division="90">
                      <color r="255" g="255" b="0" alpha="255" name="yellow"/>
                      <translation x="0.0" y="0.0" z="0.0"/>
                      <rotation x="0.0" y="0.0" z="0.0"/>
