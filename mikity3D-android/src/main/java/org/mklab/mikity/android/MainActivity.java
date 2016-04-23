@@ -22,7 +22,6 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.hardware.SensorManager;
 import android.net.Uri;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -37,9 +36,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Surface;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 
 
 /**
@@ -94,14 +91,19 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     
     setContentView(R.layout.activity_main);
 
     final Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    
+    final ActionBar actionBar = getSupportActionBar();
+    actionBar.setLogo(R.drawable.icon);
+    actionBar.setHomeButtonEnabled(true);
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setDisplayUseLogoEnabled(true);
+    actionBar.setDisplayShowTitleEnabled(false);
+
     createFragments();
 
     showMainMenuFragment();
@@ -110,14 +112,6 @@ public class MainActivity extends AppCompatActivity {
     this.drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
     this.drawerToggle.syncState();
     drawerLayout.setDrawerListener(this.drawerToggle);
-
-    final ActionBar actionBar = getSupportActionBar();
-    actionBar.show();
-    actionBar.setLogo(R.drawable.icon);
-    actionBar.setHomeButtonEnabled(true);
-    actionBar.setDisplayHomeAsUpEnabled(true);
-    actionBar.setDisplayUseLogoEnabled(true);
-    actionBar.setDisplayShowTitleEnabled(false);
 
     this.sensorService = new SensorService((SensorManager)getSystemService(SENSOR_SERVICE), this.canvasFragment);
 
@@ -343,17 +337,17 @@ public class MainActivity extends AppCompatActivity {
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
     // スクリーンのサイズ調整が済んでいない場合は調整します。
-    if (this.canvasFragment.isInitialScreenSize == false) {
-      updateCanvasSize();
-    }
+    //    if (this.canvasFragment.isInitialScreenSize == false) {
+    //      updateCanvasSize();
+    //    }
     super.onWindowFocusChanged(hasFocus);
   }
 
-  private void updateCanvasSize() {
-    final GLSurfaceView view = (GLSurfaceView)findViewById(R.id.glview1);
-    final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(view.getWidth(), view.getHeight());
-    view.setLayoutParams(params);
-  }
+  //  private void updateCanvasSize() {
+  //    final GLSurfaceView view = (GLSurfaceView)findViewById(R.id.glview1);
+  //    final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(view.getWidth(), view.getHeight());
+  //    view.setLayoutParams(params);
+  //  }
 
   /**
    * {@inheritDoc}
@@ -366,8 +360,8 @@ public class MainActivity extends AppCompatActivity {
     super.onResume();
   }
 
-  /**O
-   * {@inheritDoc}
+  /**
+   * O {@inheritDoc}
    */
   @Override
   public void onPause() {
