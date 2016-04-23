@@ -36,7 +36,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Surface;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 
 
 /**
@@ -83,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
   /** モデルデータのURI。 */
   Uri modelFileUri;
+  
+  /** フルスクリーンを停止する(ツールバーを表示する)ためのボタン。 */
+  ImageButton fullScreenExitButton;
 
   /**
    * {@inheritDoc}
@@ -92,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
 
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    
+
     setContentView(R.layout.activity_main);
 
     final Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -103,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setDisplayUseLogoEnabled(true);
     actionBar.setDisplayShowTitleEnabled(false);
+
+    this.fullScreenExitButton = (ImageButton)findViewById(R.id.fullScreenExitButton);
+    setFullScreenExitButton(false);
 
     createFragments();
 
@@ -301,6 +309,7 @@ public class MainActivity extends AppCompatActivity {
 
     if (item.getItemId() == R.id.menu_hide_action_bar) {
       getSupportActionBar().hide();
+      setFullScreenExitButton(true);
     } else if (item.getItemId() == R.id.menu_play) {
       if (this.canvasFragment.playable) {
         this.isStopButtonPushable = true;
@@ -519,4 +528,15 @@ public class MainActivity extends AppCompatActivity {
     startActivityForResult(intent, REQUEST_CODE_SAVE_MODEL_DATA_FILE);
   }
 
+  /**
+   * フルスクリーンを停止するボタンを有効・無効にします。
+   * @param enable 有効にするならばtrue
+   */
+  public void setFullScreenExitButton(boolean enable) {
+    if (enable) {
+      this.fullScreenExitButton.setVisibility(View.VISIBLE);
+    } else {
+      this.fullScreenExitButton.setVisibility(View.INVISIBLE);
+    }
+  }
 }
