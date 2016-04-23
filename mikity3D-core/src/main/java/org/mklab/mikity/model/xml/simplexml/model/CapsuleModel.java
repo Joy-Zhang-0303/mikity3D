@@ -67,9 +67,8 @@ public class CapsuleModel extends AbstractObjectModel {
    * @return デフォルトのモデル
    */
   public static CapsuleModel createDefault() {
-    return new CapsuleModel(0.04f, 0.2f, 360);
+    return new CapsuleModel(0.04f, 0.2f, 180);
   }
-  
   
   /**
    * {@inheritDoc}

@@ -37,6 +37,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Surface;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
@@ -47,7 +48,7 @@ import android.widget.ImageButton;
  * @author soda
  * @version $Revision$, 2015/01/16
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
 
   final private static int REQUEST_CODE_LOAD_MODEL_DATA_FILE = 0;
   final private static int REQUEST_CODE_LOAD_SOURCE_DATA_FILE = 1;
@@ -110,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
     actionBar.setDisplayShowTitleEnabled(false);
 
     this.fullScreenExitButton = (ImageButton)findViewById(R.id.fullScreenExitButton);
-    setFullScreenExitButton(false);
+    this.fullScreenExitButton.setOnClickListener(this);
+    setFullScreenExitButtonEnabled(false);
 
     createFragments();
 
@@ -309,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
 
     if (item.getItemId() == R.id.menu_hide_action_bar) {
       getSupportActionBar().hide();
-      setFullScreenExitButton(true);
+      setFullScreenExitButtonEnabled(true);
     } else if (item.getItemId() == R.id.menu_play) {
       if (this.canvasFragment.playable) {
         this.isStopButtonPushable = true;
@@ -532,11 +534,23 @@ public class MainActivity extends AppCompatActivity {
    * フルスクリーンを停止するボタンを有効・無効にします。
    * @param enable 有効にするならばtrue
    */
-  public void setFullScreenExitButton(boolean enable) {
+  public void setFullScreenExitButtonEnabled(boolean enable) {
     if (enable) {
       this.fullScreenExitButton.setVisibility(View.VISIBLE);
     } else {
       this.fullScreenExitButton.setVisibility(View.INVISIBLE);
+    }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public void onClick(View v) {
+    if (v == this.fullScreenExitButton) {
+      if (getSupportActionBar().isShowing() == false) {
+        getSupportActionBar().show();
+        setFullScreenExitButtonEnabled(false);
+      }
     }
   }
 }

@@ -183,10 +183,9 @@ public class CanvasFragment extends Fragment implements View.OnTouchListener, On
       case MotionEvent.ACTION_DOWN:
         if (((MainActivity)getActivity()).getSupportActionBar().isShowing() == false) {
           this.rotating = false;
-          ((MainActivity)getActivity()).getSupportActionBar().show();
+          ((MainActivity)getActivity()).setFullScreenExitButtonEnabled(true);
           return true;
         }
-        
         this.rotating = true;
         this.prevX = event.getX();
         this.prevY = event.getY();

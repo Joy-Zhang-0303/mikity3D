@@ -67,7 +67,7 @@ public class CylinderModel extends AbstractObjectModel {
    * @return デフォルトのモデル
    */
   public static CylinderModel createDefault() {
-    return new CylinderModel(0.1f, 0.1f, 360);
+    return new CylinderModel(0.1f, 0.1f, 180);
   }
   
   
