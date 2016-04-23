@@ -301,7 +301,6 @@ public class MainActivity extends AppCompatActivity {
 
     if (item.getItemId() == R.id.menu_hide_action_bar) {
       getSupportActionBar().hide();
-      //this.canvasFragment.glView.onResume();
     } else if (item.getItemId() == R.id.menu_play) {
       if (this.canvasFragment.playable) {
         this.isStopButtonPushable = true;
