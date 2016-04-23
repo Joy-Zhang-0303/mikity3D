@@ -65,6 +65,7 @@
     <string name="groupName">Group Name</string>
     <string name="height">height</string>
     <string name="help">Help</string>
+    <string name="hideActionBar">Hide action bar</string>
     <string name="id">ID</string>
     <string name="lightPosition">Light position</string>
     <string name="loadedSuccessfully">Your data was loaded successfully</string>

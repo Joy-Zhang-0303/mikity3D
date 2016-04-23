@@ -1,5 +1,4 @@
 <!--
-
     Copyright (C) 2015 MKLab.org (Koga Laboratory)
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,29 +11,26 @@
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
-    limitations under the License.
-
+    limitations under the License.
 -->
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+
         <!-- Toolbar背景色 -->
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_d</item>
         <item name="colorAccent">@color/color_accent</item>
-        <!-- <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowContentOverlay">@null</item> -->
     </style>
-    
+
     <style name="toolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
         <!-- Toolbar背景色 -->
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_d</item>
         <item name="colorAccent">@color/color_accent</item>
-        
     </style>
-    
+
     <style name="toolbarMenuTheme" parent="Theme.AppCompat.Light">
         <item name="android:textColorPrimary">@color/menu_color</item>
     </style>

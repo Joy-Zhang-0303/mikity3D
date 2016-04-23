@@ -37,6 +37,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Surface;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
@@ -93,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE);
+    
     setContentView(R.layout.activity_main);
 
     final Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -108,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     drawerLayout.setDrawerListener(this.drawerToggle);
 
     final ActionBar actionBar = getSupportActionBar();
+    actionBar.show();
     actionBar.setLogo(R.drawable.icon);
     actionBar.setHomeButtonEnabled(true);
     actionBar.setDisplayHomeAsUpEnabled(true);
@@ -117,18 +122,15 @@ public class MainActivity extends AppCompatActivity {
     this.sensorService = new SensorService((SensorManager)getSystemService(SENSOR_SERVICE), this.canvasFragment);
 
     startIntentByExternalActivity();
-
-    // ステータスバーを消す
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
   }
-  
+
   /**
    * 各フラグメントを生成します。
    */
   private void createFragments() {
     final FragmentManager manager = getSupportFragmentManager();
     this.canvasFragment = (CanvasFragment)manager.findFragmentById(R.id.fragment_canvas);
-    
+
     this.mainMenuFragment = new MainMenuFragment();
     this.fileSelectionFragment = new FileSelectionFragment();
     this.sampleSelectionFragment = new SampleSelectionFragment();
@@ -199,9 +201,9 @@ public class MainActivity extends AppCompatActivity {
     transaction.replace(R.id.fragment_navigation_drawer, this.sceneGraphTreeFragment);
     transaction.commit();
   }
-  
+
   /**
-   * 新しいモデルデータを生成します。 
+   * 新しいモデルデータを生成します。
    */
   void createNewModelData() {
     if (this.canvasFragment.isModelChanged() == false) {
@@ -211,8 +213,9 @@ public class MainActivity extends AppCompatActivity {
       this.modelFileUri = null;
       return;
     }
-    
+
     final DialogFragment fragment = new DialogFragment() {
+
       /**
        * {@inheritDoc}
        */
@@ -220,29 +223,30 @@ public class MainActivity extends AppCompatActivity {
       public Dialog onCreateDialog(Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(getString(R.string.modelIsChanged) + " " + getString(R.string.willYouSave)) //$NON-NLS-1$
-        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int id) {
-            if (MainActivity.this.modelFileUri == null) {
-              sendFileChooseIntentForSavingModel();
-            } else {
-              MainActivity.this.saveModelData();
-            }
-            MainActivity.this.canvasFragment.createNewModelData();
-            MainActivity.this.modelFileUri = null;
-            MainActivity.this.fileSelectionFragment.reset();
-          }
-        })
-        .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int id) {
-            MainActivity.this.canvasFragment.createNewModelData();
-            MainActivity.this.modelFileUri = null;
-            MainActivity.this.fileSelectionFragment.reset();
-          }
-        });
+            .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+
+              public void onClick(DialogInterface dialog, int id) {
+                if (MainActivity.this.modelFileUri == null) {
+                  sendFileChooseIntentForSavingModel();
+                } else {
+                  MainActivity.this.saveModelData();
+                }
+                MainActivity.this.canvasFragment.createNewModelData();
+                MainActivity.this.modelFileUri = null;
+                MainActivity.this.fileSelectionFragment.reset();
+              }
+            }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+
+              public void onClick(DialogInterface dialog, int id) {
+                MainActivity.this.canvasFragment.createNewModelData();
+                MainActivity.this.modelFileUri = null;
+                MainActivity.this.fileSelectionFragment.reset();
+              }
+            });
         return builder.create();
       }
     };
-    
+
     fragment.show(getSupportFragmentManager(), "confirmDialog"); //$NON-NLS-1$
   }
 
@@ -301,7 +305,10 @@ public class MainActivity extends AppCompatActivity {
       return true;
     }
 
-    if (item.getItemId() == R.id.menu_play) {
+    if (item.getItemId() == R.id.menu_hide_action_bar) {
+      getSupportActionBar().hide();
+      this.canvasFragment.glView.onResume();
+    } else if (item.getItemId() == R.id.menu_play) {
       if (this.canvasFragment.playable) {
         this.isStopButtonPushable = true;
       }
@@ -337,11 +344,15 @@ public class MainActivity extends AppCompatActivity {
   public void onWindowFocusChanged(boolean hasFocus) {
     // スクリーンのサイズ調整が済んでいない場合は調整します。
     if (this.canvasFragment.isInitialScreenSize == false) {
-      final GLSurfaceView view = (GLSurfaceView)findViewById(R.id.glview1);
-      final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(view.getWidth(), view.getHeight());
-      view.setLayoutParams(params);
+      updateCanvasSize();
     }
     super.onWindowFocusChanged(hasFocus);
+  }
+
+  private void updateCanvasSize() {
+    final GLSurfaceView view = (GLSurfaceView)findViewById(R.id.glview1);
+    final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(view.getWidth(), view.getHeight());
+    view.setLayoutParams(params);
   }
 
   /**
@@ -355,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
     super.onResume();
   }
 
-  /**
+  /**O
    * {@inheritDoc}
    */
   @Override
@@ -445,9 +456,10 @@ public class MainActivity extends AppCompatActivity {
 
     this.fileSelectionFragment.saveModelData(this.modelFileUri);
   }
-  
+
   /**
    * モデルデータを名前を付けてファイルに保存します。
+   * 
    * @param uri モデルデータのURI
    */
   public void saveAsModelData(Uri uri) {
@@ -513,7 +525,7 @@ public class MainActivity extends AppCompatActivity {
     this.sourceIdForIntent = sourceId;
     startActivityForResult(intent, REQUEST_CODE_LOAD_SOURCE_DATA_FILE);
   }
-  
+
   /**
    * ファイルエクスプローラーにモデルデータ保存のためのインテントを発行します。
    */

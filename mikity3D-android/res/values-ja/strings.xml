@@ -65,6 +65,7 @@
     <string name="groupName">グループ名</string>
     <string name="height">高さ</string>
     <string name="help">ヘルプ</string>
+    <string name="hideActionBar">アクションバーを隠す</string>
     <string name="lightPosition">光源の位置</string>
     <string name="loadedSuccessfully">データは正常に読み込まれました。</string>
     <string name="lookAtPoint">注視点</string>   

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-
     Copyright (C) 2015 MKLab.org (Koga Laboratory)
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,35 +13,39 @@
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
+        android:id="@+id/menu_hide_action_bar"
+        android:icon="@drawable/ic_arrow_upward_white_24dp"
+        android:title="@string/hideActionBar"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/menu_play"
         android:icon="@drawable/play2"
-        app:showAsAction="ifRoom"
-        android:title="@string/play"/>
+        android:title="@string/play"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_stop"
         android:icon="@drawable/stop2"
-        app:showAsAction="ifRoom"
-        android:title="@string/stop"/>
+        android:title="@string/stop"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_pause"
         android:icon="@drawable/pause2"
-        app:showAsAction="ifRoom"
-        android:title="@string/pause"/>
+        android:title="@string/pause"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_repeat"
         android:icon="@drawable/repeat2"
-        app:showAsAction="ifRoom"
-        android:title="@string/repeat"/>
+        android:title="@string/repeat"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_reset_to_initial_state"
         android:icon="@drawable/reset3"
-        app:showAsAction="ifRoom"
-        android:title="@string/resetToInitialState"/>
+        android:title="@string/resetToInitialState"
+        app:showAsAction="ifRoom"/>
 
 </menu>
