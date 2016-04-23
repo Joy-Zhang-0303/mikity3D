@@ -22,7 +22,7 @@
 	<parent>
 		<groupId>org.mklab.mikity3D</groupId>
 		<artifactId>mikity3D</artifactId>
-		<version>0.7.5</version>
+		<version>0.7.6-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mikity3D-installer</artifactId>
