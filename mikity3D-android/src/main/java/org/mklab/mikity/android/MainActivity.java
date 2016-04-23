@@ -336,18 +336,8 @@ public class MainActivity extends AppCompatActivity {
    */
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
-    // スクリーンのサイズ調整が済んでいない場合は調整します。
-    //    if (this.canvasFragment.isInitialScreenSize == false) {
-    //      updateCanvasSize();
-    //    }
     super.onWindowFocusChanged(hasFocus);
   }
-
-  //  private void updateCanvasSize() {
-  //    final GLSurfaceView view = (GLSurfaceView)findViewById(R.id.glview1);
-  //    final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(view.getWidth(), view.getHeight());
-  //    view.setLayoutParams(params);
-  //  }
 
   /**
    * {@inheritDoc}
